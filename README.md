@@ -2,19 +2,15 @@
 
 A 100% spec compliant, self-hosted javascript parser with high focus on both performance and stability.
 
-
-### Coming soon!!
-
-
 ## Features
 
 * Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
 * Support TC39 proposals via option
-* Support for parsing with and without web compability (AnnexB)
+* Support for additional ECMAScript features for Web Browsers
 * Optionally track syntactic node locations (*WIP*)
 * Emits an ESTree-compatible abstract syntax tree.
-* Very well tested (~61 000 unit tests with full code coverage))
-* Lightweight - ~72 KB minified
+* Very well tested (~63 000 unit tests with full code coverage))
+* Lightweight - ~71 KB minified
 
 ## ESNext features
 
@@ -28,7 +24,7 @@ A 100% spec compliant, self-hosted javascript parser with high focus on both per
 
 ## API
 
-Meriyah generates AST according to [ESTree AST format](https://github.com/estree/estree), and can be used to perform [syntactic analysis](https://en.wikipedia.org/wiki/Parsing) (parsing) of a JavaScript program, and with ES2015 and later a JavaScript program can be either [a script or a module](https://tc39.github.io/ecma262/index.html#sec-ecmascript-language-scripts-and-modules).
+Meriyah generates `AST` according to [ESTree AST format](https://github.com/estree/estree), and can be used to perform [syntactic analysis](https://en.wikipedia.org/wiki/Parsing) (parsing) of a JavaScript program, and with `ES2015` and later a JavaScript program can be either [a script or a module](https://tc39.github.io/ecma262/index.html#sec-ecmascript-language-scripts-and-modules).
 
 The `parse` method exposed by meriyah takes an optional `options` object which allows you to specify whether to parse in [`script`](https://tc39.github.io/ecma262/#sec-parse-script) mode (the default) or in [`module`](https://tc39.github.io/ecma262/#sec-parsemodule) mode.
 
@@ -106,7 +102,7 @@ The second argument allows you to specify various options:
 | `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
 | `globalReturn`    | Allow return in the global scope |
 | `impliedStrict`   | Enable strict mode initial enforcement |
-| `module`          | Enable module syntax |
-| `next`            | Enable stage 3 support (*ESNext*)  |
+| `module`          | Allow parsing in module code |
+| `next`            | Enable `ESNext` feature support  |
 | `raw`             | Attach raw property to each literal node and identifier node |
-| `webcompat`       | Enable web compability (*AnnexB*) |
+| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
