@@ -1,5 +1,7 @@
 # meriyah
 
+[![CircleCI](https://circleci.com/gh/meriyah/meriyah/tree/master.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah/tree/master)
+
 A 100% spec compliant, self-hosted javascript parser with high focus on both performance and stability.
 
 ## Features
