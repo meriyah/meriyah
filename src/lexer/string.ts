@@ -26,12 +26,11 @@ export function scanString(parser: ParserState, context: Context): any {
     if (ch === quote) {
       ret += parser.source.slice(marker, parser.index);
       nextCodePoint(parser); // skip closing quote
-      //  if (context & Context.OptionsRaw) storeRaw(parser, start);
+      if (context & Context.OptionsRaw) parser.source.slice(start, parser.index);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }
 
-    // Backslash have it's 4th bit set
     if ((ch & 8) === 8 && ch === Chars.Backslash) {
       ret += parser.source.slice(marker, parser.index);
       const ch = nextCodePoint(parser);
