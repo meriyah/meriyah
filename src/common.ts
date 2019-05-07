@@ -18,7 +18,7 @@ export const enum Context {
   OptionsWebCompat      = 1 << 8,
   OptionsRaw            = 1 << 9,
   Strict                = 1 << 10,
-  Module                = 1 << 11,
+  Module                = 1 << 11, // Current code should be parsed as a module body
   InSwitch              = 1 << 12,
   InGlobal              = 1 << 13,
   TopLevel              = 1 << 14,
@@ -71,7 +71,7 @@ export const enum BindingOrigin {
   Arrow         = 1 << 1,
   ForStatement  = 1 << 2,
   Statement     = 1 << 3,
-  Export =      1 << 4
+  Export        = 1 << 4
 }
 
 export const enum AssignmentKind {
@@ -103,6 +103,17 @@ export const enum Flags {
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
   SimpleParameterList = 1 << 7
+}
+
+export const enum ParseFunctionFlag {
+  None              = 0,
+  DisallowGenerator = 1 << 0,
+  RequireIdentifier = 1 << 1,
+}
+
+export const enum LabelledFunctionStatement {
+  Disallow,
+  Allow,
 }
 
 /**

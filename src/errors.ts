@@ -138,7 +138,9 @@ export const enum Errors {
   InvalidStatementStart,
   StrictDelete,
   InvalidPatternTail,
-  ForLoopInvalidLHS
+  ForLoopInvalidLHS,
+  AsyncFunctionInSingleStatementContext,
+  InvalidTernaryYield
 }
 
 /*@internal*/
@@ -180,6 +182,8 @@ export const errorMessages: {
   [Errors.YieldInParameter]: 'Yield expression not allowed in formal parameter',
   [Errors.InvalidExponentationLHS]:
     'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
+  [Errors.AsyncFunctionInSingleStatementContext]:
+    'Async functions can only be declared at the top level or inside a block',
   [Errors.UnterminatedRegExp]: 'Unterminated regular expression',
   [Errors.UnexpectedTokenRegExpFlag]: 'Unexpected regular expression flag',
   [Errors.DuplicateRegExpFlag]: "Duplicate regular expression flag '%0'",
@@ -289,7 +293,8 @@ export const errorMessages: {
   [Errors.InvalidDecoratorSemicolon]: 'Decorators must not be followed by a semicolon',
   [Errors.InvalidStatementStart]: 'A statement can not start with object destructuring assignment',
   [Errors.StrictDelete]: 'Calling delete on expression not allowed in strict mode',
-  [Errors.InvalidPatternTail]: 'Pattern can not have a tail'
+  [Errors.InvalidPatternTail]: 'Pattern can not have a tail',
+  [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary'
 };
 
 export class ParseError extends SyntaxError {

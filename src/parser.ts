@@ -14,29 +14,14 @@ import {
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
+  LabelledFunctionStatement,
+  ParseFunctionFlag,
   BindingType,
   validateIdentifier,
   isStrictReservedWord,
   optionalBit,
   consumeSemicolon
 } from './common';
-
-export const enum LabelledFunctionStatement {
-  Disallow,
-  Allow
-}
-
-export const enum ParseFunctionFlag {
-  IsNormal = 0,
-  DisAllowGenerator = 1 << 0,
-  RequireIdentifier = 1 << 1
-}
-
-export const enum DecoratorFlag {
-  IsNormal = 0,
-  InExportDecl = 1 << 0,
-  InClassBody = 1 << 1
-}
 
 /**
  * Create a new parser instance
@@ -301,7 +286,7 @@ export function parseStatementListItem(parser: ParserState, context: Context): a
   switch (parser.token) {
     //   HoistableDeclaration[?Yield, ~Default]
     case Token.FunctionKeyword:
-      return parseFunctionDeclaration(parser, context, ParseFunctionFlag.IsNormal, /* isAsync */ 0);
+      return parseFunctionDeclaration(parser, context, ParseFunctionFlag.None, /* isAsync */ 0);
     // @decorator
     case Token.Decorator:
       if (context & Context.Module) return parseDecorators(parser, context | Context.InDecoratorContext);
@@ -456,7 +441,7 @@ export function parseExpressionOrLabelledStatement(
 
   const { token } = parser;
 
-  let expr: any;
+  let expr: ESTree.Expression;
 
   switch (token) {
     case Token.LetKeyword:
@@ -514,7 +499,13 @@ export function parseExpressionOrLabelledStatement(
    *   2. LeftHandSideExpression = AssignmentExpression
    *
    */
-  expr = parseAssignmentExpression(parser, context, expr);
+  expr = parseAssignmentExpression(parser, context, expr as
+    | ESTree.AssignmentExpression
+    | ESTree.Identifier
+    | ESTree.Literal
+    | ESTree.BinaryExpression
+    | ESTree.LogicalExpression
+    | ESTree.ConditionalExpression);
 
   /** Sequence expression
    *
@@ -646,7 +637,7 @@ export function parseLabelledStatement(
       (context & Context.Strict) === 0 &&
       context & Context.OptionsWebCompat &&
       parser.token === Token.FunctionKeyword
-        ? parseFunctionDeclaration(parser, context, ParseFunctionFlag.DisAllowGenerator, /* isAsync */ 0)
+        ? parseFunctionDeclaration(parser, context, ParseFunctionFlag.DisallowGenerator, /* isAsync */ 0)
         : parseStatement(parser, (context | Context.TopLevel) ^ Context.TopLevel, allowFuncDecl)
   };
 }
@@ -675,8 +666,8 @@ export function parseAsyncStatement(
   if (!asyncNewLine) {
     // async function ...
     if (parser.token === Token.FunctionKeyword) {
-      if (!allowFuncDecl) report(parser, Errors.Unexpected);
-      return parseFunctionDeclaration(parser, context, ParseFunctionFlag.IsNormal, /* isAsync */ 1);
+      if (!allowFuncDecl) report(parser, Errors.AsyncFunctionInSingleStatementContext);
+      return parseFunctionDeclaration(parser, context, ParseFunctionFlag.None, /* isAsync */ 1);
     }
 
     // async Identifier => ...
@@ -851,7 +842,7 @@ export function parseConsequentOrAlternate(
     (context & Context.OptionsWebCompat) === 0 ||
     parser.token !== Token.FunctionKeyword
     ? parseStatement(parser, (context | Context.TopLevel) ^ Context.TopLevel, LabelledFunctionStatement.Disallow)
-    : parseFunctionDeclaration(parser, context, ParseFunctionFlag.DisAllowGenerator, /* isAsync */ 0);
+    : parseFunctionDeclaration(parser, context, ParseFunctionFlag.DisallowGenerator, /* isAsync */ 0);
 }
 
 /**
@@ -1845,12 +1836,12 @@ function parseExportDeclaration(
       declaration = parseVariableStatement(parser, context, BindingType.Variable, BindingOrigin.Export);
       break;
     case Token.FunctionKeyword:
-      declaration = parseFunctionDeclaration(parser, context, ParseFunctionFlag.IsNormal, /* isAsync */ 0);
+      declaration = parseFunctionDeclaration(parser, context, ParseFunctionFlag.None, /* isAsync */ 0);
       break;
     case Token.AsyncKeyword:
       nextToken(parser, context);
       if ((parser.flags & Flags.NewLine) === 0 && parser.token === Token.FunctionKeyword) {
-        declaration = parseFunctionDeclaration(parser, context, ParseFunctionFlag.IsNormal, /* isAsync */ 1);
+        declaration = parseFunctionDeclaration(parser, context, ParseFunctionFlag.None, /* isAsync */ 1);
         break;
       }
     // falls through
@@ -2143,8 +2134,7 @@ export function parseYieldExpressionOrIdentifier(parser: ParserState, context: C
     //   'yield' ([no line terminator] '*'? AssignmentExpression)?
     nextToken(parser, context | Context.AllowRegExp);
     if (context & Context.InArgList) report(parser, Errors.YieldInParameter);
-    if (parser.token === Token.QuestionMark)
-      report(parser, Errors.UnexpectedToken, 'Can not have a `yield` expression on the left side of a ternary');
+    if (parser.token === Token.QuestionMark) report(parser, Errors.InvalidTernaryYield);
     parser.flags |= Flags.SeenYield;
     let argument: ESTree.Expression | null = null;
     let delegate = false; // yield*
@@ -2867,7 +2857,7 @@ export function parseFunctionDeclaration(
   nextToken(parser, context | Context.AllowRegExp);
   let isGenerator: 0 | 1 = 0;
   if (parser.token === Token.Multiply) {
-    if (flags & ParseFunctionFlag.DisAllowGenerator) report(parser, Errors.Unexpected);
+    if (flags & ParseFunctionFlag.DisallowGenerator) report(parser, Errors.Unexpected);
     nextToken(parser, context);
     isGenerator = 1;
   }
