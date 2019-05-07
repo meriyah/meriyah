@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "christian-kohler.path-intellisense",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "joelday.docthis",
+    "steoates.autoimport"
+  ]
+}

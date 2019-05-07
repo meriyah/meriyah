@@ -1,0 +1,18 @@
+{
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "tslint.nodePath": "./node_modules/tslint/bin/tslint",
+    "tslint.exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "packages/*/test/**"
+    ],
+    "emmet.triggerExpansionOnTab": true,
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/.vscode": true
+    },
+    "prettier.singleQuote": true
+  }
