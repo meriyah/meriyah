@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/meriyah/meriyah/tree/master.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah/tree/master)
 
-A 100% spec compliant, self-hosted javascript parser with high focus on both performance and stability.
+A 100% compliant, self-hosted javascript parser with high focus on both performance and stability.
 
 ## Features
 
@@ -23,6 +23,20 @@ A 100% spec compliant, self-hosted javascript parser with high focus on both per
 * [Static class features](https://github.com/tc39/proposal-static-class-features/)
 
 **Note:** These features need to be enabled with the `next` option.
+
+## Options
+
+The second argument allows you to specify various options:
+
+| Option        | Description |
+| ----------- | ------------------------------------------------------------ |
+| `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
+| `globalReturn`    | Allow return in the global scope |
+| `impliedStrict`   | Enable strict mode initial enforcement |
+| `module`          | Allow parsing in module code |
+| `next`            | Allow parsing with `ESNext` features  |
+| `raw`             | Attach raw property to each literal node |
+| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
 
 ## API
 
@@ -94,17 +108,3 @@ This will return when serialized in json:
     ]
 }
 ```
-
-## Options
-
-The second argument allows you to specify various options:
-
-| Option        | Description |
-| ----------- | ------------------------------------------------------------ |
-| `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
-| `globalReturn`    | Allow return in the global scope |
-| `impliedStrict`   | Enable strict mode initial enforcement |
-| `module`          | Allow parsing in module code |
-| `next`            | Enable `ESNext` feature support  |
-| `raw`             | Attach raw property to each literal node and identifier node |
-| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |

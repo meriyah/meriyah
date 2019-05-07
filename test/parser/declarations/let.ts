@@ -4,7 +4,9 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Declarations - Let', () => {
-  const invalidLetIdentifier = [
+  // Invalid 'let' as identifier cases
+
+  for (const arg of [
     'let let = 1',
     'for (let let = 1; let < 1; let++) {}',
     'for (let let in {}) {}',
@@ -26,12 +28,16 @@ describe('Declarations - Let', () => {
     'let [l\\u0065t] = 1',
     'const [l\\u0065t] = 1',
     'for (let l\\u0065t in {}) {}'
-  ];
-
-  for (const arg of invalidLetIdentifier) {
+  ]) {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
 
@@ -42,7 +48,8 @@ describe('Declarations - Let', () => {
     });
   }
 
-  const programs = [
+  // Valid 'let' as identifier cases
+  for (const arg of [
     'var let;',
     'var foo, let;',
     'try { } catch (let) { }',
@@ -72,9 +79,7 @@ describe('Declarations - Let', () => {
     'for (var [let] in {}) {}',
     'var let',
     'var [let] = []'
-  ];
-
-  for (const arg of programs) {
+  ]) {
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
         parseSource(`function f() { ${arg}}`, undefined, Context.None);
@@ -87,9 +92,9 @@ describe('Declarations - Let', () => {
       });
     });
 
-    it(`function * gen() { function not_gen() { ${arg}}}`, () => {
+    it(`function * gen() { function foo() { ${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * gen() { function not_gen() { ${arg}}}`, undefined, Context.None);
+        parseSource(`function * gen() { function foo() { ${arg}}}`, undefined, Context.None);
       });
     });
 
@@ -100,15 +105,23 @@ describe('Declarations - Let', () => {
     });
   }
 
+  // Valid cases
   for (const arg of [
     'let [ , , ...x] = [1, 2, 3, 4, 5];',
-    'let [[x]] = [null];',
     'let test262id8;',
     'let arrow = () => {};',
-    `let xCls = class x {};
-    let cls = class {};
-    let xCls2 = class { static name() {} };`,
+    `let x = class x {};
+    let x = class {};
+    let x = class { static name() {} };`,
+    'let [{ a }, { b }, { c = "" }] = [a, b, c];',
+    'let [{ x }] = [x];',
     'let [[x]] = [null];',
+    'let [x = 23] = [undefined];',
+    'let [{ x, y, z } = { x: 44, y: 55, z: 66 }] = [];',
+    'let [,] = function* g() { first += 1;  second += 1; };',
+    'let [ , , ...x] = [1, 2, 3, 4, 5];',
+    'let { arrow = () => {} } = {};',
+    'let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: { x: undefined, z: 7 } };',
     'function foo() { var let = 1, test = 2; }',
     'let [arrow = () => {}] = [];',
     'let [{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }];',
@@ -133,10 +146,7 @@ describe('Declarations - Let', () => {
     'let x = y + 5;',
     'let x=y + 5;',
     'let/foo/g',
-    `{
-      let x = 5;
-      let y = 6;
-    }`,
+    `{ let x = 5; let y = 6; }`,
     'let {a,b=0,c:d,e:f=0,[g]:[h]}=0',
     'let [...a] = 0;',
     'let [a,,]=0',
@@ -146,13 +156,12 @@ describe('Declarations - Let', () => {
     'let { x, y, } = obj;',
     'let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: null };',
     'let {a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3};',
-    `let x = "outer_x";
-    let y = "outer_y";
+    `let x = "x";
+    let y = "y";
     let { x, y, } = obj;
-    for (let x = "inner_x", i = 0; i < 1; i++) {
-      let y = "inner_y";
-    }`,
+    for (let x = "x", i = 0; i < 1; i++) { let y = "y"; }`,
     '[1 <= 0]',
+    'let [1 <= 0] = "foo"',
     'let a; [a] = [];',
     'let a, b; [a, b] = [1];',
     'let [a] = [1, 2];',
@@ -166,12 +175,15 @@ describe('Declarations - Let', () => {
     'let [[[...a]]] = [[[]]];',
     'let [[...a], ...b] = [[],];',
     'let a; [a, a] = [];',
+    'let [[...x] = [2, 1, 3]] = [];',
+    'let [[] = function() {}()] = [[23]];',
+    'let [[] = function() { return function*() {}(); }()] = [];',
     'let [foo] = arr;',
     'let [,] = x;',
     'let [,,] = x;',
     'let\nfoo',
+    'let\n[foo]\r=\n2\n;',
     'let foo = bar, zoo = boo',
-    'let foo = bar, zoo = boo;',
     'let foo = bar',
     'let foo = bar;',
     'let foo, bar',
@@ -310,7 +322,7 @@ describe('Declarations - Let', () => {
     ['var [({x: 1})] = [];', Context.None],
     ['var [(x)] = [];', Context.None],
     ['var [({x: 1}) = y] = [];', Context.None],
-    //['var [(x) = y] = [];', Context.None],
+    ['if (true) let x = 1;', Context.None],
     // ['let {x:o.f=1}={x:1}', Context.None],
     ['let [o.x=1]=[]', Context.None],
     ['(o.f=1)=>0', Context.None],

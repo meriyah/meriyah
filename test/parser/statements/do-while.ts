@@ -62,7 +62,34 @@ describe('Statements - Do while', () => {
         type: 'Program'
       }
     ],
-
+    [
+      'do while (x) continue \n while (x);',
+      Context.None,
+      {
+        body: [
+          {
+            body: {
+              body: {
+                label: null,
+                type: 'ContinueStatement'
+              },
+              test: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              type: 'WhileStatement'
+            },
+            test: {
+              name: 'x',
+              type: 'Identifier'
+            },
+            type: 'DoWhileStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       'do foo; while (bar);',
       Context.None,

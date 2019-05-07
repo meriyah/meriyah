@@ -5,40 +5,6 @@ import { parseSource } from '../../../src/parser';
 
 describe('Declarations - Var', () => {
   for (const arg of [
-    '{ x : y }',
-    '{ x : foo().y }',
-    '{ x : foo()[y] }',
-    '{ x : y.z }',
-    '{ x : y[z] }',
-    '{ x : { y } }',
-    '{ x : { foo: y } }',
-    '{ x : { foo: foo().y } }',
-    '{ x : { foo: foo()[y] } }',
-    '{ x : { foo: y.z } }',
-    '{ x : { foo: y[z] } }',
-    '{ x : [ y ] }',
-    '{ x : [ foo().y ] }',
-    '{ x : [ foo()[y] ] }',
-    '{ x : [ y.z ] }',
-    '{ x : [ y[z] ] }',
-    '{ x : y = 10 }',
-    '{ x : foo().y = 10 }',
-    '{ x : foo()[y] = 10 }',
-    '{ x : y.z = 10 }',
-    '{ x : y[z] = 10 }',
-    '{ x : { y = 10 } = {} }',
-    '{ x : { foo: y = 10 } = {} }',
-    '{ x : { foo: foo().y = 10 } = {} }',
-    '{ x : { foo: foo()[y] = 10 } = {} }',
-    '{ x : { foo: y.z = 10 } = {} }',
-    '{ x : { foo: y[z] = 10 } = {} }',
-    '{ x : [ y = 10 ] = {} }',
-    '{ x : [ foo().y = 10 ] = {} }',
-    '{ x : [ foo()[y] = 10 ] = {} }',
-    '{ x : [ y.z = 10 ] = {} }',
-    '{ x : [ y[z] = 10 ] = {} }',
-    '{ z : { __proto__: x, __proto__: y } = z }',
-    '[ x ]',
     '[ foo().x ]',
     '[ foo()[x] ]',
     '[ x.y ]',
@@ -72,6 +38,40 @@ describe('Declarations - Var', () => {
     '[ [ x[y] = 10 ] = {} ]',
     '{ x : y = 1 }',
     '{ x }',
+    '[ x ]',
+    '{ x : y }',
+    '{ x : foo().y }',
+    '{ x : foo()[y] }',
+    '{ x : y.z }',
+    '{ x : y[z] }',
+    '{ x : { y } }',
+    '{ x : { foo: y } }',
+    '{ x : { foo: foo().y } }',
+    '{ x : { foo: foo()[y] } }',
+    '{ x : { foo: y.z } }',
+    '{ x : { foo: y[z] } }',
+    '{ x : [ y ] }',
+    '{ x : [ foo().y ] }',
+    '{ x : [ foo()[y] ] }',
+    '{ x : [ y.z ] }',
+    '{ x : [ y[z] ] }',
+    '{ x : y = 10 }',
+    '{ x : foo().y = 10 }',
+    '{ x : foo()[y] = 10 }',
+    '{ x : y.z = 10 }',
+    '{ x : y[z] = 10 }',
+    '{ x : { y = 10 } = {} }',
+    '{ x : { foo: y = 10 } = {} }',
+    '{ x : { foo: foo().y = 10 } = {} }',
+    '{ x : { foo: foo()[y] = 10 } = {} }',
+    '{ x : { foo: y.z = 10 } = {} }',
+    '{ x : { foo: y[z] = 10 } = {} }',
+    '{ x : [ y = 10 ] = {} }',
+    '{ x : [ foo().y = 10 ] = {} }',
+    '{ x : [ foo()[y] = 10 ] = {} }',
+    '{ x : [ y.z = 10 ] = {} }',
+    '{ x : [ y[z] = 10 ] = {} }',
+    '{ z : { __proto__: x, __proto__: y } = z }',
     '{ x, y, z }',
     '{ x = 1, y: z, z: y }',
     '{x = 42, y = 15}',
@@ -170,6 +170,12 @@ describe('Declarations - Var', () => {
       });
     });
 
+    it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
         parseSource(`var x, y, z; (${arg}= z = {});`, undefined, Context.Strict | Context.Module);
@@ -221,30 +227,28 @@ describe('Declarations - Var', () => {
     'var q, x; (q, { x = 10 } = {});',
     'var { x = 10 } = { x = 20 } = {};',
     'var { __proto__: x, __proto__: y } = {}',
-    'var g6 = async ({x}, g = () => x) => { { var x = 2; } return g(); };',
-    'var g8 = async ({x}) => { { var g = () => x; var x = 2; } return g(); };',
-    'var g1 = async ({x}) => { var x = 2; return x };',
-    'var g2 = async ({x}) => { { var x = 2; } return x; };',
-    ' var g3 = async ({x}) => { var y = x; var x = 2; return y; };',
-    'var g6 = async ({x}, g = () => x) => { { var x = 2; } return g(); };',
-    'var g8 = async ({x}) => { { var g = () => x; var x = 2; } return g(); };',
-    'var g9 = async ({x}, g = () => eval("x")) => { var x = 2; return g(); };',
-    'var g10 = async ({x}, y) => { var y; return y };',
-    ' var g11 = async ({x}, y) => { var z = y; var y = 2; return z; };',
-    'var g12 = async (y, g = () => y) => { var y = 2; return g(); };',
-    ' var g13 = async ({x}, y, [z], v) => { var x, y, z; return x*y*z*v };',
-    ' var g20 = async ({x}) => { function x() { return 2 }; return x(); }',
-    'var g21 = async ({x}) => { { function x() { return 2 } } return x(); }',
-    'var g1 = async (x = 1) => { return x };',
-    'var g2 = async (x, y = x) => { return x + y; };',
-    'var g5 = async (x, y = () => x) => { return x + y(); };',
-    'var g4 = async (x = () => 1) => { return x() };',
-    'var g6 = async (x = {a: 1, m() { return 2 }}) => { return x.a + x.m(); };',
-    'var g5 = async (a = () => x) => { var x; return a(); };',
-    'var g3 = async (a = eval("x")) => { var x; return a; };',
-    'var g1 = async (a = x) => { var x = 2; return a; };',
-    'var g61 = async (a = () => { "use strict"; return eval("x") }) => { var x; return a(); };',
-    'var f13 = async function f(f = 7, x = f) { return x; }',
+    'var foo = async ({x}) => { var x = 2; return x };',
+    'var foo = async ({x}) => { { var x = 2; } return x; };',
+    'var foo = async ({x}) => { var y = x; var x = 2; return y; };',
+    'var foo = async ({x}, g = () => x) => { { var x = 2; } return g(); };',
+    'var foo = async ({x}) => { { var g = () => x; var x = 2; } return g(); };',
+    'var foo = async ({x}, g = () => eval("x")) => { var x = 2; return g(); };',
+    'var foo = async ({x}, y) => { var y; return y };',
+    'var foo = async ({x}, y) => { var z = y; var y = 2; return z; };',
+    'var foo = async (y, g = () => y) => { var y = 2; return g(); };',
+    'var foo = async ({x}, y, [z], v) => { var x, y, z; return x*y*z*v };',
+    'var foo = async ({x}) => { function x() { return 2 }; return x(); }',
+    'var foo = async ({x}) => { { function x() { return 2 } } return x(); }',
+    'var foo = async (x = 1) => { return x };',
+    'var foo = async (x, y = x) => { return x + y; };',
+    'var foo = async (x, y = () => x) => { return x + y(); };',
+    'var foo = async (x = () => 1) => { return x() };',
+    'var foo = async (x = {a: 1, m() { return 2 }}) => { return x.a + x.m(); };',
+    'var foo = async (a = () => x) => { var x; return a(); };',
+    'var foo = async (a = eval("x")) => { var x; return a; };',
+    'var foo = async (a = x) => { var x = 2; return a; };',
+    'var foo = async (a = () => { "use strict"; return eval("x") }) => { var x; return a(); };',
+    'var foo = async function f(f = 7, x = f) { return x; }',
     'var {[null]: y, ...x} = {null: 1, x: 1};',
     'var {[true]: y, ...x} = {true: 1, x: 1};',
     'var {[false]: y, ...x} = {false: 1, x: 1};',
@@ -329,7 +333,13 @@ describe('Declarations - Var', () => {
     'var [[...a], ...b] = [[],];',
     'var a, b; [[...a], ...b] = [[],];',
     'var [a, a] = [];',
+    'var hi = function eval() { };',
+    'var f = () => {var O = { method() { var await = 1; return await; } };}',
+    'var f = () => {var O = { method(await) { return await; } };}',
+    'var f = () => {var O = { *method() { var await = 1; return await; } };}',
+    'var O = { *method(await) { return await; } };',
     'var a = {}; [a.x] = [];',
+    'var await = 3; async function a() { await 4; }',
     'var a = {}; [a["x"]] = [];',
     'function foo() { return {}; }; [foo().x] = [];',
     'function foo() { return {}; }; [foo()["x"]] = [];',
@@ -338,12 +348,6 @@ describe('Declarations - Var', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
   }
@@ -385,9 +389,9 @@ describe('Declarations - Var', () => {
     'with',
     'null',
     'true',
-    'false'
+    'false',
     // future reserved keyword,
-    //'enum'
+    'enum'
   ]) {
     it(`for (var ${arg} = x;;);`, () => {
       t.throws(() => {

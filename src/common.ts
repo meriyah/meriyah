@@ -237,9 +237,7 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
     if (context & Context.Strict) report(parser, Errors.FutureReservedWordInStrictModeNotId);
   }
   if (token === Token.LetKeyword) {
-    if (type & BindingType.Class) report(parser, Errors.InvalidLetClassName);
     if (type & (BindingType.Let | BindingType.Const)) report(parser, Errors.InvalidLetConstBinding);
-    if (context & Context.Strict) report(parser, Errors.InvalidStrictLet);
   }
 
   if (token === Token.AwaitKeyword) {

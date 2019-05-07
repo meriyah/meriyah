@@ -2315,22 +2315,7 @@ export function parseLeftHandSideExpression(parser: ParserState, context: Contex
 
   expression = parseMemberOrUpdateExpression(parser, context, expression, /* inNewExpression */ 0);
 
-  return parseCallExpressionRest(parser, context, expression);
-}
-
-export function parseCallExpressionRest(parser: ParserState, context: Context, expression: ESTree.Expression): any {
-  expression = parseMemberOrUpdateExpression(parser, context, expression, /* assignable */ 0);
-  if (parser.token === Token.LeftParen) {
-    const args = parseArguments(parser, context);
-    parser.assignable = AssignmentKind.NotAssignable;
-    expression = {
-      type: 'CallExpression',
-      callee: expression,
-      arguments: args
-    };
-    return parseCallExpressionRest(parser, context, expression);
-  }
-  return expression;
+  return parseMemberOrUpdateExpression(parser, context, expression, /* assignable */ 0);
 }
 
 /**
@@ -3162,20 +3147,18 @@ export function parseArrayExpressionOrPattern(
         if (parser.token !== Token.Comma && parser.token !== Token.RightBracket)
           report(parser, Errors.UnexpectedToken, KeywordDescTable[(parser.token, Token.Type)]);
       } else {
-        const { token } = parser;
+        const isLeftParen = parser.token === Token.LeftParen;
 
         left = parseLeftHandSideExpression(parser, context, /* assignable */ 1);
 
         if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
           left = parseAssignmentExpression(parser, context, left);
           parser.assignable = AssignmentKind.NotAssignable;
-        } else {
-          destructible |=
-            !bindingType && token === Token.LeftParen && parser.assignable & AssignmentKind.Assignable
-              ? DestructuringKind.Assignable
-              : token === Token.LeftParen || parser.assignable & AssignmentKind.NotAssignable
-              ? DestructuringKind.NotDestructible
-              : 0;
+          parser.destructible = DestructuringKind.NotDestructible;
+        } else if (isLeftParen && parser.assignable & AssignmentKind.Assignable && !bindingType) {
+          destructible |= DestructuringKind.Assignable;
+        } else if (isLeftParen || parser.assignable & AssignmentKind.NotAssignable) {
+          destructible |= DestructuringKind.NotDestructible;
         }
       }
 
@@ -4704,8 +4687,6 @@ export function parseAsyncArrowOrCallExpression(
     if (destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidArrowDestructLHS);
     if (context & (Context.Module | Context.InAwaitContext) && parser.flags & Flags.SeenAwait)
       report(parser, Errors.IllegalArrowFunctionParams);
-    if (context & (Context.Strict | Context.InYieldContext) && parser.destructible & DestructuringKind.HasYield)
-      report(parser, Errors.YieldInParameter);
     if (parser.destructible & DestructuringKind.HasAWait) report(parser, Errors.InvalidArrowDefaultYield);
     if (parser.flags & Flags.NewLine || asyncNewLine) report(parser, Errors.InvalidLineBreak);
     if (parser.flags & Flags.SeenAwait) report(parser, Errors.AwaitInParameter);

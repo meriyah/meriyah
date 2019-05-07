@@ -7,19 +7,32 @@ describe('Statements - With', () => {
     ['with ({}) async function f() {}', Context.None],
     ['with ({}) function f() {}', Context.None],
     ['with ({}) let x;', Context.None],
-    ['while 1 break;', Context.None],
-    [`while '' break;`, Context.None],
-    [`with (x) foo;`, Context.Strict],
-    ['while (false) label1: label2: function f() {}', Context.None],
-    [
-      `while({1}){
-      break ;
-   };`,
-      Context.Module
-    ]
+    ['with ({}) { }', Context.Strict],
+    [`with (x) foo;`, Context.Strict]
   ]);
 
   pass('Statements - With (pass)', [
+    [
+      'with ({}) { }',
+      Context.None,
+      {
+        body: [
+          {
+            body: {
+              body: [],
+              type: 'BlockStatement'
+            },
+            object: {
+              properties: [],
+              type: 'ObjectExpression'
+            },
+            type: 'WithStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       'with (x) foo;',
       Context.None,

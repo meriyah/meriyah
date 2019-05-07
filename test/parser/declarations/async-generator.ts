@@ -260,7 +260,6 @@ describe('Declarations - Async Generator', () => {
     ['async function* f([...{ x }, y]) {}', Context.None],
     ['async function* f([...[x], y]) {}', Context.None],
     ['f = async function*() { () => await a; }', Context.None]
-    //['({ \\u0061sync *method(){} })', Context.None],
   ]);
 
   pass('Declarations - const (pass)', [

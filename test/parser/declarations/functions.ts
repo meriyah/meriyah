@@ -4,7 +4,7 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Declarations - Function', () => {
-  for (const arg of ['package']) {
+  for (const arg of ['package', 'public', 'instanceof']) {
     it(`function(${arg}) { 'use strict'; }`, () => {
       t.throws(() => {
         parseSource(`function(${arg}) { "use strict"; }`, undefined, Context.None);
@@ -172,9 +172,6 @@ describe('Declarations - Function', () => {
     'function g({a}, {b} = {b: 2}) { return [a, b] }',
     'function h({a}, {b} = {b: 2}, c) { return [a, b, c] }',
     'function i({a}, {b}, c, ...rest) { return [a, b, c, rest] }',
-    'let [{ a }, { b }, { c = "" }] = [_ref, _ref2, _ref3];',
-    'let [{ x }] = [_ref2];',
-    'const val = (function f(a, b = (() => a)) {})',
     'function f({a}, {b}, {c = ""}) { return [a, b, c] }',
     'function f({a}, {b}, {c = ""}) { return [a, b, c] }',
     'function f({a}, {b}, {c = ""}) { return [a, b, c] }',
@@ -282,7 +279,7 @@ describe('Declarations - Function', () => {
     'function hello() { say_hi_to_ariya(); }',
     'function arguments() { }',
     'function hello(a, b) { sayHi(); }',
-    'var hi = function eval() { };',
+
     'function f() {var async = 1; return async;}',
     'function f() {let async = 1; return async;}',
     'function f() {const async = 1; return async;}',
@@ -293,10 +290,7 @@ describe('Declarations - Function', () => {
     'function f() {function* foo() { var await = 1; return await; }}',
     'function f() {function* foo(await) { return await; }}',
     'function f() {var f = () => { var await = 1; return await; }}',
-    'var f = () => {var O = { method() { var await = 1; return await; } };}',
-    'var f = () => {var O = { method(await) { return await; } };}',
-    'var f = () => {var O = { *method() { var await = 1; return await; } };}',
-    'var O = { *method(await) { return await; } };',
+
     "'use strict'; var O = { method() { var asyncFn = async function*() {}} }",
     "'use strict'; var f = () => {async function* f() {}}",
     "'use strict'; var f = () => {var O = { async *method() {} };}",
