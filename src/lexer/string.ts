@@ -1,4 +1,4 @@
-import { ParserState, Context, Flags } from '../common';
+import { ParserState, Context } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
@@ -26,7 +26,7 @@ export function scanString(parser: ParserState, context: Context): any {
     if (ch === quote) {
       ret += parser.source.slice(marker, parser.index);
       nextCodePoint(parser); // skip closing quote
-      if (context & Context.OptionsRaw) parser.source.slice(start, parser.index);
+      if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }

@@ -11,19 +11,19 @@ import { report, Errors } from '../errors';
  * @param context Context masks
  */
 
-export function scanRegularExpression(state: ParserState, context: Context): Token {
+export function scanRegularExpression(parser: ParserState, context: Context): Token {
   const enum RegexState {
     Empty = 0,
     Escape = 0x1,
     Class = 0x2
   }
-  const bodyStart = state.index;
+  const bodyStart = parser.index;
   // Scan: ('/' | '/=') RegularExpressionBody '/' RegularExpressionFlags
   let preparseState = RegexState.Empty;
 
   loop: while (true) {
-    const ch = state.currentCodePoint;
-    nextCodePoint(state);
+    const ch = parser.currentCodePoint;
+    nextCodePoint(parser);
 
     if (preparseState & RegexState.Escape) {
       preparseState &= ~RegexState.Escape;
@@ -45,17 +45,17 @@ export function scanRegularExpression(state: ParserState, context: Context): Tok
         case Chars.LineFeed:
         case Chars.LineSeparator:
         case Chars.ParagraphSeparator:
-          report(state, Errors.UnterminatedRegExp);
+          report(parser, Errors.UnterminatedRegExp);
         default: // ignore
       }
     }
 
-    if (state.index >= state.source.length) {
-      return report(state, Errors.UnterminatedRegExp);
+    if (parser.index >= parser.source.length) {
+      return report(parser, Errors.UnterminatedRegExp);
     }
   }
 
-  const bodyEnd = state.index - 1;
+  const bodyEnd = parser.index - 1;
 
   const enum RegexFlags {
     Empty = 0b00000,
@@ -69,57 +69,57 @@ export function scanRegularExpression(state: ParserState, context: Context): Tok
 
   let mask = RegexFlags.Empty;
 
-  const { index: flagStart } = state;
+  const { index: flagStart } = parser;
 
-  loop: while (state.index < state.source.length) {
-    switch (state.currentCodePoint) {
+  loop: while (parser.index < parser.source.length) {
+    switch (parser.currentCodePoint) {
       case Chars.LowerG:
-        if (mask & RegexFlags.Global) report(state, Errors.DuplicateRegExpFlag, 'g');
+        if (mask & RegexFlags.Global) report(parser, Errors.DuplicateRegExpFlag, 'g');
         mask |= RegexFlags.Global;
         break;
 
       case Chars.LowerI:
-        if (mask & RegexFlags.IgnoreCase) report(state, Errors.DuplicateRegExpFlag, 'i');
+        if (mask & RegexFlags.IgnoreCase) report(parser, Errors.DuplicateRegExpFlag, 'i');
         mask |= RegexFlags.IgnoreCase;
         break;
 
       case Chars.LowerM:
-        if (mask & RegexFlags.Multiline) report(state, Errors.DuplicateRegExpFlag, 'm');
+        if (mask & RegexFlags.Multiline) report(parser, Errors.DuplicateRegExpFlag, 'm');
         mask |= RegexFlags.Multiline;
         break;
 
       case Chars.LowerU:
-        if (mask & RegexFlags.Unicode) report(state, Errors.DuplicateRegExpFlag, 'g');
+        if (mask & RegexFlags.Unicode) report(parser, Errors.DuplicateRegExpFlag, 'g');
         mask |= RegexFlags.Unicode;
         break;
 
       case Chars.LowerY:
-        if (mask & RegexFlags.Sticky) report(state, Errors.DuplicateRegExpFlag, 'y');
+        if (mask & RegexFlags.Sticky) report(parser, Errors.DuplicateRegExpFlag, 'y');
         mask |= RegexFlags.Sticky;
         break;
 
       case Chars.LowerS:
-        if (mask & RegexFlags.DotAll) report(state, Errors.DuplicateRegExpFlag, 's');
+        if (mask & RegexFlags.DotAll) report(parser, Errors.DuplicateRegExpFlag, 's');
         mask |= RegexFlags.DotAll;
         break;
 
       default:
-        if (!isIdentifierPart(state.currentCodePoint)) break loop;
-        report(state, Errors.UnexpectedTokenRegExpFlag);
+        if (!isIdentifierPart(parser.currentCodePoint)) break loop;
+        report(parser, Errors.UnexpectedTokenRegExpFlag);
     }
 
-    nextCodePoint(state);
+    nextCodePoint(parser);
   }
 
-  const flags = state.source.slice(flagStart, state.index);
+  const flags = parser.source.slice(flagStart, parser.index);
 
-  const pattern = state.source.slice(bodyStart, bodyEnd);
+  const pattern = parser.source.slice(bodyStart, bodyEnd);
 
-  state.tokenRegExp = { pattern, flags };
+  parser.tokenRegExp = { pattern, flags };
 
-  if (context & Context.OptionsRaw) state.tokenRaw = state.source.slice(state.startIndex, state.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.startIndex, parser.index);
 
-  state.tokenValue = validate(state, pattern, flags);
+  parser.tokenValue = validate(parser, pattern, flags);
 
   return Token.RegularExpression;
 }
@@ -133,11 +133,11 @@ export function scanRegularExpression(state: ParserState, context: Context): Tok
  * @param pattern Regexp body
  * @param flags Regexp flags
  */
-function validate(state: ParserState, pattern: string, flags: string): RegExp | null | Token {
+function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
   try {
     RegExp(pattern);
   } catch (e) {
-    report(state, Errors.UnterminatedRegExp);
+    report(parser, Errors.UnterminatedRegExp);
   }
 
   try {

@@ -12,7 +12,7 @@ export const enum Token {
   FutureReserved = 1 << 15 | Keyword,
 
   IsExpressionStart   = 1 << 16,
-  IsIdentifier        = 1 << 17 | Contextual,
+  IsIdentifier        = 1 << 17 | Contextual, // TODO: Add a token for 'IdentifierName' ?
   IsInOrOf            = 1 << 18, // 'in' or 'of'
   IsLogical           = 1 << 19,
   IsAutoSemicolon     = 1 << 20,

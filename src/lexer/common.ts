@@ -3,17 +3,6 @@ import { ParserState } from '../common';
 import { unicodeLookup } from '../unicode';
 import { report, Errors } from '../errors';
 
-export const enum Escape {
-  Empty = 0,
-  Invalid = -1,
-  StrictOctal = -2,
-  EightOrNine = -3,
-  InvalidHex = -4,
-  OutOfRange = -5,
-  InvalidIdentChar = -6,
-  MissingBrace = -7
-}
-
 /**
  * Advances this lexer's current index.
  * @param parser The parser instance

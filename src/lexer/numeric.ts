@@ -13,60 +13,60 @@ export const enum NumberKind {
   DecimalWithLeadingZero = 1 << 5
 }
 
-export function scanNumber(state: ParserState, context: Context, isFloat: boolean): Token {
+export function scanNumber(parser: ParserState, context: Context, isFloat: boolean): Token {
   let kind: NumberKind = NumberKind.Decimal;
   let value: number | string = 0;
   let atStart = !isFloat;
   if (isFloat) {
-    while (CharTypes[state.currentCodePoint] & CharFlags.Decimal) {
-      nextCodePoint(state);
+    while (CharTypes[parser.currentCodePoint] & CharFlags.Decimal) {
+      nextCodePoint(parser);
     }
   } else {
-    if (state.currentCodePoint === Chars.Zero) {
-      nextCodePoint(state);
+    if (parser.currentCodePoint === Chars.Zero) {
+      nextCodePoint(parser);
 
       // Hex
-      if ((state.currentCodePoint | 32) === Chars.LowerX) {
+      if ((parser.currentCodePoint | 32) === Chars.LowerX) {
         kind = NumberKind.Hex;
         let digits = 0;
-        while (CharTypes[nextCodePoint(state)] & CharFlags.Hex) {
-          value = value * 0x10 + toHex(state.currentCodePoint);
+        while (CharTypes[nextCodePoint(parser)] & CharFlags.Hex) {
+          value = value * 0x10 + toHex(parser.currentCodePoint);
           digits++;
         }
-        if (digits < 1) report(state, Errors.MissingHexDigits);
+        if (digits < 1) report(parser, Errors.MissingHexDigits);
         // Octal
-      } else if ((state.currentCodePoint | 32) === Chars.LowerO) {
+      } else if ((parser.currentCodePoint | 32) === Chars.LowerO) {
         kind = NumberKind.Octal;
         let digits = 0;
-        while (CharTypes[nextCodePoint(state)] & CharFlags.Octal) {
-          value = value * 8 + (state.currentCodePoint - Chars.Zero);
+        while (CharTypes[nextCodePoint(parser)] & CharFlags.Octal) {
+          value = value * 8 + (parser.currentCodePoint - Chars.Zero);
           digits++;
         }
-        if (digits < 1) report(state, Errors.ExpectedNumberInRadix, `${8}`);
-      } else if ((state.currentCodePoint | 32) === Chars.LowerB) {
+        if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${8}`);
+      } else if ((parser.currentCodePoint | 32) === Chars.LowerB) {
         kind = NumberKind.Binary;
         let digits = 0;
-        while (CharTypes[nextCodePoint(state)] & CharFlags.Binary) {
-          value = value * 2 + (state.currentCodePoint - Chars.Zero);
+        while (CharTypes[nextCodePoint(parser)] & CharFlags.Binary) {
+          value = value * 2 + (parser.currentCodePoint - Chars.Zero);
           digits++;
         }
-        if (digits < 1) report(state, Errors.ExpectedNumberInRadix, `${2}`);
-      } else if (CharTypes[state.currentCodePoint] & CharFlags.Octal) {
+        if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${2}`);
+      } else if (CharTypes[parser.currentCodePoint] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code
-        if (context & Context.Strict) report(state, Errors.StrictOctalEscape);
-        else state.flags = Flags.Octals;
+        if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
+        else parser.flags = Flags.Octals;
         kind = NumberKind.ImplicitOctal;
         do {
-          if (CharTypes[state.currentCodePoint] & CharFlags.ImplicitOctalDigits) {
+          if (CharTypes[parser.currentCodePoint] & CharFlags.ImplicitOctalDigits) {
             kind = NumberKind.DecimalWithLeadingZero;
             atStart = false;
             break;
           }
-          value = value * 8 + (state.currentCodePoint - Chars.Zero);
-        } while (CharTypes[nextCodePoint(state)] & CharFlags.Decimal);
-      } else if (CharTypes[state.currentCodePoint] & CharFlags.ImplicitOctalDigits) {
-        if (context & Context.Strict) report(state, Errors.StrictOctalEscape);
-        else state.flags = Flags.Octals;
+          value = value * 8 + (parser.currentCodePoint - Chars.Zero);
+        } while (CharTypes[nextCodePoint(parser)] & CharFlags.Decimal);
+      } else if (CharTypes[parser.currentCodePoint] & CharFlags.ImplicitOctalDigits) {
+        if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
+        else parser.flags = Flags.Octals;
         kind = NumberKind.DecimalWithLeadingZero;
       }
     }
@@ -76,28 +76,29 @@ export function scanNumber(state: ParserState, context: Context, isFloat: boolea
       if (atStart) {
         // scan subsequent decimal digits
         let digit = 9;
-        while (digit >= 0 && CharTypes[state.currentCodePoint] & CharFlags.Decimal) {
-          value = 10 * value + (state.currentCodePoint - Chars.Zero);
-          nextCodePoint(state);
+        while (digit >= 0 && CharTypes[parser.currentCodePoint] & CharFlags.Decimal) {
+          value = 10 * value + (parser.currentCodePoint - Chars.Zero);
+          nextCodePoint(parser);
           --digit;
         }
 
-        if (digit >= 0 && state.currentCodePoint !== Chars.Period && !isIdentifierStart(state.currentCodePoint)) {
-          state.tokenValue = value;
+        if (digit >= 0 && parser.currentCodePoint !== Chars.Period && !isIdentifierStart(parser.currentCodePoint)) {
+          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.startIndex, parser.index);
+          parser.tokenValue = value;
           return Token.NumericLiteral;
         }
       }
 
-      while (CharTypes[state.currentCodePoint] & CharFlags.Decimal) {
-        nextCodePoint(state);
+      while (CharTypes[parser.currentCodePoint] & CharFlags.Decimal) {
+        nextCodePoint(parser);
       }
 
       // Scan any decimal dot and fractional component
-      if (state.currentCodePoint === Chars.Period) {
+      if (parser.currentCodePoint === Chars.Period) {
         isFloat = true;
-        nextCodePoint(state); // consumes '.'
-        while (CharTypes[state.currentCodePoint] & CharFlags.Decimal) {
-          nextCodePoint(state);
+        nextCodePoint(parser); // consumes '.'
+        while (CharTypes[parser.currentCodePoint] & CharFlags.Decimal) {
+          nextCodePoint(parser);
         }
       }
     }
@@ -105,50 +106,51 @@ export function scanNumber(state: ParserState, context: Context, isFloat: boolea
 
   let isBigInt = false;
   if (
-    state.currentCodePoint === Chars.LowerN &&
+    parser.currentCodePoint === Chars.LowerN &&
     (kind & (NumberKind.Decimal | NumberKind.Binary | NumberKind.Octal | NumberKind.Hex)) !== 0
   ) {
-    if (isFloat) report(state, Errors.InvalidBigInt);
+    if (isFloat) report(parser, Errors.InvalidBigInt);
     isBigInt = true;
-    nextCodePoint(state);
+    nextCodePoint(parser);
     // Scan any exponential notation
-  } else if ((state.currentCodePoint | 32) === Chars.LowerE) {
+  } else if ((parser.currentCodePoint | 32) === Chars.LowerE) {
     if ((kind & (NumberKind.Decimal | NumberKind.DecimalWithLeadingZero)) === 0) {
-      report(state, Errors.MissingExponent);
+      report(parser, Errors.MissingExponent);
     }
 
-    nextCodePoint(state);
+    nextCodePoint(parser);
 
     // '-', '+'
-    if (CharTypes[state.currentCodePoint] & CharFlags.Exponent) {
-      nextCodePoint(state);
+    if (CharTypes[parser.currentCodePoint] & CharFlags.Exponent) {
+      nextCodePoint(parser);
     }
 
     let exponentDigits = 0;
     // Consume exponential digits
-    while (CharTypes[state.currentCodePoint] & CharFlags.Decimal) {
-      nextCodePoint(state);
+    while (CharTypes[parser.currentCodePoint] & CharFlags.Decimal) {
+      nextCodePoint(parser);
       exponentDigits++;
     }
     // Exponential notation must contain at least one digit
     if (exponentDigits < 1) {
-      report(state, Errors.MissingExponent);
+      report(parser, Errors.MissingExponent);
     }
   }
 
   // The source character immediately following a numeric literal must
   // not be an identifier start or a decimal digit
-  if (CharTypes[state.currentCodePoint] & CharFlags.Decimal || isIdentifierStart(state.currentCodePoint)) {
-    report(state, Errors.IDStartAfterNumber);
+  if (CharTypes[parser.currentCodePoint] & CharFlags.Decimal || isIdentifierStart(parser.currentCodePoint)) {
+    report(parser, Errors.IDStartAfterNumber);
   }
-  state.tokenValue =
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.startIndex, parser.index);
+  parser.tokenValue =
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
       ? value
       : kind & NumberKind.DecimalWithLeadingZero
-      ? parseFloat(state.source.slice(state.startIndex, state.index))
+      ? parseFloat(parser.source.slice(parser.startIndex, parser.index))
       : isBigInt
-      ? parseInt(state.source.slice(state.startIndex, state.index), 0xa)
-      : +state.source.slice(state.startIndex, state.index);
-  if (context & Context.OptionsRaw) state.tokenRaw = state.source.slice(state.tokenValue, state.index);
+      ? parseInt(parser.source.slice(parser.startIndex, parser.index), 0xa)
+      : +parser.source.slice(parser.startIndex, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenValue, parser.index);
   return isBigInt ? Token.BigIntLiteral : Token.NumericLiteral;
 }

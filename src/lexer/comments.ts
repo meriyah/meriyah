@@ -24,47 +24,47 @@ export function skipHashBang(parser: ParserState): void {
   }
 }
 
-export function skipSingleLineComment(state: ParserState): Token {
-  while (state.index < state.length) {
+export function skipSingleLineComment(parser: ParserState): Token {
+  while (parser.index < parser.length) {
     if (
-      CharTypes[state.currentCodePoint] & CharFlags.LineTerminator ||
-      (state.currentCodePoint ^ Chars.LineSeparator) <= 1
+      CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator ||
+      (parser.currentCodePoint ^ Chars.LineSeparator) <= 1
     ) {
       break;
     }
-    nextCodePoint(state);
+    nextCodePoint(parser);
   }
   return Token.WhiteSpace;
 }
 
-export function skipMultiLineComment(state: ParserState): any {
-  while (state.index < state.length) {
-    while (CharTypes[state.currentCodePoint] & CharFlags.Asterisk) {
-      if (nextCodePoint(state) === Chars.Slash) {
-        nextCodePoint(state);
+export function skipMultiLineComment(parser: ParserState): any {
+  while (parser.index < parser.length) {
+    while (CharTypes[parser.currentCodePoint] & CharFlags.Asterisk) {
+      if (nextCodePoint(parser) === Chars.Slash) {
+        nextCodePoint(parser);
         return Token.WhiteSpace;
       }
     }
 
     // ES 2020 11.3 Line Terminators
     if (
-      CharTypes[state.currentCodePoint] & CharFlags.LineTerminator ||
-      (state.currentCodePoint ^ Chars.LineSeparator) <= 1
+      CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator ||
+      (parser.currentCodePoint ^ Chars.LineSeparator) <= 1
     ) {
       if (
-        CharTypes[state.currentCodePoint] & CharFlags.CarriageReturn &&
-        CharTypes[state.source.charCodeAt(state.index + 1)] & CharFlags.LineFeed
+        CharTypes[parser.currentCodePoint] & CharFlags.CarriageReturn &&
+        CharTypes[parser.source.charCodeAt(parser.index + 1)] & CharFlags.LineFeed
       ) {
-        state.index++;
+        parser.index++;
       }
-      state.column = 0;
-      state.currentCodePoint = state.source.charCodeAt(++state.index);
-      state.line++;
-      state.flags |= Flags.NewLine;
+      parser.column = 0;
+      parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
+      parser.line++;
+      parser.flags |= Flags.NewLine;
     } else {
-      nextCodePoint(state);
+      nextCodePoint(parser);
     }
   }
 
-  report(state, Errors.UnterminatedComment);
+  report(parser, Errors.UnterminatedComment);
 }
