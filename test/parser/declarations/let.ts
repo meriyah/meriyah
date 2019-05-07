@@ -1,0 +1,3137 @@
+import { Context } from '../../../src/common';
+import { pass, fail } from '../../test-utils';
+import * as t from 'assert';
+import { parseSource } from '../../../src/parser';
+
+describe('Declarations - Let', () => {
+  const invalidLetIdentifier = [
+    'let let = 1',
+    'for (let let = 1; let < 1; let++) {}',
+    'for (let let in {}) {}',
+    'for (let let of []) {}',
+    'const let = 1',
+    'for (const let = 1; let < 1; let++) {}',
+    'for (const let in {}) {}',
+    'for (const let of []) {}',
+    'let [let] = 1',
+    'for (let [let] = 1; let < 1; let++) {}',
+    'for (let [let] in {}) {}',
+    'for (let [let] of []) {}',
+    'const [let] = 1',
+    'for (const [let] = 1; let < 1; let++) {}',
+    'for (const [let] in {}) {}',
+    'for (const [let] of []) {}',
+    'let l\\u0065t = 1',
+    'const l\\u0065t = 1',
+    'let [l\\u0065t] = 1',
+    'const [l\\u0065t] = 1',
+    'for (let l\\u0065t in {}) {}'
+  ];
+
+  for (const arg of invalidLetIdentifier) {
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`(function() {${arg}})()`, () => {
+      t.throws(() => {
+        parseSource(`(function() {${arg}})()`, undefined, Context.None);
+      });
+    });
+  }
+
+  const programs = [
+    'var let;',
+    'var foo, let;',
+    'try { } catch (let) { }',
+    'function let() { }',
+    '(function let() { })',
+    'function foo(let) { }',
+    'function foo(bar, let) { }',
+    'let = 1;',
+    'var foo = let = 1;',
+    'let * 2;',
+    '++let;',
+    'let++;',
+    'let: 34',
+    'function let(let) { let: let(let + let(0)); }',
+    '({ let: 1 })',
+    '({ get let() { 1 } })',
+    'let(100)',
+    'L: let\nx',
+    'L: let\n{x}',
+    'let',
+    'let = 1',
+    'for (let = 1; let < 1; let++) {}',
+    'for (let in {}) {}',
+    'for (var let = 1; let < 1; let++) {}',
+    'for (var let in {}) {}',
+    'for (var [let] = 1; let < 1; let++) {}',
+    'for (var [let] in {}) {}',
+    'var let',
+    'var [let] = []'
+  ];
+
+  for (const arg of programs) {
+    it(`function f() { ${arg}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`function f() { ${arg}}`, undefined, Context.None);
+      });
+    });
+
+    it(`function f() { ${arg}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(function f() { ${arg}})`, undefined, Context.None);
+      });
+    });
+
+    it(`function * gen() { function not_gen() { ${arg}}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`function * gen() { function not_gen() { ${arg}}}`, undefined, Context.None);
+      });
+    });
+
+    it(`(function foo() { ${arg}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(function foo() { ${arg}})`, undefined, Context.None);
+      });
+    });
+  }
+
+  for (const arg of [
+    'let [ , , ...x] = [1, 2, 3, 4, 5];',
+    'let [[x]] = [null];',
+    'let test262id8;',
+    'let arrow = () => {};',
+    `let xCls = class x {};
+    let cls = class {};
+    let xCls2 = class { static name() {} };`,
+    'let [[x]] = [null];',
+    'function foo() { var let = 1, test = 2; }',
+    'let [arrow = () => {}] = [];',
+    'let [{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }];',
+    'let [{ x }] = [];',
+    'let [...x] = [1, 2, 3];',
+    'let z = {...x}',
+    'z = {x, ...y}',
+    'let { x, } = { x: 23 };',
+    'let [a,] = 0;',
+    'let [...[x]] = y',
+    'let {} = 0',
+    'let x  ;\n',
+    'let _a = 5;\n',
+    'let {a:{}} = 0',
+    'let x = 5, y = 6;',
+    'let x = 5, y = fcall();',
+    'let x = 5, y = 6, z = 7;',
+    'let $ = 5;',
+    'let x = 5, a = 6, z = 7;',
+    'let x = 5, y = 6, a = 7;',
+    'let x = /* bef */5 + 3/* aft */;',
+    'let x = y + 5;',
+    'let x=y + 5;',
+    'let/foo/g',
+    `{
+      let x = 5;
+      let y = 6;
+    }`,
+    'let {a,b=0,c:d,e:f=0,[g]:[h]}=0',
+    'let [...a] = 0;',
+    'let [a,,]=0',
+    'let [{a}] = 0',
+    'let { x: y = 33 } = { };',
+    'let { x: y } = { x: 23 };',
+    'let { x, y, } = obj;',
+    'let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: null };',
+    'let {a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3};',
+    `let x = "outer_x";
+    let y = "outer_y";
+    let { x, y, } = obj;
+    for (let x = "inner_x", i = 0; i < 1; i++) {
+      let y = "inner_y";
+    }`,
+    '[1 <= 0]',
+    'let a; [a] = [];',
+    'let a, b; [a, b] = [1];',
+    'let [a] = [1, 2];',
+    'let a; [a,] = [];',
+    'let a; [,,a] = [];',
+    'let [a] = [,,];',
+    'let a; [...a] = [];',
+    'let a; [a = 1] = [];',
+    'let [[a]] = [[]];',
+    'let a, b; [a, [b]] = [1, []];',
+    'let [[[...a]]] = [[[]]];',
+    'let [[...a], ...b] = [[],];',
+    'let a; [a, a] = [];',
+    'let [foo] = arr;',
+    'let [,] = x;',
+    'let [,,] = x;',
+    'let\nfoo',
+    'let foo = bar, zoo = boo',
+    'let foo = bar, zoo = boo;',
+    'let foo = bar',
+    'let foo = bar;',
+    'let foo, bar',
+    'let foo, bar;',
+    'let foo;',
+    'let {foo} = x, b = y;',
+    'let {foo} = x, {foo} = y;',
+    'let [foo,bar=b] = x;',
+    'let x = y, [foo] = z;',
+    'let [foo,bar] = x;',
+    'let [foo] = x;',
+    'let [foo] = arr, [bar] = arr2;',
+    'let [foo] = arr, bar;',
+    'let [foo] = arr, bar = arr2;',
+    'let foo, [bar] = arr2;',
+    'let foo = arr, [bar] = arr2;',
+    'let [foo=a] = arr;',
+    'let [foo=a, bar] = arr;',
+    'let [foo, bar=b] = arr;',
+    'let [foo=a, bar=b] = arr;',
+    'let [foo, ...bar] = obj;',
+    'let [...[foo, bar]] = obj;',
+    'let [x, ...[foo, bar]] = obj;',
+    'let [a=[...b], ...c] = obj;',
+    'let {} = obj;',
+    'let {x} = obj;',
+    'let {x, y} = obj;',
+    'let {x} = a, {y} = obj;',
+    'let {x} = a, y = obj;',
+    'let {x} = a, obj;',
+    'let x = a, {y} = obj;',
+    'let x, {y} = obj;',
+    'let {x = y, z} = obj;',
+    'let {x = y} = obj;',
+    'let {x, y = z} = obj;',
+    'let {x = y, z = a} = obj;',
+    'let {x : y} = obj;',
+    'let {x : y, z} = obj;',
+    'let {x, y : z} = obj;',
+    'let {x : y, z : a} = obj;',
+    'let {x : y = z} = obj;',
+    'let {x : y, z, a : b = c} = obj;',
+    'let {[x]: y} = z;',
+    'let {[x]: y} = z;',
+    'let {[x]: y = z} = a;',
+    'let {a, [x]: y} = a;',
+    'for (let foo;;);',
+    'for (let foo = bar;;);',
+    'for (let foo, bar;;);',
+    'for (let foo = bar, zoo = boo;;);',
+    'for (let foo in x);',
+    'for (let\nfoo;;);',
+    'for (let\nfoo in x);',
+    'for (let foo of x);',
+    'for (let\nfoo of x);',
+    'for (let [] = x;;);',
+    'for (let [,] = x;;);',
+    'for (let [,,] = x;;);',
+    'for (let [foo] = arr;;);',
+    'for (let [foo,] = arr;;);',
+    'for (let [foo,,] = arr;;);',
+    'for (let [,foo] = arr;;);',
+    'for (let [,,foo] = arr;;);',
+    'for (let [foo,bar] = arr;;);',
+    'for (let [foo,,bar] = arr;;);',
+    'for (let [foo] = arr, [bar] = arr2;;);',
+    'for (let [foo] = arr, bar;;);',
+    'for (let [foo] = arr, bar = arr2;;);',
+    'for (let foo = arr, [bar] = arr2;;);',
+    'for (let [foo=a, bar] = arr;;);',
+    'for (let [foo, bar=b] = arr;;);',
+    'for (let [foo=a, bar=b] = arr;;);',
+    'for (let [...foo] = obj;;);',
+    'for (let [foo, ...bar] = obj;;);',
+    'for (let [...[foo, bar]] = obj;;);',
+    'for (let {} = obj;;);',
+    'for (let {x} = obj;;);',
+    'for (let {x,} = obj;;);',
+    'for (let {x, y} = obj;;);',
+    'for (let {[x]: y = z} = a;;);',
+    'for (let {a, [x]: y} = a;;);',
+    'for (let [foo,] in arr);',
+    'let x = {y=z} = d',
+    'let x = ({y=z}) => d',
+    'let x = ({y=z}=e) => d',
+    'for (let {[x]: y} in obj);',
+    'for (let {[x]: y = z} in obj);',
+    'for (let {x, y} of obj);',
+    'let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: "" };',
+    'let { fn = function () {}, xFn = function x() {} } = {};',
+    'switch (true) { case true: let x = 1; }',
+    `let a = [];
+    for (let i = 0; i < 5; a.push(function () { return i; }), ++i) { }
+    for (let k = 0; k < 5; ++k) {
+    }`,
+    'let { x, } = { x: 23 };',
+    'let { w: [x, y, z] = [4, 5, 6] } = {};',
+    'let { w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] };',
+    'let { x: y = 33 } = { };',
+    'let { x: y, } = { x: 23 };',
+    'let x',
+    'let x = 1',
+    'for (let x = 1; x < 1; x++) {}',
+    'for (let x in {}) {}',
+    'for (let x of []) {}',
+    'let xCls = class x {};',
+    'let cls = class {};',
+    'let\n{x} = x;',
+    `let x = {y=z} = d`,
+    `let x = ({y=z}) => d`,
+    'let {x}\n= x;',
+    'let xCls2 = class { static name() {} };',
+    'let { s: t = a(), u: v = b(), w: x = c(), y: z = d() } = { s: null, u: 0, w: false, y: "" };',
+    'let {} = obj;',
+    'let {} = undefined;',
+    'foo: let: y;'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+  }
+
+  fail('Declarations - Let (fail)', [
+    ['let [({x: 1})] = [];', Context.None],
+    ['let [(x)] = [];', Context.None],
+    ['let [({x: 1}) = y] = [];', Context.None],
+    // ['let [(x) = y] = [];', Context.None],
+    ['var [({x: 1})] = [];', Context.None],
+    ['var [(x)] = [];', Context.None],
+    ['var [({x: 1}) = y] = [];', Context.None],
+    //['var [(x) = y] = [];', Context.None],
+    // ['let {x:o.f=1}={x:1}', Context.None],
+    ['let [o.x=1]=[]', Context.None],
+    ['(o.f=1)=>0', Context.None],
+    ['let x = ...y;', Context.None],
+    ['let test = 2, let = 1;', Context.None],
+    ['const let = 1, test = 2;', Context.None],
+    ['let [a, let, b] = [1, 2, 3];', Context.None],
+    ['const [a, let, b] = [1, 2, 3];', Context.None],
+    ['for(let let in { }) { };', Context.None],
+    ['let [a];', Context.None],
+    ['let let;', Context.None],
+    ['if (1) let x = 10;', Context.None],
+    ['let [a + 1] = [];', Context.None],
+    ['let a; [a--] = [];', Context.None],
+    ['let a; [1, a] = [];', Context.None],
+    ['let [...a, b] = [];', Context.None],
+    ['let a; [...a = 1] = [];', Context.None],
+    ['let a; [((a)] = [];', Context.None],
+    ['let [((a)] = [];', Context.None],
+    ['function foo() { return {}; }; let [foo().x] = [];', Context.None],
+    ['function foo() { return {}; }; [foo()] = [];', Context.None],
+    ['let {a:=c} = z;', Context.None],
+    ['let {x:y=z}, {a:b=c} = obj;', Context.None],
+    ['let {x:y=z};', Context.None],
+    ['let x = y, {z};', Context.None],
+    ['let x, {y};', Context.None],
+    ['let {x};', Context.None],
+    ['let [x()] = x', Context.None],
+    ['let [x().foo] = x', Context.None],
+    ['let [...a,] = 0', Context.None],
+    ['let [(x)] = x', Context.None],
+    ['let [(x().foo)] = x', Context.None],
+    ['[x()] = x', Context.None],
+    ['([x()]) => x', Context.None],
+    ['([x().foo]) => x', Context.None],
+    ['([(x)]) => x', Context.None],
+    ['([(x().foo)]) => x', Context.None],
+    ['let {[x]} = z;', Context.None],
+    ['let {[x]};', Context.None],
+    ['let {[x]: y};', Context.None],
+    ['let x = {y=z}', Context.None],
+    ['let x = {y=z} => d', Context.None],
+    ['let {[x]: y = z};', Context.None],
+    ['let {...let} = {a: 1, b: 2};', Context.None],
+    ['let {...let} = {a: 1, b: 2};', Context.Module | Context.Strict],
+    ['let const', Context.None],
+    ['const let', Context.None],
+    ['let let', Context.None],
+    ['for (let\nfoo();;);', Context.None],
+    ['for (let foo);', Context.None],
+    ['while (true) let: continue let;', Context.Strict],
+    ['if (x) let: y;', Context.Strict],
+    ['for (let foo, bar);', Context.None],
+    ['for (let foo = bar);', Context.None],
+    ['for (let foo = bar, zoo = boo);', Context.None],
+    ['for (let\nfoo);', Context.None],
+    ['for (let\nfoo());', Context.None],
+    ['for (let foo, bar in x);', Context.None],
+    ['for (let foo = bar in x);', Context.None],
+    ['for (let foo = bar, zoo = boo in x);', Context.None],
+    ['for (let\nfoo() in x);', Context.None],
+    ['for (let foo = bar, zoo = boo of x);', Context.None],
+    ['for (let [foo];;);', Context.None],
+    ['for (let [foo = x];;);', Context.None],
+    ['for (let [foo], bar;;);', Context.None],
+    ['for (let [...foo,,] = obj;;);', Context.None],
+    ['for (let {x,,} = obj;;);', Context.None],
+    ['for (let {,x} = obj;;);', Context.None],
+    ['for (let {[x]} = z;;);', Context.None],
+    ['for (let {[x]};;);', Context.None],
+    ['for (let [] = x);', Context.None],
+    ['for (let [foo,,bar] = arr);', Context.None],
+    ['for (let [foo], bar);', Context.None],
+    ['for (let [...,] = obj);', Context.None],
+    ['for (let {x} = a, {y} = obj);', Context.None],
+    ['for (let {x} = a, y = obj);', Context.None],
+    ['for (let {x = y, z = a} = obj);', Context.None],
+    ['for (let {x : y} = obj);', Context.None],
+    ['for (let {x : y, z} = obj);', Context.None],
+    ['for (let {x, y : z} = obj);', Context.None],
+    ['for (let {x}, y);', Context.None],
+    ['for (let {x}, {y} in z);', Context.None],
+    ['for (let {x}, y);', Context.None],
+    ['let {...{a,b}} = foo', Context.None],
+    ['let {...obj1,} = foo', Context.None],
+    ['let {...obj1,a} = foo', Context.None],
+    ['let {...obj1,...obj2} = foo', Context.None],
+    ['let {...(obj)} = foo', Context.None],
+    ['let {...(a,b)} = foo', Context.None],
+    ['let {...{a,b}} = foo', Context.None],
+    ['let {...[a,b]} = foo', Context.None],
+    ['let: foo', Context.Strict],
+    ['"use strict"; let, let, let, let', Context.None],
+    ['"use strict"; let(100)', Context.None],
+    ['"use strict"; let: 34', Context.None],
+    [
+      `while (false) let
+    [a]`,
+      Context.None
+    ]
+  ]);
+
+  pass('Declarations - Let (pass)', [
+    [
+      'for (let {[x]: y = z} of obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: true,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'y'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'z'
+                          }
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      '[x = true] = y',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'Identifier',
+                      name: 'x'
+                    },
+                    right: {
+                      type: 'Literal',
+                      value: true
+                    }
+                  }
+                ]
+              },
+              operator: '=',
+              right: {
+                type: 'Identifier',
+                name: 'y'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let [,] = x;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [null]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'x'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let [foo=a] = arr;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'a'
+                      }
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'arr'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'for (let;;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              type: 'Identifier',
+              name: 'let'
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+
+    [
+      `if (false) {
+      L: let // ASI
+      x = 1;
+  }`,
+      Context.None,
+      {
+        body: [
+          {
+            alternate: null,
+            consequent: {
+              body: [
+                {
+                  body: {
+                    expression: {
+                      name: 'let',
+                      type: 'Identifier'
+                    },
+                    type: 'ExpressionStatement'
+                  },
+                  label: {
+                    name: 'L',
+                    type: 'Identifier'
+                  },
+                  type: 'LabeledStatement'
+                },
+                {
+                  expression: {
+                    left: {
+                      name: 'x',
+                      type: 'Identifier'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: 1
+                    },
+                    type: 'AssignmentExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            },
+            type: 'IfStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `if (false) {
+        L: let // ASI
+        x = 1;
+    }`,
+      Context.None,
+      {
+        body: [
+          {
+            alternate: null,
+            consequent: {
+              body: [
+                {
+                  body: {
+                    expression: {
+                      name: 'let',
+                      type: 'Identifier'
+                    },
+                    type: 'ExpressionStatement'
+                  },
+                  label: {
+                    name: 'L',
+                    type: 'Identifier'
+                  },
+                  type: 'LabeledStatement'
+                },
+                {
+                  expression: {
+                    left: {
+                      name: 'x',
+                      type: 'Identifier'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: 1
+                    },
+                    type: 'AssignmentExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            },
+            type: 'IfStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `if (false) {
+          L: let // ASI
+          x = 1;
+      }`,
+      Context.None,
+      {
+        body: [
+          {
+            alternate: null,
+            consequent: {
+              body: [
+                {
+                  body: {
+                    expression: {
+                      name: 'let',
+                      type: 'Identifier'
+                    },
+                    type: 'ExpressionStatement'
+                  },
+                  label: {
+                    name: 'L',
+                    type: 'Identifier'
+                  },
+                  type: 'LabeledStatement'
+                },
+                {
+                  expression: {
+                    left: {
+                      name: 'x',
+                      type: 'Identifier'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: 1
+                    },
+                    type: 'AssignmentExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            },
+            type: 'IfStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'for (;let;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: null,
+            test: {
+              type: 'Identifier',
+              name: 'let'
+            },
+            update: null
+          }
+        ]
+      }
+    ],
+    [
+      '_ => { let: foo; }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: [
+                  {
+                    type: 'LabeledStatement',
+                    label: {
+                      type: 'Identifier',
+                      name: 'let'
+                    },
+                    body: {
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      }
+                    }
+                  }
+                ]
+              },
+              params: [
+                {
+                  type: 'Identifier',
+                  name: '_'
+                }
+              ],
+              id: null,
+              async: false,
+              generator: false,
+              expression: false
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let: let;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'LabeledStatement',
+            label: {
+              type: 'Identifier',
+              name: 'let'
+            },
+            body: {
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'Identifier',
+                name: 'let'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x, y : z} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        method: false,
+                        shorthand: true
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'z'
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x : y = z} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'y'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'z'
+                          }
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+
+    [
+      'for (let();;);',
+      Context.None,
+      {
+        body: [
+          {
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              arguments: [],
+              callee: {
+                name: 'let',
+                type: 'Identifier'
+              },
+              type: 'CallExpression'
+            },
+            test: null,
+            type: 'ForStatement',
+            update: null
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'for (let {x : y, z, a : b = c} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        method: false,
+                        shorthand: false
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'z'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'z'
+                        },
+                        method: false,
+                        shorthand: true
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'b'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'c'
+                          }
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {[x]: y} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: true,
+                        value: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {[x]: y = z} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: true,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'y'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'z'
+                          }
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {a, [x]: y} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        method: false,
+                        shorthand: true
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: true,
+                        value: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let {...x} = y',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'y'
+                },
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'Identifier',
+                        name: 'x'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [] of x);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: []
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [,] of x);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [null]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo,] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'foo'
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo,,] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      null
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo,,bar] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      null,
+                      {
+                        type: 'Identifier',
+                        name: 'bar'
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo=a] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'foo'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'a'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo, bar=b] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'bar'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'b'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [foo=a, bar=b] of arr);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'foo'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'a'
+                        }
+                      },
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'bar'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'b'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'arr'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [...[foo, bar]] of obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'RestElement',
+                        argument: {
+                          type: 'ArrayPattern',
+                          elements: [
+                            {
+                              type: 'Identifier',
+                              name: 'foo'
+                            },
+                            {
+                              type: 'Identifier',
+                              name: 'bar'
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [a=[...b], ...c] of obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        right: {
+                          type: 'ArrayExpression',
+                          elements: [
+                            {
+                              type: 'SpreadElement',
+                              argument: {
+                                type: 'Identifier',
+                                name: 'b'
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        type: 'RestElement',
+                        argument: {
+                          type: 'Identifier',
+                          name: 'c'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'let foo = bar;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'bar'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'if (x) let;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            consequent: {
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'Identifier',
+                name: 'let'
+              }
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [...[foo, bar]] in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'RestElement',
+                        argument: {
+                          type: 'ArrayPattern',
+                          elements: [
+                            {
+                              type: 'Identifier',
+                              name: 'foo'
+                            },
+                            {
+                              type: 'Identifier',
+                              name: 'bar'
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [x, ...[foo, bar]] in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      {
+                        type: 'RestElement',
+                        argument: {
+                          type: 'ArrayPattern',
+                          elements: [
+                            {
+                              type: 'Identifier',
+                              name: 'foo'
+                            },
+                            {
+                              type: 'Identifier',
+                              name: 'bar'
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let [a=[...b], ...c] in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        right: {
+                          type: 'ArrayExpression',
+                          elements: [
+                            {
+                              type: 'SpreadElement',
+                              argument: {
+                                type: 'Identifier',
+                                name: 'b'
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        type: 'RestElement',
+                        argument: {
+                          type: 'Identifier',
+                          name: 'c'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: []
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x,} in obj);  ',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x = y} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'x'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'y'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x, y = z} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        method: false,
+                        shorthand: true
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'y'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'z'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x = y, z = a} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'x'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'y'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      },
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'z'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'z'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'a'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for (let {x : y} in obj);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForInStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'let',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'Identifier',
+                          name: 'y'
+                        },
+                        method: false,
+                        shorthand: false
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'Identifier',
+              name: 'obj'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let [foo=a, bar] = arr;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'a'
+                      }
+                    },
+                    {
+                      type: 'Identifier',
+                      name: 'bar'
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'arr'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let [...foo] = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      }
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let [foo, ...bar] = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'Identifier',
+                      name: 'foo'
+                    },
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'Identifier',
+                        name: 'bar'
+                      }
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {x} = a, y = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'a'
+                }
+              },
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: 'y'
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let foo;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                init: null
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+
+    [
+      'let a, [...x] = y',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: null,
+                id: {
+                  type: 'Identifier',
+                  name: 'a'
+                }
+              },
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'y'
+                },
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'Identifier',
+                        name: 'x'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'let {...x} = y',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'y'
+                },
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'Identifier',
+                        name: 'x'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var let;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: null,
+                id: {
+                  type: 'Identifier',
+                  name: 'let'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var [let] = x;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'x'
+                },
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'Identifier',
+                      name: 'let'
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var {let} = x;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'x'
+                },
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        name: 'let'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'let'
+                      },
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'let.foo;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'let'
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'foo'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let {let: foo} = x;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'x'
+                },
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        name: 'let'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'let {a, let: foo} = x;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'Identifier',
+                  name: 'x'
+                },
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        name: 'a'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'a'
+                      },
+                      method: false,
+                      shorthand: true
+                    },
+                    {
+                      type: 'Property',
+                      kind: 'init',
+                      key: {
+                        type: 'Identifier',
+                        name: 'let'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'foo'
+                      },
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'let();',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'let'
+              },
+              arguments: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let [x, ...[foo, bar]] = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ArrayPattern',
+                  elements: [
+                    {
+                      type: 'Identifier',
+                      name: 'x'
+                    },
+                    {
+                      type: 'RestElement',
+                      argument: {
+                        type: 'ArrayPattern',
+                        elements: [
+                          {
+                            type: 'Identifier',
+                            name: 'foo'
+                          },
+                          {
+                            type: 'Identifier',
+                            name: 'bar'
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {} = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: []
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {x} = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {x,} = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {x, y} = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    },
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'y'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'y'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      'let {x} = a, {y} = obj;',
+      Context.None,
+      {
+        type: 'Program',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'a'
+                }
+              },
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'ObjectPattern',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: 'y'
+                      },
+                      computed: false,
+                      value: {
+                        type: 'Identifier',
+                        name: 'y'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: true
+                    }
+                  ]
+                },
+                init: {
+                  type: 'Identifier',
+                  name: 'obj'
+                }
+              }
+            ],
+            kind: 'let'
+          }
+        ],
+        sourceType: 'script'
+      }
+    ]
+  ]);
+});
