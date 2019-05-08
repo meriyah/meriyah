@@ -3319,12 +3319,23 @@ function parseRestOrSpreadElement(
     const { token } = parser;
 
     if (token !== Token.Assign && token !== closingToken && token !== Token.Comma) {
-      argument = parseMemberOrUpdateExpression(parser, context, argument, /* assignable */ 0);
+      if (parser.destructible & DestructuringKind.Required) {
+        report(parser, Errors.InvalidDestructuringTarget);
+      } else {
+        argument = parseMemberOrUpdateExpression(parser, context, argument, /* assignable */ 0);
+        destructible |= parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
 
-      destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
+        const { token } = parser;
 
-      if (parser.token !== Token.Comma && parser.token !== closingToken) {
-        argument = parseAssignmentExpression(parser, context, argument);
+        if (parser.token !== Token.Comma && parser.token !== closingToken) {
+          argument = parseAssignmentExpression(parser, context, argument);
+          if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
+        } else if (token !== Token.Assign) {
+          destructible |=
+            type || parser.assignable & AssignmentKind.NotAssignable
+              ? DestructuringKind.NotDestructible
+              : DestructuringKind.Assignable;
+        }
       }
     } else {
       destructible |=
