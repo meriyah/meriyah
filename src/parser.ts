@@ -2902,9 +2902,8 @@ export function parseFunctionDeclaration(
     params: parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
-      (context =
-        (context | Context.TopLevel | Context.InGlobal | Context.InSwitchOrIteration) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration)),
+      (context | Context.TopLevel | Context.InGlobal | Context.InSwitchOrIteration) ^
+        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration),
       BindingOrigin.Declaration,
       firstRestricted
     ),
@@ -3154,9 +3153,9 @@ export function parseArrayExpressionOrPattern(
         left = parseRestOrSpreadElement(parser, context, Token.RightBracket, bindingType, /* isAsync */ 0);
         destructible |= parser.destructible;
         if (parser.token !== Token.Comma && parser.token !== Token.RightBracket)
-          report(parser, Errors.UnexpectedToken, KeywordDescTable[(parser.token, Token.Type)]);
+          report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
       } else {
-        const isLeftParen = parser.token === Token.LeftParen;
+        const { token } = parser;
 
         left = parseLeftHandSideExpression(parser, context, /* assignable */ 1);
 
@@ -3164,9 +3163,9 @@ export function parseArrayExpressionOrPattern(
           left = parseAssignmentExpression(parser, context, left);
           parser.assignable = AssignmentKind.NotAssignable;
           parser.destructible = DestructuringKind.NotDestructible;
-        } else if (isLeftParen && parser.assignable & AssignmentKind.Assignable && !bindingType) {
+        } else if (token === Token.LeftParen && parser.assignable & AssignmentKind.Assignable && !bindingType) {
           destructible |= DestructuringKind.Assignable;
-        } else if (isLeftParen || parser.assignable & AssignmentKind.NotAssignable) {
+        } else if (token === Token.LeftParen || parser.assignable & AssignmentKind.NotAssignable) {
           destructible |= DestructuringKind.NotDestructible;
         }
       }
@@ -4357,9 +4356,8 @@ export function parseArrowFunctionExpression(
   } else {
     body = parseFunctionBody(
       parser,
-      (context =
-        (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext)),
+      (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext) ^
+        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext),
       BindingOrigin.Arrow,
       void 0
     );
@@ -4827,8 +4825,7 @@ export function parseClassExpression(parser: ParserState, context: Context): EST
   let superClass: ESTree.Expression | null = null;
 
   // All class code is always strict mode implicitly
-  context =
-    (context = (context | 0b0000001000000000000_0100_00000000) ^ 0b0000001000000000000_0100_00000000) | Context.Strict;
+  context = ((context | 0b0000001000000000000_0100_00000000) ^ 0b0000001000000000000_0100_00000000) | Context.Strict;
 
   let decorators: ESTree.Decorator[] =
     context & Context.OptionsNext ? parseDecorators(parser, context | Context.InDecoratorContext) : [];

@@ -32,7 +32,6 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
           ret = undefined;
           ch = scanBadTemplate(parser, ch);
           if (ch < 0) {
-            ch = -ch;
             tail = false;
           }
           break;
@@ -43,7 +42,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
     } else {
       if (ch === Chars.CarriageReturn) {
         if (parser.index < parser.length && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-          if (ret != null) ret += fromCodePoint(ch);
+          if (ret !== null) ret += fromCodePoint(ch);
           parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
         }
       }
@@ -52,7 +51,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         parser.column = -1;
         parser.line++;
       }
-      if (ret != null) ret += fromCodePoint(ch);
+      if (ret !== null) ret += fromCodePoint(ch);
     }
     if (parser.index >= parser.length) report(parser, Errors.UnterminatedTemplate);
     ch = nextCodePoint(parser);
@@ -84,18 +83,6 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
         }
         break;
       }
-
-      case Chars.Backslash:
-        ch = nextCodePoint(parser);
-        break;
-
-      case Chars.CarriageReturn:
-        if (parser.index < parser.length && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-          ch = parser.source.charCodeAt(parser.index);
-          parser.index++;
-        }
-      // falls through
-
       case Chars.LineFeed:
       case Chars.LineSeparator:
       case Chars.ParagraphSeparator:
