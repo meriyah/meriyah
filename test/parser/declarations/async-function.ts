@@ -326,7 +326,7 @@ describe('Declarations - Async Function', () => {
     ['({async foo(a = await b) {}})', Context.None],
     ['async function wrap() {\n(a = await b) => a\n}', Context.None],
     ['async function wrap() {\n({a = await b} = obj) => a\n}', Context.None]
-    // ['function* wrap() {\nasync(a = yield b) => a\n}', Context.None]
+    //['function* wrap() {\nasync(a = yield b) => a\n}', Context.None]
   ]);
 
   pass('Declarations - Async function (pass)', [
@@ -725,7 +725,6 @@ describe('Declarations - Async Function', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -972,7 +971,6 @@ describe('Declarations - Async Function', () => {
                   params: [],
                   id: null,
                   async: true,
-                  generator: false,
                   expression: true
                 }
               }
@@ -1341,7 +1339,6 @@ describe('Declarations - Async Function', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }

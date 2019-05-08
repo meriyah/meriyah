@@ -1508,7 +1508,6 @@ describe('Module - Export', () => {
               },
               params: [],
               id: null,
-              generator: false,
               async: true,
               expression: true
             }
@@ -1529,7 +1528,6 @@ describe('Module - Export', () => {
                 type: 'Identifier'
               },
               expression: true,
-              generator: false,
               id: null,
               params: [
                 {
@@ -1664,7 +1662,6 @@ describe('Module - Export', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1698,7 +1695,6 @@ describe('Module - Export', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -1723,7 +1719,6 @@ describe('Module - Export', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -2207,12 +2202,12 @@ describe('Module - Export', () => {
       }
     ],
     [
-      `export function* mbeghbuev(rbfbhp, plmigy, ncjtnjiubydav) {
+      `export function* a(b, c, d) {
         try {
         } finally {}
         throw {a, [(yield)]: j, [0x1B7E316905B86C]: u = ((false)), s, [(new.target)]: i} = (([, , , , ]))
       }
-      export default typeof (hajnq >= ((h, k = (+("ÕuV")), nyxdtdpq) => (null)));
+      export default typeof (bar >= ((h, k = (+("foo")), x) => (null)));
       `,
       Context.Strict | Context.Module,
       {
@@ -2346,20 +2341,20 @@ describe('Module - Export', () => {
               expression: false,
               generator: true,
               id: {
-                name: 'mbeghbuev',
+                name: 'a',
                 type: 'Identifier'
               },
               params: [
                 {
-                  name: 'rbfbhp',
+                  name: 'b',
                   type: 'Identifier'
                 },
                 {
-                  name: 'plmigy',
+                  name: 'c',
                   type: 'Identifier'
                 },
                 {
-                  name: 'ncjtnjiubydav',
+                  name: 'd',
                   type: 'Identifier'
                 }
               ],
@@ -2373,7 +2368,7 @@ describe('Module - Export', () => {
             declaration: {
               argument: {
                 left: {
-                  name: 'hajnq',
+                  name: 'bar',
                   type: 'Identifier'
                 },
                 operator: '>=',
@@ -2384,7 +2379,6 @@ describe('Module - Export', () => {
                     value: null
                   },
                   expression: true,
-                  generator: false,
                   id: null,
                   params: [
                     {
@@ -2399,7 +2393,7 @@ describe('Module - Export', () => {
                       right: {
                         argument: {
                           type: 'Literal',
-                          value: 'Õ\u0004uV'
+                          value: 'foo'
                         },
                         operator: '+',
                         prefix: true,
@@ -2408,7 +2402,7 @@ describe('Module - Export', () => {
                       type: 'AssignmentPattern'
                     },
                     {
-                      name: 'nyxdtdpq',
+                      name: 'x',
                       type: 'Identifier'
                     }
                   ],
@@ -2485,7 +2479,6 @@ describe('Module - Export', () => {
                   type: 'BlockStatement'
                 },
                 expression: false,
-                generator: false,
                 id: null,
                 params: [
                   {

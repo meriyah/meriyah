@@ -2015,7 +2015,6 @@ describe('Next - Private methods', () => {
                     params: [],
                     id: null,
                     async: false,
-                    generator: false,
                     expression: true
                   },
                   computed: false,

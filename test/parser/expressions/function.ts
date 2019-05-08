@@ -415,7 +415,6 @@ describe('Expressions - Functions', () => {
                                 params: [],
                                 id: null,
                                 async: false,
-                                generator: false,
                                 expression: true
                               }
                             ]
@@ -4850,7 +4849,6 @@ describe('Expressions - Functions', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }
@@ -5792,7 +5790,6 @@ describe('Expressions - Functions', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
                       expression: true
                     },
                     arguments: [
@@ -6832,7 +6829,6 @@ describe('Expressions - Functions', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -6887,7 +6883,6 @@ describe('Expressions - Functions', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -6933,7 +6928,6 @@ describe('Expressions - Functions', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -7065,7 +7059,6 @@ describe('Expressions - Functions', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: true
                       }
                     ]

@@ -134,7 +134,7 @@ describe('Expressions - Delete', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               prefix: true
@@ -182,7 +182,7 @@ describe('Expressions - Delete', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               prefix: true
@@ -212,7 +212,7 @@ describe('Expressions - Delete', () => {
                 params: [],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               prefix: true
@@ -557,7 +557,7 @@ describe('Expressions - Delete', () => {
                   type: 'Identifier'
                 },
                 expression: true,
-                generator: false,
+
                 id: null,
                 params: [],
                 type: 'ArrowFunctionExpression'

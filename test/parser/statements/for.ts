@@ -761,7 +761,6 @@ describe('Statements - For', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
               expression: false
             },
             test: null,
@@ -975,7 +974,6 @@ describe('Statements - For', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
               expression: false
             },
             test: null,

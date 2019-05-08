@@ -12,7 +12,7 @@ describe('Miscellaneous - Pass', () => {
     'do ; while(0) i++',
     'do if (a) x; else y; while(z)',
     `({}.length);`,
-    'switch (((("Mr" || (``).rlv ? ("^") : ((([`` / (() => 0)])))())))) {}',
+    'switch (((("Mr" || (`foo`).rlv ? ("^") : ((([`a` / (() => 0)])))())))) {}',
     'function f() { ((((a))((b)()).l))() }',
     'function f() { (a)[b + (c) / (d())].l-- }',
     "function f() { new (f + 5)(6, (g)() - 'l'() - true(false)) }",
@@ -159,18 +159,17 @@ describe('Miscellaneous - Pass', () => {
     '{ a[5],6; {} ++b-new (-5)() } c().l++',
     'function f() { { a[5],6; {} ++b-new (-5)() } c().l++ }',
     '({} = (--x), of, a) => (a)',
-    'for (; ([ypcrjcqd, bw, bxdcnmy = satlphhplourwfs], [{j, [(((t)))]: g = "N	¯Sú", c, o} = class u extends `1Víy` {}], bgtqklnssucfqsm, ka) => `p¢Ó­${([, ] ** delete 2e308.static ++), arguments}`;) hnjtmujeg: for (ikdgsltnabvjnk of false) var y = /([])*?|K\x78B\b/gu',
+    'for (; ([x, bw, y = z], [{j, [(((t)))]: g = "N	¯B", c, o} = class u extends `c` {}], bar, ka) => `c{([, ] ** delete 2e308.static ++), arguments}`;) hnjtmujeg: for (ikdgsltnabvjnk of false) var y = /([])*?|K\x78B\b/gu',
     '({"d": [] & (null) });',
     `( of => {})`,
     `of => {}`,
-    `for ({"a": ((~2e308)).eq = ((((t)[2e308] = (4.940161093774018e132[(null)] --)))), kdfkqmskrvjte, [(function* (nrxyvtaethhssc) {
-    })]: fcxveed} of (2969)) debugger;`,
+    `for ({"a": ((~2e308)).eq = ((((t)[2e308] = (4.940161093774018e132[(null)] --)))), a, [(function* (b) {
+    })]: c} of (2969)) debugger;`,
     `let [weli, [...[]], [, , ...[]], , {a}, ...[]] = (eval), kqwys = ((((((-2e308)))).if)(...((this)), ...((r)), ((of => {
     }))));`,
     'const a = (((({})))`æhq` / (b))',
-    '(t[(((2e308)))] in /[-�-]/gi)',
-    `const ugqbnmejypjehf = this;
-    function ayovbngutpnhsdko(bgpprfjxtwuxp, duppwvgsavsr, pxvd, orkgviwaske, igaaskiqfje) {
+    `const foo = this;
+    function a(b, c, d, e, f) {
       "use strict";
       for (; null;) switch (new.target) {
         case false:
@@ -201,7 +200,7 @@ describe('Miscellaneous - Pass', () => {
           debugger;
           ;
           debugger;
-        case ywdvm:
+        case xxx:
           do while (2e308.s) if (false) return; else break; while ([, ]);
           return true;
           do if (new.target) break
@@ -215,11 +214,11 @@ describe('Miscellaneous - Pass', () => {
               {}
           }
         default:
-          class jnhwtndcw extends null[-3.9701885463648657e220] {}
+          class fooClass extends null[-3.9701885463648657e220] {}
         case (y = new.target)["i=É"] ^= "ø"()[(y, x, p, h) => {
           "l";
           "use strict";
-          "váHOb";
+          "abc";
           "use strict";
         }]:
           debugger;
@@ -242,7 +241,7 @@ describe('Miscellaneous - Pass', () => {
           case arguments:
         }
       } finally {
-        function* gmmcwctn([] = new.target, {ITå: d, h6ñæ: y}, dhpn, t = r = /(\B;\u8ACf\u0361)/imy, {[/(?![^*-+-])/iu]: m}, ...qqalnmcwo) {
+        function* gmmcwctn([] = new.target, {ITå: d, h6ñæ: y}, b, t = r = /(\B;\u8ACf\u0361)/imy, {[/(?![^*-+-])/iu]: m}, ...foo) {
           let m = arguments;
           while (this()) new.target
         }
@@ -250,38 +249,36 @@ describe('Miscellaneous - Pass', () => {
         uqpvlflscdnwq: for (const x in "") try {} catch (l) {}
         ;
       }
-      if ("G") throw riwwucphdoifbmw ++
+      if ("string") throw a ++
      else ;
-      do culcdyrlivoi: for (let u in new (true())(2e308, "¹Ö" != false, ...new.target, new this, [])) try {} finally {} while ([...[] = /[-]/u, ...[, null, f = g, , ], , um]);
-    }
-    `,
-    //'for (((((false))["ë®Ú"] **= eval[null]) && null)[((2e308))(((((x = `7í`)))) ? 2e308 : 2e308() ? eval in null : ([]), ...null, ...t[(((2e308)))] in /[-\uDcCa-]/gi)] of 2e308) try {} finally {;}',
+      do a: for (let u in new (true())(2e308, "¹Ö" != false, ...new.target, new this, [])) try {} finally {} while ([...[] = /[-]/u, ...[, null, f = g, , ], , um]);
+    }`,
     '({} = (x), of, a) => (a)',
     `(class {
       [null](t, a) {
         "use strict";
-        "ÉPJÜ";
-        "íÖtãR";
-        "J";
+        "a";
+        "b";
+        "c";
         "use strict";
       }
-      static *ñÕD(j, p, a, c, y) {
+      static *method(j, p, a, c, y) {
         "use strict";
       }
       set [(a)()] (ubv) {
         "C1>";
-        ".º7«_";
+        "hello";
         "use strict";
         for (var n in null) continue;
         if (2603) return; else ;
-        switch ("Ê÷") {}
+        switch ("bar") {}
         for (m of "") ;
         debugger;
       }
     })`,
     'throw (b = function* eo() { yield; }, [a]) => 2e308',
     '( of => {})',
-    '(eval), kqwys = ((((((-2e308)))).if)(...((this)), ...((r)), (( of => {}))));',
+    '(eval), a = ((((((-2e308)))).if)(...((this)), ...((r)), (( of => {}))));',
     '{ l1: l2: l3: { this } a = 32 ; { i++ ; { { { } } ++i } } }',
     'function f() { { l1: l2: l3: { this } a = 32 ; { i++ ; { { { } } ++i } } } }',
     'x: s: if (a) ; else b',
@@ -294,11 +291,11 @@ describe('Miscellaneous - Pass', () => {
     '({a: 1 || 1}.a = 1)',
     'if (0) foo$; ',
     'function a({ [(b)]: {} = new.target}, c) {}',
-    'function* shcpfmvhkavl({"a": {} = (new (((new.target)))), odxxoxrrv = a, [(this)]: {} = new.target}, miwkeaa) {}',
+    'function* foo({"a": {} = (new (((new.target)))), bar = a, [(this)]: {} = new.target}, b) {}',
     '(((2e308)).i)',
     `[function* (...{}) {  switch (yield) {}  }]
     a = (u) => {}`,
-    'for (;; ({} = (--x), of, ...nsujmqrnwd) => (a)) {}',
+    'for (;; ({} = (--x), of, ...bar) => (a)) {}',
     'throw ((arguments))',
     '(class extends a { constructor() {}  *i() {}  })',
     '(class extends a { constructor() {}  *[i]() {}  })',
@@ -341,49 +338,48 @@ describe('Miscellaneous - Pass', () => {
       }
     })`,
     'for (o of ((946090429347418))[("")]) try {} finally {}',
-    `  class khoqm {
+    `  class x {
       set [0] ({}) {
-        "îV@"
-        "Ã";
-        "9M¤í"
-        "!^Æ"
-        "i».";
+        "a"
+        "b";
+        "c"
+        "d"
+        "e";
       }
       static get [1694.31]() {
-        "¶"
-        "]"
-        "ïp"
+        "foo"
+        "bar"
         "use strict"
       }
       static get [((/[?-\uD357)]/giy))]() {
         "use strict"
         "use strict"
       }
-      static *"tè® "() {
+      static *"zoo "() {
         "use strict"
       }
       static set [(2e308)] (v) {
-        "»ÕÊÓ";
+        "meta";
         "use strict";
       }
     }`,
     `if (0xE201433785892) eval: for (;;) try {
       arguments: debugger;
       debugger;
-      while ((("I@"))) debugger;
+      while ((("string"))) debugger;
       do break eval; while (true);
     } catch (a) {}`,
     '(`Î${(aewdwm, [, ...{}] = {s}, bsm, e) => new (/(?:)/guy === [`template`, , u /= false, ...""])(new (y = 0).await(...() => 1199), ...eval, ....94, ...{eval})}`)',
     '{(this / s)}',
     '[{y} = /a/ ]',
     '[(((((/[^(-\x8F/$!-[(]/my).n = class {}))))]',
-    'while ((p /= ({}))) for (let q in (`õP`)) while (((2e308))) break;',
+    'while ((p /= ({}))) for (let q in (`string`)) while (((2e308))) break;',
     `for (;;) if (class {}) switch (0xB1F7CA471C3A8) {
       case /(?=)?/iu:
       default:
       case /[(-o[-\uA9cb-]/my:
       case 2e308:
-      case "'J":
+      case "string":
     } else new /[-\x7d#-.?-]+/g;`,
     'false ? null : (eval)',
     '"use strict"; false ? null : (eval)',
@@ -397,12 +393,12 @@ describe('Miscellaneous - Pass', () => {
     }
     typeof (a >= ((h, k = (+("string")), b) => (null)));
     `,
-    `function* yx(snjbfaalocyob) {
+    `function* a(b) {
       switch (((-((class {}))))) {
             case (yield* /\,+?/iy):
           }
       }`,
-    'class cteuognrbclmu extends (([, /(?=(?!))/gi, [], , ])) {}',
+    'class a extends (([, /(?=(?!))/gi, [], , ])) {}',
     `throw 1344;
     /[^{?c\x60-|5-8]?/gimu;`,
     "function f() { 'use strict'; function __proto__(){} }",
@@ -661,6 +657,7 @@ describe('Miscellaneous - Pass', () => {
     '(delete new function f(){} + function(a,b){}(5)(6))',
     '6 - function (m) { function g() {} }',
     "const a = 7; eval(''); a=1",
+    '(arguments) => { }',
     'const a = 7; with({}) a=1',
     'const a = 7; with({}) a=1',
     'for ( ; ; ) { break }',
@@ -682,6 +679,17 @@ describe('Miscellaneous - Pass', () => {
     'for (const x = 20; ; ) { const x = 20; break; }',
     'for (const x of []) { const x = 20; break; }',
     'for (const x in {}) { const x = 20; break; }',
+    '"foo" \n ++bar',
+    '(package) => {}',
+    'async (package) => {}',
+    '({...{eval}.x} = {});',
+    '({...{b: 0}.x} = {});',
+    'a[foo].c = () => { throw Error(); };',
+    '({...[0].x} = {});',
+    'async function foo(a = () => { "use strict"; return eval("x"); }) {}',
+    'async function foo(a = () => { "use strict"; return eval("x") }) { var x; return a(); }',
+    '(w, o, e, m) => { "use strict" }',
+    '(w, o, e, m) => { "use strict"; "use strict" }',
     'for (a,(b in c) ;;) break',
     'function x(i) { for (let i in {}) { } }',
     'function x(i) { for (let i of []) { } }',
@@ -4106,6 +4114,62 @@ for (var i = 0; i < 10000; i++){
         assertEquals(6, sum);
       }());
       `,
+    'for (a=>b;;);',
+    `this.p1 = 1;
+      this.p2 = 2;
+      this.p3 = 3;
+      var result = "result";
+      var myObj = {p1: 'a',
+                   p2: 'b',
+                   p3: 'c',
+                   value: 'myObj_value',
+                   valueOf : function(){return 'obj_valueOf';},
+                   parseInt : function(){return 'obj_parseInt';},
+                   NaN : 'obj_NaN',
+                   Infinity : 'obj_Infinity',
+                   eval     : function(){return 'obj_eval';},
+                   parseFloat : function(){return 'obj_parseFloat';},
+                   isNaN      : function(){return 'obj_isNaN';},
+                   isFinite   : function(){return 'obj_isFinite';}
+      }
+      var del;
+      var st_p1 = "p1";
+      var st_p2 = "p2";
+      var st_p3 = "p3";
+      var st_parseInt = "parseInt";
+      var st_NaN = "NaN";
+      var st_Infinity = "Infinity";
+      var st_eval = "eval";
+      var st_parseFloat = "parseFloat";
+      var st_isNaN = "isNaN";
+      var st_isFinite = "isFinite";
+
+      try {
+        with(myObj){
+          var f = function(){
+            throw value;
+            st_p1 = p1;
+            st_p2 = p2;
+            st_p3 = p3;
+            st_parseInt = parseInt;
+            st_NaN = NaN;
+            st_Infinity = Infinity;
+            st_eval = eval;
+            st_parseFloat = parseFloat;
+            st_isNaN = isNaN;
+            st_isFinite = isFinite;
+            p1 = 'x1';
+            this.p2 = 'x2';
+            del = delete p3;
+            var p4 = 'x4';
+            p5 = 'x5';
+            var value = 'value';
+          }
+        }
+        f();
+      } catch(e){
+        result = e;
+      }`,
     `(function testExpressionTypes() {
         "use strict";
         ((x, y = x) => assertEquals(42, y))(42);

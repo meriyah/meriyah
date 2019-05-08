@@ -79,7 +79,7 @@ describe('Miscellaneous - Eval and arguments', () => {
     'function foo(arguments) { }',
     'function foo(bar, eval) { }',
     'function foo(bar, arguments) { }',
-    // 'eval => icefapper', // evil?
+    'eval => foo',
     '(eval) => { }',
     '(arguments) => { }',
     '(foo, eval) => { }',
@@ -164,6 +164,12 @@ describe('Miscellaneous - Eval and arguments', () => {
     it(`() => { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
         parseSource(`() => { "use strict";  ${arg} }`, undefined, Context.None);
+      });
+    });
+
+    it(`() => { "use strict"; ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`() => { "use strict";  ${arg} }`, undefined, Context.OptionsWebCompat);
       });
     });
   }

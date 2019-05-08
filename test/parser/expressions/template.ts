@@ -2742,7 +2742,6 @@ describe('Expressions - Template', () => {
                   params: [],
                   id: null,
                   async: false,
-                  generator: false,
                   expression: false
                 }
               ],
@@ -2804,7 +2803,6 @@ describe('Expressions - Template', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
                   expression: false
                 }
               ],

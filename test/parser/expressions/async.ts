@@ -138,7 +138,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -218,7 +217,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -704,7 +702,6 @@ describe('Expressions - Async', () => {
                   params: [],
                   id: null,
                   async: true,
-                  generator: false,
                   expression: true
                 }
               ]
@@ -743,7 +740,6 @@ describe('Expressions - Async', () => {
                   ],
                   id: null,
                   async: true,
-                  generator: false,
                   expression: true
                 }
               ]
@@ -872,7 +868,6 @@ describe('Expressions - Async', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
                   expression: true
                 }
               ]
@@ -1035,7 +1030,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1486,7 +1480,6 @@ describe('Expressions - Async', () => {
                     type: 'Identifier',
                     name: 'foo'
                   },
-                  generator: false,
                   expression: true,
                   async: true
                 }
@@ -1527,7 +1520,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1677,7 +1669,6 @@ describe('Expressions - Async', () => {
               params: [],
               id: null,
               async: true,
-              generator: false,
               expression: false
             }
           }
@@ -1707,7 +1698,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1911,7 +1901,6 @@ describe('Expressions - Async', () => {
                     params: [],
                     id: null,
                     async: true,
-                    generator: false,
                     expression: true
                   }
                 },
@@ -1988,7 +1977,6 @@ describe('Expressions - Async', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: false
             }
           }

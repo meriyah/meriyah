@@ -325,7 +325,6 @@ describe('Statements - Continue', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }

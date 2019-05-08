@@ -2046,7 +2046,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -2191,7 +2190,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -3923,7 +3921,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -4315,7 +4312,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -4368,7 +4364,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -4788,7 +4783,6 @@ describe('Expressions - Object', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               }
             }
@@ -6193,7 +6187,6 @@ describe('Expressions - Object', () => {
                 }
               ],
               id: null,
-              generator: false,
               async: false,
               expression: true
             }
@@ -16051,7 +16044,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -16113,7 +16105,6 @@ describe('Expressions - Object', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               },
               arguments: [
@@ -16230,7 +16221,6 @@ describe('Expressions - Object', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               },
               arguments: [
@@ -18027,7 +18017,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -18597,7 +18586,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -20668,7 +20656,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -20978,7 +20965,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -21260,7 +21246,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -21313,7 +21298,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -21358,7 +21342,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -22518,7 +22501,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -23048,7 +23030,6 @@ describe('Expressions - Object', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }

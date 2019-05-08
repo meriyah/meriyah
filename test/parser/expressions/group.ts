@@ -712,7 +712,6 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -2104,7 +2103,6 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -2443,7 +2441,6 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -2596,7 +2593,7 @@ describe('Expressions - Group', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2706,7 +2703,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2755,7 +2752,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2788,7 +2785,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -2826,7 +2823,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -2875,7 +2872,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -2910,7 +2907,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2952,7 +2949,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3015,7 +3012,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3241,7 +3238,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3357,7 +3354,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -3394,7 +3391,6 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -3563,7 +3559,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -3593,7 +3589,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -3702,7 +3698,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: true,
-              generator: false,
+
               expression: true
             }
           }
@@ -3761,7 +3757,7 @@ describe('Expressions - Group', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               prefix: true
@@ -3964,7 +3960,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4097,7 +4093,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4191,7 +4187,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4401,7 +4397,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4487,7 +4483,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4540,7 +4536,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4995,7 +4991,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5037,7 +5033,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5083,7 +5079,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5118,7 +5114,7 @@ describe('Expressions - Group', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -6199,7 +6195,7 @@ describe('Expressions - Group', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
+
                         expression: true
                       },
                       computed: true,
@@ -6302,7 +6298,7 @@ describe('Expressions - Group', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
+
                       expression: true
                     },
                     computed: false,

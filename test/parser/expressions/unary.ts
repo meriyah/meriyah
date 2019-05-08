@@ -535,7 +535,7 @@ describe('Expressions - Unary', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               prefix: true
@@ -583,7 +583,6 @@ describe('Expressions - Unary', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               },
               prefix: true
@@ -620,7 +619,6 @@ describe('Expressions - Unary', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
                   expression: true
                 },
                 computed: false,
@@ -656,7 +654,6 @@ describe('Expressions - Unary', () => {
                 params: [],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               },
               prefix: true
@@ -1004,7 +1001,6 @@ describe('Expressions - Unary', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1165,7 +1161,6 @@ describe('Expressions - Unary', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: true
             }
           }
@@ -1431,7 +1426,6 @@ describe('Expressions - Unary', () => {
                   params: [],
                   id: null,
                   async: false,
-                  generator: false,
                   expression: true
                 },
                 id: {
@@ -1619,7 +1613,6 @@ describe('Expressions - Unary', () => {
                     type: 'UpdateExpression'
                   },
                   expression: true,
-                  generator: false,
                   id: null,
                   params: [],
                   type: 'ArrowFunctionExpression'

@@ -4338,14 +4338,18 @@ export function parseArrowFunctionExpression(
 
   consume(parser, context | Context.AllowRegExp, Token.Arrow);
 
-  for (let i = 0; i < params.length; ++i) {
-    reinterpretToPattern(parser, params[i]);
-  }
+  for (let i = 0; i < params.length; ++i) reinterpretToPattern(parser, params[i]);
+
   context = ((context | 0b0000000111100000000_0000_00000000) ^ 0b0000000111100000000_0000_00000000) | (isAsync << 22);
-  let expression: 0 | 1 = 0;
+
+  const expression = parser.token !== Token.LeftBrace;
+
   let body: ESTree.BlockStatement | ESTree.Expression;
 
-  if (parser.token === Token.LeftBrace) {
+  if (expression) {
+    // Single-expression body
+    body = parseExpression(parser, context, /* assignable */ 1);
+  } else {
     body = parseFunctionBody(
       parser,
       (context =
@@ -4356,10 +4360,6 @@ export function parseArrowFunctionExpression(
     );
 
     validateArrowBlockBody(parser);
-  } else {
-    // Single-expression body
-    expression = 1;
-    body = parseExpression(parser, context, /* assignable */ 1);
   }
 
   parser.assignable = AssignmentKind.NotAssignable;
@@ -4370,8 +4370,7 @@ export function parseArrowFunctionExpression(
     params,
     id: null,
     async: isAsync === 1,
-    generator: false,
-    expression: expression === 1
+    expression
   };
 }
 

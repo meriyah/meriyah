@@ -1,3 +1,5 @@
+import { Context } from '../../../src/common';
+import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 

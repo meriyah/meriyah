@@ -186,7 +186,6 @@ describe('Expressions - Call', () => {
                 type: 'Identifier'
               },
               expression: true,
-              generator: false,
               id: null,
               params: [
                 {
@@ -867,7 +866,6 @@ describe('Expressions - Call', () => {
               ],
               id: null,
               async: true,
-              generator: false,
               expression: false
             }
           }

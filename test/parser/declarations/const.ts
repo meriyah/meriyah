@@ -931,7 +931,6 @@ describe('Declarations - const', () => {
                           type: 'BlockStatement'
                         },
                         expression: false,
-                        generator: false,
                         id: null,
                         params: [
                           {
@@ -1094,7 +1093,6 @@ describe('Declarations - const', () => {
                           ],
                           id: null,
                           async: false,
-                          generator: false,
                           expression: false
                         }
                       },

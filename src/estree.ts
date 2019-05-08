@@ -295,7 +295,6 @@ export interface ArrowFunctionExpression extends _Expression<'ArrowFunctionExpre
   body: BlockStatement | Expression;
   expression: boolean;
   async: boolean;
-  generator: false;
 }
 
 export interface AwaitExpression extends _Expression<'AwaitExpression'> {

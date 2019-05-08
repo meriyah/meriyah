@@ -1253,7 +1253,6 @@ describe('Expressions - Rest', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: true
                       },
                       computed: true,
@@ -1356,7 +1355,6 @@ describe('Expressions - Rest', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
                       expression: true
                     },
                     computed: false,

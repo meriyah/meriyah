@@ -385,7 +385,6 @@ describe('Declarations - Async Generator', () => {
                       params: [],
                       id: null,
                       async: false,
-                      generator: false,
                       expression: false
                     }
                   }
@@ -734,7 +733,6 @@ describe('Declarations - Async Generator', () => {
                         params: [],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: false
                       }
                     }

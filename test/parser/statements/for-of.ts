@@ -729,7 +729,6 @@ describe('Statements - For of', () => {
                           params: [],
                           id: null,
                           async: false,
-                          generator: false,
                           expression: false
                         },
                         kind: 'init',
@@ -783,13 +782,11 @@ describe('Statements - For of', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           },
                           params: [],
                           id: null,
                           async: false,
-                          generator: false,
                           expression: true
                         },
                         right: {

@@ -2210,7 +2210,6 @@ describe('Expressions - Class', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }
@@ -2387,7 +2386,6 @@ describe('Expressions - Class', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }
@@ -2464,7 +2462,6 @@ describe('Expressions - Class', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }
@@ -2764,7 +2761,6 @@ describe('Expressions - Class', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }
@@ -2876,7 +2872,6 @@ describe('Expressions - Class', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: false
               }
             }

@@ -304,7 +304,7 @@ describe('Expressions - Conditional', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }

@@ -34,7 +34,7 @@ describe('Statements - None', () => {
     ['if (false) ; else function* g() {  }', Context.None]
   ]);
 
-  pass('Statements - None (pass)', [
+  pass('Statements - If (pass)', [
     [
       'if (a) b()',
       Context.OptionsWebCompat,
@@ -147,7 +147,6 @@ describe('Statements - None', () => {
                           params: [],
                           id: null,
                           async: false,
-                          generator: false,
                           expression: false
                         }
                       }

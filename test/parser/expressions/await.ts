@@ -1060,7 +1060,6 @@ describe('Expressions - Await', () => {
                 type: 'BlockStatement'
               },
               expression: false,
-              generator: false,
               id: null,
               params: [
                 {
@@ -1531,7 +1530,6 @@ describe('Expressions - Await', () => {
                 ],
                 id: null,
                 async: true,
-                generator: false,
                 expression: true
               }
             }
@@ -1959,7 +1957,6 @@ describe('Expressions - Await', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
                 expression: true
               }
             }
@@ -2109,7 +2106,6 @@ describe('Expressions - Await', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
@@ -2257,7 +2253,6 @@ describe('Expressions - Await', () => {
                     ],
                     id: null,
                     async: false,
-                    generator: false,
                     expression: true
                   }
                 }
@@ -2488,7 +2483,6 @@ describe('Expressions - Await', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }

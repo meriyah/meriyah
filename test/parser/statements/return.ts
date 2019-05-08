@@ -83,7 +83,6 @@ describe('Statements - Return', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -122,7 +121,6 @@ describe('Statements - Return', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }
@@ -427,7 +425,6 @@ describe('Statements - Return', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
               expression: false
             }
           }

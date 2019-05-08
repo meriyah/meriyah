@@ -1204,7 +1204,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1243,7 +1243,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1281,7 +1281,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1319,7 +1319,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1357,7 +1357,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1391,7 +1391,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1412,7 +1412,6 @@ describe('Expressions - Arrow', () => {
                   type: 'BlockStatement'
                 },
                 expression: false,
-                generator: false,
                 id: null,
                 params: [],
                 type: 'ArrowFunctionExpression'
@@ -1480,7 +1479,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               }
             }
@@ -1528,7 +1527,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -1573,7 +1572,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1615,7 +1614,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -1696,7 +1695,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -1733,7 +1732,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -1881,7 +1880,7 @@ describe('Expressions - Arrow', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
+
                         expression: false
                       }
                     }
@@ -2025,7 +2024,7 @@ describe('Expressions - Arrow', () => {
                                 ],
                                 id: null,
                                 async: false,
-                                generator: false,
+
                                 expression: false
                               }
                             ]
@@ -2053,7 +2052,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2094,7 +2093,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2146,7 +2145,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2199,7 +2198,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2263,7 +2262,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 id: {
@@ -2311,7 +2310,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2344,7 +2343,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2374,7 +2373,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2419,7 +2418,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2461,7 +2460,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2506,7 +2505,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2536,7 +2535,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2573,7 +2572,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2622,7 +2621,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -2633,7 +2632,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -2665,7 +2664,7 @@ describe('Expressions - Arrow', () => {
                   params: [],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 }
               ]
@@ -2708,7 +2707,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 }
               ]
@@ -2756,7 +2755,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2793,7 +2792,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2826,7 +2825,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2863,7 +2862,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2882,7 +2881,7 @@ describe('Expressions - Arrow', () => {
               type: 'ArrowFunctionExpression',
               id: null,
               expression: true,
-              generator: false,
+
               async: true,
               params: [
                 {
@@ -2939,7 +2938,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -2985,7 +2984,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3023,7 +3022,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3065,7 +3064,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3116,7 +3115,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3150,7 +3149,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3198,7 +3197,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3235,7 +3234,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               }
             }
@@ -3331,7 +3330,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3393,7 +3392,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3446,7 +3445,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -3491,7 +3490,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -3530,7 +3529,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 {
@@ -3551,7 +3550,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -3590,7 +3589,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 },
                 {
@@ -3615,7 +3614,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -3666,7 +3665,7 @@ describe('Expressions - Arrow', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3766,7 +3765,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3819,7 +3818,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3853,7 +3852,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -3887,7 +3886,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -3924,7 +3923,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -3965,7 +3964,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -4002,7 +4001,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -4032,7 +4031,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4074,7 +4073,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4122,7 +4121,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -4137,7 +4136,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4190,7 +4189,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -4215,7 +4214,7 @@ describe('Expressions - Arrow', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4266,7 +4265,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -4328,7 +4327,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -4369,7 +4368,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             },
             test: {
@@ -4422,7 +4421,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -4437,7 +4436,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4489,7 +4488,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -4500,7 +4499,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -4537,7 +4536,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -4584,7 +4583,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -4656,7 +4655,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 id: {
@@ -4724,7 +4723,7 @@ describe('Expressions - Arrow', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
+
                       expression: true
                     },
                     params: [
@@ -4735,7 +4734,7 @@ describe('Expressions - Arrow', () => {
                     ],
                     id: null,
                     async: false,
-                    generator: false,
+
                     expression: true
                   },
                   params: [
@@ -4758,7 +4757,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 id: {
@@ -4812,7 +4811,7 @@ describe('Expressions - Arrow', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
+
                         expression: false
                       },
                       params: [
@@ -4823,7 +4822,7 @@ describe('Expressions - Arrow', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
+
                       expression: true
                     },
                     params: [
@@ -4834,7 +4833,7 @@ describe('Expressions - Arrow', () => {
                     ],
                     id: null,
                     async: false,
-                    generator: false,
+
                     expression: true
                   },
                   params: [
@@ -4845,7 +4844,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 id: {
@@ -4888,7 +4887,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 {
@@ -4909,7 +4908,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -4948,7 +4947,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 },
                 {
@@ -4973,7 +4972,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -5012,7 +5011,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 },
                 {
@@ -5037,7 +5036,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 }
               ]
@@ -5087,7 +5086,7 @@ describe('Expressions - Arrow', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
+
                       expression: true
                     }
                   ]
@@ -5131,7 +5130,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: false
               }
             }
@@ -5166,7 +5165,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5200,7 +5199,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5246,7 +5245,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5283,7 +5282,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5324,7 +5323,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5365,7 +5364,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5417,7 +5416,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5470,7 +5469,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5512,7 +5511,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5554,7 +5553,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           }
@@ -5591,7 +5590,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5615,7 +5614,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5630,7 +5629,7 @@ describe('Expressions - Arrow', () => {
               params: [],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5652,7 +5651,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -5663,7 +5662,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5685,7 +5684,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [
@@ -5696,7 +5695,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5722,13 +5721,13 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               params: [],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           },
@@ -5756,7 +5755,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: false
             }
           },
@@ -5776,7 +5775,7 @@ describe('Expressions - Arrow', () => {
               ],
               id: null,
               async: false,
-              generator: false,
+
               expression: true
             }
           }
@@ -5822,7 +5821,7 @@ describe('Expressions - Arrow', () => {
                   params: [],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: false
                 },
                 id: {
@@ -5856,7 +5855,7 @@ describe('Expressions - Arrow', () => {
                 params: [],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: false
               },
               right: {
@@ -5879,7 +5878,7 @@ describe('Expressions - Arrow', () => {
                 params: [],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: false
               },
               consequent: {
@@ -5915,7 +5914,7 @@ describe('Expressions - Arrow', () => {
                 params: [],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: false
               },
               right: {
@@ -5987,7 +5986,7 @@ describe('Expressions - Arrow', () => {
                   ],
                   id: null,
                   async: false,
-                  generator: false,
+
                   expression: true
                 },
                 params: [
@@ -6002,7 +6001,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 id: null,
                 async: false,
-                generator: false,
+
                 expression: true
               },
               alternate: {

@@ -1298,7 +1298,6 @@ describe('Expressions - Super', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1377,7 +1376,6 @@ describe('Expressions - Super', () => {
                             ],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1446,13 +1444,11 @@ describe('Expressions - Super', () => {
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             },
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1523,7 +1519,6 @@ describe('Expressions - Super', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1531,7 +1526,6 @@ describe('Expressions - Super', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   }
                 }
@@ -1594,7 +1588,6 @@ describe('Expressions - Super', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1662,7 +1655,6 @@ describe('Expressions - Super', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1670,7 +1662,6 @@ describe('Expressions - Super', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   }
                 }
@@ -1745,7 +1736,6 @@ describe('Expressions - Super', () => {
                             ],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1753,7 +1743,6 @@ describe('Expressions - Super', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   }
                 }
@@ -1828,7 +1817,6 @@ describe('Expressions - Super', () => {
                             ],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1836,7 +1824,6 @@ describe('Expressions - Super', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   }
                 }
@@ -1901,13 +1888,11 @@ describe('Expressions - Super', () => {
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             },
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -1976,13 +1961,11 @@ describe('Expressions - Super', () => {
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             },
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -2049,7 +2032,6 @@ describe('Expressions - Super', () => {
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -2131,7 +2113,6 @@ describe('Expressions - Super', () => {
                             ],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -2210,7 +2191,6 @@ describe('Expressions - Super', () => {
                             ],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -2282,13 +2262,11 @@ describe('Expressions - Super', () => {
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             },
                             params: [],
                             id: null,
                             async: false,
-                            generator: false,
                             expression: true
                           }
                         }
@@ -2354,7 +2332,6 @@ describe('Expressions - Super', () => {
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             }
                           }
@@ -2437,7 +2414,6 @@ describe('Expressions - Super', () => {
                               ],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             }
                           }
@@ -2510,13 +2486,11 @@ describe('Expressions - Super', () => {
                                 params: [],
                                 id: null,
                                 async: false,
-                                generator: false,
                                 expression: true
                               },
                               params: [],
                               id: null,
                               async: false,
-                              generator: false,
                               expression: true
                             }
                           }

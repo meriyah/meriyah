@@ -1190,7 +1190,6 @@ describe('Next - Decorators', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: false
                       }
                     }
@@ -1657,7 +1656,6 @@ describe('Next - Decorators', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: false
                       }
                     }
@@ -1756,7 +1754,6 @@ describe('Next - Decorators', () => {
                     ],
                     id: null,
                     async: false,
-                    generator: false,
                     expression: false
                   }
                 }
@@ -2010,7 +2007,6 @@ describe('Next - Decorators', () => {
                         ],
                         id: null,
                         async: false,
-                        generator: false,
                         expression: true
                       }
                     }

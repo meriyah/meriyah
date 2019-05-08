@@ -364,7 +364,6 @@ describe('Expressions - New target', () => {
                       type: 'MetaProperty'
                     },
                     expression: true,
-                    generator: false,
                     id: null,
                     params: [
                       {
@@ -379,8 +378,8 @@ describe('Expressions - New target', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
             generator: false,
+            expression: false,
             id: {
               name: 'f',
               type: 'Identifier'
@@ -431,7 +430,6 @@ describe('Expressions - New target', () => {
                       ],
                       id: null,
                       async: false,
-                      generator: false,
                       expression: true
                     },
                     params: [
@@ -442,7 +440,6 @@ describe('Expressions - New target', () => {
                     ],
                     id: null,
                     async: false,
-                    generator: false,
                     expression: true
                   }
                 }
@@ -493,8 +490,8 @@ describe('Expressions - New target', () => {
                   ]
                 },
                 async: false,
-                generator: false,
                 expression: false,
+                generator: false,
                 id: null
               },
               params: [
@@ -505,7 +502,6 @@ describe('Expressions - New target', () => {
               ],
               id: null,
               async: false,
-              generator: false,
               expression: true
             }
           }
