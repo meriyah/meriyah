@@ -586,6 +586,7 @@ describe('Expressions - Class', () => {
     ['function () { class A { constructor() { A = 0; } }; new A(); }', Context.None],
     ['(class { adf&/()})', Context.None],
     ['(class { adf &/()})', Context.None],
+    //['class aw\\u0061it {}', Context.Strict | Context.Module],
     ['(class b {)', Context.None],
     ['(class b )', Context.None],
     ['(class b {-})', Context.None],

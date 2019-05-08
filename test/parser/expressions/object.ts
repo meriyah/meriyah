@@ -1084,6 +1084,13 @@ describe('Expressions - Object', () => {
     ['var x = 012;', Context.Strict],
     ['({b}) = b;', Context.None],
     ['([b]) = b;', Context.None],
+    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
+    ['foo({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
+    ['({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
+    ['async ({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
+    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat | Context.Strict],
+    ['[{ __proto__: null, other: null, "__proto__": null }];', Context.OptionsWebCompat],
+    ['x = { __proto__: null, other: null, "__proto__": null };', Context.OptionsWebCompat],
     ['[...a, ] = b', Context.None],
     ['obj = {x = 0}', Context.None],
     ['({ obj:20 }) = 42', Context.None],
@@ -1445,6 +1452,69 @@ describe('Expressions - Object', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '({ __proto__: null, other: null, "__proto__": null });',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              properties: [
+                {
+                  computed: false,
+                  key: {
+                    name: '__proto__',
+                    type: 'Identifier'
+                  },
+                  kind: 'init',
+                  method: false,
+                  shorthand: false,
+                  type: 'Property',
+                  value: {
+                    type: 'Literal',
+                    value: null
+                  }
+                },
+                {
+                  computed: false,
+                  key: {
+                    name: 'other',
+                    type: 'Identifier'
+                  },
+                  kind: 'init',
+                  method: false,
+                  shorthand: false,
+                  type: 'Property',
+                  value: {
+                    type: 'Literal',
+                    value: null
+                  }
+                },
+                {
+                  computed: false,
+                  key: {
+                    type: 'Literal',
+                    value: '__proto__'
+                  },
+                  kind: 'init',
+                  method: false,
+                  shorthand: false,
+                  type: 'Property',
+                  value: {
+                    type: 'Literal',
+                    value: null
+                  }
+                }
+              ],
+              type: 'ObjectExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [

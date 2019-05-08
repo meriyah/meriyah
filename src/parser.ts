@@ -3002,12 +3002,14 @@ function parseArrayLiteral(parser: ParserState, context: Context, skipInitialize
    */
   const expr = parseArrayExpressionOrPattern(parser, context, skipInitializer, BindingType.None);
 
-  if (parser.destructible & DestructuringKind.Required) {
-    report(parser, Errors.InvalidShorthandPropInit);
-  }
   if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
     report(parser, Errors.DuplicateProto);
   }
+
+  if (parser.destructible & DestructuringKind.Required) {
+    report(parser, Errors.InvalidShorthandPropInit);
+  }
+
   parser.assignable =
     parser.destructible & DestructuringKind.NotDestructible ? AssignmentKind.NotAssignable : AssignmentKind.Assignable;
   return expr as ESTree.ArrayExpression;
@@ -3488,11 +3490,12 @@ function parseObjectLiteral(parser: ParserState, context: Context, skipInitializ
    */
   const expr = parseObjectLiteralOrPattern(parser, context, skipInitializer, BindingType.None);
 
-  if (parser.destructible & DestructuringKind.Required) {
-    report(parser, Errors.InvalidShorthandPropInit);
-  }
   if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
     report(parser, Errors.DuplicateProto);
+  }
+
+  if (parser.destructible & DestructuringKind.Required) {
+    report(parser, Errors.InvalidShorthandPropInit);
   }
 
   parser.assignable =
@@ -4271,6 +4274,8 @@ export function parseParenthesizedExpression(parser: ParserState, context: Conte
     return parseArrowFunctionExpression(parser, context, toplevelComma ? expressions : [expr], /* isAsync */ 0);
   } else if (destructible & DestructuringKind.Required) {
     report(parser, Errors.InvalidShorthandPropInit);
+  } else if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
+    report(parser, Errors.DuplicateProto);
   }
 
   parser.destructible = destructible;
@@ -4714,6 +4719,8 @@ export function parseAsyncArrowOrCallExpression(
     return parseArrowFunctionExpression(parser, context, params as any, /* isAsync */ 1) as any;
   } else if (destructible & DestructuringKind.Required) {
     report(parser, Errors.InvalidShorthandPropInit);
+  } else if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
+    report(parser, Errors.DuplicateProto);
   }
 
   return {

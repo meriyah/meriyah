@@ -1861,7 +1861,6 @@ describe('Miscellaneous - Cover grammar', () => {
     '({...x})',
     '({x, ...y})',
     '({[x] : z, ...y})',
-    '({ __proto__: x, __proto__: y, ...z})',
     '([{x:x, y:y}, [a,b,c]])',
     '([{x:x, y:y}, [a,b,c]])',
     '([{x:x, y:y, ...z}, [a,b,c]] = {})',

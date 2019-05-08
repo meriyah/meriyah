@@ -279,23 +279,15 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
 
 export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
-    if (context & (Context.InAwaitContext | Context.Module)) {
-      report(parser, Errors.AwaitOutsideAsync);
-    }
+    if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitOutsideAsync);
     parser.flags |= Flags.SeenAwait;
   }
 
-  if (t === Token.YieldKeyword) {
-    if (context & (Context.InYieldContext | Context.Strict)) {
-      report(parser, Errors.DisallowedInContext, 'yield');
-    }
-  }
-  if (t === Token.GetKeyword) return true;
-  if (t === Token.SetKeyword) return true;
+  if (t === Token.YieldKeyword && context & Context.InYieldContext) report(parser, Errors.DisallowedInContext, 'yield');
+
   return (
     (t & Token.Reserved) === Token.Reserved ||
     (t & Token.FutureReserved) === Token.FutureReserved ||
-    t == Token.EscapedReserved ||
     t == Token.EscapedFutureReserved
   );
 }
