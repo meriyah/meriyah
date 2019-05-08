@@ -1,8 +1,8 @@
 # meriyah
 [![NPM version](https://img.shields.io/npm/v/meriyah.svg?style=flat-square)](https://www.npmjs.com/package/meriyah)
-[[![CircleCI](https://circleci.com/gh/meriyah/meriyah/tree/master.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah/tree/master)](https://circleci.com/gh/meriyah/meriyah/tree/master)
 [![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/context:javascript)
 [![Total Alerts](https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/alerts)
+[![CircleCI](https://circleci.com/gh/meriyah/meriyah.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah)
 
 A 100% compliant, self-hosted javascript parser with high focus on both performance and stability.
 
