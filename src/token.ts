@@ -25,7 +25,8 @@ export const enum Token {
   IsMemberOrCallExpression         = 1 << 26,
   IsStringOrNumber     = 1 << 27,
   VarDecl              = 1 << 28,
-  IsEvalOrArguments      = 1 << 29 | IsExpressionStart | IsIdentifier,
+  IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
+  IsCommaOrRightParen  = 1 << 30,
 
 
   /* Node types */
@@ -51,9 +52,9 @@ export const enum Token {
   Period       = 13 | IsMemberOrCallExpression, // .
   Ellipsis     = 14, // ...
   RightBrace   = 15 | IsAutoSemicolon, // }
-  RightParen   = 16, // )
+  RightParen   = 16 | IsCommaOrRightParen, // )
   Semicolon    = 17 | IsAutoSemicolon, // ;
-  Comma        = 18, // ,
+  Comma        = 18 | IsCommaOrRightParen, // ,
   LeftBracket  = 19 | IsExpressionStart | IsPatternStart | IsMemberOrCallExpression, // [
   RightBracket = 20, // ]
   Colon        = 21, // :
