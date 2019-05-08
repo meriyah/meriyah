@@ -299,3 +299,15 @@ export function isStrictReservedWord(parser: ParserState, context: Context, t: T
     t == Token.EscapedFutureReserved
   );
 }
+
+export function validateArrowBlockBody(parser: ParserState): any {
+  switch (parser.token) {
+    case Token.Period:
+    case Token.LeftBracket:
+    case Token.TemplateTail:
+      report(parser, Errors.InvalidAccessedBlockBodyArrow);
+    case Token.LeftParen:
+      report(parser, Errors.InvalidInvokedBlockBodyArrow);
+    default: // ignore
+  }
+}

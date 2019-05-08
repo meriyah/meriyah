@@ -20,7 +20,8 @@ import {
   validateIdentifier,
   isStrictReservedWord,
   optionalBit,
-  consumeSemicolon
+  consumeSemicolon,
+  validateArrowBlockBody
 } from './common';
 
 /**
@@ -308,7 +309,7 @@ export function parseStatementListItem(parser: ParserState, context: Context): a
     //   async [no LineTerminator here] AsyncArrowBindingIdentifier ...
     //   async [no LineTerminator here] ArrowFormalParameters ...
     case Token.AsyncKeyword:
-      return parseAsyncStatement(parser, context, /* allowFuncDecl */ 1);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, /* allowFuncDecl */ 1);
     default:
       return parseStatement(parser, (context | Context.TopLevel) ^ Context.TopLevel, LabelledFunctionStatement.Allow);
   }
@@ -387,7 +388,7 @@ export function parseStatement(
       // DebuggerStatement
       return parseDebuggerStatement(parser, context);
     case Token.AsyncKeyword:
-      return parseAsyncStatement(parser, context, 0);
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, 0);
     case Token.FunctionKeyword:
       // FunctionDeclaration & ClassDeclaration is forbidden by lookahead
       // restriction in an arbitrary statement position.
@@ -648,13 +649,31 @@ export function parseLabelledStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param allowFuncDecl To allow / disallow func statement
+ * @param allowFuncDecl
  */
-export function parseAsyncStatement(
+
+export function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: ParserState,
   context: Context,
   allowFuncDecl: LabelledFunctionStatement
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration {
+  // AsyncArrowFunction[In, Yield, Await]:
+  //    async[no LineTerminator here]AsyncArrowBindingIdentifier[?Yield][no LineTerminator here]=>AsyncConciseBody[?In]
+  //    CoverCallExpressionAndAsyncArrowHead[?Yield, ?Await][no LineTerminator here]=>AsyncConciseBody[?In]
+  //
+  // AsyncArrowBindingIdentifier[Yield]:
+  //    BindingIdentifier[?Yield, +Await]
+  //
+  // CoverCallExpressionAndAsyncArrowHead[Yield, Await]:
+  //    MemberExpression[?Yield, ?Await]Arguments[?Yield, ?Await]
+  //
+  // AsyncFunctionDeclaration[Yield, Await, Default]:
+  //    async[no LineTerminator here]functionBindingIdentifier[?Yield, ?Await](FormalParameters[~Yield, +Await]){AsyncFunctionBody}
+  //    [+Default]async[no LineTerminator here]function(FormalParameters[~Yield, +Await]){AsyncFunctionBody}
+  //
+  // AsyncFunctionBody:
+  //    FunctionBody[~Yield, +Await]
+
   const { token } = parser;
 
   let expr: any = parseIdentifier(parser, context);
@@ -2880,7 +2899,7 @@ export function parseFunctionDeclaration(
 
   return {
     type: 'FunctionDeclaration',
-    params: parseFormalParameters(parser, context | Context.InArgList),
+    params: parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
       (context =
@@ -2933,7 +2952,7 @@ export function parseFunctionExpression(
     Context.AllowNewTarget |
     generatorAndAsyncFlags;
 
-  const params = parseFormalParameters(parser, context | Context.InArgList);
+  const params = parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList);
   const body = parseFunctionBody(
     parser,
     (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration) ^
@@ -3400,7 +3419,7 @@ export function parseMethodDefinition(parser: ParserState, context: Context, kin
 
   return {
     type: 'FunctionExpression',
-    params: parseMethodFormals(parser, context | Context.InArgList, kind),
+    params: parseMethodFormals(parser, context | Context.InArgList, kind, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
       (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration) ^
@@ -3973,7 +3992,7 @@ export function parseObjectLiteralOrPattern(
  * @param context context masks
  * @param kind
  */
-export function parseMethodFormals(parser: ParserState, context: Context, kind: Kind): any[] {
+export function parseMethodFormals(parser: ParserState, context: Context, kind: Kind, type: BindingType): any[] {
   // FormalParameter[Yield,GeneratorParameter] :
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
@@ -3994,11 +4013,59 @@ export function parseMethodFormals(parser: ParserState, context: Context, kind: 
   } else if (kind & Kind.Setter && parser.token === Token.Ellipsis) {
     report(parser, Errors.BadSetterRestParameter);
   } else {
+    let isComplex: 0 | 1 = 0;
     while (parser.token !== Token.RightParen) {
-      params.push(parseFormalsList(parser, context, BindingType.ArgumentList));
-      if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
+      let left: any;
+
+      if (parser.token & Token.IsIdentifier) {
+        if (
+          (context & Context.Strict) === 0 &&
+          ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
+            (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+        ) {
+          isComplex = 1;
+        }
+        left = parseAndClassifyIdentifier(parser, context, type);
+      } else {
+        if (parser.token === Token.LeftBrace) {
+          left = parseObjectLiteralOrPattern(parser, context, /* skipInitializer */ 1, type);
+        } else if (parser.token === Token.LeftBracket) {
+          left = parseArrayExpressionOrPattern(parser, context, /* skipInitializer */ 1, type);
+        } else if (parser.token === Token.Ellipsis) {
+          left = parseRestOrSpreadElement(parser, context, Token.RightParen, type, /* isAsync */ 0);
+        } else {
+          report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+        }
+
+        isComplex = 1;
+
+        reinterpretToPattern(parser, left);
+
+        if (parser.destructible & DestructuringKind.NotDestructible) report(parser, Errors.InvalidBindingDestruct);
+
+        if (type && parser.destructible & DestructuringKind.Assignable)
+          report(parser, Errors.InvalidBindingInFuncParam);
+      }
+
+      if (parser.token === Token.Assign) {
+        nextToken(parser, context | Context.AllowRegExp);
+
+        isComplex = 1;
+
+        left = {
+          type: 'AssignmentPattern',
+          left,
+          right: parseExpression(parser, context, /* assignable */ 1)
+        } as any;
+      }
       setterArgs++;
+      params.push(left);
+
+      if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
     }
+
+    if (isComplex) parser.flags |= Flags.SimpleParameterList;
+
     if (kind & Kind.Setter && setterArgs !== 1) {
       report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
     }
@@ -4287,21 +4354,12 @@ export function parseArrowFunctionExpression(
       BindingOrigin.Arrow,
       void 0
     );
+
+    validateArrowBlockBody(parser);
   } else {
     // Single-expression body
     expression = 1;
     body = parseExpression(parser, context, /* assignable */ 1);
-  }
-
-  switch (parser.token) {
-    case Token.Period:
-    case Token.LeftBracket:
-      report(parser, Errors.InvalidBlockBodyArrow, 'accessed');
-    case Token.LeftParen:
-      report(parser, Errors.InvalidBlockBodyArrow, 'invoked');
-    case Token.TemplateTail:
-      report(parser, Errors.InvalidBlockBodyArrow, 'tagged');
-    default: // ignore
   }
 
   parser.assignable = AssignmentKind.NotAssignable;
@@ -4323,30 +4381,11 @@ export function parseArrowFunctionExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseFormalParameters(parser: ParserState, context: Context): any[] {
-  // FormalParameter[Yield,GeneratorParameter] :
-  //   BindingElement[?Yield, ?GeneratorParameter]
-  consume(parser, context, Token.LeftParen);
-  const params: ESTree.Expression[] = [];
-  parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
-  while (parser.token !== Token.RightParen) {
-    params.push(parseFormalsList(parser, context, BindingType.ArgumentList));
-    if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
-  }
-
-  consume(parser, context, Token.RightParen);
-  return params;
-}
-
-/**
- * Parses formals list
- *
- * @param parser  Parser object
- * @param context Context masks
- * @param type Binding type
- */
-export function parseFormalsList(parser: ParserState, context: Context, type: BindingType): ESTree.Expression {
+export function parseFormalParametersOrFormalList(parser: ParserState, context: Context, type: BindingType): any[] {
   /**
+   * FormalParameter :
+   *    BindingElement
+   *
    * FormalParameterList :
    *    [empty]
    *       FunctionRestParameter
@@ -4368,53 +4407,67 @@ export function parseFormalsList(parser: ParserState, context: Context, type: Bi
    *   BindingPattern Initializeropt
    *
    */
+  consume(parser, context, Token.LeftParen);
 
-  let left: any;
+  parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
-  if (parser.token & Token.IsIdentifier) {
-    if (
-      (context & Context.Strict) === 0 &&
-      ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
-        (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
-    ) {
-      parser.flags |= Flags.SimpleParameterList;
-    }
-    left = parseAndClassifyIdentifier(parser, context, type);
-  } else {
-    if (parser.token === Token.LeftBrace) {
-      left = parseObjectLiteralOrPattern(parser, context, /* skipInitializer */ 1, type);
-    } else if (parser.token === Token.LeftBracket) {
-      left = parseArrayExpressionOrPattern(parser, context, /* skipInitializer */ 1, type);
-    } else if (parser.token === Token.Ellipsis) {
-      left = parseRestOrSpreadElement(parser, context, Token.RightParen, type, /* isAsync */ 0);
+  const params: ESTree.Expression[] = [];
+
+  let isComplex: 0 | 1 = 0;
+
+  while (parser.token !== Token.RightParen) {
+    let left: any;
+
+    if (parser.token & Token.IsIdentifier) {
+      if (
+        (context & Context.Strict) === 0 &&
+        ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
+          (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+      ) {
+        isComplex = 1;
+      }
+      left = parseAndClassifyIdentifier(parser, context, type);
     } else {
-      report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+      if (parser.token === Token.LeftBrace) {
+        left = parseObjectLiteralOrPattern(parser, context, /* skipInitializer */ 1, type);
+      } else if (parser.token === Token.LeftBracket) {
+        left = parseArrayExpressionOrPattern(parser, context, /* skipInitializer */ 1, type);
+      } else if (parser.token === Token.Ellipsis) {
+        left = parseRestOrSpreadElement(parser, context, Token.RightParen, type, /* isAsync */ 0);
+      } else {
+        report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+      }
+
+      isComplex = 1;
+
+      reinterpretToPattern(parser, left);
+
+      if (parser.destructible & DestructuringKind.NotDestructible) report(parser, Errors.InvalidBindingDestruct);
+
+      if (type && parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingInFuncParam);
     }
 
-    parser.flags |= Flags.SimpleParameterList;
+    if (parser.token === Token.Assign) {
+      nextToken(parser, context | Context.AllowRegExp);
 
-    reinterpretToPattern(parser, left);
+      isComplex = 1;
 
-    if (parser.destructible & DestructuringKind.NotDestructible) {
-      report(parser, Errors.InvalidBindingDestruct);
+      left = {
+        type: 'AssignmentPattern',
+        left,
+        right: parseExpression(parser, context, /* assignable */ 1)
+      } as any;
     }
 
-    if (type && parser.destructible & DestructuringKind.Assignable) {
-      report(parser, Errors.InvalidBindingInFuncParam);
-    }
+    params.push(left);
+
+    if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
   }
 
-  if (parser.token !== Token.Assign) return left;
+  if (isComplex) parser.flags |= Flags.SimpleParameterList;
 
-  nextToken(parser, context | Context.AllowRegExp);
-
-  parser.flags |= Flags.SimpleParameterList;
-
-  return {
-    type: 'AssignmentPattern',
-    left,
-    right: parseExpression(parser, context, /* assignable */ 1)
-  } as any;
+  consume(parser, context, Token.RightParen);
+  return params;
 }
 
 /**
