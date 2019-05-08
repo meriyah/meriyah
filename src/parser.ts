@@ -3319,23 +3319,23 @@ function parseRestOrSpreadElement(
     const { token } = parser;
 
     if (token !== Token.Assign && token !== closingToken && token !== Token.Comma) {
-      if (parser.destructible & DestructuringKind.Required) {
-        report(parser, Errors.InvalidDestructuringTarget);
-      } else {
-        argument = parseMemberOrUpdateExpression(parser, context, argument, /* assignable */ 0);
-        destructible |= parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
+      if (parser.destructible & DestructuringKind.Required) report(parser, Errors.InvalidDestructuringTarget);
 
-        const { token } = parser;
+      argument = parseMemberOrUpdateExpression(parser, context, argument, /* assignable */ 0);
 
-        if (parser.token !== Token.Comma && parser.token !== closingToken) {
-          argument = parseAssignmentExpression(parser, context, argument);
-          if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
-        } else if (token !== Token.Assign) {
-          destructible |=
-            type || parser.assignable & AssignmentKind.NotAssignable
-              ? DestructuringKind.NotDestructible
-              : DestructuringKind.Assignable;
-        }
+      destructible |= parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
+
+      const { token } = parser;
+
+      if (parser.token !== Token.Comma && parser.token !== closingToken) {
+        argument = parseAssignmentExpression(parser, context, argument);
+
+        if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
+      } else if (token !== Token.Assign) {
+        destructible |=
+          type || parser.assignable & AssignmentKind.NotAssignable
+            ? DestructuringKind.NotDestructible
+            : DestructuringKind.Assignable;
       }
     } else {
       destructible |=
@@ -3646,27 +3646,21 @@ export function parseObjectLiteralOrPattern(
                 : AssignmentKind.Assignable;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) {
-                destructible |= DestructuringKind.NotDestructible;
-              }
+              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.NotDestructible;
             } else if (destructible & DestructuringKind.Required) {
               report(parser, Errors.InvalidDestructuringTarget);
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* inNewExpression */ 0);
 
               destructible =
-                parser.assignable & AssignmentKind.NotAssignable ? destructible | DestructuringKind.NotDestructible : 0;
+                parser.assignable & AssignmentKind.Assignable
+                  ? DestructuringKind.Assignable
+                  : DestructuringKind.NotDestructible;
 
-              if (parser.assignable & AssignmentKind.Assignable) {
-                destructible |= DestructuringKind.Assignable;
-              } else {
-                destructible |= DestructuringKind.NotDestructible;
-              }
+              const { token } = parser;
 
-              const notAssignable = parser.token !== Token.Assign;
-
-              if (parser.token !== Token.Comma && parser.token !== Token.RightBrace) {
-                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
+              if (token !== Token.Comma && token !== Token.RightBrace) {
+                if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
 
                 value = parseAssignmentExpression(
                   parser,
@@ -3674,8 +3668,8 @@ export function parseObjectLiteralOrPattern(
                   value
                 );
 
-                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
-              } else if (notAssignable) {
+                if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
+              } else if (token !== Token.Assign) {
                 destructible |=
                   type || parser.assignable & AssignmentKind.NotAssignable
                     ? DestructuringKind.NotDestructible
