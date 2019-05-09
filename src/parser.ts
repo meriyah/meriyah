@@ -2508,40 +2508,34 @@ export function parsePrimaryExpressionExtended(
   }
 
   /**
-   * YieldExpression[In, Await]:
-   *   yield
-   *   yield[no LineTerminator here]AssignmentExpression[?In, +Yield, ?Await]
-   *   yield[no LineTerminator here]*AssignmentExpression[?In, +Yield, ?Await]
-   */
-
-  if (token === Token.YieldKeyword) {
-    if (!assignable) {
-      validateIdentifier(parser, context, type, token);
-      parser.assignable = AssignmentKind.Assignable;
-      return parseIdentifier(parser, context);
-    }
-
-    return parseYieldExpressionOrIdentifier(parser, context);
-  }
-
-  /**
-   * AwaitExpression[Yield]:
-   *   awaitUnaryExpression[?Yield, +Await]
+   * AwaitExpression ::
+   *   awaitUnaryExpression
    */
   if (token === Token.AwaitKeyword) {
     return parseAwaitExpressionOrIdentifier(parser, context, inNewExpression);
   }
 
   /**
-   *  LexicalBinding[In, Yield, Await]:
-   *    BindingIdentifier[?Yield, ?Await]Initializer[?In, ?Yield, ?Await]opt
-   *    BindingPattern[?Yield, ?Await]Initializer[?In, ?Yield, ?Await]
+   * YieldExpression ::
+   *  'yield' ([no line terminator] '*'? AssignmentExpression)?
+   */
+
+  if (token === Token.YieldKeyword) {
+    if (assignable) return parseYieldExpressionOrIdentifier(parser, context);
+    if (context & ((context & Context.InYieldContext) | Context.Strict))
+      report(parser, Errors.DisallowedInContext, 'yield');
+    return parseIdentifier(parser, context);
+  }
+
+  /**
+   *  LexicalBinding ::
+   *    BindingIdentifier
+   *    BindingPattern
    */
 
   if (parser.token === Token.LetKeyword) {
     if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
     if (type & (BindingType.Let | BindingType.Const)) report(parser, Errors.InvalidLetBoundName);
-    // falls through
   }
 
   if ((token & Token.IsIdentifier) === Token.IsIdentifier) {
