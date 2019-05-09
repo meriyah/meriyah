@@ -13,8 +13,10 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Support for additional ECMAScript features for Web Browsers
 * Optionally track syntactic node locations (*WIP*)
 * Emits an ESTree-compatible abstract syntax tree.
+* No backtracking
+* Reduced memory usage
 * Very well tested (~68k unit tests with full code coverage))
-* Lightweight - ~70 KB minified
+* Lightweight - ~71 KB minified
 
 ## ESNext features
 
