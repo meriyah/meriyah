@@ -518,7 +518,10 @@ describe('Expressions - Arrow', () => {
     ['()=c=>{}=>{};', Context.None],
     ['x = ()+c=>{}', Context.None],
     ['x = ()c++=>{};', Context.None],
-    // ['()=>{}+a', Context.None],
+    ['a = b\n=> c', Context.None],
+    ['a = b\n=>\nc', Context.None],
+    ['a\n= b\n=> c', Context.None],
+    //['()=>{}+a', Context.None],
     ['()=>{}++', Context.None],
     ['()=>{}--', Context.None],
     ['()=>{}\n++x', Context.None],
@@ -1072,6 +1075,112 @@ describe('Expressions - Arrow', () => {
   }
 
   pass('Expressions - Arrow (pass)', [
+    [
+      'f = ([[,] = g()]) => {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'f'
+              },
+              operator: '=',
+              right: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                params: [
+                  {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'ArrayPattern',
+                          elements: [null]
+                        },
+                        right: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'g'
+                          },
+                          arguments: []
+                        }
+                      }
+                    ]
+                  }
+                ],
+                id: null,
+                async: false,
+                expression: false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'f = ([[,] = g()]) => {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'f'
+              },
+              operator: '=',
+              right: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                params: [
+                  {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'ArrayPattern',
+                          elements: [null]
+                        },
+                        right: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'g'
+                          },
+                          arguments: []
+                        }
+                      }
+                    ]
+                  }
+                ],
+                id: null,
+                async: false,
+                expression: false
+              }
+            }
+          }
+        ]
+      }
+    ],
     [
       '([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0;',
       Context.None,

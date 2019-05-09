@@ -64,6 +64,8 @@ describe('Statements - Labeled', () => {
     ['async () => { aw\\u{61}it: x }', Context.None],
     ['async () => { \\u{61}wait: x }', Context.Strict | Context.Module],
     ['async () => { aw\\u{61}it: x }', Context.None],
+    ['aw\\u0061it: 1;', Context.None],
+    ['aw\\u0061it: 1;', Context.Module | Context.Strict],
     ['function *f(){ await: x; }', Context.Module],
     ['await: x', Context.Strict | Context.Module],
     ['await: 1;', Context.Strict | Context.Module],

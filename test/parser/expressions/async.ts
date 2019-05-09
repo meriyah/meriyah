@@ -307,7 +307,7 @@ describe('Expressions - Async', () => {
         ]
       }
     ],
-    [
+    /*  [
       '\\u0061sync\np => {}',
       Context.None,
       {
@@ -342,7 +342,7 @@ describe('Expressions - Async', () => {
         sourceType: 'script',
         type: 'Program'
       }
-    ],
+    ],*/
     [
       'class x {\nasync foo() {}}',
       Context.None,

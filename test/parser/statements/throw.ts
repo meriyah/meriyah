@@ -14,6 +14,27 @@ describe('Statements - Throw', () => {
 
   pass('Statements - Throw (pass)', [
     [
+      'throw /(?=[^\x4f-\xF5(-)])/imy',
+      Context.None,
+      {
+        body: [
+          {
+            argument: {
+              regex: {
+                flags: 'imy',
+                pattern: '(?=[^O-õ(-)])'
+              },
+              type: 'Literal',
+              value: /(?=[^O-õ(-)])/imy
+            },
+            type: 'ThrowStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'throw foo;',
       Context.None,
       {

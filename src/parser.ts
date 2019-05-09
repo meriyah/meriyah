@@ -2359,11 +2359,12 @@ export function parseMemberOrUpdateExpression(
     };
   }
 
+  context = (context | Context.DisallowInContext) ^ Context.DisallowInContext;
+
   if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
     if (parser.token === Token.Period) {
       /* Property */
       nextToken(parser, context);
-
       if ((parser.token & (Token.IsIdentifier | Token.Keyword)) === 0 && parser.token !== Token.PrivateField)
         report(parser, Errors.Unexpected);
       parser.assignable = AssignmentKind.Assignable;
@@ -2450,57 +2451,29 @@ export function parsePrimaryExpressionExtended(
   //   TemplateLiteral
   //   do Block
   //   AsyncFunctionLiteral
+  //   YieldExpression
+  //   AwaitExpression
 
   const { token } = parser;
 
-  if ((token & Token.IsIdentifier) === Token.IsIdentifier) {
-    if (token === Token.YieldKeyword) {
-      if (!assignable) {
-        validateIdentifier(parser, context, type, token);
-        parser.assignable = AssignmentKind.Assignable;
-        return parseIdentifier(parser, context);
-      }
-
-      return parseYieldExpressionOrIdentifier(parser, context);
+  /**
+   * https://tc39.github.io/ecma262/#sec-unary-operators
+   *
+   * UnaryExpression :
+   *   1. LeftHandSideExpression
+   *   2. void UnaryExpression
+   *   3. typeof UnaryExpression
+   *   4. + UnaryExpression
+   *   5. - UnaryExpression
+   *   6. ! UnaryExpression
+   *
+   */
+  if ((token & Token.IsUnaryOp) === Token.IsUnaryOp) {
+    if (inNewExpression && (token !== Token.VoidKeyword || token !== Token.TypeofKeyword)) {
+      report(parser, Errors.InvalidNewUnary);
     }
-
-    if (parser.token === Token.LetKeyword) {
-      if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
-      if (type & (BindingType.Let | BindingType.Const)) report(parser, Errors.InvalidLetBoundName);
-      // falls through
-    }
-
-    if (token === Token.AsyncKeyword || (token === Token.EscapedReserved && parser.tokenValue === 'async')) {
-      return parseAsyncExpression(parser, context, inNewExpression, assignable);
-    }
-
-    if (parser.token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
-
-    parser.assignable = AssignmentKind.Assignable;
-
-    if (token === Token.AwaitKeyword) return parseAwaitExpressionOrIdentifier(parser, context, inNewExpression);
-
-    const expr = parseIdentifier(parser, context);
-
-    if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-      if (parser.token === Token.Arrow) {
-        if (context & Context.Strict) report(parser, Errors.InvalidEscapedKeyword);
-        parser.flags |= Flags.SimpleParameterList;
-        parser.assignable = AssignmentKind.NotAssignable;
-        return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
-      }
-
-      if (context & Context.Strict) {
-        parser.assignable = AssignmentKind.NotAssignable;
-      }
-    }
-
-    return parseIdentifierOrArrow(parser, context, expr, assignable);
-  }
-
-  if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     parser.assignable = AssignmentKind.NotAssignable;
-    return parseLiteral(parser, context);
+    return parseUnaryExpression(parser, context);
   }
 
   /**
@@ -2535,23 +2508,75 @@ export function parsePrimaryExpressionExtended(
   }
 
   /**
-   * https://tc39.github.io/ecma262/#sec-unary-operators
-   *
-   * UnaryExpression :
-   *   1. LeftHandSideExpression
-   *   2. void UnaryExpression
-   *   3. typeof UnaryExpression
-   *   4. + UnaryExpression
-   *   5. - UnaryExpression
-   *   6. ! UnaryExpression
-   *
+   * YieldExpression[In, Await]:
+   *   yield
+   *   yield[no LineTerminator here]AssignmentExpression[?In, +Yield, ?Await]
+   *   yield[no LineTerminator here]*AssignmentExpression[?In, +Yield, ?Await]
    */
-  if ((token & Token.IsUnaryOp) === Token.IsUnaryOp) {
-    if (inNewExpression && (token !== Token.VoidKeyword || token !== Token.TypeofKeyword)) {
-      report(parser, Errors.InvalidNewUnary);
+
+  if (token === Token.YieldKeyword) {
+    if (!assignable) {
+      validateIdentifier(parser, context, type, token);
+      parser.assignable = AssignmentKind.Assignable;
+      return parseIdentifier(parser, context);
     }
+
+    return parseYieldExpressionOrIdentifier(parser, context);
+  }
+
+  /**
+   * AwaitExpression[Yield]:
+   *   awaitUnaryExpression[?Yield, +Await]
+   */
+  if (token === Token.AwaitKeyword) {
+    return parseAwaitExpressionOrIdentifier(parser, context, inNewExpression);
+  }
+
+  /**
+   *  LexicalBinding[In, Yield, Await]:
+   *    BindingIdentifier[?Yield, ?Await]Initializer[?In, ?Yield, ?Await]opt
+   *    BindingPattern[?Yield, ?Await]Initializer[?In, ?Yield, ?Await]
+   */
+
+  if (parser.token === Token.LetKeyword) {
+    if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
+    if (type & (BindingType.Let | BindingType.Const)) report(parser, Errors.InvalidLetBoundName);
+    // falls through
+  }
+
+  if ((token & Token.IsIdentifier) === Token.IsIdentifier) {
+    const expr = parseIdentifier(parser, context);
+
+    if (token === Token.AsyncKeyword) {
+      return parseAsyncExpression(parser, context, token, expr, inNewExpression, assignable);
+    }
+
+    if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
+
+    const IsEvalOrArguments = (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments;
+
+    if (parser.token === Token.Arrow) {
+      if (IsEvalOrArguments) {
+        if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
+        parser.flags |= Flags.SimpleParameterList;
+      }
+
+      if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
+
+      return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
+    }
+
+    parser.assignable =
+      context & Context.Strict && IsEvalOrArguments
+        ? (parser.assignable = AssignmentKind.NotAssignable)
+        : AssignmentKind.Assignable;
+
+    return expr;
+  }
+
+  if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     parser.assignable = AssignmentKind.NotAssignable;
-    return parseUnaryExpression(parser, context);
+    return parseLiteral(parser, context);
   }
 
   switch (token) {
@@ -4302,13 +4327,7 @@ export function parseIdentifierOrArrow(
   assignable: 0 | 1
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
   if (parser.token === Token.Arrow) {
-    parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
-    if (parser.flags & Flags.NewLine) {
-      report(parser, Errors.InvalidLineBreak);
-    }
-    if (!assignable) {
-      report(parser, Errors.InvalidAssignmentTarget);
-    }
+    if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
     return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
   }
   return expr;
@@ -4494,11 +4513,13 @@ export function parseNewExpression(
   context: Context
 ): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty {
   const id = parseIdentifier(parser, context | Context.AllowRegExp);
-  if (consumeOpt(parser, context, Token.Period)) {
-    if ((context & Context.AllowNewTarget) === 0 || parser.tokenValue !== 'target')
-      report(parser, Errors.InvalidNewTarget);
-    parser.assignable = AssignmentKind.NotAssignable;
-    return parseMetaProperty(parser, context, id);
+  if (parser.token === Token.Period) {
+    nextToken(parser, context);
+    if (context & Context.AllowNewTarget && parser.token === Token.Target) {
+      parser.assignable = AssignmentKind.NotAssignable;
+      return parseMetaProperty(parser, context, id);
+    }
+    report(parser, Errors.InvalidNewTarget);
   }
   parser.assignable = AssignmentKind.NotAssignable;
   const callee = parseMemberOrUpdateExpression(
@@ -4547,13 +4568,11 @@ export function parseMetaProperty(parser: ParserState, context: Context, meta: E
 export function parseAsyncExpression(
   parser: ParserState,
   context: Context,
+  token: Token,
+  expr: ESTree.Identifier,
   inNewExpression: 0 | 1,
   assignable: 0 | 1
 ): ESTree.Expression {
-  const { token } = parser;
-
-  const expr: ESTree.Identifier = parseIdentifier(parser, context);
-
   const isNewLine = parser.flags & Flags.NewLine;
 
   if (!isNewLine) {
