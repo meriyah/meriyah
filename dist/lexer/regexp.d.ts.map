@@ -1,0 +1,1 @@
+{"version":3,"file":"regexp.d.ts","sourceRoot":"","sources":["../src/lexer/regexp.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAE,WAAW,EAAE,MAAM,WAAW,CAAC;AACjD,OAAO,EAAE,KAAK,EAAE,MAAM,UAAU,CAAC;AAWjC,wBAAgB,qBAAqB,CAAC,MAAM,EAAE,WAAW,EAAE,OAAO,EAAE,OAAO,GAAG,KAAK,CA+GlF"}
