@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fast and lightweight, standard-compliant javascript parser written in ECMAScript",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -90,8 +90,5 @@
     "hooks": {
       "pre-commit": "node ./scripts/prettier.js check-changed"
     }
-  },
-  "dependencies": {
-    "tslib": "^1.9.3"
   }
 }

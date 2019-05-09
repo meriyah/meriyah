@@ -88,6 +88,7 @@ describe('Expressions - Async Generator', () => {
     '(async function* h([fn = function () {}, xFn = function x() {}] = []) { })',
     '(async function* h([x] = []) { })',
     '(async function* h({} = null) { })',
+    'var gen = async function *() { yield [...yield]; };',
     '(async function* h({a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3}) { })',
     '(async function* h({ x, }) { })',
     '(async function* h({ w: [x, y, z] = [4, 5, 6] }) { })',

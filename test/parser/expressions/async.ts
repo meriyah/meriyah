@@ -308,6 +308,42 @@ describe('Expressions - Async', () => {
       }
     ],
     [
+      '\\u0061sync\np => {}',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              name: 'async',
+              type: 'Identifier'
+            },
+            type: 'ExpressionStatement'
+          },
+          {
+            expression: {
+              async: false,
+              body: {
+                body: [],
+                type: 'BlockStatement'
+              },
+              expression: false,
+              id: null,
+              params: [
+                {
+                  name: 'p',
+                  type: 'Identifier'
+                }
+              ],
+              type: 'ArrowFunctionExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'class x {\nasync foo() {}}',
       Context.None,
       {

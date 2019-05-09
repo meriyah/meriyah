@@ -49,12 +49,17 @@ describe('Statements - Labeled', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg} : x`, undefined, Context.OptionsWebCompat);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg} : x`, undefined, Context.Strict);
       });
     });
   }
 
-  fail('Statements - Return (fail)', [
+  fail('Statements - Labeled (fail)', [
     ['async () => { \\u{61}wait: x }', Context.None],
     ['async () => { aw\\u{61}it: x }', Context.None],
     ['async () => { \\u{61}wait: x }', Context.Strict | Context.Module],
@@ -62,7 +67,13 @@ describe('Statements - Labeled', () => {
     ['function *f(){ await: x; }', Context.Module],
     ['await: x', Context.Strict | Context.Module],
     ['await: 1;', Context.Strict | Context.Module],
-    ['false: foo', Context.None]
+    ['false: x', Context.None],
+    ['implements: x', Context.Strict],
+    ['package: x', Context.Strict],
+    ['let: x', Context.Strict],
+    ['yield: x', Context.Strict],
+    ['function *f(){ yield: x; }', Context.Strict],
+    ['yield: { function *f(){ break await; } }', Context.Strict]
   ]);
 
   pass('Statements - Labeled (pass)', [

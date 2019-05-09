@@ -2470,7 +2470,7 @@ export function parsePrimaryExpressionExtended(
       // falls through
     }
 
-    if (token === Token.AsyncKeyword) {
+    if (token === Token.AsyncKeyword || (token === Token.EscapedReserved && parser.tokenValue === 'async')) {
       return parseAsyncExpression(parser, context, inNewExpression, assignable);
     }
 
@@ -3688,10 +3688,12 @@ export function parseObjectLiteralOrPattern(
           }
         } else if (parser.token === Token.LeftBracket) {
           destructible |= DestructuringKind.NotDestructible;
+
           if (token === Token.AsyncKeyword) state |= Kind.Async;
           if (token === Token.GetKeyword) state |= Kind.Getter;
           else if (token === Token.SetKeyword) state |= Kind.Setter;
           else state |= Kind.Method;
+
           key = parseComputedPropertyName(parser, context);
           destructible |= parser.assignable;
           state |= Kind.Computed;
@@ -3703,6 +3705,8 @@ export function parseObjectLiteralOrPattern(
             state |= Kind.Async;
           }
           key = parseIdentifier(parser, context);
+          if (token === Token.EscapedReserved) report(parser, Errors.Unexpected);
+
           if (token === Token.GetKeyword) state |= Kind.Getter;
           else if (token === Token.SetKeyword) state |= Kind.Setter;
           else state |= Kind.Method;
@@ -4094,7 +4098,7 @@ export function parseComputedPropertyName(parser: ParserState, context: Context)
    *   [ AssignmentExpression ]
    */
   nextToken(parser, context | Context.AllowRegExp);
-  const key = parseExpression(parser, context, /* assignable */ 1);
+  const key = parseExpression(parser, context & ~Context.DisallowInContext, /* assignable */ 1);
   consume(parser, context, Token.RightBracket);
   return key;
 }
@@ -4546,11 +4550,14 @@ export function parseAsyncExpression(
   inNewExpression: 0 | 1,
   assignable: 0 | 1
 ): ESTree.Expression {
+  const { token } = parser;
+
   const expr: ESTree.Identifier = parseIdentifier(parser, context);
 
   const isNewLine = parser.flags & Flags.NewLine;
 
   if (!isNewLine) {
+    if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
     // async function ...
     if (parser.token === Token.FunctionKeyword) return parseFunctionExpression(parser, context, /* isAsync */ 1);
 

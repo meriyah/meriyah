@@ -1237,7 +1237,8 @@ describe('Expressions - Object', () => {
     ['(({a, ...b = 0}) => {})', Context.None],
     ['({...x,}) => z', Context.None],
     ['let {...x, ...y} = {}', Context.None],
-    ['({...rest, b} = {})', Context.None]
+    ['({...rest, b} = {})', Context.None],
+    ['({g\\u0065t m() {} });', Context.None]
   ]);
 
   pass('Expressions - Object (pass)', [

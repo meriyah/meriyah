@@ -19,6 +19,7 @@ describe('Miscellaneous - Pass', () => {
     'function f() { function f() {} }',
     'function f(a,b) {}',
     `class x extends {} {}`,
+    'for (C = class { get ["x" in empty]() { return "via get"; } }; ; ) { break; }',
     `for (;;);`,
     `for (a+b;;) c;`,
     `for (var x of y);`,

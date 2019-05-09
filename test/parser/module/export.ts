@@ -263,6 +263,7 @@ describe('Module - Export', () => {
     "export { a as b } from 'm.js';",
     "export * from 'p.js';",
     'export var foo;',
+    'export default class cName { valueOf() { return 45; } }',
     'export function goo() {};',
     'export let hoo;',
     'export const joo = 42;',
