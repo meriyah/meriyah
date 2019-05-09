@@ -55,14 +55,57 @@ describe('Statements - Labeled', () => {
   }
 
   fail('Statements - Return (fail)', [
-    //    ['async () => { \\u{61}wait: x }', Context.None],
-    //  ['async () => { aw\\u{61}it: x }', Context.None]
-    //  ['function *f(){ await: x; }', Context.Strict],
+    ['async () => { \\u{61}wait: x }', Context.None],
+    ['async () => { aw\\u{61}it: x }', Context.None],
+    ['async () => { \\u{61}wait: x }', Context.Strict | Context.Module],
+    ['async () => { aw\\u{61}it: x }', Context.None],
+    ['function *f(){ await: x; }', Context.Module],
     ['await: x', Context.Strict | Context.Module],
+    ['await: 1;', Context.Strict | Context.Module],
     ['false: foo', Context.None]
   ]);
 
   pass('Statements - Labeled (pass)', [
+    [
+      'function *f(){ await: x; }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'LabeledStatement',
+                  label: {
+                    type: 'Identifier',
+                    name: 'await'
+                  },
+                  body: {
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'Identifier',
+                      name: 'x'
+                    }
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            }
+          }
+        ]
+      }
+    ],
     [
       'await: while (await) { continue await; }',
       Context.OptionsWebCompat,

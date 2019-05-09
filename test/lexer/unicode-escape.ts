@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Unicode Escape', () => {
-  const tokens: Array<[Context, Token, string, string]> = [
+  const tokens: [Context, Token, string, string][] = [
     [Context.None, Token.Identifier, '\\u0049', 'I'],
     [Context.None, Token.Identifier, '\\u0627\\u0644\\u0642\\u0637', 'القط'],
     [Context.None, Token.Identifier, '\\u0066', 'f'],

@@ -2,7 +2,7 @@ import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Throw', () => {
-  const inValids: Array<[string, Context]> = [
+  const inValids: [string, Context][] = [
     [
       `throw
     x;`,

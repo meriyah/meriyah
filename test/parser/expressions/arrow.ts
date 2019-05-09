@@ -202,6 +202,10 @@ describe('Expressions - Arrow', () => {
     'let x = (a)\n=>a;',
     '(...rest - a) => b',
     '(a, ...b - 10) => b',
+    '()=>{}++',
+    '()=>{}--',
+    '()=>{}\n++x',
+    '()=>{}\n--x',
     '(a.b, c) => {}',
     "(a['b'], c) => {}",
     "(c, a['b']) => {}",
@@ -514,6 +518,11 @@ describe('Expressions - Arrow', () => {
     ['()=c=>{}=>{};', Context.None],
     ['x = ()+c=>{}', Context.None],
     ['x = ()c++=>{};', Context.None],
+    // ['()=>{}+a', Context.None],
+    ['()=>{}++', Context.None],
+    ['()=>{}--', Context.None],
+    ['()=>{}\n++x', Context.None],
+    ['()=>{}\n--x', Context.None],
     ['a?c:d=>{}=>{};', Context.None],
     ['(...a)`template-head${c}`=>{}', Context.None],
     ['(...a)?c:d=>{}=>{};', Context.None],
@@ -634,9 +643,9 @@ describe('Expressions - Arrow', () => {
     ['(x, (y, z)) => 0', Context.None],
     ['((x, y), z) => 0', Context.None],
     ['(a => a) +', Context.None],
-    // ['eval => { "use strict"; 0 }', Context.None],
-    // ['arguments => { "use strict"; 0 }', Context.None],
-    // ['yield => { "use strict"; 0 }', Context.None],
+    ['eval => { "use strict"; 0 }', Context.None],
+    ['arguments => { "use strict"; 0 }', Context.None],
+    //['yield => { "use strict"; 0 }', Context.None],
     // ['interface => { \'use strict\'; 0 }', Context.None],
     ['a => (b => (a + b)', Context.None],
     [`([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;`, Context.None],
@@ -1324,6 +1333,38 @@ describe('Expressions - Arrow', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '(() => {}) << x',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              left: {
+                async: false,
+                body: {
+                  body: [],
+                  type: 'BlockStatement'
+                },
+                expression: false,
+                id: null,
+                params: [],
+                type: 'ArrowFunctionExpression'
+              },
+              operator: '<<',
+              right: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              type: 'BinaryExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [

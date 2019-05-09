@@ -28,7 +28,6 @@ export const enum Token {
   IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsCommaOrRightParen  = 1 << 30,
 
-
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
 

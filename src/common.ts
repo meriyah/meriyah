@@ -292,7 +292,7 @@ export function isStrictReservedWord(parser: ParserState, context: Context, t: T
   );
 }
 
-export function validateArrowBlockBody(parser: ParserState): any {
+export function validateArrowBlockBody(parser: ParserState): void {
   switch (parser.token) {
     case Token.Period:
     case Token.LeftBracket:
@@ -302,4 +302,5 @@ export function validateArrowBlockBody(parser: ParserState): any {
       report(parser, Errors.InvalidInvokedBlockBodyArrow);
     default: // ignore
   }
+  if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp) report(parser, Errors.InvalidArrowPostfix);
 }

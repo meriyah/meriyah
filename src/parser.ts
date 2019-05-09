@@ -1551,7 +1551,7 @@ function parseImportDeclaration(parser: ParserState, context: Context): ESTree.I
 
   let source: ESTree.Literal;
 
-  let specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
+  const specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
 
   // 'import' ModuleSpecifier ';'
   if (parser.token === Token.StringLiteral) {
@@ -1661,7 +1661,7 @@ function parseImportSpecifierOrNamedImports(
   consume(parser, context, Token.LeftBrace);
 
   while (parser.token & Token.IsIdentifier) {
-    let token = parser.token;
+    const token = parser.token;
     const imported = parseIdentifier(parser, context);
     let local: ESTree.Identifier;
 
@@ -2214,7 +2214,7 @@ export function parseAwaitExpressionOrIdentifier(
 
   if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
 
-  let expr = parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context), /* assignable */ 1);
+  const expr = parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context), /* assignable */ 1);
 
   parser.assignable = AssignmentKind.Assignable;
 
@@ -2480,7 +2480,7 @@ export function parsePrimaryExpressionExtended(
 
     if (token === Token.AwaitKeyword) return parseAwaitExpressionOrIdentifier(parser, context, inNewExpression);
 
-    let expr = parseIdentifier(parser, context);
+    const expr = parseIdentifier(parser, context);
 
     if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       if (parser.token === Token.Arrow) {
@@ -3182,7 +3182,7 @@ export function parseArrayExpressionOrPattern(
 
   consume(parser, context, Token.RightBracket);
 
-  let node = {
+  const node = {
     type: 'ArrayExpression',
     elements
   } as any;
@@ -3713,6 +3713,7 @@ export function parseObjectLiteralOrPattern(
           value = parseMethodDefinition(parser, context, state);
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.NotDestructible;
+          if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapeIdentifier);
           if (token === Token.GetKeyword || token === Token.SetKeyword) {
             report(parser, Errors.InvalidGeneratorGetter);
           }
@@ -4545,7 +4546,7 @@ export function parseAsyncExpression(
   inNewExpression: 0 | 1,
   assignable: 0 | 1
 ): ESTree.Expression {
-  let expr: ESTree.Identifier = parseIdentifier(parser, context);
+  const expr: ESTree.Identifier = parseIdentifier(parser, context);
 
   const isNewLine = parser.flags & Flags.NewLine;
 
@@ -4612,7 +4613,7 @@ export function parseAsyncArrowOrCallExpression(
 
   let destructible: AssignmentKind | DestructuringKind = 0;
   let expr: any;
-  let params: ESTree.Expression[] = [];
+  const params: ESTree.Expression[] = [];
   let isComplex: 0 | 1 = 0;
 
   while (parser.token !== Token.RightParen) {
@@ -4776,7 +4777,7 @@ export function parseClassDeclaration(
   context = ((context | 0b0000001000000000000_0100_00000000) ^ 0b0000001000000000000_0100_00000000) | Context.Strict;
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
-  let decorators: ESTree.Decorator[] =
+  const decorators: ESTree.Decorator[] =
     context & Context.OptionsNext ? parseDecorators(parser, context | Context.InDecoratorContext) : [];
   nextToken(parser, context);
 
@@ -4834,7 +4835,7 @@ export function parseClassExpression(parser: ParserState, context: Context): EST
   // All class code is always strict mode implicitly
   context = ((context | 0b0000001000000000000_0100_00000000) ^ 0b0000001000000000000_0100_00000000) | Context.Strict;
 
-  let decorators: ESTree.Decorator[] =
+  const decorators: ESTree.Decorator[] =
     context & Context.OptionsNext ? parseDecorators(parser, context | Context.InDecoratorContext) : [];
   nextToken(parser, context);
 

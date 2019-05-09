@@ -378,6 +378,8 @@ describe('Statements - For of', () => {
     for (x.y of [23]) {}
     for (x.y of [23]) {}`,
     'for ((a in b).x of {});',
+    'for (x--;;);',
+    'for (yield[g]--;;);',
     `for ( let[x] of [[34]] ) {}`,
     `for (var { x, } of [{ x: 23 }]) {}`,
     `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`

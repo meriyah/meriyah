@@ -81,7 +81,7 @@ describe('src/lexer/scan', () => {
 
     it('should skip any whitespace', () => {
       const state = create('    \n\t\r  \r \n \t  +');
-      let token = scanSingleToken(state, Context.None);
+      const token = scanSingleToken(state, Context.None);
       t.deepEqual(token, Token.Add);
     });
     it('should recognise single character numbers', () => {

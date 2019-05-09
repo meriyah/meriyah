@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('src/lexer/scan', () => {
-  const tokens: Array<[Context, Token, string, number]> = [
+  const tokens: [Context, Token, string, number][] = [
     // Numeric literals
     [Context.None, Token.NumericLiteral, '0', 0],
     [Context.None, Token.NumericLiteral, '1', 1],
@@ -19,7 +19,7 @@ describe('src/lexer/scan', () => {
     [Context.None, Token.NumericLiteral, '.9', 0.9],
     [Context.None, Token.NumericLiteral, '.123', 0.123],
     [Context.None, Token.NumericLiteral, '.1234567890', 0.123456789],
-    [Context.None, Token.NumericLiteral, '.0000', 0.0],
+    [Context.None, Token.NumericLiteral, '.0000', 0],
     [Context.None, Token.NumericLiteral, '32.', 32],
     [Context.None, Token.NumericLiteral, '8.', 8],
     [Context.None, Token.NumericLiteral, '1234567890.', 1234567890],

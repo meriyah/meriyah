@@ -235,6 +235,12 @@ describe('Declarations - Class', () => {
       });
     });
 
+    it(`class C { async *${arg}(v) {}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`class C { async *${arg}(v) {}}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
         parseSource(`(class C { async *${arg}(v) {}})`, undefined, Context.None);
@@ -300,6 +306,12 @@ describe('Declarations - Class', () => {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`{ ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }

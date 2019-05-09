@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('src/lexer/scan', () => {
-  const tokens: Array<[Context, Token, string]> = [
+  const tokens: [Context, Token, string][] = [
     [Context.None, Token.LeftParen, '('],
     [Context.None, Token.LeftParen, '('],
     [Context.None, Token.LeftBrace, '{'],

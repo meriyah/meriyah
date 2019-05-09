@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Line terminators', () => {
-  const tokens: Array<[Context, Token, string, string]> = [
+  const tokens: [Context, Token, string, string][] = [
     [Context.None, Token.EOF, '\n', ''],
     [Context.None, Token.EOF, '\r\n', ''],
     [Context.None, Token.EOF, '\r', ''],

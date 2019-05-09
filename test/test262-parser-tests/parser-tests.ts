@@ -6,17 +6,17 @@ const Test262Dir = 'node_modules/test262-parser-tests';
 
 const expectations = {
   pass: [
-    'ba00173ff473e7da.js',
-    '946bee37652a31fa.js',
+    'ba00173ff473e7da.js', //
+    '946bee37652a31fa.js', //
     '8b8edcb36909900b.js',
-    '6a220df693ce521c.js',
+    '6a220df693ce521c.js', //
     '5d5b9de6d9b95f3e.js',
-    '5a2a8e992fa4fe37.js',
+    '5a2a8e992fa4fe37.js', //
     '4f5419fe648c691b.js',
-    '44f31660bd715f05.js',
+    '44f31660bd715f05.js', //
     '08a39e4289b0c3f3.js',
     '046a0bb70d03d0cc.js',
-    '0e3ca454ddfb4729.js',
+    '0e3ca454ddfb4729.js', //
     '300a638d978d0f2c.js',
     '110fa1efdd0868b8.js',
     '1a1c717109ab67e1.js',

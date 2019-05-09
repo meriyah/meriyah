@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Regular expressions', () => {
-  const tokens: Array<[Context, string, string, string]> = [
+  const tokens: [Context, string, string, string][] = [
     // None unicode regular expression
     [Context.AllowRegExp, '/\\\n/', '\\\n', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],

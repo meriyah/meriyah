@@ -18,7 +18,7 @@ describe('Miscellaneous - Cover grammar', () => {
     (a: any) => `(async function *f(${a}) {})`
   ];
 
-  for (let arg of [
+  for (const arg of [
     '[...r, ]',
     '[a, ...r, ]',
     '[a = 0, ...r, ]',
@@ -27,7 +27,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[[...r,], ]',
     '[[...r,], a]'
   ]) {
-    for (let fn of destructuringForms) {
+    for (const fn of destructuringForms) {
       it(fn(`${arg}`), () => {
         t.throws(() => {
           parseSource(fn(`${arg}`), undefined, Context.None);
@@ -42,8 +42,8 @@ describe('Miscellaneous - Cover grammar', () => {
     }
   }
 
-  for (let arg of ['[, ]', '[a, ]', '[[], ]']) {
-    for (let fn of destructuringForms) {
+  for (const arg of ['[, ]', '[a, ]', '[[], ]']) {
+    for (const fn of destructuringForms) {
       it(fn(`${arg}`), () => {
         t.doesNotThrow(() => {
           parseSource(fn(`${arg}`), undefined, Context.None);
@@ -82,7 +82,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '{a, b}',
     '{a = 0}'
   ]) {
-    for (let fn of functions) {
+    for (const fn of functions) {
       it(fn(`${arg}`), () => {
         t.doesNotThrow(() => {
           parseSource(fn(`${arg}`), undefined, Context.None);

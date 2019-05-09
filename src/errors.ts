@@ -141,7 +141,8 @@ export const enum Errors {
   InvalidPatternTail,
   ForLoopInvalidLHS,
   AsyncFunctionInSingleStatementContext,
-  InvalidTernaryYield
+  InvalidTernaryYield,
+  InvalidArrowPostfix
 }
 
 /*@internal*/
@@ -288,7 +289,7 @@ export const errorMessages: {
   [Errors.StrictInvalidLetInExprPos]: "The identifier 'let' must not be in expression position in strict mode",
   [Errors.NotAssignableLetArgs]: 'Cannot assign to `eval` and `arguments` in strict mode',
   [Errors.ForOfLet]: "The left-hand side of a for-of loop may not start with 'let'",
-  [Errors.InvalidInvokedBlockBodyArrow]: 'Block body arrows can not be immediately tagged without a group',
+  [Errors.InvalidInvokedBlockBodyArrow]: 'Block body arrows can not be immediately invoked without a group',
   [Errors.InvalidAccessedBlockBodyArrow]: 'Block body arrows can not be immediately accessed without a group',
   [Errors.UnexpectedStrictReserved]: 'Unexpected strict mode reserved word',
   [Errors.StrictEvalArguments]: 'Unexpected eval or arguments in strict mode',
@@ -296,7 +297,8 @@ export const errorMessages: {
   [Errors.InvalidStatementStart]: 'A statement can not start with object destructuring assignment',
   [Errors.StrictDelete]: 'Calling delete on expression not allowed in strict mode',
   [Errors.InvalidPatternTail]: 'Pattern can not have a tail',
-  [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary'
+  [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary',
+  [Errors.InvalidArrowPostfix]: 'An arrow function can not have a postfix update operator'
 };
 
 export class ParseError extends SyntaxError {
