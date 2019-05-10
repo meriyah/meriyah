@@ -73,24 +73,34 @@ describe('Expressions - Group', () => {
   for (const arg of [
     '([...[]] = x);',
     '({...[].x} = x);',
+    '({...[({...[].x} = x)].x} = x);',
     '({...a.x} = x);',
     '({...x.x, y})',
     '({...x.x = y, y})',
     '({...x = y, y})',
-    '[x.y = a] = z',
+    '([x.y = a] = z)',
+    '([x.y = a] = ([x.y = a] = ([x.y = a] = z)))',
     '({..."x".x} = x);',
     '({...{}.x} = x);',
     '([...[].x] = x);',
+    '([...[([...[].x] = x)].x] = x);',
     '([...{}.x] = x);',
     '({..."x"[x]} = x);',
     '({...[][x]} = x);',
+    '({...[][x]} = x = y);',
+    '({...[][x]} = x = (y));',
+    '({...[][x]} = (x) = (y));',
     '({...{}[x]} = x);',
+    '({...{}[x = (y)[z]]} = x);',
+    '([...[({...{}[x = (y)[z]]} = x)][x]] = x);',
     '([...[][x]] = x);',
     '([...{}[x]] = x);',
+    '([...{}[x]] = "x");',
     '({...{b: 0}.x} = {});',
     '({...[0].x} = {});',
     '({...{b: 0}[x]} = {});',
-    '({...[0][x]} = {});'
+    '({...[0][x]} = {});',
+    '({...[1][2]} = {});'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -150,6 +160,7 @@ describe('Expressions - Group', () => {
     '[].length',
     '[x].length',
     '{}.length',
+    '{x}.length',
     '{x: y}.length'
   ]) {
     it(`should fail on '(${arg})=> y'`, () => {
@@ -178,7 +189,9 @@ describe('Expressions - Group', () => {
   }
 
   for (const arg of [
+    '(a,b+=2',
     '(a,b)+=2',
+    '(a[b],c)+=2',
     '(a,b)=2',
     '(a=1)+=2',
     '(a=1)=2',
@@ -382,9 +395,12 @@ describe('Expressions - Group', () => {
     ['(([x])=y in z);', Context.None],
     ['[{x = y}] in z', Context.None],
     ['for (([x])=y in z);', Context.None],
-    // ['for ([{x = y}] ;;);', Context.None],
+    ['for ([{x = y}] ;;);', Context.None],
     ['[{x = y}].z', Context.None],
     ['[{x = y}].z = obj', Context.None],
+    ['[{x = y}].z = "obj"', Context.None],
+    ['[{"x" = y}].z = obj', Context.None],
+    ['[{x = "y"}].z = obj', Context.None],
     ['[{x = y}.z] = obj', Context.None],
     ['[{x = y}].z => obj', Context.None],
     ['({a: {x = y}})', Context.None],
@@ -393,12 +409,22 @@ describe('Expressions - Group', () => {
     ['({a: {x = y}}.z = obj)', Context.None],
     ['({a: {x = y}}.z) => obj', Context.None],
     ['({a: {x = y}}).z', Context.None],
+    ['({a: {x = "y"}}).z', Context.None],
     ['(async x => y) = {}', Context.None],
     ['((x, z) => y) = {}', Context.None],
     ['(async (x, z) => y) = {}', Context.None],
     ['async("foo".bar) => x', Context.None],
     ['(...rest - a) => b', Context.None],
     ['(a, ...b - 10) => b', Context.None],
+    ["(c, a['b']) => {}", Context.None],
+    ['([x.y = a] = (...z))', Context.None],
+    ["'(...(...z))", Context.None],
+    ['((...z))', Context.None],
+    ["'(...(...1))", Context.None],
+    ["((...'z'))", Context.None],
+    ["'(...(...('z'))", Context.None],
+    ['([...[[][][]] = x);', Context.None],
+    ['([...a, ,] = [...a, ,])', Context.None],
     ["(c, a['b']) => {}", Context.None],
     ['(...a = b) => b', Context.None],
     ['(-a, b) => {}', Context.None],
@@ -9117,54 +9143,6 @@ describe('Expressions - Group', () => {
               right: {
                 type: 'Literal',
                 value: 0
-              }
-            }
-          }
-        ]
-      }
-    ],
-    [
-      '({a:(b) = 0} = 1)',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'ObjectPattern',
-                properties: [
-                  {
-                    type: 'Property',
-                    key: {
-                      type: 'Identifier',
-                      name: 'a'
-                    },
-                    value: {
-                      type: 'AssignmentPattern',
-                      left: {
-                        type: 'Identifier',
-                        name: 'b'
-                      },
-                      right: {
-                        type: 'Literal',
-                        value: 0
-                      }
-                    },
-                    kind: 'init',
-                    computed: false,
-                    method: false,
-                    shorthand: false
-                  }
-                ]
-              },
-              operator: '=',
-              right: {
-                type: 'Literal',
-                value: 1
               }
             }
           }

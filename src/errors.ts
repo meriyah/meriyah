@@ -204,7 +204,7 @@ export const errorMessages: {
   [Errors.IllegalArrowFunctionParams]: 'Illegal arrow function parameter list',
   [Errors.InvalidArrowDestructLHS]: 'The left-hand side of the arrow can only be destructed through assignment',
   [Errors.InvalidBindingDestruct]: 'The binding declaration is not destructible',
-  [Errors.InvalidAsyncArrow]: 'Invalid async arrow',
+  [Errors.InvalidAsyncArrow]: 'Async arrow can not be followed by new expression',
   [Errors.StaticPrototype]: "Classes may not have a static property named 'prototype'",
   [Errors.InvalidConstructor]: 'Class constructor may not be a %0',
   [Errors.DuplicateConstructor]: 'Duplicate constructor method in class',

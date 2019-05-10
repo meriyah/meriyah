@@ -508,7 +508,6 @@ describe('Miscellaneous - Cover grammar', () => {
     '[(a) = 0] = 1',
     '[(a.b)] = 0',
     '({a:(b)} = 0)',
-    '({a:(b) = 0} = 1)',
     '({a:(b.c)} = 0)',
     '({a:(b = 0)})'
   ]) {

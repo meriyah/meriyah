@@ -2,8 +2,59 @@ import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Expressions - Member', () => {
-  fail('Expressions - Group (fail)', [['kleuver.123', Context.None]]);
+  fail('Expressions - Group (fail)', [['abc.123', Context.None], ['abc.£', Context.None]]);
+
   pass('Expressions - Member (pass)', [
+    [
+      'abc.package',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'abc'
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'package'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'abc.package',
+      Context.Module | Context.Strict,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'abc'
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'package'
+              }
+            }
+          }
+        ]
+      }
+    ],
     [
       'foo.bar',
       Context.None,

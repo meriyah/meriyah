@@ -8,8 +8,16 @@ describe('Expressions - Array', () => {
     '[1 <= 0]',
     '[a, ...b=c]',
     '[a, ...b=c]',
+    '[a, ...b=c]',
+    '[a, ...(b=c)]',
+    '[a, ...b=c.d = 2]',
+    '[a, ...b=c]',
     '([a, ...b=c])',
     '[a] = x',
+    '[[a] = x]',
+    '[[a] = x]',
+    '[[a] = [[a] = x]]',
+    '[[a] = [[a] = [[a] = [[a] = x]]]]',
     '[a = b] = x',
     '[[a] = b] = x',
     '[,,,] = x',
@@ -32,7 +40,6 @@ describe('Expressions - Array', () => {
     '[...a]',
     '[a, ...b]',
     '[...a,]',
-    '[...a, ,]',
     '[, ...a]',
     '[x().foo] = x',
     '[(x().foo)] = x',
@@ -292,17 +299,50 @@ describe('Expressions - Array', () => {
     '({...{eval}.x} = {});',
     '[{eval}.x] = [];',
     '[...{eval}.x] = [];',
+    '[...{eval}.x] = [[...{arguments}.x] = []];',
     '({a: {eval}.x} = {});',
     '[...{arguments}.x] = [];',
+    '[a]',
+    '[[a] / bcd]',
+    '([a] / bcd)',
+    '[({a})]',
+    '[({a}), ({b})]',
+    '[(({a}), ({b}))]',
+    '([(({a}), ({b}))])',
+    '[a]',
+    '[a]',
+    '[a]',
     '[a, b] = [10, 20];',
+    '[a, b.c.d = (a) / 2 ] = [10, 20];',
     '({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});',
     '[a=5, b=7] = [1];',
+    '[a=5, b=(7)] = ([1]);',
+    '[a=5, b=(7).c.d] = ([1]);',
     '[a, b] = [b, a];',
+    '[a, b.c] = [d.e, f.g];',
+    '[a, b.c] = [d.e, (f.g) = h];',
+    '[a, b] = f(() => {  }); ',
+    '[a, b] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ',
+    '([a, b] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }));',
     '[a, b] = f(); ',
     'var [a, , b] = f();',
     '[a, ...b] = [1, 2, 3];',
+    '[a, ...b] = [1, 2, ...c];',
+    '[a, ...b] = [1, 2, ...(c / 2)];',
+    '[a, ...b] = [1, 2, ...c / 2];',
+    '[a, ...b] = ([1, 2, ...c / 2]);',
     'o = {p: 42, q: true};',
-    '[a, b, ...rest] = [10, 20, 30, 40, 50];'
+    '[o = {p: 42, q: true}];',
+    '([o = {p: 42, q: true}]);',
+    '[a, b, ...rest] = [10, 20, 30, 40, 50];',
+    '[[[a.b =[]]]]',
+    '[[[a.b =[{ x: x.b }]]]]',
+    '[[[a.b =[{ x: x.b }]]]]',
+    '[[[a.b =[{ x: x.b }]]] = abc]',
+    '[(a) = (b)]',
+    '[(x) = y = (z)]',
+    '[(x) = y = (z) => (a)]',
+    '[(x) => y = (z)]'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -404,6 +444,14 @@ describe('Expressions - Array', () => {
     ['[...0,a]=0', Context.None],
     ['[...0,{a=0}]=0', Context.None],
     ['[...0,...{a=0}]=0', Context.None],
+    ['function foo() { [a, ...{b=c}]}', Context.None],
+    ['() => {[a, ...{b=c}]}', Context.None],
+    ['([[a](b.c) = [[a] = [[a] = ([[a] = x]]]]))', Context.None],
+    ['([[a](b) = [[a] = [[a] = ([[a] = x]]]]))', Context.None],
+    ['[[a] = [[a] = [[a] = ([[a] = x]]]])', Context.None],
+    ['([[a] = [[a] = [[a] = ([[a] = x]]]]))', Context.None],
+    ['[...a, ,] = [...a, ,]', Context.None],
+    ['([...a, ,] = [...a, ,])', Context.None],
     ['[...{a=0},]', Context.None],
     ['[...{a=0},]=0', Context.None],
     ['[0] = 0', Context.None],
@@ -431,6 +479,7 @@ describe('Expressions - Array', () => {
     ['[...{a = b} = c] = d;', Context.None],
     ['result = [...{ x = yield }] = y;', Context.Strict],
     ['[true = x] = x', Context.None],
+    ['[(...)]', Context.None],
     ['(...)', Context.None],
     ['[...this, y] = foo;', Context.None],
     ['[{..}, x]', Context.None],
@@ -450,6 +499,19 @@ describe('Expressions - Array', () => {
     [`([...x.y] = z) => z`, Context.None],
     ['[a, ...]', Context.None],
     ['[..., ]', Context.None],
+    ['[a=5, b=7] = ([1]) = x;', Context.None],
+    ['[a=5, b=7] = ([1]) => x;', Context.None],
+    ['[a=5, b=7] = ([1]) => x;', Context.None],
+    ['[(a=5, b=(x)) = y] = ([1]);', Context.None],
+    ['[(a=5, b=(7))] = ([1]);', Context.None],
+    ['[a=5, b=(7).c.(d)] = ([1])', Context.None],
+    ['[a=5, b=(7).c.(d)[e]] = ([1]);', Context.None],
+    ['([a] / ...bcd)', Context.None],
+    ['([a], ...[bcd] = (x))', Context.None],
+    ['([a], ...bcd = (x))', Context.None],
+    ['([(({a.b.c[d]}), ({b = c / 2}))])', Context.None],
+    ['([(({a[d]}), ({b = c / 2}))])', Context.None],
+    ['([(({a}), ({b = c / 2}))])', Context.None],
     ['[..., ...]', Context.None],
     ['[ (...a)]', Context.None],
     ['[true = x]', Context.None],
@@ -544,10 +606,70 @@ describe('Expressions - Array', () => {
     ['[implements]', Context.Strict | Context.Module],
     ['"use strict"; [implements]', Context.None],
     ['x, [foo + y, bar] = doo;', Context.None],
-    ['[...{a: true} = c]', Context.None]
+    ['[...{a: true} = c]', Context.None],
+    ['[[[a.b =[{ x: x.b }]]]] = ([{ a = b / 2}])', Context.None],
+    ['[[[a.b =[{ x: x.b = 123 }]a(b=c)]]]', Context.None],
+    ['[(a.b.c.d = e) = ()]', Context.None],
+    ['function foo() { [(a.b.c.d = e) = ()]}', Context.None],
+    ['[() = ()]', Context.None],
+    ['[(1) = (a = b)]', Context.None],
+    ['[(1) = (a = b.c)]', Context.None],
+    ['[([{ x = y }] = b.call(c)) = ()]', Context.None],
+    ['[(a = b.call(c)) = ()]', Context.None],
+    ['[(a = b.call(c)) = (a = b / 2)]', Context.None]
   ]);
 
   pass('Expressions - Array (pass)', [
+    [
+      '[(x) = y = (z) => (a)]',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              elements: [
+                {
+                  left: {
+                    name: 'x',
+                    type: 'Identifier'
+                  },
+                  operator: '=',
+                  right: {
+                    left: {
+                      name: 'y',
+                      type: 'Identifier'
+                    },
+                    operator: '=',
+                    right: {
+                      async: false,
+                      body: {
+                        name: 'a',
+                        type: 'Identifier'
+                      },
+                      expression: true,
+                      id: null,
+                      params: [
+                        {
+                          name: 'z',
+                          type: 'Identifier'
+                        }
+                      ],
+                      type: 'ArrowFunctionExpression'
+                    },
+                    type: 'AssignmentExpression'
+                  },
+                  type: 'AssignmentExpression'
+                }
+              ],
+              type: 'ArrayExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       '[.../x//yield]',
       Context.None,

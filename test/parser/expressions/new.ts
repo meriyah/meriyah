@@ -83,7 +83,7 @@ describe('Expressions - New', () => {
       Context.None
     ],
     ['new async x => x', Context.None],
-    // ['new async => x', Context.None],
+    ['new async => x', Context.None],
     ['let x = typeof async (x) => x', Context.None],
     ['let x = [typeof async \n (x) => x]', Context.None],
     ['let x = [typeof async (x) \n => x]', Context.None],
