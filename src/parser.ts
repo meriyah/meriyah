@@ -4088,8 +4088,7 @@ export function parseMethodFormals(parser: ParserState, context: Context, kind: 
 
         if (parser.destructible & DestructuringKind.NotDestructible) report(parser, Errors.InvalidBindingDestruct);
 
-        if (type && parser.destructible & DestructuringKind.Assignable)
-          report(parser, Errors.InvalidBindingInFuncParam);
+        if (type && parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingDestruct);
       }
 
       if (parser.token === Token.Assign) {
@@ -4484,7 +4483,7 @@ export function parseFormalParametersOrFormalList(parser: ParserState, context: 
 
       if (parser.destructible & DestructuringKind.NotDestructible) report(parser, Errors.InvalidBindingDestruct);
 
-      if (type && parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingInFuncParam);
+      if (type && parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingDestruct);
     }
 
     if (parser.token === Token.Assign) {
@@ -5273,7 +5272,7 @@ export function parseBindingPattern(parser: ParserState, context: Context, type:
   }
 
   if (type && parser.destructible & DestructuringKind.Assignable) {
-    report(parser, Errors.InvalidBindingInFuncParam);
+    report(parser, Errors.InvalidBindingDestruct);
   }
 
   return left;

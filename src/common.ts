@@ -302,5 +302,6 @@ export function validateArrowBlockBody(parser: ParserState): void {
       report(parser, Errors.InvalidInvokedBlockBodyArrow);
     default: // ignore
   }
+  if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0 ) report(parser, Errors.InvalidArrowPostfix);
   if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp) report(parser, Errors.InvalidArrowPostfix);
 }

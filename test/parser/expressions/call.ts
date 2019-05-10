@@ -19,9 +19,7 @@ describe('Expressions - Call', () => {
     });
   }
 
-  const invalidSpreadCall = ['(...[1, 2, 3])', '......[1,2,3]'];
-
-  for (const arg of invalidSpreadCall) {
+  for (const arg of ['(...[1, 2, 3])', '......[1,2,3]']) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.throws(() => {
         parseSource(`function fn() { 'use strict';} fn(${arg});`, undefined, Context.None);
@@ -61,6 +59,18 @@ describe('Expressions - Call', () => {
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
         parseSource(`function fn() { } fn(${arg});`, undefined, Context.None);
+      });
+    });
+
+    it(`function fn() { } fn(${arg});`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`function fn() { } fn(${arg});`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`function fn() { } fn(${arg});`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`function fn() { } fn(${arg});`, undefined, Context.Module | Context.Strict);
       });
     });
   }
@@ -155,6 +165,18 @@ describe('Expressions - Call', () => {
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`"use strict"; ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`"use strict"; ${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`"use strict"; ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`"use strict"; ${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
   }
