@@ -1,4 +1,4 @@
-![alt text](https://github.com/meriyah/meriyah/blob/master/scripts/logo.png
+![alt text](https://github.com/meriyah/meriyah/blob/master/scripts/logo.png)
 
 
 [![NPM version](https://img.shields.io/npm/v/meriyah.svg?style=flat-square)](https://www.npmjs.com/package/meriyah)
