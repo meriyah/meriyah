@@ -202,7 +202,6 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
           break;
         // Line terminators
         case Token.LineTerminator:
-          isStartOfLine = true;
           parser.flags |= Flags.NewLine;
           if (
             CharTypes[first] & CharFlags.CarriageReturn &&

@@ -37,13 +37,13 @@ describe('Miscellaneous - Directives', () => {
     "'random\\u0au foo'",
     'function foo() { "use strict"; with (a) b = c; }',
     '"use strict"; function foo() { with (a) b = c; }',
-    //'"use strict"; function hello() { "\\000"; }',
-    //'"use strict"; function hello() { "\\00"; }',
-    //'"use strict"; function hello() { "\\0123"; }',
-    //'function hello() { "use strict"; "\\000"; }',
-    //'function hello() { "use strict"; "\\00"; }',
-    //'function hello() { "use strict"; "\\0123"; }',
-    //'function hello("\\000008") { "use strict"; }',
+    '"use strict"; function hello() { "\\000"; }',
+    '"use strict"; function hello() { "\\00"; }',
+    '"use strict"; function hello() { "\\0123"; }',
+    'function hello() { "use strict"; "\\000"; }',
+    'function hello() { "use strict"; "\\00"; }',
+    'function hello() { "use strict"; "\\0123"; }',
+    'function hello("\\000008") { "use strict"; }',
     ` function fun() {
                 "use strict";
                        var public = 1;
@@ -103,7 +103,6 @@ describe('Miscellaneous - Directives', () => {
     '("use strict"); foo',
     'function wrap() { ("use strict"); foo }',
     'function a() { "use strict" } "use strict"; foo',
-    'function a(a = function() { "use strict"; foo }) { "use strict" }',
     'try { "use strict"; var public = 1; } catch (e) {}',
     '"use asm" \u2029 "use strict"',
     '"\\n\\r\\t\\v\\b\\f\\\\\\\'\\"\\0"',

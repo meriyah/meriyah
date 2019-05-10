@@ -6967,7 +6967,7 @@ var h = class {};`,
     '(function f() { function g() { { function h() { } } } })();',
     "var x = new new Function('this.x = 42');",
     'var f = (x, y) => x + y;',
-    //    '0790',
+    '0790',
     `var a, b, c, d;
 a = (b(), c(), d()) ? 1 : 2;`,
     '(a) => b',

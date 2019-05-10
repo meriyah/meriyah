@@ -1143,6 +1143,214 @@ yield d;
       }
     ],
     [
+      'function* a(b, c, d) { throw `_":${((yield* (6002.22)))}¿Z${null}UâÑ?${([])}â.Ò÷${((`m`))}`; }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'Identifier',
+                name: 'b'
+              },
+              {
+                type: 'Identifier',
+                name: 'c'
+              },
+              {
+                type: 'Identifier',
+                name: 'd'
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ThrowStatement',
+                  argument: {
+                    type: 'TemplateLiteral',
+                    expressions: [
+                      {
+                        type: 'YieldExpression',
+                        argument: {
+                          type: 'Literal',
+                          value: 6002.22
+                        },
+                        delegate: true
+                      },
+                      {
+                        type: 'Literal',
+                        value: null
+                      },
+                      {
+                        type: 'ArrayExpression',
+                        elements: []
+                      },
+                      {
+                        type: 'TemplateLiteral',
+                        expressions: [],
+                        quasis: [
+                          {
+                            type: 'TemplateElement',
+                            value: {
+                              cooked: 'm',
+                              raw: 'm'
+                            },
+                            tail: true
+                          }
+                        ]
+                      }
+                    ],
+                    quasis: [
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: '\u0005_":',
+                          raw: '\u0005_":'
+                        },
+                        tail: false
+                      },
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: '¿Z',
+                          raw: '¿Z'
+                        },
+                        tail: false
+                      },
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: 'UâÑ?',
+                          raw: 'UâÑ?'
+                        },
+                        tail: false
+                      },
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: 'â.Ò÷',
+                          raw: 'â.Ò÷'
+                        },
+                        tail: false
+                      },
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: '',
+                          raw: ''
+                        },
+                        tail: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            expression: false,
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'function* a(b, c, d) { "use strict"; if (yield null) for (const o in null()) throw this; }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'Identifier',
+                name: 'b'
+              },
+              {
+                type: 'Identifier',
+                name: 'c'
+              },
+              {
+                type: 'Identifier',
+                name: 'd'
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'Literal',
+                    value: 'use strict'
+                  }
+                },
+                {
+                  type: 'IfStatement',
+                  test: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Literal',
+                      value: null
+                    },
+                    delegate: false
+                  },
+                  consequent: {
+                    type: 'ForInStatement',
+                    body: {
+                      type: 'ThrowStatement',
+                      argument: {
+                        type: 'ThisExpression'
+                      }
+                    },
+                    left: {
+                      type: 'VariableDeclaration',
+                      kind: 'const',
+                      declarations: [
+                        {
+                          type: 'VariableDeclarator',
+                          init: null,
+                          id: {
+                            type: 'Identifier',
+                            name: 'o'
+                          }
+                        }
+                      ]
+                    },
+                    right: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'Literal',
+                        value: null
+                      },
+                      arguments: []
+                    }
+                  },
+                  alternate: null
+                }
+              ]
+            },
+            expression: false,
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
       '([x, {y: [yield]}])',
       Context.None,
       {

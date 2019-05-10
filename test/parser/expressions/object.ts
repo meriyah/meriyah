@@ -1238,10 +1238,67 @@ describe('Expressions - Object', () => {
     ['({...x,}) => z', Context.None],
     ['let {...x, ...y} = {}', Context.None],
     ['({...rest, b} = {})', Context.None],
+    ["x = {'__proto__': 1, __proto__: 2}", Context.OptionsWebCompat],
     ['({g\\u0065t m() {} });', Context.None]
   ]);
 
   pass('Expressions - Object (pass)', [
+    [
+      "x = {'__proto__': 1, __proto__: 2}",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              left: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              operator: '=',
+              right: {
+                properties: [
+                  {
+                    computed: false,
+                    key: {
+                      type: 'Literal',
+                      value: '__proto__'
+                    },
+                    kind: 'init',
+                    method: false,
+                    shorthand: false,
+                    type: 'Property',
+                    value: {
+                      type: 'Literal',
+                      value: 1
+                    }
+                  },
+                  {
+                    computed: false,
+                    key: {
+                      name: '__proto__',
+                      type: 'Identifier'
+                    },
+                    kind: 'init',
+                    method: false,
+                    shorthand: false,
+                    type: 'Property',
+                    value: {
+                      type: 'Literal',
+                      value: 2
+                    }
+                  }
+                ],
+                type: 'ObjectExpression'
+              },
+              type: 'AssignmentExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       '({a: b = c} = [2])',
       Context.None,

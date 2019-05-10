@@ -14,6 +14,51 @@ describe('Statements - Throw', () => {
 
   pass('Statements - Throw (pass)', [
     [
+      'throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^\u2B7a+-?]+|(?!)/giy))));',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ThrowStatement',
+            argument: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'AssignmentExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'd'
+                },
+                operator: '=',
+                right: {
+                  type: 'Literal',
+                  value: null
+                }
+              },
+              consequent: {
+                type: 'UpdateExpression',
+                argument: {
+                  type: 'Identifier',
+                  name: 'r'
+                },
+                operator: '--',
+                prefix: true
+              },
+              alternate: {
+                type: 'Literal',
+                value: /|[--]*||[^⭺+-?]+|(?!)/giy,
+                regex: {
+                  pattern: '|[--]*||[^⭺+-?]+|(?!)',
+                  flags: 'giy'
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       'throw /(?=[^\x4f-\xF5(-)])/imy',
       Context.None,
       {

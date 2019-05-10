@@ -400,6 +400,9 @@ describe('Statements - For', () => {
     'for (x=>{x in y};;);',
     'function *f(){   for (yield;;);   }',
     'function *f(){   for (yield x;;);   }',
+    'for (;; (g &= {})) do switch ((/z+/)) {} while (((class {})))',
+    'for (;;) debugger;',
+    'function z() { for (let c in new.target) for (let o in (--((b)).debugger)) debugger; }',
     'for (a ? b : c;;);',
     'for (a = b;;);',
     'for (a += b;;);',
@@ -409,6 +412,12 @@ describe('Statements - For', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }
