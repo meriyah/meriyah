@@ -6,7 +6,7 @@ import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Template', () => {
   describe('Lexer - Template Tail', () => {
-    const tokens: Array<[Context, Token, string, string]> = [
+    const tokens: [Context, Token, string, string][] = [
       [Context.None, Token.TemplateTail, '``', ''],
       [Context.None, Token.TemplateTail, '`a`', 'a'],
       [Context.None, Token.TemplateTail, '`foo `', 'foo '],
@@ -80,7 +80,7 @@ describe('Lexer - Template', () => {
   });
 
   describe('Lexer - Template Span', () => {
-    const tokens: Array<[Context, Token, string, string]> = [
+    const tokens: [Context, Token, string, string][] = [
       [Context.None, Token.TemplateContinuation, '`${`', ''],
       [Context.None, Token.TemplateContinuation, '`$$${`', '$$'],
       [Context.None, Token.TemplateContinuation, '`$$${a}`', '$$']
@@ -106,7 +106,7 @@ describe('Lexer - Template', () => {
   });
 
   describe('Lexer - Tagged Template', () => {
-    const tokens: Array<[Context, Token, string, string | void]> = [
+    const tokens: [Context, Token, string, string | void][] = [
       //[Context.TaggedTemplate, Token.TemplateTail, '`\\u{70bc`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', '\u0007'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', '\u0001'],

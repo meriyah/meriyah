@@ -3,7 +3,7 @@ import { Context } from '../../src/common';
 import { CharFlags, CharTypes } from '../../src/lexer/charClassifier';
 
 describe('Lexer - charClassifier', () => {
-  const tokens: Array<[Context, number]> = [
+  const tokens: [Context, number][] = [
     [CharFlags.WhiteSpace, 9],
     [CharFlags.LineTerminator, 10],
     [CharFlags.LineTerminator, 10],

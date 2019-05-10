@@ -358,6 +358,89 @@ describe('Declarations - Async Generator', () => {
       }
     ],
     [
+      'var gen = async function *() { yield { ...yield, y: 1, ...yield yield, }; };',
+      Context.Strict,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'gen',
+                  type: 'Identifier'
+                },
+                init: {
+                  async: true,
+                  body: {
+                    body: [
+                      {
+                        expression: {
+                          argument: {
+                            properties: [
+                              {
+                                argument: {
+                                  argument: null,
+                                  delegate: false,
+                                  type: 'YieldExpression'
+                                },
+                                type: 'SpreadElement'
+                              },
+                              {
+                                computed: false,
+                                key: {
+                                  name: 'y',
+                                  type: 'Identifier'
+                                },
+                                kind: 'init',
+                                method: false,
+                                shorthand: false,
+                                type: 'Property',
+                                value: {
+                                  type: 'Literal',
+                                  value: 1
+                                }
+                              },
+                              {
+                                argument: {
+                                  argument: {
+                                    argument: null,
+                                    delegate: false,
+                                    type: 'YieldExpression'
+                                  },
+                                  delegate: false,
+                                  type: 'YieldExpression'
+                                },
+                                type: 'SpreadElement'
+                              }
+                            ],
+                            type: 'ObjectExpression'
+                          },
+                          delegate: false,
+                          type: 'YieldExpression'
+                        },
+                        type: 'ExpressionStatement'
+                      }
+                    ],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  generator: true,
+                  id: null,
+                  params: [],
+                  type: 'FunctionExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'async function* f([arrow = () => {}]) {  }',
       Context.None,
       {

@@ -202,6 +202,10 @@ describe('Expressions - Arrow', () => {
     'let x = (a)\n=>a;',
     '(...rest - a) => b',
     '(a, ...b - 10) => b',
+    '()=>{}++',
+    '()=>{}--',
+    '()=>{}\n++x',
+    '()=>{}\n--x',
     '(a.b, c) => {}',
     "(a['b'], c) => {}",
     "(c, a['b']) => {}",
@@ -514,6 +518,14 @@ describe('Expressions - Arrow', () => {
     ['()=c=>{}=>{};', Context.None],
     ['x = ()+c=>{}', Context.None],
     ['x = ()c++=>{};', Context.None],
+    ['a = b\n=> c', Context.None],
+    ['a = b\n=>\nc', Context.None],
+    ['a\n= b\n=> c', Context.None],
+    //['()=>{}+a', Context.None],
+    ['()=>{}++', Context.None],
+    ['()=>{}--', Context.None],
+    ['()=>{}\n++x', Context.None],
+    ['()=>{}\n--x', Context.None],
     ['a?c:d=>{}=>{};', Context.None],
     ['(...a)`template-head${c}`=>{}', Context.None],
     ['(...a)?c:d=>{}=>{};', Context.None],
@@ -548,6 +560,15 @@ describe('Expressions - Arrow', () => {
     ['({x: async ()=>x})  => {}', Context.OptionsWebCompat],
     ['x = a`c`=>{}', Context.None],
     ['([(a)]) => {};', Context.None],
+    ['(x, /x/g) => x', Context.None],
+    ['(x, /x/g) => x', Context.None],
+    ['(a=/i/) = /i/', Context.None],
+    ['(x => y) = {}', Context.None],
+    ['(x => y) = {}', Context.None],
+    ['(async x => y) = {}', Context.None],
+    ['((x, z) => y) = {}', Context.None],
+    ['(async (x, z) => y) = {}', Context.None],
+    ['async("foo".bar) => x', Context.None],
     ['function x(){([(a)]) => {} }', Context.None],
     ['(a)[1]=>{}', Context.None],
     ['(a)[c]=>{};', Context.None],
@@ -634,9 +655,9 @@ describe('Expressions - Arrow', () => {
     ['(x, (y, z)) => 0', Context.None],
     ['((x, y), z) => 0', Context.None],
     ['(a => a) +', Context.None],
-    // ['eval => { "use strict"; 0 }', Context.None],
-    // ['arguments => { "use strict"; 0 }', Context.None],
-    // ['yield => { "use strict"; 0 }', Context.None],
+    ['eval => { "use strict"; 0 }', Context.None],
+    ['arguments => { "use strict"; 0 }', Context.None],
+    //['yield => { "use strict"; 0 }', Context.None],
     // ['interface => { \'use strict\'; 0 }', Context.None],
     ['a => (b => (a + b)', Context.None],
     [`([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;`, Context.None],
@@ -1055,6 +1076,112 @@ describe('Expressions - Arrow', () => {
 
   pass('Expressions - Arrow (pass)', [
     [
+      'f = ([[,] = g()]) => {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'f'
+              },
+              operator: '=',
+              right: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                params: [
+                  {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'ArrayPattern',
+                          elements: [null]
+                        },
+                        right: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'g'
+                          },
+                          arguments: []
+                        }
+                      }
+                    ]
+                  }
+                ],
+                id: null,
+                async: false,
+                expression: false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'f = ([[,] = g()]) => {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'f'
+              },
+              operator: '=',
+              right: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                params: [
+                  {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'ArrayPattern',
+                          elements: [null]
+                        },
+                        right: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'g'
+                          },
+                          arguments: []
+                        }
+                      }
+                    ]
+                  }
+                ],
+                id: null,
+                async: false,
+                expression: false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       '([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0;',
       Context.None,
       {
@@ -1324,6 +1451,38 @@ describe('Expressions - Arrow', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '(() => {}) << x',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              left: {
+                async: false,
+                body: {
+                  body: [],
+                  type: 'BlockStatement'
+                },
+                expression: false,
+                id: null,
+                params: [],
+                type: 'ArrowFunctionExpression'
+              },
+              operator: '<<',
+              right: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              type: 'BinaryExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [

@@ -25,9 +25,9 @@ describe('Statements - Try', () => {
     ['try {} catch ({foo = "bar"} = {}) {}', Context.None]
   ]);
 
-  let var_e = ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]'];
+  const var_e = ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]'];
 
-  let not_var_e = [
+  const not_var_e = [
     'var f',
     'var {}',
     'var {e:f}',
@@ -42,7 +42,7 @@ describe('Statements - Try', () => {
     'let {f:e}',
     'const {f:e}'
   ];
-  for (let binding of var_e) {
+  for (const binding of var_e) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
@@ -76,7 +76,7 @@ describe('Statements - Try', () => {
   }
 
   // Check that the above applies even for nested catches.
-  for (let binding of var_e) {
+  for (const binding of var_e) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
@@ -104,7 +104,7 @@ describe('Statements - Try', () => {
 
   // Check that the above applies if a declaration scope is between the
   // catch and the loop.
-  for (let binding of var_e) {
+  for (const binding of var_e) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
@@ -141,7 +141,7 @@ describe('Statements - Try', () => {
   }
 
   // Check that there is no error when not declaring a var named e.
-  for (let binding of not_var_e) {
+  for (const binding of not_var_e) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(

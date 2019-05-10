@@ -174,6 +174,7 @@ describe('Statements - For in', () => {
     `for ("foo".x in y) {}`,
     `for ("foo".x in y) {}`,
     `for ({}.x in y) {}`,
+    'for (a[b in c] in d);',
     'for (var {j} in x) { var foo; [foo] = [j] }',
     'for (var {j} in x) { var foo; [[foo]=[42]] = [] }',
     'for (var {j} in x) { let foo; foo = j }',

@@ -2,7 +2,7 @@ import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Throw', () => {
-  const inValids: Array<[string, Context]> = [
+  const inValids: [string, Context][] = [
     [
       `throw
     x;`,
@@ -13,6 +13,27 @@ describe('Statements - Throw', () => {
   fail('Statements - Throw', inValids);
 
   pass('Statements - Throw (pass)', [
+    [
+      'throw /(?=[^\x4f-\xF5(-)])/imy',
+      Context.None,
+      {
+        body: [
+          {
+            argument: {
+              regex: {
+                flags: 'imy',
+                pattern: '(?=[^O-õ(-)])'
+              },
+              type: 'Literal',
+              value: /(?=[^O-õ(-)])/imy
+            },
+            type: 'ThrowStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       'throw foo;',
       Context.None,

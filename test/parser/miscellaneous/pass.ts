@@ -19,6 +19,7 @@ describe('Miscellaneous - Pass', () => {
     'function f() { function f() {} }',
     'function f(a,b) {}',
     `class x extends {} {}`,
+    'for (C = class { get ["x" in empty]() { return "via get"; } }; ; ) { break; }',
     `for (;;);`,
     `for (a+b;;) c;`,
     `for (var x of y);`,
@@ -271,7 +272,7 @@ describe('Miscellaneous - Pass', () => {
         "use strict";
         for (var n in null) continue;
         if (2603) return; else ;
-        switch ("bar") {}
+        switch ("bar ") {}
         for (m of "") ;
         debugger;
       }
@@ -419,6 +420,7 @@ describe('Miscellaneous - Pass', () => {
     'function f() { for ( a ; ; ) { break } }',
     'for ( ; ; ) { break }',
     'for (a,b in c ;;) break',
+    'class aw\\u0061it {}',
     '{ { do do do ; while(0) while(0) while(0) } }',
     '{ a[5],6; {} ++b-new (-5)() } c().l++',
     'function f() { { a[5],6; {} ++b-new (-5)() } c().l++ }',

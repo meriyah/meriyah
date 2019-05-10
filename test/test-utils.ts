@@ -2,7 +2,7 @@ import * as t from 'assert';
 import { parseSource } from '../src/parser';
 import { Context } from '../src/common';
 
-export const pass = (name: string, valids: Array<[string, Context, any]>) => {
+export const pass = (name: string, valids: [string, Context, any][]) => {
   describe(name, () => {
     for (const [source, ctx, expected] of valids) {
       it(source, () => {
@@ -13,7 +13,7 @@ export const pass = (name: string, valids: Array<[string, Context, any]>) => {
   });
 };
 
-export const fail = (name: string, invalid: Array<[string, Context]>) => {
+export const fail = (name: string, invalid: [string, Context][]) => {
   describe(name, () => {
     for (const [source, ctx] of invalid) {
       it(source, () => {

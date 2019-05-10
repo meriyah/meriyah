@@ -28,7 +28,6 @@ export const enum Token {
   IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsCommaOrRightParen  = 1 << 30,
 
-
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
 
@@ -182,6 +181,7 @@ export const enum Token {
   PrivateField  = 131,
   Template = 132,
   Decorator = 133,
+  Target = 134 | IsIdentifier
 }
 
 export const KeywordDescTable = [
@@ -225,7 +225,7 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@',
+  'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference
@@ -285,4 +285,5 @@ export const descKeywordTable: { [key: string]: Token } = Object.create(null, {
   eval: { value: Token.Eval },
   as: { value: Token.AsKeyword },
   arguments: { value: Token.Arguments },
+  target: { value: Token.Target },
 });

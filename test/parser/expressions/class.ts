@@ -7330,6 +7330,187 @@ describe('Expressions - Class', () => {
       }
     ],
     [
+      'var C = class { static async *gen() { yield { ...yield, y: 1, ...yield yield, };}}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ClassExpression',
+                  id: null,
+                  superClass: null,
+                  body: {
+                    type: 'ClassBody',
+                    body: [
+                      {
+                        type: 'MethodDefinition',
+                        kind: 'method',
+                        static: true,
+                        computed: false,
+                        key: {
+                          type: 'Identifier',
+                          name: 'gen'
+                        },
+                        value: {
+                          type: 'FunctionExpression',
+                          params: [],
+                          body: {
+                            type: 'BlockStatement',
+                            body: [
+                              {
+                                type: 'ExpressionStatement',
+                                expression: {
+                                  type: 'YieldExpression',
+                                  argument: {
+                                    type: 'ObjectExpression',
+                                    properties: [
+                                      {
+                                        type: 'SpreadElement',
+                                        argument: {
+                                          type: 'YieldExpression',
+                                          argument: null,
+                                          delegate: false
+                                        }
+                                      },
+                                      {
+                                        type: 'Property',
+                                        key: {
+                                          type: 'Identifier',
+                                          name: 'y'
+                                        },
+                                        value: {
+                                          type: 'Literal',
+                                          value: 1
+                                        },
+                                        kind: 'init',
+                                        computed: false,
+                                        method: false,
+                                        shorthand: false
+                                      },
+                                      {
+                                        type: 'SpreadElement',
+                                        argument: {
+                                          type: 'YieldExpression',
+                                          argument: {
+                                            type: 'YieldExpression',
+                                            argument: null,
+                                            delegate: false
+                                          },
+                                          delegate: false
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  delegate: false
+                                }
+                              }
+                            ]
+                          },
+                          async: true,
+                          generator: true,
+                          id: null
+                        }
+                      }
+                    ]
+                  }
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'C'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var C = class { static async *gen() { yield [...yield yield]; }}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ClassExpression',
+                  id: null,
+                  superClass: null,
+                  body: {
+                    type: 'ClassBody',
+                    body: [
+                      {
+                        type: 'MethodDefinition',
+                        kind: 'method',
+                        static: true,
+                        computed: false,
+                        key: {
+                          type: 'Identifier',
+                          name: 'gen'
+                        },
+                        value: {
+                          type: 'FunctionExpression',
+                          params: [],
+                          body: {
+                            type: 'BlockStatement',
+                            body: [
+                              {
+                                type: 'ExpressionStatement',
+                                expression: {
+                                  type: 'YieldExpression',
+                                  argument: {
+                                    type: 'ArrayExpression',
+                                    elements: [
+                                      {
+                                        type: 'SpreadElement',
+                                        argument: {
+                                          type: 'YieldExpression',
+                                          argument: {
+                                            type: 'YieldExpression',
+                                            argument: null,
+                                            delegate: false
+                                          },
+                                          delegate: false
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  delegate: false
+                                }
+                              }
+                            ]
+                          },
+                          async: true,
+                          generator: true,
+                          id: null
+                        }
+                      }
+                    ]
+                  }
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'C'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
       '(class A {*"foo"(){}})',
       Context.None,
       {

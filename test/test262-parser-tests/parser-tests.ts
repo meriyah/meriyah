@@ -16,16 +16,18 @@ const expectations = {
     '44f31660bd715f05.js',
     '08a39e4289b0c3f3.js',
     '046a0bb70d03d0cc.js',
-    '0e3ca454ddfb4729.js',
     '300a638d978d0f2c.js',
     '110fa1efdd0868b8.js',
     '1a1c717109ab67e1.js',
     '206ebb4e67a6daa9.js',
     '4ad6e3a59e27e9b1.js',
     'a62c6323a3696fa8.js',
-    'fc020c065098cbd5.js'
+    'fc020c065098cbd5.js',
+    '77a541b0502d0bde.js',
+    '3b36d546985cd9cb.js'
   ],
   explicit: [
+    '3b36d546985cd9cb.js',
     '44f31660bd715f05.js',
     '300a638d978d0f2c.js',
     '0e3ca454ddfb4729.js',

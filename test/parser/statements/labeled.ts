@@ -49,20 +49,76 @@ describe('Statements - Labeled', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg} : x`, undefined, Context.OptionsWebCompat);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg} : x`, undefined, Context.Strict);
       });
     });
   }
 
-  fail('Statements - Return (fail)', [
-    //    ['async () => { \\u{61}wait: x }', Context.None],
-    //  ['async () => { aw\\u{61}it: x }', Context.None]
-    //  ['function *f(){ await: x; }', Context.Strict],
+  fail('Statements - Labeled (fail)', [
+    ['async () => { \\u{61}wait: x }', Context.None],
+    ['async () => { aw\\u{61}it: x }', Context.None],
+    ['async () => { \\u{61}wait: x }', Context.Strict | Context.Module],
+    ['async () => { aw\\u{61}it: x }', Context.None],
+    ['aw\\u0061it: 1;', Context.None],
+    ['aw\\u0061it: 1;', Context.Module | Context.Strict],
+    ['function *f(){ await: x; }', Context.Module],
     ['await: x', Context.Strict | Context.Module],
-    ['false: foo', Context.None]
+    ['await: 1;', Context.Strict | Context.Module],
+    ['false: x', Context.None],
+    ['implements: x', Context.Strict],
+    ['package: x', Context.Strict],
+    ['let: x', Context.Strict],
+    ['yield: x', Context.Strict],
+    ['function *f(){ yield: x; }', Context.Strict],
+    ['yield: { function *f(){ break await; } }', Context.Strict]
   ]);
 
   pass('Statements - Labeled (pass)', [
+    [
+      'function *f(){ await: x; }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'LabeledStatement',
+                  label: {
+                    type: 'Identifier',
+                    name: 'await'
+                  },
+                  body: {
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'Identifier',
+                      name: 'x'
+                    }
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            }
+          }
+        ]
+      }
+    ],
     [
       'await: while (await) { continue await; }',
       Context.OptionsWebCompat,

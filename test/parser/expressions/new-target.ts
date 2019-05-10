@@ -13,6 +13,7 @@ describe('Expressions - New target', () => {
     'while (0) { new.target }',
     'do { new.target } while (0)',
     'new new .target',
+    'function f(x=() => new."target") {}',
     'new.target',
     'function f(){ new.foo }',
     '_ => new.target',

@@ -269,6 +269,7 @@ describe('Module - Import', () => {
     'import {bar, baz} from "foo";',
     'import {bar as baz, xyz} from "foo";',
     'import foo, {bar} from "foo";',
+    'import C from "foo";',
     'import a, { b, c as d } from "foo"',
     "import foo, * as bar from 'baz';",
     'import $ from "foo"',

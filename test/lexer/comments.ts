@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Comments', () => {
-  const tokens: Array<[Context, Token, string, string]> = [
+  const tokens: [Context, Token, string, string][] = [
     [Context.OptionsWebCompat, Token.EOF, '//', ''],
     [Context.OptionsWebCompat, Token.EOF, '// foo', ''],
     [Context.OptionsWebCompat, Token.EOF, '// foo\n', ''],
@@ -27,8 +27,8 @@ describe('Lexer - Comments', () => {
     [Context.OptionsWebCompat, Token.EOF, '/*\u00A0 multi line \u00A0 comment \u00A0 x = 1;*/', ''],
     [Context.OptionsWebCompat, Token.EOF, '/*\u0020 multi line \u0020 comment \u0020 x = 1;*/', ''],
     [Context.OptionsWebCompat, Token.EOF, '//\u000B single line \u000B comment \u000B x = 1;', ''],
-    [Context.OptionsWebCompat, Token.EOF, '//singlelinecommentx = 1;', ''],
-    [Context.OptionsWebCompat, Token.EOF, '//singlelinecommentx = 1;', ''],
+    [Context.OptionsWebCompat, Token.EOF, '// single line comment x = 1;', ''],
+    [Context.OptionsWebCompat, Token.EOF, '// single line comment x = 1;', ''],
     [Context.OptionsWebCompat, Token.EOF, '/*/ try and confuse the lexer\n */\n', ''],
     [Context.OptionsWebCompat, Token.EOF, '/* comments can have embedded "strings" */', ''],
     [Context.OptionsWebCompat, Token.EOF, '/* " /* */', ''],

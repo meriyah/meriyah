@@ -13,7 +13,9 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Support for additional ECMAScript features for Web Browsers
 * Optionally track syntactic node locations (*WIP*)
 * Emits an ESTree-compatible abstract syntax tree.
-* Very well tested (~63 000 unit tests with full code coverage))
+* No backtracking
+* Reduced memory usage
+* Very well tested (~68k unit tests with full code coverage))
 * Lightweight - ~71 KB minified
 
 ## ESNext features
@@ -25,20 +27,6 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * [Static class features](https://github.com/tc39/proposal-static-class-features/)
 
 **Note:** These features need to be enabled with the `next` option.
-
-## Options
-
-The second argument allows you to specify various options:
-
-| Option        | Description |
-| ----------- | ------------------------------------------------------------ |
-| `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
-| `globalReturn`    | Allow return in the global scope |
-| `impliedStrict`   | Enable strict mode initial enforcement |
-| `module`          | Allow parsing in module code |
-| `next`            | Allow parsing with `ESNext` features  |
-| `raw`             | Attach raw property to each literal node |
-| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
 
 ## API
 
@@ -110,3 +98,18 @@ This will return when serialized in json:
     ]
 }
 ```
+
+
+## Options
+
+The second argument allows you to specify various options:
+
+| Option        | Description |
+| ----------- | ------------------------------------------------------------ |
+| `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
+| `globalReturn`    | Allow `return` in the global scope |
+| `impliedStrict`   | Enable strict mode (*initial enforcement*) |
+| `module`          | Allow parsing with module goal |
+| `next`            | Allow parsing with `ESNext` features  |
+| `raw`             | Attach raw property to each literal node |
+| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |

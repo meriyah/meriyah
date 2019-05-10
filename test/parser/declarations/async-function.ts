@@ -363,6 +363,52 @@ describe('Declarations - Async Function', () => {
       }
     ],
     [
+      'async function *gen() { yield [...yield]; }',
+      Context.Strict,
+      {
+        body: [
+          {
+            async: true,
+            body: {
+              body: [
+                {
+                  expression: {
+                    argument: {
+                      elements: [
+                        {
+                          argument: {
+                            argument: null,
+                            delegate: false,
+                            type: 'YieldExpression'
+                          },
+                          type: 'SpreadElement'
+                        }
+                      ],
+                      type: 'ArrayExpression'
+                    },
+                    delegate: false,
+                    type: 'YieldExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            expression: false,
+            generator: true,
+            id: {
+              name: 'gen',
+              type: 'Identifier'
+            },
+            params: [],
+            type: 'FunctionDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
       Context.Strict,
       {

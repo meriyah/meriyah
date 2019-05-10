@@ -52,6 +52,7 @@ describe('Expressions - Object', () => {
     'if (false) {} else if (true) { ({x=1}) }',
     "switch ('c') { case 'c': ({x=1}); }",
     // 'for ({x=1}; 1;) {1}',
+    '({ \\u0061sync* m(){}});',
     'for ({x={y=2}}; 1;) {1}',
     'for (var x = 0; x < 2; x++) { ({x=1, y=2}) }',
     'for (let x=1;{x=1};){}',
@@ -78,7 +79,14 @@ describe('Expressions - Object', () => {
         parseSource(`${arg}`, undefined, Context.OptionsNext);
       });
     });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
   }
+
   for (const arg of [
     '{ ...y }',
     '{ a: 1, ...y }',
@@ -442,7 +450,7 @@ describe('Expressions - Object', () => {
     });
   }
 
-  for (let arg of ['var', 'let', 'const']) {
+  for (const arg of ['var', 'let', 'const']) {
     it(`${arg} {async async: a} = {}`, () => {
       t.throws(() => {
         parseSource(`${arg} {async async: a} = {}`, undefined, Context.OptionsWebCompat);
@@ -1229,7 +1237,8 @@ describe('Expressions - Object', () => {
     ['(({a, ...b = 0}) => {})', Context.None],
     ['({...x,}) => z', Context.None],
     ['let {...x, ...y} = {}', Context.None],
-    ['({...rest, b} = {})', Context.None]
+    ['({...rest, b} = {})', Context.None],
+    ['({g\\u0065t m() {} });', Context.None]
   ]);
 
   pass('Expressions - Object (pass)', [
