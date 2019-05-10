@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="360" height="300" src="https://github.com/meriyah/meriyah/blob/master/scripts/logo.png">
+  <img width="260" height="200" src="https://github.com/meriyah/meriyah/blob/master/scripts/logo.png">
 </p>
 
 [![NPM version](https://img.shields.io/npm/v/meriyah.svg?style=flat-square)](https://www.npmjs.com/package/meriyah)
