@@ -122,5 +122,5 @@ export declare function consume(parser: ParserState, context: Context, t: Token)
 export declare function reinterpretToPattern(state: ParserState, node: any): void;
 export declare function validateIdentifier(parser: ParserState, context: Context, type: BindingType, token: Token): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
-export declare function validateArrowBlockBody(parser: ParserState): any;
+export declare function validateArrowBlockBody(parser: ParserState): void;
 //# sourceMappingURL=common.d.ts.map

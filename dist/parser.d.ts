@@ -81,7 +81,7 @@ export declare function parseArrowFunctionExpression(parser: ParserState, contex
 export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, type: BindingType): any[];
 export declare function parseNewExpression(parser: ParserState, context: Context): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier): ESTree.MetaProperty;
-export declare function parseAsyncExpression(parser: ParserState, context: Context, inNewExpression: 0 | 1, assignable: 0 | 1): ESTree.Expression;
+export declare function parseAsyncExpression(parser: ParserState, context: Context, token: Token, expr: ESTree.Identifier, inNewExpression: 0 | 1, assignable: 0 | 1): ESTree.Expression;
 export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, assignable: 0 | 1, asyncNewLine: 0 | 1): any;
 export declare function parseRegExpLiteral(parser: ParserState, context: Context): ESTree.RegExpLiteral;
 export declare function parseClassDeclaration(parser: ParserState, context: Context, requireIdentifier: 0 | 1): ESTree.ClassDeclaration;
