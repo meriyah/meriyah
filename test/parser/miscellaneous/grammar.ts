@@ -473,6 +473,38 @@ describe('Miscellaneous - Cover grammar', () => {
   // Failures
 
   for (const arg of [
+    '({[a / b = c]: {}})', // HIGH!!
+    '({a: ({x = (y)})})',
+    '({a = {}})',
+    '({a = []})',
+    '({a: ({1})})',
+    '({a: ({x = (y)})})',
+    '({a = [b]} = 1 / d = a)',
+    '({(a) = [b]} = 1 / (d = (a)))',
+    '({"a" = [b]} = 1 / (d = (a)))',
+    '({["a"]: [b]} = 1 / (d = ((a))  => a))',
+    '({1: [b.c = x]} = 2 / (3 = ((a)) = a))',
+    '({1: [b.c = x]} = 2 / (dd = ((3)) = a))',
+    'function () { for (let x in { a: x }) { } }',
+    'function () { for (const x in { a: x }) { } }',
+    'function () { for (const x of [ x ]) { } }',
+    'function () { for (let x in { a: (() => x)() }) { } }',
+    'function () { for (const x in { a: (() => x)() }) { } }',
+    'function () { for (let x of [ (() => x)() ]) { } }',
+    'function () { for (const x of [ (() => x)() ]) { } }',
+    'function () { for (const x of [ eval("x") ]) { } }',
+    '({a: ({1})})',
+    '({a = {}})',
+    '({a: ("string") / a[3](((((a /= [b.c] = ({x)}))))) })',
+    '({a: ("string") / a[3](((((a /= [b.c] = ([x / 2]()=> a)))))) })',
+    '({a: ("string") / a[3](((((a /= [b.c] = ([x / 2]())))))=>) })',
+    '({a: ("string") / a[3](((((a /= [b.c] => ([x / 2]())))))) })',
+    '({a: ("string") / a[3](((((a /= [b.c => a] = ([x / 2]())))))) })',
+    '({a: ("string") / a[3](((((a /= [b.(c) => a] = ([x / 2]())))))) })',
+    '({a: ("string") / a[3](((((a /= [(b.c) => a] = ([x / 2]())))))) })',
+    '({a: ("string") / a[3](((((a /= [(c) => a] = ([x / 2]())))))) })',
+    '(({a: ("string") / a[3](((((a /= [b.c ] = ([x / 2]())))))) }))=> a',
+    '((({a: ("string") / a[3](((((a /= [b.c ] = ([x / 2]())))))) })) = a',
     'var {(a)} = 0',
     'var {a:(b)} = 0',
     '({(a)} = 0)',
@@ -492,6 +524,11 @@ describe('Miscellaneous - Cover grammar', () => {
     '({a}) = 2;',
     '([b]) = b;',
     '[(a = 0)] = 1',
+    '({[a]: {...[a[]]}})',
+    '({[a]: {x = [a]}})',
+    '({{x}: "b"})',
+    '({a: {x = y}, "b"})',
+    '({a: {x = y}, "b": a})',
     '([{constructor(){}}] = b);',
     // doesn't fail in Acorn / Esprima / Espree and Babylon
     '({ src: ([dest]) } = obj)'
@@ -499,6 +536,11 @@ describe('Miscellaneous - Cover grammar', () => {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }
@@ -2579,8 +2621,94 @@ describe('Miscellaneous - Cover grammar', () => {
     'function f({[x]: {y = z}}) {}',
     'function f({[x]: [y = z]}) {}',
     'function f({x: {y = z}}) {}',
-    'function f({x: [y = z]}) {}'
+    'function f({x: [y = z]}) {}',
+    '({[a]: {}})',
+    '({[a = b]: {}})',
+    '({[a = (b)]: {}})',
+    '({[(a)()]: {}})',
+    '({[(a)(x = (y))]: {}})',
+    '({[(a)()]: {}})',
+    '({[(a)()]: {}})',
+    '({"a": "b"})',
+    '({["a"]: "b"})',
+    '({a = [b]} = c)',
+    '({a = [b]} = 1)',
+    '({a = [b]} = 1)',
+    '({a = [b]} = "a")',
+    '({a = [b]} = 1 / (c = d))',
+    '({a = [b]} = 1 / (d = (e)))',
+    '({"a": [b]} = 1 / (d = (e)))',
+    '({["a"]: [b]} = 1 / (d = (e)))',
+    '({["a"]: [b]} = 1 / (d = (a	)  => a))',
+    '({["a"]: [b]} = 1 / (d = ((a)) = a))',
+    '({"a": [b]} = 1 / (d = ((a)) = a))',
+    '({a: [b]} = 1 / (d = ((a)) = a))',
+    '({"a": [b.c]} = 1 / (d = ((a)) = a))',
+    '({"a": [b.c = x]} = 1 / (d = ((a)) = a))',
+    '({1: [b.c = x]} = 1 / (d = ((a)) = a))',
+    '({1: [b.c = x]} = 2 / (dd = ((a)) = 3))',
+    '({1: a})',
+    '({1: (a)})',
+    '({1: {a: (a)}})',
+    '({"string": {a: (a)}})',
+    '({a: {b: (c)}})',
+    '({a: "string"})',
+    '({a: ("string") / 3 })',
+    '({a: ("string") / a[3] })',
+    '({a: ("string") / a[3](a = b) })',
+    '({a: ("string") / a[3](a = b.c) })',
+    '({a: ("string") / a[3](((((a = b.c))))) })',
+    '({a: ("string") / a[3](((((a /= b.c))))) })  ',
+    '({a: ("string") / a[3](((((a /= [b.c] = x))))) })',
+    '({a: ("string") / a[3](((((a /= [b.c] = (x)))))) })',
+    '({a: {}})',
+    'function f1({a} = {a:1}, b, [c] = [2]) {}',
+    'function f1(a = 1, b = function () { return 2; }, c = 3) {}',
+    '({a2} = {a2:2});',
+    '{{ { d;} }; var c = {d};}',
+    '{{{ { d;} }; var c = {d}; {var d = [];}}}',
+    'function foo () {  true ? e => {} : 1};',
+    'new bar(...(new Array(2**16+1)))',
+    'new Array(2**16-2)',
+    'var bar = foo.bind({}, 1);',
+    'var tests = [0, 0];  ',
+    'var {x} = {};',
+    'let {x} = {}, y = 1, {z} = {};',
+    'let {x} = {}; [x] = [1]',
+    'obj[17] = 222;',
+    '({x} = {x:3});',
+    '({x, y:[y]} = {x:5, y:[6]});',
+    '[y, {z}]',
+    'let [y, {z}] = foo;',
+    'let {x} = [y = 10, {z:z = 11}]',
+    'for ( let {x:item} of [{x:20}, {x:30}]) {}',
+    'function data2() { return {x:[{y:[20]}, {y:[30]}]};}',
+    'try { throw {x:10, z:["this is z"]}; }  catch({x, y, z:[z]}) {x;}',
+    'var {x, y:[y]} = {x:1, y:[]}, {x1, y1:[y1]} = {x1:1, y1:[]};',
+    'function foo( {x} = {x:10}, a, [y = 1] = [2]) {}',
+    'function foo( {x = 10} , a, [y = 1] = [2]) {}',
+    'for (let x in { a: 1, b: 2, c: 3 }) { a[i++] = function () { return x; }; }',
+    'for (let x of [ 1, 2, 3 ]) { a[i++] = function () { return x; }; }',
+    'for (const x of [ 1, 2, 3 ]) { a[i++] = function () { return x; }; }',
+    'function f1( a = 10, b = arguments, c = ()=> a ) {function arguments() {return 100;}var d = b;b; }',
+    'for (let x in { a: a[i++] = () => x }) { b[j++] = () => x; }',
+    'for (let x in { a: a[i++] = () => x }) { b[j++] = () => x; }',
+    'for (const x in { a: a[i++] = () => x }) { b[j++] = () => x; }',
+    'for (let x of [ a[i++] = () => x ]) { b[j++] = () => x; }',
+    'for (const x of [ a[i++] = () => x ]) { b[j++] = () => x; }',
+    'for (let x in { a: a[i++] = () => eval("x") }) { b[j++] = () => eval("x"); }',
+    'for (const x in { a: a[i++] = () => eval("x") }) { b[j++] = () => eval("x"); }',
+    'for (let x of [ a[i++] = () => eval("x") ]) { b[j++] = () => eval("x"); }',
+    'for (const x of [ a[i++] = () => eval("x") ]) { b[j++] = () => eval("x"); }',
+    '((a, { b = 0, c = 3 }) => { return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
+    '((a, x) => { let { b = 0, c = 3 } = y; return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
+    '({ [key]: y, z, ...x } = {2: "two", z: "zee"});'
   ]) {
+    it(`  ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsNext);

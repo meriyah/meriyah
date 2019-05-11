@@ -51,7 +51,7 @@ describe('Expressions - Object', () => {
     'if ({k: 1, x={y=2}={}}) {}',
     'if (false) {} else if (true) { ({x=1}) }',
     "switch ('c') { case 'c': ({x=1}); }",
-    // 'for ({x=1}; 1;) {1}',
+    'for ({x=1}; 1;) {1}',
     '({ \\u0061sync* m(){}});',
     'for ({x={y=2}}; 1;) {1}',
     'for (var x = 0; x < 2; x++) { ({x=1, y=2}) }',
@@ -104,11 +104,18 @@ describe('Expressions - Object', () => {
     '{ ...[]}',
     '{ ...async function() { }}',
     '{ ...async () => { }}',
-    '{ ...new Foo()}'
+    '{ ...new Foo()}',
+    '{[a]: {...a}}'
   ]) {
     it(`'use strict'; x = ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = ${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`(${arg})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(${arg})`, undefined, Context.OptionsWebCompat);
       });
     });
 
@@ -929,6 +936,7 @@ describe('Expressions - Object', () => {
     ['({set a(...foo) {}})', Context.None],
     ['({*ident: x})', Context.None],
     ['({...})', Context.None],
+    ['({a ...b})', Context.None],
     ['let {...obj1,} = foo', Context.None],
     ['let {...obj1,a} = foo', Context.None],
     ['let {...obj1,...obj2} = foo', Context.None],
