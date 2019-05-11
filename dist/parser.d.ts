@@ -70,7 +70,7 @@ export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, conte
 export declare function parseThisExpression(parser: ParserState, context: Context): ESTree.ThisExpression;
 export declare function parseFunctionDeclaration(parser: ParserState, context: Context, flags: ParseFunctionFlag, isAsync: 0 | 1): ESTree.FunctionDeclaration;
 export declare function parseFunctionExpression(parser: ParserState, context: Context, isAsync: 0 | 1): ESTree.FunctionExpression;
-export declare function parseArrayExpressionOrPattern(parser: ParserState, context: Context, skipInitializer: 0 | 1, bindingType: BindingType): ESTree.ArrayExpression | ESTree.ArrayPattern;
+export declare function parseArrayExpressionOrPattern(parser: ParserState, context: Context, skipInitializer: 0 | 1, type: BindingType): ESTree.ArrayExpression | ESTree.ArrayPattern;
 export declare function parseMethodDefinition(parser: ParserState, context: Context, kind: Kind): ESTree.FunctionExpression;
 export declare function parseObjectLiteralOrPattern(parser: ParserState, context: Context, skipInitializer: 0 | 1, type: BindingType): ESTree.ObjectExpression | ESTree.ObjectPattern | ESTree.AssignmentExpression;
 export declare function parseMethodFormals(parser: ParserState, context: Context, kind: Kind, type: BindingType): any[];
