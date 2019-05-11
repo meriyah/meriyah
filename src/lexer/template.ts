@@ -42,7 +42,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
     } else {
       if (ch === Chars.CarriageReturn) {
         if (parser.index < parser.length && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-          if (ret !== null) ret += fromCodePoint(ch);
+          ret += fromCodePoint(ch);
           parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
         }
       }
@@ -51,7 +51,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         parser.column = -1;
         parser.line++;
       }
-      if (ret !== null) ret += fromCodePoint(ch);
+      ret += fromCodePoint(ch);
     }
     if (parser.index >= parser.length) report(parser, Errors.UnterminatedTemplate);
     ch = nextCodePoint(parser);

@@ -69,8 +69,8 @@ describe('Expressions -In', () => {
           }
         ]
       }
-    ]
-    /* [
+    ],
+    [
       '"valueOf" in __proto',
       Context.OptionsRaw | Context.OptionsDirectives,
       {
@@ -88,8 +88,7 @@ describe('Expressions -In', () => {
               },
               right: {
                 type: 'Identifier',
-                name: '__proto',
-                raw: '__proto'
+                name: '__proto'
               },
               operator: 'in'
             },
@@ -97,6 +96,6 @@ describe('Expressions -In', () => {
           }
         ]
       }
-    ]*/
+    ]
   ]);
 });

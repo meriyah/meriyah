@@ -7432,6 +7432,133 @@ describe('Expressions - Class', () => {
       }
     ],
     [
+      'class c { static *[false]() { "use strict"; } set [this] (q) { "use strict"; } set [true] (u) { "use strict"; } }',
+      Context.OptionsDirectives | Context.OptionsRaw,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'c'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: true,
+                  computed: true,
+                  key: {
+                    raw: 'false',
+                    type: 'Literal',
+                    value: false
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            raw: '"use strict"',
+                            type: 'Literal',
+                            value: 'use strict'
+                          },
+                          directive: 'use strict'
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: true,
+                    id: null
+                  }
+                },
+                {
+                  type: 'MethodDefinition',
+                  kind: 'set',
+                  static: false,
+                  computed: true,
+                  key: {
+                    type: 'ThisExpression'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'q'
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            raw: '"use strict"',
+                            type: 'Literal',
+                            value: 'use strict'
+                          },
+                          directive: 'use strict'
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                },
+                {
+                  type: 'MethodDefinition',
+                  kind: 'set',
+                  static: false,
+                  computed: true,
+                  key: {
+                    raw: 'true',
+                    type: 'Literal',
+                    value: true
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'u'
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            raw: '"use strict"',
+                            type: 'Literal',
+                            value: 'use strict'
+                          },
+                          directive: 'use strict'
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
       'var C = class { static async *gen() { yield [...yield yield]; }}',
       Context.None,
       {
