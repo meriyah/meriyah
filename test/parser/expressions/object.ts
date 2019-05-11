@@ -1100,11 +1100,9 @@ describe('Expressions - Object', () => {
     ['var x = 012;', Context.Strict],
     ['({b}) = b;', Context.None],
     ['([b]) = b;', Context.None],
-    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
     ['foo({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
     ['({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
     ['async ({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
-    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat | Context.Strict],
     ['[{ __proto__: null, other: null, "__proto__": null }];', Context.OptionsWebCompat],
     ['x = { __proto__: null, other: null, "__proto__": null };', Context.OptionsWebCompat],
     ['[...a, ] = b', Context.None],
@@ -1524,6 +1522,124 @@ describe('Expressions - Object', () => {
                 ]
               }
             }
+          }
+        ]
+      }
+    ],
+    [
+      'var a = { __proto__: { abc: 123 } };',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: '__proto__'
+                      },
+                      value: {
+                        type: 'ObjectExpression',
+                        properties: [
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'abc'
+                            },
+                            value: {
+                              type: 'Literal',
+                              value: 123
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false
+                          }
+                        ]
+                      },
+                      kind: 'init',
+                      computed: false,
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'a'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var b = { ["__proto__"]: { abc: 123 }};',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Literal',
+                        value: '__proto__'
+                      },
+                      value: {
+                        type: 'ObjectExpression',
+                        properties: [
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'abc'
+                            },
+                            value: {
+                              type: 'Literal',
+                              value: 123
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false
+                          }
+                        ]
+                      },
+                      kind: 'init',
+                      computed: true,
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'b'
+                }
+              }
+            ]
           }
         ]
       }

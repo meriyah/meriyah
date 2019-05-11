@@ -121,7 +121,8 @@ describe('Next - Public fields', () => {
     'async\n a',
     'await;',
     'await = 0;',
-    'await\n a'
+    'await\n a',
+    `\nx\ny\n\n`
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {

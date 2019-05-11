@@ -342,7 +342,11 @@ describe('Expressions - Array', () => {
     '[(a) = (b)]',
     '[(x) = y = (z)]',
     '[(x) = y = (z) => (a)]',
-    '[(x) => y = (z)]'
+    '[(x) => y = (z)]',
+    '[(x), y = x] = x;',
+    '[(x), y] = x;',
+    '[(a), ] = x;',
+    '([(x), y] = x);'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

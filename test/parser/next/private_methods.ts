@@ -16,15 +16,23 @@ describe('Next - Private methods', () => {
     ['var o = { *#m() {} };', Context.OptionsNext],
     // ['class C{ #method() { super.#x(); } }', Context.OptionsNext],
     ['class C { async \\u0023m() {} } }', Context.OptionsNext],
+    ['class C { static async *#gen() { var await; } }', Context.OptionsNext],
+    ['class C { static async *#gen() { void await; } }', Context.OptionsNext],
+    ['class C { static async *#gen() { var yield; } }', Context.OptionsNext],
+    ['class C { static async *#gen() { void yield; } }', Context.OptionsNext],
+    ['class C { static async *#gen() { yield: ; } }', Context.OptionsNext],
+    ['class C { static async *#gen() {  void \\u0061wait; } }', Context.OptionsNext],
+    //['class C {\n#x\n\n#y\n}', Context.OptionsNext],
+    ['class C { async \\u0023m() {} } }', Context.OptionsNext],
     ['class C { #method() { a() { foo().\\u0023field; } } }', Context.OptionsNext],
     ['class C { #method() { \\u0023field; } }', Context.OptionsNext],
     ['class C {  async \\u0023m() {} }', Context.OptionsNext],
-    ['class Foo { *#m () {} }', Context.OptionsNext],
+    ['var C = class { x = 42  *gen() {} }', Context.OptionsNext],
     ['class Spaces { #  wrongSpaces() { return fail(); } }', Context.OptionsNext],
     ['class C{ #method() { #[m] = 1} }', Context.OptionsNext],
     ['class C{ #method() { #"p" = x } }', Context.OptionsNext],
     ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
+    ['(class C extends Base { async #*a() { } })', Context.OptionsNext],
     ['class C{ #method() { super(); } }', Context.OptionsNext],
     ['class C{ #method() { super(); } }', Context.OptionsNext]
   ]);
@@ -45,9 +53,7 @@ describe('Next - Private methods', () => {
     'static #constructor',
     '#constructor = function() {}',
     '# a = 0',
-    // 'async #a() { }',
-    // 'async *#a() { }',
-    // 'async #*a() { }',
+
     '#0 = 0;',
     '#0;',
     "#'a' = 0;",
@@ -60,23 +66,16 @@ describe('Next - Private methods', () => {
     // 'foo() { delete this.#a }',
     // 'foo() { delete this.x.#a }',
     // 'foo() { delete this.x().#a }',
-
     // 'foo() { delete f.#a }',
     // 'foo() { delete f.x.#a }',
     // 'foo() { delete f.x().#a }',
-
-    // ASI requires a linebreak
     //'#a b',
     //'#a = 0 b',
-
     // ASI requires that the next token is not part of any legal production
     '#a = 0\n *b(){}',
     "#a = 0\n ['b'](){}",
-
     'const { x: x } = this;',
     'var C = class { #x = 1; destructureX() { const { #x: x } = this; } };',
-
-    // Whitespace cases
     'get # m() {}',
     'set # m(_) {}',
     'async * # m() {}',
@@ -87,9 +86,8 @@ describe('Next - Private methods', () => {
     '* # m() {}',
     '# m() {}',
     'static get # m() {}',
-
-    // Misc cases
-
+    'async #*a() { }',
+    //'static #prototype() {}',
     '#x = () => /*{ initializer }*/;',
     '#x = /*{ initializer }*/;',
     '#x = false ? {} : /*{ initializer }*/;',
@@ -134,43 +132,37 @@ describe('Next - Private methods', () => {
   for (const arg of [
     '#a, #b',
     '#a = 0;',
-    //"#a = 0; #b",
-    //   "#a = 0; b",
+    '#a = 0; #b',
+    '#a = 0; b',
     '#a = 0; b(){}',
     '#a = 0; *b(){}',
     "#a = 0; ['b'](){}",
-    // "#a;",
+    '#a;',
     '#a; #b;',
-    // "#a; b;",
+    '#a; b;',
     '#a; b(){}',
     '#a; *b(){}',
     "#a; ['b'](){}",
-
-    // ASI
+    'async #a() { }',
+    'async *#a() { }',
     '#a = 0\n',
     '#a = 0\n #b',
-    //"#a = 0\n b",
+    '#a = 0\n b',
     '#a = 0\n b(){}',
     '#a\n',
     '#a\n #b\n',
-
-    //"#a\n b\n",
+    '#a\n b\n',
     '#a\n b(){}',
     '#a\n *b(){}',
     "#a\n ['b'](){}",
-
-    // ASI edge cases
-    // "#a\n get",
+    '#a\n get',
     '#get\n *a(){}',
-    // "#a\n static",
-
+    '#a\n static',
     '#a = function t() { arguments; }',
     '#a = () => function() { arguments; }',
-
-    // Misc edge cases
     '#yield',
     '#yield = 0',
-    //"#yield\n a",
+    '#yield\n a',
     '#async;',
     '#async = 0;',
     '#async',
@@ -179,10 +171,10 @@ describe('Next - Private methods', () => {
     '#async\n a',
     '#await;',
     '#await = 0;',
-    //"#await\n a",
+    '#await\n a',
     'foo() { this.#m, (() => this)().#m }',
-    'foo() { this.#m, (() => this)().#m }',
-    'foo() { this.#m, (() => this)().#m }',
+    ' #_;',
+    '#\u2118;',
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
@@ -219,6 +211,16 @@ describe('Next - Private methods', () => {
     '{ class A { constructor(arg) { return arg; } } class C extends A { #x() { } constructor(arg) { super(arg); } }  let c1 = new C({}); }',
     'class D extends class { #c() {} } { #d() {} }',
     'class E extends D { #e() {} }',
+    'var C = class { *m() { return 42; } #m() {}; method() { return this.#m(); } }',
+    'var C = class {  *m() { return 42; } static #$; static #_; static _(value) { this.#_ = value; return this.#_; }}',
+    'var C = class { static async *m() { return 42; } static async * #$(value) {  yield * await value; } }',
+    'var C = class {   static async *m() { return 42; } static async * #$(value) { yield * await value; } }',
+    'var C = class { static async *m() { return 42; } static #$; static #_; }',
+    'var C = class { static async m() { return 42; } #℘_; ℘(value) { this.#℘_ = value; return this.#℘; }}',
+    'var C = class { static async m() { return 42; } static * #$(value) { yield * value; }  static * #_(value) {  yield * value; } }',
+    'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
+    'var C = class { var C = class { [obj1] = 42; [obj2] = 43; [obj3] = 44; } }',
+    'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
     `{
       {\n
@@ -362,6 +364,494 @@ describe('Next - Private methods', () => {
         ],
         sourceType: 'script',
         type: 'Program'
+      }
+    ],
+    [
+      `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  key: {
+                    name: 'gen',
+                    type: 'PrivateName'
+                  },
+                  kind: 'method',
+                  static: true,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: true,
+                    body: {
+                      body: [
+                        {
+                          expression: {
+                            argument: {
+                              properties: [
+                                {
+                                  argument: {
+                                    argument: null,
+                                    delegate: false,
+                                    type: 'YieldExpression'
+                                  },
+                                  type: 'SpreadElement'
+                                },
+                                {
+                                  computed: false,
+                                  key: {
+                                    name: 'y',
+                                    type: 'Identifier'
+                                  },
+                                  kind: 'init',
+                                  method: false,
+                                  shorthand: false,
+                                  type: 'Property',
+                                  value: {
+                                    type: 'Literal',
+                                    value: 1
+                                  }
+                                },
+                                {
+                                  argument: {
+                                    argument: {
+                                      argument: null,
+                                      delegate: false,
+                                      type: 'YieldExpression'
+                                    },
+                                    delegate: false,
+                                    type: 'YieldExpression'
+                                  },
+                                  type: 'SpreadElement'
+                                }
+                              ],
+                              type: 'ObjectExpression'
+                            },
+                            delegate: false,
+                            type: 'YieldExpression'
+                          },
+                          type: 'ExpressionStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: true,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'gen',
+                    type: 'Identifier'
+                  },
+                  kind: 'get',
+                  static: true,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            computed: false,
+                            object: {
+                              type: 'ThisExpression'
+                            },
+                            property: {
+                              name: 'gen',
+                              type: 'PrivateName'
+                            },
+                            type: 'MemberExpression'
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'C',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  key: {
+                    name: 'gen',
+                    type: 'PrivateName'
+                  },
+                  kind: 'method',
+                  static: true,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          expression: {
+                            argument: {
+                              elements: [
+                                {
+                                  argument: {
+                                    argument: {
+                                      argument: null,
+                                      delegate: false,
+                                      type: 'YieldExpression'
+                                    },
+                                    delegate: false,
+                                    type: 'YieldExpression'
+                                  },
+                                  type: 'SpreadElement'
+                                }
+                              ],
+                              type: 'ArrayExpression'
+                            },
+                            delegate: false,
+                            type: 'YieldExpression'
+                          },
+                          type: 'ExpressionStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: true,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'gen',
+                    type: 'Identifier'
+                  },
+                  kind: 'get',
+                  static: true,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            computed: false,
+                            object: {
+                              type: 'ThisExpression'
+                            },
+                            property: {
+                              name: 'gen',
+                              type: 'PrivateName'
+                            },
+                            type: 'MemberExpression'
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'C',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  key: {
+                    name: '℘',
+                    type: 'PrivateName'
+                  },
+                  kind: 'get',
+                  static: false,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                },
+                {
+                  computed: false,
+                  key: {
+                    name: '℘',
+                    type: 'PrivateName'
+                  },
+                  kind: 'set',
+                  static: false,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [
+                      {
+                        name: 'x',
+                        type: 'Identifier'
+                      }
+                    ],
+                    type: 'FunctionExpression'
+                  }
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'a',
+                    type: 'Identifier'
+                  },
+                  kind: 'method',
+                  static: false,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            computed: false,
+                            object: {
+                              type: 'ThisExpression'
+                            },
+                            property: {
+                              name: '℘',
+                              type: 'PrivateName'
+                            },
+                            type: 'MemberExpression'
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'b',
+                    type: 'Identifier'
+                  },
+                  kind: 'method',
+                  static: false,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          expression: {
+                            left: {
+                              computed: false,
+                              object: {
+                                type: 'ThisExpression'
+                              },
+                              property: {
+                                name: '℘',
+                                type: 'PrivateName'
+                              },
+                              type: 'MemberExpression'
+                            },
+                            operator: '=',
+                            right: {
+                              name: 'x',
+                              type: 'Identifier'
+                            },
+                            type: 'AssignmentExpression'
+                          },
+                          type: 'ExpressionStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [
+                      {
+                        name: 'value',
+                        type: 'Identifier'
+                      }
+                    ],
+                    type: 'FunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'C',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          },
+          {
+            type: 'EmptyStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class C { #m() { return 42; } get ref() { return this.#m; } }`,
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            decorators: [],
+            id: {
+              type: 'Identifier',
+              name: 'C'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: false,
+                  key: {
+                    type: 'PrivateName',
+                    name: 'm'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ReturnStatement',
+                          argument: {
+                            type: 'Literal',
+                            value: 42
+                          }
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                },
+                {
+                  type: 'MethodDefinition',
+                  kind: 'get',
+                  static: false,
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    type: 'Identifier',
+                    name: 'ref'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ReturnStatement',
+                          argument: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
+                            },
+                            computed: false,
+                            property: {
+                              type: 'PrivateName',
+                              name: 'm'
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
       }
     ],
     [
@@ -3318,6 +3808,232 @@ describe('Next - Private methods', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      `var C = class {
+        ;;;;
+        ;;;;;;;;;;;;;
+        ;;;;
+        static #x(value) {
+          return value / 2;
+        }
+        static #y(value) {
+          return value * 2;
+        }
+        static x() {
+          return this.#x(84);
+        }
+        static y() {
+          return this.#y(43);
+        }
+      } `,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'C',
+                  type: 'Identifier'
+                },
+                init: {
+                  body: {
+                    body: [
+                      {
+                        computed: false,
+                        key: {
+                          name: 'x',
+                          type: 'PrivateName'
+                        },
+                        kind: 'method',
+                        static: true,
+                        type: 'MethodDefinition',
+                        value: {
+                          async: false,
+                          body: {
+                            body: [
+                              {
+                                argument: {
+                                  left: {
+                                    name: 'value',
+                                    type: 'Identifier'
+                                  },
+                                  operator: '/',
+                                  right: {
+                                    type: 'Literal',
+                                    value: 2
+                                  },
+                                  type: 'BinaryExpression'
+                                },
+                                type: 'ReturnStatement'
+                              }
+                            ],
+                            type: 'BlockStatement'
+                          },
+                          generator: false,
+                          id: null,
+                          params: [
+                            {
+                              name: 'value',
+                              type: 'Identifier'
+                            }
+                          ],
+                          type: 'FunctionExpression'
+                        }
+                      },
+                      {
+                        computed: false,
+                        key: {
+                          name: 'y',
+                          type: 'PrivateName'
+                        },
+                        kind: 'method',
+                        static: true,
+                        type: 'MethodDefinition',
+                        value: {
+                          async: false,
+                          body: {
+                            body: [
+                              {
+                                argument: {
+                                  left: {
+                                    name: 'value',
+                                    type: 'Identifier'
+                                  },
+                                  operator: '*',
+                                  right: {
+                                    type: 'Literal',
+                                    value: 2
+                                  },
+                                  type: 'BinaryExpression'
+                                },
+                                type: 'ReturnStatement'
+                              }
+                            ],
+                            type: 'BlockStatement'
+                          },
+                          generator: false,
+                          id: null,
+                          params: [
+                            {
+                              name: 'value',
+                              type: 'Identifier'
+                            }
+                          ],
+                          type: 'FunctionExpression'
+                        }
+                      },
+                      {
+                        computed: false,
+                        decorators: [],
+                        key: {
+                          name: 'x',
+                          type: 'Identifier'
+                        },
+                        kind: 'method',
+                        static: true,
+                        type: 'MethodDefinition',
+                        value: {
+                          async: false,
+                          body: {
+                            body: [
+                              {
+                                argument: {
+                                  arguments: [
+                                    {
+                                      type: 'Literal',
+                                      value: 84
+                                    }
+                                  ],
+                                  callee: {
+                                    computed: false,
+                                    object: {
+                                      type: 'ThisExpression'
+                                    },
+                                    property: {
+                                      name: 'x',
+                                      type: 'PrivateName'
+                                    },
+                                    type: 'MemberExpression'
+                                  },
+                                  type: 'CallExpression'
+                                },
+                                type: 'ReturnStatement'
+                              }
+                            ],
+                            type: 'BlockStatement'
+                          },
+                          generator: false,
+                          id: null,
+                          params: [],
+                          type: 'FunctionExpression'
+                        }
+                      },
+                      {
+                        computed: false,
+                        decorators: [],
+                        key: {
+                          name: 'y',
+                          type: 'Identifier'
+                        },
+                        kind: 'method',
+                        static: true,
+                        type: 'MethodDefinition',
+                        value: {
+                          async: false,
+                          body: {
+                            body: [
+                              {
+                                argument: {
+                                  arguments: [
+                                    {
+                                      type: 'Literal',
+                                      value: 43
+                                    }
+                                  ],
+                                  callee: {
+                                    computed: false,
+                                    object: {
+                                      type: 'ThisExpression'
+                                    },
+                                    property: {
+                                      name: 'y',
+                                      type: 'PrivateName'
+                                    },
+                                    type: 'MemberExpression'
+                                  },
+                                  type: 'CallExpression'
+                                },
+                                type: 'ReturnStatement'
+                              }
+                            ],
+                            type: 'BlockStatement'
+                          },
+                          generator: false,
+                          id: null,
+                          params: [],
+                          type: 'FunctionExpression'
+                        }
+                      }
+                    ],
+                    type: 'ClassBody'
+                  },
+                  decorators: [],
+                  id: null,
+                  superClass: null,
+                  type: 'ClassExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [

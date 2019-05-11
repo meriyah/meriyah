@@ -4365,9 +4365,6 @@ export function parseParenthesizedExpression(parser: ParserState, context: Conte
   } else if (destructible & DestructuringKind.Required) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
-  if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
-    report(parser, Errors.DuplicateProto);
-  }
 
   parser.destructible = destructible;
 
@@ -4821,8 +4818,6 @@ export function parseAsyncArrowOrCallExpression(
     return parseArrowFunctionExpression(parser, context, params as any, /* isAsync */ 1) as any;
   } else if (destructible & DestructuringKind.Required) {
     report(parser, Errors.InvalidShorthandPropInit);
-  } else if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
-    report(parser, Errors.DuplicateProto);
   }
 
   return {
@@ -5167,7 +5162,6 @@ function parseClassElementList(
   } else if (token === Token.Multiply) {
     kind |= PropertyKind.Generator;
     nextToken(parser, context);
-    if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
   } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
     return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
   } else if (context & Context.OptionsNext && parser.token === Token.RightBrace) {
@@ -5179,6 +5173,11 @@ function parseClassElementList(
   if (kind & PropertyKind.Computed) {
     key = parseComputedPropertyName(parser, context);
   } else if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.Getter | PropertyKind.Setter)) {
+    if (kind & PropertyKind.Generator) {
+      if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
+        return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
+      } else if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
+    }
     if (parser.token & Token.IsIdentifier) {
       key = parseIdentifier(parser, context);
     } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
@@ -5287,6 +5286,7 @@ export function parseFieldDefinition(
 ): any {
   let value: ESTree.Expression | null = null;
   if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
+  // if (parser.tokenValue === 'prototype') report(parser, Errors.Unexpected); // static ptype
   if (parser.token === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
@@ -5320,7 +5320,7 @@ function parsePrivateFieldsOrMethod(
   state: PropertyKind
 ): any {
   let value: ESTree.Expression | null = null;
-  if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
+
   const key = parsePrivateName(parser, context);
 
   if (parser.token === Token.LeftParen) {
@@ -5337,7 +5337,7 @@ function parsePrivateFieldsOrMethod(
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
       key,
-      value: parseMethodDefinition(parser, context, PropertyKind.None)
+      value: parseMethodDefinition(parser, context, state)
     };
   }
 
