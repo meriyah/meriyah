@@ -141,7 +141,8 @@ export const enum Errors {
   ForLoopInvalidLHS,
   AsyncFunctionInSingleStatementContext,
   InvalidTernaryYield,
-  InvalidArrowPostfix
+  InvalidArrowPostfix,
+  InvalidObjLitKeyStar
 }
 
 /*@internal*/
@@ -296,7 +297,8 @@ export const errorMessages: {
   [Errors.StrictDelete]: 'Calling delete on expression not allowed in strict mode',
   [Errors.InvalidPatternTail]: 'Pattern can not have a tail',
   [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary',
-  [Errors.InvalidArrowPostfix]: 'An arrow function can not have a postfix update operator'
+  [Errors.InvalidArrowPostfix]: 'An arrow function can not have a postfix update operator',
+  [Errors.InvalidObjLitKeyStar]: 'Invalid object literal key character after generator star'
 };
 
 export class ParseError extends SyntaxError {

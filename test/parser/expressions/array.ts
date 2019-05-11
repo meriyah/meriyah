@@ -436,6 +436,7 @@ describe('Expressions - Array', () => {
     ['[x] += 0', Context.None],
     ['[, x, ...y,] = 0', Context.None],
     ['[...x, ...y] = 0', Context.None],
+    ['({[a / b = c]: {}})', Context.None],
     ['[...x, y] = 0', Context.None],
     ['[...x,,] = 0', Context.None],
     ['[0,{a=0}] = 0', Context.None],

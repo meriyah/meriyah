@@ -38,7 +38,7 @@ export const enum Context {
   InSwitchOrIteration = InSwitch | InIteration
 }
 
-export const enum Kind {
+export const enum PropertyKind {
   None        = 0,
   Method      = 1 << 0,
   Computed    = 1 << 1,
@@ -52,7 +52,7 @@ export const enum Kind {
   Setter      = 1 << 9,
   Extends     = 1 << 10,
   Literal     = 1 << 11,
-  Private     = 1 << 12,
+  PrivatField = 1 << 12,
   GetSet = Getter | Setter
 }
 

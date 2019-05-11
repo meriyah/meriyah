@@ -6,7 +6,7 @@ import { scanTemplateTail } from './lexer/template';
 import {
   Context,
   ParserState,
-  Kind,
+  PropertyKind,
   BindingOrigin,
   consumeOpt,
   consume,
@@ -2102,6 +2102,8 @@ export function parseBinaryExpression(
     } as ESTree.BinaryExpression | ESTree.LogicalExpression;
   }
 
+  if (parser.token === Token.Assign) report(parser, Errors.InvalidLHS);
+
   return left;
 }
 
@@ -3432,9 +3434,13 @@ function parseRestOrSpreadElement(
  * @param context Context masks
  * @param kind
  */
-export function parseMethodDefinition(parser: ParserState, context: Context, kind: Kind): ESTree.FunctionExpression {
+export function parseMethodDefinition(
+  parser: ParserState,
+  context: Context,
+  kind: PropertyKind
+): ESTree.FunctionExpression {
   const kindFlags =
-    (kind & Kind.Constructor) === 0 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
+    (kind & PropertyKind.Constructor) === 0 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
 
   context =
     ((context | kindFlags) ^ kindFlags) |
@@ -3451,8 +3457,8 @@ export function parseMethodDefinition(parser: ParserState, context: Context, kin
       BindingOrigin.None,
       void 0
     ),
-    async: (kind & Kind.Async) > 0,
-    generator: (kind & Kind.Generator) > 0,
+    async: (kind & PropertyKind.Async) > 0,
+    generator: (kind & PropertyKind.Generator) > 0,
     id: null
   } as any;
 }
@@ -3583,7 +3589,7 @@ export function parseObjectLiteralOrPattern(
     if (parser.token === Token.Ellipsis) {
       properties.push(parseRestOrSpreadElement(parser, context, Token.RightBrace, type, /* isAsync */ 0));
     } else {
-      let state = Kind.None;
+      let state = PropertyKind.None;
       let key: ESTree.Expression | null = null;
       let value: any;
 
@@ -3593,7 +3599,7 @@ export function parseObjectLiteralOrPattern(
         key = parseIdentifier(parser, context);
 
         if (parser.token === Token.Comma || parser.token === Token.RightBrace || parser.token === Token.Assign) {
-          state |= Kind.Shorthand;
+          state |= PropertyKind.Shorthand;
 
           if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
             if (context & Context.Strict) destructible |= DestructuringKind.NotDestructible;
@@ -3725,31 +3731,31 @@ export function parseObjectLiteralOrPattern(
         } else if (parser.token === Token.LeftBracket) {
           destructible |= DestructuringKind.NotDestructible;
 
-          if (token === Token.AsyncKeyword) state |= Kind.Async;
-          if (token === Token.GetKeyword) state |= Kind.Getter;
-          else if (token === Token.SetKeyword) state |= Kind.Setter;
-          else state |= Kind.Method;
+          if (token === Token.AsyncKeyword) state |= PropertyKind.Async;
+          if (token === Token.GetKeyword) state |= PropertyKind.Getter;
+          else if (token === Token.SetKeyword) state |= PropertyKind.Setter;
+          else state |= PropertyKind.Method;
 
           key = parseComputedPropertyName(parser, context);
           destructible |= parser.assignable;
-          state |= Kind.Computed;
+          state |= PropertyKind.Computed;
           value = parseMethodDefinition(parser, context, state);
         } else if (parser.token & (Token.IsIdentifier | Token.Keyword)) {
           destructible |= DestructuringKind.NotDestructible;
           if (token === Token.AsyncKeyword) {
             if (parser.flags & Flags.NewLine) report(parser, Errors.Unexpected);
-            state |= Kind.Async;
+            state |= PropertyKind.Async;
           }
           key = parseIdentifier(parser, context);
           if (token === Token.EscapedReserved) report(parser, Errors.Unexpected);
 
-          if (token === Token.GetKeyword) state |= Kind.Getter;
-          else if (token === Token.SetKeyword) state |= Kind.Setter;
-          else state |= Kind.Method;
+          if (token === Token.GetKeyword) state |= PropertyKind.Getter;
+          else if (token === Token.SetKeyword) state |= PropertyKind.Setter;
+          else state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
         } else if (parser.token === Token.LeftParen) {
           destructible |= DestructuringKind.NotDestructible;
-          state |= Kind.Method;
+          state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.NotDestructible;
@@ -3758,15 +3764,15 @@ export function parseObjectLiteralOrPattern(
             report(parser, Errors.InvalidGeneratorGetter);
           }
           nextToken(parser, context);
-          state |= Kind.Generator | Kind.Method;
-          if (token === Token.AsyncKeyword) state |= Kind.Async;
+          state |= PropertyKind.Generator | PropertyKind.Method;
+          if (token === Token.AsyncKeyword) state |= PropertyKind.Async;
 
           if (parser.token & Token.IsIdentifier) {
             key = parseIdentifier(parser, context);
           } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
             key = parseLiteral(parser, context);
           } else if (parser.token === Token.LeftBracket) {
-            state |= Kind.Computed;
+            state |= PropertyKind.Computed;
             key = parseComputedPropertyName(parser, context);
             destructible |= parser.assignable;
           } else {
@@ -3774,11 +3780,11 @@ export function parseObjectLiteralOrPattern(
           }
           value = parseMethodDefinition(parser, context, state);
         } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
-          if (token === Token.AsyncKeyword) state |= Kind.Async;
+          if (token === Token.AsyncKeyword) state |= PropertyKind.Async;
 
-          if (token === Token.GetKeyword) state |= Kind.Getter;
-          else if (token === Token.SetKeyword) state |= Kind.Setter;
-          else state |= Kind.Method;
+          if (token === Token.GetKeyword) state |= PropertyKind.Getter;
+          else if (token === Token.SetKeyword) state |= PropertyKind.Setter;
+          else state |= PropertyKind.Method;
           destructible |= DestructuringKind.NotDestructible;
           key = parseLiteral(parser, context);
           value = parseMethodDefinition(parser, context, state);
@@ -3905,7 +3911,7 @@ export function parseObjectLiteralOrPattern(
             }
           }
         } else if (parser.token === Token.LeftParen) {
-          state |= Kind.Method;
+          state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
           destructible = parser.assignable | DestructuringKind.NotDestructible;
         } else {
@@ -3914,7 +3920,7 @@ export function parseObjectLiteralOrPattern(
       } else if (parser.token === Token.LeftBracket) {
         key = parseComputedPropertyName(parser, context);
 
-        state |= Kind.Computed;
+        state |= PropertyKind.Computed;
 
         if (parser.token === Token.Colon) {
           nextToken(parser, context | Context.AllowRegExp); // skip ':'
@@ -3976,20 +3982,20 @@ export function parseObjectLiteralOrPattern(
             report(parser, Errors.InvalidComputedPropName);
           }
 
-          state |= Kind.Method;
+          state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
           destructible |= parser.assignable | DestructuringKind.NotDestructible;
         }
       } else if (parser.token === Token.Multiply) {
         consume(parser, context | Context.AllowRegExp, Token.Multiply);
-        state |= Kind.Generator;
+        state |= PropertyKind.Generator;
 
         if (parser.token & Token.IsIdentifier) {
           const { token, line, index } = parser;
 
           key = parseIdentifier(parser, context);
 
-          state |= Kind.Method;
+          state |= PropertyKind.Method;
 
           if (parser.token === Token.LeftParen) {
             destructible |= DestructuringKind.NotDestructible;
@@ -4012,11 +4018,11 @@ export function parseObjectLiteralOrPattern(
           destructible |= DestructuringKind.NotDestructible;
           key = parseLiteral(parser, context);
 
-          state |= Kind.Method;
+          state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
         } else if (parser.token === Token.LeftBracket) {
           destructible |= DestructuringKind.NotDestructible;
-          state |= Kind.Computed;
+          state |= PropertyKind.Computed;
           key = parseComputedPropertyName(parser, context);
           state |= parser.assignable;
           value = parseMethodDefinition(parser, context, state);
@@ -4037,10 +4043,10 @@ export function parseObjectLiteralOrPattern(
         type: 'Property',
         key: key as ESTree.Expression,
         value,
-        kind: !(state & Kind.GetSet) ? 'init' : state & Kind.Setter ? 'set' : 'get',
-        computed: (state & Kind.Computed) > 0,
-        method: (state & Kind.Method) > 0,
-        shorthand: (state & Kind.Shorthand) > 0
+        kind: !(state & PropertyKind.GetSet) ? 'init' : state & PropertyKind.Setter ? 'set' : 'get',
+        computed: (state & PropertyKind.Computed) > 0,
+        method: (state & PropertyKind.Method) > 0,
+        shorthand: (state & PropertyKind.Shorthand) > 0
       });
     }
 
@@ -4079,7 +4085,12 @@ export function parseObjectLiteralOrPattern(
  * @param context context masks
  * @param kind
  */
-export function parseMethodFormals(parser: ParserState, context: Context, kind: Kind, type: BindingType): any[] {
+export function parseMethodFormals(
+  parser: ParserState,
+  context: Context,
+  kind: PropertyKind,
+  type: BindingType
+): any[] {
   // FormalParameter[Yield,GeneratorParameter] :
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
@@ -4088,16 +4099,16 @@ export function parseMethodFormals(parser: ParserState, context: Context, kind: 
   let setterArgs = 0;
 
   if (parser.token === Token.RightParen) {
-    if (kind & Kind.Setter) {
+    if (kind & PropertyKind.Setter) {
       report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
     }
     nextToken(parser, context);
     return params;
   }
 
-  if (kind & Kind.Getter) {
+  if (kind & PropertyKind.Getter) {
     report(parser, Errors.AccessorWrongArgs, 'Getter', 'no', 's');
-  } else if (kind & Kind.Setter && parser.token === Token.Ellipsis) {
+  } else if (kind & PropertyKind.Setter && parser.token === Token.Ellipsis) {
     report(parser, Errors.BadSetterRestParameter);
   } else {
     let isComplex: 0 | 1 = 0;
@@ -4152,7 +4163,7 @@ export function parseMethodFormals(parser: ParserState, context: Context, kind: 
 
     if (isComplex) parser.flags |= Flags.SimpleParameterList;
 
-    if (kind & Kind.Setter && setterArgs !== 1) {
+    if (kind & PropertyKind.Setter && setterArgs !== 1) {
       report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
     }
   }
@@ -5070,7 +5081,7 @@ export function parseClassBody(
       }
 
       if (parser.token === Token.PrivateField) {
-        body.push(parsePrivateFieldsOrMethod(parser, context, decorators, Kind.None));
+        body.push(parsePrivateFieldsOrMethod(parser, context, decorators, PropertyKind.None));
         consumeOpt(parser, context, Token.Semicolon);
         continue;
       }
@@ -5104,7 +5115,7 @@ function parseClassElementList(
   decorators: ESTree.Decorator[],
   isStatic: 0 | 1
 ): ESTree.MethodDefinition {
-  let state: Kind = isStatic ? Kind.Static : Kind.None;
+  let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
   let key: ESTree.Expression | null = null;
 
   const { token } = parser;
@@ -5121,107 +5132,130 @@ function parseClassElementList(
 
       case Token.AsyncKeyword:
         if (parser.token !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
-          state |= Kind.Async | (consumeOpt(parser, context, Token.Multiply) ? Kind.Generator : 0);
+          kind |= PropertyKind.Async | (consumeOpt(parser, context, Token.Multiply) ? PropertyKind.Generator : 0);
+          if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
+            return parseFieldDefinition(parser, context, key, kind, decorators);
+          }
+          if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
         }
         break;
 
       case Token.GetKeyword:
         if (parser.token !== Token.LeftParen) {
-          state |= Kind.Getter;
+          kind |= PropertyKind.Getter;
+          if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
+            return parseFieldDefinition(parser, context, key, kind, decorators);
+          }
         }
         break;
 
       case Token.SetKeyword:
         if (parser.token !== Token.LeftParen) {
-          state |= Kind.Setter;
+          kind |= PropertyKind.Setter;
+          if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
+            return parseFieldDefinition(parser, context, key, kind, decorators);
+          }
         }
         break;
 
       default: // ignore
     }
   } else if (token === Token.LeftBracket) {
-    state = Kind.Computed;
+    kind = PropertyKind.Computed;
   } else if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     key = parseLiteral(parser, context);
   } else if (token === Token.Multiply) {
-    state |= Kind.Generator;
+    kind |= PropertyKind.Generator;
     nextToken(parser, context);
-  } else if (parser.token === Token.PrivateField) {
-    state |= Kind.Private;
+    if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
+  } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
+    return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
+  } else if (context & Context.OptionsNext && parser.token === Token.RightBrace) {
+    return parseFieldDefinition(parser, context, key, kind, decorators);
   } else {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 
-  if (context & Context.OptionsNext && state & Kind.Private)
-    return parsePrivateFieldsOrMethod(parser, context, decorators, state);
-  if (state & Kind.Computed) {
+  if (kind & PropertyKind.Computed) {
     key = parseComputedPropertyName(parser, context);
-  } else if (state & (Kind.Generator | Kind.Async | Kind.Getter | Kind.Setter)) {
+  } else if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.Getter | PropertyKind.Setter)) {
     if (parser.token & Token.IsIdentifier) {
       key = parseIdentifier(parser, context);
     } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
       key = parseLiteral(parser, context);
     } else if (parser.token === Token.LeftBracket) {
-      state |= Kind.Computed;
+      kind |= PropertyKind.Computed;
       key = parseComputedPropertyName(parser, context);
     } else if (parser.token === Token.PrivateField) {
-      return parsePrivateFieldsOrMethod(parser, context, decorators, state);
-    } else {
+      return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
+    } else if (parser.token === Token.Assign) {
+      return parseFieldDefinition(parser, context, key, kind, decorators);
+    } else if ((context & Context.OptionsNext) === 0 && parser.token === Token.RightBrace) {
       report(parser, Errors.NoIdentOrDynamicName);
     }
   }
 
   if (parser.tokenValue === 'constructor') {
-    if ((state & Kind.Static) === 0) {
-      if ((state & Kind.Computed) === 0 && state & (Kind.Getter | Kind.Setter | Kind.Async | Kind.Generator))
+    if ((kind & PropertyKind.Static) === 0) {
+      if (
+        (kind & PropertyKind.Computed) === 0 &&
+        kind & (PropertyKind.Getter | PropertyKind.Setter | PropertyKind.Async | PropertyKind.Generator)
+      )
         report(parser, Errors.InvalidConstructor, 'accessor');
-      if ((context & Context.SuperCall) === 0 && (state & Kind.Computed) === 0) {
+      if ((context & Context.SuperCall) === 0 && (kind & PropertyKind.Computed) === 0) {
         if (parser.flags & Flags.HasConstructor) report(parser, Errors.DuplicateConstructor);
         else parser.flags |= Flags.HasConstructor;
       }
     }
-    state |= Kind.Constructor;
+    kind |= PropertyKind.Constructor;
   }
 
   if (
-    (state & Kind.Computed) === 0 &&
-    state & (Kind.Static | Kind.Generator | Kind.Async | Kind.GetSet) &&
+    (kind & PropertyKind.Computed) === 0 &&
+    kind & (PropertyKind.Static | PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet) &&
     parser.tokenValue === 'prototype'
   ) {
     report(parser, Errors.StaticPrototype);
   }
 
+  // Note: This is temporary until this reach Stage 4
+  if (context & Context.OptionsNext && parser.token !== Token.LeftParen) {
+    return parseFieldDefinition(parser, context, key, kind, decorators);
+  }
+
+  const value = parseMethodDefinition(parser, context, kind);
+
   return context & Context.OptionsNext
     ? ({
         type: 'MethodDefinition',
         kind:
-          (state & Kind.Static) === 0 && state & Kind.Constructor
+          (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
             ? 'constructor'
-            : state & Kind.Getter
+            : kind & PropertyKind.Getter
             ? 'get'
-            : state & Kind.Setter
+            : kind & PropertyKind.Setter
             ? 'set'
             : 'method',
-        static: (state & Kind.Static) > 0,
-        computed: (state & Kind.Computed) > 0,
+        static: (kind & PropertyKind.Static) > 0,
+        computed: (kind & PropertyKind.Computed) > 0,
         key,
         decorators,
-        value: parseMethodDefinition(parser, context, state)
+        value
       } as any)
     : {
         type: 'MethodDefinition',
         kind:
-          (state & Kind.Static) === 0 && state & Kind.Constructor
+          (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
             ? 'constructor'
-            : state & Kind.Getter
+            : kind & PropertyKind.Getter
             ? 'get'
-            : state & Kind.Setter
+            : kind & PropertyKind.Setter
             ? 'set'
             : 'method',
-        static: (state & Kind.Static) > 0,
-        computed: (state & Kind.Computed) > 0,
+        static: (kind & PropertyKind.Static) > 0,
+        computed: (kind & PropertyKind.Computed) > 0,
         key,
-        value: parseMethodDefinition(parser, context, state)
+        value
       };
 }
 
@@ -5244,6 +5278,34 @@ function parsePrivateName(parser: ParserState, context: Context): any {
   };
 }
 
+export function parseFieldDefinition(
+  parser: ParserState,
+  context: Context,
+  key: any,
+  state: PropertyKind,
+  decorators: ESTree.Decorator[] | null
+): any {
+  let value: ESTree.Expression | null = null;
+  if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
+  if (parser.token === Token.Assign) {
+    nextToken(parser, context | Context.AllowRegExp);
+    if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+      report(parser, Errors.StrictEvalArguments);
+    value = parseExpression(parser, context, /* assignable */ 1);
+  }
+  consumeOpt(parser, context, Token.Semicolon);
+  consumeOpt(parser, context, Token.Comma);
+
+  return {
+    type: 'FieldDefinition',
+    key,
+    value,
+    static: (state & PropertyKind.Static) > 0,
+    computed: (state & PropertyKind.Computed) > 0,
+    decorators
+  };
+}
+
 /**
  * Parses private fields or method definition
  * @param parser Parser object
@@ -5255,27 +5317,27 @@ function parsePrivateFieldsOrMethod(
   parser: ParserState,
   context: Context,
   decorators: ESTree.Decorator[],
-  state: Kind
+  state: PropertyKind
 ): any {
   let value: ESTree.Expression | null = null;
-  if (state & Kind.Generator) report(parser, Errors.Unexpected);
+  if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
   const key = parsePrivateName(parser, context);
 
   if (parser.token === Token.LeftParen) {
     return {
       type: 'MethodDefinition',
       kind:
-        (state & Kind.Static) === 0 && state & Kind.Constructor
+        (state & PropertyKind.Static) === 0 && state & PropertyKind.Constructor
           ? 'constructor'
-          : state & Kind.Getter
+          : state & PropertyKind.Getter
           ? 'get'
-          : state & Kind.Setter
+          : state & PropertyKind.Setter
           ? 'set'
           : 'method',
-      static: (state & Kind.Static) > 0,
-      computed: (state & Kind.Computed) > 0,
+      static: (state & PropertyKind.Static) > 0,
+      computed: (state & PropertyKind.Computed) > 0,
       key,
-      value: parseMethodDefinition(parser, context, Kind.None)
+      value: parseMethodDefinition(parser, context, PropertyKind.None)
     };
   }
 
@@ -5292,8 +5354,8 @@ function parsePrivateFieldsOrMethod(
     type: 'FieldDefinition',
     key,
     value,
-    static: (state & Kind.Static) > 0,
-    computed: (state & Kind.Computed) > 0,
+    static: (state & PropertyKind.Static) > 0,
+    computed: (state & PropertyKind.Computed) > 0,
     decorators
   };
 }

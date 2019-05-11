@@ -4,7 +4,7 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Next - Private methods', () => {
-  fail('Declarations - Break', [
+  fail('Private methods (fail)', [
     ['class A { #a }', Context.OptionsWebCompat],
     ['class A { #a }', Context.None],
     ['a = { #ab() {} }', Context.OptionsNext],
@@ -34,10 +34,10 @@ describe('Next - Private methods', () => {
     '#a =',
     '#*a = 0',
     '#*a',
-    '#get a',
-    '#yield a',
-    '#async a = 0',
-    '#async a',
+    //'#get a',
+    //'#yield a',
+    //'#async a = 0',
+    //'#async a',
     // "#a; #a",
     // "#a = 1; #a",
     // "#a; #a = 1;",
@@ -66,8 +66,8 @@ describe('Next - Private methods', () => {
     // 'foo() { delete f.x().#a }',
 
     // ASI requires a linebreak
-    '#a b',
-    '#a = 0 b',
+    //'#a b',
+    //'#a = 0 b',
 
     // ASI requires that the next token is not part of any legal production
     '#a = 0\n *b(){}',
@@ -176,11 +176,10 @@ describe('Next - Private methods', () => {
     '#async',
     '#async = 0',
     '#async\n a(){}', // a field named async, and a method named a.
-    //"#async\n a",
+    '#async\n a',
     '#await;',
     '#await = 0;',
     //"#await\n a",
-
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
@@ -213,7 +212,41 @@ describe('Next - Private methods', () => {
       });
     });
   }
-
+  for (const arg of [
+    '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
+    '{ class A { #a() { class C extends A { #c() { } } new C; } } new A; }',
+    '{ const C = class { #a() { } } }',
+    '{ class A { constructor(arg) { return arg; } } class C extends A { #x() { } constructor(arg) { super(arg); } }  let c1 = new C({}); }',
+    'class D extends class { #c() {} } { #d() {} }',
+    'class E extends D { #e() {} }',
+    '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
+    `{
+      {\n
+        class A {\n
+          #a() { return 1; }\n
+        }\n
+      \n
+        new A;\n
+      }\n
+      {\n
+        class D {\n
+          #d() {}\n
+        }\n
+      \n
+        class E extends D {\n
+          #e() {}\n
+        }\n
+      \n
+        new D;\n
+        new E;\n
+      }\n}`
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
+      });
+    });
+  }
   pass('Next - Decorators (pass)', [
     [
       `class A { #key }`,
