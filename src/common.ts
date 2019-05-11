@@ -35,6 +35,7 @@ export const enum Context {
   AllowNewTarget        = 1 << 26,
   DisallowInContext     = 1 << 27,
   InDecoratorContext    = 1 << 28,
+  InClass               = 1 << 29,
   InSwitchOrIteration = InSwitch | InIteration
 }
 
@@ -304,4 +305,14 @@ export function validateArrowBlockBody(parser: ParserState): void {
   }
   if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0 ) report(parser, Errors.InvalidArrowPostfix);
   if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp) report(parser, Errors.InvalidArrowPostfix);
+}
+
+/**
+ * Checks if the property has any private field key
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ */
+export function isPropertyWithPrivateFieldKey(expr: any): boolean {
+  return !expr.property ? false : expr.property.type === 'PrivateName';
 }

@@ -142,7 +142,8 @@ export const enum Errors {
   AsyncFunctionInSingleStatementContext,
   InvalidTernaryYield,
   InvalidArrowPostfix,
-  InvalidObjLitKeyStar
+  InvalidObjLitKeyStar,
+  DeletePrivateField
 }
 
 /*@internal*/
@@ -298,7 +299,8 @@ export const errorMessages: {
   [Errors.InvalidPatternTail]: 'Pattern can not have a tail',
   [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary',
   [Errors.InvalidArrowPostfix]: 'An arrow function can not have a postfix update operator',
-  [Errors.InvalidObjLitKeyStar]: 'Invalid object literal key character after generator star'
+  [Errors.InvalidObjLitKeyStar]: 'Invalid object literal key character after generator star',
+  [Errors.DeletePrivateField]: 'Private fields can not be deleted'
 };
 
 export class ParseError extends SyntaxError {

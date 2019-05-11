@@ -14,7 +14,9 @@ describe('Next - Private methods', () => {
     ['var o = { #m() {} };', Context.OptionsNext],
     ['var o = { async #m() {} };', Context.OptionsNext],
     ['var o = { *#m() {} };', Context.OptionsNext],
-    // ['class C{ #method() { super.#x(); } }', Context.OptionsNext],
+    //['class C { #x = true ? {} : arguments; }', Context.OptionsNext],
+    ['class C { static #x = super(); }', Context.OptionsNext],
+    ['class C{ #method() { super.#x(); } }', Context.OptionsNext],
     ['class C { async \\u0023m() {} } }', Context.OptionsNext],
     ['class C { static async *#gen() { var await; } }', Context.OptionsNext],
     ['class C { static async *#gen() { void await; } }', Context.OptionsNext],
@@ -63,12 +65,12 @@ describe('Next - Private methods', () => {
     '#[a]',
     '#[a] = 1',
     '#a = arguments',
-    // 'foo() { delete this.#a }',
-    // 'foo() { delete this.x.#a }',
-    // 'foo() { delete this.x().#a }',
-    // 'foo() { delete f.#a }',
-    // 'foo() { delete f.x.#a }',
-    // 'foo() { delete f.x().#a }',
+    'foo() { delete this.#a }',
+    'foo() { delete this.x.#a }',
+    'foo() { delete this.x().#a }',
+    'foo() { delete f.#a }',
+    'foo() { delete f.x.#a }',
+    'foo() { delete f.x().#a }',
     //'#a b',
     //'#a = 0 b',
     // ASI requires that the next token is not part of any legal production
@@ -268,6 +270,67 @@ describe('Next - Private methods', () => {
                   static: false,
                   type: 'FieldDefinition',
                   value: null
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class A { static async #_(value) { return await value;} }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  key: {
+                    name: '_',
+                    type: 'PrivateName'
+                  },
+                  kind: 'method',
+                  static: true,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: true,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            argument: {
+                              name: 'value',
+                              type: 'Identifier'
+                            },
+                            type: 'AwaitExpression'
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [
+                      {
+                        name: 'value',
+                        type: 'Identifier'
+                      }
+                    ],
+                    type: 'FunctionExpression'
+                  }
                 }
               ],
               type: 'ClassBody'

@@ -21,7 +21,8 @@ import {
   isStrictReservedWord,
   optionalBit,
   consumeSemicolon,
-  validateArrowBlockBody
+  validateArrowBlockBody,
+  isPropertyWithPrivateFieldKey
 } from './common';
 
 /**
@@ -2130,8 +2131,12 @@ export function parseUnaryExpression(parser: ParserState, context: Context): EST
   nextToken(parser, context | Context.AllowRegExp);
   const arg = parseLeftHandSideExpression(parser, context, /* assignable*/ 0);
   if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
-  if (context & Context.Strict && unaryOperator === Token.DeleteKeyword && arg.type === 'Identifier') {
-    report(parser, Errors.StrictDelete);
+  if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
+    if (arg.type === 'Identifier') {
+      report(parser, Errors.StrictDelete);
+    } else if (isPropertyWithPrivateFieldKey(arg)) {
+      report(parser, Errors.DeletePrivateField);
+    }
   }
 
   parser.assignable = AssignmentKind.NotAssignable;
@@ -2290,6 +2295,7 @@ export function parseFunctionBody(
  */
 export function parseSuperExpression(parser: ParserState, context: Context): ESTree.Super {
   nextToken(parser, context);
+  if (context & Context.InClass) report(parser, Errors.UnexpectedToken, 'super');
   switch (parser.token) {
     case Token.LeftParen: {
       // The super property has to be within a class constructor
@@ -5291,7 +5297,7 @@ export function parseFieldDefinition(
     nextToken(parser, context | Context.AllowRegExp);
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       report(parser, Errors.StrictEvalArguments);
-    value = parseExpression(parser, context, /* assignable */ 1);
+    value = parseExpression(parser, context | Context.InClass, /* assignable */ 1);
   }
   consumeOpt(parser, context, Token.Semicolon);
   consumeOpt(parser, context, Token.Comma);
@@ -5337,7 +5343,7 @@ function parsePrivateFieldsOrMethod(
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
       key,
-      value: parseMethodDefinition(parser, context, state)
+      value: parseMethodDefinition(parser, context | Context.InClass, state)
     };
   }
 
@@ -5345,7 +5351,7 @@ function parsePrivateFieldsOrMethod(
     nextToken(parser, context | Context.AllowRegExp);
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       report(parser, Errors.StrictEvalArguments);
-    value = parseExpression(parser, context, /* assignable */ 1);
+    value = parseExpression(parser, context | Context.InClass, /* assignable */ 1);
   }
 
   consumeOpt(parser, context, Token.Comma);

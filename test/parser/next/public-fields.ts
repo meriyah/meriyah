@@ -4,6 +4,16 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Next - Public fields', () => {
+  fail('Public fields (fail)', [
+    ['class A { "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { x = typeof super(); }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { static "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
+    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext]
+  ]);
+
   for (const arg of [
     'static a : 0',
     'static a =',
@@ -26,8 +36,6 @@ describe('Next - Public fields', () => {
     //  "static a b",
     //  "static a = 0 b",
     'static c = [1] = [c]',
-
-    // ASI requires that the next token is not part of any legal production
     'static a = 0\n *b(){}',
     "static a = 0\n ['b'](){}",
     'a : 0',
@@ -72,15 +80,11 @@ describe('Next - Public fields', () => {
     "['a']; b(){}",
     "['a']; *b(){}",
     "['a']; ['b'](){}",
-
     '0 = 0;',
     '0;',
     "'a' = 0;",
     "'a';",
-
     'c = [c] = c',
-
-    // ASI
     'a = 0\n',
     'a = 0\n b',
     'a = 0\n b(){}',
@@ -97,16 +101,11 @@ describe('Next - Public fields', () => {
     "['a']\n b(){}",
     "['a']\n *b(){}",
     "['a']\n ['b'](){}",
-
-    // ASI edge cases
     'a\n get',
     'get\n *a(){}',
     'a\n static',
-
     'a = function t() { arguments; }',
     'a = () => function() { arguments; }',
-
-    // Misc edge cases
     'async',
     'async;',
     'async = await',
@@ -117,7 +116,7 @@ describe('Next - Public fields', () => {
     'async = 0;',
     'async',
     'async = 0',
-    'async\n a(){}', // a field named async, and a method named a.
+    'async\n a(){}',
     'async\n a',
     'await;',
     'await = 0;',
@@ -130,6 +129,7 @@ describe('Next - Public fields', () => {
       });
     });
   }
+
   pass('Next - Public fields (pass)', [
     [
       `class A { a = 0; }`,
@@ -169,7 +169,69 @@ describe('Next - Public fields', () => {
         type: 'Program'
       }
     ],
-    //[`['a'] = 0; b`, Context.OptionsNext, {}],
+    [
+      `class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: true,
+                  decorators: [],
+                  key: {
+                    name: 'x',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 42
+                  }
+                },
+                {
+                  computed: true,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 10
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 'meep'
+                  }
+                },
+                {
+                  computed: true,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'not initialized'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: null
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       `class A { ['a'] = 0; b }`,
       Context.OptionsNext,
@@ -219,23 +281,80 @@ describe('Next - Public fields', () => {
         type: 'Program'
       }
     ],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    // [`class A { foo }`, Context.OptionsNext, {}],
-    // [`class A { foo }`, Context.OptionsNext, {}],
-    // [`class A { foo }`, Context.OptionsNext, {}],
-    // [`class A { foo }`, Context.OptionsNext, {}],
-    //[`class A { foo }`, Context.OptionsNext, {}],
-    // [`class A { foo }`, Context.OptionsNext, {}],
-
+    [
+      `class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'a'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: null
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'b'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: null
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'c'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 39
+                  }
+                },
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'd'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 42
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       `class A { foo }`,
       Context.OptionsNext,
