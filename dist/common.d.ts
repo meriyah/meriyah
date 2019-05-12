@@ -29,9 +29,10 @@ export declare const enum Context {
     AllowNewTarget = 67108864,
     DisallowInContext = 134217728,
     InDecoratorContext = 268435456,
+    InClass = 536870912,
     InSwitchOrIteration = 135168
 }
-export declare const enum Kind {
+export declare const enum PropertyKind {
     None = 0,
     Method = 1,
     Computed = 2,
@@ -45,7 +46,7 @@ export declare const enum Kind {
     Setter = 512,
     Extends = 1024,
     Literal = 2048,
-    Private = 4096,
+    PrivatField = 4096,
     GetSet = 768
 }
 export declare const enum BindingType {
@@ -123,4 +124,5 @@ export declare function reinterpretToPattern(state: ParserState, node: any): voi
 export declare function validateIdentifier(parser: ParserState, context: Context, type: BindingType, token: Token): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
 export declare function validateArrowBlockBody(parser: ParserState): void;
+export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 //# sourceMappingURL=common.d.ts.map
