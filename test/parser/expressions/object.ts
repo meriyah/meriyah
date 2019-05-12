@@ -51,7 +51,7 @@ describe('Expressions - Object', () => {
     'if ({k: 1, x={y=2}={}}) {}',
     'if (false) {} else if (true) { ({x=1}) }',
     "switch ('c') { case 'c': ({x=1}); }",
-    // 'for ({x=1}; 1;) {1}',
+    'for ({x=1}; 1;) {1}',
     '({ \\u0061sync* m(){}});',
     'for ({x={y=2}}; 1;) {1}',
     'for (var x = 0; x < 2; x++) { ({x=1, y=2}) }',
@@ -104,11 +104,18 @@ describe('Expressions - Object', () => {
     '{ ...[]}',
     '{ ...async function() { }}',
     '{ ...async () => { }}',
-    '{ ...new Foo()}'
+    '{ ...new Foo()}',
+    '{[a]: {...a}}'
   ]) {
     it(`'use strict'; x = ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = ${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`(${arg})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(${arg})`, undefined, Context.OptionsWebCompat);
       });
     });
 
@@ -929,6 +936,7 @@ describe('Expressions - Object', () => {
     ['({set a(...foo) {}})', Context.None],
     ['({*ident: x})', Context.None],
     ['({...})', Context.None],
+    ['({a ...b})', Context.None],
     ['let {...obj1,} = foo', Context.None],
     ['let {...obj1,a} = foo', Context.None],
     ['let {...obj1,...obj2} = foo', Context.None],
@@ -1092,11 +1100,9 @@ describe('Expressions - Object', () => {
     ['var x = 012;', Context.Strict],
     ['({b}) = b;', Context.None],
     ['([b]) = b;', Context.None],
-    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
     ['foo({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat],
     ['({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
     ['async ({ __proto__: null, other: null, "__proto__": null }) => foo;', Context.OptionsWebCompat],
-    ['({ __proto__: null, other: null, "__proto__": null });', Context.OptionsWebCompat | Context.Strict],
     ['[{ __proto__: null, other: null, "__proto__": null }];', Context.OptionsWebCompat],
     ['x = { __proto__: null, other: null, "__proto__": null };', Context.OptionsWebCompat],
     ['[...a, ] = b', Context.None],
@@ -1516,6 +1522,124 @@ describe('Expressions - Object', () => {
                 ]
               }
             }
+          }
+        ]
+      }
+    ],
+    [
+      'var a = { __proto__: { abc: 123 } };',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Identifier',
+                        name: '__proto__'
+                      },
+                      value: {
+                        type: 'ObjectExpression',
+                        properties: [
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'abc'
+                            },
+                            value: {
+                              type: 'Literal',
+                              value: 123
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false
+                          }
+                        ]
+                      },
+                      kind: 'init',
+                      computed: false,
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'a'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      'var b = { ["__proto__"]: { abc: 123 }};',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    {
+                      type: 'Property',
+                      key: {
+                        type: 'Literal',
+                        value: '__proto__'
+                      },
+                      value: {
+                        type: 'ObjectExpression',
+                        properties: [
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'abc'
+                            },
+                            value: {
+                              type: 'Literal',
+                              value: 123
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false
+                          }
+                        ]
+                      },
+                      kind: 'init',
+                      computed: true,
+                      method: false,
+                      shorthand: false
+                    }
+                  ]
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'b'
+                }
+              }
+            ]
           }
         ]
       }

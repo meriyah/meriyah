@@ -342,7 +342,11 @@ describe('Expressions - Array', () => {
     '[(a) = (b)]',
     '[(x) = y = (z)]',
     '[(x) = y = (z) => (a)]',
-    '[(x) => y = (z)]'
+    '[(x) => y = (z)]',
+    '[(x), y = x] = x;',
+    '[(x), y] = x;',
+    '[(a), ] = x;',
+    '([(x), y] = x);'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -436,6 +440,7 @@ describe('Expressions - Array', () => {
     ['[x] += 0', Context.None],
     ['[, x, ...y,] = 0', Context.None],
     ['[...x, ...y] = 0', Context.None],
+    ['({[a / b = c]: {}})', Context.None],
     ['[...x, y] = 0', Context.None],
     ['[...x,,] = 0', Context.None],
     ['[0,{a=0}] = 0', Context.None],

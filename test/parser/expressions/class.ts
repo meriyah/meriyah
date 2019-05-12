@@ -14,6 +14,8 @@ describe('Expressions - Class', () => {
     'async static x(){}',
     'static *async x(){}',
     'static async *(){}',
+    'static get *(){}',
+    'static set *(){}',
     'static async get x(){}',
     'static async set x(y){}',
     'static async x : 0',
@@ -40,12 +42,6 @@ describe('Expressions - Class', () => {
     it(`(class extends Base {${arg}})`, () => {
       t.throws(() => {
         parseSource(`(class extends Base {${arg}})`, undefined, Context.None);
-      });
-    });
-
-    it(`(class extends Base {${arg}})`, () => {
-      t.throws(() => {
-        parseSource(`(class extends Base {${arg}})`, undefined, Context.OptionsNext);
       });
     });
 
@@ -91,12 +87,6 @@ describe('Expressions - Class', () => {
     it(`(class C { get name(${arg}) {} })`, () => {
       t.throws(() => {
         parseSource(`(class C { get name(${arg}) {} })`, undefined, Context.None);
-      });
-    });
-
-    it(`(class C { get name(${arg}) {} })`, () => {
-      t.throws(() => {
-        parseSource(`(class C { get name(${arg}) {} })`, undefined, Context.OptionsNext);
       });
     });
   }
@@ -194,12 +184,6 @@ describe('Expressions - Class', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.throws(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
@@ -247,12 +231,6 @@ describe('Expressions - Class', () => {
     it(`(${arg})`, () => {
       t.throws(() => {
         parseSource(`(${arg})`, undefined, Context.OptionsWebCompat);
-      });
-    });
-
-    it(`(${arg})`, () => {
-      t.throws(() => {
-        parseSource(`(${arg})`, undefined, Context.OptionsNext);
       });
     });
   }
@@ -417,12 +395,6 @@ describe('Expressions - Class', () => {
     it(`(class {${arg}})`, () => {
       t.throws(() => {
         parseSource(`(class {${arg}})`, undefined, Context.None);
-      });
-    });
-
-    it(`(class {${arg}})`, () => {
-      t.throws(() => {
-        parseSource(`(class {${arg}})`, undefined, Context.OptionsNext);
       });
     });
 

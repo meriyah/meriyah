@@ -90,6 +90,8 @@ describe('Declarations - Async Function', () => {
     `function f() { ({ async [yield]() {} }); }`,
     `function* g() { ({ async [yield]() {} }); }`,
     `async function yield() {}`,
+    'async function* a(){}',
+    '(async function* (){})',
     'function f() { return await; }',
     `async function *gen() {
       yield {

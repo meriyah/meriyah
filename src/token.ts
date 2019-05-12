@@ -27,6 +27,7 @@ export const enum Token {
   VarDecl              = 1 << 28,
   IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsCommaOrRightParen  = 1 << 30,
+  IsClassField  = 1 << 31,
 
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
@@ -50,10 +51,10 @@ export const enum Token {
   LeftBrace    = 12 | IsExpressionStart | IsPatternStart, // {
   Period       = 13 | IsMemberOrCallExpression, // .
   Ellipsis     = 14, // ...
-  RightBrace   = 15 | IsAutoSemicolon, // }
+  RightBrace   = 15 | IsAutoSemicolon | IsClassField, // }
   RightParen   = 16 | IsCommaOrRightParen, // )
-  Semicolon    = 17 | IsAutoSemicolon, // ;
-  Comma        = 18 | IsCommaOrRightParen, // ,
+  Semicolon    = 17 | IsAutoSemicolon | IsClassField, // ;
+  Comma        = 18 | IsCommaOrRightParen | IsClassField, // ,
   LeftBracket  = 19 | IsExpressionStart | IsPatternStart | IsMemberOrCallExpression, // [
   RightBracket = 20, // ]
   Colon        = 21, // :
@@ -68,7 +69,7 @@ export const enum Token {
   Decrement = 28 | IsUpdateOp, // --
 
   /* Assign operators */
-  Assign                  = 29 | IsAssignOp, // =
+  Assign                  = 29 | IsAssignOp | IsClassField, // =
   ShiftLeftAssign         = 30 | IsAssignOp, // <<=
   ShiftRightAssign        = 31 | IsAssignOp, // >>=
   LogicalShiftRightAssign = 32 | IsAssignOp, // >>>=

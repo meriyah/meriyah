@@ -67,7 +67,6 @@ describe('Next - Decorators', () => {
     ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     [`class A {  constructor(@foo x) {} }`, Context.OptionsNext | Context.Module | Context.Strict],
     //[`@decorate`, Context.OptionsNext],
-    [`class A { @dec name = 0 }`, Context.OptionsNext | Context.Module | Context.Strict],
     [`class A { @abc constructor(){} }`, Context.OptionsNext | Context.Module | Context.Strict],
     ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     ['export default @decorator class Foo {}', Context.Module | Context.Strict],
@@ -82,6 +81,52 @@ describe('Next - Decorators', () => {
   ]);
 
   pass('Next - Decorators (pass)', [
+    [
+      `class A { @dec name = 0 }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [
+                    {
+                      expression: {
+                        name: 'dec',
+                        type: 'Identifier'
+                      },
+                      type: 'Decorator'
+                    }
+                  ],
+                  key: {
+                    name: 'name',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 0
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`,
       Context.OptionsNext,

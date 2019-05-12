@@ -151,6 +151,8 @@ describe('Expressions - Call', () => {
     `a(b,c).abc`,
     `a(b,c)`,
     `foo(bar, baz)`,
+    'async (...a, ...b);',
+    'async (...a, b);',
     `(    foo  )()`,
     `f(...a)`,
     `f(...a, ...b)`,

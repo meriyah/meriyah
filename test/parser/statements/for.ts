@@ -6,6 +6,7 @@ import { parseSource } from '../../../src/parser';
 describe('Statements - For', () => {
   for (const arg of [
     'for (const [,foo] = arr;;);',
+    'for (let [[x] = [1]] = []; i < 1; i++) {}',
     'for (var {j}=x; j<10; ++j) { const foo = j }',
     `        for ("boolean" == typeof a && (l = a, a = arguments[s] ||
           {}, s++), "object" == typeof a ||
