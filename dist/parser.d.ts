@@ -88,6 +88,6 @@ export declare function parseClassDeclaration(parser: ParserState, context: Cont
 export declare function parseClassExpression(parser: ParserState, context: Context): ESTree.ClassExpression;
 export declare function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[];
 export declare function parseClassBody(parser: ParserState, context: Context, type: BindingType, origin: BindingOrigin, decorators: ESTree.Decorator[]): ESTree.ClassBody;
-export declare function parseFieldDefinition(parser: ParserState, context: Context, key: any, state: PropertyKind, decorators: ESTree.Decorator[] | null): any;
+export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null): ESTree.FieldDefinition;
 export declare function parseBindingPattern(parser: ParserState, context: Context, type: BindingType): any;
 //# sourceMappingURL=parser.d.ts.map

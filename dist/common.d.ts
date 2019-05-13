@@ -46,7 +46,7 @@ export declare const enum PropertyKind {
     Setter = 512,
     Extends = 1024,
     Literal = 2048,
-    PrivatField = 4096,
+    PrivateField = 4096,
     GetSet = 768
 }
 export declare const enum BindingType {

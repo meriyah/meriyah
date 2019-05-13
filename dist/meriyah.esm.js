@@ -139,7 +139,10 @@ const errorMessages = {
     [138]: 'Can not have a `yield` expression on the left side of a ternary',
     [139]: 'An arrow function can not have a postfix update operator',
     [140]: 'Invalid object literal key character after generator star',
-    [141]: 'Private fields can not be deleted'
+    [141]: 'Private fields can not be deleted',
+    [143]: 'Classes may not have a field called constructor',
+    [142]: 'Classes may not have a private element named constructor',
+    [144]: 'A class field initializer may not contain arguments'
 };
 class ParseError extends SyntaxError {
     constructor(index, line, column, source, type, ...params) {
@@ -3160,8 +3163,8 @@ function parseFunctionDeclaration(parser, context, flags, isAsync) {
     return {
         type: 'FunctionDeclaration',
         params: parseFormalParametersOrFormalList(parser, context | 8388608, 1),
-        body: parseFunctionBody(parser, (context | 16384 | 8192 | 135168) ^
-            (8192 | 16384 | 135168), 1, firstRestricted),
+        body: parseFunctionBody(parser, (context | 16384 | 8192 | 135168 | 536870912) ^
+            (8192 | 16384 | 135168 | 536870912), 1, firstRestricted),
         async: isAsync === 1,
         generator: isGenerator === 1,
         expression: false,
@@ -3185,8 +3188,8 @@ function parseFunctionExpression(parser, context, isAsync) {
             67108864 |
             generatorAndAsyncFlags;
     const params = parseFormalParametersOrFormalList(parser, context | 8388608, 1);
-    const body = parseFunctionBody(parser, (context | 8192 | 16384 | 135168) ^
-        (8192 | 16384 | 135168), 0, firstRestricted);
+    const body = parseFunctionBody(parser, (context | 8192 | 16384 | 135168 | 536870912) ^
+        (8192 | 16384 | 135168 | 536870912), 0, firstRestricted);
     parser.assignable = 2;
     return {
         type: 'FunctionExpression',
@@ -4552,10 +4555,6 @@ function parseClassBody(parser, context, type, origin, decorators) {
             if (consumeOpt(parser, context, -2146435055)) {
                 if (decorators.length > 0)
                     report(parser, 132);
-            }
-            if (parser.token === 131) {
-                body.push(parsePrivateFieldsOrMethod(parser, context, decorators, 0));
-                consumeOpt(parser, context, -2146435055);
                 continue;
             }
         }
@@ -4587,8 +4586,6 @@ function parseClassElementList(parser, context, type, decorators, isStatic) {
                     if (context & 1 && (parser.token & -2147483648) === -2147483648) {
                         return parseFieldDefinition(parser, context, key, kind, decorators);
                     }
-                    if (parser.token === 67174411)
-                        report(parser, 0);
                 }
                 break;
             case 12399:
@@ -4621,25 +4618,17 @@ function parseClassElementList(parser, context, type, decorators, isStatic) {
         nextToken(parser, context);
     }
     else if (context & 1 && parser.token === 131) {
-        return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
+        kind |= 4096;
     }
-    else if (context & 1 && parser.token === -2146435057) {
-        return parseFieldDefinition(parser, context, key, kind, decorators);
+    else if (context & 1 && (parser.token & -2147483648) === -2147483648) {
+        kind |= 128;
     }
     else {
         report(parser, 29, KeywordDescTable[parser.token & 255]);
     }
-    if (kind & 2) {
-        key = parseComputedPropertyName(parser, context);
-    }
-    else if (kind & (8 | 16 | 256 | 512)) {
-        if (kind & 8) {
-            if (context & 1 && parser.token === 131) {
-                return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
-            }
-            else if (parser.token === 67174411)
-                report(parser, 0);
-        }
+    if (kind & (8 | 16 | 768)) {
+        if (kind & 8 && parser.token === 67174411)
+            report(parser, 0);
         if (parser.token & 143360) {
             key = parseIdentifier(parser, context);
         }
@@ -4650,21 +4639,33 @@ function parseClassElementList(parser, context, type, decorators, isStatic) {
             kind |= 2;
             key = parseComputedPropertyName(parser, context);
         }
-        else if (parser.token === 131) {
-            return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
+        else if (context & 1 && parser.token === 131) {
+            key = parsePrivateName(parser, context);
         }
-        else if (parser.token === -2143289315) {
-            return parseFieldDefinition(parser, context, key, kind, decorators);
-        }
-        else if ((context & 1) === 0 && parser.token === -2146435057) {
+        else if (parser.token === -2146435057) {
             report(parser, 120);
         }
+    }
+    else if (kind & 2) {
+        key = parseComputedPropertyName(parser, context);
+    }
+    else if (kind & 4096) {
+        key = parsePrivateName(parser, context);
+        context = context | 536870912;
+        if (parser.token !== 67174411)
+            return parseFieldDefinition(parser, context, key, kind, decorators);
+    }
+    else if (kind & 128) {
+        context = context | 536870912;
+        if (parser.token !== 67174411)
+            return parseFieldDefinition(parser, context, key, kind, decorators);
     }
     if (parser.tokenValue === 'constructor') {
         if ((kind & 32) === 0) {
             if ((kind & 2) === 0 &&
-                kind & (256 | 512 | 16 | 8))
+                kind & (768 | 16 | 128 | 8)) {
                 report(parser, 54, 'accessor');
+            }
             if ((context & 524288) === 0 && (kind & 2) === 0) {
                 if (parser.flags & 32)
                     report(parser, 55);
@@ -4680,6 +4681,8 @@ function parseClassElementList(parser, context, type, decorators, isStatic) {
         report(parser, 53);
     }
     if (context & 1 && parser.token !== 67174411) {
+        if (parser.tokenValue === 'constructor')
+            report(parser, 143);
         return parseFieldDefinition(parser, context, key, kind, decorators);
     }
     const value = parseMethodDefinition(parser, context, kind);
@@ -4716,9 +4719,9 @@ function parseClassElementList(parser, context, type, decorators, isStatic) {
 }
 function parsePrivateName(parser, context) {
     nextToken(parser, context);
-    const name = parser.tokenValue;
+    const { tokenValue: name } = parser;
     if (name === 'constructor')
-        report(parser, 130);
+        report(parser, 142);
     nextToken(parser, context);
     return {
         type: 'PrivateName',
@@ -4727,6 +4730,8 @@ function parsePrivateName(parser, context) {
 }
 function parseFieldDefinition(parser, context, key, state, decorators) {
     let value = null;
+    if (state & 32 && parser.tokenValue === 'constructor')
+        report(parser, 0);
     if (state & 8)
         report(parser, 0);
     if (parser.token === -2143289315) {
@@ -4735,43 +4740,6 @@ function parseFieldDefinition(parser, context, key, state, decorators) {
             report(parser, 131);
         value = parseExpression(parser, context | 536870912, 1);
     }
-    consumeOpt(parser, context, -2146435055);
-    consumeOpt(parser, context, -1073741806);
-    return {
-        type: 'FieldDefinition',
-        key,
-        value,
-        static: (state & 32) > 0,
-        computed: (state & 2) > 0,
-        decorators
-    };
-}
-function parsePrivateFieldsOrMethod(parser, context, decorators, state) {
-    let value = null;
-    const key = parsePrivateName(parser, context);
-    if (parser.token === 67174411) {
-        return {
-            type: 'MethodDefinition',
-            kind: (state & 32) === 0 && state & 64
-                ? 'constructor'
-                : state & 256
-                    ? 'get'
-                    : state & 512
-                        ? 'set'
-                        : 'method',
-            static: (state & 32) > 0,
-            computed: (state & 2) > 0,
-            key,
-            value: parseMethodDefinition(parser, context | 536870912, state)
-        };
-    }
-    if (parser.token === -2143289315) {
-        nextToken(parser, context | 32768);
-        if ((parser.token & 537079808) === 537079808)
-            report(parser, 131);
-        value = parseExpression(parser, context | 536870912, 1);
-    }
-    consumeOpt(parser, context, -1073741806);
     return {
         type: 'FieldDefinition',
         key,

@@ -15,6 +15,8 @@ export interface T_Node extends T_Statement, T_Expression, T_Pattern, T_ModuleDe
     SpreadElement: SpreadElement;
     TemplateElement: TemplateElement;
     ClassBody: ClassBody;
+    FieldDefinition: FieldDefinition;
+    PrivateName: PrivateName;
     Decorator: Decorator;
     MethodDefinition: MethodDefinition;
     VariableDeclarator: VariableDeclarator;
@@ -30,7 +32,7 @@ export interface T_Node extends T_Statement, T_Expression, T_Pattern, T_ModuleDe
     JSXAttribute: JSXAttribute;
     JSXSpreadAttribute: JSXSpreadAttribute;
 }
-export declare type Node = Program | SwitchCase | CatchClause | Statement | Expression | Property | AssignmentProperty | Super | SpreadElement | TemplateElement | ClassBody | Decorator | MethodDefinition | ModuleDeclaration | ModuleSpecifier | Pattern | VariableDeclarator | JSXIdentifier | JSXMemberExpression | JSXNamespacedName | JSXEmptyExpression | JSXExpressionContainer | JSXSpreadChild | JSXText | JSXOpeningElement | JSXClosingElement | JSXAttribute | JSXSpreadAttribute;
+export declare type Node = Program | SwitchCase | CatchClause | Statement | Expression | Property | AssignmentProperty | Super | SpreadElement | TemplateElement | ClassBody | FieldDefinition | PrivateName | Decorator | MethodDefinition | ModuleDeclaration | ModuleSpecifier | Pattern | VariableDeclarator | JSXIdentifier | JSXMemberExpression | JSXNamespacedName | JSXEmptyExpression | JSXExpressionContainer | JSXSpreadChild | JSXText | JSXOpeningElement | JSXClosingElement | JSXAttribute | JSXSpreadAttribute;
 interface _Statement<T extends string> extends _Node<T> {
 }
 interface T_Statement extends T_Declaration {
@@ -82,7 +84,7 @@ interface T_Expression {
     AwaitExpression: AwaitExpression;
     JSXElement: JSXElement;
 }
-export declare type Expression = Identifier | Literal | RegExpLiteral | ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | ArrowFunctionExpression | YieldExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | AwaitExpression | JSXElement;
+export declare type Expression = Identifier | Literal | RegExpLiteral | ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | PrivateName | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | ArrowFunctionExpression | YieldExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | AwaitExpression | JSXElement;
 interface _Pattern<T extends string> extends _Node<T> {
 }
 interface T_Pattern {
@@ -191,7 +193,18 @@ export interface CatchClause extends _Node<'CatchClause'> {
     body: BlockStatement;
 }
 export interface ClassBody extends _Node<'ClassBody'> {
-    body: MethodDefinition[];
+    body: (FieldDefinition | MethodDefinition)[];
+}
+export interface PrivateMemberExpression extends _Node<'MemberExpression'> {
+    object: Expression;
+    property: PrivateName;
+}
+export interface FieldDefinition extends _Node<'FieldDefinition'> {
+    key: PrivateName | Expression;
+    value: any;
+    decorators?: Decorator[] | null;
+    computed: boolean;
+    static: boolean;
 }
 export interface ClassDeclaration extends _Declaration<'ClassDeclaration'> {
     id: Identifier | null;
@@ -310,6 +323,9 @@ export declare type LogicalOperator = '&&' | '||';
 export interface Decorator extends _Node<'Decorator'> {
     expression: Expression;
 }
+export interface PrivateName extends _Node<'PrivateName'> {
+    name: string;
+}
 export interface LogicalExpression extends _Expression<'LogicalExpression'> {
     operator: LogicalOperator;
     left: Expression;
@@ -320,7 +336,7 @@ export interface MetaProperty extends _Expression<'MetaProperty'> {
     property: Identifier;
 }
 export interface MethodDefinition extends _Node<'MethodDefinition'> {
-    key: Expression | null;
+    key: Expression | PrivateName;
     value: FunctionExpression | null;
     kind: 'constructor' | 'method' | 'get' | 'set';
     computed: boolean;
