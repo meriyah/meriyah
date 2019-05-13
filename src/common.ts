@@ -78,7 +78,9 @@ export const enum BindingOrigin {
 export const enum AssignmentKind {
   None           = 0,
   Assignable     = 1 << 0,
-  NotAssignable  = 1 << 1
+  NotAssignable  = 1 << 1,
+  Await  = 1 << 2,
+  Yield  = 1 << 3,
 }
 
 export const enum DestructuringKind {
@@ -89,8 +91,8 @@ export const enum DestructuringKind {
   Assignable      = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
   SeenProto       = 1 << 6,
-  HasAWait        = 1 << 7,
-  HasYield        = 1 << 8
+  Await           = 1 << 7,
+  Yield           = 1 << 8,
 }
 
 /**
@@ -99,11 +101,12 @@ export const enum DestructuringKind {
 export const enum Flags {
   None                = 0,
   NewLine             = 1 << 0,
-  SeenAwait           = 1 << 1,
   SeenYield           = 1 << 2,
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
-  SimpleParameterList = 1 << 7
+  SimpleParameterList = 1 << 7,
+  Await = 1 << 8,
+  Yield = 1 << 9,
 }
 
 export const enum ParseFunctionFlag {
@@ -256,7 +259,8 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
     if (context & (Context.InAwaitContext | Context.Module)) {
       report(parser, Errors.AwaitOutsideAsync);
     }
-    parser.flags |= Flags.SeenAwait;
+
+    parser.flags |= Flags.Await;
   }
 
   if (token === Token.YieldKeyword) {
@@ -281,7 +285,7 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
 export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
     if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitOutsideAsync);
-    parser.flags |= Flags.SeenAwait;
+    parser.destructible |= DestructuringKind.Await;
   }
 
   if (t === Token.YieldKeyword && context & Context.InYieldContext) report(parser, Errors.DisallowedInContext, 'yield');
