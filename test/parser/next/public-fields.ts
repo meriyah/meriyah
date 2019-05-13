@@ -17,40 +17,24 @@ describe('Next - Public fields', () => {
   for (const arg of [
     'static a : 0',
     'static a =',
-    // "static constructor",
-    // "static prototype",
-    // "static *a = 0",
-    //   "static *a",
-    // "static get a",
-    // "static get\n a",
-    // "static yield a",
-    // "static async a = 0",
-    // "static async a",
-    // "static a = arguments",
-    // "static a = () => arguments",
-    // "static a = () => { arguments }",
+    'static constructor',
+    'static prototype',
+    'static *a = 0',
+    'static *a',
     'static a = arguments[0]',
-    // "static a = delete arguments[0]",
-    // "static a = f(arguments)",
-    // "static a = () => () => arguments",
-    //  "static a b",
-    //  "static a = 0 b",
     'static c = [1] = [c]',
     'static a = 0\n *b(){}',
     "static a = 0\n ['b'](){}",
     'a : 0',
     'a =',
-    // "constructor",
+    'constructor',
     '*a = 0',
     '*a',
-    // "get a",
-    // "yield a",
-    // "async a = 0",
-    // "async a",
     'c = [1] = [c]',
     'a = 0\n *b(){}',
-    "a = 0\n ['b'](){}"
-    //"get\n a",
+    "a = 0\n ['b'](){}",
+    'static prototype',
+    'static constructor'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
@@ -61,7 +45,7 @@ describe('Next - Public fields', () => {
 
   for (const arg of [
     'a = 0;',
-    'a = 0; b',
+    'a = 0; b;',
     'a = 0; b(){}',
     'a = 0; *b(){}',
     "a = 0; ['b'](){}",
@@ -71,7 +55,7 @@ describe('Next - Public fields', () => {
     'a; *b(){}',
     "a; ['b'](){}",
     "['a'] = 0;",
-    "['a'] = 0; b",
+    "['a'] = 0; b;",
     "['a'] = 0; b(){}",
     "['a'] = 0; *b(){}",
     "['a'] = 0; ['b'](){}",
@@ -84,44 +68,40 @@ describe('Next - Public fields', () => {
     '0;',
     "'a' = 0;",
     "'a';",
-    'c = [c] = c',
-    'a = 0\n',
-    'a = 0\n b',
+    'c = [c] = c;',
+    'a = 0;\n',
+    'a = 0;\n b;',
     'a = 0\n b(){}',
-    'a\n',
-    'a\n b\n',
-    'a\n b(){}',
-    'a\n *b(){}',
-    "a\n ['b'](){}",
-    "['a'] = 0\n",
-    "['a'] = 0\n b",
-    "['a'] = 0\n b(){}",
-    "['a']\n",
-    "['a']\n b\n",
-    "['a']\n b(){}",
-    "['a']\n *b(){}",
-    "['a']\n ['b'](){}",
-    'a\n get',
-    'get\n *a(){}',
-    'a\n static',
+    'a;\n;',
+    'a;\n b;\n',
+    'a;\n b(){}',
+    'a;\n *b(){}',
+    "a;\n ['b'](){}",
+    "['a'] = 0;\n",
+    "['a'] = 0;\n b;",
+    "['a'] = 0;\n b(){}",
+    "['a'];\n",
+    "['a'];\n b;\n",
+    "['a'];\n b(){}",
+    "['a'];\n *b(){}",
+    "['a'];\n ['b'](){}",
+    'a;\n get;',
+    'get;\n *a(){}',
     'a = function t() { arguments; }',
     'a = () => function() { arguments; }',
-    'async',
     'async;',
-    'async = await',
-    'yield',
-    'yield = 0',
-    'yield\n a',
+    'async = await;',
+    'yield;',
+    'yield = 0;',
+    'yield;\n a;',
     'async;',
     'async = 0;',
-    'async',
-    'async = 0',
-    'async\n a(){}',
-    'async\n a',
+    'async;\n a(){}',
+    'async;\n a;',
     'await;',
     'await = 0;',
-    'await\n a',
-    `\nx\ny\n\n`
+    'await;\n a;',
+    `\nx;\ny;\n\n`
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -131,6 +111,117 @@ describe('Next - Public fields', () => {
   }
 
   pass('Next - Public fields (pass)', [
+    [
+      `class Foo { x = 1; }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'x',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 1
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'Foo',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class A { set; }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'set',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: null
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `class A { set = get; }`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'set',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    name: 'get',
+                    type: 'Identifier'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       `class A { a = 0; }`,
       Context.OptionsNext,
@@ -233,7 +324,7 @@ describe('Next - Public fields', () => {
       }
     ],
     [
-      `class A { ['a'] = 0; b }`,
+      `class A { ['a'] = 0; b; }`,
       Context.OptionsNext,
       {
         body: [
@@ -356,7 +447,7 @@ describe('Next - Public fields', () => {
       }
     ],
     [
-      `class A { foo }`,
+      `class A { foo; }`,
       Context.OptionsNext,
       {
         body: [

@@ -143,7 +143,10 @@ export const enum Errors {
   InvalidTernaryYield,
   InvalidArrowPostfix,
   InvalidObjLitKeyStar,
-  DeletePrivateField
+  DeletePrivateField,
+  InvalidStaticClassFieldConstructor,
+  InvalidClassFieldConstructor,
+  InvalidClassFieldArgEval
 }
 
 /*@internal*/
@@ -300,7 +303,10 @@ export const errorMessages: {
   [Errors.InvalidTernaryYield]: 'Can not have a `yield` expression on the left side of a ternary',
   [Errors.InvalidArrowPostfix]: 'An arrow function can not have a postfix update operator',
   [Errors.InvalidObjLitKeyStar]: 'Invalid object literal key character after generator star',
-  [Errors.DeletePrivateField]: 'Private fields can not be deleted'
+  [Errors.DeletePrivateField]: 'Private fields can not be deleted',
+  [Errors.InvalidClassFieldConstructor]: 'Classes may not have a field called constructor',
+  [Errors.InvalidStaticClassFieldConstructor]: 'Classes may not have a private element named constructor',
+  [Errors.InvalidClassFieldArgEval]: 'A class field initializer may not contain arguments'
 };
 
 export class ParseError extends SyntaxError {

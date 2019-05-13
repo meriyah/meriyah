@@ -82,7 +82,7 @@ describe('Next - Decorators', () => {
 
   pass('Next - Decorators (pass)', [
     [
-      `class A { @dec name = 0 }`,
+      `class A { @dec name = 0; }`,
       Context.OptionsNext,
       {
         body: [
@@ -1330,6 +1330,7 @@ describe('Next - Decorators', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
+                  decorators: [],
                   key: {
                     type: 'PrivateName',
                     name: 'get'
@@ -1351,6 +1352,7 @@ describe('Next - Decorators', () => {
                   kind: 'set',
                   static: false,
                   computed: false,
+                  decorators: [],
                   key: {
                     type: 'PrivateName',
                     name: 'set'
@@ -1377,6 +1379,7 @@ describe('Next - Decorators', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
+                  decorators: [],
                   key: {
                     type: 'PrivateName',
                     name: 'getset'
@@ -1398,6 +1401,7 @@ describe('Next - Decorators', () => {
                   kind: 'set',
                   static: false,
                   computed: false,
+                  decorators: [],
                   key: {
                     type: 'PrivateName',
                     name: 'getset'
@@ -1556,6 +1560,7 @@ describe('Next - Decorators', () => {
                 {
                   type: 'MethodDefinition',
                   kind: 'method',
+                  decorators: [],
                   static: true,
                   computed: false,
                   key: {

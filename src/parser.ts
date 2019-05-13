@@ -2134,6 +2134,7 @@ export function parseUnaryExpression(parser: ParserState, context: Context): EST
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);
+      // Prohibit delete of private class elements
     } else if (isPropertyWithPrivateFieldKey(arg)) {
       report(parser, Errors.DeletePrivateField);
     }
@@ -2927,8 +2928,8 @@ export function parseFunctionDeclaration(
     params: parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
-      (context | Context.TopLevel | Context.InGlobal | Context.InSwitchOrIteration) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration),
+      (context | Context.TopLevel | Context.InGlobal | Context.InSwitchOrIteration | Context.InClass) ^
+        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass),
       BindingOrigin.Declaration,
       firstRestricted
     ),
@@ -2979,8 +2980,8 @@ export function parseFunctionExpression(
   const params = parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList);
   const body = parseFunctionBody(
     parser,
-    (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration) ^
-      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration),
+    (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass) ^
+      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass),
     0,
     firstRestricted
   );
@@ -5066,7 +5067,7 @@ export function parseClassBody(
 
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
-  const body: ESTree.MethodDefinition[] = [];
+  const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
 
   while (parser.token !== Token.RightBrace) {
     if (context & Context.OptionsNext) {
@@ -5079,11 +5080,6 @@ export function parseClassBody(
       if (parser.token === Token.RightBrace) report(parser, Errors.TrailingDecorators);
       if (consumeOpt(parser, context, Token.Semicolon)) {
         if (decorators.length > 0) report(parser, Errors.InvalidDecoratorSemicolon);
-      }
-
-      if (parser.token === Token.PrivateField) {
-        body.push(parsePrivateFieldsOrMethod(parser, context, decorators, PropertyKind.None));
-        consumeOpt(parser, context, Token.Semicolon);
         continue;
       }
     }
@@ -5115,7 +5111,7 @@ function parseClassElementList(
   type: BindingType,
   decorators: ESTree.Decorator[],
   isStatic: 0 | 1
-): ESTree.MethodDefinition {
+): ESTree.MethodDefinition | ESTree.FieldDefinition {
   let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
   let key: ESTree.Expression | null = null;
 
@@ -5137,7 +5133,6 @@ function parseClassElementList(
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
             return parseFieldDefinition(parser, context, key, kind, decorators);
           }
-          if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
         }
         break;
 
@@ -5169,21 +5164,16 @@ function parseClassElementList(
     kind |= PropertyKind.Generator;
     nextToken(parser, context);
   } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
-    return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
-  } else if (context & Context.OptionsNext && parser.token === Token.RightBrace) {
-    return parseFieldDefinition(parser, context, key, kind, decorators);
+    kind |= PropertyKind.PrivateField;
+  } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
+    kind |= PropertyKind.ClassField;
   } else {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 
-  if (kind & PropertyKind.Computed) {
-    key = parseComputedPropertyName(parser, context);
-  } else if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.Getter | PropertyKind.Setter)) {
-    if (kind & PropertyKind.Generator) {
-      if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
-        return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
-      } else if (parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
-    }
+  if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {
+    if (kind & PropertyKind.Generator && parser.token === Token.LeftParen) report(parser, Errors.Unexpected);
+
     if (parser.token & Token.IsIdentifier) {
       key = parseIdentifier(parser, context);
     } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
@@ -5191,22 +5181,31 @@ function parseClassElementList(
     } else if (parser.token === Token.LeftBracket) {
       kind |= PropertyKind.Computed;
       key = parseComputedPropertyName(parser, context);
-    } else if (parser.token === Token.PrivateField) {
-      return parsePrivateFieldsOrMethod(parser, context, decorators, kind);
-    } else if (parser.token === Token.Assign) {
-      return parseFieldDefinition(parser, context, key, kind, decorators);
-    } else if ((context & Context.OptionsNext) === 0 && parser.token === Token.RightBrace) {
+    } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
+      key = parsePrivateName(parser, context);
+    } else if (parser.token === Token.RightBrace) {
       report(parser, Errors.NoIdentOrDynamicName);
     }
+  } else if (kind & PropertyKind.Computed) {
+    key = parseComputedPropertyName(parser, context);
+  } else if (kind & PropertyKind.PrivateField) {
+    key = parsePrivateName(parser, context);
+    context = context | Context.InClass;
+    if (parser.token !== Token.LeftParen) return parseFieldDefinition(parser, context, key, kind, decorators);
+  } else if (kind & PropertyKind.ClassField) {
+    context = context | Context.InClass;
+    if (parser.token !== Token.LeftParen) return parseFieldDefinition(parser, context, key, kind, decorators);
   }
 
   if (parser.tokenValue === 'constructor') {
     if ((kind & PropertyKind.Static) === 0) {
       if (
         (kind & PropertyKind.Computed) === 0 &&
-        kind & (PropertyKind.Getter | PropertyKind.Setter | PropertyKind.Async | PropertyKind.Generator)
-      )
+        kind & (PropertyKind.GetSet | PropertyKind.Async | PropertyKind.ClassField | PropertyKind.Generator)
+      ) {
         report(parser, Errors.InvalidConstructor, 'accessor');
+      }
+
       if ((context & Context.SuperCall) === 0 && (kind & PropertyKind.Computed) === 0) {
         if (parser.flags & Flags.HasConstructor) report(parser, Errors.DuplicateConstructor);
         else parser.flags |= Flags.HasConstructor;
@@ -5225,6 +5224,7 @@ function parseClassElementList(
 
   // Note: This is temporary until this reach Stage 4
   if (context & Context.OptionsNext && parser.token !== Token.LeftParen) {
+    if (parser.tokenValue === 'constructor') report(parser, Errors.InvalidClassFieldConstructor);
     return parseFieldDefinition(parser, context, key, kind, decorators);
   }
 
@@ -5266,15 +5266,16 @@ function parseClassElementList(
 
 /**
  * Parses private name
+ *
  * @param parser Parser object
  * @param context Context masks
  */
-function parsePrivateName(parser: ParserState, context: Context): any {
+function parsePrivateName(parser: ParserState, context: Context): ESTree.PrivateName {
   // PrivateName::
   //    #IdentifierName
-  nextToken(parser, context); // '#'
-  const name = parser.tokenValue;
-  if (name === 'constructor') report(parser, Errors.UnexpectedStrictReserved);
+  nextToken(parser, context); // skip: '#'
+  const { tokenValue: name } = parser;
+  if (name === 'constructor') report(parser, Errors.InvalidStaticClassFieldConstructor);
   nextToken(parser, context);
 
   return {
@@ -5283,25 +5284,37 @@ function parsePrivateName(parser: ParserState, context: Context): any {
   };
 }
 
+/**
+ * Parses field definition
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ * @param key ESTree AST node
+ * @param state
+ * @param decorators
+ */
+
 export function parseFieldDefinition(
   parser: ParserState,
   context: Context,
-  key: any,
+  key: ESTree.PrivateName | ESTree.Expression | null,
   state: PropertyKind,
   decorators: ESTree.Decorator[] | null
-): any {
+): ESTree.FieldDefinition {
+  //  ClassElement :
+  //    MethodDefinition
+  //    static MethodDefinition
+  //    FieldDefinition ;
+  //  ;
   let value: ESTree.Expression | null = null;
+  if (state & PropertyKind.Static && parser.tokenValue === 'constructor') report(parser, Errors.Unexpected);
   if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
-  // if (parser.tokenValue === 'prototype') report(parser, Errors.Unexpected); // static ptype
   if (parser.token === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       report(parser, Errors.StrictEvalArguments);
     value = parseExpression(parser, context | Context.InClass, /* assignable */ 1);
   }
-  consumeOpt(parser, context, Token.Semicolon);
-  consumeOpt(parser, context, Token.Comma);
-
   return {
     type: 'FieldDefinition',
     key,
@@ -5309,61 +5322,7 @@ export function parseFieldDefinition(
     static: (state & PropertyKind.Static) > 0,
     computed: (state & PropertyKind.Computed) > 0,
     decorators
-  };
-}
-
-/**
- * Parses private fields or method definition
- * @param parser Parser object
- * @param context  Context masks
- * @param decorators
- * @param state
- */
-function parsePrivateFieldsOrMethod(
-  parser: ParserState,
-  context: Context,
-  decorators: ESTree.Decorator[],
-  state: PropertyKind
-): any {
-  let value: ESTree.Expression | null = null;
-
-  const key = parsePrivateName(parser, context);
-
-  if (parser.token === Token.LeftParen) {
-    return {
-      type: 'MethodDefinition',
-      kind:
-        (state & PropertyKind.Static) === 0 && state & PropertyKind.Constructor
-          ? 'constructor'
-          : state & PropertyKind.Getter
-          ? 'get'
-          : state & PropertyKind.Setter
-          ? 'set'
-          : 'method',
-      static: (state & PropertyKind.Static) > 0,
-      computed: (state & PropertyKind.Computed) > 0,
-      key,
-      value: parseMethodDefinition(parser, context | Context.InClass, state)
-    };
-  }
-
-  if (parser.token === Token.Assign) {
-    nextToken(parser, context | Context.AllowRegExp);
-    if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
-      report(parser, Errors.StrictEvalArguments);
-    value = parseExpression(parser, context | Context.InClass, /* assignable */ 1);
-  }
-
-  consumeOpt(parser, context, Token.Comma);
-
-  return {
-    type: 'FieldDefinition',
-    key,
-    value,
-    static: (state & PropertyKind.Static) > 0,
-    computed: (state & PropertyKind.Computed) > 0,
-    decorators
-  };
+  } as any;
 }
 
 /**

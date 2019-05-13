@@ -53,7 +53,7 @@ export const enum PropertyKind {
   Setter      = 1 << 9,
   Extends     = 1 << 10,
   Literal     = 1 << 11,
-  PrivatField = 1 << 12,
+  PrivateField = 1 << 12,
   GetSet = Getter | Setter
 }
 

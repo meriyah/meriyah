@@ -24,6 +24,8 @@ export interface T_Node extends T_Statement, T_Expression, T_Pattern, T_ModuleDe
   SpreadElement: SpreadElement;
   TemplateElement: TemplateElement;
   ClassBody: ClassBody;
+  FieldDefinition: FieldDefinition;
+  PrivateName: PrivateName;
   Decorator: Decorator;
   MethodDefinition: MethodDefinition;
   VariableDeclarator: VariableDeclarator;
@@ -52,6 +54,8 @@ export type Node =
   | SpreadElement
   | TemplateElement
   | ClassBody
+  | FieldDefinition
+  | PrivateName
   | Decorator
   | MethodDefinition
   | ModuleDeclaration
@@ -157,6 +161,7 @@ export type Expression =
   | AssignmentExpression
   | LogicalExpression
   | MemberExpression
+  | PrivateName
   | ConditionalExpression
   | CallExpression
   | NewExpression
@@ -350,7 +355,20 @@ export interface CatchClause extends _Node<'CatchClause'> {
 }
 
 export interface ClassBody extends _Node<'ClassBody'> {
-  body: MethodDefinition[];
+  body: (FieldDefinition | MethodDefinition)[];
+}
+
+export interface PrivateMemberExpression extends _Node<'MemberExpression'> {
+  object: Expression;
+  property: PrivateName;
+}
+
+export interface FieldDefinition extends _Node<'FieldDefinition'> {
+  key: PrivateName | Expression;
+  value: any;
+  decorators?: Decorator[] | null;
+  computed: boolean;
+  static: boolean;
 }
 
 export interface ClassDeclaration extends _Declaration<'ClassDeclaration'> {
@@ -494,6 +512,9 @@ export interface Decorator extends _Node<'Decorator'> {
   expression: Expression;
 }
 
+export interface PrivateName extends _Node<'PrivateName'> {
+  name: string;
+}
 export interface LogicalExpression extends _Expression<'LogicalExpression'> {
   operator: LogicalOperator;
   left: Expression;
@@ -506,7 +527,7 @@ export interface MetaProperty extends _Expression<'MetaProperty'> {
 }
 
 export interface MethodDefinition extends _Node<'MethodDefinition'> {
-  key: Expression | null;
+  key: Expression | PrivateName;
   value: FunctionExpression | null;
   kind: 'constructor' | 'method' | 'get' | 'set';
   computed: boolean;
