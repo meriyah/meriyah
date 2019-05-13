@@ -267,6 +267,8 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
     if (context & (Context.InYieldContext | Context.Strict)) {
       report(parser, Errors.DisallowedInContext, 'yield');
     }
+
+
   }
   if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
     if (context & Context.Strict) {

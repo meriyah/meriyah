@@ -473,6 +473,7 @@ yield d;
     ['function *f(yield){ }', Context.None],
     ['({x} = yield) => {}', Context.Strict],
     ['function *f(){ ({x} = yield x) => {} }', Context.None],
+    ['function *f(){ ([x] = yield x) => {} }', Context.None],
     ['function *g(a, b, c, ...yield){}', Context.None],
     ['(function *(x, ...yield){})', Context.None],
     ['function *a(){yield\n*a}', Context.None],

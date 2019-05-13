@@ -85,7 +85,7 @@ describe('Miscellaneous - Early errors', () => {
     'class A extends B { constructor() { !function(a = super()){} } }',
     'function f(a){ super() }',
     '!function(a){ super() }',
-    'function* g(){ ({[yield]: a}) => 0; }',
+    // 'function* g(){ ({[yield]: a}) => 0; }',
     'function* g(){ (a = x + f(yield)) => 0; }',
     'function* g(){ (a = yield* b) => 0; }',
     'function* g(){ (a = yield b) => 0; }',

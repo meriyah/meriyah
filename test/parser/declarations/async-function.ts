@@ -313,6 +313,7 @@ describe('Declarations - Async Function', () => {
     ['({async foo: 1})', Context.None],
     ['class A {async\nfoo() { }}', Context.None],
     ['class A {static async\nfoo() { }}', Context.None],
+    ['async function* g(){ ({[await]: a}) => 0; }', Context.None],
     ['class A {async constructor() { }}', Context.None],
     ['await', Context.Module],
     ['class A {async foo() { return {await} }}', Context.None],
