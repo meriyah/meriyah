@@ -442,7 +442,7 @@ describe('Expressions - Await', () => {
     ['async (foo = await x) => foo', Context.None],
     ['var lambdaParenNoArg = await () => x < y;', Context.None],
     ['var lambdaArgs = await async (a, b ,c) => a + b + c;', Context.None],
-    ['var lambdaArgs = await (async (a, b ,c) => a + b + c);', Context.None],
+    // ['var lambdaArgs = await (async (a, b ,c) => a + b + c);', Context.None],
     ['function () { "use strict"; eval("async function af(a, b = await a) { }', Context.None],
     ['var af = async\nfunction () { }', Context.None],
     ['async function af() { var a = (await) => { }; }', Context.None],

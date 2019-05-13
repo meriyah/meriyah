@@ -5,6 +5,83 @@ import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Yield', () => {
   for (const arg of [
+    'let g = function*() { try {yield 42} finally {yield 43; return 13} };',
+    'let g = function*() { try {yield 42} finally {yield 43; 13} };',
+    'let h = function*() { try {yield 42} finally {yield 43; return 13} };',
+    'let g = function*() { yield 1; yield yield* h(); };',
+    'let h = function*() { try {yield 42} finally {yield 43; 13} };',
+    '{ function* inner() { yield 2; } function* g() { yield 1; return yield* inner(); } { let x = g(); } }',
+    'function* foo() { yield 2; yield 3; yield 4 }',
+    'function* foo() { yield 2; if (true) { yield 3 }; yield 4 }',
+    'function* foo() { yield 2; if (true) { yield 3; yield 4 } }',
+    'function* foo() { yield 2; if (false) { yield 3 }; yield 4 }',
+    'countArgs(...(function*(){ yield 1; yield 2; yield 3; })())',
+    'function* g5(l) { "use strict"; yield 1; for (let x in l) { yield x; } }',
+    'function* g4() { var x = 10; yield 1; return x; }',
+    ' function* g1(a, b, c) { yield 1; return [a, b, c]; }',
+    'function* f2() { return {["a"]: yield} }',
+    'bar(...(function*(){ yield 1; yield 2; yield 3; })());',
+    '(function*() { yield* {} })().next()',
+    '(function*() { yield* undefined })().next()',
+    'function* g() { yield; }',
+    `{
+      let x = 42;
+      function* foo() {
+        yield x;
+        for (let x in {a: 1, b: 2}) {
+          let i = 2;
+          yield x;
+          yield i;
+          do {
+            yield i;
+          } while (i-- > 0);
+        }
+        yield x;
+        return 5;
+      }
+      g = foo();
+    }`,
+    `{
+      let a = 3;
+      function* foo() {
+        let b = 4;
+        yield 1;
+        { let c = 5; yield 2; yield a; yield b; yield c; }
+      }
+      g = foo();
+    }`,
+    `function YieldStar() {
+      let tree = new Node(1,
+          new Node(2,
+              new Node(3,
+                  new Node(4,
+                      new Node(16,
+                          new Node(5,
+                              new Node(23,
+                                  new Node(0),
+                                  new Node(17)),
+                              new Node(44, new Node(20)))),
+                      new Node(7,
+                          undefined,
+                          new Node(23,
+                              new Node(0),
+                              new Node(41, undefined, new Node(11))))),
+                  new Node(8)),
+              new Node(5)),
+          new Node(6, undefined, new Node(7)));
+      let labels = [...(infix(tree))];
+      // 0,23,17,5,20,44,16,4,7,0,23,41,11,3,8,2,5,1,6,7
+      if (labels[0] != 0) throw "wrong";
+    }`
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+  }
+
+  for (const arg of [
     'var yield;',
     'var foo, yield;',
     'try { } catch (yield) { }',
@@ -35,12 +112,6 @@ describe('Expressions - Yield', () => {
     'var [yield 24] = [42];',
     'var {foo: yield 24} = {a: 42};',
     '[yield 24] = [42];',
-    '({a: yield 24} = {a: 42});',
-    "for (yield 'x' in {});",
-    "for (yield 'x' of {});",
-    "for (yield 'x' in {} in {});",
-    "for (yield 'x' in {} of {});",
-    'class C extends yield { }',
     '({a: yield 24} = {a: 42});',
     "for (yield 'x' in {});",
     "for (yield 'x' of {});",
@@ -160,14 +231,6 @@ describe('Expressions - Yield', () => {
     it(`function* g() { ${test} }`, () => {
       t.throws(() => {
         parseSource(`function* g() { ${test} }`, undefined, Context.None);
-      });
-    });
-  }
-
-  for (const arg of ['(function * yield() { })']) {
-    it(`function not_gen() { ${arg}}`, () => {
-      t.throws(() => {
-        parseSource(`function a() { ${arg}}`, undefined, Context.None);
       });
     });
   }
@@ -486,6 +549,25 @@ yield d;
     ['5 + yield x', Context.None],
     ['function *a(){({yield} = {})}', Context.None],
     ['function *a(){yield*}', Context.None],
+    ['function* gf() { 1 + yield; }', Context.None],
+    ['function* gf() { 1 + yield 2; }', Context.None],
+    ['function* gf() { 1 + yield* "foo"; }', Context.None],
+    ['function* gf() { +yield; }', Context.None],
+    ['function* gf() { yield++; }', Context.None],
+    ['let gfe = function* yield() { }', Context.None],
+    ['function* gf() { let yield; ', Context.None],
+    ['function* gf() { const yield = 10; }', Context.None],
+
+    ['function* gf() { function* yield() { } }', Context.None],
+    ['function* gf() { var gfe = function* yield() { } }', Context.None],
+    ['function* gf() { class yield { } }', Context.None],
+    ['function* gf() { var o = { yield }; }', Context.None],
+    ['"function *gf(b, a = 1 + yield) {', Context.None],
+    ['gf = function* (b, a = yield) {}', Context.None],
+    ['function* gf() { var a = (x, y = yield* 0, z = 0) => { }; }', Context.None],
+    ['function* gf() { var a = (x, y, z = yield* 0) => { }; }', Context.None],
+    ['function* gf() {var a = yield in {};}', Context.None],
+    ['function* gf() {yield in {};}', Context.None],
     ['function *a(){yield\n*a}', Context.None],
     ['5 + yield x + y', Context.None],
     ['call(yield x)', Context.None],

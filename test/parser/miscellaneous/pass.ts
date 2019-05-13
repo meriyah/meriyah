@@ -29,18 +29,6 @@ describe('Miscellaneous - Pass', () => {
     `for (x of y);`,
     'for (var x of y);',
     `for (var x;;);`,
-    `
-      async function f() {
-        let x = await y;
-              const a = (b) => {};
-      }
-      `,
-    `
-      async function f() {
-        (((x = await y)));
-              const a = (b) => {};
-      }
-      `,
     `for (let x of y);`,
     `for (let x;;);`,
     `for (let x of y);`,
