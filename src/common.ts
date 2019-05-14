@@ -259,6 +259,8 @@ export function validateIdentifier(parser: ParserState, context: Context, type: 
     if (context & (Context.InAwaitContext | Context.Module)) {
       report(parser, Errors.AwaitOutsideAsync);
     }
+
+    parser.flags |= Flags.Await;
   }
 
   if (token === Token.YieldKeyword) {
