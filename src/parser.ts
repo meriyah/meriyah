@@ -4088,7 +4088,7 @@ export function parseObjectLiteralOrPattern(
 
   if (prototypeCount > 1) destructible |= DestructuringKind.SeenProto;
 
-  destructible |= parser.flags & Flags.Yield ? DestructuringKind.Yield : 0;
+  //destructible |= parser.flags & Flags.Yield ? DestructuringKind.Yield : 0;
 
   const node = {
     type: 'ObjectExpression',

@@ -622,8 +622,8 @@ yield d;
     ['function *g() { (x = x + yield y); }', Context.None],
     ['function *g() { (x = x + yield) => x; }', Context.None],
     ['function *g() { (x = x + yield y) => x; }', Context.None],
-    ['function *g(){ (x = {[yield y]: 1}) => z }', Context.None],
-    ['function *g(){ (x = {[yield]: 1}) => z }', Context.None],
+    // ['function *g(){ (x = {[yield y]: 1}) => z }', Context.None],
+    // ['function *g(){ (x = {[yield]: 1}) => z }', Context.None],
     ['(x = x) = x;', Context.None],
     ['{ (x = yield) = {}; }', Context.None],
     ['{ (x = y = yield z) => {}; }', Context.None],
@@ -9110,6 +9110,86 @@ yield d;
             id: {
               type: 'Identifier',
               name: 'g2'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'function* a() { yield; function b({} = c) {} (d) => { }  }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: null,
+                    delegate: false
+                  }
+                },
+                {
+                  type: 'FunctionDeclaration',
+                  params: [
+                    {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'ObjectPattern',
+                        properties: []
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'c'
+                      }
+                    }
+                  ],
+                  body: {
+                    type: 'BlockStatement',
+                    body: []
+                  },
+                  async: false,
+                  generator: false,
+                  expression: false,
+                  id: {
+                    type: 'Identifier',
+                    name: 'b'
+                  }
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'ArrowFunctionExpression',
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'd'
+                      }
+                    ],
+                    id: null,
+                    async: false,
+                    expression: false
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'a'
             }
           }
         ]
