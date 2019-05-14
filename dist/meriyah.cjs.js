@@ -1655,7 +1655,7 @@ function validateIdentifier(parser, context, type, token) {
         if (context & (4194304 | 2048)) {
             report(parser, 108);
         }
-        parser.flags |= 2;
+        parser.flags |= 256;
     }
     if (token === 241770) {
         if (context & (2097152 | 1024)) {
@@ -1678,7 +1678,7 @@ function isStrictReservedWord(parser, context, t) {
     if (t === 209005) {
         if (context & (4194304 | 2048))
             report(parser, 108);
-        parser.flags |= 2;
+        parser.destructible |= 128;
     }
     if (t === 241770 && context & 2097152)
         report(parser, 106, 'yield');
@@ -2715,13 +2715,13 @@ function parseUnaryExpression(parser, context) {
     };
 }
 function parseYieldExpressionOrIdentifier(parser, context) {
+    parser.flags |= 512;
     if (context & 2097152) {
         nextToken(parser, context | 32768);
         if (context & 8388608)
             report(parser, 31);
         if (parser.token === 22)
             report(parser, 138);
-        parser.flags |= 4;
         let argument = null;
         let delegate = false;
         if ((parser.flags & 1) < 1) {
@@ -2737,13 +2737,12 @@ function parseYieldExpressionOrIdentifier(parser, context) {
             delegate
         };
     }
-    parser.flags |= 4;
     if (context & 1024)
         report(parser, 123, 'Yield');
     return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context), 1);
 }
 function parseAwaitExpressionOrIdentifier(parser, context, inNewExpression) {
-    parser.flags |= 2;
+    parser.flags |= 256;
     if (context & 4194304) {
         if (inNewExpression) {
             report(parser, 87);
@@ -2780,7 +2779,8 @@ function parseFunctionBody(parser, context, origin, firstRestricted) {
         }
         if (context & 1024 &&
             firstRestricted &&
-            (firstRestricted & 537079808) === 537079808) {
+            ((firstRestricted & 537079808) === 537079808 ||
+                (firstRestricted & 36864) === 36864)) {
             report(parser, 39);
         }
     }
@@ -3228,12 +3228,16 @@ function parseArrayExpressionOrPattern(parser, context, skipInitializer, type) {
         }
         else {
             let left;
-            if (parser.token & 143360) {
+            const { token } = parser;
+            if (token & 143360) {
                 left = parsePrimaryExpressionExtended(parser, context, type, 0, 1);
                 if (consumeOpt(parser, context | 32768, -2143289315)) {
                     if (parser.assignable & 2) {
                         reportAt(parser, parser.index, parser.line, parser.index - 3, 24);
                     }
+                    destructible |=
+                        (parser.token === 209005 ? 128 : 0) |
+                            (parser.token === 241770 ? 256 : 0);
                     left = {
                         type: 'AssignmentExpression',
                         operator: '=',
@@ -3242,7 +3246,10 @@ function parseArrayExpressionOrPattern(parser, context, skipInitializer, type) {
                     };
                 }
                 else if (parser.token === -1073741806 || parser.token === 20) {
-                    destructible |= parser.assignable & 2 ? 16 : 0;
+                    destructible |=
+                        parser.assignable & 2
+                            ? 16
+                            : 0 | (token === 209005 ? 128 : 0);
                 }
                 else {
                     if (type)
@@ -3350,10 +3357,13 @@ function parseArrayOrObjectAssignmentPattern(parser, context, destructible, node
         report(parser, destructible & 8 ? 24 : 24);
     }
     reinterpretToPattern(parser, node);
+    const { token } = parser;
     const right = parseExpression(parser, (context | 134217728) ^ 134217728, 1);
     parser.destructible =
-        (destructible | 64 | 8) ^
-            (8 | 64);
+        ((destructible | 64 | 8) ^
+            (8 | 64)) |
+            (parser.flags & 256 ? 128 : 0) |
+            (token === 241770 ? 256 : 0);
     return {
         type: 'AssignmentExpression',
         left: node,
@@ -3367,6 +3377,9 @@ function parseRestOrSpreadElement(parser, context, closingToken, type, isAsync) 
     let destructible = 0;
     if (parser.token & (4096 | 143360)) {
         parser.assignable = 1;
+        destructible |=
+            (parser.token === 209005 ? 128 : 0) |
+                (parser.token === 241770 ? 256 : 0);
         argument = parsePrimaryExpressionExtended(parser, context, type, 0, 1);
         const { token } = parser;
         argument = parseMemberOrUpdateExpression(parser, context, argument, 0);
@@ -3429,7 +3442,10 @@ function parseRestOrSpreadElement(parser, context, closingToken, type, isAsync) 
             destructible |= 16;
         }
         else {
-            if (token !== -1073741806 && token !== closingToken) {
+            if (token === -1073741806) {
+                destructible |= 16;
+            }
+            else if (token !== closingToken) {
                 argument = parseAssignmentExpression(parser, context, argument);
             }
             destructible =
@@ -3524,8 +3540,12 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
                     else {
                         validateIdentifier(parser, context, type, token);
                     }
+                    destructible |= token === 209005 ? 128 : 0;
                     if (consumeOpt(parser, context | 32768, -2143289315)) {
-                        destructible |= 8;
+                        destructible |=
+                            8 |
+                                (parser.token === 209005 ? 128 : 0) |
+                                (parser.token === 241770 ? 256 : 0);
                         value = {
                             type: 'AssignmentPattern',
                             left: key,
@@ -3540,6 +3560,9 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
                     if (tokenValue === '__proto__')
                         prototypeCount++;
                     if (parser.token & 143360) {
+                        destructible |=
+                            (parser.token === 209005 ? 128 : 0) |
+                                (parser.token === 241770 ? 256 : 0);
                         value = parsePrimaryExpressionExtended(parser, context, type, 0, 1);
                         const { token } = parser;
                         value = parseMemberOrUpdateExpression(parser, context, value, 0);
@@ -3721,6 +3744,7 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
                     if (tokenValue === '__proto__')
                         prototypeCount++;
                     if (parser.token & 143360) {
+                        const t = parser.token;
                         value = parsePrimaryExpressionExtended(parser, context, type, 0, 1);
                         const { token } = parser;
                         value = parseMemberOrUpdateExpression(parser, context, value, 0);
@@ -3920,10 +3944,6 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
             else {
                 report(parser, 29, KeywordDescTable[parser.token & 255]);
             }
-            if (parser.flags & 2)
-                destructible |= 128;
-            if (parser.flags & 4)
-                destructible |= 256;
             parser.destructible = destructible;
             properties.push({
                 type: 'Property',
@@ -4064,6 +4084,12 @@ function parseParenthesizedExpression(parser, context, assignable) {
                 validateIdentifier(parser, context, 0, token);
                 const right = parseExpression(parser, context, 1);
                 parser.assignable = 2;
+                parser.destructible |=
+                    parser.flags & 256
+                        ? 128
+                        : 0 | (parser.flags & 512)
+                            ? 256
+                            : 0;
                 expr = {
                     type: 'AssignmentExpression',
                     left: expr,
@@ -4171,12 +4197,11 @@ function parseParenthesizedExpression(parser, context, assignable) {
             report(parser, 49);
         if (destructible & 32)
             report(parser, 50);
-        if (context & (2048 | 4194304) && parser.flags & 2)
-            report(parser, 49);
-        if (context & (1024 | 2097152) && parser.destructible & 256)
+        if (context & (4194304 | 2048) && parser.destructible & 128)
+            report(parser, 30);
+        if (context & (1024 | 2097152) && parser.destructible & 256) {
             report(parser, 31);
-        if (parser.destructible & 128)
-            report(parser, 81);
+        }
         return parseArrowFunctionExpression(parser, context, toplevelComma ? expressions : [expr], 0);
     }
     else if (destructible & 8) {
@@ -4347,18 +4372,27 @@ function parseAsyncArrowOrCallExpression(parser, context, callee, assignable, as
     let isComplex = 0;
     while (parser.token !== 1073741840) {
         if (parser.token & (143360 | 4096)) {
-            if ((parser.token & 537079808) === 537079808)
+            if ((parser.token & 537079808) === 537079808 ||
+                (parser.token & 36864) === 36864) {
                 isComplex = 1;
-            if ((parser.token & 36864) === 36864)
-                isComplex = 1;
+            }
+            parser.destructible |= parser.token === 209005 ? 128 : 0;
             expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1);
             if (consumeOpt(parser, context | 32768, -2143289315)) {
                 isComplex = 1;
+                const right = parseExpression(parser, context, 1);
+                parser.assignable = 2;
+                parser.destructible |=
+                    parser.flags & 256
+                        ? 128
+                        : 0 | (parser.flags & 512)
+                            ? 256
+                            : 0;
                 expr = {
                     type: 'AssignmentExpression',
                     left: expr,
                     operator: '=',
-                    right: parseExpression(parser, context, 1)
+                    right
                 };
             }
             else {
@@ -4428,14 +4462,12 @@ function parseAsyncArrowOrCallExpression(parser, context, callee, assignable, as
             report(parser, 25);
         if (destructible & 32)
             report(parser, 50);
-        if (context & (2048 | 4194304) && parser.flags & 2)
-            report(parser, 49);
-        if (parser.destructible & 128)
-            report(parser, 81);
         if (parser.flags & 1 || asyncNewLine)
             report(parser, 47);
-        if (parser.flags & 2)
-            report(parser, 30);
+        if (parser.destructible & 128)
+            report(parser, 31);
+        if (context & (1024 | 2097152) && parser.destructible & 256)
+            report(parser, 31);
         return parseArrowFunctionExpression(parser, context, params, 1);
     }
     else if (destructible & 8) {

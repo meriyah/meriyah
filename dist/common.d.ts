@@ -68,7 +68,9 @@ export declare const enum BindingOrigin {
 export declare const enum AssignmentKind {
     None = 0,
     Assignable = 1,
-    NotAssignable = 2
+    NotAssignable = 2,
+    Await = 4,
+    Yield = 8
 }
 export declare const enum DestructuringKind {
     None = 0,
@@ -76,17 +78,18 @@ export declare const enum DestructuringKind {
     NotDestructible = 16,
     Assignable = 32,
     SeenProto = 64,
-    HasAWait = 128,
-    HasYield = 256
+    Await = 128,
+    Yield = 256
 }
 export declare const enum Flags {
     None = 0,
     NewLine = 1,
-    SeenAwait = 2,
     SeenYield = 4,
     HasConstructor = 32,
     Octals = 64,
-    SimpleParameterList = 128
+    SimpleParameterList = 128,
+    Await = 256,
+    Yield = 512
 }
 export declare const enum ParseFunctionFlag {
     None = 0,
