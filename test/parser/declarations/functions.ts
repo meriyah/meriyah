@@ -5,9 +5,19 @@ import { parseSource } from '../../../src/parser';
 
 describe('Declarations - Function', () => {
   for (const arg of ['package', 'public', 'instanceof']) {
-    it(`function(${arg}) { 'use strict'; }`, () => {
+    it(`function foo(${arg}) { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`function foo(${arg}) { "use strict"; }`, undefined, Context.None);
+      });
+    });
+    it(`function ${arg}() { 'use strict'; }`, () => {
+      t.throws(() => {
+        parseSource(`function ${arg}() { "use strict"; }`, undefined, Context.None);
+      });
+    });
+    it(`(function ${arg}() { 'use strict'; })`, () => {
+      t.throws(() => {
+        parseSource(`(function ${arg}() { 'use strict'; })`, undefined, Context.None);
       });
     });
   }
@@ -124,6 +134,26 @@ describe('Declarations - Function', () => {
     ['function arguments() {"use strict";}', Context.None],
     ['function super() {"use strict";}', Context.None],
     ['function f(,,){}', Context.None],
+    ['function f(x = package = 10) {}', Context.Strict],
+    ['function f(x = let = 10) {}', Context.Strict],
+    ['function f(x = yield = 10) {}', Context.Strict],
+    ['function f(x = package = 10) { "use strict"; }', Context.None],
+    ['function f(x= package =10){ "use strict"; }', Context.None],
+    ['f = function f(x=package=10){ "use strict"; }', Context.None],
+    ['f(x=package=10) => { "use strict"; }', Context.None],
+    ['f(x = eval = 10) => { "use strict"; }', Context.None],
+    ['o = {foo(x=package=y){ "use strict"; }}', Context.None],
+    ['class c {foo(x=package=y){ "use strict"; }}', Context.None],
+    ['o = {foo(x = package = y){ "use strict"; }}', Context.None],
+    ['o = {foo(x = let = y){ "use strict"; }}', Context.None],
+    ['o = {foo(x = implements = y){ "use strict"; }}', Context.None],
+    ['o = {foo(x= eval = y){ "use strict"; }}', Context.None],
+    ['function foo(p\\u0061ckage) { "use strict"; }', Context.None],
+    ['function foo(p\\u0061ckage) { }', Context.Strict],
+    ['function foo(package) { "use strict"; }', Context.None],
+    ['function foo(p\\x61ckage) { }', Context.None],
+    ['function foo(p\\x61ckage) { "use strict"; }', Context.None],
+    ['function foo(p\\141ckage) { }', Context.None],
     ['function test({...x = 1}) {}', Context.None],
     ['function test({...[]}) {}', Context.None],
     ['function test({...x = 1}) {}', Context.None],
@@ -446,6 +476,96 @@ describe('Declarations - Function', () => {
   }
 
   pass('Declarations - Function (pass)', [
+    [
+      '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'use strict'
+            }
+          },
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: null,
+                    delegate: false
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'g'
+            }
+          },
+          {
+            type: 'EmptyStatement'
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'f'
+              },
+              operator: '=',
+              right: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                params: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'ArrayPattern',
+                      elements: [
+                        {
+                          type: 'RestElement',
+                          argument: {
+                            type: 'ArrayPattern',
+                            elements: [null]
+                          }
+                        }
+                      ]
+                    },
+                    right: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'Identifier',
+                        name: 'g'
+                      },
+                      arguments: []
+                    }
+                  }
+                ],
+                id: null,
+                async: false,
+                expression: false
+              }
+            }
+          }
+        ]
+      }
+    ],
     [
       `function foo(package) {}`,
       Context.None,

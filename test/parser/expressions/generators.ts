@@ -68,8 +68,8 @@ describe('Expressions - Generators', () => {
       var yield;
     };`,
     `var g = function*() { yield 3 + yield 4; };`,
-    //`'use strict'; (function *g() { ( x, y=yield ) => {} });`,
-    //'(function *g() { ( x, y=yield ) => {} });',
+    `'use strict'; (function *g() { ( x, y=yield ) => {} });`,
+    '(function *g() { ( x, y=yield ) => {} });',
     '"use strict"; (function *g() { ( x = class { [(yield, 1)]() { }  ) => {} });',
     'var g = function*(yield) {};',
     'var gen = function *() { void yield; };',

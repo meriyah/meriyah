@@ -109,6 +109,22 @@ describe('Declarations - Async Function', () => {
     `"use strict"; async function * fn() {
       for await ([ {} = yield ] of [iterable]) {
       }
+    }`,
+    `async function f() {
+      let x = await y;
+            const a = (b) => {};
+    }`,
+    `async function f() {
+      (((x = await y)));
+            const a = (b) => {};
+    }`,
+    `async function f() {
+      let x = await y;
+            async (b) => {};
+    }`,
+    `async function f() {
+      (((x = await y)));
+            async (b) => {};
     }`
   ]) {
     it(`${arg}`, () => {
@@ -176,7 +192,6 @@ describe('Declarations - Async Function', () => {
     'async function foo (foo) { super() };',
     'async function foo() { (async function await() { }) }',
     `(async function() { 0, { await } = {};  });`,
-    'async function f(){ (x = new x(await x)) => {}   }',
     'async function f(){ (x = new (await x)) => {}   }',
     'async function f(){ (x = new f[await x]) => {}   }',
     `async function f(x = () => await x){}`,
@@ -285,11 +300,11 @@ describe('Declarations - Async Function', () => {
     ['(async function await() { })', Context.None],
     ['(async function foo(await) { })', Context.None],
     ['(async function foo() { return {await} })', Context.None],
+    ['async function* g() { await; }; f = ([...[,]] = g()) => {};', Context.None],
     ['async ({a = b})', Context.None],
     ['async await => 1"', Context.None],
     ['async function f() { for await (let.x of a); }', Context.None],
     ['async (...await) => 1', Context.None],
-    ['async ({await}) => 1', Context.None],
     ['async ([await]) => 1', Context.None],
     ['async ([...await]) => 1', Context.None],
     ['async (b = {await}) => 1', Context.None],
@@ -308,6 +323,13 @@ describe('Declarations - Async Function', () => {
     ['async function foo (foo) { super.prop };', Context.None],
     ['"use strict"; async function eval () {  }', Context.None],
     ['async function foo (foo = super()) { let bar; }', Context.None],
+    ['async function a(){ (foo = +await bar) => {} }', Context.None],
+    ['async function a(){  (foo = [{m: 5 + t(+await bar)}]) => {}     }', Context.None],
+    ['async function a(){ ([await]) => 1 }', Context.None],
+    ['async function a(){ (x = delete ((await) = f)) => {} }', Context.None],
+    ['async function a(){ (await) => x }', Context.None],
+    ['async function a(){ (e=await)=>l }', Context.None],
+    ['async function a(){ async ([a=await]) => 1 }', Context.None],
     ['\\u0061sync function f(){}', Context.None],
     ['({async foo() { var await }})', Context.None],
     ['({async foo(await) { }})', Context.None],
@@ -315,6 +337,7 @@ describe('Declarations - Async Function', () => {
     ['({async foo: 1})', Context.None],
     ['class A {async\nfoo() { }}', Context.None],
     ['class A {static async\nfoo() { }}', Context.None],
+    ['async function* g(){ ({[await]: a}) => 0; }', Context.None],
     ['class A {async constructor() { }}', Context.None],
     ['await', Context.Module],
     ['class A {async foo() { return {await} }}', Context.None],
@@ -323,12 +346,13 @@ describe('Declarations - Async Function', () => {
     ['({async foo() { await }})', Context.None],
     ['async function foo(a = await b) {}', Context.None],
     ['(async function foo(a = await b) {})', Context.None],
-    ['sync (a = await b) => {}', Context.None],
+    ['async (a = await b) => {}', Context.None],
     ['async function wrapper() {\nasync (a = await b) => {}\n}', Context.None],
     ['({async foo(a = await b) {}})', Context.None],
     ['async function wrap() {\n(a = await b) => a\n}', Context.None],
-    ['async function wrap() {\n({a = await b} = obj) => a\n}', Context.None]
-    //['function* wrap() {\nasync(a = yield b) => a\n}', Context.None]
+    ['async function wrap() {\n({a = await b} = obj) => a\n}', Context.None],
+    ['function* wrap() {\nasync(a = yield b) => a\n}', Context.None],
+    ['async function f(){ (x = new x(await x)) => {}   }', Context.None]
   ]);
 
   pass('Declarations - Async function (pass)', [
