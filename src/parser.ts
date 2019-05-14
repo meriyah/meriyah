@@ -3996,6 +3996,8 @@ export function parseObjectLiteralOrPattern(
                 ? parseArrayExpressionOrPattern(parser, context, /* skipInitializer */ 0, type)
                 : parseObjectLiteralOrPattern(parser, context, /* skipInitializer */ 0, type);
 
+            value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
+
             destructible = parser.destructible;
 
             parser.assignable =
@@ -4010,14 +4012,12 @@ export function parseObjectLiteralOrPattern(
                 ? DestructuringKind.Assignable
                 : DestructuringKind.NotDestructible) | parser.assignable;
           }
-        } else {
-          if (parser.token !== Token.LeftParen) {
-            report(parser, Errors.InvalidComputedPropName);
-          }
-
+        } else if (parser.token === Token.LeftParen) {
           state |= PropertyKind.Method;
           value = parseMethodDefinition(parser, context, state);
-          destructible |= parser.assignable | DestructuringKind.NotDestructible;
+          destructible = DestructuringKind.NotDestructible;
+        } else {
+          report(parser, Errors.InvalidComputedPropName);
         }
       } else if (parser.token === Token.Multiply) {
         consume(parser, context | Context.AllowRegExp, Token.Multiply);

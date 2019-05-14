@@ -11159,6 +11159,47 @@ describe('Expressions - Object', () => {
       }
     ],
     [
+      '({ [a]: {} [a] })',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ObjectExpression',
+              properties: [
+                {
+                  type: 'Property',
+                  key: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  value: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'ObjectExpression',
+                      properties: []
+                    },
+                    computed: true,
+                    property: {
+                      type: 'Identifier',
+                      name: 'a'
+                    }
+                  },
+                  kind: 'init',
+                  computed: true,
+                  method: false,
+                  shorthand: false
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
       'x = {15:b}',
       Context.None,
       {
