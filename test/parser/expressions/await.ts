@@ -112,6 +112,97 @@ describe('Expressions - Await', () => {
       });
     });
   }
+
+  for (let arg of [
+    `async function f(await) {}`,
+    `async function f(...await) {}`,
+    `async function f(await = 1) {}`,
+    `async function f([await]) {}`,
+    `async function f([await = 1]) {}`,
+    `async function f({ await }) {}`,
+    `async function f({ await = 1 }) {}`,
+    `async function f({ } = await) {}`,
+
+    `(async function(await) {})`,
+    `(async function(...await) {})`,
+    `(async function(await = 1) {})`,
+    `(async function([await]) {})`,
+    `(async function([await = 1]) {})`,
+    `(async function({ await }) {})`,
+    `(async function({ await = 1 }) {})`,
+    `(async function({ } = await) {})`,
+
+    `var asyncArrow = async(await) => 1;`,
+    `var asyncArrow = async(await) => {};`,
+    `var asyncArrow = async(...await) => 1;`,
+    `var asyncArrow = async(...await) => {};`,
+    `var asyncArrow = async(await = 1) => 1;`,
+    `var asyncArrow = async(await = 1) => {};`,
+    `var asyncArrow = async([await]) => 1;`,
+    `var asyncArrow = async([await]) => {};`,
+    `var asyncArrow = async([await = 1]) => 1;`,
+    `var asyncArrow = async([await = 1]) => {};`,
+    `var asyncArrow = async([] = await) => 1;`,
+    `var asyncArrow = async([] = await) => {};`,
+    `var asyncArrow = async({ await }) => 1;`,
+    `var asyncArrow = async({ await } ) => {};`,
+    `var asyncArrow = async({ await = 1}) => 1;`,
+    `var asyncArrow = async({ await = 1}) => {};`,
+    `var asyncArrow = async({ } = await) => 1;`,
+    `var asyncArrow = async({ } = await) => {};`,
+
+    `({ async method(await) {} })`,
+    `({ async method(...await) {} })`,
+    `({ async method(await = 1) {} })`,
+    `({ async method([await]) {} })`,
+    `({ async method([await = 1]) {} })`,
+    `({ async method({ await }) {} })`,
+    `({ async method({ await = 1 }) {} })`,
+    `({ async method({ } = await) {} })`,
+
+    `(class { async method(await) {} })`,
+    `(class { async method(...await) {} })`,
+    `(class { async method(await = 1) {} })`,
+    `(class { async method([await]) {} })`,
+    `(class { async method([await = 1]) {} })`,
+    `(class { async method({ await }) {} })`,
+    `(class { async method({ await = 1 }) {} })`,
+    `(class { async method({ } = await) {} })`,
+
+    `(class { static async method(await) {} })`,
+    `(class { static async method(...await) {} })`,
+    `(class { static async method(await = 1) {} })`,
+    `(class { static async method([await]) {} })`,
+    `(class { static async method([await = 1]) {} })`,
+    `(class { static async method({ await }) {} })`,
+    `(class { static async method({ await = 1 }) {} })`,
+    `(class { static async method({ } = await) {} })`
+  ]) {
+    it(`async function f() { ${arg} }`, () => {
+      t.throws(() => {
+        parseSource(`async function f() { ${arg} }`, undefined, Context.None);
+      });
+    });
+
+    it(`"use strict"; async function f() { ${arg} }`, () => {
+      t.throws(() => {
+        parseSource(`"use strict"; async function f() { ${arg} }`, undefined, Context.None);
+      });
+    });
+
+    it(`var await; var f = (async function() { ${arg} });`, () => {
+      t.throws(() => {
+        parseSource(`var await; var f = (async function() { ${arg} });`, undefined, Context.None);
+      });
+    });
+
+    it(`"use strict"; var await; var f = (async function() { ${arg} });`, () => {
+      t.throws(() => {
+        parseSource(`"use strict"; var await; var f = (async function() { ${arg} });`, undefined, Context.None);
+      });
+    });
+  }
+
   for (const arg of [
     'await',
     'var f = await => 42;',

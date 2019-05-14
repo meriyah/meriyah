@@ -49,6 +49,19 @@ describe('Declarations - Async Function', () => {
     'async function a() { function b() { return await; } }',
     'async function a() { var k = { async: 4 } }',
     'async function a() { await 4; }',
+
+    'async function a() { var t = !await 1 }',
+    'async function a() { var t = ~await 1; }',
+    'async function a() { var t = !(await 1); }',
+    'async function a() { var t = ~(await 1);  }',
+    'async function a() { var t = typeof (await 1); }',
+    'async function a() { var t = typeof typeof await 1;  }',
+    'async function a() { var t = void void await 1;  }',
+    '"use strict"; async function a() { var t = +(await 1); }',
+    '"use strict"; async function a() { var t = void (await 1); }',
+    '"use strict"; async function a() { var t = !void void await 1; }',
+    '"use strict"; async function a() { var t = +(await 1); }',
+    '"use strict"; async function a() { var t = +(await 1); }',
     'async function f2({x}) { { var x = 2; } return x; }',
     'async function f1(a = x) { var x = 2; return a; }',
     'async function f2(a = x) { function x() {}; return a; }',
@@ -89,9 +102,11 @@ describe('Declarations - Async Function', () => {
     `({ async [yield]() {} });`,
     `function f() { ({ async [yield]() {} }); }`,
     `function* g() { ({ async [yield]() {} }); }`,
+    'async function* a() { yield; (r = a) => {} }',
     `async function yield() {}`,
     'async function* a(){}',
     '(async function* (){})',
+    'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
     'function f() { return await; }',
     `async function *gen() {
       yield {
@@ -300,6 +315,7 @@ describe('Declarations - Async Function', () => {
     ['(async function await() { })', Context.None],
     ['(async function foo(await) { })', Context.None],
     ['(async function foo() { return {await} })', Context.None],
+    ['async function* a() { for (let m in ((await))) x;  (r = a) => {} }', Context.Strict],
     ['async function* g() { await; }; f = ([...[,]] = g()) => {};', Context.None],
     ['async ({a = b})', Context.None],
     ['async await => 1"', Context.None],
@@ -315,6 +331,8 @@ describe('Declarations - Async Function', () => {
     ['async (b = (await) => {}) => 1', Context.None],
     ['async (await, b = async()) => 2', Context.None],
     ['async (await, b = async () => {}) => 1', Context.None],
+    ['async function* a() { await;  (r = a) => {} }', Context.None],
+    ['async function* a() { (await) => {} }', Context.None],
     ['({async\nfoo() { }})', Context.None],
     ['({async get foo() { }})', Context.None],
     ['({async set foo(value) { }})', Context.None],
@@ -352,7 +370,17 @@ describe('Declarations - Async Function', () => {
     ['async function wrap() {\n(a = await b) => a\n}', Context.None],
     ['async function wrap() {\n({a = await b} = obj) => a\n}', Context.None],
     ['function* wrap() {\nasync(a = yield b) => a\n}', Context.None],
-    ['async function f(){ (x = new x(await x)) => {}   }', Context.None]
+    ['async function f(){ (x = new x(await x)) => {}   }', Context.None],
+    ['async function arguments() { "use strict"; }', Context.None],
+    ['async function fn(eval) { "use strict"; }', Context.None],
+    ['async function method() { var await = 1; }', Context.None],
+    ['async function method(await;) { }', Context.None],
+    ['async function method() { var x = await; }', Context.None],
+    ['async function af(a, b = await a) { }', Context.None],
+    ['async function af(a, b = await a) { "use strict"; }', Context.None],
+    ['async function af(x) { function f(a = await x) { } f(); } af();', Context.None],
+    ['async function af(arguments) { "use strict"; }', Context.None],
+    ['async function af(eval) { "use strict"; }', Context.None]
   ]);
 
   pass('Declarations - Async function (pass)', [

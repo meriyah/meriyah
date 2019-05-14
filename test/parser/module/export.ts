@@ -194,6 +194,7 @@ describe('Module - Export', () => {
     ['var foo, bar, x; export {{foo: x}}', Context.Strict | Context.Module],
     ['var foo; export {foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {[foo](){}}', Context.Strict | Context.Module],
+    ['export let await;', Context.Strict | Context.Module],
     ['var foo; export {async foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {*foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {*foo(){}}', Context.None],

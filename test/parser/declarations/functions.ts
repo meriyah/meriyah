@@ -150,6 +150,8 @@ describe('Declarations - Function', () => {
     ['o = {foo(x= eval = y){ "use strict"; }}', Context.None],
     ['function foo(p\\u0061ckage) { "use strict"; }', Context.None],
     ['function foo(p\\u0061ckage) { }', Context.Strict],
+    ['function await() {}', Context.Strict | Context.Module],
+    ['function *await() {}', Context.Strict | Context.Module],
     ['function foo(package) { "use strict"; }', Context.None],
     ['function foo(p\\x61ckage) { }', Context.None],
     ['function foo(p\\x61ckage) { "use strict"; }', Context.None],
@@ -162,6 +164,14 @@ describe('Declarations - Function', () => {
     ['function foo() { "use strict"; 00004; }', Context.Strict],
     ['function foo() { 00004; }', Context.Strict],
     ['function 00004() { "use strict"; 00004; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
+    ['function foo(001, 003) { "use strict"; }', Context.None],
     ['function foo(001, 003) { "use strict"; }', Context.None]
   ]);
 
@@ -309,7 +319,15 @@ describe('Declarations - Function', () => {
     'function hello() { say_hi_to_ariya(); }',
     'function arguments() { }',
     'function hello(a, b) { sayHi(); }',
-
+    'function f() { var o = { get await() { } } }',
+    'function f() { var o = { *await() { } } }',
+    'function f() { var await = 10; var o = { await }; }',
+    'function f() { class C { await() { } } }',
+    'function f() { class C { *await() { } } }',
+    'function f() { var fe = function await() { } }',
+    'function f() { function await() { } }',
+    'function f() { const await = 10; }',
+    'function f(a = async function (x) { await x; }) { a(); } f();',
     'function f() {var async = 1; return async;}',
     'function f() {let async = 1; return async;}',
     'function f() {const async = 1; return async;}',
@@ -466,7 +484,8 @@ describe('Declarations - Function', () => {
     'function f([foo,bar=b] = x){}',
     'function f([foo=a,bar=b]){}',
     'function f([foo=a,bar=b] = x){}',
-    '(function({x, ...y}) { })'
+    '(function({x, ...y}) { })',
+    'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
