@@ -557,7 +557,6 @@ yield d;
     ['let gfe = function* yield() { }', Context.None],
     ['function* gf() { let yield; ', Context.None],
     ['function* gf() { const yield = 10; }', Context.None],
-
     ['function* gf() { function* yield() { } }', Context.None],
     ['function* gf() { var gfe = function* yield() { } }', Context.None],
     ['function* gf() { class yield { } }', Context.None],
@@ -623,8 +622,8 @@ yield d;
     ['function *g() { (x = x + yield y); }', Context.None],
     ['function *g() { (x = x + yield) => x; }', Context.None],
     ['function *g() { (x = x + yield y) => x; }', Context.None],
-    //['function *g(){ (x = {[yield y]: 1}) => z }', Context.None],
-    //['function *g(){ (x = {[yield]: 1}) => z }', Context.None],
+    ['function *g(){ (x = {[yield y]: 1}) => z }', Context.None],
+    ['function *g(){ (x = {[yield]: 1}) => z }', Context.None],
     ['(x = x) = x;', Context.None],
     ['{ (x = yield) = {}; }', Context.None],
     ['{ (x = y = yield z) => {}; }', Context.None],

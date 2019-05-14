@@ -3131,7 +3131,9 @@ export function parseArrayExpressionOrPattern(
           destructible |=
             parser.assignable & AssignmentKind.NotAssignable
               ? DestructuringKind.NotDestructible
-              : 0 | (token === Token.AwaitKeyword ? DestructuringKind.Await : 0);
+              : 0 |
+                (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
+                (token === Token.YieldKeyword ? DestructuringKind.Yield : 0);
         } else {
           if (type) destructible |= DestructuringKind.NotDestructible;
 
@@ -4085,6 +4087,8 @@ export function parseObjectLiteralOrPattern(
   consume(parser, context, Token.RightBrace);
 
   if (prototypeCount > 1) destructible |= DestructuringKind.SeenProto;
+
+  destructible |= parser.flags & Flags.Yield ? DestructuringKind.Yield : 0;
 
   const node = {
     type: 'ObjectExpression',
