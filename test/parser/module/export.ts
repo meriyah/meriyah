@@ -598,6 +598,49 @@ describe('Module - Export', () => {
       }
     ],
     [
+      'export * from "a"',
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportAllDeclaration',
+            source: {
+              type: 'Literal',
+              value: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'export * as foo from "./foo";',
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        body: [
+          {
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            specifiers: [
+              {
+                specifier: {
+                  name: 'foo',
+                  type: 'Identifier'
+                },
+                type: 'ExportNamespaceSpecifier'
+              }
+            ],
+            type: 'ExportNamedDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
       'export {}',
       Context.Module,
       {

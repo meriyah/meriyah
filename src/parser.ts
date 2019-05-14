@@ -1783,8 +1783,11 @@ function parseExportDeclaration(
 
   switch (parser.token) {
     case Token.Multiply: {
+      // See: https://github.com/tc39/ecma262/pull/1174
+      let ecma262PR: 0 | 1 = 0;
       nextToken(parser, context); // '*'
       if (context & Context.OptionsNext && consumeOpt(parser, context, Token.AsKeyword)) {
+        ecma262PR = 1;
         specifiers.push({
           type: 'ExportNamespaceSpecifier',
           specifier: parseIdentifier(parser, context)
@@ -1794,7 +1797,7 @@ function parseExportDeclaration(
       if (parser.token !== Token.StringLiteral) report(parser, Errors.InvalidExportImportSource, 'Export');
       source = parseLiteral(parser, context);
       consumeSemicolon(parser, context | Context.AllowRegExp);
-      return context & Context.OptionsNext && specifiers
+      return ecma262PR
         ? {
             type: 'ExportNamedDeclaration',
             source,
@@ -3930,14 +3933,15 @@ export function parseObjectLiteralOrPattern(
                 destructible |= DestructuringKind.NotDestructible;
               }
 
-              let firstOpNotAssign = parser.token !== Token.Assign;
+              const { token } = parser;
+
               if (parser.token !== Token.Comma && parser.token !== Token.RightBrace) {
                 value = parseAssignmentExpression(
                   parser,
                   (context | Context.DisallowInContext) ^ Context.DisallowInContext,
                   value
                 );
-                if (firstOpNotAssign) {
+                if (token !== Token.Assign) {
                   destructible |= DestructuringKind.NotDestructible;
                 }
               }
@@ -3996,14 +4000,21 @@ export function parseObjectLiteralOrPattern(
                 ? parseArrayExpressionOrPattern(parser, context, /* skipInitializer */ 0, type)
                 : parseObjectLiteralOrPattern(parser, context, /* skipInitializer */ 0, type);
 
-            value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
-
-            destructible = parser.destructible;
+            destructible |= parser.destructible;
 
             parser.assignable =
-              destructible & DestructuringKind.NotDestructible
+              parser.destructible & DestructuringKind.NotDestructible
                 ? AssignmentKind.NotAssignable
                 : AssignmentKind.Assignable;
+
+            if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
+              if (parser.assignable & AssignmentKind.NotAssignable) {
+                destructible |= DestructuringKind.NotDestructible;
+              }
+            } else {
+              value = parseMemberOrUpdateExpression(parser, context, value, /* assignable */ 0);
+              if (parser.token !== Token.Assign) destructible |= DestructuringKind.Assignable;
+            }
           } else {
             value = parseExpression(parser, context, /* aassignable */ 1);
 
