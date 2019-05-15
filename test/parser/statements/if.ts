@@ -36,6 +36,108 @@ describe('Statements - None', () => {
 
   pass('Statements - If (pass)', [
     [
+      'if (yield === void 0) { async = false; }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'yield'
+              },
+              right: {
+                type: 'UnaryExpression',
+                operator: 'void',
+                argument: {
+                  type: 'Literal',
+                  value: 0
+                },
+                prefix: true
+              },
+              operator: '==='
+            },
+            consequent: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'AssignmentExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: false
+                    }
+                  }
+                }
+              ]
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if (await === void 0) { async = false; }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'await'
+              },
+              right: {
+                type: 'UnaryExpression',
+                operator: 'void',
+                argument: {
+                  type: 'Literal',
+                  value: 0
+                },
+                prefix: true
+              },
+              operator: '==='
+            },
+            consequent: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'AssignmentExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: false
+                    }
+                  }
+                }
+              ]
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
       'if (async === void 0) { async = false; }',
       Context.OptionsWebCompat,
       {

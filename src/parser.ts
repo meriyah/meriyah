@@ -2568,7 +2568,7 @@ export function parsePrimaryExpressionExtended(
       if (IsEvalOrArguments) {
         if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
         parser.flags |= Flags.SimpleParameterList;
-      }
+      } else parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
       if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
 
       return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
@@ -3883,26 +3883,18 @@ export function parseObjectLiteralOrPattern(
                 : AssignmentKind.Assignable;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.NotDestructible;
+              if (parser.assignable & AssignmentKind.NotAssignable) {
+                destructible |= DestructuringKind.NotDestructible;
+              }
+            } else if (parser.destructible & DestructuringKind.Required) {
+              report(parser, Errors.InvalidDestructuringTarget);
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* assignable */ 0);
-
-              destructible =
-                parser.assignable & AssignmentKind.NotAssignable ? destructible | DestructuringKind.NotDestructible : 0;
-
-              const notAssignable = parser.token !== Token.Assign;
+              destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
 
               if (parser.token !== Token.Comma && parser.token !== Token.RightBrace) {
-                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
-
-                value = parseAssignmentExpression(
-                  parser,
-                  (context | Context.DisallowInContext) ^ Context.DisallowInContext,
-                  value
-                );
-
-                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
-              } else if (notAssignable) {
+                value = parseAssignmentExpression(parser, context, value);
+              } else if (parser.token !== Token.Assign) {
                 destructible |=
                   type || parser.assignable & AssignmentKind.NotAssignable
                     ? DestructuringKind.NotDestructible

@@ -129,8 +129,30 @@ describe('Miscellaneous - Directives', () => {
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsDirectives);
+        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsDirectives | Context.OptionsRaw);
       });
+    });
+
+    it(`/* comment in front */ ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(
+          `/* comment in front */ ${arg}`,
+          undefined,
+          Context.OptionsDirectives | Context.OptionsWebCompat | Context.OptionsRaw
+        );
+      });
+    });
+  }
+
+  for (const arg of ['.foo', '[foo]', '()', '`x`', ' + x', '/f', '/f/g']) {
+    t.throws(() => {
+      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, undefined, Context.Strict);
+    });
+  }
+
+  for (const arg of ['foo', '++x', '--x', 'function f(){}', '{x}', ';', '25', 'true']) {
+    t.throws(() => {
+      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`, undefined, Context.None);
     });
   }
 });
