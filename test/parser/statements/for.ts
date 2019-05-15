@@ -1271,6 +1271,60 @@ describe('Statements - For', () => {
       }
     ],
     [
+      'for ({x = y} = (z);;) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            init: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'ObjectPattern',
+                properties: [
+                  {
+                    type: 'Property',
+                    key: {
+                      type: 'Identifier',
+                      name: 'x'
+                    },
+                    value: {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'y'
+                      }
+                    },
+                    kind: 'init',
+                    computed: false,
+                    method: false,
+                    shorthand: true
+                  }
+                ]
+              },
+              operator: '=',
+              right: {
+                type: 'Identifier',
+                name: 'z'
+              }
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+    [
       'for (let [foo, bar=b] in arr);',
       Context.None,
       {

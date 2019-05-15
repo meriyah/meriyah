@@ -1495,9 +1495,9 @@ export function parseForStatement(
   }
 
   if (!isVarDecl) {
+    if (parser.token !== Token.Assign && destructible & DestructuringKind.Required)
+      report(parser, Errors.ForLoopInvalidLHS);
     init = parseAssignmentExpression(parser, context | Context.DisallowInContext, init);
-
-    if (destructible & DestructuringKind.Required) report(parser, Errors.ForLoopInvalidLHS);
   }
 
   if (parser.token === Token.Comma) init = parseSequenceExpression(parser, context, init);
