@@ -1035,6 +1035,70 @@ describe('Declarations - Function', () => {
       }
     ],
     [
+      'function a( a = b  ) {} n => {  "use strict"; }',
+      Context.None,
+      {
+        body: [
+          {
+            async: false,
+            body: {
+              body: [],
+              type: 'BlockStatement'
+            },
+            expression: false,
+            generator: false,
+            id: {
+              name: 'a',
+              type: 'Identifier'
+            },
+            params: [
+              {
+                left: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                right: {
+                  name: 'b',
+                  type: 'Identifier'
+                },
+                type: 'AssignmentPattern'
+              }
+            ],
+            type: 'FunctionDeclaration'
+          },
+          {
+            expression: {
+              async: false,
+              body: {
+                body: [
+                  {
+                    expression: {
+                      type: 'Literal',
+                      value: 'use strict'
+                    },
+                    type: 'ExpressionStatement'
+                  }
+                ],
+                type: 'BlockStatement'
+              },
+              expression: false,
+              id: null,
+              params: [
+                {
+                  name: 'n',
+                  type: 'Identifier'
+                }
+              ],
+              type: 'ArrowFunctionExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'function f() {var f}',
       Context.None,
       {

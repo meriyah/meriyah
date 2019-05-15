@@ -184,6 +184,8 @@ describe('Statements - For of', () => {
 
   for (const arg of [
     'for({a=0} of b);',
+    'for ({[a]: ""[b]} of c) {}',
+    'for ({[a]: ""[b] = c} of d) {}',
     'for (let of of ([0])) { }',
     'for (let of of [0]) { }',
     'for (let of; false; ) { }',
