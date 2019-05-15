@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Fast and lightweight, standard-compliant javascript parser written in ECMAScript",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",

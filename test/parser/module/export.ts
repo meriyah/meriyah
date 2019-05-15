@@ -194,6 +194,7 @@ describe('Module - Export', () => {
     ['var foo, bar, x; export {{foo: x}}', Context.Strict | Context.Module],
     ['var foo; export {foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {[foo](){}}', Context.Strict | Context.Module],
+    ['export let await;', Context.Strict | Context.Module],
     ['var foo; export {async foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {*foo(){}}', Context.Strict | Context.Module],
     ['var foo; export {*foo(){}}', Context.None],
@@ -594,6 +595,49 @@ describe('Module - Export', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      'export * from "a"',
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportAllDeclaration',
+            source: {
+              type: 'Literal',
+              value: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'export * as foo from "./foo";',
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        body: [
+          {
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            specifiers: [
+              {
+                specifier: {
+                  name: 'foo',
+                  type: 'Identifier'
+                },
+                type: 'ExportNamespaceSpecifier'
+              }
+            ],
+            type: 'ExportNamedDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
       }
     ],
     [

@@ -973,7 +973,7 @@ describe('Miscellaneous - Failure', () => {
     `[...x in y] = []`,
     `function foo() { 'use strict'; return {yield} }`,
     `function* wrap() { function* foo(a = 1 + (yield)) {} }`,
-    `function* wrap() { return (a = 1 + (yield)) => a }`,
+    // `function* wrap() { return (a = 1 + (yield)) => a }`,
     `(function* g() {\nfor (yield '' in {}; ; ) ;\n }`,
     `(function* yield() {})`,
     `function* wrap() {\nfunction* yield() {}\n}`,

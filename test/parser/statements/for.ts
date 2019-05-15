@@ -18,6 +18,7 @@ describe('Statements - For', () => {
       : o = n && w.isPlainObject(n)
       ? n : {}, a[t] = w.extend(l, o, r))
       : void 0 !== r && (a[t] = r));`,
+    'for (let m in ((yield))) foo; (r = a) => {}',
     `for(x, y;;);`,
     `for(x = 0;;);`,
     `for(x; x < 0;);`,

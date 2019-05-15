@@ -57,6 +57,45 @@ describe('Miscellaneous - Pass', () => {
     `for (let;;);`,
     `for (const x of y);`,
     `for (let.x in y);`,
+    `class MyClass {
+      async asyncMethod(a) { return a; }
+      async async(a) { return a; }
+      async "a"() { return 12; }
+      async 0() { return 12; }
+      async 3.14() { return 12; }
+      async else() { return 12; }
+      static async staticAsyncMethod(a) { return a; }
+    }`,
+    `var object3 = {
+      async "a"() { return 12; },
+      async 0() { return 12; },
+      async 3.14() { return 12; },
+      async else() { return 12; },
+  };`,
+    `({
+    name: "Awaiting a function with multiple awaits",
+    body: function (index) {
+      async function af1(a, b) {
+          return await af2();
+
+          async function af2() {
+              a = await a * a;
+              b = await b * b;
+
+              return a + b;
+          }
+      }
+    }
+    })`,
+    `({
+      name: "Async function with an exception in an await expression",
+      body: function (index) {
+          var obj =  { x : 1 };
+          async function af1() { throw obj; }
+          async function af2() {}
+          async function af3() {return await af1() + await af2(); }
+        }
+      })`,
     `(a,) => {}`,
     `(a,b,) => {}`,
     `(a = b,) => {}`,
@@ -514,6 +553,8 @@ describe('Miscellaneous - Pass', () => {
     'function f() { [] in [5,6] * [,5,] / [,,5,,] || [a,] && new [,b] % [,,] }',
     'function f() { (delete new function f(){} + function(a,b){}(5)(6)) }',
     '(delete new function f(){} + function(a,b){}(5)(6))',
+    "let e = ['_this_', '_x_', '_y_', '_z_', '[object Arguments]'];",
+    "let r = f.call('_this_', '_x_', '_y_', '_z_')();",
     'function f() { function f() {} + function g() {} }',
     'function g(arguments, eval) {}',
     'function f() { function f(a,b) {} }',
