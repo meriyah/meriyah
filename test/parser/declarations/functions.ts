@@ -1035,6 +1035,71 @@ describe('Declarations - Function', () => {
       }
     ],
     [
+      'function* a( [ {  x  =  y  }  =  a ] )  { }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'ObjectPattern',
+                      properties: [
+                        {
+                          type: 'Property',
+                          kind: 'init',
+                          key: {
+                            type: 'Identifier',
+                            name: 'x'
+                          },
+                          computed: false,
+                          value: {
+                            type: 'AssignmentPattern',
+                            left: {
+                              type: 'Identifier',
+                              name: 'x'
+                            },
+                            right: {
+                              type: 'Identifier',
+                              name: 'y'
+                            }
+                          },
+                          method: false,
+                          shorthand: true
+                        }
+                      ]
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'a'
+                    }
+                  }
+                ]
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
       'function a( a = b  ) {} n => {  "use strict"; }',
       Context.None,
       {

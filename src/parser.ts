@@ -711,12 +711,14 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   /** ArrowFunction[In, Yield, Await]:
    *    ArrowParameters[?Yield, ?Await][no LineTerminator here]=>ConciseBody[?In]
    */
-  expr =
-    parser.token === Token.LeftParen
-      ? parseAsyncArrowOrCallExpression(parser, context & ~Context.DisallowInContext, expr, 1, asyncNewLine as 0 | 1)
-      : parser.token === Token.Arrow
-      ? parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0)
-      : expr;
+  if (parser.token === Token.LeftParen)
+    expr = parseAsyncArrowOrCallExpression(parser, context & ~Context.DisallowInContext, expr, 1, asyncNewLine as
+      | 0
+      | 1);
+  else if (parser.token === Token.Arrow) expr = parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
+  else {
+    parser.assignable = AssignmentKind.Assignable;
+  }
 
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -3158,8 +3160,8 @@ export function parseArrayExpressionOrPattern(
       } else if (parser.token & Token.IsPatternStart) {
         left =
           parser.token === Token.LeftBrace
-            ? parseObjectLiteralOrPattern(parser, context, skipInitializer, type)
-            : parseArrayExpressionOrPattern(parser, context, skipInitializer, type);
+            ? parseObjectLiteralOrPattern(parser, context, /* skipInitializer*/ 0, type)
+            : parseArrayExpressionOrPattern(parser, context, /* skipInitializer*/ 0, type);
 
         destructible |= parser.destructible;
 
