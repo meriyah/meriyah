@@ -2407,7 +2407,7 @@ export function parseMemberOrUpdateExpression(
       parser.assignable = AssignmentKind.NotAssignable;
       return expr;
     } else if (parser.token === Token.LeftParen) {
-      const args = parseArguments(parser, context);
+      const args = parseArguments(parser, context & ~Context.DisallowInContext);
       parser.assignable = AssignmentKind.NotAssignable;
       expr = {
         type: 'CallExpression',
@@ -2421,7 +2421,7 @@ export function parseMemberOrUpdateExpression(
         tag: expr,
         quasi:
           parser.token === Token.TemplateContinuation
-            ? parseTemplate(parser, context)
+            ? parseTemplate(parser, context | Context.TaggedTemplate)
             : parseTemplateLiteral(parser, context)
       };
     }
@@ -2732,11 +2732,11 @@ export function parseTemplateTail(parser: ParserState, context: Context): ESTree
 export function parseTemplate(parser: ParserState, context: Context): any {
   const quasis = [parseTemplateSpans(parser, /* tail */ false)];
   consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
-  const expressions = [parseExpression(parser, context, /* assignable */ 1)];
+  const expressions = [parseExpressions(parser, context, /* assignable */ 1)];
   while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateTail) {
     quasis.push(parseTemplateSpans(parser, /* tail */ false));
     consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
-    expressions.push(parseExpression(parser, context, /* assignable */ 1));
+    expressions.push(parseExpressions(parser, context, /* assignable */ 1));
   }
   quasis.push(parseTemplateSpans(parser, /* tail */ true));
 
@@ -3647,7 +3647,11 @@ export function parseObjectLiteralOrPattern(
             value = {
               type: 'AssignmentPattern',
               left: key,
-              right: parseExpression(parser, context, /* assignable */ 1)
+              right: parseExpression(
+                parser,
+                (context | Context.DisallowInContext) ^ Context.DisallowInContext,
+                /* assignable */ 1
+              )
             };
           } else {
             value = key;
@@ -4697,7 +4701,7 @@ export function parseNewExpression(
   return {
     type: 'NewExpression',
     callee,
-    arguments: parser.token === Token.LeftParen ? parseArguments(parser, context) : []
+    arguments: parser.token === Token.LeftParen ? parseArguments(parser, context & ~Context.DisallowInContext) : []
   } as ESTree.NewExpression;
 }
 

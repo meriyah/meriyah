@@ -653,6 +653,77 @@ describe('Statements - For of', () => {
       }
     ],
     [
+      'for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'const',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'f'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'f'
+                          },
+                          right: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'Identifier',
+                              name: 'x'
+                            },
+                            right: {
+                              type: 'Literal',
+                              value: /([--])|[--]|=+|[-$-+-­-]/y,
+                              regex: {
+                                pattern: '([--])|[--]|=+|[-\u001c$-+-­-]',
+                                flags: 'y'
+                              }
+                            },
+                            operator: 'in'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'ArrayExpression',
+              elements: []
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
       'for ([a.b].foo of c) d',
       Context.None,
       {

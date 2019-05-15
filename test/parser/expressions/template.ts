@@ -387,6 +387,138 @@ describe('Expressions - Template', () => {
       }
     ],*/
     [
+      '`${y, x`)`}`',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'TemplateLiteral',
+              expressions: [
+                {
+                  type: 'SequenceExpression',
+                  expressions: [
+                    {
+                      type: 'Identifier',
+                      name: 'y'
+                    },
+                    {
+                      type: 'TaggedTemplateExpression',
+                      tag: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      quasi: {
+                        type: 'TemplateLiteral',
+                        expressions: [],
+                        quasis: [
+                          {
+                            type: 'TemplateElement',
+                            value: {
+                              cooked: ')',
+                              raw: ')'
+                            },
+                            tail: true
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ],
+              quasis: [
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: false
+                },
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '`${x`)`, y}`',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'TemplateLiteral',
+              expressions: [
+                {
+                  type: 'SequenceExpression',
+                  expressions: [
+                    {
+                      type: 'TaggedTemplateExpression',
+                      tag: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      quasi: {
+                        type: 'TemplateLiteral',
+                        expressions: [],
+                        quasis: [
+                          {
+                            type: 'TemplateElement',
+                            value: {
+                              cooked: ')',
+                              raw: ')'
+                            },
+                            tail: true
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      type: 'Identifier',
+                      name: 'y'
+                    }
+                  ]
+                }
+              ],
+              quasis: [
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: false
+                },
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
       '`a${b=c}d`',
       Context.None,
       {

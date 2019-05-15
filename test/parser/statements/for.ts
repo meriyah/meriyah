@@ -1040,6 +1040,139 @@ describe('Statements - For', () => {
       }
     ],
     [
+      'for (`<${new arguments(++r.function[eval], () => {}, function () {""}, (a)in this, true)}`; x ^= arguments;) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            init: {
+              type: 'TemplateLiteral',
+              expressions: [
+                {
+                  type: 'NewExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'arguments'
+                  },
+                  arguments: [
+                    {
+                      type: 'UpdateExpression',
+                      argument: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'r'
+                          },
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'function'
+                          }
+                        },
+                        computed: true,
+                        property: {
+                          type: 'Identifier',
+                          name: 'eval'
+                        }
+                      },
+                      operator: '++',
+                      prefix: true
+                    },
+                    {
+                      type: 'ArrowFunctionExpression',
+                      body: {
+                        type: 'BlockStatement',
+                        body: []
+                      },
+                      params: [],
+                      id: null,
+                      async: false,
+                      expression: false
+                    },
+                    {
+                      type: 'FunctionExpression',
+                      params: [],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [
+                          {
+                            type: 'ExpressionStatement',
+                            expression: {
+                              type: 'Literal',
+                              value: ''
+                            }
+                          }
+                        ]
+                      },
+                      async: false,
+                      generator: false,
+                      expression: false,
+                      id: null
+                    },
+                    {
+                      type: 'BinaryExpression',
+                      left: {
+                        type: 'Identifier',
+                        name: 'a'
+                      },
+                      right: {
+                        type: 'ThisExpression'
+                      },
+                      operator: 'in'
+                    },
+                    {
+                      type: 'Literal',
+                      value: true
+                    }
+                  ]
+                }
+              ],
+              quasis: [
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '<',
+                    raw: '<'
+                  },
+                  tail: false
+                },
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: true
+                }
+              ]
+            },
+            test: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'x'
+              },
+              operator: '^=',
+              right: {
+                type: 'Identifier',
+                name: 'arguments'
+              }
+            },
+            update: null
+          }
+        ]
+      }
+    ],
+    [
       'for (let [foo, ...bar] = obj;;);',
       Context.None,
       {
