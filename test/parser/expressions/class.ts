@@ -1720,6 +1720,95 @@ describe('Expressions - Class', () => {
       }
     ],
     [
+      'class a extends [] { static set [a] ({w=a}) { for (;;) a } }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            },
+            superClass: {
+              type: 'ArrayExpression',
+              elements: []
+            },
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'set',
+                  static: true,
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'ObjectPattern',
+                        properties: [
+                          {
+                            type: 'Property',
+                            kind: 'init',
+                            key: {
+                              type: 'Identifier',
+                              name: 'w'
+                            },
+                            computed: false,
+                            value: {
+                              type: 'AssignmentPattern',
+                              left: {
+                                type: 'Identifier',
+                                name: 'w'
+                              },
+                              right: {
+                                type: 'Identifier',
+                                name: 'a'
+                              }
+                            },
+                            method: false,
+                            shorthand: true
+                          }
+                        ]
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ForStatement',
+                          body: {
+                            type: 'ExpressionStatement',
+                            expression: {
+                              type: 'Identifier',
+                              name: 'a'
+                            }
+                          },
+                          init: null,
+                          test: null,
+                          update: null
+                        }
+                      ]
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
       'class x extends {} {}',
       Context.None,
       {

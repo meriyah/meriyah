@@ -1075,6 +1075,75 @@ describe('Declarations - Function', () => {
       }
     ],
     [
+      'function a([ { a = x }, {} = b]) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'a'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'x'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  },
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'ObjectPattern',
+                      properties: []
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b'
+                    }
+                  }
+                ]
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: false,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
       'function f(){} function f(){}',
       Context.None,
       {

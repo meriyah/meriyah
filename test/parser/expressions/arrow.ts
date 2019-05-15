@@ -674,6 +674,11 @@ describe('Expressions - Arrow', () => {
     ['((x, y)) => 0', Context.None],
     ['(x, (y)) => 0', Context.None],
     ['((x, y, z)) => 0', Context.None],
+    ['([...x.y]) => z', Context.None],
+    ['([...(x), y] = z) => 0', Context.None],
+    ['((x, y, z)) => 0', Context.None],
+    ['((x, y, z)) => 0', Context.None],
+    ['((x, y, z)) => 0', Context.None],
     ['([...x.y] = z) => z', Context.None],
     ['(x, (y, z)) => 0', Context.None],
     ['((x, y), z) => 0', Context.None],
@@ -1075,6 +1080,7 @@ describe('Expressions - Arrow', () => {
     `() => {}
   a()
   async()`,
+    `(z = [...x.y]) => z`,
     `a => a => a => async a => a`,
     `a => a => a => a => a => a => a => a => a => a => a => a => a => a => a => async a => a`,
     'var f = (function() { return z => arguments[0]; }(5));'
