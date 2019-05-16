@@ -472,6 +472,8 @@ describe('Expressions - Async arrow', () => {
     ['async (var x) => {};', Context.None],
     ['async (x, y)[7] => {}', Context.None],
     ['a.x => {};', Context.None],
+    ['async(a, ...await) => {}', Context.None],
+    ['async(a = await/r/g) => {}', Context.None],
     ['async (x = (x) += await f) => {}', Context.None],
     ['var x = 1 y => y', Context.None],
     ['async(a, 1) => x', Context.None],
@@ -738,6 +740,10 @@ describe('Expressions - Async arrow', () => {
     });
   }
   pass('Expressions - Async arrow', [
+    /* [
+      `async (a = async () => { await 1; }) => {}`,
+      Context.None,
+      {}], */
     [
       `async (() => 1)(), 1`,
       Context.None,

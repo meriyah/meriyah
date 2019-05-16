@@ -2935,8 +2935,17 @@ export function parseFunctionDeclaration(
     params: parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
-      (context | Context.TopLevel | Context.InGlobal | Context.InSwitchOrIteration | Context.InClass) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass),
+      (context |
+        Context.TopLevel |
+        Context.InGlobal |
+        Context.InSwitchOrIteration |
+        Context.InClass |
+        Context.DisallowInContext) ^
+        (Context.InGlobal |
+          Context.TopLevel |
+          Context.InSwitchOrIteration |
+          Context.InClass |
+          Context.DisallowInContext),
       BindingOrigin.Declaration,
       firstRestricted
     ),
@@ -2987,8 +2996,13 @@ export function parseFunctionExpression(
   const params = parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList);
   const body = parseFunctionBody(
     parser,
-    (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass) ^
-      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass),
+    (context |
+      Context.InGlobal |
+      Context.TopLevel |
+      Context.InSwitchOrIteration |
+      Context.InClass |
+      Context.DisallowInContext) ^
+      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass | Context.DisallowInContext),
     0,
     firstRestricted
   );
@@ -3479,8 +3493,8 @@ export function parseMethodDefinition(
     params: parseMethodFormals(parser, context | Context.InArgList, kind, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
-      (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration),
+      (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext) ^
+        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowInContext),
       BindingOrigin.None,
       void 0
     ),
@@ -4906,7 +4920,7 @@ export function parseAsyncArrowOrCallExpression(
     if (destructible & DestructuringKind.NotDestructible) report(parser, Errors.InvalidLHSInAsyncArrow);
     if (destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidArrowDestructLHS);
     if (parser.flags & Flags.NewLine || asyncNewLine) report(parser, Errors.InvalidLineBreak);
-    if (parser.destructible & DestructuringKind.Await) report(parser, Errors.YieldInParameter);
+    if (parser.destructible & DestructuringKind.Await) report(parser, Errors.AwaitInParameter);
     if (context & (Context.Strict | Context.InYieldContext) && parser.destructible & DestructuringKind.Yield)
       report(parser, Errors.YieldInParameter);
     return parseArrowFunctionExpression(parser, context, params as any, /* isAsync */ 1) as any;
