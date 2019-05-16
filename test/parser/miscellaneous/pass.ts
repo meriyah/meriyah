@@ -515,6 +515,30 @@ describe('Miscellaneous - Pass', () => {
     'function f() { [] in [5,6] * [,5,] / [,,5,,] || [a,] && new [,b] % [,,] }',
     'function f() { (delete new function f(){} + function(a,b){}(5)(6)) }',
     '(delete new function f(){} + function(a,b){}(5)(6))',
+    `do x
+    while ({ [y]: {} = x ? null : false  })`,
+    `do x
+    while ({ [y]: {x = y} = z ? null : false  })`,
+    `do x
+    while ({ [y = [yy]]: { x = (y)} ? null : false  })`,
+    `do x
+    while ({ [(y)]: {} ? null : false  })`,
+    `do x
+    while ({ [y]: {} ? function () {} : false  })`,
+    `do x
+    while ({ [(y)()]: {} ? null : false  })`,
+    `do x
+    while ({ [(x)(y = 2 / 3)]: { } ? null : false  })`,
+    `do x
+    while ({ [(x)(y = 2 / 3)]: { x } ? (((y = z))) : {x} = y })`,
+    `do x
+    while ({ [(y)((([[x / y - 2]])))]: {} ? null : false  })`,
+    `do x
+    while ({ [(y)((([[x / y - 2]])))]: {} = {[x]: {} = x ? null : false } ? null : false  })`,
+    `do x
+    while ({ ["foo"]: {bar} ? z - (y) : {a}[b] })`,
+    `do x
+    while ({ [[](e)]: {f,g,h, i: (j)} ? null : false  })`,
     "let e = ['_this_', '_x_', '_y_', '_z_', '[object Arguments]'];",
     "let r = f.call('_this_', '_x_', '_y_', '_z_')();",
     'function f() { function f() {} + function g() {} }',

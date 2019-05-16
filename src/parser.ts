@@ -3888,7 +3888,7 @@ export function parseObjectLiteralOrPattern(
                 destructible |= DestructuringKind.NotDestructible;
               }
             } else if (parser.destructible & DestructuringKind.Required) {
-              //              report(parser, Errors.InvalidDestructuringTarget);
+              report(parser, Errors.InvalidDestructuringTarget);
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* assignable */ 0);
               destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.NotDestructible : 0;
@@ -4003,9 +4003,29 @@ export function parseObjectLiteralOrPattern(
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.NotDestructible;
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
+              value = parseMemberOrUpdateExpression(parser, context, value, /* assignable */ 0);
+
               destructible =
-                parser.assignable & AssignmentKind.Assignable ? 0 : (destructible = DestructuringKind.NotDestructible);
+                parser.assignable & AssignmentKind.NotAssignable ? destructible | DestructuringKind.NotDestructible : 0;
+
+              const notAssignable = parser.token !== Token.Assign;
+
+              if (parser.token !== Token.Comma && parser.token !== Token.RightBrace) {
+                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
+
+                value = parseAssignmentExpression(
+                  parser,
+                  (context | Context.DisallowInContext) ^ Context.DisallowInContext,
+                  value
+                );
+
+                if (notAssignable) destructible |= DestructuringKind.NotDestructible;
+              } else if (notAssignable) {
+                destructible |=
+                  type || parser.assignable & AssignmentKind.NotAssignable
+                    ? DestructuringKind.NotDestructible
+                    : DestructuringKind.Assignable;
+              }
             }
           } else {
             value = parseLeftHandSideExpression(parser, context, /* assignable */ 1);

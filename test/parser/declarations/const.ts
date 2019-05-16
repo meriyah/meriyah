@@ -231,6 +231,8 @@ describe('Declarations - const', () => {
     ['const x, {y};', Context.None],
     ['const {x}, y;', Context.None],
     ['const x = y, {z};', Context.None],
+    ['const let = 1;', Context.Strict],
+    ['let let = 1;', Context.Strict],
     ['const {x=y};', Context.None],
     ['const {x:y=z};', Context.None],
     ['const {x:y=z} = obj, {a:b=c};', Context.None],
