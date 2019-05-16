@@ -396,6 +396,7 @@ describe('Statements - For in', () => {
     ['for (const a = 0 in {});', Context.None],
     ['for (let a = 0 in {});', Context.None],
     ['for (var a = 0 in {});', Context.None],
+    ['for (function () {} in a)', Context.None],
     ['for (var [a] = 0 in {});', Context.None],
     ['for (var {a} = 0 in {});', Context.None],
     ['for(var [a = 0] = 0 in {});', Context.None],
