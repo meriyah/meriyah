@@ -3916,11 +3916,9 @@ export function parseObjectLiteralOrPattern(
               }
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
-              if (parser.assignable & AssignmentKind.Assignable) {
-                destructible = 0;
-              } else {
-                destructible |= DestructuringKind.NotDestructible;
-              }
+
+              destructible =
+                parser.assignable & AssignmentKind.Assignable ? 0 : (destructible = DestructuringKind.NotDestructible);
 
               const { token } = parser;
 
@@ -3930,9 +3928,7 @@ export function parseObjectLiteralOrPattern(
                   (context | Context.DisallowInContext) ^ Context.DisallowInContext,
                   value
                 );
-                if (token !== Token.Assign) {
-                  destructible |= DestructuringKind.NotDestructible;
-                }
+                if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
               }
             }
           }
@@ -4039,9 +4035,9 @@ export function parseObjectLiteralOrPattern(
               if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.NotDestructible;
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
-              if (parser.assignable & AssignmentKind.Assignable) {
-                destructible = 0;
-              }
+
+              destructible =
+                parser.assignable & AssignmentKind.Assignable ? 0 : (destructible = DestructuringKind.NotDestructible);
 
               const { token } = parser;
 
@@ -4051,6 +4047,8 @@ export function parseObjectLiteralOrPattern(
                   (context | Context.DisallowInContext) ^ Context.DisallowInContext,
                   value
                 );
+
+                if (token !== Token.Assign) destructible |= DestructuringKind.NotDestructible;
               }
             }
           }
