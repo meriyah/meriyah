@@ -256,6 +256,9 @@ describe('Miscellaneous - Cover grammar', () => {
     '[this = 1]',
     'var {a};',
     '[new.target]',
+    `({"x": [y].z(0)})`,
+    `({"x": [y].z(0)} = x)`,
+    `({"x": [y].z(0)}) => x`,
     '[new.target = 1]',
     '[import.meta]',
     'var [a.b] = 0',
@@ -267,8 +270,11 @@ describe('Miscellaneous - Cover grammar', () => {
     '[async function f() {}]',
     '[function* f() {}]',
     '([arguments] = []);',
+    '({a: {a=b}.x}) => x',
+    '([{a=b}.x]) => x',
     '[{ get x() {} }] = [{}];',
     '[...x, y] = [];',
+    `({ident: {x}.join("")}) => x`,
     '[...[(x, y)]] = [[]];',
     '"use strict"; ({ eval } = {});',
     'assignmentResult = { x: x = yield } = value;',
@@ -2702,7 +2708,8 @@ describe('Miscellaneous - Cover grammar', () => {
     'for (const x of [ a[i++] = () => eval("x") ]) { b[j++] = () => eval("x"); }',
     '((a, { b = 0, c = 3 }) => { return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
     '((a, x) => { let { b = 0, c = 3 } = y; return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
-    '({ [key]: y, z, ...x } = {2: "two", z: "zee"});'
+    '({ [key]: y, z, ...x } = {2: "two", z: "zee"});',
+    '({...x}[y])'
   ]) {
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {

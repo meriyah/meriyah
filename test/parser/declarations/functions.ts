@@ -1035,6 +1035,135 @@ describe('Declarations - Function', () => {
       }
     ],
     [
+      'function* a( [ {  x  =  y  }  =  a ] )  { }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'ObjectPattern',
+                      properties: [
+                        {
+                          type: 'Property',
+                          kind: 'init',
+                          key: {
+                            type: 'Identifier',
+                            name: 'x'
+                          },
+                          computed: false,
+                          value: {
+                            type: 'AssignmentPattern',
+                            left: {
+                              type: 'Identifier',
+                              name: 'x'
+                            },
+                            right: {
+                              type: 'Identifier',
+                              name: 'y'
+                            }
+                          },
+                          method: false,
+                          shorthand: true
+                        }
+                      ]
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'a'
+                    }
+                  }
+                ]
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'function a( a = b  ) {} n => {  "use strict"; }',
+      Context.None,
+      {
+        body: [
+          {
+            async: false,
+            body: {
+              body: [],
+              type: 'BlockStatement'
+            },
+            expression: false,
+            generator: false,
+            id: {
+              name: 'a',
+              type: 'Identifier'
+            },
+            params: [
+              {
+                left: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                right: {
+                  name: 'b',
+                  type: 'Identifier'
+                },
+                type: 'AssignmentPattern'
+              }
+            ],
+            type: 'FunctionDeclaration'
+          },
+          {
+            expression: {
+              async: false,
+              body: {
+                body: [
+                  {
+                    expression: {
+                      type: 'Literal',
+                      value: 'use strict'
+                    },
+                    type: 'ExpressionStatement'
+                  }
+                ],
+                type: 'BlockStatement'
+              },
+              expression: false,
+              id: null,
+              params: [
+                {
+                  name: 'n',
+                  type: 'Identifier'
+                }
+              ],
+              type: 'ArrowFunctionExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'function f() {var f}',
       Context.None,
       {
@@ -1072,6 +1201,75 @@ describe('Declarations - Function', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'function a([ { a = x }, {} = b]) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'a'
+                          },
+                          right: {
+                            type: 'Identifier',
+                            name: 'x'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  },
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'ObjectPattern',
+                      properties: []
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b'
+                    }
+                  }
+                ]
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: false,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
       }
     ],
     [

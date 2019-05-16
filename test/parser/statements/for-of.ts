@@ -184,6 +184,8 @@ describe('Statements - For of', () => {
 
   for (const arg of [
     'for({a=0} of b);',
+    'for ({[a]: ""[b]} of c) {}',
+    'for ({[a]: ""[b] = c} of d) {}',
     'for (let of of ([0])) { }',
     'for (let of of [0]) { }',
     'for (let of; false; ) { }',
@@ -644,6 +646,77 @@ describe('Statements - For of', () => {
             right: {
               type: 'Identifier',
               name: 'c'
+            },
+            await: false
+          }
+        ]
+      }
+    ],
+    [
+      'for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'const',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ObjectPattern',
+                    properties: [
+                      {
+                        type: 'Property',
+                        kind: 'init',
+                        key: {
+                          type: 'Identifier',
+                          name: 'f'
+                        },
+                        computed: false,
+                        value: {
+                          type: 'AssignmentPattern',
+                          left: {
+                            type: 'Identifier',
+                            name: 'f'
+                          },
+                          right: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'Identifier',
+                              name: 'x'
+                            },
+                            right: {
+                              type: 'Literal',
+                              value: /([--])|[--]|=+|[-$-+-­-]/y,
+                              regex: {
+                                pattern: '([--])|[--]|=+|[-\u001c$-+-­-]',
+                                flags: 'y'
+                              }
+                            },
+                            operator: 'in'
+                          }
+                        },
+                        method: false,
+                        shorthand: true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            right: {
+              type: 'ArrayExpression',
+              elements: []
             },
             await: false
           }

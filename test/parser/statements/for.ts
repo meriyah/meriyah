@@ -5,6 +5,7 @@ import { parseSource } from '../../../src/parser';
 
 describe('Statements - For', () => {
   for (const arg of [
+    `for (a,b;;);`,
     'for (const [,foo] = arr;;);',
     'for (let [[x] = [1]] = []; i < 1; i++) {}',
     'for (var {j}=x; j<10; ++j) { const foo = j }',
@@ -74,6 +75,45 @@ describe('Statements - For', () => {
     'for (const [foo=a, bar] of arr);',
     'for (const [foo=a] of arr);',
     'for (const [foo,,bar] of arr);',
+    'for (C = class { get ["x" in empty]() { return "via get"; } }; ; ) { break; }',
+    `for (;;);`,
+    `for (a+b;;) c;`,
+    `for (var x of y);`,
+    `for (var x;;);`,
+    `for (;;);`,
+    `for (x in y);`,
+    `for (x of y);`,
+    'for (var x of y);',
+    `for (var x;;);`,
+    `for (let x of y);`,
+    `for (let x;;);`,
+    `for (let x of y);`,
+    `for ([] + x;;);`,
+    `for (let x of y);`,
+    `for (let [x] in y);`,
+    `for (let {x} of y);`,
+    `for (let x of y);`,
+    `for (let {x} = x;;);`,
+    `for (let [x] = x;;);`,
+    `for (let x;;);`,
+    `for (let {x} of y);`,
+    `for (let [x] in y);`,
+    `for (let in x);`,
+    `for (let in x) {}`,
+    `for (let x of y);`,
+    `for (let[x] in y);`,
+    `for (let[x] of y);`,
+    `for (let , x;;);`,
+    `for (let + x;;);`,
+    `for (let.x;;);`,
+    `for (let.foo in x);`,
+    `for (let();;);`,
+    `for (let().foo in x);`,
+    `for (let=10;;);`,
+    `for (let.foo;;);`,
+    `for (let;;);`,
+    `for (const x of y);`,
+    `for (let.x in y);`,
     'for (const [,] of x);',
     'for (const {a, [x]: y} in obj);',
     'for (const {[x]: y} in obj);',
@@ -446,6 +486,7 @@ describe('Statements - For', () => {
     ['for ({a: b.c}-- of d) e', Context.None],
     ['for (let x of a,b) c', Context.None],
     ['for (var [,,] = x);', Context.None],
+    ['for (let x of y, z) {}', Context.None],
     ['for (var [,] = x);', Context.None],
     ['for (var [] = x);', Context.None],
     ['for (x=>x in y;;);', Context.None],
@@ -484,6 +525,11 @@ describe('Statements - For', () => {
     ['for (var {x,,} = obj);', Context.None],
     ['for (var {,x} = obj);', Context.None],
     ['for (var {,,x} = obj);', Context.None],
+    ['for (a, b);', Context.None],
+    ['for (var {,,x} = obj);', Context.None],
+    ['for (a + b);', Context.None],
+    ['for (a);', Context.None],
+    ['for ({});', Context.None],
     ['for (const [z, z]; ; ) ;', Context.None],
     ['for (const [z]; ; ) ;', Context.None],
     ['for (const x = 5, y; ; ) ;', Context.None],
@@ -994,6 +1040,139 @@ describe('Statements - For', () => {
       }
     ],
     [
+      'for (`<${new arguments(++r.function[eval], () => {}, function () {""}, (a)in this, true)}`; x ^= arguments;) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            init: {
+              type: 'TemplateLiteral',
+              expressions: [
+                {
+                  type: 'NewExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'arguments'
+                  },
+                  arguments: [
+                    {
+                      type: 'UpdateExpression',
+                      argument: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'r'
+                          },
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'function'
+                          }
+                        },
+                        computed: true,
+                        property: {
+                          type: 'Identifier',
+                          name: 'eval'
+                        }
+                      },
+                      operator: '++',
+                      prefix: true
+                    },
+                    {
+                      type: 'ArrowFunctionExpression',
+                      body: {
+                        type: 'BlockStatement',
+                        body: []
+                      },
+                      params: [],
+                      id: null,
+                      async: false,
+                      expression: false
+                    },
+                    {
+                      type: 'FunctionExpression',
+                      params: [],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [
+                          {
+                            type: 'ExpressionStatement',
+                            expression: {
+                              type: 'Literal',
+                              value: ''
+                            }
+                          }
+                        ]
+                      },
+                      async: false,
+                      generator: false,
+                      expression: false,
+                      id: null
+                    },
+                    {
+                      type: 'BinaryExpression',
+                      left: {
+                        type: 'Identifier',
+                        name: 'a'
+                      },
+                      right: {
+                        type: 'ThisExpression'
+                      },
+                      operator: 'in'
+                    },
+                    {
+                      type: 'Literal',
+                      value: true
+                    }
+                  ]
+                }
+              ],
+              quasis: [
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '<',
+                    raw: '<'
+                  },
+                  tail: false
+                },
+                {
+                  type: 'TemplateElement',
+                  value: {
+                    cooked: '',
+                    raw: ''
+                  },
+                  tail: true
+                }
+              ]
+            },
+            test: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'x'
+              },
+              operator: '^=',
+              right: {
+                type: 'Identifier',
+                name: 'arguments'
+              }
+            },
+            update: null
+          }
+        ]
+      }
+    ],
+    [
       'for (let [foo, ...bar] = obj;;);',
       Context.None,
       {
@@ -1089,6 +1268,60 @@ describe('Statements - For', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'for ({x = y} = (z);;) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            init: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'ObjectPattern',
+                properties: [
+                  {
+                    type: 'Property',
+                    key: {
+                      type: 'Identifier',
+                      name: 'x'
+                    },
+                    value: {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'Identifier',
+                        name: 'x'
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'y'
+                      }
+                    },
+                    kind: 'init',
+                    computed: false,
+                    method: false,
+                    shorthand: true
+                  }
+                ]
+              },
+              operator: '=',
+              right: {
+                type: 'Identifier',
+                name: 'z'
+              }
+            },
+            test: null,
+            update: null
+          }
+        ]
       }
     ],
     [
