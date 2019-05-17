@@ -11,6 +11,58 @@ describe('Statements - Do while', () => {
 
   pass('Statements - Do while (pass)', [
     [
+      `do x
+    while ({ [y]: {} ? null : false  })`,
+      Context.None,
+      {
+        body: [
+          {
+            body: {
+              expression: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              type: 'ExpressionStatement'
+            },
+            test: {
+              properties: [
+                {
+                  computed: true,
+                  key: {
+                    name: 'y',
+                    type: 'Identifier'
+                  },
+                  kind: 'init',
+                  method: false,
+                  shorthand: false,
+                  type: 'Property',
+                  value: {
+                    alternate: {
+                      type: 'Literal',
+                      value: false
+                    },
+                    consequent: {
+                      type: 'Literal',
+                      value: null
+                    },
+                    test: {
+                      properties: [],
+                      type: 'ObjectExpression'
+                    },
+                    type: 'ConditionalExpression'
+                  }
+                }
+              ],
+              type: 'ObjectExpression'
+            },
+            type: 'DoWhileStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'do async \n while (y)',
       Context.None,
       {

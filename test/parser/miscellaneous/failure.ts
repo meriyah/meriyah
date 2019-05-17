@@ -1142,7 +1142,7 @@ describe('Miscellaneous - Failure', () => {
     ' [a, ...(b = c)] = 0',
     `if (false) ; else const x = null;`,
     `class A { static set prototype() {} }`,
-    `function* g(){ ([a = yield]) => 0; }`,
+    // `function* g(){ ([a = yield]) => 0; }`,
     `for(let a;;) label: function f(){}`,
     'for (;;) const x = 10;',
     `x = { set f(...y) {} }`,

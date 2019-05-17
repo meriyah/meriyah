@@ -496,6 +496,82 @@ describe('Declarations - Function', () => {
 
   pass('Declarations - Function (pass)', [
     [
+      'function* x() { for (const [j = yield] in (x) => {}) {} }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ForInStatement',
+                  body: {
+                    type: 'BlockStatement',
+                    body: []
+                  },
+                  left: {
+                    type: 'VariableDeclaration',
+                    kind: 'const',
+                    declarations: [
+                      {
+                        type: 'VariableDeclarator',
+                        init: null,
+                        id: {
+                          type: 'ArrayPattern',
+                          elements: [
+                            {
+                              type: 'AssignmentPattern',
+                              left: {
+                                type: 'Identifier',
+                                name: 'j'
+                              },
+                              right: {
+                                type: 'YieldExpression',
+                                argument: null,
+                                delegate: false
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  right: {
+                    type: 'ArrowFunctionExpression',
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'x'
+                      }
+                    ],
+                    id: null,
+                    async: false,
+                    expression: false
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: true,
+            expression: false,
+            id: {
+              type: 'Identifier',
+              name: 'x'
+            }
+          }
+        ]
+      }
+    ],
+    [
       '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
       Context.None,
       {

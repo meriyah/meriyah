@@ -396,6 +396,7 @@ describe('Statements - For in', () => {
     ['for (const a = 0 in {});', Context.None],
     ['for (let a = 0 in {});', Context.None],
     ['for (var a = 0 in {});', Context.None],
+    ['for (function () {} in a)', Context.None],
     ['for (var [a] = 0 in {});', Context.None],
     ['for (var {a} = 0 in {});', Context.None],
     ['for(var [a = 0] = 0 in {});', Context.None],
@@ -792,7 +793,70 @@ describe('Statements - For in', () => {
         sourceType: 'script'
       }
     ],
-
+    [
+      'for (function* y() { new.target in /(?:()|[]|(?!))/iuy };; (null))  {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            init: {
+              type: 'FunctionExpression',
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
+                  {
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'BinaryExpression',
+                      left: {
+                        meta: {
+                          type: 'Identifier',
+                          name: 'new'
+                        },
+                        type: 'MetaProperty',
+                        property: {
+                          type: 'Identifier',
+                          name: 'target'
+                        }
+                      },
+                      right: {
+                        type: 'Literal',
+                        value: /(?:()|[]|(?!))/iuy,
+                        regex: {
+                          pattern: '(?:()|[]|(?!))',
+                          flags: 'iuy'
+                        }
+                      },
+                      operator: 'in'
+                    }
+                  }
+                ]
+              },
+              async: false,
+              generator: true,
+              expression: false,
+              id: {
+                type: 'Identifier',
+                name: 'y'
+              }
+            },
+            test: null,
+            update: {
+              type: 'Literal',
+              value: null
+            }
+          }
+        ]
+      }
+    ],
     [
       'for (var {[x]: y} of obj);',
       Context.None,
