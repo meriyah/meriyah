@@ -8052,8 +8052,41 @@ if (a !== "z" || typeof b !== "undefined")
     'function c(x, ...yield){return yield + x;}',
     '({}, y = { ...1 });',
     '({0: 0, 1: 1}, y = { ...[0, 1] });',
+    'for (var {a:x,b:y,c:z} in foo);',
+    'for (let {a:x,b:y,c:z} in foo);',
+    'for ({a:x,b:y,c:z} in foo);',
+    'for (var [x,y,z] in foo);',
+    'for (let [x,y,z] in foo);',
+    'for ([x,y,z] in foo);',
+    'for (var {a:x,b:y,c:z} of foo);',
+    'for (let {a:x,b:y,c:z} of foo);',
+    'for ({a:x,b:y,c:z} of foo);',
+    'for (var [x,y,z] of foo);',
+    'for (const [x,y,z] of foo);',
+    'for (const {a:x,b:y,c:z} in foo);',
     '({}, { ...new Proxy({}, {}) });',
     '({a: 2}, y = { ...x, a: 2 });',
+    'for ([{a = 0}] of []);',
+    'for (var [{a = 0}] of []);',
+    'for (let [{a = 0}] of []);',
+    'for (const [{a = 0}] of []);',
+    'function f([{a = 0}]) {}',
+    'var h = ([{a = 0}]) => {};',
+    'var {p: {a = 0}} = {p: {}};',
+    '{ let {p: {a = 0}} = {p: {}}; }',
+    '{ const {p: {a = 0}} = {p: {}}; }',
+    'function f([...[{a = 0}]]) {}',
+    'var h = ([...[{a = 0}]]) => {};',
+    '[{a = 0}] = [{}];',
+    'var [{a = 0}] = [{}];',
+    '{ let [{a = 0}] = [{}]; }',
+    '{ const [{a = 0}] = [{}]; }',
+    'for ([{a = 0}] of []);',
+    'for (var [{a = 0}] of []);',
+    'for (let [{a = 0}] of []);',
+    'for (const [{a = 0}] of []);',
+    'function f([{a = 0}]) {}',
+    'var h = ([{a = 0}]) => {};',
     '({a: 1, b: 1}, y = { ...x, b: 1 });',
     '({a: 1}, y = { a: 2, ...x });',
     '({a: 3}, y = { a: 2, ...x, a: 3 });',
@@ -8063,7 +8096,28 @@ if (a !== "z" || typeof b !== "undefined")
     '({a: 1, b: 1}, y = { a: 1, ...x, b: 2, ...z });',
     '({ a: 1 }, y = { ...x });',
     '() => { y = { ...p } }',
+    '(async function() { for await (let c of []) { function f() {}; break; } })();',
+    '(async function() { for (let x of []) { x: for (let y of []) { for await (let c of []) { function f() {}; return; } } } })();',
+    '(async function() { for await (let x of []) { x: for await (let y of []) { for await (let c of []) { function f() {}; break x; } } } })();',
     'var { y, ...x } = { y: 1, a: 1 };',
+    `var x;
+    for (x of new Set([1]))
+        for (x of new Set([1]))
+            for (x of new Set([1]))
+                for (x of new Set([1]))
+                    for (x of new Set([1]))
+                        for (x of new Set([1]))
+                            for (x of new Set([1]))
+                                for (x of new Set([1]))
+                                    for (x of new Set([1]))
+                                        for (x of new Set([1]))
+                                            for (x of new Set([1]))
+                                                for (x of new Set([1]))
+                                                    for (x of new Set([1]))
+                                                        for (x of new Set([1]))
+                                                            for (x of new Set([1]))
+                                                                for (x of new Set([1]))
+                                                                    gc();`,
     'var { z, y, ...x } = { z:1, y: 1, a: 1, b: 1 };',
     '({ a, ...b } = { a: 1, b: 2 });',
     '(({x, ...z}) => { assertEquals({y: 1}, z); })({ x: 1, y: 1});',
