@@ -654,6 +654,7 @@ describe('Expressions - Class', () => {
     ['(class x{set *555(a){}})', Context.None],
     ['(class x{set *%x(a){}})', Context.None],
     ['(class x{static *%x(){}})', Context.None],
+    ['(class v extends.foo {})', Context.None],
     ['(class x{static get *foo(){}})', Context.None],
     ['(class x{static get *[x](){}}`);', Context.None],
     ['(class x{static get *"foo"(){}})', Context.None],
@@ -2335,6 +2336,61 @@ describe('Expressions - Class', () => {
                   }
                 ]
               }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'class v extends[x] {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'v'
+            },
+            superClass: {
+              type: 'ArrayExpression',
+              elements: [
+                {
+                  type: 'Identifier',
+                  name: 'x'
+                }
+              ]
+            },
+            body: {
+              type: 'ClassBody',
+              body: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'class v extends.9 {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'v'
+            },
+            superClass: {
+              type: 'Literal',
+              value: 0.9
+            },
+            body: {
+              type: 'ClassBody',
+              body: []
             }
           }
         ]

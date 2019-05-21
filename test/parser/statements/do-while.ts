@@ -6,7 +6,14 @@ describe('Statements - Do while', () => {
     ['do foo while (bar);', Context.None],
     ['do async \n f(){}; while (y)', Context.None],
     ['do async \n () => x; while(y)', Context.None],
-    ['do async () \n => x; while(y)', Context.None]
+    ['do async () \n => x; while(y)', Context.None],
+
+    ['do switch(x){} while(x) x', Context.None],
+    ['do try {} catch {} while(x) x', Context.None],
+    ['do try {} catch {} while(x) x', Context.None],
+    ['do if (x) {} while(x) x', Context.None],
+    ['do debugger; while(x) x', Context.None],
+    ['do debugger while(x) x', Context.None]
   ]);
 
   pass('Statements - Do while (pass)', [

@@ -22,7 +22,11 @@ describe('Statements - Try', () => {
     ['try { throw []; } catch ([...x = []]) {}', Context.None],
     ['try { throw [1, 2, 3]; } catch ([...{ x }, y]) {}', Context.None],
     ['try { throw [1, 2, 3]; } catch ([...[x], y]) { }', Context.None],
-    ['try {} catch ({foo = "bar"} = {}) {}', Context.None]
+    ['try {} catch ({foo = "bar"} = {}) {}', Context.None],
+    ['try {} catch [] {}', Context.None],
+    ['try {} catch foo {}', Context.None],
+    ['try {} catch({e},){}', Context.None],
+    ['try {} catch(){}', Context.None]
   ]);
 
   const var_e = ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]'];
@@ -160,6 +164,288 @@ describe('Statements - Try', () => {
   }
 
   pass('Statements - Try (pass)', [
+    [
+      'try {} catch(e){}',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            block: {
+              body: [],
+              type: 'BlockStatement'
+            },
+            finalizer: null,
+            handler: {
+              body: {
+                body: [],
+                type: 'BlockStatement'
+              },
+              param: {
+                name: 'e',
+                type: 'Identifier'
+              },
+              type: 'CatchClause'
+            },
+            type: 'TryStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'try {} catch({e}){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: {
+                type: 'ObjectPattern',
+                properties: [
+                  {
+                    type: 'Property',
+                    kind: 'init',
+                    key: {
+                      type: 'Identifier',
+                      name: 'e'
+                    },
+                    computed: false,
+                    value: {
+                      type: 'Identifier',
+                      name: 'e'
+                    },
+                    method: false,
+                    shorthand: true
+                  }
+                ]
+              },
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch([e]){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'Identifier',
+                    name: 'e'
+                  }
+                ]
+              },
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch({e=x}){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: {
+                type: 'ObjectPattern',
+                properties: [
+                  {
+                    type: 'Property',
+                    kind: 'init',
+                    key: {
+                      type: 'Identifier',
+                      name: 'e'
+                    },
+                    computed: false,
+                    value: {
+                      type: 'AssignmentPattern',
+                      left: {
+                        type: 'Identifier',
+                        name: 'e'
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'x'
+                      }
+                    },
+                    method: false,
+                    shorthand: true
+                  }
+                ]
+              },
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch([e=x]){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'Identifier',
+                      name: 'e'
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'x'
+                    }
+                  }
+                ]
+              },
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: null,
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch {} finally {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: null,
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            },
+            finalizer: {
+              type: 'BlockStatement',
+              body: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'try {} catch \n {}',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            block: {
+              body: [],
+              type: 'BlockStatement'
+            },
+            finalizer: null,
+            handler: {
+              body: {
+                body: [],
+                type: 'BlockStatement'
+              },
+              param: null,
+              type: 'CatchClause'
+            },
+            type: 'TryStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       'try { } catch (e) { var e; for (var e of []) {} }',
       Context.OptionsWebCompat,

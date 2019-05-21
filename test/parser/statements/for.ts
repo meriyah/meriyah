@@ -24,6 +24,7 @@ describe('Statements - For', () => {
     `for(x = 0;;);`,
     `for(x; x < 0;);`,
     `for(x; x < 0; x++);`,
+    'for ({x = y} = (z);;) {}',
     `for(var x = 0;;);`,
     `for(let x = 0;;);`,
     `for(var a = 0;;) { let a; }`,
