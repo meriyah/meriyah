@@ -519,8 +519,6 @@ describe('Miscellaneous - Pass', () => {
     `do x
     while ({ [y]: {x = y} = z ? null : false  })`,
     `do x
-    while ({ [y = [yy]]: { x = (y)} ? null : false  })`,
-    `do x
     while ({ [(y)]: {} ? null : false  })`,
     `do x
     while ({ [y]: {} ? function () {} : false  })`,
