@@ -2185,7 +2185,7 @@ define(['exports'], function (exports) { 'use strict';
       consume(parser, context | 32768, 67174411);
       const test = parseExpressions(parser, context, 1);
       consume(parser, context | 32768, 1073741840);
-      consumeOpt(parser, context | 32768, -2146435055);
+      consumeSemicolon(parser, context | 32768);
       return {
           type: 'DoWhileStatement',
           body,
@@ -2365,8 +2365,9 @@ define(['exports'], function (exports) { 'use strict';
           report(parser, 90);
       }
       if (!isVarDecl) {
-          if (parser.token !== -2143289315 && destructible & 8)
+          if (destructible & 8 && parser.token !== -2143289315) {
               report(parser, 136);
+          }
           init = parseAssignmentExpression(parser, context | 134217728, init);
       }
       if (parser.token === -1073741806)
@@ -3827,8 +3828,7 @@ define(['exports'], function (exports) { 'use strict';
                           }
                           else {
                               value = parseMemberOrUpdateExpression(parser, context, value, 0);
-                              destructible =
-                                  parser.assignable & 1 ? 0 : (destructible = 16);
+                              destructible = parser.assignable & 1 ? 0 : 16;
                               const { token } = parser;
                               if (parser.token !== -1073741806 && parser.token !== -2146435057) {
                                   value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
@@ -3928,8 +3928,7 @@ define(['exports'], function (exports) { 'use strict';
                           }
                           else {
                               value = parseMemberOrUpdateExpression(parser, context, value, 0);
-                              destructible =
-                                  parser.assignable & 1 ? 0 : (destructible = 16);
+                              destructible = parser.assignable & 1 ? 0 : 16;
                               const { token } = parser;
                               if (parser.token !== -1073741806 && parser.token !== -2146435057) {
                                   value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
