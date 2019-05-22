@@ -965,7 +965,6 @@ export function parseContinueStatement(parser: ParserState, context: Context): E
   nextToken(parser, context);
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.token & Token.IsIdentifier) {
-    // `ECMA` allows `eval` or `arguments` as labels even in strict mode.
     label = parseIdentifier(parser, context | Context.AllowRegExp);
   }
   consumeSemicolon(parser, context | Context.AllowRegExp);
@@ -1127,7 +1126,7 @@ export function parseCatchBlock(parser: ParserState, context: Context): ESTree.C
  */
 export function parseDoWhileStatement(parser: ParserState, context: Context): ESTree.DoWhileStatement {
   // DoStatement ::
-  //   'do' Statement 'while' '(' Expression ')' ';'
+  //   'do Statement while ( Expression ) ;'
   nextToken(parser, context | Context.AllowRegExp);
   const body = parseStatement(
     parser,
@@ -1138,7 +1137,7 @@ export function parseDoWhileStatement(parser: ParserState, context: Context): ES
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, /* assignable */ 1);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
+  consumeSemicolon(parser, context | Context.AllowRegExp);
   return {
     type: 'DoWhileStatement',
     body,
@@ -1150,7 +1149,7 @@ export function parseDoWhileStatement(parser: ParserState, context: Context): ES
  * Because we are not doing any backtracking - this parses `let` as an identifier
  * or a variable declaration statement.
  *
- * @see [Link](https://tc39.github.io/ecma262/#prod-grammar-notation-WhileStatement)
+ * @see [Link](https://tc39.github.io/ecma262/#sec-declarations-and-the-variable-statement)
  *
  * @param parser  Parser object
  * @param context Context masks
@@ -1496,8 +1495,10 @@ export function parseForStatement(
   }
 
   if (!isVarDecl) {
-    if (parser.token !== Token.Assign && destructible & DestructuringKind.Required)
+    if (destructible & DestructuringKind.Required && parser.token !== Token.Assign) {
       report(parser, Errors.ForLoopInvalidLHS);
+    }
+
     init = parseAssignmentExpression(parser, context | Context.DisallowInContext, init);
   }
 
@@ -3931,8 +3932,7 @@ export function parseObjectLiteralOrPattern(
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
 
-              destructible =
-                parser.assignable & AssignmentKind.Assignable ? 0 : (destructible = DestructuringKind.NotDestructible);
+              destructible = parser.assignable & AssignmentKind.Assignable ? 0 : DestructuringKind.NotDestructible;
 
               const { token } = parser;
 
@@ -4050,8 +4050,7 @@ export function parseObjectLiteralOrPattern(
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, /* isNewExpression */ 0);
 
-              destructible =
-                parser.assignable & AssignmentKind.Assignable ? 0 : (destructible = DestructuringKind.NotDestructible);
+              destructible = parser.assignable & AssignmentKind.Assignable ? 0 : DestructuringKind.NotDestructible;
 
               const { token } = parser;
 
