@@ -77,22 +77,20 @@ export const enum BindingOrigin {
 
 export const enum AssignmentKind {
   None           = 0,
-  Assignable     = 1 << 0,
-  NotAssignable  = 1 << 1,
-  Await  = 1 << 2,
-  Yield  = 1 << 3,
+  IsAssignable   = 1 << 0,
+  CannotAssign  = 1 << 1
 }
 
 export const enum DestructuringKind {
-  None            = 0,
-  Required        = 1 << 3,
-  NotDestructible = 1 << 4,
+  None               = 0,
+  MustDestruct       = 1 << 3,
+  CannotDestruct    = 1 << 4,
   // Only destructible if assignable
-  Assignable      = 1 << 5,
+  AssignableDestruct = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
-  SeenProto       = 1 << 6,
-  Await           = 1 << 7,
-  Yield           = 1 << 8,
+  SeenProto          = 1 << 6,
+  Await              = 1 << 7,
+  Yield              = 1 << 8,
 }
 
 /**
@@ -101,12 +99,11 @@ export const enum DestructuringKind {
 export const enum Flags {
   None                = 0,
   NewLine             = 1 << 0,
-  SeenYield           = 1 << 2,
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
   SimpleParameterList = 1 << 7,
-  Await = 1 << 8,
-  Yield = 1 << 9,
+  Await               = 1 << 8,
+  Yield               = 1 << 9,
 }
 
 export const enum ParseFunctionFlag {
@@ -115,7 +112,7 @@ export const enum ParseFunctionFlag {
   RequireIdentifier = 1 << 1,
 }
 
-export const enum LabelledFunctionStatement {
+export const enum FunctionStatement {
   Disallow,
   Allow,
 }
