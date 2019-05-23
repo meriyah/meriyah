@@ -469,11 +469,30 @@ describe('Module - Export', () => {
       {//-
       //-
       };
-      export/**/{/**/};`
+      export/**/{/**/};`,
+    'export default 1',
+    'export default () => {}',
+    'export default (a,b) => {}'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(
+          `${arg}`,
+          undefined,
+          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat
+        );
       });
     });
   }

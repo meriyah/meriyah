@@ -373,6 +373,121 @@ describe('Next - Public fields', () => {
       }
     ],
     [
+      'class Some { render=( )=>{ return null; }}',
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'render',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            type: 'Literal',
+                            value: null
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    expression: false,
+                    id: null,
+                    params: [],
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'Some',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'class Some { render=(a,b)=>{ return null; } }',
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'render',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'FieldDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          argument: {
+                            type: 'Literal',
+                            value: null
+                          },
+                          type: 'ReturnStatement'
+                        }
+                      ],
+                      type: 'BlockStatement'
+                    },
+                    expression: false,
+                    id: null,
+                    params: [
+                      {
+                        name: 'a',
+                        type: 'Identifier'
+                      },
+                      {
+                        name: 'b',
+                        type: 'Identifier'
+                      }
+                    ],
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'Some',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       `class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`,
       Context.OptionsNext,
       {
