@@ -3283,7 +3283,6 @@ function parseArrayOrObjectAssignmentPattern(
   }
 
   reinterpretToPattern(parser, node);
-
   const { token } = parser;
   const right = parseExpression(parser, (context | Context.DisallowIn) ^ Context.DisallowIn, /* assignable */ 1);
 
@@ -3306,7 +3305,7 @@ function parseArrayOrObjectAssignmentPattern(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param closingToken Token
+ * @param closingToken
  * @param type Binding type
  * @param isAsync
  */
@@ -3324,7 +3323,6 @@ function parseRestOrSpreadElement(
 
   if (parser.token & (Token.Keyword | Token.IsIdentifier)) {
     parser.assignable = AssignmentKind.IsAssignable;
-
     destructible |= parser.token === Token.AwaitKeyword ? DestructuringKind.Await : 0;
 
     argument = parsePrimaryExpressionExtended(parser, context, type, /* inNewExpression */ 0, /* assignable */ 1);

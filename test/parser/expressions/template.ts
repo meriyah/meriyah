@@ -330,6 +330,11 @@ describe('Expressions - Template', () => {
     ['[z``] = {}', Context.None],
     ['[`${"a"}`] = {}', Context.None],
     ['[`${""}`] = {}', Context.None],
+    ['`\\7`', Context.None],
+    ['`\\10`', Context.None],
+    ['`\\01`', Context.None],
+    ['`\\30`', Context.None],
+    ['`\\001`', Context.None],
     //['`a${await foo}d`', Context.None],
     ['`\\u{g}`', Context.None],
     ['`\\u00g0`', Context.None],
@@ -341,51 +346,6 @@ describe('Expressions - Template', () => {
     ['`\\u{11ffff}${', Context.None]
   ]);
   pass('Expressions - Template (pass)', [
-    /* [
-      'f`x`\n/foo/',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              quasi: {
-                expressions: [],
-                quasis: [
-                  {
-                    tail: true,
-                    type: 'TemplateElement',
-                    value: {
-                      cooked: 'x',
-                      raw: 'x'
-                    }
-                  }
-                ],
-                type: 'TemplateLiteral'
-              },
-              tag: {
-                name: 'f',
-                type: 'Identifier'
-              },
-              type: 'TaggedTemplateExpression'
-            },
-            type: 'ExpressionStatement'
-          },
-          {
-            expression: {
-              regex: {
-                flags: '',
-                pattern: 'foo'
-              },
-              type: 'Literal',
-              value: /foo/
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],*/
     [
       '`${y, x`)`}`',
       Context.None,

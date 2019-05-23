@@ -2726,6 +2726,9 @@ describe('Miscellaneous - Cover grammar', () => {
     'var d4 = (function( { a4, b4 } = { a4 : 20, b4 : 25 }) { return a4;})();',
     '[...((a5))] = [1, 2, 3];',
     '({} = undefined);',
+    '[[a]=[1]] = [];',
+    'function foo(x = [a, b = 2, ...c] = [1,,3,4,5,6,7]) {}',
+    '`${[a = 5, b, ...c] = [, 1, 3, 5, 7, 9]}`;',
     'function f({}){}; f();',
     'function f({}){}; f(null);'
   ]) {

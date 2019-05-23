@@ -25,7 +25,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       if (ch > 0x7e) {
         ret += fromCodePoint(ch);
       } else {
-        const code = parseEscape(parser, context, ch);
+        const code = parseEscape(parser, context | Context.Strict, ch);
         if (code >= 0) {
           ret += fromCodePoint(code);
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
@@ -36,7 +36,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
           }
           break;
         } else {
-          handleStringError(parser, code as Escape);
+          handleStringError(parser, code as Escape, /* isTemplate */ 1);
         }
       }
     } else {
