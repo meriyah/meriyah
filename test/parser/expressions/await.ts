@@ -779,7 +779,7 @@ describe('Expressions - Await', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'f',
@@ -880,7 +880,7 @@ describe('Expressions - Await', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -911,7 +911,7 @@ describe('Expressions - Await', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'f',
@@ -952,7 +952,7 @@ describe('Expressions - Await', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'f',
@@ -1131,42 +1131,13 @@ describe('Expressions - Await', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
             }
           }
         ]
-      }
-    ],
-    [
-      'await => {}',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              async: false,
-              body: {
-                body: [],
-                type: 'BlockStatement'
-              },
-              expression: false,
-              id: null,
-              params: [
-                {
-                  name: 'await',
-                  type: 'Identifier'
-                }
-              ],
-              type: 'ArrowFunctionExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
       }
     ],
     [
@@ -1196,7 +1167,7 @@ describe('Expressions - Await', () => {
               body: []
             },
             async: false,
-            expression: false,
+
             generator: false,
             id: {
               type: 'Identifier',
@@ -1265,7 +1236,7 @@ describe('Expressions - Await', () => {
               ]
             },
             async: true,
-            expression: false,
+
             generator: false,
             id: {
               type: 'Identifier',
@@ -1519,7 +1490,7 @@ describe('Expressions - Await', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'call'
@@ -1559,7 +1530,7 @@ describe('Expressions - Await', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'call'
@@ -1621,7 +1592,7 @@ describe('Expressions - Await', () => {
                     name: 'x'
                   }
                 ],
-                id: null,
+
                 async: true,
                 expression: true
               }
@@ -1653,7 +1624,7 @@ describe('Expressions - Await', () => {
                 ],
                 type: 'BlockStatement'
               },
-              expression: false,
+
               generator: false,
               id: {
                 name: 'f',
@@ -1687,7 +1658,7 @@ describe('Expressions - Await', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'await'
@@ -1809,7 +1780,7 @@ describe('Expressions - Await', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -2048,7 +2019,7 @@ describe('Expressions - Await', () => {
                     name: 'await'
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: true
               }
@@ -2094,7 +2065,7 @@ describe('Expressions - Await', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'f'
@@ -2134,7 +2105,7 @@ describe('Expressions - Await', () => {
               ]
             },
             async: true,
-            expression: false,
+
             generator: false,
 
             id: {
@@ -2165,7 +2136,7 @@ describe('Expressions - Await', () => {
               body: []
             },
             async: false,
-            expression: false,
+
             generator: true,
 
             id: {
@@ -2197,7 +2168,7 @@ describe('Expressions - Await', () => {
                   name: 'await'
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -2219,7 +2190,7 @@ describe('Expressions - Await', () => {
                 },
                 init: {
                   async: false,
-                  expression: false,
+
                   body: {
                     body: [],
                     type: 'BlockStatement'
@@ -2344,7 +2315,7 @@ describe('Expressions - Await', () => {
                         name: 'await'
                       }
                     ],
-                    id: null,
+
                     async: false,
                     expression: true
                   }
@@ -2353,7 +2324,7 @@ describe('Expressions - Await', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2395,7 +2366,7 @@ describe('Expressions - Await', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2453,7 +2424,7 @@ describe('Expressions - Await', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -2544,7 +2515,6 @@ describe('Expressions - Await', () => {
             },
             async: true,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: 'a'
@@ -2574,7 +2544,7 @@ describe('Expressions - Await', () => {
                   name: 'await'
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -2641,7 +2611,7 @@ describe('Expressions - Await', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2678,7 +2648,7 @@ describe('Expressions - Await', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'

@@ -404,7 +404,6 @@ describe('Next - Public fields', () => {
                       type: 'BlockStatement'
                     },
                     expression: false,
-                    id: null,
                     params: [],
                     type: 'ArrowFunctionExpression'
                   }
@@ -457,7 +456,6 @@ describe('Next - Public fields', () => {
                       type: 'BlockStatement'
                     },
                     expression: false,
-                    id: null,
                     params: [
                       {
                         name: 'a',

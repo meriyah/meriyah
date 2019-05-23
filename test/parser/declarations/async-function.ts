@@ -423,7 +423,7 @@ describe('Declarations - Async Function', () => {
               body: [],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'foo',
@@ -469,7 +469,7 @@ describe('Declarations - Async Function', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: true,
             id: {
               name: 'gen',
@@ -521,7 +521,7 @@ describe('Declarations - Async Function', () => {
                     ],
                     type: 'BlockStatement'
                   },
-                  expression: false,
+
                   generator: false,
                   id: {
                     name: 'bar',
@@ -544,7 +544,7 @@ describe('Declarations - Async Function', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'foo',
@@ -570,7 +570,7 @@ describe('Declarations - Async Function', () => {
                 body: [],
                 type: 'BlockStatement'
               },
-              expression: false,
+
               generator: false,
               id: {
                 name: 'foo',
@@ -604,7 +604,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'await'
@@ -631,7 +631,7 @@ describe('Declarations - Async Function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -767,7 +767,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -810,7 +810,7 @@ describe('Declarations - Async Function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -844,7 +844,7 @@ describe('Declarations - Async Function', () => {
                   name: 'a'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -955,7 +955,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -996,7 +996,7 @@ describe('Declarations - Async Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1041,7 +1041,7 @@ describe('Declarations - Async Function', () => {
                   },
                   async: true,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'foo'
@@ -1055,7 +1055,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1090,7 +1090,7 @@ describe('Declarations - Async Function', () => {
                     }
                   },
                   params: [],
-                  id: null,
+
                   async: true,
                   expression: true
                 }
@@ -1102,7 +1102,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1173,7 +1173,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1248,7 +1248,7 @@ describe('Declarations - Async Function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1458,7 +1458,7 @@ describe('Declarations - Async Function', () => {
                     }
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: false
               }

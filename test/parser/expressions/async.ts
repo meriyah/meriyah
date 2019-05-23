@@ -90,7 +90,7 @@ describe('Expressions - Async', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -136,7 +136,7 @@ describe('Expressions - Async', () => {
                   name: 'g'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -215,7 +215,7 @@ describe('Expressions - Async', () => {
                   name: 'r'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -326,8 +326,8 @@ describe('Expressions - Async', () => {
                 body: [],
                 type: 'BlockStatement'
               },
-              expression: false,
-              id: null,
+
+
               params: [
                 {
                   name: 'p',
@@ -736,7 +736,7 @@ describe('Expressions - Async', () => {
                     name: 'c'
                   },
                   params: [],
-                  id: null,
+
                   async: true,
                   expression: true
                 }
@@ -774,7 +774,7 @@ describe('Expressions - Async', () => {
                       name: 'foo'
                     }
                   ],
-                  id: null,
+
                   async: true,
                   expression: true
                 }
@@ -809,7 +809,6 @@ describe('Expressions - Async', () => {
                   },
                   async: true,
                   generator: false,
-                  expression: false,
                   id: null
                 }
               ]
@@ -902,7 +901,7 @@ describe('Expressions - Async', () => {
                       name: 'async'
                     }
                   ],
-                  id: null,
+
                   async: false,
                   expression: true
                 }
@@ -1064,7 +1063,7 @@ describe('Expressions - Async', () => {
                   name: 'foo'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -1098,7 +1097,7 @@ describe('Expressions - Async', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'g'
@@ -1510,7 +1509,7 @@ describe('Expressions - Async', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
-                  id: null,
+
                   params: [],
                   body: {
                     type: 'Identifier',
@@ -1554,7 +1553,7 @@ describe('Expressions - Async', () => {
                   }
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -1703,7 +1702,7 @@ describe('Expressions - Async', () => {
                 body: []
               },
               params: [],
-              id: null,
+
               async: true,
               expression: false
             }
@@ -1732,7 +1731,7 @@ describe('Expressions - Async', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -1935,7 +1934,7 @@ describe('Expressions - Async', () => {
                       name: 'x'
                     },
                     params: [],
-                    id: null,
+
                     async: true,
                     expression: true
                   }
@@ -2011,7 +2010,6 @@ describe('Expressions - Async', () => {
                   name: 'bullshit'
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }

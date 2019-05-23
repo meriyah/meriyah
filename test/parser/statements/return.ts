@@ -44,7 +44,7 @@ describe('Statements - Return', () => {
                 }
               ]
             },
-            expression: false,
+
             async: false,
             generator: false,
             id: {
@@ -81,7 +81,7 @@ describe('Statements - Return', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -119,7 +119,7 @@ describe('Statements - Return', () => {
                   name: 'b'
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -148,7 +148,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -202,7 +202,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -235,7 +235,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -265,7 +265,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -295,7 +295,7 @@ describe('Statements - Return', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -423,7 +423,7 @@ describe('Statements - Return', () => {
                 ]
               },
               params: [],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -456,7 +456,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -488,7 +488,7 @@ describe('Statements - Return', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'f',
@@ -521,7 +521,7 @@ describe('Statements - Return', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'a',
@@ -567,7 +567,7 @@ describe('Statements - Return', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'

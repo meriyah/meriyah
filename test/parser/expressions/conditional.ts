@@ -302,9 +302,7 @@ describe('Expressions - Conditional', () => {
                   name: 'foo'
                 }
               ],
-              id: null,
               async: false,
-
               expression: true
             }
           }

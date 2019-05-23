@@ -248,7 +248,7 @@ describe('Miscellaneous - Keywords', () => {
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: true,
             id: {
               name: 'a',

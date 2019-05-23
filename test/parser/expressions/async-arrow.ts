@@ -764,7 +764,6 @@ describe('Expressions - Async arrow', () => {
                         },
                         expression: true,
 
-                        id: null,
                         params: [],
                         type: 'ArrowFunctionExpression'
                       }
@@ -828,7 +827,7 @@ describe('Expressions - Async arrow', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -865,7 +864,7 @@ describe('Expressions - Async arrow', () => {
                         body: []
                       },
                       params: [],
-                      id: null,
+
                       async: true,
 
                       expression: false
@@ -878,7 +877,7 @@ describe('Expressions - Async arrow', () => {
                           body: []
                         },
                         params: [],
-                        id: null,
+
                         async: true,
 
                         expression: false
@@ -893,7 +892,7 @@ describe('Expressions - Async arrow', () => {
                         body: []
                       },
                       params: [],
-                      id: null,
+
                       async: true,
 
                       expression: false
@@ -908,7 +907,7 @@ describe('Expressions - Async arrow', () => {
                       body: []
                     },
                     params: [],
-                    id: null,
+
                     async: true,
 
                     expression: false
@@ -923,7 +922,7 @@ describe('Expressions - Async arrow', () => {
                     body: []
                   },
                   params: [],
-                  id: null,
+
                   async: true,
 
                   expression: false
@@ -955,7 +954,7 @@ describe('Expressions - Async arrow', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -991,7 +990,7 @@ describe('Expressions - Async arrow', () => {
                     name: 'x'
                   }
                 ],
-                id: null,
+
                 async: true,
 
                 expression: true
@@ -1049,7 +1048,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'x'
                       }
                     ],
-                    id: null,
+
                     async: false,
 
                     expression: false
@@ -1114,7 +1113,7 @@ describe('Expressions - Async arrow', () => {
                             name: 'x'
                           }
                         ],
-                        id: null,
+
                         async: true,
 
                         expression: true
@@ -1127,7 +1126,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'x'
                       }
                     ],
-                    id: null,
+
                     async: false,
 
                     expression: true
@@ -1171,7 +1170,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'y'
                     }
                   ],
-                  id: null,
+
                   async: true,
 
                   expression: true
@@ -1206,7 +1205,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'x'
                     }
                   ],
-                  id: null,
+
                   async: true,
 
                   expression: true
@@ -1252,7 +1251,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'b'
                     }
                   ],
-                  id: null,
+
                   async: true,
 
                   expression: true
@@ -1297,7 +1296,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'w'
                       }
                     ],
-                    id: null,
+
                     async: true,
 
                     expression: true
@@ -1341,7 +1340,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'b'
                     }
                   ],
-                  id: null,
+
                   async: true,
 
                   expression: true
@@ -1362,7 +1361,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'd'
                     }
                   ],
-                  id: null,
+
                   async: false,
 
                   expression: true
@@ -1417,7 +1416,7 @@ describe('Expressions - Async arrow', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -1470,7 +1469,7 @@ describe('Expressions - Async arrow', () => {
                   }
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -1547,7 +1546,7 @@ describe('Expressions - Async arrow', () => {
                   }
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: false
@@ -1643,7 +1642,7 @@ describe('Expressions - Async arrow', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -1683,7 +1682,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'x'
                       }
                     ],
-                    id: null,
+
                     async: true,
 
                     expression: true
@@ -1708,7 +1707,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'y'
                       }
                     ],
-                    id: null,
+
                     async: true,
 
                     expression: false
@@ -1743,7 +1742,7 @@ describe('Expressions - Async arrow', () => {
                     name: 'a'
                   }
                 ],
-                id: null,
+
                 async: true,
 
                 expression: false
@@ -1789,7 +1788,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'await'
                       }
                     ],
-                    id: null,
+
                     async: false,
 
                     expression: false
@@ -1869,7 +1868,6 @@ describe('Expressions - Async arrow', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
                 id: {
                   type: 'Identifier',
                   name: 'a'
@@ -1909,7 +1907,7 @@ describe('Expressions - Async arrow', () => {
                     name: 'b'
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -1920,7 +1918,7 @@ describe('Expressions - Async arrow', () => {
                   name: 'a'
                 }
               ],
-              id: null,
+
               async: true,
 
               expression: true
@@ -1952,7 +1950,7 @@ describe('Expressions - Async arrow', () => {
                     name: 'c'
                   },
                   params: [],
-                  id: null,
+
                   async: true,
 
                   expression: true
@@ -1990,7 +1988,7 @@ describe('Expressions - Async arrow', () => {
                         name: 'a'
                       }
                     ],
-                    id: null,
+
                     async: true,
 
                     expression: true
@@ -2001,7 +1999,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'a'
                     }
                   ],
-                  id: null,
+
                   async: false,
 
                   expression: true
@@ -2012,7 +2010,7 @@ describe('Expressions - Async arrow', () => {
                     name: 'a'
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -2023,7 +2021,7 @@ describe('Expressions - Async arrow', () => {
                   name: 'a'
                 }
               ],
-              id: null,
+
               async: false,
 
               expression: true
@@ -2080,7 +2078,7 @@ describe('Expressions - Async arrow', () => {
                       name: 'c'
                     }
                   ],
-                  id: null,
+
                   async: true,
 
                   expression: true

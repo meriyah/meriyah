@@ -2624,7 +2624,6 @@ describe('Next - Private methods', () => {
                       value: 'bar'
                     },
                     params: [],
-                    id: null,
                     async: false,
                     expression: true
                   },
@@ -2813,7 +2812,7 @@ describe('Next - Private methods', () => {
                       ],
                       type: 'BlockStatement'
                     },
-                    expression: false,
+
                     generator: false,
                     id: null,
                     params: [],
@@ -2949,7 +2948,7 @@ describe('Next - Private methods', () => {
                       ],
                       type: 'BlockStatement'
                     },
-                    expression: false,
+
                     generator: false,
                     id: null,
                     params: [],

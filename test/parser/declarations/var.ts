@@ -1680,7 +1680,6 @@ describe('Declarations - Var', () => {
             },
             async: false,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: 'x'
@@ -2274,7 +2273,7 @@ describe('Declarations - Var', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 },
                 id: {
@@ -2418,7 +2417,7 @@ describe('Declarations - Var', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 },
                 id: {
@@ -2578,7 +2577,7 @@ describe('Declarations - Var', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 },
                 id: {
@@ -3337,7 +3336,6 @@ describe('Declarations - Var', () => {
             },
             async: false,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: 'x'

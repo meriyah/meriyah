@@ -2008,7 +2008,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2073,7 +2073,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2270,7 +2270,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2373,7 +2373,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2411,7 +2411,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2472,7 +2472,7 @@ describe('Expressions - Object', () => {
                   }
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -2578,7 +2578,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2616,7 +2616,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -2680,7 +2680,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -3059,7 +3059,7 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-                    expression: false,
+
                     id: null
                   },
                   kind: 'init',
@@ -3128,7 +3128,7 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-                    expression: false,
+
                     id: null
                   },
                   kind: 'init',
@@ -4347,7 +4347,7 @@ describe('Expressions - Object', () => {
                   }
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -4738,7 +4738,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -4790,7 +4790,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -4857,7 +4857,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4958,7 +4958,7 @@ describe('Expressions - Object', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 }
               ]
@@ -5128,7 +5128,7 @@ describe('Expressions - Object', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: null
             }
           }
@@ -5209,7 +5209,7 @@ describe('Expressions - Object', () => {
                     ]
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: true
               }
@@ -6614,7 +6614,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -8320,7 +8320,6 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   },
                   kind: 'get',
@@ -8384,7 +8383,6 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   },
                   kind: 'init',
@@ -8448,7 +8446,6 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   },
                   kind: 'get',
@@ -8504,70 +8501,6 @@ describe('Expressions - Object', () => {
       }
     ],
     [
-      '({get [foo](){}, get [bar](){}});',
-      Context.None,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ObjectExpression',
-              properties: [
-                {
-                  type: 'Property',
-                  key: {
-                    type: 'Identifier',
-                    name: 'foo'
-                  },
-                  computed: true,
-                  value: {
-                    type: 'FunctionExpression',
-                    id: null,
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: []
-                    },
-                    generator: false,
-
-                    async: false
-                  },
-                  kind: 'get',
-                  method: false,
-                  shorthand: false
-                },
-                {
-                  type: 'Property',
-                  key: {
-                    type: 'Identifier',
-                    name: 'bar'
-                  },
-                  computed: true,
-                  value: {
-                    type: 'FunctionExpression',
-                    id: null,
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: []
-                    },
-                    generator: false,
-
-                    async: false
-                  },
-                  kind: 'get',
-                  method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ],
-        sourceType: 'script'
-      }
-    ],
-    [
       '({get [foo](){}, [bar](){}});',
       Context.None,
       {
@@ -8594,7 +8527,6 @@ describe('Expressions - Object', () => {
                       body: []
                     },
                     generator: false,
-
                     async: false
                   },
                   kind: 'get',
@@ -8617,7 +8549,6 @@ describe('Expressions - Object', () => {
                       body: []
                     },
                     generator: false,
-
                     async: false
                   },
                   kind: 'init',
@@ -8658,7 +8589,6 @@ describe('Expressions - Object', () => {
                       body: []
                     },
                     generator: false,
-
                     async: false
                   },
                   kind: 'init',
@@ -9079,7 +9009,6 @@ describe('Expressions - Object', () => {
                     },
                     async: false,
                     generator: false,
-
                     id: null
                   },
                   kind: 'init',
@@ -9337,7 +9266,6 @@ describe('Expressions - Object', () => {
                       body: []
                     },
                     generator: false,
-
                     async: false
                   },
                   kind: 'set',
@@ -13389,6 +13317,7 @@ describe('Expressions - Object', () => {
         sourceType: 'script'
       }
     ],
+
     [
       'x = {get [foo](){}, get [bar](){}}',
       Context.None,
@@ -16511,7 +16440,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -16572,7 +16501,7 @@ describe('Expressions - Object', () => {
                     }
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: true
               },
@@ -16688,7 +16617,7 @@ describe('Expressions - Object', () => {
                     }
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: true
               },
@@ -17793,7 +17722,7 @@ describe('Expressions - Object', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'x'
@@ -18484,7 +18413,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -19053,7 +18982,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -21123,7 +21052,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -21320,7 +21249,7 @@ describe('Expressions - Object', () => {
               ]
             },
             async: false,
-            expression: false,
+
             generator: true,
             id: {
               type: 'Identifier',
@@ -21378,7 +21307,7 @@ describe('Expressions - Object', () => {
               ]
             },
             async: false,
-            expression: false,
+
             generator: true,
             id: {
               type: 'Identifier',
@@ -21432,7 +21361,7 @@ describe('Expressions - Object', () => {
                   }
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -21713,7 +21642,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -21765,7 +21694,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -21809,7 +21738,7 @@ describe('Expressions - Object', () => {
                   }
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -22260,7 +22189,7 @@ describe('Expressions - Object', () => {
               ]
             },
             async: true,
-            expression: false,
+
             generator: false,
             id: {
               type: 'Identifier',
@@ -22968,7 +22897,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: false
             }
@@ -23497,7 +23426,7 @@ describe('Expressions - Object', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }

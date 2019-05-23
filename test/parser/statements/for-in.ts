@@ -842,7 +842,7 @@ describe('Statements - For in', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'y'
@@ -3324,7 +3324,7 @@ describe('Statements - For in', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'foo'
@@ -4556,7 +4556,7 @@ describe('Statements - For in', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'

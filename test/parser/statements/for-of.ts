@@ -826,7 +826,7 @@ describe('Statements - For of', () => {
                             body: []
                           },
                           params: [],
-                          id: null,
+
                           async: false,
                           expression: false
                         },
@@ -879,12 +879,12 @@ describe('Statements - For of', () => {
                               value: 2646
                             },
                             params: [],
-                            id: null,
+
                             async: false,
                             expression: true
                           },
                           params: [],
-                          id: null,
+
                           async: false,
                           expression: true
                         },
@@ -905,7 +905,7 @@ describe('Statements - For of', () => {
                           },
                           async: false,
                           generator: true,
-                          expression: false,
+
                           id: null
                         },
                         operator: '||'
@@ -1317,7 +1317,7 @@ describe('Statements - For of', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       },
                       kind: 'init',
@@ -1348,7 +1348,7 @@ describe('Statements - For of', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       },
                       kind: 'init',
@@ -1544,7 +1544,7 @@ describe('Statements - For of', () => {
                             },
                             async: false,
                             generator: false,
-                            expression: false,
+
                             id: null
                           }
                         },
@@ -1581,7 +1581,7 @@ describe('Statements - For of', () => {
                                 },
                                 async: false,
                                 generator: false,
-                                expression: false,
+
                                 id: null
                               }
                             ]
@@ -2206,7 +2206,7 @@ describe('Statements - For of', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'foo'
@@ -2315,7 +2315,7 @@ describe('Statements - For of', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -2677,7 +2677,7 @@ describe('Statements - For of', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       }
                     ]
@@ -2783,7 +2783,7 @@ describe('Statements - For of', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       },
                       kind: 'init',
@@ -2814,7 +2814,7 @@ describe('Statements - For of', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       },
                       kind: 'init',
@@ -2875,7 +2875,7 @@ describe('Statements - For of', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -2970,7 +2970,7 @@ describe('Statements - For of', () => {
                             },
                             async: false,
                             generator: false,
-                            expression: false,
+
                             id: null
                           }
                         },
@@ -3007,7 +3007,7 @@ describe('Statements - For of', () => {
                                 },
                                 async: false,
                                 generator: false,
-                                expression: false,
+
                                 id: null
                               }
                             ]
@@ -3603,7 +3603,7 @@ describe('Statements - For of', () => {
                       },
                       async: false,
                       generator: true,
-                      expression: false,
+
                       id: {
                         type: 'Identifier',
                         name: 'x'
@@ -3636,7 +3636,7 @@ describe('Statements - For of', () => {
                       },
                       async: false,
                       generator: true,
-                      expression: false,
+
                       id: null
                     }
                   },

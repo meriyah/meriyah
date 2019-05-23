@@ -2271,7 +2271,6 @@ describe('Expressions - Class', () => {
                     ]
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -2502,7 +2501,6 @@ describe('Expressions - Class', () => {
                     ]
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -2578,7 +2576,6 @@ describe('Expressions - Class', () => {
                     ]
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -2877,7 +2874,6 @@ describe('Expressions - Class', () => {
                     ]
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -2988,7 +2984,6 @@ describe('Expressions - Class', () => {
                     ]
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -3461,7 +3456,7 @@ describe('Expressions - Class', () => {
                             },
                             async: false,
                             generator: false,
-                            expression: false,
+
                             id: {
                               type: 'Identifier',
                               name: 'x'

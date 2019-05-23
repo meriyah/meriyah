@@ -8541,6 +8541,26 @@ class B extends A {
       ({ f: super["x"] } = { f });
   }
 }`,
+    `
+
+for ({[2e308]: {"_"() {}, get [""]() {
+  "use strict";
+}}[++q], a, b, q = true, [(true ? arguments : ("foo"))[{}]]: c[this]} in [] = arguments) do ; while ((function () {
+  "cù:";
+  "";
+  "[×";
+  "";
+} <= "".constructor)[this] ^= null(...this(), new (l ? /[-]+?/iu : (true))(...0), ...null ? this : false, ...new /\ufA3eDA^\b/g, class {
+  static [/\\ude85+/my]() {
+    "use strict";
+  }
+  static get [2e308]() {}
+  static get [false]() {}
+  *[""]() {}
+  get [2e308]() {
+    "use strict";
+  }
+}));`,
     `var GiantPrintArray = [];
 __counter++;;
 function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 100; else return Math.floor(x) & 0xffff; };;

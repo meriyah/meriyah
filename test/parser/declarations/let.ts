@@ -866,7 +866,6 @@ describe('Declarations - Let', () => {
                   name: '_'
                 }
               ],
-              id: null,
               async: false,
               expression: false
             }
