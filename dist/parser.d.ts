@@ -1,6 +1,6 @@
 import { Token } from './token';
 import * as ESTree from './estree';
-import { Context, ParserState, PropertyKind, BindingOrigin, LabelledFunctionStatement, ParseFunctionFlag, BindingType } from './common';
+import { Context, ParserState, PropertyKind, BindingOrigin, FunctionStatement, ParseFunctionFlag, BindingType } from './common';
 export declare function create(source: string): ParserState;
 export interface Options {
     module?: boolean;
@@ -19,13 +19,13 @@ export declare function parseStatementList(parser: ParserState, context: Context
 export declare function parseModuleItem(parser: ParserState, context: Context): any;
 export declare function parseparseModuleItemList(parser: ParserState, context: Context): any;
 export declare function parseStatementListItem(parser: ParserState, context: Context): any;
-export declare function parseStatement(parser: ParserState, context: Context, allowFuncDecl: LabelledFunctionStatement): ESTree.Statement;
-export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, allowFuncDecl: LabelledFunctionStatement): ESTree.Statement;
+export declare function parseStatement(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.Statement;
+export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.Statement;
 export declare function parseBlock(parser: ParserState, context: Context): ESTree.BlockStatement;
 export declare function parseReturnStatement(parser: ParserState, context: Context): ESTree.ReturnStatement;
 export declare function parseExpressionStatement(parser: ParserState, context: Context, expr: ESTree.Expression): ESTree.ExpressionStatement;
 export declare function parseLabelledStatement(parser: ParserState, context: Context, expr: ESTree.Identifier, token: Token, allowFuncDecl: 0 | 1): ESTree.LabeledStatement;
-export declare function parseAsyncArrowOrAsyncFunctionDeclaration(parser: ParserState, context: Context, allowFuncDecl: LabelledFunctionStatement): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration;
+export declare function parseAsyncArrowOrAsyncFunctionDeclaration(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration;
 export declare function parseDirective(parser: ParserState, context: Context): ESTree.Statement | ESTree.ExpressionStatement;
 export declare function parseEmptyStatement(parser: ParserState, context: Context): ESTree.EmptyStatement;
 export declare function parseThrowStatement(parser: ParserState, context: Context): ESTree.ThrowStatement;

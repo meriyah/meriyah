@@ -27,7 +27,7 @@ export declare const enum Context {
     InConstructor = 16777216,
     InMethod = 33554432,
     AllowNewTarget = 67108864,
-    DisallowInContext = 134217728,
+    DisallowIn = 134217728,
     InDecoratorContext = 268435456,
     InClass = 536870912,
     InSwitchOrIteration = 135168
@@ -67,16 +67,14 @@ export declare const enum BindingOrigin {
 }
 export declare const enum AssignmentKind {
     None = 0,
-    Assignable = 1,
-    NotAssignable = 2,
-    Await = 4,
-    Yield = 8
+    IsAssignable = 1,
+    CannotAssign = 2
 }
 export declare const enum DestructuringKind {
     None = 0,
-    Required = 8,
-    NotDestructible = 16,
-    Assignable = 32,
+    MustDestruct = 8,
+    CannotDestruct = 16,
+    AssignableDestruct = 32,
     SeenProto = 64,
     Await = 128,
     Yield = 256
@@ -84,7 +82,6 @@ export declare const enum DestructuringKind {
 export declare const enum Flags {
     None = 0,
     NewLine = 1,
-    SeenYield = 4,
     HasConstructor = 32,
     Octals = 64,
     SimpleParameterList = 128,
@@ -96,7 +93,7 @@ export declare const enum ParseFunctionFlag {
     DisallowGenerator = 1,
     RequireIdentifier = 2
 }
-export declare const enum LabelledFunctionStatement {
+export declare const enum FunctionStatement {
     Disallow = 0,
     Allow = 1
 }
