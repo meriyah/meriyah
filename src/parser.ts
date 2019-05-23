@@ -194,7 +194,10 @@ export function parseStatementList(parser: ParserState, context: Context): ESTre
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseModuleItem(parser: ParserState, context: Context): ESTree.Statement[] {
+export function parseModuleItem(
+  parser: ParserState,
+  context: Context
+): (ReturnType<typeof parseDirective | typeof parseparseModuleItemList>)[] {
   // ecma262/#prod-Module
   // Module :
   //    ModuleBody?
@@ -207,7 +210,8 @@ export function parseModuleItem(parser: ParserState, context: Context): ESTree.S
    */
   nextToken(parser, context | Context.AllowRegExp);
 
-  const statements: ESTree.Statement[] = [];
+  const statements: (ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
+  [] = [];
 
   // Avoid this if we're not going to create any directive nodes. This is likely to be the case
   // most of the time, considering the prevalence of strict mode and the fact modules
@@ -291,7 +295,8 @@ export function parseStatementListItem(parser: ParserState, context: Context): E
       return parseFunctionDeclaration(parser, context, ParseFunctionFlag.None, /* isAsync */ 0);
     // @decorator
     case Token.Decorator:
-      if (context & Context.Module) return parseDecorators(parser, context | Context.InDecoratorContext);
+      if (context & Context.Module)
+        return parseDecorators(parser, context | Context.InDecoratorContext) as ESTree.Decorator[];
     //   ClassDeclaration[?Yield, ~Default]
     case Token.ClassKeyword:
       return parseClassDeclaration(parser, context, /* requireIdentifier */ 0);
@@ -433,7 +438,7 @@ export function parseExpressionOrLabelledStatement(
   parser: ParserState,
   context: Context,
   allowFuncDecl: FunctionStatement
-): ESTree.Statement {
+): ESTree.ExpressionStatement | ESTree.LabeledStatement {
   // ExpressionStatement | LabelledStatement ::
   //   Expression ';'
   //   Identifier ':' Statement
@@ -490,7 +495,7 @@ export function parseExpressionOrLabelledStatement(
    *   ('++' | '--')? LeftHandSideExpression
    *
    */
-  expr = parseMemberOrUpdateExpression(parser, context, expr as ESTree.Expression, /* inNewExpression */ 0);
+  expr = parseMemberOrUpdateExpression(parser, context, expr, /* inNewExpression */ 0);
 
   /** parseAssignmentExpression
    *
@@ -518,7 +523,7 @@ export function parseExpressionOrLabelledStatement(
    *
    */
   if (parser.token === Token.Comma) {
-    expr = parseSequenceExpression(parser, context, expr as ESTree.Expression);
+    expr = parseSequenceExpression(parser, context, expr);
   }
 
   /**
@@ -543,7 +548,7 @@ export function parseBlock(parser: ParserState, context: Context): ESTree.BlockS
   const body: ESTree.Statement[] = [];
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.token !== Token.RightBrace) {
-    body.push(parseStatementListItem(parser, context) as ESTree.Statement);
+    body.push(parseStatementListItem(parser, context) as any);
   }
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
 
@@ -1473,16 +1478,16 @@ export function parseForStatement(
       ? {
           type: 'ForOfStatement',
           body,
-          left: init as ESTree.Expression,
+          left: init,
           right,
           await: forAwait
         }
-      : ({
+      : {
           type: 'ForInStatement',
           body,
           left: init,
           right
-        } as any);
+        };
   }
 
   if (forAwait) {
@@ -2384,7 +2389,7 @@ export function parseMemberOrUpdateExpression(
           context & Context.OptionsNext && parser.token === Token.PrivateField
             ? parsePrivateName(parser, context)
             : parseIdentifier(parser, context)
-      } as any;
+      };
     } else if (parser.token === Token.LeftBracket) {
       nextToken(parser, context | Context.AllowRegExp);
       const property = parseExpressions(parser, context & ~Context.DisallowIn, /* assignable */ 1);
@@ -4940,12 +4945,12 @@ export function parseClassDeclaration(
         decorators,
         body
       }
-    : ({
+    : {
         type: 'ClassDeclaration',
         id,
         superClass,
         body
-      } as any);
+      };
 }
 
 /**
@@ -4998,12 +5003,12 @@ export function parseClassExpression(parser: ParserState, context: Context): EST
         decorators,
         body
       }
-    : ({
+    : {
         type: 'ClassExpression',
         id,
         superClass,
         body
-      } as any);
+      };
 }
 
 /**
