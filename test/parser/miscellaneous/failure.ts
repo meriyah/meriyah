@@ -33,6 +33,8 @@ describe('Miscellaneous - Failure', () => {
     '"use strict"; (package) => {}',
     '"use strict"; async (package) => {}',
     'async (package) => { "use strict"; }',
+    `do x
+    while ({ [y = [yy]]: { x = (y)} ? null : false  })`,
     '"use strict"; for (let in x);',
     // `for (let [x, x] of y);`,
     `function* f(){ yield↵/foo }`,
