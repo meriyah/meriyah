@@ -19,7 +19,11 @@ describe('Expressions - Await', () => {
     'x = await(y);',
     'class X { await() {} }',
     'let async = await;',
-    'x = { await: false }'
+    'x = { await: false }',
+    'class test{ async method (param){ await foo();  }  method2(){}  }',
+    'async function test() { await foo(); }',
+    'var a = async function test() { await foo(); }',
+    'var test = async a => await test();'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -448,6 +452,8 @@ describe('Expressions - Await', () => {
     ['async function a(){     async ([y] = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     ['async function a(){     async ({g} = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     // ['async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
+    ['class test { async get method(){} }', Context.None],
+    ['var test = => { await test(); }', Context.None],
     ['async function a(){     async (foo = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     ['async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     ['async function a(){ async ([v] = await bar) => {}     }', Context.None],

@@ -630,6 +630,8 @@ describe('Statements - For', () => {
     ['for (const foo = bar in x);', Context.None],
     ['for (const foo = bar, zoo = boo in x);', Context.None],
     ['for (const foo, bar of x);', Context.None],
+    ['for (let a = b in c) {}', Context.None],
+    ['for (a = b in c) {}', Context.None],
     ['for (const foo = bar of x);', Context.None],
     ['for (const foo = bar, zoo = boo of x);', Context.None],
     ['for (const foo, zoo of x);', Context.None],

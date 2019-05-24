@@ -852,6 +852,83 @@ describe('Miscellaneous - Pass', () => {
     'o[foo](a,...bar)',
     'foo(...bar, a)',
     'o.foo(...bar, a)',
+    '1 * (((2 + 3) / 4) * ((5) / 6 + 7) - 8)',
+    '((1 << 2 + 3) >> 4) - ((5 >>> 6 * (7)) & 8) / (((9 | 10  ^ 11) >= 12 + 13) >> (14 & 15) << 16) ^ (15 >>> 17) / ((18 + 19) * 20) | 21 >>> ((((22) << 23 + 24 * 25) >> 26 / 27) & 28 + 29 || 30) && (31 % 32 ^ 33) + (34 | 35 / 36 - 37 % 38) & (39 | 40)',
+    '(function(){})()',
+    '++(a);',
+    '(++((((a)))))',
+    '(((a).b).c)',
+    '[a,...(b)]',
+    'class a extends ((b)) {}',
+    'test !== false ? success() : error()',
+    '[a, b, [c, d], e=2, ...f] = g',
+    `for ([a,b] in c);
+    for ([a,b] of c);
+    for ([a,b];;);
+    for (var [a,b] in c);
+    for (var [a,b] of c);
+    for (var [a,b] = c;;);
+    for (let [a,b] in c);
+    for (let [a,b] of c);
+    for (let [a,b] = c;;);
+    for (const [a,b] in c);
+    for (const [a,b] of c);
+    for (const [a,b] = c;;);`,
+    `for ({a,b} in c);
+    for ({a,b} of c);
+    for ({a,b};;);
+    for (var {a,b} in c);
+    for (var {a,b} of c);
+    for (var {a,b} = c;;);
+    for (let {a,b} in c);
+    for (let {a,b} of c);
+    for (let {a,b} = c;;);
+    for (const {a,b} in c);
+    for (const {a,b} of c);
+    for (const {a,b} = c;;);`,
+    '([a])=>b',
+    '[a]={b}=c',
+    'result = { arrow = () => {} } = vals;',
+    `foo.var.bar;
+    foo.implements();
+    var yield = 2;
+    const public = 3;
+    let static = 4;
+    new foo.true.null.false;`,
+    '1 * 2 + 3 / 4 * 5 / 6 + 7 - 8',
+    'function a() { return 1,2; }',
+    `a += ++b + c;
+    a -= --b - c;
+    a *= b * c;
+    a /= b / c;
+    a %= b % c;
+    a++;
+    a--;
+    a >>= b >> c;
+    a <<= b << c;
+    a >>>= b >>> c;
+    a |= b | c;
+    a ^= b ^ c;
+    a &= b & c;
+    a = ~b;
+    a = !b;
+    a = b && c;
+    a = b || c;
+    a = b > c;
+    a = b < c;
+    a = b >= c;
+    a = b <= c;
+    a = b == c;
+    a = b === c;
+    a = b != c;
+    a = b !== c;
+    a = +b;
+    a = -b;
+    delete a.prop;
+    typeof a;
+    void a;
+    a in b;`,
+    `1 << 2 + 3 >> 4 - 5 >>> 6 * 7 & 8 / 9 | 10  ^ 11 >= 12 + 13 >> 14 & 15 << 16 ^ 15 >>> 17 / 18 + 19 * 20 | 21 >>> 22 << 23 + 24 * 25 >> 26 / 27 & 28 + 29 || 30 && 31 % 32 ^ 33 + 34 | 35 / 36 - 37 % 38 & 39 | 40  `,
     'o[foo](...bar, a)',
     '[...bar]',
     '[a, ...bar]',
@@ -3184,6 +3261,13 @@ function continueWithinLoop() {
       "SyntaxError: Invalid regular expression flags",
       e.toString());
 }`,
+    `for (function({} = ((2e308)) in false, {
+
+}, [] = /q*?/i, laeksllun, i = []) {}.prototype[null[((this[((("foo")))]--)(((''))))](...(class k {
+    [.92]() {
+        "use strict"
+    }
+}), ...[], ...(new 'bar') ? a : i = /^j$\xbB\B/)] in 2393.03) throw "string";`,
     `var global = this;
 function non_strict(){ assertEquals(global, this); }
 function strict(){ "use strict"; assertEquals(void 0, this); }
