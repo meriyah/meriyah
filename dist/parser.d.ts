@@ -16,11 +16,11 @@ export interface Options {
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context): ESTree.Statement[];
-export declare function parseModuleItem(parser: ParserState, context: Context): any;
+export declare function parseModuleItem(parser: ParserState, context: Context): (ReturnType<typeof parseDirective | typeof parseparseModuleItemList>)[];
 export declare function parseparseModuleItemList(parser: ParserState, context: Context): any;
-export declare function parseStatementListItem(parser: ParserState, context: Context): any;
+export declare function parseStatementListItem(parser: ParserState, context: Context): ESTree.Statement | ESTree.Decorator[];
 export declare function parseStatement(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.Statement;
-export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.Statement;
+export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, allowFuncDecl: FunctionStatement): ESTree.ExpressionStatement | ESTree.LabeledStatement;
 export declare function parseBlock(parser: ParserState, context: Context): ESTree.BlockStatement;
 export declare function parseReturnStatement(parser: ParserState, context: Context): ESTree.ReturnStatement;
 export declare function parseExpressionStatement(parser: ParserState, context: Context, expr: ESTree.Expression): ESTree.ExpressionStatement;
@@ -61,7 +61,7 @@ export declare function parsePrimaryExpressionExtended(parser: ParserState, cont
 export declare function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.Literal;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context): ESTree.TemplateLiteral;
 export declare function parseTemplateTail(parser: ParserState, context: Context): ESTree.TemplateElement;
-export declare function parseTemplate(parser: ParserState, context: Context): any;
+export declare function parseTemplate(parser: ParserState, context: Context): ESTree.TemplateLiteral;
 export declare function parseTemplateSpans(parser: ParserState, tail: boolean): ESTree.TemplateElement;
 export declare function parseArguments(parser: ParserState, context: Context): (ESTree.SpreadElement | ESTree.Expression)[];
 export declare function parseIdentifier(parser: ParserState, context: Context): ESTree.Identifier;

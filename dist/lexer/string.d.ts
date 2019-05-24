@@ -8,6 +8,6 @@ export declare const enum Escape {
 }
 export declare function scanString(parser: ParserState, context: Context): any;
 export declare function parseEscape(parser: ParserState, context: Context, first: number): number;
-export declare function handleStringError(state: ParserState, code: Escape): void;
+export declare function handleStringError(state: ParserState, code: Escape, isTemplate: 0 | 1): void;
 export declare function nextUnicodeChar(parser: ParserState): number;
 //# sourceMappingURL=string.d.ts.map

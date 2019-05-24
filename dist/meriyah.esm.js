@@ -1069,7 +1069,7 @@ function scanString(parser, context) {
                 if (code >= 0)
                     ret += fromCodePoint(code);
                 else
-                    handleStringError(parser, code);
+                    handleStringError(parser, code, 0);
             }
             marker = parser.index + 1;
         }
@@ -1214,12 +1214,12 @@ function parseEscape(parser, context, first) {
             return nextUnicodeChar(parser);
     }
 }
-function handleStringError(state, code) {
+function handleStringError(state, code, isTemplate) {
     switch (code) {
         case -1:
             return;
         case -2:
-            report(state, 1);
+            report(state, isTemplate ? 2 : 1);
         case -3:
             report(state, 13);
         case -4:
@@ -1394,7 +1394,7 @@ function scanTemplate(parser, context) {
                 ret += fromCodePoint(ch);
             }
             else {
-                const code = parseEscape(parser, context, ch);
+                const code = parseEscape(parser, context | 1024, ch);
                 if (code >= 0) {
                     ret += fromCodePoint(code);
                 }
@@ -1407,7 +1407,7 @@ function scanTemplate(parser, context) {
                     break;
                 }
                 else {
-                    handleStringError(parser, code);
+                    handleStringError(parser, code, 1);
                 }
             }
         }
@@ -2943,7 +2943,7 @@ function parsePrimaryExpressionExtended(parser, context, type, inNewExpression, 
             report(parser, 65);
     }
     if ((token & 143360) === 143360) {
-        const expr = parseIdentifier(parser, context);
+        const expr = parseIdentifier(parser, context | 65536);
         if (token === 143468) {
             return parseAsyncExpression(parser, context, expr, inNewExpression, assignable);
         }
@@ -3181,7 +3181,6 @@ function parseFunctionDeclaration(parser, context, flags, isAsync) {
             (8192 | 16384 | 135168 | 536870912 | 134217728), 1, firstRestricted),
         async: isAsync === 1,
         generator: isGenerator === 1,
-        expression: false,
         id
     };
 }
@@ -3216,7 +3215,6 @@ function parseFunctionExpression(parser, context, isAsync) {
         body,
         async: isAsync === 1,
         generator: isGenerator === 1,
-        expression: false,
         id
     };
 }
@@ -3357,17 +3355,16 @@ function parseArrayExpressionOrPattern(parser, context, skipInitializer, type) {
         type: 'ArrayExpression',
         elements
     };
-    if (!skipInitializer) {
-        if (consumeOpt(parser, context | 32768, -2143289315)) {
-            return parseArrayOrObjectAssignmentPattern(parser, context, destructible, node);
-        }
-        if (parser.token & 4194304)
-            report(parser, 72);
+    if (!skipInitializer && parser.token & 4194304) {
+        return parseArrayOrObjectAssignmentPattern(parser, context, destructible, node);
     }
     parser.destructible = destructible;
     return node;
 }
 function parseArrayOrObjectAssignmentPattern(parser, context, destructible, node) {
+    if (parser.token !== -2143289315)
+        report(parser, 73);
+    nextToken(parser, context | 32768);
     if (destructible & 16) {
         report(parser, destructible & 8 ? 24 : 24);
     }
@@ -3594,11 +3591,11 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
                                     : token === -2143289315
                                         ? 0
                                         : 32;
-                            value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
+                            value = parseAssignmentExpression(parser, context, value);
                         }
                         else {
                             destructible |= 16;
-                            value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
+                            value = parseAssignmentExpression(parser, context, value);
                         }
                     }
                     else if ((parser.token & 2097152) === 2097152) {
@@ -3883,32 +3880,29 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
                             destructible & 16
                                 ? 2
                                 : 1;
-                        const { token } = parser;
-                        value = parseMemberOrUpdateExpression(parser, context, value, 0);
                         if (parser.token === -1073741806 || parser.token === -2146435057) {
-                            if (token === -2143289315 || token === -2146435057 || token === -1073741806) {
-                                if (parser.assignable & 2)
-                                    destructible |= 16;
-                            }
-                            else {
-                                destructible |=
-                                    parser.assignable & 1
-                                        ? 32
-                                        : 16;
-                            }
+                            if (parser.assignable & 2)
+                                destructible |= 16;
                         }
-                        else if (parser.token === -2143289315) {
-                            destructible |=
-                                parser.assignable & 2
-                                    ? 16
-                                    : token === -2143289315
-                                        ? 0
-                                        : 32;
-                            value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
+                        else if (destructible & 8) {
+                            report(parser, 63);
                         }
                         else {
-                            destructible |= 16;
-                            value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
+                            value = parseMemberOrUpdateExpression(parser, context, value, 0);
+                            destructible =
+                                parser.assignable & 2 ? destructible | 16 : 0;
+                            const { token } = parser;
+                            if (parser.token !== -1073741806 && parser.token !== -2146435057) {
+                                value = parseAssignmentExpression(parser, (context | 134217728) ^ 134217728, value);
+                                if (token !== -2143289315)
+                                    destructible |= 16;
+                            }
+                            else if (token !== -2143289315) {
+                                destructible |=
+                                    type || parser.assignable & 2
+                                        ? 16
+                                        : 32;
+                            }
                         }
                     }
                     else {
@@ -4001,14 +3995,8 @@ function parseObjectLiteralOrPattern(parser, context, skipInitializer, type) {
         type: 'ObjectExpression',
         properties
     };
-    if (!skipInitializer) {
-        if (parser.token === -2143289315) {
-            nextToken(parser, context | 32768);
-            return parseArrayOrObjectAssignmentPattern(parser, context, destructible, node);
-        }
-        if (parser.token & 4194304) {
-            report(parser, 73);
-        }
+    if (!skipInitializer && parser.token & 4194304) {
+        return parseArrayOrObjectAssignmentPattern(parser, context, destructible, node);
     }
     parser.destructible = destructible;
     return node;
@@ -4268,7 +4256,6 @@ function parseArrowFunctionExpression(parser, context, params, isAsync) {
         type: 'ArrowFunctionExpression',
         body,
         params,
-        id: null,
         async: isAsync === 1,
         expression
     };
