@@ -2900,7 +2900,7 @@ export function parseFunctionDeclaration(
   nextToken(parser, context | Context.AllowRegExp);
   let isGenerator: 0 | 1 = 0;
   if (parser.token === Token.Multiply) {
-    if (flags & FunctionState.DisallowGenerator) report(parser, Errors.Unexpected);
+    if (flags & FunctionState.DisallowGenerator) report(parser, Errors.InvalidGeneratorFunction);
     nextToken(parser, context);
     isGenerator = 1;
   }
@@ -2924,18 +2924,12 @@ export function parseFunctionDeclaration(
     params: parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList),
     body: parseFunctionBody(
       parser,
-      (context |
-        Context.TopLevel |
-        Context.InGlobal |
-        Context.InSwitchOrIteration |
-        Context.InClass |
-        Context.DisallowIn) ^
-        (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass | Context.DisallowIn),
+      context & ~(0x8001000 | Context.InGlobal | Context.InSwitchOrIteration),
       BindingOrigin.Declaration,
       firstRestricted
     ),
-    async: isAsync === 1,
-    generator: isGenerator === 1,
+    async: !!isAsync,
+    generator: !!isGenerator,
     id
   };
 }
@@ -2996,8 +2990,8 @@ export function parseFunctionExpression(
     type: 'FunctionExpression',
     params,
     body,
-    async: isAsync === 1,
-    generator: isGenerator === 1,
+    async: !!isAsync,
+    generator: !!isGenerator,
     id
   };
 }
@@ -4475,7 +4469,7 @@ export function parseArrowFunctionExpression(
     type: 'ArrowFunctionExpression',
     body,
     params,
-    async: isAsync === 1,
+    async: !!isAsync,
     expression
   };
 }

@@ -146,7 +146,8 @@ export const enum Errors {
   DeletePrivateField,
   InvalidStaticClassFieldConstructor,
   InvalidClassFieldConstructor,
-  InvalidClassFieldArgEval
+  InvalidClassFieldArgEval,
+  InvalidGeneratorFunction
 }
 
 /*@internal*/
@@ -306,7 +307,8 @@ export const errorMessages: {
   [Errors.DeletePrivateField]: 'Private fields can not be deleted',
   [Errors.InvalidClassFieldConstructor]: 'Classes may not have a field called constructor',
   [Errors.InvalidStaticClassFieldConstructor]: 'Classes may not have a private element named constructor',
-  [Errors.InvalidClassFieldArgEval]: 'A class field initializer may not contain arguments'
+  [Errors.InvalidClassFieldArgEval]: 'A class field initializer may not contain arguments',
+  [Errors.InvalidGeneratorFunction]: 'Generators can only be declared at the top level or inside a block'
 };
 
 export class ParseError extends SyntaxError {
