@@ -298,7 +298,7 @@ describe('Statements - None', () => {
                             ]
                           },
                           params: [],
-                          id: null,
+
                           async: false,
                           expression: false
                         }
@@ -311,7 +311,7 @@ describe('Statements - None', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -684,7 +684,7 @@ describe('Statements - None', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'a'

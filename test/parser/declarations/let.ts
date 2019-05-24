@@ -109,6 +109,12 @@ describe('Declarations - Let', () => {
   for (const arg of [
     'let [ , , ...x] = [1, 2, 3, 4, 5];',
     'let test262id8;',
+    'let a1; [a1] = [1]',
+    'let [...rest2] = [1, 2, 3, 4, 5];',
+    'let [a4, b4, c4, ...rest4] = [1, 2, 3];',
+    'let a1; [[a1]] = [[1]];',
+    'let a1; [[a1, b1] = [1, 2]] = [];',
+    'let a1; [a1, b1, c1, d1, ...rest1] = "testing";',
     'let arrow = () => {};',
     `let x = class x {};
     let x = class {};
@@ -150,6 +156,7 @@ describe('Declarations - Let', () => {
     'let x = /* bef */5 + 3/* aft */;',
     'let x = y + 5;',
     'let x=y + 5;',
+    'let [[a]=[1]] = [[2]];',
     'let/foo/g',
     `{ let x = 5; let y = 6; }`,
     'let {a,b=0,c:d,e:f=0,[g]:[h]}=0',
@@ -859,7 +866,6 @@ describe('Declarations - Let', () => {
                   name: '_'
                 }
               ],
-              id: null,
               async: false,
               expression: false
             }

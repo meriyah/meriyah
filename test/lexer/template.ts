@@ -108,8 +108,8 @@ describe('Lexer - Template', () => {
   describe('Lexer - Tagged Template', () => {
     const tokens: [Context, Token, string, string | void][] = [
       //[Context.TaggedTemplate, Token.TemplateTail, '`\\u{70bc`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', '\u0007'],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', '\u0001'],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', undefined],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, "`'${", "'"],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`"${', '"'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\`${', '`'],

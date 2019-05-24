@@ -652,7 +652,7 @@ describe('Expressions - Array', () => {
                         type: 'Identifier'
                       },
                       expression: true,
-                      id: null,
+
                       params: [
                         {
                           name: 'z',
@@ -841,7 +841,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -933,7 +933,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1279,7 +1279,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4453,7 +4453,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'x'
@@ -4499,7 +4499,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -4652,7 +4652,7 @@ describe('Expressions - Array', () => {
                   ]
                 }
               ],
-              id: null,
+
               async: false,
               expression: true
             }
@@ -4833,7 +4833,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4906,7 +4906,7 @@ describe('Expressions - Array', () => {
                     ]
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: false
               }
@@ -5000,7 +5000,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f1'
@@ -5619,7 +5619,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5673,7 +5673,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5922,7 +5922,7 @@ describe('Expressions - Array', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -7484,7 +7484,7 @@ describe('Expressions - Array', () => {
                           name: 'y'
                         }
                       ],
-                      id: null,
+
                       async: false,
                       expression: true
                     },
@@ -7538,7 +7538,7 @@ describe('Expressions - Array', () => {
                           name: 'y'
                         }
                       ],
-                      id: null,
+
                       async: false,
                       expression: true
                     },
@@ -8702,7 +8702,7 @@ describe('Expressions - Array', () => {
                     body: []
                   },
                   params: [],
-                  id: null,
+
                   async: false,
                   expression: false
                 }
@@ -8736,7 +8736,7 @@ describe('Expressions - Array', () => {
                       name: 'abc'
                     }
                   ],
-                  id: null,
+
                   async: false,
                   expression: false
                 }
@@ -9547,7 +9547,7 @@ describe('Expressions - Array', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     },
                     computed: false,

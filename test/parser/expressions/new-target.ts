@@ -252,7 +252,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -292,7 +292,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -332,7 +332,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -365,7 +365,7 @@ describe('Expressions - New target', () => {
                       type: 'MetaProperty'
                     },
                     expression: true,
-                    id: null,
+
                     params: [
                       {
                         name: '_',
@@ -380,7 +380,7 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement'
             },
             generator: false,
-            expression: false,
+
             id: {
               name: 'f',
               type: 'Identifier'
@@ -429,7 +429,7 @@ describe('Expressions - New target', () => {
                           name: '_'
                         }
                       ],
-                      id: null,
+
                       async: false,
                       expression: true
                     },
@@ -439,7 +439,6 @@ describe('Expressions - New target', () => {
                         name: '_'
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -448,7 +447,6 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: 'f'
@@ -491,7 +489,6 @@ describe('Expressions - New target', () => {
                   ]
                 },
                 async: false,
-                expression: false,
                 generator: false,
                 id: null
               },
@@ -501,7 +498,6 @@ describe('Expressions - New target', () => {
                   name: '_'
                 }
               ],
-              id: null,
               async: false,
               expression: true
             }
@@ -548,7 +544,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -596,7 +592,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -644,7 +640,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -929,7 +925,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -982,7 +978,7 @@ describe('Expressions - New target', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -1218,7 +1214,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1266,7 +1262,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1331,7 +1327,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1375,7 +1371,7 @@ describe('Expressions - New target', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'

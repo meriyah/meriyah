@@ -533,7 +533,7 @@ describe('Expressions - Unary', () => {
                     name: 'a'
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -581,7 +581,7 @@ describe('Expressions - Unary', () => {
                     ]
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: true
               },
@@ -617,7 +617,7 @@ describe('Expressions - Unary', () => {
                       name: 'a'
                     }
                   ],
-                  id: null,
+
                   async: false,
                   expression: true
                 },
@@ -652,7 +652,7 @@ describe('Expressions - Unary', () => {
                   name: 'b'
                 },
                 params: [],
-                id: null,
+
                 async: false,
                 expression: true
               },
@@ -785,7 +785,7 @@ describe('Expressions - Unary', () => {
                     name: 'a'
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -833,7 +833,7 @@ describe('Expressions - Unary', () => {
                     ]
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -863,7 +863,7 @@ describe('Expressions - Unary', () => {
                   name: 'b'
                 },
                 params: [],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -1211,7 +1211,6 @@ describe('Expressions - Unary', () => {
                 },
                 expression: true,
 
-                id: null,
                 params: [],
                 type: 'ArrowFunctionExpression'
               },
@@ -1349,7 +1348,7 @@ describe('Expressions - Unary', () => {
                     name: 'a'
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -1397,7 +1396,7 @@ describe('Expressions - Unary', () => {
                     ]
                   }
                 ],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -1427,7 +1426,7 @@ describe('Expressions - Unary', () => {
                   name: 'b'
                 },
                 params: [],
-                id: null,
+
                 async: false,
 
                 expression: true
@@ -1775,7 +1774,6 @@ describe('Expressions - Unary', () => {
                 },
                 expression: true,
 
-                id: null,
                 params: [],
                 type: 'ArrowFunctionExpression'
               },
@@ -2187,7 +2185,7 @@ describe('Expressions - Unary', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -2242,7 +2240,7 @@ describe('Expressions - Unary', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2301,7 +2299,7 @@ describe('Expressions - Unary', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2347,7 +2345,7 @@ describe('Expressions - Unary', () => {
                   name: 'x'
                 }
               ],
-              id: null,
+
               async: true,
               expression: true
             }
@@ -2393,7 +2391,7 @@ describe('Expressions - Unary', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2578,7 +2576,6 @@ describe('Expressions - Unary', () => {
             },
             async: false,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2612,7 +2609,7 @@ describe('Expressions - Unary', () => {
                     prefix: true
                   },
                   params: [],
-                  id: null,
+
                   async: false,
                   expression: true
                 },
@@ -2801,7 +2798,7 @@ describe('Expressions - Unary', () => {
                     type: 'UpdateExpression'
                   },
                   expression: true,
-                  id: null,
+
                   params: [],
                   type: 'ArrowFunctionExpression'
                 },
@@ -3107,7 +3104,7 @@ describe('Expressions - Unary', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               prefix: true

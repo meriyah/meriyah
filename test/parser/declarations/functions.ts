@@ -553,7 +553,7 @@ describe('Declarations - Function', () => {
                         name: 'x'
                       }
                     ],
-                    id: null,
+
                     async: false,
                     expression: false
                   }
@@ -562,7 +562,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'x'
@@ -603,7 +603,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -652,7 +652,7 @@ describe('Declarations - Function', () => {
                     }
                   }
                 ],
-                id: null,
+
                 async: false,
                 expression: false
               }
@@ -672,7 +672,7 @@ describe('Declarations - Function', () => {
               body: [],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'foo',
@@ -834,7 +834,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'compareArray'
@@ -974,7 +974,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'shouldThrow'
@@ -1021,7 +1021,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1063,7 +1063,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1103,7 +1103,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1166,7 +1166,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -1186,7 +1186,6 @@ describe('Declarations - Function', () => {
               body: [],
               type: 'BlockStatement'
             },
-            expression: false,
             generator: false,
             id: {
               name: 'a',
@@ -1223,7 +1222,6 @@ describe('Declarations - Function', () => {
                 type: 'BlockStatement'
               },
               expression: false,
-              id: null,
               params: [
                 {
                   name: 'n',
@@ -1272,7 +1270,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1339,7 +1337,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -1366,7 +1364,7 @@ describe('Declarations - Function', () => {
               body: []
             },
             generator: false,
-            expression: false,
+
             async: false
           },
           {
@@ -1381,7 +1379,7 @@ describe('Declarations - Function', () => {
               body: []
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1416,7 +1414,7 @@ describe('Declarations - Function', () => {
                     body: []
                   },
                   generator: false,
-                  expression: false,
+
                   async: false
                 },
                 {
@@ -1431,13 +1429,13 @@ describe('Declarations - Function', () => {
                     body: []
                   },
                   generator: false,
-                  expression: false,
+
                   async: false
                 }
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1490,7 +1488,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1538,7 +1536,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1583,7 +1581,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1633,7 +1631,7 @@ describe('Declarations - Function', () => {
               ]
             },
             generator: false,
-            expression: false,
+
             async: false
           }
         ],
@@ -1656,7 +1654,7 @@ describe('Declarations - Function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -1676,7 +1674,7 @@ describe('Declarations - Function', () => {
               body: [],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'f',
@@ -1714,7 +1712,7 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement'
             },
             generator: false,
-            expression: false,
+
             id: {
               name: 'f',
               type: 'Identifier'
@@ -1750,7 +1748,7 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement'
             },
             generator: false,
-            expression: false,
+
             id: {
               name: 'f',
               type: 'Identifier'
@@ -1791,7 +1789,7 @@ describe('Declarations - Function', () => {
                       type: 'BlockStatement'
                     },
                     generator: false,
-                    expression: false,
+
                     id: {
                       name: 'f',
                       type: 'Identifier'

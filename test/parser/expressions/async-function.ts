@@ -252,7 +252,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -307,7 +307,7 @@ describe('Expressions - Async function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -332,7 +332,7 @@ describe('Expressions - Async function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -377,7 +377,7 @@ describe('Expressions - Async function', () => {
                   },
                   async: true,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -401,7 +401,7 @@ describe('Expressions - Async function', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -428,7 +428,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: null
             }
           }
@@ -455,7 +455,7 @@ describe('Expressions - Async function', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'foo'
@@ -537,7 +537,7 @@ describe('Expressions - Async function', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -570,7 +570,7 @@ describe('Expressions - Async function', () => {
                     },
                     async: true,
                     generator: false,
-                    expression: false,
+
                     id: {
                       type: 'Identifier',
                       name: 'yield'
@@ -580,7 +580,7 @@ describe('Expressions - Async function', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -671,7 +671,7 @@ describe('Expressions - Async function', () => {
                   },
                   async: true,
                   generator: false,
-                  expression: false,
+
                   id: null
                 }
               ]
@@ -706,7 +706,7 @@ describe('Expressions - Async function', () => {
                       },
                       async: true,
                       generator: false,
-                      expression: false,
+
                       id: {
                         type: 'Identifier',
                         name: 'yield'
@@ -717,7 +717,7 @@ describe('Expressions - Async function', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -824,7 +824,7 @@ describe('Expressions - Async function', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -875,7 +875,7 @@ describe('Expressions - Async function', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: null
               }
             }
@@ -1016,7 +1016,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -1159,7 +1159,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -1189,7 +1189,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -1229,7 +1229,7 @@ describe('Expressions - Async function', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     },
                     arguments: []
@@ -1242,7 +1242,7 @@ describe('Expressions - Async function', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'

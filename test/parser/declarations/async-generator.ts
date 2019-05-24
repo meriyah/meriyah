@@ -293,7 +293,7 @@ describe('Declarations - Async Generator', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: null
                       },
                       arguments: []
@@ -308,7 +308,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -348,7 +348,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -423,7 +423,6 @@ describe('Declarations - Async Generator', () => {
                     ],
                     type: 'BlockStatement'
                   },
-                  expression: false,
                   generator: true,
                   id: null,
                   params: [],
@@ -466,7 +465,7 @@ describe('Declarations - Async Generator', () => {
                         body: []
                       },
                       params: [],
-                      id: null,
+
                       async: false,
                       expression: false
                     }
@@ -480,7 +479,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -517,7 +516,7 @@ describe('Declarations - Async Generator', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     }
                   },
@@ -536,7 +535,7 @@ describe('Declarations - Async Generator', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: {
                         type: 'Identifier',
                         name: 'x'
@@ -552,7 +551,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -686,7 +685,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -737,7 +736,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -777,7 +776,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -814,7 +813,7 @@ describe('Declarations - Async Generator', () => {
                           body: []
                         },
                         params: [],
-                        id: null,
+
                         async: false,
                         expression: false
                       }
@@ -833,7 +832,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -885,7 +884,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1077,7 +1076,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1124,7 +1123,7 @@ describe('Declarations - Async Generator', () => {
                           },
                           async: false,
                           generator: false,
-                          expression: false,
+
                           id: null
                         }
                       },
@@ -1154,7 +1153,7 @@ describe('Declarations - Async Generator', () => {
                           },
                           async: false,
                           generator: false,
-                          expression: false,
+
                           id: {
                             type: 'Identifier',
                             name: 'x'
@@ -1178,7 +1177,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1238,7 +1237,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1284,7 +1283,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1429,7 +1428,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1467,7 +1466,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1535,7 +1534,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1582,7 +1581,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1638,7 +1637,7 @@ describe('Declarations - Async Generator', () => {
                 },
                 async: true,
                 generator: true,
-                expression: false,
+
                 id: null
               }
             }
@@ -1864,7 +1863,7 @@ describe('Declarations - Async Generator', () => {
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'x'
@@ -1891,7 +1890,7 @@ describe('Declarations - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: null
             }
           }

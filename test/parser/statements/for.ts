@@ -817,7 +817,7 @@ describe('Statements - For', () => {
                 ]
               },
               params: [],
-              id: null,
+
               async: false,
               expression: false
             },
@@ -1030,7 +1030,7 @@ describe('Statements - For', () => {
                 ]
               },
               params: [],
-              id: null,
+
               async: false,
               expression: false
             },
@@ -1095,7 +1095,7 @@ describe('Statements - For', () => {
                         body: []
                       },
                       params: [],
-                      id: null,
+
                       async: false,
                       expression: false
                     },
@@ -1116,7 +1116,7 @@ describe('Statements - For', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     },
                     {

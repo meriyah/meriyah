@@ -943,7 +943,7 @@ describe('Declarations - const', () => {
                           type: 'BlockStatement'
                         },
                         expression: false,
-                        id: null,
+
                         params: [
                           {
                             properties: [
@@ -1103,7 +1103,6 @@ describe('Declarations - const', () => {
                               ]
                             }
                           ],
-                          id: null,
                           async: false,
                           expression: false
                         }
@@ -1943,7 +1942,7 @@ describe('Declarations - const', () => {
                           },
                           async: false,
                           generator: false,
-                          expression: false,
+
                           id: null
                         }
                       },
@@ -2127,7 +2126,7 @@ describe('Declarations - const', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -2238,7 +2237,7 @@ describe('Declarations - const', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -2301,7 +2300,7 @@ describe('Declarations - const', () => {
             },
             async: true,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'

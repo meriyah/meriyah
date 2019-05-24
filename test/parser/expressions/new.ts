@@ -2080,7 +2080,7 @@ describe('Expressions - New', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               arguments: []
@@ -2158,7 +2158,7 @@ describe('Expressions - New', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               prefix: true
@@ -2346,7 +2346,7 @@ describe('Expressions - New', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               arguments: []
@@ -2375,7 +2375,7 @@ describe('Expressions - New', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               arguments: [

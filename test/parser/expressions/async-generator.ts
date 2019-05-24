@@ -287,7 +287,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'h'
@@ -329,7 +329,7 @@ describe('Expressions - Async Generator', () => {
                           },
                           async: false,
                           generator: false,
-                          expression: false,
+
                           id: null
                         }
                       },
@@ -348,7 +348,7 @@ describe('Expressions - Async Generator', () => {
                           },
                           async: false,
                           generator: false,
-                          expression: false,
+
                           id: {
                             type: 'Identifier',
                             name: 'x'
@@ -369,7 +369,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'h'
@@ -506,7 +506,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'h'
@@ -560,7 +560,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -728,7 +728,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -755,7 +755,7 @@ describe('Expressions - Async Generator', () => {
                 },
                 async: true,
                 generator: true,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'foo'
@@ -809,7 +809,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -864,7 +864,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -898,7 +898,7 @@ describe('Expressions - Async Generator', () => {
               },
               async: true,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'h'

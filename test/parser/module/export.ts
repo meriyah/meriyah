@@ -448,7 +448,6 @@ describe('Module - Export', () => {
     'export var var5, var6, var7',
     'export default 1;',
     'var a; export default a = 10;',
-    'export default () => 3',
     'function _default() { }; export default _default',
     'function* g() { }; export default g',
     'export function *g() { } if (true) { }',
@@ -469,11 +468,29 @@ describe('Module - Export', () => {
       {//-
       //-
       };
-      export/**/{/**/};`
+      export/**/{/**/};`,
+    'export default 1',
+    'export default () => {}'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(
+          `${arg}`,
+          undefined,
+          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat
+        );
       });
     });
   }
@@ -519,7 +536,7 @@ describe('Module - Export', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1150,7 +1167,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1180,7 +1197,7 @@ describe('Module - Export', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1210,7 +1227,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1238,7 +1255,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1266,7 +1283,7 @@ describe('Module - Export', () => {
               },
               async: true,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1295,7 +1312,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -1552,7 +1569,6 @@ describe('Module - Export', () => {
                 name: 'y'
               },
               params: [],
-              id: null,
               async: true,
               expression: true
             }
@@ -1573,7 +1589,6 @@ describe('Module - Export', () => {
                 type: 'Identifier'
               },
               expression: true,
-              id: null,
               params: [
                 {
                   name: 'x',
@@ -1607,7 +1622,6 @@ describe('Module - Export', () => {
               },
               async: true,
               generator: false,
-              expression: false,
               id: null
             }
           }
@@ -1632,7 +1646,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -1705,7 +1719,6 @@ describe('Module - Export', () => {
                   name: 'x'
                 }
               ],
-              id: null,
               async: true,
               expression: true
             }
@@ -1738,7 +1751,6 @@ describe('Module - Export', () => {
                   name: 'b'
                 }
               ],
-              id: null,
               async: false,
               expression: false
             }
@@ -1762,7 +1774,6 @@ describe('Module - Export', () => {
                 body: []
               },
               params: [],
-              id: null,
               async: false,
               expression: false
             }
@@ -1854,7 +1865,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -1877,7 +1888,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement'
               },
               generator: false,
-              expression: false,
+
               id: {
                 name: 'Z',
                 type: 'Identifier'
@@ -1961,7 +1972,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: null
             }
           }
@@ -2082,7 +2093,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -2110,7 +2121,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'foo'
@@ -2271,7 +2282,7 @@ describe('Module - Export', () => {
                     ],
                     type: 'BlockStatement'
                   },
-                  expression: false,
+
                   generator: true,
                   id: null,
                   params: [
@@ -2304,7 +2315,6 @@ describe('Module - Export', () => {
                   type: 'BlockStatement'
                 },
                 expression: false,
-                id: null,
                 params: [
                   {
                     name: 'u',
@@ -2356,7 +2366,7 @@ describe('Module - Export', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -2586,7 +2596,7 @@ describe('Module - Export', () => {
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'

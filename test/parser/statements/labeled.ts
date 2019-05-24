@@ -110,7 +110,7 @@ describe('Statements - Labeled', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -271,7 +271,7 @@ describe('Statements - Labeled', () => {
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'bar'

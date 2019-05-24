@@ -41,7 +41,7 @@ export function scanString(parser: ParserState, context: Context): any {
         const code = parseEscape(parser, context, ch);
 
         if (code >= 0) ret += fromCodePoint(code);
-        else handleStringError(parser, code as Escape);
+        else handleStringError(parser, code as Escape, /* isTemplate */ 0);
       }
       marker = parser.index + 1;
     }
@@ -215,13 +215,13 @@ export function parseEscape(parser: ParserState, context: Context, first: number
   }
 }
 
-export function handleStringError(state: ParserState, code: Escape): void {
+export function handleStringError(state: ParserState, code: Escape, isTemplate: 0 | 1): void {
   switch (code) {
     case Escape.Empty:
       return;
 
     case Escape.StrictOctal:
-      report(state, Errors.StrictOctalEscape);
+      report(state, isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
 
     case Escape.EightOrNine:
       report(state, Errors.InvalidEightAndNine);

@@ -51,7 +51,7 @@ describe('Expressions - Block', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -105,7 +105,7 @@ describe('Expressions - Block', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -164,7 +164,7 @@ describe('Expressions - Block', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'x'
@@ -546,7 +546,7 @@ describe('Expressions - Block', () => {
                 },
                 async: true,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'foo'
@@ -625,7 +625,7 @@ describe('Expressions - Block', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'a'
@@ -643,7 +643,7 @@ describe('Expressions - Block', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'b'
@@ -673,7 +673,7 @@ describe('Expressions - Block', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'f'
@@ -691,7 +691,7 @@ describe('Expressions - Block', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'f'

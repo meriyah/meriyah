@@ -581,7 +581,6 @@ describe('Statements - Try', () => {
             },
             async: false,
             generator: false,
-            expression: false,
             id: {
               type: 'Identifier',
               name: '__f_3'
@@ -646,7 +645,7 @@ describe('Statements - Try', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: {
                         type: 'Identifier',
                         name: 'f'
@@ -2442,7 +2441,7 @@ describe('Statements - Try', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     }
                   }
@@ -2506,7 +2505,7 @@ describe('Statements - Try', () => {
                               ]
                             },
                             async: false,
-                            expression: false,
+
                             generator: false,
                             id: null
                           }
@@ -2561,7 +2560,7 @@ describe('Statements - Try', () => {
                           ]
                         },
                         async: false,
-                        expression: false,
+
                         generator: false,
                         id: null
                       }

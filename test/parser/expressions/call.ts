@@ -244,7 +244,6 @@ describe('Expressions - Call', () => {
                 type: 'Identifier'
               },
               expression: true,
-              id: null,
               params: [
                 {
                   name: 'x',
@@ -608,7 +607,7 @@ describe('Expressions - Call', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               arguments: [
@@ -807,7 +806,7 @@ describe('Expressions - Call', () => {
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: null
               },
               arguments: [
@@ -922,7 +921,6 @@ describe('Expressions - Call', () => {
                   name: 'a'
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }

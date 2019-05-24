@@ -360,7 +360,7 @@ describe('Expressions - Rest', () => {
               ]
             },
             async: false,
-            expression: false,
+
             generator: false,
             id: {
               type: 'Identifier',
@@ -407,7 +407,7 @@ describe('Expressions - Rest', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'singleRest'
@@ -489,7 +489,7 @@ describe('Expressions - Rest', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -679,7 +679,7 @@ describe('Expressions - Rest', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'fooInline'
@@ -741,7 +741,7 @@ describe('Expressions - Rest', () => {
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: {
                           type: 'Identifier',
                           name: 'foo'
@@ -751,7 +751,7 @@ describe('Expressions - Rest', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 },
                 id: {

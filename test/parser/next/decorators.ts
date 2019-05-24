@@ -761,7 +761,7 @@ describe('Next - Decorators', () => {
               body: [],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: false,
             id: {
               name: 'deco',
@@ -1233,7 +1233,6 @@ describe('Next - Decorators', () => {
                             ]
                           }
                         ],
-                        id: null,
                         async: false,
                         expression: false
                       }
@@ -1704,7 +1703,6 @@ describe('Next - Decorators', () => {
                             ]
                           }
                         ],
-                        id: null,
                         async: false,
                         expression: false
                       }
@@ -1802,7 +1800,6 @@ describe('Next - Decorators', () => {
                         name: 'desc'
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: false
                   }
@@ -1811,7 +1808,7 @@ describe('Next - Decorators', () => {
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'writable'
@@ -2055,7 +2052,6 @@ describe('Next - Decorators', () => {
                             name: '_'
                           }
                         ],
-                        id: null,
                         async: false,
                         expression: true
                       }

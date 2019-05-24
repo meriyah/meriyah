@@ -782,7 +782,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -824,7 +824,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -866,7 +866,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -922,7 +922,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -958,7 +958,7 @@ yield d;
               ],
               type: 'BlockStatement'
             },
-            expression: false,
+
             generator: true,
             id: {
               name: 'a',
@@ -1064,7 +1064,6 @@ yield d;
                   ]
                 }
               ],
-              id: null,
               async: false,
               expression: true
             }
@@ -1104,7 +1103,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1331,7 +1330,7 @@ yield d;
                 }
               ]
             },
-            expression: false,
+
             async: false,
             generator: true,
             id: {
@@ -1420,7 +1419,7 @@ yield d;
                 }
               ]
             },
-            expression: false,
+
             async: false,
             generator: true,
             id: {
@@ -1517,7 +1516,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1562,7 +1561,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1618,7 +1617,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1691,7 +1690,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -1701,7 +1700,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1912,7 +1911,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1957,7 +1956,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2005,7 +2004,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2053,7 +2052,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2101,7 +2100,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2157,7 +2156,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2239,7 +2238,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -2315,7 +2314,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'a'
@@ -2330,7 +2329,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -2345,7 +2344,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'c'
@@ -2401,7 +2400,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf1'
@@ -2446,7 +2445,7 @@ yield d;
                     },
                     async: false,
                     generator: false,
-                    expression: false,
+
                     id: null
                   }
                 }
@@ -2454,7 +2453,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2530,7 +2529,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2575,7 +2574,7 @@ yield d;
                     },
                     async: false,
                     generator: false,
-                    expression: false,
+
                     id: null
                   }
                 }
@@ -2583,7 +2582,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2626,7 +2625,6 @@ yield d;
                         }
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -2635,7 +2633,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2680,7 +2678,7 @@ yield d;
                     },
                     async: false,
                     generator: false,
-                    expression: false,
+
                     id: null
                   }
                 }
@@ -2688,7 +2686,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2739,7 +2737,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -2752,7 +2750,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -2795,7 +2793,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -2808,7 +2806,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -2893,7 +2891,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -2938,7 +2936,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -2974,7 +2971,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -3070,7 +3066,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -3142,7 +3137,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -3152,7 +3147,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -3211,7 +3206,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3267,7 +3262,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3337,7 +3332,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3404,7 +3399,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3479,7 +3474,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3530,7 +3525,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -3575,7 +3570,6 @@ yield d;
                       }
                     }
                   ],
-                  id: null,
                   async: false,
                   expression: true
                 }
@@ -3667,7 +3661,6 @@ yield d;
                       }
                     }
                   ],
-                  id: null,
                   async: false,
                   expression: true
                 }
@@ -3762,7 +3755,6 @@ yield d;
                       }
                     }
                   ],
-                  id: null,
                   async: false,
                   expression: true
                 }
@@ -3871,7 +3863,6 @@ yield d;
                       }
                     }
                   ],
-                  id: null,
                   async: false,
                   expression: false
                 }
@@ -3905,7 +3896,6 @@ yield d;
                       name: 'yield'
                     }
                   ],
-                  id: null,
                   async: false,
                   expression: false
                 }
@@ -3986,7 +3976,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4034,7 +4024,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4081,7 +4071,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4142,7 +4132,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4201,7 +4191,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4244,7 +4234,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -4254,7 +4244,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4305,7 +4295,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'f'
@@ -4315,7 +4305,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4358,7 +4348,6 @@ yield d;
                         }
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -4367,7 +4356,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4419,7 +4408,7 @@ yield d;
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     }
                   }
@@ -4428,7 +4417,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4504,7 +4493,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4546,7 +4535,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4642,7 +4631,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4697,7 +4686,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -4739,7 +4728,7 @@ yield d;
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -4783,7 +4772,6 @@ yield d;
                         name: 'b'
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -4792,7 +4780,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -4858,7 +4846,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -5008,7 +4996,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'g'
@@ -5018,7 +5006,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5080,7 +5068,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'a'
@@ -5090,7 +5078,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5138,7 +5126,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'a'
@@ -5148,7 +5136,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5212,7 +5200,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5250,7 +5238,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5286,7 +5274,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'foo'
@@ -5296,7 +5284,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5332,7 +5320,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5380,7 +5368,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5429,7 +5417,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'a'
@@ -5439,7 +5427,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5482,7 +5470,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'a'
@@ -5492,7 +5480,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5545,7 +5533,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'gen'
@@ -5555,7 +5543,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -5590,7 +5578,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -5629,7 +5617,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5677,7 +5665,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5723,7 +5711,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5780,7 +5768,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5824,7 +5812,7 @@ yield d;
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5869,7 +5857,7 @@ yield d;
               },
               async: false,
               generator: false,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -5917,7 +5905,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -5970,7 +5958,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -6027,7 +6015,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -6081,7 +6069,7 @@ yield d;
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -6123,7 +6111,7 @@ yield d;
             },
             async: true,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -6201,7 +6189,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: false,
               expression: true
             }
@@ -6310,7 +6297,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -6383,7 +6370,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -6445,7 +6432,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'g'
@@ -6483,7 +6470,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -6579,7 +6565,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -6623,7 +6608,6 @@ yield d;
                   }
                 }
               ],
-              id: null,
               async: true,
               expression: false
             }
@@ -6717,7 +6701,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: {
                 type: 'Identifier',
                 name: 'f'
@@ -6802,7 +6786,6 @@ yield d;
                     name: 'foo'
                   }
                 ],
-                id: null,
                 async: false,
                 expression: false
               }
@@ -6832,7 +6815,6 @@ yield d;
                   name: 'yield'
                 }
               ],
-              id: null,
               async: false,
               expression: false
             }
@@ -6873,7 +6855,6 @@ yield d;
                   name: 'yield'
                 }
               ],
-              id: null,
               async: false,
               expression: true
             }
@@ -6927,7 +6908,6 @@ yield d;
                       body: []
                     },
                     params: [],
-                    id: null,
                     async: false,
                     expression: false
                   }
@@ -6936,7 +6916,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -6967,7 +6947,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -6977,7 +6957,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -7025,7 +7005,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'gen'
@@ -7035,7 +7015,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -7066,7 +7046,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -7081,7 +7061,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -7091,7 +7071,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -7139,7 +7119,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'gen'
@@ -7149,7 +7129,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -7357,7 +7337,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'yield'
@@ -7445,7 +7425,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -7544,7 +7524,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'yield'
@@ -7603,7 +7583,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -7644,7 +7624,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -7686,7 +7666,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -7750,7 +7730,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -7792,7 +7772,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -7841,7 +7821,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -7893,7 +7873,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -7948,7 +7928,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -8006,7 +7986,7 @@ yield d;
               },
               async: false,
               generator: true,
-              expression: false,
+
               id: null
             }
           }
@@ -8046,7 +8026,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -8091,7 +8071,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -8129,7 +8109,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -8174,7 +8154,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -8230,7 +8210,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g5'
@@ -8306,7 +8286,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -8366,7 +8346,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -8396,7 +8376,7 @@ yield d;
                 },
                 async: false,
                 generator: false,
-                expression: false,
+
                 id: {
                   type: 'Identifier',
                   name: 'yield'
@@ -8450,7 +8430,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'g'
@@ -8460,7 +8440,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f1'
@@ -8494,7 +8474,6 @@ yield d;
                       name: 'yield'
                     },
                     params: [],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -8516,7 +8495,6 @@ yield d;
                       ]
                     },
                     params: [],
-                    id: null,
                     async: false,
                     expression: false
                   }
@@ -8525,7 +8503,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'fn'
@@ -8556,7 +8534,6 @@ yield d;
                       name: 'yield'
                     },
                     params: [],
-                    id: null,
                     async: false,
                     expression: true
                   }
@@ -8565,7 +8542,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -8596,7 +8573,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -8606,7 +8583,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'foo'
@@ -8651,7 +8628,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'fn'
@@ -8703,7 +8680,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -8747,7 +8724,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -8792,7 +8769,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'fn'
@@ -8850,7 +8827,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -8887,7 +8864,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -8929,7 +8906,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -8990,7 +8967,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -9027,7 +9004,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gen'
@@ -9064,7 +9041,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g1'
@@ -9106,7 +9083,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g2'
@@ -9157,7 +9134,7 @@ yield d;
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'b'
@@ -9177,7 +9154,6 @@ yield d;
                         name: 'd'
                       }
                     ],
-                    id: null,
                     async: false,
                     expression: false
                   }
@@ -9186,7 +9162,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'a'
@@ -9236,7 +9212,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g4'
@@ -9400,7 +9376,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -9431,7 +9407,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: {
                     type: 'Identifier',
                     name: 'yield'
@@ -9441,7 +9417,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9508,7 +9484,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9584,7 +9560,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9644,7 +9620,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9684,7 +9660,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9727,7 +9703,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -9786,7 +9762,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -9840,7 +9816,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -9890,7 +9866,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -9944,7 +9920,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -9997,7 +9973,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -10047,7 +10023,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -10101,7 +10077,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -10151,7 +10127,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'g'
@@ -10261,7 +10237,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -10330,7 +10306,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -10374,7 +10350,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10416,7 +10392,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10459,7 +10435,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10508,7 +10484,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10563,7 +10539,7 @@ yield d;
                   },
                   async: false,
                   generator: true,
-                  expression: false,
+
                   id: null
                 },
                 id: {
@@ -10756,7 +10732,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10801,7 +10777,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10853,7 +10829,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10890,7 +10866,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -10937,7 +10913,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -11045,7 +11021,7 @@ yield d;
                         },
                         async: false,
                         generator: false,
-                        expression: false,
+
                         id: {
                           type: 'Identifier',
                           name: 'yield'
@@ -11062,7 +11038,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -11121,7 +11097,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -11187,7 +11163,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -11247,7 +11223,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -11290,7 +11266,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -11349,7 +11325,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -11409,7 +11385,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -11476,7 +11452,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'gf'
@@ -12022,7 +11998,7 @@ yield d;
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'testGenerator'
@@ -12143,7 +12119,7 @@ yield d;
             },
             async: false,
             generator: false,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'yieldOne'

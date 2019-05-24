@@ -7848,6 +7848,28 @@ if (a !== "z" || typeof b !== "undefined")
     'function arrayRestTDZ(...[a = a]) { }',
     'function objectRestTDZ(...{a = a}) { }',
     'function f1(a, bIs, [b]=[3], ...rest) {}',
+    `let async = function(a){return {bind: "someMethodButIUseString"}};
+    async(function (req, res) { }).bind;`,
+    `let asyn = function(a){return {bind: "someMethodButIUseString"}};
+    asyn(function (req, res) { }).bind;`,
+    `
+class C {
+    *gen(id, module) {
+        yield module.mount(this)
+    }
+}`,
+    `
+class C {
+    *gen(id, module) {
+        yield module
+    }
+}`,
+    `
+class C {
+    *gen(id, modul) {
+        yield modul.mount(this)
+    }
+}`,
     '[, ...rest]',
     'let [...[...x]] = (() => { throw "foo"; } )();',
     '[, ...(o.prop)]',
@@ -8518,7 +8540,190 @@ class B extends A {
       // destructuring assign with element access
       ({ f: super["x"] } = { f });
   }
-}`
+}`,
+    `
+
+for ({[2e308]: {"_"() {}, get [""]() {
+  "use strict";
+}}[++q], a, b, q = true, [(true ? arguments : ("foo"))[{}]]: c[this]} in [] = arguments) do ; while ((function () {
+  "cù:";
+  "";
+  "[×";
+  "";
+} <= "".constructor)[this] ^= null(...this(), new (l ? /[-]+?/iu : (true))(...0), ...null ? this : false, ...new /\ufA3eDA^\b/g, class {
+  static [/\\ude85+/my]() {
+    "use strict";
+  }
+  static get [2e308]() {}
+  static get [false]() {}
+  *[""]() {}
+  get [2e308]() {
+    "use strict";
+  }
+}));`,
+    `var GiantPrintArray = [];
+__counter++;;
+function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 100; else return Math.floor(x) & 0xffff; };;
+function leaf() { return 100; };
+class module1BaseClass { };;
+var obj0 = {};
+var obj1 = {};
+var protoObj1 = {};
+var arrObj0 = {};
+var litObj0 = {prop1: 3.14159265358979};
+var litObj1 = {prop0: 0, prop1: 1};
+var arrObj0 = {};
+var func0 = function(argMath113 = (ary.unshift(f64.length, (obj0.prop0 *= (f64.length && (++ aliasOfobj0.length))), (typeof((new module1BaseClass()))  != null) , 974325168, -140)),...argArr114){
+  var uniqobj26 = [''];
+  uniqobj26[__counter%uniqobj26.length].toString();
+  var uniqobj27 = [''];
+  var uniqobj28 = uniqobj27[__counter%uniqobj27.length];
+  uniqobj28.toString();
+  if((arrObj0.prop1 >> ((typeof obj0.prop1) >> ary[(17)]))) {
+    var strvar9 = (strvar7).replace(/a/g, strvar3).concat(((f === argMath113) * ((strvar7).replace(/a/g, strvar3) + ((new module1BaseClass()) << (uic8.length, ((function () {;}) instanceof ((typeof Object == 'function' ) ? Object : Object)), leaf.call(obj0 ))))));
+    strvar9 = strvar9.substring((strvar9.length)/3,(strvar9.length)/3);
+    argMath113 /=(leaf() ? i8[(26) & 255] : f32[(205) & 255]);
+    if(shouldBailout){
+      return  'somestring'
+    }
+    WScript.Echo(strvar0 >h);
+  }
+  else {
+    var strvar9 = '(' + '%!(þ';
+    arrObj0.prop1 =(- 722372450.1);
+    strvar3 = strvar9[6%strvar9.length];
+    var strvar10 = strvar9;
+    strvar10 = strvar10.substring((strvar10.length)/1,(strvar10.length)/4);
+    litObj1 = protoObj1;
+  }
+  return leaf.call(obj1 );
+};
+var func1 = function(){
+  var uniqobj29 = {prop0: arrObj0[(6)]};
+  var uniqobj30 = Object.create(aliasOfobj0);
+  return (h >>>= (typeof(arrObj0.prop1)  == 'object') );
+};
+var func2 = function(){
+  function func5 () {
+  }
+  var uniqobj31 = new func5();
+  return (Reflect.construct(module1BaseClass));
+};
+var func3 = function(argMath115,argMath116 = (new func2()).prop1 ){
+  class class16 extends module1BaseClass {
+    constructor (argMath117){
+      super();
+      return argMath115;
+      var strvar9 = ('!k'+'*y'+';(' + 'õ$' + (typeof(argMath117)  != 'number') );
+      strvar9 = strvar9.substring((strvar9.length)/2,(strvar9.length)/2);
+      argMath117 /=(typeof(strvar9)  == 'string') ;
+    }
+    static get func7 (){
+      return argMath115;
+    }
+  }
+  class class17 extends module1BaseClass {
+    func8 (){
+      strvar7 = strvar7[6%strvar7.length];
+      if(shouldBailout){
+        return  'somestring'
+      }
+      return -313655691;
+    }
+    func9 (argMath118,argMath119){
+      return g;
+    }
+    static func10 (argMath120,argMath121 = ('caller' instanceof ((typeof String == 'function' ) ? String : Object)),argMath122,argMath123){
+      var strvar9 = strvar0;
+      strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/4);
+      strvar2 = strvar6.concat(parseInt("0", 18));
+(Object.defineProperty(protoObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
+      protoObj1.prop1 = (argMath122 ^= ('(' + '%!(þ'.indexOf('L' + 'e!*]'.concat(-4.66427488914349E+18))));
+      strvar3 = strvar7.concat(func0(((obj1.prop1 !== argMath121)&&(protoObj1.prop1 < argMath120)), ...[ary]));
+      strvar1 = '¦' + 'L' + 'e!*]'.concat(-4.66427488914349E+18);
+      argMath115 |=((func2.call(litObj1 ) * (strvar4.concat(func1.call(litObj0 )) + ((('caller', ((97735116.1 === -413916238) * (func0.call(protoObj1 , (-78527701 ? 244 : aliasOfobj0.prop0), ary) + func0.call(litObj1 , ui8[(argMath122) & 255], ary))), (-78527701 ? 244 : aliasOfobj0.prop0), (new class16(...(new Set([/^{(?![a7])$/im])))), func0.call(litObj1 , ui8[(argMath122) & 255], ary)) / (f64[(16) & 255] == 0 ? 1 : f64[(16) & 255])) * ('*P!)G#i($©!cLD*'.indexOf('L' + 'e!*]')) + 'caller'))) * (ui8[(132) & 255] + ((argMath122 <= aliasOfobj0.prop1)||(h >= argMath115))) + ('g|,a-' + 'Äá!#,f$.'.concat(ui8[(ui8[(132) & 255]) & 255])).replace(/a/g, '*P!)G#i($©!cLD*'));
+      return -822821403.9;
+    }
+    static func11 (argMath124 = func0.call(obj1 , (argMath115 /= (typeof 614038338)), ary)){
+      return argMath124;
+      strvar6 = strvar1.concat(212963263.1);
+      return obj1.prop0;
+    }
+  }
+  return protoObj1.prop1;
+};
+var func4 = function(){
+  var strvar9 = ((strvar3).replace(/a/g, strvar3)).replace(/a/g, strvar5).concat(({59: Math.tan(i16[((Reflect.construct(module1BaseClass))) & 255]), 89: (aliasOfobj0.prop0-- ), prop1: arguments[(((('%oº]!' + 'D!2-!!%)'.indexOf('%oº]!' + 'D!2-!!%)')) >= 0 ? ('%oº]!' + 'D!2-!!%)'.indexOf('%oº]!' + 'D!2-!!%)')) : 0)) & 0XF)], prop2: ((197624368 instanceof ((typeof Array == 'function' ) ? Array : Object)) ? aliasOfobj0.prop0 : ((new RegExp('xyz')) instanceof ((typeof func2 == 'function' ) ? func2 : Object)))}, func0.call(litObj1 , (((obj1.prop0 !== obj0.prop1)||(aliasOfobj0.prop1 !== arrObj0.prop1)) * (func3.call(protoObj1 , ((protoObj1.prop0 * aliasOfobj0.prop1 + 404693627) + (obj1.prop0 ? b : c)), (-- f)) - {prop0: (arguments[(5)] != (~ +null)), prop1: (ary[(((1.13181440134692E+18 >= 0 ? 1.13181440134692E+18 : 0)) & 0XF)] > 'caller')})), ary), (typeof((- (-- h)))  == 'undefined') , 'caller', arrObj0[(11)]));
+  class class18 extends module1BaseClass {
+    set func12 (argMath125){
+      strvar1 = strvar9[2%strvar9.length];
+      return -5.25426100452532E+18;
+    }
+    static func13 (){
+      strvar9 = (('C').replace(/a/g, 'Al'+',g'+'(§' + 'rH'.concat((- a))) + f64[(158) & 255]).concat(func2.call(litObj1 ));
+(Object.defineProperty(arrObj0, 'prop1', {writable: true, enumerable: false, configurable: true }));
+      arrObj0.prop1 = (ary.push((new module1BaseClass()), ((g < c) * (((obj1.prop0 != protoObj1.prop1) instanceof ((typeof String == 'function' ) ? String : Object)) - 'caller')), ary[(((((obj0.prop0 >>= ((typeof(strvar9)  == 'string')  >> (typeof((1428124786.1 || 65537))  != 'number') )) ? (strvar7 + (new module1BaseClass())) : arrObj0[((((new module1BaseClass()) >= 0 ? (new module1BaseClass()) : 0)) & 0XF)]) >= 0 ? ((obj0.prop0 >>= ((typeof(strvar9)  == 'string')  >> (typeof((1428124786.1 || 65537))  != 'number') )) ? (strvar7 + (new module1BaseClass())) : arrObj0[((((new module1BaseClass()) >= 0 ? (new module1BaseClass()) : 0)) & 0XF)]) : 0)) & 0XF)], protoObj1.prop1, (protoObj1.prop0 = (+ (h <= (typeof(a)  == 'undefined') ))), (new module1BaseClass()), ((arrObj0.prop1 > f)||(obj1.prop1 === obj0.prop0)), (- (-904176182 || (new module1BaseClass()))), ((new EvalError()) instanceof ((typeof Boolean == 'function' ) ? Boolean : Object))))
+;
+      WScript.Echo(strvar9 <=ui16[(aliasOfobj0.prop0) & 255]);
+(Object.defineProperty(litObj0, 'prop1', {writable: true, enumerable: false, configurable: true }));
+      litObj0.prop1 = func1.call(obj0 );
+      return c;
+    }
+    static func14 (argMath126 = -1474167776){
+      aliasOfobj0 = aliasOfobj0;
+      var fPolyProp = function (o) {
+        if (o!==undefined) {
+          WScript.Echo(o.prop0 + ' ' + o.prop1 + ' ' + o.prop2);
+        }
+      };
+      fPolyProp(litObj0);
+      fPolyProp(litObj1);
+      var u = uic8[(157) & 255];
+      strvar6 = strvar9[2%strvar9.length];
+      return aliasOfobj0.prop1;
+    }
+  }
+  var reResult1=/[b7]\s((bab{5}b)ab{5}[b7]\B.{2,3}(bab{5}b)ab{5}[b7])\B.{2,3}\S$/giy.exec('ë' + '!%-ó');
+  return (- e);
+};`,
+    `  do {
+  if (__loopvar0) {
+  }
+  var __loopvar1 = loopInvariant;
+  for (var _strvar0 in i8) {
+      if (4) {
+      }
+      obj1.method0();
+      var __loopvar2 = loopInvariant, __loopSecondaryVar2_0 = loopInvariant;
+      for (; _strvar0 < 3077559403207580000; VarArr0) {
+          if (-2) {
+              break;
+          }
+          var v1 = shouldBailout;
+          var v2 = true;
+          function v3() {
+              Math(_strvar0 * __loopvar2);
+              ({ prop1: FloatArr0 });
+          }
+          v3(5);
+          var __loopvar3 = loopInvariant, __loopSecondaryVar3_0 = loopInvariant;
+          var __loopSecondaryVar4_0 = loopInvariant, __loopSecondaryVar4_1 = loopInvariant;
+
+          var __loopvar5 = loopInvariant - 3;
+          for (var _strvar0 in FloatArr0) {
+              if (typeof _strvar0 === 'string' && _strvar0.indexOf('method') != -1) {
+                  continue;
+              }
+              __loopvar5++;
+              if (__loopvar5 == loopInvariant + 1) {
+                  break;
+              }
+              FloatArr0[_strvar0] = _strvar0;
+          }
+          var id28 = test0.caller >>> uic8[120 & 255];
+      }
+  }
+} while (false);`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

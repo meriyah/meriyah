@@ -235,6 +235,7 @@ describe('Expressions - Template', () => {
     'function cherow() { var a, b, c; return tag`foo${a // comment\n}`}',
     '`no-subst-template`',
     '`template-head${a}`',
+    'f`\\xg ${x}`;',
     '`${a}`',
     '`${a}template-tail`',
     '`template-head${a}template-tail`',
@@ -276,6 +277,45 @@ describe('Expressions - Template', () => {
     '`foo\\tbar`',
     '`\\x55a`',
     '`f1o2o`',
+    '`a\\u{d}c`',
+    'x`a\\u{d}c${0}`',
+    '`a\\u{0062}c`',
+    '`a\\{000062}c`',
+    '`a\\u{00000062}c`',
+    '`a\\u{000000062}c`',
+    '`\\\0${0}`',
+    'x`\0${0}`',
+    'x`\\\0${0}`',
+    'x`\\r${0}`',
+    'x`\\\r\\\n${0}`',
+    'x`\\\r\n${0}`',
+    'x`\r\\\n${0}`',
+    'x`\\r\\n${0}`',
+    'x`\\r\n${0}`',
+    'x`\r\\n${0}`',
+    'x`\\\r\\n${0}`',
+    'x`\\\u2028${0}`',
+    'x`\u2029${0}`',
+    'x`\\\u2029${0}`',
+    'x`\r${0}`',
+    'x`\r\n${0}`',
+    'x`\\r\n${0}`',
+    'x`\\\r\\n${0}`',
+    'f`${x} \\xg ${x}`;',
+    'x`\\\u2028${0}`',
+    'x`\\0`',
+    'x`\\08`',
+    'x`\\0\\0`',
+    "simpleTag`str1 ${'str2'} str3 ${'str4'} str5 ${'str6'} str7 ${'str8'} str9`",
+    'x`\\ua48c`',
+    'x`\\h`',
+    'x`\\h`',
+    'x`bunch of escape chars \\v\\t\\n\\b\\a`',
+    'x`$ $ $ {} } { }} {{`',
+    'x`\\xF8`',
+    'x`\r\n`',
+    'x`\r\n\r\n`',
+    'x`\n\n\n\n\n\n\n\n\n\n`',
     '`$$${a}`',
     'z``',
     '``',
@@ -325,11 +365,27 @@ describe('Expressions - Template', () => {
     //    ['`foo ${a b} bar`', Context.Strict],
     //['x`foo ${a b} bar`', Context.Strict],
     ['[`${""}`] = {}', Context.None],
+    //['`a\\u{d}c`', Context.None],
     ['[`${""}`] = {}', Context.None],
     ['[`${""}`] = {}', Context.None],
     ['[z``] = {}', Context.None],
     ['[`${"a"}`] = {}', Context.None],
     ['[`${""}`] = {}', Context.None],
+    ['`\\7`', Context.None],
+    ['`\\10`', Context.None],
+    ['`\\01`', Context.None],
+    ['`\\30`', Context.None],
+    ['`\\001`', Context.None],
+
+    ['`\\xg`;', Context.None],
+    ['`\\xg ${x}`;', Context.None],
+    ['`${x} \\xg ${x}`;', Context.None],
+    ['`${x} \\xg`;', Context.None],
+    ['`\\001`', Context.None],
+    ['`\\001`', Context.None],
+    ['`\\001`', Context.None],
+    ['`\\001`', Context.None],
+
     //['`a${await foo}d`', Context.None],
     ['`\\u{g}`', Context.None],
     ['`\\u00g0`', Context.None],
@@ -341,51 +397,6 @@ describe('Expressions - Template', () => {
     ['`\\u{11ffff}${', Context.None]
   ]);
   pass('Expressions - Template (pass)', [
-    /* [
-      'f`x`\n/foo/',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              quasi: {
-                expressions: [],
-                quasis: [
-                  {
-                    tail: true,
-                    type: 'TemplateElement',
-                    value: {
-                      cooked: 'x',
-                      raw: 'x'
-                    }
-                  }
-                ],
-                type: 'TemplateLiteral'
-              },
-              tag: {
-                name: 'f',
-                type: 'Identifier'
-              },
-              type: 'TaggedTemplateExpression'
-            },
-            type: 'ExpressionStatement'
-          },
-          {
-            expression: {
-              regex: {
-                flags: '',
-                pattern: 'foo'
-              },
-              type: 'Literal',
-              value: /foo/
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],*/
     [
       '`${y, x`)`}`',
       Context.None,
@@ -1188,7 +1199,7 @@ describe('Expressions - Template', () => {
                   },
                   async: false,
                   generator: false,
-                  expression: false,
+
                   id: null
                 }
               ],
@@ -1272,7 +1283,7 @@ describe('Expressions - Template', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -1776,7 +1787,7 @@ describe('Expressions - Template', () => {
                       },
                       async: false,
                       generator: false,
-                      expression: false,
+
                       id: null
                     }
                   ],
@@ -2872,7 +2883,6 @@ describe('Expressions - Template', () => {
                     body: []
                   },
                   params: [],
-                  id: null,
                   async: false,
                   expression: false
                 }
@@ -2933,7 +2943,7 @@ describe('Expressions - Template', () => {
                       name: 'k'
                     }
                   ],
-                  id: null,
+
                   async: false,
                   expression: false
                 }
@@ -3125,7 +3135,7 @@ describe('Expressions - Template', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -3202,7 +3212,7 @@ describe('Expressions - Template', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -3270,7 +3280,7 @@ describe('Expressions - Template', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'
@@ -3350,7 +3360,7 @@ describe('Expressions - Template', () => {
             },
             async: false,
             generator: true,
-            expression: false,
+
             id: {
               type: 'Identifier',
               name: 'f'

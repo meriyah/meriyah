@@ -1017,9 +1017,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[function f() {}]',
     '[function* f() {}]',
     'a = ({name = "foo"}, 1) = {}',
-    '([{}] = []);',
-    'function f({}){}; f();',
-    'function f({}){}; f(null);',
+    '{ ([((iydvhw)), gpvpgk]) => { }; } var iydvhw=function(){return this};',
     '{} = null  ',
     'c = 10; ({c} = {c:11});',
     '({x :  } = {})',
@@ -1507,7 +1505,7 @@ describe('Miscellaneous - Cover grammar', () => {
     });
   }
 
-  const validSyntax = [
+  for (const arg of [
     'x',
     '[x,]',
     '[x,,]',
@@ -1651,8 +1649,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '{x = 42, y = 15}',
     '{42e-2 : x}',
     '{42e-2 : x = 42}'
-  ];
-  for (const arg of validSyntax) {
+  ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
         parseSource(`'use strict'; let x, y, z; (${arg} = {});`, undefined, Context.None);
@@ -1810,6 +1807,12 @@ describe('Miscellaneous - Cover grammar', () => {
     'function foo() { return {}; }; [foo()] = [];',
     '({...this}) => x;',
     '([...this]) => x;',
+    'var a = 1; (delete [a] = [2]);',
+    'var x, b; for ([x] = [((b) = 1)] of " ") { }',
+    'for (let []; ;) { }',
+    '({x : , y} = {});',
+    'var {x :  , y} = {};',
+    'var {x :  } = {};',
     'x=5=y'
   ]) {
     it(`${arg}`, () => {
@@ -2709,7 +2712,25 @@ describe('Miscellaneous - Cover grammar', () => {
     '((a, { b = 0, c = 3 }) => { return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
     '((a, x) => { let { b = 0, c = 3 } = y; return a === 1 && b === 2 && c === 3; })(1, { b: 2 });',
     '({ [key]: y, z, ...x } = {2: "two", z: "zee"});',
-    '({...x}[y])'
+    '({...x}[y])',
+    '[[[] = [function () { }] ] = []]',
+    'for ([]; ;) { break; }',
+    '(function () { var x; for ({x:x}.x of [1,2]) {}; })();',
+    'var a = ({x = 1}) => x;',
+    'var a = (b, {x = 1}) => x;',
+    'var a = ({x = 1}, b) => x;',
+    'bar3 = ( {aa3 = a3, bb3 = b3, abcdef  = (((((a3)) = (30))))} = (b3 = 40) ) => {}',
+    'bar2 = ( {abcdef  = (((((a2)) = (30))))} = (b2 = 40) ) => { try { throw a2; } catch(a2) { } };',
+    'bar1 = ( {abcdef  = (((((a1)) = (30))))} = (b1 = 40) ) => { try { throw a1; } catch(a1) { } };',
+    'bar4 = ( { b4 = ((xyz = 4) => a4) } = 1) => { b4 = 35; return b4; }; ',
+    'var d4 = (function( { a4, b4 } = { a4 : 20, b4 : 25 }) { return a4;})();',
+    '[...((a5))] = [1, 2, 3];',
+    '({} = undefined);',
+    '[[a]=[1]] = [];',
+    'function foo(x = [a, b = 2, ...c] = [1,,3,4,5,6,7]) {}',
+    '`${[a = 5, b, ...c] = [, 1, 3, 5, 7, 9]}`;',
+    'function f({}){}; f();',
+    'function f({}){}; f(null);'
   ]) {
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {
