@@ -106,7 +106,7 @@ export const enum Flags {
   Yield               = 1 << 9,
 }
 
-export const enum ParseFunctionFlag {
+export const enum FunctionState {
   None              = 0,
   DisallowGenerator = 1 << 0,
   RequireIdentifier = 1 << 1,
