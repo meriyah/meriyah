@@ -12,6 +12,10 @@ describe('Miscellaneous - Pass', () => {
     'do ; while(0); i++',
     'do if (a) x; else y; while(z)',
     `({}.length);`,
+    'A = class extends A {}',
+    'if ( A ) A.__proto__ = A;',
+    'for (const [target, weights] of Array.from(weightsPerTarget)) {}',
+    'function epsilon(value) { return Math.abs(value) < 0.000001 ? 0 : value; }',
     'switch (((("Mr" || (`foo`).rlv ? ("^") : ((([`a` / (() => 0)])))())))) {}',
     'function f() { ((((a))((b)()).l))() }',
     'function f() { (a)[b + (c) / (d())].l-- }',
@@ -852,6 +856,83 @@ describe('Miscellaneous - Pass', () => {
     'o[foo](a,...bar)',
     'foo(...bar, a)',
     'o.foo(...bar, a)',
+    '1 * (((2 + 3) / 4) * ((5) / 6 + 7) - 8)',
+    '((1 << 2 + 3) >> 4) - ((5 >>> 6 * (7)) & 8) / (((9 | 10  ^ 11) >= 12 + 13) >> (14 & 15) << 16) ^ (15 >>> 17) / ((18 + 19) * 20) | 21 >>> ((((22) << 23 + 24 * 25) >> 26 / 27) & 28 + 29 || 30) && (31 % 32 ^ 33) + (34 | 35 / 36 - 37 % 38) & (39 | 40)',
+    '(function(){})()',
+    '++(a);',
+    '(++((((a)))))',
+    '(((a).b).c)',
+    '[a,...(b)]',
+    'class a extends ((b)) {}',
+    'test !== false ? success() : error()',
+    '[a, b, [c, d], e=2, ...f] = g',
+    `for ([a,b] in c);
+    for ([a,b] of c);
+    for ([a,b];;);
+    for (var [a,b] in c);
+    for (var [a,b] of c);
+    for (var [a,b] = c;;);
+    for (let [a,b] in c);
+    for (let [a,b] of c);
+    for (let [a,b] = c;;);
+    for (const [a,b] in c);
+    for (const [a,b] of c);
+    for (const [a,b] = c;;);`,
+    `for ({a,b} in c);
+    for ({a,b} of c);
+    for ({a,b};;);
+    for (var {a,b} in c);
+    for (var {a,b} of c);
+    for (var {a,b} = c;;);
+    for (let {a,b} in c);
+    for (let {a,b} of c);
+    for (let {a,b} = c;;);
+    for (const {a,b} in c);
+    for (const {a,b} of c);
+    for (const {a,b} = c;;);`,
+    '([a])=>b',
+    '[a]={b}=c',
+    'result = { arrow = () => {} } = vals;',
+    `foo.var.bar;
+    foo.implements();
+    var yield = 2;
+    const public = 3;
+    let static = 4;
+    new foo.true.null.false;`,
+    '1 * 2 + 3 / 4 * 5 / 6 + 7 - 8',
+    'function a() { return 1,2; }',
+    `a += ++b + c;
+    a -= --b - c;
+    a *= b * c;
+    a /= b / c;
+    a %= b % c;
+    a++;
+    a--;
+    a >>= b >> c;
+    a <<= b << c;
+    a >>>= b >>> c;
+    a |= b | c;
+    a ^= b ^ c;
+    a &= b & c;
+    a = ~b;
+    a = !b;
+    a = b && c;
+    a = b || c;
+    a = b > c;
+    a = b < c;
+    a = b >= c;
+    a = b <= c;
+    a = b == c;
+    a = b === c;
+    a = b != c;
+    a = b !== c;
+    a = +b;
+    a = -b;
+    delete a.prop;
+    typeof a;
+    void a;
+    a in b;`,
+    `1 << 2 + 3 >> 4 - 5 >>> 6 * 7 & 8 / 9 | 10  ^ 11 >= 12 + 13 >> 14 & 15 << 16 ^ 15 >>> 17 / 18 + 19 * 20 | 21 >>> 22 << 23 + 24 * 25 >> 26 / 27 & 28 + 29 || 30 && 31 % 32 ^ 33 + 34 | 35 / 36 - 37 % 38 & 39 | 40  `,
     'o[foo](...bar, a)',
     '[...bar]',
     '[a, ...bar]',
@@ -3184,6 +3265,13 @@ function continueWithinLoop() {
       "SyntaxError: Invalid regular expression flags",
       e.toString());
 }`,
+    `for (function({} = ((2e308)) in false, {
+
+}, [] = /q*?/i, laeksllun, i = []) {}.prototype[null[((this[((("foo")))]--)(((''))))](...(class k {
+    [.92]() {
+        "use strict"
+    }
+}), ...[], ...(new 'bar') ? a : i = /^j$\xbB\B/)] in 2393.03) throw "string";`,
     `var global = this;
 function non_strict(){ assertEquals(global, this); }
 function strict(){ "use strict"; assertEquals(void 0, this); }
@@ -6140,7 +6228,585 @@ h({ name: "bar", val: 42 })`,
     `const test = ({ t, ...v }) => {
   console.log(t, v);
 };`,
+    `for ( let i = 0; i < 10; i += 1 ) {
+  try {
+  	const square = i * i;
+  	setTimeout( () => console.log( square ), i * 100 );
+  } catch (e) {}
+}`,
+    `for ( var i = 0; i < 10; i += 1 ) {
+  try {
+  	var square = i * i;
+  	setTimeout( function () { return console.log( square ); }, i * 100 );
+  } catch (e) {}
+}`,
+    `class C {}
+var c1 = C;
+{
+  class C {}
+  var c2 = C;
+}`,
+    `
+      ({async, foo})`,
+    `async function A() {}`,
+    `const A = async function () {}`,
+    `
+      (class { async x() {} })`,
+    `
+			class Foo {
+				constructor ( answer ) {
+					this.answer = answer;
+				}
+				bar ( str ) {
+					return str + 'bar';
+				}
+      }`,
+    `
+			class Foo {
+				bar ( str ) {
+					return str + 'bar';
+				}
+				static baz ( str ) {
+					return str + 'baz';
+				}
+      }`,
+    `
+			class Foo extends Bar {
+				constructor ( x ) {
+					super( x );
+					this.y = 'z';
+				}
+				baz ( a, b, c ) {
+					super.baz( a, b, c );
+				}
+      }`,
+    `
+			class Foo extends Bar {
+				baz ( ...args ) {
+					super.baz(...args);
+				}
+				boz ( x, y, ...z ) {
+					super.boz(x, y, ...z);
+				}
+				fab ( x, ...y ) {
+					super.qux(...x, ...y);
+				}
+				fob ( x, y, ...z ) {
+					((x, y, z) => super.qux(x, ...y, ...z))(x, y, z);
+				}
+      }`,
+    `
+			class Circle {
+				constructor ( radius ) {
+					this.radius = radius;
+				}
+				get area () {
+					return Math.PI * Math.pow( this.radius, 2 );
+				}
+				set area ( area ) {
+					this.radius = Math.sqrt( area / Math.PI );
+				}
+				static get description () {
+					return 'round';
+				}
+      }`,
+    `
+			const q = {a: class {}};
+			class b extends q.a {
+				c () {}
+      }`,
+    `
+			class Foo {
+				bar() {
+					var s = "0\t1\t\t2\t\t\t3\t\t\t\t4\t\t\t\t\t5";
+					return s + '\t';
+				}
+				baz() {
+					return \`\t\`;
+				}
+			}
+    `,
+    `
+    class A{
+      x(){}
+    }
+    var B = class B{
+      x(){}
+    };
+    class C extends D{
+      x(){}
+    }
+    var E = class E extends F{
+      x(){}
+    }`,
+    `
+    class Foo {
+      constructor ( options, { a2, b2 } ) {
+        const { a, b } = options;
+        const render = () => {
+          requestAnimationFrame( render );
+          this.render();
+        };
+        render();
+      }
+      render () {
+        // code goes here...
+      }
+    }`,
+    `
+    class Foo extends Bar {
+      constructor ( options, { a2, b2 } ) {
+        super();
+        const { a, b } = options;
+        const render = () => {
+          requestAnimationFrame( render );
+          this.render();
+        };
+        render();
+      }
+      render () {
+        // code goes here...
+      }
+    }`,
+    `
+			class Foo {
+				static [a.b.c] () {
+					// code goes here
+				}
+      }`,
+    `
+			class A extends B {
+				constructor () {
+					super();
+					this.doSomething(() => {
+						super.doSomething();
+					});
+				}
+      }`,
+    `
+			class C {
+				0(){}
+				0b101(){}
+				80(){}
+				.12e3(){}
+				0o753(){}
+				12e34(){}
+				0xFFFF(){}
+				"var"(){}
+			}
+    `,
+    `
+			function pythag ( { x, y: z = 1 } ) {
+				return Math.sqrt( x * x + z * z );
+      }`,
+    `
+			function pythag ( [ x, z = 1 ] ) {
+				return Math.sqrt( x * x + z * z );
+      }`,
+    `
+			function drawRect ( { ctx, x1, y1, x2, y2 } ) {
+				ctx.fillRect( x1, y1, x2 - x1, y2 - y1 );
+			}
+			function scale ([ d0, d1 ], [ r0, r1 ]) {
+				const m = ( r1 - r0 ) / ( d1 - d0 );
+				return function ( num ) {
+					return r0 + ( num - d0 ) * m;
+				}
+      }`,
+    `
+			var { foo: bar, baz } = obj;
+			console.log( bar );
+			console.log( baz );
+			console.log( baz );`,
 
+    `
+			function foo ({ arg1 = 123, arg2 = 456 } = {}) {
+				console.log( arg1, arg2 );
+      }`,
+    `
+      var { a: { b: c }, d: { e: f, g: h = 1 } } = x;`,
+    `
+			function foo ( [[[,x = 3] = []] = []] = [] ) {
+				console.log( x );
+			}`,
+
+    `
+			var { [FirstProp]: one, [SecondProp]: two = 'Too', 3: three, Fore: four } = x;
+    `,
+    `
+			let x = [1, 2, {r: 9}, {s: ["table"]} ];
+			let a, b, c, d;
+			([a, ...[ , {r: b}, {r: c = "nothing", s: [d] = "nope"} ]] = x);
+			console.log(a, b, c, d);
+    `,
+    `
+    let foo = ({p: [x, ...y] = [6, 7], q: [...z] = [8]} = {}) => {
+      console.log(x, y, z);
+    };
+    foo({p: [1, 2, 3], q: [4, 5]});
+    foo({q: []} );
+    foo();
+  `,
+    `
+      ({x, y: {z, q}} = {x: 1});`,
+    `
+			let [
+				a = \`A\${baz() - 4}\`,
+				, /* hole */
+				c = (x => -x),
+				d = ({ r: 5, [h()]: i }),
+			] = [ "ok" ];
+    `,
+    `
+			class Point {
+				set ( array ) {
+					return [ this.x, this.y ] = array;
+				}
+			}
+			let a, b, c = [ 1, 2, 3 ];
+			console.log( [ a, b ] = c );
+    `,
+    `
+			function foo ( a = 1, b = 2 ) {
+				console.log( a, b );
+			}
+			var bar = function ( a = 1, b = 2 ) {
+				console.log( a, b );
+			};`,
+    `
+			function foo ({ a = 1 }) {
+				console.log( a );
+      }`,
+    `
+			function foo ({ a = 1 }, { b = 2 }) {
+				console.log( a, b );
+			}
+			var bar = function ({ a = 1 }, { b = 2 }) {
+				console.log( a, b );
+      };`,
+    `
+			function a({ x = 1 } = {}) {
+				console.log( x );
+      }`,
+    `
+			var num1 = 0b111110111;
+			var num2 = 0B111110111;
+      var str = '0b111110111';`,
+    `
+			var num1 = 0o767;
+			var num2 = 0O767;
+			var str = '0o767';`,
+
+    `
+			var num1 = 503;
+			var num2 = 503;
+      var str = '0o767';`,
+    `
+			var obj = {
+				[a]: 1
+      };`,
+    `
+			var obj = {
+				a: 1,
+				[b]: 2
+      };`,
+    `
+			var obj = {
+				a: 1,
+				[b]: 2,
+				c: 3
+      };`,
+    `
+			var obj = {
+				[a]: 1,
+				b: 2,
+				[c]: 3,
+				[d]: 4,
+				e: 5,
+				[f]: 6
+      };`,
+    `
+			(function () { return { [key]: { [key]: val } } })
+    `,
+    `
+			((x) => {var obj = 2; console.log([{[x]: 1}, obj]);})(3);
+		`,
+    `({ x: async function() {} })`,
+    `var obj = {...a};`,
+    `var obj = {...a, ...b};`,
+    `
+			var a0 = { [ x ] : true , ... y };
+			var a1 = { [ w ] : 0 , [ x ] : true , ... y };
+			var a2 = { v, [ w ] : 0, [ x ] : true, ... y };
+			var a3 = { [ w ] : 0, [ x ] : true };
+			var a4 = { [ w ] : 0 , [ x ] : true , y };
+			var a5 = { k : 9 , [ x ] : true, ... y };
+			var a6 = { ... y, [ x ] : true };
+			var a7 = { ... y, [ w ] : 0, [ x ] : true };
+			var a8 = { k : 9, ... y, [ x ] : true };
+			var a9 = { [ x ] : true , [ y ] : false , [ z ] : 9 };
+			var a10 = { [ x ] : true, ...y, p, ...q };
+			var a11 = { x, [c] : 9 , y };
+			var a12 = { ...b, [c]:3, d:4 };
+    `,
+    `
+			var a0 = { [ x ] : true , ... y };
+			var a1 = { [ w ] : 0 , [ x ] : true , ... y };
+			var a2 = { v, [ w ] : 0, [ x ] : true, ... y };
+			var a3 = { [ w ] : 0, [ x ] : true };
+			var a4 = { [ w ] : 0 , [ x ] : true , y };
+			var a5 = { k : 9 , [ x ] : true, ... y };
+			var a6 = { ... y, [ x ] : true };
+			var a7 = { ... y, [ w ] : 0, [ x ] : true };
+			var a8 = { k : 9, ... y, [ x ] : true };
+			var a9 = { [ x ] : true , [ y ] : false , [ z ] : 9 };
+			var a10 = { [ x ] : true, ...y, p, ...q };
+			var a11 = { x, [c] : 9 , y };
+			var a12 = { ...b, [c]:3, d:4 };
+    `,
+    `
+			f0( { [ x ] : true , ... y } );
+			f1( { [ w ] : 0 , [ x ] : true , ... y } );
+			f2( { v, [ w ] : 0, [ x ] : true, ... y } );
+			f3( { [ w ] : 0, [ x ] : true } );
+			f4( { [ w ] : 0 , [ x ] : true , y } );
+			f5( { k : 9 , [ x ] : true, ... y } );
+			f6( { ... y, [ x ] : true } );
+			f7( { ... y, [ w ] : 0, [ x ] : true } );
+			f8( { k : 9, ... y, [ x ] : true } );
+			f9( { [ x ] : true , [ y ] : false , [ z ] : 9 } );
+			f10( { [ x ] : true, ...y, p, ...q } );
+			f11( { x, [c] : 9 , y } );
+			f12({ ...b, [c]:3, d:4 });
+    `,
+    `const c = { ...a, b: 1, dd: {...d, f: 1, gg: {h, ...g, ii: {...i}}}, e};`,
+    `var obj = { ...a, b: 1, dd: {...d, f: 1}, e};`,
+    `var {a, ...b} = c`,
+    `(({x, ...y}) => {})`,
+    `for( var {a, ...b} = c;; ) {}`,
+    `var obj = {...{a: 1}};`,
+    `var obj = { ...{a: 1}, b: 2, c: 3 };`,
+    `var obj = { ...{a: 1}, b: 2, ...{c: 3}, e};`,
+    `( foo || bar ).baz( ...values );`,
+    `
+    function foo() {
+      stuff();
+      if ( ref )
+        return expr().baz( ...values );
+      return (up || down).bar( ...values );
+    }`,
+    `
+			function ref() {
+				stuff();
+				if ( ref$1 )
+					return expr().baz( a, ...values, (up || down).bar( c, ...values, d ) );
+				return other();
+      }`,
+    `var arr = [ ...a, b, ...c, d, ];`,
+    `
+			function Test() {
+				this.a = [...arguments];
+				console.log(JSON.stringify(this.a));
+			}
+			var obj = { Test };
+			var a = [1, 2];
+			var b = [3, 4];
+			var c = [7, 8];
+			new Test(...a);
+			new obj.Test(...a);
+			new (null || obj).Test(...a);
+			new Test(0, ...a);
+			new obj.Test(0, ...a);
+			new (null || obj).Test(0, ...a);
+			new Test(...a, ...b, 5);
+			new obj.Test(...a, ...b, 5);
+			new (null || obj).Test(...a, ...b, 5);
+			new Test(...a, new Test(...c), ...b, 5);
+			new obj.Test(...a, new Test(...c), ...b, 5);
+			new (null || obj).Test(...a, new Test(...c), ...b, 5);
+			new Test(...[1, 2]);
+			new obj.Test(...[1, 2]);
+			new (null || obj).Test(...[1, 2]);
+			new Test(0, ...[1, 2]);
+			new obj.Test(0, ...[1, 2]);
+			new (null || obj).Test(0, ...[1, 2]);
+			new Test(...[1, 2], ...[3, 4], 5);
+			new obj.Test(...[1, 2], ...[3, 4], 5);
+			new (null || obj).Test(...[1, 2], ...[3, 4], 5);
+			new Test(...[1, 2], new Test(...[7, 8]), ...[3, 4], 5);
+			new obj.Test(...[1, 2], new Test(...[7, 8]), ...[3, 4], 5);
+			new (null || obj).Test(...[1, 2], new Test(...[7, 8]), ...[3, 4], 5);
+			(function () {
+				new Test(...arguments);
+				new obj.Test(...arguments);
+				new (null || obj).Test(...arguments);
+				new Test(1, ...arguments);
+				new obj.Test(1, ...arguments);
+				new (null || obj).Test(1, ...arguments);
+			})(7, 8, 9);
+    `,
+    `
+    function foo (x) {
+      if ( x )
+        return ref => new (bar || baz).Test( ref, ...x );
+    }
+  `,
+    `
+  [...f(b), "n"];
+  [...f(b), 'n'];
+  [...f(b), \`n\`];
+`,
+    `
+[...[]];
+[...[],];
+[...[x]];
+[...[x,]];
+[...[x, y]];
+[...[x, y,]];
+[...[x, y],];
+[...[x, y,],];
+[w, ...[]];
+[w, ...[],];
+[w, ...[x]];
+[w, ...[x,]];
+[w, ...[x, y]];
+[w, ...[x, y,]];
+[w, ...[x, y],];
+[w, ...[x, y,],];
+[...[], z];
+[...[x], z];
+[...[x,], z];
+[...[x, y], z];
+[...[x, y,], z];
+[w, ...[], z];
+[w, ...[x], z];
+[w, ...[x,], z];
+[w, ...[x, y], z];
+[w, ...[x, y,], z];
+`,
+    `
+f(...[]);
+f(...[],);
+f(...[x]);
+f(...[x,]);
+f(...[x, y]);
+f(...[x, y,]);
+f(...[x, y],);
+f(...[x, y,],);
+f(w, ...[]);
+f(w, ...[],);
+f(w, ...[x]);
+f(w, ...[x,]);
+f(w, ...[x, y]);
+f(w, ...[x, y,]);
+f(w, ...[x, y],);
+f(w, ...[x, y,],);
+f(...[], z);
+f(...[x], z);
+f(...[x,], z);
+f(...[x, y], z);
+f(...[x, y,], z);
+f(w, ...[], z);
+f(w, ...[x], z);
+f(w, ...[x,], z);
+f(w, ...[x, y], z);
+f(w, ...[x, y,], z);
+`,
+    `
+			new f(...[]);
+			new f(...[],);
+			new f(...[x]);
+			new f(...[x,]);
+			new f(...[x, y]);
+			new f(...[x, y,]);
+			new f(...[x, y],);
+			new f(...[x, y,],);
+			new f(w, ...[]);
+			new f(w, ...[],);
+			new f(w, ...[x]);
+			new f(w, ...[x,]);
+			new f(w, ...[x, y]);
+			new f(w, ...[x, y,]);
+			new f(w, ...[x, y],);
+			new f(w, ...[x, y,],);
+			new f(...[], z);
+			new f(...[x], z);
+			new f(...[x,], z);
+			new f(...[x, y], z);
+			new f(...[x, y,], z);
+			new f(w, ...[], z);
+			new f(w, ...[x], z);
+			new f(w, ...[x,], z);
+			new f(w, ...[x, y], z);
+			new f(w, ...[x, y,], z);
+    `,
+    '() => tagged`template literal`',
+    `
+    obj = {
+      0() {},
+      0b101() {},
+      80() {},
+      .12e3() {},
+      0o753() {},
+      12e34() {},
+      0xFFFF() {},
+      "a string"() {},
+      "var"() {},
+    }`,
+    `var obj = { x, y, z () {} }`,
+    `
+			let x = {
+				foo() { return foo },
+				bar() {}
+			}
+		`,
+    `var obj = { ...{a: 1,}, b: 2, ...{c: 3,}, ...d, e, ...{f: 6,},};
+    obj = { a: 1, b: 2, };
+    obj = { a: 1, ...{b: 2} };
+    obj = { a: 1, ...{b: 2,} };
+    obj = { a: 1, ...{b: 2}, };
+    obj = { a: 1, ...{b: 2,}, };
+  `,
+    `do {
+  const square = i * i;
+  setTimeout( function () {
+    log( square );
+  }, i * 100 );
+} while ( i-- );`,
+    '({a,b} = {c,d} = {a:1,b:2,c:3,d:4});',
+    'var a,b,c,d; [a,b] = [c,d] = [1,2];',
+    `for (r = 0; r < 1; r++) {
+  let e = 1,
+    o = 2;
+  switch (o) {
+    case 2:
+      let e = 4
+      console.log(e)
+      break;
+  }
+  console.log(e)
+}`,
+    `for (let i = 0; i < 5; ++i) {
+  if (Math.random() > 0) {
+    const square = i * i;
+    setTimeout(function() { console.log(square); }, 1);
+  }
+}`,
+    'new Test().add(...numbers).add(...letters);',
+    'x.add(...numbers).add(...letters);',
+    'let a = () => /* = */ { return "b2" }',
+    'let a = () => { /* = */ return "b2" }',
+    'let a = () /* = */ => { return "b2" }',
+    '[ arrow = () => {} ] = vals;',
+    `function test(state, action) {
+  return {
+    ...state,
+    [action.page]: {
+      ...state[action.page],
+      [action.key]: action.value
+    }
+  };
+}`,
     'switch (answer) { case 42: let t = 42; break; }',
     'e => { 42; }',
     'e => ({ property: 42 })',

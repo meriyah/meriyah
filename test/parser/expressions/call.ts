@@ -4,7 +4,6 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Call', () => {
-  // This fails on Acorn, Esprima and Babylon
   for (const arg of [
     'async(a)(b)async',
     '(a)(( async () => {}) => {})',
@@ -227,10 +226,104 @@ describe('Expressions - Call', () => {
     ['yield({a=1})', Context.None],
     ['yield({a=1}. {b=2}, {c=3} = {}))', Context.None],
     ['yield({c=3} = {})', Context.Strict],
-    ['yield({a})', Context.Strict]
+    ['yield({a})', Context.Strict],
+    ['foo(,)', Context.None],
+    ['foo(a,b,,)', Context.None],
+    ['foo()["bar"', Context.None],
+    ['foo().bar.', Context.None],
+    ['foo()`bar', Context.None],
+    ['foo(', Context.None],
+    ['foo(...)', Context.None]
   ]);
 
   pass('Expressions - Call (pass)', [
+    [
+      ` obj
+                          .foo
+                              ["bar"]
+                                  .baz()
+                                      .foo
+                                          ["bar"]()
+                                              .baz()()`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'CallExpression',
+                    callee: {
+                      type: 'MemberExpression',
+                      object: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'MemberExpression',
+                              object: {
+                                type: 'MemberExpression',
+                                object: {
+                                  type: 'Identifier',
+                                  name: 'obj'
+                                },
+                                computed: false,
+                                property: {
+                                  type: 'Identifier',
+                                  name: 'foo'
+                                }
+                              },
+                              computed: true,
+                              property: {
+                                type: 'Literal',
+                                value: 'bar'
+                              }
+                            },
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'baz'
+                            }
+                          },
+                          arguments: []
+                        },
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'foo'
+                        }
+                      },
+                      computed: true,
+                      property: {
+                        type: 'Literal',
+                        value: 'bar'
+                      }
+                    },
+                    arguments: []
+                  },
+                  computed: false,
+                  property: {
+                    type: 'Identifier',
+                    name: 'baz'
+                  }
+                },
+                arguments: []
+              },
+              arguments: []
+            }
+          }
+        ]
+      }
+    ],
     [
       'async(x,) => x',
       Context.None,

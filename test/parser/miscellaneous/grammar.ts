@@ -282,6 +282,9 @@ describe('Miscellaneous - Cover grammar', () => {
     '[ c ] = [1];',
     '"use strict";  [ x ] = [];',
     '[50]',
+    'var {...rest, ...rest2} = a;',
+    'var {...rest,} = obj;',
+    'var {...rest, a} = b;',
     '[(50)]',
     '[(function() {})]',
     '[(async function() {})]',
@@ -2730,7 +2733,12 @@ describe('Miscellaneous - Cover grammar', () => {
     'function foo(x = [a, b = 2, ...c] = [1,,3,4,5,6,7]) {}',
     '`${[a = 5, b, ...c] = [, 1, 3, 5, 7, 9]}`;',
     'function f({}){}; f();',
-    'function f({}){}; f(null);'
+    'function f({}){}; f(null);',
+    '({a, b,...rest} = obj)',
+    '({a, b,...rest} = {a, b,...rest} = obj)',
+    'for ({a, b,...rest} = obj; i < 10; i++) {}',
+    'for ({a, b,...rest} = {a, b,...rest} = obj; i < 10; i++) {}',
+    'var a = {b, ...c, d, ...e};'
   ]) {
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {

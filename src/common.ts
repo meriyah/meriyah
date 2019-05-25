@@ -106,7 +106,7 @@ export const enum Flags {
   Yield               = 1 << 9,
 }
 
-export const enum ParseFunctionFlag {
+export const enum FunctionState {
   None              = 0,
   DisallowGenerator = 1 << 0,
   RequireIdentifier = 1 << 1,
@@ -236,42 +236,48 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
   }
 }
 
-export function validateIdentifier(parser: ParserState, context: Context, type: BindingType, token: Token): void {
+export function validateBindingIdentifier(
+  parser: ParserState,
+  context: Context,
+  type: BindingType,
+  token: Token
+): void {
   if ((token & Token.Keyword) !== Token.Keyword) return;
-  if (token === Token.StaticKeyword) {
-    if (context & Context.Strict) report(parser, Errors.InvalidStrictStatic);
+
+  if (context & Context.Strict) {
+    if (token === Token.StaticKeyword) {
+      report(parser, Errors.InvalidStrictStatic);
+    }
+
+    if ((token & Token.FutureReserved) === Token.FutureReserved) {
+      report(parser, Errors.FutureReservedWordInStrictModeNotId);
+    }
+
+    if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+      report(parser, Errors.StrictEvalArguments);
+    }
+
+    if (token === Token.EscapedFutureReserved) {
+      report(parser, Errors.InvalidEscapedKeyword);
+    }
   }
+
   if ((token & Token.Reserved) === Token.Reserved) {
     report(parser, Errors.KeywordNotId);
   }
 
-  if ((token & Token.FutureReserved) === Token.FutureReserved) {
-    if (context & Context.Strict) report(parser, Errors.FutureReservedWordInStrictModeNotId);
-  }
-  if (token === Token.LetKeyword) {
-    if (type & (BindingType.Let | BindingType.Const)) report(parser, Errors.InvalidLetConstBinding);
+  if (type & (BindingType.Let | BindingType.Const) && token === Token.LetKeyword) {
+    report(parser, Errors.InvalidLetConstBinding);
   }
 
-  if (token === Token.AwaitKeyword) {
-    if (context & (Context.InAwaitContext | Context.Module)) {
+  if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
       report(parser, Errors.AwaitOutsideAsync);
-    }
   }
 
-  if (token === Token.YieldKeyword) {
-    if (context & (Context.InYieldContext | Context.Strict)) {
+  if (context & (Context.InYieldContext | Context.Strict) && token === Token.YieldKeyword) {
       report(parser, Errors.DisallowedInContext, 'yield');
-    }
-  }
-  if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-    if (context & Context.Strict) {
-      report(parser, Errors.UnexpectedToken, 'asdf');
-    }
   }
 
-  if (context & Context.Strict && token === Token.EscapedFutureReserved) {
-    report(parser, Errors.InvalidEscapedKeyword);
-  }
   if (token === Token.EscapedReserved) {
     report(parser, Errors.InvalidEscapedKeyword);
   }
@@ -290,20 +296,6 @@ export function isStrictReservedWord(parser: ParserState, context: Context, t: T
     (t & Token.FutureReserved) === Token.FutureReserved ||
     t == Token.EscapedFutureReserved
   );
-}
-
-export function validateArrowBlockBody(parser: ParserState): void {
-  switch (parser.token) {
-    case Token.Period:
-    case Token.LeftBracket:
-    case Token.TemplateTail:
-      report(parser, Errors.InvalidAccessedBlockBodyArrow);
-    case Token.LeftParen:
-      report(parser, Errors.InvalidInvokedBlockBodyArrow);
-    default: // ignore
-  }
-  if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0 ) report(parser, Errors.InvalidArrowPostfix);
-  if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp) report(parser, Errors.InvalidArrowPostfix);
 }
 
 /**

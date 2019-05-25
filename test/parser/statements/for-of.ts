@@ -209,6 +209,7 @@ describe('Statements - For of', () => {
     'for (j of x) { let foo; [foo] = [j] }',
     'for (j of x) { let foo; [[foo]=[42]] = [] }',
     'for (j of x) { let foo = j }',
+    'for ([ a = b = c ] of d) ;',
     'for (j of x) { let [foo] = [j] }',
     'for ([ x = y ] of [[]]) {}',
     'for ([ x = y ] of [[]]) {}',

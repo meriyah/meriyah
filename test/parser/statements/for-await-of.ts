@@ -160,7 +160,9 @@ describe('Statements - For await of', () => {
     '(var x in y)',
     '([x] in y)',
     '({x} in y)',
-    '("foo".x in y)'
+    '("foo".x in y)',
+    'for await (a in b) {}',
+    'for await (;;) {}'
   ]) {
     it(`async function f() { for await ${arg}; }`, () => {
       t.throws(() => {
@@ -428,6 +430,8 @@ describe('Statements - For await of', () => {
     'for await (const [...x] of [function*() {}()]) {}',
     'for (var { w: { x, y, z } = { x: 4, y: 5, z: 6 } } of [{ w: null }]) {}',
     'for ([x] of [[0]]) {}',
+    'for await (a of b) {}',
+    'for await (let a of b) {} for (let c of d) {}',
     'for await ([...[x[yield]]] of [[86]]) {}',
     'for await ([...{ 0: x, length }] of [[null]]) {}',
     'for (var { w: [x, y, z] = [4, 5, 6] } of [{ w: null }]) {}',
