@@ -88,7 +88,7 @@ export declare const enum Flags {
     Await = 256,
     Yield = 512
 }
-export declare const enum ParseFunctionFlag {
+export declare const enum FunctionState {
     None = 0,
     DisallowGenerator = 1,
     RequireIdentifier = 2
@@ -121,8 +121,7 @@ export declare function optionalBit(parser: ParserState, context: Context, t: To
 export declare function consumeOpt(parser: ParserState, context: Context, t: Token): boolean;
 export declare function consume(parser: ParserState, context: Context, t: Token): void;
 export declare function reinterpretToPattern(state: ParserState, node: any): void;
-export declare function validateIdentifier(parser: ParserState, context: Context, type: BindingType, token: Token): void;
+export declare function validateBindingIdentifier(parser: ParserState, context: Context, type: BindingType, token: Token): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
-export declare function validateArrowBlockBody(parser: ParserState): void;
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 //# sourceMappingURL=common.d.ts.map
