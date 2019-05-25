@@ -148,14 +148,13 @@ export function parseSource(source: string, options: Options | void, context: Co
   // Initialize parser state
   const parser = create(source);
   skipHashBang(parser);
-  let labels = { _: 'labels' };
+
   context = context | Context.InGlobal | Context.TopLevel;
 
   return {
     type: 'Program',
     sourceType: context & Context.Module ? 'module' : 'script',
-    body:
-      context & Context.Module ? parseModuleItem(parser, context, labels) : parseStatementList(parser, context, labels)
+    body: context & Context.Module ? parseModuleItem(parser, context) : parseStatementList(parser, context)
   };
 }
 
@@ -165,7 +164,7 @@ export function parseSource(source: string, options: Options | void, context: Co
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseStatementList(parser: ParserState, context: Context, labels: any): ESTree.Statement[] {
+export function parseStatementList(parser: ParserState, context: Context): ESTree.Statement[] {
   // StatementList ::
   //   (StatementListItem)* <end_token>
   nextToken(parser, context | Context.AllowRegExp);
@@ -178,11 +177,11 @@ export function parseStatementList(parser: ParserState, context: Context, labels
   while (parser.token === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
     if (parser.index - parser.startIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-    statements.push(parseDirective(parser, context, labels));
+    statements.push(parseDirective(parser, context, /* labels */ {}));
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseStatementListItem(parser, context, { '€': labels }) as ESTree.Statement);
+    statements.push(parseStatementListItem(parser, context, { '€': {} }) as ESTree.Statement);
   }
   return statements;
 }
@@ -197,8 +196,7 @@ export function parseStatementList(parser: ParserState, context: Context, labels
  */
 export function parseModuleItem(
   parser: ParserState,
-  context: Context,
-  labels: any
+  context: Context
 ): (ReturnType<typeof parseDirective | typeof parseparseModuleItemList>)[] {
   // ecma262/#prod-Module
   // Module :
@@ -221,12 +219,12 @@ export function parseModuleItem(
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
       if (parser.index - parser.startIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-      statements.push(parseDirective(parser, context, labels));
+      statements.push(parseDirective(parser, context, /* labels */ {}));
     }
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseparseModuleItemList(parser, context, { '€': labels }) as ESTree.Statement);
+    statements.push(parseparseModuleItemList(parser, context, { '€': {} }) as ESTree.Statement);
   }
   return statements;
 }
