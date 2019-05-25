@@ -84,7 +84,7 @@ export const enum AssignmentKind {
 export const enum DestructuringKind {
   None               = 0,
   MustDestruct       = 1 << 3,
-  CannotDestruct    = 1 << 4,
+  CannotDestruct     = 1 << 4,
   // Only destructible if assignable
   AssignableDestruct = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
@@ -106,12 +106,6 @@ export const enum Flags {
   Yield               = 1 << 9,
 }
 
-export const enum FunctionState {
-  None              = 0,
-  DisallowGenerator = 1 << 0,
-  RequireIdentifier = 1 << 1,
-}
-
 export const enum FunctionStatement {
   Disallow,
   Allow,
@@ -122,7 +116,6 @@ export const enum FunctionStatement {
  */
 export interface ParserState {
   source: string;
-
   flags: Flags;
   index: number;
   line: number;
@@ -306,4 +299,29 @@ export function isStrictReservedWord(parser: ParserState, context: Context, t: T
  */
 export function isPropertyWithPrivateFieldKey(expr: any): boolean {
   return !expr.property ? false : expr.property.type === 'PrivateName';
+}
+
+export function isValidLabel(parser: ParserState, labels: any, label: string, requireIterationStatement: 0 | 1): boolean {
+
+  let isInvalid = requireIterationStatement;
+
+  do {
+    if (labels['€' + label]) {
+      if (isInvalid) report(parser, Errors.InvalidNestedStatement);
+      return true;
+    }
+    if (isInvalid && labels.loop) isInvalid = 0;
+    labels = labels['€'];
+  } while (labels);
+
+  return false;
+}
+export function validateAndTrackLabel(parser: ParserState, labels: any, name: string) {
+  let set = labels;
+  do {
+    if (set['€' + name]) report(parser, Errors.LabelRedeclaration, name);
+    set = set['€'];
+  } while (set);
+
+  labels['€' + name] = true;
 }

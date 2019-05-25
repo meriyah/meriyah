@@ -60,6 +60,30 @@ describe('Statements - Labeled', () => {
   }
 
   fail('Statements - Labeled (fail)', [
+    ['label: class C {};', Context.None],
+    ['label: let x;', Context.None],
+    ['a: async function* a(){}', Context.None],
+    ['label: function* g() {}', Context.None],
+    ['label: const x = null;', Context.None],
+    ['label: function g() {}', Context.Strict],
+    ['label: let x;', Context.None],
+    ['await: 1;', Context.Strict | Context.Module],
+    ['yield: 1;', Context.Strict],
+    ['foo:for;', Context.None],
+    ['super: while(true) { break super; }"', Context.None],
+    ['function test_func() { super: while(true) { break super; }}"', Context.None],
+    ['() => {super: while(true) { break super; }}"', Context.None],
+    ['do { test262: { continue test262; } } while (false)', Context.None],
+    ['"use strict"; super: while(true) { break super; }', Context.None],
+    ['"use strict"; package: while(true) { break package; }', Context.None],
+    ['false: ;', Context.None],
+    ['true: ;', Context.None],
+    ['(async function*() { yield: 1; });', Context.None],
+    ['function *gen() { yield: ;}', Context.None],
+    ['function *gen() { yield: ;}', Context.Strict],
+    ['var obj = { *method() { yield: ; } };', Context.None],
+    ['var obj = { *method() { yield: ; } };', Context.Strict],
+    ['foo: function f() {}', Context.None],
     ['async () => { \\u{61}wait: x }', Context.None],
     ['async () => { aw\\u{61}it: x }', Context.None],
     ['async () => { \\u{61}wait: x }', Context.Strict | Context.Module],
@@ -75,7 +99,12 @@ describe('Statements - Labeled', () => {
     ['let: x', Context.Strict],
     ['yield: x', Context.Strict],
     ['function *f(){ yield: x; }', Context.Strict],
-    ['yield: { function *f(){ break await; } }', Context.Strict]
+    ['yield: { function *f(){ break await; } }', Context.Strict],
+    ['bar: foo: ding: foo: x', Context.None],
+    ['foo: bar: foo: x', Context.None],
+    ['a: { a: x }', Context.None],
+    ['yield: { function *f(){ break await; } }', Context.None],
+    ['yield: { function *f(){ break await; } }', Context.None]
   ]);
 
   pass('Statements - Labeled (pass)', [
