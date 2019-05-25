@@ -193,7 +193,7 @@ export function consume(parser: ParserState, context: Context, t: Token): void {
  * Transforms a `LeftHandSideExpression` into a `AssignmentPattern` if possible,
  * otherwise it returns the original tree.
  *
- * @param {ParserState} parser
+ * @param parser Parser state
  * @param {*} node
  */
 export function reinterpretToPattern(state: ParserState, node: any): void {
@@ -229,52 +229,69 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
   }
 }
 
+/**
+ * Validates binding identifier
+ *
+ * @param parser Parser state
+ * @param context Context masks
+ * @param type Binding type
+ * @param token Token
+ */
+
 export function validateBindingIdentifier(
   parser: ParserState,
   context: Context,
   type: BindingType,
-  token: Token
+  t: Token
 ): void {
-  if ((token & Token.Keyword) !== Token.Keyword) return;
+  if ((t & Token.Keyword) !== Token.Keyword) return;
 
   if (context & Context.Strict) {
-    if (token === Token.StaticKeyword) {
+    if (t === Token.StaticKeyword) {
       report(parser, Errors.InvalidStrictStatic);
     }
 
-    if ((token & Token.FutureReserved) === Token.FutureReserved) {
+    if ((t & Token.FutureReserved) === Token.FutureReserved) {
       report(parser, Errors.FutureReservedWordInStrictModeNotId);
     }
 
-    if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+    if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);
     }
 
-    if (token === Token.EscapedFutureReserved) {
+    if (t === Token.EscapedFutureReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
     }
   }
 
-  if ((token & Token.Reserved) === Token.Reserved) {
+  if ((t & Token.Reserved) === Token.Reserved) {
     report(parser, Errors.KeywordNotId);
   }
 
-  if (type & (BindingType.Let | BindingType.Const) && token === Token.LetKeyword) {
+  if (type & (BindingType.Let | BindingType.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
 
-  if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
+  if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
       report(parser, Errors.AwaitOutsideAsync);
   }
 
-  if (context & (Context.InYieldContext | Context.Strict) && token === Token.YieldKeyword) {
+  if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
       report(parser, Errors.DisallowedInContext, 'yield');
   }
 
-  if (token === Token.EscapedReserved) {
+  if (t === Token.EscapedReserved) {
     report(parser, Errors.InvalidEscapedKeyword);
   }
 }
+
+/**
+ * Validates binding identifier
+ *
+ * @param parser Parser state
+ * @param context Context masks
+  * @param t Token
+ */
 
 export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
@@ -301,27 +318,42 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
   return !expr.property ? false : expr.property.type === 'PrivateName';
 }
 
-export function isValidLabel(parser: ParserState, labels: any, label: string, requireIterationStatement: 0 | 1): boolean {
-
-  let isInvalid = requireIterationStatement;
+/**
+ * Checks if a label in `LabelledStatement` are valid or not
+ *
+ * @param parser Parser state
+ * @param labels Object holding the labels
+ * @param name Current label
+ * @param isIterationStatement
+ */
+export function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
 
   do {
-    if (labels['€' + label]) {
-      if (isInvalid) report(parser, Errors.InvalidNestedStatement);
-      return true;
+    if (labels['€' + name]) {
+      if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
+      return 1;
     }
-    if (isInvalid && labels.loop) isInvalid = 0;
+    if (isIterationStatement && labels.loop) isIterationStatement = 0;
     labels = labels['€'];
   } while (labels);
 
-  return false;
+  return 0;
 }
-export function validateAndTrackLabel(parser: ParserState, labels: any, name: string) {
+
+/**
+ * Checks if current label already have been declrared, and if not
+ * declare it
+ *
+ * @param parser Parser state
+ * @param labels Object holding the labels
+ * @param name Current label
+ */
+export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
   let set = labels;
   do {
     if (set['€' + name]) report(parser, Errors.LabelRedeclaration, name);
     set = set['€'];
   } while (set);
 
-  labels['€' + name] = true;
+  labels['€' + name] = 1;
 }

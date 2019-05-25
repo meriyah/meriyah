@@ -22,7 +22,7 @@ import {
   consumeSemicolon,
   isPropertyWithPrivateFieldKey,
   isValidLabel,
-  validateAndTrackLabel
+  validateAndDeclareLabel
 } from './common';
 
 /**
@@ -177,11 +177,11 @@ export function parseStatementList(parser: ParserState, context: Context): ESTre
   while (parser.token === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
     if (parser.index - parser.startIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-    statements.push(parseDirective(parser, context, /* labels */ {}));
+    statements.push(parseDirective(parser, context));
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseStatementListItem(parser, context, { '€': {} }) as ESTree.Statement);
+    statements.push(parseStatementListItem(parser, context, /* labels */ {}) as ESTree.Statement);
   }
   return statements;
 }
@@ -219,12 +219,12 @@ export function parseModuleItem(
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
       if (parser.index - parser.startIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-      statements.push(parseDirective(parser, context, /* labels */ {}));
+      statements.push(parseDirective(parser, context));
     }
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseparseModuleItemList(parser, context, { '€': {} }) as ESTree.Statement);
+    statements.push(parseparseModuleItemList(parser, context) as ESTree.Statement);
   }
   return statements;
 }
@@ -237,7 +237,7 @@ export function parseModuleItem(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseparseModuleItemList(parser: ParserState, context: Context, labels: any): any {
+export function parseparseModuleItemList(parser: ParserState, context: Context): any {
   // ecma262/#prod-ModuleItem
   // ModuleItem :
   //    ImportDeclaration
@@ -253,7 +253,7 @@ export function parseparseModuleItemList(parser: ParserState, context: Context, 
     //   async [no LineTerminator here] AsyncArrowBindingIdentifier ...
     //   async [no LineTerminator here] ArrowFormalParameters ...
     default:
-      return parseStatementListItem(parser, context, labels);
+      return parseStatementListItem(parser, context, /* labels */ {});
   }
 }
 
@@ -308,7 +308,7 @@ export function parseStatementListItem(
     case Token.ConstKeyword:
       return parseVariableStatement(parser, context, BindingType.Const, BindingOrigin.Statement);
     case Token.LetKeyword:
-      return parseLetIdentOrVarDeclarationStatement(parser, context, labels);
+      return parseLetIdentOrVarDeclarationStatement(parser, context);
     // ExportDeclaration (only inside modules)
     case Token.ExportKeyword:
       report(parser, Errors.InvalidImportExportSloppy, 'export');
@@ -414,12 +414,20 @@ export function parseStatement(
       report(parser, Errors.ClassForbiddenAsStatement);
 
     case Token.YieldKeyword:
-      const { token } = parser;
+      const { token, tokenValue } = parser;
       let expr = parseYieldExpressionOrIdentifier(parser, context);
       if (parser.token === Token.Comma) expr = parseSequenceExpression(parser, context, expr);
       if (context & Context.InYieldContext) return parseExpressionStatement(parser, context, expr);
       if (parser.token === Token.Colon) {
-        return parseLabelledStatement(parser, context, labels, expr as ESTree.Identifier, token, allowFuncDecl);
+        return parseLabelledStatement(
+          parser,
+          context,
+          labels,
+          tokenValue,
+          expr as ESTree.Identifier,
+          token,
+          allowFuncDecl
+        );
       }
       expr = parseMemberOrUpdateExpression(parser, context, expr as ESTree.Expression, /* inNewExpression */ 0);
 
@@ -451,7 +459,7 @@ export function parseExpressionOrLabelledStatement(
   // ExpressionStatement[Yield] :
   //   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
 
-  const { token } = parser;
+  const { tokenValue, token } = parser;
 
   let expr: ESTree.Expression;
 
@@ -460,7 +468,7 @@ export function parseExpressionOrLabelledStatement(
       expr = parseIdentifier(parser, context);
       if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
       if (parser.token === Token.Colon)
-        return parseLabelledStatement(parser, context, labels, expr, token, allowFuncDecl);
+        return parseLabelledStatement(parser, context, labels, tokenValue, expr, token, allowFuncDecl);
       // "let" followed by either "[", "{" or an identifier means a lexical
       // declaration, which should not appear here.
       // However, ASI may insert a line break before an identifier or a brace.
@@ -482,7 +490,7 @@ export function parseExpressionOrLabelledStatement(
    *   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
    */
   if (token & Token.IsIdentifier && parser.token === Token.Colon) {
-    return parseLabelledStatement(parser, context, labels, expr as ESTree.Identifier, token, allowFuncDecl);
+    return parseLabelledStatement(parser, context, labels, tokenValue, expr as ESTree.Identifier, token, allowFuncDecl);
   }
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -627,7 +635,8 @@ export function parseLabelledStatement(
   parser: ParserState,
   context: Context,
   labels: any,
-  label: ESTree.Identifier,
+  label: string,
+  expr: ESTree.Identifier,
   token: Token,
   allowFuncDecl: 0 | 1
 ): ESTree.LabeledStatement {
@@ -637,13 +646,13 @@ export function parseLabelledStatement(
 
   if ((token & Token.Reserved) === Token.Reserved) report(parser, Errors.UnexpectedStrictReserved);
 
-  nextToken(parser, context | Context.AllowRegExp);
+  validateAndDeclareLabel(parser, labels, label);
 
-  validateAndTrackLabel(parser, labels, label.name);
+  nextToken(parser, context | Context.AllowRegExp);
 
   return {
     type: 'LabeledStatement',
-    label,
+    label: expr,
     // In sloppy mode, Annex B.3.2 allows labelled function declarations.
     // Otherwise it's a parse error.
     body:
@@ -688,12 +697,12 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   // AsyncFunctionBody:
   //    FunctionBody[~Yield, +Await]
 
-  const { token } = parser;
+  const { token, tokenValue } = parser;
 
   let expr: ESTree.Expression = parseIdentifier(parser, context);
 
   if (parser.token === Token.Colon)
-    return parseLabelledStatement(parser, context, labels, expr, token, /* allowFuncDecl */ 1);
+    return parseLabelledStatement(parser, context, labels, tokenValue, expr, token, /* allowFuncDecl */ 1);
 
   const asyncNewLine = parser.flags & Flags.NewLine;
 
@@ -792,13 +801,9 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseDirective(
-  parser: ParserState,
-  context: Context,
-  labels: any
-): ESTree.Statement | ESTree.ExpressionStatement {
+export function parseDirective(parser: ParserState, context: Context): ESTree.Statement | ESTree.ExpressionStatement {
   if ((context & Context.OptionsDirectives) < 1)
-    return parseStatementListItem(parser, context, labels) as ESTree.Statement;
+    return parseStatementListItem(parser, context, /* labels */ {}) as ESTree.Statement;
   const { tokenRaw } = parser;
   const expression = parseAssignmentExpression(parser, context, parseLiteral(parser, context));
   consumeSemicolon(parser, context | Context.AllowRegExp);
@@ -1192,10 +1197,9 @@ export function parseDoWhileStatement(parser: ParserState, context: Context, lab
  */
 export function parseLetIdentOrVarDeclarationStatement(
   parser: ParserState,
-  context: Context,
-  labels: any
+  context: Context
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
-  const { token } = parser;
+  const { token, tokenValue } = parser;
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
   // If the next token is an identifier, `[`, or `{`, this is not
   // a `let` declaration, and we parse it as an identifier.
@@ -1213,7 +1217,15 @@ export function parseLetIdentOrVarDeclarationStatement(
      */
 
     if (parser.token === Token.Colon) {
-      return parseLabelledStatement(parser, context, labels, expr, token, FunctionStatement.Disallow);
+      return parseLabelledStatement(
+        parser,
+        context,
+        /* labels */ {},
+        tokenValue,
+        expr,
+        token,
+        FunctionStatement.Disallow
+      );
     }
 
     /**
@@ -2329,7 +2341,7 @@ export function parseFunctionBody(
           reportAt(parser, parser.index, parser.line, parser.startIndex, Errors.IllegalUseStrict);
         }
       }
-      body.push(parseDirective(parser, context, /* labels */ {}));
+      body.push(parseDirective(parser, context));
     }
     if (
       context & Context.Strict &&
