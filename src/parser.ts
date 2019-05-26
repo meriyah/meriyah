@@ -2239,8 +2239,11 @@ export function parseUnaryExpression(parser: ParserState, context: Context): EST
 export function parseYieldExpressionOrIdentifier(parser: ParserState, context: Context): any {
   parser.flags |= Flags.Yield;
   if (context & Context.InYieldContext) {
-    // YieldExpression ::
-    //   'yield' ([no line terminator] '*'? AssignmentExpression)?
+    // YieldExpression[In] :
+    //     yield
+    //     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
+    //     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
+
     nextToken(parser, context | Context.AllowRegExp);
     if (context & Context.InArgList) report(parser, Errors.YieldInParameter);
     if (parser.token === Token.QuestionMark) report(parser, Errors.InvalidTernaryYield);
@@ -2606,8 +2609,10 @@ export function parsePrimaryExpressionExtended(
   }
 
   /**
-   * YieldExpression ::
-   *  'yield' ([no line terminator] '*'? AssignmentExpression)?
+   * YieldExpression[In] :
+   *     yield
+   *     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
+   *     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
    */
 
   if (token === Token.YieldKeyword) {

@@ -19,7 +19,7 @@ export function skipHashBang(parser: ParserState): void {
       parser.currentCodePoint = parser.source.charCodeAt(parser.index);
       skipSingleLineComment(parser);
     } else {
-      report(parser, Errors.UnterminatedComment);
+      report(parser, Errors.IllegalCaracter, '#');
     }
   }
 }

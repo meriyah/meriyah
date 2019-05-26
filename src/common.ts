@@ -350,6 +350,7 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
  */
 export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
   let set = labels;
+
   do {
     if (set['€' + name]) report(parser, Errors.LabelRedeclaration, name);
     set = set['€'];

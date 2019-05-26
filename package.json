@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -78,10 +78,10 @@
     "rollup-plugin-typescript2": "^0.21.1",
     "source-map-support": "^0.5.12",
     "test262-parser-tests": "0.0.5",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.1.1",
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.16.0",
-    "tslint-microsoft-contrib": "^6.1.1",
+    "tslint-microsoft-contrib": "^6.2.0",
     "typescript": "^3.4.5",
     "unexpected": "^11.6.0",
     "unicode-12.0.0": "^0.8.0"

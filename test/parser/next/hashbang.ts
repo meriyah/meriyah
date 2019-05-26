@@ -1,5 +1,5 @@
 import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
@@ -18,7 +18,8 @@ describe('Next - Hashbang grammar', () => {
     ['\\u0023\\u0021', Context.OptionsNext],
     [';#!', Context.OptionsNext],
     ['//\n#!', Context.OptionsNext],
-    ['{ #! }', Context.OptionsNext]
+    ['{ #! }', Context.OptionsNext],
+    ['#\n/*\n\n*/', Context.OptionsNext]
   ]);
 
   for (const arg of [
@@ -28,6 +29,7 @@ describe('Next - Hashbang grammar', () => {
     '#!2\r',
     '#! these characters should be treated as a comment',
     '#!',
+    '#!\n/*\n\n*/',
     // Hashbang comments should not be interpreted and should not generate DirectivePrologues
     '#!"use strict" with ({}) {}'
   ]) {
