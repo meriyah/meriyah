@@ -147,7 +147,14 @@ export const enum Errors {
   InvalidStaticClassFieldConstructor,
   InvalidClassFieldConstructor,
   InvalidClassFieldArgEval,
-  InvalidGeneratorFunction
+  InvalidGeneratorFunction,
+  AsyncRestrictedProd,
+  UnexpectedCharAfterObjLit,
+  InvalidObjLitKey,
+  InvalidKeyToken,
+  LabelRedeclaration,
+  InvalidNestedStatement,
+  UnknownLabel
 }
 
 /*@internal*/
@@ -202,6 +209,7 @@ export const errorMessages: {
   [Errors.InvalidLHSInit]: 'Cannot assign to lhs, not destructible with this initializer',
   [Errors.InvalidGeneratorGetter]: 'A getter cannot be a generator',
   [Errors.InvalidComputedPropName]: 'A computed property name must be followed by a colon or paren',
+  [Errors.InvalidObjLitKey]: 'Object literal keys that are strings or numbers must be a method or have a colon',
   [Errors.InvalidAsyncGetter]: 'Found `* async x(){}` but this should be `async * x(){}`',
   [Errors.InvalidGetSetGenerator]: 'Getters and setters can not be generators',
   [Errors.InvalidGenMethodShorthand]: "'%0' can not be generator method",
@@ -308,7 +316,13 @@ export const errorMessages: {
   [Errors.InvalidClassFieldConstructor]: 'Classes may not have a field called constructor',
   [Errors.InvalidStaticClassFieldConstructor]: 'Classes may not have a private element named constructor',
   [Errors.InvalidClassFieldArgEval]: 'A class field initializer may not contain arguments',
-  [Errors.InvalidGeneratorFunction]: 'Generators can only be declared at the top level or inside a block'
+  [Errors.InvalidGeneratorFunction]: 'Generators can only be declared at the top level or inside a block',
+  [Errors.AsyncRestrictedProd]: 'Async methods are a restricted production and cannot have a newline following it',
+  [Errors.UnexpectedCharAfterObjLit]: 'Unexpected character after object literal property name',
+  [Errors.InvalidKeyToken]: 'Invalid key token',
+  [Errors.LabelRedeclaration]: "Label '%0' has already been declared",
+  [Errors.InvalidNestedStatement]: 'continue statement must be nested within an iteration statement',
+  [Errors.UnknownLabel]: "Undefined label '%0'"
 };
 
 export class ParseError extends SyntaxError {

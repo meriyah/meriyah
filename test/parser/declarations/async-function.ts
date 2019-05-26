@@ -112,6 +112,7 @@ describe('Declarations - Async Function', () => {
     `function* g() { ({ async [yield]() {} }); }`,
     'async function* a() { yield; (r = a) => {} }',
     `async function yield() {}`,
+    'async function x () { a = { a: await(a) } }',
     'async function* a(){}',
     '(async function* (){})',
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
