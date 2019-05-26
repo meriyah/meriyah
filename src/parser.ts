@@ -2648,7 +2648,9 @@ export function parsePrimaryExpressionExtended(
       if (IsEvalOrArguments) {
         if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
         parser.flags |= Flags.SimpleParameterList;
-      } else parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+      } else {
+        parser.flags &= ~Flags.SimpleParameterList;
+      }
       if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
 
       return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
@@ -4167,7 +4169,7 @@ export function parseMethodFormals(
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
   const params: ESTree.Expression[] = [];
-  parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+  parser.flags &= ~Flags.SimpleParameterList;
   let setterArgs = 0;
 
   if (parser.token === Token.RightParen) {
