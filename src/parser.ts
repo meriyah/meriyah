@@ -295,14 +295,14 @@ export function parseStatementListItem(
   switch (parser.token) {
     //   HoistableDeclaration[?Yield, ~Default]
     case Token.FunctionKeyword:
-      return parseFunctionDeclaration(parser, context, /* allowGen */ 1, /* RequireIdentifier*/ 0, /* isAsync */ 0);
+      return parseFunctionDeclaration(parser, context, /* allowGen */ 1, /* isExportDefault*/ 0, /* isAsync */ 0);
     // @decorator
     case Token.Decorator:
       if (context & Context.Module)
         return parseDecorators(parser, context | Context.InDecoratorContext) as ESTree.Decorator[];
     //   ClassDeclaration[?Yield, ~Default]
     case Token.ClassKeyword:
-      return parseClassDeclaration(parser, context, /* requireIdentifier */ 0);
+      return parseClassDeclaration(parser, context, /* isExportDefault */ 0);
     //   LexicalDeclaration[In, ?Yield]
     //     LetOrConst BindingList[?In, ?Yield]
     case Token.ConstKeyword:
@@ -660,7 +660,7 @@ export function parseLabelledStatement(
       (context & Context.Strict) === 0 &&
       context & Context.OptionsWebCompat &&
       parser.token === Token.FunctionKeyword
-        ? parseFunctionDeclaration(parser, context, /* allowGen */ 0, /* RequireIdentifier*/ 0, /* isAsync */ 0)
+        ? parseFunctionDeclaration(parser, context, /* allowGen */ 0, /* isExportDefault */ 0, /* isAsync */ 0)
         : parseStatement(parser, (context | Context.TopLevel) ^ Context.TopLevel, labels, allowFuncDecl)
   };
 }
@@ -710,7 +710,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
     // async function ...
     if (parser.token === Token.FunctionKeyword) {
       if (!allowFuncDecl) report(parser, Errors.AsyncFunctionInSingleStatementContext);
-      return parseFunctionDeclaration(parser, context, /* allowGen */ 1, /* RequireIdentifier*/ 0, /* isAsync */ 1);
+      return parseFunctionDeclaration(parser, context, /* allowGen */ 1, /* isExportDefault */ 0, /* isAsync */ 1);
     }
 
     // async Identifier => ...
@@ -892,7 +892,7 @@ export function parseConsequentOrAlternate(
         { '€': labels },
         FunctionStatement.Disallow
       )
-    : parseFunctionDeclaration(parser, context, /* allowGen */ 0, /* RequireIdentifier*/ 0, /* isAsync */ 0);
+    : parseFunctionDeclaration(parser, context, /* allowGen */ 0, /* isExportDefault */ 0, /* isAsync */ 0);
 }
 
 /**
@@ -1607,7 +1607,7 @@ function parseImportDeclaration(parser: ParserState, context: Context): ESTree.I
   // NameSpaceImport :
   //   '*' 'as' ImportedBinding
 
-  consume(parser, context, Token.ImportKeyword);
+  nextToken(parser, context);
 
   let source: ESTree.Literal;
 
@@ -1775,7 +1775,8 @@ function parseExportDeclaration(
   //    'export' Declaration
   //    'export' 'default'
 
-  consume(parser, context | Context.AllowRegExp, Token.ExportKeyword);
+  // http://www.ecma-international.org/ecma-262/9.0/#sec-exports
+  nextToken(parser, context | Context.AllowRegExp);
 
   const specifiers: ESTree.ExportSpecifier[] = [];
 
@@ -1783,10 +1784,9 @@ function parseExportDeclaration(
   let source: ESTree.Literal | null = null;
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
-    //  Supports the following productions, starting after the 'default' token:
-    //    'export' 'default' HoistableDeclaration
-    //    'export' 'default' ClassDeclaration
-    //    'export' 'default' AssignmentExpression[In] ';'
+    // export default HoistableDeclaration[Default]
+    // export default ClassDeclaration[Default]
+    // export default [lookahead not-in {function, class}] AssignmentExpression[In] ;
 
     switch (parser.token) {
       // export default HoistableDeclaration[Default]
@@ -1795,7 +1795,7 @@ function parseExportDeclaration(
           parser,
           context,
           /* allowGen */ 1,
-          /* RequireIdentifier*/ 1,
+          /* isExportDefault */ 1,
           /* isAsync */ 0
         );
         break;
@@ -1804,7 +1804,7 @@ function parseExportDeclaration(
       // export default  @decl ClassDeclaration[Default]
       case Token.Decorator:
       case Token.ClassKeyword:
-        declaration = parseClassDeclaration(parser, context, /* requireIdentifier */ 1);
+        declaration = parseClassDeclaration(parser, context, /* isExportDefault */ 1);
         break;
 
       // export default HoistableDeclaration[Default]
@@ -1817,7 +1817,7 @@ function parseExportDeclaration(
               parser,
               context,
               /* allowGen */ 1,
-              /* RequireIdentifier*/ 1,
+              /* isExportDefault */ 1,
               /* isAsync */ 1
             );
           } else {
@@ -1879,9 +1879,17 @@ function parseExportDeclaration(
           } as any);
     }
     case Token.LeftBrace: {
-      // 'export' ExportClause ';'
-      // 'export' ExportClause FromClause ';'
+      // export ExportClause FromClause ;
+      // export ExportClause ;
       //
+      // ExportClause :
+      // { }
+      // { ExportsList }
+      // { ExportsList , }
+      //
+      // ExportsList :
+      // ExportSpecifier
+      // ExportsList , ExportSpecifier
       consume(parser, context, Token.LeftBrace);
       while (parser.token & Token.IsIdentifier) {
         const local = parseIdentifier(parser, context);
@@ -1917,7 +1925,7 @@ function parseExportDeclaration(
     }
 
     case Token.ClassKeyword:
-      declaration = parseClassDeclaration(parser, context, /* requireIdentifier */ 0);
+      declaration = parseClassDeclaration(parser, context, /* isExportDefault */ 0);
       break;
     case Token.LetKeyword:
       declaration = parseVariableStatement(parser, context, BindingType.Let, BindingOrigin.Export);
@@ -1933,7 +1941,7 @@ function parseExportDeclaration(
         parser,
         context,
         /* allowGen */ 1,
-        /* RequireIdentifier*/ 0,
+        /* isExportDefault */ 0,
         /* isAsync */ 0
       );
       break;
@@ -1944,7 +1952,7 @@ function parseExportDeclaration(
           parser,
           context,
           /* allowGen */ 1,
-          /* RequireIdentifier*/ 0,
+          /* isExportDefault */ 0,
           /* isAsync */ 1
         );
         break;
@@ -2119,7 +2127,6 @@ export function parseConditionalExpression(
   // ConditionalExpression ::
   //   LogicalOrExpression
   //   LogicalOrExpression '?' AssignmentExpression ':' AssignmentExpression
-  parser.assignable = AssignmentKind.IsAssignable;
   const consequent = parseExpression(parser, context & ~Context.DisallowIn, /* assignable*/ 1);
   consume(parser, context | Context.AllowRegExp, Token.Colon);
   parser.assignable = AssignmentKind.IsAssignable;
@@ -2239,8 +2246,11 @@ export function parseUnaryExpression(parser: ParserState, context: Context): EST
 export function parseYieldExpressionOrIdentifier(parser: ParserState, context: Context): any {
   parser.flags |= Flags.Yield;
   if (context & Context.InYieldContext) {
-    // YieldExpression ::
-    //   'yield' ([no line terminator] '*'? AssignmentExpression)?
+    // YieldExpression[In] :
+    //     yield
+    //     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
+    //     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
+
     nextToken(parser, context | Context.AllowRegExp);
     if (context & Context.InArgList) report(parser, Errors.YieldInParameter);
     if (parser.token === Token.QuestionMark) report(parser, Errors.InvalidTernaryYield);
@@ -2411,9 +2421,6 @@ export function parseSuperExpression(parser: ParserState, context: Context): EST
  */
 export function parseLeftHandSideExpression(parser: ParserState, context: Context, assignable: 0 | 1): any {
   let expression = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, assignable);
-
-  expression = parseMemberOrUpdateExpression(parser, context, expression, /* inNewExpression */ 0);
-
   return parseMemberOrUpdateExpression(parser, context, expression, /* assignable */ 0);
 }
 
@@ -2606,8 +2613,10 @@ export function parsePrimaryExpressionExtended(
   }
 
   /**
-   * YieldExpression ::
-   *  'yield' ([no line terminator] '*'? AssignmentExpression)?
+   * YieldExpression[In] :
+   *     yield
+   *     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
+   *     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
    */
 
   if (token === Token.YieldKeyword) {
@@ -2643,7 +2652,9 @@ export function parsePrimaryExpressionExtended(
       if (IsEvalOrArguments) {
         if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
         parser.flags |= Flags.SimpleParameterList;
-      } else parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+      } else {
+        parser.flags &= ~Flags.SimpleParameterList;
+      }
       if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
 
       return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0);
@@ -2955,14 +2966,15 @@ export function parseThisExpression(parser: ParserState, context: Context): ESTr
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param FunctionState
+ * @param allowGen
+ * @param isExportDefault
  * @param isAsync
  */
 export function parseFunctionDeclaration(
   parser: ParserState,
   context: Context,
   allowGen: 0 | 1,
-  requireIdentifier: 0 | 1,
+  isExportDefault: 0 | 1,
   isAsync: 0 | 1
 ): ESTree.FunctionDeclaration {
   // FunctionDeclaration ::
@@ -2997,7 +3009,26 @@ export function parseFunctionDeclaration(
     validateBindingIdentifier(parser, context | ((context & 0xc00) << 11), type, parser.token);
     firstRestricted = parser.token;
     id = parseIdentifier(parser, context);
-  } else if (!requireIdentifier) {
+  } else if (!isExportDefault) {
+    // Only under the "export default" context, function declaration does not require the function name.
+    //
+    //     ExportDeclaration:
+    //         ...
+    //         export default HoistableDeclaration[~Yield, +Default]
+    //         ...
+    //
+    //     HoistableDeclaration[Yield, Default]:
+    //         FunctionDeclaration[?Yield, ?Default]
+    //         GeneratorDeclaration[?Yield, ?Default]
+    //
+    //     FunctionDeclaration[Yield, Default]:
+    //         ...
+    //         [+Default] function ( FormalParameters[~Yield] ) { FunctionBody[~Yield] }
+    //
+    //     GeneratorDeclaration[Yield, Default]:
+    //         ...
+    //         [+Default] function * ( FormalParameters[+Yield] ) { GeneratorBody }
+    //
     report(parser, Errors.DeclNoName, 'Function');
   }
 
@@ -4162,7 +4193,7 @@ export function parseMethodFormals(
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
   const params: ESTree.Expression[] = [];
-  parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+  parser.flags &= ~Flags.SimpleParameterList;
   let setterArgs = 0;
 
   if (parser.token === Token.RightParen) {
@@ -4962,12 +4993,12 @@ export function parseRegExpLiteral(parser: ParserState, context: Context): ESTre
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param requireIdentifier
+ * @param isExportDefault
  */
 export function parseClassDeclaration(
   parser: ParserState,
   context: Context,
-  requireIdentifier: 0 | 1
+  isExportDefault: 0 | 1
 ): ESTree.ClassDeclaration {
   // ClassDeclaration ::
   //   'class' Identifier ('extends' LeftHandSideExpression)? '{' ClassBody '}'
@@ -4987,7 +5018,18 @@ export function parseClassDeclaration(
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       report(parser, Errors.StrictEvalArguments);
     id = parseIdentifier(parser, context);
-  } else if (!requireIdentifier) {
+  } else if (!isExportDefault) {
+    // Only under the "export default" context, class declaration does not require the class name.
+    //
+    //     ExportDeclaration:
+    //         ...
+    //         export default ClassDeclaration[~Yield, +Default]
+    //         ...
+    //
+    //     ClassDeclaration[Yield, Default]:
+    //         ...
+    //         [+Default] class ClassTail[?Yield]
+    //
     report(parser, Errors.DeclNoName, 'Class');
   }
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.ExtendsKeyword)) {

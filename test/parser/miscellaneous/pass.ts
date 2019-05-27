@@ -2925,7 +2925,7 @@ if (a) {
         a();
       } while (false);
     }());`,
-    // `T‍ = []`,
+    `T‍ = []`,
     `function a(b, c) {
       function d() {
           e();

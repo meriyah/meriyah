@@ -27,7 +27,6 @@ describe('Next - Private methods', () => {
     ['class A {  #x; x() { delete ((this.#m ));  } async #m() {} }', Context.OptionsNext],
     ['class A { # x }', Context.OptionsNext],
     ['class A { #\\u0000; }', Context.OptionsNext],
-    ['class A { #\\u200D_ZWJ;; }', Context.OptionsNext],
     ['class A { * # m() {} }', Context.OptionsNext],
     ['class A { # x; }', Context.OptionsNext],
     ['class A { #x; m() { this.# x; }}', Context.OptionsNext],
@@ -106,8 +105,7 @@ describe('Next - Private methods', () => {
     'static #x = /*{ initializer }*/;',
     '#x = () => super();',
     '#x = super();',
-    '#\\u0000;',
-    '#\\u200D_ZWJ;'
+    '#\\u0000;'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {

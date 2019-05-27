@@ -7,8 +7,8 @@ import { report, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 
 export function scanIdentifier(parser: ParserState, context: Context): Token {
-  let hasEscape = false;
-  let canBeKeyword = (CharTypes[parser.currentCodePoint] & CharFlags.KeywordCandidate) !== 0;
+  let hasEscape: 0 | 1 = 0;
+  let canBeKeyword: number = CharTypes[parser.currentCodePoint] & CharFlags.KeywordCandidate;
   parser.tokenValue = '';
   if (parser.currentCodePoint <= 0x7e) {
     if ((CharTypes[parser.currentCodePoint] & CharFlags.BackSlash) === 0) {
@@ -20,10 +20,10 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
         return descKeywordTable[parser.tokenValue] || Token.Identifier;
       }
     } else {
-      hasEscape = true;
+      hasEscape = 1;
       const code = scanIdentifierUnicodeEscape(parser);
       if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
-      canBeKeyword = (CharTypes[code] & CharFlags.KeywordCandidate) !== 0;
+      canBeKeyword = CharTypes[code] & CharFlags.KeywordCandidate;
       parser.tokenValue += fromCodePoint(code);
     }
   }
@@ -34,17 +34,17 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
 export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
-  hasEscape: boolean,
-  canBeKeyword: boolean
+  hasEscape: 0 | 1,
+  canBeKeyword: number
 ): Token {
   let start = parser.index;
   while (parser.index < parser.length) {
-    if ((parser.currentCodePoint & 8) === 8 && parser.currentCodePoint === Chars.Backslash) {
+    if (CharTypes[parser.currentCodePoint] & CharFlags.BackSlash) {
       parser.tokenValue += parser.source.slice(start, parser.index);
-      hasEscape = true;
+      hasEscape = 1;
       const code = scanIdentifierUnicodeEscape(parser);
       if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
-      canBeKeyword = canBeKeyword && (CharTypes[code] & CharFlags.KeywordCandidate) !== 0;
+      canBeKeyword = canBeKeyword && CharTypes[code] & CharFlags.KeywordCandidate;
       parser.tokenValue += fromCodePoint(code);
       start = parser.index;
     } else if (
@@ -65,15 +65,16 @@ export function scanIdentifierSlowCase(
 
   if (canBeKeyword && (length >= 2 && length <= 11)) {
     const keyword: Token | undefined = descKeywordTable[parser.tokenValue as string];
-    if (keyword === undefined) return Token.Identifier;
 
-    if (keyword === Token.YieldKeyword) return keyword;
-
-    if ((keyword & Token.FutureReserved) === Token.FutureReserved) {
-      return context & Context.Strict && hasEscape ? Token.EscapedFutureReserved : keyword;
-    }
-
-    return context & Context.Strict && (keyword === Token.LetKeyword || keyword === Token.StaticKeyword)
+    return keyword === void 0
+      ? Token.Identifier
+      : keyword === Token.YieldKeyword
+      ? keyword
+      : (keyword & Token.FutureReserved) === Token.FutureReserved
+      ? context & Context.Strict && hasEscape
+        ? Token.EscapedFutureReserved
+        : keyword
+      : context & Context.Strict && (keyword === Token.LetKeyword || keyword === Token.StaticKeyword)
       ? Token.EscapedFutureReserved
       : Token.EscapedReserved;
   }

@@ -1,4 +1,5 @@
 import { unicodeLookup } from '../unicode';
+import { Chars } from '../chars';
 
 export const enum CharFlags {
   None = 0,
@@ -168,7 +169,7 @@ export function isIdentifierStart(code: number): number {
     : (unicodeLookup[(code >>> 5) + 34816] >>> code) & 31 & 1;
 }
 
-export function isIdentifierPart(code: number): number {
+export function isIdentifierPart(code: number): any {
   /*
    * ES2020 11.6 IdentifierPart
    *  $ (dollar sign)
@@ -181,5 +182,5 @@ export function isIdentifierPart(code: number): number {
    */
   return code <= 0x7F
     ? CharTypes[code] & CharFlags.IdentifierPart
-    : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1;
+    : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1 || (code === Chars.ZeroWidthJoiner || code === Chars.ZeroWidthNonJoiner);
 }
