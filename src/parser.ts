@@ -321,7 +321,7 @@ export function parseStatementListItem(
       nextToken(parser, context);
       switch (parser.token) {
         case Token.LeftParen:
-          return parseDynamicImportDeclaration(parser, context);
+          return parseImportCallDeclaration(parser, context);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -516,10 +516,11 @@ export function parseExpressionOrLabelledStatement(
    *
    * CallExpression :
    *   1. MemberExpression Arguments
-   *   2. CallExpression Arguments
-   *   3. CallExpression [ AssignmentExpression ]
-   *   4. CallExpression . IdentifierName
-   *   5. CallExpression TemplateLiteral
+   *   2. CallExpression ImportCall
+   *   3. CallExpression Arguments
+   *   4. CallExpression [ AssignmentExpression ]
+   *   5. CallExpression . IdentifierName
+   *   6. CallExpression TemplateLiteral
    *
    *  UpdateExpression ::
    *   ('++' | '--')? LeftHandSideExpression
@@ -765,10 +766,11 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
    *
    * CallExpression :
    *   1. MemberExpression Arguments
-   *   2. CallExpression Arguments
-   *   3. CallExpression [ AssignmentExpression ]
-   *   4. CallExpression . IdentifierName
-   *   5. CallExpression TemplateLiteral
+   *   2. CallExpression ImportCall
+   *   3. CallExpression Arguments
+   *   4. CallExpression [ AssignmentExpression ]
+   *   5. CallExpression . IdentifierName
+   *   6. CallExpression TemplateLiteral
    *
    *  UpdateExpression ::
    *   ('++' | '--')? LeftHandSideExpression
@@ -1632,7 +1634,7 @@ function parseImportDeclaration(
   let source: ESTree.Literal;
 
   if (parser.token === Token.LeftParen) {
-    return parseDynamicImportDeclaration(parser, context);
+    return parseImportCallDeclaration(parser, context);
   }
 
   const specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
@@ -1790,7 +1792,7 @@ function parseImportSpecifierOrNamedImports(
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseDynamicImportDeclaration(parser: ParserState, context: Context) {
+function parseImportCallDeclaration(parser: ParserState, context: Context) {
   let expr: ESTree.ImportExpression = { type: 'Import' };
 
   /** MemberExpression :
@@ -1801,10 +1803,11 @@ function parseDynamicImportDeclaration(parser: ParserState, context: Context) {
    *
    * CallExpression :
    *   1. MemberExpression Arguments
-   *   2. CallExpression Arguments
-   *   3. CallExpression [ AssignmentExpression ]
-   *   4. CallExpression . IdentifierName
-   *   5. CallExpression TemplateLiteral
+   *   2. CallExpression ImportCall
+   *   3. CallExpression Arguments
+   *   4. CallExpression [ AssignmentExpression ]
+   *   5. CallExpression . IdentifierName
+   *   6. CallExpression TemplateLiteral
    *
    *  UpdateExpression ::
    *   ('++' | '--')? LeftHandSideExpression
@@ -2780,7 +2783,7 @@ export function parsePrimaryExpressionExtended(
       parser.assignable = AssignmentKind.CannotAssign;
       return parseBigIntLiteral(parser, context);
     case Token.ImportKeyword:
-      return parseDynamicImportExpression(parser, context, inNewExpression);
+      return parseImportCallExpression(parser, context, inNewExpression);
     default:
       if (
         context & Context.Strict
@@ -2797,19 +2800,24 @@ export function parsePrimaryExpressionExtended(
   }
 }
 
-function parseDynamicImportExpression(
+function parseImportCallExpression(
   parser: ParserState,
   context: Context,
   inNewExpression: 0 | 1
 ): ESTree.ImportExpression | ESTree.MetaProperty {
+  // ImportCall[Yield, Await]:
+  //  import(AssignmentExpression[+In, ?Yield, ?Await])
+
   nextToken(parser, context);
 
-  if (parser.token === Token.Period)
+  if (parser.token === Token.Period || parser.token === Token.RightBracket)
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
 
   if (inNewExpression) report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
 
   let expr: ESTree.ImportExpression = { type: 'Import' };
+
+  parser.assignable = AssignmentKind.CannotAssign;
 
   expr = parseMemberOrUpdateExpression(parser, context, expr as any, inNewExpression, /* isDynamicImport */ 1);
 

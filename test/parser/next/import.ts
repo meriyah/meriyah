@@ -3,24 +3,28 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Next - Import', () => {
-  fail('Next - Import', [
+describe('Next - Import call', () => {
+  fail('Next - Import call (fail)', [
     ['function failsParse() { return import.then(); }', Context.None],
     ['import(x, y).then(z);', Context.None],
     ['import.then(doLoad);', Context.None],
     ['import(', Context.None],
     ['import)', Context.None],
     ['import()', Context.None],
-    ["import('x", Context.None],
-    ["import('x']", Context.None],
-    ["import['x')", Context.None],
+    ['import("x', Context.None],
+    ['import("x"]', Context.None],
+    ['import["x")', Context.None],
     ['import = x', Context.None],
     ['import[', Context.None],
     ['import[]', Context.None],
     ['import]', Context.None],
     ['import[x]', Context.None],
     ['import{', Context.None],
-    ['import{x', Context.None],
+    ['import[]', Context.Strict | Context.Module],
+    ['import]', Context.Strict | Context.Module],
+    ['import[x]', Context.Strict | Context.Module],
+    ['import{', Context.Strict | Context.Module],
+    ['import{x', Context.Strict | Context.Module],
     ['import{x}', Context.None],
     ['import(x, y)', Context.None],
     ['import(...y)', Context.None],
@@ -28,6 +32,7 @@ describe('Next - Import', () => {
     ['import(,)', Context.None],
     ['import(,y)', Context.None],
     ['import(;)', Context.None],
+    ['[import]', Context.None],
     ['{import}', Context.None],
     ['import+', Context.None],
     ['import = 1', Context.None],
@@ -44,13 +49,14 @@ describe('Next - Import', () => {
     ['(async () => await import())', Context.None],
     ['async function * f() { await new import("") }', Context.None],
     ['label: { import(); };', Context.None],
-    ['do { import(...[""]); } while (false);', Context.None],
+    ['do { import(...[""]); } while (false);', Context.Strict | Context.Module],
     ['function fn() { new import(""); }', Context.None],
     ['if (true) { import(...[""]); }', Context.None],
     ['(async () => await import())', Context.None],
     ['with (import(...[""])) {}', Context.None],
     ['import();', Context.None],
     ['import("", "");', Context.None],
+    ['import("", "");', Context.Module | Context.Strict],
     ['import("",);', Context.None]
   ]);
 
@@ -63,13 +69,20 @@ describe('Next - Import', () => {
     'async () => { await import(x) }',
     'const importResult = import("test.js");',
     'let Layout = () => import("../foo/bar/zoo.js")',
-    'import("lib.js").then(doThis);',
-    'function* a() { yield import("http"); }',
     '"use strict"; import("test.js");',
     'function loadImport(file) { return import(`test/${file}.js`); }',
     '() => { import(x) }',
     '(import(y=x))',
     '{import(y=x)}',
+    'let f = () => import("");',
+    '(async () => await import(import(import("foo"))));',
+    'async function * f() { await import(import(import("foo"))) }',
+    'async function * f() { await import("foo") }',
+    'if (false) { } else { import(import(import("foo"))); }',
+    'if (true) import("foo");',
+    'function fn() { return import("foo"); }',
+    'let x = 0; while (!x) { x++;  import(import(import("foo"))); };',
+    'import("foo");',
     `import('./module.js')`,
     'import(import(x))',
     'x = import(x)',
@@ -80,12 +93,17 @@ describe('Next - Import', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`${arg}`, void 0, Context.OptionsNext | Context.Module | Context.Strict);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, void 0, Context.OptionsNext);
       });
     });
   }
 
-  pass('Next - Import (pass)', [
+  pass('Next - Import call (pass)', [
     [
       `function* a() { yield import("http"); }`,
       Context.Strict | Context.Module | Context.OptionsNext,
