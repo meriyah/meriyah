@@ -19,5 +19,5 @@ export declare const enum CharFlags {
 }
 export declare const CharTypes: number[];
 export declare function isIdentifierStart(code: number): number;
-export declare function isIdentifierPart(code: number): number;
+export declare function isIdentifierPart(code: number): any;
 //# sourceMappingURL=charClassifier.d.ts.map
