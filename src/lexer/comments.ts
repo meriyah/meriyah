@@ -4,17 +4,22 @@ import { Token } from '../token';
 import { ParserState, Flags } from '../common';
 import { report, Errors } from '../errors';
 
+/**
+ * Skips BOM and hasbang (stage 3)
+ *
+ * @param parser  Parser object
+ */
 export function skipHashBang(parser: ParserState): void {
   let index = parser.index;
-  if (parser.index === parser.source.length) return;
+  if (index === parser.length) return;
   if (parser.currentCodePoint === Chars.ByteOrderMark) {
-    parser.currentCodePoint = parser.source.charCodeAt(index++);
+    parser.currentCodePoint = parser.source.charCodeAt(++index);
     parser.index = index;
   }
 
-  if (index < parser.source.length && parser.source.charCodeAt(index) === Chars.Hash) {
+  if (index < parser.length && parser.source.charCodeAt(index) === Chars.Hash) {
     index++;
-    if (index < parser.source.length && parser.source.charCodeAt(index) === Chars.Exclamation) {
+    if (index < parser.length && parser.source.charCodeAt(index) === Chars.Exclamation) {
       parser.index = index + 1;
       parser.currentCodePoint = parser.source.charCodeAt(parser.index);
       skipSingleLineComment(parser);
@@ -24,6 +29,11 @@ export function skipHashBang(parser: ParserState): void {
   }
 }
 
+/**
+ * Skips single line comment
+ *
+ * @param parser  Parser object
+ */
 export function skipSingleLineComment(parser: ParserState): Token {
   while (parser.index < parser.length) {
     if (
@@ -37,6 +47,11 @@ export function skipSingleLineComment(parser: ParserState): Token {
   return Token.WhiteSpace;
 }
 
+/**
+ * Skips multiline comment
+ *
+ * @param parser  Parser object
+ */
 export function skipMultiLineComment(parser: ParserState): any {
   while (parser.index < parser.length) {
     while (CharTypes[parser.currentCodePoint] & CharFlags.Asterisk) {
