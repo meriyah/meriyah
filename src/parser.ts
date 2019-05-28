@@ -2810,16 +2810,18 @@ function parseImportCallExpression(
 
   nextToken(parser, context);
 
-  if (parser.token === Token.Period || parser.token === Token.RightBracket)
+  if (parser.token !== Token.LeftParen)
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
 
-  if (inNewExpression) report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+  if (inNewExpression) report(parser, Errors.InvalidImportNew);
 
-  let expr: ESTree.ImportExpression = { type: 'Import' };
-
-  parser.assignable = AssignmentKind.CannotAssign;
-
-  expr = parseMemberOrUpdateExpression(parser, context, expr as any, inNewExpression, /* isDynamicImport */ 1);
+  const expr = parseMemberOrUpdateExpression(
+    parser,
+    context,
+    { type: 'Import' } as any,
+    inNewExpression,
+    /* isDynamicImport */ 1
+  );
 
   parser.assignable = AssignmentKind.CannotAssign;
 

@@ -156,7 +156,8 @@ export const enum Errors {
   InvalidNestedStatement,
   UnknownLabel,
   InvalidImportTail,
-  ImportNotOneArg
+  ImportNotOneArg,
+  InvalidImportNew
 }
 
 /*@internal*/
@@ -326,7 +327,8 @@ export const errorMessages: {
   [Errors.InvalidNestedStatement]: 'continue statement must be nested within an iteration statement',
   [Errors.UnknownLabel]: "Undefined label '%0'",
   [Errors.InvalidImportTail]: 'Trailing comma is disallowed inside import(...) arguments',
-  [Errors.ImportNotOneArg]: 'import() requires exactly one argument'
+  [Errors.ImportNotOneArg]: 'import() requires exactly one argument',
+  [Errors.InvalidImportNew]: 'Cannot use new with import(...)'
 };
 
 export class ParseError extends SyntaxError {
