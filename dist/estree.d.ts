@@ -32,6 +32,7 @@ interface T_Expression {
     UnaryExpression: UnaryExpression;
     UpdateExpression: UpdateExpression;
     BinaryExpression: BinaryExpression;
+    ImportExpression: ImportExpression;
     AssignmentExpression: AssignmentExpression;
     LogicalExpression: LogicalExpression;
     MemberExpression: MemberExpression;
@@ -279,8 +280,12 @@ export interface ConditionalExpression extends _Expression<'ConditionalExpressio
     consequent: Expression;
 }
 export interface CallExpression extends _Expression<'CallExpression'> {
-    callee: Expression | Super;
+    callee: Expression | Import | Super;
     arguments: (Expression | SpreadElement)[];
+}
+export interface Import extends _Node<'Import'> {
+}
+export interface ImportExpression extends _Expression<'Import'> {
 }
 export interface NewExpression extends _Expression<'NewExpression'> {
     callee: Expression;

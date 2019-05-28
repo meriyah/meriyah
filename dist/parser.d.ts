@@ -16,8 +16,8 @@ export interface Options {
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context): ESTree.Statement[];
-export declare function parseModuleItem(parser: ParserState, context: Context): (ReturnType<typeof parseDirective | typeof parseparseModuleItemList>)[];
-export declare function parseparseModuleItemList(parser: ParserState, context: Context): any;
+export declare function parseparseModuleItemList(parser: ParserState, context: Context): (ReturnType<typeof parseDirective | typeof parseModuleItem>)[];
+export declare function parseModuleItem(parser: ParserState, context: Context): any;
 export declare function parseStatementListItem(parser: ParserState, context: Context, labels: any): ESTree.Statement | ESTree.Decorator[];
 export declare function parseStatement(parser: ParserState, context: Context, labels: any, allowFuncDecl: FunctionStatement): ESTree.Statement;
 export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, labels: any, allowFuncDecl: FunctionStatement): ESTree.ExpressionStatement | ESTree.LabeledStatement;
@@ -56,14 +56,14 @@ export declare function parseAwaitExpressionOrIdentifier(parser: ParserState, co
 export declare function parseFunctionBody(parser: ParserState, context: Context, origin: BindingOrigin, firstRestricted: Token | undefined): ESTree.BlockStatement;
 export declare function parseSuperExpression(parser: ParserState, context: Context): ESTree.Super;
 export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, assignable: 0 | 1): any;
-export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1): any;
+export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1, isDynamicImport: 0 | 1): any;
 export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, type: BindingType, inNewExpression: 0 | 1, assignable: 0 | 1): any;
 export declare function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.Literal;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context): ESTree.TemplateLiteral;
 export declare function parseTemplateTail(parser: ParserState, context: Context): ESTree.TemplateElement;
 export declare function parseTemplate(parser: ParserState, context: Context): ESTree.TemplateLiteral;
 export declare function parseTemplateSpans(parser: ParserState, tail: boolean): ESTree.TemplateElement;
-export declare function parseArguments(parser: ParserState, context: Context): (ESTree.SpreadElement | ESTree.Expression)[];
+export declare function parseArguments(parser: ParserState, context: Context, isDynamicImport: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
 export declare function parseIdentifier(parser: ParserState, context: Context): ESTree.Identifier;
 export declare function parseLiteral(parser: ParserState, context: Context): ESTree.Literal;
 export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context): ESTree.Literal;
