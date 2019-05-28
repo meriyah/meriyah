@@ -154,7 +154,9 @@ export const enum Errors {
   InvalidKeyToken,
   LabelRedeclaration,
   InvalidNestedStatement,
-  UnknownLabel
+  UnknownLabel,
+  InvalidImportTail,
+  ImportNotOneArg
 }
 
 /*@internal*/
@@ -322,7 +324,9 @@ export const errorMessages: {
   [Errors.InvalidKeyToken]: 'Invalid key token',
   [Errors.LabelRedeclaration]: "Label '%0' has already been declared",
   [Errors.InvalidNestedStatement]: 'continue statement must be nested within an iteration statement',
-  [Errors.UnknownLabel]: "Undefined label '%0'"
+  [Errors.UnknownLabel]: "Undefined label '%0'",
+  [Errors.InvalidImportTail]: 'Trailing comma is disallowed inside import(...) arguments',
+  [Errors.ImportNotOneArg]: 'import() requires exactly one argument'
 };
 
 export class ParseError extends SyntaxError {
