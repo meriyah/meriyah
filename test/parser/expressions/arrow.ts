@@ -4268,6 +4268,90 @@ describe('Expressions - Arrow', () => {
       }
     ],
     [
+      '(a, b => {}, a => a + 1)',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 24,
+        body: [
+          {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 24,
+            expression: {
+              type: 'SequenceExpression',
+              start: 1,
+              end: 23,
+              expressions: [
+                {
+                  type: 'Identifier',
+                  start: 1,
+                  end: 2,
+                  name: 'a'
+                },
+                {
+                  type: 'ArrowFunctionExpression',
+                  start: 4,
+                  end: 11,
+                  expression: false,
+                  async: false,
+                  params: [
+                    {
+                      type: 'Identifier',
+                      start: 4,
+                      end: 5,
+                      name: 'b'
+                    }
+                  ],
+                  body: {
+                    type: 'BlockStatement',
+                    start: 9,
+                    end: 11,
+                    body: []
+                  }
+                },
+                {
+                  type: 'ArrowFunctionExpression',
+                  start: 13,
+                  end: 23,
+                  expression: true,
+                  async: false,
+                  params: [
+                    {
+                      type: 'Identifier',
+                      start: 13,
+                      end: 14,
+                      name: 'a'
+                    }
+                  ],
+                  body: {
+                    type: 'BinaryExpression',
+                    start: 18,
+                    end: 23,
+                    left: {
+                      type: 'Identifier',
+                      start: 18,
+                      end: 19,
+                      name: 'a'
+                    },
+                    operator: '+',
+                    right: {
+                      type: 'Literal',
+                      start: 22,
+                      end: 23,
+                      value: 1
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
       '() => a + b - yield / 1',
       Context.OptionsRanges,
       {

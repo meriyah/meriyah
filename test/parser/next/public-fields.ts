@@ -113,75 +113,101 @@ describe('Next - Public fields', () => {
   pass('Next - Public fields (pass)', [
     [
       `class Foo { x = 1; }`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
-            body: {
-              body: [
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'x',
-                    type: 'Identifier'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: {
-                    type: 'Literal',
-                    value: 1
-                  }
-                }
-              ],
-              type: 'ClassBody'
-            },
             decorators: [],
+            type: 'ClassDeclaration',
             id: {
+              type: 'Identifier',
               name: 'Foo',
-              type: 'Identifier'
+              start: 6,
+              end: 9
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  key: {
+                    type: 'Identifier',
+                    name: 'x',
+                    start: 12,
+                    end: 13
+                  },
+                  value: {
+                    type: 'Literal',
+                    value: 1,
+                    start: 16,
+                    end: 17
+                  },
+                  decorators: [],
+                  computed: false,
+                  static: false,
+                  start: 12,
+                  end: 17
+                }
+              ],
+              start: 10,
+              end: 20
+            },
+            start: 0,
+            end: 20
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        start: 0,
+        end: 20
       }
     ],
     [
       `class A { set; }`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
-            body: {
-              body: [
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'set',
-                    type: 'Identifier'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: null
-                }
-              ],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
             decorators: [],
             id: {
+              type: 'Identifier',
               name: 'A',
-              type: 'Identifier'
+              start: 6,
+              end: 7
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  key: {
+                    type: 'Identifier',
+                    name: 'set',
+                    start: 10,
+                    end: 13
+                  },
+                  decorators: [],
+                  value: null,
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 13
+                }
+              ],
+              start: 8,
+              end: 16
+            },
+            start: 0,
+            end: 16
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        start: 0,
+        end: 16
       }
     ],
     [
@@ -262,65 +288,89 @@ describe('Next - Public fields', () => {
     ],
     [
       `class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
-            body: {
-              body: [
-                {
-                  computed: true,
-                  decorators: [],
-                  key: {
-                    name: 'x',
-                    type: 'Identifier'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: {
-                    type: 'Literal',
-                    value: 42
-                  }
-                },
-                {
-                  computed: true,
-                  decorators: [],
-                  key: {
-                    type: 'Literal',
-                    value: 10
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: {
-                    type: 'Literal',
-                    value: 'meep'
-                  }
-                },
-                {
-                  computed: true,
-                  decorators: [],
-                  key: {
-                    type: 'Literal',
-                    value: 'not initialized'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: null
-                }
-              ],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
             decorators: [],
             id: {
+              type: 'Identifier',
               name: 'A',
-              type: 'Identifier'
+              start: 6,
+              end: 7
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'Identifier',
+                    name: 'x',
+                    start: 17,
+                    end: 18
+                  },
+                  value: {
+                    type: 'Literal',
+                    value: 42,
+                    start: 22,
+                    end: 24
+                  },
+                  computed: true,
+                  static: false,
+                  start: 16,
+                  end: 24
+                },
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 10,
+                    start: 27,
+                    end: 29
+                  },
+                  value: {
+                    type: 'Literal',
+                    value: 'meep',
+                    start: 33,
+                    end: 39
+                  },
+                  computed: true,
+                  static: false,
+                  start: 26,
+                  end: 39
+                },
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'Literal',
+                    value: 'not initialized',
+                    start: 42,
+                    end: 59
+                  },
+                  value: null,
+                  computed: true,
+                  static: false,
+                  start: 41,
+                  end: 60
+                }
+              ],
+              start: 8,
+              end: 69
+            },
+            start: 0,
+            end: 69
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        start: 0,
+        end: 69
       }
     ],
     [

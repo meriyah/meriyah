@@ -23458,6 +23458,75 @@ describe('Expressions - Object', () => {
       }
     ],
     [
+      '({...(a,b),c})',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 14,
+        body: [
+          {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
+            expression: {
+              type: 'ObjectExpression',
+              start: 1,
+              end: 13,
+              properties: [
+                {
+                  type: 'SpreadElement',
+                  start: 2,
+                  end: 10,
+                  argument: {
+                    type: 'SequenceExpression',
+                    start: 6,
+                    end: 9,
+                    expressions: [
+                      {
+                        type: 'Identifier',
+                        start: 6,
+                        end: 7,
+                        name: 'a'
+                      },
+                      {
+                        type: 'Identifier',
+                        start: 8,
+                        end: 9,
+                        name: 'b'
+                      }
+                    ]
+                  }
+                },
+                {
+                  type: 'Property',
+                  start: 11,
+                  end: 12,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
+                  key: {
+                    type: 'Identifier',
+                    start: 11,
+                    end: 12,
+                    name: 'c'
+                  },
+                  kind: 'init',
+                  value: {
+                    type: 'Identifier',
+                    start: 11,
+                    end: 12,
+                    name: 'c'
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
       '({...a,b,c})',
       Context.OptionsRanges,
       {

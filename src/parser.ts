@@ -2899,9 +2899,9 @@ export function parsePrimaryExpressionExtended(
 
   if ((token & Token.IsUpdateOp) === Token.IsUpdateOp) {
     if (inNewExpression) report(parser, Errors.InvalidIncDecNew);
-    const { token, index } = parser;
+    const { token } = parser;
     nextToken(parser, context | Context.AllowRegExp);
-    const arg = parseLeftHandSideExpression(parser, context, /* assignable */ 0, index);
+    const arg = parseLeftHandSideExpression(parser, context, /* assignable */ 0, parser.startIndex);
     if (parser.assignable & AssignmentKind.CannotAssign) {
       report(
         parser,
@@ -4948,8 +4948,6 @@ export function parseParenthesizedExpression(
     }
   }
 
-  consume(parser, context, Token.RightParen);
-
   if (toplevelComma) {
     parser.assignable = AssignmentKind.CannotAssign;
 
@@ -4958,6 +4956,8 @@ export function parseParenthesizedExpression(
       expressions
     });
   }
+
+  consume(parser, context, Token.RightParen);
 
   if (destructible & DestructuringKind.CannotDestruct && destructible & DestructuringKind.MustDestruct)
     report(parser, Errors.InvalidLHSValidRHS);

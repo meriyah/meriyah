@@ -82,51 +82,73 @@ describe('Expressions - Member', () => {
     ],
     [
       '(a[b]||(c[d]=e))',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'LogicalExpression',
+              start: 1,
+              end: 15,
               left: {
                 type: 'MemberExpression',
+                start: 1,
+                end: 5,
                 object: {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 },
-                computed: true,
                 property: {
                   type: 'Identifier',
+                  start: 3,
+                  end: 4,
                   name: 'b'
-                }
+                },
+                computed: true
               },
+              operator: '||',
               right: {
                 type: 'AssignmentExpression',
+                start: 8,
+                end: 14,
+                operator: '=',
                 left: {
                   type: 'MemberExpression',
+                  start: 8,
+                  end: 12,
                   object: {
                     type: 'Identifier',
+                    start: 8,
+                    end: 9,
                     name: 'c'
                   },
-                  computed: true,
                   property: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 11,
                     name: 'd'
-                  }
+                  },
+                  computed: true
                 },
-                operator: '=',
                 right: {
                   type: 'Identifier',
+                  start: 13,
+                  end: 14,
                   name: 'e'
                 }
-              },
-              operator: '||'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -180,43 +202,61 @@ describe('Expressions - Member', () => {
     ],
     [
       'a.$._.B0',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 8,
             expression: {
               type: 'MemberExpression',
+              start: 0,
+              end: 8,
               object: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 5,
                 object: {
                   type: 'MemberExpression',
+                  start: 0,
+                  end: 3,
                   object: {
                     type: 'Identifier',
+                    start: 0,
+                    end: 1,
                     name: 'a'
                   },
-                  computed: false,
                   property: {
                     type: 'Identifier',
+                    start: 2,
+                    end: 3,
                     name: '$'
-                  }
+                  },
+                  computed: false
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: '_'
-                }
+                },
+                computed: false
               },
-              computed: false,
               property: {
                 type: 'Identifier',
+                start: 6,
+                end: 8,
                 name: 'B0'
-              }
+              },
+              computed: false
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -246,31 +286,43 @@ describe('Expressions - Member', () => {
     ],
     [
       'a().b',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 5,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 5,
             expression: {
               type: 'MemberExpression',
+              start: 0,
+              end: 5,
               object: {
                 type: 'CallExpression',
+                start: 0,
+                end: 3,
                 callee: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
                 arguments: []
               },
-              computed: false,
               property: {
                 type: 'Identifier',
+                start: 4,
+                end: 5,
                 name: 'b'
-              }
+              },
+              computed: false
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -342,51 +394,73 @@ describe('Expressions - Member', () => {
     ],
     [
       'a[b]||(c[d]=e)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 14,
               left: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 4,
                 object: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
-                computed: true,
                 property: {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'b'
-                }
+                },
+                computed: true
               },
+              operator: '||',
               right: {
                 type: 'AssignmentExpression',
+                start: 7,
+                end: 13,
+                operator: '=',
                 left: {
                   type: 'MemberExpression',
+                  start: 7,
+                  end: 11,
                   object: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 8,
                     name: 'c'
                   },
-                  computed: true,
                   property: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'd'
-                  }
+                  },
+                  computed: true
                 },
-                operator: '=',
                 right: {
                   type: 'Identifier',
+                  start: 12,
+                  end: 13,
                   name: 'e'
                 }
-              },
-              operator: '||'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
