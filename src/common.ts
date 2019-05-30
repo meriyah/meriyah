@@ -1,5 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
+import { Node } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -121,6 +122,7 @@ export interface ParserState {
   line: number;
   column: number;
   startIndex: number;
+  lastIndex: number;
   length: number;
   token: Token;
   tokenValue: any;
@@ -357,4 +359,19 @@ export function validateAndDeclareLabel(parser: ParserState, labels: any, name: 
   } while (set);
 
   labels['€' + name] = 1;
+}
+
+
+export function finishNode<T extends Node>(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  node: T,
+): T {
+  if (context & Context.OptionsRanges) {
+    node.start = start;
+    node.end = parser.lastIndex;
+}
+
+  return node;
 }

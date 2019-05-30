@@ -974,140 +974,190 @@ describe('Expressions - Await', () => {
     ],
     [
       'let o = {await(){}}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'let',
+            start: 0,
+            end: 19,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 19,
+                id: {
+                  type: 'Identifier',
+                  start: 4,
+                  end: 5,
+                  name: 'o'
+                },
                 init: {
                   type: 'ObjectExpression',
+                  start: 8,
+                  end: 19,
                   properties: [
                     {
                       type: 'Property',
+                      start: 9,
+                      end: 18,
+                      method: true,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 9,
+                        end: 14,
                         name: 'await'
                       },
+                      kind: 'init',
                       value: {
                         type: 'FunctionExpression',
+                        start: 14,
+                        end: 18,
+                        id: null,
+                        generator: false,
+                        async: false,
                         params: [],
                         body: {
                           type: 'BlockStatement',
+                          start: 16,
+                          end: 18,
                           body: []
-                        },
-                        async: false,
-                        generator: false,
-                        id: null
-                      },
-                      kind: 'init',
-                      computed: false,
-                      method: true,
-                      shorthand: false
+                        }
+                      }
                     }
                   ]
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'o'
                 }
               }
-            ]
+            ],
+            kind: 'let'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class x {await(){}}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 19,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 19,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 9,
+                  end: 18,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 14,
                     name: 'await'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 14,
+                    end: 18,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 16,
+                      end: 18,
                       body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class x {async *await(){}}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 26,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 26,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 9,
+                  end: 25,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 16,
+                    end: 21,
                     name: 'await'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 25,
+                    id: null,
+                    generator: true,
+                    async: true,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 23,
+                      end: 25,
                       body: []
-                    },
-                    async: true,
-                    generator: true,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1185,53 +1235,86 @@ describe('Expressions - Await', () => {
     ],
     [
       'async function a(){     async ({r} = await bar);     }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 54,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 54,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 16,
+              name: 'a'
+            },
+            generator: false,
+            async: true,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 18,
+              end: 54,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 24,
+                  end: 48,
                   expression: {
                     type: 'CallExpression',
+                    start: 24,
+                    end: 47,
                     callee: {
                       type: 'Identifier',
+                      start: 24,
+                      end: 29,
                       name: 'async'
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
+                        start: 31,
+                        end: 46,
+                        operator: '=',
                         left: {
                           type: 'ObjectPattern',
+                          start: 31,
+                          end: 34,
                           properties: [
                             {
                               type: 'Property',
+                              start: 32,
+                              end: 33,
+                              method: false,
+                              shorthand: true,
+                              computed: false,
                               key: {
                                 type: 'Identifier',
-                                name: 'r'
-                              },
-                              value: {
-                                type: 'Identifier',
+                                start: 32,
+                                end: 33,
                                 name: 'r'
                               },
                               kind: 'init',
-                              computed: false,
-                              method: false,
-                              shorthand: true
+                              value: {
+                                type: 'Identifier',
+                                start: 32,
+                                end: 33,
+                                name: 'r'
+                              }
                             }
                           ]
                         },
-                        operator: '=',
                         right: {
                           type: 'AwaitExpression',
+                          start: 37,
+                          end: 46,
                           argument: {
                             type: 'Identifier',
+                            start: 43,
+                            end: 46,
                             name: 'bar'
                           }
                         }
@@ -1240,16 +1323,10 @@ describe('Expressions - Await', () => {
                   }
                 }
               ]
-            },
-            async: true,
-
-            generator: false,
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

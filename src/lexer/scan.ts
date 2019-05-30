@@ -162,9 +162,10 @@ export const OneCharToken = [
   /* 127 - Delete             */ Token.Illegal
 ];
 
-export function nextToken(state: ParserState, context: Context): void {
-  state.flags &= ~Flags.NewLine;
-  state.token = scanSingleToken(state, context);
+export function nextToken(parser: ParserState, context: Context): void {
+  parser.flags &= ~Flags.NewLine;
+  parser.lastIndex = parser.index;
+  parser.token = scanSingleToken(parser, context);
 }
 
 export function scanSingleToken(parser: ParserState, context: Context): Token {

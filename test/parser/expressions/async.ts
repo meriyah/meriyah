@@ -433,24 +433,35 @@ describe('Expressions - Async', () => {
     ],
     [
       'foo, async()',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 12,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 3,
                   name: 'foo'
                 },
                 {
                   type: 'CallExpression',
+                  start: 5,
+                  end: 12,
                   callee: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 10,
                     name: 'async'
                   },
                   arguments: []
@@ -458,29 +469,41 @@ describe('Expressions - Async', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo(async())',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 12,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'CallExpression',
+                  start: 4,
+                  end: 11,
                   callee: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
                   arguments: []
@@ -488,76 +511,108 @@ describe('Expressions - Async', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo(async(), x)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 15,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'CallExpression',
+                  start: 4,
+                  end: 11,
                   callee: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
                   arguments: []
                 },
                 {
                   type: 'Identifier',
+                  start: 13,
+                  end: 14,
                   name: 'x'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo(async(x,y,z))',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 17,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'CallExpression',
+                  start: 4,
+                  end: 16,
                   callee: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
                   arguments: [
                     {
                       type: 'Identifier',
+                      start: 10,
+                      end: 11,
                       name: 'x'
                     },
                     {
                       type: 'Identifier',
+                      start: 12,
+                      end: 13,
                       name: 'y'
                     },
                     {
                       type: 'Identifier',
+                      start: 14,
+                      end: 15,
                       name: 'z'
                     }
                   ]
@@ -565,92 +620,129 @@ describe('Expressions - Async', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo(async(x,y,z), a, b)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 23,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'CallExpression',
+                  start: 4,
+                  end: 16,
                   callee: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
                   arguments: [
                     {
                       type: 'Identifier',
+                      start: 10,
+                      end: 11,
                       name: 'x'
                     },
                     {
                       type: 'Identifier',
+                      start: 12,
+                      end: 13,
                       name: 'y'
                     },
                     {
                       type: 'Identifier',
+                      start: 14,
+                      end: 15,
                       name: 'z'
                     }
                   ]
                 },
                 {
                   type: 'Identifier',
+                  start: 18,
+                  end: 19,
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
+                  start: 21,
+                  end: 22,
                   name: 'b'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo(async[x])',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 13,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'MemberExpression',
+                  start: 4,
+                  end: 12,
                   object: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
-                  computed: true,
                   property: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 11,
                     name: 'x'
-                  }
+                  },
+                  computed: true
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -681,36 +773,50 @@ describe('Expressions - Async', () => {
     ],
     [
       'foo(async.foo)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 14,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               arguments: [
                 {
                   type: 'MemberExpression',
+                  start: 4,
+                  end: 13,
                   object: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 9,
                     name: 'async'
                   },
-                  computed: false,
                   property: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 13,
                     name: 'foo'
-                  }
+                  },
+                  computed: false
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1110,55 +1216,79 @@ describe('Expressions - Async', () => {
     ],
     [
       'f = a + b + async() + d',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 23,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'f'
               },
-              operator: '=',
               right: {
                 type: 'BinaryExpression',
+                start: 4,
+                end: 23,
                 left: {
                   type: 'BinaryExpression',
+                  start: 4,
+                  end: 19,
                   left: {
                     type: 'BinaryExpression',
+                    start: 4,
+                    end: 9,
                     left: {
                       type: 'Identifier',
+                      start: 4,
+                      end: 5,
                       name: 'a'
                     },
+                    operator: '+',
                     right: {
                       type: 'Identifier',
+                      start: 8,
+                      end: 9,
                       name: 'b'
-                    },
-                    operator: '+'
+                    }
                   },
+                  operator: '+',
                   right: {
                     type: 'CallExpression',
+                    start: 12,
+                    end: 19,
                     callee: {
                       type: 'Identifier',
+                      start: 12,
+                      end: 17,
                       name: 'async'
                     },
                     arguments: []
-                  },
-                  operator: '+'
+                  }
                 },
+                operator: '+',
                 right: {
                   type: 'Identifier',
+                  start: 22,
+                  end: 23,
                   name: 'd'
-                },
-                operator: '+'
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1216,27 +1346,37 @@ describe('Expressions - Async', () => {
     ],
     [
       'async in {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 11,
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 5,
                 name: 'async'
               },
+              operator: 'in',
               right: {
                 type: 'ObjectExpression',
+                start: 9,
+                end: 11,
                 properties: []
-              },
-              operator: 'in'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1266,36 +1406,50 @@ describe('Expressions - Async', () => {
     ],
     [
       'f(async in {})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 14,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'f'
               },
               arguments: [
                 {
                   type: 'BinaryExpression',
+                  start: 2,
+                  end: 13,
                   left: {
                     type: 'Identifier',
+                    start: 2,
+                    end: 7,
                     name: 'async'
                   },
+                  operator: 'in',
                   right: {
                     type: 'ObjectExpression',
+                    start: 11,
+                    end: 13,
                     properties: []
-                  },
-                  operator: 'in'
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1334,44 +1488,62 @@ describe('Expressions - Async', () => {
     ],
     [
       'f(a + async in b)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 17,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'f'
               },
               arguments: [
                 {
                   type: 'BinaryExpression',
+                  start: 2,
+                  end: 16,
                   left: {
                     type: 'BinaryExpression',
+                    start: 2,
+                    end: 11,
                     left: {
                       type: 'Identifier',
+                      start: 2,
+                      end: 3,
                       name: 'a'
                     },
+                    operator: '+',
                     right: {
                       type: 'Identifier',
+                      start: 6,
+                      end: 11,
                       name: 'async'
-                    },
-                    operator: '+'
+                    }
                   },
+                  operator: 'in',
                   right: {
                     type: 'Identifier',
+                    start: 15,
+                    end: 16,
                     name: 'b'
-                  },
-                  operator: 'in'
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1418,34 +1590,50 @@ describe('Expressions - Async', () => {
     ],
     [
       'log(async().foo);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 16,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'log'
               },
               arguments: [
                 {
                   type: 'MemberExpression',
-                  computed: false,
+                  start: 4,
+                  end: 15,
                   object: {
                     type: 'CallExpression',
+                    start: 4,
+                    end: 11,
                     callee: {
                       type: 'Identifier',
+                      start: 4,
+                      end: 9,
                       name: 'async'
                     },
                     arguments: []
                   },
                   property: {
                     type: 'Identifier',
+                    start: 12,
+                    end: 15,
                     name: 'foo'
-                  }
+                  },
+                  computed: false
                 }
               ]
             }
@@ -1456,34 +1644,50 @@ describe('Expressions - Async', () => {
     ],
     [
       'log(async()[foo]);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 17,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'log'
               },
               arguments: [
                 {
                   type: 'MemberExpression',
-                  computed: true,
+                  start: 4,
+                  end: 16,
                   object: {
                     type: 'CallExpression',
+                    start: 4,
+                    end: 11,
                     callee: {
                       type: 'Identifier',
+                      start: 4,
+                      end: 9,
                       name: 'async'
                     },
                     arguments: []
                   },
                   property: {
                     type: 'Identifier',
+                    start: 12,
+                    end: 15,
                     name: 'foo'
-                  }
+                  },
+                  computed: true
                 }
               ]
             }
@@ -1625,35 +1829,49 @@ describe('Expressions - Async', () => {
     ],
     [
       'async(...a, b);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 14,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 5,
                 name: 'async'
               },
               arguments: [
                 {
                   type: 'SpreadElement',
+                  start: 6,
+                  end: 10,
                   argument: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
                   }
                 },
                 {
                   type: 'Identifier',
+                  start: 12,
+                  end: 13,
                   name: 'b'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

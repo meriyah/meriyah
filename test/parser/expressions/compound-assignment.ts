@@ -37,109 +37,155 @@ describe('Expressions - Compound assignment', () => {
   pass('Expressions - Compound assignment (pass)', [
     [
       'base[prop()] /= expr();',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 22,
+              operator: '/=',
               left: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 12,
                 object: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 4,
                   name: 'base'
                 },
-                computed: true,
                 property: {
                   type: 'CallExpression',
+                  start: 5,
+                  end: 11,
                   callee: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 9,
                     name: 'prop'
                   },
                   arguments: []
-                }
+                },
+                computed: true
               },
-              operator: '/=',
               right: {
                 type: 'CallExpression',
+                start: 16,
+                end: 22,
                 callee: {
                   type: 'Identifier',
+                  start: 16,
+                  end: 20,
                   name: 'expr'
                 },
                 arguments: []
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'null && (x += null)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 19,
               left: {
                 type: 'Literal',
+                start: 0,
+                end: 4,
                 value: null
               },
+              operator: '&&',
               right: {
                 type: 'AssignmentExpression',
+                start: 9,
+                end: 18,
+                operator: '+=',
                 left: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 10,
                   name: 'x'
                 },
-                operator: '+=',
                 right: {
                   type: 'Literal',
+                  start: 14,
+                  end: 18,
                   value: null
                 }
-              },
-              operator: '&&'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'y1 = (y %= 2);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 13,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 2,
                 name: 'y1'
               },
-              operator: '=',
               right: {
                 type: 'AssignmentExpression',
+                start: 6,
+                end: 12,
+                operator: '%=',
                 left: {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'y'
                 },
-                operator: '%=',
                 right: {
                   type: 'Literal',
+                  start: 11,
+                  end: 12,
                   value: 2
                 }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -177,36 +223,50 @@ describe('Expressions - Compound assignment', () => {
     ],
     [
       'x ^= new String("1");',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 21,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 20,
+              operator: '^=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'x'
               },
-              operator: '^=',
               right: {
                 type: 'NewExpression',
+                start: 5,
+                end: 20,
                 callee: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 15,
                   name: 'String'
                 },
                 arguments: [
                   {
                     type: 'Literal',
+                    start: 16,
+                    end: 19,
                     value: '1'
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -236,35 +296,49 @@ describe('Expressions - Compound assignment', () => {
     ],
     [
       'obj.prop >>= 20;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '>>=',
               left: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 8,
                 object: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 3,
                   name: 'obj'
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 8,
                   name: 'prop'
-                }
+                },
+                computed: false
               },
-              operator: '>>=',
               right: {
                 type: 'Literal',
+                start: 13,
+                end: 15,
                 value: 20
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -294,42 +368,58 @@ describe('Expressions - Compound assignment', () => {
     ],
     [
       'var z = (x *= -1);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 0,
+            end: 18,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'AssignmentExpression',
-                  left: {
-                    type: 'Identifier',
-                    name: 'x'
-                  },
-                  operator: '*=',
-                  right: {
-                    type: 'UnaryExpression',
-                    operator: '-',
-                    argument: {
-                      type: 'Literal',
-                      value: 1
-                    },
-                    prefix: true
-                  }
-                },
+                start: 4,
+                end: 17,
                 id: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'z'
+                },
+                init: {
+                  type: 'AssignmentExpression',
+                  start: 9,
+                  end: 16,
+                  operator: '*=',
+                  left: {
+                    type: 'Identifier',
+                    start: 9,
+                    end: 10,
+                    name: 'x'
+                  },
+                  right: {
+                    type: 'UnaryExpression',
+                    start: 14,
+                    end: 16,
+                    operator: '-',
+                    prefix: true,
+                    argument: {
+                      type: 'Literal',
+                      start: 15,
+                      end: 16,
+                      value: 1
+                    }
+                  }
                 }
               }
-            ]
+            ],
+            kind: 'var'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -419,136 +509,194 @@ describe('Expressions - Compound assignment', () => {
     ],
     [
       '(new foo).bar()',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 15,
               callee: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 13,
                 object: {
                   type: 'NewExpression',
+                  start: 1,
+                  end: 8,
                   callee: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 8,
                     name: 'foo'
                   },
                   arguments: []
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 10,
+                  end: 13,
                   name: 'bar'
-                }
+                },
+                computed: false
               },
               arguments: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a.b.c(2020)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 11,
               callee: {
                 type: 'MemberExpression',
+                start: 0,
+                end: 5,
                 object: {
                   type: 'MemberExpression',
+                  start: 0,
+                  end: 3,
                   object: {
                     type: 'Identifier',
+                    start: 0,
+                    end: 1,
                     name: 'a'
                   },
-                  computed: false,
                   property: {
                     type: 'Identifier',
+                    start: 2,
+                    end: 3,
                     name: 'b'
-                  }
+                  },
+                  computed: false
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'c'
-                }
+                },
+                computed: false
               },
               arguments: [
                 {
                   type: 'Literal',
+                  start: 6,
+                  end: 10,
                   value: 2020
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a(0).b(14, 3, 77).c',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'MemberExpression',
+              start: 0,
+              end: 19,
               object: {
                 type: 'CallExpression',
+                start: 0,
+                end: 17,
                 callee: {
                   type: 'MemberExpression',
+                  start: 0,
+                  end: 6,
                   object: {
                     type: 'CallExpression',
+                    start: 0,
+                    end: 4,
                     callee: {
                       type: 'Identifier',
+                      start: 0,
+                      end: 1,
                       name: 'a'
                     },
                     arguments: [
                       {
                         type: 'Literal',
+                        start: 2,
+                        end: 3,
                         value: 0
                       }
                     ]
                   },
-                  computed: false,
                   property: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 6,
                     name: 'b'
-                  }
+                  },
+                  computed: false
                 },
                 arguments: [
                   {
                     type: 'Literal',
+                    start: 7,
+                    end: 9,
                     value: 14
                   },
                   {
                     type: 'Literal',
+                    start: 11,
+                    end: 12,
                     value: 3
                   },
                   {
                     type: 'Literal',
+                    start: 14,
+                    end: 16,
                     value: 77
                   }
                 ]
               },
-              computed: false,
               property: {
                 type: 'Identifier',
+                start: 18,
+                end: 19,
                 name: 'c'
-              }
+              },
+              computed: false
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

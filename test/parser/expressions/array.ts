@@ -807,176 +807,246 @@ describe('Expressions - Array', () => {
     ],
     [
       'function *f(){ return [...yield x]; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 37,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 37,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'f'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 37,
               body: [
                 {
                   type: 'ReturnStatement',
+                  start: 15,
+                  end: 35,
                   argument: {
                     type: 'ArrayExpression',
+                    start: 22,
+                    end: 34,
                     elements: [
                       {
                         type: 'SpreadElement',
+                        start: 23,
+                        end: 33,
                         argument: {
                           type: 'YieldExpression',
+                          start: 26,
+                          end: 33,
+                          delegate: false,
                           argument: {
                             type: 'Identifier',
+                            start: 32,
+                            end: 33,
                             name: 'x'
-                          },
-                          delegate: false
+                          }
                         }
                       }
                     ]
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '"use strict"; const { [eval]: []} = a;',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
       {
+        type: 'Program',
+        start: 0,
+        end: 38,
         body: [
           {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              start: 0,
+              end: 12,
+              value: 'use strict',
+              raw: '"use strict"'
             },
-            type: 'ExpressionStatement'
+            directive: 'use strict'
           },
           {
+            type: 'VariableDeclaration',
+            start: 14,
+            end: 38,
             declarations: [
               {
+                type: 'VariableDeclarator',
+                start: 20,
+                end: 37,
                 id: {
+                  type: 'ObjectPattern',
+                  start: 20,
+                  end: 33,
                   properties: [
                     {
-                      computed: true,
-                      key: {
-                        name: 'eval',
-                        type: 'Identifier'
-                      },
-                      kind: 'init',
+                      type: 'Property',
+                      start: 22,
+                      end: 32,
                       method: false,
                       shorthand: false,
-                      type: 'Property',
+                      computed: true,
+                      key: {
+                        type: 'Identifier',
+                        start: 23,
+                        end: 27,
+                        name: 'eval'
+                      },
                       value: {
-                        elements: [],
-                        type: 'ArrayPattern'
-                      }
+                        type: 'ArrayPattern',
+                        start: 30,
+                        end: 32,
+                        elements: []
+                      },
+                      kind: 'init'
                     }
-                  ],
-                  type: 'ObjectPattern'
+                  ]
                 },
                 init: {
-                  name: 'a',
-                  type: 'Identifier'
-                },
-                type: 'VariableDeclarator'
+                  type: 'Identifier',
+                  start: 36,
+                  end: 37,
+                  name: 'a'
+                }
               }
             ],
-            kind: 'const',
-            type: 'VariableDeclaration'
+            kind: 'const'
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       'function *f(){ return [...yield]; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 35,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'f'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 35,
               body: [
                 {
                   type: 'ReturnStatement',
+                  start: 15,
+                  end: 33,
                   argument: {
                     type: 'ArrayExpression',
+                    start: 22,
+                    end: 32,
                     elements: [
                       {
                         type: 'SpreadElement',
+                        start: 23,
+                        end: 31,
                         argument: {
                           type: 'YieldExpression',
-                          argument: null,
-                          delegate: false
+                          start: 26,
+                          end: 31,
+                          delegate: false,
+                          argument: null
                         }
                       }
                     ]
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[x = true] = y',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 14,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 10,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 1,
+                    end: 9,
                     left: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 2,
                       name: 'x'
                     },
                     right: {
                       type: 'Literal',
+                      start: 5,
+                      end: 9,
                       value: true
                     }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 13,
+                end: 14,
                 name: 'y'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
@@ -1491,98 +1561,142 @@ describe('Expressions - Array', () => {
     ],
     [
       '[...x.list] = a;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 11,
                 elements: [
                   {
                     type: 'RestElement',
+                    start: 1,
+                    end: 10,
                     argument: {
                       type: 'MemberExpression',
+                      start: 4,
+                      end: 10,
                       object: {
                         type: 'Identifier',
+                        start: 4,
+                        end: 5,
                         name: 'x'
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 6,
+                        end: 10,
                         name: 'list'
-                      }
+                      },
+                      computed: false
                     }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 14,
+                end: 15,
                 name: 'a'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[, x,,] = 0',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 11,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 7,
                 elements: [
                   null,
                   {
                     type: 'Identifier',
+                    start: 3,
+                    end: 4,
                     name: 'x'
                   },
                   null
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Literal',
+                start: 10,
+                end: 11,
                 value: 0
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[...[x]] = 0',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 12,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 8,
                 elements: [
                   {
                     type: 'RestElement',
+                    start: 1,
+                    end: 7,
                     argument: {
                       type: 'ArrayPattern',
+                      start: 4,
+                      end: 7,
                       elements: [
                         {
                           type: 'Identifier',
+                          start: 5,
+                          end: 6,
                           name: 'x'
                         }
                       ]
@@ -1590,14 +1704,16 @@ describe('Expressions - Array', () => {
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Literal',
+                start: 11,
+                end: 12,
                 value: 0
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -8210,62 +8326,6 @@ describe('Expressions - Array', () => {
       }
     ],
     [
-      '[...{a = b} = c]',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrayExpression',
-              elements: [
-                {
-                  type: 'SpreadElement',
-                  argument: {
-                    type: 'AssignmentExpression',
-                    left: {
-                      type: 'ObjectPattern',
-                      properties: [
-                        {
-                          type: 'Property',
-                          key: {
-                            type: 'Identifier',
-                            name: 'a'
-                          },
-                          value: {
-                            type: 'AssignmentPattern',
-                            left: {
-                              type: 'Identifier',
-                              name: 'a'
-                            },
-                            right: {
-                              type: 'Identifier',
-                              name: 'b'
-                            }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
-                        }
-                      ]
-                    },
-                    operator: '=',
-                    right: {
-                      type: 'Identifier',
-                      name: 'c'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    [
       '[..."x" + y]',
       Context.None,
       {
@@ -10569,27 +10629,40 @@ describe('Expressions - Array', () => {
     ],
     [
       '[...x += y];',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 11,
               elements: [
                 {
                   type: 'SpreadElement',
+                  start: 1,
+                  end: 10,
                   argument: {
                     type: 'AssignmentExpression',
+                    start: 4,
+                    end: 10,
+                    operator: '+=',
                     left: {
                       type: 'Identifier',
+                      start: 4,
+                      end: 5,
                       name: 'x'
                     },
-                    operator: '+=',
                     right: {
                       type: 'Identifier',
+                      start: 9,
+                      end: 10,
                       name: 'y'
                     }
                   }
@@ -10597,49 +10670,71 @@ describe('Expressions - Array', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[...[x].map(y, z)];',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 18,
               elements: [
                 {
                   type: 'SpreadElement',
+                  start: 1,
+                  end: 17,
                   argument: {
                     type: 'CallExpression',
+                    start: 4,
+                    end: 17,
                     callee: {
                       type: 'MemberExpression',
+                      start: 4,
+                      end: 11,
                       object: {
                         type: 'ArrayExpression',
+                        start: 4,
+                        end: 7,
                         elements: [
                           {
                             type: 'Identifier',
+                            start: 5,
+                            end: 6,
                             name: 'x'
                           }
                         ]
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 8,
+                        end: 11,
                         name: 'map'
-                      }
+                      },
+                      computed: false
                     },
                     arguments: [
                       {
                         type: 'Identifier',
+                        start: 12,
+                        end: 13,
                         name: 'y'
                       },
                       {
                         type: 'Identifier',
+                        start: 15,
+                        end: 16,
                         name: 'z'
                       }
                     ]
@@ -10648,288 +10743,413 @@ describe('Expressions - Array', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[...[x].map(y, z)[x]] = a;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 25,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 21,
                 elements: [
                   {
                     type: 'RestElement',
+                    start: 1,
+                    end: 20,
                     argument: {
                       type: 'MemberExpression',
+                      start: 4,
+                      end: 20,
                       object: {
                         type: 'CallExpression',
+                        start: 4,
+                        end: 17,
                         callee: {
                           type: 'MemberExpression',
+                          start: 4,
+                          end: 11,
                           object: {
                             type: 'ArrayExpression',
+                            start: 4,
+                            end: 7,
                             elements: [
                               {
                                 type: 'Identifier',
+                                start: 5,
+                                end: 6,
                                 name: 'x'
                               }
                             ]
                           },
-                          computed: false,
                           property: {
                             type: 'Identifier',
+                            start: 8,
+                            end: 11,
                             name: 'map'
-                          }
+                          },
+                          computed: false
                         },
                         arguments: [
                           {
                             type: 'Identifier',
+                            start: 12,
+                            end: 13,
                             name: 'y'
                           },
                           {
                             type: 'Identifier',
+                            start: 15,
+                            end: 16,
                             name: 'z'
                           }
                         ]
                       },
-                      computed: true,
                       property: {
                         type: 'Identifier',
+                        start: 18,
+                        end: 19,
                         name: 'x'
-                      }
+                      },
+                      computed: true
                     }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 24,
+                end: 25,
                 name: 'a'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'x, [foo, bar] = doo',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 19,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'x'
                 },
                 {
                   type: 'AssignmentExpression',
+                  start: 3,
+                  end: 19,
+                  operator: '=',
                   left: {
                     type: 'ArrayPattern',
+                    start: 3,
+                    end: 13,
                     elements: [
                       {
                         type: 'Identifier',
+                        start: 4,
+                        end: 7,
                         name: 'foo'
                       },
                       {
                         type: 'Identifier',
+                        start: 9,
+                        end: 12,
                         name: 'bar'
                       }
                     ]
                   },
-                  operator: '=',
                   right: {
                     type: 'Identifier',
+                    start: 16,
+                    end: 19,
                     name: 'doo'
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'x, [foo = y, bar] = doo',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 23,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'x'
                 },
                 {
                   type: 'AssignmentExpression',
+                  start: 3,
+                  end: 23,
+                  operator: '=',
                   left: {
                     type: 'ArrayPattern',
+                    start: 3,
+                    end: 17,
                     elements: [
                       {
                         type: 'AssignmentPattern',
+                        start: 4,
+                        end: 11,
                         left: {
                           type: 'Identifier',
+                          start: 4,
+                          end: 7,
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 11,
                           name: 'y'
                         }
                       },
                       {
                         type: 'Identifier',
+                        start: 13,
+                        end: 16,
                         name: 'bar'
                       }
                     ]
                   },
-                  operator: '=',
                   right: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 23,
                     name: 'doo'
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'x = [a, b] = y',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 14,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'x'
               },
-              operator: '=',
               right: {
                 type: 'AssignmentExpression',
+                start: 4,
+                end: 14,
+                operator: '=',
                 left: {
                   type: 'ArrayPattern',
+                  start: 4,
+                  end: 10,
                   elements: [
                     {
                       type: 'Identifier',
+                      start: 5,
+                      end: 6,
                       name: 'a'
                     },
                     {
                       type: 'Identifier',
+                      start: 8,
+                      end: 9,
                       name: 'b'
                     }
                   ]
                 },
-                operator: '=',
                 right: {
                   type: 'Identifier',
+                  start: 13,
+                  end: 14,
                   name: 'y'
                 }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[a, b] = c = d',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 14,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 6,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   {
                     type: 'Identifier',
+                    start: 4,
+                    end: 5,
                     name: 'b'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'AssignmentExpression',
+                start: 9,
+                end: 14,
+                operator: '=',
                 left: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 10,
                   name: 'c'
                 },
-                operator: '=',
                 right: {
                   type: 'Identifier',
+                  start: 13,
+                  end: 14,
                   name: 'd'
                 }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[[foo].length] = x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 18,
               operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 14,
                 elements: [
                   {
                     type: 'MemberExpression',
-                    computed: false,
+                    start: 1,
+                    end: 13,
                     object: {
                       type: 'ArrayExpression',
+                      start: 1,
+                      end: 6,
                       elements: [
                         {
                           type: 'Identifier',
+                          start: 2,
+                          end: 5,
                           name: 'foo'
                         }
                       ]
                     },
                     property: {
                       type: 'Identifier',
+                      start: 7,
+                      end: 13,
                       name: 'length'
-                    }
+                    },
+                    computed: false
                   }
                 ]
               },
               right: {
                 type: 'Identifier',
+                start: 17,
+                end: 18,
                 name: 'x'
               }
             }
@@ -10940,21 +11160,31 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x, y]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 6,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 6,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 6,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'x'
                 },
                 {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'y'
                 }
               ]
@@ -10966,24 +11196,36 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x = y]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 7,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 7,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 7,
               elements: [
                 {
                   type: 'AssignmentExpression',
+                  start: 1,
+                  end: 6,
                   operator: '=',
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'x'
                   },
                   right: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 6,
                     name: 'y'
                   }
                 }
@@ -10996,26 +11238,38 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x.y]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 5,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 5,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 5,
               elements: [
                 {
                   type: 'MemberExpression',
-                  computed: false,
+                  start: 1,
+                  end: 4,
                   object: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'x'
                   },
                   property: {
                     type: 'Identifier',
+                    start: 3,
+                    end: 4,
                     name: 'y'
-                  }
+                  },
+                  computed: false
                 }
               ]
             }
@@ -11099,18 +11353,25 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x,,,]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 6,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 6,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 6,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'x'
                 },
                 null,
@@ -11118,7 +11379,8 @@ describe('Expressions - Array', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -11150,67 +11412,97 @@ describe('Expressions - Array', () => {
     ],
     [
       '[foo = A] = arr;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 9,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 1,
+                    end: 8,
                     left: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 4,
                       name: 'foo'
                     },
                     right: {
                       type: 'Identifier',
+                      start: 7,
+                      end: 8,
                       name: 'A'
                     }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 12,
+                end: 15,
                 name: 'arr'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[foo, bar] = arr;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 16,
               operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 10,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 4,
                     name: 'foo'
                   },
                   {
                     type: 'Identifier',
+                    start: 6,
+                    end: 9,
                     name: 'bar'
                   }
                 ]
               },
               right: {
                 type: 'Identifier',
+                start: 13,
+                end: 16,
                 name: 'arr'
               }
             }
@@ -11221,37 +11513,57 @@ describe('Expressions - Array', () => {
     ],
     [
       '[foo = A, bar = B] = arr;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 25,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 24,
               operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 18,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 1,
+                    end: 8,
                     left: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 4,
                       name: 'foo'
                     },
                     right: {
                       type: 'Identifier',
+                      start: 7,
+                      end: 8,
                       name: 'A'
                     }
                   },
                   {
                     type: 'AssignmentPattern',
+                    start: 10,
+                    end: 17,
                     left: {
                       type: 'Identifier',
+                      start: 10,
+                      end: 13,
                       name: 'bar'
                     },
                     right: {
                       type: 'Identifier',
+                      start: 16,
+                      end: 17,
                       name: 'B'
                     }
                   }
@@ -11259,6 +11571,8 @@ describe('Expressions - Array', () => {
               },
               right: {
                 type: 'Identifier',
+                start: 21,
+                end: 24,
                 name: 'arr'
               }
             }
@@ -11269,32 +11583,45 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x &= 42]',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 9,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 9,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 9,
               elements: [
                 {
                   type: 'AssignmentExpression',
+                  start: 1,
+                  end: 8,
+                  operator: '&=',
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'x'
                   },
-                  operator: '&=',
                   right: {
                     type: 'Literal',
-                    value: 42
+                    start: 6,
+                    end: 8,
+                    value: 42,
+                    raw: '42'
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -11329,39 +11656,55 @@ describe('Expressions - Array', () => {
     ],
     [
       '[await = x] = x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 11,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 1,
+                    end: 10,
                     left: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 6,
                       name: 'await'
                     },
                     right: {
                       type: 'Identifier',
+                      start: 9,
+                      end: 10,
                       name: 'x'
                     }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 14,
+                end: 15,
                 name: 'x'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -11396,34 +11739,51 @@ describe('Expressions - Array', () => {
     ],
     [
       '["x".foo]=x',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 11,
               operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 9,
                 elements: [
                   {
                     type: 'MemberExpression',
-                    computed: false,
+                    start: 1,
+                    end: 8,
                     object: {
                       type: 'Literal',
-                      value: 'x'
+                      start: 1,
+                      end: 4,
+                      value: 'x',
+                      raw: '"x"'
                     },
                     property: {
                       type: 'Identifier',
+                      start: 5,
+                      end: 8,
                       name: 'foo'
-                    }
+                    },
+                    computed: false
                   }
                 ]
               },
               right: {
                 type: 'Identifier',
+                start: 10,
+                end: 11,
                 name: 'x'
               }
             }
@@ -11434,32 +11794,48 @@ describe('Expressions - Array', () => {
     ],
     [
       '[x.y = z]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 9,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 9,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 9,
               elements: [
                 {
                   type: 'AssignmentExpression',
+                  start: 1,
+                  end: 8,
                   operator: '=',
                   left: {
                     type: 'MemberExpression',
-                    computed: false,
+                    start: 1,
+                    end: 4,
                     object: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 2,
                       name: 'x'
                     },
                     property: {
                       type: 'Identifier',
+                      start: 3,
+                      end: 4,
                       name: 'y'
-                    }
+                    },
+                    computed: false
                   },
                   right: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 8,
                     name: 'z'
                   }
                 }
@@ -11472,37 +11848,57 @@ describe('Expressions - Array', () => {
     ],
     [
       '[a,b=[x,y]] = z',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 11,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   {
                     type: 'AssignmentPattern',
+                    start: 3,
+                    end: 10,
                     left: {
                       type: 'Identifier',
+                      start: 3,
+                      end: 4,
                       name: 'b'
                     },
                     right: {
                       type: 'ArrayExpression',
+                      start: 5,
+                      end: 10,
                       elements: [
                         {
                           type: 'Identifier',
+                          start: 6,
+                          end: 7,
                           name: 'x'
                         },
                         {
                           type: 'Identifier',
+                          start: 8,
+                          end: 9,
                           name: 'y'
                         }
                       ]
@@ -11510,14 +11906,16 @@ describe('Expressions - Array', () => {
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 14,
+                end: 15,
                 name: 'z'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -11565,388 +11963,549 @@ describe('Expressions - Array', () => {
     ],
     [
       '[a, {b:d}, c] = obj',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 19,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 13,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
+                    start: 4,
+                    end: 9,
                     properties: [
                       {
                         type: 'Property',
+                        start: 5,
+                        end: 8,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 5,
+                          end: 6,
                           name: 'b'
                         },
                         value: {
                           type: 'Identifier',
+                          start: 7,
+                          end: 8,
                           name: 'd'
                         },
-                        kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
                   },
                   {
                     type: 'Identifier',
+                    start: 11,
+                    end: 12,
                     name: 'c'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 16,
+                end: 19,
                 name: 'obj'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[a, {[b]:d}, c] = obj',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 21,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 21,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 15,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
+                    start: 4,
+                    end: 11,
                     properties: [
                       {
                         type: 'Property',
+                        start: 5,
+                        end: 10,
+                        method: false,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 6,
+                          end: 7,
                           name: 'b'
                         },
                         value: {
                           type: 'Identifier',
+                          start: 9,
+                          end: 10,
                           name: 'd'
                         },
-                        kind: 'init',
-                        computed: true,
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
                   },
                   {
                     type: 'Identifier',
+                    start: 13,
+                    end: 14,
                     name: 'c'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 18,
+                end: 21,
                 name: 'obj'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[please, {[make]: it}, stop] = bwahahahaha',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 42,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 42,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 42,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 28,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 7,
                     name: 'please'
                   },
                   {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 21,
                     properties: [
                       {
                         type: 'Property',
+                        start: 10,
+                        end: 20,
+                        method: false,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 11,
+                          end: 15,
                           name: 'make'
                         },
                         value: {
                           type: 'Identifier',
+                          start: 18,
+                          end: 20,
                           name: 'it'
                         },
-                        kind: 'init',
-                        computed: true,
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
                   },
                   {
                     type: 'Identifier',
+                    start: 23,
+                    end: 27,
                     name: 'stop'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 31,
+                end: 42,
                 name: 'bwahahahaha'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[pweeze = [pretty] = please, {[make]: it}, stop] = bwahahahaha',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 62,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 62,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 62,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 48,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 1,
+                    end: 27,
                     left: {
                       type: 'Identifier',
+                      start: 1,
+                      end: 7,
                       name: 'pweeze'
                     },
                     right: {
                       type: 'AssignmentExpression',
+                      start: 10,
+                      end: 27,
+                      operator: '=',
                       left: {
                         type: 'ArrayPattern',
+                        start: 10,
+                        end: 18,
                         elements: [
                           {
                             type: 'Identifier',
+                            start: 11,
+                            end: 17,
                             name: 'pretty'
                           }
                         ]
                       },
-                      operator: '=',
                       right: {
                         type: 'Identifier',
+                        start: 21,
+                        end: 27,
                         name: 'please'
                       }
                     }
                   },
                   {
                     type: 'ObjectPattern',
+                    start: 29,
+                    end: 41,
                     properties: [
                       {
                         type: 'Property',
+                        start: 30,
+                        end: 40,
+                        method: false,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 31,
+                          end: 35,
                           name: 'make'
                         },
                         value: {
                           type: 'Identifier',
+                          start: 38,
+                          end: 40,
                           name: 'it'
                         },
-                        kind: 'init',
-                        computed: true,
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
                   },
                   {
                     type: 'Identifier',
+                    start: 43,
+                    end: 47,
                     name: 'stop'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 51,
+                end: 62,
                 name: 'bwahahahaha'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'log({foo: [bar]});',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 17,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'log'
               },
               arguments: [
                 {
                   type: 'ObjectExpression',
+                  start: 4,
+                  end: 16,
                   properties: [
                     {
                       type: 'Property',
+                      start: 5,
+                      end: 15,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 5,
+                        end: 8,
                         name: 'foo'
                       },
                       value: {
                         type: 'ArrayExpression',
+                        start: 10,
+                        end: 15,
                         elements: [
                           {
                             type: 'Identifier',
+                            start: 11,
+                            end: 14,
                             name: 'bar'
                           }
                         ]
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'log({foo: [bar]} = obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 24,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 23,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'log'
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
+                  start: 4,
+                  end: 22,
+                  operator: '=',
                   left: {
                     type: 'ObjectPattern',
+                    start: 4,
+                    end: 16,
                     properties: [
                       {
                         type: 'Property',
+                        start: 5,
+                        end: 15,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 5,
+                          end: 8,
                           name: 'foo'
                         },
                         value: {
                           type: 'ArrayPattern',
+                          start: 10,
+                          end: 15,
                           elements: [
                             {
                               type: 'Identifier',
+                              start: 11,
+                              end: 14,
                               name: 'bar'
                             }
                           ]
                         },
-                        kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
                   },
-                  operator: '=',
                   right: {
                     type: 'Identifier',
+                    start: 19,
+                    end: 22,
                     name: 'obj'
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[...{a = b} = c];',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 16,
               elements: [
                 {
                   type: 'SpreadElement',
+                  start: 1,
+                  end: 15,
                   argument: {
                     type: 'AssignmentExpression',
+                    start: 4,
+                    end: 15,
+                    operator: '=',
                     left: {
                       type: 'ObjectPattern',
+                      start: 4,
+                      end: 11,
                       properties: [
                         {
                           type: 'Property',
+                          start: 5,
+                          end: 10,
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 5,
+                            end: 6,
                             name: 'a'
                           },
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 5,
+                            end: 10,
                             left: {
                               type: 'Identifier',
+                              start: 5,
+                              end: 6,
                               name: 'a'
                             },
                             right: {
                               type: 'Identifier',
+                              start: 9,
+                              end: 10,
                               name: 'b'
                             }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
+                          }
                         }
                       ]
                     },
-                    operator: '=',
                     right: {
                       type: 'Identifier',
+                      start: 14,
+                      end: 15,
                       name: 'c'
                     }
                   }
@@ -11954,88 +12513,121 @@ describe('Expressions - Array', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[a, {b}, c] = obj',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 17,
+              operator: '=',
               left: {
                 type: 'ArrayPattern',
+                start: 0,
+                end: 11,
                 elements: [
                   {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
+                    start: 4,
+                    end: 7,
                     properties: [
                       {
                         type: 'Property',
+                        start: 5,
+                        end: 6,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'b'
-                        },
-                        value: {
-                          type: 'Identifier',
+                          start: 5,
+                          end: 6,
                           name: 'b'
                         },
                         kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
+                        value: {
+                          type: 'Identifier',
+                          start: 5,
+                          end: 6,
+                          name: 'b'
+                        }
                       }
                     ]
                   },
                   {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'c'
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'Identifier',
+                start: 14,
+                end: 17,
                 name: 'obj'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '[z++]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 5,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 5,
             expression: {
               type: 'ArrayExpression',
+              start: 0,
+              end: 5,
               elements: [
                 {
                   type: 'UpdateExpression',
+                  start: 1,
+                  end: 4,
+                  operator: '++',
+                  prefix: false,
                   argument: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'z'
-                  },
-                  operator: '++',
-                  prefix: false
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

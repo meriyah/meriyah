@@ -5,27 +5,37 @@ describe('Expressions - Conditional', () => {
   pass('Expressions - Conditional (pass)', [
     [
       'a&b',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 3,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 3,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 3,
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
+              operator: '&',
               right: {
                 type: 'Identifier',
+                start: 2,
+                end: 3,
                 name: 'b'
-              },
-              operator: '&'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -77,27 +87,37 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a>>b',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 4,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 4,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 4,
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
+              operator: '>>',
               right: {
                 type: 'Identifier',
+                start: 3,
+                end: 4,
                 name: 'b'
-              },
-              operator: '>>'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

@@ -1078,192 +1078,276 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var [foo,bar] in arr);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 27,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 18,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 18,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 18,
                     elements: [
                       {
                         type: 'Identifier',
+                        start: 10,
+                        end: 13,
                         name: 'foo'
                       },
                       {
                         type: 'Identifier',
+                        start: 14,
+                        end: 17,
                         name: 'bar'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 22,
+              end: 25,
               name: 'arr'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 26,
+              end: 27
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (let.x in {}) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 20,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 0,
+            end: 20,
             left: {
               type: 'MemberExpression',
+              start: 5,
+              end: 10,
               object: {
                 type: 'Identifier',
+                start: 5,
+                end: 8,
                 name: 'let'
               },
-              computed: false,
               property: {
                 type: 'Identifier',
+                start: 9,
+                end: 10,
                 name: 'x'
-              }
+              },
+              computed: false
             },
             right: {
               type: 'ObjectExpression',
+              start: 14,
+              end: 16,
               properties: []
+            },
+            body: {
+              type: 'BlockStatement',
+              start: 18,
+              end: 20,
+              body: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (var [foo,,] in arr);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 25,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 16,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 16,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 16,
                     elements: [
                       {
                         type: 'Identifier',
+                        start: 10,
+                        end: 13,
                         name: 'foo'
                       },
                       null
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 20,
+              end: 23,
               name: 'arr'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 24,
+              end: 25
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (var [foo=a, bar=b] in arr);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 32,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 32,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 23,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 23,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 23,
                     elements: [
                       {
                         type: 'AssignmentPattern',
+                        start: 10,
+                        end: 15,
                         left: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 13,
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
+                          start: 14,
+                          end: 15,
                           name: 'a'
                         }
                       },
                       {
                         type: 'AssignmentPattern',
+                        start: 17,
+                        end: 22,
                         left: {
                           type: 'Identifier',
+                          start: 17,
+                          end: 20,
                           name: 'bar'
                         },
                         right: {
                           type: 'Identifier',
+                          start: 21,
+                          end: 22,
                           name: 'b'
                         }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 27,
+              end: 30,
               name: 'arr'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 31,
+              end: 32
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (var [,] in x);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ForInStatement',
+            start: 0,
+            end: 19,
             left: {
               type: 'VariableDeclaration',
+              start: 5,
+              end: 12,
               declarations: [
                 {
                   type: 'VariableDeclarator',
+                  start: 9,
+                  end: 12,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 12,
                     elements: [null]
                   },
                   init: null
@@ -1273,10 +1357,14 @@ describe('Statements - For in', () => {
             },
             right: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'x'
             },
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
+              start: 18,
+              end: 19
             }
           }
         ],
@@ -1370,52 +1458,74 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var [foo=a, bar] in arr);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 30,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 30,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 21,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 21,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 21,
                     elements: [
                       {
                         type: 'AssignmentPattern',
+                        start: 10,
+                        end: 15,
                         left: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 13,
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
+                          start: 14,
+                          end: 15,
                           name: 'a'
                         }
                       },
                       {
                         type: 'Identifier',
+                        start: 17,
+                        end: 20,
                         name: 'bar'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 25,
+              end: 28,
               name: 'arr'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 29,
+              end: 30
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1470,44 +1580,62 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var [...foo] in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 26,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 17,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 17,
                   id: {
                     type: 'ArrayPattern',
+                    start: 9,
+                    end: 17,
                     elements: [
                       {
                         type: 'RestElement',
+                        start: 10,
+                        end: 16,
                         argument: {
                           type: 'Identifier',
+                          start: 13,
+                          end: 16,
                           name: 'foo'
                         }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 21,
+              end: 24,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 25,
+              end: 26
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1596,67 +1724,93 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var {x, y} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 24,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 15,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 15,
                   id: {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 15,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 10,
+                        end: 11,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 11,
                           name: 'x'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 11,
                           name: 'x'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       },
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 13,
+                        end: 14,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 13,
+                          end: 14,
                           name: 'y'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 13,
+                          end: 14,
                           name: 'y'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'Identifier',
+              start: 19,
+              end: 22,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 23,
+              end: 24
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1711,41 +1865,61 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var {x = y} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ForInStatement',
+            start: 0,
+            end: 25,
             left: {
               type: 'VariableDeclaration',
+              start: 5,
+              end: 16,
               declarations: [
                 {
                   type: 'VariableDeclarator',
+                  start: 9,
+                  end: 16,
                   id: {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 16,
                     properties: [
                       {
                         type: 'Property',
+                        start: 10,
+                        end: 15,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 11,
                           name: 'x'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'AssignmentPattern',
+                          start: 10,
+                          end: 15,
                           left: {
                             type: 'Identifier',
+                            start: 10,
+                            end: 11,
                             name: 'x'
                           },
                           right: {
                             type: 'Identifier',
+                            start: 14,
+                            end: 15,
                             name: 'y'
                           }
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: true
+                        }
                       }
                     ]
                   },
@@ -1756,17 +1930,20 @@ describe('Statements - For in', () => {
             },
             right: {
               type: 'Identifier',
+              start: 20,
+              end: 23,
               name: 'obj'
             },
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
+              start: 24,
+              end: 25
             }
           }
         ],
         sourceType: 'script'
       }
     ],
-
     [
       'for (a in b);',
       Context.None,
@@ -1793,54 +1970,80 @@ describe('Statements - For in', () => {
     ],
     [
       'for (a in b); for (a in b); for (a in b);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 41,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 13,
             left: {
               type: 'Identifier',
+              start: 5,
+              end: 6,
               name: 'a'
             },
             right: {
               type: 'Identifier',
+              start: 10,
+              end: 11,
               name: 'b'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 12,
+              end: 13
             }
           },
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 14,
+            end: 27,
             left: {
               type: 'Identifier',
+              start: 19,
+              end: 20,
               name: 'a'
             },
             right: {
               type: 'Identifier',
+              start: 24,
+              end: 25,
               name: 'b'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 26,
+              end: 27
             }
           },
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 28,
+            end: 41,
             left: {
               type: 'Identifier',
+              start: 33,
+              end: 34,
               name: 'a'
             },
             right: {
               type: 'Identifier',
+              start: 38,
+              end: 39,
               name: 'b'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 40,
+              end: 41
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1879,77 +2082,109 @@ describe('Statements - For in', () => {
     ],
     [
       'for ([a,b] in x) a;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'Identifier',
-                name: 'a'
-              }
-            },
+            start: 0,
+            end: 19,
             left: {
               type: 'ArrayPattern',
+              start: 5,
+              end: 10,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
+                  start: 8,
+                  end: 9,
                   name: 'b'
                 }
               ]
             },
             right: {
               type: 'Identifier',
+              start: 14,
+              end: 15,
               name: 'x'
+            },
+            body: {
+              type: 'ExpressionStatement',
+              start: 17,
+              end: 19,
+              expression: {
+                type: 'Identifier',
+                start: 17,
+                end: 18,
+                name: 'a'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for ([a,b] of x) a;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'Identifier',
-                name: 'a'
-              }
-            },
+            start: 0,
+            end: 19,
+            await: false,
             left: {
               type: 'ArrayPattern',
+              start: 5,
+              end: 10,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
+                  start: 8,
+                  end: 9,
                   name: 'b'
                 }
               ]
             },
             right: {
               type: 'Identifier',
+              start: 14,
+              end: 15,
               name: 'x'
             },
-            await: false
+            body: {
+              type: 'ExpressionStatement',
+              start: 17,
+              end: 19,
+              expression: {
+                type: 'Identifier',
+                start: 17,
+                end: 18,
+                name: 'a'
+              }
+            }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2013,183 +2248,257 @@ describe('Statements - For in', () => {
     ],
     [
       'for ({a,b} of x) a;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'Identifier',
-                name: 'a'
-              }
-            },
+            start: 0,
+            end: 19,
+            await: false,
             left: {
               type: 'ObjectPattern',
+              start: 5,
+              end: 10,
               properties: [
                 {
                   type: 'Property',
+                  start: 6,
+                  end: 7,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'a'
-                  },
-                  value: {
-                    type: 'Identifier',
+                    start: 6,
+                    end: 7,
                     name: 'a'
                   },
                   kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: true
+                  value: {
+                    type: 'Identifier',
+                    start: 6,
+                    end: 7,
+                    name: 'a'
+                  }
                 },
                 {
                   type: 'Property',
+                  start: 8,
+                  end: 9,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'b'
-                  },
-                  value: {
-                    type: 'Identifier',
+                    start: 8,
+                    end: 9,
                     name: 'b'
                   },
                   kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: true
+                  value: {
+                    type: 'Identifier',
+                    start: 8,
+                    end: 9,
+                    name: 'b'
+                  }
                 }
               ]
             },
             right: {
               type: 'Identifier',
+              start: 14,
+              end: 15,
               name: 'x'
             },
-            await: false
+            body: {
+              type: 'ExpressionStatement',
+              start: 17,
+              end: 19,
+              expression: {
+                type: 'Identifier',
+                start: 17,
+                end: 18,
+                name: 'a'
+              }
+            }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (const [...x] in y){}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 0,
+            end: 25,
             left: {
               type: 'VariableDeclaration',
-              kind: 'const',
+              start: 5,
+              end: 17,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 11,
+                  end: 17,
                   id: {
                     type: 'ArrayPattern',
+                    start: 11,
+                    end: 17,
                     elements: [
                       {
                         type: 'RestElement',
+                        start: 12,
+                        end: 16,
                         argument: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'x'
                         }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'const'
             },
             right: {
               type: 'Identifier',
+              start: 21,
+              end: 22,
               name: 'y'
+            },
+            body: {
+              type: 'BlockStatement',
+              start: 23,
+              end: 25,
+              body: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (const {...x} in y){}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 0,
+            end: 25,
             left: {
               type: 'VariableDeclaration',
-              kind: 'const',
+              start: 5,
+              end: 17,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 11,
+                  end: 17,
                   id: {
                     type: 'ObjectPattern',
+                    start: 11,
+                    end: 17,
                     properties: [
                       {
                         type: 'RestElement',
+                        start: 12,
+                        end: 16,
                         argument: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'x'
                         }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'const'
             },
             right: {
               type: 'Identifier',
+              start: 21,
+              end: 22,
               name: 'y'
+            },
+            body: {
+              type: 'BlockStatement',
+              start: 23,
+              end: 25,
+              body: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (var a=1;;);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ForStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 16,
             init: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 12,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: {
-                    type: 'Literal',
-                    value: 1
-                  },
+                  start: 9,
+                  end: 12,
                   id: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
+                  },
+                  init: {
+                    type: 'Literal',
+                    start: 11,
+                    end: 12,
+                    value: 1
                   }
                 }
-              ]
+              ],
+              kind: 'var'
             },
             test: null,
-            update: null
+            update: null,
+            body: {
+              type: 'EmptyStatement',
+              start: 15,
+              end: 16
+            }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2614,121 +2923,171 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 64,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 64,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 5,
+              end: 28,
               declarations: [
                 {
                   type: 'VariableDeclarator',
+                  start: 9,
+                  end: 28,
+                  id: {
+                    type: 'Identifier',
+                    start: 9,
+                    end: 10,
+                    name: 'a'
+                  },
                   init: {
                     type: 'SequenceExpression',
+                    start: 14,
+                    end: 27,
                     expressions: [
                       {
                         type: 'UpdateExpression',
+                        start: 14,
+                        end: 23,
+                        operator: '++',
+                        prefix: true,
                         argument: {
                           type: 'Identifier',
+                          start: 16,
+                          end: 23,
                           name: 'effects'
-                        },
-                        operator: '++',
-                        prefix: true
+                        }
                       },
                       {
                         type: 'UnaryExpression',
+                        start: 25,
+                        end: 27,
                         operator: '-',
+                        prefix: true,
                         argument: {
                           type: 'Literal',
+                          start: 26,
+                          end: 27,
                           value: 1
-                        },
-                        prefix: true
+                        }
                       }
                     ]
-                  },
-                  id: {
-                    type: 'Identifier',
-                    name: 'a'
                   }
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'SequenceExpression',
+              start: 32,
+              end: 62,
               expressions: [
                 {
                   type: 'AssignmentExpression',
+                  start: 32,
+                  end: 42,
+                  operator: '=',
                   left: {
                     type: 'Identifier',
+                    start: 32,
+                    end: 38,
                     name: 'stored'
                   },
-                  operator: '=',
                   right: {
                     type: 'Identifier',
+                    start: 41,
+                    end: 42,
                     name: 'a'
                   }
                 },
                 {
                   type: 'ObjectExpression',
+                  start: 44,
+                  end: 62,
                   properties: [
                     {
                       type: 'Property',
+                      start: 45,
+                      end: 49,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 45,
+                        end: 46,
                         name: 'a'
                       },
                       value: {
                         type: 'Literal',
+                        start: 48,
+                        end: 49,
                         value: 0
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     },
                     {
                       type: 'Property',
+                      start: 51,
+                      end: 55,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 51,
+                        end: 52,
                         name: 'b'
                       },
                       value: {
                         type: 'Literal',
+                        start: 54,
+                        end: 55,
                         value: 1
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     },
                     {
                       type: 'Property',
+                      start: 57,
+                      end: 61,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 57,
+                        end: 58,
                         name: 'c'
                       },
                       value: {
                         type: 'Literal',
+                        start: 60,
+                        end: 61,
                         value: 2
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ]
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 63,
+              end: 64
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

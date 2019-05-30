@@ -11,48 +11,65 @@ describe('Statements - Return', () => {
   pass('Statements - Return (pass)', [
     [
       'function a() { return a, b, c; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 32,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 32,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'a'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 32,
               body: [
                 {
                   type: 'ReturnStatement',
+                  start: 15,
+                  end: 30,
                   argument: {
                     type: 'SequenceExpression',
+                    start: 22,
+                    end: 29,
                     expressions: [
                       {
                         type: 'Identifier',
+                        start: 22,
+                        end: 23,
                         name: 'a'
                       },
                       {
                         type: 'Identifier',
+                        start: 25,
+                        end: 26,
                         name: 'b'
                       },
                       {
                         type: 'Identifier',
+                        start: 28,
+                        end: 29,
                         name: 'c'
                       }
                     ]
                   }
                 }
               ]
-            },
-
-            async: false,
-            generator: false,
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

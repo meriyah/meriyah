@@ -329,6 +329,19 @@ describe('Declarations - Async Function', () => {
     ['async ({a = b})', Context.None],
     ['async await => 1"', Context.None],
     ['async function f() { for await (let.x of a); }', Context.None],
+    ['async function fn() { for await (const [x] = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (const {x} = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (let [x] = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (let {x} = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (var [x] = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (var {x} = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (const x = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (let x = 1 of []) {} }', Context.None],
+    ['async function fn() { for await (var x = 1 of []) {} }', Context.None],
+    ['async function fn() { for (const {x} = 1 of []) {} }', Context.None],
+    ['async function fn() { for (let {x} = 1 of []) {} }', Context.None],
+    ['async function fn() { for (let x = 1 of []) {} }', Context.None],
+    ['async function fn() { for (var x = 1 of []) {} }', Context.None],
     ['async (...await) => 1', Context.None],
     ['async ([await]) => 1', Context.None],
     ['async ([...await]) => 1', Context.None],
@@ -440,123 +453,173 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async function *gen() { yield [...yield]; }',
-      Context.Strict,
+      Context.Strict | Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 43,
         body: [
           {
+            type: 'FunctionDeclaration',
+            start: 0,
+            end: 43,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 19,
+              name: 'gen'
+            },
+            generator: true,
             async: true,
+            params: [],
             body: {
+              type: 'BlockStatement',
+              start: 22,
+              end: 43,
               body: [
                 {
+                  type: 'ExpressionStatement',
+                  start: 24,
+                  end: 41,
                   expression: {
+                    type: 'YieldExpression',
+                    start: 24,
+                    end: 40,
+                    delegate: false,
                     argument: {
+                      type: 'ArrayExpression',
+                      start: 30,
+                      end: 40,
                       elements: [
                         {
+                          type: 'SpreadElement',
+                          start: 31,
+                          end: 39,
                           argument: {
-                            argument: null,
+                            type: 'YieldExpression',
+                            start: 34,
+                            end: 39,
                             delegate: false,
-                            type: 'YieldExpression'
-                          },
-                          type: 'SpreadElement'
+                            argument: null
+                          }
                         }
-                      ],
-                      type: 'ArrayExpression'
-                    },
-                    delegate: false,
-                    type: 'YieldExpression'
-                  },
-                  type: 'ExpressionStatement'
+                      ]
+                    }
+                  }
                 }
-              ],
-              type: 'BlockStatement'
-            },
-
-            generator: true,
-            id: {
-              name: 'gen',
-              type: 'Identifier'
-            },
-            params: [],
-            type: 'FunctionDeclaration'
+              ]
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
-      Context.Strict,
+      Context.Strict | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
       {
+        type: 'Program',
+        start: 0,
+        end: 75,
         body: [
           {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              start: 0,
+              end: 12,
+              value: 'use strict',
+              raw: '"use strict"'
             },
-            type: 'ExpressionStatement'
+            directive: 'use strict'
           },
           {
+            type: 'FunctionDeclaration',
+            start: 14,
+            end: 75,
+            id: {
+              type: 'Identifier',
+              start: 29,
+              end: 32,
+              name: 'foo'
+            },
+            generator: false,
             async: true,
+            params: [],
             body: {
+              type: 'BlockStatement',
+              start: 35,
+              end: 75,
               body: [
                 {
+                  type: 'FunctionDeclaration',
+                  start: 37,
+                  end: 66,
+                  id: {
+                    type: 'Identifier',
+                    start: 46,
+                    end: 49,
+                    name: 'bar'
+                  },
+                  generator: false,
                   async: false,
+                  params: [],
                   body: {
+                    type: 'BlockStatement',
+                    start: 52,
+                    end: 66,
                     body: [
                       {
+                        type: 'ExpressionStatement',
+                        start: 54,
+                        end: 64,
                         expression: {
-                          left: {
-                            name: 'await',
-                            type: 'Identifier'
-                          },
+                          type: 'AssignmentExpression',
+                          start: 54,
+                          end: 63,
                           operator: '=',
+                          left: {
+                            type: 'Identifier',
+                            start: 54,
+                            end: 59,
+                            name: 'await'
+                          },
                           right: {
                             type: 'Literal',
-                            value: 1
-                          },
-                          type: 'AssignmentExpression'
-                        },
-                        type: 'ExpressionStatement'
+                            start: 62,
+                            end: 63,
+                            value: 1,
+                            raw: '1'
+                          }
+                        }
                       }
-                    ],
-                    type: 'BlockStatement'
-                  },
-
-                  generator: false,
-                  id: {
-                    name: 'bar',
-                    type: 'Identifier'
-                  },
-                  params: [],
-                  type: 'FunctionDeclaration'
+                    ]
+                  }
                 },
                 {
+                  type: 'ExpressionStatement',
+                  start: 67,
+                  end: 73,
                   expression: {
-                    arguments: [],
+                    type: 'CallExpression',
+                    start: 67,
+                    end: 72,
                     callee: {
-                      name: 'bar',
-                      type: 'Identifier'
+                      type: 'Identifier',
+                      start: 67,
+                      end: 70,
+                      name: 'bar'
                     },
-                    type: 'CallExpression'
-                  },
-                  type: 'ExpressionStatement'
+                    arguments: []
+                  }
                 }
-              ],
-              type: 'BlockStatement'
-            },
-
-            generator: false,
-            id: {
-              name: 'foo',
-              type: 'Identifier'
-            },
-            params: [],
-            type: 'FunctionDeclaration'
+              ]
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
@@ -591,234 +654,318 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async function await() { }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 26,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 20,
+              name: 'await'
+            },
+            generator: false,
+            async: true,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 23,
+              end: 26,
               body: []
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'await'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(async function foo() { })',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'FunctionExpression',
+              start: 1,
+              end: 25,
+              id: {
+                type: 'Identifier',
+                start: 16,
+                end: 19,
+                name: 'foo'
+              },
+              generator: false,
+              async: true,
               params: [],
               body: {
                 type: 'BlockStatement',
+                start: 22,
+                end: 25,
                 body: []
-              },
-              async: true,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'foo'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async ({a: b = c})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 18,
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 5,
                 name: 'async'
               },
               arguments: [
                 {
                   type: 'ObjectExpression',
+                  start: 7,
+                  end: 17,
                   properties: [
                     {
                       type: 'Property',
+                      start: 8,
+                      end: 16,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 8,
+                        end: 9,
                         name: 'a'
                       },
                       value: {
                         type: 'AssignmentExpression',
+                        start: 11,
+                        end: 16,
+                        operator: '=',
                         left: {
                           type: 'Identifier',
+                          start: 11,
+                          end: 12,
                           name: 'b'
                         },
-                        operator: '=',
                         right: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'c'
                         }
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({async await() { }})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 21,
             expression: {
               type: 'ObjectExpression',
+              start: 1,
+              end: 20,
               properties: [
                 {
                   type: 'Property',
+                  start: 2,
+                  end: 19,
+                  method: true,
+                  shorthand: false,
+                  computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 8,
+                    end: 13,
                     name: 'await'
                   },
+                  kind: 'init',
                   value: {
                     type: 'FunctionExpression',
+                    start: 13,
+                    end: 19,
+                    id: null,
+                    generator: false,
+                    async: true,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 16,
+                      end: 19,
                       body: []
-                    },
-                    async: true,
-                    generator: false,
-                    id: null
-                  },
-                  kind: 'init',
-                  computed: false,
-                  method: true,
-                  shorthand: false
+                    }
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function foo(a, b) { await a }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 36,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 36,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 18,
+              name: 'foo'
+            },
+            generator: false,
+            async: true,
             params: [
               {
                 type: 'Identifier',
+                start: 19,
+                end: 20,
                 name: 'a'
               },
               {
                 type: 'Identifier',
+                start: 22,
+                end: 23,
                 name: 'b'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 25,
+              end: 36,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 27,
+                  end: 34,
                   expression: {
                     type: 'AwaitExpression',
+                    start: 27,
+                    end: 34,
                     argument: {
                       type: 'Identifier',
+                      start: 33,
+                      end: 34,
                       name: 'a'
                     }
                   }
                 }
               ]
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(async function foo(a) { await a })',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 35,
             expression: {
               type: 'FunctionExpression',
+              start: 1,
+              end: 34,
+              id: {
+                type: 'Identifier',
+                start: 16,
+                end: 19,
+                name: 'foo'
+              },
+              generator: false,
+              async: true,
               params: [
                 {
                   type: 'Identifier',
+                  start: 20,
+                  end: 21,
                   name: 'a'
                 }
               ],
               body: {
                 type: 'BlockStatement',
+                start: 23,
+                end: 34,
                 body: [
                   {
                     type: 'ExpressionStatement',
+                    start: 25,
+                    end: 32,
                     expression: {
                       type: 'AwaitExpression',
+                      start: 25,
+                      end: 32,
                       argument: {
                         type: 'Identifier',
+                        start: 31,
+                        end: 32,
                         name: 'a'
                       }
                     }
                   }
                 ]
-              },
-              async: true,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'foo'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -911,58 +1058,81 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async function foo(a, b) { await a + await b }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 46,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 46,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 18,
+              name: 'foo'
+            },
+            generator: false,
+            async: true,
             params: [
               {
                 type: 'Identifier',
+                start: 19,
+                end: 20,
                 name: 'a'
               },
               {
                 type: 'Identifier',
+                start: 22,
+                end: 23,
                 name: 'b'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 25,
+              end: 46,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 27,
+                  end: 44,
                   expression: {
                     type: 'BinaryExpression',
+                    start: 27,
+                    end: 44,
                     left: {
                       type: 'AwaitExpression',
+                      start: 27,
+                      end: 34,
                       argument: {
                         type: 'Identifier',
+                        start: 33,
+                        end: 34,
                         name: 'a'
                       }
                     },
+                    operator: '+',
                     right: {
                       type: 'AwaitExpression',
+                      start: 37,
+                      end: 44,
                       argument: {
                         type: 'Identifier',
+                        start: 43,
+                        end: 44,
                         name: 'b'
                       }
-                    },
-                    operator: '+'
+                    }
                   }
                 }
               ]
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1008,61 +1178,83 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async function foo(a = async function foo() { await b }) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 59,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 59,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 18,
+              name: 'foo'
+            },
+            generator: false,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 19,
+                end: 55,
                 left: {
                   type: 'Identifier',
+                  start: 19,
+                  end: 20,
                   name: 'a'
                 },
                 right: {
                   type: 'FunctionExpression',
+                  start: 23,
+                  end: 55,
+                  id: {
+                    type: 'Identifier',
+                    start: 38,
+                    end: 41,
+                    name: 'foo'
+                  },
+                  generator: false,
+                  async: true,
                   params: [],
                   body: {
                     type: 'BlockStatement',
+                    start: 44,
+                    end: 55,
                     body: [
                       {
                         type: 'ExpressionStatement',
+                        start: 46,
+                        end: 53,
                         expression: {
                           type: 'AwaitExpression',
+                          start: 46,
+                          end: 53,
                           argument: {
                             type: 'Identifier',
+                            start: 52,
+                            end: 53,
                             name: 'b'
                           }
                         }
                       }
                     ]
-                  },
-                  async: true,
-                  generator: false,
-
-                  id: {
-                    type: 'Identifier',
-                    name: 'foo'
                   }
                 }
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 57,
+              end: 59,
               body: []
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1114,55 +1306,86 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async function foo(a = {async bar() { await b }}) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 52,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 52,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 18,
+              name: 'foo'
+            },
+            generator: false,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 19,
+                end: 48,
                 left: {
                   type: 'Identifier',
+                  start: 19,
+                  end: 20,
                   name: 'a'
                 },
                 right: {
                   type: 'ObjectExpression',
+                  start: 23,
+                  end: 48,
                   properties: [
                     {
                       type: 'Property',
+                      start: 24,
+                      end: 47,
+                      method: true,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 30,
+                        end: 33,
                         name: 'bar'
                       },
+                      kind: 'init',
                       value: {
                         type: 'FunctionExpression',
+                        start: 33,
+                        end: 47,
+                        id: null,
+                        generator: false,
+                        async: true,
                         params: [],
                         body: {
                           type: 'BlockStatement',
+                          start: 36,
+                          end: 47,
                           body: [
                             {
                               type: 'ExpressionStatement',
+                              start: 38,
+                              end: 45,
                               expression: {
                                 type: 'AwaitExpression',
+                                start: 38,
+                                end: 45,
                                 argument: {
                                   type: 'Identifier',
+                                  start: 44,
+                                  end: 45,
                                   name: 'b'
                                 }
                               }
                             }
                           ]
-                        },
-                        async: true,
-                        generator: false,
-                        id: null
-                      },
-                      kind: 'init',
-                      computed: false,
-                      method: true,
-                      shorthand: false
+                        }
+                      }
                     }
                   ]
                 }
@@ -1170,72 +1393,101 @@ describe('Declarations - Async Function', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 50,
+              end: 52,
               body: []
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function foo(a = class {async bar() { await b }}) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 58,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 58,
+            id: {
+              type: 'Identifier',
+              start: 15,
+              end: 18,
+              name: 'foo'
+            },
+            generator: false,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 19,
+                end: 54,
                 left: {
                   type: 'Identifier',
+                  start: 19,
+                  end: 20,
                   name: 'a'
                 },
                 right: {
                   type: 'ClassExpression',
+                  start: 23,
+                  end: 54,
                   id: null,
                   superClass: null,
                   body: {
                     type: 'ClassBody',
+                    start: 29,
+                    end: 54,
                     body: [
                       {
                         type: 'MethodDefinition',
+                        start: 30,
+                        end: 53,
                         kind: 'method',
                         static: false,
                         computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 36,
+                          end: 39,
                           name: 'bar'
                         },
                         value: {
                           type: 'FunctionExpression',
+                          start: 39,
+                          end: 53,
+                          id: null,
+                          generator: false,
+                          async: true,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 42,
+                            end: 53,
                             body: [
                               {
                                 type: 'ExpressionStatement',
+                                start: 44,
+                                end: 51,
                                 expression: {
                                   type: 'AwaitExpression',
+                                  start: 44,
+                                  end: 51,
                                   argument: {
                                     type: 'Identifier',
+                                    start: 50,
+                                    end: 51,
                                     name: 'b'
                                   }
                                 }
                               }
                             ]
-                          },
-                          async: true,
-                          generator: false,
-                          id: null
+                          }
                         }
                       }
                     ]
@@ -1245,17 +1497,13 @@ describe('Declarations - Async Function', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 56,
+              end: 58,
               body: []
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1470,90 +1718,124 @@ describe('Declarations - Async Function', () => {
     ],
     [
       '({async = 0} = {})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'AssignmentExpression',
+              start: 1,
+              end: 17,
+              operator: '=',
               left: {
                 type: 'ObjectPattern',
+                start: 1,
+                end: 12,
                 properties: [
                   {
                     type: 'Property',
+                    start: 2,
+                    end: 11,
+                    method: false,
+                    shorthand: true,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 2,
+                      end: 7,
                       name: 'async'
                     },
+                    kind: 'init',
                     value: {
                       type: 'AssignmentPattern',
+                      start: 2,
+                      end: 11,
                       left: {
                         type: 'Identifier',
+                        start: 2,
+                        end: 7,
                         name: 'async'
                       },
                       right: {
                         type: 'Literal',
+                        start: 10,
+                        end: 11,
                         value: 0
                       }
-                    },
-                    kind: 'init',
-                    computed: false,
-                    method: false,
-                    shorthand: true
+                    }
                   }
                 ]
               },
-              operator: '=',
               right: {
                 type: 'ObjectExpression',
+                start: 15,
+                end: 17,
                 properties: []
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({async 100(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'ObjectExpression',
+              start: 1,
+              end: 16,
               properties: [
                 {
                   type: 'Property',
+                  start: 2,
+                  end: 15,
+                  method: true,
+                  shorthand: false,
+                  computed: false,
                   key: {
                     type: 'Literal',
+                    start: 8,
+                    end: 11,
                     value: 100
                   },
+                  kind: 'init',
                   value: {
                     type: 'FunctionExpression',
+                    start: 11,
+                    end: 15,
+                    id: null,
+                    generator: false,
+                    async: true,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 13,
+                      end: 15,
                       body: []
-                    },
-                    async: true,
-                    generator: false,
-                    id: null
-                  },
-                  kind: 'init',
-                  computed: false,
-                  method: true,
-                  shorthand: false
+                    }
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);
