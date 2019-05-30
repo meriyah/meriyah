@@ -1,6 +1,7 @@
 import { Context } from '../../../src/common';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
+import { pass } from '../../test-utils';
 
 describe('Miscellaneous - Comments', () => {
   for (const arg of [
@@ -8,6 +9,7 @@ describe('Miscellaneous - Comments', () => {
     'var x = a; --> is eol-comment\nvar y = b;\n',
     'x --> is eol-comment\nvar y = b;\n',
     `/*CHECK#1/`,
+    '#\n/*\n\n*/',
     `
     /* var*/
     x*/`,
@@ -58,7 +60,6 @@ describe('Miscellaneous - Comments', () => {
     '\n/*\n\n*/\n',
     '\n/*\nfuse.box\n*/\n',
     'foo\n/*\n\n*/',
-    // '#\n/*\n\n*/',
     '/*a\r\nb*/ 0',
     '/*a\rb*/ 0',
     '/*a\nb*/ 0',
@@ -118,4 +119,400 @@ describe('Miscellaneous - Comments', () => {
       });
     });
   }
+
+  pass('Miscellaneous - Comments (pass)', [
+    [
+      'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'x',
+                  type: 'Identifier'
+                },
+                init: {
+                  type: 'Literal',
+                  value: 42
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          },
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'y',
+                  type: 'Identifier'
+                },
+                init: {
+                  type: 'Literal',
+                  value: 37
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      '\n/*precomment*/-->eol-comment\nvar y = 37;\n',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'y',
+                  type: 'Identifier'
+                },
+                init: {
+                  type: 'Literal',
+                  value: 37
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      '\n-->is eol-comment\nvar y = 37;\n',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'y',
+                  type: 'Identifier'
+                },
+                init: {
+                  type: 'Literal',
+                  value: 37
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      '-->',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [],
+        start: 0,
+        end: 3
+      }
+    ],
+    [
+      '42 /* block comment 1 */ /* block comment 2 */',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 42,
+              start: 0,
+              end: 2
+            },
+            start: 0,
+            end: 2
+          }
+        ],
+        start: 0,
+        end: 46
+      }
+    ],
+    [
+      `/* multiline
+      comment
+      should
+      be
+      ignored */ 42`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 42
+            }
+          }
+        ]
+      }
+    ],
+    [
+      `// line comment
+      42`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 42
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '//',
+      Context.None,
+      {
+        body: [],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'if (x) { /* Some comment */ doThat() }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'Identifier',
+              name: 'x',
+              start: 4,
+              end: 5
+            },
+            consequent: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'CallExpression',
+                    callee: {
+                      type: 'Identifier',
+                      name: 'doThat',
+                      start: 28,
+                      end: 34
+                    },
+                    arguments: [],
+                    start: 28,
+                    end: 36
+                  },
+                  start: 28,
+                  end: 36
+                }
+              ],
+              start: 7,
+              end: 38
+            },
+            alternate: null,
+            start: 0,
+            end: 38
+          }
+        ],
+        start: 0,
+        end: 38
+      }
+    ],
+    [
+      'function f() { /* infinite */ while (true) { } /* bar */ var each; }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'WhileStatement',
+                  test: {
+                    type: 'Literal',
+                    value: true
+                  },
+                  body: {
+                    type: 'BlockStatement',
+                    body: []
+                  }
+                },
+                {
+                  type: 'VariableDeclaration',
+                  kind: 'var',
+                  declarations: [
+                    {
+                      type: 'VariableDeclarator',
+                      init: null,
+                      id: {
+                        type: 'Identifier',
+                        name: 'each'
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            async: false,
+            generator: false,
+
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'while (i-->0) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'WhileStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'UpdateExpression',
+                argument: {
+                  type: 'Identifier',
+                  name: 'i'
+                },
+                operator: '--',
+                prefix: false
+              },
+              right: {
+                type: 'Literal',
+                value: 0
+              },
+              operator: '>'
+            },
+            body: {
+              type: 'BlockStatement',
+              body: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'function x(){ /*Jupiter*/ return; /*Saturn*/}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ReturnStatement',
+                  argument: null
+                }
+              ]
+            },
+            async: false,
+            generator: false,
+
+            id: {
+              type: 'Identifier',
+              name: 'x'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '/**/ function a() {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: false,
+
+            id: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      `while (true) {
+        /**
+         * comments in empty block
+         */
+      }`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'WhileStatement',
+            test: {
+              type: 'Literal',
+              value: true
+            },
+            body: {
+              type: 'BlockStatement',
+              body: []
+            }
+          }
+        ]
+      }
+    ]
+  ]);
 });
