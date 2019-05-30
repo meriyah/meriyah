@@ -11,15 +11,15 @@ import { report, Errors } from '../errors';
  */
 export function skipHashBang(parser: ParserState): void {
   let index = parser.index;
-  if (index === parser.length) return;
+  if (index === parser.end) return;
   if (parser.currentCodePoint === Chars.ByteOrderMark) {
     parser.currentCodePoint = parser.source.charCodeAt(++index);
     parser.index = index;
   }
 
-  if (index < parser.length && parser.source.charCodeAt(index) === Chars.Hash) {
+  if (index < parser.end && parser.source.charCodeAt(index) === Chars.Hash) {
     index++;
-    if (index < parser.length && parser.source.charCodeAt(index) === Chars.Exclamation) {
+    if (index < parser.end && parser.source.charCodeAt(index) === Chars.Exclamation) {
       parser.index = index + 1;
       parser.currentCodePoint = parser.source.charCodeAt(parser.index);
       skipSingleLineComment(parser);
@@ -35,7 +35,7 @@ export function skipHashBang(parser: ParserState): void {
  * @param parser  Parser object
  */
 export function skipSingleLineComment(parser: ParserState): Token {
-  while (parser.index < parser.length) {
+  while (parser.index < parser.end) {
     if (
       CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator ||
       (parser.currentCodePoint ^ Chars.LineSeparator) <= 1
@@ -53,7 +53,7 @@ export function skipSingleLineComment(parser: ParserState): Token {
  * @param parser  Parser object
  */
 export function skipMultiLineComment(parser: ParserState): any {
-  while (parser.index < parser.length) {
+  while (parser.index < parser.end) {
     while (CharTypes[parser.currentCodePoint] & CharFlags.Asterisk) {
       if (nextCodePoint(parser) === Chars.Slash) {
         nextCodePoint(parser);

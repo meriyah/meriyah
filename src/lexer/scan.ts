@@ -164,15 +164,15 @@ export const OneCharToken = [
 
 export function nextToken(parser: ParserState, context: Context): void {
   parser.flags &= ~Flags.NewLine;
-  parser.lastIndex = parser.index;
+  parser.startIndex = parser.index;
   parser.token = scanSingleToken(parser, context);
 }
 
 export function scanSingleToken(parser: ParserState, context: Context): Token {
   let isStartOfLine = parser.index === 0;
 
-  while (parser.index < parser.length) {
-    parser.startIndex = parser.index;
+  while (parser.index < parser.end) {
+    parser.tokenIndex = parser.index;
 
     const first = parser.currentCodePoint;
 
@@ -249,7 +249,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `*`, `**`, `*=`, `**=`
         case Token.Multiply: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.Multiply;
+          if (parser.index >= parser.end) return Token.Multiply;
           const next = parser.currentCodePoint;
 
           if (next === Chars.EqualSign) {
@@ -273,7 +273,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `+`, `++`, `+=`
         case Token.Add: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.Add;
+          if (parser.index >= parser.end) return Token.Add;
 
           if (parser.currentCodePoint === Chars.Plus) {
             nextCodePoint(parser);
@@ -291,7 +291,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `-`, `--`, `-=`, `-->`
         case Token.Subtract: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.Subtract;
+          if (parser.index >= parser.end) return Token.Subtract;
           const next = parser.currentCodePoint;
 
           if (next === Chars.Hyphen) {
@@ -319,7 +319,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
 
         case Token.Divide: {
           nextCodePoint(parser);
-          if (parser.index < parser.length) {
+          if (parser.index < parser.end) {
             const ch = parser.currentCodePoint;
             if (ch === Chars.Slash) {
               nextCodePoint(parser);
@@ -343,7 +343,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.LessThan;
+          if (parser.index >= parser.end) return Token.LessThan;
 
           switch (parser.currentCodePoint) {
             case Chars.LessThan:
@@ -378,7 +378,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.Assign;
+          if (parser.index >= parser.end) return Token.Assign;
           const next = parser.currentCodePoint;
 
           if (next === Chars.EqualSign) {
@@ -400,7 +400,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `|`, `||`, `|=`
         case Token.BitwiseOr: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.BitwiseOr;
+          if (parser.index >= parser.end) return Token.BitwiseOr;
           const next = parser.currentCodePoint;
 
           if (next === Chars.VerticalBar) {
@@ -417,7 +417,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `>`, `>=`, `>>`, `>>>`, `>>=`, `>>>=`
         case Token.GreaterThan: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.GreaterThan;
+          if (parser.index >= parser.end) return Token.GreaterThan;
           const next = parser.currentCodePoint;
 
           if (next === Chars.EqualSign) {
@@ -428,7 +428,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
           if (next !== Chars.GreaterThan) return Token.GreaterThan;
           nextCodePoint(parser);
 
-          if (parser.index < parser.length) {
+          if (parser.index < parser.end) {
             const next = parser.currentCodePoint;
 
             if (next === Chars.GreaterThan) {
@@ -451,7 +451,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         // `&`, `&&`, `&=`
         case Token.BitwiseAnd: {
           nextCodePoint(parser);
-          if (parser.index >= parser.length) return Token.BitwiseAnd;
+          if (parser.index >= parser.end) return Token.BitwiseAnd;
           const next = parser.currentCodePoint;
 
           if (next === Chars.Ampersand) {

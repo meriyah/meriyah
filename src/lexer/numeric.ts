@@ -83,7 +83,7 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
         }
 
         if (digit >= 0 && parser.currentCodePoint !== Chars.Period && !isIdentifierStart(parser.currentCodePoint)) {
-          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.startIndex, parser.index);
+          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
           parser.tokenValue = value;
           return Token.NumericLiteral;
         }
@@ -142,15 +142,15 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
   if (CharTypes[parser.currentCodePoint] & CharFlags.Decimal || isIdentifierStart(parser.currentCodePoint)) {
     report(parser, Errors.IDStartAfterNumber);
   }
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.startIndex, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
   parser.tokenValue =
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
       ? value
       : kind & NumberKind.DecimalWithLeadingZero
-      ? parseFloat(parser.source.slice(parser.startIndex, parser.index))
+      ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
       : isBigInt
-      ? parseInt(parser.source.slice(parser.startIndex, parser.index), 0xa)
-      : +parser.source.slice(parser.startIndex, parser.index);
+      ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
+      : +parser.source.slice(parser.tokenIndex, parser.index);
   if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenValue, parser.index);
   return isBigInt ? Token.BigIntLiteral : Token.NumericLiteral;
 }

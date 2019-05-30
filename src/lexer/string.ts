@@ -46,7 +46,7 @@ export function scanString(parser: ParserState, context: Context): any {
       marker = parser.index + 1;
     }
 
-    if (parser.index >= parser.length) report(parser, Errors.UnterminatedString);
+    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
     ch = nextCodePoint(parser);
   }
 
@@ -74,7 +74,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.CarriageReturn: {
       const { index } = parser;
 
-      if (index < parser.length) {
+      if (index < parser.end) {
         const ch = parser.source.charCodeAt(index);
 
         if (ch === Chars.LineFeed) {
@@ -101,7 +101,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
       let index = parser.index + 1;
       let column = parser.column + 1;
 
-      if (index < parser.length) {
+      if (index < parser.end) {
         const next = parser.source.charCodeAt(index);
 
         if ((CharTypes[next] & CharFlags.Octal) === 0) {
@@ -116,7 +116,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
           index++;
           column++;
 
-          if (index < parser.length) {
+          if (index < parser.end) {
             const next = parser.source.charCodeAt(index);
 
             if (CharTypes[next] & CharFlags.Octal) {
@@ -145,7 +145,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
       const index = parser.index + 1;
       const column = parser.column + 1;
 
-      if (index < parser.length) {
+      if (index < parser.end) {
         const next = parser.source.charCodeAt(index);
 
         if (CharTypes[next] & CharFlags.Octal) {

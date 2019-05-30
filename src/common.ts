@@ -121,9 +121,9 @@ export interface ParserState {
   index: number;
   line: number;
   column: number;
+  tokenIndex: number;
   startIndex: number;
-  lastIndex: number;
-  length: number;
+  end: number;
   token: Token;
   tokenValue: any;
   tokenRaw: string;
@@ -370,7 +370,7 @@ export function finishNode<T extends Node>(
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
-    node.end = parser.lastIndex;
+    node.end = parser.startIndex;
 }
 
   return node;
