@@ -4997,7 +4997,7 @@ export function parseIdentifierOrArrow(
   start: number
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
   if (parser.token === Token.Arrow) {
-    parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+    parser.flags &= ~Flags.SimpleParameterList;
     return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0, start);
   }
   return expr;
