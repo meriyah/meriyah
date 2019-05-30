@@ -47,102 +47,146 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a ? b = d : c',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 13,
               test: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
               consequent: {
                 type: 'AssignmentExpression',
+                start: 4,
+                end: 9,
+                operator: '=',
                 left: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'b'
                 },
-                operator: '=',
                 right: {
                   type: 'Identifier',
+                  start: 8,
+                  end: 9,
                   name: 'd'
                 }
               },
               alternate: {
                 type: 'Identifier',
+                start: 12,
+                end: 13,
                 name: 'c'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'x = (0) ? 1 : 2',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'x'
               },
-              operator: '=',
               right: {
                 type: 'ConditionalExpression',
+                start: 4,
+                end: 15,
                 test: {
                   type: 'Literal',
+                  start: 5,
+                  end: 6,
                   value: 0
                 },
                 consequent: {
                   type: 'Literal',
+                  start: 10,
+                  end: 11,
                   value: 1
                 },
                 alternate: {
                   type: 'Literal',
+                  start: 14,
+                  end: 15,
                   value: 2
                 }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(y ? y : true)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'ConditionalExpression',
+              start: 1,
+              end: 13,
               test: {
                 type: 'Identifier',
+                start: 1,
+                end: 2,
                 name: 'y'
               },
               consequent: {
                 type: 'Identifier',
+                start: 5,
+                end: 6,
                 name: 'y'
               },
               alternate: {
                 type: 'Literal',
+                start: 9,
+                end: 13,
                 value: true
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -203,43 +247,61 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'Symbol() ? 1 : 2, 1',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 19,
               expressions: [
                 {
                   type: 'ConditionalExpression',
+                  start: 0,
+                  end: 16,
                   test: {
                     type: 'CallExpression',
+                    start: 0,
+                    end: 8,
                     callee: {
                       type: 'Identifier',
+                      start: 0,
+                      end: 6,
                       name: 'Symbol'
                     },
                     arguments: []
                   },
                   consequent: {
                     type: 'Literal',
+                    start: 11,
+                    end: 12,
                     value: 1
                   },
                   alternate: {
                     type: 'Literal',
+                    start: 15,
+                    end: 16,
                     value: 2
                   }
                 },
                 {
                   type: 'Literal',
+                  start: 18,
+                  end: 19,
                   value: 1
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -368,46 +430,66 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a === b ? c : d % e',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 19,
               test: {
                 type: 'BinaryExpression',
+                start: 0,
+                end: 7,
                 left: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
+                operator: '===',
                 right: {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'b'
-                },
-                operator: '==='
+                }
               },
               consequent: {
                 type: 'Identifier',
+                start: 10,
+                end: 11,
                 name: 'c'
               },
               alternate: {
                 type: 'BinaryExpression',
+                start: 14,
+                end: 19,
                 left: {
                   type: 'Identifier',
+                  start: 14,
+                  end: 15,
                   name: 'd'
                 },
+                operator: '%',
                 right: {
                   type: 'Identifier',
+                  start: 18,
+                  end: 19,
                   name: 'e'
-                },
-                operator: '%'
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -520,46 +602,66 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a === b ? c : d % e',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 19,
               test: {
                 type: 'BinaryExpression',
+                start: 0,
+                end: 7,
                 left: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
+                operator: '===',
                 right: {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'b'
-                },
-                operator: '==='
+                }
               },
               consequent: {
                 type: 'Identifier',
+                start: 10,
+                end: 11,
                 name: 'c'
               },
               alternate: {
                 type: 'BinaryExpression',
+                start: 14,
+                end: 19,
                 left: {
                   type: 'Identifier',
+                  start: 14,
+                  end: 15,
                   name: 'd'
                 },
+                operator: '%',
                 right: {
                   type: 'Identifier',
+                  start: 18,
+                  end: 19,
                   name: 'e'
-                },
-                operator: '%'
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -916,40 +1018,56 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a ? !b : !c;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 11,
               test: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
               consequent: {
                 type: 'UnaryExpression',
+                start: 4,
+                end: 6,
                 operator: '!',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'b'
-                },
-                prefix: true
+                }
               },
               alternate: {
                 type: 'UnaryExpression',
+                start: 9,
+                end: 11,
                 operator: '!',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 10,
+                  end: 11,
                   name: 'c'
-                },
-                prefix: true
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

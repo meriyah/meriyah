@@ -20,53 +20,75 @@ describe('Statements - Do while', () => {
     [
       `do x
     while ({ [y]: {} ? null : false  })`,
-      Context.None,
+      Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 44,
         body: [
           {
+            type: 'DoWhileStatement',
+            start: 0,
+            end: 44,
             body: {
+              type: 'ExpressionStatement',
+              start: 3,
+              end: 4,
               expression: {
-                name: 'x',
-                type: 'Identifier'
-              },
-              type: 'ExpressionStatement'
+                type: 'Identifier',
+                start: 3,
+                end: 4,
+                name: 'x'
+              }
             },
             test: {
+              type: 'ObjectExpression',
+              start: 16,
+              end: 43,
               properties: [
                 {
-                  computed: true,
-                  key: {
-                    name: 'y',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
+                  type: 'Property',
+                  start: 18,
+                  end: 40,
                   method: false,
                   shorthand: false,
-                  type: 'Property',
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    start: 19,
+                    end: 20,
+                    name: 'y'
+                  },
                   value: {
-                    alternate: {
-                      type: 'Literal',
-                      value: false
+                    type: 'ConditionalExpression',
+                    start: 23,
+                    end: 40,
+                    test: {
+                      type: 'ObjectExpression',
+                      start: 23,
+                      end: 25,
+                      properties: []
                     },
                     consequent: {
                       type: 'Literal',
+                      start: 28,
+                      end: 32,
                       value: null
                     },
-                    test: {
-                      properties: [],
-                      type: 'ObjectExpression'
-                    },
-                    type: 'ConditionalExpression'
-                  }
+                    alternate: {
+                      type: 'Literal',
+                      start: 35,
+                      end: 40,
+                      value: false
+                    }
+                  },
+                  kind: 'init'
                 }
-              ],
-              type: 'ObjectExpression'
-            },
-            type: 'DoWhileStatement'
+              ]
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
@@ -151,26 +173,36 @@ describe('Statements - Do while', () => {
     ],
     [
       'do foo; while (bar);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 20,
         body: [
           {
             type: 'DoWhileStatement',
+            start: 0,
+            end: 20,
             body: {
               type: 'ExpressionStatement',
+              start: 3,
+              end: 7,
               expression: {
                 type: 'Identifier',
+                start: 3,
+                end: 6,
                 name: 'foo'
               }
             },
             test: {
               type: 'Identifier',
+              start: 15,
+              end: 18,
               name: 'bar'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

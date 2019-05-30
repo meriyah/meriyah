@@ -21,6 +21,8 @@ describe('Statements - For', () => {
       : void 0 !== r && (a[t] = r));`,
     'for (let m in ((yield))) foo; (r = a) => {}',
     `for(x, y;;);`,
+    'for ([] in (class {})) for (;;) continue',
+    'for (var o in ((false)) ^ 2.7262799875259632e293) do ; while ((((eval))))',
     `for(x = 0;;);`,
     `for(x; x < 0;);`,
     `for(x; x < 0; x++);`,

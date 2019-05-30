@@ -14,63 +14,89 @@ describe('Statements - Switch', () => {
   pass('Statements - Switch (pass)', [
     [
       'switch(foo) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 14,
             discriminant: {
               type: 'Identifier',
+              start: 7,
+              end: 10,
               name: 'foo'
             },
             cases: []
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'switch (A) {default: D; case B: C; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 36,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 36,
             discriminant: {
               type: 'Identifier',
+              start: 8,
+              end: 9,
               name: 'A'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: null,
+                start: 12,
+                end: 23,
                 consequent: [
                   {
                     type: 'ExpressionStatement',
+                    start: 21,
+                    end: 23,
                     expression: {
                       type: 'Identifier',
+                      start: 21,
+                      end: 22,
                       name: 'D'
                     }
                   }
-                ]
+                ],
+                test: null
               },
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Identifier',
-                  name: 'B'
-                },
+                start: 24,
+                end: 34,
                 consequent: [
                   {
                     type: 'ExpressionStatement',
+                    start: 32,
+                    end: 34,
                     expression: {
                       type: 'Identifier',
+                      start: 32,
+                      end: 33,
                       name: 'C'
                     }
                   }
-                ]
+                ],
+                test: {
+                  type: 'Identifier',
+                  start: 29,
+                  end: 30,
+                  name: 'B'
+                }
               }
             ]
           }
@@ -144,31 +170,40 @@ describe('Statements - Switch', () => {
     ],
     [
       'switch (answer) { case 0: hi(); break; default: break }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 55,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 55,
             discriminant: {
               type: 'Identifier',
+              start: 8,
+              end: 14,
               name: 'answer'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Literal',
-                  value: 0
-                },
+                start: 18,
+                end: 38,
                 consequent: [
                   {
                     type: 'ExpressionStatement',
+                    start: 26,
+                    end: 31,
                     expression: {
                       type: 'CallExpression',
+                      start: 26,
+                      end: 30,
                       callee: {
                         type: 'Identifier',
+                        start: 26,
+                        end: 28,
                         name: 'hi'
                       },
                       arguments: []
@@ -176,50 +211,73 @@ describe('Statements - Switch', () => {
                   },
                   {
                     type: 'BreakStatement',
+                    start: 32,
+                    end: 38,
                     label: null
                   }
-                ]
+                ],
+                test: {
+                  type: 'Literal',
+                  start: 23,
+                  end: 24,
+                  value: 0
+                }
               },
               {
                 type: 'SwitchCase',
-                test: null,
+                start: 39,
+                end: 53,
                 consequent: [
                   {
                     type: 'BreakStatement',
+                    start: 48,
+                    end: 53,
                     label: null
                   }
-                ]
+                ],
+                test: null
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'switch(a){case 1:}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 18,
             discriminant: {
               type: 'Identifier',
+              start: 7,
+              end: 8,
               name: 'a'
             },
             cases: [
               {
                 type: 'SwitchCase',
+                start: 10,
+                end: 17,
+                consequent: [],
                 test: {
                   type: 'Literal',
+                  start: 15,
+                  end: 16,
                   value: 1
-                },
-                consequent: []
+                }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -255,44 +313,61 @@ describe('Statements - Switch', () => {
     ],
     [
       'switch (answer) { case 0: let a; }',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 34,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 34,
             discriminant: {
               type: 'Identifier',
+              start: 8,
+              end: 14,
               name: 'answer'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Literal',
-                  value: 0
-                },
+                start: 18,
+                end: 32,
                 consequent: [
                   {
                     type: 'VariableDeclaration',
-                    kind: 'let',
+                    start: 26,
+                    end: 32,
                     declarations: [
                       {
                         type: 'VariableDeclarator',
-                        init: null,
+                        start: 30,
+                        end: 31,
                         id: {
                           type: 'Identifier',
+                          start: 30,
+                          end: 31,
                           name: 'a'
-                        }
+                        },
+                        init: null
                       }
-                    ]
+                    ],
+                    kind: 'let'
                   }
-                ]
+                ],
+                test: {
+                  type: 'Literal',
+                  start: 23,
+                  end: 24,
+                  value: 0,
+                  raw: '0'
+                }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -329,64 +404,90 @@ describe('Statements - Switch', () => {
     ],
     [
       'switch (0) { case 1: var f; default: var f }',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 44,
             discriminant: {
               type: 'Literal',
-              value: 0
+              start: 8,
+              end: 9,
+              value: 0,
+              raw: '0'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Literal',
-                  value: 1
-                },
+                start: 13,
+                end: 27,
                 consequent: [
                   {
                     type: 'VariableDeclaration',
-                    kind: 'var',
+                    start: 21,
+                    end: 27,
                     declarations: [
                       {
                         type: 'VariableDeclarator',
-                        init: null,
+                        start: 25,
+                        end: 26,
                         id: {
                           type: 'Identifier',
+                          start: 25,
+                          end: 26,
                           name: 'f'
-                        }
+                        },
+                        init: null
                       }
-                    ]
+                    ],
+                    kind: 'var'
                   }
-                ]
+                ],
+                test: {
+                  type: 'Literal',
+                  start: 18,
+                  end: 19,
+                  value: 1,
+                  raw: '1'
+                }
               },
               {
                 type: 'SwitchCase',
-                test: null,
+                start: 28,
+                end: 42,
                 consequent: [
                   {
                     type: 'VariableDeclaration',
-                    kind: 'var',
+                    start: 37,
+                    end: 42,
                     declarations: [
                       {
                         type: 'VariableDeclarator',
-                        init: null,
+                        start: 41,
+                        end: 42,
                         id: {
                           type: 'Identifier',
+                          start: 41,
+                          end: 42,
                           name: 'f'
-                        }
+                        },
+                        init: null
                       }
-                    ]
+                    ],
+                    kind: 'var'
                   }
-                ]
+                ],
+                test: null
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

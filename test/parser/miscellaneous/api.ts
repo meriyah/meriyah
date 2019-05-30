@@ -1,5 +1,3 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
@@ -15,17 +13,23 @@ describe('Expressions - API', () => {
         module: true
       }),
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
+            type: 'ExpressionStatement',
             expression: {
+              type: 'Identifier',
               name: 'foo',
-              type: 'Identifier'
+              start: 0,
+              end: 3
             },
-            type: 'ExpressionStatement'
+            start: 0,
+            end: 3
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 3
       }
     );
   });

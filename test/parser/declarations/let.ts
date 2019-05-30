@@ -1048,196 +1048,276 @@ describe('Declarations - Let', () => {
     ],
     [
       'for (let {x : y, z, a : b = c} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 39,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 39,
             left: {
               type: 'VariableDeclaration',
-              kind: 'let',
+              start: 5,
+              end: 30,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 30,
                   id: {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 30,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 10,
+                        end: 15,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 10,
+                          end: 11,
                           name: 'x'
                         },
-                        computed: false,
                         value: {
                           type: 'Identifier',
+                          start: 14,
+                          end: 15,
                           name: 'y'
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       },
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 17,
+                        end: 18,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 17,
+                          end: 18,
                           name: 'z'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 17,
+                          end: 18,
                           name: 'z'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       },
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 20,
+                        end: 29,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 20,
+                          end: 21,
                           name: 'a'
                         },
-                        computed: false,
                         value: {
                           type: 'AssignmentPattern',
+                          start: 24,
+                          end: 29,
                           left: {
                             type: 'Identifier',
+                            start: 24,
+                            end: 25,
                             name: 'b'
                           },
                           right: {
                             type: 'Identifier',
+                            start: 28,
+                            end: 29,
                             name: 'c'
                           }
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'let'
             },
             right: {
               type: 'Identifier',
+              start: 34,
+              end: 37,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 38,
+              end: 39
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (let {[x]: y} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 26,
             left: {
               type: 'VariableDeclaration',
-              kind: 'let',
+              start: 5,
+              end: 17,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 17,
                   id: {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 17,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 10,
+                        end: 16,
+                        method: false,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 11,
+                          end: 12,
                           name: 'x'
                         },
-                        computed: true,
                         value: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'y'
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'let'
             },
             right: {
               type: 'Identifier',
+              start: 21,
+              end: 24,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 25,
+              end: 26
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'for (let {[x]: y = z} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 30,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 30,
             left: {
               type: 'VariableDeclaration',
-              kind: 'let',
+              start: 5,
+              end: 21,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 9,
+                  end: 21,
                   id: {
                     type: 'ObjectPattern',
+                    start: 9,
+                    end: 21,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 10,
+                        end: 20,
+                        method: false,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 11,
+                          end: 12,
                           name: 'x'
                         },
-                        computed: true,
                         value: {
                           type: 'AssignmentPattern',
+                          start: 15,
+                          end: 20,
                           left: {
                             type: 'Identifier',
+                            start: 15,
+                            end: 16,
                             name: 'y'
                           },
                           right: {
                             type: 'Identifier',
+                            start: 19,
+                            end: 20,
                             name: 'z'
                           }
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'let'
             },
             right: {
               type: 'Identifier',
+              start: 25,
+              end: 28,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 29,
+              end: 30
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3050,52 +3130,74 @@ describe('Declarations - Let', () => {
     ],
     [
       'let {x, y} = obj;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'VariableDeclaration',
+            start: 0,
+            end: 17,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 16,
                 id: {
                   type: 'ObjectPattern',
+                  start: 4,
+                  end: 10,
                   properties: [
                     {
                       type: 'Property',
+                      start: 5,
+                      end: 6,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'x'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
+                        start: 5,
+                        end: 6,
                         name: 'x'
                       },
                       kind: 'init',
-                      method: false,
-                      shorthand: true
+                      value: {
+                        type: 'Identifier',
+                        start: 5,
+                        end: 6,
+                        name: 'x'
+                      }
                     },
                     {
                       type: 'Property',
+                      start: 8,
+                      end: 9,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'y'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
+                        start: 8,
+                        end: 9,
                         name: 'y'
                       },
                       kind: 'init',
-                      method: false,
-                      shorthand: true
+                      value: {
+                        type: 'Identifier',
+                        start: 8,
+                        end: 9,
+                        name: 'y'
+                      }
                     }
                   ]
                 },
                 init: {
                   type: 'Identifier',
+                  start: 13,
+                  end: 16,
                   name: 'obj'
                 }
               }
@@ -3108,64 +3210,92 @@ describe('Declarations - Let', () => {
     ],
     [
       'let {x} = a, {y} = obj;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'VariableDeclaration',
+            start: 0,
+            end: 23,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 11,
                 id: {
                   type: 'ObjectPattern',
+                  start: 4,
+                  end: 7,
                   properties: [
                     {
                       type: 'Property',
+                      start: 5,
+                      end: 6,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'x'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
+                        start: 5,
+                        end: 6,
                         name: 'x'
                       },
                       kind: 'init',
-                      method: false,
-                      shorthand: true
+                      value: {
+                        type: 'Identifier',
+                        start: 5,
+                        end: 6,
+                        name: 'x'
+                      }
                     }
                   ]
                 },
                 init: {
                   type: 'Identifier',
+                  start: 10,
+                  end: 11,
                   name: 'a'
                 }
               },
               {
                 type: 'VariableDeclarator',
+                start: 13,
+                end: 22,
                 id: {
                   type: 'ObjectPattern',
+                  start: 13,
+                  end: 16,
                   properties: [
                     {
                       type: 'Property',
+                      start: 14,
+                      end: 15,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'y'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
+                        start: 14,
+                        end: 15,
                         name: 'y'
                       },
                       kind: 'init',
-                      method: false,
-                      shorthand: true
+                      value: {
+                        type: 'Identifier',
+                        start: 14,
+                        end: 15,
+                        name: 'y'
+                      }
                     }
                   ]
                 },
                 init: {
                   type: 'Identifier',
+                  start: 19,
+                  end: 22,
                   name: 'obj'
                 }
               }

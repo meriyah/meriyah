@@ -360,48 +360,64 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #a; #b; }`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
-            body: {
-              body: [
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'a',
-                    type: 'PrivateName'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: null
-                },
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'b',
-                    type: 'PrivateName'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: null
-                }
-              ],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
             decorators: [],
             id: {
+              type: 'Identifier',
               name: 'A',
-              type: 'Identifier'
+              start: 6,
+              end: 7
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'PrivateName',
+                    name: 'a',
+                    start: 10,
+                    end: 12
+                  },
+                  value: null,
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 12
+                },
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'PrivateName',
+                    name: 'b',
+                    start: 14,
+                    end: 16
+                  },
+                  value: null,
+                  computed: false,
+                  static: false,
+                  start: 14,
+                  end: 16
+                }
+              ],
+              start: 8,
+              end: 19
+            },
+            start: 0,
+            end: 19
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        start: 0,
+        end: 19
       }
     ],
     [
@@ -1017,7 +1033,7 @@ describe('Next - Private methods', () => {
           this.#privateFieldValue = -(this.#privateFieldValue ** this.#privateFieldValue);
           this.publicFieldValue = -(this.publicFieldValue ** this.publicFieldValue);
         }
-      } `,
+      }`,
       Context.OptionsNext,
       {
         type: 'Program',

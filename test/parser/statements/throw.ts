@@ -81,14 +81,20 @@ describe('Statements - Throw', () => {
     ],
     [
       'throw foo;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ThrowStatement',
+            start: 0,
+            end: 10,
             argument: {
               type: 'Identifier',
+              start: 6,
+              end: 9,
               name: 'foo'
             }
           }

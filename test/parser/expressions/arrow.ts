@@ -1375,40 +1375,52 @@ describe('Expressions - Arrow', () => {
 
     [
       'a => a + x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BinaryExpression',
-                left: {
-                  type: 'Identifier',
-                  name: 'a'
-                },
-                right: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                operator: '+'
-              },
+              start: 0,
+              end: 10,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'BinaryExpression',
+                start: 5,
+                end: 10,
+                left: {
+                  type: 'Identifier',
+                  start: 5,
+                  end: 6,
+                  name: 'a'
+                },
+                operator: '+',
+                right: {
+                  type: 'Identifier',
+                  start: 9,
+                  end: 10,
+                  name: 'x'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1465,182 +1477,239 @@ describe('Expressions - Arrow', () => {
     ],
     [
       'a => a / x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BinaryExpression',
-                left: {
-                  type: 'Identifier',
-                  name: 'a'
-                },
-                right: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                operator: '/'
-              },
+              start: 0,
+              end: 10,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'BinaryExpression',
+                start: 5,
+                end: 10,
+                left: {
+                  type: 'Identifier',
+                  start: 5,
+                  end: 6,
+                  name: 'a'
+                },
+                operator: '/',
+                right: {
+                  type: 'Identifier',
+                  start: 9,
+                  end: 10,
+                  name: 'x'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a => x.foo',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'foo'
-                }
-              },
+              start: 0,
+              end: 10,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'MemberExpression',
+                start: 5,
+                end: 10,
+                object: {
+                  type: 'Identifier',
+                  start: 5,
+                  end: 6,
+                  name: 'x'
+                },
+                property: {
+                  type: 'Identifier',
+                  start: 7,
+                  end: 10,
+                  name: 'foo'
+                },
+                computed: false
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(() => {}) << x',
-      Context.None,
+      Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 15,
         body: [
           {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
+              type: 'BinaryExpression',
+              start: 0,
+              end: 15,
               left: {
-                async: false,
-                body: {
-                  body: [],
-                  type: 'BlockStatement'
-                },
+                type: 'ArrowFunctionExpression',
+                start: 1,
+                end: 9,
                 expression: false,
-
+                async: false,
                 params: [],
-                type: 'ArrowFunctionExpression'
+                body: {
+                  type: 'BlockStatement',
+                  start: 7,
+                  end: 9,
+                  body: []
+                }
               },
               operator: '<<',
               right: {
-                name: 'x',
-                type: 'Identifier'
-              },
-              type: 'BinaryExpression'
-            },
-            type: 'ExpressionStatement'
+                type: 'Identifier',
+                start: 14,
+                end: 15,
+                name: 'x'
+              }
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       'a => x[foo]',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                computed: true,
-                property: {
-                  type: 'Identifier',
-                  name: 'foo'
-                }
-              },
+              start: 0,
+              end: 11,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'MemberExpression',
+                start: 5,
+                end: 11,
+                object: {
+                  type: 'Identifier',
+                  start: 5,
+                  end: 6,
+                  name: 'x'
+                },
+                property: {
+                  type: 'Identifier',
+                  start: 7,
+                  end: 10,
+                  name: 'foo'
+                },
+                computed: true
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a => x()',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 8,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'CallExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                arguments: []
-              },
+              start: 0,
+              end: 8,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'CallExpression',
+                start: 5,
+                end: 8,
+                callee: {
+                  type: 'Identifier',
+                  start: 5,
+                  end: 6,
+                  name: 'x'
+                },
+                arguments: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1683,266 +1752,356 @@ describe('Expressions - Arrow', () => {
     ],
     [
       'fn = (a, b, ...c) => c;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 22,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 2,
                 name: 'fn'
               },
-              operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'c'
-                },
+                start: 5,
+                end: 22,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 6,
+                    end: 7,
                     name: 'a'
                   },
                   {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'b'
                   },
                   {
                     type: 'RestElement',
+                    start: 12,
+                    end: 16,
                     argument: {
                       type: 'Identifier',
+                      start: 15,
+                      end: 16,
                       name: 'c'
                     }
                   }
                 ],
-
-                async: false,
-
-                expression: true
+                body: {
+                  type: 'Identifier',
+                  start: 21,
+                  end: 22,
+                  name: 'c'
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(interface)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'Identifier',
+              start: 1,
+              end: 10,
               name: 'interface'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({}) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 10,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'ObjectPattern',
+                  start: 1,
+                  end: 3,
                   properties: []
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 8,
+                end: 10,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(x = yield = x) => x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 20,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 20,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Identifier',
-                name: 'x'
-              },
+              start: 0,
+              end: 20,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 14,
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'x'
                   },
                   right: {
                     type: 'AssignmentExpression',
+                    start: 5,
+                    end: 14,
+                    operator: '=',
                     left: {
                       type: 'Identifier',
+                      start: 5,
+                      end: 10,
                       name: 'yield'
                     },
-                    operator: '=',
                     right: {
                       type: 'Identifier',
+                      start: 13,
+                      end: 14,
                       name: 'x'
                     }
                   }
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Identifier',
+                start: 19,
+                end: 20,
+                name: 'x'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '([x = yield]) => x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Identifier',
-                name: 'x'
-              },
+              start: 0,
+              end: 18,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'ArrayPattern',
+                  start: 1,
+                  end: 12,
                   elements: [
                     {
                       type: 'AssignmentPattern',
+                      start: 2,
+                      end: 11,
                       left: {
                         type: 'Identifier',
+                        start: 2,
+                        end: 3,
                         name: 'x'
                       },
                       right: {
                         type: 'Identifier',
+                        start: 6,
+                        end: 11,
                         name: 'yield'
                       }
                     }
                   ]
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Identifier',
+                start: 17,
+                end: 18,
+                name: 'x'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '([x, {y: [yield]}])',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ArrayExpression',
+              start: 1,
+              end: 18,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'x'
                 },
                 {
                   type: 'ObjectExpression',
+                  start: 5,
+                  end: 17,
                   properties: [
                     {
                       type: 'Property',
+                      start: 6,
+                      end: 16,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 6,
+                        end: 7,
                         name: 'y'
                       },
                       value: {
                         type: 'ArrayExpression',
+                        start: 9,
+                        end: 16,
                         elements: [
                           {
                             type: 'Identifier',
+                            start: 10,
+                            end: 15,
                             name: 'yield'
                           }
                         ]
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '([], a) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 13,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'ArrayPattern',
+                  start: 1,
+                  end: 3,
                   elements: []
                 },
                 {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 11,
+                end: 13,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2000,60 +2159,111 @@ describe('Expressions - Arrow', () => {
             });
           }
         }`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 522,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 522,
             expression: {
               type: 'ArrowFunctionExpression',
+              start: 0,
+              end: 522,
+              expression: false,
+              async: false,
+              params: [
+                {
+                  type: 'Identifier',
+                  start: 1,
+                  end: 7,
+                  name: 'expect'
+                },
+                {
+                  type: 'Identifier',
+                  start: 9,
+                  end: 16,
+                  name: 'subject'
+                },
+                {
+                  type: 'Identifier',
+                  start: 18,
+                  end: 26,
+                  name: 'typeName'
+                }
+              ],
               body: {
                 type: 'BlockStatement',
+                start: 31,
+                end: 522,
                 body: [
                   {
                     type: 'ExpressionStatement',
+                    start: 43,
+                    end: 147,
                     expression: {
                       type: 'AssignmentExpression',
+                      start: 43,
+                      end: 146,
+                      operator: '=',
                       left: {
                         type: 'Identifier',
+                        start: 43,
+                        end: 51,
                         name: 'typeName'
                       },
-                      operator: '=',
                       right: {
                         type: 'ConditionalExpression',
+                        start: 54,
+                        end: 146,
                         test: {
                           type: 'CallExpression',
+                          start: 54,
+                          end: 100,
                           callee: {
                             type: 'MemberExpression',
+                            start: 54,
+                            end: 90,
                             object: {
                               type: 'Literal',
+                              start: 54,
+                              end: 85,
                               value: /^reg(?:exp?|ular expression)$/,
                               regex: {
                                 pattern: '^reg(?:exp?|ular expression)$',
                                 flags: ''
                               }
                             },
-                            computed: false,
                             property: {
                               type: 'Identifier',
+                              start: 86,
+                              end: 90,
                               name: 'test'
-                            }
+                            },
+                            computed: false
                           },
                           arguments: [
                             {
                               type: 'Identifier',
+                              start: 91,
+                              end: 99,
                               name: 'typeName'
                             }
                           ]
                         },
                         consequent: {
                           type: 'Literal',
+                          start: 115,
+                          end: 123,
                           value: 'regexp'
                         },
                         alternate: {
                           type: 'Identifier',
+                          start: 138,
+                          end: 146,
                           name: 'typeName'
                         }
                       }
@@ -2061,214 +2271,312 @@ describe('Expressions - Arrow', () => {
                   },
                   {
                     type: 'ExpressionStatement',
+                    start: 158,
+                    end: 244,
                     expression: {
                       type: 'AssignmentExpression',
+                      start: 158,
+                      end: 243,
+                      operator: '=',
                       left: {
                         type: 'MemberExpression',
+                        start: 158,
+                        end: 178,
                         object: {
                           type: 'MemberExpression',
+                          start: 158,
+                          end: 175,
                           object: {
                             type: 'Identifier',
+                            start: 158,
+                            end: 164,
                             name: 'expect'
                           },
-                          computed: false,
                           property: {
                             type: 'Identifier',
+                            start: 165,
+                            end: 175,
                             name: 'argsOutput'
-                          }
+                          },
+                          computed: false
                         },
-                        computed: true,
                         property: {
                           type: 'Literal',
+                          start: 176,
+                          end: 177,
                           value: 0
-                        }
+                        },
+                        computed: true
                       },
-                      operator: '=',
                       right: {
                         type: 'ArrowFunctionExpression',
+                        start: 181,
+                        end: 243,
+                        expression: false,
+                        async: false,
+                        params: [
+                          {
+                            type: 'Identifier',
+                            start: 181,
+                            end: 187,
+                            name: 'output'
+                          }
+                        ],
                         body: {
                           type: 'BlockStatement',
+                          start: 191,
+                          end: 243,
                           body: [
                             {
                               type: 'ExpressionStatement',
+                              start: 205,
+                              end: 231,
                               expression: {
                                 type: 'CallExpression',
+                                start: 205,
+                                end: 230,
                                 callee: {
                                   type: 'MemberExpression',
+                                  start: 205,
+                                  end: 220,
                                   object: {
                                     type: 'Identifier',
+                                    start: 205,
+                                    end: 211,
                                     name: 'output'
                                   },
-                                  computed: false,
                                   property: {
                                     type: 'Identifier',
+                                    start: 212,
+                                    end: 220,
                                     name: 'jsString'
-                                  }
+                                  },
+                                  computed: false
                                 },
                                 arguments: [
                                   {
                                     type: 'Identifier',
+                                    start: 221,
+                                    end: 229,
                                     name: 'typeName'
                                   }
                                 ]
                               }
                             }
                           ]
-                        },
-                        params: [
-                          {
-                            type: 'Identifier',
-                            name: 'output'
-                          }
-                        ],
-
-                        async: false,
-
-                        expression: false
+                        }
                       }
                     }
                   },
                   {
                     type: 'IfStatement',
+                    start: 255,
+                    end: 512,
                     test: {
                       type: 'UnaryExpression',
+                      start: 259,
+                      end: 284,
                       operator: '!',
+                      prefix: true,
                       argument: {
                         type: 'CallExpression',
+                        start: 260,
+                        end: 284,
                         callee: {
                           type: 'MemberExpression',
+                          start: 260,
+                          end: 274,
                           object: {
                             type: 'Identifier',
+                            start: 260,
+                            end: 266,
                             name: 'expect'
                           },
-                          computed: false,
                           property: {
                             type: 'Identifier',
+                            start: 267,
+                            end: 274,
                             name: 'getType'
-                          }
+                          },
+                          computed: false
                         },
                         arguments: [
                           {
                             type: 'Identifier',
+                            start: 275,
+                            end: 283,
                             name: 'typeName'
                           }
                         ]
-                      },
-                      prefix: true
+                      }
                     },
                     consequent: {
                       type: 'BlockStatement',
+                      start: 286,
+                      end: 512,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 300,
+                          end: 328,
                           expression: {
                             type: 'AssignmentExpression',
+                            start: 300,
+                            end: 327,
+                            operator: '=',
                             left: {
                               type: 'MemberExpression',
+                              start: 300,
+                              end: 316,
                               object: {
                                 type: 'Identifier',
+                                start: 300,
+                                end: 306,
                                 name: 'expect'
                               },
-                              computed: false,
                               property: {
                                 type: 'Identifier',
+                                start: 307,
+                                end: 316,
                                 name: 'errorMode'
-                              }
+                              },
+                              computed: false
                             },
-                            operator: '=',
                             right: {
                               type: 'Literal',
+                              start: 319,
+                              end: 327,
                               value: 'nested'
                             }
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 341,
+                          end: 500,
                           expression: {
                             type: 'CallExpression',
+                            start: 341,
+                            end: 499,
                             callee: {
                               type: 'MemberExpression',
+                              start: 341,
+                              end: 352,
                               object: {
                                 type: 'Identifier',
+                                start: 341,
+                                end: 347,
                                 name: 'expect'
                               },
-                              computed: false,
                               property: {
                                 type: 'Identifier',
+                                start: 348,
+                                end: 352,
                                 name: 'fail'
-                              }
+                              },
+                              computed: false
                             },
                             arguments: [
                               {
                                 type: 'ArrowFunctionExpression',
+                                start: 353,
+                                end: 498,
+                                expression: false,
+                                async: false,
+                                params: [
+                                  {
+                                    type: 'Identifier',
+                                    start: 353,
+                                    end: 359,
+                                    name: 'output'
+                                  }
+                                ],
                                 body: {
                                   type: 'BlockStatement',
+                                  start: 363,
+                                  end: 498,
                                   body: [
                                     {
                                       type: 'ExpressionStatement',
+                                      start: 379,
+                                      end: 484,
                                       expression: {
                                         type: 'CallExpression',
+                                        start: 379,
+                                        end: 483,
                                         callee: {
                                           type: 'MemberExpression',
+                                          start: 379,
+                                          end: 473,
                                           object: {
                                             type: 'CallExpression',
+                                            start: 379,
+                                            end: 447,
                                             callee: {
                                               type: 'MemberExpression',
+                                              start: 379,
+                                              end: 445,
                                               object: {
                                                 type: 'CallExpression',
+                                                start: 379,
+                                                end: 425,
                                                 callee: {
                                                   type: 'MemberExpression',
+                                                  start: 379,
+                                                  end: 408,
                                                   object: {
                                                     type: 'Identifier',
+                                                    start: 379,
+                                                    end: 385,
                                                     name: 'output'
                                                   },
-                                                  computed: false,
                                                   property: {
                                                     type: 'Identifier',
+                                                    start: 403,
+                                                    end: 408,
                                                     name: 'error'
-                                                  }
+                                                  },
+                                                  computed: false
                                                 },
                                                 arguments: [
                                                   {
                                                     type: 'Literal',
+                                                    start: 409,
+                                                    end: 424,
                                                     value: 'Unknown type:'
                                                   }
                                                 ]
                                               },
-                                              computed: false,
                                               property: {
                                                 type: 'Identifier',
+                                                start: 443,
+                                                end: 445,
                                                 name: 'sp'
-                                              }
+                                              },
+                                              computed: false
                                             },
                                             arguments: []
                                           },
-                                          computed: false,
                                           property: {
                                             type: 'Identifier',
+                                            start: 465,
+                                            end: 473,
                                             name: 'jsString'
-                                          }
+                                          },
+                                          computed: false
                                         },
                                         arguments: [
                                           {
                                             type: 'Identifier',
+                                            start: 474,
+                                            end: 482,
                                             name: 'typeName'
                                           }
                                         ]
                                       }
                                     }
                                   ]
-                                },
-                                params: [
-                                  {
-                                    type: 'Identifier',
-                                    name: 'output'
-                                  }
-                                ],
-
-                                async: false,
-
-                                expression: false
+                                }
                               }
                             ]
                           }
@@ -2278,286 +2586,361 @@ describe('Expressions - Arrow', () => {
                     alternate: null
                   }
                 ]
-              },
-              params: [
-                {
-                  type: 'Identifier',
-                  name: 'expect'
-                },
-                {
-                  type: 'Identifier',
-                  name: 'subject'
-                },
-                {
-                  type: 'Identifier',
-                  name: 'typeName'
-                }
-              ],
-
-              async: false,
-
-              expression: false
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(a, b = c) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 16,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 },
                 {
                   type: 'AssignmentPattern',
+                  start: 4,
+                  end: 9,
                   left: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 5,
                     name: 'b'
                   },
                   right: {
                     type: 'Identifier',
+                    start: 8,
+                    end: 9,
                     name: 'c'
                   }
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 14,
+                end: 16,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(x, y = 9, z = 8) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 23,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'x'
                 },
                 {
                   type: 'AssignmentPattern',
+                  start: 4,
+                  end: 9,
                   left: {
                     type: 'Identifier',
+                    start: 4,
+                    end: 5,
                     name: 'y'
                   },
                   right: {
                     type: 'Literal',
+                    start: 8,
+                    end: 9,
                     value: 9
                   }
                 },
                 {
                   type: 'AssignmentPattern',
+                  start: 11,
+                  end: 16,
                   left: {
                     type: 'Identifier',
+                    start: 11,
+                    end: 12,
                     name: 'z'
                   },
                   right: {
                     type: 'Literal',
+                    start: 15,
+                    end: 16,
                     value: 8
                   }
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 21,
+                end: 23,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({a} = {}) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 16,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 9,
                   left: {
                     type: 'ObjectPattern',
+                    start: 1,
+                    end: 4,
                     properties: [
                       {
                         type: 'Property',
+                        start: 2,
+                        end: 3,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'a'
-                        },
-                        value: {
-                          type: 'Identifier',
+                          start: 2,
+                          end: 3,
                           name: 'a'
                         },
                         kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
+                        value: {
+                          type: 'Identifier',
+                          start: 2,
+                          end: 3,
+                          name: 'a'
+                        }
                       }
                     ]
                   },
                   right: {
                     type: 'ObjectExpression',
+                    start: 7,
+                    end: 9,
                     properties: []
                   }
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 14,
+                end: 16,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'let x = ({y=z}=e) => d',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'let',
+            start: 0,
+            end: 22,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 22,
+                id: {
+                  type: 'Identifier',
+                  start: 4,
+                  end: 5,
+                  name: 'x'
+                },
                 init: {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'Identifier',
-                    name: 'd'
-                  },
+                  start: 8,
+                  end: 22,
+                  expression: true,
+                  async: false,
                   params: [
                     {
                       type: 'AssignmentPattern',
+                      start: 9,
+                      end: 16,
                       left: {
                         type: 'ObjectPattern',
+                        start: 9,
+                        end: 14,
                         properties: [
                           {
                             type: 'Property',
+                            start: 10,
+                            end: 13,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 10,
+                              end: 11,
                               name: 'y'
                             },
+                            kind: 'init',
                             value: {
                               type: 'AssignmentPattern',
+                              start: 10,
+                              end: 13,
                               left: {
                                 type: 'Identifier',
+                                start: 10,
+                                end: 11,
                                 name: 'y'
                               },
                               right: {
                                 type: 'Identifier',
+                                start: 12,
+                                end: 13,
                                 name: 'z'
                               }
-                            },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: true
+                            }
                           }
                         ]
                       },
                       right: {
                         type: 'Identifier',
+                        start: 15,
+                        end: 16,
                         name: 'e'
                       }
                     }
                   ],
-
-                  async: false,
-
-                  expression: true
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'x'
+                  body: {
+                    type: 'Identifier',
+                    start: 21,
+                    end: 22,
+                    name: 'd'
+                  }
                 }
               }
-            ]
+            ],
+            kind: 'let'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '([x] = []) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 16,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 9,
                   left: {
                     type: 'ArrayPattern',
+                    start: 1,
+                    end: 4,
                     elements: [
                       {
                         type: 'Identifier',
+                        start: 2,
+                        end: 3,
                         name: 'x'
                       }
                     ]
                   },
                   right: {
                     type: 'ArrayExpression',
+                    start: 7,
+                    end: 9,
                     elements: []
                   }
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 14,
+                end: 16,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2625,47 +3008,63 @@ describe('Expressions - Arrow', () => {
     ],
     [
       'e => { label: 42 }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: [
-                  {
-                    type: 'LabeledStatement',
-                    label: {
-                      type: 'Identifier',
-                      name: 'label'
-                    },
-                    body: {
-                      type: 'ExpressionStatement',
-                      expression: {
-                        type: 'Literal',
-                        value: 42
-                      }
-                    }
-                  }
-                ]
-              },
+              start: 0,
+              end: 18,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'e'
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 5,
+                end: 18,
+                body: [
+                  {
+                    type: 'LabeledStatement',
+                    start: 7,
+                    end: 16,
+                    body: {
+                      type: 'ExpressionStatement',
+                      start: 14,
+                      end: 16,
+                      expression: {
+                        type: 'Literal',
+                        start: 14,
+                        end: 16,
+                        value: 42
+                      }
+                    },
+                    label: {
+                      type: 'Identifier',
+                      start: 7,
+                      end: 12,
+                      name: 'label'
+                    }
+                  }
+                ]
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2712,47 +3111,63 @@ describe('Expressions - Arrow', () => {
     ],
     [
       '(x=1) => x * x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BinaryExpression',
-                left: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                right: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
-                operator: '*'
-              },
+              start: 0,
+              end: 14,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 4,
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'x'
                   },
                   right: {
                     type: 'Literal',
+                    start: 3,
+                    end: 4,
                     value: 1
                   }
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'BinaryExpression',
+                start: 9,
+                end: 14,
+                left: {
+                  type: 'Identifier',
+                  start: 9,
+                  end: 10,
+                  name: 'x'
+                },
+                operator: '*',
+                right: {
+                  type: 'Identifier',
+                  start: 13,
+                  end: 14,
+                  name: 'x'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3642,462 +4057,620 @@ describe('Expressions - Arrow', () => {
     ],
     [
       '({a} = b,) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 16,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 8,
                   left: {
                     type: 'ObjectPattern',
+                    start: 1,
+                    end: 4,
                     properties: [
                       {
                         type: 'Property',
+                        start: 2,
+                        end: 3,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'a'
-                        },
-                        value: {
-                          type: 'Identifier',
+                          start: 2,
+                          end: 3,
                           name: 'a'
                         },
                         kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
+                        value: {
+                          type: 'Identifier',
+                          start: 2,
+                          end: 3,
+                          name: 'a'
+                        }
                       }
                     ]
                   },
                   right: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 8,
                     name: 'b'
                   }
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 14,
+                end: 16,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(a, b, (c, d) => 0)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'SequenceExpression',
+              start: 1,
+              end: 18,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'b'
                 },
                 {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'Literal',
-                    value: 0
-                  },
+                  start: 7,
+                  end: 18,
+                  expression: true,
+                  async: false,
                   params: [
                     {
                       type: 'Identifier',
+                      start: 8,
+                      end: 9,
                       name: 'c'
                     },
                     {
                       type: 'Identifier',
+                      start: 11,
+                      end: 12,
                       name: 'd'
                     }
                   ],
-
-                  async: false,
-
-                  expression: true
+                  body: {
+                    type: 'Literal',
+                    start: 17,
+                    end: 18,
+                    value: 0
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(a, b) => 0, (c, d) => 1',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 24,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 24,
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'Literal',
-                    value: 0
-                  },
+                  start: 0,
+                  end: 11,
+                  expression: true,
+                  async: false,
                   params: [
                     {
                       type: 'Identifier',
+                      start: 1,
+                      end: 2,
                       name: 'a'
                     },
                     {
                       type: 'Identifier',
+                      start: 4,
+                      end: 5,
                       name: 'b'
                     }
                   ],
-
-                  async: false,
-
-                  expression: true
+                  body: {
+                    type: 'Literal',
+                    start: 10,
+                    end: 11,
+                    value: 0
+                  }
                 },
                 {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'Literal',
-                    value: 1
-                  },
+                  start: 13,
+                  end: 24,
+                  expression: true,
+                  async: false,
                   params: [
                     {
                       type: 'Identifier',
+                      start: 14,
+                      end: 15,
                       name: 'c'
                     },
                     {
                       type: 'Identifier',
+                      start: 17,
+                      end: 18,
                       name: 'd'
                     }
                   ],
-
-                  async: false,
-
-                  expression: true
+                  body: {
+                    type: 'Literal',
+                    start: 23,
+                    end: 24,
+                    value: 1
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(a, b => {}, a => a + 1)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 24,
             expression: {
               type: 'SequenceExpression',
+              start: 1,
+              end: 23,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 },
                 {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'BlockStatement',
-                    body: []
-                  },
+                  start: 4,
+                  end: 11,
+                  expression: false,
+                  async: false,
                   params: [
                     {
                       type: 'Identifier',
+                      start: 4,
+                      end: 5,
                       name: 'b'
                     }
                   ],
-
-                  async: false,
-
-                  expression: false
+                  body: {
+                    type: 'BlockStatement',
+                    start: 9,
+                    end: 11,
+                    body: []
+                  }
                 },
                 {
                   type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'Identifier',
-                      name: 'a'
-                    },
-                    right: {
-                      type: 'Literal',
-                      value: 1
-                    },
-                    operator: '+'
-                  },
+                  start: 13,
+                  end: 23,
+                  expression: true,
+                  async: false,
                   params: [
                     {
                       type: 'Identifier',
+                      start: 13,
+                      end: 14,
                       name: 'a'
                     }
                   ],
-
-                  async: false,
-
-                  expression: true
+                  body: {
+                    type: 'BinaryExpression',
+                    start: 18,
+                    end: 23,
+                    left: {
+                      type: 'Identifier',
+                      start: 18,
+                      end: 19,
+                      name: 'a'
+                    },
+                    operator: '+',
+                    right: {
+                      type: 'Literal',
+                      start: 22,
+                      end: 23,
+                      value: 1
+                    }
+                  }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '() => a + b - yield / 1',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'ArrowFunctionExpression',
+              start: 0,
+              end: 23,
+              expression: true,
+              async: false,
+              params: [],
               body: {
                 type: 'BinaryExpression',
+                start: 6,
+                end: 23,
                 left: {
                   type: 'BinaryExpression',
+                  start: 6,
+                  end: 11,
                   left: {
                     type: 'Identifier',
+                    start: 6,
+                    end: 7,
                     name: 'a'
                   },
+                  operator: '+',
                   right: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 11,
                     name: 'b'
-                  },
-                  operator: '+'
+                  }
                 },
+                operator: '-',
                 right: {
                   type: 'BinaryExpression',
+                  start: 14,
+                  end: 23,
                   left: {
                     type: 'Identifier',
+                    start: 14,
+                    end: 19,
                     name: 'yield'
                   },
+                  operator: '/',
                   right: {
                     type: 'Literal',
+                    start: 22,
+                    end: 23,
                     value: 1
-                  },
-                  operator: '/'
-                },
-                operator: '-'
-              },
-              params: [],
-
-              async: false,
-
-              expression: true
+                  }
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({x = 10, y: { z = 10 }}) => [x, z]',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 35,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'ArrayExpression',
-                elements: [
-                  {
-                    type: 'Identifier',
-                    name: 'x'
-                  },
-                  {
-                    type: 'Identifier',
-                    name: 'z'
-                  }
-                ]
-              },
+              start: 0,
+              end: 35,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'ObjectPattern',
+                  start: 1,
+                  end: 24,
                   properties: [
                     {
                       type: 'Property',
+                      start: 2,
+                      end: 8,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 2,
+                        end: 3,
                         name: 'x'
                       },
+                      kind: 'init',
                       value: {
                         type: 'AssignmentPattern',
+                        start: 2,
+                        end: 8,
                         left: {
                           type: 'Identifier',
+                          start: 2,
+                          end: 3,
                           name: 'x'
                         },
                         right: {
                           type: 'Literal',
-                          value: 10
+                          start: 6,
+                          end: 8,
+                          value: 10,
+                          raw: '10'
                         }
-                      },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'Property',
+                      start: 10,
+                      end: 23,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 10,
+                        end: 11,
                         name: 'y'
                       },
                       value: {
                         type: 'ObjectPattern',
+                        start: 13,
+                        end: 23,
                         properties: [
                           {
                             type: 'Property',
+                            start: 15,
+                            end: 21,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 15,
+                              end: 16,
                               name: 'z'
                             },
+                            kind: 'init',
                             value: {
                               type: 'AssignmentPattern',
+                              start: 15,
+                              end: 21,
                               left: {
                                 type: 'Identifier',
+                                start: 15,
+                                end: 16,
                                 name: 'z'
                               },
                               right: {
                                 type: 'Literal',
-                                value: 10
+                                start: 19,
+                                end: 21,
+                                value: 10,
+                                raw: '10'
                               }
-                            },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: true
+                            }
                           }
                         ]
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'ArrayExpression',
+                start: 29,
+                end: 35,
+                elements: [
+                  {
+                    type: 'Identifier',
+                    start: 30,
+                    end: 31,
+                    name: 'x'
+                  },
+                  {
+                    type: 'Identifier',
+                    start: 33,
+                    end: 34,
+                    name: 'z'
+                  }
+                ]
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '({x = 10}) => x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Identifier',
-                name: 'x'
-              },
+              start: 0,
+              end: 15,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'ObjectPattern',
+                  start: 1,
+                  end: 9,
                   properties: [
                     {
                       type: 'Property',
+                      start: 2,
+                      end: 8,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 2,
+                        end: 3,
                         name: 'x'
                       },
+                      kind: 'init',
                       value: {
                         type: 'AssignmentPattern',
+                        start: 2,
+                        end: 8,
                         left: {
                           type: 'Identifier',
+                          start: 2,
+                          end: 3,
                           name: 'x'
                         },
                         right: {
                           type: 'Literal',
+                          start: 6,
+                          end: 8,
                           value: 10
                         }
-                      },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: true
+                      }
                     }
                   ]
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Identifier',
+                start: 14,
+                end: 15,
+                name: 'x'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(a, {}) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 13,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 },
                 {
                   type: 'ObjectPattern',
+                  start: 4,
+                  end: 6,
                   properties: []
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 11,
+                end: 13,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -4173,43 +4746,57 @@ describe('Expressions - Arrow', () => {
     ],
     [
       '(a = b, c) => {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
+              start: 0,
+              end: 16,
+              expression: false,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 1,
+                  end: 6,
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   right: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 6,
                     name: 'b'
                   }
                 },
                 {
                   type: 'Identifier',
+                  start: 8,
+                  end: 9,
                   name: 'c'
                 }
               ],
-
-              async: false,
-
-              expression: false
+              body: {
+                type: 'BlockStatement',
+                start: 14,
+                end: 16,
+                body: []
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -4251,32 +4838,40 @@ describe('Expressions - Arrow', () => {
     ],
     [
       '(a) => 00;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Literal',
-                value: 0
-              },
+              start: 0,
+              end: 9,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Literal',
+                start: 7,
+                end: 9,
+                value: 0
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -4323,65 +4918,85 @@ describe('Expressions - Arrow', () => {
     ],
     [
       '(x, y) => z => z * (x + y)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'BinaryExpression',
-                  left: {
-                    type: 'Identifier',
-                    name: 'z'
-                  },
-                  right: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'Identifier',
-                      name: 'x'
-                    },
-                    right: {
-                      type: 'Identifier',
-                      name: 'y'
-                    },
-                    operator: '+'
-                  },
-                  operator: '*'
-                },
-                params: [
-                  {
-                    type: 'Identifier',
-                    name: 'z'
-                  }
-                ],
-
-                async: false,
-
-                expression: true
-              },
+              start: 0,
+              end: 26,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'x'
                 },
                 {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'y'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'ArrowFunctionExpression',
+                start: 10,
+                end: 26,
+                expression: true,
+                async: false,
+                params: [
+                  {
+                    type: 'Identifier',
+                    start: 10,
+                    end: 11,
+                    name: 'z'
+                  }
+                ],
+                body: {
+                  type: 'BinaryExpression',
+                  start: 15,
+                  end: 26,
+                  left: {
+                    type: 'Identifier',
+                    start: 15,
+                    end: 16,
+                    name: 'z'
+                  },
+                  operator: '*',
+                  right: {
+                    type: 'BinaryExpression',
+                    start: 20,
+                    end: 25,
+                    left: {
+                      type: 'Identifier',
+                      start: 20,
+                      end: 21,
+                      name: 'x'
+                    },
+                    operator: '+',
+                    right: {
+                      type: 'Identifier',
+                      start: 24,
+                      end: 25,
+                      name: 'y'
+                    }
+                  }
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -5340,43 +5955,57 @@ describe('Expressions - Arrow', () => {
     ],
     [
       'foo ? bar : baz => {};',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 22,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 21,
               test: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
               consequent: {
                 type: 'Identifier',
+                start: 6,
+                end: 9,
                 name: 'bar'
               },
               alternate: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'BlockStatement',
-                  body: []
-                },
+                start: 12,
+                end: 21,
+                expression: false,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 12,
+                    end: 15,
                     name: 'baz'
                   }
                 ],
-
-                async: false,
-
-                expression: false
+                body: {
+                  type: 'BlockStatement',
+                  start: 19,
+                  end: 21,
+                  body: []
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -5810,448 +6439,588 @@ describe('Expressions - Arrow', () => {
     () => (b,c) => d;  // func returns func returns func
     a=>{return b;}
     a => 'e';  // Dropping the parens`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 297,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 9,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Identifier',
-                name: 'b'
-              },
+              start: 0,
+              end: 8,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 1,
+                  end: 2,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Identifier',
+                start: 7,
+                end: 8,
+                name: 'b'
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 25,
+            end: 37,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Identifier',
-                name: 'c'
-              },
+              start: 25,
+              end: 36,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 26,
+                  end: 27,
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
+                  start: 29,
+                  end: 30,
                   name: 'b'
                 }
               ],
-
-              async: false,
-
-              expression: true
-            }
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrowFunctionExpression',
               body: {
                 type: 'Identifier',
-                name: 'b'
-              },
+                start: 35,
+                end: 36,
+                name: 'c'
+              }
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            start: 53,
+            end: 61,
+            expression: {
+              type: 'ArrowFunctionExpression',
+              start: 53,
+              end: 60,
+              expression: true,
+              async: false,
               params: [],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Identifier',
+                start: 59,
+                end: 60,
+                name: 'b'
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 77,
+            end: 93,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'c'
-                },
-                params: [
-                  {
-                    type: 'Identifier',
-                    name: 'b'
-                  }
-                ],
-
-                async: false,
-
-                expression: true
-              },
+              start: 77,
+              end: 92,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 78,
+                  end: 79,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
-            }
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrowFunctionExpression',
               body: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'c'
-                },
+                start: 84,
+                end: 92,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 85,
+                    end: 86,
                     name: 'b'
                   }
                 ],
-
-                async: false,
-
-                expression: true
-              },
-              params: [
-                {
+                body: {
                   type: 'Identifier',
-                  name: 'a'
+                  start: 91,
+                  end: 92,
+                  name: 'c'
                 }
-              ],
-
-              async: false,
-
-              expression: true
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 133,
+            end: 151,
             expression: {
               type: 'ArrowFunctionExpression',
+              start: 133,
+              end: 150,
+              expression: true,
+              async: false,
+              params: [
+                {
+                  type: 'Identifier',
+                  start: 134,
+                  end: 135,
+                  name: 'a'
+                }
+              ],
               body: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'd'
-                },
+                start: 141,
+                end: 149,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 142,
+                    end: 143,
+                    name: 'b'
+                  }
+                ],
+                body: {
+                  type: 'Identifier',
+                  start: 148,
+                  end: 149,
+                  name: 'c'
+                }
+              }
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            start: 188,
+            end: 205,
+            expression: {
+              type: 'ArrowFunctionExpression',
+              start: 188,
+              end: 204,
+              expression: true,
+              async: false,
+              params: [],
+              body: {
+                type: 'ArrowFunctionExpression',
+                start: 194,
+                end: 204,
+                expression: true,
+                async: false,
+                params: [
+                  {
+                    type: 'Identifier',
+                    start: 195,
+                    end: 196,
                     name: 'b'
                   },
                   {
                     type: 'Identifier',
+                    start: 197,
+                    end: 198,
                     name: 'c'
                   }
                 ],
-
-                async: false,
-
-                expression: true
-              },
-              params: [],
-
-              async: false,
-
-              expression: true
+                body: {
+                  type: 'Identifier',
+                  start: 203,
+                  end: 204,
+                  name: 'd'
+                }
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 245,
+            end: 259,
             expression: {
               type: 'ArrowFunctionExpression',
+              start: 245,
+              end: 259,
+              expression: false,
+              async: false,
+              params: [
+                {
+                  type: 'Identifier',
+                  start: 245,
+                  end: 246,
+                  name: 'a'
+                }
+              ],
               body: {
                 type: 'BlockStatement',
+                start: 248,
+                end: 259,
                 body: [
                   {
                     type: 'ReturnStatement',
+                    start: 249,
+                    end: 258,
                     argument: {
                       type: 'Identifier',
+                      start: 256,
+                      end: 257,
                       name: 'b'
                     }
                   }
                 ]
-              },
-              params: [
-                {
-                  type: 'Identifier',
-                  name: 'a'
-                }
-              ],
-
-              async: false,
-
-              expression: false
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 264,
+            end: 273,
             expression: {
               type: 'ArrowFunctionExpression',
-              body: {
-                type: 'Literal',
-                value: 'e'
-              },
+              start: 264,
+              end: 272,
+              expression: true,
+              async: false,
               params: [
                 {
                   type: 'Identifier',
+                  start: 264,
+                  end: 265,
                   name: 'a'
                 }
               ],
-
-              async: false,
-
-              expression: true
+              body: {
+                type: 'Literal',
+                start: 269,
+                end: 272,
+                value: 'e'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'const a = () => {return (3, 4);};',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 33,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 33,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 6,
+                end: 32,
+                id: {
+                  type: 'Identifier',
+                  start: 6,
+                  end: 7,
+                  name: 'a'
+                },
                 init: {
                   type: 'ArrowFunctionExpression',
+                  start: 10,
+                  end: 32,
+                  expression: false,
+                  async: false,
+                  params: [],
                   body: {
                     type: 'BlockStatement',
+                    start: 16,
+                    end: 32,
                     body: [
                       {
                         type: 'ReturnStatement',
+                        start: 17,
+                        end: 31,
                         argument: {
                           type: 'SequenceExpression',
+                          start: 25,
+                          end: 29,
                           expressions: [
                             {
                               type: 'Literal',
+                              start: 25,
+                              end: 26,
                               value: 3
                             },
                             {
                               type: 'Literal',
+                              start: 28,
+                              end: 29,
                               value: 4
                             }
                           ]
                         }
                       }
                     ]
-                  },
-                  params: [],
-
-                  async: false,
-
-                  expression: false
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'a'
+                  }
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       `(() => {}) || true;
     (() => {}) ? a : b;`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 43,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 18,
               left: {
                 type: 'ArrowFunctionExpression',
+                start: 1,
+                end: 9,
+                expression: false,
+                async: false,
+                params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 7,
+                  end: 9,
                   body: []
-                },
-                params: [],
-
-                async: false,
-
-                expression: false
+                }
               },
+              operator: '||',
               right: {
                 type: 'Literal',
+                start: 14,
+                end: 18,
                 value: true
-              },
-              operator: '||'
+              }
             }
           },
           {
             type: 'ExpressionStatement',
+            start: 24,
+            end: 43,
             expression: {
               type: 'ConditionalExpression',
+              start: 24,
+              end: 42,
               test: {
                 type: 'ArrowFunctionExpression',
+                start: 25,
+                end: 33,
+                expression: false,
+                async: false,
+                params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 31,
+                  end: 33,
                   body: []
-                },
-                params: [],
-
-                async: false,
-
-                expression: false
+                }
               },
               consequent: {
                 type: 'Identifier',
+                start: 37,
+                end: 38,
                 name: 'a'
               },
               alternate: {
                 type: 'Identifier',
+                start: 41,
+                end: 42,
                 name: 'b'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(() => {}) + 2',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 14,
               left: {
                 type: 'ArrowFunctionExpression',
+                start: 1,
+                end: 9,
+                expression: false,
+                async: false,
+                params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 7,
+                  end: 9,
                   body: []
-                },
-                params: [],
-
-                async: false,
-
-                expression: false
+                }
               },
+              operator: '+',
               right: {
                 type: 'Literal',
+                start: 13,
+                end: 14,
                 value: 2
-              },
-              operator: '+'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 46,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 46,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 45,
               test: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'bar'
               },
               consequent: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'ArrowFunctionExpression',
-                  body: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'BinaryExpression',
-                      left: {
-                        type: 'Identifier',
-                        name: 'x'
-                      },
-                      right: {
-                        type: 'Identifier',
-                        name: 'u'
-                      },
-                      operator: '*'
-                    },
-                    right: {
-                      type: 'BinaryExpression',
-                      left: {
-                        type: 'Identifier',
-                        name: 'y'
-                      },
-                      right: {
-                        type: 'Identifier',
-                        name: 'v'
-                      },
-                      operator: '*'
-                    },
-                    operator: '+'
-                  },
-                  params: [
-                    {
-                      type: 'Identifier',
-                      name: 'u'
-                    },
-                    {
-                      type: 'Identifier',
-                      name: 'v'
-                    }
-                  ],
-
-                  async: false,
-
-                  expression: true
-                },
+                start: 8,
+                end: 37,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'x'
                   },
                   {
                     type: 'Identifier',
+                    start: 12,
+                    end: 13,
                     name: 'y'
                   }
                 ],
-
-                async: false,
-
-                expression: true
+                body: {
+                  type: 'ArrowFunctionExpression',
+                  start: 18,
+                  end: 37,
+                  expression: true,
+                  async: false,
+                  params: [
+                    {
+                      type: 'Identifier',
+                      start: 19,
+                      end: 20,
+                      name: 'u'
+                    },
+                    {
+                      type: 'Identifier',
+                      start: 22,
+                      end: 23,
+                      name: 'v'
+                    }
+                  ],
+                  body: {
+                    type: 'BinaryExpression',
+                    start: 28,
+                    end: 37,
+                    left: {
+                      type: 'BinaryExpression',
+                      start: 28,
+                      end: 31,
+                      left: {
+                        type: 'Identifier',
+                        start: 28,
+                        end: 29,
+                        name: 'x'
+                      },
+                      operator: '*',
+                      right: {
+                        type: 'Identifier',
+                        start: 30,
+                        end: 31,
+                        name: 'u'
+                      }
+                    },
+                    operator: '+',
+                    right: {
+                      type: 'BinaryExpression',
+                      start: 34,
+                      end: 37,
+                      left: {
+                        type: 'Identifier',
+                        start: 34,
+                        end: 35,
+                        name: 'y'
+                      },
+                      operator: '*',
+                      right: {
+                        type: 'Identifier',
+                        start: 36,
+                        end: 37,
+                        name: 'v'
+                      }
+                    }
+                  }
+                }
               },
               alternate: {
                 type: 'Identifier',
+                start: 42,
+                end: 45,
                 name: 'baz'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

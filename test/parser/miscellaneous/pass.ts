@@ -5693,6 +5693,8 @@ describe("Number literals", function() {
     'function inner2({a} = {a: my_var}) { }',
     '[a] = [my_var]',
     '',
+    `for (const [, {[(this)]: w = 0}] = {eval, p, elß: (void (null)), set [class {}] ({} = (((null))) in eval) {
+    }}, kgsdx = (oc -= ("a" instanceof (((a).in)))), rir = 2e308 ? ((2e308))(...(((arguments)))) : ((2e308)); (((b))); ((c))) break`,
     `//////////////////////////////////////////////////////////////////////////////
     //CHECK#1
     if (!__func("A","B",1,2)) {

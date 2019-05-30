@@ -2397,63 +2397,89 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A extends B { constructor() { super() } })',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 49,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 49,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 48,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: {
                 type: 'Identifier',
+                start: 17,
+                end: 18,
                 name: 'B'
               },
               body: {
                 type: 'ClassBody',
+                start: 19,
+                end: 48,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 21,
+                    end: 46,
                     kind: 'constructor',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 21,
+                      end: 32,
                       name: 'constructor'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 32,
+                      end: 46,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 35,
+                        end: 46,
                         body: [
                           {
                             type: 'ExpressionStatement',
+                            start: 37,
+                            end: 44,
                             expression: {
                               type: 'CallExpression',
+                              start: 37,
+                              end: 44,
                               callee: {
-                                type: 'Super'
+                                type: 'Super',
+                                start: 37,
+                                end: 42
                               },
                               arguments: []
                             }
                           }
                         ]
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2586,101 +2612,143 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class x{}())',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
             expression: {
               type: 'CallExpression',
+              start: 1,
+              end: 12,
               callee: {
                 type: 'ClassExpression',
+                start: 1,
+                end: 10,
                 id: {
                   type: 'Identifier',
+                  start: 7,
+                  end: 8,
                   name: 'x'
                 },
                 superClass: null,
                 body: {
                   type: 'ClassBody',
+                  start: 8,
+                  end: 10,
                   body: []
                 }
               },
               arguments: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class x{}.foo)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'MemberExpression',
+              start: 1,
+              end: 14,
               object: {
                 type: 'ClassExpression',
+                start: 1,
+                end: 10,
                 id: {
                   type: 'Identifier',
+                  start: 7,
+                  end: 8,
                   name: 'x'
                 },
                 superClass: null,
                 body: {
                   type: 'ClassBody',
+                  start: 8,
+                  end: 10,
                   body: []
                 }
               },
-              computed: false,
               property: {
                 type: 'Identifier',
+                start: 11,
+                end: 14,
                 name: 'foo'
-              }
+              },
+              computed: false
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class x{}.foo())',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'CallExpression',
+              start: 1,
+              end: 16,
               callee: {
                 type: 'MemberExpression',
+                start: 1,
+                end: 14,
                 object: {
                   type: 'ClassExpression',
+                  start: 1,
+                  end: 10,
                   id: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 8,
                     name: 'x'
                   },
                   superClass: null,
                   body: {
                     type: 'ClassBody',
+                    start: 8,
+                    end: 10,
                     body: []
                   }
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 11,
+                  end: 14,
                   name: 'foo'
-                }
+                },
+                computed: false
               },
               arguments: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     /*[
@@ -2689,84 +2757,116 @@ describe('Expressions - Class', () => {
       {}], */
     [
       'class await {}',
-      Context.None,
+      Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 14,
         body: [
           {
-            body: {
-              body: [],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
+            start: 0,
+            end: 14,
             id: {
-              name: 'await',
-              type: 'Identifier'
+              type: 'Identifier',
+              start: 6,
+              end: 11,
+              name: 'await'
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              start: 12,
+              end: 14,
+              body: []
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       'class async {}',
-      Context.None,
+      Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 14,
         body: [
           {
-            body: {
-              body: [],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
+            start: 0,
+            end: 14,
             id: {
-              name: 'async',
-              type: 'Identifier'
+              type: 'Identifier',
+              start: 6,
+              end: 11,
+              name: 'async'
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              start: 12,
+              end: 14,
+              body: []
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       'x = class{} / x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 15,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'x'
               },
-              operator: '=',
               right: {
                 type: 'BinaryExpression',
+                start: 4,
+                end: 15,
                 left: {
                   type: 'ClassExpression',
+                  start: 4,
+                  end: 11,
                   id: null,
                   superClass: null,
                   body: {
                     type: 'ClassBody',
+                    start: 9,
+                    end: 11,
                     body: []
                   }
                 },
+                operator: '/',
                 right: {
                   type: 'Identifier',
+                  start: 14,
+                  end: 15,
                   name: 'x'
-                },
-                operator: '/'
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3019,87 +3119,123 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {; ;; ;})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 17,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 17,
                 body: []
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A extends B {})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 22,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 21,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: {
                 type: 'Identifier',
+                start: 17,
+                end: 18,
                 name: 'B'
               },
               body: {
                 type: 'ClassBody',
+                start: 19,
+                end: 21,
                 body: []
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A extends foo() {})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 25,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: {
                 type: 'CallExpression',
+                start: 17,
+                end: 22,
                 callee: {
                   type: 'Identifier',
+                  start: 17,
+                  end: 20,
                   name: 'foo'
                 },
                 arguments: []
               },
               body: {
                 type: 'ClassBody',
+                start: 23,
+                end: 25,
                 body: []
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3132,348 +3268,479 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {a(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 16,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 16,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 15,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 10,
+                      end: 11,
                       name: 'a'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 11,
+                      end: 15,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 13,
+                        end: 15,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {constructor(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 27,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 26,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 26,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 25,
                     kind: 'constructor',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 10,
+                      end: 21,
                       name: 'constructor'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 21,
+                      end: 25,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 23,
+                        end: 25,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {static constructor(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 34,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 34,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 33,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 33,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 32,
                     kind: 'method',
                     static: true,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 17,
+                      end: 28,
                       name: 'constructor'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 28,
+                      end: 32,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 30,
+                        end: 32,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {async foo(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 25,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 25,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 24,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 24,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 23,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 16,
+                      end: 19,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 19,
+                      end: 23,
+                      id: null,
+                      generator: false,
+                      async: true,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 21,
+                        end: 23,
                         body: []
-                      },
-                      async: true,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {*foo(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 20,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 20,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 19,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 19,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 18,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 11,
+                      end: 14,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 14,
+                      end: 18,
+                      id: null,
+                      generator: true,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 16,
+                        end: 18,
                         body: []
-                      },
-                      async: false,
-                      generator: true,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
     [
       '(class A {get foo(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 22,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 22,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 21,
                     kind: 'get',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 14,
+                      end: 17,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 17,
+                      end: 21,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 19,
+                        end: 21,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class o {f(){ function x(){}}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 32,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 32,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 31,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'o'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 31,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 30,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 10,
+                      end: 11,
                       name: 'f'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 11,
+                      end: 30,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 13,
+                        end: 30,
                         body: [
                           {
                             type: 'FunctionDeclaration',
+                            start: 15,
+                            end: 29,
+                            id: {
+                              type: 'Identifier',
+                              start: 24,
+                              end: 25,
+                              name: 'x'
+                            },
+                            generator: false,
+                            async: false,
                             params: [],
                             body: {
                               type: 'BlockStatement',
+                              start: 27,
+                              end: 29,
                               body: []
-                            },
-                            async: false,
-                            generator: false,
-
-                            id: {
-                              type: 'Identifier',
-                              name: 'x'
                             }
                           }
                         ]
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3530,173 +3797,241 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class M { static foo() {} get foo() {} set foo(x) {}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 55,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 55,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 54,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'M'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 54,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 11,
+                    end: 26,
                     kind: 'method',
                     static: true,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 18,
+                      end: 21,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 21,
+                      end: 26,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 24,
+                        end: 26,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 27,
+                    end: 39,
                     kind: 'get',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 31,
+                      end: 34,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 34,
+                      end: 39,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 37,
+                        end: 39,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 40,
+                    end: 53,
                     kind: 'set',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 44,
+                      end: 47,
                       name: 'foo'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 47,
+                      end: 53,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [
                         {
                           type: 'Identifier',
+                          start: 48,
+                          end: 49,
                           name: 'x'
                         }
                       ],
                       body: {
                         type: 'BlockStatement',
+                        start: 51,
+                        end: 53,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class OnlyStaticSetter { static set setter(x) { p("ssetter " + x) } })',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 71,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 71,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 70,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 23,
                 name: 'OnlyStaticSetter'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 24,
+                end: 70,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 26,
+                    end: 68,
                     kind: 'set',
                     static: true,
                     computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 37,
+                      end: 43,
                       name: 'setter'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 43,
+                      end: 68,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [
                         {
                           type: 'Identifier',
+                          start: 44,
+                          end: 45,
                           name: 'x'
                         }
                       ],
                       body: {
                         type: 'BlockStatement',
+                        start: 47,
+                        end: 68,
                         body: [
                           {
                             type: 'ExpressionStatement',
+                            start: 49,
+                            end: 66,
                             expression: {
                               type: 'CallExpression',
+                              start: 49,
+                              end: 66,
                               callee: {
                                 type: 'Identifier',
+                                start: 49,
+                                end: 50,
                                 name: 'p'
                               },
                               arguments: [
                                 {
                                   type: 'BinaryExpression',
+                                  start: 51,
+                                  end: 65,
                                   left: {
                                     type: 'Literal',
+                                    start: 51,
+                                    end: 61,
                                     value: 'ssetter '
                                   },
+                                  operator: '+',
                                   right: {
                                     type: 'Identifier',
+                                    start: 64,
+                                    end: 65,
                                     name: 'x'
-                                  },
-                                  operator: '+'
+                                  }
                                 }
                               ]
                             }
                           }
                         ]
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3805,84 +4140,118 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {set(){} get(){} async(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 37,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 37,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 36,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 36,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 17,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 10,
+                      end: 13,
                       name: 'set'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 13,
+                      end: 17,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 15,
+                        end: 17,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 18,
+                    end: 25,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 18,
+                      end: 21,
                       name: 'get'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 21,
+                      end: 25,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 23,
+                        end: 25,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 26,
+                    end: 35,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 26,
+                      end: 31,
                       name: 'async'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 31,
+                      end: 35,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 33,
+                        end: 35,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -3894,42 +4263,60 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {"x"(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 18,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 18,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 17,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 10,
+                      end: 13,
                       value: 'x'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 13,
+                      end: 17,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 15,
+                        end: 17,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -3988,42 +4375,60 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {async "foo"(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 27,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 26,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 26,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 25,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 16,
+                      end: 21,
                       value: 'foo'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 21,
+                      end: 25,
                       id: null,
+                      generator: false,
+                      async: true,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 23,
+                        end: 25,
                         body: []
-                      },
-                      generator: false,
-                      async: true
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4035,42 +4440,60 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {*"foo"(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 22,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 21,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 21,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 20,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 11,
+                      end: 16,
                       value: 'foo'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 16,
+                      end: 20,
                       id: null,
+                      generator: true,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 18,
+                        end: 20,
                         body: []
-                      },
-                      generator: true,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4228,47 +4651,67 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {set "get"(x){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 25,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 25,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 24,
+                    kind: 'set',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 14,
+                      end: 19,
                       value: 'get'
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 19,
+                      end: 24,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [
                         {
                           type: 'Identifier',
+                          start: 20,
+                          end: 21,
                           name: 'x'
                         }
                       ],
                       body: {
                         type: 'BlockStatement',
+                        start: 22,
+                        end: 24,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'set',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4280,178 +4723,248 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {"set"(){} "get"(){} "async"(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 43,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 43,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 42,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 42,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 19,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Literal',
+                      start: 10,
+                      end: 15,
                       value: 'set'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 15,
+                      end: 19,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 17,
+                        end: 19,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 20,
+                    end: 29,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Literal',
+                      start: 20,
+                      end: 25,
                       value: 'get'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 25,
+                      end: 29,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 27,
+                        end: 29,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   },
                   {
                     type: 'MethodDefinition',
+                    start: 30,
+                    end: 41,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Literal',
+                      start: 30,
+                      end: 37,
                       value: 'async'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 37,
+                      end: 41,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 39,
+                        end: 41,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {1(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 17,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 17,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 16,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 16,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 15,
                     kind: 'method',
                     static: false,
                     computed: false,
                     key: {
                       type: 'Literal',
+                      start: 10,
+                      end: 11,
                       value: 1
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 11,
+                      end: 15,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 13,
+                        end: 15,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {async 3(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 22,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 22,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 21,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 16,
+                      end: 17,
                       value: 3
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 17,
+                      end: 21,
                       id: null,
+                      generator: false,
+                      async: true,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 19,
+                        end: 21,
                         body: []
-                      },
-                      generator: false,
-                      async: true
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4463,42 +4976,60 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {*4(){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 17,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 17,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 16,
+                    kind: 'method',
+                    static: false,
+                    computed: false,
                     key: {
                       type: 'Literal',
+                      start: 11,
+                      end: 12,
                       value: 4
                     },
-                    computed: false,
                     value: {
                       type: 'FunctionExpression',
+                      start: 12,
+                      end: 16,
                       id: null,
+                      generator: true,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 14,
+                        end: 16,
                         body: []
-                      },
-                      generator: true,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4656,89 +5187,125 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {[a](){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 18,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 18,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 17,
                     kind: 'method',
                     static: false,
                     computed: true,
                     key: {
                       type: 'Identifier',
+                      start: 11,
+                      end: 12,
                       name: 'a'
                     },
                     value: {
                       type: 'FunctionExpression',
+                      start: 13,
+                      end: 17,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 15,
+                        end: 17,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-                      id: null
+                      }
                     }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '(class A {*[foo](){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 22,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 21,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 21,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 20,
+                    kind: 'method',
+                    static: false,
+                    computed: true,
                     key: {
                       type: 'Identifier',
+                      start: 12,
+                      end: 15,
                       name: 'foo'
                     },
-                    computed: true,
                     value: {
                       type: 'FunctionExpression',
+                      start: 16,
+                      end: 20,
                       id: null,
+                      generator: true,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 18,
+                        end: 20,
                         body: []
-                      },
-                      generator: true,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -4797,47 +5364,67 @@ describe('Expressions - Class', () => {
     ],
     [
       '(class A {set [foo](x){}})',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 26,
             expression: {
               type: 'ClassExpression',
+              start: 1,
+              end: 25,
               id: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'A'
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
+                start: 9,
+                end: 25,
                 body: [
                   {
                     type: 'MethodDefinition',
+                    start: 10,
+                    end: 24,
+                    kind: 'set',
+                    static: false,
+                    computed: true,
                     key: {
                       type: 'Identifier',
+                      start: 15,
+                      end: 18,
                       name: 'foo'
                     },
-                    computed: true,
                     value: {
                       type: 'FunctionExpression',
+                      start: 19,
+                      end: 24,
                       id: null,
+                      generator: false,
+                      async: false,
                       params: [
                         {
                           type: 'Identifier',
+                          start: 20,
+                          end: 21,
                           name: 'x'
                         }
                       ],
                       body: {
                         type: 'BlockStatement',
+                        start: 22,
+                        end: 24,
                         body: []
-                      },
-                      generator: false,
-                      async: false
-                    },
-                    kind: 'set',
-                    static: false
+                      }
+                    }
                   }
                 ]
               }
@@ -7545,208 +8132,280 @@ describe('Expressions - Class', () => {
     ],
     [
       'class c { static *[false]() { "use strict"; } set [this] (q) { "use strict"; } set [true] (u) { "use strict"; } }',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 113,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 113,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'c'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 113,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 45,
                   kind: 'method',
                   static: true,
                   computed: true,
                   key: {
-                    raw: 'false',
                     type: 'Literal',
+                    start: 19,
+                    end: 24,
                     value: false
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 25,
+                    end: 45,
+                    id: null,
+                    generator: true,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 28,
+                      end: 45,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 30,
+                          end: 43,
                           expression: {
-                            raw: '"use strict"',
                             type: 'Literal',
+                            start: 30,
+                            end: 42,
                             value: 'use strict'
-                          },
-                          directive: 'use strict'
+                          }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: true,
-                    id: null
+                    }
                   }
                 },
                 {
                   type: 'MethodDefinition',
+                  start: 46,
+                  end: 78,
                   kind: 'set',
                   static: false,
                   computed: true,
                   key: {
-                    type: 'ThisExpression'
+                    type: 'ThisExpression',
+                    start: 51,
+                    end: 55
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 57,
+                    end: 78,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [
                       {
                         type: 'Identifier',
+                        start: 58,
+                        end: 59,
                         name: 'q'
                       }
                     ],
                     body: {
                       type: 'BlockStatement',
+                      start: 61,
+                      end: 78,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 63,
+                          end: 76,
                           expression: {
-                            raw: '"use strict"',
                             type: 'Literal',
+                            start: 63,
+                            end: 75,
                             value: 'use strict'
-                          },
-                          directive: 'use strict'
+                          }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 },
                 {
                   type: 'MethodDefinition',
+                  start: 79,
+                  end: 111,
                   kind: 'set',
                   static: false,
                   computed: true,
                   key: {
-                    raw: 'true',
                     type: 'Literal',
+                    start: 84,
+                    end: 88,
                     value: true
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 90,
+                    end: 111,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [
                       {
                         type: 'Identifier',
+                        start: 91,
+                        end: 92,
                         name: 'u'
                       }
                     ],
                     body: {
                       type: 'BlockStatement',
+                      start: 94,
+                      end: 111,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 96,
+                          end: 109,
                           expression: {
-                            raw: '"use strict"',
                             type: 'Literal',
+                            start: 96,
+                            end: 108,
                             value: 'use strict'
-                          },
-                          directive: 'use strict'
+                          }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'var C = class { static async *gen() { yield [...yield yield]; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 64,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 0,
+            end: 64,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 64,
+                id: {
+                  type: 'Identifier',
+                  start: 4,
+                  end: 5,
+                  name: 'C'
+                },
                 init: {
                   type: 'ClassExpression',
+                  start: 8,
+                  end: 64,
                   id: null,
                   superClass: null,
                   body: {
                     type: 'ClassBody',
+                    start: 14,
+                    end: 64,
                     body: [
                       {
                         type: 'MethodDefinition',
+                        start: 16,
+                        end: 63,
                         kind: 'method',
                         static: true,
                         computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 30,
+                          end: 33,
                           name: 'gen'
                         },
                         value: {
                           type: 'FunctionExpression',
+                          start: 33,
+                          end: 63,
+                          id: null,
+                          generator: true,
+                          async: true,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 36,
+                            end: 63,
                             body: [
                               {
                                 type: 'ExpressionStatement',
+                                start: 38,
+                                end: 61,
                                 expression: {
                                   type: 'YieldExpression',
+                                  start: 38,
+                                  end: 60,
+                                  delegate: false,
                                   argument: {
                                     type: 'ArrayExpression',
+                                    start: 44,
+                                    end: 60,
                                     elements: [
                                       {
                                         type: 'SpreadElement',
+                                        start: 45,
+                                        end: 59,
                                         argument: {
                                           type: 'YieldExpression',
+                                          start: 48,
+                                          end: 59,
+                                          delegate: false,
                                           argument: {
                                             type: 'YieldExpression',
-                                            argument: null,
-                                            delegate: false
-                                          },
-                                          delegate: false
+                                            start: 54,
+                                            end: 59,
+                                            delegate: false,
+                                            argument: null
+                                          }
                                         }
                                       }
                                     ]
-                                  },
-                                  delegate: false
+                                  }
                                 }
                               }
                             ]
-                          },
-                          async: true,
-                          generator: true,
-                          id: null
+                          }
                         }
                       }
                     ]
                   }
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'C'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -8081,53 +8740,6 @@ describe('Expressions - Class', () => {
             }
           }
         ]
-      }
-    ],
-    [
-      '(class A {*4(){}})',
-      Context.None,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ClassExpression',
-              id: {
-                type: 'Identifier',
-                name: 'A'
-              },
-              superClass: null,
-              body: {
-                type: 'ClassBody',
-                body: [
-                  {
-                    type: 'MethodDefinition',
-                    key: {
-                      type: 'Literal',
-                      value: 4
-                    },
-                    computed: false,
-                    value: {
-                      type: 'FunctionExpression',
-                      id: null,
-                      params: [],
-                      body: {
-                        type: 'BlockStatement',
-                        body: []
-                      },
-                      generator: true,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
-        ],
-        sourceType: 'script'
       }
     ],
     [
@@ -8779,53 +9391,6 @@ describe('Expressions - Class', () => {
                     key: {
                       type: 'Literal',
                       value: 'foo'
-                    },
-                    computed: false,
-                    value: {
-                      type: 'FunctionExpression',
-                      id: null,
-                      params: [],
-                      body: {
-                        type: 'BlockStatement',
-                        body: []
-                      },
-                      generator: true,
-                      async: false
-                    },
-                    kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
-        ],
-        sourceType: 'script'
-      }
-    ],
-    [
-      '(class A {*4(){}})',
-      Context.None,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ClassExpression',
-              id: {
-                type: 'Identifier',
-                name: 'A'
-              },
-              superClass: null,
-              body: {
-                type: 'ClassBody',
-                body: [
-                  {
-                    type: 'MethodDefinition',
-                    key: {
-                      type: 'Literal',
-                      value: 4
                     },
                     computed: false,
                     value: {

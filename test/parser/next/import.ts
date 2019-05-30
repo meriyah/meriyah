@@ -57,7 +57,19 @@ describe('Next - Import call', () => {
     ['import();', Context.None],
     ['import("", "");', Context.None],
     ['import("", "");', Context.Module | Context.Strict],
-    ['import("",);', Context.None]
+    ['import("",);', Context.None],
+    ['[import(1)] = [1];', Context.None],
+    ['[import(x).then()] = [1];', Context.None],
+    ['(a, import(foo)) => {}', Context.None],
+    ['(1, import(1)) => {}', Context.None],
+    ['({import(y=x)} = {"a": 1});', Context.None],
+    ['({import(foo)} = {"a": 1});', Context.None],
+    ['({import(1)} = {"a": 1});', Context.None],
+    ['(import(foo)) => {}', Context.None],
+    ['(import(1)) => {}', Context.None],
+    ['(import(y=x)) => {}', Context.None],
+    ['(a, import(x).then()) => {}', Context.None],
+    ['(1, import(foo)) => {}', Context.None]
   ]);
 
   for (const arg of [
@@ -106,46 +118,64 @@ describe('Next - Import call', () => {
   pass('Next - Import call (pass)', [
     [
       `function* a() { yield import("http"); }`,
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
-            async: false,
+            type: 'FunctionDeclaration',
+            params: [],
             body: {
+              type: 'BlockStatement',
               body: [
                 {
+                  type: 'ExpressionStatement',
                   expression: {
+                    type: 'YieldExpression',
                     argument: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'Import',
+                        start: 22,
+                        end: 28
+                      },
                       arguments: [
                         {
                           type: 'Literal',
-                          value: 'http'
+                          value: 'http',
+                          start: 29,
+                          end: 35
                         }
                       ],
-                      callee: {
-                        type: 'Import'
-                      },
-                      type: 'CallExpression'
+                      start: 22,
+                      end: 36
                     },
                     delegate: false,
-                    type: 'YieldExpression'
+                    start: 16,
+                    end: 36
                   },
-                  type: 'ExpressionStatement'
+                  start: 16,
+                  end: 37
                 }
               ],
-              type: 'BlockStatement'
+              start: 14,
+              end: 39
             },
+            async: false,
             generator: true,
             id: {
+              type: 'Identifier',
               name: 'a',
-              type: 'Identifier'
+              start: 10,
+              end: 11
             },
-            params: [],
-            type: 'FunctionDeclaration'
+            start: 0,
+            end: 39
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 39
       }
     ],
     [
@@ -183,36 +213,50 @@ describe('Next - Import call', () => {
     ],
     [
       `for(x of import(x)) {}`,
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
-            await: false,
+            type: 'ForOfStatement',
             body: {
+              type: 'BlockStatement',
               body: [],
-              type: 'BlockStatement'
+              start: 20,
+              end: 22
             },
             left: {
+              type: 'Identifier',
               name: 'x',
-              type: 'Identifier'
+              start: 4,
+              end: 5
             },
             right: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Import',
+                start: 9,
+                end: 15
+              },
               arguments: [
                 {
+                  type: 'Identifier',
                   name: 'x',
-                  type: 'Identifier'
+                  start: 16,
+                  end: 17
                 }
               ],
-              callee: {
-                type: 'Import'
-              },
-              type: 'CallExpression'
+              start: 9,
+              end: 18
             },
-            type: 'ForOfStatement'
+            await: false,
+            start: 0,
+            end: 22
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 22
       }
     ],
     [
@@ -250,103 +294,145 @@ describe('Next - Import call', () => {
     ],
     [
       `var {[import(y=x)]: x} = {}`,
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
+            type: 'VariableDeclaration',
+            kind: 'var',
             declarations: [
               {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ObjectExpression',
+                  properties: [],
+                  start: 25,
+                  end: 27
+                },
                 id: {
+                  type: 'ObjectPattern',
                   properties: [
                     {
-                      computed: true,
+                      type: 'Property',
+                      kind: 'init',
                       key: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'Import',
+                          start: 6,
+                          end: 12
+                        },
                         arguments: [
                           {
+                            type: 'AssignmentExpression',
                             left: {
+                              type: 'Identifier',
                               name: 'y',
-                              type: 'Identifier'
+                              start: 13,
+                              end: 14
                             },
                             operator: '=',
                             right: {
+                              type: 'Identifier',
                               name: 'x',
-                              type: 'Identifier'
+                              start: 15,
+                              end: 16
                             },
-                            type: 'AssignmentExpression'
+                            start: 13,
+                            end: 16
                           }
                         ],
-                        callee: {
-                          type: 'Import'
-                        },
-                        type: 'CallExpression'
+                        start: 6,
+                        end: 17
                       },
-                      kind: 'init',
+                      computed: true,
+                      value: {
+                        type: 'Identifier',
+                        name: 'x',
+                        start: 20,
+                        end: 21
+                      },
                       method: false,
                       shorthand: false,
-                      type: 'Property',
-                      value: {
-                        name: 'x',
-                        type: 'Identifier'
-                      }
+                      start: 5,
+                      end: 21
                     }
                   ],
-                  type: 'ObjectPattern'
+                  start: 4,
+                  end: 22
                 },
-                init: {
-                  properties: [],
-                  type: 'ObjectExpression'
-                },
-                type: 'VariableDeclarator'
+                start: 4,
+                end: 27
               }
             ],
-            kind: 'var',
-            type: 'VariableDeclaration'
+            start: 0,
+            end: 27
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 27
       }
     ],
     [
       `import("lib.js").then(doThis);`,
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
+            type: 'ExpressionStatement',
             expression: {
-              arguments: [
-                {
-                  name: 'doThis',
-                  type: 'Identifier'
-                }
-              ],
+              type: 'CallExpression',
               callee: {
-                computed: false,
+                type: 'MemberExpression',
                 object: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Import',
+                    start: 0,
+                    end: 6
+                  },
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 'lib.js'
+                      value: 'lib.js',
+                      start: 7,
+                      end: 15
                     }
                   ],
-                  callee: {
-                    type: 'Import'
-                  },
-                  type: 'CallExpression'
+                  start: 0,
+                  end: 16
                 },
+                computed: false,
                 property: {
+                  type: 'Identifier',
                   name: 'then',
-                  type: 'Identifier'
+                  start: 17,
+                  end: 21
                 },
-                type: 'MemberExpression'
+                start: 0,
+                end: 21
               },
-              type: 'CallExpression'
+              arguments: [
+                {
+                  type: 'Identifier',
+                  name: 'doThis',
+                  start: 22,
+                  end: 28
+                }
+              ],
+              start: 0,
+              end: 29
             },
-            type: 'ExpressionStatement'
+            start: 0,
+            end: 30
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 30
       }
     ],
     [

@@ -80,7 +80,6 @@ describe('Expressions - Exponentiation', () => {
 
   for (const arg of [
     '(delete O.p) ** 10',
-    //'(delete x) ** 10',
     '(~O.p) ** 10',
     '(~x) ** 10',
     '(!O.p) ** 10',
@@ -133,56 +132,78 @@ describe('Expressions - Exponentiation', () => {
   pass('Expressions - Exponentiation (pass)', [
     [
       '2 ** 4',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 6,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 6,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 6,
               left: {
                 type: 'Literal',
+                start: 0,
+                end: 1,
                 value: 2
               },
+              operator: '**',
               right: {
                 type: 'Literal',
+                start: 5,
+                end: 6,
                 value: 4
-              },
-              operator: '**'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'new x ** 2;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 10,
               left: {
                 type: 'NewExpression',
+                start: 0,
+                end: 5,
                 callee: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'x'
                 },
                 arguments: []
               },
+              operator: '**',
               right: {
                 type: 'Literal',
+                start: 9,
+                end: 10,
                 value: 2
-              },
-              operator: '**'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -403,31 +424,43 @@ describe('Expressions - Exponentiation', () => {
     ],
     [
       '(new x ** 2)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'BinaryExpression',
+              start: 1,
+              end: 11,
               left: {
                 type: 'NewExpression',
+                start: 1,
+                end: 6,
                 callee: {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'x'
                 },
                 arguments: []
               },
+              operator: '**',
               right: {
                 type: 'Literal',
+                start: 10,
+                end: 11,
                 value: 2
-              },
-              operator: '**'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -457,32 +490,44 @@ describe('Expressions - Exponentiation', () => {
     ],
     [
       '(++x ** a)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'BinaryExpression',
+              start: 1,
+              end: 9,
               left: {
                 type: 'UpdateExpression',
+                start: 1,
+                end: 4,
+                operator: '++',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 3,
+                  end: 4,
                   name: 'x'
-                },
-                operator: '++',
-                prefix: true
+                }
               },
+              operator: '**',
               right: {
                 type: 'Identifier',
+                start: 8,
+                end: 9,
                 name: 'a'
-              },
-              operator: '**'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

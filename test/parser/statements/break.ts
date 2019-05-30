@@ -545,93 +545,136 @@ describe('Statements - Break', () => {
     ],
     [
       'switch (a) { case 123: { if (a) {} break } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 44,
             discriminant: {
               type: 'Identifier',
+              start: 8,
+              end: 9,
               name: 'a'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Literal',
-                  value: 123
-                },
+                start: 13,
+                end: 42,
                 consequent: [
                   {
                     type: 'BlockStatement',
+                    start: 23,
+                    end: 42,
                     body: [
                       {
                         type: 'IfStatement',
+                        start: 25,
+                        end: 34,
                         test: {
                           type: 'Identifier',
+                          start: 29,
+                          end: 30,
                           name: 'a'
                         },
                         consequent: {
                           type: 'BlockStatement',
+                          start: 32,
+                          end: 34,
                           body: []
                         },
                         alternate: null
                       },
                       {
                         type: 'BreakStatement',
+                        start: 35,
+                        end: 40,
                         label: null
                       }
                     ]
                   }
-                ]
+                ],
+                test: {
+                  type: 'Literal',
+                  start: 18,
+                  end: 21,
+                  value: 123
+                }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
     [
       'ding: foo: bar: while (true) break foo;',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
+        start: 0,
+        end: 39,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'ding'
-            },
+            start: 0,
+            end: 39,
             body: {
               type: 'LabeledStatement',
-              label: {
-                type: 'Identifier',
-                name: 'foo'
-              },
+              start: 6,
+              end: 39,
               body: {
                 type: 'LabeledStatement',
-                label: {
-                  type: 'Identifier',
-                  name: 'bar'
-                },
+                start: 11,
+                end: 39,
                 body: {
                   type: 'WhileStatement',
+                  start: 16,
+                  end: 39,
                   test: {
                     type: 'Literal',
-                    value: true
+                    start: 23,
+                    end: 27,
+                    value: true,
+                    raw: 'true'
                   },
                   body: {
                     type: 'BreakStatement',
+                    start: 29,
+                    end: 39,
                     label: {
                       type: 'Identifier',
+                      start: 35,
+                      end: 38,
                       name: 'foo'
                     }
                   }
+                },
+                label: {
+                  type: 'Identifier',
+                  start: 11,
+                  end: 14,
+                  name: 'bar'
                 }
+              },
+              label: {
+                type: 'Identifier',
+                start: 6,
+                end: 9,
+                name: 'foo'
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 4,
+              name: 'ding'
             }
           }
         ],
@@ -746,60 +789,84 @@ describe('Statements - Break', () => {
     ],
     [
       'foo: switch (x) { case x: break foo; }',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 38,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'foo'
-            },
+            start: 0,
+            end: 38,
             body: {
               type: 'SwitchStatement',
+              start: 5,
+              end: 38,
               discriminant: {
                 type: 'Identifier',
+                start: 13,
+                end: 14,
                 name: 'x'
               },
               cases: [
                 {
                   type: 'SwitchCase',
-                  test: {
-                    type: 'Identifier',
-                    name: 'x'
-                  },
+                  start: 18,
+                  end: 36,
                   consequent: [
                     {
                       type: 'BreakStatement',
+                      start: 26,
+                      end: 36,
                       label: {
                         type: 'Identifier',
+                        start: 32,
+                        end: 35,
                         name: 'foo'
                       }
                     }
-                  ]
+                  ],
+                  test: {
+                    type: 'Identifier',
+                    start: 23,
+                    end: 24,
+                    name: 'x'
+                  }
                 }
               ]
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 3,
+              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'this',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 4,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 4,
             expression: {
-              type: 'ThisExpression'
+              type: 'ThisExpression',
+              start: 0,
+              end: 4
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -859,34 +926,46 @@ describe('Statements - Break', () => {
     ],
     [
       'switch (x) { case x: break; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 29,
         body: [
           {
             type: 'SwitchStatement',
+            start: 0,
+            end: 29,
             discriminant: {
               type: 'Identifier',
+              start: 8,
+              end: 9,
               name: 'x'
             },
             cases: [
               {
                 type: 'SwitchCase',
-                test: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
+                start: 13,
+                end: 27,
                 consequent: [
                   {
                     type: 'BreakStatement',
+                    start: 21,
+                    end: 27,
                     label: null
                   }
-                ]
+                ],
+                test: {
+                  type: 'Identifier',
+                  start: 18,
+                  end: 19,
+                  name: 'x'
+                }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

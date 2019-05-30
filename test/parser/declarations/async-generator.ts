@@ -359,84 +359,118 @@ describe('Declarations - Async Generator', () => {
     ],
     [
       'var gen = async function *() { yield { ...yield, y: 1, ...yield yield, }; };',
-      Context.Strict,
+      Context.Strict | Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 76,
         body: [
           {
+            type: 'VariableDeclaration',
+            start: 0,
+            end: 76,
             declarations: [
               {
+                type: 'VariableDeclarator',
+                start: 4,
+                end: 75,
                 id: {
-                  name: 'gen',
-                  type: 'Identifier'
+                  type: 'Identifier',
+                  start: 4,
+                  end: 7,
+                  name: 'gen'
                 },
                 init: {
+                  type: 'FunctionExpression',
+                  start: 10,
+                  end: 75,
+                  id: null,
+                  generator: true,
                   async: true,
+                  params: [],
                   body: {
+                    type: 'BlockStatement',
+                    start: 29,
+                    end: 75,
                     body: [
                       {
+                        type: 'ExpressionStatement',
+                        start: 31,
+                        end: 73,
                         expression: {
+                          type: 'YieldExpression',
+                          start: 31,
+                          end: 72,
+                          delegate: false,
                           argument: {
+                            type: 'ObjectExpression',
+                            start: 37,
+                            end: 72,
                             properties: [
                               {
+                                type: 'SpreadElement',
+                                start: 39,
+                                end: 47,
                                 argument: {
-                                  argument: null,
+                                  type: 'YieldExpression',
+                                  start: 42,
+                                  end: 47,
                                   delegate: false,
-                                  type: 'YieldExpression'
-                                },
-                                type: 'SpreadElement'
-                              },
-                              {
-                                computed: false,
-                                key: {
-                                  name: 'y',
-                                  type: 'Identifier'
-                                },
-                                kind: 'init',
-                                method: false,
-                                shorthand: false,
-                                type: 'Property',
-                                value: {
-                                  type: 'Literal',
-                                  value: 1
+                                  argument: null
                                 }
                               },
                               {
-                                argument: {
-                                  argument: {
-                                    argument: null,
-                                    delegate: false,
-                                    type: 'YieldExpression'
-                                  },
-                                  delegate: false,
-                                  type: 'YieldExpression'
+                                type: 'Property',
+                                start: 49,
+                                end: 53,
+                                method: false,
+                                shorthand: false,
+                                computed: false,
+                                key: {
+                                  type: 'Identifier',
+                                  start: 49,
+                                  end: 50,
+                                  name: 'y'
                                 },
-                                type: 'SpreadElement'
+                                value: {
+                                  type: 'Literal',
+                                  start: 52,
+                                  end: 53,
+                                  value: 1
+                                },
+                                kind: 'init'
+                              },
+                              {
+                                type: 'SpreadElement',
+                                start: 55,
+                                end: 69,
+                                argument: {
+                                  type: 'YieldExpression',
+                                  start: 58,
+                                  end: 69,
+                                  delegate: false,
+                                  argument: {
+                                    type: 'YieldExpression',
+                                    start: 64,
+                                    end: 69,
+                                    delegate: false,
+                                    argument: null
+                                  }
+                                }
                               }
-                            ],
-                            type: 'ObjectExpression'
-                          },
-                          delegate: false,
-                          type: 'YieldExpression'
-                        },
-                        type: 'ExpressionStatement'
+                            ]
+                          }
+                        }
                       }
-                    ],
-                    type: 'BlockStatement'
-                  },
-                  generator: true,
-                  id: null,
-                  params: [],
-                  type: 'FunctionExpression'
-                },
-                type: 'VariableDeclarator'
+                    ]
+                  }
+                }
               }
             ],
-            kind: 'var',
-            type: 'VariableDeclaration'
+            kind: 'var'
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
@@ -465,7 +499,6 @@ describe('Declarations - Async Generator', () => {
                         body: []
                       },
                       params: [],
-
                       async: false,
                       expression: false
                     }
@@ -490,55 +523,84 @@ describe('Declarations - Async Generator', () => {
     ],
     [
       'async function* f([fn = function () {}, xFn = function x() {}]) {  }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 68,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 68,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ArrayPattern',
+                start: 18,
+                end: 62,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 19,
+                    end: 38,
                     left: {
                       type: 'Identifier',
+                      start: 19,
+                      end: 21,
                       name: 'fn'
                     },
                     right: {
                       type: 'FunctionExpression',
+                      start: 24,
+                      end: 38,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 36,
+                        end: 38,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-
-                      id: null
+                      }
                     }
                   },
                   {
                     type: 'AssignmentPattern',
+                    start: 40,
+                    end: 61,
                     left: {
                       type: 'Identifier',
+                      start: 40,
+                      end: 43,
                       name: 'xFn'
                     },
                     right: {
                       type: 'FunctionExpression',
+                      start: 46,
+                      end: 61,
+                      id: {
+                        type: 'Identifier',
+                        start: 55,
+                        end: 56,
+                        name: 'x'
+                      },
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 59,
+                        end: 61,
                         body: []
-                      },
-                      async: false,
-                      generator: false,
-
-                      id: {
-                        type: 'Identifier',
-                        name: 'x'
                       }
                     }
                   }
@@ -547,131 +609,182 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 64,
+              end: 68,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }]) {  }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 63,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 63,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ArrayPattern',
+                start: 18,
+                end: 57,
                 elements: [
                   {
                     type: 'AssignmentPattern',
+                    start: 19,
+                    end: 56,
                     left: {
                       type: 'ObjectPattern',
+                      start: 19,
+                      end: 30,
                       properties: [
                         {
                           type: 'Property',
-                          kind: 'init',
+                          start: 21,
+                          end: 22,
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 21,
+                            end: 22,
                             name: 'x'
                           },
-                          computed: false,
+                          kind: 'init',
                           value: {
                             type: 'Identifier',
+                            start: 21,
+                            end: 22,
                             name: 'x'
-                          },
-                          method: false,
-                          shorthand: true
+                          }
                         },
                         {
                           type: 'Property',
-                          kind: 'init',
+                          start: 24,
+                          end: 25,
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 24,
+                            end: 25,
                             name: 'y'
                           },
-                          computed: false,
+                          kind: 'init',
                           value: {
                             type: 'Identifier',
+                            start: 24,
+                            end: 25,
                             name: 'y'
-                          },
-                          method: false,
-                          shorthand: true
+                          }
                         },
                         {
                           type: 'Property',
-                          kind: 'init',
+                          start: 27,
+                          end: 28,
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 27,
+                            end: 28,
                             name: 'z'
                           },
-                          computed: false,
+                          kind: 'init',
                           value: {
                             type: 'Identifier',
+                            start: 27,
+                            end: 28,
                             name: 'z'
-                          },
-                          method: false,
-                          shorthand: true
+                          }
                         }
                       ]
                     },
                     right: {
                       type: 'ObjectExpression',
+                      start: 33,
+                      end: 56,
                       properties: [
                         {
                           type: 'Property',
+                          start: 35,
+                          end: 40,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 35,
+                            end: 36,
                             name: 'x'
                           },
                           value: {
                             type: 'Literal',
+                            start: 38,
+                            end: 40,
                             value: 44
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 42,
+                          end: 47,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 42,
+                            end: 43,
                             name: 'y'
                           },
                           value: {
                             type: 'Literal',
+                            start: 45,
+                            end: 47,
                             value: 55
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 49,
+                          end: 54,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 49,
+                            end: 50,
                             name: 'z'
                           },
                           value: {
                             type: 'Literal',
+                            start: 52,
+                            end: 54,
                             value: 66
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
                     }
@@ -681,49 +794,66 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 59,
+              end: 63,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f([{ x }]) {  }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 31,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 31,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ArrayPattern',
+                start: 18,
+                end: 25,
                 elements: [
                   {
                     type: 'ObjectPattern',
+                    start: 19,
+                    end: 24,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 21,
+                        end: 22,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 21,
+                          end: 22,
                           name: 'x'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 21,
+                          end: 22,
                           name: 'x'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       }
                     ]
                   }
@@ -732,38 +862,51 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 27,
+              end: 31,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f([ , , ...x]) {  }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 35,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ArrayPattern',
+                start: 18,
+                end: 29,
                 elements: [
                   null,
                   null,
                   {
                     type: 'RestElement',
+                    start: 24,
+                    end: 28,
                     argument: {
                       type: 'Identifier',
+                      start: 27,
+                      end: 28,
                       name: 'x'
                     }
                   }
@@ -772,17 +915,13 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 31,
+              end: 35,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -843,24 +982,43 @@ describe('Declarations - Async Generator', () => {
     ],
     [
       'async function* f([[x]] = [null]) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 36,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 36,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 18,
+                end: 32,
                 left: {
                   type: 'ArrayPattern',
+                  start: 18,
+                  end: 23,
                   elements: [
                     {
                       type: 'ArrayPattern',
+                      start: 19,
+                      end: 22,
                       elements: [
                         {
                           type: 'Identifier',
+                          start: 20,
+                          end: 21,
                           name: 'x'
                         }
                       ]
@@ -869,9 +1027,13 @@ describe('Declarations - Async Generator', () => {
                 },
                 right: {
                   type: 'ArrayExpression',
+                  start: 26,
+                  end: 32,
                   elements: [
                     {
                       type: 'Literal',
+                      start: 27,
+                      end: 31,
                       value: null
                     }
                   ]
@@ -880,133 +1042,189 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 34,
+              end: 36,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {}',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 89,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 89,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 18,
+                end: 85,
                 left: {
                   type: 'ArrayPattern',
+                  start: 18,
+                  end: 57,
                   elements: [
                     {
                       type: 'AssignmentPattern',
+                      start: 19,
+                      end: 56,
                       left: {
                         type: 'ObjectPattern',
+                        start: 19,
+                        end: 30,
                         properties: [
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 21,
+                            end: 22,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 21,
+                              end: 22,
                               name: 'x'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 21,
+                              end: 22,
                               name: 'x'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           },
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 24,
+                            end: 25,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 24,
+                              end: 25,
                               name: 'y'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 24,
+                              end: 25,
                               name: 'y'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           },
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 27,
+                            end: 28,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 27,
+                              end: 28,
                               name: 'z'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 27,
+                              end: 28,
                               name: 'z'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           }
                         ]
                       },
                       right: {
                         type: 'ObjectExpression',
+                        start: 33,
+                        end: 56,
                         properties: [
                           {
                             type: 'Property',
+                            start: 35,
+                            end: 40,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 35,
+                              end: 36,
                               name: 'x'
                             },
                             value: {
                               type: 'Literal',
-                              value: 44
+                              start: 38,
+                              end: 40,
+                              value: 44,
+                              raw: '44'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'Property',
+                            start: 42,
+                            end: 47,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 42,
+                              end: 43,
                               name: 'y'
                             },
                             value: {
                               type: 'Literal',
-                              value: 55
+                              start: 45,
+                              end: 47,
+                              value: 55,
+                              raw: '55'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'Property',
+                            start: 49,
+                            end: 54,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 49,
+                              end: 50,
                               name: 'z'
                             },
                             value: {
                               type: 'Literal',
-                              value: 66
+                              start: 52,
+                              end: 54,
+                              value: 66,
+                              raw: '66'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           }
                         ]
                       }
@@ -1015,54 +1233,79 @@ describe('Declarations - Async Generator', () => {
                 },
                 right: {
                   type: 'ArrayExpression',
+                  start: 60,
+                  end: 85,
                   elements: [
                     {
                       type: 'ObjectExpression',
+                      start: 61,
+                      end: 84,
                       properties: [
                         {
                           type: 'Property',
+                          start: 63,
+                          end: 68,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 63,
+                            end: 64,
                             name: 'x'
                           },
                           value: {
                             type: 'Literal',
-                            value: 11
+                            start: 66,
+                            end: 68,
+                            value: 11,
+                            raw: '11'
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 70,
+                          end: 75,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 70,
+                            end: 71,
                             name: 'y'
                           },
                           value: {
                             type: 'Literal',
-                            value: 22
+                            start: 73,
+                            end: 75,
+                            value: 22,
+                            raw: '22'
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 77,
+                          end: 82,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 77,
+                            end: 78,
                             name: 'z'
                           },
                           value: {
                             type: 'Literal',
-                            value: 33
+                            start: 80,
+                            end: 82,
+                            value: 33,
+                            raw: '33'
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
                     }
@@ -1072,178 +1315,234 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 87,
+              end: 89,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f({ fn = function () {}, xFn = function x() {} } = {}) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 73,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 73,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 18,
+                end: 69,
                 left: {
                   type: 'ObjectPattern',
+                  start: 18,
+                  end: 64,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 20,
+                      end: 39,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 20,
+                        end: 22,
                         name: 'fn'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'AssignmentPattern',
+                        start: 20,
+                        end: 39,
                         left: {
                           type: 'Identifier',
+                          start: 20,
+                          end: 22,
                           name: 'fn'
                         },
                         right: {
                           type: 'FunctionExpression',
+                          start: 25,
+                          end: 39,
+                          id: null,
+                          generator: false,
+                          async: false,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 37,
+                            end: 39,
                             body: []
-                          },
-                          async: false,
-                          generator: false,
-
-                          id: null
+                          }
                         }
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 41,
+                      end: 62,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 41,
+                        end: 44,
                         name: 'xFn'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'AssignmentPattern',
+                        start: 41,
+                        end: 62,
                         left: {
                           type: 'Identifier',
+                          start: 41,
+                          end: 44,
                           name: 'xFn'
                         },
                         right: {
                           type: 'FunctionExpression',
+                          start: 47,
+                          end: 62,
+                          id: {
+                            type: 'Identifier',
+                            start: 56,
+                            end: 57,
+                            name: 'x'
+                          },
+                          generator: false,
+                          async: false,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 60,
+                            end: 62,
                             body: []
-                          },
-                          async: false,
-                          generator: false,
-
-                          id: {
-                            type: 'Identifier',
-                            name: 'x'
                           }
                         }
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     }
                   ]
                 },
                 right: {
                   type: 'ObjectExpression',
+                  start: 67,
+                  end: 69,
                   properties: []
                 }
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 71,
+              end: 73,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f({ x: y = 33 } = { }) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 41,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 41,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'AssignmentPattern',
+                start: 18,
+                end: 37,
                 left: {
                   type: 'ObjectPattern',
+                  start: 18,
+                  end: 31,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 20,
+                      end: 29,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 20,
+                        end: 21,
                         name: 'x'
                       },
-                      computed: false,
                       value: {
                         type: 'AssignmentPattern',
+                        start: 23,
+                        end: 29,
                         left: {
                           type: 'Identifier',
+                          start: 23,
+                          end: 24,
                           name: 'y'
                         },
                         right: {
                           type: 'Literal',
+                          start: 27,
+                          end: 29,
                           value: 33
                         }
                       },
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 },
                 right: {
                   type: 'ObjectExpression',
+                  start: 34,
+                  end: 37,
                   properties: []
                 }
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 39,
+              end: 41,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1294,166 +1593,241 @@ describe('Declarations - Async Generator', () => {
     ],
     [
       'async function* f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 63,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 63,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ObjectPattern',
+                start: 18,
+                end: 59,
                 properties: [
                   {
                     type: 'Property',
-                    kind: 'init',
+                    start: 20,
+                    end: 57,
+                    method: false,
+                    shorthand: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 20,
+                      end: 21,
                       name: 'w'
                     },
-                    computed: false,
                     value: {
                       type: 'AssignmentPattern',
+                      start: 23,
+                      end: 57,
                       left: {
                         type: 'ObjectPattern',
+                        start: 23,
+                        end: 34,
                         properties: [
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 25,
+                            end: 26,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 25,
+                              end: 26,
                               name: 'x'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 25,
+                              end: 26,
                               name: 'x'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           },
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 28,
+                            end: 29,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 28,
+                              end: 29,
                               name: 'y'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 28,
+                              end: 29,
                               name: 'y'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           },
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 31,
+                            end: 32,
+                            method: false,
+                            shorthand: true,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 31,
+                              end: 32,
                               name: 'z'
                             },
-                            computed: false,
+                            kind: 'init',
                             value: {
                               type: 'Identifier',
+                              start: 31,
+                              end: 32,
                               name: 'z'
-                            },
-                            method: false,
-                            shorthand: true
+                            }
                           }
                         ]
                       },
                       right: {
                         type: 'ObjectExpression',
+                        start: 37,
+                        end: 57,
                         properties: [
                           {
                             type: 'Property',
+                            start: 39,
+                            end: 43,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 39,
+                              end: 40,
                               name: 'x'
                             },
                             value: {
                               type: 'Literal',
-                              value: 4
+                              start: 42,
+                              end: 43,
+                              value: 4,
+                              raw: '4'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'Property',
+                            start: 45,
+                            end: 49,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 45,
+                              end: 46,
                               name: 'y'
                             },
                             value: {
                               type: 'Literal',
-                              value: 5
+                              start: 48,
+                              end: 49,
+                              value: 5,
+                              raw: '5'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'Property',
+                            start: 51,
+                            end: 55,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 51,
+                              end: 52,
                               name: 'z'
                             },
                             value: {
                               type: 'Literal',
-                              value: 6
+                              start: 54,
+                              end: 55,
+                              value: 6,
+                              raw: '6'
                             },
-                            kind: 'init',
-                            computed: false,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           }
                         ]
                       }
                     },
-                    method: false,
-                    shorthand: false
+                    kind: 'init'
                   }
                 ]
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 61,
+              end: 63,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function* f({...x}) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 28,
+            id: {
+              type: 'Identifier',
+              start: 16,
+              end: 17,
+              name: 'f'
+            },
+            generator: true,
+            async: true,
             params: [
               {
                 type: 'ObjectPattern',
+                start: 18,
+                end: 24,
                 properties: [
                   {
                     type: 'RestElement',
+                    start: 19,
+                    end: 23,
                     argument: {
                       type: 'Identifier',
+                      start: 22,
+                      end: 23,
                       name: 'x'
                     }
                   }
@@ -1462,17 +1836,13 @@ describe('Declarations - Async Generator', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 26,
+              end: 28,
               body: []
-            },
-            async: true,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1647,204 +2017,290 @@ describe('Declarations - Async Generator', () => {
     ],
     [
       'obj = { async* f() { await a; yield b; } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 42,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 42,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 42,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'obj'
               },
-              operator: '=',
               right: {
                 type: 'ObjectExpression',
+                start: 6,
+                end: 42,
                 properties: [
                   {
                     type: 'Property',
+                    start: 8,
+                    end: 40,
+                    method: true,
+                    shorthand: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 15,
+                      end: 16,
                       name: 'f'
                     },
+                    kind: 'init',
                     value: {
                       type: 'FunctionExpression',
+                      start: 16,
+                      end: 40,
+                      id: null,
+                      generator: true,
+                      async: true,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 19,
+                        end: 40,
                         body: [
                           {
                             type: 'ExpressionStatement',
+                            start: 21,
+                            end: 29,
                             expression: {
                               type: 'AwaitExpression',
+                              start: 21,
+                              end: 28,
                               argument: {
                                 type: 'Identifier',
+                                start: 27,
+                                end: 28,
                                 name: 'a'
                               }
                             }
                           },
                           {
                             type: 'ExpressionStatement',
+                            start: 30,
+                            end: 38,
                             expression: {
                               type: 'YieldExpression',
+                              start: 30,
+                              end: 37,
+                              delegate: false,
                               argument: {
                                 type: 'Identifier',
+                                start: 36,
+                                end: 37,
                                 name: 'b'
-                              },
-                              delegate: false
+                              }
                             }
                           }
                         ]
-                      },
-                      async: true,
-                      generator: true,
-                      id: null
-                    },
-                    kind: 'init',
-                    computed: false,
-                    method: true,
-                    shorthand: false
+                      }
+                    }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class A { async* f() { await a; yield b; } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 44,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'A'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 44,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 42,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 17,
+                    end: 18,
                     name: 'f'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 18,
+                    end: 42,
+                    id: null,
+                    generator: true,
+                    async: true,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 21,
+                      end: 42,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 23,
+                          end: 31,
                           expression: {
                             type: 'AwaitExpression',
+                            start: 23,
+                            end: 30,
                             argument: {
                               type: 'Identifier',
+                              start: 29,
+                              end: 30,
                               name: 'a'
                             }
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 32,
+                          end: 40,
                           expression: {
                             type: 'YieldExpression',
+                            start: 32,
+                            end: 39,
+                            delegate: false,
                             argument: {
                               type: 'Identifier',
+                              start: 38,
+                              end: 39,
                               name: 'b'
-                            },
-                            delegate: false
+                            }
                           }
                         }
                       ]
-                    },
-                    async: true,
-                    generator: true,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class A { static async* f() { await a; yield b; } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 51,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 51,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'A'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 51,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 49,
                   kind: 'method',
                   static: true,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 24,
+                    end: 25,
                     name: 'f'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 25,
+                    end: 49,
+                    id: null,
+                    generator: true,
+                    async: true,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 28,
+                      end: 49,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 30,
+                          end: 38,
                           expression: {
                             type: 'AwaitExpression',
+                            start: 30,
+                            end: 37,
                             argument: {
                               type: 'Identifier',
+                              start: 36,
+                              end: 37,
                               name: 'a'
                             }
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 39,
+                          end: 47,
                           expression: {
                             type: 'YieldExpression',
+                            start: 39,
+                            end: 46,
+                            delegate: false,
                             argument: {
                               type: 'Identifier',
+                              start: 45,
+                              end: 46,
                               name: 'b'
-                            },
-                            delegate: false
+                            }
                           }
                         }
                       ]
-                    },
-                    async: true,
-                    generator: true,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

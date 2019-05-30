@@ -19,59 +19,78 @@ describe('Expressions - Block', () => {
     ],
     [
       '{debugger;}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 11,
             body: [
               {
-                type: 'DebuggerStatement'
+                type: 'DebuggerStatement',
+                start: 1,
+                end: 10
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function f() {} var f;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 15,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 15,
               body: []
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 16,
+            end: 22,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: null,
+                start: 20,
+                end: 21,
                 id: {
                   type: 'Identifier',
+                  start: 20,
+                  end: 21,
                   name: 'f'
-                }
+                },
+                init: null
               }
-            ]
+            ],
+            kind: 'var'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
@@ -224,20 +243,6 @@ describe('Expressions - Block', () => {
       }
     ],
     [
-      '{}',
-      Context.None,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'BlockStatement',
-            body: []
-          }
-        ],
-        sourceType: 'script'
-      }
-    ],
-    [
       '{a}',
       Context.None,
       {
@@ -260,96 +265,113 @@ describe('Expressions - Block', () => {
       }
     ],
     [
-      '{}',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'BlockStatement',
-            body: []
-          }
-        ]
-      }
-    ],
-    [
       '{if (false) {} else ;}',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 22,
             body: [
               {
                 type: 'IfStatement',
+                start: 1,
+                end: 21,
                 test: {
                   type: 'Literal',
-                  value: false
+                  start: 5,
+                  end: 10,
+                  value: false,
+                  raw: 'false'
                 },
                 consequent: {
                   type: 'BlockStatement',
+                  start: 12,
+                  end: 14,
                   body: []
                 },
                 alternate: {
-                  type: 'EmptyStatement'
+                  type: 'EmptyStatement',
+                  start: 20,
+                  end: 21
                 }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{for (;;) ;}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 12,
             body: [
               {
                 type: 'ForStatement',
-                body: {
-                  type: 'EmptyStatement'
-                },
+                start: 1,
+                end: 11,
                 init: null,
                 test: null,
-                update: null
+                update: null,
+                body: {
+                  type: 'EmptyStatement',
+                  start: 10,
+                  end: 11
+                }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{with ({}) {}}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 14,
             body: [
               {
                 type: 'WithStatement',
+                start: 1,
+                end: 13,
                 object: {
                   type: 'ObjectExpression',
+                  start: 7,
+                  end: 9,
                   properties: []
                 },
                 body: {
                   type: 'BlockStatement',
+                  start: 11,
+                  end: 13,
                   body: []
                 }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -402,20 +424,29 @@ describe('Expressions - Block', () => {
     ],
     [
       '{ a(); bt(); }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 14,
             body: [
               {
                 type: 'ExpressionStatement',
+                start: 2,
+                end: 6,
                 expression: {
                   type: 'CallExpression',
+                  start: 2,
+                  end: 5,
                   callee: {
                     type: 'Identifier',
+                    start: 2,
+                    end: 3,
                     name: 'a'
                   },
                   arguments: []
@@ -423,10 +454,16 @@ describe('Expressions - Block', () => {
               },
               {
                 type: 'ExpressionStatement',
+                start: 7,
+                end: 12,
                 expression: {
                   type: 'CallExpression',
+                  start: 7,
+                  end: 11,
                   callee: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 9,
                     name: 'bt'
                   },
                   arguments: []
@@ -434,133 +471,183 @@ describe('Expressions - Block', () => {
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{ var {foo=3} = {}; };',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 21,
             body: [
               {
                 type: 'VariableDeclaration',
-                kind: 'var',
+                start: 2,
+                end: 19,
                 declarations: [
                   {
                     type: 'VariableDeclarator',
-                    init: {
-                      type: 'ObjectExpression',
-                      properties: []
-                    },
+                    start: 6,
+                    end: 18,
                     id: {
                       type: 'ObjectPattern',
+                      start: 6,
+                      end: 13,
                       properties: [
                         {
                           type: 'Property',
-                          kind: 'init',
+                          start: 7,
+                          end: 12,
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 7,
+                            end: 10,
                             name: 'foo'
                           },
-                          computed: false,
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 7,
+                            end: 12,
                             left: {
                               type: 'Identifier',
+                              start: 7,
+                              end: 10,
                               name: 'foo'
                             },
                             right: {
                               type: 'Literal',
+                              start: 11,
+                              end: 12,
                               value: 3
                             }
-                          },
-                          method: false,
-                          shorthand: true
+                          }
                         }
                       ]
+                    },
+                    init: {
+                      type: 'ObjectExpression',
+                      start: 16,
+                      end: 18,
+                      properties: []
                     }
                   }
-                ]
+                ],
+                kind: 'var'
               }
             ]
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 21,
+            end: 22
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{ var foo = 0; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 16,
             body: [
               {
                 type: 'VariableDeclaration',
-                kind: 'var',
+                start: 2,
+                end: 14,
                 declarations: [
                   {
                     type: 'VariableDeclarator',
-                    init: {
-                      type: 'Literal',
-                      value: 0
-                    },
+                    start: 6,
+                    end: 13,
                     id: {
                       type: 'Identifier',
+                      start: 6,
+                      end: 9,
                       name: 'foo'
+                    },
+                    init: {
+                      type: 'Literal',
+                      start: 12,
+                      end: 13,
+                      value: 0
                     }
                   }
-                ]
+                ],
+                kind: 'var'
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{ async function foo() {}; };',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 29,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 28,
             body: [
               {
                 type: 'FunctionDeclaration',
+                start: 2,
+                end: 25,
+                id: {
+                  type: 'Identifier',
+                  start: 17,
+                  end: 20,
+                  name: 'foo'
+                },
+                generator: false,
+                async: true,
                 params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 23,
+                  end: 25,
                   body: []
-                },
-                async: true,
-                generator: false,
-
-                id: {
-                  type: 'Identifier',
-                  name: 'foo'
                 }
               },
               {
-                type: 'EmptyStatement'
+                type: 'EmptyStatement',
+                start: 25,
+                end: 26
               }
             ]
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 28,
+            end: 29
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -608,50 +695,66 @@ describe('Expressions - Block', () => {
     ],
     [
       '{ function a() {} ; function b() {} }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 37,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 37,
             body: [
               {
                 type: 'FunctionDeclaration',
+                start: 2,
+                end: 17,
+                id: {
+                  type: 'Identifier',
+                  start: 11,
+                  end: 12,
+                  name: 'a'
+                },
+                generator: false,
+                async: false,
                 params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 15,
+                  end: 17,
                   body: []
-                },
-                async: false,
-                generator: false,
-
-                id: {
-                  type: 'Identifier',
-                  name: 'a'
                 }
               },
               {
-                type: 'EmptyStatement'
+                type: 'EmptyStatement',
+                start: 18,
+                end: 19
               },
               {
                 type: 'FunctionDeclaration',
+                start: 20,
+                end: 35,
+                id: {
+                  type: 'Identifier',
+                  start: 29,
+                  end: 30,
+                  name: 'b'
+                },
+                generator: false,
+                async: false,
                 params: [],
                 body: {
                   type: 'BlockStatement',
+                  start: 33,
+                  end: 35,
                   body: []
-                },
-                async: false,
-                generator: false,
-
-                id: {
-                  type: 'Identifier',
-                  name: 'b'
                 }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -704,61 +807,83 @@ describe('Expressions - Block', () => {
     ],
     [
       '{foo = b}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 9,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 9,
             body: [
               {
                 type: 'ExpressionStatement',
+                start: 1,
+                end: 8,
                 expression: {
                   type: 'AssignmentExpression',
+                  start: 1,
+                  end: 8,
+                  operator: '=',
                   left: {
                     type: 'Identifier',
+                    start: 1,
+                    end: 4,
                     name: 'foo'
                   },
-                  operator: '=',
                   right: {
                     type: 'Identifier',
+                    start: 7,
+                    end: 8,
                     name: 'b'
                   }
                 }
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '{var foo;}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'BlockStatement',
+            start: 0,
+            end: 10,
             body: [
               {
                 type: 'VariableDeclaration',
-                kind: 'var',
+                start: 1,
+                end: 9,
                 declarations: [
                   {
                     type: 'VariableDeclarator',
-                    init: null,
+                    start: 5,
+                    end: 8,
                     id: {
                       type: 'Identifier',
+                      start: 5,
+                      end: 8,
                       name: 'foo'
-                    }
+                    },
+                    init: null
                   }
-                ]
+                ],
+                kind: 'var'
               }
             ]
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

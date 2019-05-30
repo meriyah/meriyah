@@ -31,51 +31,73 @@ describe('Expressions - Logical', () => {
 
     [
       'a == b != c === d !== e',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 23,
               left: {
                 type: 'BinaryExpression',
+                start: 0,
+                end: 17,
                 left: {
                   type: 'BinaryExpression',
+                  start: 0,
+                  end: 11,
                   left: {
                     type: 'BinaryExpression',
+                    start: 0,
+                    end: 6,
                     left: {
                       type: 'Identifier',
+                      start: 0,
+                      end: 1,
                       name: 'a'
                     },
+                    operator: '==',
                     right: {
                       type: 'Identifier',
+                      start: 5,
+                      end: 6,
                       name: 'b'
-                    },
-                    operator: '=='
+                    }
                   },
+                  operator: '!=',
                   right: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 11,
                     name: 'c'
-                  },
-                  operator: '!='
+                  }
                 },
+                operator: '===',
                 right: {
                   type: 'Identifier',
+                  start: 16,
+                  end: 17,
                   name: 'd'
-                },
-                operator: '==='
+                }
               },
+              operator: '!==',
               right: {
                 type: 'Identifier',
+                start: 22,
+                end: 23,
                 name: 'e'
-              },
-              operator: '!=='
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

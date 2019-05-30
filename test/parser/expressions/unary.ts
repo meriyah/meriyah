@@ -408,62 +408,86 @@ describe('Expressions - Unary', () => {
     ],
     [
       'delete ((foo).x)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 16,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'MemberExpression',
+                start: 8,
+                end: 15,
                 object: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 12,
                   name: 'foo'
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 14,
+                  end: 15,
                   name: 'x'
-                }
-              },
-              prefix: true
+                },
+                computed: false
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'delete ((((foo))).x)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 20,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 20,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 20,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'MemberExpression',
+                start: 8,
+                end: 19,
                 object: {
                   type: 'Identifier',
+                  start: 11,
+                  end: 14,
                   name: 'foo'
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 18,
+                  end: 19,
                   name: 'x'
-                }
-              },
-              prefix: true
+                },
+                computed: false
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     /*[
@@ -511,84 +535,111 @@ describe('Expressions - Unary', () => {
     ],
     [
       'delete ((a)=>b)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 15,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 15,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 15,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'b'
-                },
+                start: 8,
+                end: 14,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
                   }
                 ],
-
-                async: false,
-
-                expression: true
-              },
-              prefix: true
+                body: {
+                  type: 'Identifier',
+                  start: 13,
+                  end: 14,
+                  name: 'b'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'delete ((a, b, [c])=>b)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 23,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'Identifier',
-                  name: 'b'
-                },
+                start: 8,
+                end: 22,
+                expression: true,
+                async: false,
                 params: [
                   {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
                   },
                   {
                     type: 'Identifier',
+                    start: 12,
+                    end: 13,
                     name: 'b'
                   },
                   {
                     type: 'ArrayPattern',
+                    start: 15,
+                    end: 18,
                     elements: [
                       {
                         type: 'Identifier',
+                        start: 16,
+                        end: 17,
                         name: 'c'
                       }
                     ]
                   }
                 ],
-
-                async: false,
-                expression: true
-              },
-              prefix: true
+                body: {
+                  type: 'Identifier',
+                  start: 21,
+                  end: 22,
+                  name: 'b'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1956,32 +2007,44 @@ describe('Expressions - Unary', () => {
     ],
     [
       'delete [].x',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 11,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'MemberExpression',
+                start: 7,
+                end: 11,
                 object: {
                   type: 'ArrayExpression',
+                  start: 7,
+                  end: 9,
                   elements: []
                 },
-                computed: false,
                 property: {
                   type: 'Identifier',
+                  start: 10,
+                  end: 11,
                   name: 'x'
-                }
-              },
-              prefix: true
+                },
+                computed: false
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2054,29 +2117,39 @@ describe('Expressions - Unary', () => {
     ],
     [
       'delete ((foo)++)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 16,
               operator: 'delete',
+              prefix: true,
               argument: {
                 type: 'UpdateExpression',
+                start: 8,
+                end: 15,
+                operator: '++',
+                prefix: false,
                 argument: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 12,
                   name: 'foo'
-                },
-                operator: '++',
-                prefix: false
-              },
-              prefix: true
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2141,112 +2214,154 @@ describe('Expressions - Unary', () => {
     ],
     [
       'async x => delete (((((foo(await x)))))).bar',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 44,
             expression: {
               type: 'ArrowFunctionExpression',
+              start: 0,
+              end: 44,
+              expression: true,
+              async: true,
+              params: [
+                {
+                  type: 'Identifier',
+                  start: 6,
+                  end: 7,
+                  name: 'x'
+                }
+              ],
               body: {
                 type: 'UnaryExpression',
+                start: 11,
+                end: 44,
                 operator: 'delete',
+                prefix: true,
                 argument: {
                   type: 'MemberExpression',
+                  start: 18,
+                  end: 44,
                   object: {
                     type: 'CallExpression',
+                    start: 23,
+                    end: 35,
                     callee: {
                       type: 'Identifier',
+                      start: 23,
+                      end: 26,
                       name: 'foo'
                     },
                     arguments: [
                       {
                         type: 'AwaitExpression',
+                        start: 27,
+                        end: 34,
                         argument: {
                           type: 'Identifier',
+                          start: 33,
+                          end: 34,
                           name: 'x'
                         }
                       }
                     ]
                   },
-                  computed: false,
                   property: {
                     type: 'Identifier',
+                    start: 41,
+                    end: 44,
                     name: 'bar'
-                  }
-                },
-                prefix: true
-              },
-              params: [
-                {
-                  type: 'Identifier',
-                  name: 'x'
+                  },
+                  computed: false
                 }
-              ],
-
-              async: true,
-              expression: true
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function *f(){ delete (((((foo(yield)))))).bar }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 48,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 48,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'f'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 48,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 15,
+                  end: 46,
                   expression: {
                     type: 'UnaryExpression',
+                    start: 15,
+                    end: 46,
                     operator: 'delete',
+                    prefix: true,
                     argument: {
                       type: 'MemberExpression',
+                      start: 22,
+                      end: 46,
                       object: {
                         type: 'CallExpression',
+                        start: 27,
+                        end: 37,
                         callee: {
                           type: 'Identifier',
+                          start: 27,
+                          end: 30,
                           name: 'foo'
                         },
                         arguments: [
                           {
                             type: 'YieldExpression',
-                            argument: null,
-                            delegate: false
+                            start: 31,
+                            end: 36,
+                            delegate: false,
+                            argument: null
                           }
                         ]
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 43,
+                        end: 46,
                         name: 'bar'
-                      }
-                    },
-                    prefix: true
+                      },
+                      computed: false
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2876,32 +2991,44 @@ describe('Expressions - Unary', () => {
     ],
     [
       'foo = !a',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 8,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 8,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
-              operator: '=',
               right: {
                 type: 'UnaryExpression',
+                start: 6,
+                end: 8,
                 operator: '!',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 7,
+                  end: 8,
                   name: 'a'
-                },
-                prefix: true
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2998,32 +3125,44 @@ describe('Expressions - Unary', () => {
     ],
     [
       'foo = ~b',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 8,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 8,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 3,
                 name: 'foo'
               },
-              operator: '=',
               right: {
                 type: 'UnaryExpression',
+                start: 6,
+                end: 8,
                 operator: '~',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 7,
+                  end: 8,
                   name: 'b'
-                },
-                prefix: true
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3041,28 +3180,6 @@ describe('Expressions - Unary', () => {
               argument: {
                 type: 'Literal',
                 value: null
-              },
-              prefix: true
-            }
-          }
-        ]
-      }
-    ],
-    [
-      '+true  ',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: '+',
-              argument: {
-                type: 'Literal',
-                value: true
               },
               prefix: true
             }
@@ -3145,35 +3262,49 @@ describe('Expressions - Unary', () => {
     ],
     [
       'a ? b : !c',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 10,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 10,
             expression: {
               type: 'ConditionalExpression',
+              start: 0,
+              end: 10,
               test: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
               consequent: {
                 type: 'Identifier',
+                start: 4,
+                end: 5,
                 name: 'b'
               },
               alternate: {
                 type: 'UnaryExpression',
+                start: 8,
+                end: 10,
                 operator: '!',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 9,
+                  end: 10,
                   name: 'c'
-                },
-                prefix: true
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3553,66 +3684,74 @@ describe('Expressions - Unary', () => {
         ]
       }
     ],
-    /* ['void x !== undefined', Context.None, {
-      "type": "Program",
-      "sourceType": "script",
-      "body": [
-        {
-          "type": "ExpressionStatement",
-          "expression": {
-            "type": "BinaryExpression",
-            "left": {
-              "type": "UnaryExpression",
-              "operator": "void",
-              "argument": {
-                "type": "Identifier",
-                "name": "x"
-              },
-              "prefix": true
-            },
-            "right": {
-              "type": "Identifier",
-              "name": "undefined"
-            },
-            "operator": "!=="
-          }
-        }
-      ]
-    }],
-     ['void (x = 1) !== undefined', Context.None, {
-      "type": "Program",
-      "sourceType": "script",
-      "body": [
-        {
-          "type": "ExpressionStatement",
-          "expression": {
-            "type": "BinaryExpression",
-            "left": {
-              "type": "UnaryExpression",
-              "operator": "void",
-              "argument": {
-                "type": "AssignmentExpression",
-                "left": {
-                  "type": "Identifier",
-                  "name": "x"
+    [
+      'void x !== undefined',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'UnaryExpression',
+                operator: 'void',
+                argument: {
+                  type: 'Identifier',
+                  name: 'x'
                 },
-                "operator": "=",
-                "right": {
-                  "type": "Literal",
-                  "value": 1
-                }
+                prefix: true
               },
-              "prefix": true
-            },
-            "right": {
-              "type": "Identifier",
-              "name": "undefined"
-            },
-            "operator": "!=="
+              right: {
+                type: 'Identifier',
+                name: 'undefined'
+              },
+              operator: '!=='
+            }
           }
-        }
-      ]
-    }],*/
+        ]
+      }
+    ],
+    [
+      'void (x = 1) !== undefined',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'UnaryExpression',
+                operator: 'void',
+                argument: {
+                  type: 'AssignmentExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'x'
+                  },
+                  operator: '=',
+                  right: {
+                    type: 'Literal',
+                    value: 1
+                  }
+                },
+                prefix: true
+              },
+              right: {
+                type: 'Identifier',
+                name: 'undefined'
+              },
+              operator: '!=='
+            }
+          }
+        ]
+      }
+    ],
     [
       'isNaN(+(void 0)) !== true',
       Context.None,
