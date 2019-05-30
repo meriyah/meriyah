@@ -1742,10 +1742,10 @@ export function parseForStatement(
       report(parser, Errors.ForLoopInvalidLHS);
     }
 
-    init = parseAssignmentExpression(parser, context | Context.DisallowIn, parser.startIndex, init);
+    init = parseAssignmentExpression(parser, context | Context.DisallowIn, startIndex, init);
   }
 
-  if (parser.token === Token.Comma) init = parseSequenceExpression(parser, context, 3333333, init);
+  if (parser.token === Token.Comma) init = parseSequenceExpression(parser, context, parser.startIndex, init);
 
   consume(parser, context | Context.AllowRegExp, Token.Semicolon);
 
