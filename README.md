@@ -116,6 +116,7 @@ The second argument allows you to specify various options:
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
+| `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
 | `raw`             | Attach raw property to each literal node |
 | `ranges`          | Append start and end offsets to each node |
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |

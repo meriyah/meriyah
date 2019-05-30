@@ -15,7 +15,7 @@ export const enum Context {
   OptionsJSX            = 1 << 4,
   OptionsGlobalReturn   = 1 << 5,
   OptionsGlobalAwait    = 1 << 6,
-  OptionsExperimental   = 1 << 7,
+  OptionsParenthesized  = 1 << 7,
   OptionsWebCompat      = 1 << 8,
   OptionsRaw            = 1 << 9,
   Strict                = 1 << 10,

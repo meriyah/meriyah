@@ -129,6 +129,8 @@ export interface Options {
   globalAwait?: boolean;
   // The flag to enable implied strict mode
   impliedStrict?: boolean;
+  // Enable non-standard parenthesized expression node
+  parenthesizedExpr?: boolean;
 }
 
 /**
@@ -145,6 +147,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.globalReturn) context |= Context.OptionsGlobalReturn;
     if (options.globalAwait) context |= Context.OptionsGlobalAwait;
     if (options.raw) context |= Context.OptionsRaw;
+    if (options.parenthesizedExpr) context |= Context.OptionsParenthesized;
     if (options.impliedStrict) context |= Context.Strict;
   }
 
@@ -4771,7 +4774,7 @@ export function parseParenthesizedExpression(
   parser: ParserState,
   context: Context,
   assignable: 0 | 1,
-  _start: number
+  start: number
 ): any {
   parser.flags &= ~Flags.SimpleParameterList;
 
@@ -4779,7 +4782,7 @@ export function parseParenthesizedExpression(
 
   if (consumeOpt(parser, context, Token.RightParen)) {
     if (!assignable) report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
-    return parseArrowFunctionExpression(parser, context, [], /* isAsync */ 0, _start);
+    return parseArrowFunctionExpression(parser, context, [], /* isAsync */ 0, start);
   }
 
   let destructible: AssignmentKind | DestructuringKind = 0;
@@ -4788,11 +4791,14 @@ export function parseParenthesizedExpression(
   let expressions: ESTree.Expression[] = [];
   let toplevelComma: 0 | 1 = 0;
   let isComplex: 0 | 1 = 0;
-  let start = parser.startIndex;
+
+  let idxStart = parser.startIndex;
+
   parser.assignable = AssignmentKind.IsAssignable;
 
   while (parser.token !== Token.RightParen) {
-    const startIndex = parser.startIndex;
+    const idxAfterLeftParen = parser.startIndex;
+
     if (parser.token & (Token.IsIdentifier | Token.Keyword)) {
       const { token } = parser;
 
@@ -4803,7 +4809,7 @@ export function parseParenthesizedExpression(
         isComplex = 1;
       }
 
-      expr = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, 1, startIndex);
+      expr = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, 1, idxAfterLeftParen);
 
       if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
         isComplex = 1;
@@ -4818,7 +4824,7 @@ export function parseParenthesizedExpression(
 
         parser.destructible |= parser.flags & Flags.Await ? DestructuringKind.Await : 0;
 
-        expr = finishNode(parser, context, startIndex, {
+        expr = finishNode(parser, context, idxAfterLeftParen, {
           type: 'AssignmentExpression',
           left: expr,
           operator: '=',
@@ -4835,29 +4841,15 @@ export function parseParenthesizedExpression(
         expr = parseAssignmentExpression(
           parser,
           context,
-          startIndex,
-          parseMemberOrUpdateExpression(parser, context, expr, /* assignable */ 0, 0, startIndex)
+          idxAfterLeftParen,
+          parseMemberOrUpdateExpression(parser, context, expr, /* assignable */ 0, 0, idxAfterLeftParen)
         );
       }
     } else if (parser.token & Token.IsPatternStart) {
       expr =
         parser.token === Token.LeftBrace
-          ? parseObjectLiteralOrPattern(
-              parser,
-              context,
-              /*skipInitializer */ 0,
-              /* inGroup */ 1,
-              BindingType.None,
-              startIndex
-            )
-          : parseArrayExpressionOrPattern(
-              parser,
-              context,
-              /*skipInitializer */ 0,
-              /* inGroup */ 1,
-              BindingType.None,
-              startIndex
-            );
+          ? parseObjectLiteralOrPattern(parser, context, 0, 1, BindingType.None, idxAfterLeftParen)
+          : parseArrayExpressionOrPattern(parser, context, 0, 1, BindingType.None, idxAfterLeftParen);
 
       destructible |= parser.destructible;
 
@@ -4868,12 +4860,12 @@ export function parseParenthesizedExpression(
       if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
         if (destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidPatternTail);
 
-        expr = parseMemberOrUpdateExpression(parser, context, expr, /* assignable */ 0, 0, startIndex);
+        expr = parseMemberOrUpdateExpression(parser, context, expr, /* assignable */ 0, 0, idxAfterLeftParen);
 
         destructible |= DestructuringKind.CannotDestruct;
 
         if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
-          expr = parseAssignmentExpression(parser, context, startIndex, expr);
+          expr = parseAssignmentExpression(parser, context, idxAfterLeftParen, expr);
         }
       }
     } else if (parser.token === Token.Ellipsis) {
@@ -4919,7 +4911,7 @@ export function parseParenthesizedExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = finishNode(parser, context, start, {
+        expr = finishNode(parser, context, idxStart, {
           type: 'SequenceExpression',
           expressions
         });
@@ -4951,7 +4943,7 @@ export function parseParenthesizedExpression(
   if (toplevelComma) {
     parser.assignable = AssignmentKind.CannotAssign;
 
-    expr = finishNode(parser, context, start, {
+    expr = finishNode(parser, context, idxStart, {
       type: 'SequenceExpression',
       expressions
     });
@@ -4973,14 +4965,19 @@ export function parseParenthesizedExpression(
       report(parser, Errors.YieldInParameter);
     }
 
-    return parseArrowFunctionExpression(parser, context, toplevelComma ? expressions : [expr], /* isAsync */ 0, _start);
+    return parseArrowFunctionExpression(parser, context, toplevelComma ? expressions : [expr], /* isAsync */ 0, start);
   } else if (destructible & DestructuringKind.MustDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
 
   parser.destructible = destructible;
 
-  return expr;
+  return context & Context.OptionsParenthesized
+    ? finishNode(parser, context, idxStart, {
+        type: 'ParenthesizedExpression',
+        expression: expr
+      } as any)
+    : expr;
 }
 
 /**
