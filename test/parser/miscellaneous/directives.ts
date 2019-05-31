@@ -35,6 +35,11 @@ describe('Miscellaneous - Directives', () => {
     "'random\\u00a\\ foo'",
     "'random\\uax foo'",
     "'random\\u0au foo'",
+    '"use strict" "Hello\\312World"',
+    '"use strict" \\1',
+    '"use strict" "\\1"',
+    '"use strict"; "\\1";',
+    '"use strict" ++',
     'function foo() { "use strict"; with (a) b = c; }',
     '"use strict"; function foo() { with (a) b = c; }',
     '"use strict"; function hello() { "\\000"; }',
@@ -130,7 +135,8 @@ describe('Miscellaneous - Directives', () => {
     '"use strict" \n "Hello\\312World"',
     '"use strict" + "Hello\\312World"',
     '"use strict", "Hello\\312World"',
-    '"use strict", "Hello\\312World"'
+    '"use strict", "Hello\\312World"',
+    'function foo() { "use strict" .foo }'
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {

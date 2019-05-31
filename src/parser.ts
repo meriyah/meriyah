@@ -206,7 +206,7 @@ export function parseStatementList(parser: ParserState, context: Context): ESTre
         context |= Context.Strict;
       }
     }
-    statements.push(parseDirective(parser, context, expr, tokenIndex, token));
+    statements.push(parseDirective(parser, context, expr, token, tokenIndex));
   }
 
   while (parser.token !== Token.EOF) {
@@ -252,7 +252,7 @@ export function parseparseModuleItemList(
           context |= Context.Strict;
         }
       }
-      statements.push(parseDirective(parser, context, expr, tokenIndex, token));
+      statements.push(parseDirective(parser, context, expr, token, tokenIndex));
     }
   }
 
@@ -873,28 +873,35 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
  *
  * @param parser Parser object
  * @param context Context masks
+ * @param expression AST expression node
+ * @param token
+ * @param start Start pos of node
  */
 
 export function parseDirective(
   parser: ParserState,
   context: Context,
   expression: any,
-  start: number,
-  token: Token
+  token: Token,
+  start: number
 ): ESTree.ExpressionStatement {
   const { tokenRaw } = parser;
+
   if (token !== Token.Semicolon) {
     parser.assignable = AssignmentKind.CannotAssign;
+
     expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start);
+
     if (parser.token !== Token.Semicolon) {
       expression = parseAssignmentExpression(parser, context, start, expression);
+
       if (parser.token === Token.Comma) {
         expression = parseSequenceExpression(parser, context, start, expression);
       }
     }
-  }
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+    consumeSemicolon(parser, context | Context.AllowRegExp);
+  }
 
   return context & Context.OptionsDirectives
     ? finishNode(parser, context, start, {
@@ -2607,7 +2614,7 @@ export function parseFunctionBody(
           }
         }
       }
-      body.push(parseDirective(parser, context, expr, tokenIndex, token));
+      body.push(parseDirective(parser, context, expr, token, tokenIndex));
     }
 
     if (

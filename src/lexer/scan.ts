@@ -1,4 +1,4 @@
-import { skipSingleLineComment, skipMultiLineComment, ScannerState, Seek } from './';
+import { skipSingleLineComment, skipMultiLineComment, ScannerState } from './';
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Token } from '../token';

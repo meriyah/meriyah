@@ -6,8 +6,7 @@ export {
   isExoticECMAScriptWhitespace,
   fromCodePoint,
   toHex,
-  ScannerState,
-  Seek
+  ScannerState
 } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
 export { scanIdentifier, scanPrivateName, scanUnicodeEscapeValue } from './identifier';

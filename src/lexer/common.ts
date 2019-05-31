@@ -3,11 +3,6 @@ import { ParserState } from '../common';
 import { unicodeLookup } from '../unicode';
 import { report, Errors } from '../errors';
 
-export const enum Seek {
-  None,
-  SameLine,
-  NewLine
-}
 export const enum ScannerState {
   None = 0,
   NewLine = 1 << 0,

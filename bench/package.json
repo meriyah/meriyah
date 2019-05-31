@@ -1,0 +1,27 @@
+{
+  "name": "bench",
+  "private": true,
+  "license": "ISC",
+  "scripts": {
+    "postinstall": "cd .. && npm run bundle:bench && cd bench",
+    "parse": "ts-node -r esm src/parse.ts module",
+    "parse:loc": "ts-node -r esm src/parse.ts module,loc"
+  },
+  "devDependencies": {
+    "@types/node": "10.12.18",
+    "@types/benchmark": "1.0.31",
+    "cherow": "dev",
+    "cross-env": "5.2.0",
+    "benchmark": "2.1.4",
+    "esm": "3.2.4",
+    "ts-node": "7.0.1",
+    "tsconfig-paths": "3.7.0",
+    "typescript": "3.2.2",
+    "jquery": "3.3.1",
+    "react": "16.8.2",
+    "vue": "2.6.6",
+    "angular": "1.7.7",
+    "@aurelia/jit-html-browser": "0.3.0-dev.20190112",
+    "inferno": "7.1.7"
+  }
+}
