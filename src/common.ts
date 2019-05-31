@@ -1,5 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
+import { Node } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -14,7 +15,7 @@ export const enum Context {
   OptionsJSX            = 1 << 4,
   OptionsGlobalReturn   = 1 << 5,
   OptionsGlobalAwait    = 1 << 6,
-  OptionsExperimental   = 1 << 7,
+  OptionsParenthesized  = 1 << 7,
   OptionsWebCompat      = 1 << 8,
   OptionsRaw            = 1 << 9,
   Strict                = 1 << 10,
@@ -120,8 +121,9 @@ export interface ParserState {
   index: number;
   line: number;
   column: number;
+  tokenIndex: number;
   startIndex: number;
-  length: number;
+  end: number;
   token: Token;
   tokenValue: any;
   tokenRaw: string;
@@ -357,4 +359,19 @@ export function validateAndDeclareLabel(parser: ParserState, labels: any, name: 
   } while (set);
 
   labels['€' + name] = 1;
+}
+
+
+export function finishNode<T extends Node>(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  node: T,
+): T {
+  if (context & Context.OptionsRanges) {
+    node.start = start;
+    node.end = parser.startIndex;
+}
+
+  return node;
 }

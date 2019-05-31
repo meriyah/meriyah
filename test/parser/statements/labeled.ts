@@ -110,78 +110,109 @@ describe('Statements - Labeled', () => {
   pass('Statements - Labeled (pass)', [
     [
       'function *f(){ await: x; }',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 26,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 26,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'f'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 26,
               body: [
                 {
                   type: 'LabeledStatement',
-                  label: {
-                    type: 'Identifier',
-                    name: 'await'
-                  },
+                  start: 15,
+                  end: 24,
                   body: {
                     type: 'ExpressionStatement',
+                    start: 22,
+                    end: 24,
                     expression: {
                       type: 'Identifier',
+                      start: 22,
+                      end: 23,
                       name: 'x'
                     }
+                  },
+                  label: {
+                    type: 'Identifier',
+                    start: 15,
+                    end: 20,
+                    name: 'await'
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'await: while (await) { continue await; }',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 40,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'await'
-            },
+            start: 0,
+            end: 40,
             body: {
               type: 'WhileStatement',
+              start: 7,
+              end: 40,
               test: {
                 type: 'Identifier',
+                start: 14,
+                end: 19,
                 name: 'await'
               },
               body: {
                 type: 'BlockStatement',
+                start: 21,
+                end: 40,
                 body: [
                   {
                     type: 'ContinueStatement',
+                    start: 23,
+                    end: 38,
                     label: {
                       type: 'Identifier',
+                      start: 32,
+                      end: 37,
                       name: 'await'
                     }
                   }
                 ]
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 5,
+              name: 'await'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -222,92 +253,127 @@ describe('Statements - Labeled', () => {
     ],
     [
       'let, let, let, let',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'SequenceExpression',
+              start: 0,
+              end: 18,
               expressions: [
                 {
                   type: 'Identifier',
+                  start: 0,
+                  end: 3,
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
+                  start: 5,
+                  end: 8,
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
+                  start: 10,
+                  end: 13,
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
+                  start: 15,
+                  end: 18,
                   name: 'let'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'let: foo',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'let'
-            },
+            start: 0,
+            end: 8,
             body: {
               type: 'ExpressionStatement',
+              start: 5,
+              end: 8,
               expression: {
                 type: 'Identifier',
+                start: 5,
+                end: 8,
                 name: 'foo'
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 3,
+              name: 'let'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'foo: function bar() {}',
-      Context.OptionsWebCompat,
+      Context.OptionsWebCompat | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'foo'
-            },
+            start: 0,
+            end: 22,
             body: {
               type: 'FunctionDeclaration',
+              start: 5,
+              end: 22,
+              id: {
+                type: 'Identifier',
+                start: 14,
+                end: 17,
+                name: 'bar'
+              },
+              generator: false,
+              async: false,
               params: [],
               body: {
                 type: 'BlockStatement',
+                start: 20,
+                end: 22,
                 body: []
-              },
-              async: false,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'bar'
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 3,
+              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -384,31 +450,43 @@ describe('Statements - Labeled', () => {
     ],
     [
       'a:{break a;}',
-      Context.None,
+      Context.None | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'a'
-            },
+            start: 0,
+            end: 12,
             body: {
               type: 'BlockStatement',
+              start: 2,
+              end: 12,
               body: [
                 {
                   type: 'BreakStatement',
+                  start: 3,
+                  end: 11,
                   label: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
                   }
                 }
               ]
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 1,
+              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -437,33 +515,47 @@ describe('Statements - Labeled', () => {
     ],
     [
       'start: while (true) break start',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 31,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: 'start'
-            },
+            start: 0,
+            end: 31,
             body: {
               type: 'WhileStatement',
+              start: 7,
+              end: 31,
               test: {
                 type: 'Literal',
+                start: 14,
+                end: 18,
                 value: true
               },
               body: {
                 type: 'BreakStatement',
+                start: 20,
+                end: 31,
                 label: {
                   type: 'Identifier',
+                  start: 26,
+                  end: 31,
                   name: 'start'
                 }
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 5,
+              name: 'start'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -499,38 +591,54 @@ describe('Statements - Labeled', () => {
     ],
     [
       '__proto__: while (true) { break __proto__; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'LabeledStatement',
-            label: {
-              type: 'Identifier',
-              name: '__proto__'
-            },
+            start: 0,
+            end: 44,
             body: {
               type: 'WhileStatement',
+              start: 11,
+              end: 44,
               test: {
                 type: 'Literal',
+                start: 18,
+                end: 22,
                 value: true
               },
               body: {
                 type: 'BlockStatement',
+                start: 24,
+                end: 44,
                 body: [
                   {
                     type: 'BreakStatement',
+                    start: 26,
+                    end: 42,
                     label: {
                       type: 'Identifier',
+                      start: 32,
+                      end: 41,
                       name: '__proto__'
                     }
                   }
                 ]
               }
+            },
+            label: {
+              type: 'Identifier',
+              start: 0,
+              end: 9,
+              name: '__proto__'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

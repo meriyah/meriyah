@@ -427,137 +427,191 @@ describe('Expressions - Super', () => {
   pass('Expressions - Super (pass)', [
     [
       'class C { constructor() {new super.x; } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 41,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 41,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'C'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 41,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 39,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 21,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 39,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 24,
+                      end: 39,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 25,
+                          end: 37,
                           expression: {
                             type: 'NewExpression',
+                            start: 25,
+                            end: 36,
                             callee: {
                               type: 'MemberExpression',
+                              start: 29,
+                              end: 36,
                               object: {
-                                type: 'Super'
+                                type: 'Super',
+                                start: 29,
+                                end: 34
                               },
-                              computed: false,
                               property: {
                                 type: 'Identifier',
+                                start: 35,
+                                end: 36,
                                 name: 'x'
-                              }
+                              },
+                              computed: false
                             },
                             arguments: []
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class x extends y { }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 21,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 21,
               body: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class x extends y { f(){} }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 27,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 27,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 20,
+                  end: 25,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 21,
                     name: 'f'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 25,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 23,
+                      end: 25,
                       body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -620,62 +674,85 @@ describe('Expressions - Super', () => {
     ],
     [
       'class x { constructor(){ super.foo; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 38,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 38,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 38,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 37,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 21,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 37,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 23,
+                      end: 37,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 25,
+                          end: 35,
                           expression: {
                             type: 'MemberExpression',
+                            start: 25,
+                            end: 34,
                             object: {
-                              type: 'Super'
+                              type: 'Super',
+                              start: 25,
+                              end: 30
                             },
-                            computed: false,
                             property: {
                               type: 'Identifier',
+                              start: 31,
+                              end: 34,
                               name: 'foo'
-                            }
+                            },
+                            computed: false
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -804,66 +881,91 @@ describe('Expressions - Super', () => {
     ],
     [
       'x={ foo(){ super.foo; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 24,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 24,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'x'
               },
-              operator: '=',
               right: {
                 type: 'ObjectExpression',
+                start: 2,
+                end: 24,
                 properties: [
                   {
                     type: 'Property',
+                    start: 4,
+                    end: 23,
+                    method: true,
+                    shorthand: false,
+                    computed: false,
                     key: {
                       type: 'Identifier',
+                      start: 4,
+                      end: 7,
                       name: 'foo'
                     },
+                    kind: 'init',
                     value: {
                       type: 'FunctionExpression',
+                      start: 7,
+                      end: 23,
+                      id: null,
+                      generator: false,
+                      async: false,
                       params: [],
                       body: {
                         type: 'BlockStatement',
+                        start: 9,
+                        end: 23,
                         body: [
                           {
                             type: 'ExpressionStatement',
+                            start: 11,
+                            end: 21,
                             expression: {
                               type: 'MemberExpression',
+                              start: 11,
+                              end: 20,
                               object: {
-                                type: 'Super'
+                                type: 'Super',
+                                start: 11,
+                                end: 16
                               },
-                              computed: false,
                               property: {
                                 type: 'Identifier',
+                                start: 17,
+                                end: 20,
                                 name: 'foo'
-                              }
+                              },
+                              computed: false
                             }
                           }
                         ]
-                      },
-                      async: false,
-                      generator: false,
-
-                      id: null
-                    },
-                    kind: 'init',
-                    computed: false,
-                    method: true,
-                    shorthand: false
+                      }
+                    }
                   }
                 ]
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -936,62 +1038,85 @@ describe('Expressions - Super', () => {
     ],
     [
       'class x { constructor(){ super[foo]; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 39,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 39,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 39,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 38,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 21,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 38,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 23,
+                      end: 38,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 25,
+                          end: 36,
                           expression: {
                             type: 'MemberExpression',
+                            start: 25,
+                            end: 35,
                             object: {
-                              type: 'Super'
+                              type: 'Super',
+                              start: 25,
+                              end: 30
                             },
-                            computed: true,
                             property: {
                               type: 'Identifier',
+                              start: 31,
+                              end: 34,
                               name: 'foo'
-                            }
+                            },
+                            computed: true
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1751,157 +1876,220 @@ describe('Expressions - Super', () => {
     ],
     [
       'class x extends y { constructor(){ return (a=super.foo) => a; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 64,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 64,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 64,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 20,
+                  end: 63,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 31,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 31,
+                    end: 63,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 33,
+                      end: 63,
                       body: [
                         {
                           type: 'ReturnStatement',
+                          start: 35,
+                          end: 61,
                           argument: {
                             type: 'ArrowFunctionExpression',
-                            body: {
-                              type: 'Identifier',
-                              name: 'a'
-                            },
+                            start: 42,
+                            end: 60,
+                            expression: true,
+                            async: false,
                             params: [
                               {
                                 type: 'AssignmentPattern',
+                                start: 43,
+                                end: 54,
                                 left: {
                                   type: 'Identifier',
+                                  start: 43,
+                                  end: 44,
                                   name: 'a'
                                 },
                                 right: {
                                   type: 'MemberExpression',
+                                  start: 45,
+                                  end: 54,
                                   object: {
-                                    type: 'Super'
+                                    type: 'Super',
+                                    start: 45,
+                                    end: 50
                                   },
-                                  computed: false,
                                   property: {
                                     type: 'Identifier',
+                                    start: 51,
+                                    end: 54,
                                     name: 'foo'
-                                  }
+                                  },
+                                  computed: false
                                 }
                               }
                             ],
-                            async: false,
-                            expression: true
+                            body: {
+                              type: 'Identifier',
+                              start: 59,
+                              end: 60,
+                              name: 'a'
+                            }
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'class x extends y { constructor(){ return () => () => super.foo; }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 67,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 67,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 67,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 20,
+                  end: 66,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 31,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 31,
+                    end: 66,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 33,
+                      end: 66,
                       body: [
                         {
                           type: 'ReturnStatement',
+                          start: 35,
+                          end: 64,
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            start: 42,
+                            end: 63,
+                            expression: true,
+                            async: false,
+                            params: [],
                             body: {
                               type: 'ArrowFunctionExpression',
+                              start: 48,
+                              end: 63,
+                              expression: true,
+                              async: false,
+                              params: [],
                               body: {
                                 type: 'MemberExpression',
+                                start: 54,
+                                end: 63,
                                 object: {
-                                  type: 'Super'
+                                  type: 'Super',
+                                  start: 54,
+                                  end: 59
                                 },
-                                computed: false,
                                 property: {
                                   type: 'Identifier',
+                                  start: 60,
+                                  end: 63,
                                   name: 'foo'
-                                }
-                              },
-                              params: [],
-
-                              async: false,
-                              expression: true
-                            },
-                            params: [],
-                            async: false,
-                            expression: true
+                                },
+                                computed: false
+                              }
+                            }
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2549,75 +2737,107 @@ describe('Expressions - Super', () => {
     ],
     [
       'class x extends y { constructor() { log(this); super(); } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 59,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 59,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 59,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 20,
+                  end: 57,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 31,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 31,
+                    end: 57,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 34,
+                      end: 57,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 36,
+                          end: 46,
                           expression: {
                             type: 'CallExpression',
+                            start: 36,
+                            end: 45,
                             callee: {
                               type: 'Identifier',
+                              start: 36,
+                              end: 39,
                               name: 'log'
                             },
                             arguments: [
                               {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
+                                start: 40,
+                                end: 44
                               }
                             ]
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 47,
+                          end: 55,
                           expression: {
                             type: 'CallExpression',
+                            start: 47,
+                            end: 54,
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
+                              start: 47,
+                              end: 52
                             },
                             arguments: []
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -2906,70 +3126,100 @@ describe('Expressions - Super', () => {
     ],
     [
       'class x extends y { constructor() { super(); super(); } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 57,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 57,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
+              start: 16,
+              end: 17,
               name: 'y'
             },
             body: {
               type: 'ClassBody',
+              start: 18,
+              end: 57,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 20,
+                  end: 55,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 31,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 31,
+                    end: 55,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 34,
+                      end: 55,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 36,
+                          end: 44,
                           expression: {
                             type: 'CallExpression',
+                            start: 36,
+                            end: 43,
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
+                              start: 36,
+                              end: 41
                             },
                             arguments: []
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 45,
+                          end: 53,
                           expression: {
                             type: 'CallExpression',
+                            start: 45,
+                            end: 52,
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
+                              start: 45,
+                              end: 50
                             },
                             arguments: []
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

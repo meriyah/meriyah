@@ -14,20 +14,22 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
 * Support TC39 proposals via option
 * Support for additional ECMAScript features for Web Browsers
-* Optionally track syntactic node locations (*WIP*)
+* Optionally track syntactic node locations
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~73 000 unit tests with full code coverage))
-* Lightweight - ~71 KB minified
+* Very well tested (~75 000 unit tests with full code coverage))
+* Lightweight - ~74 KB minified
 
 ## ESNext features
 
 * [BigInt](https://github.com/tc39/proposal-bigint)
 * [Decorators](https://github.com/tc39/proposal-decorators)
+* [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
 * [Hashbang Grammar](https://github.com/tc39/proposal-hashbang)
+* [Import()](https://github.com/tc39/proposal-dynamic-import)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
-* [Static class features](https://github.com/tc39/proposal-static-class-features/)
+* [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 
 **Note:** These features need to be enabled with the `next` option.
 
@@ -114,5 +116,7 @@ The second argument allows you to specify various options:
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
+| `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
 | `raw`             | Attach raw property to each literal node |
+| `ranges`          | Append start and end offsets to each node |
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |

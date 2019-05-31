@@ -700,61 +700,98 @@ describe('Declarations - Function', () => {
             b[0];
         }
     }`,
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 175,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 175,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 21,
+              name: 'compareArray'
+            },
+            generator: false,
+            async: false,
             params: [
               {
                 type: 'Identifier',
+                start: 22,
+                end: 23,
                 name: 'a'
               },
               {
                 type: 'Identifier',
+                start: 25,
+                end: 26,
                 name: 'b'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 28,
+              end: 175,
               body: [
                 {
                   type: 'IfStatement',
+                  start: 38,
+                  end: 96,
                   test: {
                     type: 'BinaryExpression',
+                    start: 42,
+                    end: 63,
                     left: {
                       type: 'MemberExpression',
+                      start: 42,
+                      end: 50,
                       object: {
                         type: 'Identifier',
+                        start: 42,
+                        end: 43,
                         name: 'b'
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 44,
+                        end: 50,
                         name: 'length'
-                      }
+                      },
+                      computed: false
                     },
+                    operator: '!==',
                     right: {
                       type: 'MemberExpression',
+                      start: 55,
+                      end: 63,
                       object: {
                         type: 'Identifier',
+                        start: 55,
+                        end: 56,
                         name: 'a'
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 57,
+                        end: 63,
                         name: 'length'
-                      }
-                    },
-                    operator: '!=='
+                      },
+                      computed: false
+                    }
                   },
                   consequent: {
                     type: 'BlockStatement',
+                    start: 65,
+                    end: 96,
                     body: [
                       {
                         type: 'ReturnStatement',
+                        start: 79,
+                        end: 86,
                         argument: null
                       }
                     ]
@@ -763,84 +800,114 @@ describe('Declarations - Function', () => {
                 },
                 {
                   type: 'ForStatement',
-                  body: {
-                    type: 'BlockStatement',
-                    body: [
-                      {
-                        type: 'ExpressionStatement',
-                        expression: {
-                          type: 'MemberExpression',
-                          object: {
-                            type: 'Identifier',
-                            name: 'b'
-                          },
-                          computed: true,
-                          property: {
-                            type: 'Literal',
-                            value: 0
-                          }
-                        }
-                      }
-                    ]
-                  },
+                  start: 105,
+                  end: 169,
                   init: {
                     type: 'VariableDeclaration',
-                    kind: 'var',
+                    start: 110,
+                    end: 119,
                     declarations: [
                       {
                         type: 'VariableDeclarator',
-                        init: {
-                          type: 'Literal',
-                          value: 0
-                        },
+                        start: 114,
+                        end: 119,
                         id: {
                           type: 'Identifier',
+                          start: 114,
+                          end: 115,
                           name: 'i'
+                        },
+                        init: {
+                          type: 'Literal',
+                          start: 118,
+                          end: 119,
+                          value: 0,
+                          raw: '0'
                         }
                       }
-                    ]
+                    ],
+                    kind: 'var'
                   },
                   test: {
                     type: 'BinaryExpression',
+                    start: 121,
+                    end: 133,
                     left: {
                       type: 'Identifier',
+                      start: 121,
+                      end: 122,
                       name: 'i'
                     },
+                    operator: '<',
                     right: {
                       type: 'MemberExpression',
+                      start: 125,
+                      end: 133,
                       object: {
                         type: 'Identifier',
+                        start: 125,
+                        end: 126,
                         name: 'a'
                       },
-                      computed: false,
                       property: {
                         type: 'Identifier',
+                        start: 127,
+                        end: 133,
                         name: 'length'
-                      }
-                    },
-                    operator: '<'
+                      },
+                      computed: false
+                    }
                   },
                   update: {
                     type: 'UpdateExpression',
+                    start: 135,
+                    end: 138,
+                    operator: '++',
+                    prefix: false,
                     argument: {
                       type: 'Identifier',
+                      start: 135,
+                      end: 136,
                       name: 'i'
-                    },
-                    operator: '++',
-                    prefix: false
+                    }
+                  },
+                  body: {
+                    type: 'BlockStatement',
+                    start: 140,
+                    end: 169,
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        start: 154,
+                        end: 159,
+                        expression: {
+                          type: 'MemberExpression',
+                          start: 154,
+                          end: 158,
+                          object: {
+                            type: 'Identifier',
+                            start: 154,
+                            end: 155,
+                            name: 'b'
+                          },
+                          property: {
+                            type: 'Literal',
+                            start: 156,
+                            end: 157,
+                            value: 0,
+                            raw: '0'
+                          },
+                          computed: true
+                        }
+                      }
+                    ]
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'compareArray'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -854,71 +921,116 @@ describe('Declarations - Function', () => {
               error = e;
           }
       }`,
-      Context.None,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 246,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 246,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 20,
+              name: 'shouldThrow'
+            },
+            generator: false,
+            async: false,
             params: [
               {
                 type: 'Identifier',
+                start: 21,
+                end: 25,
                 name: 'func'
               },
               {
                 type: 'Identifier',
+                start: 27,
+                end: 39,
                 name: 'errorMessage'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 41,
+              end: 246,
               body: [
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 53,
+                  end: 77,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'Literal',
-                        value: false
-                      },
+                      start: 57,
+                      end: 76,
                       id: {
                         type: 'Identifier',
+                        start: 57,
+                        end: 68,
                         name: 'errorThrown'
+                      },
+                      init: {
+                        type: 'Literal',
+                        start: 71,
+                        end: 76,
+                        value: false,
+                        raw: 'false'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 88,
+                  end: 105,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'Literal',
-                        value: null
-                      },
+                      start: 92,
+                      end: 104,
                       id: {
                         type: 'Identifier',
+                        start: 92,
+                        end: 97,
                         name: 'error'
+                      },
+                      init: {
+                        type: 'Literal',
+                        start: 100,
+                        end: 104,
+                        value: null,
+                        raw: 'null'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'TryStatement',
+                  start: 116,
+                  end: 238,
                   block: {
                     type: 'BlockStatement',
+                    start: 120,
+                    end: 155,
                     body: [
                       {
                         type: 'ExpressionStatement',
+                        start: 136,
+                        end: 143,
                         expression: {
                           type: 'CallExpression',
+                          start: 136,
+                          end: 142,
                           callee: {
                             type: 'Identifier',
+                            start: 136,
+                            end: 140,
                             name: 'func'
                           },
                           arguments: []
@@ -928,39 +1040,62 @@ describe('Declarations - Function', () => {
                   },
                   handler: {
                     type: 'CatchClause',
+                    start: 156,
+                    end: 238,
                     param: {
                       type: 'Identifier',
+                      start: 163,
+                      end: 164,
                       name: 'e'
                     },
                     body: {
                       type: 'BlockStatement',
+                      start: 166,
+                      end: 238,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 182,
+                          end: 201,
                           expression: {
                             type: 'AssignmentExpression',
+                            start: 182,
+                            end: 200,
+                            operator: '=',
                             left: {
                               type: 'Identifier',
+                              start: 182,
+                              end: 193,
                               name: 'errorThrown'
                             },
-                            operator: '=',
                             right: {
                               type: 'Literal',
-                              value: true
+                              start: 196,
+                              end: 200,
+                              value: true,
+                              raw: 'true'
                             }
                           }
                         },
                         {
                           type: 'ExpressionStatement',
+                          start: 216,
+                          end: 226,
                           expression: {
                             type: 'AssignmentExpression',
+                            start: 216,
+                            end: 225,
+                            operator: '=',
                             left: {
                               type: 'Identifier',
+                              start: 216,
+                              end: 221,
                               name: 'error'
                             },
-                            operator: '=',
                             right: {
                               type: 'Identifier',
+                              start: 224,
+                              end: 225,
                               name: 'e'
                             }
                           }
@@ -971,16 +1106,10 @@ describe('Declarations - Function', () => {
                   finalizer: null
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'shouldThrow'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1279,52 +1408,83 @@ describe('Declarations - Function', () => {
     ],
     [
       'function a([ { a = x }, {} = b]) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 35,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'a'
+            },
+            generator: false,
+            async: false,
             params: [
               {
                 type: 'ArrayPattern',
+                start: 11,
+                end: 31,
                 elements: [
                   {
                     type: 'ObjectPattern',
+                    start: 13,
+                    end: 22,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 15,
+                        end: 20,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'a'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'AssignmentPattern',
+                          start: 15,
+                          end: 20,
                           left: {
                             type: 'Identifier',
+                            start: 15,
+                            end: 16,
                             name: 'a'
                           },
                           right: {
                             type: 'Identifier',
+                            start: 19,
+                            end: 20,
                             name: 'x'
                           }
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       }
                     ]
                   },
                   {
                     type: 'AssignmentPattern',
+                    start: 24,
+                    end: 30,
                     left: {
                       type: 'ObjectPattern',
+                      start: 24,
+                      end: 26,
                       properties: []
                     },
                     right: {
                       type: 'Identifier',
+                      start: 29,
+                      end: 30,
                       name: 'b'
                     }
                   }
@@ -1333,17 +1493,13 @@ describe('Declarations - Function', () => {
             ],
             body: {
               type: 'BlockStatement',
+              start: 33,
+              end: 35,
               body: []
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1444,39 +1600,61 @@ describe('Declarations - Function', () => {
     ],
     [
       'function f(x) { { const x = y } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 33,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 33,
             id: {
               type: 'Identifier',
+              start: 9,
+              end: 10,
               name: 'f'
             },
+            generator: false,
+            async: false,
             params: [
               {
                 type: 'Identifier',
+                start: 11,
+                end: 12,
                 name: 'x'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 14,
+              end: 33,
               body: [
                 {
                   type: 'BlockStatement',
+                  start: 16,
+                  end: 31,
                   body: [
                     {
                       type: 'VariableDeclaration',
+                      start: 18,
+                      end: 29,
                       declarations: [
                         {
                           type: 'VariableDeclarator',
+                          start: 24,
+                          end: 29,
                           id: {
                             type: 'Identifier',
+                            start: 24,
+                            end: 25,
                             name: 'x'
                           },
                           init: {
                             type: 'Identifier',
+                            start: 28,
+                            end: 29,
                             name: 'y'
                           }
                         }
@@ -1486,10 +1664,7 @@ describe('Declarations - Function', () => {
                   ]
                 }
               ]
-            },
-            generator: false,
-
-            async: false
+            }
           }
         ],
         sourceType: 'script'
@@ -1497,47 +1672,66 @@ describe('Declarations - Function', () => {
     ],
     [
       'function f(){ foo = new.target }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 32,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 32,
             id: {
               type: 'Identifier',
+              start: 9,
+              end: 10,
               name: 'f'
             },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 32,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 30,
                   expression: {
                     type: 'AssignmentExpression',
+                    start: 14,
+                    end: 30,
                     operator: '=',
                     left: {
                       type: 'Identifier',
+                      start: 14,
+                      end: 17,
                       name: 'foo'
                     },
                     right: {
                       type: 'MetaProperty',
+                      start: 20,
+                      end: 30,
                       meta: {
                         type: 'Identifier',
+                        start: 20,
+                        end: 23,
                         name: 'new'
                       },
                       property: {
                         type: 'Identifier',
+                        start: 24,
+                        end: 30,
                         name: 'target'
                       }
                     }
                   }
                 }
               ]
-            },
-            generator: false,
-
-            async: false
+            }
           }
         ],
         sourceType: 'script'
@@ -1545,32 +1739,50 @@ describe('Declarations - Function', () => {
     ],
     [
       'function f(x) {var x}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 21,
             id: {
               type: 'Identifier',
+              start: 9,
+              end: 10,
               name: 'f'
             },
+            generator: false,
+            async: false,
             params: [
               {
                 type: 'Identifier',
+                start: 11,
+                end: 12,
                 name: 'x'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 14,
+              end: 21,
               body: [
                 {
                   type: 'VariableDeclaration',
+                  start: 15,
+                  end: 20,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
+                      start: 19,
+                      end: 20,
                       id: {
                         type: 'Identifier',
+                        start: 19,
+                        end: 20,
                         name: 'x'
                       },
                       init: null
@@ -1579,10 +1791,7 @@ describe('Declarations - Function', () => {
                   kind: 'var'
                 }
               ]
-            },
-            generator: false,
-
-            async: false
+            }
           }
         ],
         sourceType: 'script'

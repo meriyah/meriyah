@@ -392,62 +392,86 @@ describe('Expressions - Binary', () => {
     ],
     [
       '++x ** y',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 8,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 8,
               left: {
                 type: 'UpdateExpression',
+                start: 0,
+                end: 3,
+                operator: '++',
+                prefix: true,
                 argument: {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'x'
-                },
-                operator: '++',
-                prefix: true
+                }
               },
+              operator: '**',
               right: {
                 type: 'Identifier',
+                start: 7,
+                end: 8,
                 name: 'y'
-              },
-              operator: '**'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '-(x ** y)',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 9,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 9,
             expression: {
               type: 'UnaryExpression',
+              start: 0,
+              end: 9,
               operator: '-',
+              prefix: true,
               argument: {
                 type: 'BinaryExpression',
+                start: 2,
+                end: 8,
                 left: {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'x'
                 },
+                operator: '**',
                 right: {
                   type: 'Identifier',
+                  start: 7,
+                  end: 8,
                   name: 'y'
-                },
-                operator: '**'
-              },
-              prefix: true
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -477,140 +501,211 @@ describe('Expressions - Binary', () => {
     ],
     [
       'b && c == d',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 11,
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'b'
               },
+              operator: '&&',
               right: {
                 type: 'BinaryExpression',
+                start: 5,
+                end: 11,
                 left: {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'c'
                 },
+                operator: '==',
                 right: {
                   type: 'Identifier',
+                  start: 10,
+                  end: 11,
                   name: 'd'
-                },
-                operator: '=='
-              },
-              operator: '&&'
+                }
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
     [
       'a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 44,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 44,
+              operator: '=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
-              operator: '=',
               right: {
                 type: 'AssignmentExpression',
+                start: 2,
+                end: 44,
+                operator: '+=',
                 left: {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'b'
                 },
-                operator: '+=',
                 right: {
                   type: 'AssignmentExpression',
+                  start: 5,
+                  end: 44,
+                  operator: '-=',
                   left: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 6,
                     name: 'c'
                   },
-                  operator: '-=',
                   right: {
                     type: 'AssignmentExpression',
+                    start: 8,
+                    end: 44,
+                    operator: '**=',
                     left: {
                       type: 'Identifier',
+                      start: 8,
+                      end: 9,
                       name: 'd'
                     },
-                    operator: '**=',
                     right: {
                       type: 'AssignmentExpression',
+                      start: 12,
+                      end: 44,
+                      operator: '*=',
                       left: {
                         type: 'Identifier',
+                        start: 12,
+                        end: 13,
                         name: 'e'
                       },
-                      operator: '*=',
                       right: {
                         type: 'AssignmentExpression',
+                        start: 15,
+                        end: 44,
+                        operator: '/=',
                         left: {
                           type: 'Identifier',
+                          start: 15,
+                          end: 16,
                           name: 'f'
                         },
-                        operator: '/=',
                         right: {
                           type: 'AssignmentExpression',
+                          start: 18,
+                          end: 44,
+                          operator: '%=',
                           left: {
                             type: 'Identifier',
+                            start: 18,
+                            end: 19,
                             name: 'g'
                           },
-                          operator: '%=',
                           right: {
                             type: 'AssignmentExpression',
+                            start: 21,
+                            end: 44,
+                            operator: '<<=',
                             left: {
                               type: 'Identifier',
+                              start: 21,
+                              end: 22,
                               name: 'h'
                             },
-                            operator: '<<=',
                             right: {
                               type: 'AssignmentExpression',
+                              start: 25,
+                              end: 44,
+                              operator: '>>=',
                               left: {
                                 type: 'Identifier',
+                                start: 25,
+                                end: 26,
                                 name: 'i'
                               },
-                              operator: '>>=',
                               right: {
                                 type: 'AssignmentExpression',
+                                start: 29,
+                                end: 44,
+                                operator: '>>>=',
                                 left: {
                                   type: 'Identifier',
+                                  start: 29,
+                                  end: 30,
                                   name: 'j'
                                 },
-                                operator: '>>>=',
                                 right: {
                                   type: 'AssignmentExpression',
+                                  start: 34,
+                                  end: 44,
+                                  operator: '&=',
                                   left: {
                                     type: 'Identifier',
+                                    start: 34,
+                                    end: 35,
                                     name: 'k'
                                   },
-                                  operator: '&=',
                                   right: {
                                     type: 'AssignmentExpression',
+                                    start: 37,
+                                    end: 44,
+                                    operator: '^=',
                                     left: {
                                       type: 'Identifier',
+                                      start: 37,
+                                      end: 38,
                                       name: 'l'
                                     },
-                                    operator: '^=',
                                     right: {
                                       type: 'AssignmentExpression',
+                                      start: 40,
+                                      end: 44,
+                                      operator: '|=',
                                       left: {
                                         type: 'Identifier',
+                                        start: 40,
+                                        end: 41,
                                         name: 'm'
                                       },
-                                      operator: '|=',
                                       right: {
                                         type: 'Identifier',
+                                        start: 43,
+                                        end: 44,
                                         name: 'n'
                                       }
                                     }
@@ -627,111 +722,169 @@ describe('Expressions - Binary', () => {
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 44,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 44,
             expression: {
               type: 'AssignmentExpression',
+              start: 0,
+              end: 44,
+              operator: '|=',
               left: {
                 type: 'Identifier',
+                start: 0,
+                end: 1,
                 name: 'a'
               },
-              operator: '|=',
               right: {
                 type: 'AssignmentExpression',
+                start: 3,
+                end: 44,
+                operator: '^=',
                 left: {
                   type: 'Identifier',
+                  start: 3,
+                  end: 4,
                   name: 'b'
                 },
-                operator: '^=',
                 right: {
                   type: 'AssignmentExpression',
+                  start: 6,
+                  end: 44,
+                  operator: '&=',
                   left: {
                     type: 'Identifier',
+                    start: 6,
+                    end: 7,
                     name: 'c'
                   },
-                  operator: '&=',
                   right: {
                     type: 'AssignmentExpression',
+                    start: 9,
+                    end: 44,
+                    operator: '>>>=',
                     left: {
                       type: 'Identifier',
+                      start: 9,
+                      end: 10,
                       name: 'd'
                     },
-                    operator: '>>>=',
                     right: {
                       type: 'AssignmentExpression',
+                      start: 14,
+                      end: 44,
+                      operator: '>>=',
                       left: {
                         type: 'Identifier',
+                        start: 14,
+                        end: 15,
                         name: 'e'
                       },
-                      operator: '>>=',
                       right: {
                         type: 'AssignmentExpression',
+                        start: 18,
+                        end: 44,
+                        operator: '<<=',
                         left: {
                           type: 'Identifier',
+                          start: 18,
+                          end: 19,
                           name: 'f'
                         },
-                        operator: '<<=',
                         right: {
                           type: 'AssignmentExpression',
+                          start: 22,
+                          end: 44,
+                          operator: '%=',
                           left: {
                             type: 'Identifier',
+                            start: 22,
+                            end: 23,
                             name: 'g'
                           },
-                          operator: '%=',
                           right: {
                             type: 'AssignmentExpression',
+                            start: 25,
+                            end: 44,
+                            operator: '/=',
                             left: {
                               type: 'Identifier',
+                              start: 25,
+                              end: 26,
                               name: 'h'
                             },
-                            operator: '/=',
                             right: {
                               type: 'AssignmentExpression',
+                              start: 28,
+                              end: 44,
+                              operator: '*=',
                               left: {
                                 type: 'Identifier',
+                                start: 28,
+                                end: 29,
                                 name: 'i'
                               },
-                              operator: '*=',
                               right: {
                                 type: 'AssignmentExpression',
+                                start: 31,
+                                end: 44,
+                                operator: '**=',
                                 left: {
                                   type: 'Identifier',
+                                  start: 31,
+                                  end: 32,
                                   name: 'j'
                                 },
-                                operator: '**=',
                                 right: {
                                   type: 'AssignmentExpression',
+                                  start: 35,
+                                  end: 44,
+                                  operator: '-=',
                                   left: {
                                     type: 'Identifier',
+                                    start: 35,
+                                    end: 36,
                                     name: 'k'
                                   },
-                                  operator: '-=',
                                   right: {
                                     type: 'AssignmentExpression',
+                                    start: 38,
+                                    end: 44,
+                                    operator: '+=',
                                     left: {
                                       type: 'Identifier',
+                                      start: 38,
+                                      end: 39,
                                       name: 'l'
                                     },
-                                    operator: '+=',
                                     right: {
                                       type: 'AssignmentExpression',
+                                      start: 41,
+                                      end: 44,
+                                      operator: '=',
                                       left: {
                                         type: 'Identifier',
+                                        start: 41,
+                                        end: 42,
                                         name: 'm'
                                       },
-                                      operator: '=',
                                       right: {
                                         type: 'Identifier',
+                                        start: 43,
+                                        end: 44,
                                         name: 'n'
                                       }
                                     }
@@ -748,73 +901,102 @@ describe('Expressions - Binary', () => {
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a || b || c',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 11,
               left: {
                 type: 'LogicalExpression',
+                start: 0,
+                end: 6,
                 left: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
+                operator: '||',
                 right: {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'b'
-                },
-                operator: '||'
+                }
               },
+              operator: '||',
               right: {
                 type: 'Identifier',
+                start: 10,
+                end: 11,
                 name: 'c'
-              },
-              operator: '||'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'a && b && c',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
             expression: {
               type: 'LogicalExpression',
+              start: 0,
+              end: 11,
               left: {
                 type: 'LogicalExpression',
+                start: 0,
+                end: 6,
                 left: {
                   type: 'Identifier',
+                  start: 0,
+                  end: 1,
                   name: 'a'
                 },
+                operator: '&&',
                 right: {
                   type: 'Identifier',
+                  start: 5,
+                  end: 6,
                   name: 'b'
-                },
-                operator: '&&'
+                }
               },
+              operator: '&&',
               right: {
                 type: 'Identifier',
+                start: 10,
+                end: 11,
                 name: 'c'
-              },
-              operator: '&&'
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -918,51 +1100,73 @@ describe('Expressions - Binary', () => {
     ],
     [
       'a == b != c === d !== e',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'BinaryExpression',
+              start: 0,
+              end: 23,
               left: {
                 type: 'BinaryExpression',
+                start: 0,
+                end: 17,
                 left: {
                   type: 'BinaryExpression',
+                  start: 0,
+                  end: 11,
                   left: {
                     type: 'BinaryExpression',
+                    start: 0,
+                    end: 6,
                     left: {
                       type: 'Identifier',
+                      start: 0,
+                      end: 1,
                       name: 'a'
                     },
+                    operator: '==',
                     right: {
                       type: 'Identifier',
+                      start: 5,
+                      end: 6,
                       name: 'b'
-                    },
-                    operator: '=='
+                    }
                   },
+                  operator: '!=',
                   right: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 11,
                     name: 'c'
-                  },
-                  operator: '!='
+                  }
                 },
+                operator: '===',
                 right: {
                   type: 'Identifier',
+                  start: 16,
+                  end: 17,
                   name: 'd'
-                },
-                operator: '==='
+                }
               },
+              operator: '!==',
               right: {
                 type: 'Identifier',
+                start: 22,
+                end: 23,
                 name: 'e'
-              },
-              operator: '!=='
+              }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

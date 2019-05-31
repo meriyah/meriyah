@@ -409,184 +409,260 @@ describe('Declarations - const', () => {
     ],
     [
       'const x = y, [foo] = z;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 23,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'y'
-                },
+                start: 6,
+                end: 11,
                 id: {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'x'
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 10,
+                  end: 11,
+                  name: 'y'
                 }
               },
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 13,
+                end: 22,
                 id: {
                   type: 'ArrayPattern',
+                  start: 13,
+                  end: 18,
                   elements: [
                     {
                       type: 'Identifier',
+                      start: 14,
+                      end: 17,
                       name: 'foo'
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 21,
+                  end: 22,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'const [foo=a,bar=b] = x;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 24,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'x'
-                },
+                start: 6,
+                end: 23,
                 id: {
                   type: 'ArrayPattern',
+                  start: 6,
+                  end: 19,
                   elements: [
                     {
                       type: 'AssignmentPattern',
+                      start: 7,
+                      end: 12,
                       left: {
                         type: 'Identifier',
+                        start: 7,
+                        end: 10,
                         name: 'foo'
                       },
                       right: {
                         type: 'Identifier',
+                        start: 11,
+                        end: 12,
                         name: 'a'
                       }
                     },
                     {
                       type: 'AssignmentPattern',
+                      start: 13,
+                      end: 18,
                       left: {
                         type: 'Identifier',
+                        start: 13,
+                        end: 16,
                         name: 'bar'
                       },
                       right: {
                         type: 'Identifier',
+                        start: 17,
+                        end: 18,
                         name: 'b'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 22,
+                  end: 23,
+                  name: 'x'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'const [...bar] = obj;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 21,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 21,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'obj'
-                },
+                start: 6,
+                end: 20,
                 id: {
                   type: 'ArrayPattern',
+                  start: 6,
+                  end: 14,
                   elements: [
                     {
                       type: 'RestElement',
+                      start: 7,
+                      end: 13,
                       argument: {
                         type: 'Identifier',
+                        start: 10,
+                        end: 13,
                         name: 'bar'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 17,
+                  end: 20,
+                  name: 'obj'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'const x = y, {foo} = z;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 23,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'y'
-                },
+                start: 6,
+                end: 11,
                 id: {
                   type: 'Identifier',
+                  start: 6,
+                  end: 7,
                   name: 'x'
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 10,
+                  end: 11,
+                  name: 'y'
                 }
               },
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 13,
+                end: 22,
                 id: {
                   type: 'ObjectPattern',
+                  start: 13,
+                  end: 18,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 14,
+                      end: 17,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 14,
+                        end: 17,
                         name: 'foo'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 14,
+                        end: 17,
                         name: 'foo'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 21,
+                  end: 22,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -811,89 +887,125 @@ describe('Declarations - const', () => {
     ],
     [
       'for (const {x : y, z, a : b = c} in obj);',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 41,
         body: [
           {
             type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
+            start: 0,
+            end: 41,
             left: {
               type: 'VariableDeclaration',
-              kind: 'const',
+              start: 5,
+              end: 32,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 11,
+                  end: 32,
                   id: {
                     type: 'ObjectPattern',
+                    start: 11,
+                    end: 32,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 12,
+                        end: 17,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 12,
+                          end: 13,
                           name: 'x'
                         },
-                        computed: false,
                         value: {
                           type: 'Identifier',
+                          start: 16,
+                          end: 17,
                           name: 'y'
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       },
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 19,
+                        end: 20,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 19,
+                          end: 20,
                           name: 'z'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 19,
+                          end: 20,
                           name: 'z'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       },
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 22,
+                        end: 31,
+                        method: false,
+                        shorthand: false,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 22,
+                          end: 23,
                           name: 'a'
                         },
-                        computed: false,
                         value: {
                           type: 'AssignmentPattern',
+                          start: 26,
+                          end: 31,
                           left: {
                             type: 'Identifier',
+                            start: 26,
+                            end: 27,
                             name: 'b'
                           },
                           right: {
                             type: 'Identifier',
+                            start: 30,
+                            end: 31,
                             name: 'c'
                           }
                         },
-                        method: false,
-                        shorthand: false
+                        kind: 'init'
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'const'
             },
             right: {
               type: 'Identifier',
+              start: 36,
+              end: 39,
               name: 'obj'
+            },
+            body: {
+              type: 'EmptyStatement',
+              start: 40,
+              end: 41
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1260,556 +1372,802 @@ describe('Declarations - const', () => {
             } = complex;
 
             let { x4: { ...y4 } } = z;`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 519,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 0,
+            end: 11,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: []
-                },
+                start: 4,
+                end: 10,
                 id: {
                   type: 'Identifier',
+                  start: 4,
+                  end: 5,
                   name: 'z'
+                },
+                init: {
+                  type: 'ObjectExpression',
+                  start: 8,
+                  end: 10,
+                  properties: []
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 24,
+            end: 41,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 28,
+                end: 40,
                 id: {
                   type: 'ObjectPattern',
+                  start: 28,
+                  end: 36,
                   properties: [
                     {
                       type: 'RestElement',
+                      start: 30,
+                      end: 34,
                       argument: {
                         type: 'Identifier',
+                        start: 33,
+                        end: 34,
                         name: 'x'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 39,
+                  end: 40,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 54,
+            end: 78,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 58,
+                end: 77,
+                id: {
+                  type: 'ObjectPattern',
+                  start: 58,
+                  end: 66,
+                  properties: [
+                    {
+                      type: 'RestElement',
+                      start: 60,
+                      end: 64,
+                      argument: {
+                        type: 'Identifier',
+                        start: 63,
+                        end: 64,
+                        name: 'a'
+                      }
+                    }
+                  ]
+                },
                 init: {
                   type: 'ObjectExpression',
+                  start: 69,
+                  end: 77,
                   properties: [
                     {
                       type: 'Property',
+                      start: 71,
+                      end: 75,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 71,
+                        end: 72,
                         name: 'a'
                       },
                       value: {
                         type: 'Literal',
+                        start: 74,
+                        end: 75,
                         value: 1
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    }
-                  ]
-                },
-                id: {
-                  type: 'ObjectPattern',
-                  properties: [
-                    {
-                      type: 'RestElement',
-                      argument: {
-                        type: 'Identifier',
-                        name: 'a'
-                      }
+                      kind: 'init'
                     }
                   ]
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 91,
+            end: 110,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Identifier',
-                    name: 'a'
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: 'b'
-                  }
-                },
+                start: 95,
+                end: 109,
                 id: {
                   type: 'ObjectPattern',
+                  start: 95,
+                  end: 103,
                   properties: [
                     {
                       type: 'RestElement',
+                      start: 97,
+                      end: 101,
                       argument: {
                         type: 'Identifier',
+                        start: 100,
+                        end: 101,
                         name: 'x'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'MemberExpression',
+                  start: 106,
+                  end: 109,
+                  object: {
+                    type: 'Identifier',
+                    start: 106,
+                    end: 107,
+                    name: 'a'
+                  },
+                  property: {
+                    type: 'Identifier',
+                    start: 108,
+                    end: 109,
+                    name: 'b'
+                  },
+                  computed: false
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 123,
+            end: 142,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 127,
+                end: 141,
+                id: {
+                  type: 'ObjectPattern',
+                  start: 127,
+                  end: 135,
+                  properties: [
+                    {
+                      type: 'RestElement',
+                      start: 129,
+                      end: 133,
+                      argument: {
+                        type: 'Identifier',
+                        start: 132,
+                        end: 133,
+                        name: 'x'
+                      }
+                    }
+                  ]
+                },
                 init: {
                   type: 'CallExpression',
+                  start: 138,
+                  end: 141,
                   callee: {
                     type: 'Identifier',
+                    start: 138,
+                    end: 139,
                     name: 'a'
                   },
                   arguments: []
-                },
-                id: {
-                  type: 'ObjectPattern',
-                  properties: [
-                    {
-                      type: 'RestElement',
-                      argument: {
-                        type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 155,
+            end: 175,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 159,
+                end: 174,
                 id: {
                   type: 'ObjectPattern',
+                  start: 159,
+                  end: 170,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 160,
+                      end: 162,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 160,
+                        end: 162,
                         name: 'x1'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 160,
+                        end: 162,
                         name: 'x1'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'RestElement',
+                      start: 164,
+                      end: 169,
                       argument: {
                         type: 'Identifier',
+                        start: 167,
+                        end: 169,
                         name: 'y1'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 173,
+                  end: 174,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'ExpressionStatement',
+            start: 188,
+            end: 193,
             expression: {
               type: 'UpdateExpression',
+              start: 188,
+              end: 192,
+              operator: '++',
+              prefix: false,
               argument: {
                 type: 'Identifier',
+                start: 188,
+                end: 190,
                 name: 'x1'
-              },
-              operator: '++',
-              prefix: false
+              }
             }
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 206,
+            end: 231,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 210,
+                end: 230,
                 id: {
                   type: 'ObjectPattern',
+                  start: 210,
+                  end: 226,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 212,
+                      end: 218,
+                      method: false,
+                      shorthand: false,
+                      computed: true,
                       key: {
                         type: 'Identifier',
+                        start: 213,
+                        end: 214,
                         name: 'a'
                       },
-                      computed: true,
                       value: {
                         type: 'Identifier',
+                        start: 217,
+                        end: 218,
                         name: 'b'
                       },
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     },
                     {
                       type: 'RestElement',
+                      start: 220,
+                      end: 224,
                       argument: {
                         type: 'Identifier',
+                        start: 223,
+                        end: 224,
                         name: 'c'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 229,
+                  end: 230,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 244,
+            end: 264,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 248,
+                end: 263,
                 id: {
                   type: 'ObjectPattern',
+                  start: 248,
+                  end: 259,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 249,
+                      end: 251,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 249,
+                        end: 251,
                         name: 'x1'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 249,
+                        end: 251,
                         name: 'x1'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'RestElement',
+                      start: 253,
+                      end: 258,
                       argument: {
                         type: 'Identifier',
+                        start: 256,
+                        end: 258,
                         name: 'y1'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 262,
+                  end: 263,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'let',
+            start: 277,
+            end: 301,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 281,
+                end: 300,
                 id: {
                   type: 'ObjectPattern',
+                  start: 281,
+                  end: 296,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 282,
+                      end: 284,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 282,
+                        end: 284,
                         name: 'x2'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 282,
+                        end: 284,
                         name: 'x2'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 286,
+                      end: 288,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 286,
+                        end: 288,
                         name: 'y2'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 286,
+                        end: 288,
                         name: 'y2'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'RestElement',
+                      start: 290,
+                      end: 295,
                       argument: {
                         type: 'Identifier',
+                        start: 293,
+                        end: 295,
                         name: 'z2'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 299,
+                  end: 300,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'let'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 314,
+            end: 344,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 320,
+                end: 343,
                 id: {
                   type: 'ObjectPattern',
+                  start: 320,
+                  end: 339,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 321,
+                      end: 323,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 321,
+                        end: 323,
                         name: 'w3'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 321,
+                        end: 323,
                         name: 'w3'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 325,
+                      end: 327,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 325,
+                        end: 327,
                         name: 'x3'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 325,
+                        end: 327,
                         name: 'x3'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 329,
+                      end: 331,
+                      method: false,
+                      shorthand: true,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 329,
+                        end: 331,
                         name: 'y3'
                       },
-                      computed: false,
+                      kind: 'init',
                       value: {
                         type: 'Identifier',
+                        start: 329,
+                        end: 331,
                         name: 'y3'
-                      },
-                      method: false,
-                      shorthand: true
+                      }
                     },
                     {
                       type: 'RestElement',
+                      start: 333,
+                      end: 338,
                       argument: {
                         type: 'Identifier',
+                        start: 336,
+                        end: 338,
                         name: 'z4'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 342,
+                  end: 343,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'let',
+            start: 358,
+            end: 479,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'complex'
-                },
+                start: 362,
+                end: 478,
                 id: {
                   type: 'ObjectPattern',
+                  start: 362,
+                  end: 468,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 378,
+                      end: 407,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 378,
+                        end: 379,
                         name: 'x'
                       },
-                      computed: false,
                       value: {
                         type: 'ObjectPattern',
+                        start: 381,
+                        end: 407,
                         properties: [
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 383,
+                            end: 388,
+                            method: false,
+                            shorthand: false,
+                            computed: false,
                             key: {
                               type: 'Identifier',
+                              start: 383,
+                              end: 384,
                               name: 'a'
                             },
-                            computed: false,
                             value: {
                               type: 'Identifier',
+                              start: 386,
+                              end: 388,
                               name: 'xa'
                             },
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'Property',
-                            kind: 'init',
+                            start: 390,
+                            end: 396,
+                            method: false,
+                            shorthand: false,
+                            computed: true,
                             key: {
                               type: 'Identifier',
+                              start: 391,
+                              end: 392,
                               name: 'd'
                             },
-                            computed: true,
                             value: {
                               type: 'Identifier',
+                              start: 395,
+                              end: 396,
                               name: 'f'
                             },
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           },
                           {
                             type: 'RestElement',
+                            start: 398,
+                            end: 405,
                             argument: {
                               type: 'Identifier',
+                              start: 401,
+                              end: 405,
                               name: 'asdf'
                             }
                           }
                         ]
                       },
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 423,
+                      end: 434,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 423,
+                        end: 424,
                         name: 'y'
                       },
-                      computed: false,
                       value: {
                         type: 'ObjectPattern',
+                        start: 426,
+                        end: 434,
                         properties: [
                           {
                             type: 'RestElement',
+                            start: 428,
+                            end: 432,
                             argument: {
                               type: 'Identifier',
+                              start: 431,
+                              end: 432,
                               name: 'd'
                             }
                           }
                         ]
                       },
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     },
                     {
                       type: 'RestElement',
+                      start: 450,
+                      end: 454,
                       argument: {
                         type: 'Identifier',
+                        start: 453,
+                        end: 454,
                         name: 'g'
                       }
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 471,
+                  end: 478,
+                  name: 'complex'
                 }
               }
-            ]
+            ],
+            kind: 'let'
           },
           {
             type: 'VariableDeclaration',
-            kind: 'let',
+            start: 493,
+            end: 519,
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'z'
-                },
+                start: 497,
+                end: 518,
                 id: {
                   type: 'ObjectPattern',
+                  start: 497,
+                  end: 514,
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
+                      start: 499,
+                      end: 512,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 499,
+                        end: 501,
                         name: 'x4'
                       },
-                      computed: false,
                       value: {
                         type: 'ObjectPattern',
+                        start: 503,
+                        end: 512,
                         properties: [
                           {
                             type: 'RestElement',
+                            start: 505,
+                            end: 510,
                             argument: {
                               type: 'Identifier',
+                              start: 508,
+                              end: 510,
                               name: 'y4'
                             }
                           }
                         ]
                       },
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 517,
+                  end: 518,
+                  name: 'z'
                 }
               }
-            ]
+            ],
+            kind: 'let'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1987,88 +2345,122 @@ describe('Declarations - const', () => {
                 async function a() {
                   for await (a of []) {}
                 }`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 562,
         body: [
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 33,
+            end: 61,
+            await: false,
             left: {
               type: 'VariableDeclaration',
-              kind: 'var',
+              start: 38,
+              end: 51,
               declarations: [
                 {
                   type: 'VariableDeclarator',
-                  init: null,
+                  start: 42,
+                  end: 51,
                   id: {
                     type: 'ObjectPattern',
+                    start: 42,
+                    end: 51,
                     properties: [
                       {
                         type: 'Property',
-                        kind: 'init',
+                        start: 43,
+                        end: 44,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 43,
+                          end: 44,
                           name: 'a'
                         },
-                        computed: false,
+                        kind: 'init',
                         value: {
                           type: 'Identifier',
+                          start: 43,
+                          end: 44,
                           name: 'a'
-                        },
-                        method: false,
-                        shorthand: true
+                        }
                       },
                       {
                         type: 'RestElement',
+                        start: 46,
+                        end: 50,
                         argument: {
                           type: 'Identifier',
+                          start: 49,
+                          end: 50,
                           name: 'b'
                         }
                       }
                     ]
-                  }
+                  },
+                  init: null
                 }
-              ]
+              ],
+              kind: 'var'
             },
             right: {
               type: 'ArrayExpression',
+              start: 55,
+              end: 57,
               elements: []
             },
-            await: false
+            body: {
+              type: 'BlockStatement',
+              start: 59,
+              end: 61,
+              body: []
+            }
           },
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 78,
+            end: 102,
+            await: false,
             left: {
               type: 'ObjectPattern',
+              start: 83,
+              end: 92,
               properties: [
                 {
                   type: 'Property',
+                  start: 84,
+                  end: 85,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'a'
-                  },
-                  value: {
-                    type: 'Identifier',
+                    start: 84,
+                    end: 85,
                     name: 'a'
                   },
                   kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: true
+                  value: {
+                    type: 'Identifier',
+                    start: 84,
+                    end: 85,
+                    name: 'a'
+                  }
                 },
                 {
                   type: 'RestElement',
+                  start: 87,
+                  end: 91,
                   argument: {
                     type: 'Identifier',
+                    start: 90,
+                    end: 91,
                     name: 'b'
                   }
                 }
@@ -2076,44 +2468,74 @@ describe('Declarations - const', () => {
             },
             right: {
               type: 'ArrayExpression',
+              start: 96,
+              end: 98,
               elements: []
             },
-            await: false
+            body: {
+              type: 'BlockStatement',
+              start: 100,
+              end: 102,
+              body: []
+            }
           },
           {
             type: 'FunctionDeclaration',
+            start: 119,
+            end: 206,
+            id: {
+              type: 'Identifier',
+              start: 134,
+              end: 135,
+              name: 'a'
+            },
+            generator: false,
+            async: true,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 138,
+              end: 206,
               body: [
                 {
                   type: 'ForOfStatement',
-                  body: {
-                    type: 'BlockStatement',
-                    body: []
-                  },
+                  start: 158,
+                  end: 188,
+                  await: true,
                   left: {
                     type: 'ObjectPattern',
+                    start: 169,
+                    end: 178,
                     properties: [
                       {
                         type: 'Property',
+                        start: 170,
+                        end: 171,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'a'
-                        },
-                        value: {
-                          type: 'Identifier',
+                          start: 170,
+                          end: 171,
                           name: 'a'
                         },
                         kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
+                        value: {
+                          type: 'Identifier',
+                          start: 170,
+                          end: 171,
+                          name: 'a'
+                        }
                       },
                       {
                         type: 'RestElement',
+                        start: 173,
+                        end: 177,
                         argument: {
                           type: 'Identifier',
+                          start: 176,
+                          end: 177,
                           name: 'b'
                         }
                       }
@@ -2121,195 +2543,272 @@ describe('Declarations - const', () => {
                   },
                   right: {
                     type: 'ArrayExpression',
+                    start: 182,
+                    end: 184,
                     elements: []
                   },
-                  await: true
+                  body: {
+                    type: 'BlockStatement',
+                    start: 186,
+                    end: 188,
+                    body: []
+                  }
                 }
               ]
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           },
           {
             type: 'ForInStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 248,
+            end: 266,
             left: {
               type: 'ObjectPattern',
+              start: 253,
+              end: 256,
               properties: [
                 {
                   type: 'Property',
+                  start: 254,
+                  end: 255,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'a'
-                  },
-                  value: {
-                    type: 'Identifier',
+                    start: 254,
+                    end: 255,
                     name: 'a'
                   },
                   kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: true
+                  value: {
+                    type: 'Identifier',
+                    start: 254,
+                    end: 255,
+                    name: 'a'
+                  }
                 }
               ]
             },
             right: {
               type: 'ObjectExpression',
+              start: 260,
+              end: 262,
               properties: []
+            },
+            body: {
+              type: 'BlockStatement',
+              start: 264,
+              end: 266,
+              body: []
             }
           },
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 283,
+            end: 301,
+            await: false,
             left: {
               type: 'ObjectPattern',
+              start: 288,
+              end: 291,
               properties: [
                 {
                   type: 'Property',
+                  start: 289,
+                  end: 290,
+                  method: false,
+                  shorthand: true,
+                  computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'a'
-                  },
-                  value: {
-                    type: 'Identifier',
+                    start: 289,
+                    end: 290,
                     name: 'a'
                   },
                   kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: true
+                  value: {
+                    type: 'Identifier',
+                    start: 289,
+                    end: 290,
+                    name: 'a'
+                  }
                 }
               ]
             },
             right: {
               type: 'ArrayExpression',
+              start: 295,
+              end: 297,
               elements: []
             },
-            await: false
+            body: {
+              type: 'BlockStatement',
+              start: 299,
+              end: 301,
+              body: []
+            }
           },
           {
             type: 'FunctionDeclaration',
+            start: 318,
+            end: 399,
+            id: {
+              type: 'Identifier',
+              start: 333,
+              end: 334,
+              name: 'a'
+            },
+            generator: false,
+            async: true,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 337,
+              end: 399,
               body: [
                 {
                   type: 'ForOfStatement',
-                  body: {
-                    type: 'BlockStatement',
-                    body: []
-                  },
+                  start: 357,
+                  end: 381,
+                  await: true,
                   left: {
                     type: 'ObjectPattern',
+                    start: 368,
+                    end: 371,
                     properties: [
                       {
                         type: 'Property',
+                        start: 369,
+                        end: 370,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'a'
-                        },
-                        value: {
-                          type: 'Identifier',
+                          start: 369,
+                          end: 370,
                           name: 'a'
                         },
                         kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
+                        value: {
+                          type: 'Identifier',
+                          start: 369,
+                          end: 370,
+                          name: 'a'
+                        }
                       }
                     ]
                   },
                   right: {
                     type: 'ArrayExpression',
+                    start: 375,
+                    end: 377,
                     elements: []
                   },
-                  await: true
+                  body: {
+                    type: 'BlockStatement',
+                    start: 379,
+                    end: 381,
+                    body: []
+                  }
                 }
               ]
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           },
           {
             type: 'ForInStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 417,
+            end: 433,
             left: {
               type: 'Identifier',
+              start: 422,
+              end: 423,
               name: 'a'
             },
             right: {
               type: 'ObjectExpression',
+              start: 427,
+              end: 429,
               properties: []
+            },
+            body: {
+              type: 'BlockStatement',
+              start: 431,
+              end: 433,
+              body: []
             }
           },
           {
             type: 'ForOfStatement',
-            body: {
-              type: 'BlockStatement',
-              body: []
-            },
+            start: 450,
+            end: 466,
+            await: false,
             left: {
               type: 'Identifier',
+              start: 455,
+              end: 456,
               name: 'a'
             },
             right: {
               type: 'ArrayExpression',
+              start: 460,
+              end: 462,
               elements: []
             },
-            await: false
+            body: {
+              type: 'BlockStatement',
+              start: 464,
+              end: 466,
+              body: []
+            }
           },
           {
             type: 'FunctionDeclaration',
+            start: 483,
+            end: 562,
+            id: {
+              type: 'Identifier',
+              start: 498,
+              end: 499,
+              name: 'a'
+            },
+            generator: false,
+            async: true,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 502,
+              end: 562,
               body: [
                 {
                   type: 'ForOfStatement',
-                  body: {
-                    type: 'BlockStatement',
-                    body: []
-                  },
+                  start: 522,
+                  end: 544,
+                  await: true,
                   left: {
                     type: 'Identifier',
+                    start: 533,
+                    end: 534,
                     name: 'a'
                   },
                   right: {
                     type: 'ArrayExpression',
+                    start: 538,
+                    end: 540,
                     elements: []
                   },
-                  await: true
+                  body: {
+                    type: 'BlockStatement',
+                    start: 542,
+                    end: 544,
+                    body: []
+                  }
                 }
               ]
-            },
-            async: true,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

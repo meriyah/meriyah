@@ -303,156 +303,212 @@ describe('Expressions - New target', () => {
     ],
     [
       'function f(){ new . target }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 28,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 28,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 26,
                   expression: {
+                    type: 'MetaProperty',
+                    start: 14,
+                    end: 26,
                     meta: {
                       type: 'Identifier',
+                      start: 14,
+                      end: 17,
                       name: 'new'
                     },
-                    type: 'MetaProperty',
                     property: {
                       type: 'Identifier',
+                      start: 20,
+                      end: 26,
                       name: 'target'
                     }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function f(){ return _ => new.target }',
-      Context.None,
+      Context.OptionsRanges,
       {
+        type: 'Program',
+        start: 0,
+        end: 38,
         body: [
           {
-            async: false,
-            body: {
-              body: [
-                {
-                  argument: {
-                    async: false,
-                    body: {
-                      meta: {
-                        name: 'new',
-                        type: 'Identifier'
-                      },
-                      property: {
-                        name: 'target',
-                        type: 'Identifier'
-                      },
-                      type: 'MetaProperty'
-                    },
-                    expression: true,
-
-                    params: [
-                      {
-                        name: '_',
-                        type: 'Identifier'
-                      }
-                    ],
-                    type: 'ArrowFunctionExpression'
-                  },
-                  type: 'ReturnStatement'
-                }
-              ],
-              type: 'BlockStatement'
+            type: 'FunctionDeclaration',
+            start: 0,
+            end: 38,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
             },
             generator: false,
-
-            id: {
-              name: 'f',
-              type: 'Identifier'
-            },
+            async: false,
             params: [],
-            type: 'FunctionDeclaration'
+            body: {
+              type: 'BlockStatement',
+              start: 12,
+              end: 38,
+              body: [
+                {
+                  type: 'ReturnStatement',
+                  start: 14,
+                  end: 36,
+                  argument: {
+                    type: 'ArrowFunctionExpression',
+                    start: 21,
+                    end: 36,
+                    expression: true,
+                    async: false,
+                    params: [
+                      {
+                        type: 'Identifier',
+                        start: 21,
+                        end: 22,
+                        name: '_'
+                      }
+                    ],
+                    body: {
+                      type: 'MetaProperty',
+                      start: 26,
+                      end: 36,
+                      meta: {
+                        type: 'Identifier',
+                        start: 26,
+                        end: 29,
+                        name: 'new'
+                      },
+                      property: {
+                        type: 'Identifier',
+                        start: 30,
+                        end: 36,
+                        name: 'target'
+                      }
+                    }
+                  }
+                }
+              ]
+            }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        sourceType: 'script'
       }
     ],
     [
       'function f(){ _ => _ => new.target }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 36,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 36,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 36,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 34,
                   expression: {
                     type: 'ArrowFunctionExpression',
-                    body: {
-                      type: 'ArrowFunctionExpression',
-                      body: {
-                        meta: {
-                          type: 'Identifier',
-                          name: 'new'
-                        },
-                        type: 'MetaProperty',
-                        property: {
-                          type: 'Identifier',
-                          name: 'target'
-                        }
-                      },
-                      params: [
-                        {
-                          type: 'Identifier',
-                          name: '_'
-                        }
-                      ],
-
-                      async: false,
-                      expression: true
-                    },
+                    start: 14,
+                    end: 34,
+                    expression: true,
+                    async: false,
                     params: [
                       {
                         type: 'Identifier',
+                        start: 14,
+                        end: 15,
                         name: '_'
                       }
                     ],
-                    async: false,
-                    expression: true
+                    body: {
+                      type: 'ArrowFunctionExpression',
+                      start: 19,
+                      end: 34,
+                      expression: true,
+                      async: false,
+                      params: [
+                        {
+                          type: 'Identifier',
+                          start: 19,
+                          end: 20,
+                          name: '_'
+                        }
+                      ],
+                      body: {
+                        type: 'MetaProperty',
+                        start: 24,
+                        end: 34,
+                        meta: {
+                          type: 'Identifier',
+                          start: 24,
+                          end: 27,
+                          name: 'new'
+                        },
+                        property: {
+                          type: 'Identifier',
+                          start: 28,
+                          end: 34,
+                          name: 'target'
+                        }
+                      }
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -715,61 +771,85 @@ describe('Expressions - New target', () => {
     ],
     [
       'class X { constructor() { new.target }}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 39,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 39,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'X'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 39,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 38,
                   kind: 'constructor',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 10,
+                    end: 21,
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 21,
+                    end: 38,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 24,
+                      end: 38,
                       body: [
                         {
                           type: 'ExpressionStatement',
+                          start: 26,
+                          end: 36,
                           expression: {
+                            type: 'MetaProperty',
+                            start: 26,
+                            end: 36,
                             meta: {
                               type: 'Identifier',
+                              start: 26,
+                              end: 29,
                               name: 'new'
                             },
-                            type: 'MetaProperty',
                             property: {
                               type: 'Identifier',
+                              start: 30,
+                              end: 36,
                               name: 'target'
                             }
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1114,47 +1194,73 @@ describe('Expressions - New target', () => {
     ],
     [
       'class A {a(x=new.target){}}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 27,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'A'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 27,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 9,
+                  end: 26,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 9,
+                    end: 10,
                     name: 'a'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 10,
+                    end: 26,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [
                       {
                         type: 'AssignmentPattern',
+                        start: 11,
+                        end: 23,
                         left: {
                           type: 'Identifier',
+                          start: 11,
+                          end: 12,
                           name: 'x'
                         },
                         right: {
+                          type: 'MetaProperty',
+                          start: 13,
+                          end: 23,
                           meta: {
                             type: 'Identifier',
+                            start: 13,
+                            end: 16,
                             name: 'new'
                           },
-                          type: 'MetaProperty',
                           property: {
                             type: 'Identifier',
+                            start: 17,
+                            end: 23,
                             name: 'target'
                           }
                         }
@@ -1162,47 +1268,72 @@ describe('Expressions - New target', () => {
                     ],
                     body: {
                       type: 'BlockStatement',
+                      start: 24,
+                      end: 26,
                       body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function f(){ [...new.target] }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 31,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 31,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 31,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 29,
                   expression: {
                     type: 'ArrayExpression',
+                    start: 14,
+                    end: 29,
                     elements: [
                       {
                         type: 'SpreadElement',
+                        start: 15,
+                        end: 28,
                         argument: {
+                          type: 'MetaProperty',
+                          start: 18,
+                          end: 28,
                           meta: {
                             type: 'Identifier',
+                            start: 18,
+                            end: 21,
                             name: 'new'
                           },
-                          type: 'MetaProperty',
                           property: {
                             type: 'Identifier',
+                            start: 22,
+                            end: 28,
                             name: 'target'
                           }
                         }
@@ -1211,112 +1342,156 @@ describe('Expressions - New target', () => {
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function f(){ class x extends new.target {} }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 45,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 45,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 45,
               body: [
                 {
                   type: 'ClassDeclaration',
+                  start: 14,
+                  end: 43,
                   id: {
                     type: 'Identifier',
+                    start: 20,
+                    end: 21,
                     name: 'x'
                   },
                   superClass: {
+                    type: 'MetaProperty',
+                    start: 30,
+                    end: 40,
                     meta: {
                       type: 'Identifier',
+                      start: 30,
+                      end: 33,
                       name: 'new'
                     },
-                    type: 'MetaProperty',
                     property: {
                       type: 'Identifier',
+                      start: 34,
+                      end: 40,
                       name: 'target'
                     }
                   },
                   body: {
                     type: 'ClassBody',
+                    start: 41,
+                    end: 43,
                     body: []
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function f(){ x({[new.target]:y}) }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 35,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 35,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 33,
                   expression: {
                     type: 'CallExpression',
+                    start: 14,
+                    end: 33,
                     callee: {
                       type: 'Identifier',
+                      start: 14,
+                      end: 15,
                       name: 'x'
                     },
                     arguments: [
                       {
                         type: 'ObjectExpression',
+                        start: 16,
+                        end: 32,
                         properties: [
                           {
                             type: 'Property',
+                            start: 17,
+                            end: 31,
+                            method: false,
+                            shorthand: false,
+                            computed: true,
                             key: {
+                              type: 'MetaProperty',
+                              start: 18,
+                              end: 28,
                               meta: {
                                 type: 'Identifier',
+                                start: 18,
+                                end: 21,
                                 name: 'new'
                               },
-                              type: 'MetaProperty',
                               property: {
                                 type: 'Identifier',
+                                start: 22,
+                                end: 28,
                                 name: 'target'
                               }
                             },
                             value: {
                               type: 'Identifier',
+                              start: 30,
+                              end: 31,
                               name: 'y'
                             },
-                            kind: 'init',
-                            computed: true,
-                            method: false,
-                            shorthand: false
+                            kind: 'init'
                           }
                         ]
                       }
@@ -1324,16 +1499,10 @@ describe('Expressions - New target', () => {
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

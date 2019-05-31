@@ -751,86 +751,116 @@ yield d;
   pass('Expressions - Yield (pass)', [
     [
       'function *a(){yield void 0}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 27,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 27,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'a'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 27,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 26,
                   expression: {
                     type: 'YieldExpression',
+                    start: 14,
+                    end: 26,
+                    delegate: false,
                     argument: {
                       type: 'UnaryExpression',
+                      start: 20,
+                      end: 26,
                       operator: 'void',
+                      prefix: true,
                       argument: {
                         type: 'Literal',
+                        start: 25,
+                        end: 26,
                         value: 0
-                      },
-                      prefix: true
-                    },
-                    delegate: false
+                      }
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'function *a(){yield ~0}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 23,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'a'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 23,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 14,
+                  end: 22,
                   expression: {
                     type: 'YieldExpression',
+                    start: 14,
+                    end: 22,
+                    delegate: false,
                     argument: {
                       type: 'UnaryExpression',
+                      start: 20,
+                      end: 22,
                       operator: '~',
+                      prefix: true,
                       argument: {
                         type: 'Literal',
+                        start: 21,
+                        end: 22,
                         value: 0
-                      },
-                      prefix: true
-                    },
-                    delegate: false
+                      }
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -877,58 +907,77 @@ yield d;
     ],
     [
       'function a(){({*[yield](){}})}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 30,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 30,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'a'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 12,
+              end: 30,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 13,
+                  end: 29,
                   expression: {
                     type: 'ObjectExpression',
+                    start: 14,
+                    end: 28,
                     properties: [
                       {
                         type: 'Property',
+                        start: 15,
+                        end: 27,
+                        method: true,
+                        shorthand: false,
+                        computed: true,
                         key: {
                           type: 'Identifier',
+                          start: 17,
+                          end: 22,
                           name: 'yield'
                         },
+                        kind: 'init',
                         value: {
                           type: 'FunctionExpression',
+                          start: 23,
+                          end: 27,
+                          id: null,
+                          generator: true,
+                          async: false,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 25,
+                            end: 27,
                             body: []
-                          },
-                          async: false,
-                          generator: true,
-                          id: null
-                        },
-                        kind: 'init',
-                        computed: true,
-                        method: true,
-                        shorthand: false
+                          }
+                        }
                       }
                     ]
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1432,49 +1481,67 @@ yield d;
     ],
     [
       '([x, {y: [yield]}])',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'ArrayExpression',
+              start: 1,
+              end: 18,
               elements: [
                 {
                   type: 'Identifier',
+                  start: 2,
+                  end: 3,
                   name: 'x'
                 },
                 {
                   type: 'ObjectExpression',
+                  start: 5,
+                  end: 17,
                   properties: [
                     {
                       type: 'Property',
+                      start: 6,
+                      end: 16,
+                      method: false,
+                      shorthand: false,
+                      computed: false,
                       key: {
                         type: 'Identifier',
+                        start: 6,
+                        end: 7,
                         name: 'y'
                       },
                       value: {
                         type: 'ArrayExpression',
+                        start: 9,
+                        end: 16,
                         elements: [
                           {
                             type: 'Identifier',
+                            start: 10,
+                            end: 15,
                             name: 'yield'
                           }
                         ]
                       },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
+                      kind: 'init'
                     }
                   ]
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
 
@@ -1527,47 +1594,64 @@ yield d;
     ],
     [
       'function *f() { (yield x ** y) }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 32,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 32,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 11,
+              name: 'f'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 14,
+              end: 32,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 16,
+                  end: 30,
                   expression: {
                     type: 'YieldExpression',
+                    start: 17,
+                    end: 29,
+                    delegate: false,
                     argument: {
                       type: 'BinaryExpression',
+                      start: 23,
+                      end: 29,
                       left: {
                         type: 'Identifier',
+                        start: 23,
+                        end: 24,
                         name: 'x'
                       },
+                      operator: '**',
                       right: {
                         type: 'Identifier',
+                        start: 28,
+                        end: 29,
                         name: 'y'
-                      },
-                      operator: '**'
-                    },
-                    delegate: false
+                      }
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -7510,27 +7594,34 @@ yield d;
     ],
     [
       'function * yield() { }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 22,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 22,
+            id: {
+              type: 'Identifier',
+              start: 11,
+              end: 16,
+              name: 'yield'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 19,
+              end: 22,
               body: []
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'yield'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -7594,43 +7685,58 @@ yield d;
     ],
     [
       'function * gen() { yield * a; return }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 38,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 38,
+            id: {
+              type: 'Identifier',
+              start: 11,
+              end: 14,
+              name: 'gen'
+            },
+            generator: true,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 17,
+              end: 38,
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 19,
+                  end: 29,
                   expression: {
                     type: 'YieldExpression',
+                    start: 19,
+                    end: 28,
+                    delegate: true,
                     argument: {
                       type: 'Identifier',
+                      start: 27,
+                      end: 28,
                       name: 'a'
-                    },
-                    delegate: true
+                    }
                   }
                 },
                 {
                   type: 'ReturnStatement',
+                  start: 30,
+                  end: 36,
                   argument: null
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'gen'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -9571,62 +9677,83 @@ yield d;
     ],
     [
       'function f() { class C { yield() { } } }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 40,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 40,
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 10,
+              name: 'f'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 13,
+              end: 40,
               body: [
                 {
                   type: 'ClassDeclaration',
+                  start: 15,
+                  end: 38,
                   id: {
                     type: 'Identifier',
+                    start: 21,
+                    end: 22,
                     name: 'C'
                   },
                   superClass: null,
                   body: {
                     type: 'ClassBody',
+                    start: 23,
+                    end: 38,
                     body: [
                       {
                         type: 'MethodDefinition',
+                        start: 25,
+                        end: 36,
                         kind: 'method',
                         static: false,
                         computed: false,
                         key: {
                           type: 'Identifier',
+                          start: 25,
+                          end: 30,
                           name: 'yield'
                         },
                         value: {
                           type: 'FunctionExpression',
+                          start: 30,
+                          end: 36,
+                          id: null,
+                          generator: false,
+                          async: false,
                           params: [],
                           body: {
                             type: 'BlockStatement',
+                            start: 33,
+                            end: 36,
                             body: []
-                          },
-                          async: false,
-                          generator: false,
-                          id: null
+                          }
                         }
                       }
                     ]
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -10924,73 +11051,101 @@ yield d;
     ],
     [
       "class C { *gf() { switch (1) { case yield* 'foo': break; } } }",
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 62,
         body: [
           {
             type: 'ClassDeclaration',
+            start: 0,
+            end: 62,
             id: {
               type: 'Identifier',
+              start: 6,
+              end: 7,
               name: 'C'
             },
             superClass: null,
             body: {
               type: 'ClassBody',
+              start: 8,
+              end: 62,
               body: [
                 {
                   type: 'MethodDefinition',
+                  start: 10,
+                  end: 60,
                   kind: 'method',
                   static: false,
                   computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 11,
+                    end: 13,
                     name: 'gf'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 13,
+                    end: 60,
+                    id: null,
+                    generator: true,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 16,
+                      end: 60,
                       body: [
                         {
                           type: 'SwitchStatement',
+                          start: 18,
+                          end: 58,
                           discriminant: {
                             type: 'Literal',
+                            start: 26,
+                            end: 27,
                             value: 1
                           },
                           cases: [
                             {
                               type: 'SwitchCase',
-                              test: {
-                                type: 'YieldExpression',
-                                argument: {
-                                  type: 'Literal',
-                                  value: 'foo'
-                                },
-                                delegate: true
-                              },
+                              start: 31,
+                              end: 56,
                               consequent: [
                                 {
                                   type: 'BreakStatement',
+                                  start: 50,
+                                  end: 56,
                                   label: null
                                 }
-                              ]
+                              ],
+                              test: {
+                                type: 'YieldExpression',
+                                start: 36,
+                                end: 48,
+                                delegate: true,
+                                argument: {
+                                  type: 'Literal',
+                                  start: 43,
+                                  end: 48,
+                                  value: 'foo'
+                                }
+                              }
                             }
                           ]
                         }
                       ]
-                    },
-                    async: false,
-                    generator: true,
-                    id: null
+                    }
                   }
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -11477,655 +11632,931 @@ yield d;
     function yieldOne() {
         var v1 = gen.next();
         var val = JSON.stringify(v1.value, undefined, '');
-    }
-    `,
-      Context.None,
+    }`,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 514,
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 359,
+            id: {
+              type: 'Identifier',
+              start: 10,
+              end: 23,
+              name: 'testGenerator'
+            },
+            generator: true,
+            async: false,
             params: [
               {
                 type: 'Identifier',
+                start: 24,
+                end: 28,
                 name: 'arg1'
               }
             ],
             body: {
               type: 'BlockStatement',
+              start: 30,
+              end: 359,
               body: [
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 40,
+                  end: 52,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'Literal',
-                        value: 100
-                      },
+                      start: 44,
+                      end: 51,
                       id: {
                         type: 'Identifier',
+                        start: 44,
+                        end: 45,
                         name: 'i'
+                      },
+                      init: {
+                        type: 'Literal',
+                        start: 48,
+                        end: 51,
+                        value: 100,
+                        raw: '100'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 61,
+                  end: 74,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'Literal',
-                        value: 1000
-                      },
+                      start: 65,
+                      end: 73,
                       id: {
                         type: 'Identifier',
+                        start: 65,
+                        end: 66,
                         name: 'j'
+                      },
+                      init: {
+                        type: 'Literal',
+                        start: 69,
+                        end: 73,
+                        value: 1000,
+                        raw: '1000'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 83,
+                  end: 97,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'Literal',
-                        value: 10000
-                      },
+                      start: 87,
+                      end: 96,
                       id: {
                         type: 'Identifier',
+                        start: 87,
+                        end: 88,
                         name: 'k'
+                      },
+                      init: {
+                        type: 'Literal',
+                        start: 91,
+                        end: 96,
+                        value: 10000,
+                        raw: '10000'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'ExpressionStatement',
+                  start: 106,
+                  end: 161,
                   expression: {
                     type: 'YieldExpression',
+                    start: 106,
+                    end: 160,
+                    delegate: false,
                     argument: {
                       type: 'ObjectExpression',
+                      start: 112,
+                      end: 160,
                       properties: [
                         {
                           type: 'Property',
+                          start: 114,
+                          end: 126,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 114,
+                            end: 118,
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 120,
+                            end: 126,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 120,
+                              end: 124,
                               name: 'arg1'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 128,
+                          end: 134,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 128,
+                            end: 129,
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 131,
+                            end: 134,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 133,
+                              end: 134,
                               name: 'i'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 136,
+                          end: 142,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 136,
+                            end: 137,
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 139,
+                            end: 142,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 139,
+                              end: 140,
                               name: 'j'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 144,
+                          end: 150,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 144,
+                            end: 145,
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 147,
+                            end: 150,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 147,
+                              end: 148,
                               name: 'k'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 152,
+                          end: 158,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 152,
+                            end: 153,
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 155,
+                            end: 158,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 157,
+                              end: 158,
                               name: 'p'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
-                    },
-                    delegate: false
+                    }
                   }
                 },
                 {
                   type: 'ExpressionStatement',
+                  start: 170,
+                  end: 225,
                   expression: {
                     type: 'YieldExpression',
+                    start: 170,
+                    end: 224,
+                    delegate: false,
                     argument: {
                       type: 'ObjectExpression',
+                      start: 176,
+                      end: 224,
                       properties: [
                         {
                           type: 'Property',
+                          start: 178,
+                          end: 190,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 178,
+                            end: 182,
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 184,
+                            end: 190,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 184,
+                              end: 188,
                               name: 'arg1'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 192,
+                          end: 198,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 192,
+                            end: 193,
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 195,
+                            end: 198,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 197,
+                              end: 198,
                               name: 'i'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 200,
+                          end: 206,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 200,
+                            end: 201,
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 203,
+                            end: 206,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 203,
+                              end: 204,
                               name: 'j'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 208,
+                          end: 214,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 208,
+                            end: 209,
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 211,
+                            end: 214,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 211,
+                              end: 212,
                               name: 'k'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 216,
+                          end: 222,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 216,
+                            end: 217,
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 219,
+                            end: 222,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 221,
+                              end: 222,
                               name: 'p'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
-                    },
-                    delegate: false
+                    }
                   }
                 },
                 {
                   type: 'ExpressionStatement',
+                  start: 234,
+                  end: 289,
                   expression: {
                     type: 'YieldExpression',
+                    start: 234,
+                    end: 288,
+                    delegate: false,
                     argument: {
                       type: 'ObjectExpression',
+                      start: 240,
+                      end: 288,
                       properties: [
                         {
                           type: 'Property',
+                          start: 242,
+                          end: 254,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 242,
+                            end: 246,
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 248,
+                            end: 254,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 248,
+                              end: 252,
                               name: 'arg1'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 256,
+                          end: 262,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 256,
+                            end: 257,
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 259,
+                            end: 262,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 261,
+                              end: 262,
                               name: 'i'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 264,
+                          end: 270,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 264,
+                            end: 265,
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 267,
+                            end: 270,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 267,
+                              end: 268,
                               name: 'j'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 272,
+                          end: 278,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 272,
+                            end: 273,
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 275,
+                            end: 278,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 275,
+                              end: 276,
                               name: 'k'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 280,
+                          end: 286,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 280,
+                            end: 281,
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 283,
+                            end: 286,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 285,
+                              end: 286,
                               name: 'p'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
-                    },
-                    delegate: false
+                    }
                   }
                 },
                 {
                   type: 'ExpressionStatement',
+                  start: 298,
+                  end: 353,
                   expression: {
                     type: 'YieldExpression',
+                    start: 298,
+                    end: 352,
+                    delegate: false,
                     argument: {
                       type: 'ObjectExpression',
+                      start: 304,
+                      end: 352,
                       properties: [
                         {
                           type: 'Property',
+                          start: 306,
+                          end: 318,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 306,
+                            end: 310,
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 312,
+                            end: 318,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 312,
+                              end: 316,
                               name: 'arg1'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 320,
+                          end: 326,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 320,
+                            end: 321,
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 323,
+                            end: 326,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 325,
+                              end: 326,
                               name: 'i'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 328,
+                          end: 334,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 328,
+                            end: 329,
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 331,
+                            end: 334,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 331,
+                              end: 332,
                               name: 'j'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 336,
+                          end: 342,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 336,
+                            end: 337,
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 339,
+                            end: 342,
+                            operator: '++',
+                            prefix: false,
                             argument: {
                               type: 'Identifier',
+                              start: 339,
+                              end: 340,
                               name: 'k'
-                            },
-                            operator: '++',
-                            prefix: false
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 344,
+                          end: 350,
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 344,
+                            end: 345,
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
+                            start: 347,
+                            end: 350,
+                            operator: '++',
+                            prefix: true,
                             argument: {
                               type: 'Identifier',
+                              start: 349,
+                              end: 350,
                               name: 'p'
-                            },
-                            operator: '++',
-                            prefix: true
+                            }
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
-                    },
-                    delegate: false
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: true,
-
-            id: {
-              type: 'Identifier',
-              name: 'testGenerator'
             }
           },
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 365,
+            end: 393,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 369,
+                end: 392,
+                id: {
+                  type: 'Identifier',
+                  start: 369,
+                  end: 372,
+                  name: 'gen'
+                },
                 init: {
                   type: 'CallExpression',
+                  start: 375,
+                  end: 392,
                   callee: {
                     type: 'Identifier',
+                    start: 375,
+                    end: 388,
                     name: 'testGenerator'
                   },
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 10
+                      start: 389,
+                      end: 391,
+                      value: 10,
+                      raw: '10'
                     }
                   ]
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'gen'
                 }
               }
-            ]
+            ],
+            kind: 'var'
           },
           {
             type: 'FunctionDeclaration',
+            start: 399,
+            end: 514,
+            id: {
+              type: 'Identifier',
+              start: 408,
+              end: 416,
+              name: 'yieldOne'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 419,
+              end: 514,
               body: [
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 429,
+                  end: 449,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
-                      init: {
-                        type: 'CallExpression',
-                        callee: {
-                          type: 'MemberExpression',
-                          object: {
-                            type: 'Identifier',
-                            name: 'gen'
-                          },
-                          computed: false,
-                          property: {
-                            type: 'Identifier',
-                            name: 'next'
-                          }
-                        },
-                        arguments: []
-                      },
+                      start: 433,
+                      end: 448,
                       id: {
                         type: 'Identifier',
+                        start: 433,
+                        end: 435,
                         name: 'v1'
+                      },
+                      init: {
+                        type: 'CallExpression',
+                        start: 438,
+                        end: 448,
+                        callee: {
+                          type: 'MemberExpression',
+                          start: 438,
+                          end: 446,
+                          object: {
+                            type: 'Identifier',
+                            start: 438,
+                            end: 441,
+                            name: 'gen'
+                          },
+                          property: {
+                            type: 'Identifier',
+                            start: 442,
+                            end: 446,
+                            name: 'next'
+                          },
+                          computed: false
+                        },
+                        arguments: []
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 },
                 {
                   type: 'VariableDeclaration',
-                  kind: 'var',
+                  start: 458,
+                  end: 508,
                   declarations: [
                     {
                       type: 'VariableDeclarator',
+                      start: 462,
+                      end: 507,
+                      id: {
+                        type: 'Identifier',
+                        start: 462,
+                        end: 465,
+                        name: 'val'
+                      },
                       init: {
                         type: 'CallExpression',
+                        start: 468,
+                        end: 507,
                         callee: {
                           type: 'MemberExpression',
+                          start: 468,
+                          end: 482,
                           object: {
                             type: 'Identifier',
+                            start: 468,
+                            end: 472,
                             name: 'JSON'
                           },
-                          computed: false,
                           property: {
                             type: 'Identifier',
+                            start: 473,
+                            end: 482,
                             name: 'stringify'
-                          }
+                          },
+                          computed: false
                         },
                         arguments: [
                           {
                             type: 'MemberExpression',
+                            start: 483,
+                            end: 491,
                             object: {
                               type: 'Identifier',
+                              start: 483,
+                              end: 485,
                               name: 'v1'
                             },
-                            computed: false,
                             property: {
                               type: 'Identifier',
+                              start: 486,
+                              end: 491,
                               name: 'value'
-                            }
+                            },
+                            computed: false
                           },
                           {
                             type: 'Identifier',
+                            start: 493,
+                            end: 502,
                             name: 'undefined'
                           },
                           {
                             type: 'Literal',
-                            value: ''
+                            start: 504,
+                            end: 506,
+                            value: '',
+                            raw: "''"
                           }
                         ]
-                      },
-                      id: {
-                        type: 'Identifier',
-                        name: 'val'
                       }
                     }
-                  ]
+                  ],
+                  kind: 'var'
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'yieldOne'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

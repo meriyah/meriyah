@@ -13,7 +13,7 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
   if (parser.currentCodePoint <= 0x7e) {
     if ((CharTypes[parser.currentCodePoint] & CharFlags.BackSlash) === 0) {
       while ((CharTypes[nextCodePoint(parser)] & CharFlags.IdentifierPart) !== 0) {}
-      parser.tokenValue = parser.source.slice(parser.startIndex, parser.index);
+      parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
       if (parser.currentCodePoint > 0x7e) return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
 
       if ((CharTypes[parser.currentCodePoint] & CharFlags.BackSlash) === 0) {
@@ -38,7 +38,7 @@ export function scanIdentifierSlowCase(
   canBeKeyword: number
 ): Token {
   let start = parser.index;
-  while (parser.index < parser.length) {
+  while (parser.index < parser.end) {
     if (CharTypes[parser.currentCodePoint] & CharFlags.BackSlash) {
       parser.tokenValue += parser.source.slice(start, parser.index);
       hasEscape = 1;
@@ -57,7 +57,7 @@ export function scanIdentifierSlowCase(
     }
   }
 
-  if (parser.index <= parser.length) {
+  if (parser.index <= parser.end) {
     parser.tokenValue += parser.source.slice(start, parser.index);
   }
 
@@ -97,7 +97,7 @@ export function scanPrivateName(parser: ParserState): Token {
 export function scanIdentifierUnicodeEscape(parser: ParserState): any {
   // Check for Unicode escape of the form '\uXXXX'
   // and return code point value if valid Unicode escape is found. Otherwise return -1.
-  if (parser.index + 5 < parser.length && parser.source.charCodeAt(parser.index + 1) === Chars.LowerU) {
+  if (parser.index + 5 < parser.end && parser.source.charCodeAt(parser.index + 1) === Chars.LowerU) {
     parser.currentCodePoint = parser.source.charCodeAt((parser.index += 2));
     return scanUnicodeEscapeValue(parser);
   }

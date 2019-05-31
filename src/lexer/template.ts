@@ -41,7 +41,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       }
     } else {
       if (ch === Chars.CarriageReturn) {
-        if (parser.index < parser.length && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
+        if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
           ret += fromCodePoint(ch);
           parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
         }
@@ -53,7 +53,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       }
       ret += fromCodePoint(ch);
     }
-    if (parser.index >= parser.length) report(parser, Errors.UnterminatedTemplate);
+    if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
     ch = nextCodePoint(parser);
   }
 
@@ -76,7 +76,7 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
     switch (ch) {
       case Chars.Dollar: {
         const index = parser.index + 1;
-        if (index < parser.length && parser.source.charCodeAt(index) === Chars.LeftBrace) {
+        if (index < parser.end && parser.source.charCodeAt(index) === Chars.LeftBrace) {
           parser.index = index;
           parser.column++;
           return -ch;
@@ -93,15 +93,16 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
       default:
       // do nothing
     }
-    if (parser.index >= parser.length) report(parser, Errors.UnterminatedTemplate);
+    if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
     ch = nextCodePoint(parser);
   }
 
   return ch;
 }
 
-export function scanTemplateTail(state: ParserState, context: Context): Token {
-  if (state.index >= state.length) return Token.Illegal;
-  state.index--;
-  return scanTemplate(state, context);
+export function scanTemplateTail(parser: ParserState, context: Context): Token {
+  if (parser.index >= parser.end) return Token.Illegal;
+  parser.index--;
+  parser.column--;
+  return scanTemplate(parser, context);
 }

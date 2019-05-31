@@ -5,36 +5,54 @@ describe('Statements - Empty', () => {
   pass('Statements - Empty (pass)', [
     [
       ';;;;;;;;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 8,
         body: [
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 0,
+            end: 1
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 1,
+            end: 2
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 2,
+            end: 3
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 3,
+            end: 4
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 4,
+            end: 5
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 5,
+            end: 6
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 6,
+            end: 7
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
+            start: 7,
+            end: 8
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);

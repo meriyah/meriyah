@@ -29,7 +29,7 @@ async function savePackageJson(pkg, isLockfile) {
 }
 
 async function run() {
-  versionRegExp = /(\d+)\.(\d+)\.(\d+)($|\-)/;
+  const versionRegExp = /(\d+)\.(\d+)\.(\d+)($|\-)/;
   const match = project.pkg.version.match(versionRegExp);
   if (match === null) {
     throw new Error(`package.json 'version' should match ${versionRegExp}`);
