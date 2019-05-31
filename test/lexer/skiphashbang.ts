@@ -96,59 +96,59 @@ describe('Lexer - skiphashbang', () => {
   pass('skips a shebang+LF before a lone hash', {
     source: '#!/foo/bar/baz -abc\n# foo',
     hasNext: true,
-    newLine: false,
+    newLine: true,
     value: '',
-    index: 19,
+    index: 20,
     line: 2,
-    column: 17
+    column: 0
   });
 
   pass('skips a shebang+LF in an otherwise empty source', {
     source: '#!/foo/bar/baz -abc\n',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 19,
-    line: 2,
-    column: 17
-  });
-
-  pass('skips a shebang+LF before an identifier', {
-    source: '#!/foo/bar/baz -abc\nfoo',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 19,
-    line: 2,
-    column: 17
-  });
-
-  pass('skips a shebang+LF before a lone exclamation', {
-    source: '#!/foo/bar/baz -abc\n! foo',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 19,
-    line: 2,
-    column: 17
-  });
-
-  pass('skips a shebang+CR in an otherwise empty source', {
-    source: '#!/foo/bar/baz -abc\r',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 19,
-    line: 2,
-    column: 17
-  });
-  pass('skips a BOM+shebang+LF in an otherwise empty source', {
-    source: '\uFFEF#!/foo/bar/baz -abc\n',
-    newLine: false,
+    newLine: true,
     hasNext: false,
     value: '',
     index: 20,
     line: 2,
-    column: 17
+    column: 0
+  });
+
+  pass('skips a shebang+LF before an identifier', {
+    source: '#!/foo/bar/baz -abc\nfoo',
+    newLine: true,
+    hasNext: false,
+    value: '',
+    index: 20,
+    line: 2,
+    column: 0
+  });
+
+  pass('skips a shebang+LF before a lone exclamation', {
+    source: '#!/foo/bar/baz -abc\n! foo',
+    newLine: true,
+    hasNext: false,
+    value: '',
+    index: 20,
+    line: 2,
+    column: 0
+  });
+
+  pass('skips a shebang+CR in an otherwise empty source', {
+    source: '#!/foo/bar/baz -abc\r',
+    newLine: true,
+    hasNext: false,
+    value: '',
+    index: 20,
+    line: 2,
+    column: 0
+  });
+  pass('skips a BOM+shebang+LF in an otherwise empty source', {
+    source: '\uFFEF#!/foo/bar/baz -abc\n',
+    newLine: true,
+    hasNext: false,
+    value: '',
+    index: 21,
+    line: 2,
+    column: 0
   });
 });

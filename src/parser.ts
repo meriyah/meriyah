@@ -3781,14 +3781,7 @@ function parseRestOrSpreadElement(
     parser.assignable = AssignmentKind.IsAssignable;
     destructible |= parser.token === Token.AwaitKeyword ? DestructuringKind.Await : 0;
 
-    argument = parsePrimaryExpressionExtended(
-      parser,
-      context,
-      type,
-      /* inNewExpression */ 0,
-      /* assignable */ 1,
-      tokenIndex
-    );
+    argument = parsePrimaryExpressionExtended(parser, context, type, 0, 1, tokenIndex);
 
     const { token } = parser;
 

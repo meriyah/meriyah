@@ -1,4 +1,4 @@
-import { skipSingleLineComment, skipMultiLineComment } from './comments';
+import { skipSingleLineComment, skipMultiLineComment, ScannerState, Seek } from './';
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Token } from '../token';
@@ -27,11 +27,11 @@ import {
  * StringLiteral:    34, 39: '"', `'`
  * NumericLiteral:   48, 49..57: '0'..'9'
  * WhiteSpace:       9, 11, 12, 32: '\t', '\v', '\f', ' '
- * LineTerminator:   10, 13: '\n', '\r'
+ * CarriageReturn:          10, 13: '\n', '\r'
  * Template:         96: '`'
  */
 
-export const OneCharToken = [
+export const TokenLookup = [
   /*   0 - Null               */ Token.Illegal,
   /*   1 - Start of Heading   */ Token.Illegal,
   /*   2 - Start of Text      */ Token.Illegal,
@@ -42,10 +42,10 @@ export const OneCharToken = [
   /*   7 - Bell               */ Token.Illegal,
   /*   8 - Backspace          */ Token.Illegal,
   /*   9 - Horizontal Tab     */ Token.WhiteSpace,
-  /*  10 - Line Feed          */ Token.LineTerminator,
+  /*  10 - Line Feed          */ Token.LineFeed,
   /*  11 - Vertical Tab       */ Token.WhiteSpace,
   /*  12 - Form Feed          */ Token.WhiteSpace,
-  /*  13 - Carriage Return    */ Token.LineTerminator,
+  /*  13 - Carriage Return    */ Token.CarriageReturn,
   /*  14 - Shift Out          */ Token.Illegal,
   /*  15 - Shift In           */ Token.Illegal,
   /*  16 - Data Line Escape   */ Token.Illegal,
@@ -169,15 +169,15 @@ export function nextToken(parser: ParserState, context: Context): void {
 }
 
 export function scanSingleToken(parser: ParserState, context: Context): Token {
-  let isStartOfLine = parser.index === 0;
-
+  let state = ScannerState.None;
+  const isStartOfLine = parser.index === 0;
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
 
     const first = parser.currentCodePoint;
 
     if (first <= 0x7e) {
-      const token = OneCharToken[first];
+      const token = TokenLookup[first];
 
       switch (token) {
         // Look for an unambiguous single-char token
@@ -201,18 +201,25 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
         case Token.WhiteSpace:
           nextCodePoint(parser);
           break;
-        // Line terminators
-        case Token.LineTerminator:
+
+        case Token.CarriageReturn:
           parser.flags |= Flags.NewLine;
-          if (
-            CharTypes[first] & CharFlags.CarriageReturn &&
-            CharTypes[parser.source.charCodeAt(parser.index + 1)] & CharFlags.LineFeed
-          ) {
-            parser.index++;
-          }
+
+          state |= ScannerState.NewLine | ScannerState.LastIsCR;
+
           parser.column = 0;
           parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
           parser.line++;
+          break;
+        case Token.LineFeed:
+          parser.flags |= Flags.NewLine;
+
+          if ((state & ScannerState.LastIsCR) === 0) {
+            parser.column = 0;
+            parser.line++;
+          }
+          state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
+          parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
           break;
         // Look for an identifier.
         case Token.Identifier:
@@ -298,11 +305,11 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
             nextCodePoint(parser);
             if (
               (context & Context.Module) === 0 &&
-              (isStartOfLine || parser.flags & Flags.NewLine) &&
+              (state & ScannerState.NewLine || isStartOfLine) &&
               parser.currentCodePoint === Chars.GreaterThan
             ) {
               if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
-              skipSingleLineComment(parser);
+              state = skipSingleLineComment(parser, state);
               continue;
             }
 
@@ -323,12 +330,12 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
             const ch = parser.currentCodePoint;
             if (ch === Chars.Slash) {
               nextCodePoint(parser);
-              skipSingleLineComment(parser);
+              state = skipSingleLineComment(parser, state);
               continue;
             } else if (ch === Chars.Asterisk) {
               nextCodePoint(parser);
-              skipMultiLineComment(parser);
-              break;
+              state = skipMultiLineComment(parser, state);
+              continue;
             } else if (context & Context.AllowRegExp) {
               return scanRegularExpression(parser, context);
             } else if (ch === Chars.EqualSign) {
@@ -366,7 +373,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
                 parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen &&
                 parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen
               ) {
-                skipSingleLineComment(parser);
+                state = skipSingleLineComment(parser, state);
                 continue;
               }
 
@@ -485,6 +492,7 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
     } else {
       if ((first ^ Chars.LineSeparator) <= 1) {
         parser.flags |= Flags.NewLine;
+        state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
         parser.column = 0;
         parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
         parser.line++;
@@ -501,8 +509,6 @@ export function scanSingleToken(parser: ParserState, context: Context): Token {
       // Invalid ASCII code point/unit
       report(parser, Errors.IllegalCaracter, fromCodePoint(first));
     }
-
-    isStartOfLine = false;
   }
   return Token.EOF;
 }

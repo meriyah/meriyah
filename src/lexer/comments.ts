@@ -1,4 +1,4 @@
-import { nextCodePoint, CharTypes, CharFlags } from './';
+import { nextCodePoint, CharTypes, CharFlags, ScannerState, Seek } from './';
 import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Flags } from '../common';
@@ -22,7 +22,7 @@ export function skipHashBang(parser: ParserState): void {
     if (index < parser.end && parser.source.charCodeAt(index) === Chars.Exclamation) {
       parser.index = index + 1;
       parser.currentCodePoint = parser.source.charCodeAt(parser.index);
-      skipSingleLineComment(parser);
+      skipSingleLineComment(parser, ScannerState.None);
     } else {
       report(parser, Errors.IllegalCaracter, '#');
     }
@@ -34,17 +34,21 @@ export function skipHashBang(parser: ParserState): void {
  *
  * @param parser  Parser object
  */
-export function skipSingleLineComment(parser: ParserState): Token {
+export function skipSingleLineComment(parser: ParserState, state: ScannerState): ScannerState {
   while (parser.index < parser.end) {
     if (
       CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator ||
       (parser.currentCodePoint ^ Chars.LineSeparator) <= 1
     ) {
-      break;
+      parser.flags |= Flags.NewLine;
+      parser.column = 0;
+      parser.line++;
+      parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
+      return state;
     }
     nextCodePoint(parser);
   }
-  return Token.WhiteSpace;
+  return state;
 }
 
 /**
@@ -52,26 +56,32 @@ export function skipSingleLineComment(parser: ParserState): Token {
  *
  * @param parser  Parser object
  */
-export function skipMultiLineComment(parser: ParserState): any {
+export function skipMultiLineComment(parser: ParserState, state: ScannerState): any {
   while (parser.index < parser.end) {
     while (CharTypes[parser.currentCodePoint] & CharFlags.Asterisk) {
       if (nextCodePoint(parser) === Chars.Slash) {
         nextCodePoint(parser);
-        return Token.WhiteSpace;
+        return state;
       }
     }
 
     // ES 2020 11.3 Line Terminators
-    if (
-      CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator ||
-      (parser.currentCodePoint ^ Chars.LineSeparator) <= 1
-    ) {
-      if (
-        CharTypes[parser.currentCodePoint] & CharFlags.CarriageReturn &&
-        CharTypes[parser.source.charCodeAt(parser.index + 1)] & CharFlags.LineFeed
-      ) {
-        parser.index++;
+    if (CharTypes[parser.currentCodePoint] & CharFlags.LineTerminator) {
+      if (CharTypes[parser.currentCodePoint] & CharFlags.CarriageReturn) {
+        state |= ScannerState.NewLine | ScannerState.LastIsCR;
+        parser.column = 0;
+        parser.line++;
+      } else {
+        if (state & ScannerState.LastIsCR) {
+          parser.column = 0;
+          parser.line++;
+        }
+        state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
       }
+      parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
+      parser.flags |= Flags.NewLine;
+    } else if ((parser.currentCodePoint ^ Chars.LineSeparator) <= 1) {
+      state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
       parser.column = 0;
       parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
       parser.line++;

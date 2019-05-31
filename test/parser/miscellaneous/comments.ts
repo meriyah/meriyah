@@ -351,7 +351,7 @@ describe('Miscellaneous - Comments', () => {
     ],
     [
       'function f() { /* infinite */ while (true) { } /* bar */ var each; }',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -366,12 +366,18 @@ describe('Miscellaneous - Comments', () => {
                   type: 'WhileStatement',
                   test: {
                     type: 'Literal',
-                    value: true
+                    value: true,
+                    start: 37,
+                    end: 41
                   },
                   body: {
                     type: 'BlockStatement',
-                    body: []
-                  }
+                    body: [],
+                    start: 43,
+                    end: 46
+                  },
+                  start: 30,
+                  end: 46
                 },
                 {
                   type: 'VariableDeclaration',
@@ -382,27 +388,40 @@ describe('Miscellaneous - Comments', () => {
                       init: null,
                       id: {
                         type: 'Identifier',
-                        name: 'each'
-                      }
+                        name: 'each',
+                        start: 61,
+                        end: 65
+                      },
+                      start: 61,
+                      end: 65
                     }
-                  ]
+                  ],
+                  start: 57,
+                  end: 66
                 }
-              ]
+              ],
+              start: 13,
+              end: 68
             },
             async: false,
             generator: false,
-
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
+              name: 'f',
+              start: 9,
+              end: 10
+            },
+            start: 0,
+            end: 68
           }
-        ]
+        ],
+        start: 0,
+        end: 68
       }
     ],
     [
       'while (i-->0) {}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -415,28 +434,42 @@ describe('Miscellaneous - Comments', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'i'
+                  name: 'i',
+                  start: 7,
+                  end: 8
                 },
                 operator: '--',
-                prefix: false
+                prefix: false,
+                start: 7,
+                end: 10
               },
               right: {
                 type: 'Literal',
-                value: 0
+                value: 0,
+                start: 11,
+                end: 12
               },
-              operator: '>'
+              operator: '>',
+              start: 7,
+              end: 12
             },
             body: {
               type: 'BlockStatement',
-              body: []
-            }
+              body: [],
+              start: 14,
+              end: 16
+            },
+            start: 0,
+            end: 16
           }
-        ]
+        ],
+        start: 0,
+        end: 16
       }
     ],
     [
       'function x(){ /*Jupiter*/ return; /*Saturn*/}',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -449,24 +482,33 @@ describe('Miscellaneous - Comments', () => {
               body: [
                 {
                   type: 'ReturnStatement',
-                  argument: null
+                  argument: null,
+                  start: 26,
+                  end: 33
                 }
-              ]
+              ],
+              start: 12,
+              end: 45
             },
             async: false,
             generator: false,
-
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
+              name: 'x',
+              start: 9,
+              end: 10
+            },
+            start: 0,
+            end: 45
           }
-        ]
+        ],
+        start: 0,
+        end: 45
       }
     ],
     [
-      '/**/ function a() {}',
-      Context.None,
+      'function a() {}',
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -476,17 +518,56 @@ describe('Miscellaneous - Comments', () => {
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
+              start: 13,
+              end: 15
             },
             async: false,
             generator: false,
-
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
+              name: 'a',
+              start: 9,
+              end: 10
+            },
+            start: 0,
+            end: 15
           }
-        ]
+        ],
+        start: 0,
+        end: 15
+      }
+    ],
+    [
+      '/**/ function a() {}',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [],
+              start: 18,
+              end: 20
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 14,
+              end: 15
+            },
+            start: 5,
+            end: 20
+          }
+        ],
+        start: 0,
+        end: 20
       }
     ],
     [
@@ -495,7 +576,7 @@ describe('Miscellaneous - Comments', () => {
          * comments in empty block
          */
       }`,
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -504,14 +585,22 @@ describe('Miscellaneous - Comments', () => {
             type: 'WhileStatement',
             test: {
               type: 'Literal',
-              value: true
+              value: true,
+              start: 7,
+              end: 11
             },
             body: {
               type: 'BlockStatement',
-              body: []
-            }
+              body: [],
+              start: 13,
+              end: 81
+            },
+            start: 0,
+            end: 81
           }
-        ]
+        ],
+        start: 0,
+        end: 81
       }
     ]
   ]);
