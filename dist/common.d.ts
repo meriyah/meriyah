@@ -1,4 +1,5 @@
 import { Token } from './token';
+import { Node } from './estree';
 export declare const enum Context {
     None = 0,
     OptionsNext = 1,
@@ -8,7 +9,7 @@ export declare const enum Context {
     OptionsJSX = 16,
     OptionsGlobalReturn = 32,
     OptionsGlobalAwait = 64,
-    OptionsExperimental = 128,
+    OptionsParenthesized = 128,
     OptionsWebCompat = 256,
     OptionsRaw = 512,
     Strict = 1024,
@@ -98,8 +99,9 @@ export interface ParserState {
     index: number;
     line: number;
     column: number;
+    tokenIndex: number;
     startIndex: number;
-    length: number;
+    end: number;
     token: Token;
     tokenValue: any;
     tokenRaw: string;
@@ -121,4 +123,5 @@ export declare function isStrictReservedWord(parser: ParserState, context: Conte
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
 export declare function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void;
+export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, node: T): T;
 //# sourceMappingURL=common.d.ts.map
