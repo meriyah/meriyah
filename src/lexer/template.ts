@@ -43,7 +43,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       if (ch === Chars.CarriageReturn) {
         if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
           ret += fromCodePoint(ch);
-          parser.currentCodePoint = parser.source.charCodeAt(++parser.index);
+          parser.nextCP = parser.source.charCodeAt(++parser.index);
         }
       }
 

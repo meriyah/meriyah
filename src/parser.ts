@@ -94,7 +94,7 @@ export function create(source: string): ParserState {
     /**
      * The code point at the current index
      */
-    currentCodePoint: source.charCodeAt(0),
+    nextCP: source.charCodeAt(0),
 
     /**
      * Assignable state
@@ -199,8 +199,14 @@ export function parseStatementList(parser: ParserState, context: Context): ESTre
 
   while (parser.token === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
-    if (parser.index - parser.tokenIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-    statements.push(parseDirective(parser, context, parser.tokenIndex));
+    const { index, tokenIndex, tokenValue, token } = parser;
+    let expr = parseLiteral(parser, context, parser.tokenIndex);
+    if (index - tokenIndex < 13 && tokenValue === 'use strict') {
+      if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+        context |= Context.Strict;
+      }
+    }
+    statements.push(parseDirective(parser, context, expr, tokenIndex, token));
   }
 
   while (parser.token !== Token.EOF) {
@@ -231,7 +237,7 @@ export function parseparseModuleItemList(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const statements: (ReturnType<typeof parseDirective | typeof parseparseModuleItemList>)[] = [];
+  const statements: (ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
   // Avoid this if we're not going to create any directive nodes. This is likely to be the case
   // most of the time, considering the prevalence of strict mode and the fact modules
@@ -239,8 +245,14 @@ export function parseparseModuleItemList(
   if (context & Context.OptionsDirectives) {
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
-      if (parser.index - parser.tokenIndex < 13 && parser.tokenValue === 'use strict') context |= Context.Strict;
-      statements.push(parseDirective(parser, context, parser.tokenIndex));
+      const { index, tokenIndex, tokenValue, token } = parser;
+      let expr = parseLiteral(parser, context, parser.tokenIndex);
+      if (index - tokenIndex < 13 && tokenValue === 'use strict') {
+        if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+          context |= Context.Strict;
+        }
+      }
+      statements.push(parseDirective(parser, context, expr, tokenIndex, token));
     }
   }
 
@@ -866,21 +878,34 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
 export function parseDirective(
   parser: ParserState,
   context: Context,
-  start: number
-): ESTree.Statement | ESTree.ExpressionStatement {
-  if (context & Context.OptionsDirectives) {
-    const { tokenRaw } = parser;
-
-    const expression = parseAssignmentExpression(parser, context, start, parseLiteral(parser, context, start));
-    consumeSemicolon(parser, context | Context.AllowRegExp);
-
-    return finishNode(parser, context, start, {
-      type: 'ExpressionStatement',
-      expression,
-      directive: tokenRaw.slice(1, -1)
-    });
+  expression: any,
+  start: number,
+  token: Token
+): ESTree.ExpressionStatement {
+  const { tokenRaw } = parser;
+  if (token !== Token.Semicolon) {
+    parser.assignable = AssignmentKind.CannotAssign;
+    expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start);
+    if (parser.token !== Token.Semicolon) {
+      expression = parseAssignmentExpression(parser, context, start, expression);
+      if (parser.token === Token.Comma) {
+        expression = parseSequenceExpression(parser, context, start, expression);
+      }
+    }
   }
-  return parseStatementListItem(parser, context, /* labels */ {}, start) as ESTree.Statement;
+
+  consumeSemicolon(parser, context | Context.AllowRegExp);
+
+  return context & Context.OptionsDirectives
+    ? finishNode(parser, context, start, {
+        type: 'ExpressionStatement',
+        expression,
+        directive: tokenRaw.slice(1, -1)
+      })
+    : finishNode(parser, context, start, {
+        type: 'ExpressionStatement',
+        expression
+      });
 }
 
 export function parseEmptyStatement(parser: ParserState, context: Context, start: number): ESTree.EmptyStatement {
@@ -1951,14 +1976,7 @@ function parseImportCallDeclaration(parser: ParserState, context: Context, start
    *
    */
 
-  expr = parseMemberOrUpdateExpression(
-    parser,
-    context,
-    expr as any,
-    /* inNewExpression */ 0,
-    /* isImportCall */ 1,
-    start
-  );
+  expr = parseMemberOrUpdateExpression(parser, context, expr as any, 0, 1, start);
 
   /**
    * ExpressionStatement[Yield, Await]:
@@ -2034,14 +2052,7 @@ function parseExportDeclaration(
                 hasNewLine,
                 idxBeforeAsync
               );
-              declaration = parseMemberOrUpdateExpression(
-                parser,
-                context,
-                declaration,
-                /* inNewExpression */ 0,
-                0,
-                idxBeforeAsync
-              );
+              declaration = parseMemberOrUpdateExpression(parser, context, declaration, 0, 0, idxBeforeAsync);
               declaration = parseAssignmentExpression(parser, context, parser.tokenIndex, declaration);
             } else if (parser.token & Token.IsIdentifier) {
               declaration = parseIdentifier(parser, context, parser.tokenIndex);
@@ -2583,19 +2594,20 @@ export function parseFunctionBody(
   if (parser.token !== Token.RightBrace) {
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
-
-      if (parser.index - parser.tokenIndex < 13 && parser.tokenValue === 'use strict') {
-        context |= Context.Strict;
-
-        // TC39 deemed "use strict" directives to be an error when occurring
-        // in the body of a function with non-simple parameter list, on
-        // 29/7/2015. https://goo.gl/ueA7Ln
-        if (parser.flags & Flags.SimpleParameterList) {
-          reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
+      const { index, tokenIndex, tokenValue, token } = parser;
+      let expr = parseLiteral(parser, context, parser.tokenIndex);
+      if (index - tokenIndex < 13 && tokenValue === 'use strict') {
+        if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+          context |= Context.Strict;
+          // TC39 deemed "use strict" directives to be an error when occurring
+          // in the body of a function with non-simple parameter list, on
+          // 29/7/2015. https://goo.gl/ueA7Ln
+          if (parser.flags & Flags.SimpleParameterList) {
+            reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
+          }
         }
       }
-
-      body.push(parseDirective(parser, context, parser.tokenIndex));
+      body.push(parseDirective(parser, context, expr, tokenIndex, token));
     }
 
     if (
@@ -2674,7 +2686,7 @@ export function parseLeftHandSideExpression(
 ): any {
   let expression = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, assignable, start);
 
-  return parseMemberOrUpdateExpression(parser, context, expression, /* assignable */ 0, 0, start);
+  return parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start);
 }
 
 /**
@@ -5287,8 +5299,6 @@ export function parseAsyncArrowOrCallExpression(
   asyncNewLine: 0 | 1,
   start: number
 ): any {
-  (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
-
   nextToken(parser, context | Context.AllowRegExp);
 
   if (consumeOpt(parser, context, Token.RightParen)) {

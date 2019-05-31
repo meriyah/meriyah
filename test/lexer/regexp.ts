@@ -137,7 +137,7 @@ describe('Lexer - Regular expressions', () => {
   for (const [ctx, op, value, flags] of tokens) {
     it(`scans '${op}' at the end`, () => {
       const state = create(op);
-      const found = scanSingleToken(state, ctx);
+      const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
         {
@@ -159,7 +159,7 @@ describe('Lexer - Regular expressions', () => {
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
       const state = create(source);
-      t.throws(() => scanSingleToken(state, context));
+      t.throws(() => scanSingleToken(state, context, 0));
     });
   }
   fail('fails on /i/ii', '/ ', Context.AllowRegExp);

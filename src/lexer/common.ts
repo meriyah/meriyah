@@ -21,7 +21,7 @@ export const enum ScannerState {
  */
 export function nextCodePoint(parser: ParserState): number {
   parser.column++;
-  return (parser.currentCodePoint = parser.source.charCodeAt(++parser.index));
+  return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
 
 export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): boolean {
@@ -35,7 +35,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
   }
   parser.index++;
   parser.column++;
-  parser.currentCodePoint = hi;
+  parser.nextCP = hi;
   return true;
 }
 

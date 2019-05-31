@@ -125,7 +125,12 @@ describe('Miscellaneous - Directives', () => {
        "bogus directive";
        "use strict";
        return (this === undefined);
-    }`
+    }`,
+    '"use strict", "Hello\\312World"',
+    '"use strict" \n "Hello\\312World"',
+    '"use strict" + "Hello\\312World"',
+    '"use strict", "Hello\\312World"',
+    '"use strict", "Hello\\312World"'
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
