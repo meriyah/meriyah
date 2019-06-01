@@ -55,7 +55,11 @@ describe('Next - Private methods', () => {
     ['class C{ #method() { super(); } }', Context.OptionsNext],
     ['(class C extends Base { async #*a() { } })', Context.OptionsNext],
     ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext]
+    ['class C{ #method() { super(); } }', Context.OptionsNext],
+    ['class C { #x = () => arguments; }', Context.OptionsNext]
+    //['function fn() { (() => this)().#x }', Context.OptionsNext],
+    //['function fn() { something.#x }', Context.OptionsNext],
+    //['function fn() { this.#x }', Context.OptionsNext],
   ]);
 
   for (const arg of [

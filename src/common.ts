@@ -36,7 +36,6 @@ export const enum Context {
   AllowNewTarget        = 1 << 26,
   DisallowIn            = 1 << 27,
   InDecoratorContext    = 1 << 28,
-  InClass               = 1 << 29,
   InSwitchOrIteration = InSwitch | InIteration
 }
 

@@ -35,7 +35,15 @@ describe('Next - Public fields', () => {
     'a = 0\n *b(){}',
     "a = 0\n ['b'](){}",
     'static prototype',
-    'static constructor'
+    'static constructor',
+    // 'field = 1 /* no ASI here */ method(){}',
+    '#x = false ? {} : arguments;',
+    'x = typeof arguments;',
+    'x = {} == arguments;',
+    'x = false ? {} : arguments;',
+    //   'st\\u0061tic m() {}',
+    '{ something.#x }',
+    'class C { x = () => arguments; }'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
@@ -102,7 +110,8 @@ describe('Next - Public fields', () => {
     'await;',
     'await = 0;',
     'await;\n a;',
-    `\nx;\ny;\n\n`
+    `\nx;\ny;\n\n`,
+    `static ['constructor'];`
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {

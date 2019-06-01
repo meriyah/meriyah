@@ -2353,7 +2353,7 @@ export function parseAssignmentExpression(
 
     nextToken(parser, context | Context.AllowRegExp);
 
-    const right = parseExpression(parser, context, /* assignable*/ 1, 0, parser.tokenIndex);
+    const right = parseExpression(parser, context, /* assignable*/ 1, inClass, parser.tokenIndex);
 
     left = finishNode(parser, context, start, {
       type: 'AssignmentExpression',
@@ -2374,7 +2374,7 @@ export function parseAssignmentExpression(
    */
   if ((parser.token & Token.IsBinaryOp) > 0) {
     // We start using the binary expression parser for prec >= 4 only!
-    left = parseBinaryExpression(parser, context, start, /* precedence */ 4, left);
+    left = parseBinaryExpression(parser, context, inClass, start, /* precedence */ 4, left);
   }
 
   /**
@@ -2438,6 +2438,7 @@ export function parseConditionalExpression(
 export function parseBinaryExpression(
   parser: ParserState,
   context: Context,
+  inClass: 0 | 1,
   start: number,
   minPrec: number,
   left:
@@ -2471,9 +2472,10 @@ export function parseBinaryExpression(
       right: parseBinaryExpression(
         parser,
         context,
+        inClass,
         parser.tokenIndex,
         prec,
-        parseLeftHandSideExpression(parser, context, /* assignable */ 0, /* inClass */ 0, parser.tokenIndex)
+        parseLeftHandSideExpression(parser, context, /* assignable */ 0, inClass, parser.tokenIndex)
       ),
       operator: KeywordDescTable[t & Token.Type] as ESTree.LogicalOperator
     } as ESTree.BinaryExpression | ESTree.LogicalExpression);
@@ -2490,7 +2492,12 @@ export function parseBinaryExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseUnaryExpression(parser: ParserState, context: Context, start: number): ESTree.UnaryExpression {
+export function parseUnaryExpression(
+  parser: ParserState,
+  context: Context,
+  inClass: 0 | 1,
+  start: number
+): ESTree.UnaryExpression {
   /**
    *  UnaryExpression ::
    *   PostfixExpression
@@ -2505,9 +2512,9 @@ export function parseUnaryExpression(parser: ParserState, context: Context, star
    */
   const unaryOperator = parser.token;
   nextToken(parser, context | Context.AllowRegExp);
-  const arg = parseLeftHandSideExpression(parser, context, /* assignable*/ 0, /* inClass */ 0, parser.tokenIndex);
+  const arg = parseLeftHandSideExpression(parser, context, /* assignable*/ 0, inClass, parser.tokenIndex);
   if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
-  if (context & Context.InClass) report(parser, Errors.InvalidExponentationLHS);
+  if (inClass) report(parser, Errors.InvalidExponentationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);
@@ -2696,9 +2703,14 @@ export function parseFunctionBody(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseSuperExpression(parser: ParserState, context: Context, start: number): ESTree.Super {
+export function parseSuperExpression(
+  parser: ParserState,
+  context: Context,
+  inClass: 0 | 1,
+  start: number
+): ESTree.Super {
   nextToken(parser, context);
-  if (context & Context.InClass) report(parser, Errors.UnexpectedToken, 'super');
+  if (inClass) report(parser, Errors.UnexpectedToken, 'super');
   switch (parser.token) {
     case Token.LeftParen: {
       // The super property has to be within a class constructor
@@ -2897,7 +2909,7 @@ export function parsePrimaryExpressionExtended(
       report(parser, Errors.InvalidNewUnary);
     }
     parser.assignable = AssignmentKind.CannotAssign;
-    return parseUnaryExpression(parser, context, start);
+    return parseUnaryExpression(parser, context, inClass, start);
   }
 
   /**
@@ -3033,7 +3045,7 @@ export function parsePrimaryExpressionExtended(
       parser.assignable = AssignmentKind.CannotAssign;
       return parseNullOrTrueOrFalseLiteral(parser, context, start);
     case Token.SuperKeyword:
-      return parseSuperExpression(parser, context, start);
+      return parseSuperExpression(parser, context, inClass, start);
     case Token.TemplateTail:
       return parseTemplateLiteral(parser, context, start);
     case Token.TemplateContinuation:
@@ -3500,13 +3512,8 @@ export function parseFunctionExpression(
   const params = parseFormalParametersOrFormalList(parser, context | Context.InArgList, BindingType.ArgumentList);
   const body = parseFunctionBody(
     parser,
-    (context |
-      Context.InGlobal |
-      Context.TopLevel |
-      Context.InSwitchOrIteration |
-      Context.InClass |
-      Context.DisallowIn) ^
-      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass | Context.DisallowIn),
+    (context | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowIn) ^
+      (Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.DisallowIn),
     0,
     firstRestricted
   );
@@ -5907,11 +5914,9 @@ function parseClassElementList(
     key = parseComputedPropertyName(parser, context);
   } else if (kind & PropertyKind.PrivateField) {
     key = parsePrivateName(parser, context, tokenIndex);
-    context = context | Context.InClass;
     if (parser.token !== Token.LeftParen)
       return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
   } else if (kind & PropertyKind.ClassField) {
-    context = context | Context.InClass;
     if (parser.token !== Token.LeftParen)
       return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
   }
@@ -6037,18 +6042,11 @@ export function parseFieldDefinition(
 
     if (parser.token === Token.Arguments) report(parser, Errors.StrictEvalArguments);
 
-    value = parsePrimaryExpressionExtended(
-      parser,
-      context | Context.InClass,
-      BindingType.None,
-      0,
-      1,
-      1,
-      idxAfterAssign
-    );
+    value = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, 1, 1, idxAfterAssign);
 
     if ((parser.token & Token.IsClassField) !== Token.IsClassField) {
-      value = parseMemberOrUpdateExpression(parser, context, value as any, 0, 0, 0, idxAfterAssign);
+      value = parseMemberOrUpdateExpression(parser, context, value as any, 0, 0, /* inClass */ 1, idxAfterAssign);
+
       if ((parser.token & Token.IsClassField) !== Token.IsClassField) {
         value = parseAssignmentExpression(parser, context, 1, idxAfterAssign, value as any);
       }
