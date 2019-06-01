@@ -3116,12 +3116,12 @@ export function parseTemplateLiteral(parser: ParserState, context: Context, star
  * @param context Context masks
  * @returns {ESTree.TemplateElement}
  */
-export function parseTemplateTail(parser: ParserState, context: Context, _start: number): ESTree.TemplateElement {
+export function parseTemplateTail(parser: ParserState, context: Context, start: number): ESTree.TemplateElement {
   const { tokenValue, tokenRaw } = parser;
 
   consume(parser, context, Token.TemplateTail);
 
-  return finishNode(parser, context, _start, {
+  return finishNode(parser, context, start, {
     type: 'TemplateElement',
     value: {
       cooked: tokenValue,
@@ -3143,7 +3143,7 @@ export function parseTemplate(parser: ParserState, context: Context, start: numb
   consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
 
   const expressions = [parseExpressions(parser, context, /* assignable */ 1, parser.tokenIndex)];
-
+  if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateTail) {
     const { tokenIndex } = parser;
     quasis.push(parseTemplateSpans(parser, context, /* tail */ false, tokenIndex));
