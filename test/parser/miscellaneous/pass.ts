@@ -23,6 +23,7 @@ describe('Miscellaneous - Pass', () => {
     'function f() { function f() {} }',
     'function f(a,b) {}',
     `class x extends {} {}`,
+    `"use asm"; function a(yield) {}; "use strict"; function a(yield) {}`,
     '[...(x), y]',
     `class MyClass {
       async asyncMethod(a) { return a; }

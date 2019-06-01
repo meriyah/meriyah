@@ -22,7 +22,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   let preparseState = RegexState.Empty;
 
   loop: while (true) {
-    const ch = parser.currentCodePoint;
+    const ch = parser.nextCP;
     nextCodePoint(parser);
 
     if (preparseState & RegexState.Escape) {
@@ -72,7 +72,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   const { index: flagStart } = parser;
 
   loop: while (parser.index < parser.source.length) {
-    switch (parser.currentCodePoint) {
+    switch (parser.nextCP) {
       case Chars.LowerG:
         if (mask & RegexFlags.Global) report(parser, Errors.DuplicateRegExpFlag, 'g');
         mask |= RegexFlags.Global;
@@ -104,7 +104,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         break;
 
       default:
-        if (!isIdentifierPart(parser.currentCodePoint)) break loop;
+        if (!isIdentifierPart(parser.nextCP)) break loop;
         report(parser, Errors.UnexpectedTokenRegExpFlag);
     }
 

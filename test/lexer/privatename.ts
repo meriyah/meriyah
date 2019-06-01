@@ -8,7 +8,7 @@ describe('lexer - privatename', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
       const state = create(opts.source);
-      const token = scanSingleToken(state, opts.ctx);
+      const token = scanSingleToken(state, opts.ctx, 0);
       t.deepEqual(
         {
           token,
@@ -36,7 +36,7 @@ describe('lexer - privatename', () => {
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
       const state = create(source);
-      t.throws(() => scanSingleToken(state, context));
+      t.throws(() => scanSingleToken(state, context, 0));
     });
   }
 

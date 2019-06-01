@@ -134,11 +134,21 @@ describe('Declarations - Class', () => {
     'static get prototype() {}',
     ' async method(...x = []) {}',
     ' async method(...a,) {}',
-    'static method(...x = []) {}'
+    'static method(...x = []) {}',
+    'method() { [super.x] = []; }',
+    'method() { const [super.x] = []; }',
+    'method() { var [super()] = []; }',
+    'method() { let [super()] = []; }',
+    'method() { [super()] = []; }'
   ]) {
     it(`class ${arg}`, () => {
       t.throws(() => {
         parseSource(`class ${arg} `, undefined, Context.None);
+      });
+    });
+    it(`class { ${arg} }`, () => {
+      t.throws(() => {
+        parseSource(`class { ${arg} }`, undefined, Context.None);
       });
     });
   }

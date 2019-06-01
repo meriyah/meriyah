@@ -133,7 +133,7 @@ export interface ParserState {
   };
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
-  currentCodePoint: number;
+  nextCP: number;
 }
 
 /**

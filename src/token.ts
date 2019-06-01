@@ -178,11 +178,12 @@ export const enum Token {
   BigIntLiteral  = 122,
   WhiteSpace           = 124,
   Illegal  = 129,
-  LineTerminator  = 130,
+  CarriageReturn  = 130,
   PrivateField  = 131,
   Template = 132,
   Decorator = 133,
-  Target = 134 | IsIdentifier
+  Target = 134 | IsIdentifier,
+  LineFeed  = 135,
 }
 
 export const KeywordDescTable = [

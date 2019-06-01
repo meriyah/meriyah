@@ -17,7 +17,7 @@ export const enum Escape {
  * Scan a string token.
  */
 export function scanString(parser: ParserState, context: Context): any {
-  const quote = parser.currentCodePoint;
+  const quote = parser.nextCP;
   const { index: start } = parser;
   let ret: string | void = '';
   let ch = nextCodePoint(parser);
@@ -78,7 +78,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         const ch = parser.source.charCodeAt(index);
 
         if (ch === Chars.LineFeed) {
-          parser.currentCodePoint = ch;
+          parser.nextCP = ch;
           parser.index = index + 1;
         }
       }
@@ -111,7 +111,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         } else if (context & Context.Strict) {
           return Escape.StrictOctal;
         } else {
-          parser.currentCodePoint = next;
+          parser.nextCP = next;
           code = (code << 3) | (next - Chars.Zero);
           index++;
           column++;
@@ -120,7 +120,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
             const next = parser.source.charCodeAt(index);
 
             if (CharTypes[next] & CharFlags.Octal) {
-              parser.currentCodePoint = next;
+              parser.nextCP = next;
               code = (code << 3) | (next - Chars.Zero);
               index++;
               column++;
@@ -150,7 +150,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
 
         if (CharTypes[next] & CharFlags.Octal) {
           code = (code << 3) | (next - Chars.Zero);
-          parser.currentCodePoint = next;
+          parser.nextCP = next;
           parser.index = index;
           parser.column = column;
         }
@@ -183,14 +183,14 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.LowerU: {
       const ch = nextCodePoint(parser);
 
-      if (parser.currentCodePoint === Chars.LeftBrace) {
+      if (parser.nextCP === Chars.LeftBrace) {
         let code = 0;
         while ((CharTypes[nextCodePoint(parser)] & CharFlags.Hex) !== 0) {
-          code = (code << 4) | toHex(parser.currentCodePoint);
+          code = (code << 4) | toHex(parser.nextCP);
           if (code > Chars.NonBMPMax) return Escape.OutOfRange;
         }
 
-        if (parser.currentCodePoint < 1 || (parser.currentCodePoint as number) !== Chars.RightBrace) {
+        if (parser.nextCP < 1 || (parser.nextCP as number) !== Chars.RightBrace) {
           return Escape.InvalidHex;
         }
         return code;

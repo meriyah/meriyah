@@ -3,13 +3,20 @@ import { ParserState } from '../common';
 import { unicodeLookup } from '../unicode';
 import { report, Errors } from '../errors';
 
+export const enum ScannerState {
+  None = 0,
+  NewLine = 1 << 0,
+  SameLine = 1 << 1,
+  LastIsCR = 1 << 2
+}
+
 /**
  * Advances this lexer's current index.
  * @param parser The parser instance
  */
 export function nextCodePoint(parser: ParserState): number {
   parser.column++;
-  return (parser.currentCodePoint = parser.source.charCodeAt(++parser.index));
+  return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
 
 export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): boolean {
@@ -23,7 +30,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
   }
   parser.index++;
   parser.column++;
-  parser.currentCodePoint = hi;
+  parser.nextCP = hi;
   return true;
 }
 
