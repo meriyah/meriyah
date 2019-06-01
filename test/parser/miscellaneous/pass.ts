@@ -167,6 +167,7 @@ describe('Miscellaneous - Pass', () => {
     `([{x = y}] = z)`,
     `[{x = y}] = z`,
     `new await()()`,
+    'var s = 0; for (let key in a) { s += a[key] };',
     '`a${b=c}d`',
     `(x) = (y) += z`,
     `(x) = (y) = z`,
