@@ -1,4 +1,10 @@
 import { ParserState } from '../common';
+export declare const enum ScannerState {
+    None = 0,
+    NewLine = 1,
+    SameLine = 2,
+    LastIsCR = 4
+}
 export declare function nextCodePoint(parser: ParserState): number;
 export declare function consumeMultiUnitCodePoint(parser: ParserState, hi: number): boolean;
 export declare function isExoticECMAScriptWhitespace(code: number): boolean;

@@ -111,7 +111,7 @@ export interface ParserState {
     };
     assignable: AssignmentKind | DestructuringKind;
     destructible: AssignmentKind | DestructuringKind;
-    currentCodePoint: number;
+    nextCP: number;
 }
 export declare function consumeSemicolon(parser: ParserState, context: Context): void;
 export declare function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1;

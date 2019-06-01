@@ -27,7 +27,7 @@ export declare function parseReturnStatement(parser: ParserState, context: Conte
 export declare function parseExpressionStatement(parser: ParserState, context: Context, expression: ESTree.Expression, start: number): ESTree.ExpressionStatement;
 export declare function parseLabelledStatement(parser: ParserState, context: Context, labels: any, label: string, expr: ESTree.Identifier, token: Token, allowFuncDecl: 0 | 1, start: number): ESTree.LabeledStatement;
 export declare function parseAsyncArrowOrAsyncFunctionDeclaration(parser: ParserState, context: Context, labels: any, allowFuncDecl: FunctionStatement, start: number): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration;
-export declare function parseDirective(parser: ParserState, context: Context, start: number): ESTree.Statement | ESTree.ExpressionStatement;
+export declare function parseDirective(parser: ParserState, context: Context, expression: any, token: Token, start: number): ESTree.ExpressionStatement;
 export declare function parseEmptyStatement(parser: ParserState, context: Context, start: number): ESTree.EmptyStatement;
 export declare function parseThrowStatement(parser: ParserState, context: Context, start: number): ESTree.ThrowStatement;
 export declare function parseIfStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.IfStatement;
