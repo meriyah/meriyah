@@ -361,6 +361,7 @@ describe('Expressions - Group', () => {
     ['(x--, y) => x;', Context.None],
     ['...x => x', Context.None],
     ['y, ...x => x', Context.None],
+    ['({x:{1:y()=x},x:{7:3}})>x', Context.None],
     [`({[foo]() {}} = y)`, Context.None],
     ['0, {a = 0}) => 0', Context.None],
     ['({a = 0}, {a = 0}, 0) => 0', Context.None],

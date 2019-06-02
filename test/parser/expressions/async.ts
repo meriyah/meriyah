@@ -54,9 +54,139 @@ describe('Expressions - Async', () => {
     ['async (a, ...true=b) => a;', Context.None],
     ['async (a, ...b=fail) => a;', Context.None],
     ['async (a, ...true) => a;', Context.None],
-    ['async (a, ...true=fail) => a;', Context.None]
+    ['await/x', Context.Module],
+    ['await \n / x', Context.Module]
   ]);
   pass('Expressions - Async (pass)', [
+    [
+      'async/x',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'async',
+                start: 0,
+                end: 5
+              },
+              right: {
+                type: 'Identifier',
+                name: 'x',
+                start: 6,
+                end: 7
+              },
+              operator: '/',
+              start: 0,
+              end: 7
+            },
+            start: 0,
+            end: 7
+          }
+        ],
+        start: 0,
+        end: 7
+      }
+    ],
+    [
+      'x / async',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'x',
+                start: 0,
+                end: 1
+              },
+              right: {
+                type: 'Identifier',
+                name: 'async',
+                start: 4,
+                end: 9
+              },
+              operator: '/',
+              start: 0,
+              end: 9
+            },
+            start: 0,
+            end: 9
+          }
+        ],
+        start: 0,
+        end: 9
+      }
+    ],
+    [
+      'async \n / x / g',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              left: {
+                left: {
+                  name: 'async',
+                  type: 'Identifier'
+                },
+                operator: '/',
+                right: {
+                  name: 'x',
+                  type: 'Identifier'
+                },
+                type: 'BinaryExpression'
+              },
+              operator: '/',
+              right: {
+                name: 'g',
+                type: 'Identifier'
+              },
+              type: 'BinaryExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'async \n / x',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              left: {
+                name: 'async',
+                type: 'Identifier'
+              },
+              operator: '/',
+              right: {
+                name: 'x',
+                type: 'Identifier'
+              },
+              type: 'BinaryExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+
     [
       'function *f(){ async(x); }',
       Context.None,

@@ -34,6 +34,7 @@ describe('Miscellaneous - Failure', () => {
     `({*[expr](){}} = x)`,
     '({*[expr](){}}) = x',
     '({a: {a=b}.x}) => x',
+    'class K extends {} {;async\\n async *1(){}}',
     `for (a,b of c) d;`,
     `for (a, b of c);`,
     `for (a,b of c) d;`,
