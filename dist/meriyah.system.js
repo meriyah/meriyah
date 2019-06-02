@@ -1511,7 +1511,7 @@ System.register('meriyah', [], function (exports) {
       }
       function scanTemplateTail(parser, context) {
           if (parser.index >= parser.end)
-              return 129;
+              report(parser, 0);
           parser.index--;
           parser.column--;
           return scanTemplate(parser, context);
@@ -2604,8 +2604,7 @@ System.register('meriyah', [], function (exports) {
           expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 1, start);
           return parseExpressionStatement(parser, context, expr, start);
       }
-      function parseExportDeclaration(parser, context, _start) {
-          const { tokenIndex } = parser;
+      function parseExportDeclaration(parser, context, start) {
           nextToken(parser, context | 32768);
           const specifiers = [];
           let declaration = null;
@@ -2645,7 +2644,7 @@ System.register('meriyah', [], function (exports) {
                       declaration = parseExpression(parser, context, 1, parser.tokenIndex);
                       consumeSemicolon(parser, context | 32768);
               }
-              return finishNode(parser, context, tokenIndex, {
+              return finishNode(parser, context, start, {
                   type: 'ExportDefaultDeclaration',
                   declaration
               });
@@ -2658,7 +2657,7 @@ System.register('meriyah', [], function (exports) {
                       ecma262PR = 1;
                       specifiers.push(finishNode(parser, context, parser.index, {
                           type: 'ExportNamespaceSpecifier',
-                          specifier: parseIdentifier(parser, context, tokenIndex)
+                          specifier: parseIdentifier(parser, context, start)
                       }));
                   }
                   consume(parser, context, 12401);
@@ -2667,12 +2666,12 @@ System.register('meriyah', [], function (exports) {
                   source = parseLiteral(parser, context, parser.tokenIndex);
                   consumeSemicolon(parser, context | 32768);
                   return ecma262PR
-                      ? finishNode(parser, context, tokenIndex, {
+                      ? finishNode(parser, context, start, {
                           type: 'ExportNamedDeclaration',
                           source,
                           specifiers
                       })
-                      : finishNode(parser, context, tokenIndex, {
+                      : finishNode(parser, context, start, {
                           type: 'ExportAllDeclaration',
                           source
                       });
@@ -2732,7 +2731,7 @@ System.register('meriyah', [], function (exports) {
               default:
                   report(parser, 29, KeywordDescTable[parser.token & 255]);
           }
-          return finishNode(parser, context, tokenIndex, {
+          return finishNode(parser, context, start, {
               type: 'ExportNamedDeclaration',
               source,
               specifiers,
@@ -3074,6 +3073,8 @@ System.register('meriyah', [], function (exports) {
               if (type & (8 | 16))
                   report(parser, 65);
           }
+          if (context & 536870912 && parser.token === 537079925)
+              report(parser, 66);
           if ((token & 143360) === 143360) {
               const expr = parseIdentifier(parser, context | 65536, start);
               if (token === 143468) {
@@ -3181,10 +3182,10 @@ System.register('meriyah', [], function (exports) {
               quasis: [parseTemplateTail(parser, context, start)]
           });
       }
-      function parseTemplateTail(parser, context, _start) {
+      function parseTemplateTail(parser, context, start) {
           const { tokenValue, tokenRaw } = parser;
           consume(parser, context, 67174409);
-          return finishNode(parser, context, _start, {
+          return finishNode(parser, context, start, {
               type: 'TemplateElement',
               value: {
                   cooked: tokenValue,
@@ -3197,6 +3198,8 @@ System.register('meriyah', [], function (exports) {
           const quasis = [parseTemplateSpans(parser, context, false, start)];
           consume(parser, context | 32768, 67174408);
           const expressions = [parseExpressions(parser, context, 1, parser.tokenIndex)];
+          if (parser.token !== -2146435057)
+              report(parser, 91);
           while ((parser.token = scanTemplateTail(parser, context)) !== 67174409) {
               const { tokenIndex } = parser;
               quasis.push(parseTemplateSpans(parser, context, false, tokenIndex));
@@ -4402,7 +4405,7 @@ System.register('meriyah', [], function (exports) {
               body = parseExpression(parser, context, 1, parser.tokenIndex);
           }
           else {
-              body = parseFunctionBody(parser, context & ~(0x8001000 | 8192), 2, void 0);
+              body = parseFunctionBody(parser, context & ~(0x8001000 | 8192 | 536870912), 2, void 0);
               switch (parser.token) {
                   case 67108877:
                   case 69271571:
@@ -4872,6 +4875,7 @@ System.register('meriyah', [], function (exports) {
                   key = parseComputedPropertyName(parser, context);
               }
               else if (context & 1 && parser.token === 131) {
+                  kind |= 4096;
                   key = parsePrivateName(parser, context, tokenIndex);
               }
               else if (parser.token === -2146435057) {
@@ -4907,13 +4911,13 @@ System.register('meriyah', [], function (exports) {
               }
               kind |= 64;
           }
-          if ((kind & 2) === 0 &&
+          if ((kind & (4096 | 2)) === 0 &&
               kind & (32 | 8 | 16 | 768) &&
               parser.tokenValue === 'prototype') {
               report(parser, 53);
           }
           if (context & 1 && parser.token !== 67174411) {
-              if (parser.tokenValue === 'constructor')
+              if ((kind & 2) === 0 && parser.tokenValue === 'constructor')
                   report(parser, 143);
               return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
           }
@@ -4966,9 +4970,16 @@ System.register('meriyah', [], function (exports) {
               report(parser, 0);
           if (parser.token === -2143289315) {
               nextToken(parser, context | 32768);
-              if ((parser.token & 537079808) === 537079808)
+              const idxAfterAssign = parser.tokenIndex;
+              if (parser.token === 537079925)
                   report(parser, 131);
-              value = parseExpression(parser, context | 536870912, 1, parser.tokenIndex);
+              value = parsePrimaryExpressionExtended(parser, context | 536870912, 0, 0, 1, idxAfterAssign);
+              if ((parser.token & -2147483648) !== -2147483648) {
+                  value = parseMemberOrUpdateExpression(parser, context | 536870912, value, 0, 0, idxAfterAssign);
+                  if ((parser.token & -2147483648) !== -2147483648) {
+                      value = parseAssignmentExpression(parser, context | 536870912, idxAfterAssign, value);
+                  }
+              }
           }
           return finishNode(parser, context, start, {
               type: 'FieldDefinition',
