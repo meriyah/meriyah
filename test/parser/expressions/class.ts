@@ -939,7 +939,14 @@ describe('Expressions - Class', () => {
     '*method([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }] = []) {}',
     '*method([x] = g) {}',
     "['prototype']() {}",
-    'get foo() { }'
+    'get foo() { }',
+    'prototype() {} ',
+    '[foo](){}',
+    '*ident(){}',
+    '*"str"(){}',
+    '*15(){}',
+    '*[expr](){}',
+    'static(){}'
   ]) {
     it(`(class { ${arg}})`, () => {
       t.doesNotThrow(() => {

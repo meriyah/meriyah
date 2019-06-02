@@ -111,7 +111,39 @@ describe('Next - Public fields', () => {
     'await = 0;',
     'await;\n a;',
     `\nx;\ny;\n\n`,
-    `static ['constructor'];`
+    `static ['constructor'];`,
+    `constructor(props) {;([super.client] = props);}`,
+    `foo(props) { ;({ client: super.client } = props) }`,
+    `constructor(props) {;([super.client] = props);}`,
+    `constructor(props) {;({ x, ...super.client } = props)}`,
+    `#client
+    constructor(props) {;([this.#client] = props);}`,
+    `constructor(props) {;({ x, ...super.x } = props)}`, //
+    `#x
+    constructor(props) {;([this.#x] = props);}`,
+    `#x
+     constructor(props) {
+      this.#x = 1;
+      ;([this.x = this.#x, this.#x, this.y = this.#x] = props);
+    }`,
+    `#x
+    constructor(props) { ;([this.#x] = props); }
+    getx() { return this.#x; }`,
+    `#x
+    constructor(props) { let x;  ;([x, ...this.#x] = props); }`,
+    `#x
+    constructor(props) {;([x, ...this.#x] = props); }`,
+    `#x
+    constructor(props) {;({ x: this.#x } = props)}`,
+    `#x
+    constructor(props) {;({ x: this.#x } = props)}`,
+    `#x
+    constructor(props) {;([x, ...super.x] = props);}`,
+    `#x
+    constructor(props) {;([super.x] = props);}`,
+    `#x
+    constructor(props) { ;([this.#x] = props); }
+    getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }`
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -332,6 +364,93 @@ describe('Next - Public fields', () => {
         ],
         sourceType: 'script',
         type: 'Program'
+      }
+    ],
+    [
+      `const createClass = (k) => class { [k()] = 2 };`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'const',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ArrowFunctionExpression',
+                  body: {
+                    type: 'ClassExpression',
+                    decorators: [],
+                    id: null,
+                    superClass: null,
+                    body: {
+                      type: 'ClassBody',
+                      body: [
+                        {
+                          type: 'FieldDefinition',
+                          decorators: [],
+                          key: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'k',
+                              start: 36,
+                              end: 37
+                            },
+                            arguments: [],
+                            start: 36,
+                            end: 39
+                          },
+                          value: {
+                            type: 'Literal',
+                            value: 2,
+                            start: 43,
+                            end: 44
+                          },
+                          computed: true,
+                          static: false,
+                          start: 35,
+                          end: 44
+                        }
+                      ],
+                      start: 33,
+                      end: 46
+                    },
+                    start: 27,
+                    end: 46
+                  },
+                  params: [
+                    {
+                      type: 'Identifier',
+                      name: 'k',
+                      start: 21,
+                      end: 22
+                    }
+                  ],
+                  async: false,
+                  expression: true,
+                  start: 20,
+                  end: 46
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'createClass',
+                  start: 6,
+                  end: 17
+                },
+                start: 6,
+                end: 46
+              }
+            ],
+            start: 0,
+            end: 47
+          }
+        ],
+        start: 0,
+        end: 47
       }
     ],
     [

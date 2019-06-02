@@ -1661,6 +1661,10 @@ export function parseForStatement(
 
     destructible = parser.destructible;
 
+    if (context & Context.OptionsWebCompat && destructible & DestructuringKind.SeenProto) {
+      report(parser, Errors.DuplicateProto);
+    }
+
     parser.assignable =
       destructible & DestructuringKind.CannotDestruct ? AssignmentKind.CannotAssign : AssignmentKind.IsAssignable;
 
@@ -3423,8 +3427,8 @@ export function parseFunctionDeclaration(
     type: 'FunctionDeclaration',
     params,
     body,
-    async: !!isAsync,
-    generator: !!isGenerator,
+    async: isAsync !== 0,
+    generator: isGenerator !== 0,
     id
   });
 }
@@ -3442,6 +3446,12 @@ export function parseFunctionExpression(
   isAsync: 0 | 1,
   start: number
 ): ESTree.FunctionExpression {
+  // GeneratorExpression:
+  //      function* BindingIdentifier [Yield][opt](FormalParameters[Yield]){ GeneratorBody }
+  //
+  // FunctionExpression:
+  //      function BindingIdentifier[opt](FormalParameters){ FunctionBody }
+
   nextToken(parser, context | Context.AllowRegExp);
   const isGenerator = optionalBit(parser, context, Token.Multiply);
   // @ts-ignore
@@ -5575,14 +5585,17 @@ export function parseClassDeclaration(
     //
     report(parser, Errors.DeclNoName, 'Class');
   }
+
+  let inheritedContext = context;
+
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.ExtendsKeyword)) {
     superClass = parseLeftHandSideExpression(parser, context, /* assignable */ 0, parser.tokenIndex);
-    context |= Context.SuperCall;
+    inheritedContext |= Context.SuperCall;
   } else {
-    context = (context | Context.SuperCall) ^ Context.SuperCall;
+    inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
   }
 
-  const body = parseClassBody(parser, context, BindingType.None, BindingOrigin.Declaration);
+  const body = parseClassBody(parser, inheritedContext, context, BindingType.None, BindingOrigin.Declaration);
 
   return context & Context.OptionsNext
     ? finishNode(parser, context, start, {
@@ -5631,14 +5644,17 @@ export function parseClassExpression(parser: ParserState, context: Context, star
     id = parseIdentifier(parser, context, parser.tokenIndex);
   }
 
+  // Second set of context masks to fix 'super' edge cases
+  let inheritedContext = context;
+
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.ExtendsKeyword)) {
     superClass = parseLeftHandSideExpression(parser, context, /* assignable */ 0, parser.tokenIndex);
-    context |= Context.SuperCall;
+    inheritedContext |= Context.SuperCall;
   } else {
-    context = (context | Context.SuperCall) ^ Context.SuperCall;
+    inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
   }
 
-  const body = parseClassBody(parser, context, BindingType.None, BindingOrigin.None);
+  const body = parseClassBody(parser, inheritedContext, context, BindingType.None, BindingOrigin.None);
 
   parser.assignable = AssignmentKind.CannotAssign;
 
@@ -5665,26 +5681,40 @@ export function parseClassExpression(parser: ParserState, context: Context, star
  * @param context Context masks
  */
 export function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[] {
-  const decoratorList: ESTree.Decorator[] = [];
+  let list: ESTree.Decorator[] = [];
   while (consumeOpt(parser, context, Token.Decorator)) {
-    const { tokenIndex } = parser;
-    const expression = parseLeftHandSideExpression(parser, context, /* assignable */ 1, tokenIndex);
-    decoratorList.push(
-      finishNode(parser, context, tokenIndex, {
-        type: 'Decorator',
-        expression
-      })
-    );
+    list.push(parseDecoratorList(parser, context, parser.tokenIndex));
   }
 
-  return decoratorList;
+  return list;
 }
 
+/**
+ * Parses a list of decorators
+ *
+ * @param parser Parser object
+ * @param context Context masks
+ * @param start
+ */
+
+export function parseDecoratorList(parser: ParserState, context: Context, start: number): ESTree.Decorator {
+  let expression = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, 1, start);
+
+  if (parser.token !== Token.Decorator) {
+    expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start);
+  }
+
+  return finishNode(parser, context, start, {
+    type: 'Decorator',
+    expression
+  });
+}
 /**
  * Parses class body
  *
  * @param parser Parser object
  * @param context  Context masks
+ * @param inheritedContext Second set of context masks
  * @param type Binding type
  * @param origin  Binding origin
  * @param decorators
@@ -5693,6 +5723,7 @@ export function parseDecorators(parser: ParserState, context: Context): ESTree.D
 export function parseClassBody(
   parser: ParserState,
   context: Context,
+  inheritedContext: Context,
   type: BindingType,
   origin: BindingOrigin
 ): ESTree.ClassBody {
@@ -5756,25 +5787,36 @@ export function parseClassBody(
   const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
   let decorators: ESTree.Decorator[] = [];
 
-  while (parser.token !== Token.RightBrace) {
-    if (context & Context.OptionsNext) {
+  if (context & Context.OptionsNext) {
+    while (parser.token !== Token.RightBrace) {
+      let length = 0;
+
       // See: https://github.com/tc39/proposal-decorators
+
       decorators = parseDecorators(parser, context);
-      if (decorators.length > 0 && parser.tokenValue === 'constructor') {
+
+      length = decorators.length;
+
+      if (length > 0 && parser.tokenValue === 'constructor') {
         report(parser, Errors.GeneratorConstructor);
       }
 
       if (parser.token === Token.RightBrace) report(parser, Errors.TrailingDecorators);
+
       if (consumeOpt(parser, context, Token.Semicolon)) {
-        if (decorators.length > 0) report(parser, Errors.InvalidDecoratorSemicolon);
+        if (length > 0) report(parser, Errors.InvalidDecoratorSemicolon);
         continue;
       }
+      body.push(parseClassElementList(parser, context, inheritedContext, type, decorators, 0, parser.tokenIndex));
     }
-
-    if (consumeOpt(parser, context, Token.Semicolon)) continue;
-    body.push(parseClassElementList(parser, context, type, decorators, 0, parser.tokenIndex));
+  } else {
+    while (parser.token !== Token.RightBrace) {
+      if (consumeOpt(parser, context, Token.Semicolon)) {
+        continue;
+      }
+      body.push(parseClassElementList(parser, context, inheritedContext, type, decorators, 0, parser.tokenIndex));
+    }
   }
-
   consume(parser, origin & BindingOrigin.Declaration ? context | Context.AllowRegExp : context, Token.RightBrace);
 
   return finishNode(parser, context, startt, {
@@ -5788,6 +5830,7 @@ export function parseClassBody(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param inheritedContext Second set of context masks
  * @param type  Binding type
  * @param decorators
  * @param isStatic
@@ -5795,6 +5838,7 @@ export function parseClassBody(
 function parseClassElementList(
   parser: ParserState,
   context: Context,
+  inheritedContext: Context,
   type: BindingType,
   decorators: ESTree.Decorator[],
   isStatic: 0 | 1,
@@ -5811,34 +5855,35 @@ function parseClassElementList(
     switch (token) {
       case Token.StaticKeyword:
         if (!isStatic && parser.token !== Token.LeftParen) {
-          return parseClassElementList(parser, context, type, decorators, /* isStatic */ 1, start);
+          return parseClassElementList(parser, context, inheritedContext, type, decorators, /* isStatic */ 1, start);
         }
         break;
 
       case Token.AsyncKeyword:
-        if (parser.token !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
-          kind |= PropertyKind.Async | (consumeOpt(parser, context, Token.Multiply) ? PropertyKind.Generator : 0);
+        if (parser.token !== Token.LeftParen && (parser.flags & Flags.NewLine) < 1) {
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
             return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
           }
+
+          kind |= PropertyKind.Async | (optionalBit(parser, context, Token.Multiply) ? PropertyKind.Generator : 0);
         }
         break;
 
       case Token.GetKeyword:
         if (parser.token !== Token.LeftParen) {
-          kind |= PropertyKind.Getter;
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
             return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
           }
+          kind |= PropertyKind.Getter;
         }
         break;
 
       case Token.SetKeyword:
         if (parser.token !== Token.LeftParen) {
-          kind |= PropertyKind.Setter;
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
             return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
           }
+          kind |= PropertyKind.Setter;
         }
         break;
 
@@ -5846,7 +5891,7 @@ function parseClassElementList(
     }
   } else if (token === Token.LeftBracket) {
     kind = PropertyKind.Computed;
-    key = parseComputedPropertyName(parser, context);
+    key = parseComputedPropertyName(parser, inheritedContext);
   } else if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     key = parseLiteral(parser, context, tokenIndex);
   } else if (token === Token.Multiply) {
@@ -5881,18 +5926,17 @@ function parseClassElementList(
     if (parser.tokenValue === 'constructor') {
       if ((parser.token & Token.IsClassField) === Token.IsClassField) {
         report(parser, Errors.InvalidClassFieldConstructor);
-      } else if ((kind & PropertyKind.Static) < 1) {
+      } else if ((kind & PropertyKind.Static) < 1 && parser.token === Token.LeftParen) {
         if (kind & (PropertyKind.GetSet | PropertyKind.Async | PropertyKind.ClassField | PropertyKind.Generator)) {
           report(parser, Errors.InvalidConstructor, 'accessor');
-        }
-
-        if ((context & Context.SuperCall) < 1) {
+        } else if ((context & Context.SuperCall) < 1) {
           if (parser.flags & Flags.HasConstructor) report(parser, Errors.DuplicateConstructor);
           else parser.flags |= Flags.HasConstructor;
         }
       }
       kind |= PropertyKind.Constructor;
     } else if (
+      // Static Async Generator Private Methods can be named "#prototype" (class declaration)
       (kind & PropertyKind.PrivateField) < 1 &&
       kind & (PropertyKind.Static | PropertyKind.GetSet | PropertyKind.Generator | PropertyKind.Async) &&
       parser.tokenValue === 'prototype'

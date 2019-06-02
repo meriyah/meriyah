@@ -451,18 +451,14 @@ describe('Statements - For', () => {
     'for (a ? b : c;;);',
     'for (a = b;;);',
     'for (a += b;;);',
+    'for ([{__proto__: 1, __proto__: 2}];;);',
+    'for ({__proto__: 1, __proto__: 2};;);',
     'for (((x)=>{}).x in y);',
     'for (((x)=>{}).x of y);'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }
@@ -568,6 +564,8 @@ describe('Statements - For', () => {
     ['for (var {a, [x]: y} = a);', Context.None],
     ['for ({a: x + y} = z;;);', Context.None],
     ['for ([x + y] = z;;);', Context.None],
+    ['for ([{__proto__: 1, __proto__: 2}];;);', Context.OptionsWebCompat],
+    ['for ({__proto__: 1, __proto__: 2};;);', Context.OptionsWebCompat],
     ['for(index=0; index<10; index+=4; index++; index--) ;', Context.None],
     ['for({var index=0; index+=1;} index++<=10; index*2;) {	[].add(""+index);};', Context.None],
     ['for ( ; false; ) class C {}', Context.None],

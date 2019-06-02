@@ -77,7 +77,9 @@ describe('Next - Decorators', () => {
     ['class Foo { constructor(@foo x) {} }', Context.OptionsNext],
     ['class Foo { @abc constructor(){} }', Context.OptionsNext],
     ['class Foo {  @a; m(){}}', Context.OptionsNext],
-    ['class Foo { @abc constructor(){} }', Context.OptionsNext]
+    ['class Foo { @abc constructor(){} }', Context.OptionsNext],
+    ['class A { @foo && bar method() {}  }', Context.OptionsNext],
+    ['class A { @foo && bar; method() {}  }', Context.OptionsNext]
   ]);
 
   pass('Next - Decorators (pass)', [
