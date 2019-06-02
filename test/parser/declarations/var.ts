@@ -573,7 +573,10 @@ describe('Declarations - Var', () => {
     '[a, b] = [, 2];',
     'var {a: [x1, y1], b: [x2, y2] } = c;',
     'var rect = {};',
-    'var x = -1;'
+    'var x = -1;',
+    'var {[a]: [b]} = c',
+    'var {[a]: b} = c',
+    'var {a: [b]} = c'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

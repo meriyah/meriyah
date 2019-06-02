@@ -5846,22 +5846,24 @@ function parseClassElementList(
     }
   } else if (token === Token.LeftBracket) {
     kind = PropertyKind.Computed;
+    key = parseComputedPropertyName(parser, context);
   } else if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     key = parseLiteral(parser, context, tokenIndex);
   } else if (token === Token.Multiply) {
     kind |= PropertyKind.Generator;
-    nextToken(parser, context);
+    nextToken(parser, context); // skip: '*'
   } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
     kind |= PropertyKind.PrivateField;
+    key = parsePrivateName(parser, context, tokenIndex);
+    context = context | Context.InClass;
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
+    context = context | Context.InClass;
   } else {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 
   if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {
-    if (kind & PropertyKind.Generator && parser.token === Token.LeftParen) report(parser, Errors.InvalidKeyToken);
-
     if (parser.token & Token.IsIdentifier) {
       key = parseIdentifier(parser, context, parser.tokenIndex);
     } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
@@ -5872,50 +5874,34 @@ function parseClassElementList(
     } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
       key = parsePrivateName(parser, context, tokenIndex);
-    } else if (parser.token === Token.RightBrace) {
-      report(parser, Errors.NoIdentOrDynamicName);
-    }
-  } else if (kind & PropertyKind.Computed) {
-    key = parseComputedPropertyName(parser, context);
-  } else if (kind & PropertyKind.PrivateField) {
-    key = parsePrivateName(parser, context, tokenIndex);
-    context = context | Context.InClass;
-    if (parser.token !== Token.LeftParen)
-      return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
-  } else if (kind & PropertyKind.ClassField) {
-    context = context | Context.InClass;
-    if (parser.token !== Token.LeftParen)
-      return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
+    } else report(parser, Errors.InvalidKeyToken);
   }
 
-  if (parser.tokenValue === 'constructor') {
-    if ((kind & PropertyKind.Static) === 0) {
-      if (
-        (kind & PropertyKind.Computed) === 0 &&
-        kind & (PropertyKind.GetSet | PropertyKind.Async | PropertyKind.ClassField | PropertyKind.Generator)
-      ) {
-        report(parser, Errors.InvalidConstructor, 'accessor');
-      }
+  if ((kind & PropertyKind.Computed) < 1) {
+    if (parser.tokenValue === 'constructor') {
+      if ((parser.token & Token.IsClassField) === Token.IsClassField) {
+        report(parser, Errors.InvalidClassFieldConstructor);
+      } else if ((kind & PropertyKind.Static) < 1) {
+        if (kind & (PropertyKind.GetSet | PropertyKind.Async | PropertyKind.ClassField | PropertyKind.Generator)) {
+          report(parser, Errors.InvalidConstructor, 'accessor');
+        }
 
-      if ((context & Context.SuperCall) === 0 && (kind & PropertyKind.Computed) === 0) {
-        if (parser.flags & Flags.HasConstructor) report(parser, Errors.DuplicateConstructor);
-        else parser.flags |= Flags.HasConstructor;
+        if ((context & Context.SuperCall) < 1) {
+          if (parser.flags & Flags.HasConstructor) report(parser, Errors.DuplicateConstructor);
+          else parser.flags |= Flags.HasConstructor;
+        }
       }
+      kind |= PropertyKind.Constructor;
+    } else if (
+      (kind & PropertyKind.PrivateField) < 1 &&
+      kind & (PropertyKind.Static | PropertyKind.GetSet | PropertyKind.Generator | PropertyKind.Async) &&
+      parser.tokenValue === 'prototype'
+    ) {
+      report(parser, Errors.StaticPrototype);
     }
-    kind |= PropertyKind.Constructor;
-  }
-
-  if (
-    (kind & (PropertyKind.PrivateField | PropertyKind.Computed)) === 0 &&
-    kind & (PropertyKind.Static | PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet) &&
-    parser.tokenValue === 'prototype'
-  ) {
-    report(parser, Errors.StaticPrototype);
   }
 
   if (context & Context.OptionsNext && parser.token !== Token.LeftParen) {
-    if ((kind & PropertyKind.Computed) === 0 && parser.tokenValue === 'constructor')
-      report(parser, Errors.InvalidClassFieldConstructor);
     return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex);
   }
 
@@ -5925,7 +5911,7 @@ function parseClassElementList(
     ? finishNode(parser, context, start, {
         type: 'MethodDefinition',
         kind:
-          (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
+          (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
             ? 'constructor'
             : kind & PropertyKind.Getter
             ? 'get'
@@ -5941,7 +5927,7 @@ function parseClassElementList(
     : finishNode(parser, context, start, {
         type: 'MethodDefinition',
         kind:
-          (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
+          (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
             ? 'constructor'
             : kind & PropertyKind.Getter
             ? 'get'

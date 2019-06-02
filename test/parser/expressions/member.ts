@@ -56,6 +56,127 @@ describe('Expressions - Member', () => {
       }
     ],
     [
+      'x[a, b]',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'x',
+                start: 0,
+                end: 1
+              },
+              computed: true,
+              property: {
+                type: 'SequenceExpression',
+                expressions: [
+                  {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 2,
+                    end: 3
+                  },
+                  {
+                    type: 'Identifier',
+                    name: 'b',
+                    start: 5,
+                    end: 6
+                  }
+                ],
+                start: 2,
+                end: 6
+              },
+              start: 0,
+              end: 7
+            },
+            start: 0,
+            end: 7
+          }
+        ],
+        start: 0,
+        end: 7
+      }
+    ],
+    [
+      '(2[x,x],x)>x',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'SequenceExpression',
+                expressions: [
+                  {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'Literal',
+                      value: 2,
+                      start: 1,
+                      end: 2
+                    },
+                    computed: true,
+                    property: {
+                      type: 'SequenceExpression',
+                      expressions: [
+                        {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 3,
+                          end: 4
+                        },
+                        {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 5,
+                          end: 6
+                        }
+                      ],
+                      start: 3,
+                      end: 6
+                    },
+                    start: 1,
+                    end: 7
+                  },
+                  {
+                    type: 'Identifier',
+                    name: 'x',
+                    start: 8,
+                    end: 9
+                  }
+                ],
+                start: 1,
+                end: 9
+              },
+              right: {
+                type: 'Identifier',
+                name: 'x',
+                start: 11,
+                end: 12
+              },
+              operator: '>',
+              start: 0,
+              end: 12
+            },
+            start: 0,
+            end: 12
+          }
+        ],
+        start: 0,
+        end: 12
+      }
+    ],
+    [
       'foo.bar',
       Context.None,
       {
