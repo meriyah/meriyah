@@ -26,6 +26,31 @@ describe('Module - Export', () => {
     });
   }
 
+  // Namespace export parsing
+  for (const arg of [
+    "export * as arguments from 'bar'",
+    "export * as await from 'bar'",
+    "export * as default from 'bar'",
+    "export * as enum from 'bar'",
+    "export * as foo from 'bar'",
+    "export * as for from 'bar'",
+    "export * as let from 'bar'",
+    "export * as static from 'bar'",
+    "export * as yield from 'bar'"
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+      });
+    });
+  }
+
   // Async await module
   for (const arg of [
     'export default async function() { await 1; }',
@@ -90,6 +115,8 @@ describe('Module - Export', () => {
     'export *;',
     'export * from;',
     'export { Q } from;',
+    'export { 123 } from;',
+    'export { # } from;',
     "export default from 'module.js';",
     'export * as z from "c";',
     "export * as arguments from 'bar'",
@@ -220,6 +247,15 @@ describe('Module - Export', () => {
     ["export * as static from 'bar'", Context.Strict | Context.Module],
     ["export * as yield from 'bar'", Context.Strict | Context.Module],
     ['export {', Context.Strict | Context.Module],
+    ['export *;', Context.Strict | Context.Module],
+    ['export * as;', Context.Strict | Context.Module],
+    ['export * as foo;', Context.Strict | Context.Module],
+    ['export * as foo from;', Context.Strict | Context.Module],
+    ["export * as foo from ';", Context.Strict | Context.Module],
+    ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
+    ['export * as foo from;', Context.Strict | Context.Module | Context.OptionsNext],
+    ["export * as foo from ';", Context.Strict | Context.Module | Context.OptionsNext],
+    ["export * as ,foo from 'bar'", Context.Strict | Context.Module | Context.OptionsNext],
     ['var a; export { a', Context.Strict | Context.Module],
     ['var a; export { a,', Context.Strict | Context.Module],
     ['var a; export { a, ;', Context.Strict | Context.Module],

@@ -55,7 +55,9 @@ describe('Next - Private methods', () => {
     ['class C{ #method() { super(); } }', Context.OptionsNext],
     ['(class C extends Base { async #*a() { } })', Context.OptionsNext],
     ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext]
+    ['class C{ #method() { super(); } }', Context.OptionsNext],
+    ['class C{ #method() { super(); } }', Context.OptionsNext],
+    ['class C { #x = () => arguments; }', Context.OptionsNext]
   ]);
 
   for (const arg of [
@@ -97,7 +99,6 @@ describe('Next - Private methods', () => {
     '# m() {}',
     'static get # m() {}',
     'async #*a() { }',
-    'static #prototype() {}',
     '#x = () => /*{ initializer }*/;',
     '#x = /*{ initializer }*/;',
     '#x = false ? {} : /*{ initializer }*/;',
@@ -146,6 +147,8 @@ describe('Next - Private methods', () => {
     '#a; *b(){}',
     "#a; ['b'](){}",
     'async #a() { }',
+    'static #prototype() {}',
+    'static * #prototype() {}',
     'async *#a() { }',
     '#a = 0;\n',
     '#a = 0;\n #b;',
@@ -421,38 +424,178 @@ describe('Next - Private methods', () => {
       }
     ],
     [
-      `class A { #yield; }`,
-      Context.OptionsNext,
+      `class A { #yield = b[c]; }`,
+      Context.OptionsNext | Context.OptionsRanges,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
-            body: {
-              body: [
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'yield',
-                    type: 'PrivateName'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: null
-                }
-              ],
-              type: 'ClassBody'
-            },
+            type: 'ClassDeclaration',
             decorators: [],
             id: {
+              type: 'Identifier',
               name: 'A',
-              type: 'Identifier'
+              start: 6,
+              end: 7
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'PrivateName',
+                    name: 'yield',
+                    start: 10,
+                    end: 16
+                  },
+                  value: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 19,
+                      end: 20
+                    },
+                    computed: true,
+                    property: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 21,
+                      end: 22
+                    },
+                    start: 19,
+                    end: 23
+                  },
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 23
+                }
+              ],
+              start: 8,
+              end: 26
+            },
+            start: 0,
+            end: 26
           }
         ],
+        start: 0,
+        end: 26
+      }
+    ],
+    [
+      `class A { #yield = foo + bar; }`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        type: 'Program',
         sourceType: 'script',
-        type: 'Program'
+        body: [
+          {
+            type: 'ClassDeclaration',
+            decorators: [],
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'PrivateName',
+                    name: 'yield',
+                    start: 10,
+                    end: 16
+                  },
+                  value: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'foo',
+                      start: 19,
+                      end: 22
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'bar',
+                      start: 25,
+                      end: 28
+                    },
+                    operator: '+',
+                    start: 19,
+                    end: 28
+                  },
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 28
+                }
+              ],
+              start: 8,
+              end: 31
+            },
+            start: 0,
+            end: 31
+          }
+        ],
+        start: 0,
+        end: 31
+      }
+    ],
+    [
+      `class A { #yield; }`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            decorators: [],
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'FieldDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'PrivateName',
+                    name: 'yield',
+                    start: 10,
+                    end: 16
+                  },
+                  value: null,
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 16
+                }
+              ],
+              start: 8,
+              end: 19
+            },
+            start: 0,
+            end: 19
+          }
+        ],
+        start: 0,
+        end: 19
       }
     ],
     [

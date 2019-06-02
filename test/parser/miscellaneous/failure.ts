@@ -20,6 +20,7 @@ describe('Miscellaneous - Failure', () => {
     'async (eval) => {"use strict";}',
     'arguments => {"use strict";}',
     'async arguments => {"use strict";}',
+    '`a${await foo}d`',
     `for (a+b in c) d;`,
     `for (a+b of c) d;`,
     'for ({x = y} ;;) {}',
