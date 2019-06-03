@@ -4,6 +4,52 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Statements - For await of', () => {
+  const wrappers = [
+    { start: 'var a1 = async function*asyncGenWithName1(){', finish: '}' },
+    { start: 'async function*asyncGenWithName2(){ ', finish: '}' },
+    { start: 'async function asyncWithName2(){ ', finish: '}' },
+    { start: 'class A { async * method() { ', finish: ' } }' },
+    { start: 'var a1 = async () => {', finish: '}' },
+    { start: 'var a1 = async () => { try {   ', finish: ' } catch (e) {} }' },
+    { start: 'var a1 = async () => { {   ', finish: ' } }' },
+    { start: 'var a1 = async () => { if (true) {   ', finish: ' } }' },
+    { start: 'var a1 = async () => { if (true) ', finish: ' }' },
+    { start: 'var a1 = async () => { if (true) foo(); else { ', finish: ' } }' },
+    { start: 'var a1 = async () => { while (true) { ', finish: ' } }' },
+    { start: 'var a1 = async () => { for(;;) { ', finish: ' } }' },
+    { start: "var a1 = async () => { switch(e) { case '1' :  ", finish: ' } }' }
+  ];
+
+  const expressions = [
+    'for await(const value of foo()) {}',
+    'for await(let value of foo()) {}',
+    'for await(var value of foo()) {}',
+    'for await(var [a, b] of foo()) {}',
+    'for await(let {a, b} of foo()) {}',
+    'for await(const [... b] of foo()) {}',
+    'for await(const [,,, b] of foo()) {}',
+    'for await(const value of boo) {}',
+    'for await(let value of boo) {}',
+    'for await(const value of foo().boo()) {}',
+    'for await(let value of foo.boo()) {}',
+    'for await(let value of foo.boo(value)) {}',
+    'for await(let value of [1,2,3]) {}',
+    'for await(value of [1,2,3]) {}',
+    'for await(value of x + x) {}',
+    'for await(value of f()) {}',
+    'for await(value of (x + x)) {}'
+  ];
+
+  wrappers.forEach(wrapper => {
+    expressions.forEach(exp => {
+      it(wrapper.start + exp + wrapper.finish, () => {
+        t.doesNotThrow(() => {
+          parseSource(wrapper.start + exp + wrapper.finish, undefined, Context.None);
+        });
+      });
+    });
+  });
+
   for (const arg of [
     'for await (x of []) function d() {};',
     'for await (x of []) function d() {}; return d;',

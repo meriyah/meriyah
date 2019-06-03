@@ -2,7 +2,7 @@
   <img width="260" height="200" src="https://github.com/meriyah/meriyah/blob/master/scripts/logo.png">
 </p>
 
-<h3 align="center">A 100% compliant, self-hosted javascript parser with high focus on both performance and stability</h3>
+<h4 align="center">A 100% compliant, self-hosted javascript parser with high focus on both performance and stability</h4>
 
 <p align="center">
 

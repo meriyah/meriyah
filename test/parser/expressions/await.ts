@@ -492,6 +492,8 @@ describe('Expressions - Await', () => {
     ['async function g(){    function f(foo = [h, {m: t(await bar)}]){}    }', Context.None],
     ['async function g(){class x {async *f(foo = await bar){}}    }', Context.None],
     ['async function g(){class x {*f(foo = await bar){}}    }', Context.None],
+    ['async function af(a, b = await a) { }', Context.None],
+    ['var o = { async\nam() { } };', Context.None],
     ['async function g(){class x {async f(foo = await bar){}}    }', Context.None],
     ['async function g(){class x {f(foo = await bar){}}    }', Context.None],
     ['async function g(){let o = {async *f(foo = await bar){}}    }', Context.None],

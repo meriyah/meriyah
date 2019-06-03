@@ -707,6 +707,9 @@ describe('Expressions - Async arrow', () => {
     'async (argMath139 = (/a/ instanceof ((typeof Boolean == "function" ) ? Boolean : Object)),argMath140,argMath141) => {  return await ("valueOf" in i32);  }',
     'async x => { return x => x; }',
     'async (a = b => await (0)) => {}',
+    '(async(a, b, ...c) => await 1)',
+    '() => (async(foo, { a = NaN }) => foo + a)("1", { a: "0" })',
+    '() => (async(foo, { a = "0" }) => foo + a)("2", { a: undefined })',
     //'async(a = (await) => {}) => {};',
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)'
   ]) {

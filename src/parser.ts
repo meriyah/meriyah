@@ -2791,7 +2791,10 @@ export function parseMemberOrUpdateExpression(
       });
     } else if (parser.token === Token.LeftBracket) {
       nextToken(parser, context | Context.AllowRegExp);
-      const property = parseExpressions(parser, context & ~Context.DisallowIn, /* assignable */ 1, parser.tokenIndex);
+      const idxAfterLeftBracket = parser.tokenIndex;
+      let property = parseExpression(parser, context, 1, inGroup, idxAfterLeftBracket);
+      if (parser.token === Token.Comma)
+        property = parseSequenceExpression(parser, context, idxAfterLeftBracket, property);
       consume(parser, context, Token.RightBracket);
       parser.assignable = AssignmentKind.IsAssignable;
       expr = finishNode(parser, context, start, {
@@ -3031,7 +3034,7 @@ export function parsePrimaryExpressionExtended(
     case Token.TemplateContinuation:
       return parseTemplate(parser, context, start);
     case Token.NewKeyword:
-      return parseNewExpression(parser, context, start);
+      return parseNewExpression(parser, context, inGroup, start);
     case Token.BigIntLiteral:
       parser.assignable = AssignmentKind.CannotAssign;
       return parseBigIntLiteral(parser, context);
@@ -3642,20 +3645,13 @@ export function parseArrayExpressionOrPattern(
       if (token & Token.IsIdentifier) {
         left = parsePrimaryExpressionExtended(parser, context, type, 0, 1, inGroup, tokenIndex);
 
-        destructible |=
-          parser.destructible & DestructuringKind.Yield
-            ? DestructuringKind.Yield
-            : 0 | (parser.destructible & DestructuringKind.Await)
-            ? DestructuringKind.Await
-            : 0;
-
         if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
           if (parser.assignable & AssignmentKind.CannotAssign) {
             reportAt(parser, parser.index, parser.line, parser.index - 3, Errors.InvalidLHS);
           }
 
           const right = parseExpression(parser, context, /* assignable */ 1, inGroup, parser.tokenIndex);
-          destructible |= parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0;
+
           left = finishNode(parser, context, tokenIndex, {
             type: 'AssignmentExpression',
             operator: '=',
@@ -3682,6 +3678,13 @@ export function parseArrayExpressionOrPattern(
                 : DestructuringKind.AssignableDestruct;
           }
         }
+
+        destructible |=
+          parser.destructible & DestructuringKind.Yield
+            ? DestructuringKind.Yield
+            : 0 | (parser.destructible & DestructuringKind.Await)
+            ? DestructuringKind.Await
+            : 0;
       } else if (parser.token & Token.IsPatternStart) {
         left =
           parser.token === Token.LeftBrace
@@ -5217,6 +5220,7 @@ export function parseFormalParametersOrFormalList(parser: ParserState, context: 
 export function parseNewExpression(
   parser: ParserState,
   context: Context,
+  inGroup: 0 | 1,
   start: number
 ): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty {
   // NewExpression ::
@@ -5248,15 +5252,15 @@ export function parseNewExpression(
     report(parser, Errors.InvalidNewTarget);
   }
   parser.assignable = AssignmentKind.CannotAssign;
-  let callee = parsePrimaryExpressionExtended(parser, context, BindingType.None, 1, 0, 0, startIdx);
-  callee = parseMemberOrUpdateExpression(parser, context, callee, /* inNewExpression*/ 1, 0, 0, startIdx);
+  let callee = parsePrimaryExpressionExtended(parser, context, BindingType.None, 1, 0, inGroup, startIdx);
+  callee = parseMemberOrUpdateExpression(parser, context, callee, /* inNewExpression*/ 1, 0, inGroup, startIdx);
   parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(parser, context, start, {
     type: 'NewExpression',
     callee,
     arguments:
       parser.token === Token.LeftParen
-        ? parseArguments(parser, context & ~Context.DisallowIn, /* isImportCall */ 0, 0)
+        ? parseArguments(parser, context & ~Context.DisallowIn, /* isImportCall */ 0, inGroup)
         : []
   } as ESTree.NewExpression);
 }
