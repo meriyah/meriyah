@@ -4,6 +4,68 @@ import { pass } from '../../test-utils';
 describe('Miscellaneous - ranges', () => {
   pass('Miscellaneous - ranges (pass)', [
     [
+      `let fun = () => {
+        // one
+        // two
+        // three
+        return (1);
+    }`,
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'ArrowFunctionExpression',
+                  body: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ReturnStatement',
+                        argument: {
+                          type: 'Literal',
+                          value: 1,
+                          start: 81,
+                          end: 82
+                        },
+                        start: 73,
+                        end: 84
+                      }
+                    ],
+                    start: 16,
+                    end: 90
+                  },
+                  params: [],
+                  async: false,
+                  expression: false,
+                  start: 10,
+                  end: 90
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'fun',
+                  start: 4,
+                  end: 7
+                },
+                start: 4,
+                end: 90
+              }
+            ],
+            start: 0,
+            end: 90
+          }
+        ],
+        start: 0,
+        end: 90
+      }
+    ],
+    [
       'let',
       Context.OptionsRanges,
       {

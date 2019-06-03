@@ -37,6 +37,7 @@ describe('Statements - For in', () => {
     'for(var [,] = 0 in {});',
     'for(var [a] = 0 in {});',
     'for (var x = 1 in y) {}',
+    'for (([x])=y in z);',
     'for (a = 0 in {});',
     'for ([...x,] in [[]]) ;',
     'for(var [a = 0] = 0 in {});',

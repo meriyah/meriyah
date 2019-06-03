@@ -274,6 +274,7 @@ describe('Expressions - Async arrow', () => {
     ['(async function() { } => 1)', Context.None],
     ['async(...a,) => b', Context.None],
     ['async(...a, b) => b', Context.None],
+    ['async (a = b => await (0)) => {}', Context.Strict | Context.Module],
     ['async(...a,) => b', Context.None],
     ['async(...a, b) => b', Context.None],
     ["var asyncFn = async () => var await = 'test';", Context.None],
@@ -713,6 +714,8 @@ describe('Expressions - Async arrow', () => {
     'async() => true ? 1 : (() => false ? 1 : (0))',
     'async (argMath139 = (/a/ instanceof ((typeof Boolean == "function" ) ? Boolean : Object)),argMath140,argMath141) => {  return await ("valueOf" in i32);  }',
     'async x => { return x => x; }',
+    // 'async (a = b => await (0)) => {}',
+    // 'async(a = (await) => {}) => {};',
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)'
   ]) {
     it(`${arg};`, () => {
@@ -744,6 +747,76 @@ describe('Expressions - Async arrow', () => {
       `async (a = async () => { await 1; }) => {}`,
       Context.None,
       {}], */
+
+    /*[
+      'async(a = (await) => {}) => {};',
+      Context.Strict | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: [],
+                start: 28,
+                end: 30
+              },
+              params: [
+                {
+                  type: 'AssignmentPattern',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 6,
+                    end: 7
+                  },
+                  right: {
+                    type: 'ArrowFunctionExpression',
+                    body: {
+                      type: 'BlockStatement',
+                      body: [],
+                      start: 21,
+                      end: 23
+                    },
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'await',
+                        start: 11,
+                        end: 16
+                      }
+                    ],
+                    id: null,
+                    async: false,
+                    generator: false,
+                    expression: false,
+                    start: 10,
+                    end: 23
+                  },
+                  start: 6,
+                  end: 23
+                }
+              ],
+              id: null,
+              async: true,
+              generator: false,
+              expression: false,
+              start: 0,
+              end: 30
+            },
+            start: 0,
+            end: 31
+          }
+        ],
+        start: 0,
+        end: 31
+      }
+    ],*/
+
     [
       `async (() => 1)(), 1`,
       Context.OptionsRanges,

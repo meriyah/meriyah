@@ -164,7 +164,7 @@ describe('Declarations - Async Generator', () => {
     'yield / yield',
     '+ yield',
     '+ yield 3',
-    'yield\n*3',
+    // 'yield\n*3',
     'var [yield] = [42];',
     'var [await] = [42];',
     'var {foo: yield} = {a: 42};',

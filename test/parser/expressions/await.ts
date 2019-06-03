@@ -404,6 +404,7 @@ describe('Expressions - Await', () => {
     ['async function f(await) {}', Context.None],
     ['x = { async f(await){} }', Context.None],
     ['async f() { x = { async await(){} } }', Context.None],
+    //['(fail = class A {[await](){}; "x"(){}}) => {}', Context.None],
     ['function call(foo=await bar){}', Context.None],
     ['function call(foo=await bar=10){}', Context.None],
     ['async function x(){ function y(s=await foo){}}', Context.None],

@@ -101,7 +101,11 @@ describe('Expressions - Group', () => {
     '({...[0].x} = {});',
     '({...{b: 0}[x]} = {});',
     '({...[0][x]} = {});',
-    '({...[1][2]} = {});'
+    '({...[1][2]} = {});',
+    'foo({get [bar](){}, [zoo](){}});',
+    'foo({[bar](){}, get [zoo](){}});',
+    'foo({set [bar](c){}, [zoo](){}});',
+    'foo({[bar](){}, set [zoo](e){}});'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -297,6 +301,7 @@ describe('Expressions - Group', () => {
     ['({x, y}) = z;', Context.None],
     // [`(x={"y": await z}) => t`, Context.None],
     // [`(x={200: await z}) => t`, Context.None],
+    ['({[x](){}} = z);', Context.None],
     ['(a \n/b/);', Context.None],
     ['([a \n/b/]);', Context.None],
     ['( ({x: 1}) ) => {};', Context.None],
@@ -340,6 +345,7 @@ describe('Expressions - Group', () => {
     ['({0} = 0)', Context.None],
     ['(a=1)=2', Context.None],
     ['(a=1)+=2', Context.None],
+    ['({x})=y', Context.None],
     ['(a,b)=2', Context.None],
     ['(a,b)+=2', Context.None],
     ['({ (x = yield) = {}; })', Context.None],
@@ -355,6 +361,7 @@ describe('Expressions - Group', () => {
     ['(x--, y) => x;', Context.None],
     ['...x => x', Context.None],
     ['y, ...x => x', Context.None],
+    ['({x:{1:y()=x},x:{7:3}})>x', Context.None],
     [`({[foo]() {}} = y)`, Context.None],
     ['0, {a = 0}) => 0', Context.None],
     ['({a = 0}, {a = 0}, 0) => 0', Context.None],

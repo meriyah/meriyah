@@ -207,6 +207,7 @@ describe('Expressions - Async function', () => {
     ['({async async})', Context.None],
     ['({async async = 0} = {})', Context.None],
     ['function f() { await 5; }', Context.Module],
+    ['async function f(){ (x = new x(await x)) => {} }', Context.Module],
     ['async function f() { function g() { await 3; } }', Context.Module],
     ['async function f(){ new await x; }', Context.None],
     ['async function f(){ [new await foo] }', Context.None],

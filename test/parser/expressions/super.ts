@@ -65,6 +65,7 @@ describe('Expressions - Super', () => {
       });
     });
   }
+
   // Testing valid use of super property
   for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
     it(`class C { constructor() {${arg}}}`, () => {
@@ -116,7 +117,6 @@ describe('Expressions - Super', () => {
     });
   }
 
-  // Testing invalid use of super property
   for (const arg of [
     'super',
     'super = x',
@@ -189,7 +189,6 @@ describe('Expressions - Super', () => {
     });
   }
 
-  // V8
   for (const arg of [
     'class C { constructor() { super(); } }',
     'class C { method() { super(); } }',
@@ -211,6 +210,35 @@ describe('Expressions - Super', () => {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+  }
+
+  for (const arg of [
+    'class a extends b { c() { [super.d] = e } }',
+    'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { x(y = () => super.foo) { return y(); } }',
+    'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { x(y = () => {return super.foo}) { return y(); } }',
+    'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { x(y = () => {return () => super.foo}) { return y()(); } }',
+    'class C { constructor() { this._x = 45; } get foo() { return this._x;} } class D extends C { constructor(x = () => super.foo) { super(); this._x_f = x; } x() { return this._x_f(); } }',
+    'class a extends b { constructor(){   class x extends y { [super()](){} }    }}',
+    'class a extends b { constructor(){      class x extends super() {}    }}',
+    'class a extends b { constructor(){   class x { [super()](){} }    }}',
+    'class a extends b { foo(){      class x extends super.foo {}    }}',
+    'class a { foo(){      class x extends super.foo {}    }}',
+    'class a extends b { foo(){   class x extends y { [super.foo](){} }    }}',
+    'class a extends b { foo(){   class x { [super.foo](){} }    }}',
+    'class a { foo(){   class x extends y { [super.foo](){} }    }}',
+    'class a { foo(){   class x { [super.foo](){} }    }}'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }
@@ -302,7 +330,6 @@ describe('Expressions - Super', () => {
     });
   }
 
-  // V8
   for (const arg of [
     'super.x',
     'super[27]',
@@ -410,20 +437,9 @@ describe('Expressions - Super', () => {
     ['var f = function*() { super(); }', Context.None],
     ['super', Context.None],
     ['super[]', Context.None],
-    ['super()', Context.None],
-    ['super', Context.None],
-    ['super[]', Context.None],
-    ['super()', Context.None],
-    ['super', Context.None],
-    ['super[]', Context.None],
-    ['super()', Context.None],
-    ['super', Context.None],
-    ['super[]', Context.None],
-    ['super()', Context.None],
-    ['super', Context.None],
-    ['super[]', Context.None],
     ['super()', Context.None]
   ]);
+
   pass('Expressions - Super (pass)', [
     [
       'class C { constructor() {new super.x; } }',

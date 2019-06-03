@@ -165,7 +165,7 @@ describe('Declarations - Function', () => {
     ['function foo() { 00004; }', Context.Strict],
     ['function 00004() { "use strict"; 00004; }', Context.None],
     ['function foo(001, 003) { "use strict"; }', Context.None],
-
+    ['function f([x=x()=x]){}', Context.None],
     ['function foo(001, 003) { "use strict"; }', Context.None],
     ['function foo(001, 003) { "use strict"; }', Context.None],
     ['function foo(001, 003) { "use strict"; }', Context.None],

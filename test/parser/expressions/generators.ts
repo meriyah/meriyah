@@ -26,7 +26,6 @@ describe('Expressions - Generators', () => {
     'yield / yield',
     '+ yield',
     '+ yield 3',
-    'yield\n*3',
     'yield\n{yield: 42}',
     'yield /* comment */\n {yield: 42}',
     'yield //comment\n {yield: 42}',
