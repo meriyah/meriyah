@@ -220,7 +220,6 @@ describe('Expressions - Async arrow', () => {
     ['(async (...a,) => {}', Context.None],
     ['a + async () => {}', Context.None],
     ['async() => { (a = await/r/g) => {} };', Context.None],
-    ['async(a = (...await) => {}) => {};', Context.None],
     [`async ((x, y)) => 0`, Context.None],
     ['a = (b = await/r/g) => {}) => {}', Context.None],
     ['async(a = (b = await/r/g) => {}) => {}', Context.None],
@@ -297,10 +296,7 @@ describe('Expressions - Async arrow', () => {
     ['async ([await]) => 1', Context.None],
     ['async ([...await]) => 1', Context.None],
     ['f = async ((x)) => x', Context.None],
-    ['f = async ((x)) => x', Context.None],
-    ['f = async ((x)) => x', Context.None],
     ['async (b = {await}) => 1', Context.None],
-    ['async (b = {a: await}) => 1', Context.None],
     ['async (b = [...await]) => 1', Context.None],
     ['async (b = [await]) => 1', Context.None],
     ['async (b = {a: await}) => 1', Context.None],
@@ -352,9 +348,8 @@ describe('Expressions - Async arrow', () => {
     ['async foo ? bar : baz => {}', Context.None],
     ['async (x) \n => x', Context.None],
     ['async (await, b = async () => {}) => 1', Context.None],
-    // ['break async \n () => x', Context.None],
+    ['break async \n () => x', Context.None],
     ['async await => {}', Context.None],
-    ['async (...await) => 1', Context.None],
     ['async ({await}) => 1', Context.Strict | Context.Module],
     ['async \n => async', Context.None],
     ['(async \n => async)', Context.None],
@@ -378,7 +373,6 @@ describe('Expressions - Async arrow', () => {
     ['async a => {} ()', Context.None],
     ['a + async b => {}', Context.None],
     ['function* a(){ async (yield) => {}; }', Context.None],
-    ['async(a = (...await) => {}) => {};', Context.None],
     ['async(await) => {  }', Context.None],
     ['function* a(){ async yield => {}; }', Context.None],
     ['x[async \n () => x];', Context.None],
@@ -404,7 +398,6 @@ describe('Expressions - Async arrow', () => {
     ['async ((x, y, z)) => 0', Context.None],
     ['async(foo = super()) => {}', Context.None],
     ['async(foo) => { super.prop };', Context.None],
-    ['async(a = (...await) => {}) => {};', Context.None],
     ['async() => { (a = await/r/g) => {} };', Context.None],
     ['"use strict"; async(x = await) => {  }', Context.None],
     ['([x].foo) => x', Context.None],
@@ -473,7 +466,6 @@ describe('Expressions - Async arrow', () => {
     ['async (var x) => {};', Context.None],
     ['async (x, y)[7] => {}', Context.None],
     ['a.x => {};', Context.None],
-    ['async(a, ...await) => {}', Context.None],
     ['async(a = await/r/g) => {}', Context.None],
     ['async (x = (x) += await f) => {}', Context.None],
     ['var x = 1 y => y', Context.None],
@@ -507,7 +499,7 @@ describe('Expressions - Async arrow', () => {
     ['async ([await]) => 1', Context.None],
     ['async (await) => 1', Context.None],
     ['async await => 1', Context.None],
-    ['async (a = b => await (0)) => {}', Context.None],
+    // ['async (a = b => await (0)) => {}', Context.None],
     ['async (/foo/) => bar', Context.None],
     ['async({a = 1}, {b = 2} = {}, {c = 3} = {})', Context.None]
   ]);
@@ -714,8 +706,8 @@ describe('Expressions - Async arrow', () => {
     'async() => true ? 1 : (() => false ? 1 : (0))',
     'async (argMath139 = (/a/ instanceof ((typeof Boolean == "function" ) ? Boolean : Object)),argMath140,argMath141) => {  return await ("valueOf" in i32);  }',
     'async x => { return x => x; }',
-    // 'async (a = b => await (0)) => {}',
-    // 'async(a = (await) => {}) => {};',
+    'async (a = b => await (0)) => {}',
+    //'async(a = (await) => {}) => {};',
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)'
   ]) {
     it(`${arg};`, () => {
@@ -743,11 +735,80 @@ describe('Expressions - Async arrow', () => {
     });
   }
   pass('Expressions - Async arrow', [
-    /* [
+    [
       `async (a = async () => { await 1; }) => {}`,
-      Context.None,
-      {}], */
-
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: [],
+                start: 40,
+                end: 42
+              },
+              params: [
+                {
+                  type: 'AssignmentPattern',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 7,
+                    end: 8
+                  },
+                  right: {
+                    type: 'ArrowFunctionExpression',
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            type: 'AwaitExpression',
+                            argument: {
+                              type: 'Literal',
+                              value: 1,
+                              start: 31,
+                              end: 32
+                            },
+                            start: 25,
+                            end: 32
+                          },
+                          start: 25,
+                          end: 33
+                        }
+                      ],
+                      start: 23,
+                      end: 35
+                    },
+                    params: [],
+                    async: true,
+                    expression: false,
+                    start: 11,
+                    end: 35
+                  },
+                  start: 7,
+                  end: 35
+                }
+              ],
+              async: true,
+              expression: false,
+              start: 0,
+              end: 42
+            },
+            start: 0,
+            end: 42
+          }
+        ],
+        start: 0,
+        end: 42
+      }
+    ],
     /*[
       'async(a = (await) => {}) => {};',
       Context.Strict | Context.OptionsRanges,
@@ -790,9 +851,7 @@ describe('Expressions - Async arrow', () => {
                         end: 16
                       }
                     ],
-                    id: null,
                     async: false,
-                    generator: false,
                     expression: false,
                     start: 10,
                     end: 23
@@ -801,9 +860,7 @@ describe('Expressions - Async arrow', () => {
                   end: 23
                 }
               ],
-              id: null,
               async: true,
-              generator: false,
               expression: false,
               start: 0,
               end: 30
@@ -815,8 +872,7 @@ describe('Expressions - Async arrow', () => {
         start: 0,
         end: 31
       }
-    ],*/
-
+    ], */
     [
       `async (() => 1)(), 1`,
       Context.OptionsRanges,
@@ -2150,7 +2206,6 @@ describe('Expressions - Async arrow', () => {
         sourceType: 'script'
       }
     ],
-    //  ['async (a = b => await (0)) => {}', Context.None, {}],
     [
       'new async()',
       Context.OptionsRanges,

@@ -12,9 +12,21 @@ describe('Expressions - Yield', () => {
     'let foo = function*() { try {yield 42} finally {yield 43; 13} };',
     '{ function* inner() { yield 2; } function* g() { yield 1; return yield* inner(); } { let x = g(); } }',
     'function* foo() { (yield* (c = d) => { })  }',
+    'function *foo() { do try {} catch (q) {} while ((yield* 810048018773152)); }',
+    'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  (x) => {} }',
+    'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  (x = y) => {} }',
+
+    'function *foo() { do try {} catch (q) {} while ((yield* 810048018773152)); }',
+
+    'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  async (x) => {} }',
+
+    'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152)); async  (x = y) => {} }',
+
     'function* foo() { class x extends (yield* (e = "x") => {}) {} }',
     'function* foo() {  return ( yield* ( ( j ) => {}) ) }',
+    'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
     `function* foo() { switch ( y (yield) - ((a) => {})) { } }`,
+    `function* foo() { switch ( y (yield) - (async (a) => {})) { } }`,
     'function* foo() { a(yield* function t(k) {}, ...(c) => {}) }',
     'function* foo() { yield 2; yield 3; yield 4 }',
     'function* foo() { yield 2; if (true) { yield 3 }; yield 4 }',
@@ -177,7 +189,15 @@ describe('Expressions - Yield', () => {
     `([...yield]) => {};`,
     `({a: yield}) => {};`,
     `({yield}) => {};`,
-    `({yield = 0}) => {};`
+    `({yield = 0}) => {};`,
+    `async (yield) => {};`,
+    `async (yield = 0) => {};`,
+    `async ([yield]) => {};`,
+    `async ([yield = 0]) => {};`,
+    `async ([...yield]) => {};`,
+    `async ({a: yield}) => {};`,
+    `async ({yield}) => {};`,
+    `async ({yield = 0}) => {};`
   ];
 
   const yieldInBody = [
@@ -443,7 +463,7 @@ yield arguments[3];
     'function * gen() { ({ yield: 1 }) }',
     '(function * () { x = class extends (yield) {} });',
     '(function * () { x = class extends (a ? null : yield) { } });',
-    '(function * () { yield * 1; return 37; yield * "icefapper"; });',
+    '(function * () { yield * 1; return 37; yield * "string"; });',
     '(function * () { ({ [yield]: x } = { }) });',
     'function* g(){ x ? yield : y }',
     // YieldExpression is legal in class expression heritage
@@ -621,22 +641,22 @@ yield d;
     ['function *g() { yield => {}; }', Context.None],
     ['function *g() { (x = yield) => {}; }', Context.None],
     ['function *g() { (x = y = yield z) => {}; }', Context.None],
-    ['function *g() { (x = u + yield z) => {}; }', Context.None],
-    ['function *g() { (x = x + yield); }', Context.None],
-    ['function *g() { (x = x + yield y); }', Context.None],
-    ['function *g() { (x = x + yield) => x; }', Context.None],
-    ['function *g() { (x = x + yield y) => x; }', Context.None],
+    ['function *g() { (x = y + yield z) => {}; }', Context.None],
+    ['function *g() { (x = y + yield); }', Context.None],
+    ['function *g() { (x = y + yield y); }', Context.None],
+    ['function *g() { (x = y + yield) => x; }', Context.None],
+    ['function *g() { (x = y + yield y) => x; }', Context.None],
     ['function *g(){ (x = {[yield y]: 1}) => z }', Context.None],
     ['function *g(){ (x = {[yield]: 1}) => z }', Context.None],
     ['(x = x) = x;', Context.None],
     ['{ (x = yield) = {}; }', Context.None],
     ['{ (x = y = yield z) => {}; }', Context.None],
     ['{ (x = y = yield z); }', Context.None],
-    ['{ (x = u + yield z) => {}; }', Context.None],
-    ['{ (x = x + yield y); }', Context.None],
-    ['{ (x = x + yield y) => x; }', Context.None],
-    ['{ (x = x + foo(a, yield y)); }', Context.None],
-    ['{ (x = x + foo(a, yield y)) => x; }', Context.None],
+    ['{ (x = y + yield z) => {}; }', Context.None],
+    ['{ (x = y + yield y); }', Context.None],
+    ['{ (x = y + yield y) => x; }', Context.None],
+    ['{ (x = y + foo(a, yield y)); }', Context.None],
+    ['{ (x = y + foo(a, yield y)) => x; }', Context.None],
     ['{ (x = {[yield y]: 1}) }', Context.None],
     ['{ (x = {[yield y]: 1}) => z }', Context.None],
     ['{ (x = [yield y]) }', Context.None],
@@ -646,12 +666,12 @@ yield d;
     ['function *g() { async yield => {}; }', Context.None],
     ['function *g() { async (x = yield) => {}; }', Context.None],
     ['function *g() { async (x = y = yield z) => {}; }', Context.None],
-    ['function *g() { async (x = x + yield y); }', Context.None],
-    ['function *g() { async (x = u + yield z) => {}; }', Context.None],
-    ['function *g() { async (x = x + yield); }', Context.None],
-    ['function *g() { async (x = x + yield) => x; }', Context.None],
-    ['function *g() { async (x = x + yield y) => x; }', Context.None],
-    ['function *g() { async (x = x + foo(a, yield y)) => x; }', Context.None],
+    ['function *g() { async (x = y + yield y); }', Context.None],
+    ['function *g() { async (x = y + yield z) => {}; }', Context.None],
+    ['function *g() { async (x = y + yield); }', Context.None],
+    ['function *g() { async (x = y + yield) => x; }', Context.None],
+    ['function *g() { async (x = y + yield y) => x; }', Context.None],
+    ['function *g() { async (x = y + foo(a, yield y)) => x; }', Context.None],
     ['function *g(){ async (x = {[yield]: 1}) => z }', Context.None],
     ['function *g(){ async (x = {[yield y]: 1}) => z }', Context.None],
     ['function *g(){ async (x = [yield]) => z }', Context.None],
@@ -661,6 +681,7 @@ yield d;
     ['async (x = yield y)', Context.None],
     ['function *f(){ async (x = yield) => {} }', Context.None],
     ['function *f(){ async (x = yield y) => {} }', Context.None],
+    ['function* foo() { class x extends (async yield* (e = "x") => {}) {} }', Context.None],
     ['function *f(){ async (x = (yield)) => {} }', Context.None],
     ['function *f(){ async (x = (yield y)) => {} }', Context.None],
     ['function *f(){ async (x = z = yield) => {} }', Context.None],
@@ -750,9 +771,1161 @@ yield d;
     ['function* gf() { var gfe = function* yield() { } }', Context.None],
     ['function* gf() { function yield() { } }', Context.None],
     ['function* gf() { const yield = 10; }', Context.None]
+    //  [`(x = delete (async (yield) = f)) => {}`, Context.None],
   ]);
 
   pass('Expressions - Yield (pass)', [
+    [
+      'function* foo(a, b, c, d) { yield a; yield b; yield c; yield d; }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'Identifier',
+                name: 'a',
+                start: 14,
+                end: 15
+              },
+              {
+                type: 'Identifier',
+                name: 'b',
+                start: 17,
+                end: 18
+              },
+              {
+                type: 'Identifier',
+                name: 'c',
+                start: 20,
+                end: 21
+              },
+              {
+                type: 'Identifier',
+                name: 'd',
+                start: 23,
+                end: 24
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 34,
+                      end: 35
+                    },
+                    delegate: false,
+                    start: 28,
+                    end: 35
+                  },
+                  start: 28,
+                  end: 36
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 43,
+                      end: 44
+                    },
+                    delegate: false,
+                    start: 37,
+                    end: 44
+                  },
+                  start: 37,
+                  end: 45
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 52,
+                      end: 53
+                    },
+                    delegate: false,
+                    start: 46,
+                    end: 53
+                  },
+                  start: 46,
+                  end: 54
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'd',
+                      start: 61,
+                      end: 62
+                    },
+                    delegate: false,
+                    start: 55,
+                    end: 62
+                  },
+                  start: 55,
+                  end: 63
+                }
+              ],
+              start: 26,
+              end: 65
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'foo',
+              start: 10,
+              end: 13
+            },
+            start: 0,
+            end: 65
+          }
+        ],
+        start: 0,
+        end: 65
+      }
+    ],
+
+    [
+      `function* g25() {
+          try {
+            throw (yield (1 + (yield 2) + 3))
+          } catch (e) {
+            if (typeof e == 'object') throw e;
+            return e + (yield (4 + (yield 5) + 6));
+          }
+        }`,
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'TryStatement',
+                  block: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ThrowStatement',
+                        argument: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'BinaryExpression',
+                              left: {
+                                type: 'Literal',
+                                value: 1,
+                                start: 60,
+                                end: 61
+                              },
+                              right: {
+                                type: 'YieldExpression',
+                                argument: {
+                                  type: 'Literal',
+                                  value: 2,
+                                  start: 71,
+                                  end: 72
+                                },
+                                delegate: false,
+                                start: 65,
+                                end: 72
+                              },
+                              operator: '+',
+                              start: 60,
+                              end: 73
+                            },
+                            right: {
+                              type: 'Literal',
+                              value: 3,
+                              start: 76,
+                              end: 77
+                            },
+                            operator: '+',
+                            start: 60,
+                            end: 77
+                          },
+                          delegate: false,
+                          start: 53,
+                          end: 78
+                        },
+                        start: 46,
+                        end: 79
+                      }
+                    ],
+                    start: 32,
+                    end: 91
+                  },
+                  handler: {
+                    type: 'CatchClause',
+                    param: {
+                      type: 'Identifier',
+                      name: 'e',
+                      start: 99,
+                      end: 100
+                    },
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'IfStatement',
+                          test: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'UnaryExpression',
+                              operator: 'typeof',
+                              argument: {
+                                type: 'Identifier',
+                                name: 'e',
+                                start: 127,
+                                end: 128
+                              },
+                              prefix: true,
+                              start: 120,
+                              end: 128
+                            },
+                            right: {
+                              type: 'Literal',
+                              value: 'object',
+                              start: 132,
+                              end: 140
+                            },
+                            operator: '==',
+                            start: 120,
+                            end: 140
+                          },
+                          consequent: {
+                            type: 'ThrowStatement',
+                            argument: {
+                              type: 'Identifier',
+                              name: 'e',
+                              start: 148,
+                              end: 149
+                            },
+                            start: 142,
+                            end: 150
+                          },
+                          alternate: null,
+                          start: 116,
+                          end: 150
+                        },
+                        {
+                          type: 'ReturnStatement',
+                          argument: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'Identifier',
+                              name: 'e',
+                              start: 170,
+                              end: 171
+                            },
+                            right: {
+                              type: 'YieldExpression',
+                              argument: {
+                                type: 'BinaryExpression',
+                                left: {
+                                  type: 'BinaryExpression',
+                                  left: {
+                                    type: 'Literal',
+                                    value: 4,
+                                    start: 182,
+                                    end: 183
+                                  },
+                                  right: {
+                                    type: 'YieldExpression',
+                                    argument: {
+                                      type: 'Literal',
+                                      value: 5,
+                                      start: 193,
+                                      end: 194
+                                    },
+                                    delegate: false,
+                                    start: 187,
+                                    end: 194
+                                  },
+                                  operator: '+',
+                                  start: 182,
+                                  end: 195
+                                },
+                                right: {
+                                  type: 'Literal',
+                                  value: 6,
+                                  start: 198,
+                                  end: 199
+                                },
+                                operator: '+',
+                                start: 182,
+                                end: 199
+                              },
+                              delegate: false,
+                              start: 175,
+                              end: 200
+                            },
+                            operator: '+',
+                            start: 170,
+                            end: 201
+                          },
+                          start: 163,
+                          end: 202
+                        }
+                      ],
+                      start: 102,
+                      end: 214
+                    },
+                    start: 92,
+                    end: 214
+                  },
+                  finalizer: null,
+                  start: 28,
+                  end: 214
+                }
+              ],
+              start: 16,
+              end: 224
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'g25',
+              start: 10,
+              end: 13
+            },
+            start: 0,
+            end: 224
+          }
+        ],
+        start: 0,
+        end: 224
+      }
+    ],
+
+    [
+      'function foo() { return ({ x: 42, g: function* (a) { yield this.x } }).g(0); }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ReturnStatement',
+                  argument: {
+                    type: 'CallExpression',
+                    callee: {
+                      type: 'MemberExpression',
+                      object: {
+                        type: 'ObjectExpression',
+                        properties: [
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'x',
+                              start: 27,
+                              end: 28
+                            },
+                            value: {
+                              type: 'Literal',
+                              value: 42,
+                              start: 30,
+                              end: 32
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false,
+                            start: 27,
+                            end: 32
+                          },
+                          {
+                            type: 'Property',
+                            key: {
+                              type: 'Identifier',
+                              name: 'g',
+                              start: 34,
+                              end: 35
+                            },
+                            value: {
+                              type: 'FunctionExpression',
+                              params: [
+                                {
+                                  type: 'Identifier',
+                                  name: 'a',
+                                  start: 48,
+                                  end: 49
+                                }
+                              ],
+                              body: {
+                                type: 'BlockStatement',
+                                body: [
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'YieldExpression',
+                                      argument: {
+                                        type: 'MemberExpression',
+                                        object: {
+                                          type: 'ThisExpression',
+                                          start: 59,
+                                          end: 63
+                                        },
+                                        computed: false,
+                                        property: {
+                                          type: 'Identifier',
+                                          name: 'x',
+                                          start: 64,
+                                          end: 65
+                                        },
+                                        start: 59,
+                                        end: 65
+                                      },
+                                      delegate: false,
+                                      start: 53,
+                                      end: 65
+                                    },
+                                    start: 53,
+                                    end: 65
+                                  }
+                                ],
+                                start: 51,
+                                end: 67
+                              },
+                              async: false,
+                              generator: true,
+                              id: null,
+                              start: 37,
+                              end: 67
+                            },
+                            kind: 'init',
+                            computed: false,
+                            method: false,
+                            shorthand: false,
+                            start: 34,
+                            end: 67
+                          }
+                        ],
+                        start: 25,
+                        end: 69
+                      },
+                      computed: false,
+                      property: {
+                        type: 'Identifier',
+                        name: 'g',
+                        start: 71,
+                        end: 72
+                      },
+                      start: 24,
+                      end: 72
+                    },
+                    arguments: [
+                      {
+                        type: 'Literal',
+                        value: 0,
+                        start: 73,
+                        end: 74
+                      }
+                    ],
+                    start: 24,
+                    end: 75
+                  },
+                  start: 17,
+                  end: 76
+                }
+              ],
+              start: 15,
+              end: 78
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'foo',
+              start: 9,
+              end: 12
+            },
+            start: 0,
+            end: 78
+          }
+        ],
+        start: 0,
+        end: 78
+      }
+    ],
+
+    [
+      'function* g() { yield 1; try { yield 2; } catch (e) { yield e; } yield 3; }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Literal',
+                      value: 1,
+                      start: 22,
+                      end: 23
+                    },
+                    delegate: false,
+                    start: 16,
+                    end: 23
+                  },
+                  start: 16,
+                  end: 24
+                },
+                {
+                  type: 'TryStatement',
+                  block: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'Literal',
+                            value: 2,
+                            start: 37,
+                            end: 38
+                          },
+                          delegate: false,
+                          start: 31,
+                          end: 38
+                        },
+                        start: 31,
+                        end: 39
+                      }
+                    ],
+                    start: 29,
+                    end: 41
+                  },
+                  handler: {
+                    type: 'CatchClause',
+                    param: {
+                      type: 'Identifier',
+                      name: 'e',
+                      start: 49,
+                      end: 50
+                    },
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            type: 'YieldExpression',
+                            argument: {
+                              type: 'Identifier',
+                              name: 'e',
+                              start: 60,
+                              end: 61
+                            },
+                            delegate: false,
+                            start: 54,
+                            end: 61
+                          },
+                          start: 54,
+                          end: 62
+                        }
+                      ],
+                      start: 52,
+                      end: 64
+                    },
+                    start: 42,
+                    end: 64
+                  },
+                  finalizer: null,
+                  start: 25,
+                  end: 64
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Literal',
+                      value: 3,
+                      start: 71,
+                      end: 72
+                    },
+                    delegate: false,
+                    start: 65,
+                    end: 72
+                  },
+                  start: 65,
+                  end: 73
+                }
+              ],
+              start: 14,
+              end: 75
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'g',
+              start: 10,
+              end: 11
+            },
+            start: 0,
+            end: 75
+          }
+        ],
+        start: 0,
+        end: 75
+      }
+    ],
+
+    [
+      `let foo = function*() {
+                yield* (function*() { yield 42; }());
+                assertUnreachable();
+              }`,
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'FunctionExpression',
+                  params: [],
+                  body: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'FunctionExpression',
+                              params: [],
+                              body: {
+                                type: 'BlockStatement',
+                                body: [
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'YieldExpression',
+                                      argument: {
+                                        type: 'Literal',
+                                        value: 42,
+                                        start: 68,
+                                        end: 70
+                                      },
+                                      delegate: false,
+                                      start: 62,
+                                      end: 70
+                                    },
+                                    start: 62,
+                                    end: 71
+                                  }
+                                ],
+                                start: 60,
+                                end: 73
+                              },
+                              async: false,
+                              generator: true,
+                              id: null,
+                              start: 48,
+                              end: 73
+                            },
+                            arguments: [],
+                            start: 48,
+                            end: 75
+                          },
+                          delegate: true,
+                          start: 40,
+                          end: 76
+                        },
+                        start: 40,
+                        end: 77
+                      },
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'CallExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'assertUnreachable',
+                            start: 94,
+                            end: 111
+                          },
+                          arguments: [],
+                          start: 94,
+                          end: 113
+                        },
+                        start: 94,
+                        end: 114
+                      }
+                    ],
+                    start: 22,
+                    end: 130
+                  },
+                  async: false,
+                  generator: true,
+                  id: null,
+                  start: 10,
+                  end: 130
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'foo',
+                  start: 4,
+                  end: 7
+                },
+                start: 4,
+                end: 130
+              }
+            ],
+            start: 0,
+            end: 130
+          }
+        ],
+        start: 0,
+        end: 130
+      }
+    ],
+
+    [
+      ' function* g22() { yield (1 + (yield 2) + 3); yield (4 + (yield 5) + 6); }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'BinaryExpression',
+                      left: {
+                        type: 'BinaryExpression',
+                        left: {
+                          type: 'Literal',
+                          value: 1,
+                          start: 26,
+                          end: 27
+                        },
+                        right: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'Literal',
+                            value: 2,
+                            start: 37,
+                            end: 38
+                          },
+                          delegate: false,
+                          start: 31,
+                          end: 38
+                        },
+                        operator: '+',
+                        start: 26,
+                        end: 39
+                      },
+                      right: {
+                        type: 'Literal',
+                        value: 3,
+                        start: 42,
+                        end: 43
+                      },
+                      operator: '+',
+                      start: 26,
+                      end: 43
+                    },
+                    delegate: false,
+                    start: 19,
+                    end: 44
+                  },
+                  start: 19,
+                  end: 45
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'BinaryExpression',
+                      left: {
+                        type: 'BinaryExpression',
+                        left: {
+                          type: 'Literal',
+                          value: 4,
+                          start: 53,
+                          end: 54
+                        },
+                        right: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'Literal',
+                            value: 5,
+                            start: 64,
+                            end: 65
+                          },
+                          delegate: false,
+                          start: 58,
+                          end: 65
+                        },
+                        operator: '+',
+                        start: 53,
+                        end: 66
+                      },
+                      right: {
+                        type: 'Literal',
+                        value: 6,
+                        start: 69,
+                        end: 70
+                      },
+                      operator: '+',
+                      start: 53,
+                      end: 70
+                    },
+                    delegate: false,
+                    start: 46,
+                    end: 71
+                  },
+                  start: 46,
+                  end: 72
+                }
+              ],
+              start: 17,
+              end: 74
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'g22',
+              start: 11,
+              end: 14
+            },
+            start: 1,
+            end: 74
+          }
+        ],
+        start: 0,
+        end: 74
+      }
+    ],
+
+    [
+      'function* g19() { var x = 1; yield x; with({x:2}) { yield x; } yield x; }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'VariableDeclaration',
+                  kind: 'var',
+                  declarations: [
+                    {
+                      type: 'VariableDeclarator',
+                      init: {
+                        type: 'Literal',
+                        value: 1,
+                        start: 26,
+                        end: 27
+                      },
+                      id: {
+                        type: 'Identifier',
+                        name: 'x',
+                        start: 22,
+                        end: 23
+                      },
+                      start: 22,
+                      end: 27
+                    }
+                  ],
+                  start: 18,
+                  end: 28
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 35,
+                      end: 36
+                    },
+                    delegate: false,
+                    start: 29,
+                    end: 36
+                  },
+                  start: 29,
+                  end: 37
+                },
+                {
+                  type: 'WithStatement',
+                  object: {
+                    type: 'ObjectExpression',
+                    properties: [
+                      {
+                        type: 'Property',
+                        key: {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 44,
+                          end: 45
+                        },
+                        value: {
+                          type: 'Literal',
+                          value: 2,
+                          start: 46,
+                          end: 47
+                        },
+                        kind: 'init',
+                        computed: false,
+                        method: false,
+                        shorthand: false,
+                        start: 44,
+                        end: 47
+                      }
+                    ],
+                    start: 43,
+                    end: 48
+                  },
+                  body: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'Identifier',
+                            name: 'x',
+                            start: 58,
+                            end: 59
+                          },
+                          delegate: false,
+                          start: 52,
+                          end: 59
+                        },
+                        start: 52,
+                        end: 60
+                      }
+                    ],
+                    start: 50,
+                    end: 62
+                  },
+                  start: 38,
+                  end: 62
+                },
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 69,
+                      end: 70
+                    },
+                    delegate: false,
+                    start: 63,
+                    end: 70
+                  },
+                  start: 63,
+                  end: 71
+                }
+              ],
+              start: 16,
+              end: 73
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'g19',
+              start: 10,
+              end: 13
+            },
+            start: 0,
+            end: 73
+          }
+        ],
+        start: 0,
+        end: 73
+      }
+    ],
+    [
+      'function* g8() { for (var x = 0; x < 4; x++) { yield x; } }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ForStatement',
+                  body: {
+                    type: 'BlockStatement',
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'YieldExpression',
+                          argument: {
+                            type: 'Identifier',
+                            name: 'x',
+                            start: 53,
+                            end: 54
+                          },
+                          delegate: false,
+                          start: 47,
+                          end: 54
+                        },
+                        start: 47,
+                        end: 55
+                      }
+                    ],
+                    start: 45,
+                    end: 57
+                  },
+                  init: {
+                    type: 'VariableDeclaration',
+                    kind: 'var',
+                    declarations: [
+                      {
+                        type: 'VariableDeclarator',
+                        init: {
+                          type: 'Literal',
+                          value: 0,
+                          start: 30,
+                          end: 31
+                        },
+                        id: {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 26,
+                          end: 27
+                        },
+                        start: 26,
+                        end: 31
+                      }
+                    ],
+                    start: 22,
+                    end: 31
+                  },
+                  test: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 33,
+                      end: 34
+                    },
+                    right: {
+                      type: 'Literal',
+                      value: 4,
+                      start: 37,
+                      end: 38
+                    },
+                    operator: '<',
+                    start: 33,
+                    end: 38
+                  },
+                  update: {
+                    type: 'UpdateExpression',
+                    argument: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 40,
+                      end: 41
+                    },
+                    operator: '++',
+                    prefix: false,
+                    start: 40,
+                    end: 43
+                  },
+                  start: 17,
+                  end: 57
+                }
+              ],
+              start: 15,
+              end: 59
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'g8',
+              start: 10,
+              end: 12
+            },
+            start: 0,
+            end: 59
+          }
+        ],
+        start: 0,
+        end: 59
+      }
+    ],
     [
       'function *a(){yield void 0}',
       Context.OptionsRanges,

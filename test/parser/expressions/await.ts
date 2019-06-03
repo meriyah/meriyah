@@ -23,11 +23,26 @@ describe('Expressions - Await', () => {
     'class test{ async method (param){ await foo();  }  method2(){}  }',
     'async function test() { await foo(); }',
     'var a = async function test() { await foo(); }',
-    'var test = async a => await test();'
+    'var test = async a => await test();',
+    '({ async* f(a, b, ...c) { await 1; } })',
+    '({ async* f(a, b = 2) { await 1; } })',
+    '({ async* f(a, b) { await 1; } })',
+    '({ async* f(a) { await 1; } })',
+    '({ async* f(a, b, ...c) { yield 1; } })',
+    '({ async* f(a, b = 2) { yield 1; } })',
+    '({ async* f(a, b) { yield 1; } })',
+    '({ async* f(a) { yield 1; } })',
+    '(x = class A {[await](){}; "x"(){}}) => {}'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }
@@ -404,7 +419,6 @@ describe('Expressions - Await', () => {
     ['async function f(await) {}', Context.None],
     ['x = { async f(await){} }', Context.None],
     ['async f() { x = { async await(){} } }', Context.None],
-    //['(fail = class A {[await](){}; "x"(){}}) => {}', Context.None],
     ['function call(foo=await bar){}', Context.None],
     ['function call(foo=await bar=10){}', Context.None],
     ['async function x(){ function y(s=await foo){}}', Context.None],
@@ -442,17 +456,17 @@ describe('Expressions - Await', () => {
     ['let o = {async *f(foo = await bar){}}', Context.None],
     ['class x {async f(foo = await bar){}}', Context.None],
     ['async function f(){ new await x; }', Context.None],
-    ['async function f(){    (fail = class extends await foo {}) => fail    }', Context.None],
-    ['async function f(){    async function f(){   (a= {[await foo](){}, "x"(){}} ) => a    }    }', Context.None],
-    ['async function f(){    (fail = class A extends await foo {}) => fail    }', Context.None],
-    ['async function f(){    (fail = class A extends (await foo) {}) => fail    }', Context.None],
-    ['async function f(){    (fail = class A {[await foo](){}; "x"(){}}) => {}    }', Context.None],
-    ['async function a(){     async ([y] = delete ((((foo))[await x]))) => {};     }', Context.None],
-    ['async function a(){     async ([y] = delete ((foo[await x]))) => {};     }', Context.None],
-    ['async function a(){     async ([y] = delete foo[await x]) => {};     }', Context.None],
+    ['async function f(){ (fail = class extends await foo {}) => fail    }', Context.None],
+    ['async function f(){ async function f(){   (a= {[await foo](){}, "x"(){}} ) => a    }    }', Context.None],
+    ['async function f(){ (fail = class A extends await foo {}) => fail    }', Context.None],
+    ['async function f(){ (fail = class A extends (await foo) {}) => fail    }', Context.None],
+    ['async function f(){ (fail = class A {[await foo](){}; "x"(){}}) => {}    }', Context.None],
+    //     ['async function a(){     async ([y] = delete ((((foo))[await x]))) => {};     }', Context.None],
+    //     ['async function a(){     async ([y] = delete ((foo[await x]))) => {};     }', Context.None],
+    // ['async function a(){     async ([y] = delete foo[await x]) => {};     }', Context.None],
     ['async function a(){     async ([y] = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     ['async function a(){     async ({g} = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
-    // ['async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
+    ['async function a(){     ({g} = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
     ['class test { async get method(){} }', Context.None],
     ['var test = => { await test(); }', Context.None],
     ['async function a(){     async (foo = [{m: 5 + t(await bar)}]) => {}     }', Context.None],
