@@ -8497,7 +8497,7 @@ if (a !== "z" || typeof b !== "undefined")
     'x = [ 1, 2, 3, ]',
     '日本語 = []',
     'T‿ = []',
-    //"T‌ = []",
+    "T‌ = []",
     'ⅣⅡ = []',
     'function f() { return { f() {}, *g() {}, r: /a/ }; }',
     'function* g() { return { f() {}, *g() {}, r: /b/ }; }',
