@@ -4281,7 +4281,6 @@ export function parseObjectLiteralOrPattern(
               : PropertyKind.Method) | PropertyKind.Computed;
 
           key = parseComputedPropertyName(parser, context, inGroup);
-
           destructible |= parser.assignable;
 
           value = parseMethodDefinition(parser, context, state, parser.tokenIndex);
@@ -4458,6 +4457,7 @@ export function parseObjectLiteralOrPattern(
         if (parser.token === Token.Colon) {
           nextToken(parser, context | Context.AllowRegExp); // skip ':'
           const idxAfterColon = parser.tokenIndex;
+
           if (parser.token & Token.IsIdentifier) {
             value = parsePrimaryExpressionExtended(parser, context, type, 0, 1, inGroup, idxAfterColon);
 
@@ -5339,6 +5339,8 @@ export function parseAsyncExpression(
     if (inNewExpression) report(parser, Errors.InvalidAsyncArrow);
     return parseArrowFunctionExpression(parser, context, [expr], 0, start);
   }
+
+  parser.assignable = AssignmentKind.IsAssignable;
 
   return expr;
 }

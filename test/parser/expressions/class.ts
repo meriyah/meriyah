@@ -547,6 +547,28 @@ describe('Expressions - Class', () => {
     ['function () { class A extends {}      { } }', Context.None],
     ['function () { class A extends undefined { } }', Context.None],
     ['super[1];', Context.None],
+    ['class x { foo(x=new (yield)()){} }', Context.None],
+    ['class x { foo(x=yield y){} }', Context.None],
+    ['class x { foo(x=yield){} }', Context.None],
+    ['class x { foo(yield){} }', Context.None],
+    ['class x extends feh(yield y) { }', Context.None],
+    ['class x extends feh(yield) { }', Context.None],
+    ['class x extends yield y { }', Context.None],
+    ['class x extends yield { }', Context.None],
+    ['class yield { }', Context.None],
+    ['class x { [yield](){} }', Context.None],
+    ['class x { [yield y](){} }', Context.None],
+    ['function *f(){  class yield { }  }', Context.None],
+    ['function *f(){  class x extends yield { }  }', Context.None],
+    ['function *f(){  class x extends yield y { }  }', Context.None],
+    ['function *f(){  class x { foo(yield){} }  }', Context.None],
+    ['function *f(){  class x { foo(x=yield){} }  }', Context.None],
+    ['function *f(){  class x { foo(x=yield y){} }  }', Context.None],
+    ['function *f(){  class x { foo(x=new (yield)()){} }  }', Context.None],
+    ['class x extends await y { }', Context.Strict],
+    ['class x extends feh(await y) { }', Context.Strict],
+    ['async function f() {   class x { await y(){} }   }', Context.None],
+    ['async function f() {   class x { [await](){} }   }', Context.None],
     ['class arguments {};', Context.None],
     ['var x = class eval {};', Context.None],
     ['function() { class A { m() { A = 0; } }; new A().m(); }', Context.None],
@@ -585,6 +607,8 @@ describe('Expressions - Class', () => {
     ['class x {foo}', Context.None],
     ['class x {foo: x}', Context.None],
     ['class x { async [x]s){}}', Context.None],
+    ['class x { [yield y](){} }', Context.None],
+    ['class x { [yield](){} }', Context.None],
     ['class x extends () => x {}', Context.None],
     ['class X extends function(){ with(obj); } {}', Context.None],
     ['class let {}`;', Context.None],
@@ -680,6 +704,10 @@ describe('Expressions - Class', () => {
     ['class A {* get [x](){}}', Context.None],
     ['class A {async get [x](){}}', Context.None],
     ['class x extends yield {}', Context.None],
+    ['class x { await y(){} }', Context.None],
+    ['class x { foo(x=new (await y)()){} }', Context.None],
+    ['class x { foo(x=new (await y)()){} }', Context.Strict | Context.Module],
+    ['class x { foo(x=await y){} }', Context.None],
     ['class A {...', Context.None],
     ['(class A {* set [foo](x){}})', Context.None],
     ['(class A {async get [foo](){}})', Context.None],
@@ -1767,6 +1795,71 @@ describe('Expressions - Class', () => {
       }
     ],
     [
+      'class await { }',
+      Context.None | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'await',
+              start: 6,
+              end: 11
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [],
+              start: 12,
+              end: 15
+            },
+            start: 0,
+            end: 15
+          }
+        ],
+        start: 0,
+        end: 15
+      }
+    ],
+    [
+      'class x extends await { }',
+      Context.None | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: {
+              type: 'Identifier',
+              name: 'await',
+              start: 16,
+              end: 21
+            },
+            body: {
+              type: 'ClassBody',
+              body: [],
+              start: 22,
+              end: 25
+            },
+            start: 0,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ],
+    [
       'class a extends [] { static set [a] ({w=a}) { for (;;) a } }',
       Context.None,
       {
@@ -2386,6 +2479,284 @@ describe('Expressions - Class', () => {
         ]
       }
     ],
+
+    [
+      'class x { foo(x=new (await)()){} }',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: false,
+                  key: {
+                    type: 'Identifier',
+                    name: 'foo',
+                    start: 10,
+                    end: 13
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 14,
+                          end: 15
+                        },
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'await',
+                            start: 21,
+                            end: 26
+                          },
+                          arguments: [],
+                          start: 16,
+                          end: 29
+                        },
+                        start: 14,
+                        end: 29
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [],
+                      start: 30,
+                      end: 32
+                    },
+                    async: false,
+                    generator: false,
+                    id: null,
+                    start: 13,
+                    end: 32
+                  },
+                  start: 10,
+                  end: 32
+                }
+              ],
+              start: 8,
+              end: 34
+            },
+            start: 0,
+            end: 34
+          }
+        ],
+        start: 0,
+        end: 34
+      }
+    ],
+    [
+      'class x { foo(x=await){} }',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: false,
+                  key: {
+                    type: 'Identifier',
+                    name: 'foo',
+                    start: 10,
+                    end: 13
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'x',
+                          start: 14,
+                          end: 15
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'await',
+                          start: 16,
+                          end: 21
+                        },
+                        start: 14,
+                        end: 21
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [],
+                      start: 22,
+                      end: 24
+                    },
+                    async: false,
+                    generator: false,
+                    id: null,
+                    start: 13,
+                    end: 24
+                  },
+                  start: 10,
+                  end: 24
+                }
+              ],
+              start: 8,
+              end: 26
+            },
+            start: 0,
+            end: 26
+          }
+        ],
+        start: 0,
+        end: 26
+      }
+    ],
+    [
+      'class x extends feh(await) { }',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'feh',
+                start: 16,
+                end: 19
+              },
+              arguments: [
+                {
+                  type: 'Identifier',
+                  name: 'await',
+                  start: 20,
+                  end: 25
+                }
+              ],
+              start: 16,
+              end: 26
+            },
+            body: {
+              type: 'ClassBody',
+              body: [],
+              start: 27,
+              end: 30
+            },
+            start: 0,
+            end: 30
+          }
+        ],
+        start: 0,
+        end: 30
+      }
+    ],
+    [
+      'class x { foo(await){} }',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: false,
+                  key: {
+                    type: 'Identifier',
+                    name: 'foo',
+                    start: 10,
+                    end: 13
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'await',
+                        start: 14,
+                        end: 19
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [],
+                      start: 20,
+                      end: 22
+                    },
+                    async: false,
+                    generator: false,
+                    id: null,
+                    start: 13,
+                    end: 22
+                  },
+                  start: 10,
+                  end: 22
+                }
+              ],
+              start: 8,
+              end: 24
+            },
+            start: 0,
+            end: 24
+          }
+        ],
+        start: 0,
+        end: 24
+      }
+    ],
     [
       'class v extends[x] {}',
       Context.OptionsWebCompat,
@@ -2829,6 +3200,66 @@ describe('Expressions - Class', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'class x { [await](){} }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x',
+              start: 6,
+              end: 7
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    name: 'await',
+                    start: 11,
+                    end: 16
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [],
+                      start: 19,
+                      end: 21
+                    },
+                    async: false,
+                    generator: false,
+                    id: null,
+                    start: 17,
+                    end: 21
+                  },
+                  start: 10,
+                  end: 21
+                }
+              ],
+              start: 8,
+              end: 23
+            },
+            start: 0,
+            end: 23
+          }
+        ],
+        start: 0,
+        end: 23
       }
     ],
     [
