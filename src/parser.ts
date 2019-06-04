@@ -3040,7 +3040,7 @@ export function parsePrimaryExpressionExtended(
       return parseNewExpression(parser, context, inGroup, start);
     case Token.BigIntLiteral:
       parser.assignable = AssignmentKind.CannotAssign;
-      return parseBigIntLiteral(parser, context);
+      return parseBigIntLiteral(parser, context, start);
     case Token.ImportKeyword:
       return parseImportCallExpression(parser, context, inNewExpression, start);
     default:
@@ -3096,15 +3096,21 @@ function parseImportCallExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.Literal {
-  const { tokenRaw: raw, tokenValue: value } = parser;
+export function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral {
+  const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
-  return finishNode(parser, context, parser.index, {
-    type: 'Literal',
-    value,
-    bigint: raw,
-    raw
-  });
+  return context & Context.OptionsRaw
+    ? finishNode(parser, context, start, {
+        type: 'BigIntLiteral',
+        value: tokenValue,
+        bigint: tokenRaw,
+        raw: tokenRaw
+      })
+    : finishNode(parser, context, start, {
+        type: 'BigIntLiteral',
+        value: tokenValue,
+        bigint: tokenRaw
+      });
 }
 
 /**

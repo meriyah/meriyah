@@ -26,11 +26,9 @@
 
 ## ESNext features
 
-* [BigInt](https://github.com/tc39/proposal-bigint)
 * [Decorators](https://github.com/tc39/proposal-decorators)
 * [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
 * [Hashbang Grammar](https://github.com/tc39/proposal-hashbang)
-* [Import()](https://github.com/tc39/proposal-dynamic-import)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
 * [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 
