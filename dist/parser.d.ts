@@ -51,7 +51,7 @@ export declare function parseExpressions(parser: ParserState, context: Context, 
 export declare function parseAssignmentExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, left: ESTree.AssignmentExpression | ESTree.LogicalExpression | ESTree.BinaryExpression | ESTree.Identifier | ESTree.Literal | ESTree.ConditionalExpression): ESTree.AssignmentExpression | ESTree.LogicalExpression | ESTree.BinaryExpression | ESTree.Identifier | ESTree.Literal | ESTree.ConditionalExpression;
 export declare function parseConditionalExpression(parser: ParserState, context: Context, test: ESTree.Expression, start: number): ESTree.ConditionalExpression;
 export declare function parseBinaryExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, minPrec: number, left: ESTree.AssignmentExpression | ESTree.BinaryExpression | ESTree.LogicalExpression | ESTree.Identifier | ESTree.Literal | ESTree.ConditionalExpression): ESTree.AssignmentExpression | ESTree.LogicalExpression | ESTree.BinaryExpression | ESTree.Identifier | ESTree.Literal | ESTree.ConditionalExpression;
-export declare function parseUnaryExpression(parser: ParserState, context: Context, start: number): ESTree.UnaryExpression;
+export declare function parseUnaryExpression(parser: ParserState, context: Context, start: number, inGroup: 0 | 1): ESTree.UnaryExpression;
 export declare function parseYieldExpressionOrIdentifier(parser: ParserState, context: Context, start: number): any;
 export declare function parseAwaitExpressionOrIdentifier(parser: ParserState, context: Context, inNewExpression: 0 | 1, start: number): ESTree.Identifier | ESTree.Expression | ESTree.ArrowFunctionExpression | ESTree.AwaitExpression;
 export declare function parseFunctionBody(parser: ParserState, context: Context, origin: BindingOrigin, firstRestricted: Token | undefined): ESTree.BlockStatement;
@@ -80,16 +80,16 @@ export declare function parseParenthesizedExpression(parser: ParserState, contex
 export declare function parseIdentifierOrArrow(parser: ParserState, context: Context, expr: ESTree.Identifier, start: number): ESTree.Identifier | ESTree.ArrowFunctionExpression;
 export declare function parseArrowFunctionExpression(parser: ParserState, context: Context, params: ESTree.Pattern[], isAsync: 0 | 1, start: number): ESTree.ArrowFunctionExpression;
 export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, type: BindingType): any[];
-export declare function parseNewExpression(parser: ParserState, context: Context, start: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
+export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number): ESTree.MetaProperty;
 export declare function parseAsyncExpression(parser: ParserState, context: Context, expr: ESTree.Identifier, inNewExpression: 0 | 1, assignable: 0 | 1, start: number): ESTree.Expression;
 export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, assignable: 0 | 1, asyncNewLine: number, start: number): any;
 export declare function parseRegExpLiteral(parser: ParserState, context: Context, start: number): ESTree.RegExpLiteral;
 export declare function parseClassDeclaration(parser: ParserState, context: Context, isExportDefault: 0 | 1, start: number): ESTree.ClassDeclaration;
-export declare function parseClassExpression(parser: ParserState, context: Context, start: number): ESTree.ClassExpression;
+export declare function parseClassExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number): ESTree.ClassExpression;
 export declare function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[];
 export declare function parseDecoratorList(parser: ParserState, context: Context, start: number): ESTree.Decorator;
-export declare function parseClassBody(parser: ParserState, context: Context, inheritedContext: Context, type: BindingType, origin: BindingOrigin): ESTree.ClassBody;
+export declare function parseClassBody(parser: ParserState, context: Context, inheritedContext: Context, type: BindingType, origin: BindingOrigin, inGroup: 0 | 1): ESTree.ClassBody;
 export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number): ESTree.FieldDefinition;
 export declare function parseBindingPattern(parser: ParserState, context: Context, type: BindingType, start: number): ESTree.Pattern | ESTree.Identifier;
 //# sourceMappingURL=parser.d.ts.map
