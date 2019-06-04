@@ -2645,6 +2645,9 @@ export function parseFunctionBody(
           if (parser.flags & Flags.SimpleParameterList) {
             reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
           }
+          if (parser.flags & Flags.Octals) {
+            reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
+          }
         }
       }
       body.push(parseDirective(parser, context, expr, token, tokenIndex));

@@ -505,10 +505,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
         parser.line++;
         continue;
       }
-      if (isIDStart(parser.nextCP) || consumeMultiUnitCodePoint(parser, parser.nextCP)) {
+
+      if (isIDStart(first) || consumeMultiUnitCodePoint(parser, first)) {
         return scanIdentifier(parser, context);
       }
-      if (isExoticECMAScriptWhitespace(parser.nextCP)) {
+
+      if (isExoticECMAScriptWhitespace(first)) {
         nextCodePoint(parser);
         continue;
       }
