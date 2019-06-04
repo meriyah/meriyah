@@ -126,12 +126,12 @@ export function parseEscape(parser: ParserState, context: Context, first: number
             }
           }
 
+          parser.flags |= Flags.Octals;
+
           parser.index = index - 1;
           parser.column = column - 1;
         }
       }
-
-      parser.flags |= Flags.Octals;
 
       return code;
     }

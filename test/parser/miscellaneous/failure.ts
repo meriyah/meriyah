@@ -2043,6 +2043,8 @@ describe('Miscellaneous - Failure', () => {
     'function f(foo = [{m: t(+await bar)}]){}',
     'async function f(foo = [{m: t(+await bar)}]){}',
     'async ([x] = await bar);',
+    'function *a({yield}){}',
+    'function *a({yield = 0}){}',
     '(foo = +await bar) => {}',
     'async (foo = +await bar) => {}',
     '(foo = [{m: 5 + t(+await bar)}]) => {}',

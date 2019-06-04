@@ -153,7 +153,7 @@ export const enum Token {
   PrivateKeyword    = 102 | FutureReserved,
   ProtectedKeyword  = 103 | FutureReserved,
   PublicKeyword     = 104 | FutureReserved,
-  StaticKeyword     = 105 | FutureReserved | IsIdentifier,
+  StaticKeyword     = 105 | FutureReserved,
   YieldKeyword      = 106 | FutureReserved | IsExpressionStart | IsIdentifier,
 
   /* Contextual keywords */

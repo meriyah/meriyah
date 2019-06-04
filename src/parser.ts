@@ -2673,7 +2673,7 @@ export function parseFunctionBody(
     Token.RightBrace
   );
 
-  parser.flags &= ~Flags.SimpleParameterList;
+  parser.flags &= ~(Flags.SimpleParameterList | Flags.Octals);
 
   if (parser.token === Token.Assign) report(parser, Errors.InvalidStatementStart);
 
@@ -5876,7 +5876,7 @@ function parseClassElementList(
 
   const { token, tokenIndex } = parser;
 
-  if (token & Token.IsIdentifier) {
+  if (token & (Token.IsIdentifier | Token.FutureReserved)) {
     key = parseIdentifier(parser, context, tokenIndex);
 
     switch (token) {
