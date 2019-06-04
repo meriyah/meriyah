@@ -64,6 +64,10 @@ describe('Miscellaneous - Comments', () => {
     '/*a\rb*/ 0',
     '/*a\nb*/ 0',
     '/*a\nc*/ 0',
+    `/*
+    Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+    For licensing, see LICENSE.md or http://ckeditor.com/license
+   */`,
     'let a = () => /* = */ { return "b" }',
     'let a = () => { /* = */ return "b" }',
     'let a = () /* = */ => { return "b" }',

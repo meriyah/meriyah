@@ -39,7 +39,7 @@ describe('Miscellaneous - Early errors', () => {
     '\\u{110000}',
     '\\u{FFFFFFF}',
     `/./\\u{69}`,
-    `async function a(){ (a = await (0)) => {}; }`,
+    //`async function a(){ (a = await (0)) => {}; }`,
     `async function a(b = await (0)) {}`,
     '(async function(b = await (0)) {})',
     '({ async a(b = await (0)) {} })',
@@ -239,7 +239,7 @@ describe('Miscellaneous - Early errors', () => {
     'function* a(){ (b = yield c) => 1; }',
     //            'class a {static [static](){};}',
     'function* a(){ function* b(c = yield){} }',
-    //          'function a(){ c: while(1) continue b; }',
+    'function a(){ c: while(1) continue b; }',
     'for(const a;;);',
     '/[a-z]/z',
     `var af = x

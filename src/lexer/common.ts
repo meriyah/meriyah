@@ -67,6 +67,8 @@ export function isExoticECMAScriptWhitespace(code: number): boolean {
     code === Chars.Ogham ||
     (code >= Chars.EnQuad && code <= Chars.ZeroWidthSpace) ||
     code === Chars.NarrowNoBreakSpace ||
+    code === Chars.ZeroWidthJoiner ||
+    code === Chars.ZeroWidthNonJoiner ||
     code === Chars.MathematicalSpace ||
     code === Chars.IdeographicSpace ||
     code === Chars.ByteOrderMark

@@ -486,6 +486,16 @@ describe('Lexer - Whitespace', () => {
     column: 20
   });
 
+  pass('skips exotic whitespace', {
+    source: '\u200D\u200C',
+    hasNext: false,
+    newLine: false,
+    value: '',
+    line: 1,
+    index: 2,
+    column: 2
+  });
+
   pass('skips single line comment with identifier and newline', {
     source: '// foo\n',
     hasNext: false,
