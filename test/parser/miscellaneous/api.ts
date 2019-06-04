@@ -1,5 +1,5 @@
 import * as t from 'assert';
-import { parseModule, parseScript, parse } from '../../../src/grumpy';
+import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
 describe('Expressions - API', () => {
   it('should parse script code with "parse"', () => {
