@@ -25,6 +25,7 @@ interface _Expression<T extends string> extends _Node<T> {}
 interface T_Expression {
   Identifier: Identifier;
   Literal: Literal | RegExpLiteral;
+  BigIntLiteral: BigIntLiteral;
   ThisExpression: ThisExpression;
   ArrayExpression: ArrayExpression;
   ObjectExpression: ObjectExpression;
@@ -72,6 +73,7 @@ interface T_Pattern {
 export type Node =
   | Identifier
   | Literal
+  | BigIntLiteral
   | Program
   | Function
   | SwitchCase
@@ -342,6 +344,7 @@ type Expression =
   | ArrowFunctionExpression
   | YieldExpression
   | Literal
+  | BigIntLiteral
   | UnaryExpression
   | UpdateExpression
   | BinaryExpression
@@ -470,9 +473,14 @@ export interface Identifier extends _Expression<'Identifier'>, _Pattern<'Identif
 }
 
 export interface Literal extends _Expression<'Literal'> {
-  value: boolean | number | string | null;
+  value: string | boolean | null | number | RegExp | bigint;
   raw?: string;
-  bigint?: string;
+}
+
+export interface BigIntLiteral extends _Expression<'BigIntLiteral'> {
+  value: boolean | number | string | null;
+  bigint: string;
+  raw?: string;
 }
 
 export interface RegExpLiteral extends _Expression<'Literal'> {

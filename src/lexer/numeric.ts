@@ -104,13 +104,14 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
     }
   }
 
-  let isBigInt = false;
+  let isBigInt: 0 | 1 = 0;
+
   if (
     parser.nextCP === Chars.LowerN &&
     (kind & (NumberKind.Decimal | NumberKind.Binary | NumberKind.Octal | NumberKind.Hex)) !== 0
   ) {
     if (isFloat) report(parser, Errors.InvalidBigInt);
-    isBigInt = true;
+    isBigInt = 1;
     nextCodePoint(parser);
     // Scan any exponential notation
   } else if ((parser.nextCP | 32) === Chars.LowerE) {
@@ -151,6 +152,8 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
       : isBigInt
       ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
       : +parser.source.slice(parser.tokenIndex, parser.index);
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenValue, parser.index);
+
+  if (context & Context.OptionsRaw || isBigInt) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+
   return isBigInt ? Token.BigIntLiteral : Token.NumericLiteral;
 }

@@ -687,6 +687,7 @@ describe('Expressions - Object', () => {
     'async',
     'await',
     'async *method(a, b,) {}',
+    'async *method(a, async,) {}',
     'async *method(x, y = x, z = y) {}',
     'async *method(x = y, y) {}',
     'prop: 12',
@@ -702,6 +703,7 @@ describe('Expressions - Object', () => {
     'async: foo',
     'await: foo',
     '*method([[x, y, z] = [4, 5, 6]]) {}',
+    '*method([[x, async, z] = [4, 5, 6]]) {}',
     'async *method([[,] = g()]) {}',
     'async *method([x = 23]) {}',
     'async *method([x]) {}',
@@ -714,6 +716,7 @@ describe('Expressions - Object', () => {
     'async *method([x = 23] = [undefined]) {}',
     'async *method([x] = g[Symbol.iterator] = function() {}) {}',
     'async *method([...x] = {}) {}',
+    'async *method([...async] = {}) {}',
     'async *method({ w: [x, y, z] = [4, 5, 6] } = {}) {}',
     'async *method({ [function foo() {}]: x } = {}) {}',
     'async *method({ x: y = thrower() } = {}) {}',
@@ -813,6 +816,7 @@ describe('Expressions - Object', () => {
     ' ...async () => { }',
     '...obj',
     '...obj',
+    'async: {a: b}',
     '"foo": {a: b}',
     '"foo": [a]',
     '"foo": ({a: b})',
@@ -822,6 +826,7 @@ describe('Expressions - Object', () => {
     '"foo": {x} = "bar"',
     '"foo": [x] = "bar"',
     '"foo": (x) = "bar"',
+    '"foo": (x) = async',
     'key: bar = x',
     'key: bar + x',
     'key: bar.foo = x',
@@ -834,7 +839,8 @@ describe('Expressions - Object', () => {
     'x = 1} = {',
     'x, y = 1, z = 2} = {',
     'a: [b = 1, c = 2][1]} = {a:[]',
-    'a: [b = 1, c = 2].b} = {a:[]'
+    'a: [b = 1, c = 2].b} = {a:[]',
+    'async'
   ]) {
     it(`({ ${arg} })`, () => {
       t.doesNotThrow(() => {

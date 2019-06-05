@@ -12,11 +12,11 @@ export function skipHashBang(parser: ParserState): void {
   let index = parser.index;
   if (index === parser.end) return;
   if (parser.nextCP === Chars.ByteOrderMark) {
-    parser.nextCP = parser.source.charCodeAt(++index);
-    parser.index = index;
+    parser.index = ++index;
+    parser.nextCP = parser.source.charCodeAt(index);
   }
 
-  if (index < parser.end && parser.source.charCodeAt(index) === Chars.Hash) {
+  if (index < parser.end && parser.nextCP === Chars.Hash) {
     index++;
     if (index < parser.end && parser.source.charCodeAt(index) === Chars.Exclamation) {
       parser.index = index + 1;

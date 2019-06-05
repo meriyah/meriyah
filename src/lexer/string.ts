@@ -1,4 +1,4 @@
-import { ParserState, Context } from '../common';
+import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
@@ -115,7 +115,6 @@ export function parseEscape(parser: ParserState, context: Context, first: number
           code = (code << 3) | (next - Chars.Zero);
           index++;
           column++;
-
           if (index < parser.end) {
             const next = parser.source.charCodeAt(index);
 
@@ -126,6 +125,8 @@ export function parseEscape(parser: ParserState, context: Context, first: number
               column++;
             }
           }
+
+          parser.flags |= Flags.Octals;
 
           parser.index = index - 1;
           parser.column = column - 1;
@@ -155,6 +156,8 @@ export function parseEscape(parser: ParserState, context: Context, first: number
           parser.column = column;
         }
       }
+
+      parser.flags |= Flags.Octals;
 
       return code;
     }

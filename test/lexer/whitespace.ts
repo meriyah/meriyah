@@ -76,7 +76,7 @@ describe('Lexer - Whitespace', () => {
     column: 1
   });
 
-  pass('skips white spacee', {
+  pass('skips white space', {
     source: '\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029',
     hasNext: false,
     value: '',
@@ -88,6 +88,16 @@ describe('Lexer - Whitespace', () => {
 
   pass('skips paragraphseparator', {
     source: '\u2028',
+    hasNext: false,
+    value: '',
+    newLine: true,
+    line: 1,
+    index: 1,
+    column: 0
+  });
+
+  pass('skips paragraphseparator', {
+    source: '\u2029',
     hasNext: false,
     value: '',
     newLine: true,
@@ -486,16 +496,6 @@ describe('Lexer - Whitespace', () => {
     column: 20
   });
 
-  pass('skips exotic whitespace', {
-    source: '\u200D\u200C',
-    hasNext: false,
-    newLine: false,
-    value: '',
-    line: 1,
-    index: 2,
-    column: 2
-  });
-
   pass('skips single line comment with identifier and newline', {
     source: '// foo\n',
     hasNext: false,
@@ -680,6 +680,16 @@ describe('Lexer - Whitespace', () => {
 
   pass('skips simple exotic whitespace', {
     source: '\x85',
+    hasNext: true,
+    newLine: false,
+    value: '',
+    line: 3,
+    index: 1,
+    column: 1
+  });
+
+  pass('skips simple exotic whitespace', {
+    source: '\xA0',
     hasNext: true,
     newLine: false,
     value: '',

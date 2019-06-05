@@ -2645,6 +2645,9 @@ export function parseFunctionBody(
           if (parser.flags & Flags.SimpleParameterList) {
             reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
           }
+          if (parser.flags & Flags.Octals) {
+            reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
+          }
         }
       }
       body.push(parseDirective(parser, context, expr, token, tokenIndex));
@@ -2670,7 +2673,7 @@ export function parseFunctionBody(
     Token.RightBrace
   );
 
-  parser.flags &= ~Flags.SimpleParameterList;
+  parser.flags &= ~(Flags.SimpleParameterList | Flags.Octals);
 
   if (parser.token === Token.Assign) report(parser, Errors.InvalidStatementStart);
 
@@ -3037,7 +3040,7 @@ export function parsePrimaryExpressionExtended(
       return parseNewExpression(parser, context, inGroup, start);
     case Token.BigIntLiteral:
       parser.assignable = AssignmentKind.CannotAssign;
-      return parseBigIntLiteral(parser, context);
+      return parseBigIntLiteral(parser, context, start);
     case Token.ImportKeyword:
       return parseImportCallExpression(parser, context, inNewExpression, start);
     default:
@@ -3093,15 +3096,21 @@ function parseImportCallExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.Literal {
-  const { tokenRaw: raw, tokenValue: value } = parser;
+export function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral {
+  const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
-  return finishNode(parser, context, parser.index, {
-    type: 'Literal',
-    value,
-    bigint: raw,
-    raw
-  });
+  return context & Context.OptionsRaw
+    ? finishNode(parser, context, start, {
+        type: 'BigIntLiteral',
+        value: tokenValue,
+        bigint: tokenRaw,
+        raw: tokenRaw
+      })
+    : finishNode(parser, context, start, {
+        type: 'BigIntLiteral',
+        value: tokenValue,
+        bigint: tokenRaw
+      });
 }
 
 /**
@@ -4278,7 +4287,6 @@ export function parseObjectLiteralOrPattern(
               : PropertyKind.Method) | PropertyKind.Computed;
 
           key = parseComputedPropertyName(parser, context, inGroup);
-
           destructible |= parser.assignable;
 
           value = parseMethodDefinition(parser, context, state, parser.tokenIndex);
@@ -4455,6 +4463,7 @@ export function parseObjectLiteralOrPattern(
         if (parser.token === Token.Colon) {
           nextToken(parser, context | Context.AllowRegExp); // skip ':'
           const idxAfterColon = parser.tokenIndex;
+
           if (parser.token & Token.IsIdentifier) {
             value = parsePrimaryExpressionExtended(parser, context, type, 0, 1, inGroup, idxAfterColon);
 
@@ -5337,6 +5346,8 @@ export function parseAsyncExpression(
     return parseArrowFunctionExpression(parser, context, [expr], 0, start);
   }
 
+  parser.assignable = AssignmentKind.IsAssignable;
+
   return expr;
 }
 
@@ -5873,7 +5884,7 @@ function parseClassElementList(
 
   const { token, tokenIndex } = parser;
 
-  if (token & Token.IsIdentifier) {
+  if (token & (Token.IsIdentifier | Token.FutureReserved)) {
     key = parseIdentifier(parser, context, tokenIndex);
 
     switch (token) {
