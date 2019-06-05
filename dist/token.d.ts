@@ -127,7 +127,7 @@ export declare const enum Token {
     PrivateKeyword = 36966,
     ProtectedKeyword = 36967,
     PublicKeyword = 36968,
-    StaticKeyword = 176233,
+    StaticKeyword = 36969,
     YieldKeyword = 241770,
     AsKeyword = 12395,
     AsyncKeyword = 143468,

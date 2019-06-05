@@ -59,7 +59,7 @@ export declare function parseSuperExpression(parser: ParserState, context: Conte
 export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1, isImportCall: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, type: BindingType, inNewExpression: 0 | 1, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
-export declare function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.Literal;
+export declare function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context, start: number): ESTree.TemplateLiteral;
 export declare function parseTemplateTail(parser: ParserState, context: Context, start: number): ESTree.TemplateElement;
 export declare function parseTemplate(parser: ParserState, context: Context, start: number): ESTree.TemplateLiteral;

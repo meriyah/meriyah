@@ -25,6 +25,7 @@ interface _Expression<T extends string> extends _Node<T> {
 interface T_Expression {
     Identifier: Identifier;
     Literal: Literal | RegExpLiteral;
+    BigIntLiteral: BigIntLiteral;
     ThisExpression: ThisExpression;
     ArrayExpression: ArrayExpression;
     ObjectExpression: ObjectExpression;
@@ -68,7 +69,7 @@ interface T_Pattern {
     AssignmentPattern: AssignmentPattern;
     RestElement: RestElement;
 }
-export declare type Node = Identifier | Literal | Program | Function | SwitchCase | CatchClause | VariableDeclarator | Statement | Expression | Property | AssignmentProperty | Super | TemplateElement | SpreadElement | Pattern | ClassBody | Decorator | MethodDefinition | ModuleDeclaration | ModuleSpecifier;
+export declare type Node = Identifier | Literal | BigIntLiteral | Program | Function | SwitchCase | CatchClause | VariableDeclarator | Statement | Expression | Property | AssignmentProperty | Super | TemplateElement | SpreadElement | Pattern | ClassBody | Decorator | MethodDefinition | ModuleDeclaration | ModuleSpecifier;
 export declare type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
 export interface Comment {
     type: CommentType;
@@ -222,7 +223,7 @@ export interface VariableDeclarator extends _Node<'VariableDeclarator'> {
     id: Pattern;
     init?: Expression | null;
 }
-declare type Expression = ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | ArrowFunctionExpression | YieldExpression | Literal | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | Identifier | AwaitExpression;
+declare type Expression = ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | ArrowFunctionExpression | YieldExpression | Literal | BigIntLiteral | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | Identifier | AwaitExpression;
 export interface ThisExpression extends _Expression<'ThisExpression'> {
 }
 export interface ArrayExpression extends _Expression<'ArrayExpression'> {
@@ -320,9 +321,13 @@ export interface Identifier extends _Expression<'Identifier'>, _Pattern<'Identif
     raw?: string;
 }
 export interface Literal extends _Expression<'Literal'> {
-    value: boolean | number | string | null;
+    value: string | boolean | null | number | RegExp | bigint;
     raw?: string;
-    bigint?: string;
+}
+export interface BigIntLiteral extends _Expression<'BigIntLiteral'> {
+    value: boolean | number | string | null;
+    bigint: string;
+    raw?: string;
 }
 export interface RegExpLiteral extends _Expression<'Literal'> {
     value: RegExp | null;
