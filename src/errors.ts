@@ -330,7 +330,7 @@ export const errorMessages: {
   [Errors.InvalidImportTail]: 'Trailing comma is disallowed inside import(...) arguments',
   [Errors.ImportNotOneArg]: 'import() requires exactly one argument',
   [Errors.InvalidImportNew]: 'Cannot use new with import(...)',
-  [Errors.InvalidSpreadInImport]: '... is not allowed in import() '
+  [Errors.InvalidSpreadInImport]: '... is not allowed in import()'
 };
 
 export class ParseError extends SyntaxError {
