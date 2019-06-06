@@ -338,7 +338,7 @@ export class ParseError extends SyntaxError {
   public description: string;
   constructor(index: number, line: number, column: number, source: string, type: Errors, ...params: string[]) {
     let message =
-      errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]) + ' (' + line + ':' + column + ')';
+      '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     const lines = source.split('\n');
     message = message + '\n' + lines[line - 1] + '\n';
     for (let i = 0; i < column; i++) {
