@@ -79,7 +79,7 @@ export const enum BindingOrigin {
 export const enum AssignmentKind {
   None           = 0,
   IsAssignable   = 1 << 0,
-  CannotAssign  = 1 << 1
+  CannotAssign   = 1 << 1
 }
 
 export const enum DestructuringKind {
@@ -102,9 +102,7 @@ export const enum Flags {
   NewLine             = 1 << 0,
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
-  SimpleParameterList = 1 << 7,
-  Await               = 1 << 8,
-  Yield               = 1 << 9,
+  SimpleParameterList = 1 << 7
 }
 
 export const enum FunctionStatement {

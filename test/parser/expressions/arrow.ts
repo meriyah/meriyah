@@ -693,6 +693,7 @@ describe('Expressions - Arrow', () => {
     [`(...a, ...b) => {}`, Context.None],
     [`(...a, ...b) => {}`, Context.None],
     [`(a, ...b,) => {}`, Context.None],
+    [`(...x,) => x`, Context.None],
     [`(async (...a, b) => {})`, Context.None],
     [`(async (...a, ...b) => {})`, Context.None],
     [`() => {} a()`, Context.None],
@@ -1083,7 +1084,10 @@ describe('Expressions - Arrow', () => {
     `(z = [...x.y]) => z`,
     `a => a => a => async a => a`,
     `a => a => a => a => a => a => a => a => a => a => a => a => a => a => a => async a => a`,
-    'var f = (function() { return z => arguments[0]; }(5));'
+    'var f = (function() { return z => arguments[0]; }(5));',
+    'async(...{x}) => x',
+    'async(...[x]) => x',
+    '(...{x}) => x'
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
