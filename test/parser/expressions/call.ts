@@ -189,6 +189,12 @@ describe('Expressions - Call', () => {
     'fn(a(), ...b(), ...c(), d(), e())',
     'foo(1, ...[2], 3)',
     'foo(...[1])',
+    'foo(0)',
+    'foo(NaN)',
+    'foo("")',
+    'foo(false)',
+    'foo({})',
+    'foo([])',
     'foo(1, ...[2], 3)',
     'foo(...a);'
   ]) {
