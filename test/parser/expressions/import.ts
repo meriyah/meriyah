@@ -69,7 +69,14 @@ describe('Next - Import call', () => {
     ['(import(1)) => {}', Context.None],
     ['(import(y=x)) => {}', Context.None],
     ['(a, import(x).then()) => {}', Context.None],
-    ['(1, import(foo)) => {}', Context.None]
+    ['(1, import(foo)) => {}', Context.None],
+    ['function failsParse() { return import.then(); }', Context.None],
+    ['var dynImport = import; dynImport("http");', Context.None],
+    ['import()', Context.None],
+    ['import(a, b)', Context.None],
+    ['import(...[a])', Context.None],
+    ['import(source,)', Context.None],
+    ['new import(source)', Context.None]
   ]);
 
   for (const arg of [
@@ -118,7 +125,7 @@ describe('Next - Import call', () => {
   pass('Next - Import call (pass)', [
     [
       `function* a() { yield import("http"); }`,
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'module',
@@ -180,7 +187,7 @@ describe('Next - Import call', () => {
     ],
     [
       `import foo, * as namespace from "./namespace/drink.js"`,
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module,
       {
         body: [
           {
@@ -213,7 +220,7 @@ describe('Next - Import call', () => {
     ],
     [
       `for(x of import(x)) {}`,
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'module',
@@ -294,7 +301,7 @@ describe('Next - Import call', () => {
     ],
     [
       `var {[import(y=x)]: x} = {}`,
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'module',
@@ -376,8 +383,70 @@ describe('Next - Import call', () => {
       }
     ],
     [
+      `function* a() { yield import('http'); }`,
+      Context.Strict | Context.Module | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'YieldExpression',
+                    argument: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'Import',
+                        start: 22,
+                        end: 28
+                      },
+                      arguments: [
+                        {
+                          type: 'Literal',
+                          value: 'http',
+                          start: 29,
+                          end: 35
+                        }
+                      ],
+                      start: 22,
+                      end: 36
+                    },
+                    delegate: false,
+                    start: 16,
+                    end: 36
+                  },
+                  start: 16,
+                  end: 37
+                }
+              ],
+              start: 14,
+              end: 39
+            },
+            async: false,
+            generator: true,
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 10,
+              end: 11
+            },
+            start: 0,
+            end: 39
+          }
+        ],
+        start: 0,
+        end: 39
+      }
+    ],
+    [
       `import("lib.js").then(doThis);`,
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'module',

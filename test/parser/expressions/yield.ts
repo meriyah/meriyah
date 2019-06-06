@@ -15,13 +15,9 @@ describe('Expressions - Yield', () => {
     'function *foo() { do try {} catch (q) {} while ((yield* 810048018773152)); }',
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  (x) => {} }',
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  (x = y) => {} }',
-
     'function *foo() { do try {} catch (q) {} while ((yield* 810048018773152)); }',
-
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152));  async (x) => {} }',
-
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152)); async  (x = y) => {} }',
-
     'function* foo() { class x extends (yield* (e = "x") => {}) {} }',
     'function* foo() {  return ( yield* ( ( j ) => {}) ) }',
     'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
@@ -606,11 +602,8 @@ yield d;
     ['function* g() { yield 3 + yield; }', Context.None],
     ['function* g() { yield 3 + yield 4; }', Context.None],
     ['async function f(){ yield a,b; }', Context.None],
-    ['function* f(){ yield\n/foo }', Context.None],
-    //['function* f(){ yield\n/foo/ }', Context.None],
-    // ['function* f(){ yield\n/foo/g }', Context.None],
-    // ['yield\n/foo', Context.None],
-    ['function *g() { yield = {}; }  ', Context.None],
+    ['function *f(){ return function(x = yield y){}; }', Context.None],
+    ['function *g() { yield = {}; }', Context.None],
     ['label: function* a(){}', Context.None],
     ['function*g(yield){}', Context.None],
     ['function*g({yield}){}', Context.None],
@@ -770,8 +763,9 @@ yield d;
     ['function *gf(a = (10, yield, 20)) {}', Context.None],
     ['function* gf() { var gfe = function* yield() { } }', Context.None],
     ['function* gf() { function yield() { } }', Context.None],
-    ['function* gf() { const yield = 10; }', Context.None]
-    //  [`(x = delete (async (yield) = f)) => {}`, Context.None],
+    ['function* gf() { const yield = 10; }', Context.None],
+    ['async (yield) = f', Context.None]
+    // [`(x = delete (async (yield) = f)) => {}`, Context.None]
   ]);
 
   pass('Expressions - Yield (pass)', [
