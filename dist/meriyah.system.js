@@ -333,7 +333,7 @@ System.register('meriyah', [], function (exports) {
           [153]: 'Trailing comma is disallowed inside import(...) arguments',
           [154]: 'import() requires exactly one argument',
           [155]: 'Cannot use new with import(...)',
-          [156]: '... is not allowed in import() '
+          [156]: '... is not allowed in import()'
       };
       class ParseError extends SyntaxError {
           constructor(index, line, column, source, type, ...params) {
@@ -4278,38 +4278,33 @@ System.register('meriyah', [], function (exports) {
           parser.assignable = 1;
           while (parser.token !== 1073741840) {
               const idxAfterLeftParen = parser.tokenIndex;
-              if (parser.token & (143360 | 4096)) {
-                  const { token } = parser;
-                  if ((token & 537079808) === 537079808 ||
-                      (token & 36864) === 36864) {
+              const { token } = parser;
+              if (token & (143360 | 4096)) {
+                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 1, idxAfterLeftParen);
+                  if (parser.token === -2143289315) {
                       isComplex = 1;
                   }
-                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 1, idxAfterLeftParen);
-                  if (consumeOpt(parser, context | 32768, -2143289315)) {
-                      isComplex = 1;
-                      validateBindingIdentifier(parser, context, 0, token);
-                      const right = parseExpression(parser, context, 1, 1, parser.tokenIndex);
-                      parser.assignable = 2;
-                      expr = finishNode(parser, context, idxAfterLeftParen, {
-                          type: 'AssignmentExpression',
-                          left: expr,
-                          operator: '=',
-                          right
-                      });
+                  else if ((parser.token & 1073741824) === 1073741824) {
+                      if (parser.assignable & 2) {
+                          destructible |= 16;
+                          isComplex = 1;
+                      }
+                      else if ((token & 537079808) === 537079808 ||
+                          (token & 36864) === 36864) {
+                          isComplex = 1;
+                      }
                   }
                   else {
-                      destructible |=
-                          (parser.token & 1073741824) === 1073741824
-                              ? parser.assignable & 2
-                                  ? 16
-                                  : 0
-                              : 16;
-                      expr = parseAssignmentExpression(parser, context, 1, idxAfterLeftParen, parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 1, idxAfterLeftParen));
+                      destructible |= 16;
+                  }
+                  if ((parser.token & 1073741824) !== 1073741824) {
+                      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 1, idxAfterLeftParen);
+                      expr = parseAssignmentExpression(parser, context, 1, idxAfterLeftParen, expr);
                   }
               }
-              else if (parser.token & 2097152) {
+              else if (token & 2097152) {
                   expr =
-                      parser.token === 2162700
+                      token === 2162700
                           ? parseObjectLiteralOrPattern(parser, context, 0, 1, 0, idxAfterLeftParen)
                           : parseArrayExpressionOrPattern(parser, context, 0, 1, 0, idxAfterLeftParen);
                   destructible |= parser.destructible;
@@ -4325,7 +4320,7 @@ System.register('meriyah', [], function (exports) {
                       }
                   }
               }
-              else if (parser.token === 14) {
+              else if (token === 14) {
                   expr = parseRestOrSpreadElement(parser, context, 1073741840, 1, 0, 1, parser.tokenIndex);
                   if (parser.destructible & 16)
                       report(parser, 79);
@@ -4594,71 +4589,65 @@ System.register('meriyah', [], function (exports) {
           parser.destructible &= ~(256 | 128);
           const params = [];
           while (parser.token !== 1073741840) {
-              const idxAfterLeftParen = parser.tokenIndex;
-              if (parser.token & (143360 | 4096)) {
-                  if ((parser.token & 537079808) === 537079808 ||
-                      (parser.token & 36864) === 36864) {
+              const { token, tokenIndex } = parser;
+              if (token & (143360 | 4096)) {
+                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 1, tokenIndex);
+                  if (parser.token === -2143289315) {
                       isComplex = 1;
                   }
-                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 1, parser.tokenIndex);
-                  if (consumeOpt(parser, context | 32768, -2143289315)) {
-                      isComplex = 1;
-                      const right = parseExpression(parser, context, 1, 1, parser.tokenIndex);
-                      parser.assignable = 2;
-                      expr = finishNode(parser, context, idxAfterLeftParen, {
-                          type: 'AssignmentExpression',
-                          left: expr,
-                          operator: '=',
-                          right
-                      });
+                  else if ((parser.token & 1073741824) === 1073741824) {
+                      if (parser.assignable & 2) {
+                          destructible |= 16;
+                          isComplex = 1;
+                      }
+                      else if ((token & 537079808) === 537079808 ||
+                          (token & 36864) === 36864) {
+                          isComplex = 1;
+                      }
                   }
                   else {
-                      destructible |=
-                          (parser.token & 1073741824) === 1073741824
-                              ? parser.assignable & 2
-                                  ? 16
-                                  : 0
-                              : 16;
-                      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 1, parser.tokenIndex);
-                      expr = parseAssignmentExpression(parser, context, 1, parser.tokenIndex, expr);
-                      destructible |= parser.assignable;
+                      destructible |= 16;
+                  }
+                  if ((parser.token & 1073741824) !== 1073741824) {
+                      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 1, tokenIndex);
+                      expr = parseAssignmentExpression(parser, context, 1, tokenIndex, expr);
                   }
               }
-              else if (parser.token & 2097152) {
+              else if (token & 2097152) {
                   expr =
-                      parser.token === 2162700
-                          ? parseObjectLiteralOrPattern(parser, context, 0, 1, 0, idxAfterLeftParen)
-                          : parseArrayExpressionOrPattern(parser, context, 0, 1, 0, idxAfterLeftParen);
+                      token === 2162700
+                          ? parseObjectLiteralOrPattern(parser, context, 0, 1, 0, tokenIndex)
+                          : parseArrayExpressionOrPattern(parser, context, 0, 1, 0, tokenIndex);
                   destructible |= parser.destructible;
                   isComplex = 1;
                   parser.assignable = 2;
                   if ((parser.token & 1073741824) !== 1073741824) {
                       if (destructible & 8)
                           report(parser, 135);
-                      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, idxAfterLeftParen);
+                      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, tokenIndex);
                       destructible |= 16;
                       if ((parser.token & 1073741824) !== 1073741824)
                           expr = parseAssignmentExpression(parser, context, 0, parser.tokenIndex, expr);
                   }
               }
-              else if (parser.token === 14) {
-                  expr = parseRestOrSpreadElement(parser, context, 1073741840, 1, 1, 1, idxAfterLeftParen);
+              else if (token === 14) {
+                  expr = parseRestOrSpreadElement(parser, context, 1073741840, 1, 1, 1, tokenIndex);
                   destructible |= parser.destructible;
                   isComplex = 1;
                   if (parser.token !== 1073741840)
                       parser.destructible |= 16;
               }
               else {
-                  expr = parseExpression(parser, context, 1, 0, idxAfterLeftParen);
+                  expr = parseExpression(parser, context, 1, 0, tokenIndex);
                   destructible = parser.assignable;
                   params.push(expr);
                   while (consumeOpt(parser, context | 32768, -1073741806)) {
-                      params.push(parseExpression(parser, context, 1, 0, idxAfterLeftParen));
-                      parser.assignable = 2;
+                      params.push(parseExpression(parser, context, 1, 0, tokenIndex));
                   }
                   destructible |= parser.assignable;
                   consume(parser, context, 1073741840);
                   parser.destructible = destructible | 16;
+                  parser.assignable = 2;
                   return finishNode(parser, context, start, {
                       type: 'CallExpression',
                       callee,
@@ -4696,6 +4685,7 @@ System.register('meriyah', [], function (exports) {
           else if (destructible & 8) {
               report(parser, 63);
           }
+          parser.assignable = 2;
           return finishNode(parser, context, start, {
               type: 'CallExpression',
               callee,
