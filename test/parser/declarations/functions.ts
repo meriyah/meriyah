@@ -113,12 +113,6 @@ describe('Declarations - Function', () => {
         parseSource(`(function() {${arg}})()`, undefined, Context.OptionsWebCompat);
       });
     });
-
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`(function() { {${arg}}})()`, undefined, Context.OptionsWebCompat);
-      });
-    });
   }
 
   fail('Declarations - Functions (fail)', [
@@ -205,8 +199,6 @@ describe('Declarations - Function', () => {
   ]);
 
   for (const arg of [
-    'if (true) function foo() {}',
-    'if (false) {} else function f() { };',
     'function f() { ++(yield); }',
     'function f(arg) {function h() { g(arg) }; return h}',
     'function f(arg, ...arguments) {g(arg); arguments[0] = 42; g(arg)}',
@@ -306,6 +298,40 @@ describe('Declarations - Function', () => {
     'function f([foo,] = x){}',
     'function f([foo,,]){}',
     'function f([foo,,] = x){}',
+    'function fn1([a, b = 42]) {}',
+    'function fn2([a = 42, b,]) {}',
+    'function fn3([a,, b = a, c = 42]) {}',
+    'function fn1([{}]) {}',
+    'function fn2([{} = 42]) {}',
+    'function fn3([a, {b: c}]) {}',
+    'function fn4([a, {b: []}]) {}',
+    'function fn2([a, b,]) {}',
+    'function fn2([,,]) {}',
+    'function fn([]) {}',
+    'function fn2([,,,,,,,...args]) {}',
+    'function fn1([...args]) {}',
+    'function fn3([x, {y}, ...z]) {}',
+    'function fn4([,x, {y}, , ...z]) {}',
+    'function fn5({x: [...y]}) {}',
+    'function fnc({x: {}}) {}',
+    'function fnd({x: {y}}) {}',
+    'function fne({x: {} = 42}) {}',
+    'function fnf({x: {y} = 42}) {}',
+    'function fna({x: y}) {}',
+    'function fn2({a: {p: q, }, }) {}',
+    'function fn1({x,}) {}',
+    'function fna({x}) {}',
+    'function fnb({x, y}) {}',
+    'function fnc({x = 42}) {}',
+    'function fnd({x, y = 42}) {} ',
+    'function fn1({a: {p: q}, b: {r}, c: {s = 0}, d: {}}) {}',
+    'function fn2(x, {a: r, b: s, c: t}, y) {}',
+    'function fn3({x: {y: {z: {} = 42}}}) {}',
+    'function fn4([], [[]], [[[[[[[[[x]]]]]]]]]) {}',
+    'function fn4([[x, y, ...z]]) {}',
+    'function fn3({a: [,,,] = 42}) {}',
+    'function fn2([{a: [{}]}]) {}',
+    'function fn1([{}]) {}',
     'function f([,foo]){}',
     'function f([,foo] = x){}',
     'function f([,,foo]){}',
@@ -370,7 +396,6 @@ describe('Declarations - Function', () => {
     'function f() {function* foo() { var await = 1; return await; }}',
     'function f() {function* foo(await) { return await; }}',
     'function f() {var f = () => { var await = 1; return await; }}',
-
     "'use strict'; var O = { method() { var asyncFn = async function*() {}} }",
     "'use strict'; var f = () => {async function* f() {}}",
     "'use strict'; var f = () => {var O = { async *method() {} };}",
@@ -457,7 +482,6 @@ describe('Declarations - Function', () => {
     `function test(t, t) { }`,
     `function arguments() { }`,
     `function a() { function a() {} function a() {} }`,
-    `if (0) function a(){}`,
     `function j(...a) {}
     function k() {}
     var l = function () {};
@@ -527,6 +551,12 @@ describe('Declarations - Function', () => {
     'function *f(){ class x { yield(){} }  }',
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }'
   ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);

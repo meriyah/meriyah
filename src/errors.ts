@@ -74,8 +74,6 @@ export const enum Errors {
   IllegalContinue,
   IllegalBreak,
   InvalidLetBracket,
-  InvalidArrayCompoundAssignment,
-  InvalidObjCompoundAssignment,
   InvalidDestructuringTarget,
   InvalidRestObjBinding,
   RestDefaultInitializer,
@@ -158,7 +156,8 @@ export const enum Errors {
   InvalidImportTail,
   ImportNotOneArg,
   InvalidImportNew,
-  InvalidSpreadInImport
+  InvalidSpreadInImport,
+  UncompleteArrow
 }
 
 /*@internal*/
@@ -243,8 +242,6 @@ export const errorMessages: {
   [Errors.IllegalContinue]: 'Illegal continue statement',
   [Errors.IllegalBreak]: 'Illegal break statement',
   [Errors.InvalidLetBracket]: 'Cannot have `let[...]` as a var name in strict mode',
-  [Errors.InvalidArrayCompoundAssignment]: 'Cannot compound-assign to an array literal',
-  [Errors.InvalidObjCompoundAssignment]: 'Cannot compound-assign to an object literal',
   [Errors.InvalidDestructuringTarget]: 'Invalid destructuring assignment target',
   [Errors.InvalidRestObjBinding]:
     'The rest argument of an object binding pattern must always be a simple ident and not an array pattern',
@@ -330,7 +327,8 @@ export const errorMessages: {
   [Errors.InvalidImportTail]: 'Trailing comma is disallowed inside import(...) arguments',
   [Errors.ImportNotOneArg]: 'import() requires exactly one argument',
   [Errors.InvalidImportNew]: 'Cannot use new with import(...)',
-  [Errors.InvalidSpreadInImport]: '... is not allowed in import()'
+  [Errors.InvalidSpreadInImport]: '... is not allowed in import()',
+  [Errors.UncompleteArrow]: "Expected '=>'"
 };
 
 export class ParseError extends SyntaxError {
@@ -340,7 +338,7 @@ export class ParseError extends SyntaxError {
   public description: string;
   constructor(index: number, line: number, column: number, source: string, type: Errors, ...params: string[]) {
     let message =
-      errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]) + ' (' + line + ':' + column + ')';
+      '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     const lines = source.split('\n');
     message = message + '\n' + lines[line - 1] + '\n';
     for (let i = 0; i < column; i++) {

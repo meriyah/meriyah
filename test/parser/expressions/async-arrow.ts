@@ -221,6 +221,8 @@ describe('Expressions - Async arrow', () => {
     ['a + async () => {}', Context.None],
     ['async() => { (a = await/r/g) => {} };', Context.None],
     [`async ((x, y)) => 0`, Context.None],
+    [`async(...x,b) => x`, Context.None],
+    [`async(...x,) => x`, Context.None],
     ['a = (b = await/r/g) => {}) => {}', Context.None],
     ['async(a = (b = await/r/g) => {}) => {}', Context.None],
     ['(a = async(b = await/r/g) => {}) => {}', Context.None],

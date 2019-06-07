@@ -1,10 +1,66 @@
 import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { pass } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Compound assignment', () => {
   for (const arg of [
+    `[a >>>= a];`,
+    `[a >>>= a += a];`,
+    `[a >>>= (a += a)];`,
+    `[a >>>= (a += (a))];`,
+    `[a >>>= a += {a}];`,
+    `[a >>>= a += {a}];`,
+    `[a >>>= a += a];`,
+    `([a += a] );`,
+    `([...a += a] );`,
+    `[a >>>= (a)];`,
+    `([...a += a += a += (a) >>>= 2]);`,
+    '[...a %= (a)];',
+    `obj.prop >>= 20;`,
+    `a |= 2;`,
+    `obj.prop &= 20;`,
+    'obj.len ^= 10;',
+    'var z = (x += 1);',
+    'var z = (x <<= 1);',
+    'x -= 1 ',
+    'y1 = (y %= 2);',
+    'y1 === -1',
+    'x *= "1";',
+    'x /= null;',
+    'x >>>= true;',
+    'if (scope.x !== 2) {}',
+    'x /= y',
+    'base[prop] /= expr();',
+    'x	>>=	1, 0',
+    'x	*=	-1',
+    '({a: a *= -1})',
+    '([a *= -1])',
+    '([(a *= -1)])'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+  }
+
+  for (const arg of [
+    '({a *= -1})',
+    '({a} *= -1)',
+    '({a}) *=	-1',
+    '({a} += a);',
+    '([a] += a);',
+    `({a} += {a});`,
+    `[a >>>= {a} += {a}];`,
+    '[1 >>>= a];',
+    '[a >>>= a] += 1;',
+    '[a >>>= a] += a;',
     '({a: (b = 0)} = {})',
     '([(a = b)] = []',
     '({a: b += 0} = {})',
@@ -701,7 +757,7 @@ describe('Expressions - Compound assignment', () => {
     ],
     [
       'x >>= 1;',
-      Context.None,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -712,16 +768,26 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
+                start: 0,
+                end: 1
               },
               operator: '>>=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
+                value: 1,
+                start: 6,
+                end: 7
+              },
+              start: 0,
+              end: 7
+            },
+            start: 0,
+            end: 8
           }
-        ]
+        ],
+        start: 0,
+        end: 8
       }
     ],
     [
