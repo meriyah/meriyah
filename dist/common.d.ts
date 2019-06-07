@@ -85,9 +85,7 @@ export declare const enum Flags {
     NewLine = 1,
     HasConstructor = 32,
     Octals = 64,
-    SimpleParameterList = 128,
-    Await = 256,
-    Yield = 512
+    SimpleParameterList = 128
 }
 export declare const enum FunctionStatement {
     Disallow = 0,
