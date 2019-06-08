@@ -6,7 +6,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parse('foo', {
         loc: true,
-        globalAwait: true,
         globalReturn: true,
         ranges: true,
         webCompat: true,

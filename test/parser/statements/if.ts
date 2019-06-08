@@ -16,6 +16,7 @@ describe('Statements - None', () => {
     ['"use strict"; if (true) function f() {  } else function _f() {}', Context.OptionsWebCompat],
     ['if (true) const x = null;', Context.None],
     ['if();', Context.None],
+    ['if (1) let x = 10;', Context.None],
     [
       `if({1})
     {

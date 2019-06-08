@@ -272,6 +272,8 @@ describe('Declarations - Var', () => {
     'var 㐀 = 1;',
     'var 㘮 = 1;',
     'var 䶵',
+    'var\u2028x\u2028=\u20281\u2028;',
+    'var\u2029x\u2029=\u20291\u2029;',
     '({ __proto__: x, __proto__: y } = {})',
     'var { x = 10 } = (o = { x = 20 } = {});',
     'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})'

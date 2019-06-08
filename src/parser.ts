@@ -128,8 +128,6 @@ export interface Options {
   directives?: boolean;
   // The flag to allow return in the global scope
   globalReturn?: boolean;
-  // The flag to allow await in the global scope
-  globalAwait?: boolean;
   // The flag to enable implied strict mode
   impliedStrict?: boolean;
   // Enable non-standard parenthesized expression node
@@ -148,7 +146,6 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.webCompat) context |= Context.OptionsWebCompat;
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
     if (options.globalReturn) context |= Context.OptionsGlobalReturn;
-    if (options.globalAwait) context |= Context.OptionsGlobalAwait;
     if (options.raw) context |= Context.OptionsRaw;
     if (options.parenthesizedExpr) context |= Context.OptionsParenthesized;
     if (options.impliedStrict) context |= Context.Strict;
@@ -336,10 +333,10 @@ export function parseStatementListItem(
       return parseVariableStatement(parser, context, BindingType.Const, BindingOrigin.Statement, start);
     case Token.LetKeyword:
       return parseLetIdentOrVarDeclarationStatement(parser, context, start);
-    // ExportDeclaration (only inside modules)
+    // ExportDeclaration
     case Token.ExportKeyword:
       report(parser, Errors.InvalidImportExportSloppy, 'export');
-    // ImportDeclaration (only inside modules)
+    // ImportDeclaration
     case Token.ImportKeyword:
       nextToken(parser, context);
       switch (parser.token) {
@@ -488,7 +485,7 @@ export function parseExpressionOrLabelledStatement(
       // "let" followed by either "[", "{" or an identifier means a lexical
       // declaration, which should not appear here.
       // However, ASI may insert a line break before an identifier or a brace.
-      if (parser.token === Token.LeftBracket && parser.flags & Flags.NewLine) {
+      if (parser.token === Token.LeftBracket) {
         report(parser, Errors.RestricedLetProduction);
       }
       break;
