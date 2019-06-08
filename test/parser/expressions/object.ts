@@ -928,6 +928,7 @@ describe('Expressions - Object', () => {
     ['({*foo: x(){}})', Context.None],
     ['({*: x(){}})', Context.None],
     ['({set a() {}})', Context.None],
+    ['({1} ? a : b)', Context.None],
     ['({get a(a) {}})', Context.None],
     ['({x: [..] = y})', Context.None],
     ['({x: {..} = y})', Context.None],

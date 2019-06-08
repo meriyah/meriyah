@@ -16,6 +16,8 @@ describe('Miscellaneous - Failure', () => {
     'var\\u1680x;',
     'var\\u180ex;',
     'var\\u2000x;',
+    'let async function() { } = { };',
+    'if ( true, ) {}',
     'async (package) => {"use strict";}',
     'async (break) => {"use strict";}',
     'async (break) => {}',

@@ -29,6 +29,7 @@ describe('Miscellaneous - Pass', () => {
     'x= { set prototype(x){} }',
     'x= { get prototype(){} }',
     'x= { async *prototype(){} }',
+    'let f = () => {import("./foo").catch(error => {}).then($DONE, $DONE); };',
     `"use asm"; function a(yield) {}; "use strict"; function a(yield) {}`,
     '[...(x), y]',
     `class MyClass {

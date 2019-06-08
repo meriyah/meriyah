@@ -177,4 +177,169 @@ describe('Miscellaneous - Directives', () => {
       parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`, undefined, Context.None);
     });
   }
+
+  fail('Miscellaneous - Directives (fail)', [
+    ['"use strict"; var static;', Context.None],
+    ['\\u0061sync function f(){}', Context.None]
+  ]);
+
+  pass('Miscellaneous - Directives (pass)', [
+    [
+      '"use strict", "Hello\\312World"',
+      Context.None | Context.OptionsRanges,
+      {
+        body: [
+          {
+            end: 30,
+            expression: {
+              end: 30,
+              expressions: [
+                {
+                  end: 12,
+                  start: 0,
+                  type: 'Literal',
+                  value: 'use strict'
+                },
+                {
+                  end: 30,
+                  start: 14,
+                  type: 'Literal',
+                  value: 'HelloÊWorld'
+                }
+              ],
+              start: 0,
+              type: 'SequenceExpression'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 30,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      '"use asm" \n "use strict"',
+      Context.None | Context.OptionsRanges,
+      {
+        body: [
+          {
+            end: 9,
+            expression: {
+              end: 9,
+              start: 0,
+              type: 'Literal',
+              value: 'use asm'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          },
+          {
+            end: 24,
+            expression: {
+              end: 24,
+              start: 12,
+              type: 'Literal',
+              value: 'use strict'
+            },
+            start: 12,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 24,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      '"use strict"; + 1',
+      Context.None | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'use strict',
+              start: 0,
+              end: 12
+            },
+            start: 0,
+            end: 13
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'UnaryExpression',
+              operator: '+',
+              argument: {
+                type: 'Literal',
+                value: 1,
+                start: 16,
+                end: 17
+              },
+              prefix: true,
+              start: 14,
+              end: 17
+            },
+            start: 14,
+            end: 17
+          }
+        ],
+        start: 0,
+        end: 17
+      }
+    ],
+    [
+      '("use strict"); foo = 42;',
+      Context.None | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'use strict',
+              start: 1,
+              end: 13
+            },
+            start: 0,
+            end: 15
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 16,
+                end: 19
+              },
+              operator: '=',
+              right: {
+                type: 'Literal',
+                value: 42,
+                start: 22,
+                end: 24
+              },
+              start: 16,
+              end: 24
+            },
+            start: 16,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ]
+  ]);
 });

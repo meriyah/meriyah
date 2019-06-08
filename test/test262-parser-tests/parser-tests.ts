@@ -53,7 +53,8 @@ const expectations = {
     'e3fbcf63d7e43ead.js',
     '15a6123f6b825c38.js',
     '1acada3c651821cf.js',
-    '147fa078a7436e0e.js'
+    '147fa078a7436e0e.js',
+    'f4467d719dcee086.js'
   ],
   early: []
 };

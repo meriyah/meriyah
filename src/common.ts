@@ -79,7 +79,9 @@ export const enum BindingOrigin {
 export const enum AssignmentKind {
   None           = 0,
   IsAssignable   = 1 << 0,
-  CannotAssign   = 1 << 1
+  CannotAssign   = 1 << 1,
+  Await          = 1 << 2,
+  Yield          = 1 << 3,
 }
 
 export const enum DestructuringKind {
@@ -102,7 +104,8 @@ export const enum Flags {
   NewLine             = 1 << 0,
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
-  SimpleParameterList = 1 << 7
+  SimpleParameterList = 1 << 7,
+  Yield          = 1 << 8,
 }
 
 export const enum FunctionStatement {
@@ -242,7 +245,8 @@ export function validateBindingIdentifier(
   parser: ParserState,
   context: Context,
   type: BindingType,
-  t: Token
+  t: Token,
+  skipEvalArgCheck: 0 | 1
 ): void {
   if ((t & Token.Keyword) !== Token.Keyword) return;
 
@@ -255,7 +259,7 @@ export function validateBindingIdentifier(
       report(parser, Errors.FutureReservedWordInStrictModeNotId);
     }
 
-    if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+    if (!skipEvalArgCheck && (t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);
     }
 
