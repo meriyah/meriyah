@@ -69,7 +69,9 @@ export declare const enum BindingOrigin {
 export declare const enum AssignmentKind {
     None = 0,
     IsAssignable = 1,
-    CannotAssign = 2
+    CannotAssign = 2,
+    Await = 4,
+    Yield = 8
 }
 export declare const enum DestructuringKind {
     None = 0,
@@ -85,7 +87,8 @@ export declare const enum Flags {
     NewLine = 1,
     HasConstructor = 32,
     Octals = 64,
-    SimpleParameterList = 128
+    SimpleParameterList = 128,
+    Yield = 256
 }
 export declare const enum FunctionStatement {
     Disallow = 0,
@@ -116,7 +119,7 @@ export declare function optionalBit(parser: ParserState, context: Context, t: To
 export declare function consumeOpt(parser: ParserState, context: Context, t: Token): boolean;
 export declare function consume(parser: ParserState, context: Context, t: Token): void;
 export declare function reinterpretToPattern(state: ParserState, node: any): void;
-export declare function validateBindingIdentifier(parser: ParserState, context: Context, type: BindingType, t: Token): void;
+export declare function validateBindingIdentifier(parser: ParserState, context: Context, type: BindingType, t: Token, skipEvalArgCheck: 0 | 1): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
