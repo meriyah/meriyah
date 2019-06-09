@@ -142,6 +142,7 @@ describe('Declarations - Function', () => {
     ['o = {foo(x = let = y){ "use strict"; }}', Context.None],
     ['o = {foo(x = implements = y){ "use strict"; }}', Context.None],
     ['o = {foo(x= eval = y){ "use strict"; }}', Context.None],
+    ['function f(async function() {}) { }', Context.None],
     ['function foo(p\\u0061ckage) { "use strict"; }', Context.None],
     ['function foo(p\\u0061ckage) { }', Context.Strict],
     ['function await() {}', Context.Strict | Context.Module],

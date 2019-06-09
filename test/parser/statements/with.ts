@@ -8,10 +8,39 @@ describe('Statements - With', () => {
     ['with ({}) function f() {}', Context.None],
     ['with ({}) let x;', Context.None],
     ['with ({}) { }', Context.Strict],
-    [`with (x) foo;`, Context.Strict]
+    [`with (x) foo;`, Context.Strict],
+    [`with ({}) let [a] = [42];`, Context.None],
+    [`with ({}) let [a]`, Context.None],
+    [`with ({}) let 1`, Context.None],
+    [`with ({}) let []`, Context.None],
+    [`while(true) let[a] = 0`, Context.None]
   ]);
 
   pass('Statements - With (pass)', [
+    [
+      'with ({}) let',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'WithStatement',
+            object: {
+              type: 'ObjectExpression',
+              properties: []
+            },
+            body: {
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'Identifier',
+                name: 'let'
+              }
+            }
+          }
+        ]
+      }
+    ],
     [
       'with ({}) { }',
       Context.None,

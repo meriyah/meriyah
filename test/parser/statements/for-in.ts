@@ -415,6 +415,7 @@ describe('Statements - For in', () => {
     ['for([,] = 0 in {});', Context.None],
     ['for([a] = 0 in {});', Context.None],
     ['for (let.x in {}) {}', Context.Strict],
+    ['for (let in {}) { }', Context.Strict],
     ['"use strict"; for (let.x of []) {}', Context.Strict],
     ['"use strict"; for (let.x of []) {}', Context.None],
     ['for await (let.x of []) {}', Context.None],

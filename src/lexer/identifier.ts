@@ -65,7 +65,7 @@ export function scanIdentifierSlowCase(
 
     return keyword === void 0
       ? Token.Identifier
-      : keyword === Token.YieldKeyword
+      : keyword === Token.YieldKeyword || !hasEscape
       ? keyword
       : (keyword & Token.FutureReserved) === Token.FutureReserved
       ? context & Context.Strict && hasEscape

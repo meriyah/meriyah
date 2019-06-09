@@ -63,10 +63,13 @@ describe('Statements - Labeled', () => {
     ['label: class C {};', Context.None],
     ['label: let x;', Context.None],
     ['a: async function* a(){}', Context.None],
+    ['if (false) label1: label2: function test262() {} else ;', Context.None],
     ['label: function* g() {}', Context.None],
     ['label: const x = null;', Context.None],
     ['label: function g() {}', Context.Strict],
     ['label: let x;', Context.None],
+    ['await: 1;', Context.Module],
+    ['bar: function* x() {}', Context.None],
     ['await: 1;', Context.Strict | Context.Module],
     ['yield: 1;', Context.Strict],
     ['foo:for;', Context.None],
@@ -556,6 +559,58 @@ describe('Statements - Labeled', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'if (false) {\n L: let\nx = 1; \n }',
+      Context.None,
+      {
+        body: [
+          {
+            alternate: null,
+            consequent: {
+              body: [
+                {
+                  body: {
+                    expression: {
+                      name: 'let',
+                      type: 'Identifier'
+                    },
+                    type: 'ExpressionStatement'
+                  },
+                  label: {
+                    name: 'L',
+                    type: 'Identifier'
+                  },
+                  type: 'LabeledStatement'
+                },
+                {
+                  expression: {
+                    left: {
+                      name: 'x',
+                      type: 'Identifier'
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Literal',
+                      value: 1
+                    },
+                    type: 'AssignmentExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            },
+            type: 'IfStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [
