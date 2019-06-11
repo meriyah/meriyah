@@ -2544,7 +2544,7 @@ export function parseYieldExpressionOrIdentifier(parser: ParserState, context: C
   }
 
   if (context & Context.Strict) report(parser, Errors.AwaitOrYieldIdentInModule, 'Yield');
-  return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
+  return parseIdentifierOrArrow(parser, context, start);
 }
 
 /**
@@ -2581,7 +2581,7 @@ export function parseAwaitExpressionOrIdentifier(
 
   if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
 
-  const expr = parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
+  const expr = parseIdentifierOrArrow(parser, context, start);
 
   parser.assignable = AssignmentKind.IsAssignable;
 
@@ -3030,7 +3030,7 @@ export function parsePrimaryExpressionExtended(
             (token & Token.FutureReserved) === Token.FutureReserved
       ) {
         parser.assignable = AssignmentKind.IsAssignable;
-        return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
+        return parseIdentifierOrArrow(parser, context, start);
       }
 
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
@@ -4945,9 +4945,9 @@ export function parseParenthesizedExpression(
 export function parseIdentifierOrArrow(
   parser: ParserState,
   context: Context,
-  expr: ESTree.Identifier,
   start: number
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
+  const expr = parseIdentifier(parser, context, start);
   if (parser.token === Token.Arrow) {
     parser.flags &= ~Flags.SimpleParameterList;
     return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0, start);
