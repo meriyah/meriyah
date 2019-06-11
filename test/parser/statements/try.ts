@@ -6,12 +6,12 @@ import { parseSource } from '../../../src/parser';
 describe('Statements - Try', () => {
   fail('Statements - Try (fail)', [
     ['function f() { try {}  }', Context.None],
-    ['try {} catch(e, f){}', Context.None],
-    ['try {} catch(a = b){}', Context.None],
-    ['try {} catch(e,){}', Context.None],
-    ['try {} catch({e},){}', Context.None],
-    ['try {} catch({e}=x){}', Context.None],
-    ['try {} catch([e],){}', Context.None],
+    ['try {} catch(x, f){}', Context.None],
+    ['try {} catch(x = b){}', Context.None],
+    ['try {} catch(x,){}', Context.None],
+    ['try {} catch({x},){}', Context.None],
+    ['try {} catch({x}=x){}', Context.None],
+    ['try {} catch([x],){}', Context.None],
     ['try {} catch(e=x){}', Context.None],
     ['try {} catch([e]=x){}', Context.None],
     ['try { }', Context.None],
@@ -29,31 +29,14 @@ describe('Statements - Try', () => {
     ['try {} catch(){}', Context.None]
   ]);
 
-  const var_e = ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]'];
-
-  const not_var_e = [
-    'var f',
-    'var {}',
-    'var {e:f}',
-    'e',
-    '{e}',
-    'let e',
-    'const e',
-    'let {e}',
-    'const {e}',
-    'let [e]',
-    'const [e]',
-    'let {f:e}',
-    'const {f:e}'
-  ];
-  for (const binding of var_e) {
+  for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
         try {
           throw 0;
-        } catch (e) {
+        } catch (x) {
           for (${binding} of []);
         }
       `,
@@ -68,7 +51,7 @@ describe('Statements - Try', () => {
           `
           try {
             throw 0;
-          } catch (e) {
+          } catch (x) {
             for (${binding} of []);
           }
         `,
@@ -80,14 +63,14 @@ describe('Statements - Try', () => {
   }
 
   // Check that the above applies even for nested catches.
-  for (const binding of var_e) {
+  for (const binding of ['var e', 'var {e}', 'var {g, e}', 'var [e]', 'var {g:e}', 'var [[[], e]]']) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
       try {
         throw 0;
-      } catch (e) {
+      } catch (x) {
         try {
           throw 1;
         } catch (f) {
@@ -108,14 +91,14 @@ describe('Statements - Try', () => {
 
   // Check that the above applies if a declaration scope is between the
   // catch and the loop.
-  for (const binding of var_e) {
+  for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `
       try {
         throw 0;
-      } catch (e) {
+      } catch (x) {
         (()=>{for (${binding} of []);})();
       }
     `,
@@ -131,7 +114,7 @@ describe('Statements - Try', () => {
           `
     try {
       throw 0;
-    } catch (e) {
+    } catch (x) {
       (function() {
         for (${binding} of []);
       })();
@@ -145,7 +128,21 @@ describe('Statements - Try', () => {
   }
 
   // Check that there is no error when not declaring a var named e.
-  for (const binding of not_var_e) {
+  for (const binding of [
+    'var f',
+    'var {}',
+    'var {x:f}',
+    'x',
+    '{x}',
+    'let x',
+    'const x',
+    'let {x}',
+    'const {x}',
+    'let [x]',
+    'const [x]',
+    'let {x:y}',
+    'const {x:y}'
+  ]) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
@@ -447,7 +444,7 @@ describe('Statements - Try', () => {
       }
     ],
     [
-      'try { } catch (e) { var e; for (var e of []) {} }',
+      'try { } catch (e) { var x; for (var y of []) {} }',
       Context.OptionsWebCompat,
       {
         type: 'Program',
@@ -477,7 +474,7 @@ describe('Statements - Try', () => {
                         init: null,
                         id: {
                           type: 'Identifier',
-                          name: 'e'
+                          name: 'x'
                         }
                       }
                     ]
@@ -497,7 +494,7 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
+                            name: 'y'
                           }
                         }
                       ]
@@ -2320,63 +2317,6 @@ describe('Statements - Try', () => {
             finalizer: null
           }
         ]
-      }
-    ],
-
-    [
-      'try {} catch (e) { for (var e of y) {} }',
-      Context.OptionsWebCompat,
-      {
-        body: [
-          {
-            block: {
-              body: [],
-              type: 'BlockStatement'
-            },
-            finalizer: null,
-            handler: {
-              body: {
-                body: [
-                  {
-                    await: false,
-                    body: {
-                      body: [],
-                      type: 'BlockStatement'
-                    },
-                    left: {
-                      declarations: [
-                        {
-                          id: {
-                            name: 'e',
-                            type: 'Identifier'
-                          },
-                          init: null,
-                          type: 'VariableDeclarator'
-                        }
-                      ],
-                      kind: 'var',
-                      type: 'VariableDeclaration'
-                    },
-                    right: {
-                      name: 'y',
-                      type: 'Identifier'
-                    },
-                    type: 'ForOfStatement'
-                  }
-                ],
-                type: 'BlockStatement'
-              },
-              param: {
-                name: 'e',
-                type: 'Identifier'
-              },
-              type: 'CatchClause'
-            },
-            type: 'TryStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
       }
     ],
     [

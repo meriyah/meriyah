@@ -554,8 +554,7 @@ describe('Declarations - Var', () => {
     'var {x} = {x: 4, b: (x = 5)};',
     "var x; eval('');",
     'var x; { var x; }',
-    'var x; function x() {}',
-    'var x; try {} catch (x) { var x = 5; }',
+    'var x; function y() {}',
     'var x; var x;',
     'var x; x = 8;',
     'function x() { x = 0; }',
@@ -615,12 +614,6 @@ describe('Declarations - Var', () => {
     it(`async function *foo() { (function() { ${arg} })}`, () => {
       t.doesNotThrow(() => {
         parseSource(`async function *foo() { (function() { ${arg} })} // k`, undefined, Context.None);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
 

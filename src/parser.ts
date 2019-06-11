@@ -675,7 +675,7 @@ export function parseLabelledStatement(
   validateBindingIdentifier(parser, context, BindingType.None, token, 1);
   validateAndDeclareLabel(parser, labels, label);
 
-  nextToken(parser, context | Context.AllowRegExp);
+  nextToken(parser, context | Context.AllowRegExp); // skip: ':'
 
   const body =
     allowFuncDecl &&
@@ -1056,6 +1056,7 @@ export function parseSwitchStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param start
  */
 export function parseWhileStatement(
   parser: ParserState,
@@ -1069,18 +1070,30 @@ export function parseWhileStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, /* assignable */ 1, parser.tokenIndex);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  const body = parseStatement(
+  const body = parseIterationStatementBody(parser, context, labels);
+  return finishNode(parser, context, start, {
+    type: 'WhileStatement',
+    test,
+    body
+  });
+}
+
+/**
+ * Parses iteration statement body
+ *
+ * @see [Link](https://tc39.es/ecma262/#sec-iteration-statements)
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
+export function parseIterationStatementBody(parser: ParserState, context: Context, labels: any) {
+  return parseStatement(
     parser,
     ((context | Context.TopLevel | Context.DisallowIn) ^ (Context.TopLevel | Context.DisallowIn)) | Context.InIteration,
     { loop: 1, '€': labels },
     FunctionStatement.Disallow,
     parser.tokenIndex
   );
-  return finishNode(parser, context, start, {
-    type: 'WhileStatement',
-    test,
-    body
-  });
 }
 
 /**
@@ -1298,13 +1311,7 @@ export function parseDoWhileStatement(
   //   'do Statement while ( Expression ) ;'
 
   nextToken(parser, context | Context.AllowRegExp);
-  const body = parseStatement(
-    parser,
-    ((context | Context.TopLevel) ^ Context.TopLevel) | Context.InIteration,
-    { loop: 1, '€': labels },
-    FunctionStatement.Disallow,
-    parser.tokenIndex
-  );
+  const body = parseIterationStatementBody(parser, context, labels);
   consume(parser, context, Token.WhileKeyword);
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, /* assignable */ 1, parser.tokenIndex);
@@ -1337,6 +1344,8 @@ export function parseLetIdentOrVarDeclarationStatement(
   // If the next token is an identifier, `[`, or `{`, this is not
   // a `let` declaration, and we parse it as an identifier.
   if ((parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0) {
+    parser.assignable = AssignmentKind.IsAssignable;
+
     if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
     /** LabelledStatement[Yield, Await, Return]:
@@ -1599,10 +1608,10 @@ export function parseForStatement(
         report(parser, Errors.DisallowedLetInStrict);
       } else {
         isVarDecl = 0;
-
+        parser.assignable = AssignmentKind.IsAssignable;
         init = parseMemberOrUpdateExpression(parser, context, init, /* inNewExpression */ 0, 0, 0, varStart);
 
-        // Note: `for of` only allows LeftHandSideExpressions which do not start with `let`, and no other production matches
+        // `for of` only allows LeftHandSideExpressions which do not start with `let`, and no other production matches
         if (parser.token === Token.OfKeyword) report(parser, Errors.ForOfLet);
       }
     } else {
@@ -1670,13 +1679,7 @@ export function parseForStatement(
       right = parseExpression(parser, context, /* assignable*/ 1, 0, parser.tokenIndex);
     }
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
-    const body = parseStatement(
-      parser,
-      ((context | Context.TopLevel) ^ Context.TopLevel) | Context.InIteration,
-      { loop: 1, '€': labels },
-      FunctionStatement.Disallow,
-      parser.tokenIndex
-    );
+    const body = parseIterationStatementBody(parser, context, labels);
 
     return isOf
       ? finishNode(parser, context, start, {
@@ -1719,13 +1722,7 @@ export function parseForStatement(
 
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
 
-  const body = parseStatement(
-    parser,
-    ((context | Context.TopLevel) ^ Context.TopLevel) | Context.InIteration,
-    { loop: 1, '€': labels },
-    FunctionStatement.Disallow,
-    parser.tokenIndex
-  );
+  const body = parseIterationStatementBody(parser, context, labels);
 
   return finishNode(parser, context, start, {
     type: 'ForStatement',

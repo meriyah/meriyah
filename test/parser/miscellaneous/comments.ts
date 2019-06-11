@@ -104,8 +104,6 @@ describe('Miscellaneous - Comments', () => {
     '0 /*The*/ /*Answer*/',
     'if (x) { // Some comment\ndoThat(); }',
     `var a; // a`,
-    // 'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
-    // '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
     '{ x\n++y }',
     '{ x\n--y }',
     '{ throw error\nerror; }',
@@ -115,7 +113,15 @@ describe('Miscellaneous - Comments', () => {
     'while (true) { continue /* Multiline\nComment */there; }',
     'while (true) { break /* Multiline\nComment */there; }',
     'while (true) { continue // Comment\nthere; }',
-    'while (true) { continue\nthere; }'
+    'while (true) { continue\nthere; }',
+    'let g = /* before */GeneratorFunction("a", " /* a */ b, c /* b */ //", "/* c */ yield yield; /* d */ //")/* after */;',
+    '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
+    'class H { /* before */async /* a */ [ /* b */ x /* c */ ] /* d */ ( /* e */ ) /* f */ { /* g */ }/* after */ }',
+    'class G { /* before */async /* a */ [ /* b */ "g" /* c */ ] /* d */ ( /* e */ ) /* f */ { /* g */ }/* after */ }',
+    'class F { /* before */async f /* a */ ( /* b */ ) /* c */ { /* d */ }/* after */ }',
+    '/* before */class /* a */ A /* b */ extends /* c */ class /* d */ B /* e */ { /* f */ } /* g */ { /* h */ }/* after */',
+    'let g = /* before */function /* a */ ( /* b */ x /* c */ , /* d */ y /* e */ ) /* f */ { /* g */ ; /* h */ ; /* i */ }/* after */;',
+    '({ /* before */set /* a */ [ /* b */ x /* c */ ] /* d */ ( /* e */ a /* f */ ) /* g */ { /* h */ }/* after */ })'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -125,6 +131,135 @@ describe('Miscellaneous - Comments', () => {
   }
 
   pass('Miscellaneous - Comments (pass)', [
+    [
+      'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
+      Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                end: 10,
+                id: {
+                  end: 5,
+                  name: 'x',
+                  start: 4,
+                  type: 'Identifier'
+                },
+                init: {
+                  end: 10,
+                  start: 8,
+                  type: 'Literal',
+                  value: 42
+                },
+                start: 4,
+                type: 'VariableDeclarator'
+              }
+            ],
+            end: 11,
+            kind: 'var',
+            start: 0,
+            type: 'VariableDeclaration'
+          },
+          {
+            declarations: [
+              {
+                end: 44,
+                id: {
+                  end: 39,
+                  name: 'y',
+                  start: 38,
+                  type: 'Identifier'
+                },
+                init: {
+                  end: 44,
+                  start: 42,
+                  type: 'Literal',
+                  value: 37
+                },
+                start: 38,
+                type: 'VariableDeclarator'
+              }
+            ],
+            end: 45,
+            kind: 'var',
+            start: 34,
+            type: 'VariableDeclaration'
+          }
+        ],
+        end: 46,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
+      Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [],
+        end: 69,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 137,
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            start: 12,
+            end: 126,
+            id: {
+              type: 'Identifier',
+              start: 35,
+              end: 36,
+              name: 'f'
+            },
+            generator: false,
+            async: true,
+            params: [
+              {
+                type: 'Identifier',
+                start: 55,
+                end: 56,
+                name: 'x'
+              },
+              {
+                type: 'Identifier',
+                start: 75,
+                end: 76,
+                name: 'y'
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              start: 95,
+              end: 126,
+              body: [
+                {
+                  type: 'EmptyStatement',
+                  start: 105,
+                  end: 106
+                },
+                {
+                  type: 'EmptyStatement',
+                  start: 115,
+                  end: 116
+                }
+              ]
+            }
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
     [
       'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
       Context.OptionsWebCompat,

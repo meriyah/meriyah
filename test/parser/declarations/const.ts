@@ -122,7 +122,7 @@ describe('Declarations - const', () => {
     'const { 1.: _, ...rest } = source;',
     'const { 1.: _, ...rest } = source;',
     'const [foo,,bar] = x;',
-    'const [foo] = x, [foo] = y;',
+    'const [foo] = x, [bar] = y;',
     'const [foo] = x, b = y;',
     'const x = y, [foo] = z;',
     'const [foo=a] = c;',
@@ -132,7 +132,7 @@ describe('Declarations - const', () => {
     'const [...bar] = obj;',
     'const [foo, ...bar] = obj;',
     'const {foo,} = x;',
-    'const {foo} = x, {foo} = y;',
+    'const {foo} = x, {bar} = y;',
     'const {foo} = x, b = y;',
     'const [foo, bar=b] = arr;',
     'const a = {b: {c: Function()}}',
@@ -360,8 +360,8 @@ describe('Declarations - const', () => {
       }
     ],
     [
-      'const [foo] = x, [foo] = y;',
-      Context.None,
+      'const [foo] = x, [bar] = y;',
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -374,37 +374,57 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
+                  start: 14,
+                  end: 15
                 },
                 id: {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
+                      start: 7,
+                      end: 10
                     }
-                  ]
-                }
+                  ],
+                  start: 6,
+                  end: 11
+                },
+                start: 6,
+                end: 15
               },
               {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
+                  start: 25,
+                  end: 26
                 },
                 id: {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'bar',
+                      start: 18,
+                      end: 21
                     }
-                  ]
-                }
+                  ],
+                  start: 17,
+                  end: 22
+                },
+                start: 17,
+                end: 26
               }
-            ]
+            ],
+            start: 0,
+            end: 27
           }
-        ]
+        ],
+        start: 0,
+        end: 27
       }
     ],
     [

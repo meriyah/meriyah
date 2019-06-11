@@ -78,7 +78,10 @@ describe('Declarations - Let', () => {
     'for (var [let] = 1; let < 1; let++) {}',
     'for (var [let] in {}) {}',
     'var let',
-    'var [let] = []'
+    'var [let] = []',
+    'let f = /* before */async /* a */ ( /* b */ a /* c */ , /* d */ b /* e */ ) /* f */ => /* g */ { /* h */ ; /* i */ }/* after */;',
+    'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
+    'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;'
   ]) {
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -117,8 +120,8 @@ describe('Declarations - Let', () => {
     'let a1; [a1, b1, c1, d1, ...rest1] = "testing";',
     'let arrow = () => {};',
     `let x = class x {};
-    let x = class {};
-    let x = class { static name() {} };`,
+    let y = class {};
+    let z = class { static name() {} };`,
     'let [{ a }, { b }, { c = "" }] = [a, b, c];',
     'let [{ x }] = [x];',
     'let [[x]] = [null];',
