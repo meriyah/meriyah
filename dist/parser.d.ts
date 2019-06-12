@@ -33,6 +33,7 @@ export declare function parseIfStatement(parser: ParserState, context: Context, 
 export declare function parseConsequentOrAlternate(parser: ParserState, context: Context, labels: any, start: number): ESTree.Statement | ESTree.FunctionDeclaration;
 export declare function parseSwitchStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.SwitchStatement;
 export declare function parseWhileStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.WhileStatement;
+export declare function parseIterationStatementBody(parser: ParserState, context: Context, labels: any): ESTree.Statement;
 export declare function parseContinueStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.ContinueStatement;
 export declare function parseBreakStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.BreakStatement;
 export declare function parseWithStatement(parser: ParserState, context: Context, labels: any, start: number): ESTree.WithStatement;
@@ -76,7 +77,7 @@ export declare function parseObjectLiteralOrPattern(parser: ParserState, context
 export declare function parseMethodFormals(parser: ParserState, context: Context, kind: PropertyKind, type: BindingType, inGroup: 0 | 1): any[];
 export declare function parseComputedPropertyName(parser: ParserState, context: Context, inGroup: 0 | 1): ESTree.Expression;
 export declare function parseParenthesizedExpression(parser: ParserState, context: Context, assignable: 0 | 1, start: number): any;
-export declare function parseIdentifierOrArrow(parser: ParserState, context: Context, expr: ESTree.Identifier, start: number): ESTree.Identifier | ESTree.ArrowFunctionExpression;
+export declare function parseIdentifierOrArrow(parser: ParserState, context: Context, start: number): ESTree.Identifier | ESTree.ArrowFunctionExpression;
 export declare function parseArrowFunctionExpression(parser: ParserState, context: Context, params: ESTree.Pattern[], isAsync: 0 | 1, start: number): ESTree.ArrowFunctionExpression;
 export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, inGroup: 0 | 1, type: BindingType): any[];
 export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
