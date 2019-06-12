@@ -185,6 +185,92 @@ describe('Miscellaneous - Directives', () => {
 
   pass('Miscellaneous - Directives (pass)', [
     [
+      '"use strict" + "Hello\\312World"',
+      Context.Module | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      {
+        body: [
+          {
+            directive: 'use strict',
+            end: 31,
+            expression: {
+              end: 31,
+              left: {
+                end: 12,
+                raw: '"use strict"',
+                start: 0,
+                type: 'Literal',
+                value: 'use strict'
+              },
+              operator: '+',
+              right: {
+                end: 31,
+                raw: '"Hello\\312World"',
+                start: 15,
+                type: 'Literal',
+                value: 'HelloÊWorld'
+              },
+              start: 0,
+              type: 'BinaryExpression'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 31,
+        sourceType: 'module',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      '("use strict"); foo = 42;',
+      Context.Module | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      {
+        body: [
+          {
+            end: 15,
+            expression: {
+              end: 13,
+              raw: '"use strict"',
+              start: 1,
+              type: 'Literal',
+              value: 'use strict'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          },
+          {
+            end: 25,
+            expression: {
+              end: 24,
+              left: {
+                end: 19,
+                name: 'foo',
+                start: 16,
+                type: 'Identifier'
+              },
+              operator: '=',
+              right: {
+                end: 24,
+                raw: '42',
+                start: 22,
+                type: 'Literal',
+                value: 42
+              },
+              start: 16,
+              type: 'AssignmentExpression'
+            },
+            start: 16,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 25,
+        sourceType: 'module',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
       '"use strict", "Hello\\312World"',
       Context.None | Context.OptionsRanges,
       {

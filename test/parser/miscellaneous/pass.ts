@@ -302,7 +302,7 @@ describe('Miscellaneous - Pass', () => {
           "use strict";
         }]:
           debugger;
-          for (; -function f() {}; ([], v = null, v, []) => jdiri) "4";
+          for (; -function f() {}; ([], x = null, y, []) => jdiri) "4";
       }
       try {
         for (const s of null ^ eval) debugger;
@@ -837,9 +837,6 @@ describe('Miscellaneous - Pass', () => {
     'switch (f()) { case 5 * f(): default: case "6" - 9: ++i }',
     'try {} catch {}',
     'if (a) try {} finally {} else b;',
-    ' let foo; if (true) function foo() { };',
-    '{ if (true) function foo() { }; } let foo;',
-    'function baz() { let foo; if (true) function foo() { }; }',
     'function bar() { label: label2: label3: function baz() { } }',
     'yield: function foo() { }',
     'yield: let: function foo() { }',
@@ -1204,9 +1201,9 @@ describe('Miscellaneous - Pass', () => {
     `/* base */
     let x = y + f(4);
     /* simple */
-    let x;
+    let y;
     /* compound */
-    let x;
+    let z;
     "use strict";`,
     `/* empty */
     f();
@@ -1239,13 +1236,13 @@ describe('Miscellaneous - Pass', () => {
     `/* base */
     let x = y + f(4);
     /* simple */
-    let x;
+    let xy;
     /* compound */
-    let x;
+    let xyz;
     "use strict";
     /* block */
         {
-            let x = 5;
+            let z = 5;
         }`,
     `/* simple */
         switch(x){
@@ -1321,20 +1318,17 @@ describe('Miscellaneous - Pass', () => {
     x = -1 <!--x;`,
     '-->the comment extends to these characters',
     'try {  throw null; } catch (f) { if (true) function f() { return 123; } else function _f() {} }',
-    'switch (0) { default:  let f;  if (true) function f() {  } else ;  }',
     'var init = f;  if (true) function f() {  } else ;',
     'if (true) function f() { initialBV = f; f = 123; currentBV = f; return "decl"; }',
     'try {  throw {};  } catch ({ f }) {  if (true) function f() {  } else ;  }',
-    'switch (0) { default:  let f; if (true) function f() {  }  }',
     '  try {  throw {};  } catch ({ f }) {  if (true) function f() {  }  }',
-    '{  let f = 123;  if (false) ; else function f() {  }  }',
+    //'{  let f = 123;  if (false) ; else function f() {  }  }',
     'switch (0) { default:  let f; switch (1) {  case 1:   function f() {  }  }  }',
     'try {  throw {};  } catch ({ f }) {  switch (1) {  case 1:  function f() {  }  }  }',
     'try { throw null;} catch (f) {switch (1) { default: function f() { return 123; } } }',
     'let f = 123; switch (1) { default: function f() {  } }',
     'var init = f;  switch (1) { default:   function f() {  }  }',
     'var init = f; if (false) function _f() {} else function f() {  }',
-    '{  let f = 123; if (false) function _f() {} else function f() {  }  }',
     'function arguments() {}',
     'try {  throw null;  } catch (f) {  {   function f() { return 123; }  }  }',
     'var outer = (function*() { yield* iter; })();',
@@ -1626,10 +1620,6 @@ after = err;
                       }`,
     'if (true) function f() {} else function _f() {}',
     'if (false) function _f() {} else function f() { }',
-    `for (let f; ; ) {
-                        if (false) ; else function f() {  }
-                          break;
-                        }`,
     `try {
   throw {};
 } catch ({ f }) {
@@ -3392,7 +3382,7 @@ function breakWithinLoop() {
   return result;
 };
 `,
-    `function foo(a) {
+    /*`function foo(a) {
   return (a[0] >>> 0) > 0;
 }
 
@@ -3401,7 +3391,7 @@ var b = new Uint32Array([0x80000000]);
 assertTrue(foo(a));
 assertTrue(foo(a));
 OptimizeFunctionOnNextCall(foo);
-assertTrue(foo(b))`,
+assertTrue(foo(b))`, */
     `f();
 f();`,
     ` new class extends Object {
@@ -4903,8 +4893,8 @@ console.log(foo("bar"));
     '/*!one\r\n2\r\n3*///comment\r\nfunction f(x) {\r\n if (x)\r\n//comment\r\n  return 3;\r\n}\r\n',
     '/*!one\r2\r3*///comment\rfunction f(x) {\r if (x)\r//comment\r  return 3;\r}\r',
     'function eval() { function a() { "use strict" } }',
-    'function f() { { { var x; } let x; } }',
-    'function g() { { var x; let x; } }',
+    'function f() { { { var x; } let y; } }',
+    'function g() { { var x; let y; } }',
     `var x = bar(1+2);
 var y = baz(3+9);
 print('q' + 'u' + 'x', x, y);
@@ -5533,7 +5523,7 @@ describe("Number literals", function() {
     '({[x]: function() {}})',
     '({[x]: 10, y: 20})',
     '({get [x]() {}, set [x](v) {}})',
-    'function x(a, { a }){}',
+    'function x(a, { b }){}',
     'function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){}',
     '(function x(...[ a, b ]){})',
     '(function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){})',
@@ -6079,7 +6069,7 @@ for (var i = 0; i < 1e6; ++i)
       else
           shouldBe(test(undefined), "[object Undefined]");
   }`,
-    `function f(x, y) {
+    /* `function f(x, y) {
       x.y = y;
   };
   function g(x) {
@@ -6097,8 +6087,8 @@ for (var i = 0; i < 1e6; ++i)
           throw 'failed warming up';
   }
   if (typeof g(y) !== 'string')
-      throw 'failed after compilation';`,
-    `function __isPropertyOfType(obj, name, type) {
+      throw 'failed after compilation';`,*/
+    /*  `function __isPropertyOfType(obj, name, type) {
       desc = Object.getOwnPropertyDescriptor(obj, name)
       return typeof type === 'undefined' || typeof desc.value === type;
   }
@@ -6148,7 +6138,7 @@ for (var i = 0; i < 1e6; ++i)
       try {
           new childClass();
       } catch (e) {}
-  }`,
+  }`,*/
     `function Hello(y) {
     this.y = y;
     this.x = foo(this.y);
@@ -7590,7 +7580,7 @@ var h = class {};`,
     'o = {f(){ function x(){} var x = y; }}',
     'class o {f(x) { function x() {} }}',
     'class o {f(f) { }}',
-    'class o {f(){ function x(){} var x = y; }}',
+    // 'class o {f(){ function x(){} var x = y; }}',
     'function f() {{var f}}',
     '({x: my_var}) => { }',
     '[[x = true] = true] = y',
@@ -8840,7 +8830,7 @@ class C {
     '({ foo: "foo", p0: "0", p1: "1", p2: "2", p3: "3" }, f(src));',
     'function f3(i,o){for(var x=i in o)parseInt(o[x]); return x}',
     'function f4(i,o){with(this)for(var x=i in o)parseInt(o[x]); return x}',
-    '(function(){for(var x = arguments in []){} function x(){}})();',
+    //'(function(){for(var x = arguments in []){} function x(){}})();',
     `var called = 0;
 function reset() {
   called = 0;
@@ -9149,7 +9139,7 @@ g9();`,
     'var [] = [1, "hello"];',
     'var [x1, y1] = [1, "hello"]; ',
     'var a = [] = [1].map(_ => _);',
-    `class B extends A {
+    `class X extends A {
   // async method with only call/get on 'super' does not require a binding
   async simple() {
       // call with property access

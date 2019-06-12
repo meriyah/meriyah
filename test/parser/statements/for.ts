@@ -454,7 +454,21 @@ describe('Statements - For', () => {
     'for ([{__proto__: 1, __proto__: 2}];;);',
     'for ({__proto__: 1, __proto__: 2};;);',
     'for (((x)=>{}).x in y);',
-    'for (((x)=>{}).x of y);'
+    'for (((x)=>{}).x of y);',
+    `var let;
+
+    let = 1;
+    for ( let; ; )
+      break;
+
+    let = 2;
+    for ( let = 3; ; )
+      break;
+
+      let = 4;
+    for ( [let][0]; ; )
+      break;
+    `
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

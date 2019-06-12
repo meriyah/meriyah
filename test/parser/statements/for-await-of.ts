@@ -259,7 +259,7 @@ describe('Statements - For await of', () => {
     '({"a": a = 1} of [])',
     '({[Symbol.iterator]: a = 1} of [])',
     '({0: a = 1} of [])',
-    '(var a of [])',
+    '(var x of [])',
     '(var [a] of [])',
     '(var [a = 1] of [])',
     '(var [a = 1, ...b] of [])',
@@ -310,7 +310,7 @@ describe('Statements - For await of', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { let a; for await  ${arg}; }`, undefined, Context.None);
+        parseSource(`async function f() { let y; for await  ${arg}; }`, undefined, Context.None);
       });
     });
 
@@ -364,31 +364,31 @@ describe('Statements - For await of', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { let a; for await  ${arg}; }`, undefined, Context.None);
+        parseSource(`async function f() { let y; for await  ${arg}; }`, undefined, Context.None);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let a; for\nawait ${arg}{ } }`, undefined, Context.None);
+        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}{ } }`, undefined, Context.None);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let a; for\nawait ${arg}; }`, undefined, Context.None);
+        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}; }`, undefined, Context.None);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let a; for await ${arg}; }`, undefined, Context.None);
+        parseSource(`async function f() { 'use strict'; let y; for await ${arg}; }`, undefined, Context.None);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { 'use strict'; let a; for await\n ${arg}; }`, undefined, Context.None);
+        parseSource(`async function * f() { 'use strict'; let y; for await\n ${arg}; }`, undefined, Context.None);
       });
     });
   }
