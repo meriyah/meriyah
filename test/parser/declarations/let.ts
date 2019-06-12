@@ -171,8 +171,8 @@ describe('Declarations - Let', () => {
     'let { x, y, } = obj;',
     'let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: null };',
     'let {a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3};',
-    `let x = "x";
-    let y = "y";
+    `let a = "a";
+    let b = "b";
     let { x, y, } = obj;
     for (let x = "x", i = 0; i < 1; i++) { let y = "y"; }`,
     '[1 <= 0]',
@@ -207,7 +207,7 @@ describe('Declarations - Let', () => {
     'let foo, bar;',
     'let foo;',
     'let {foo} = x, b = y;',
-    'let {foo} = x, {foo} = y;',
+    'let {foo} = x, {bar} = y;',
     'let [foo,bar=b] = x;',
     'let x = y, [foo] = z;',
     'let [foo,bar] = x;',

@@ -109,7 +109,7 @@ describe('Expressions - Async function', () => {
     "var O = { async ['meth' + 'od'](arguments) {} }",
     "var O = { async 'method'(arguments) {} }",
     'var O = { async 0(arguments) {} }',
-    'var O = { async method(dupe, dupe) {} }',
+    'var O = { async method(foo, bar) {} }',
     'async function await() {}',
     'class X { static async await(){} }',
     `(async function ref(a, b = 39,) {});`,

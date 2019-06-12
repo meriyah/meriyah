@@ -1044,7 +1044,7 @@ describe('Expressions - Arrow', () => {
     `async () => {}`,
     `async () => {async () => {async () => {async () => {async () => {}}}}}`,
     `async => {}`,
-    '({ async foo(b, c, b){} });',
+    '({ async foo(a, c, b){} });',
     `async => {}
    async => {}`,
     `() => () => () => {}`,
