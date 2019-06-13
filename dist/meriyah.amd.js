@@ -2590,7 +2590,7 @@ define(['exports'], function (exports) { 'use strict';
       return specifiers;
   }
   function parseImportCallDeclaration(parser, context, start) {
-      let expr = finishNode(parser, context, start, { type: 'Import' });
+      let expr = parseImportExpression(parser, context, 0, start);
       expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 1, 0, start);
       return parseExpressionStatement(parser, context, expr, start);
   }
@@ -2855,7 +2855,7 @@ define(['exports'], function (exports) { 'use strict';
       }
       if (context & 1024)
           report(parser, 121, 'Yield');
-      return parseIdentifierOrArrow(parser, context, start);
+      return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
   }
   function parseAwaitExpressionOrIdentifier(parser, context, inNewExpression, start) {
       if (context & 4194304) {
@@ -2875,7 +2875,7 @@ define(['exports'], function (exports) { 'use strict';
       }
       if (context & 2048)
           report(parser, 121, 'Await');
-      const expr = parseIdentifierOrArrow(parser, context, start);
+      const expr = parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
       parser.assignable = 1;
       return parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, 0, 0, start);
   }
@@ -3148,21 +3148,30 @@ define(['exports'], function (exports) { 'use strict';
                       (token & 12288) === 12288 ||
                       (token & 36864) === 36864) {
                   parser.assignable = 1;
-                  return parseIdentifierOrArrow(parser, context, start);
+                  return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
               }
               report(parser, 29, KeywordDescTable[parser.token & 255]);
       }
   }
   function parseImportCallExpression(parser, context, inNewExpression, inGroup, start) {
-      nextToken(parser, context);
-      if (parser.token !== 67174411)
-          report(parser, 29, KeywordDescTable[parser.token & 255]);
       if (inNewExpression)
           report(parser, 153);
-      let expr = finishNode(parser, context, start, { type: 'Import' });
-      expr = parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, 1, inGroup, start);
+      nextToken(parser, context);
+      let expr = parseImportExpression(parser, context, inGroup, start);
+      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 1, inGroup, start);
       parser.assignable = 2;
       return expr;
+  }
+  function parseImportExpression(parser, context, inGroup, start) {
+      consume(parser, context, 67174411);
+      if (parser.token === 14)
+          report(parser, 154);
+      const source = parseExpression(parser, context, 1, inGroup, parser.tokenIndex);
+      consume(parser, context, 1073741840);
+      return finishNode(parser, context, start, {
+          type: 'ImportExpression',
+          source
+      });
   }
   function parseBigIntLiteral(parser, context, start) {
       const { tokenRaw, tokenValue } = parser;
@@ -4392,8 +4401,7 @@ define(['exports'], function (exports) { 'use strict';
           })
           : expr;
   }
-  function parseIdentifierOrArrow(parser, context, start) {
-      const expr = parseIdentifier(parser, context, start);
+  function parseIdentifierOrArrow(parser, context, expr, start) {
       if (parser.token === 10) {
           parser.flags &= ~128;
           return parseArrowFunctionExpression(parser, context, [expr], 0, start);

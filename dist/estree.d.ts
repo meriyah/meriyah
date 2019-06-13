@@ -94,7 +94,7 @@ export interface Program extends _Node<'Program'> {
 }
 export declare type Function = FunctionDeclaration | FunctionExpression | ArrowFunctionExpression;
 export declare type Statement = ExpressionStatement | BlockStatement | EmptyStatement | DebuggerStatement | WithStatement | ReturnStatement | LabeledStatement | BreakStatement | ContinueStatement | Decorator | IfStatement | SwitchStatement | ThrowStatement | TryStatement | WhileStatement | DoWhileStatement | ForStatement | ForInStatement | ForOfStatement | Declaration;
-export declare type Expression = Identifier | Literal | RegExpLiteral | ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | PrivateName | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | ArrowFunctionExpression | YieldExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | AwaitExpression;
+export declare type Expression = Identifier | Literal | RegExpLiteral | ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | PrivateName | ConditionalExpression | CallExpression | ImportExpression | NewExpression | SequenceExpression | ArrowFunctionExpression | YieldExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | AwaitExpression;
 export interface EmptyStatement extends _Node<'EmptyStatement'> {
 }
 export interface BlockStatement extends _Node<'BlockStatement'> {
@@ -223,7 +223,7 @@ export interface VariableDeclarator extends _Node<'VariableDeclarator'> {
     id: Pattern;
     init?: Expression | null;
 }
-declare type Expression = ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | ArrowFunctionExpression | YieldExpression | Literal | BigIntLiteral | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | ConditionalExpression | CallExpression | NewExpression | SequenceExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | Identifier | AwaitExpression;
+declare type Expression = ThisExpression | ArrayExpression | ObjectExpression | FunctionExpression | ArrowFunctionExpression | YieldExpression | Literal | BigIntLiteral | UnaryExpression | UpdateExpression | BinaryExpression | AssignmentExpression | LogicalExpression | MemberExpression | ConditionalExpression | ImportExpression | CallExpression | NewExpression | SequenceExpression | TemplateLiteral | TaggedTemplateExpression | ClassExpression | MetaProperty | Identifier | AwaitExpression;
 export interface ThisExpression extends _Expression<'ThisExpression'> {
 }
 export interface ArrayExpression extends _Expression<'ArrayExpression'> {
@@ -281,12 +281,11 @@ export interface ConditionalExpression extends _Expression<'ConditionalExpressio
     consequent: Expression;
 }
 export interface CallExpression extends _Expression<'CallExpression'> {
-    callee: Expression | Import | Super;
+    callee: Expression | Super;
     arguments: (Expression | SpreadElement)[];
 }
-export interface Import extends _Node<'Import'> {
-}
-export interface ImportExpression extends _Expression<'Import'> {
+export interface ImportExpression extends _Expression<'ImportExpression'> {
+    source: Expression;
 }
 export interface NewExpression extends _Expression<'NewExpression'> {
     callee: Expression;
