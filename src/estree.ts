@@ -172,6 +172,7 @@ export type Expression =
   | PrivateName
   | ConditionalExpression
   | CallExpression
+  | ImportExpression
   | NewExpression
   | SequenceExpression
   | ArrowFunctionExpression
@@ -352,6 +353,7 @@ type Expression =
   | LogicalExpression
   | MemberExpression
   | ConditionalExpression
+  | ImportExpression
   | CallExpression
   | NewExpression
   | SequenceExpression
@@ -429,13 +431,13 @@ export interface ConditionalExpression extends _Expression<'ConditionalExpressio
 }
 
 export interface CallExpression extends _Expression<'CallExpression'> {
-  callee: Expression | Import | Super;
+  callee: Expression | Super;
   arguments: (Expression | SpreadElement)[];
 }
 
-export interface Import extends _Node<'Import'> {}
-
-export interface ImportExpression extends _Expression<'Import'> {}
+export interface ImportExpression extends _Expression<'ImportExpression'> {
+  source: Expression;
+}
 
 export interface NewExpression extends _Expression<'NewExpression'> {
   callee: Expression;

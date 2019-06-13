@@ -1945,9 +1945,10 @@ function parseImportSpecifierOrNamedImports(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param number
  */
-function parseImportCallDeclaration(parser: ParserState, context: Context, start: number) {
-  let expr: ESTree.ImportExpression = finishNode(parser, context, start, { type: 'Import' } as any);
+function parseImportCallDeclaration(parser: ParserState, context: Context, start: number): ESTree.ExpressionStatement {
+  let expr = parseImportExpression(parser, context, /* inGroup */ 0, start);
 
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -1967,7 +1968,6 @@ function parseImportCallDeclaration(parser: ParserState, context: Context, start
    *   ('++' | '--')? LeftHandSideExpression
    *
    */
-
   expr = parseMemberOrUpdateExpression(parser, context, expr as any, 0, 1, 0, start);
 
   /**
@@ -2544,7 +2544,7 @@ export function parseYieldExpressionOrIdentifier(parser: ParserState, context: C
   }
 
   if (context & Context.Strict) report(parser, Errors.AwaitOrYieldIdentInModule, 'Yield');
-  return parseIdentifierOrArrow(parser, context, start);
+  return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
 }
 
 /**
@@ -2581,7 +2581,7 @@ export function parseAwaitExpressionOrIdentifier(
 
   if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
 
-  const expr = parseIdentifierOrArrow(parser, context, start);
+  const expr = parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
 
   parser.assignable = AssignmentKind.IsAssignable;
 
@@ -3030,37 +3030,70 @@ export function parsePrimaryExpressionExtended(
             (token & Token.FutureReserved) === Token.FutureReserved
       ) {
         parser.assignable = AssignmentKind.IsAssignable;
-        return parseIdentifierOrArrow(parser, context, start);
+        return parseIdentifierOrArrow(parser, context, parseIdentifier(parser, context, start), start);
       }
 
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 }
 
+/**
+ * Parses Import call expression
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inGroup
+ * @param start
+ */
 function parseImportCallExpression(
   parser: ParserState,
   context: Context,
   inNewExpression: 0 | 1,
   inGroup: 0 | 1,
   start: number
-): ESTree.ImportExpression | ESTree.MetaProperty {
+): ESTree.ImportExpression {
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
-  nextToken(parser, context);
-
-  if (parser.token !== Token.LeftParen)
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
-
   if (inNewExpression) report(parser, Errors.InvalidImportNew);
 
-  let expr = finishNode(parser, context, start, { type: 'Import' } as any);
+  nextToken(parser, context);
 
-  expr = parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, 1, inGroup, start);
+  let expr = parseImportExpression(parser, context, inGroup, start);
+
+  expr = parseMemberOrUpdateExpression(parser, context, expr as any, 0, 1, inGroup, start);
 
   parser.assignable = AssignmentKind.CannotAssign;
 
   return expr;
+}
+
+/**
+ * Parses Import expression
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inGroup
+ * @param start
+ */
+export function parseImportExpression(
+  parser: ParserState,
+  context: Context,
+  inGroup: 0 | 1,
+  start: number
+): ESTree.ImportExpression {
+  consume(parser, context, Token.LeftParen);
+
+  if (parser.token === Token.Ellipsis) report(parser, Errors.InvalidSpreadInImport);
+
+  const source = parseExpression(parser, context, /* assignable */ 1, inGroup, parser.tokenIndex);
+
+  consume(parser, context, Token.RightParen);
+
+  return finishNode(parser, context, start, {
+    type: 'ImportExpression',
+    source
+  } as any);
 }
 
 /**
@@ -3250,8 +3283,6 @@ export function parseArguments(
     return args;
   }
 
-  let argCount = 0;
-
   while (parser.token !== Token.RightParen) {
     if (parser.token === Token.Ellipsis) {
       if (isImportCall) report(parser, Errors.InvalidSpreadInImport);
@@ -3259,8 +3290,6 @@ export function parseArguments(
     } else {
       args.push(parseExpression(parser, context, /* assignable */ 1, inGroup, parser.tokenIndex));
     }
-
-    argCount++;
 
     if (parser.token !== Token.Comma) break;
 
@@ -4945,9 +4974,9 @@ export function parseParenthesizedExpression(
 export function parseIdentifierOrArrow(
   parser: ParserState,
   context: Context,
+  expr: ESTree.Identifier,
   start: number
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
-  const expr = parseIdentifier(parser, context, start);
   if (parser.token === Token.Arrow) {
     parser.flags &= ~Flags.SimpleParameterList;
     return parseArrowFunctionExpression(parser, context, [expr], /* isAsync */ 0, start);

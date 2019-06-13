@@ -143,427 +143,94 @@ describe('Next - ImportCall', () => {
 
   pass('Next - ImportCall (pass)', [
     [
-      `function* a() { yield import("http"); }`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'FunctionDeclaration',
-            params: [],
-            body: {
-              type: 'BlockStatement',
-              body: [
-                {
-                  type: 'ExpressionStatement',
-                  expression: {
-                    type: 'YieldExpression',
-                    argument: {
-                      type: 'CallExpression',
-                      callee: {
-                        type: 'Import',
-                        start: 22,
-                        end: 28
-                      },
-                      arguments: [
-                        {
-                          type: 'Literal',
-                          value: 'http',
-                          start: 29,
-                          end: 35
-                        }
-                      ],
-                      start: 22,
-                      end: 36
-                    },
-                    delegate: false,
-                    start: 16,
-                    end: 36
-                  },
-                  start: 16,
-                  end: 37
-                }
-              ],
-              start: 14,
-              end: 39
-            },
-            async: false,
-            generator: true,
-            id: {
-              type: 'Identifier',
-              name: 'a',
-              start: 10,
-              end: 11
-            },
-            start: 0,
-            end: 39
-          }
-        ],
-        start: 0,
-        end: 39
-      }
-    ],
-    [
-      `import foo, * as namespace from "./namespace/drink.js"`,
-      Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: './namespace/drink.js'
-            },
-            specifiers: [
-              {
-                local: {
-                  name: 'foo',
-                  type: 'Identifier'
-                },
-                type: 'ImportDefaultSpecifier'
-              },
-              {
-                local: {
-                  name: 'namespace',
-                  type: 'Identifier'
-                },
-                type: 'ImportNamespaceSpecifier'
-              }
-            ],
-            type: 'ImportDeclaration'
-          }
-        ],
-        sourceType: 'module',
-        type: 'Program'
-      }
-    ],
-    [
-      `for(x of import(x)) {}`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ForOfStatement',
-            body: {
-              type: 'BlockStatement',
-              body: [],
-              start: 20,
-              end: 22
-            },
-            left: {
-              type: 'Identifier',
-              name: 'x',
-              start: 4,
-              end: 5
-            },
-            right: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Import',
-                start: 9,
-                end: 15
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'x',
-                  start: 16,
-                  end: 17
-                }
-              ],
-              start: 9,
-              end: 18
-            },
-            await: false,
-            start: 0,
-            end: 22
-          }
-        ],
-        start: 0,
-        end: 22
-      }
-    ],
-    [
-      `(import(y=x))`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              arguments: [
-                {
-                  left: {
-                    name: 'y',
-                    type: 'Identifier'
-                  },
-                  operator: '=',
-                  right: {
-                    name: 'x',
-                    type: 'Identifier'
-                  },
-                  type: 'AssignmentExpression'
-                }
-              ],
-              callee: {
-                type: 'Import'
-              },
-              type: 'CallExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `var {[import(y=x)]: x} = {}`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: [],
-                  start: 25,
-                  end: 27
-                },
-                id: {
-                  type: 'ObjectPattern',
-                  properties: [
-                    {
-                      type: 'Property',
-                      kind: 'init',
-                      key: {
-                        type: 'CallExpression',
-                        callee: {
-                          type: 'Import',
-                          start: 6,
-                          end: 12
-                        },
-                        arguments: [
-                          {
-                            type: 'AssignmentExpression',
-                            left: {
-                              type: 'Identifier',
-                              name: 'y',
-                              start: 13,
-                              end: 14
-                            },
-                            operator: '=',
-                            right: {
-                              type: 'Identifier',
-                              name: 'x',
-                              start: 15,
-                              end: 16
-                            },
-                            start: 13,
-                            end: 16
-                          }
-                        ],
-                        start: 6,
-                        end: 17
-                      },
-                      computed: true,
-                      value: {
-                        type: 'Identifier',
-                        name: 'x',
-                        start: 20,
-                        end: 21
-                      },
-                      method: false,
-                      shorthand: false,
-                      start: 5,
-                      end: 21
-                    }
-                  ],
-                  start: 4,
-                  end: 22
-                },
-                start: 4,
-                end: 27
-              }
-            ],
-            start: 0,
-            end: 27
-          }
-        ],
-        start: 0,
-        end: 27
-      }
-    ],
-    [
-      `function* a() { yield import('http'); }`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'FunctionDeclaration',
-            params: [],
-            body: {
-              type: 'BlockStatement',
-              body: [
-                {
-                  type: 'ExpressionStatement',
-                  expression: {
-                    type: 'YieldExpression',
-                    argument: {
-                      type: 'CallExpression',
-                      callee: {
-                        type: 'Import',
-                        start: 22,
-                        end: 28
-                      },
-                      arguments: [
-                        {
-                          type: 'Literal',
-                          value: 'http',
-                          start: 29,
-                          end: 35
-                        }
-                      ],
-                      start: 22,
-                      end: 36
-                    },
-                    delegate: false,
-                    start: 16,
-                    end: 36
-                  },
-                  start: 16,
-                  end: 37
-                }
-              ],
-              start: 14,
-              end: 39
-            },
-            async: false,
-            generator: true,
-            id: {
-              type: 'Identifier',
-              name: 'a',
-              start: 10,
-              end: 11
-            },
-            start: 0,
-            end: 39
-          }
-        ],
-        start: 0,
-        end: 39
-      }
-    ],
-    [
       `import("lib.js").then(doThis);`,
       Context.Strict | Context.Module | Context.OptionsRanges,
       {
-        type: 'Program',
-        sourceType: 'module',
         body: [
           {
-            type: 'ExpressionStatement',
+            end: 30,
             expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'CallExpression',
-                  callee: {
-                    type: 'Import',
-                    start: 0,
-                    end: 6
-                  },
-                  arguments: [
-                    {
-                      type: 'Literal',
-                      value: 'lib.js',
-                      start: 7,
-                      end: 15
-                    }
-                  ],
-                  start: 0,
-                  end: 16
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'then',
-                  start: 17,
-                  end: 21
-                },
-                start: 0,
-                end: 21
-              },
               arguments: [
                 {
-                  type: 'Identifier',
+                  end: 28,
                   name: 'doThis',
                   start: 22,
-                  end: 28
+                  type: 'Identifier'
                 }
               ],
+              callee: {
+                computed: false,
+                end: 21,
+                object: {
+                  end: 16,
+                  source: {
+                    end: 15,
+                    start: 7,
+                    type: 'Literal',
+                    value: 'lib.js'
+                  },
+                  start: 0,
+                  type: 'ImportExpression'
+                },
+                property: {
+                  end: 21,
+                  name: 'then',
+                  start: 17,
+                  type: 'Identifier'
+                },
+                start: 0,
+                type: 'MemberExpression'
+              },
+              end: 29,
               start: 0,
-              end: 29
+              type: 'CallExpression'
             },
             start: 0,
-            end: 30
+            type: 'ExpressionStatement'
           }
         ],
+        end: 30,
+        sourceType: 'module',
         start: 0,
-        end: 30
+        type: 'Program'
       }
     ],
     [
       `async function bar(){ await import("./nchanged") }`,
       Context.OptionsNext,
       {
-        type: 'Program',
-        sourceType: 'script',
         body: [
           {
-            type: 'FunctionDeclaration',
-            params: [],
+            async: true,
             body: {
-              type: 'BlockStatement',
               body: [
                 {
-                  type: 'ExpressionStatement',
                   expression: {
-                    type: 'AwaitExpression',
                     argument: {
-                      type: 'CallExpression',
-                      callee: {
-                        type: 'Import'
+                      source: {
+                        type: 'Literal',
+                        value: './nchanged'
                       },
-                      arguments: [
-                        {
-                          type: 'Literal',
-                          value: './nchanged'
-                        }
-                      ]
-                    }
-                  }
+                      type: 'ImportExpression'
+                    },
+                    type: 'AwaitExpression'
+                  },
+                  type: 'ExpressionStatement'
                 }
-              ]
+              ],
+              type: 'BlockStatement'
             },
-            async: true,
             generator: false,
             id: {
-              type: 'Identifier',
-              name: 'bar'
-            }
+              name: 'bar',
+              type: 'Identifier'
+            },
+            params: [],
+            type: 'FunctionDeclaration'
           }
-        ]
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ]
   ]);
