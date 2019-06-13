@@ -14,7 +14,7 @@ export const enum Context {
   OptionsDirectives     = 1 << 3,
   OptionsJSX            = 1 << 4,
   OptionsGlobalReturn   = 1 << 5,
-  OptionsGlobalAwait    = 1 << 6,
+  OptionsLexical        = 1 << 6,
   OptionsParenthesized  = 1 << 7,
   OptionsWebCompat      = 1 << 8,
   OptionsRaw            = 1 << 9,
@@ -135,6 +135,8 @@ export interface ParserState {
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
   nextCP: number;
+  exportedNames: any;
+  exportedBindings: any;
 }
 
 /**

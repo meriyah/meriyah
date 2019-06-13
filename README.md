@@ -1,16 +1,11 @@
-<p align="center">
-  <img width="260" height="200" src="https://github.com/meriyah/meriyah/blob/master/scripts/logo.png">
-</p>
-
-<h4 align="center">A 100% compliant, self-hosted javascript parser with high focus on both performance and stability</h4>
-
-<p align="center">
+# Meriyah
 
 [![NPM version](https://img.shields.io/npm/v/meriyah.svg?style=flat-square)](https://www.npmjs.com/package/meriyah)
 [![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/context:javascript)
 [![Total Alerts](https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/alerts)
 [![CircleCI](https://circleci.com/gh/meriyah/meriyah.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah)
-</p>
+
+A 100% compliant, self-hosted javascript parser with high focus on both performance and stability
 
 ## Features
 
@@ -115,6 +110,7 @@ The second argument allows you to specify various options:
 | `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
 | `globalReturn`    | Allow `return` in the global scope |
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
+| `lexical`         | Enable lexical binding and scope tracking |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
 | `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
