@@ -13,6 +13,7 @@ export interface Options {
     globalReturn?: boolean;
     impliedStrict?: boolean;
     parenthesizedExpr?: boolean;
+    lexical?: boolean;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context): ESTree.Statement[];
@@ -57,7 +58,7 @@ export declare function parseAwaitExpressionOrIdentifier(parser: ParserState, co
 export declare function parseFunctionBody(parser: ParserState, context: Context, origin: BindingOrigin, firstRestricted: Token | undefined): ESTree.BlockStatement;
 export declare function parseSuperExpression(parser: ParserState, context: Context, start: number): ESTree.Super;
 export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
-export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1, isImportCall: 0 | 1, inGroup: 0 | 1, start: number): any;
+export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, type: BindingType, inNewExpression: 0 | 1, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parseImportExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number): ESTree.ImportExpression;
 export declare function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral;
@@ -65,7 +66,7 @@ export declare function parseTemplateLiteral(parser: ParserState, context: Conte
 export declare function parseTemplateTail(parser: ParserState, context: Context, start: number): ESTree.TemplateElement;
 export declare function parseTemplate(parser: ParserState, context: Context, start: number): ESTree.TemplateLiteral;
 export declare function parseTemplateSpans(parser: ParserState, context: Context, tail: boolean, start: number): ESTree.TemplateElement;
-export declare function parseArguments(parser: ParserState, context: Context, isImportCall: 0 | 1, inGroup: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
+export declare function parseArguments(parser: ParserState, context: Context, inGroup: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
 export declare function parseIdentifier(parser: ParserState, context: Context, start: number): ESTree.Identifier;
 export declare function parseLiteral(parser: ParserState, context: Context, start: number): ESTree.Literal;
 export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context, start: number): ESTree.Literal;

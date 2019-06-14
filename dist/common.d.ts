@@ -8,7 +8,7 @@ export declare const enum Context {
     OptionsDirectives = 8,
     OptionsJSX = 16,
     OptionsGlobalReturn = 32,
-    OptionsGlobalAwait = 64,
+    OptionsLexical = 64,
     OptionsParenthesized = 128,
     OptionsWebCompat = 256,
     OptionsRaw = 512,
@@ -113,6 +113,8 @@ export interface ParserState {
     assignable: AssignmentKind | DestructuringKind;
     destructible: AssignmentKind | DestructuringKind;
     nextCP: number;
+    exportedNames: any;
+    exportedBindings: any;
 }
 export declare function consumeSemicolon(parser: ParserState, context: Context): void;
 export declare function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1;
