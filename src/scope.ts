@@ -25,8 +25,8 @@ export const enum ScopeMasks {
  */
 export interface ScopeState {
   var: any;
-  lexvar: any;
-  lex: any;
+  lexicalVariables: any;
+  lexicals: any;
   funcs?: any;
 }
 
@@ -36,8 +36,8 @@ export interface ScopeState {
 export function initblockScope(): ScopeState {
   return {
     var: {},
-    lexvar: {},
-    lex: { funcs: [] }
+    lexicalVariables: {},
+    lexicals: { funcs: [] }
   };
 }
 
@@ -50,11 +50,11 @@ export function initblockScope(): ScopeState {
 export function inheritScope(scope: any, type: ScopeType): ScopeState {
   return {
     var: scope.var,
-    lexvar: {
-      '#': scope.lexvar
+    lexicalVariables: {
+      $: scope.lexicalVariables
     },
-    lex: {
-      '#': scope.lex,
+    lexicals: {
+      $: scope.lexicals,
       type,
       funcs: []
     }
@@ -79,10 +79,10 @@ export function declareName(
 ): void {
   if (scope === null) return;
 
-  let hashed = '#' + name;
+  let hashed = '$' + name;
 
   if (bindingType & BindingType.Variable) {
-    let lex = scope.lex;
+    let lex = scope.lexicals;
 
     while (lex !== undefined) {
       if (lex[hashed] !== undefined) {
@@ -95,36 +95,36 @@ export function declareName(
         } else if (
           (lex.type & ScopeType.ArgList) === 0 &&
           ((context & Context.OptionsWebCompat) === 0 ||
-            (scope.lex.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
+            (scope.lexicals.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
             context & Context.Strict)
         )
           report(parser, Errors.DuplicateBinding, name);
       }
 
-      lex = lex['#'];
+      lex = lex['$'];
     }
 
     scope.var[hashed] = scope.var[hashed] ? ScopeMasks.Undeclared : ScopeMasks.Redeclared;
 
-    let lexvar = scope.lexvar;
+    let lexicalVariables = scope.lexicalVariables;
 
-    while (lexvar !== undefined) {
-      lexvar[hashed] = ScopeMasks.Redeclared;
+    while (lexicalVariables !== undefined) {
+      lexicalVariables[hashed] = ScopeMasks.Redeclared;
 
-      lexvar = lexvar['#'];
+      lexicalVariables = lexicalVariables['$'];
     }
   } else {
-    let lex = scope.lex;
+    let lex = scope.lexicals;
 
     if (dupeChecks) {
-      let lexParent = scope.lex['#'];
+      let lexParent = scope.lexicals['$'];
 
       if (lexParent && lexParent.type & (ScopeType.ArgList | ScopeType.Catch) && lexParent[hashed]) {
         report(parser, Errors.DuplicateBinding, name);
-      } else if (scope.lexvar[hashed]) {
+      } else if (scope.lexicalVariables[hashed]) {
         if (
           (context & Context.OptionsWebCompat) === 0 ||
-          (scope.lex.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
+          (scope.lexicals.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
           (context & Context.Strict) !== 0
         ) {
           report(parser, Errors.DuplicateBinding, name);
@@ -134,7 +134,7 @@ export function declareName(
       if (
         lex[hashed] !== undefined &&
         ((context & Context.OptionsWebCompat) === 0 ||
-          (scope.lex.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
+          (scope.lexicals.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
           context & Context.Strict)
       ) {
         report(parser, Errors.DuplicateBinding, name);
@@ -165,7 +165,7 @@ export function declareAndDedupe(
 ): void {
   declareName(parser, context, scope, name, type, 1, isVarDecl);
   if (scope === null) return;
-  if (context & Context.OptionsWebCompat) scope.lex.funcs['#' + name] = ScopeMasks.Redeclared;
+  if (context & Context.OptionsWebCompat) scope.lexicals.funcs['$' + name] = ScopeMasks.Redeclared;
 }
 export function declareUnboundVariable(
   parser: ParserState,
@@ -193,8 +193,8 @@ export function addFunctionName(
   isVarDecl: 0 | 1
 ): void {
   declareName(parser, context, scope, name, type, 1, isVarDecl);
-  if (context & Context.OptionsWebCompat && !('#' + name in scope.lex.funcs)) {
-    scope.lex.funcs['#' + name] = ScopeMasks.Undeclared;
+  if (context & Context.OptionsWebCompat && !('$' + name in scope.lexicals.funcs)) {
+    scope.lexicals.funcs['$' + name] = ScopeMasks.Undeclared;
   }
 }
 /**
@@ -211,16 +211,22 @@ export function checkConflictingLexicalDeclarations(
   scope: any,
   checkParent: 0 | 1
 ): boolean {
-  for (let key in scope.lex) {
-    if (key[0] === '#' && key.length > 1) {
-      if (scope.lex[key] > 1) report(parser, Errors.DuplicateBinding, key);
+  for (let key in scope.lexicals) {
+    if (key[0] === '$' && key.length > 1) {
+      if (scope.lexicals[key] > 1) report(parser, Errors.DuplicateBinding, key);
 
       if (checkParent) {
-        if (scope.lex['#'] && scope.lex['#'].type & (ScopeType.ArgList | ScopeType.Catch) && scope.lex['#'][key]) {
+        if (
+          scope.lexicals['$'] &&
+          scope.lexicals['$'].type & (ScopeType.ArgList | ScopeType.Catch) &&
+          scope.lexicals['$'][key]
+        ) {
           report(parser, Errors.DuplicateBinding, key.slice(1));
         } else if (
-          ((context & Context.OptionsWebCompat) === 0 || (context & Context.Strict) !== 0 || !scope.lex.funcs[key]) &&
-          scope.lexvar[key]
+          ((context & Context.OptionsWebCompat) === 0 ||
+            (context & Context.Strict) !== 0 ||
+            !scope.lexicals.funcs[key]) &&
+          scope.lexicalVariables[key]
         ) {
           report(parser, Errors.DuplicateBinding, key.slice(1));
         }
@@ -239,7 +245,7 @@ export function checkConflictingLexicalDeclarations(
 
 export function verifyArguments(parser: ParserState, lex: any): void {
   for (let key in lex) {
-    if (key[0] === '#' && key.length > 1 && lex[key] > 1) {
+    if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
       report(parser, Errors.DuplicateBinding, key.slice(1));
     }
   }
@@ -249,30 +255,30 @@ export function verifyArguments(parser: ParserState, lex: any): void {
  * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
  * for duplicates
  *
- * @see [Link](https://tc39.github.io/ecma262/#sec-exports-static-semantics-exportednames)
+ * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
  *
  * @param parser Parser object
  * @param name Exported name
  */
 export function updateExportsList(parser: ParserState, name: string): void {
   if (parser.exportedNames !== undefined && name !== '') {
-    if (parser.exportedNames['#' + name]) {
+    if (parser.exportedNames['$' + name]) {
       report(parser, Errors.DuplicateExportBinding, name);
     }
-    parser.exportedNames['#' + name] = ScopeMasks.Undeclared;
+    parser.exportedNames['$' + name] = ScopeMasks.Undeclared;
   }
 }
 
 /**
  * Appends a name to the `ExportedBindings` of the `ExportsList`,
  *
- * @see [Link](https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings)
+ * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
  *
  * @param parser Parser object
  * @param name Exported binding name
  */
 export function addBindingToExports(parser: ParserState, name: string): void {
   if (parser.exportedBindings !== undefined && name !== '') {
-    parser.exportedBindings['#' + name] = ScopeMasks.Undeclared;
+    parser.exportedBindings['$' + name] = ScopeMasks.Undeclared;
   }
 }

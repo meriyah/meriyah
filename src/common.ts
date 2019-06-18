@@ -332,12 +332,12 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
 export function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
 
   while (labels) {
-    if (labels['€' + name]) {
+    if (labels['$' + name]) {
       if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
       return 1;
     }
     if (isIterationStatement && labels.loop) isIterationStatement = 0;
-    labels = labels['€'];
+    labels = labels['$'];
   }
 
   return 0;
@@ -354,11 +354,11 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
 export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
   let set = labels;
   do {
-    if (set['€' + name]) report(parser, Errors.LabelRedeclaration, name);
-    set = set['€'];
+    if (set['$' + name]) report(parser, Errors.LabelRedeclaration, name);
+    set = set['$'];
   } while (set);
 
-  labels['€' + name] = 1;
+  labels['$' + name] = 1;
 }
 
 

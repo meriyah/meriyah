@@ -214,7 +214,7 @@ export function parseSource(source: string, options: Options | void, context: Co
 
     if (context & Context.OptionsLexical) {
       for (let key in parser.exportedBindings) {
-        if (key !== '#default' && (scope.var[key] === undefined && scope.lex[key] === undefined)) {
+        if (key !== '$default' && (scope.var[key] === undefined && scope.lexicals[key] === undefined)) {
           report(parser, Errors.UndeclaredExportedBinding, key.slice(1));
         }
       }
@@ -667,7 +667,7 @@ export function parseBlock(
       parser,
       context & ~Context.TopLevel,
       scope,
-      { '€': labels },
+      { $: labels },
       parser.tokenIndex
     ) as any);
   }
@@ -1090,7 +1090,7 @@ export function parseConsequentOrAlternate(
     // Disallow if web compability is off
     (context & Context.OptionsWebCompat) === 0 ||
     parser.token !== Token.FunctionKeyword
-    ? parseStatement(parser, context, scope, { '€': labels }, FunctionStatement.Disallow, parser.tokenIndex)
+    ? parseStatement(parser, context, scope, { $: labels }, FunctionStatement.Disallow, parser.tokenIndex)
     : parseFunctionDeclaration(parser, context, scope, 0, HoistedFunctionFlags.None, 0, start);
 }
 
@@ -1144,7 +1144,7 @@ export function parseSwitchStatement(
         (context | Context.InSwitch | Context.TopLevel) ^ Context.TopLevel,
         scope,
         {
-          '€': labels
+          $: labels
         },
         parser.tokenIndex
       ) as ESTree.Statement);
@@ -1215,7 +1215,7 @@ export function parseIterationStatementBody(
     parser,
     ((context | Context.TopLevel | Context.DisallowIn) ^ (Context.TopLevel | Context.DisallowIn)) | Context.InIteration,
     scope,
-    { loop: 1, '€': labels },
+    { loop: 1, $: labels },
     FunctionStatement.Disallow,
     parser.tokenIndex
   );
@@ -1377,7 +1377,7 @@ export function parseTryStatement(
   const isLexical: number = context & Context.OptionsLexical;
   const blockScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
 
-  const block = parseBlock(parser, context, blockScope, { '€': labels }, parser.tokenIndex);
+  const block = parseBlock(parser, context, blockScope, { $: labels }, parser.tokenIndex);
   const { tokenIndex } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, labels, isLexical, tokenIndex)
@@ -1388,7 +1388,7 @@ export function parseTryStatement(
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
     const finalizerScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
-    finalizer = parseBlock(parser, context, finalizerScope, { '€': labels }, tokenIndex);
+    finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenIndex);
   }
 
   if (!handler && !finalizer) {
@@ -1441,7 +1441,7 @@ export function parseCatchBlock(
     if (isLexical) secondScope = inheritScope(scope, ScopeType.Block);
   }
 
-  const body = parseBlock(parser, context, secondScope, { '€': labels }, parser.tokenIndex);
+  const body = parseBlock(parser, context, secondScope, { $: labels }, parser.tokenIndex);
 
   return finishNode(parser, context, start, {
     type: 'CatchClause',
@@ -2986,7 +2986,7 @@ export function parseFunctionBody(
       context & Context.Strict &&
       (context & Context.InGlobal) === 0
     )
-      verifyArguments(parser, scope.lex['#']);
+      verifyArguments(parser, scope.lexicals['$']);
   }
 
   while (parser.token !== Token.RightBrace) {
@@ -5276,7 +5276,7 @@ export function parseMethodFormals(
       report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
     }
 
-    if (context & Context.OptionsLexical) verifyArguments(parser, scope.lex);
+    if (context & Context.OptionsLexical) verifyArguments(parser, scope.lexicals);
   }
 
   consume(parser, context, Token.RightParen);
@@ -5773,7 +5773,7 @@ export function parseFormalParametersOrFormalList(
   if (isComplex) parser.flags |= Flags.SimpleParameterList;
 
   if (context & Context.OptionsLexical && (isComplex || context & Context.Strict)) {
-    verifyArguments(parser, scope.lex);
+    verifyArguments(parser, scope.lexicals);
   }
 
   consume(parser, context, Token.RightParen);
