@@ -198,7 +198,7 @@ export function addFunctionName(
   }
 }
 /**
- * Check if the scope has conflicting var/let declarations from different scopes.
+ * Check if the scope has conflicting var/let declarations from different scopes
  *
  * @param parser Parser object
  * @param context  Context masks

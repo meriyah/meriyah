@@ -105,6 +105,18 @@ export const enum Flags {
   Yield               = 1 << 8,
 }
 
+export const enum HoistedClassFlags {
+  None,
+  Hoisted = 1 << 0,
+  Export = 1 << 1
+}
+
+export const enum HoistedFunctionFlags {
+  None,
+  Hoisted = 1 << 0,
+  Export = 1 << 1
+}
+
 export const enum FunctionStatement {
   Disallow,
   Allow,

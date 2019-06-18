@@ -36,20 +36,10 @@ import {
   isPropertyWithPrivateFieldKey,
   isValidLabel,
   validateAndDeclareLabel,
-  finishNode
+  finishNode,
+  HoistedClassFlags,
+  HoistedFunctionFlags
 } from './common';
-
-export const enum HoistedClassFlags {
-  None,
-  Hoisted = 1 << 0,
-  Export = 1 << 1
-}
-
-export const enum HoistedFunctionFlags {
-  None,
-  Hoisted = 1 << 0,
-  Export = 1 << 1
-}
 
 /**
  * Create a new parser instance
