@@ -29,6 +29,7 @@
       'change #directives': 'onDirectivesChange',
       'change #attachComment': 'onAttachComment',
       'change #webCompat': 'onwebCompat',
+      'change #lexical': 'onlexical',
       'change #module': 'onModuleChange',
     },
 
@@ -51,6 +52,7 @@
       this.$directives = this.$el.find('#directives');
       this.$attachComment = this.$el.find('#attachComment');
       this.$webCompat = this.$el.find('#webCompat');
+      this.$lexical = this.$el.find('#lexical');
       
       
       EventBus.on('resize:window', this.onWindowResize);
@@ -62,7 +64,7 @@
       this.onModuleChange();
       this.onDirectivesChange();
       this.onAttachComment();
-      this.onwebCompat();
+      this.onlexical();
       this.onJsxChange();
       this.parseURL();
       this.parse();
@@ -104,6 +106,10 @@
       this._options.webCompat = this.$webCompat.prop('checked');
       this.parse();
     },
+    onlexical: function(event) {
+      this._options.lexical = this.$lexical.prop('checked');
+      this.parse();
+    },
     onModuleChange: function(event) {
       this._options.module = this.$module.prop('checked');
       this.parse();
@@ -122,9 +128,9 @@
       var result;
       try {
         if (this._options.module) {
-          result = cherow.parseModule(this.$input.val(), this._options);
+          result = meriyah.parseModule(this.$input.val(), this._options);
         } else {
-          result = cherow.parseScript(this.$input.val(), this._options);
+          result = meriyah.parseScript(this.$input.val(), this._options);
         }
         result = JSON.stringify(result, null, '    ');
       } catch (e) {
@@ -148,7 +154,8 @@
         jsx: this._options.jsx,
         directives: this._options.directives,
         attachComment: this._options.attachComment,
-        webCompat: this._options.webCompat
+        webCompat: this._options.webCompat,
+        lexical: this._options.lexical
       };
       var href = location.href.replace(/[?#].*$/, '');
       var url = href + '?' + Util.buildParams(params);
@@ -181,6 +188,9 @@
 
       if (params.webCompat === 'true') {
         this.$webCompat.prop('checked', true).change();
+      }
+      if (params.lexical === 'true') {
+        this.lexical.prop('checked', true).change();
       }
       
       if (params.jsx === 'true') {
