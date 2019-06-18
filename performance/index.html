@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Meriyah - A fast, Typescript-based Javascript parser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="performance/assets/style.css">
+<style>
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+textarea {
+resize: none;
+}
+
+#input, #output {
+  width: 99%;
+  height: 300px;
+  border-left: 3px solid #ddd;
+  padding: 0 0 0 8px;
+
+}
+#module_code {
+  font-size: 14px;
+  float:right;
+  margin-right:10px;
+  margin-top: 5px;
+}
+.input-title {
+  border: 0 none;
+  margin-bottom: 12px;
+}
+
+.sub {
+  margin-top: 0.5em;
+}
+
+.footer {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.footer a {
+  font-weight: bold;
+}
+.fixed-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 50px;
+  background-color: #00a087;
+}
+
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset>
+          <legend class="input-title">Input
+              <label id ="module_code"><input type="checkbox" id="module"> Module code</label>
+          </legend>
+
+          <textarea id="input" class="form-control" placeholder="Write JavaScript code here.">function yield() {}</textarea>
+          <div class="sub">
+            <label><input type="checkbox" id="range"> Index-based range</label>
+          </div>
+          <div>
+            <label><input type="checkbox" id="loc"> Line and column-based</label>
+          </div>
+          <div>
+              <label><input type="checkbox" id="next"> ECMAScript Next (Stage 3 proposals)</label>
+            </div>
+            <div>
+                <label><input type="checkbox" id="raw"> Raw property on the node</label>
+              </div>
+                <div>
+                  <label><input type="checkbox" id="webCompat"> Web compability</label>
+                </div>
+                <div>
+                  <label><input type="checkbox" id="lexical"> Lexical binding and scope tracking</label>
+                </div>
+              </fieldset>
+      </div>
+      <div class="input-title">
+        <fieldset>
+            <legend class="input-title">Syntax</legend>
+          <textarea id="output" class="form-control" readonly></textarea>
+          <div class="sub">
+            <label for="url" class="control-label">URL for this code:</label>
+            <input type="text" class="form-control" id="url" value="" readonly>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <script src="js/es5-shim.js"></script>
+  <script src="js/es5-sham.js"></script>
+  <script src="meriyah.umd.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/backbone.js"></script>
+  <script src="js/demo.js"></script>
+</body>
+</html>
