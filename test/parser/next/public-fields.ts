@@ -12,7 +12,11 @@ describe('Next - Public fields', () => {
     ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
     ['var C = class { x = () => arguments); }', Context.OptionsWebCompat | Context.OptionsNext],
     ['var C = class { x = () => eval); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext]
+    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
+    [
+      'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
+      Context.OptionsWebCompat | Context.OptionsNext
+    ]
   ]);
 
   for (const arg of [

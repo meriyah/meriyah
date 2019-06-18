@@ -1,7 +1,37 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
+import * as t from 'assert';
+import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Unary', () => {
+  for (const arg of [
+    'delete {}.x',
+    'typeof x === "undefined"',
+    'delete o["y"]',
+    'delete Number(7)',
+    'delete new Number(8)',
+    'delete a[2]',
+    'delete o[Math.pow(2,30)]'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+  }
+
   fail('Expressions - Unary (fail)', [
     ['(((x)))\n--;', Context.None],
     ['(x)\n--;', Context.None],

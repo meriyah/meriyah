@@ -1,3 +1,3 @@
 ## Meriyah test suite
 
-Runs ~73 000 tests
+Runs ~81 000 tests

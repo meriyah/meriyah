@@ -87,7 +87,16 @@ describe('Next - ImportCall', () => {
     ['(1, import(x).then()) => {}', Context.None],
     ['[import(y=x)] = [1];', Context.None],
     ['[import(x).then()] = [1];', Context.None],
-    ['[import(import(x))] = [1];', Context.None]
+    ['[import(import(x))] = [1];', Context.None],
+    ['import("") ++', Context.None],
+    ['import("") += 5', Context.None],
+    ['import("") -= 5', Context.None],
+    ['import("") --', Context.None],
+    ['import("") = 2', Context.None],
+    ['import("") <<= 2', Context.None],
+    ['import("") >>= 2', Context.None],
+    ['import("") >>>= 2', Context.None],
+    ['import("") **= 2', Context.None]
   ]);
 
   for (const arg of [

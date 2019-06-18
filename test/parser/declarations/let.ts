@@ -317,7 +317,12 @@ describe('Declarations - Let', () => {
     'let { s: t = a(), u: v = b(), w: x = c(), y: z = d() } = { s: null, u: 0, w: false, y: "" };',
     'let {} = obj;',
     'let {} = undefined;',
-    'foo: let: y;'
+    'foo: let: y;',
+    'let {a, b, c} = {}, e, f;',
+    'let {a, b} = {}, c = 0;',
+    'let {a, b} = c, d;',
+    'let {a, b, c} = {}, e, f;',
+    'let {a, b} = {}, c = 0;'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -418,6 +423,10 @@ describe('Declarations - Let', () => {
     ['for (let\nfoo());', Context.None],
     ['for (let foo, bar in x);', Context.None],
     ['for (let foo = bar in x);', Context.None],
+    ['let { let } = {};', Context.None],
+    ['const { let } = {};', Context.None],
+    ['let [let] = [];', Context.None],
+    ['const [let] = [];', Context.None],
     ['for (let foo = bar, zoo = boo in x);', Context.None],
     ['for (let\nfoo() in x);', Context.None],
     ['for (let foo = bar, zoo = boo of x);', Context.None],
