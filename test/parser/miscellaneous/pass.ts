@@ -7847,6 +7847,27 @@ function u() {
     'class a extends b { constructor() { super.c } }',
     '(a)=>{"use strict";}',
     'function* a() {}',
+    `function a() {
+      delete new.target;
+      typeof new.target;
+      -new.target;
+      !new.target;
+    }`,
+    `function b() {
+      void (new.target);
+      +(new.target);
+      ~(new.target);
+    }`,
+    `function c() {
+      delete void typeof +-~! (new.target);
+    }`,
+    `async function d() {
+      await new.target;
+    }`,
+    `function F()
+    {
+    if (!new.target) return new F
+    }`,
     'while (true) { break }',
     `(function () {
   var a = 1;  // should not hoist this

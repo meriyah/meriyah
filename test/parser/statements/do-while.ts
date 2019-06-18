@@ -7,7 +7,7 @@ describe('Statements - Do while', () => {
     ['do async \n f(){}; while (y)', Context.None],
     ['do async \n () => x; while(y)', Context.None],
     ['do async () \n => x; while(y)', Context.None],
-
+    ['do let x = 1; while (false)', Context.None],
     ['do switch(x){} while(x) x', Context.None],
     ['do try {} catch {} while(x) x', Context.None],
     ['do try {} catch {} while(x) x', Context.None],

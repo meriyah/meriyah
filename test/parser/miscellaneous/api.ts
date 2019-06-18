@@ -9,7 +9,9 @@ describe('Expressions - API', () => {
         globalReturn: true,
         ranges: true,
         webCompat: true,
-        module: true
+        module: true,
+        parenthesizedExpr: true,
+        lexical: true
       }),
       {
         type: 'Program',

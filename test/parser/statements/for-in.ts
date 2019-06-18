@@ -343,7 +343,14 @@ describe('Statements - For in', () => {
     'for ( let[x] in obj ) {}',
     'for ((a in b).x in {});',
     'for (x in null, { key: 0 }) {}',
-    'for ((let.x) of []) {}'
+    'for ((let.x) of []) {}',
+    'for (let a = b => { return b in c; }; ;);',
+    'for (let a = (b in c); ;);',
+    'for (let a = (b in c && d); ;);',
+    'for (let a = b => (b in c); ;);',
+    'for (let a = ((b in c) && (d in e)); ;);',
+    'for (let a = (b && c in d); ;);',
+    'for (let a = (b => c => b in c); ;);'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -407,9 +414,15 @@ describe('Statements - For in', () => {
     ['for (var a = ++b in c);', Context.None],
     ['for (const ...x in y){}', Context.None],
     ['for (...x in y){}', Context.None],
+    ['for (let a = b => b in c; ;);', Context.None],
     ['for(let x = 0 in {});', Context.None],
     ['for(let [] = 0 in {});', Context.None],
     ['for(let [,] = 0 in {});', Context.None],
+    ['for (let x = 3 in {}) { }', Context.None],
+    ['for (let x = 3, y in {}) { }', Context.None],
+    ['for (let x = 3, y = 4 in {}) { }', Context.None],
+    ['for (let x, y = 4 in {}) { }', Context.None],
+    ['for (let x, y in {}) { }', Context.None],
     ['for(let [a] = 0 in {});', Context.None],
     ['for(const {x = 0} = 0 in {});', Context.None],
     ['for([,] = 0 in {});', Context.None],
