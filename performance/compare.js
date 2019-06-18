@@ -48,7 +48,7 @@ parsers = [
 },
 {
     name: 'Cherow',
-    src: '../kleuver.umd.js',
+    src: '../cherow.umd.js',
     version: function () {
         return '1.6.9';
     },
