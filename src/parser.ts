@@ -372,8 +372,7 @@ export function parseStatementListItem(
       return parseFunctionDeclaration(parser, context, scope, 1, HoistedFunctionFlags.None, 0, start);
     // @decorator
     case Token.Decorator:
-      if (context & Context.Module)
-        return parseDecorators(parser, context | Context.InDecoratorContext) as ESTree.Decorator[];
+      if (context & Context.Module) return parseDecorators(parser, context) as ESTree.Decorator[];
     // ClassDeclaration[?Yield, ~Default]
     case Token.ClassKeyword:
       return parseClassDeclaration(parser, context, scope, HoistedClassFlags.None, start);
@@ -1268,7 +1267,7 @@ export function parseBreakStatement(
     label = parseIdentifier(parser, context | Context.AllowRegExp, tokenIndex);
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 0))
       report(parser, Errors.UnknownLabel, tokenValue);
-  } else if ((context & Context.InSwitchOrIteration) === 0) {
+  } else if ((context & (Context.InSwitch | Context.InIteration)) === 0) {
     report(parser, Errors.IllegalBreak);
   }
 
@@ -3826,8 +3825,8 @@ export function parseFunctionDeclaration(
 
   const body = parseFunctionBody(
     parser,
-    (context | 0x8001000 | Context.InGlobal | Context.InSwitchOrIteration) ^
-      (0x8001000 | Context.InGlobal | Context.InSwitchOrIteration),
+    (context | 0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
+      (0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration),
     context & Context.OptionsLexical ? inheritScope(innerscope, ScopeType.Block) : innerscope,
     BindingOrigin.Declaration,
     firstRestricted
@@ -3907,7 +3906,8 @@ export function parseFunctionExpression(
 
   const body = parseFunctionBody(
     parser,
-    context & ~(0x8001000 | Context.InGlobal | Context.TopLevel | Context.InSwitchOrIteration | Context.InClass),
+    context &
+      ~(0x8001000 | Context.InGlobal | Context.TopLevel | Context.InSwitch | Context.InIteration | Context.InClass),
     Context.OptionsLexical ? inheritScope(scope, ScopeType.Block) : scope,
     0,
     firstRestricted
@@ -6163,8 +6163,7 @@ export function parseClassDeclaration(
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
 
-  const decorators: ESTree.Decorator[] =
-    context & Context.OptionsNext ? parseDecorators(parser, context | Context.InDecoratorContext) : [];
+  const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
 
   nextToken(parser, context);
 
@@ -6256,8 +6255,7 @@ export function parseClassExpression(
   // All class code is always strict mode implicitly
   context = (context & ~Context.InConstructor) | Context.Strict;
 
-  const decorators: ESTree.Decorator[] =
-    context & Context.OptionsNext ? parseDecorators(parser, context | Context.InDecoratorContext) : [];
+  const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
 
   nextToken(parser, context);
 

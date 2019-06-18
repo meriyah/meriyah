@@ -35,9 +35,7 @@ export const enum Context {
   InMethod              = 1 << 25,
   AllowNewTarget        = 1 << 26,
   DisallowIn            = 1 << 27,
-  InDecoratorContext    = 1 << 28,
-  InClass               = 1 << 29,
-  InSwitchOrIteration = InSwitch | InIteration
+  InClass               = 1 << 28
 }
 
 export const enum PropertyKind {
