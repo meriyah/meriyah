@@ -1,114 +1,80 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
 <head>
-<meta charset="utf-8">
-<title>Meriyah - A fast, Typescript-based Javascript parser</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="performance/assets/style.css">
-<style>
-h2 {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-textarea {
-resize: none;
-}
-
-#input, #output {
-  width: 99%;
-  height: 300px;
-  border-left: 3px solid #ddd;
-  padding: 0 0 0 8px;
-
-}
-#module_code {
-  font-size: 14px;
-  float:right;
-  margin-right:10px;
-  margin-top: 5px;
-}
-.input-title {
-  border: 0 none;
-  margin-bottom: 12px;
-}
-
-.sub {
-  margin-top: 0.5em;
-}
-
-.footer {
-  margin-top: 1em;
-  margin-bottom: 2em;
-}
-
-.footer a {
-  font-weight: bold;
-}
-.fixed-nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 50px;
-  background-color: #00a087;
-}
-
-</style>
+  <meta charset="utf-8" />
+  <title>Cherow: Speed Comparisons</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="assets/foundation.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="compare.js"></script>
+  <script src="3rdparty/benchmark.js"></script>
+  <script src="3rdparty/XMLHttpRequest.js"></script>
+<script>
+/*jslint browser:true, sloppy:true */
+/*global setupBenchmarks:true*/
+window.onload = function () {
+    window.setTimeout(setupBenchmarks, 211);
+};
+</script>
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <fieldset>
-          <legend class="input-title">Input
-              <label id ="module_code"><input type="checkbox" id="module"> Module code</label>
-          </legend>
-
-          <textarea id="input" class="form-control" placeholder="Write JavaScript code here.">function yield() {}</textarea>
-          <div class="sub">
-            <label><input type="checkbox" id="range"> Index-based range</label>
-          </div>
-          <div>
-            <label><input type="checkbox" id="loc"> Line and column-based</label>
-          </div>
-          <div>
-              <label><input type="checkbox" id="next"> ECMAScript Next (Stage 3 proposals)</label>
-            </div>
-            <div>
-                <label><input type="checkbox" id="raw"> Raw property on the node</label>
-              </div>
-                <div>
-                  <label><input type="checkbox" id="webCompat"> Web compability</label>
-                </div>
-                <div>
-                  <label><input type="checkbox" id="lexical"> Lexical binding and scope tracking</label>
-                </div>
-              </fieldset>
-      </div>
-      <div class="input-title">
-        <fieldset>
-            <legend class="input-title">Syntax</legend>
-          <textarea id="output" class="form-control" readonly></textarea>
-          <div class="sub">
-            <label for="url" class="control-label">URL for this code:</label>
-            <input type="text" class="form-control" id="url" value="" readonly>
-          </div>
-        </fieldset>
-      </div>
+  <!-- Navigation bar -->
+  <div class="row">
+    <div class="twelve columns">
+      <nav class="top-bar">
+        <ul>
+          <li class="name">
+             <h1><a href="https://github.com/cherow/cherow">Cherow</a></h1>
+          </li>
+        </ul>
+        <section>
+          <ul class="right">
+            <li>
+              <a href="..">Demo</a>
+            </li>
+            <li>
+              <a href=".">Speed Comparison</a>
+            </li>
+          </ul>
+        </section>
+      </nav>
     </div>
   </div>
-  <script src="js/es5-shim.js"></script>
-  <script src="js/es5-sham.js"></script>
-  <script src="meriyah.umd.js"></script>
-  <script src="js/jquery.js"></script>
-  <script src="js/underscore.js"></script>
-  <script src="js/backbone.js"></script>
-  <script src="js/demo.js"></script>
+
+  <!-- Title and subtitle -->
+  <div class="row">
+    <div class="twelve columns">
+      <h3 class="subheader"><strong>Speed Comparison</strong> adapted from <a href="http://esprima.org/test/compare.html">Esprima's Speed Comparison</a></h3>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="row">
+    <div class="twelve columns">
+
+<p>
+<input id="runwarm" class="medium radius button secondary" type="submit" value="Run speed comparison with warm JIT" disabled />
+<input id="runcold" class="medium radius button" type="submit" value="Run speed comparison with cold JIT" disabled />
+</p>
+
+<p class="explanation">With the warm JIT benchmark, all benchmark cycles are run in the same thread. This allows the JIT compiler to heavily optimize the parsers, simulating parsing very many files at once, but can also lead to over-optimizing for parsing a specific file.</p>
+<p class="explanation">With the cold JIT benchmark, we start a new thread (Web Worker) for every benchmark cycle, to simulate parsing a single file for the first time.</p>
+<p class="explanation">In both cases, the reported times only include parsing the listed files, not loading and executing the parser's script file.</p>
+
+<p id="status">Please wait...</p>
+<p id="result"></p>
+
+        <p>Every parser produces the syntax tree with location marking in every syntax node.</p>
+
+        <p>Time measurement is carried out using <a href="http://benchmarkjs.com" target="_blank">Benchmark.js</a><span id="benchmarkjs-version"></span>.</p>
+
+    </div>
+
+  </div>
+
 </body>
 </html>
