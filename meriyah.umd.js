@@ -1031,12 +1031,12 @@
               ? 208897
               : keyword === 241770 || !hasEscape
                   ? keyword
-                  : (keyword & 36864) === 36864
-                      ? context & 1024 && hasEscape
-                          ? 143479
-                          : keyword
-                      : context & 1024 && (keyword === 268677192 || keyword === 36969)
-                          ? 143479
+                  : context & 1024 && (keyword === 268677192 || keyword === 36969)
+                      ? 143479
+                      : (keyword & 36864) === 36864
+                          ? context & 1024
+                              ? 143479
+                              : keyword
                           : 143478;
       }
       return 208897;
@@ -1624,18 +1624,18 @@
   function initblockScope() {
       return {
           var: {},
-          lexvar: {},
-          lex: { funcs: [] }
+          lexicalVariables: {},
+          lexicals: { funcs: [] }
       };
   }
   function inheritScope(scope, type) {
       return {
           var: scope.var,
-          lexvar: {
-              '#': scope.lexvar
+          lexicalVariables: {
+              $: scope.lexicalVariables
           },
-          lex: {
-              '#': scope.lex,
+          lexicals: {
+              $: scope.lexicals,
               type,
               funcs: []
           }
@@ -1644,9 +1644,9 @@
   function declareName(parser, context, scope, name, bindingType, dupeChecks, isVarDecl) {
       if (scope === null)
           return;
-      let hashed = '#' + name;
+      let hashed = '$' + name;
       if (bindingType & 4) {
-          let lex = scope.lex;
+          let lex = scope.lexicals;
           while (lex !== undefined) {
               if (lex[hashed] !== undefined) {
                   if (lex.type & 4) {
@@ -1659,36 +1659,36 @@
                   }
                   else if ((lex.type & 16) === 0 &&
                       ((context & 256) === 0 ||
-                          (scope.lex.funcs[hashed] & 2) === 0 ||
+                          (scope.lexicals.funcs[hashed] & 2) === 0 ||
                           context & 1024))
                       report(parser, 156, name);
               }
-              lex = lex['#'];
+              lex = lex['$'];
           }
           scope.var[hashed] = scope.var[hashed] ? 2 : 1;
-          let lexvar = scope.lexvar;
-          while (lexvar !== undefined) {
-              lexvar[hashed] = 1;
-              lexvar = lexvar['#'];
+          let lexicalVariables = scope.lexicalVariables;
+          while (lexicalVariables !== undefined) {
+              lexicalVariables[hashed] = 1;
+              lexicalVariables = lexicalVariables['$'];
           }
       }
       else {
-          let lex = scope.lex;
+          let lex = scope.lexicals;
           if (dupeChecks) {
-              let lexParent = scope.lex['#'];
+              let lexParent = scope.lexicals['$'];
               if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
                   report(parser, 156, name);
               }
-              else if (scope.lexvar[hashed]) {
+              else if (scope.lexicalVariables[hashed]) {
                   if ((context & 256) === 0 ||
-                      (scope.lex.funcs[hashed] & 2) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       (context & 1024) !== 0) {
                       report(parser, 156, name);
                   }
               }
               if (lex[hashed] !== undefined &&
                   ((context & 256) === 0 ||
-                      (scope.lex.funcs[hashed] & 2) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       context & 1024)) {
                   report(parser, 156, name);
               }
@@ -1701,25 +1701,29 @@
       if (scope === null)
           return;
       if (context & 256)
-          scope.lex.funcs['#' + name] = 1;
+          scope.lexicals.funcs['$' + name] = 1;
   }
   function addFunctionName(parser, context, scope, name, type, isVarDecl) {
       declareName(parser, context, scope, name, type, 1, isVarDecl);
-      if (context & 256 && !('#' + name in scope.lex.funcs)) {
-          scope.lex.funcs['#' + name] = 2;
+      if (context & 256 && !('$' + name in scope.lexicals.funcs)) {
+          scope.lexicals.funcs['$' + name] = 2;
       }
   }
   function checkConflictingLexicalDeclarations(parser, context, scope, checkParent) {
-      for (let key in scope.lex) {
-          if (key[0] === '#' && key.length > 1) {
-              if (scope.lex[key] > 1)
+      for (let key in scope.lexicals) {
+          if (key[0] === '$' && key.length > 1) {
+              if (scope.lexicals[key] > 1)
                   report(parser, 156, key);
               if (checkParent) {
-                  if (scope.lex['#'] && scope.lex['#'].type & (16 | 4) && scope.lex['#'][key]) {
+                  if (scope.lexicals['$'] &&
+                      scope.lexicals['$'].type & (16 | 4) &&
+                      scope.lexicals['$'][key]) {
                       report(parser, 156, key.slice(1));
                   }
-                  else if (((context & 256) === 0 || (context & 1024) !== 0 || !scope.lex.funcs[key]) &&
-                      scope.lexvar[key]) {
+                  else if (((context & 256) === 0 ||
+                      (context & 1024) !== 0 ||
+                      !scope.lexicals.funcs[key]) &&
+                      scope.lexicalVariables[key]) {
                       report(parser, 156, key.slice(1));
                   }
               }
@@ -1729,23 +1733,22 @@
   }
   function verifyArguments(parser, lex) {
       for (let key in lex) {
-          if (key[0] === '#' && key.length > 1 && lex[key] > 1) {
+          if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
               report(parser, 156, key.slice(1));
           }
       }
   }
-  function addNameToExports(parser, key) {
-      if (parser.exportedNames !== undefined && key !== '') {
-          if (parser.exportedNames['#' + key]) {
-              report(parser, 157, key);
+  function updateExportsList(parser, name) {
+      if (parser.exportedNames !== undefined && name !== '') {
+          if (parser.exportedNames['$' + name]) {
+              report(parser, 157, name);
           }
-          parser.exportedNames['#' + key] = 2;
+          parser.exportedNames['$' + name] = 2;
       }
   }
-  function addBindingToExports(parser, key) {
-      if (parser.exportedBindings !== undefined && key !== '') {
-          let hashed = '#' + key;
-          parser.exportedBindings[hashed] = 2;
+  function addBindingToExports(parser, name) {
+      if (parser.exportedBindings !== undefined && name !== '') {
+          parser.exportedBindings['$' + name] = 2;
       }
   }
 
@@ -1856,25 +1859,25 @@
   }
   function isValidLabel(parser, labels, name, isIterationStatement) {
       while (labels) {
-          if (labels['€' + name]) {
+          if (labels['$' + name]) {
               if (isIterationStatement)
                   report(parser, 149);
               return 1;
           }
           if (isIterationStatement && labels.loop)
               isIterationStatement = 0;
-          labels = labels['€'];
+          labels = labels['$'];
       }
       return 0;
   }
   function validateAndDeclareLabel(parser, labels, name) {
       let set = labels;
-      while (set) {
-          if (set && set['€' + name])
+      do {
+          if (set['$' + name])
               report(parser, 148, name);
-          set = set['€'];
-      }
-      labels['€' + name] = 1;
+          set = set['$'];
+      } while (set);
+      labels['$' + name] = 1;
   }
   function finishNode(parser, context, start, node) {
       if (context & 2) {
@@ -1940,7 +1943,7 @@
           body = parseModuleItemList(parser, context | 8192 | 16384, scope);
           if (context & 64) {
               for (let key in parser.exportedBindings) {
-                  if (key !== '#default' && (scope.var[key] === undefined && scope.lex[key] === undefined)) {
+                  if (key !== '$default' && (scope.var[key] === undefined && scope.lexicals[key] === undefined)) {
                       report(parser, 158, key.slice(1));
                   }
               }
@@ -2017,7 +2020,7 @@
               return parseFunctionDeclaration(parser, context, scope, 1, 0, 0, start);
           case 133:
               if (context & 2048)
-                  return parseDecorators(parser, context | 268435456);
+                  return parseDecorators(parser, context);
           case 86093:
               return parseClassDeclaration(parser, context, scope, 0, start);
           case 268521545:
@@ -2117,7 +2120,7 @@
       const body = [];
       consume(parser, context | 32768, 2162700);
       while (parser.token !== -2146435057) {
-          body.push(parseStatementListItem(parser, context & ~16384, scope, { '€': labels }, parser.tokenIndex));
+          body.push(parseStatementListItem(parser, context & ~16384, scope, { $: labels }, parser.tokenIndex));
       }
       consume(parser, context | 32768, -2146435057);
       return finishNode(parser, context, start, {
@@ -2212,6 +2215,7 @@
       if (parser.token === -1073741806)
           expr = parseSequenceExpression(parser, context, start, expr);
       expr = parseAssignmentExpression(parser, context, 0, start, expr);
+      parser.assignable = 1;
       return parseExpressionStatement(parser, context, expr, start);
   }
   function parseDirective(parser, context, expression, token, start) {
@@ -2278,7 +2282,7 @@
       return context & 1024 ||
           (context & 256) === 0 ||
           parser.token !== 86103
-          ? parseStatement(parser, context, scope, { '€': labels }, 0, parser.tokenIndex)
+          ? parseStatement(parser, context, scope, { $: labels }, 0, parser.tokenIndex)
           : parseFunctionDeclaration(parser, context, scope, 0, 0, 0, start);
   }
   function parseSwitchStatement(parser, context, scope, labels, start) {
@@ -2309,7 +2313,7 @@
               parser.token !== -2146435057 &&
               parser.token !== 20560) {
               consequent.push(parseStatementListItem(parser, (context | 4096 | 16384) ^ 16384, scope, {
-                  '€': labels
+                  $: labels
               }, parser.tokenIndex));
           }
           cases.push(finishNode(parser, context, tokenIndex, {
@@ -2338,7 +2342,7 @@
       });
   }
   function parseIterationStatementBody(parser, context, scope, labels) {
-      return parseStatement(parser, ((context | 16384 | 134217728) ^ (16384 | 134217728)) | 131072, scope, { loop: 1, '€': labels }, 0, parser.tokenIndex);
+      return parseStatement(parser, ((context | 16384 | 134217728) ^ (16384 | 134217728)) | 131072, scope, { loop: 1, $: labels }, 0, parser.tokenIndex);
   }
   function parseContinueStatement(parser, context, labels, start) {
       if ((context & 131072) === 0)
@@ -2366,7 +2370,7 @@
           if (!isValidLabel(parser, labels, tokenValue, 0))
               report(parser, 150, tokenValue);
       }
-      else if ((context & 135168) === 0) {
+      else if ((context & (4096 | 131072)) === 0) {
           report(parser, 70);
       }
       consumeSemicolon(parser, context | 32768);
@@ -2400,7 +2404,7 @@
       nextToken(parser, context | 32768);
       const isLexical = context & 64;
       const blockScope = isLexical ? inheritScope(scope, 2) : {};
-      const block = parseBlock(parser, context, blockScope, { '€': labels }, parser.tokenIndex);
+      const block = parseBlock(parser, context, blockScope, { $: labels }, parser.tokenIndex);
       const { tokenIndex } = parser;
       const handler = consumeOpt(parser, context | 32768, 20556)
           ? parseCatchBlock(parser, context, scope, labels, isLexical, tokenIndex)
@@ -2409,7 +2413,7 @@
       if (parser.token === 20565) {
           nextToken(parser, context | 32768);
           const finalizerScope = isLexical ? inheritScope(scope, 2) : {};
-          finalizer = parseBlock(parser, context, finalizerScope, { '€': labels }, tokenIndex);
+          finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenIndex);
       }
       if (!handler && !finalizer) {
           report(parser, 94);
@@ -2440,7 +2444,7 @@
           if (isLexical)
               secondScope = inheritScope(scope, 2);
       }
-      const body = parseBlock(parser, context, secondScope, { '€': labels }, parser.tokenIndex);
+      const body = parseBlock(parser, context, secondScope, { $: labels }, parser.tokenIndex);
       return finishNode(parser, context, start, {
           type: 'CatchClause',
           param,
@@ -2847,10 +2851,8 @@
                   declaration = parseExpression(parser, context, 1, 0, parser.tokenIndex);
                   consumeSemicolon(parser, context | 32768);
           }
-          if (context & 64) {
-              declareAndDedupe(parser, context, scope, '*default*', 4, 0);
-              addNameToExports(parser, 'default');
-          }
+          if (context & 64)
+              updateExportsList(parser, 'default');
           return finishNode(parser, context, start, {
               type: 'ExportDefaultDeclaration',
               declaration
@@ -2924,7 +2926,7 @@
                   let i = 0;
                   let iMax = tmpExportedNames.length;
                   for (; i < iMax; i++) {
-                      addNameToExports(parser, tmpExportedNames[i]);
+                      updateExportsList(parser, tmpExportedNames[i]);
                   }
                   i = 0;
                   iMax = tmpExportedBindings.length;
@@ -2936,20 +2938,10 @@
               break;
           }
           case 86093:
-              declaration = parseClassDeclaration(parser, context, scope, 0, parser.tokenIndex);
-              if (context & 64) {
-                  key = declaration.id ? declaration.id.name : '';
-                  addBindingToExports(parser, key);
-                  addNameToExports(parser, key);
-              }
+              declaration = parseClassDeclaration(parser, context, scope, 2, parser.tokenIndex);
               break;
           case 86103:
-              declaration = parseFunctionDeclaration(parser, context, scope, 1, 0, 0, parser.tokenIndex);
-              if (context & 64) {
-                  key = declaration.id ? declaration.id.name : '';
-                  addBindingToExports(parser, key);
-                  addNameToExports(parser, key);
-              }
+              declaration = parseFunctionDeclaration(parser, context, scope, 1, 2, 0, parser.tokenIndex);
               break;
           case 268677192:
               declaration = parseLexicalDeclaration(parser, context, scope, 8, 16, parser.tokenIndex);
@@ -2964,11 +2956,11 @@
               const idxAfterAsync = parser.tokenIndex;
               nextToken(parser, context);
               if ((parser.flags & 1) === 0 && parser.token === 86103) {
-                  declaration = parseFunctionDeclaration(parser, context, scope, 1, 0, 1, idxAfterAsync);
+                  declaration = parseFunctionDeclaration(parser, context, scope, 1, 2, 1, idxAfterAsync);
                   if (context & 64) {
                       key = declaration.id ? declaration.id.name : '';
                       addBindingToExports(parser, key);
-                      addNameToExports(parser, key);
+                      updateExportsList(parser, key);
                   }
                   break;
               }
@@ -3166,7 +3158,7 @@
               (prevContext & 1024) < 1 &&
               context & 1024 &&
               (context & 8192) === 0)
-              verifyArguments(parser, scope.lex['#']);
+              verifyArguments(parser, scope.lexicals['$']);
       }
       while (parser.token !== -2146435057) {
           body.push(parseStatementListItem(parser, context, scope, {}, parser.tokenIndex));
@@ -3186,7 +3178,7 @@
           case 67174411: {
               if ((context & 524288) === 0)
                   report(parser, 27);
-              if (context & 536870912)
+              if (context & 268435456)
                   report(parser, 159);
               parser.assignable = 2;
               break;
@@ -3195,7 +3187,7 @@
           case 67108877: {
               if ((context & 262144) === 0)
                   report(parser, 28);
-              if (context & 536870912)
+              if (context & 268435456)
                   report(parser, 159);
               parser.assignable = 1;
               break;
@@ -3334,7 +3326,7 @@
           if (type & (8 | 16))
               report(parser, 65);
       }
-      if (context & 536870912 && parser.token === 537079925) {
+      if (context & 268435456 && parser.token === 537079925) {
           report(parser, 142);
       }
       if ((token & 143360) === 143360) {
@@ -3583,14 +3575,14 @@
           type: 'ThisExpression'
       });
   }
-  function parseFunctionDeclaration(parser, context, scope, allowGen, isExportDefault, isAsync, start) {
+  function parseFunctionDeclaration(parser, context, scope, allowGen, flags, isAsync, start) {
       nextToken(parser, context | 32768);
       const isGenerator = allowGen ? optionalBit(parser, context, 8456755) : 0;
       let id = null;
       let firstRestricted;
       let innerscope = context & 64 ? initblockScope() : {};
       if (parser.token === 67174411) {
-          if (!isExportDefault) {
+          if ((flags & 1) === 0) {
               report(parser, 38, 'Function');
           }
           if (context & 64)
@@ -3605,8 +3597,13 @@
               const mode = context & 16384 && (context & 2048) === 0 ? 4 : 8;
               addFunctionName(parser, context, scope, parser.tokenValue, mode, 1);
               innerscope = inheritScope(innerscope, 2);
-              if (isExportDefault) {
-                  addBindingToExports(parser, parser.tokenValue);
+              if (flags) {
+                  if (flags & 1) {
+                      addBindingToExports(parser, parser.tokenValue);
+                  }
+                  else {
+                      updateExportsList(parser, parser.tokenValue);
+                  }
               }
           }
           firstRestricted = parser.token;
@@ -3616,8 +3613,8 @@
       if (context & 64)
           innerscope = inheritScope(innerscope, 16);
       const params = parseFormalParametersOrFormalList(parser, context | 8388608, innerscope, 0, 1);
-      const body = parseFunctionBody(parser, (context | 0x8001000 | 8192 | 135168) ^
-          (0x8001000 | 8192 | 135168), context & 64 ? inheritScope(innerscope, 2) : innerscope, 1, firstRestricted);
+      const body = parseFunctionBody(parser, (context | 0x8001000 | 8192 | 4096 | 131072) ^
+          (0x8001000 | 8192 | 4096 | 131072), context & 64 ? inheritScope(innerscope, 2) : innerscope, 1, firstRestricted);
       return finishNode(parser, context, start, {
           type: 'FunctionDeclaration',
           params,
@@ -3647,7 +3644,8 @@
       if (context & 64)
           scope = inheritScope(scope, 16);
       const params = parseFormalParametersOrFormalList(parser, context | 8388608, scope, inGroup, 1);
-      const body = parseFunctionBody(parser, context & ~(0x8001000 | 8192 | 16384 | 135168 | 536870912), inheritScope(scope, 2), 0, firstRestricted);
+      const body = parseFunctionBody(parser, context &
+          ~(0x8001000 | 8192 | 16384 | 4096 | 131072 | 268435456), inheritScope(scope, 2), 0, firstRestricted);
       parser.assignable = 2;
       return finishNode(parser, context, start, {
           type: 'FunctionExpression',
@@ -3689,7 +3687,7 @@
                       else if (context & 64) {
                           declareName(parser, context, scope, tokenValue, type, 0, 0);
                           if (origin & 16) {
-                              addNameToExports(parser, tokenValue);
+                              updateExportsList(parser, tokenValue);
                               addBindingToExports(parser, tokenValue);
                           }
                       }
@@ -3708,7 +3706,7 @@
                       else if (context & 64) {
                           declareName(parser, context, scope, tokenValue, type, 0, 0);
                           if (origin & 16) {
-                              addNameToExports(parser, tokenValue);
+                              updateExportsList(parser, tokenValue);
                               addBindingToExports(parser, tokenValue);
                           }
                       }
@@ -3860,7 +3858,7 @@
               if (context & 64) {
                   declareName(parser, context, scope, tokenValue, type, 0, 0);
                   if (origin & 16) {
-                      addNameToExports(parser, tokenValue);
+                      updateExportsList(parser, tokenValue);
                       addBindingToExports(parser, tokenValue);
                   }
               }
@@ -4017,7 +4015,7 @@
                       if (context & 64) {
                           declareName(parser, context, scope, tokenValue, type, 0, 0);
                           if (origin & 16) {
-                              addNameToExports(parser, tokenValue);
+                              updateExportsList(parser, tokenValue);
                               addBindingToExports(parser, tokenValue);
                           }
                       }
@@ -4571,7 +4569,7 @@
               report(parser, 36, 'Setter', 'one', '');
           }
           if (context & 64)
-              verifyArguments(parser, scope.lex);
+              verifyArguments(parser, scope.lexicals);
       }
       consume(parser, context, 1073741840);
       return params;
@@ -4772,7 +4770,7 @@
       else {
           if (context & 64)
               scope = inheritScope(scope, 2);
-          body = parseFunctionBody(parser, (context | 0x8001000 | 8192 | 536870912) ^ (0x8001000 | 8192 | 536870912), scope, 2, void 0);
+          body = parseFunctionBody(parser, (context | 0x8001000 | 8192 | 268435456) ^ (0x8001000 | 8192 | 268435456), scope, 2, void 0);
           switch (parser.token) {
               case 67108877:
               case 69271571:
@@ -4852,7 +4850,7 @@
       if (isComplex)
           parser.flags |= 128;
       if (context & 64 && (isComplex || context & 1024)) {
-          verifyArguments(parser, scope.lex);
+          verifyArguments(parser, scope.lexicals);
       }
       consume(parser, context, 1073741840);
       return params;
@@ -5067,11 +5065,11 @@
               regex
           });
   }
-  function parseClassDeclaration(parser, context, scope, isExportDefault, start) {
+  function parseClassDeclaration(parser, context, scope, flags, start) {
       context = (context & ~16777216) | 1024;
       let id = null;
       let superClass = null;
-      const decorators = context & 1 ? parseDecorators(parser, context | 268435456) : [];
+      const decorators = context & 1 ? parseDecorators(parser, context) : [];
       nextToken(parser, context);
       const idxClass = parser.tokenIndex;
       if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
@@ -5081,14 +5079,19 @@
               report(parser, 129);
           if (context & 64) {
               declareAndDedupe(parser, context, scope, parser.tokenValue, 8, 0);
-              if (isExportDefault) {
-                  addBindingToExports(parser, parser.tokenValue);
+              if (flags) {
+                  if (flags & 1) {
+                      addBindingToExports(parser, parser.tokenValue);
+                  }
+                  else {
+                      updateExportsList(parser, parser.tokenValue);
+                  }
               }
           }
           id = parseIdentifier(parser, context, idxClass);
       }
       else {
-          if (isExportDefault) {
+          if (flags & 1) {
               addBindingToExports(parser, '');
           }
           else {
@@ -5123,7 +5126,7 @@
       let id = null;
       let superClass = null;
       context = (context & ~16777216) | 1024;
-      const decorators = context & 1 ? parseDecorators(parser, context | 268435456) : [];
+      const decorators = context & 1 ? parseDecorators(parser, context) : [];
       nextToken(parser, context);
       if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
           if (isStrictReservedWord(parser, context, parser.token))
@@ -5267,11 +5270,11 @@
       else if (context & 1 && parser.token === 131) {
           kind |= 4096;
           key = parsePrivateName(parser, context, tokenIndex);
-          context = context | 536870912;
+          context = context | 268435456;
       }
       else if (context & 1 && (parser.token & -2147483648) === -2147483648) {
           kind |= 128;
-          context = context | 536870912;
+          context = context | 268435456;
       }
       else {
           report(parser, 29, KeywordDescTable[parser.token & 255]);
@@ -5373,11 +5376,11 @@
           const idxAfterAssign = parser.tokenIndex;
           if (parser.token === 537079925)
               report(parser, 129);
-          value = parsePrimaryExpressionExtended(parser, context | 536870912, 0, 0, 1, 0, idxAfterAssign);
+          value = parsePrimaryExpressionExtended(parser, context | 268435456, 0, 0, 1, 0, idxAfterAssign);
           if ((parser.token & -2147483648) !== -2147483648) {
-              value = parseMemberOrUpdateExpression(parser, context | 536870912, value, 0, 0, idxAfterAssign);
+              value = parseMemberOrUpdateExpression(parser, context | 268435456, value, 0, 0, idxAfterAssign);
               if ((parser.token & -2147483648) !== -2147483648) {
-                  value = parseAssignmentExpression(parser, context | 536870912, 0, idxAfterAssign, value);
+                  value = parseAssignmentExpression(parser, context | 268435456, 0, idxAfterAssign, value);
               }
           }
       }
@@ -5397,7 +5400,7 @@
                   origin & (8 | 4 | 16);
               declareName(parser, context, scope, parser.tokenValue, type, dupeChecks, isVarDecl);
               if (origin & 16) {
-                  addNameToExports(parser, parser.tokenValue);
+                  updateExportsList(parser, parser.tokenValue);
                   addBindingToExports(parser, parser.tokenValue);
               }
           }
@@ -5462,7 +5465,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '0.3.0';
+  const version = '0.4.2';
 
   exports.parse = parse;
   exports.parseModule = parseModule;
