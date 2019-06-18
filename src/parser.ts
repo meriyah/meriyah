@@ -929,6 +929,8 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
     | ESTree.LogicalExpression
     | ESTree.ConditionalExpression);
 
+  parser.assignable = AssignmentKind.Assignable;
+
   /**
    * ExpressionStatement[Yield, Await]:
    *   [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
