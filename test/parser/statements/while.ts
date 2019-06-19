@@ -10,6 +10,8 @@ describe('Statements - While', () => {
     ['while 1 break;', Context.None],
     [`while '' break;`, Context.None],
     [`while '' break;`, Context.OptionsWebCompat],
+    ['while(0) !function(){ break; };', Context.None],
+    ['while(0) { function f(){ break; } }', Context.None],
     ['while (false) label1: label2: function f() {}', Context.None],
     ['while (false) async function f() {}', Context.None],
     ['while (false) const x = null;', Context.None],

@@ -157,7 +157,12 @@ export const enum Errors {
   ImportNotOneArg,
   InvalidImportNew,
   InvalidSpreadInImport,
-  UncompleteArrow
+  UncompleteArrow,
+  DuplicateBinding,
+  DuplicateExportBinding,
+  UndeclaredExportedBinding,
+  UnexpectedPrivateField,
+  DuplicateLetConstBinding
 }
 
 /*@internal*/
@@ -328,7 +333,12 @@ export const errorMessages: {
   [Errors.ImportNotOneArg]: 'import() requires exactly one argument',
   [Errors.InvalidImportNew]: 'Cannot use new with import(...)',
   [Errors.InvalidSpreadInImport]: '... is not allowed in import()',
-  [Errors.UncompleteArrow]: "Expected '=>'"
+  [Errors.UncompleteArrow]: "Expected '=>'",
+  [Errors.DuplicateBinding]: "Duplicate binding '%0'",
+  [Errors.DuplicateExportBinding]: "Cannot export a duplicate name '%0'",
+  [Errors.DuplicateLetConstBinding]: 'Duplicate %0 for-binding',
+  [Errors.UndeclaredExportedBinding]: "Exported binding '%0' needs to refer to a top-level declared variable",
+  [Errors.UnexpectedPrivateField]: 'Unexpected private field'
 };
 
 export class ParseError extends SyntaxError {

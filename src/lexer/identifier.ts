@@ -67,12 +67,12 @@ export function scanIdentifierSlowCase(
       ? Token.Identifier
       : keyword === Token.YieldKeyword || !hasEscape
       ? keyword
-      : (keyword & Token.FutureReserved) === Token.FutureReserved
-      ? context & Context.Strict && hasEscape
-        ? Token.EscapedFutureReserved
-        : keyword
       : context & Context.Strict && (keyword === Token.LetKeyword || keyword === Token.StaticKeyword)
       ? Token.EscapedFutureReserved
+      : (keyword & Token.FutureReserved) === Token.FutureReserved
+      ? context & Context.Strict
+        ? Token.EscapedFutureReserved
+        : keyword
       : Token.EscapedReserved;
   }
   return Token.Identifier;

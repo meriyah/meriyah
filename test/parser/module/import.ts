@@ -251,7 +251,30 @@ describe('Module - Import', () => {
     ["import {b,,} from 'a';", Context.Strict | Context.Module],
     ["import * As a from 'a'", Context.Strict | Context.Module],
     ["import {eval} from 'x'", Context.Strict | Context.Module],
-    ['import {a nopeNeedsAPrecedingComma} from "MyModule";', Context.Strict | Context.Module]
+    ['import {a b} from "foo";', Context.Strict | Context.Module],
+    ['import a, * as a from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a, {a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a, {b as a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, b as a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {b as a, c as a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import { x, y, x } from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, b, a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {b, a, a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, a, b} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, b as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a, {a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a, {b as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a, a as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a, * as a from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import {a} from "foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import {b, a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import {b as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import a from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import {b as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import {a} from "foo"; import {a as a} from "foo"', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['import a from "foo"; import * as a from "foo"', Context.Strict | Context.Module | Context.OptionsLexical]
   ]);
 
   for (const arg of [

@@ -712,7 +712,10 @@ describe('Expressions - Async arrow', () => {
     '(async(a, b, ...c) => await 1)',
     '() => (async(foo, { a = NaN }) => foo + a)("1", { a: "0" })',
     '() => (async(foo, { a = "0" }) => foo + a)("2", { a: undefined })',
-    //'async(a = (await) => {}) => {};',
+    `async x => {}
+     async (x) =>  {}`,
+    `async (x) =>  {}
+     async x => {}`,
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)'
   ]) {
     it(`${arg};`, () => {

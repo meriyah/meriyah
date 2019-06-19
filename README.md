@@ -16,8 +16,8 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~75 000 unit tests with full code coverage))
-* Lightweight - ~74 KB minified
+* Very well tested (~81 000 unit tests with full code coverage))
+* Lightweight - ~76 KB minified
 
 ## ESNext features
 

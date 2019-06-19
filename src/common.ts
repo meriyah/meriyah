@@ -35,9 +35,7 @@ export const enum Context {
   InMethod              = 1 << 25,
   AllowNewTarget        = 1 << 26,
   DisallowIn            = 1 << 27,
-  InDecoratorContext    = 1 << 28,
-  InClass               = 1 << 29,
-  InSwitchOrIteration = InSwitch | InIteration
+  InClass               = 1 << 28
 }
 
 export const enum PropertyKind {
@@ -60,11 +58,10 @@ export const enum PropertyKind {
 
 export const enum BindingType {
   None          = 0,
-  ArgumentList  = 1 << 0,
+  ArgList       = 1 << 0,
   Variable      = 1 << 2,
   Let           = 1 << 3,
-  Const         = 1 << 4,
-  Class         = 1 << 5
+  Const         = 1 << 4
 }
 
 export const enum BindingOrigin {
@@ -78,10 +75,8 @@ export const enum BindingOrigin {
 
 export const enum AssignmentKind {
   None           = 0,
-  IsAssignable   = 1 << 0,
-  CannotAssign   = 1 << 1,
-  Await          = 1 << 2,
-  Yield          = 1 << 3,
+  Assignable   = 1 << 0,
+  NotAssignable   = 1 << 1
 }
 
 export const enum DestructuringKind {
@@ -105,7 +100,19 @@ export const enum Flags {
   HasConstructor      = 1 << 5,
   Octals              = 1 << 6,
   SimpleParameterList = 1 << 7,
-  Yield          = 1 << 8,
+  Yield               = 1 << 8,
+}
+
+export const enum HoistedClassFlags {
+  None,
+  Hoisted = 1 << 0,
+  Export = 1 << 1
+}
+
+export const enum HoistedFunctionFlags {
+  None,
+  Hoisted = 1 << 0,
+  Export = 1 << 1
 }
 
 export const enum FunctionStatement {
@@ -334,14 +341,14 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
  */
 export function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
 
-  do {
-    if (labels['€' + name]) {
+  while (labels) {
+    if (labels['$' + name]) {
       if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
       return 1;
     }
     if (isIterationStatement && labels.loop) isIterationStatement = 0;
-    labels = labels['€'];
-  } while (labels);
+    labels = labels['$'];
+  }
 
   return 0;
 }
@@ -356,13 +363,12 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
  */
 export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
   let set = labels;
-
   do {
-    if (set['€' + name]) report(parser, Errors.LabelRedeclaration, name);
-    set = set['€'];
+    if (set['$' + name]) report(parser, Errors.LabelRedeclaration, name);
+    set = set['$'];
   } while (set);
 
-  labels['€' + name] = 1;
+  labels['$' + name] = 1;
 }
 
 
