@@ -2915,8 +2915,6 @@ export function parseAwaitExpressionOrIdentifier(
 
   const expr = parseIdentifierOrArrow(parser, context, start);
 
-  parser.assignable = AssignmentKind.Assignable;
-
   return parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, 0, start);
 }
 
@@ -3038,19 +3036,19 @@ export function parseSuperExpression(parser: ParserState, context: Context, star
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param assignable
+ * @param allowAssign
  */
 export function parseLeftHandSideExpression(
   parser: ParserState,
   context: Context,
-  assignable: 0 | 1,
+  allowAssign: 0 | 1,
   inGroup: 0 | 1,
   start: number
 ): any {
   // LeftHandSideExpression ::
   //   (PrimaryExpression | MemberExpression) ...
 
-  let expression = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, assignable, inGroup, start);
+  let expression = parsePrimaryExpressionExtended(parser, context, BindingType.None, 0, allowAssign, inGroup, start);
 
   return parseMemberOrUpdateExpression(parser, context, expression, 0, inGroup, start);
 }
@@ -3172,7 +3170,7 @@ export function parsePrimaryExpressionExtended(
   context: Context,
   type: BindingType,
   inNewExpression: 0 | 1,
-  assignable: 0 | 1,
+  allowAssign: 0 | 1,
   inGroup: 0 | 1,
   start: number
 ): any {
@@ -3275,7 +3273,7 @@ export function parsePrimaryExpressionExtended(
   if (token === Token.YieldKeyword) {
     if (inGroup) parser.destructible |= DestructuringKind.Yield;
 
-    if (assignable) return parseYieldExpressionOrIdentifier(parser, context, start);
+    if (allowAssign) return parseYieldExpressionOrIdentifier(parser, context, start);
 
     if (context & ((context & Context.InYieldContext) | Context.Strict))
       report(parser, Errors.DisallowedInContext, 'yield');
@@ -3301,7 +3299,7 @@ export function parsePrimaryExpressionExtended(
     const expr = parseIdentifier(parser, context | Context.TaggedTemplate, start);
 
     if (token === Token.AsyncKeyword) {
-      return parseAsyncExpression(parser, context, expr, inNewExpression, assignable, inGroup, start);
+      return parseAsyncExpression(parser, context, expr, inNewExpression, allowAssign, inGroup, start);
     }
 
     if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
@@ -3316,7 +3314,7 @@ export function parsePrimaryExpressionExtended(
         parser.flags &= ~Flags.SimpleParameterList;
       }
 
-      if (!assignable) report(parser, Errors.InvalidAssignmentTarget);
+      if (!allowAssign) report(parser, Errors.InvalidAssignmentTarget);
 
       let scope = {};
 
@@ -3343,26 +3341,23 @@ export function parsePrimaryExpressionExtended(
     case Token.FunctionKeyword:
       return parseFunctionExpression(parser, context, /* isAsync */ 0, inGroup, start);
     case Token.LeftBrace:
-      return parseObjectLiteral(parser, context, assignable ? 0 : 1, inGroup, start);
+      return parseObjectLiteral(parser, context, allowAssign ? 0 : 1, inGroup, start);
     case Token.LeftBracket:
-      return parseArrayLiteral(parser, context, assignable ? 0 : 1, inGroup, start);
+      return parseArrayLiteral(parser, context, allowAssign ? 0 : 1, inGroup, start);
     case Token.LeftParen:
-      return parseParenthesizedExpression(parser, context & ~Context.DisallowIn, assignable, start);
+      return parseParenthesizedExpression(parser, context & ~Context.DisallowIn, allowAssign, start);
     case Token.PrivateField:
       return parsePrivateName(parser, context, start);
     case Token.Decorator:
     case Token.ClassKeyword:
       return parseClassExpression(parser, context, inGroup, start);
     case Token.RegularExpression:
-      parser.assignable = AssignmentKind.NotAssignable;
       return parseRegExpLiteral(parser, context, start);
     case Token.ThisKeyword:
-      parser.assignable = AssignmentKind.NotAssignable;
       return parseThisExpression(parser, context, start);
     case Token.FalseKeyword:
     case Token.TrueKeyword:
     case Token.NullKeyword:
-      parser.assignable = AssignmentKind.NotAssignable;
       return parseNullOrTrueOrFalseLiteral(parser, context, start);
     case Token.SuperKeyword:
       return parseSuperExpression(parser, context, start);
@@ -3373,7 +3368,6 @@ export function parsePrimaryExpressionExtended(
     case Token.NewKeyword:
       return parseNewExpression(parser, context, inGroup, start);
     case Token.BigIntLiteral:
-      parser.assignable = AssignmentKind.NotAssignable;
       return parseBigIntLiteral(parser, context, start);
     case Token.ImportKeyword:
       return parseImportCallExpression(parser, context, inNewExpression, inGroup, start);
@@ -3385,7 +3379,6 @@ export function parsePrimaryExpressionExtended(
             (token & Token.Contextual) === Token.Contextual ||
             (token & Token.FutureReserved) === Token.FutureReserved
       ) {
-        parser.assignable = AssignmentKind.Assignable;
         return parseIdentifierOrArrow(parser, context, start);
       }
 
@@ -3461,6 +3454,7 @@ export function parseImportExpression(
 export function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral {
   const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
+  parser.assignable = AssignmentKind.NotAssignable;
   return context & Context.OptionsRaw
     ? finishNode(parser, context, start, {
         type: 'BigIntLiteral',
@@ -3703,7 +3697,7 @@ export function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Cont
   const value = parser.token === Token.NullKeyword ? null : raw === 'true';
 
   nextToken(parser, context);
-
+  parser.assignable = AssignmentKind.NotAssignable;
   return context & Context.OptionsRaw
     ? finishNode(parser, context, start, {
         type: 'Literal',
@@ -3724,6 +3718,7 @@ export function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Cont
  */
 export function parseThisExpression(parser: ParserState, context: Context, start: number): ESTree.ThisExpression {
   nextToken(parser, context);
+  parser.assignable = AssignmentKind.NotAssignable;
   return finishNode(parser, context, start, {
     type: 'ThisExpression'
   });
@@ -5542,7 +5537,7 @@ export function parseIdentifierOrArrow(
   const { tokenValue } = parser;
 
   const expr = parseIdentifier(parser, context, start);
-
+  parser.assignable = AssignmentKind.Assignable;
   if (parser.token === Token.Arrow) {
     let scope = {};
     if (context & Context.OptionsLexical) {
@@ -6124,6 +6119,7 @@ export function parseAsyncArrowOrCallExpression(
 export function parseRegExpLiteral(parser: ParserState, context: Context, start: number): ESTree.RegExpLiteral {
   const { tokenRaw: raw, tokenRegExp: regex, tokenValue: value } = parser;
   nextToken(parser, context);
+  parser.assignable = AssignmentKind.NotAssignable;
   return context & Context.OptionsRaw
     ? finishNode(parser, context, start, {
         type: 'Literal',

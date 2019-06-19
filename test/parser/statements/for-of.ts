@@ -152,7 +152,20 @@ describe('Statements - For of', () => {
     ['for(var {x} = 0 of {});', Context.None],
     ['for(var {x = 0} = 0 of {});', Context.None],
     ['for(let x = 0 of {});', Context.None],
+    ['for (let x of y, z) {}', Context.None],
     ['for(let [] = 0 of {});', Context.None],
+    ['for (var [x] = 1 of []) {}', Context.None],
+    ['for (let x = 1 of []) {}', Context.None],
+    ['for (let [x] = 1 of []) {}', Context.None],
+    ['for (let {x} = 1 of []) {}', Context.None],
+    ['for (const x = 1 of []) {}', Context.None],
+    ['for (const [x] = 1 of []) {}', Context.None],
+    ['for (const {x} = 1 of []) {}', Context.None],
+    ['for ((this) of []) {}', Context.None],
+    ['for (var [x]   of 1, 2) {}', Context.None],
+    ['for (var x     of 1, 2) {}', Context.None],
+    ['for (var x = 1 of []) {}', Context.None],
+    ['for (this of []) {}', Context.None],
     ['for(let [,] = 0 of {});', Context.None],
     ['for(let [a] = 0 of {});', Context.None],
     ['for(let [a = 0] = 0 of {});', Context.None],
@@ -1758,147 +1771,151 @@ describe('Statements - For of', () => {
         ]
       }
     ],
-    /**    ['for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[]]) {}', Context.None, {
-      "type": "Program",
-      "sourceType": "script",
-      "body": [
-        {
-          "type": "ForOfStatement",
-          "body": {
-            "type": "BlockStatement",
-            "body": []
-          },
-          "left": {
-            "type": "VariableDeclaration",
-            "kind": "const",
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
-                "init": null,
-                "id": {
-                  "type": "ArrayPattern",
-                  "elements": [
-                    {
-                      "type": "AssignmentPattern",
-                      "left": {
-                        "type": "ObjectPattern",
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "kind": "init",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "x"
+    [
+      'for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[]]) {}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForOfStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            left: {
+              type: 'VariableDeclaration',
+              kind: 'const',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  init: null,
+                  id: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'ObjectPattern',
+                          properties: [
+                            {
+                              type: 'Property',
+                              kind: 'init',
+                              key: {
+                                type: 'Identifier',
+                                name: 'x'
+                              },
+                              computed: false,
+                              value: {
+                                type: 'Identifier',
+                                name: 'x'
+                              },
+                              method: false,
+                              shorthand: true
                             },
-                            "computed": false,
-                            "value": {
-                              "type": "Identifier",
-                              "name": "x"
+                            {
+                              type: 'Property',
+                              kind: 'init',
+                              key: {
+                                type: 'Identifier',
+                                name: 'y'
+                              },
+                              computed: false,
+                              value: {
+                                type: 'Identifier',
+                                name: 'y'
+                              },
+                              method: false,
+                              shorthand: true
                             },
-                            "method": false,
-                            "shorthand": true
-                          },
-                          {
-                            "type": "Property",
-                            "kind": "init",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "y"
+                            {
+                              type: 'Property',
+                              kind: 'init',
+                              key: {
+                                type: 'Identifier',
+                                name: 'z'
+                              },
+                              computed: false,
+                              value: {
+                                type: 'Identifier',
+                                name: 'z'
+                              },
+                              method: false,
+                              shorthand: true
+                            }
+                          ]
+                        },
+                        right: {
+                          type: 'ObjectExpression',
+                          properties: [
+                            {
+                              type: 'Property',
+                              key: {
+                                type: 'Identifier',
+                                name: 'x'
+                              },
+                              value: {
+                                type: 'Literal',
+                                value: 44
+                              },
+                              kind: 'init',
+                              computed: false,
+                              method: false,
+                              shorthand: false
                             },
-                            "computed": false,
-                            "value": {
-                              "type": "Identifier",
-                              "name": "y"
+                            {
+                              type: 'Property',
+                              key: {
+                                type: 'Identifier',
+                                name: 'y'
+                              },
+                              value: {
+                                type: 'Literal',
+                                value: 55
+                              },
+                              kind: 'init',
+                              computed: false,
+                              method: false,
+                              shorthand: false
                             },
-                            "method": false,
-                            "shorthand": true
-                          },
-                          {
-                            "type": "Property",
-                            "kind": "init",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "z"
-                            },
-                            "computed": false,
-                            "value": {
-                              "type": "Identifier",
-                              "name": "z"
-                            },
-                            "method": false,
-                            "shorthand": true
-                          }
-                        ]
-                      },
-                      "right": {
-                        "type": "ObjectExpression",
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "x"
-                            },
-                            "value": {
-                              "type": "Literal",
-                              "value": 44
-                            },
-                            "kind": "init",
-                            "computed": false,
-                            "method": false,
-                            "shorthand": false
-                          },
-                          {
-                            "type": "Property",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "y"
-                            },
-                            "value": {
-                              "type": "Literal",
-                              "value": 55
-                            },
-                            "kind": "init",
-                            "computed": false,
-                            "method": false,
-                            "shorthand": false
-                          },
-                          {
-                            "type": "Property",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "z"
-                            },
-                            "value": {
-                              "type": "Literal",
-                              "value": 66
-                            },
-                            "kind": "init",
-                            "computed": false,
-                            "method": false,
-                            "shorthand": false
-                          }
-                        ]
+                            {
+                              type: 'Property',
+                              key: {
+                                type: 'Identifier',
+                                name: 'z'
+                              },
+                              value: {
+                                type: 'Literal',
+                                value: 66
+                              },
+                              kind: 'init',
+                              computed: false,
+                              method: false,
+                              shorthand: false
+                            }
+                          ]
+                        }
                       }
-                    }
-                  ]
+                    ]
+                  }
                 }
-              }
-            ]
-          },
-          "right": {
-            "type": "ArrayExpression",
-            "elements": [
-              {
-                "type": "ArrayExpression",
-                "elements": []
-              }
-            ]
-          },
-          "await": false
-        }
-      ]
-    }], */
+              ]
+            },
+            right: {
+              type: 'ArrayExpression',
+              elements: [
+                {
+                  type: 'ArrayExpression',
+                  elements: []
+                }
+              ]
+            },
+            await: false
+          }
+        ]
+      }
+    ],
     [
       'for ([] of [[]]) {}',
       Context.None,
