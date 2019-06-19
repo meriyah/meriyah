@@ -29,9 +29,7 @@ export declare const enum Context {
     InMethod = 33554432,
     AllowNewTarget = 67108864,
     DisallowIn = 134217728,
-    InDecoratorContext = 268435456,
-    InClass = 536870912,
-    InSwitchOrIteration = 135168
+    InClass = 268435456
 }
 export declare const enum PropertyKind {
     None = 0,
@@ -52,11 +50,10 @@ export declare const enum PropertyKind {
 }
 export declare const enum BindingType {
     None = 0,
-    ArgumentList = 1,
+    ArgList = 1,
     Variable = 4,
     Let = 8,
-    Const = 16,
-    Class = 32
+    Const = 16
 }
 export declare const enum BindingOrigin {
     None = 0,
@@ -68,10 +65,8 @@ export declare const enum BindingOrigin {
 }
 export declare const enum AssignmentKind {
     None = 0,
-    IsAssignable = 1,
-    CannotAssign = 2,
-    Await = 4,
-    Yield = 8
+    Assignable = 1,
+    NotAssignable = 2
 }
 export declare const enum DestructuringKind {
     None = 0,
@@ -89,6 +84,16 @@ export declare const enum Flags {
     Octals = 64,
     SimpleParameterList = 128,
     Yield = 256
+}
+export declare const enum HoistedClassFlags {
+    None = 0,
+    Hoisted = 1,
+    Export = 2
+}
+export declare const enum HoistedFunctionFlags {
+    None = 0,
+    Hoisted = 1,
+    Export = 2
 }
 export declare const enum FunctionStatement {
     Disallow = 0,
