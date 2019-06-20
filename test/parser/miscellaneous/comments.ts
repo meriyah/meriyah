@@ -132,6 +132,17 @@ describe('Miscellaneous - Comments', () => {
 
   pass('Miscellaneous - Comments (pass)', [
     [
+      '/**/ --> comment',
+      Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [],
+        end: 16,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
       'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
       Context.OptionsRanges | Context.OptionsWebCompat,
       {

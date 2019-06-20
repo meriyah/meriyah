@@ -23,6 +23,7 @@ describe('Miscellaneous - Pass', () => {
     "function f() { new (f + 5)(6, (g)() - 'l'() - true(false)) }",
     'function f() { function f() {} }',
     'function f(a,b) {}',
+    '[ { x: y = 3 } ]',
     `class x extends {} {}`,
     'x= { async prototype(){} }',
     'x= { *prototype(){} }',
@@ -5877,6 +5878,37 @@ describe("Number literals", function() {
         }
       }
     ]`,
+    `class C {
+      static a() { return 'A'; }
+      static [1]() { return 'B'; }
+      static c() { return 'C'; }
+      static [2]() { return 'D'; }
+    }`,
+    `
+    class C extends Object {}
+    delete Object.prototype.__proto__
+    let c = new C
+    `,
+    `for (let a of (function*() {
+      for (var b of (function*() {
+              for (var c of (function*() {
+                      for (var d of (function*() {
+                              for (var e of (function*() {
+                                      for (var f of (function*() {
+                                              for (var g of (x = (y * 2)) => (1)) {
+                                              }
+                                      })()) {
+                                      }
+                              })()) {
+                              }
+                      })()) {
+                      }
+              })()) {
+              }
+      })()) {
+      }
+    })()) {
+    }`,
     'try { } catch (my_var) { } my_var;',
     'for (my_var in {}) { my_var; }',
     'for (my_var in {}) { }',
@@ -7961,6 +7993,23 @@ d.e(a.c);`,
     'switch (x) { default: function f() {} }',
     'switch (x) { case x: function f() {} }',
     'try { } catch (e) { function f() {} }',
+    `({a} = 0)`,
+    `var a;
+    (a) = {};
+    (a.b) = {};
+    (a['c']) = {};`,
+    `// One
+    (1);
+
+    /* Two */
+    (2);
+
+    (
+      // Three
+      3
+    );
+
+    (/* Four */ 4);`,
     '(a)--',
     `for (;;) {
   if (a) {

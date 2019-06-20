@@ -16,6 +16,7 @@ describe('Miscellaneous - Failure', () => {
     'var\\u1680x;',
     'var\\u180ex;',
     'var\\u2000x;',
+    '(async)(a) => {}',
     'let async function() { } = { };',
     'if ( true, ) {}',
     'async (package) => {"use strict";}',
@@ -25,6 +26,8 @@ describe('Miscellaneous - Failure', () => {
     'function a(){ "use strict"; function a(a=yield){}}',
     'class A {set a(yield){}}',
     '();',
+    '[(a = 1)] = t;',
+    '[([b])] = t;',
     '[([a])] = 12;',
     '(a, ...b);',
     'var e = [a -= 12] = 5',
@@ -46,13 +49,31 @@ describe('Miscellaneous - Failure', () => {
     '({a} += 0);',
     '[...{a: 0}] = 0;',
     '({a: 0} = 0);',
-    'for(({a: 0}) in 0);',
     'for({a: 0} of 0);',
-    'for(([0]) in 0);',
     '\\u0000',
     'for(const let = 0;;);',
     '{ const a; }',
     'function f(){ const a; }',
+    `for (let a of (function*() {
+      for (var b of (function*() {
+              for (var c of (function*() {
+                      for (var d of (function*() {
+                              for (var e of (function*() {
+                                      for (var f of (function*() {
+                                              for (var g of (x = (yield * 2)) => (1)) {
+                                              }
+                                      })()) {
+                                      }
+                              })()) {
+                              }
+                      })()) {
+                      }
+              })()) {
+              }
+      })()) {
+      }
+    })()) {
+    }`,
     'for(const a = 0;;) label: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
@@ -1945,7 +1966,6 @@ describe('Miscellaneous - Failure', () => {
     'function f1([a], {b}, c, d) { // error',
     'var [a], {b}, c, d; // error',
     'function a({while}) { }',
-    'for ({ m() {} } in {}) {}',
     '([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;',
     `({x}) = {x: 1};`,
     '3ea',
@@ -1954,32 +1974,15 @@ describe('Miscellaneous - Failure', () => {
     'do ; while(0) i++;',
     'if (x) {}}dsadsa',
     'for (;;) {}}dsadsa',
-    'for (x = 22 in foo);',
-    'for ({a:x,b:y,c:z} = 22 in foo);',
-    'for ([x,y,z] = 22 in foo);',
-    'for (const x = 22 in foo);',
-    'for (const {a:x,b:y,c:z} = 22 in foo);',
-    `for (0 = 0 in {});`,
-    `for (i++ = 0 in {});`,
-    `for (new F() = 0 in {});`,
     `function f() { for (new.target = 0 in {}); }`,
     `class C extends D { constructor() { for (super() = 0 in {}); } }`,
     'function foo() { do;while(0)return }',
     'function foo() { do;while(0)return /foo/ }',
     'function foo() { do;while(0) /foo/ }',
     '{ { do do do ; while(0) while(0) while(0) } }',
-    'for (const [x,y,z] = 22 in foo);',
-    'for (var [x] = 1 of []) {}',
-    'for (let x = 1 of []) {}',
-    'for (let [x] = 1 of []) {}',
-    'for (let {x} = 1 of []) {}',
-    'for (const x = 1 of []) {}',
-    'for (const [x] = 1 of []) {}',
-    'for (const {x} = 1 of []) {}',
-    'for (var [x]   of 1, 2) {}',
-    'for (var x     of 1, 2) {}',
-    'for (var x = 1 of []) {}',
-    //'var x = `abc${ yield 10 }def`;',
+    'var x = `abc${ yield 10 }def`;',
+    'async function fn() { for await (var x = 1 of []) {} }',
+    'async function fn() { for await (var {x} = 1 of []) {} }',
     '(function* a(b,,) {});',
     'a(1,2,3,,);',
     'a1(,);',
@@ -2033,12 +2036,6 @@ describe('Miscellaneous - Failure', () => {
     `function *f(){ ~yield }`,
     `class x extends ()=>{} {}`,
     `class x extends ()=>{} 1`,
-    `for (a=>b in c);`,
-    `for ("foo" in y);`,
-    `for ("foo".x = z in y);`,
-    `for (()=>x in y);`,
-    `for (()=>(x) in y);`,
-    `for ((()=>x) in y);`,
     `for (b++c;;);`,
     `function *f{ (x = x + yield); }`,
     '(x)\n++;',
