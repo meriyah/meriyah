@@ -3123,7 +3123,6 @@
       if (context & 2048)
           report(parser, 121, 'Await');
       const expr = parseIdentifierOrArrow(parser, context, start);
-      parser.assignable = 1;
       return parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, 0, start);
   }
   function parseFunctionBody(parser, context, scope, origin, firstRestricted) {
@@ -3197,8 +3196,8 @@
       }
       return finishNode(parser, context, start, { type: 'Super' });
   }
-  function parseLeftHandSideExpression(parser, context, assignable, inGroup, start) {
-      let expression = parsePrimaryExpressionExtended(parser, context, 0, 0, assignable, inGroup, start);
+  function parseLeftHandSideExpression(parser, context, allowAssign, inGroup, start) {
+      let expression = parsePrimaryExpressionExtended(parser, context, 0, 0, allowAssign, inGroup, start);
       return parseMemberOrUpdateExpression(parser, context, expression, 0, inGroup, start);
   }
   function parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, inGroup, start) {
@@ -3278,7 +3277,7 @@
       }
       return expr;
   }
-  function parsePrimaryExpressionExtended(parser, context, type, inNewExpression, assignable, inGroup, start) {
+  function parsePrimaryExpressionExtended(parser, context, type, inNewExpression, allowAssign, inGroup, start) {
       const { token } = parser;
       if ((token & 16842752) === 16842752) {
           if (inNewExpression && (token !== 16863276 || token !== 16863274)) {
@@ -3314,7 +3313,7 @@
       if (token === 241770) {
           if (inGroup)
               parser.destructible |= 256;
-          if (assignable)
+          if (allowAssign)
               return parseYieldExpressionOrIdentifier(parser, context, start);
           if (context & ((context & 2097152) | 1024))
               report(parser, 104, 'yield');
@@ -3333,7 +3332,7 @@
           const tokenValue = parser.tokenValue;
           const expr = parseIdentifier(parser, context | 65536, start);
           if (token === 143468) {
-              return parseAsyncExpression(parser, context, expr, inNewExpression, assignable, inGroup, start);
+              return parseAsyncExpression(parser, context, expr, inNewExpression, allowAssign, inGroup, start);
           }
           if (token === 143478)
               report(parser, 101);
@@ -3347,7 +3346,7 @@
               else {
                   parser.flags &= ~128;
               }
-              if (!assignable)
+              if (!allowAssign)
                   report(parser, 58);
               let scope = {};
               if (context & 64) {
@@ -3368,26 +3367,23 @@
           case 86103:
               return parseFunctionExpression(parser, context, 0, inGroup, start);
           case 2162700:
-              return parseObjectLiteral(parser, context, assignable ? 0 : 1, inGroup, start);
+              return parseObjectLiteral(parser, context, allowAssign ? 0 : 1, inGroup, start);
           case 69271571:
-              return parseArrayLiteral(parser, context, assignable ? 0 : 1, inGroup, start);
+              return parseArrayLiteral(parser, context, allowAssign ? 0 : 1, inGroup, start);
           case 67174411:
-              return parseParenthesizedExpression(parser, context & ~134217728, assignable, start);
+              return parseParenthesizedExpression(parser, context & ~134217728, allowAssign, start);
           case 131:
               return parsePrivateName(parser, context, start);
           case 133:
           case 86093:
               return parseClassExpression(parser, context, inGroup, start);
           case 65540:
-              parser.assignable = 2;
               return parseRegExpLiteral(parser, context, start);
           case 86110:
-              parser.assignable = 2;
               return parseThisExpression(parser, context, start);
           case 86021:
           case 86022:
           case 86023:
-              parser.assignable = 2;
               return parseNullOrTrueOrFalseLiteral(parser, context, start);
           case 86108:
               return parseSuperExpression(parser, context, start);
@@ -3398,7 +3394,6 @@
           case 86106:
               return parseNewExpression(parser, context, inGroup, start);
           case 122:
-              parser.assignable = 2;
               return parseBigIntLiteral(parser, context, start);
           case 86105:
               return parseImportCallExpression(parser, context, inNewExpression, inGroup, start);
@@ -3408,7 +3403,6 @@
                   : (token & 143360) === 143360 ||
                       (token & 12288) === 12288 ||
                       (token & 36864) === 36864) {
-                  parser.assignable = 1;
                   return parseIdentifierOrArrow(parser, context, start);
               }
               report(parser, 29, KeywordDescTable[parser.token & 255]);
@@ -3437,6 +3431,7 @@
   function parseBigIntLiteral(parser, context, start) {
       const { tokenRaw, tokenValue } = parser;
       nextToken(parser, context);
+      parser.assignable = 2;
       return context & 512
           ? finishNode(parser, context, start, {
               type: 'BigIntLiteral',
@@ -3558,6 +3553,7 @@
       const raw = KeywordDescTable[parser.token & 255];
       const value = parser.token === 86023 ? null : raw === 'true';
       nextToken(parser, context);
+      parser.assignable = 2;
       return context & 512
           ? finishNode(parser, context, start, {
               type: 'Literal',
@@ -3571,6 +3567,7 @@
   }
   function parseThisExpression(parser, context, start) {
       nextToken(parser, context);
+      parser.assignable = 2;
       return finishNode(parser, context, start, {
           type: 'ThisExpression'
       });
@@ -4744,6 +4741,7 @@
   function parseIdentifierOrArrow(parser, context, start) {
       const { tokenValue } = parser;
       const expr = parseIdentifier(parser, context, start);
+      parser.assignable = 1;
       if (parser.token === 10) {
           let scope = {};
           if (context & 64) {
@@ -5052,6 +5050,7 @@
   function parseRegExpLiteral(parser, context, start) {
       const { tokenRaw: raw, tokenRegExp: regex, tokenValue: value } = parser;
       nextToken(parser, context);
+      parser.assignable = 2;
       return context & 512
           ? finishNode(parser, context, start, {
               type: 'Literal',

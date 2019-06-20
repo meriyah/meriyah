@@ -58,9 +58,9 @@ export declare function parseYieldExpressionOrIdentifier(parser: ParserState, co
 export declare function parseAwaitExpressionOrIdentifier(parser: ParserState, context: Context, inNewExpression: 0 | 1, start: number): ESTree.Identifier | ESTree.Expression | ESTree.ArrowFunctionExpression | ESTree.AwaitExpression;
 export declare function parseFunctionBody(parser: ParserState, context: Context, scope: any, origin: BindingOrigin, firstRestricted: Token | undefined): ESTree.BlockStatement;
 export declare function parseSuperExpression(parser: ParserState, context: Context, start: number): ESTree.Super;
-export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
+export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, allowAssign: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inNewExpression: 0 | 1, inGroup: 0 | 1, start: number): any;
-export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, type: BindingType, inNewExpression: 0 | 1, assignable: 0 | 1, inGroup: 0 | 1, start: number): any;
+export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, type: BindingType, inNewExpression: 0 | 1, allowAssign: 0 | 1, inGroup: 0 | 1, start: number): any;
 export declare function parseImportExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number): ESTree.ImportExpression;
 export declare function parseBigIntLiteral(parser: ParserState, context: Context, start: number): ESTree.BigIntLiteral;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context, start: number): ESTree.TemplateLiteral;
