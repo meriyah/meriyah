@@ -4667,10 +4667,6 @@ export function parseObjectLiteralOrPattern(
                   (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier
                 ) {
                   declareName(parser, context, scope, valueAfterColon, type, 0, 0);
-                  //if (context & Context.Module) {
-                  //updateExportsList(parser, valueAfterColon);
-                  //addBindingToExports(parser, valueAfterColon);
-                  //}
                 }
               } else {
                 destructible |=
@@ -4953,10 +4949,6 @@ export function parseObjectLiteralOrPattern(
                   (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier
                 ) {
                   declareName(parser, context, scope, tokenValue, type, 0, 0);
-                  //if (context & Context.Module) {
-                  //updateExportsList(parser, valueAfterColon);
-                  //addBindingToExports(parser, valueAfterColon);
-                  //}
                 }
               } else {
                 destructible |=

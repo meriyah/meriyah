@@ -322,6 +322,7 @@ describe('Declarations - Let', () => {
     'let {a, b} = {}, c = 0;',
     'let {a, b} = c, d;',
     'let {a, b, c} = {}, e, f;',
+    'if (1) let\n{}',
     'let {a, b} = {}, c = 0;'
   ]) {
     it(`${arg}`, () => {
@@ -373,6 +374,10 @@ describe('Declarations - Let', () => {
     ['let b = async () => []; for (a in await b());', Context.None],
     ['let x = y, {z};', Context.None],
     ['let x, {y};', Context.None],
+    ['"use strict"; let { let } = {};', Context.None],
+    ['"use strict"; const { let } = {};', Context.None],
+    ['"use strict"; let [let] = [];', Context.None],
+    ['"use strict"; const [let] = [];', Context.None],
     ['let {x};', Context.None],
     ['let [x()] = x', Context.None],
     ['let [x().foo] = x', Context.None],
