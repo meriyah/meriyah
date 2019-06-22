@@ -13,16 +13,17 @@ import { unicodeLookup } from '../unicode';
  * @param context Context masks
  */
 export function scanIdentifier(parser: ParserState, context: Context): Token {
-  let hasEscape: 0 | 1 = 0;
-  let canBeKeyword: number = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
+  const canBeKeyword = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
   while ((CharTypes[nextCodePoint(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
-  if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0 && parser.nextCP < 0x7e) {
+  const hasEscape = CharTypes[parser.nextCP] & CharFlags.BackSlash;
+  if (!hasEscape && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
 
   return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
 }
+
 /**
  * Scans unicode identifier
  *
@@ -33,7 +34,7 @@ export function scanUnicodeIdentifier(parser: ParserState, context: Context): To
   const cookedChar = scanIdentifierUnicodeEscape(parser) as number;
   if (!isIdentifierPart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
   parser.tokenValue = fromCodePoint(cookedChar);
-  return scanIdentifierSlowCase(parser, context, 1, CharTypes[cookedChar] & CharFlags.KeywordCandidate);
+  return scanIdentifierSlowCase(parser, context, /* hasEscape */ 1, CharTypes[cookedChar] & CharFlags.KeywordCandidate);
 }
 
 /**
@@ -47,7 +48,7 @@ export function scanUnicodeIdentifier(parser: ParserState, context: Context): To
 export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
-  hasEscape: 0 | 1,
+  hasEscape: number,
   canBeKeyword: number
 ): Token {
   let start = parser.index;

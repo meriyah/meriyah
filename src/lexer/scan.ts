@@ -230,7 +230,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
 
         // Look for a decimal number.
         case Token.NumericLiteral:
-          return scanNumber(parser, context, false);
+          return scanNumber(parser, context, 0);
 
         // Look for a string or a template string.
         case Token.StringLiteral:
@@ -486,10 +486,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
         // `.`, `...`, `.123` (numeric literal)
         case Token.Period:
           nextCodePoint(parser);
-          if ((CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0) return scanNumber(parser, context, true);
+          if ((CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0) return scanNumber(parser, context, /* isFloat */ 1);
           if (parser.nextCP === Chars.Period) {
-            nextCodePoint(parser);
-            if (parser.nextCP === Chars.Period) {
+            if (nextCodePoint(parser) === Chars.Period) {
               nextCodePoint(parser);
               return Token.Ellipsis;
             }
