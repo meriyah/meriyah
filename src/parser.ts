@@ -5690,7 +5690,9 @@ export function parseFormalParametersOrFormalList(
         isComplex = 1;
       }
 
-      if (context & Context.OptionsLexical) declareName(parser, context, scope, parser.tokenValue, type, 0, 0);
+      if (context & Context.OptionsLexical && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
+        declareName(parser, context, scope, parser.tokenValue, type, 0, 0);
+      }
 
       left = parseAndClassifyIdentifier(parser, context, type, tokenIndex);
     } else {

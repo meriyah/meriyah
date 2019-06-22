@@ -6,31 +6,49 @@ import { CharTypes, CharFlags, isIdentifierPart } from './charClassifier';
 import { report, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 
+/**
+ * Scans identifier
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
 export function scanIdentifier(parser: ParserState, context: Context): Token {
   let hasEscape: 0 | 1 = 0;
   let canBeKeyword: number = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
   parser.tokenValue = '';
-  if (parser.nextCP <= 0x7e) {
-    if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0) {
-      while ((CharTypes[nextCodePoint(parser)] & CharFlags.IdentifierPart) !== 0) {}
-      parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
-      if (parser.nextCP > 0x7e) return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
+  while ((CharTypes[nextCodePoint(parser)] & CharFlags.IdentifierPart) !== 0) {}
+  parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+  if (parser.nextCP > 0x7e) return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
 
-      if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0) {
-        return descKeywordTable[parser.tokenValue] || Token.Identifier;
-      }
-    } else {
-      hasEscape = 1;
-      const code = scanIdentifierUnicodeEscape(parser);
-      if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
-      canBeKeyword = CharTypes[code] & CharFlags.KeywordCandidate;
-      parser.tokenValue += fromCodePoint(code);
-    }
+  if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0) {
+    return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
 
   return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
 }
 
+/**
+ * Scans unicode identifier
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
+export function scanUnicodeIdentifier(parser: ParserState, context: Context): Token {
+  parser.tokenValue = '';
+  const cookedChar = scanIdentifierUnicodeEscape(parser) as number;
+  if (!isIdentifierPart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
+  parser.tokenValue += fromCodePoint(cookedChar);
+  return scanIdentifierSlowCase(parser, context, 1, CharTypes[cookedChar] & CharFlags.KeywordCandidate);
+}
+
+/**
+ * Scans identifier slow case
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param hasEscape
+ * @param canBeKeyword
+ */
 export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
@@ -42,7 +60,7 @@ export function scanIdentifierSlowCase(
     if (CharTypes[parser.nextCP] & CharFlags.BackSlash) {
       parser.tokenValue += parser.source.slice(start, parser.index);
       hasEscape = 1;
-      const code = scanIdentifierUnicodeEscape(parser);
+      const code = scanIdentifierUnicodeEscape(parser) as number;
       if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
       canBeKeyword = canBeKeyword && CharTypes[code] & CharFlags.KeywordCandidate;
       parser.tokenValue += fromCodePoint(code);
@@ -78,6 +96,11 @@ export function scanIdentifierSlowCase(
   return Token.Identifier;
 }
 
+/**
+ * Scans private name
+ *
+ * @param parser  Parser object
+ */
 export function scanPrivateName(parser: ParserState): Token {
   nextCodePoint(parser); // consumes '#'
   if (
@@ -91,7 +114,12 @@ export function scanPrivateName(parser: ParserState): Token {
   return Token.PrivateField;
 }
 
-export function scanIdentifierUnicodeEscape(parser: ParserState): any {
+/**
+ * Scans unicode identifier
+ *
+ * @param parser  Parser object
+ */
+export function scanIdentifierUnicodeEscape(parser: ParserState): number | void {
   // Check for Unicode escape of the form '\uXXXX'
   // and return code point value if valid Unicode escape is found. Otherwise return -1.
   if (parser.index + 5 < parser.end && parser.source.charCodeAt(parser.index + 1) === Chars.LowerU) {
@@ -101,6 +129,11 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): any {
   report(parser, Errors.InvalidUnicodeEscapeSequence);
 }
 
+/**
+ * Scans unicode escape value
+ *
+ * @param parser  Parser object
+ */
 export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}

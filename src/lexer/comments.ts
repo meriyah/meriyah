@@ -1,4 +1,4 @@
-import { nextCodePoint, CharTypes, CharFlags, ScannerState } from './';
+import { nextCodePoint, CharTypes, CharFlags, ScannerState, consumeLineFeed, advanceNewline } from './';
 import { Chars } from '../chars';
 import { ParserState, Flags } from '../common';
 import { report, Errors } from '../errors';
@@ -36,10 +36,8 @@ export function skipHashBang(parser: ParserState): void {
 export function skipSingleLineComment(parser: ParserState, state: ScannerState): ScannerState {
   while (parser.index < parser.end) {
     if (CharTypes[parser.nextCP] & CharFlags.LineTerminator || (parser.nextCP ^ Chars.LineSeparator) <= 1) {
-      parser.flags |= Flags.NewLine;
-      parser.column = 0;
-      parser.line++;
-      parser.nextCP = parser.source.charCodeAt(++parser.index);
+      state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+      advanceNewline(parser);
       return state;
     }
     nextCodePoint(parser);
@@ -65,23 +63,19 @@ export function skipMultiLineComment(parser: ParserState, state: ScannerState): 
     if (CharTypes[parser.nextCP] & CharFlags.LineTerminator) {
       if (CharTypes[parser.nextCP] & CharFlags.CarriageReturn) {
         state |= ScannerState.NewLine | ScannerState.LastIsCR;
-        parser.column = 0;
-        parser.line++;
+        advanceNewline(parser);
       } else {
         if (state & ScannerState.LastIsCR) {
           parser.column = 0;
           parser.line++;
         }
-        state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
+        state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+        parser.nextCP = parser.source.charCodeAt(++parser.index);
+        parser.flags |= Flags.NewLine;
       }
-      parser.nextCP = parser.source.charCodeAt(++parser.index);
-      parser.flags |= Flags.NewLine;
     } else if ((parser.nextCP ^ Chars.LineSeparator) <= 1) {
-      state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
-      parser.column = 0;
-      parser.nextCP = parser.source.charCodeAt(++parser.index);
-      parser.line++;
-      parser.flags |= Flags.NewLine;
+      state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+      advanceNewline(parser);
     } else {
       nextCodePoint(parser);
     }

@@ -6,10 +6,18 @@ export {
   isExoticECMAScriptWhitespace,
   fromCodePoint,
   toHex,
+  consumeLineFeed,
+  advanceNewline,
   ScannerState
 } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
-export { scanIdentifier, scanPrivateName, scanUnicodeEscapeValue } from './identifier';
+export {
+  scanIdentifier,
+  scanIdentifierSlowCase,
+  scanUnicodeIdentifier,
+  scanPrivateName,
+  scanUnicodeEscapeValue
+} from './identifier';
 export { scanString } from './string';
 export { scanNumber } from './numeric';
 export { scanTemplate, scanTemplateTail } from './template';

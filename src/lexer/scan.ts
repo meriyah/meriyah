@@ -14,8 +14,12 @@ import {
   scanNumber,
   scanString,
   scanIdentifier,
+  scanUnicodeIdentifier,
+  scanIdentifierSlowCase,
   scanPrivateName,
-  fromCodePoint
+  fromCodePoint,
+  consumeLineFeed,
+  advanceNewline
 } from './';
 
 /*
@@ -125,7 +129,7 @@ export const TokenLookup = [
   /*  89 - Y                  */ Token.Identifier,
   /*  90 - Z                  */ Token.Identifier,
   /*  91 - [                  */ Token.LeftBracket,
-  /*  92 - \                  */ Token.Identifier,
+  /*  92 - \                  */ Token.EscapedIdentifier,
   /*  93 - ]                  */ Token.RightBracket,
   /*  94 - ^                  */ Token.BitwiseXor,
   /*  95 - _                  */ Token.Identifier,
@@ -210,35 +214,34 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
           break;
 
         case Token.CarriageReturn:
-          parser.flags |= Flags.NewLine;
-
           state |= ScannerState.NewLine | ScannerState.LastIsCR;
-
-          parser.column = 0;
-          parser.nextCP = parser.source.charCodeAt(++parser.index);
-          parser.line++;
+          advanceNewline(parser);
           break;
+
         case Token.LineFeed:
+          consumeLineFeed(parser, (state & ScannerState.LastIsCR) !== 0);
+          state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
           parser.flags |= Flags.NewLine;
-
-          if ((state & ScannerState.LastIsCR) === 0) {
-            parser.column = 0;
-            parser.line++;
-          }
-          state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
-          parser.nextCP = parser.source.charCodeAt(++parser.index);
           break;
+
         // Look for an identifier.
         case Token.Identifier:
           return scanIdentifier(parser, context);
+
         // Look for a decimal number.
         case Token.NumericLiteral:
           return scanNumber(parser, context, false);
+
         // Look for a string or a template string.
         case Token.StringLiteral:
           return scanString(parser, context) as Token;
+
         case Token.Template:
           return scanTemplate(parser, context) as Token;
+
+        case Token.EscapedIdentifier:
+          return scanUnicodeIdentifier(parser, context);
+
         // `#`
         case Token.PrivateField:
           return scanPrivateName(parser);
@@ -498,16 +501,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
       }
     } else {
       if ((first ^ Chars.LineSeparator) <= 1) {
-        parser.flags |= Flags.NewLine;
-        state = (state & ~ScannerState.LastIsCR) | ScannerState.NewLine;
-        parser.column = 0;
-        parser.nextCP = parser.source.charCodeAt(++parser.index);
-        parser.line++;
+        state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+        advanceNewline(parser);
         continue;
       }
 
       if (isIDStart(first) || consumeMultiUnitCodePoint(parser, first)) {
-        return scanIdentifier(parser, context);
+        parser.tokenValue = '';
+        return scanIdentifierSlowCase(parser, context, /* hasEscape */ 0, /* canBeKeyword */ 0);
       }
 
       if (isExoticECMAScriptWhitespace(first)) {
