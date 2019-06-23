@@ -1851,7 +1851,7 @@ describe('Declarations - Var', () => {
     ],
     [
       '"use strict"; var x = 0; { let x; x = 6; }',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1860,7 +1860,27 @@ describe('Declarations - Var', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 12
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 13
+              }
             }
           },
           {
@@ -1871,14 +1891,54 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 22
+                    },
+                    end: {
+                      line: 1,
+                      column: 23
+                    }
+                  }
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 18
+                    },
+                    end: {
+                      line: 1,
+                      column: 19
+                    }
+                  }
+                },
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 18
+                  },
+                  end: {
+                    line: 1,
+                    column: 23
+                  }
                 }
               }
-            ]
+            ],
+            loc: {
+              start: {
+                line: 1,
+                column: 14
+              },
+              end: {
+                line: 1,
+                column: 24
+              }
+            }
           },
           {
             type: 'BlockStatement',
@@ -1892,10 +1952,40 @@ describe('Declarations - Var', () => {
                     init: null,
                     id: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 31
+                        },
+                        end: {
+                          line: 1,
+                          column: 32
+                        }
+                      }
+                    },
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 31
+                      },
+                      end: {
+                        line: 1,
+                        column: 32
+                      }
                     }
                   }
-                ]
+                ],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 27
+                  },
+                  end: {
+                    line: 1,
+                    column: 33
+                  }
+                }
               },
               {
                 type: 'ExpressionStatement',
@@ -1903,18 +1993,78 @@ describe('Declarations - Var', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 34
+                      },
+                      end: {
+                        line: 1,
+                        column: 35
+                      }
+                    }
                   },
                   operator: '=',
                   right: {
                     type: 'Literal',
-                    value: 6
+                    value: 6,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 38
+                      },
+                      end: {
+                        line: 1,
+                        column: 39
+                      }
+                    }
+                  },
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 34
+                    },
+                    end: {
+                      line: 1,
+                      column: 39
+                    }
+                  }
+                },
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 34
+                  },
+                  end: {
+                    line: 1,
+                    column: 40
                   }
                 }
               }
-            ]
+            ],
+            loc: {
+              start: {
+                line: 1,
+                column: 25
+              },
+              end: {
+                line: 1,
+                column: 42
+              }
+            }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 42
+          }
+        }
       }
     ],
     [

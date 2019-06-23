@@ -376,7 +376,6 @@ export function validateAndDeclareLabel(parser: ParserState, labels: any, name: 
   labels['$' + name] = 1;
 }
 
-
 export function finishNode<T extends Node>(
   parser: ParserState,
   context: Context,

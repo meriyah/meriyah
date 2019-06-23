@@ -120,12 +120,12 @@ export interface Position {
  */
 export interface Program extends _Node<'Program'> {
   sourceType: 'script' | 'module';
-  body: Array<Statement | ModuleDeclaration>;
-  comments?: Array<Comment>;
+  body: (Statement | ModuleDeclaration)[];
+  comments?: Comment[];
 }
 
 interface BaseFunction extends _Node<'Function'> {
-  params: Array<Pattern>;
+  params: Pattern[];
   generator?: boolean;
   async?: boolean;
   body: BlockStatement | Expression;
@@ -186,8 +186,8 @@ export type Expression =
 export interface EmptyStatement extends _Node<'EmptyStatement'> {}
 
 export interface BlockStatement extends _Node<'BlockStatement'> {
-  body: Array<Statement>;
-  innerComments?: Array<Comment>;
+  body: Statement[];
+  innerComments?: Comment[];
 }
 
 export interface ExpressionStatement extends _Node<'ExpressionStatement'> {
@@ -221,7 +221,7 @@ export interface WithStatement extends _Node<'WithStatement'> {
 
 export interface SwitchStatement extends _Node<'SwitchStatement'> {
   discriminant: Expression;
-  cases: Array<SwitchCase>;
+  cases: SwitchCase[];
 }
 
 export interface ReturnStatement extends _Node<'ReturnStatement'> {
@@ -367,11 +367,11 @@ type Expression =
 export interface ThisExpression extends _Expression<'ThisExpression'> {}
 
 export interface ArrayExpression extends _Expression<'ArrayExpression'> {
-  elements: Array<Expression | SpreadElement>;
+  elements: (Expression | SpreadElement)[];
 }
 
 export interface ObjectExpression extends _Expression<'ObjectExpression'> {
-  properties: Array<Property>;
+  properties: Property[];
 }
 
 export interface Property extends _Node<'Property'> {
@@ -391,7 +391,7 @@ export interface FunctionExpression extends _Expression<'FunctionExpression'> {
 }
 
 export interface SequenceExpression extends _Expression<'SequenceExpression'> {
-  expressions: Array<Expression>;
+  expressions: Expression[];
 }
 
 export interface UnaryExpression extends _Expression<'UnaryExpression'> {
@@ -555,8 +555,8 @@ export interface YieldExpression extends _Expression<'YieldExpression'> {
 }
 
 export interface TemplateLiteral extends _Expression<'TemplateLiteral'> {
-  quasis: Array<TemplateElement>;
-  expressions: Array<Expression>;
+  quasis: TemplateElement[];
+  expressions: Expression[];
 }
 
 export interface TaggedTemplateExpression extends _Expression<'TaggedTemplateExpression'> {
@@ -576,11 +576,11 @@ export interface AssignmentProperty extends _Node<'Property'> {
 }
 
 export interface ObjectPattern extends _Pattern<'ObjectPattern'> {
-  properties: Array<AssignmentProperty>;
+  properties: AssignmentProperty[];
 }
 
 export interface ArrayPattern extends _Pattern<'ArrayPattern'> {
-  elements: Array<Pattern>;
+  elements: Pattern[];
 }
 
 export interface RestElement extends _Pattern<'RestElement'> {
@@ -593,7 +593,7 @@ export interface AssignmentPattern extends _Pattern<'AssignmentPattern'> {
 }
 
 export interface ClassBody extends _Node<'ClassBody'> {
-  body: Array<MethodDefinition>;
+  body: MethodDefinition[];
   decorators?: Decorator[] | null;
 }
 export interface PrivateMemberExpression extends _Node<'FieldDefinition'> {

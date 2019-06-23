@@ -216,7 +216,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     body = parseModuleItemList(parser, context | Context.InGlobal | Context.TopLevel, scope);
 
     if (context & Context.OptionsLexical) {
-      for (let key in parser.exportedBindings) {
+      for (const key in parser.exportedBindings) {
         if (key !== '$default' && (scope.var[key] === undefined && scope.lexicals[key] === undefined)) {
           report(parser, Errors.UndeclaredExportedBinding, key.slice(1));
         }
@@ -268,7 +268,7 @@ export function parseStatementList(parser: ParserState, context: Context, scope:
   while (parser.token === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
     const { index, tokenIndex, tokenValue, linePos, columnPos, token } = parser;
-    let expr = parseLiteral1(parser, context, tokenIndex, linePos, columnPos);
+    const expr = parseLiteral1(parser, context, tokenIndex, linePos, columnPos);
     if (index - tokenIndex < 13 && tokenValue === 'use strict') {
       if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
         context |= Context.Strict;
@@ -323,7 +323,7 @@ export function parseModuleItemList(
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
       const { index, tokenIndex, tokenValue, linePos, columnPos, token } = parser;
-      let expr = parseLiteral(parser, context, tokenIndex, linePos, columnPos);
+      const expr = parseLiteral(parser, context, tokenIndex, linePos, columnPos);
       if (index - tokenIndex < 13 && tokenValue === 'use strict') {
         if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon) {
           context |= Context.Strict;
@@ -743,7 +743,7 @@ export function parseBlock(
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
       parser,
-      context & ~Context.TopLevel,
+      (context | Context.TopLevel) ^ Context.TopLevel,
       scope,
       { $: labels },
       parser.tokenIndex,
@@ -870,7 +870,7 @@ export function parseLabelledStatement(
         )
       : parseStatement(
           parser,
-          context & ~Context.TopLevel,
+          (context | Context.TopLevel) ^ Context.TopLevel,
           scope,
           labels,
           allowFuncDecl,
@@ -2028,9 +2028,9 @@ export function parseForStatement(
 
   if (isVarDecl) {
     if (token === Token.LetKeyword) {
-      let varStart = parser.tokenIndex;
-      let linePosStart = parser.linePos;
-      let columnPosStart = parser.columnPos;
+      const varStart = parser.tokenIndex;
+      const linePosStart = parser.linePos;
+      const columnPosStart = parser.columnPos;
       init = parseIdentifier(parser, context, tokenIndex, linePos, columnPos);
       if (parser.token & (Token.IsIdentifier | Token.IsPatternStart)) {
         if (parser.token === Token.InKeyword) {
@@ -2065,9 +2065,9 @@ export function parseForStatement(
       }
     } else {
       // 'var', 'const'
-      let varStart = parser.tokenIndex;
-      let linePosStart = parser.linePos;
-      let columnPosStart = parser.columnPos;
+      const varStart = parser.tokenIndex;
+      const linePosStart = parser.linePos;
+      const columnPosStart = parser.columnPos;
       nextToken(parser, context);
 
       const kind = KeywordDescTable[token & Token.Type] as 'var' | 'const';
@@ -2550,9 +2550,9 @@ function parseExportDeclaration(
 
       // export default HoistableDeclaration[Default]
       case Token.AsyncKeyword:
-        let idxBeforeAsync = parser.tokenIndex;
-        let lineBeforeAsync = parser.linePos;
-        let columnBeforeAsync = parser.columnPos;
+        const idxBeforeAsync = parser.tokenIndex;
+        const lineBeforeAsync = parser.linePos;
+        const columnBeforeAsync = parser.columnPos;
 
         declaration = parseIdentifier(parser, context, idxBeforeAsync, lineBeforeAsync, columnBeforeAsync);
         const { flags } = parser;
@@ -2694,8 +2694,8 @@ function parseExportDeclaration(
 
       nextToken(parser, context); // Skips: '{'
 
-      let tmpExportedNames: string[] = [];
-      let tmpExportedBindings: string[] = [];
+      const tmpExportedNames: string[] = [];
+      const tmpExportedBindings: string[] = [];
 
       while (parser.token & Token.IsIdentifier) {
         const { tokenIndex, tokenValue, linePos, columnPos } = parser;
@@ -3307,7 +3307,7 @@ export function parseFunctionBody(
     while (parser.token === Token.StringLiteral) {
       // "use strict" must be the exact literal without escape sequences or line continuation.
       const { index, tokenIndex, tokenValue, token } = parser;
-      let expr = parseLiteral(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos);
+      const expr = parseLiteral(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos);
       if (index - tokenIndex < 13 && tokenValue === 'use strict') {
         if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
           context |= Context.Strict;
@@ -3429,7 +3429,7 @@ export function parseLeftHandSideExpression(
   // LeftHandSideExpression ::
   //   (PrimaryExpression | MemberExpression) ...
 
-  let expression = parsePrimaryExpressionExtended(
+  const expression = parsePrimaryExpressionExtended(
     parser,
     context,
     BindingType.None,
@@ -4832,7 +4832,7 @@ function parseSpreadElement(
   if (parser.token & (Token.Keyword | Token.IsIdentifier)) {
     parser.assignable = AssignmentKind.Assignable;
 
-    let tokenValue = parser.tokenValue;
+    const tokenValue = parser.tokenValue;
 
     argument = parsePrimaryExpressionExtended(parser, context, type, 0, 1, inGroup, tokenIndex, linePos, columnPos);
 
@@ -6247,9 +6247,9 @@ export function parseParenthesizedExpression(
   let toplevelComma: 0 | 1 = 0;
   let isComplex: 0 | 1 = 0;
 
-  let idxStart = parser.tokenIndex;
-  let lineStart = parser.linePos;
-  let columnStart = parser.columnPos;
+  const idxStart = parser.tokenIndex;
+  const lineStart = parser.linePos;
+  const columnStart = parser.columnPos;
 
   parser.assignable = AssignmentKind.Assignable;
 
@@ -6776,9 +6776,9 @@ export function parseNewExpression(
   // - `new (await foo);`
   // - `new x(await foo);`
   const id = parseIdentifier(parser, context | Context.AllowRegExp, start, line, column);
-  let startIdx = parser.tokenIndex;
-  let lineIdx = parser.linePos;
-  let columnIdx = parser.columnPos;
+  const startIdx = parser.tokenIndex;
+  const lineIdx = parser.linePos;
+  const columnIdx = parser.columnPos;
 
   if (consumeOpt(parser, context, Token.Period)) {
     if (context & Context.AllowNewTarget && parser.token === Token.Target) {
@@ -7369,7 +7369,7 @@ export function parseClassExpression(
  * @param context Context masks
  */
 export function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[] {
-  let list: ESTree.Decorator[] = [];
+  const list: ESTree.Decorator[] = [];
 
   while (parser.token === Token.Decorator) {
     list.push(parseDecoratorList(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos));

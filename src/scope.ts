@@ -79,7 +79,7 @@ export function declareName(
 ): void {
   if (scope === null) return;
 
-  let hashed = '$' + name;
+  const hashed = '$' + name;
 
   if (bindingType & BindingType.Variable) {
     let lex = scope.lexicals;
@@ -114,10 +114,10 @@ export function declareName(
       lexicalVariables = lexicalVariables['$'];
     }
   } else {
-    let lex = scope.lexicals;
+    const lex = scope.lexicals;
 
     if (dupeChecks) {
-      let lexParent = scope.lexicals['$'];
+      const lexParent = scope.lexicals['$'];
 
       if (lexParent && lexParent.type & (ScopeType.ArgList | ScopeType.Catch) && lexParent[hashed]) {
         report(parser, Errors.DuplicateBinding, name);
@@ -211,7 +211,7 @@ export function checkConflictingLexicalDeclarations(
   scope: any,
   checkParent: 0 | 1
 ): boolean {
-  for (let key in scope.lexicals) {
+  for (const key in scope.lexicals) {
     if (key[0] === '$' && key.length > 1) {
       if (scope.lexicals[key] > 1) report(parser, Errors.DuplicateBinding, key);
 
@@ -244,7 +244,7 @@ export function checkConflictingLexicalDeclarations(
  */
 
 export function verifyArguments(parser: ParserState, lex: any): void {
-  for (let key in lex) {
+  for (const key in lex) {
     if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
       report(parser, Errors.DuplicateBinding, key.slice(1));
     }
