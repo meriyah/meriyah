@@ -242,6 +242,10 @@ export function parseSource(source: string, options: Options | void, context: Co
       start: { line: 1, column: 0 },
       end: { line: parser.line, column: parser.column }
     };
+
+    if (parser.sourceFile) {
+      node.loc.source = sourceFile;
+    }
   }
 
   return node;
