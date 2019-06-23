@@ -1448,28 +1448,88 @@ describe('Expressions - Await', () => {
     ],
     [
       'call(await)',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 11,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 11
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 11
+              }
+            },
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 11,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 11
+                }
+              },
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 4,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 4
+                  }
+                },
                 name: 'call'
               },
               arguments: [
                 {
                   type: 'Identifier',
+                  start: 5,
+                  end: 10,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 10
+                    }
+                  },
                   name: 'await'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

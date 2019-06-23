@@ -530,35 +530,119 @@ describe('Expressions - Assign', () => {
     ],
     [
       'a = ((b)) = c;',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 14
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 14
+              }
+            },
             expression: {
               type: 'AssignmentExpression',
-              left: {
-                type: 'Identifier',
-                name: 'a'
+              start: 0,
+              end: 13,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 13
+                }
               },
               operator: '=',
+              left: {
+                type: 'Identifier',
+                start: 0,
+                end: 1,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                },
+                name: 'a'
+              },
               right: {
                 type: 'AssignmentExpression',
-                left: {
-                  type: 'Identifier',
-                  name: 'b'
+                start: 4,
+                end: 13,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 4
+                  },
+                  end: {
+                    line: 1,
+                    column: 13
+                  }
                 },
                 operator: '=',
+                left: {
+                  type: 'Identifier',
+                  start: 6,
+                  end: 7,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 6
+                    },
+                    end: {
+                      line: 1,
+                      column: 7
+                    }
+                  },
+                  name: 'b'
+                },
                 right: {
                   type: 'Identifier',
+                  start: 12,
+                  end: 13,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 12
+                    },
+                    end: {
+                      line: 1,
+                      column: 13
+                    }
+                  },
                   name: 'c'
                 }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ]
   ]);
