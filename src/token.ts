@@ -184,6 +184,7 @@ export const enum Token {
   Decorator = 133,
   Target = 134 | IsIdentifier,
   LineFeed  = 135,
+  EscapedIdentifier   = 136,
 }
 
 export const KeywordDescTable = [

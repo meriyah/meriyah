@@ -13,14 +13,12 @@ export const enum NumberKind {
   DecimalWithLeadingZero = 1 << 5
 }
 
-export function scanNumber(parser: ParserState, context: Context, isFloat: boolean): Token {
+export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1): Token {
   let kind: NumberKind = NumberKind.Decimal;
   let value: number | string = 0;
-  let atStart = !isFloat;
+
   if (isFloat) {
-    while (CharTypes[parser.nextCP] & CharFlags.Decimal) {
-      nextCodePoint(parser);
-    }
+    while (CharTypes[nextCodePoint(parser)] & CharFlags.Decimal) {}
   } else {
     if (parser.nextCP === Chars.Zero) {
       nextCodePoint(parser);
@@ -54,12 +52,11 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
       } else if (CharTypes[parser.nextCP] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
-        else parser.flags = Flags.Octals;
         kind = NumberKind.ImplicitOctal;
         do {
           if (CharTypes[parser.nextCP] & CharFlags.ImplicitOctalDigits) {
             kind = NumberKind.DecimalWithLeadingZero;
-            atStart = false;
+            isFloat = 0;
             break;
           }
           value = value * 8 + (parser.nextCP - Chars.Zero);
@@ -73,7 +70,7 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
 
     // Parse decimal digits and allow trailing fractional part
     if (kind & (NumberKind.Decimal | NumberKind.DecimalWithLeadingZero)) {
-      if (atStart) {
+      if (isFloat) {
         // scan subsequent decimal digits
         let digit = 9;
         while (digit >= 0 && CharTypes[parser.nextCP] & CharFlags.Decimal) {
@@ -95,7 +92,7 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: boole
 
       // Scan any decimal dot and fractional component
       if (parser.nextCP === Chars.Period) {
-        isFloat = true;
+        isFloat = 1;
         nextCodePoint(parser); // consumes '.'
         while (CharTypes[parser.nextCP] & CharFlags.Decimal) {
           nextCodePoint(parser);

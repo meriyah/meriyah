@@ -1,5 +1,5 @@
 import { Chars } from '../chars';
-import { ParserState } from '../common';
+import { ParserState, Flags } from '../common';
 import { unicodeLookup } from '../unicode';
 import { report, Errors } from '../errors';
 
@@ -32,6 +32,25 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
   parser.column++;
   parser.nextCP = hi;
   return true;
+}
+
+/**
+ * Use to consume a line feed instead of `advanceNewline`.
+ */
+export function consumeLineFeed(parser: ParserState, lastIsCR: boolean) {
+  parser.nextCP = parser.source.charCodeAt(++parser.index);
+  parser.flags |= Flags.NewLine;
+  if (!lastIsCR) {
+    parser.column = 0;
+    parser.line++;
+  }
+}
+
+export function advanceNewline(parser: ParserState) {
+  parser.flags |= Flags.NewLine;
+  parser.nextCP = parser.source.charCodeAt(++parser.index);
+  parser.column = 0;
+  parser.line++;
 }
 
 // ECMA-262 11.2 White Space
