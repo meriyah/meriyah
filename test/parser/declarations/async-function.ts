@@ -275,6 +275,7 @@ describe('Declarations - Async Function', () => {
     'async function f(){ (x = new (await x)) => {}   }',
     'async function f(){ (x = new f[await x]) => {}   }',
     `async function f(x = () => await x){}`,
+    'async function f(){ (x = class A {[await foo](){}; "x"(){}}) => {} }',
     'async function x({await}) { return 1 }',
     'async function f() { return {await}; }',
     'async function f() { return {await = 0} = {}; }',
@@ -787,24 +788,64 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'async ({a: b = c})',
-      Context.OptionsRanges,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         start: 0,
         end: 18,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 18
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 18
+              }
+            },
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 18,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 18
+                }
+              },
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 5,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 5
+                  }
+                },
                 name: 'async'
               },
               arguments: [
@@ -812,11 +853,31 @@ describe('Declarations - Async Function', () => {
                   type: 'ObjectExpression',
                   start: 7,
                   end: 17,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 7
+                    },
+                    end: {
+                      line: 1,
+                      column: 17
+                    }
+                  },
                   properties: [
                     {
                       type: 'Property',
                       start: 8,
                       end: 16,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 8
+                        },
+                        end: {
+                          line: 1,
+                          column: 16
+                        }
+                      },
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -824,23 +885,63 @@ describe('Declarations - Async Function', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 8
+                          },
+                          end: {
+                            line: 1,
+                            column: 9
+                          }
+                        },
                         name: 'a'
                       },
                       value: {
                         type: 'AssignmentExpression',
                         start: 11,
                         end: 16,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 11
+                          },
+                          end: {
+                            line: 1,
+                            column: 16
+                          }
+                        },
                         operator: '=',
                         left: {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 11
+                            },
+                            end: {
+                              line: 1,
+                              column: 12
+                            }
+                          },
                           name: 'b'
                         },
                         right: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 15
+                            },
+                            end: {
+                              line: 1,
+                              column: 16
+                            }
+                          },
                           name: 'c'
                         }
                       },
@@ -1201,61 +1302,186 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'function foo() { await + 1 }',
-      Context.None,
+      Context.OptionsLoc | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 28
+          }
+        },
         body: [
           {
             type: 'FunctionDeclaration',
+            start: 0,
+            end: 28,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 28
+              }
+            },
+            id: {
+              type: 'Identifier',
+              start: 9,
+              end: 12,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 9
+                },
+                end: {
+                  line: 1,
+                  column: 12
+                }
+              },
+              name: 'foo'
+            },
+            generator: false,
+            async: false,
             params: [],
             body: {
               type: 'BlockStatement',
+              start: 15,
+              end: 28,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 15
+                },
+                end: {
+                  line: 1,
+                  column: 28
+                }
+              },
               body: [
                 {
                   type: 'ExpressionStatement',
+                  start: 17,
+                  end: 26,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 17
+                    },
+                    end: {
+                      line: 1,
+                      column: 26
+                    }
+                  },
                   expression: {
                     type: 'BinaryExpression',
+                    start: 17,
+                    end: 26,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 17
+                      },
+                      end: {
+                        line: 1,
+                        column: 26
+                      }
+                    },
                     left: {
                       type: 'Identifier',
+                      start: 17,
+                      end: 22,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 17
+                        },
+                        end: {
+                          line: 1,
+                          column: 22
+                        }
+                      },
                       name: 'await'
                     },
+                    operator: '+',
                     right: {
                       type: 'Literal',
+                      start: 25,
+                      end: 26,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 25
+                        },
+                        end: {
+                          line: 1,
+                          column: 26
+                        }
+                      },
                       value: 1
-                    },
-                    operator: '+'
+                    }
                   }
                 }
               ]
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo'
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'async function foo(a = async function foo() { await b }) {}',
-      Context.OptionsRanges,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         start: 0,
         end: 59,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 59
+          }
+        },
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 59,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 59
+              }
+            },
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 15
+                },
+                end: {
+                  line: 1,
+                  column: 18
+                }
+              },
               name: 'foo'
             },
             generator: false,
@@ -1265,20 +1491,60 @@ describe('Declarations - Async Function', () => {
                 type: 'AssignmentPattern',
                 start: 19,
                 end: 55,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 19
+                  },
+                  end: {
+                    line: 1,
+                    column: 55
+                  }
+                },
                 left: {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 19
+                    },
+                    end: {
+                      line: 1,
+                      column: 20
+                    }
+                  },
                   name: 'a'
                 },
                 right: {
                   type: 'FunctionExpression',
                   start: 23,
                   end: 55,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 23
+                    },
+                    end: {
+                      line: 1,
+                      column: 55
+                    }
+                  },
                   id: {
                     type: 'Identifier',
                     start: 38,
                     end: 41,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 38
+                      },
+                      end: {
+                        line: 1,
+                        column: 41
+                      }
+                    },
                     name: 'foo'
                   },
                   generator: false,
@@ -1288,19 +1554,59 @@ describe('Declarations - Async Function', () => {
                     type: 'BlockStatement',
                     start: 44,
                     end: 55,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 44
+                      },
+                      end: {
+                        line: 1,
+                        column: 55
+                      }
+                    },
                     body: [
                       {
                         type: 'ExpressionStatement',
                         start: 46,
                         end: 53,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 46
+                          },
+                          end: {
+                            line: 1,
+                            column: 53
+                          }
+                        },
                         expression: {
                           type: 'AwaitExpression',
                           start: 46,
                           end: 53,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 46
+                            },
+                            end: {
+                              line: 1,
+                              column: 53
+                            }
+                          },
                           argument: {
                             type: 'Identifier',
                             start: 52,
                             end: 53,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 52
+                              },
+                              end: {
+                                line: 1,
+                                column: 53
+                              }
+                            },
                             name: 'b'
                           }
                         }
@@ -1314,6 +1620,16 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 57,
               end: 59,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 57
+                },
+                end: {
+                  line: 1,
+                  column: 59
+                }
+              },
               body: []
             }
           }
@@ -1572,212 +1888,751 @@ describe('Declarations - Async Function', () => {
     ],
     [
       'f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: "" }) => {}',
-      Context.None,
+      Context.OptionsLoc | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 111,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 111
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 111,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 111
+              }
+            },
             expression: {
               type: 'AssignmentExpression',
-              left: {
-                type: 'Identifier',
-                name: 'f'
+              start: 0,
+              end: 111,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 111
+                }
               },
               operator: '=',
+              left: {
+                type: 'Identifier',
+                start: 0,
+                end: 1,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                },
+                name: 'f'
+              },
               right: {
                 type: 'ArrowFunctionExpression',
-                body: {
-                  type: 'BlockStatement',
-                  body: []
+                start: 4,
+                end: 111,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 4
+                  },
+                  end: {
+                    line: 1,
+                    column: 111
+                  }
                 },
+                expression: false,
+                async: false,
                 params: [
                   {
                     type: 'AssignmentPattern',
+                    start: 5,
+                    end: 104,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 104
+                      }
+                    },
                     left: {
                       type: 'ObjectPattern',
+                      start: 5,
+                      end: 67,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 5
+                        },
+                        end: {
+                          line: 1,
+                          column: 67
+                        }
+                      },
                       properties: [
                         {
                           type: 'Property',
+                          start: 7,
+                          end: 20,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 7
+                            },
+                            end: {
+                              line: 1,
+                              column: 20
+                            }
+                          },
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 7,
+                            end: 8,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 7
+                              },
+                              end: {
+                                line: 1,
+                                column: 8
+                              }
+                            },
                             name: 'w'
                           },
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 7,
+                            end: 20,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 7
+                              },
+                              end: {
+                                line: 1,
+                                column: 20
+                              }
+                            },
                             left: {
                               type: 'Identifier',
+                              start: 7,
+                              end: 8,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 7
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 8
+                                }
+                              },
                               name: 'w'
                             },
                             right: {
                               type: 'CallExpression',
+                              start: 11,
+                              end: 20,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 11
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 20
+                                }
+                              },
                               callee: {
                                 type: 'Identifier',
+                                start: 11,
+                                end: 18,
+                                loc: {
+                                  start: {
+                                    line: 1,
+                                    column: 11
+                                  },
+                                  end: {
+                                    line: 1,
+                                    column: 18
+                                  }
+                                },
                                 name: 'counter'
                               },
                               arguments: []
                             }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
+                          }
                         },
                         {
                           type: 'Property',
+                          start: 22,
+                          end: 35,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 22
+                            },
+                            end: {
+                              line: 1,
+                              column: 35
+                            }
+                          },
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 22,
+                            end: 23,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 22
+                              },
+                              end: {
+                                line: 1,
+                                column: 23
+                              }
+                            },
                             name: 'x'
                           },
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 22,
+                            end: 35,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 22
+                              },
+                              end: {
+                                line: 1,
+                                column: 35
+                              }
+                            },
                             left: {
                               type: 'Identifier',
+                              start: 22,
+                              end: 23,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 22
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 23
+                                }
+                              },
                               name: 'x'
                             },
                             right: {
                               type: 'CallExpression',
+                              start: 26,
+                              end: 35,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 26
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 35
+                                }
+                              },
                               callee: {
                                 type: 'Identifier',
+                                start: 26,
+                                end: 33,
+                                loc: {
+                                  start: {
+                                    line: 1,
+                                    column: 26
+                                  },
+                                  end: {
+                                    line: 1,
+                                    column: 33
+                                  }
+                                },
                                 name: 'counter'
                               },
                               arguments: []
                             }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
+                          }
                         },
                         {
                           type: 'Property',
+                          start: 37,
+                          end: 50,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 37
+                            },
+                            end: {
+                              line: 1,
+                              column: 50
+                            }
+                          },
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 37,
+                            end: 38,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 37
+                              },
+                              end: {
+                                line: 1,
+                                column: 38
+                              }
+                            },
                             name: 'y'
                           },
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 37,
+                            end: 50,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 37
+                              },
+                              end: {
+                                line: 1,
+                                column: 50
+                              }
+                            },
                             left: {
                               type: 'Identifier',
+                              start: 37,
+                              end: 38,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 37
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 38
+                                }
+                              },
                               name: 'y'
                             },
                             right: {
                               type: 'CallExpression',
+                              start: 41,
+                              end: 50,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 41
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 50
+                                }
+                              },
                               callee: {
                                 type: 'Identifier',
+                                start: 41,
+                                end: 48,
+                                loc: {
+                                  start: {
+                                    line: 1,
+                                    column: 41
+                                  },
+                                  end: {
+                                    line: 1,
+                                    column: 48
+                                  }
+                                },
                                 name: 'counter'
                               },
                               arguments: []
                             }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
+                          }
                         },
                         {
                           type: 'Property',
+                          start: 52,
+                          end: 65,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 52
+                            },
+                            end: {
+                              line: 1,
+                              column: 65
+                            }
+                          },
+                          method: false,
+                          shorthand: true,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 52,
+                            end: 53,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 52
+                              },
+                              end: {
+                                line: 1,
+                                column: 53
+                              }
+                            },
                             name: 'z'
                           },
+                          kind: 'init',
                           value: {
                             type: 'AssignmentPattern',
+                            start: 52,
+                            end: 65,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 52
+                              },
+                              end: {
+                                line: 1,
+                                column: 65
+                              }
+                            },
                             left: {
                               type: 'Identifier',
+                              start: 52,
+                              end: 53,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 52
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 53
+                                }
+                              },
                               name: 'z'
                             },
                             right: {
                               type: 'CallExpression',
+                              start: 56,
+                              end: 65,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 56
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 65
+                                }
+                              },
                               callee: {
                                 type: 'Identifier',
+                                start: 56,
+                                end: 63,
+                                loc: {
+                                  start: {
+                                    line: 1,
+                                    column: 56
+                                  },
+                                  end: {
+                                    line: 1,
+                                    column: 63
+                                  }
+                                },
                                 name: 'counter'
                               },
                               arguments: []
                             }
-                          },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: true
+                          }
                         }
                       ]
                     },
                     right: {
                       type: 'ObjectExpression',
+                      start: 70,
+                      end: 104,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 70
+                        },
+                        end: {
+                          line: 1,
+                          column: 104
+                        }
+                      },
                       properties: [
                         {
                           type: 'Property',
+                          start: 72,
+                          end: 79,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 72
+                            },
+                            end: {
+                              line: 1,
+                              column: 79
+                            }
+                          },
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 72,
+                            end: 73,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 72
+                              },
+                              end: {
+                                line: 1,
+                                column: 73
+                              }
+                            },
                             name: 'w'
                           },
                           value: {
                             type: 'Literal',
+                            start: 75,
+                            end: 79,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 75
+                              },
+                              end: {
+                                line: 1,
+                                column: 79
+                              }
+                            },
                             value: null
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 81,
+                          end: 85,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 81
+                            },
+                            end: {
+                              line: 1,
+                              column: 85
+                            }
+                          },
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 81,
+                            end: 82,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 81
+                              },
+                              end: {
+                                line: 1,
+                                column: 82
+                              }
+                            },
                             name: 'x'
                           },
                           value: {
                             type: 'Literal',
+                            start: 84,
+                            end: 85,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 84
+                              },
+                              end: {
+                                line: 1,
+                                column: 85
+                              }
+                            },
                             value: 0
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 87,
+                          end: 95,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 87
+                            },
+                            end: {
+                              line: 1,
+                              column: 95
+                            }
+                          },
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 87,
+                            end: 88,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 87
+                              },
+                              end: {
+                                line: 1,
+                                column: 88
+                              }
+                            },
                             name: 'y'
                           },
                           value: {
                             type: 'Literal',
+                            start: 90,
+                            end: 95,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 90
+                              },
+                              end: {
+                                line: 1,
+                                column: 95
+                              }
+                            },
                             value: false
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         },
                         {
                           type: 'Property',
+                          start: 97,
+                          end: 102,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 97
+                            },
+                            end: {
+                              line: 1,
+                              column: 102
+                            }
+                          },
+                          method: false,
+                          shorthand: false,
+                          computed: false,
                           key: {
                             type: 'Identifier',
+                            start: 97,
+                            end: 98,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 97
+                              },
+                              end: {
+                                line: 1,
+                                column: 98
+                              }
+                            },
                             name: 'z'
                           },
                           value: {
                             type: 'Literal',
+                            start: 100,
+                            end: 102,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 100
+                              },
+                              end: {
+                                line: 1,
+                                column: 102
+                              }
+                            },
                             value: ''
                           },
-                          kind: 'init',
-                          computed: false,
-                          method: false,
-                          shorthand: false
+                          kind: 'init'
                         }
                       ]
                     }
                   }
                 ],
-
-                async: false,
-                expression: false
+                body: {
+                  type: 'BlockStatement',
+                  start: 109,
+                  end: 111,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 109
+                    },
+                    end: {
+                      line: 1,
+                      column: 111
+                    }
+                  },
+                  body: []
+                }
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

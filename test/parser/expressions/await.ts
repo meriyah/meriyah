@@ -1534,24 +1534,95 @@ describe('Expressions - Await', () => {
     ],
     [
       'call(await())',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 13,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 13
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 13,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 13
+              }
+            },
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 13,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 13
+                }
+              },
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 4,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 4
+                  }
+                },
                 name: 'call'
               },
               arguments: [
                 {
                   type: 'CallExpression',
+                  start: 5,
+                  end: 12,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 12
+                    }
+                  },
                   callee: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 10,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 10
+                      }
+                    },
                     name: 'await'
                   },
                   arguments: []
@@ -1559,41 +1630,126 @@ describe('Expressions - Await', () => {
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       'call(await[1])',
-      Context.None,
+      Context.OptionsLoc | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 14,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 14
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 14,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 14
+              }
+            },
             expression: {
               type: 'CallExpression',
+              start: 0,
+              end: 14,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 14
+                }
+              },
               callee: {
                 type: 'Identifier',
+                start: 0,
+                end: 4,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 4
+                  }
+                },
                 name: 'call'
               },
               arguments: [
                 {
                   type: 'MemberExpression',
+                  start: 5,
+                  end: 13,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 13
+                    }
+                  },
                   object: {
                     type: 'Identifier',
+                    start: 5,
+                    end: 10,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 10
+                      }
+                    },
                     name: 'await'
                   },
-                  computed: true,
                   property: {
                     type: 'Literal',
+                    start: 11,
+                    end: 12,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 11
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
+                    },
                     value: 1
-                  }
+                  },
+                  computed: true
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1665,42 +1821,137 @@ describe('Expressions - Await', () => {
     ],
     [
       '(function call(foo=await){})',
-      Context.None,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 28
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 28,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 28
+              }
+            },
             expression: {
               type: 'FunctionExpression',
+              start: 1,
+              end: 27,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 27
+                }
+              },
+              id: {
+                type: 'Identifier',
+                start: 10,
+                end: 14,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 10
+                  },
+                  end: {
+                    line: 1,
+                    column: 14
+                  }
+                },
+                name: 'call'
+              },
+              generator: false,
+              async: false,
               params: [
                 {
                   type: 'AssignmentPattern',
+                  start: 15,
+                  end: 24,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 15
+                    },
+                    end: {
+                      line: 1,
+                      column: 24
+                    }
+                  },
                   left: {
                     type: 'Identifier',
+                    start: 15,
+                    end: 18,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 15
+                      },
+                      end: {
+                        line: 1,
+                        column: 18
+                      }
+                    },
                     name: 'foo'
                   },
                   right: {
                     type: 'Identifier',
+                    start: 19,
+                    end: 24,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 19
+                      },
+                      end: {
+                        line: 1,
+                        column: 24
+                      }
+                    },
                     name: 'await'
                   }
                 }
               ],
               body: {
                 type: 'BlockStatement',
+                start: 25,
+                end: 27,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 25
+                  },
+                  end: {
+                    line: 1,
+                    column: 27
+                  }
+                },
                 body: []
-              },
-              async: false,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'call'
               }
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

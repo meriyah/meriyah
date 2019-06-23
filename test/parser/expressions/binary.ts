@@ -1034,7 +1034,7 @@ describe('Expressions - Binary', () => {
     ],
     [
       'a || b && c',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1045,29 +1045,99 @@ describe('Expressions - Binary', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                }
               },
               right: {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 6
+                    }
+                  }
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 10
+                    },
+                    end: {
+                      line: 1,
+                      column: 11
+                    }
+                  }
                 },
-                operator: '&&'
+                operator: '&&',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 5
+                  },
+                  end: {
+                    line: 1,
+                    column: 11
+                  }
+                }
               },
-              operator: '||'
+              operator: '||',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 11
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 11
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 11
+          }
+        }
       }
     ],
     [
       'a ^ b | c',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1080,22 +1150,92 @@ describe('Expressions - Binary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 0
+                    },
+                    end: {
+                      line: 1,
+                      column: 1
+                    }
+                  }
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 4
+                    },
+                    end: {
+                      line: 1,
+                      column: 5
+                    }
+                  }
                 },
-                operator: '^'
+                operator: '^',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 5
+                  }
+                }
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 8
+                  },
+                  end: {
+                    line: 1,
+                    column: 9
+                  }
+                }
               },
-              operator: '|'
+              operator: '|',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 9
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 9
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 9
+          }
+        }
       }
     ],
     [

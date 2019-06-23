@@ -174,7 +174,7 @@ export const TokenLookup = [
  * @param context Context masks
  */
 export function nextToken(parser: ParserState, context: Context): void {
-  parser.flags &= ~Flags.NewLine;
+  parser.flags = (parser.flags | Flags.NewLine) ^ Flags.NewLine;
   parser.startIndex = parser.index;
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
@@ -186,8 +186,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
 
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
-    parser.columnOffset = parser.column;
-    parser.lineOffset = parser.line;
+    parser.columnPos = parser.column;
+    parser.linePos = parser.line;
+
     const first = parser.nextCP;
 
     if (first <= 0x7e) {

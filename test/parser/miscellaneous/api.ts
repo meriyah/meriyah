@@ -11,7 +11,8 @@ describe('Expressions - API', () => {
         webCompat: true,
         module: true,
         parenthesizedExpr: true,
-        lexical: true
+        lexical: true,
+        source: 'bullshit'
       }),
       {
         body: [
@@ -24,6 +25,7 @@ describe('Expressions - API', () => {
                   column: 3,
                   line: 1
                 },
+                source: 'bullshit',
                 start: {
                   column: 0,
                   line: 1
@@ -38,6 +40,7 @@ describe('Expressions - API', () => {
                 column: 3,
                 line: 1
               },
+              source: 'bullshit',
               start: {
                 column: 0,
                 line: 1
@@ -53,6 +56,7 @@ describe('Expressions - API', () => {
             column: 3,
             line: 1
           },
+          source: 'bullshit',
           start: {
             column: 0,
             line: 1

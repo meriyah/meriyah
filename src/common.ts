@@ -133,8 +133,8 @@ export interface ParserState {
   startIndex: number;
   startColumn: number;
   startLine: number;
-  columnOffset: number;
-  lineOffset: number;
+  columnPos: number;
+  linePos: number;
   end: number;
   token: Token;
   tokenValue: any;
@@ -143,6 +143,7 @@ export interface ParserState {
     pattern: string;
     flags: string;
   };
+  sourceFile: string | void;
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
   nextCP: number;
@@ -400,6 +401,10 @@ export function finishNode<T extends Node>(
         column: parser.startColumn,
       }
     };
+
+    if (parser.sourceFile) {
+      node.loc.source = parser.sourceFile;
+  }
   }
 
   return node;
