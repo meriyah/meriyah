@@ -117,5 +117,5 @@ The second argument allows you to specify various options:
 | `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
 | `raw`             | Attach raw property to each literal node |
 | `ranges`          | Append start and end offsets to each node |
-| `sourceFile`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
+| `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
