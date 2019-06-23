@@ -152,7 +152,8 @@ export declare const enum Token {
     Template = 132,
     Decorator = 133,
     Target = 143494,
-    LineFeed = 135
+    LineFeed = 135,
+    EscapedIdentifier = 136
 }
 export declare const KeywordDescTable: string[];
 export declare const descKeywordTable: {

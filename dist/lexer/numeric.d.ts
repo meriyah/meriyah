@@ -8,5 +8,5 @@ export declare const enum NumberKind {
     Decimal = 16,
     DecimalWithLeadingZero = 32
 }
-export declare function scanNumber(parser: ParserState, context: Context, isFloat: boolean): Token;
+export declare function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1): Token;
 //# sourceMappingURL=numeric.d.ts.map

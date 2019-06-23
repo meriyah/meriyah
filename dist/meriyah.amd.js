@@ -446,7 +446,7 @@ define(['exports'], function (exports) { 'use strict';
       208897,
       208897,
       69271571,
-      208897,
+      136,
       20,
       8455238,
       208897,
@@ -515,29 +515,24 @@ define(['exports'], function (exports) { 'use strict';
                       nextCodePoint(parser);
                       break;
                   case 130:
-                      parser.flags |= 1;
                       state |= 1 | 4;
-                      parser.column = 0;
-                      parser.nextCP = parser.source.charCodeAt(++parser.index);
-                      parser.line++;
+                      advanceNewline(parser);
                       break;
                   case 135:
+                      consumeLineFeed(parser, (state & 4) !== 0);
+                      state = (state | 4 | 1) ^ 4;
                       parser.flags |= 1;
-                      if ((state & 4) === 0) {
-                          parser.column = 0;
-                          parser.line++;
-                      }
-                      state = (state & ~4) | 1;
-                      parser.nextCP = parser.source.charCodeAt(++parser.index);
                       break;
                   case 208897:
                       return scanIdentifier(parser, context);
                   case 134283266:
-                      return scanNumber(parser, context, false);
+                      return scanNumber(parser, context, 0);
                   case 134283267:
                       return scanString(parser, context);
                   case 132:
                       return scanTemplate(parser, context);
+                  case 136:
+                      return scanUnicodeIdentifier(parser, context);
                   case 131:
                       return scanPrivateName(parser);
                   case 16842797:
@@ -749,10 +744,9 @@ define(['exports'], function (exports) { 'use strict';
                   case 67108877:
                       nextCodePoint(parser);
                       if ((CharTypes[parser.nextCP] & 1024) !== 0)
-                          return scanNumber(parser, context, true);
+                          return scanNumber(parser, context, 1);
                       if (parser.nextCP === 46) {
-                          nextCodePoint(parser);
-                          if (parser.nextCP === 46) {
+                          if (nextCodePoint(parser) === 46) {
                               nextCodePoint(parser);
                               return 14;
                           }
@@ -763,15 +757,13 @@ define(['exports'], function (exports) { 'use strict';
           }
           else {
               if ((first ^ 8232) <= 1) {
-                  parser.flags |= 1;
-                  state = (state & ~4) | 1;
-                  parser.column = 0;
-                  parser.nextCP = parser.source.charCodeAt(++parser.index);
-                  parser.line++;
+                  state = (state | 4 | 1) ^ 4;
+                  advanceNewline(parser);
                   continue;
               }
               if (isIDStart(first) || consumeMultiUnitCodePoint(parser, first)) {
-                  return scanIdentifier(parser, context);
+                  parser.tokenValue = '';
+                  return scanIdentifierSlowCase(parser, context, 0, 0);
               }
               if (isExoticECMAScriptWhitespace(first)) {
                   nextCodePoint(parser);
@@ -806,10 +798,8 @@ define(['exports'], function (exports) { 'use strict';
   function skipSingleLineComment(parser, state) {
       while (parser.index < parser.end) {
           if (CharTypes[parser.nextCP] & 512 || (parser.nextCP ^ 8232) <= 1) {
-              parser.flags |= 1;
-              parser.column = 0;
-              parser.line++;
-              parser.nextCP = parser.source.charCodeAt(++parser.index);
+              state = (state | 4 | 1) ^ 4;
+              advanceNewline(parser);
               return state;
           }
           nextCodePoint(parser);
@@ -827,25 +817,21 @@ define(['exports'], function (exports) { 'use strict';
           if (CharTypes[parser.nextCP] & 512) {
               if (CharTypes[parser.nextCP] & 524288) {
                   state |= 1 | 4;
-                  parser.column = 0;
-                  parser.line++;
+                  advanceNewline(parser);
               }
               else {
                   if (state & 4) {
                       parser.column = 0;
                       parser.line++;
                   }
-                  state = (state & ~4) | 1;
+                  state = (state | 4 | 1) ^ 4;
+                  parser.nextCP = parser.source.charCodeAt(++parser.index);
+                  parser.flags |= 1;
               }
-              parser.nextCP = parser.source.charCodeAt(++parser.index);
-              parser.flags |= 1;
           }
           else if ((parser.nextCP ^ 8232) <= 1) {
-              state = (state & ~4) | 1;
-              parser.column = 0;
-              parser.nextCP = parser.source.charCodeAt(++parser.index);
-              parser.line++;
-              parser.flags |= 1;
+              state = (state | 4 | 1) ^ 4;
+              advanceNewline(parser);
           }
           else {
               nextCodePoint(parser);
@@ -872,6 +858,20 @@ define(['exports'], function (exports) { 'use strict';
       parser.column++;
       parser.nextCP = hi;
       return true;
+  }
+  function consumeLineFeed(parser, lastIsCR) {
+      parser.nextCP = parser.source.charCodeAt(++parser.index);
+      parser.flags |= 1;
+      if (!lastIsCR) {
+          parser.column = 0;
+          parser.line++;
+      }
+  }
+  function advanceNewline(parser) {
+      parser.flags |= 1;
+      parser.nextCP = parser.source.charCodeAt(++parser.index);
+      parser.column = 0;
+      parser.line++;
   }
   function isExoticECMAScriptWhitespace(code) {
       return (code === 160 ||
@@ -973,29 +973,21 @@ define(['exports'], function (exports) { 'use strict';
   });
 
   function scanIdentifier(parser, context) {
-      let hasEscape = 0;
-      let canBeKeyword = CharTypes[parser.nextCP] & 64;
-      parser.tokenValue = '';
-      if (parser.nextCP <= 0x7e) {
-          if ((CharTypes[parser.nextCP] & 131072) === 0) {
-              while ((CharTypes[nextCodePoint(parser)] & 2) !== 0) { }
-              parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
-              if (parser.nextCP > 0x7e)
-                  return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
-              if ((CharTypes[parser.nextCP] & 131072) === 0) {
-                  return descKeywordTable[parser.tokenValue] || 208897;
-              }
-          }
-          else {
-              hasEscape = 1;
-              const code = scanIdentifierUnicodeEscape(parser);
-              if (!isIdentifierPart(code))
-                  report(parser, 4);
-              canBeKeyword = CharTypes[code] & 64;
-              parser.tokenValue += fromCodePoint(code);
-          }
+      const canBeKeyword = CharTypes[parser.nextCP] & 64;
+      while ((CharTypes[nextCodePoint(parser)] & 2) !== 0) { }
+      parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+      const hasEscape = CharTypes[parser.nextCP] & 131072;
+      if (!hasEscape && parser.nextCP < 0x7e) {
+          return descKeywordTable[parser.tokenValue] || 208897;
       }
       return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
+  }
+  function scanUnicodeIdentifier(parser, context) {
+      const cookedChar = scanIdentifierUnicodeEscape(parser);
+      if (!isIdentifierPart(cookedChar))
+          report(parser, 4);
+      parser.tokenValue = fromCodePoint(cookedChar);
+      return scanIdentifierSlowCase(parser, context, 1, CharTypes[cookedChar] & 64);
   }
   function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
       let start = parser.index;
@@ -1288,11 +1280,8 @@ define(['exports'], function (exports) { 'use strict';
   function scanNumber(parser, context, isFloat) {
       let kind = 16;
       let value = 0;
-      let atStart = !isFloat;
       if (isFloat) {
-          while (CharTypes[parser.nextCP] & 1024) {
-              nextCodePoint(parser);
-          }
+          while (CharTypes[nextCodePoint(parser)] & 1024) { }
       }
       else {
           if (parser.nextCP === 48) {
@@ -1330,13 +1319,11 @@ define(['exports'], function (exports) { 'use strict';
               else if (CharTypes[parser.nextCP] & 2048) {
                   if (context & 1024)
                       report(parser, 1);
-                  else
-                      parser.flags = 64;
                   kind = 1;
                   do {
                       if (CharTypes[parser.nextCP] & 262144) {
                           kind = 32;
-                          atStart = false;
+                          isFloat = 0;
                           break;
                       }
                       value = value * 8 + (parser.nextCP - 48);
@@ -1351,7 +1338,7 @@ define(['exports'], function (exports) { 'use strict';
               }
           }
           if (kind & (16 | 32)) {
-              if (atStart) {
+              if (isFloat) {
                   let digit = 9;
                   while (digit >= 0 && CharTypes[parser.nextCP] & 1024) {
                       value = 10 * value + (parser.nextCP - 48);
@@ -1369,7 +1356,7 @@ define(['exports'], function (exports) { 'use strict';
                   nextCodePoint(parser);
               }
               if (parser.nextCP === 46) {
-                  isFloat = true;
+                  isFloat = 1;
                   nextCodePoint(parser);
                   while (CharTypes[parser.nextCP] & 1024) {
                       nextCodePoint(parser);
@@ -3638,7 +3625,7 @@ define(['exports'], function (exports) { 'use strict';
           scope = inheritScope(scope, 16);
       const params = parseFormalParametersOrFormalList(parser, context | 8388608, scope, inGroup, 1);
       const body = parseFunctionBody(parser, context &
-          ~(0x8001000 | 8192 | 16384 | 4096 | 131072 | 268435456), inheritScope(scope, 2), 0, firstRestricted);
+          ~(0x8001000 | 8192 | 16384 | 4096 | 131072 | 268435456),  inheritScope(scope, 2) , 0, firstRestricted);
       parser.assignable = 2;
       return finishNode(parser, context, start, {
           type: 'FunctionExpression',
@@ -4803,8 +4790,9 @@ define(['exports'], function (exports) { 'use strict';
                       (parser.token & 537079808) === 537079808)) {
                   isComplex = 1;
               }
-              if (context & 64)
+              if (context & 64 && (parser.token & 143360) === 143360) {
                   declareName(parser, context, scope, parser.tokenValue, type, 0, 0);
+              }
               left = parseAndClassifyIdentifier(parser, context, type, tokenIndex);
           }
           else {
