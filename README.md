@@ -111,6 +111,7 @@ The second argument allows you to specify various options:
 | `globalReturn`    | Allow `return` in the global scope |
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
 | `lexical`         | Enable lexical binding and scope tracking |
+| `loc`         | Enable line/column location information to each node |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
 | `parenthesizedExpr`	| Enable non-standard parenthesized expression node |

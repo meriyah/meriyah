@@ -131,6 +131,10 @@ export interface ParserState {
   column: number;
   tokenIndex: number;
   startIndex: number;
+  startColumn: number;
+  startLine: number;
+  columnOffset: number;
+  lineOffset: number;
   end: number;
   token: Token;
   tokenValue: any;
@@ -376,12 +380,27 @@ export function finishNode<T extends Node>(
   parser: ParserState,
   context: Context,
   start: number,
+  line: number,
+  column: number,
   node: T,
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
     node.end = parser.startIndex;
-}
+  }
+
+  if (context & Context.OptionsLoc) {
+    node.loc = {
+      start: {
+        line,
+        column,
+      },
+      end: {
+        line: parser.startLine,
+        column: parser.startColumn,
+      }
+    };
+  }
 
   return node;
 }

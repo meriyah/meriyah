@@ -19,6 +19,6 @@ export {
   scanUnicodeEscapeValue
 } from './identifier';
 export { scanString } from './string';
-export { scanNumber } from './numeric';
+export { scanNumber, NumberKind } from './numeric';
 export { scanTemplate, scanTemplateTail } from './template';
 export { scanRegularExpression } from './regexp';

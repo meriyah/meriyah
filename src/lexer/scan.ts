@@ -176,6 +176,8 @@ export const TokenLookup = [
 export function nextToken(parser: ParserState, context: Context): void {
   parser.flags &= ~Flags.NewLine;
   parser.startIndex = parser.index;
+  parser.startColumn = parser.column;
+  parser.startLine = parser.line;
   parser.token = scanSingleToken(parser, context, ScannerState.None);
 }
 
@@ -184,7 +186,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
 
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
-
+    parser.columnOffset = parser.column;
+    parser.lineOffset = parser.line;
     const first = parser.nextCP;
 
     if (first <= 0x7e) {
@@ -230,7 +233,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
 
         // Look for a decimal number.
         case Token.NumericLiteral:
-          return scanNumber(parser, context, 0);
+          return scanNumber(parser, context, /* isFloat */ 0);
 
         // Look for a string or a template string.
         case Token.StringLiteral:

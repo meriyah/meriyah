@@ -1,4 +1,4 @@
-import { nextCodePoint, CharTypes, CharFlags, ScannerState, consumeLineFeed, advanceNewline } from './';
+import { nextCodePoint, CharTypes, CharFlags, ScannerState, advanceNewline } from './';
 import { Chars } from '../chars';
 import { ParserState, Flags } from '../common';
 import { report, Errors } from '../errors';
