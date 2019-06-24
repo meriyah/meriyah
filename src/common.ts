@@ -131,6 +131,10 @@ export interface ParserState {
   column: number;
   tokenIndex: number;
   startIndex: number;
+  startColumn: number;
+  startLine: number;
+  columnPos: number;
+  linePos: number;
   end: number;
   token: Token;
   tokenValue: any;
@@ -139,6 +143,7 @@ export interface ParserState {
     pattern: string;
     flags: string;
   };
+  sourceFile: string | void;
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
   nextCP: number;
@@ -371,17 +376,35 @@ export function validateAndDeclareLabel(parser: ParserState, labels: any, name: 
   labels['$' + name] = 1;
 }
 
-
 export function finishNode<T extends Node>(
   parser: ParserState,
   context: Context,
   start: number,
+  line: number,
+  column: number,
   node: T,
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
     node.end = parser.startIndex;
-}
+  }
+
+  if (context & Context.OptionsLoc) {
+    node.loc = {
+      start: {
+        line,
+        column,
+      },
+      end: {
+        line: parser.startLine,
+        column: parser.startColumn,
+      }
+    };
+
+    if (parser.sourceFile) {
+      node.loc.source = parser.sourceFile;
+  }
+  }
 
   return node;
 }

@@ -111,9 +111,11 @@ The second argument allows you to specify various options:
 | `globalReturn`    | Allow `return` in the global scope |
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
 | `lexical`         | Enable lexical binding and scope tracking |
+| `loc`         | Enable line/column location information to each node |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
 | `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
 | `raw`             | Attach raw property to each literal node |
 | `ranges`          | Append start and end offsets to each node |
+| `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |

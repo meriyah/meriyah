@@ -11,26 +11,60 @@ describe('Expressions - API', () => {
         webCompat: true,
         module: true,
         parenthesizedExpr: true,
-        lexical: true
+        lexical: true,
+        source: 'bullshit'
       }),
       {
-        type: 'Program',
-        sourceType: 'module',
         body: [
           {
-            type: 'ExpressionStatement',
+            end: 3,
             expression: {
-              type: 'Identifier',
+              end: 3,
+              loc: {
+                end: {
+                  column: 3,
+                  line: 1
+                },
+                source: 'bullshit',
+                start: {
+                  column: 0,
+                  line: 1
+                }
+              },
               name: 'foo',
               start: 0,
-              end: 3
+              type: 'Identifier'
+            },
+            loc: {
+              end: {
+                column: 3,
+                line: 1
+              },
+              source: 'bullshit',
+              start: {
+                column: 0,
+                line: 1
+              }
             },
             start: 0,
-            end: 3
+            type: 'ExpressionStatement'
           }
         ],
+        end: 3,
+        loc: {
+          end: {
+            column: 3,
+            line: 1
+          },
+          source: 'bullshit',
+          start: {
+            column: 0,
+            line: 1
+          }
+        },
+        sourceType: 'module',
         start: 0,
-        end: 3
+        type: 'Program'
       }
     );
   });

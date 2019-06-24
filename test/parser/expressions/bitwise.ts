@@ -40,7 +40,7 @@ describe('Expressions - Conditional', () => {
     ],
     [
       'a^b',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -51,21 +51,71 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                }
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 2
+                  },
+                  end: {
+                    line: 1,
+                    column: 3
+                  }
+                }
               },
-              operator: '^'
+              operator: '^',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 3
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 3
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 3
+          }
+        }
       }
     ],
     [
       '~a',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -77,12 +127,52 @@ describe('Expressions - Conditional', () => {
               operator: '~',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 1
+                  },
+                  end: {
+                    line: 1,
+                    column: 2
+                  }
+                }
               },
-              prefix: true
+              prefix: true,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 2
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 2
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 2
+          }
+        }
       }
     ],
     [

@@ -22,6 +22,8 @@ describe('Miscellaneous - Failure', () => {
     'async (package) => {"use strict";}',
     'async (break) => {"use strict";}',
     'async (break) => {}',
+    'for (let a = b in c; ;);',
+    '[ ] [ [ ] >[ ]< [ ] ] [ ]',
     '(foo, break) => {}',
     'function a(){ "use strict"; function a(a=yield){}}',
     'class A {set a(yield){}}',

@@ -73,13 +73,12 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       if (isFloat) {
         // scan subsequent decimal digits
         let digit = 9;
-        while (digit >= 0 && CharTypes[parser.nextCP] & CharFlags.Decimal) {
+        while (digit >= 0 && CharTypes[nextCodePoint(parser)] & CharFlags.Decimal) {
           value = 10 * value + (parser.nextCP - Chars.Zero);
-          nextCodePoint(parser);
           --digit;
         }
 
-        if (digit >= 0 && parser.nextCP !== Chars.Period && !isIdentifierStart(parser.nextCP)) {
+        if (digit >= 0 && !isIdentifierStart(parser.nextCP) && parser.nextCP !== Chars.Period) {
           if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
           parser.tokenValue = value;
           return Token.NumericLiteral;

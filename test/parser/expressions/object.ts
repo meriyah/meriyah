@@ -2958,20 +2958,50 @@ describe('Expressions - Object', () => {
     ],
     [
       'function f({...a}){}',
-      Context.OptionsRanges,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         start: 0,
         end: 20,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 20
+          }
+        },
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 20,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 20
+              }
+            },
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 9
+                },
+                end: {
+                  line: 1,
+                  column: 10
+                }
+              },
               name: 'f'
             },
             generator: false,
@@ -2981,15 +3011,45 @@ describe('Expressions - Object', () => {
                 type: 'ObjectPattern',
                 start: 11,
                 end: 17,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 11
+                  },
+                  end: {
+                    line: 1,
+                    column: 17
+                  }
+                },
                 properties: [
                   {
                     type: 'RestElement',
                     start: 12,
                     end: 16,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 12
+                      },
+                      end: {
+                        line: 1,
+                        column: 16
+                      }
+                    },
                     argument: {
                       type: 'Identifier',
                       start: 15,
                       end: 16,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 15
+                        },
+                        end: {
+                          line: 1,
+                          column: 16
+                        }
+                      },
                       name: 'a'
                     }
                   }
@@ -3000,6 +3060,16 @@ describe('Expressions - Object', () => {
               type: 'BlockStatement',
               start: 18,
               end: 20,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 18
+                },
+                end: {
+                  line: 1,
+                  column: 20
+                }
+              },
               body: []
             }
           }
@@ -3125,20 +3195,50 @@ describe('Expressions - Object', () => {
     ],
     [
       'function *f(){   s = {foo: yield /x/g}   }',
-      Context.OptionsRanges,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         start: 0,
         end: 42,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 42
+          }
+        },
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 42,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 42
+              }
+            },
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 10
+                },
+                end: {
+                  line: 1,
+                  column: 11
+                }
+              },
               name: 'f'
             },
             generator: true,
@@ -3148,31 +3248,91 @@ describe('Expressions - Object', () => {
               type: 'BlockStatement',
               start: 13,
               end: 42,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 13
+                },
+                end: {
+                  line: 1,
+                  column: 42
+                }
+              },
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 17,
                   end: 38,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 17
+                    },
+                    end: {
+                      line: 1,
+                      column: 38
+                    }
+                  },
                   expression: {
                     type: 'AssignmentExpression',
                     start: 17,
                     end: 38,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 17
+                      },
+                      end: {
+                        line: 1,
+                        column: 38
+                      }
+                    },
                     operator: '=',
                     left: {
                       type: 'Identifier',
                       start: 17,
                       end: 18,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 17
+                        },
+                        end: {
+                          line: 1,
+                          column: 18
+                        }
+                      },
                       name: 's'
                     },
                     right: {
                       type: 'ObjectExpression',
                       start: 21,
                       end: 38,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 21
+                        },
+                        end: {
+                          line: 1,
+                          column: 38
+                        }
+                      },
                       properties: [
                         {
                           type: 'Property',
                           start: 22,
                           end: 37,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 22
+                            },
+                            end: {
+                              line: 1,
+                              column: 37
+                            }
+                          },
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -3180,17 +3340,47 @@ describe('Expressions - Object', () => {
                             type: 'Identifier',
                             start: 22,
                             end: 25,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 22
+                              },
+                              end: {
+                                line: 1,
+                                column: 25
+                              }
+                            },
                             name: 'foo'
                           },
                           value: {
                             type: 'YieldExpression',
                             start: 27,
                             end: 37,
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 27
+                              },
+                              end: {
+                                line: 1,
+                                column: 37
+                              }
+                            },
                             delegate: false,
                             argument: {
                               type: 'Literal',
                               start: 33,
                               end: 37,
+                              loc: {
+                                start: {
+                                  line: 1,
+                                  column: 33
+                                },
+                                end: {
+                                  line: 1,
+                                  column: 37
+                                }
+                              },
                               value: /x/g,
                               regex: {
                                 pattern: 'x',
@@ -3836,63 +4026,194 @@ describe('Expressions - Object', () => {
           //当按钮被长按时...
         }
         });`,
-      Context.None,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 146,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 9,
+            column: 11
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 146,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 9,
+                column: 11
+              }
+            },
             expression: {
               type: 'ObjectExpression',
+              start: 1,
+              end: 144,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 9,
+                  column: 9
+                }
+              },
               properties: [
                 {
                   type: 'Property',
+                  start: 30,
+                  end: 38,
+                  loc: {
+                    start: {
+                      line: 2,
+                      column: 8
+                    },
+                    end: {
+                      line: 2,
+                      column: 16
+                    }
+                  },
+                  method: false,
+                  shorthand: false,
+                  computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 30,
+                    end: 34,
+                    loc: {
+                      start: {
+                        line: 2,
+                        column: 8
+                      },
+                      end: {
+                        line: 2,
+                        column: 12
+                      }
+                    },
                     name: 'qqqq'
                   },
                   value: {
                     type: 'Literal',
+                    start: 37,
+                    end: 38,
+                    loc: {
+                      start: {
+                        line: 2,
+                        column: 15
+                      },
+                      end: {
+                        line: 2,
+                        column: 16
+                      }
+                    },
                     value: 1
                   },
-                  kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: false
+                  kind: 'init'
                 },
                 {
                   type: 'Property',
+                  start: 70,
+                  end: 134,
+                  loc: {
+                    start: {
+                      line: 6,
+                      column: 8
+                    },
+                    end: {
+                      line: 8,
+                      column: 9
+                    }
+                  },
+                  method: false,
+                  shorthand: false,
+                  computed: false,
                   key: {
                     type: 'Identifier',
+                    start: 70,
+                    end: 86,
+                    loc: {
+                      start: {
+                        line: 6,
+                        column: 8
+                      },
+                      end: {
+                        line: 6,
+                        column: 24
+                      }
+                    },
                     name: 'onButton1Longtap'
                   },
                   value: {
                     type: 'FunctionExpression',
+                    start: 88,
+                    end: 134,
+                    loc: {
+                      start: {
+                        line: 6,
+                        column: 26
+                      },
+                      end: {
+                        line: 8,
+                        column: 9
+                      }
+                    },
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [
                       {
                         type: 'Identifier',
+                        start: 98,
+                        end: 99,
+                        loc: {
+                          start: {
+                            line: 6,
+                            column: 36
+                          },
+                          end: {
+                            line: 6,
+                            column: 37
+                          }
+                        },
                         name: 'e'
                       }
                     ],
                     body: {
                       type: 'BlockStatement',
+                      start: 100,
+                      end: 134,
+                      loc: {
+                        start: {
+                          line: 6,
+                          column: 38
+                        },
+                        end: {
+                          line: 8,
+                          column: 9
+                        }
+                      },
                       body: []
-                    },
-                    async: false,
-                    generator: false,
-
-                    id: null
+                    }
                   },
-                  kind: 'init',
-                  computed: false,
-                  method: false,
-                  shorthand: false
+                  kind: 'init'
                 }
               ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -4476,7 +4797,7 @@ describe('Expressions - Object', () => {
     ],
     [
       '({async 15(){}});',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -4490,33 +4811,103 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 8
+                      },
+                      end: {
+                        line: 1,
+                        column: 10
+                      }
+                    }
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 12
+                        },
+                        end: {
+                          line: 1,
+                          column: 14
+                        }
+                      }
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 10
+                      },
+                      end: {
+                        line: 1,
+                        column: 14
+                      }
+                    }
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
+                  shorthand: false,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 2
+                    },
+                    end: {
+                      line: 1,
+                      column: 14
+                    }
+                  }
                 }
-              ]
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 15
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 17
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 17
+          }
+        }
       }
     ],
     [
       '({get "a b c"(){}});',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -4530,28 +4921,98 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 6
+                      },
+                      end: {
+                        line: 1,
+                        column: 13
+                      }
+                    }
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 15
+                        },
+                        end: {
+                          line: 1,
+                          column: 17
+                        }
+                      }
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 13
+                      },
+                      end: {
+                        line: 1,
+                        column: 17
+                      }
+                    }
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 2
+                    },
+                    end: {
+                      line: 1,
+                      column: 17
+                    }
+                  }
                 }
-              ]
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 18
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 20
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 20
+          }
+        }
       }
     ],
     [

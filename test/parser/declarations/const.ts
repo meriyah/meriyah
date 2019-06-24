@@ -687,60 +687,192 @@ describe('Declarations - const', () => {
     ],
     [
       'const {foo:a,bar:b} = x;',
-      Context.None,
+      Context.OptionsLoc | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 24,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 24
+          }
+        },
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'const',
+            start: 0,
+            end: 24,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 24
+              }
+            },
             declarations: [
               {
                 type: 'VariableDeclarator',
-                init: {
-                  type: 'Identifier',
-                  name: 'x'
+                start: 6,
+                end: 23,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 6
+                  },
+                  end: {
+                    line: 1,
+                    column: 23
+                  }
                 },
                 id: {
                   type: 'ObjectPattern',
+                  start: 6,
+                  end: 19,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 6
+                    },
+                    end: {
+                      line: 1,
+                      column: 19
+                    }
+                  },
                   properties: [
                     {
                       type: 'Property',
-                      kind: 'init',
-                      key: {
-                        type: 'Identifier',
-                        name: 'foo'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
-                        name: 'a'
+                      start: 7,
+                      end: 12,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 7
+                        },
+                        end: {
+                          line: 1,
+                          column: 12
+                        }
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
+                      computed: false,
+                      key: {
+                        type: 'Identifier',
+                        start: 7,
+                        end: 10,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 7
+                          },
+                          end: {
+                            line: 1,
+                            column: 10
+                          }
+                        },
+                        name: 'foo'
+                      },
+                      value: {
+                        type: 'Identifier',
+                        start: 11,
+                        end: 12,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 11
+                          },
+                          end: {
+                            line: 1,
+                            column: 12
+                          }
+                        },
+                        name: 'a'
+                      },
+                      kind: 'init'
                     },
                     {
                       type: 'Property',
-                      kind: 'init',
-                      key: {
-                        type: 'Identifier',
-                        name: 'bar'
-                      },
-                      computed: false,
-                      value: {
-                        type: 'Identifier',
-                        name: 'b'
+                      start: 13,
+                      end: 18,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 13
+                        },
+                        end: {
+                          line: 1,
+                          column: 18
+                        }
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
+                      computed: false,
+                      key: {
+                        type: 'Identifier',
+                        start: 13,
+                        end: 16,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 13
+                          },
+                          end: {
+                            line: 1,
+                            column: 16
+                          }
+                        },
+                        name: 'bar'
+                      },
+                      value: {
+                        type: 'Identifier',
+                        start: 17,
+                        end: 18,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 17
+                          },
+                          end: {
+                            line: 1,
+                            column: 18
+                          }
+                        },
+                        name: 'b'
+                      },
+                      kind: 'init'
                     }
                   ]
+                },
+                init: {
+                  type: 'Identifier',
+                  start: 22,
+                  end: 23,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 22
+                    },
+                    end: {
+                      line: 1,
+                      column: 23
+                    }
+                  },
+                  name: 'x'
                 }
               }
-            ]
+            ],
+            kind: 'const'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

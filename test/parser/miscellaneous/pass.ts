@@ -33,6 +33,16 @@ describe('Miscellaneous - Pass', () => {
     'let f = () => {import("./foo").catch(error => {}).then($DONE, $DONE); };',
     `"use asm"; function a(yield) {}; "use strict"; function a(yield) {}`,
     '[...(x), y]',
+    'for (let a = b => (b in c); ;);',
+    'for (let a = (b in c && d in e); ;);',
+    'for (let a = (b in c); ;);',
+    'let a; ',
+    'let b;',
+    '({a, b} = {});',
+    'b = 1;',
+    'for (let a = (b in c && d); ;);',
+    'for (let a = (b in c); ;);',
+    'for (let a = ((b in c) && (d in e)); ;);',
     `class MyClass {
       async asyncMethod(a) { return a; }
       async async(a) { return a; }
@@ -48,6 +58,9 @@ describe('Miscellaneous - Pass', () => {
       async 3.14() { return 12; },
       async else() { return 12; },
   };`,
+    '$ => ` ` () ` ` <= $',
+    '{{ ` `<<` `>>` ` }}',
+    "('')` ` ` ${O}$ ` ` `('')",
     `({
     name: "Awaiting a function with multiple awaits",
     body: function (index) {

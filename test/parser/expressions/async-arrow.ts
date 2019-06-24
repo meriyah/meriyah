@@ -946,20 +946,50 @@ describe('Expressions - Async arrow', () => {
     ],
     [
       `async x => delete ("x"[(await x)])`,
-      Context.OptionsRanges,
+      Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         start: 0,
         end: 34,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 34
+          }
+        },
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 34,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 34
+              }
+            },
             expression: {
               type: 'ArrowFunctionExpression',
               start: 0,
               end: 34,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 34
+                }
+              },
               expression: true,
               async: true,
               params: [
@@ -967,6 +997,16 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 6
+                    },
+                    end: {
+                      line: 1,
+                      column: 7
+                    }
+                  },
                   name: 'x'
                 }
               ],
@@ -974,26 +1014,76 @@ describe('Expressions - Async arrow', () => {
                 type: 'UnaryExpression',
                 start: 11,
                 end: 34,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 11
+                  },
+                  end: {
+                    line: 1,
+                    column: 34
+                  }
+                },
                 operator: 'delete',
                 prefix: true,
                 argument: {
                   type: 'MemberExpression',
                   start: 19,
                   end: 33,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 19
+                    },
+                    end: {
+                      line: 1,
+                      column: 33
+                    }
+                  },
                   object: {
                     type: 'Literal',
                     start: 19,
                     end: 22,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 19
+                      },
+                      end: {
+                        line: 1,
+                        column: 22
+                      }
+                    },
                     value: 'x'
                   },
                   property: {
                     type: 'AwaitExpression',
                     start: 24,
                     end: 31,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 24
+                      },
+                      end: {
+                        line: 1,
+                        column: 31
+                      }
+                    },
                     argument: {
                       type: 'Identifier',
                       start: 30,
                       end: 31,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 30
+                        },
+                        end: {
+                          line: 1,
+                          column: 31
+                        }
+                      },
                       name: 'x'
                     }
                   },

@@ -2564,7 +2564,7 @@ describe('Expressions - Group', () => {
     ],
     [
       '({[foo]: bar} = baz)',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -2580,27 +2580,107 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 3
+                        },
+                        end: {
+                          line: 1,
+                          column: 6
+                        }
+                      }
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 9
+                        },
+                        end: {
+                          line: 1,
+                          column: 12
+                        }
+                      }
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 2
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
+                    }
                   }
-                ]
+                ],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 1
+                  },
+                  end: {
+                    line: 1,
+                    column: 13
+                  }
+                }
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'baz'
+                name: 'baz',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 16
+                  },
+                  end: {
+                    line: 1,
+                    column: 19
+                  }
+                }
+              },
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 19
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 20
               }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 20
+          }
+        }
       }
     ],
     [
@@ -3154,7 +3234,7 @@ describe('Expressions - Group', () => {
     ],
     [
       '(x + foo)',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -3165,21 +3245,71 @@ describe('Expressions - Group', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 1
+                  },
+                  end: {
+                    line: 1,
+                    column: 2
+                  }
+                }
               },
               right: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 5
+                  },
+                  end: {
+                    line: 1,
+                    column: 8
+                  }
+                }
               },
-              operator: '+'
+              operator: '+',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 8
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 9
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 9
+          }
+        }
       }
     ],
     [
       '(delete /a/g.x);',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -3197,18 +3327,78 @@ describe('Expressions - Group', () => {
                   regex: {
                     pattern: 'a',
                     flags: 'g'
+                  },
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 8
+                    },
+                    end: {
+                      line: 1,
+                      column: 12
+                    }
                   }
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 13
+                    },
+                    end: {
+                      line: 1,
+                      column: 14
+                    }
+                  }
+                },
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 8
+                  },
+                  end: {
+                    line: 1,
+                    column: 14
+                  }
                 }
               },
-              prefix: true
+              prefix: true,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 1
+                },
+                end: {
+                  line: 1,
+                  column: 14
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 16
+              }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 16
+          }
+        }
       }
     ],
     [
