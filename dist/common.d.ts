@@ -107,6 +107,10 @@ export interface ParserState {
     column: number;
     tokenIndex: number;
     startIndex: number;
+    startColumn: number;
+    startLine: number;
+    columnPos: number;
+    linePos: number;
     end: number;
     token: Token;
     tokenValue: any;
@@ -115,6 +119,7 @@ export interface ParserState {
         pattern: string;
         flags: string;
     };
+    sourceFile: string | void;
     assignable: AssignmentKind | DestructuringKind;
     destructible: AssignmentKind | DestructuringKind;
     nextCP: number;
@@ -131,5 +136,5 @@ export declare function isStrictReservedWord(parser: ParserState, context: Conte
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
 export declare function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void;
-export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, node: T): T;
+export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, line: number, column: number, node: T): T;
 //# sourceMappingURL=common.d.ts.map
