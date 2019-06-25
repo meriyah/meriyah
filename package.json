@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "0.5.2",
+  "version": "0.6.02",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -21,7 +21,6 @@
   "keywords": [
     "parsing",
     "ecmascript",
-    "typescript",
     "javascript",
     "parser",
     "performance",
@@ -30,6 +29,7 @@
     "es2019",
     "es2020",
     "esnext",
+    "lexer",
     "ast",
     "lightweight"
   ],

@@ -268,7 +268,7 @@ export function parseStatementList(parser: ParserState, context: Context, scope:
   while (parser.token === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
     const { index, tokenIndex, tokenValue, linePos, columnPos, token } = parser;
-    const expr = parseLiteral1(parser, context, tokenIndex, linePos, columnPos);
+    const expr = parseLiteral(parser, context, tokenIndex, linePos, columnPos);
     if (index - tokenIndex < 13 && tokenValue === 'use strict') {
       if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
         context |= Context.Strict;
@@ -2652,7 +2652,7 @@ function parseExportDeclaration(
         ecma262PR = 1;
 
         specifiers.push(
-          finishNode(parser, context, parser.index, parser.linePos, parser.columnPos, {
+          finishNode(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos, {
             type: 'ExportNamespaceSpecifier',
             specifier: parseIdentifier(parser, context, start, line, column)
           } as any)
@@ -2667,16 +2667,23 @@ function parseExportDeclaration(
 
       consumeSemicolon(parser, context | Context.AllowRegExp);
 
-      return ecma262PR
-        ? finishNode(parser, context, start, line, column, {
-            type: 'ExportNamedDeclaration',
-            source,
-            specifiers
-          } as any)
-        : finishNode(parser, context, start, line, column, {
-            type: 'ExportAllDeclaration',
-            source
-          } as any);
+      return finishNode(
+        parser,
+        context,
+        start,
+        line,
+        column,
+        ecma262PR
+          ? {
+              type: 'ExportNamedDeclaration',
+              source,
+              specifiers
+            }
+          : ({
+              type: 'ExportAllDeclaration',
+              source
+            } as any)
+      );
     }
     case Token.LeftBrace: {
       // ExportClause :
@@ -3213,9 +3220,6 @@ export function parseYieldExpressionOrIdentifier(
 
     if ((parser.flags & Flags.NewLine) < 1) {
       delegate = consumeOpt(parser, context | Context.AllowRegExp, Token.Multiply);
-      // 'Token.IsExpressionStart' contains the complete set of tokens that can appear
-      // after an AssignmentExpression, and none of them can start an
-      // AssignmentExpression.
       if (parser.token & Token.IsExpressionStart || delegate) {
         argument = parseExpression(parser, context, 1, 0, parser.tokenIndex, parser.linePos, parser.columnPos);
       }
@@ -3548,7 +3552,7 @@ export function parseMemberOrUpdateExpression(
       });
     } else {
       parser.assignable = AssignmentKind.NotAssignable;
-      expr = finishNode(parser, context, parser.index, parser.linePos, parser.columnPos, {
+      expr = finishNode(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos, {
         type: 'TaggedTemplateExpression',
         tag: expr,
         quasi:
@@ -3877,18 +3881,25 @@ export function parseBigIntLiteral(
   const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.NotAssignable;
-  return context & Context.OptionsRaw
-    ? finishNode(parser, context, start, line, column, {
-        type: 'BigIntLiteral',
-        value: tokenValue,
-        bigint: tokenRaw,
-        raw: tokenRaw
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'BigIntLiteral',
-        value: tokenValue,
-        bigint: tokenRaw
-      });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsRaw
+      ? {
+          type: 'BigIntLiteral',
+          value: tokenValue,
+          bigint: tokenRaw,
+          raw: tokenRaw
+        }
+      : {
+          type: 'BigIntLiteral',
+          value: tokenValue,
+          bigint: tokenRaw
+        }
+  );
 }
 
 /**
@@ -4136,38 +4147,23 @@ export function parseLiteral(
 ): ESTree.Literal {
   const { tokenValue, tokenRaw } = parser;
   nextToken(parser, context);
-  //parser.columnPos, parser.lineoffse
-  return context & Context.OptionsRaw
-    ? finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue,
-        raw: tokenRaw
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue
-      });
-}
-export function parseLiteral1(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number
-): ESTree.Literal {
-  const { tokenValue, tokenRaw } = parser;
-  nextToken(parser, context);
-  //parser.columnPos, parser.lineoffse
-  return context & Context.OptionsRaw
-    ? finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue,
-        raw: tokenRaw
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue
-      });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsRaw
+      ? {
+          type: 'Literal',
+          value: tokenValue,
+          raw: tokenRaw
+        }
+      : {
+          type: 'Literal',
+          value: tokenValue
+        }
+  );
 }
 
 /**
@@ -4188,16 +4184,23 @@ export function parseNullOrTrueOrFalseLiteral(
 
   nextToken(parser, context);
   parser.assignable = AssignmentKind.NotAssignable;
-  return context & Context.OptionsRaw
-    ? finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value,
-        raw
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value
-      });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsRaw
+      ? {
+          type: 'Literal',
+          value,
+          raw
+        }
+      : {
+          type: 'Literal',
+          value
+        }
+  );
 }
 
 /**
@@ -7161,20 +7164,20 @@ export function parseRegExpLiteral(
   line: number,
   column: number
 ): ESTree.RegExpLiteral {
-  const { tokenRaw: raw, tokenRegExp: regex, tokenValue: value } = parser;
+  const { tokenRaw, tokenRegExp, tokenValue } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.NotAssignable;
   return context & Context.OptionsRaw
     ? finishNode(parser, context, start, line, column, {
         type: 'Literal',
-        value,
-        regex,
-        raw
+        value: tokenValue,
+        regex: tokenRegExp,
+        raw: tokenRaw
       })
     : finishNode(parser, context, start, line, column, {
         type: 'Literal',
-        value,
-        regex
+        value: tokenValue,
+        regex: tokenRegExp
       } as any);
 }
 
@@ -7200,7 +7203,8 @@ export function parseClassDeclaration(
   //   DecoratorList[?Yield, ?Await]optclassBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
   //   DecoratorList[?Yield, ?Await]optclassClassTail[?Yield, ?Await]
   //
-  context = (context & ~Context.InConstructor) | Context.Strict;
+
+  context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
@@ -7209,27 +7213,30 @@ export function parseClassDeclaration(
 
   nextToken(parser, context);
 
-  const idxClass = parser.tokenIndex;
-  const lineClass = parser.linePos;
-  const columnClass = parser.columnPos;
+  const { tokenIndex, linePos, columnPos, tokenValue } = parser;
 
   if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
-    if (isStrictReservedWord(parser, context, parser.token)) report(parser, Errors.UnexpectedStrictReserved);
-    if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+    if (isStrictReservedWord(parser, context, parser.token)) {
+      report(parser, Errors.UnexpectedStrictReserved);
+    }
+
+    if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);
+    }
+
     if (context & Context.OptionsLexical) {
-      declareAndDedupe(parser, context, scope, parser.tokenValue, BindingType.Let, 0);
+      declareAndDedupe(parser, context, scope, tokenValue, BindingType.Let, 0);
 
       if (flags) {
         if (flags & HoistedClassFlags.Hoisted) {
-          addBindingToExports(parser, parser.tokenValue);
+          addBindingToExports(parser, tokenValue);
         } else {
-          updateExportsList(parser, parser.tokenValue);
+          updateExportsList(parser, tokenValue);
         }
       }
     }
 
-    id = parseIdentifier(parser, context, idxClass, lineClass, columnClass);
+    id = parseIdentifier(parser, context, tokenIndex, linePos, columnPos);
   } else {
     if (flags & HoistedClassFlags.Hoisted) {
       addBindingToExports(parser, '');
@@ -7267,20 +7274,27 @@ export function parseClassDeclaration(
 
   const body = parseClassBody(parser, inheritedContext, context, scope, BindingType.None, BindingOrigin.Declaration, 0);
 
-  return context & Context.OptionsNext
-    ? finishNode(parser, context, start, line, column, {
-        type: 'ClassDeclaration',
-        id,
-        superClass,
-        decorators,
-        body
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'ClassDeclaration',
-        id,
-        superClass,
-        body
-      });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsNext
+      ? {
+          type: 'ClassDeclaration',
+          id,
+          superClass,
+          decorators,
+          body
+        }
+      : {
+          type: 'ClassDeclaration',
+          id,
+          superClass,
+          body
+        }
+  );
 }
 
 /**
@@ -7346,20 +7360,27 @@ export function parseClassExpression(
 
   parser.assignable = AssignmentKind.NotAssignable;
 
-  return context & Context.OptionsNext
-    ? finishNode(parser, context, start, line, column, {
-        type: 'ClassExpression',
-        id,
-        superClass,
-        decorators,
-        body
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'ClassExpression',
-        id,
-        superClass,
-        body
-      });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsNext
+      ? {
+          type: 'ClassExpression',
+          id,
+          superClass,
+          decorators,
+          body
+        }
+      : {
+          type: 'ClassExpression',
+          id,
+          superClass,
+          body
+        }
+  );
 }
 
 /**
@@ -7703,38 +7724,45 @@ function parseClassElementList(
     parser.columnPos
   );
 
-  return context & Context.OptionsNext
-    ? finishNode(parser, context, start, line, column, {
-        type: 'MethodDefinition',
-        kind:
-          (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
-            ? 'constructor'
-            : kind & PropertyKind.Getter
-            ? 'get'
-            : kind & PropertyKind.Setter
-            ? 'set'
-            : 'method',
-        static: (kind & PropertyKind.Static) > 0,
-        computed: (kind & PropertyKind.Computed) > 0,
-        key,
-        decorators,
-        value
-      } as any)
-    : finishNode(parser, context, start, line, column, {
-        type: 'MethodDefinition',
-        kind:
-          (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
-            ? 'constructor'
-            : kind & PropertyKind.Getter
-            ? 'get'
-            : kind & PropertyKind.Setter
-            ? 'set'
-            : 'method',
-        static: (kind & PropertyKind.Static) > 0,
-        computed: (kind & PropertyKind.Computed) > 0,
-        key,
-        value
-      } as any);
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsNext
+      ? {
+          type: 'MethodDefinition',
+          kind:
+            (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
+              ? 'constructor'
+              : kind & PropertyKind.Getter
+              ? 'get'
+              : kind & PropertyKind.Setter
+              ? 'set'
+              : 'method',
+          static: (kind & PropertyKind.Static) > 0,
+          computed: (kind & PropertyKind.Computed) > 0,
+          key,
+          decorators,
+          value
+        }
+      : ({
+          type: 'MethodDefinition',
+          kind:
+            (kind & PropertyKind.Static) < 1 && kind & PropertyKind.Constructor
+              ? 'constructor'
+              : kind & PropertyKind.Getter
+              ? 'get'
+              : kind & PropertyKind.Setter
+              ? 'set'
+              : 'method',
+          static: (kind & PropertyKind.Static) > 0,
+          computed: (kind & PropertyKind.Computed) > 0,
+          key,
+          value
+        } as any)
+  );
 }
 
 /**
@@ -7753,13 +7781,13 @@ function parsePrivateName(
   // PrivateName::
   //    #IdentifierName
   nextToken(parser, context); // skip: '#'
-  const { tokenValue: name } = parser;
-  if (name === 'constructor') report(parser, Errors.InvalidStaticClassFieldConstructor);
+  const { tokenValue } = parser;
+  if (tokenValue === 'constructor') report(parser, Errors.InvalidStaticClassFieldConstructor);
   nextToken(parser, context);
 
   return finishNode(parser, context, start, line, column, {
     type: 'PrivateName',
-    name
+    name: tokenValue
   });
 }
 
