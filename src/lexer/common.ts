@@ -3,7 +3,7 @@ import { ParserState, Flags } from '../common';
 import { unicodeLookup } from '../unicode';
 import { report, Errors } from '../errors';
 
-export const enum ScannerState {
+export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
   SameLine = 1 << 1,

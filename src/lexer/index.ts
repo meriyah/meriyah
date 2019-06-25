@@ -8,7 +8,7 @@ export {
   toHex,
   consumeLineFeed,
   advanceNewline,
-  ScannerState
+  LexerState
 } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
 export {

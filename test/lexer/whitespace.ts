@@ -352,7 +352,7 @@ describe('Lexer - Whitespace', () => {
     value: '',
     index: 26,
     line: 2,
-    column: 25
+    column: 5
   });
 
   pass('skips multiline comments with Windows newlines', {
@@ -372,7 +372,7 @@ describe('Lexer - Whitespace', () => {
     value: '',
     index: 33,
     line: 3,
-    column: 5
+    column: 17
   });
 
   pass('skips no break space in a string', {

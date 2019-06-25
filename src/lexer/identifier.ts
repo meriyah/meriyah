@@ -53,7 +53,7 @@ export function scanIdentifierSlowCase(
 ): Token {
   let start = parser.index;
   while (parser.index < parser.end) {
-    if (CharTypes[parser.nextCP] & CharFlags.BackSlash) {
+    if (parser.nextCP === Chars.Backslash) {
       parser.tokenValue += parser.source.slice(start, parser.index);
       hasEscape = 1;
       const code = scanIdentifierUnicodeEscape(parser) as number;

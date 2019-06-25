@@ -1,4 +1,4 @@
-import { skipSingleLineComment, skipMultiLineComment, ScannerState } from './';
+import { skipSingleLineComment, skipMultiLineComment, LexerState } from './';
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Token } from '../token';
@@ -178,10 +178,10 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.startIndex = parser.index;
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
-  parser.token = scanSingleToken(parser, context, ScannerState.None);
+  parser.token = scanSingleToken(parser, context, LexerState.None);
 }
 
-export function scanSingleToken(parser: ParserState, context: Context, state: ScannerState): Token {
+export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
   while (parser.index < parser.end) {
@@ -218,13 +218,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
           break;
 
         case Token.CarriageReturn:
-          state |= ScannerState.NewLine | ScannerState.LastIsCR;
+          state |= LexerState.NewLine | LexerState.LastIsCR;
           advanceNewline(parser);
           break;
 
         case Token.LineFeed:
-          consumeLineFeed(parser, (state & ScannerState.LastIsCR) !== 0);
-          state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+          consumeLineFeed(parser, (state & LexerState.LastIsCR) !== 0);
+          state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
           parser.flags |= Flags.NewLine;
           break;
 
@@ -319,7 +319,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
             nextCodePoint(parser);
             if (
               (context & Context.Module) === 0 &&
-              (state & ScannerState.NewLine || isStartOfLine) &&
+              (state & LexerState.NewLine || isStartOfLine) &&
               parser.nextCP === Chars.GreaterThan
             ) {
               if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
@@ -348,7 +348,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
               continue;
             } else if (ch === Chars.Asterisk) {
               nextCodePoint(parser);
-              state = skipMultiLineComment(parser, state);
+              state = skipMultiLineComment(parser, state) as LexerState;
               continue;
             } else if (context & Context.AllowRegExp) {
               return scanRegularExpression(parser, context);
@@ -504,7 +504,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Sc
       }
     } else {
       if ((first ^ Chars.LineSeparator) <= 1) {
-        state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+        state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
         advanceNewline(parser);
         continue;
       }
