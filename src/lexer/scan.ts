@@ -186,7 +186,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
-    parser.columnPos = parser.column;
+    parser.colPos = parser.column;
     parser.linePos = parser.line;
 
     const first = parser.nextCP;

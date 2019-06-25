@@ -133,7 +133,7 @@ export interface ParserState {
   startIndex: number;
   startColumn: number;
   startLine: number;
-  columnPos: number;
+  colPos: number;
   linePos: number;
   end: number;
   token: Token;
