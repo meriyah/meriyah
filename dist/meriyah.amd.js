@@ -1986,7 +1986,7 @@ define(['exports'], function (exports) { 'use strict';
       const statements = [];
       while (parser.token === 134283267) {
           const { index, tokenIndex, tokenValue, linePos, columnPos, token } = parser;
-          const expr = parseLiteral1(parser, context, tokenIndex, linePos, columnPos);
+          const expr = parseLiteral(parser, context, tokenIndex, linePos, columnPos);
           if (index - tokenIndex < 13 && tokenValue === 'use strict') {
               if ((parser.token & 1048576) === 1048576 || parser.flags & 1) {
                   context |= 1024;
@@ -2885,7 +2885,7 @@ define(['exports'], function (exports) { 'use strict';
               nextToken(parser, context);
               if (context & 1 && consumeOpt(parser, context, 12395)) {
                   ecma262PR = 1;
-                  specifiers.push(finishNode(parser, context, parser.index, parser.linePos, parser.columnPos, {
+                  specifiers.push(finishNode(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos, {
                       type: 'ExportNamespaceSpecifier',
                       specifier: parseIdentifier(parser, context, start, line, column)
                   }));
@@ -2895,13 +2895,13 @@ define(['exports'], function (exports) { 'use strict';
                   report(parser, 115, 'Export');
               source = parseLiteral(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos);
               consumeSemicolon(parser, context | 32768);
-              return ecma262PR
-                  ? finishNode(parser, context, start, line, column, {
+              return finishNode(parser, context, start, line, column, ecma262PR
+                  ? {
                       type: 'ExportNamedDeclaration',
                       source,
                       specifiers
-                  })
-                  : finishNode(parser, context, start, line, column, {
+                  }
+                  : {
                       type: 'ExportAllDeclaration',
                       source
                   });
@@ -3287,7 +3287,7 @@ define(['exports'], function (exports) { 'use strict';
           }
           else {
               parser.assignable = 2;
-              expr = finishNode(parser, context, parser.index, parser.linePos, parser.columnPos, {
+              expr = finishNode(parser, context, parser.tokenIndex, parser.linePos, parser.columnPos, {
                   type: 'TaggedTemplateExpression',
                   tag: expr,
                   quasi: parser.token === 67174408
@@ -3457,14 +3457,14 @@ define(['exports'], function (exports) { 'use strict';
       const { tokenRaw, tokenValue } = parser;
       nextToken(parser, context);
       parser.assignable = 2;
-      return context & 512
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 512
+          ? {
               type: 'BigIntLiteral',
               value: tokenValue,
               bigint: tokenRaw,
               raw: tokenRaw
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'BigIntLiteral',
               value: tokenValue,
               bigint: tokenRaw
@@ -3563,27 +3563,13 @@ define(['exports'], function (exports) { 'use strict';
   function parseLiteral(parser, context, start, line, column) {
       const { tokenValue, tokenRaw } = parser;
       nextToken(parser, context);
-      return context & 512
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 512
+          ? {
               type: 'Literal',
               value: tokenValue,
               raw: tokenRaw
-          })
-          : finishNode(parser, context, start, line, column, {
-              type: 'Literal',
-              value: tokenValue
-          });
-  }
-  function parseLiteral1(parser, context, start, line, column) {
-      const { tokenValue, tokenRaw } = parser;
-      nextToken(parser, context);
-      return context & 512
-          ? finishNode(parser, context, start, line, column, {
-              type: 'Literal',
-              value: tokenValue,
-              raw: tokenRaw
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'Literal',
               value: tokenValue
           });
@@ -3593,13 +3579,13 @@ define(['exports'], function (exports) { 'use strict';
       const value = parser.token === 86023 ? null : raw === 'true';
       nextToken(parser, context);
       parser.assignable = 2;
-      return context & 512
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 512
+          ? {
               type: 'Literal',
               value,
               raw
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'Literal',
               value
           });
@@ -5096,48 +5082,48 @@ define(['exports'], function (exports) { 'use strict';
       });
   }
   function parseRegExpLiteral(parser, context, start, line, column) {
-      const { tokenRaw: raw, tokenRegExp: regex, tokenValue: value } = parser;
+      const { tokenRaw, tokenRegExp, tokenValue } = parser;
       nextToken(parser, context);
       parser.assignable = 2;
       return context & 512
           ? finishNode(parser, context, start, line, column, {
               type: 'Literal',
-              value,
-              regex,
-              raw
+              value: tokenValue,
+              regex: tokenRegExp,
+              raw: tokenRaw
           })
           : finishNode(parser, context, start, line, column, {
               type: 'Literal',
-              value,
-              regex
+              value: tokenValue,
+              regex: tokenRegExp
           });
   }
   function parseClassDeclaration(parser, context, scope, flags, start, line, column) {
-      context = (context & ~16777216) | 1024;
+      context = (context | 16777216 | 1024) ^ 16777216;
       let id = null;
       let superClass = null;
       const decorators = context & 1 ? parseDecorators(parser, context) : [];
       nextToken(parser, context);
-      const idxClass = parser.tokenIndex;
-      const lineClass = parser.linePos;
-      const columnClass = parser.columnPos;
+      const { tokenIndex, linePos, columnPos, tokenValue } = parser;
       if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
-          if (isStrictReservedWord(parser, context, parser.token))
+          if (isStrictReservedWord(parser, context, parser.token)) {
               report(parser, 128);
-          if ((parser.token & 537079808) === 537079808)
+          }
+          if ((parser.token & 537079808) === 537079808) {
               report(parser, 129);
+          }
           if (context & 64) {
-              declareAndDedupe(parser, context, scope, parser.tokenValue, 8, 0);
+              declareAndDedupe(parser, context, scope, tokenValue, 8, 0);
               if (flags) {
                   if (flags & 1) {
-                      addBindingToExports(parser, parser.tokenValue);
+                      addBindingToExports(parser, tokenValue);
                   }
                   else {
-                      updateExportsList(parser, parser.tokenValue);
+                      updateExportsList(parser, tokenValue);
                   }
               }
           }
-          id = parseIdentifier(parser, context, idxClass, lineClass, columnClass);
+          id = parseIdentifier(parser, context, tokenIndex, linePos, columnPos);
       }
       else {
           if (flags & 1) {
@@ -5156,15 +5142,15 @@ define(['exports'], function (exports) { 'use strict';
           inheritedContext = (inheritedContext | 524288) ^ 524288;
       }
       const body = parseClassBody(parser, inheritedContext, context, scope, 0, 1, 0);
-      return context & 1
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 1
+          ? {
               type: 'ClassDeclaration',
               id,
               superClass,
               decorators,
               body
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'ClassDeclaration',
               id,
               superClass,
@@ -5197,15 +5183,15 @@ define(['exports'], function (exports) { 'use strict';
       }
       const body = parseClassBody(parser, inheritedContext, context, null, 0, 0, inGroup);
       parser.assignable = 2;
-      return context & 1
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 1
+          ? {
               type: 'ClassExpression',
               id,
               superClass,
               decorators,
               body
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'ClassExpression',
               id,
               superClass,
@@ -5376,8 +5362,8 @@ define(['exports'], function (exports) { 'use strict';
           return parseFieldDefinition(parser, context, key, kind, decorators, tokenIndex, linePos, columnPos);
       }
       const value = parseMethodDefinition(parser, context, kind, inGroup, parser.tokenIndex, parser.linePos, parser.columnPos);
-      return context & 1
-          ? finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, start, line, column, context & 1
+          ? {
               type: 'MethodDefinition',
               kind: (kind & 32) < 1 && kind & 64
                   ? 'constructor'
@@ -5391,8 +5377,8 @@ define(['exports'], function (exports) { 'use strict';
               key,
               decorators,
               value
-          })
-          : finishNode(parser, context, start, line, column, {
+          }
+          : {
               type: 'MethodDefinition',
               kind: (kind & 32) < 1 && kind & 64
                   ? 'constructor'
@@ -5409,13 +5395,13 @@ define(['exports'], function (exports) { 'use strict';
   }
   function parsePrivateName(parser, context, start, line, column) {
       nextToken(parser, context);
-      const { tokenValue: name } = parser;
-      if (name === 'constructor')
+      const { tokenValue } = parser;
+      if (tokenValue === 'constructor')
           report(parser, 140);
       nextToken(parser, context);
       return finishNode(parser, context, start, line, column, {
           type: 'PrivateName',
-          name
+          name: tokenValue
       });
   }
   function parseFieldDefinition(parser, context, key, state, decorators, start, line, column) {

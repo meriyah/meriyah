@@ -71,7 +71,6 @@ export declare function parseTemplateSpans(parser: ParserState, context: Context
 export declare function parseArguments(parser: ParserState, context: Context, inGroup: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
 export declare function parseIdentifier(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Identifier;
 export declare function parseLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
-export declare function parseLiteral1(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
 export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
 export declare function parseThisExpression(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.ThisExpression;
 export declare function parseFunctionDeclaration(parser: ParserState, context: Context, scope: ScopeState, allowGen: 0 | 1, flags: HoistedFunctionFlags, isAsync: 0 | 1, start: number, line: number, column: number): ESTree.FunctionDeclaration;
