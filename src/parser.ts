@@ -1617,6 +1617,7 @@ export function parseCatchBlock(
       context,
       scope,
       0,
+      0,
       BindingType.ArgList,
       BindingOrigin.None,
       parser.tokenIndex,
@@ -1783,6 +1784,7 @@ export function parseLetIdentOrVarDeclarationStatement(
     context,
     scope,
     1,
+    0,
     BindingType.Let,
     BindingOrigin.Statement
   );
@@ -1826,7 +1828,7 @@ function parseLexicalDeclaration(
 
   nextToken(parser, context);
 
-  const declarations = parseVariableDeclarationList(parser, context, scope, 0, type, origin);
+  const declarations = parseVariableDeclarationList(parser, context, scope, 0, 0, type, origin);
 
   if (context & Context.OptionsLexical) checkConflictingLexicalDeclarations(parser, context, scope, 1);
 
@@ -1863,7 +1865,7 @@ export function parseVariableStatement(
   //  ('var') (Identifier ('=' AssignmentExpression)?)+[',']
   //
   nextToken(parser, context);
-  const declarations = parseVariableDeclarationList(parser, context, scope, 0, BindingType.Variable, origin);
+  const declarations = parseVariableDeclarationList(parser, context, scope, 0, 1, BindingType.Variable, origin);
 
   consumeSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
@@ -1888,16 +1890,17 @@ export function parseVariableDeclarationList(
   context: Context,
   scope: ScopeState,
   verifyDuplicates: 0 | 1,
+  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator[] {
   let bindingCount = 1;
   const list: ESTree.VariableDeclarator[] = [
-    parseVariableDeclaration(parser, context, scope, verifyDuplicates, type, origin)
+    parseVariableDeclaration(parser, context, scope, verifyDuplicates, isVarDecl, type, origin)
   ];
   while (consumeOpt(parser, context, Token.Comma)) {
     bindingCount++;
-    list.push(parseVariableDeclaration(parser, context, scope, verifyDuplicates, type, origin));
+    list.push(parseVariableDeclaration(parser, context, scope, verifyDuplicates, isVarDecl, type, origin));
   }
 
   if (bindingCount > 1 && origin & BindingOrigin.ForStatement && parser.token & Token.IsInOrOf) {
@@ -1919,6 +1922,7 @@ function parseVariableDeclaration(
   context: Context,
   scope: ScopeState,
   verifyDuplicates: 0 | 1,
+  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator {
@@ -1939,6 +1943,7 @@ function parseVariableDeclaration(
     context,
     scope,
     verifyDuplicates,
+    isVarDecl,
     type,
     origin,
     tokenIndex,
@@ -2020,15 +2025,12 @@ export function parseForStatement(
 
   if (isVarDecl) {
     if (token === Token.LetKeyword) {
-      const varStart = parser.tokenIndex;
-      const linePosStart = parser.linePos;
-      const columnPosStart = parser.columnPos;
       init = parseIdentifier(parser, context, tokenIndex, linePos, columnPos);
       if (parser.token & (Token.IsIdentifier | Token.IsPatternStart)) {
         if (parser.token === Token.InKeyword) {
           if (context & Context.Strict) report(parser, Errors.DisallowedLetInStrict);
         } else {
-          init = finishNode(parser, context, varStart, linePosStart, columnPosStart, {
+          init = finishNode(parser, context, tokenIndex, linePos, columnPos, {
             type: 'VariableDeclaration',
             kind: 'let',
             declarations: parseVariableDeclarationList(
@@ -2036,6 +2038,7 @@ export function parseForStatement(
               context | Context.DisallowIn,
               scope,
               1,
+              0,
               BindingType.Let,
               BindingOrigin.ForStatement
             )
@@ -2050,32 +2053,52 @@ export function parseForStatement(
       } else {
         isVarDecl = 0;
         parser.assignable = AssignmentKind.Assignable;
-        init = parseMemberOrUpdateExpression(parser, context, init, 0, 0, varStart, linePosStart, columnPosStart);
+        init = parseMemberOrUpdateExpression(parser, context, init, 0, 0, tokenIndex, linePos, columnPos);
 
         // `for of` only allows LeftHandSideExpressions which do not start with `let`, and no other production matches
         if (parser.token === Token.OfKeyword) report(parser, Errors.ForOfLet);
       }
     } else {
       // 'var', 'const'
-      const varStart = parser.tokenIndex;
-      const linePosStart = parser.linePos;
-      const columnPosStart = parser.columnPos;
+
       nextToken(parser, context);
 
       const kind = KeywordDescTable[token & Token.Type] as 'var' | 'const';
 
-      init = finishNode(parser, context, varStart, linePosStart, columnPosStart, {
-        type: 'VariableDeclaration',
-        kind,
-        declarations: parseVariableDeclarationList(
-          parser,
-          context | Context.DisallowIn,
-          scope,
-          0,
-          kind === 'var' ? BindingType.Variable : BindingType.Const,
-          BindingOrigin.ForStatement
-        )
-      });
+      init = finishNode(
+        parser,
+        context,
+        tokenIndex,
+        linePos,
+        columnPos,
+        kind === 'var'
+          ? {
+              type: 'VariableDeclaration',
+              kind,
+              declarations: parseVariableDeclarationList(
+                parser,
+                context | Context.DisallowIn,
+                scope,
+                0,
+                1,
+                BindingType.Variable,
+                BindingOrigin.ForStatement
+              )
+            }
+          : {
+              type: 'VariableDeclaration',
+              kind,
+              declarations: parseVariableDeclarationList(
+                parser,
+                context | Context.DisallowIn,
+                scope,
+                0,
+                0,
+                BindingType.Const,
+                BindingOrigin.ForStatement
+              )
+            }
+      );
 
       if (context & Context.OptionsLexical && kind === 'const')
         checkConflictingLexicalDeclarations(parser, context, scope, 1);
@@ -7880,6 +7903,7 @@ export function parseBindingPattern(
   context: Context,
   scope: any,
   dupeChecks: 0 | 1,
+  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin,
   start: number,
@@ -7893,17 +7917,14 @@ export function parseBindingPattern(
 
   if (parser.token & Token.IsIdentifier) {
     if (context & Context.OptionsLexical) {
-      const isVarDecl =
-        type & BindingType.Variable &&
-        origin & (BindingOrigin.Statement | BindingOrigin.ForStatement | BindingOrigin.Export);
-
-      declareName(parser, context, scope, parser.tokenValue, type, dupeChecks, isVarDecl as any);
+      declareName(parser, context, scope, parser.tokenValue, type, dupeChecks, isVarDecl);
 
       if (origin & BindingOrigin.Export) {
         updateExportsList(parser, parser.tokenValue);
         addBindingToExports(parser, parser.tokenValue);
       }
     }
+
     return parseAndClassifyIdentifier(parser, context, type, start, line, column);
   }
 
