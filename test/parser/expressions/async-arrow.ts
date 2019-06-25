@@ -79,6 +79,12 @@ describe('Expressions - Async arrow', () => {
 
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
+        parseSource(`async ${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`async ${arg}`, () => {
+      t.doesNotThrow(() => {
         parseSource(`async ${arg}`, undefined, Context.OptionsWebCompat);
       });
     });

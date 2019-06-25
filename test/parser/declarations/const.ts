@@ -172,6 +172,12 @@ describe('Declarations - const', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
@@ -245,6 +251,8 @@ describe('Declarations - const', () => {
     ['const {[x]} = z;', Context.None],
     ['const {[x] = y} = z;', Context.None],
     ['const {[x]: y = z};', Context.None],
+    ['const {...[a]} = x', Context.OptionsWebCompat],
+    ['const {...{a}} = x', Context.OptionsWebCompat],
     ['const {...[a]} = x', Context.None],
     ['const {...{a}} = x', Context.None],
     ['const {...a=b} = x', Context.None],

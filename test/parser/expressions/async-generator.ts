@@ -39,6 +39,12 @@ describe('Expressions - Async Generator', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg}`, undefined, Context.OptionsNext);
       });
     });
@@ -121,7 +127,11 @@ describe('Expressions - Async Generator', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
-
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`() => { ${arg} }`, () => {
       t.doesNotThrow(() => {
         parseSource(`() => { ${arg} }`, undefined, Context.None);

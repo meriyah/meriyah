@@ -366,6 +366,11 @@ describe('Expressions - Array', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
 
     it(`() => {${arg}}`, () => {
       t.doesNotThrow(() => {

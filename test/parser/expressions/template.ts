@@ -345,6 +345,13 @@ describe('Expressions - Template', () => {
         parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext | Context.OptionsLexical);
+      });
+    });
+
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`"use strict"; ${arg}`, undefined, Context.TaggedTemplate);

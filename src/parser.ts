@@ -44,6 +44,7 @@ import {
 /**
  * Create a new parser instance
  */
+
 export function create(source: string, sourceFile: string | void): ParserState {
   return {
     /**
@@ -86,12 +87,29 @@ export function create(source: string, sourceFile: string | void): ParserState {
      */
     tokenIndex: 0,
 
+    /**
+     * Start position of the colum before newline
+     */
     startColumn: 0,
 
+    /**
+     * Position in the input code of the first character after the last newline
+     */
     columnPos: 0,
+
+    /**
+     * The number of newlines
+     */
     linePos: 0,
 
+    /**
+     * Start position of text of current token
+     */
     startLine: 1,
+
+    /**
+     * Used together with source maps. File containing the code being parsed
+     */
 
     sourceFile,
 
@@ -101,7 +119,7 @@ export function create(source: string, sourceFile: string | void): ParserState {
     tokenValue: '',
 
     /**
-     * The token to consume
+     * The current token in the stream to consume
      */
     token: Token.EOF,
 

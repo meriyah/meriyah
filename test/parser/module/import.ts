@@ -361,6 +361,10 @@ describe('Module - Import', () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
+
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsLexical);
+      });
     });
   }
 

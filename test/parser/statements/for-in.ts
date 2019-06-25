@@ -39,6 +39,12 @@ describe('Statements - For in', () => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
   }
   for (const arg of [
     'for(var x=1 in [1,2,3]) 0', // Throws with no 'WebCompat'
@@ -373,9 +379,15 @@ describe('Statements - For in', () => {
       });
     });
 
-    it(`${arg} ${arg}`, () => {
+    it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg} ${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg} ${arg}`, undefined, Context.OptionsLexical);
       });
     });
 
