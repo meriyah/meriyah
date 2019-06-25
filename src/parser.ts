@@ -516,15 +516,7 @@ export function parseStatement(
   switch (parser.token) {
     // BlockStatement[?Yield, ?Return]
     case Token.LeftBrace:
-      return parseBlock(
-        parser,
-        context,
-        context & Context.OptionsLexical ? inheritScope(scope, ScopeType.Block) : scope,
-        labels,
-        start,
-        line,
-        column
-      ) as ESTree.Statement;
+      return parseBlock(parser, context, scope, labels, start, line, column) as ESTree.Statement;
     // VariableStatement[?Yield]
     case Token.VarKeyword:
       return parseVariableStatement(parser, context, scope, BindingOrigin.Statement, start, line, column);
@@ -757,7 +749,11 @@ export function parseBlock(
   // Block ::
   //   '{' StatementList '}'
   const body: ESTree.Statement[] = [];
+
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
+
+  if (context & Context.OptionsLexical) scope = inheritScope(scope, ScopeType.Block);
+
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
       parser,
@@ -1567,17 +1563,7 @@ export function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
   const isLexical: number = context & Context.OptionsLexical;
-  const blockScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
-
-  const block = parseBlock(
-    parser,
-    context,
-    blockScope,
-    { $: labels },
-    parser.tokenIndex,
-    parser.linePos,
-    parser.columnPos
-  );
+  const block = parseBlock(parser, context, scope, { $: labels }, parser.tokenIndex, parser.linePos, parser.columnPos);
   const { tokenIndex, linePos, columnPos } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, labels, isLexical, tokenIndex, linePos, columnPos)
@@ -1587,8 +1573,7 @@ export function parseTryStatement(
 
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    const finalizerScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
-    finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenIndex, linePos, columnPos);
+    finalizer = parseBlock(parser, context, scope, { $: labels }, tokenIndex, linePos, columnPos);
   }
 
   if (!handler && !finalizer) {
@@ -1623,7 +1608,6 @@ export function parseCatchBlock(
   column: number
 ): ESTree.CatchClause {
   let param: any = null;
-  let secondScope: ScopeState = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
     if (isLexical) scope = inheritScope(scope, ScopeType.Catch);
@@ -1649,19 +1633,9 @@ export function parseCatchBlock(
     }
 
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
-
-    if (isLexical) secondScope = inheritScope(scope, ScopeType.Block);
   }
 
-  const body = parseBlock(
-    parser,
-    context,
-    secondScope,
-    { $: labels },
-    parser.tokenIndex,
-    parser.linePos,
-    parser.columnPos
-  );
+  const body = parseBlock(parser, context, scope, { $: labels }, parser.tokenIndex, parser.linePos, parser.columnPos);
 
   return finishNode(parser, context, start, line, column, {
     type: 'CatchClause',
