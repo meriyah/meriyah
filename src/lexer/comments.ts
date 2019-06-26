@@ -1,6 +1,6 @@
-import { nextCodePoint, CharTypes, CharFlags, ScannerState, advanceNewline } from './';
+import { nextCodePoint, CharTypes, CharFlags, LexerState, advanceNewline, consumeLineFeed } from './';
 import { Chars } from '../chars';
-import { ParserState, Flags } from '../common';
+import { ParserState } from '../common';
 import { report, Errors } from '../errors';
 
 /**
@@ -21,7 +21,7 @@ export function skipHashBang(parser: ParserState): void {
     if (index < parser.end && parser.source.charCodeAt(index) === Chars.Exclamation) {
       parser.index = index + 1;
       parser.nextCP = parser.source.charCodeAt(parser.index);
-      skipSingleLineComment(parser, ScannerState.None);
+      skipSingleLineComment(parser, LexerState.None);
     } else {
       report(parser, Errors.IllegalCaracter, '#');
     }
@@ -32,11 +32,12 @@ export function skipHashBang(parser: ParserState): void {
  * Skips single line comment
  *
  * @param parser  Parser object
+ * @param state  Lexer state
  */
-export function skipSingleLineComment(parser: ParserState, state: ScannerState): ScannerState {
+export function skipSingleLineComment(parser: ParserState, state: LexerState): LexerState {
   while (parser.index < parser.end) {
     if (CharTypes[parser.nextCP] & CharFlags.LineTerminator || (parser.nextCP ^ Chars.LineSeparator) <= 1) {
-      state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+      state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
       advanceNewline(parser);
       return state;
     }
@@ -48,33 +49,26 @@ export function skipSingleLineComment(parser: ParserState, state: ScannerState):
 /**
  * Skips multiline comment
  *
- * @param parser  Parser object
+ * @param parser Parser object
+ * @param state Lexer state
  */
-export function skipMultiLineComment(parser: ParserState, state: ScannerState): any {
+export function skipMultiLineComment(parser: ParserState, state: LexerState): LexerState | void {
   while (parser.index < parser.end) {
-    while (CharTypes[parser.nextCP] & CharFlags.Asterisk) {
+    while (parser.nextCP === Chars.Asterisk) {
       if (nextCodePoint(parser) === Chars.Slash) {
         nextCodePoint(parser);
         return state;
       }
     }
 
-    // ES 2020 11.3 Line Terminators
-    if (CharTypes[parser.nextCP] & CharFlags.LineTerminator) {
-      if (CharTypes[parser.nextCP] & CharFlags.CarriageReturn) {
-        state |= ScannerState.NewLine | ScannerState.LastIsCR;
-        advanceNewline(parser);
-      } else {
-        if (state & ScannerState.LastIsCR) {
-          parser.column = 0;
-          parser.line++;
-        }
-        state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
-        parser.nextCP = parser.source.charCodeAt(++parser.index);
-        parser.flags |= Flags.NewLine;
-      }
+    if (parser.nextCP === Chars.CarriageReturn) {
+      state |= LexerState.NewLine | LexerState.LastIsCR;
+      advanceNewline(parser);
+    } else if (parser.nextCP === Chars.LineFeed) {
+      consumeLineFeed(parser, (state & LexerState.LastIsCR) !== 0);
+      state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
     } else if ((parser.nextCP ^ Chars.LineSeparator) <= 1) {
-      state = (state | ScannerState.LastIsCR | ScannerState.NewLine) ^ ScannerState.LastIsCR;
+      state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
       advanceNewline(parser);
     } else {
       nextCodePoint(parser);

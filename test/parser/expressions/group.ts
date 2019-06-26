@@ -112,6 +112,12 @@ describe('Expressions - Group', () => {
         parseSource(`${arg}`, undefined, Context.Strict);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsLexical);
+      });
+    });
   }
 
   for (const arg of [
@@ -263,6 +269,12 @@ describe('Expressions - Group', () => {
     it(`"use strict"; '${arg}'`, () => {
       t.throws(() => {
         parseSource(`"use strict";${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`"use strict"; '${arg}'`, () => {
+      t.throws(() => {
+        parseSource(`"use strict";${arg}`, undefined, Context.OptionsLexical);
       });
     });
 

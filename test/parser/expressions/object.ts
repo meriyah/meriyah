@@ -82,6 +82,12 @@ describe('Expressions - Object', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
@@ -116,6 +122,12 @@ describe('Expressions - Object', () => {
     it(`(${arg})`, () => {
       t.doesNotThrow(() => {
         parseSource(`(${arg})`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`(${arg})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(${arg})`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
       });
     });
 
@@ -268,6 +280,11 @@ describe('Expressions - Object', () => {
     it(`({ ${arg} } = x);`, () => {
       t.throws(() => {
         parseSource(`({ ${arg} } = x);`, undefined, Context.Strict);
+      });
+    });
+    it(`({ ${arg} } = x);`, () => {
+      t.throws(() => {
+        parseSource(`({ ${arg} } = x);`, undefined, Context.Strict | Context.OptionsLexical);
       });
     });
     it(`({ ${arg} }) => x;`, () => {
@@ -473,6 +490,11 @@ describe('Expressions - Object', () => {
         parseSource(`${arg} {async async} = {}`, undefined, Context.None);
       });
     });
+    it(`${arg} {async async} = {}`, () => {
+      t.throws(() => {
+        parseSource(`${arg} {async async} = {}`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`${arg} {async async, } = {}`, () => {
       t.throws(() => {
         parseSource(`${arg} {async async, } = {}`, undefined, Context.OptionsWebCompat);
@@ -528,7 +550,11 @@ describe('Expressions - Object', () => {
         parseSource(`a = ${arg} = b`, undefined, Context.None);
       });
     });
-
+    it(`a = ${arg} = b`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`a = ${arg} = b`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`a = ${arg} = b`, () => {
       t.doesNotThrow(() => {
         parseSource(`a = ${arg} = b`, undefined, Context.OptionsNext);
@@ -872,7 +898,12 @@ describe('Expressions - Object', () => {
       });
     });
 
-    // should throw
+    it(`x = { ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`x = { ${arg} }`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
     it(`({ ${arg} }) = {}`, () => {
       t.throws(() => {
         parseSource(`({ ${arg} }) = {}`, undefined, Context.OptionsWebCompat);

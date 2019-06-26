@@ -82,6 +82,12 @@ describe('Statements - For of', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   fail('Statements - For of (fail)', [

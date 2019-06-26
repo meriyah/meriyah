@@ -373,6 +373,12 @@ describe('Expressions - Yield', () => {
       });
     });
 
+    it(`(() => {${arg}})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(() => {${arg}})`, undefined, Context.OptionsLexical);
+      });
+    });
+
     it(`(async () => {${arg}})`, () => {
       t.doesNotThrow(() => {
         parseSource(`(async () => {${arg}})`, undefined, Context.None);

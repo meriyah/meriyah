@@ -88,6 +88,18 @@ describe('Expressions - Async function', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg}`, undefined, Context.Module);
       });
     });

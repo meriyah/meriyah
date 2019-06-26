@@ -46,6 +46,12 @@ describe('Declarations - Let', () => {
         parseSource(`(function() {${arg}})()`, undefined, Context.None);
       });
     });
+
+    it(`(function() {${arg}})()`, () => {
+      t.throws(() => {
+        parseSource(`(function() {${arg}})()`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   // Valid 'let' as identifier cases
@@ -104,6 +110,12 @@ describe('Declarations - Let', () => {
     it(`(function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
         parseSource(`(function foo() { ${arg}})`, undefined, Context.None);
+      });
+    });
+
+    it(`(function foo() { ${arg}}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(function foo() { ${arg}})`, undefined, Context.OptionsLexical);
       });
     });
   }
@@ -328,6 +340,12 @@ describe('Declarations - Let', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
 

@@ -23,6 +23,12 @@ describe('Expressions - Super', () => {
       });
     });
 
+    it(`class C { get x() { ${arg} } }`, () => {
+      t.throws(() => {
+        parseSource(`class C { get x() { ${arg} } }`, undefined, Context.OptionsLexical);
+      });
+    });
+
     it(`class C { set x(_) { ${arg} } }`, () => {
       t.throws(() => {
         parseSource(`class C { set x(_) { ${arg} } }`, undefined, Context.None);

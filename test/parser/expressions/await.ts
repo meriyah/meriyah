@@ -42,6 +42,12 @@ describe('Expressions - Await', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
@@ -104,6 +110,12 @@ describe('Expressions - Await', () => {
     it(`async function f( ${arg}) {}`, () => {
       t.throws(() => {
         parseSource(`async function f( ${arg}) {}`, undefined, Context.None);
+      });
+    });
+
+    it(`async function f( ${arg}) {}`, () => {
+      t.throws(() => {
+        parseSource(`async function f( ${arg}) {}`, undefined, Context.OptionsLexical);
       });
     });
 

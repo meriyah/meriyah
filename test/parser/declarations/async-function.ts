@@ -1,7 +1,7 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
-import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
+import * as t from 'assert';
 
 describe('Declarations - Async Function', () => {
   for (const arg of [
@@ -160,6 +160,7 @@ describe('Declarations - Async Function', () => {
     'async function fn() { const x = await import({}); }',
     'async function fn() { const x = await import({}); }',
     'async function * fn() { return import(yield 42); }',
+    `function *a(){yield\n*a}`,
     'async function * fn() { import(yield * ["Roberta Flack", "Donny Hathaway", "Frank Sinatra"]); }',
     'async function* f(a = async function*() { await 1; }) {}',
     'function f() { return await; }',
@@ -420,6 +421,9 @@ describe('Declarations - Async Function', () => {
     ['async (await, b = async () => {}) => 1', Context.None],
     ['async function* a() { await;  (r = a) => {} }', Context.None],
     ['async function* a() { (await) => {} }', Context.None],
+    ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
+    ['switch (0) { case 1: async function f() {} default: function f() {} }', Context.OptionsLexical],
+    ['{ function* f() {} async function f() {} }', Context.OptionsLexical | Context.Strict],
     ['async function* f() { a = async function*(a = await) {}; }', Context.None],
     ['function f(a = async function(a = await) {}) {}', Context.None],
     ['({async\nfoo() { }})', Context.None],

@@ -28,6 +28,12 @@ describe('Expressions - Async', () => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
   }
 
   fail('Expressions - Async (pass)', [

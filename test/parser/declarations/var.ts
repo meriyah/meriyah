@@ -365,6 +365,11 @@ describe('Declarations - Var', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   // Should fail on reserved words
@@ -431,7 +436,11 @@ describe('Declarations - Var', () => {
         parseSource(`function f([${arg}]) {}`, undefined, Context.None);
       });
     });
-
+    it(`function f([${arg}]) {}`, () => {
+      t.throws(() => {
+        parseSource(`function f([${arg}]) {}`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`try {} catch (${arg}) {}`, () => {
       t.throws(() => {
         parseSource(`try {} catch (${arg}) {}`, undefined, Context.None);
@@ -592,7 +601,11 @@ describe('Declarations - Var', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
-
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`"use strict"; ${arg}`, undefined, Context.None);

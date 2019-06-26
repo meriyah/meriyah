@@ -49,6 +49,11 @@ describe('Statements - Labeled', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
+        parseSource(`${arg} : x`, undefined, Context.OptionsLexical);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
         parseSource(`${arg} : x`, undefined, Context.OptionsWebCompat);
       });
     });

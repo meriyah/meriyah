@@ -97,6 +97,12 @@ describe('Declarations - Function', () => {
         parseSource(`(function() { ;${arg}})()`, undefined, Context.None);
       });
     });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`(function() { ;${arg}})()`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   // Valid only in sloppy mode and with the 'WebCompat' option on
@@ -110,7 +116,7 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() {${arg}})()`, undefined, Context.OptionsWebCompat);
+        parseSource(`(function() {${arg}})()`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
       });
     });
   }

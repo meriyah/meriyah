@@ -50,6 +50,12 @@ describe('Expressions - Rest', () => {
       });
     });
 
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg};`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
         parseSource(`"use strict"; ${arg};`, undefined, Context.None);
@@ -91,7 +97,11 @@ describe('Expressions - Rest', () => {
         parseSource(`x = ${arg};`, undefined, Context.None);
       });
     });
-
+    it(`x = ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`x = ${arg};`, undefined, Context.OptionsLexical);
+      });
+    });
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = ${arg};`, undefined, Context.OptionsNext | Context.Module);

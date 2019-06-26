@@ -17,6 +17,11 @@ describe('Expressions - Arrow', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
 
     it(`async ${arg}`, () => {
       t.throws(() => {

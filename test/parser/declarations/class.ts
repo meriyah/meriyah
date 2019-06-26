@@ -65,9 +65,21 @@ describe('Declarations - Class', () => {
       });
     });
 
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg} `, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg} `, undefined, Context.OptionsWebCompat);
+      });
+    });
+
     it(`if (true) { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`, undefined, Context.None);
+        parseSource(`if (true) { ${arg} }`, undefined, Context.OptionsLexical);
       });
     });
 
@@ -171,6 +183,12 @@ describe('Declarations - Class', () => {
         parseSource(`(class C { ${arg} })`, undefined, Context.None);
       });
     });
+
+    it(`(class C { ${arg} })`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(class C { ${arg} })`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   for (const arg of [
@@ -227,6 +245,12 @@ describe('Declarations - Class', () => {
       });
     });
 
+    it(`(class {${arg}() {}});`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(class {${arg}() {}});`, undefined, Context.OptionsLexical);
+      });
+    });
+
     it(`(class { static ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
         parseSource(`(class { static ${arg}() {}});`, undefined, Context.None);
@@ -254,6 +278,12 @@ describe('Declarations - Class', () => {
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
         parseSource(`(class C { async *${arg}(v) {}})`, undefined, Context.None);
+      });
+    });
+
+    it(`(class C { async *${arg}(v) {}})`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`(class C { async *${arg}(v) {}})`, undefined, Context.OptionsLexical);
       });
     });
 
@@ -294,6 +324,12 @@ describe('Declarations - Class', () => {
         parseSource(`'use strict'; if (true) { ${arg} }`, undefined, Context.None);
       });
     });
+
+    it(`'use strict'; if (true) { ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`'use strict'; if (true) { ${arg} }`, undefined, Context.OptionsLexical);
+      });
+    });
   }
 
   for (const arg of [
@@ -316,6 +352,12 @@ describe('Declarations - Class', () => {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`{ ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
 
@@ -540,6 +582,12 @@ describe('Declarations - Class', () => {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
         parseSource(`class C { ${arg} }`, undefined, Context.None);
+      });
+    });
+
+    it(`class C { ${arg} }`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`class C { ${arg} }`, undefined, Context.OptionsLexical);
       });
     });
 
