@@ -119,3 +119,15 @@ The second argument allows you to specify various options:
 | `ranges`          | Append start and end offsets to each node |
 | `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
+
+## ECMAScript compability
+
+Out of the box Meriyah is 100% ECMA spec compatible, but it's main focus is on performance.
+Therefore, you must enable several options by your own choice to make sure your code parses with 100% ECMA spec compability.
+
+Also note that support for additional ECMAScript features for Web Browsers (annexB) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
+
+This is done because AnnexB is an extension of the language, and also Test262 have this off by default and has it own web compat tests separated from the main tests.
+
+Lexical binding and scope tracking has to be enabled with the lexical option.
+
