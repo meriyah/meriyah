@@ -1,4 +1,4 @@
-import { nextCodePoint, CharTypes, CharFlags, LexerState, advanceNewline, consumeLineFeed } from './';
+import { nextCP, CharTypes, CharFlags, LexerState, advanceNewline, consumeLineFeed } from './';
 import { Chars } from '../chars';
 import { ParserState } from '../common';
 import { report, Errors } from '../errors';
@@ -9,6 +9,8 @@ import { report, Errors } from '../errors';
  * @param parser  Parser object
  */
 export function skipHashBang(parser: ParserState): void {
+  // HashbangComment ::
+  //   #!  SingleLineCommentChars
   let index = parser.index;
   if (index === parser.end) return;
   if (parser.nextCP === Chars.ByteOrderMark) {
@@ -41,7 +43,7 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState): L
       advanceNewline(parser);
       return state;
     }
-    nextCodePoint(parser);
+    nextCP(parser);
   }
   return state;
 }
@@ -55,8 +57,8 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState): L
 export function skipMultiLineComment(parser: ParserState, state: LexerState): LexerState | void {
   while (parser.index < parser.end) {
     while (parser.nextCP === Chars.Asterisk) {
-      if (nextCodePoint(parser) === Chars.Slash) {
-        nextCodePoint(parser);
+      if (nextCP(parser) === Chars.Slash) {
+        nextCP(parser);
         return state;
       }
     }
@@ -71,7 +73,7 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
       advanceNewline(parser);
     } else {
-      nextCodePoint(parser);
+      nextCP(parser);
     }
   }
 

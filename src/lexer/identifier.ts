@@ -1,7 +1,7 @@
 import { ParserState, Context } from '../common';
 import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
-import { nextCodePoint, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
+import { nextCP, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
 import { CharTypes, CharFlags, isIdentifierPart } from './charClassifier';
 import { report, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
@@ -14,10 +14,10 @@ import { unicodeLookup } from '../unicode';
  */
 export function scanIdentifier(parser: ParserState, context: Context): Token {
   const canBeKeyword = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
-  while ((CharTypes[nextCodePoint(parser)] & CharFlags.IdentifierPart) !== 0) {}
+  while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
   const hasEscape = CharTypes[parser.nextCP] & CharFlags.BackSlash;
-  if (!hasEscape && parser.nextCP < 0x7e) {
+  if ((parser.nextCP & ~0x7f) === 0 && !hasEscape) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
 
@@ -62,7 +62,7 @@ export function scanIdentifierSlowCase(
       parser.tokenValue += fromCodePoint(code);
       start = parser.index;
     } else if (isIdentifierPart(parser.nextCP) || consumeMultiUnitCodePoint(parser, parser.nextCP)) {
-      nextCodePoint(parser);
+      nextCP(parser);
     } else {
       break;
     }
@@ -98,7 +98,7 @@ export function scanIdentifierSlowCase(
  * @param parser  Parser object
  */
 export function scanPrivateName(parser: ParserState): Token {
-  nextCodePoint(parser); // consumes '#'
+  nextCP(parser); // consumes '#'
   if (
     (CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0 ||
     ((CharTypes[parser.nextCP] & CharFlags.IdentifierStart) === 0 &&
@@ -134,7 +134,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}
   if (parser.nextCP === Chars.LeftBrace) {
-    while (CharTypes[nextCodePoint(parser)] & CharFlags.Hex) {
+    while (CharTypes[nextCP(parser)] & CharFlags.Hex) {
       codePoint = (codePoint << 4) | toHex(parser.nextCP);
       // Check this early to avoid `code` wrapping to a negative on overflow (which is
       // reserved for abnormal conditions).
@@ -147,7 +147,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
     if (codePoint < 1 || (parser.nextCP as number) !== Chars.RightBrace) {
       report(parser, Errors.InvalidHexEscapeSequence);
     }
-    nextCodePoint(parser); // consumes '}'
+    nextCP(parser); // consumes '}'
     return codePoint;
   }
 

@@ -1,11 +1,12 @@
 export { scanSingleToken, nextToken } from './scan';
 export { skipMultiLineComment, skipSingleLineComment, skipHashBang } from './comments';
 export {
-  nextCodePoint,
+  nextCP,
   consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
   fromCodePoint,
   toHex,
+  storeRaw,
   consumeLineFeed,
   advanceNewline,
   LexerState

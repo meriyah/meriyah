@@ -14,7 +14,7 @@ export const enum LexerState {
  * Advances this lexer's current index.
  * @param parser The parser instance
  */
-export function nextCodePoint(parser: ParserState): number {
+export function nextCP(parser: ParserState): number {
   parser.column++;
   return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
@@ -32,6 +32,10 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
   parser.column++;
   parser.nextCP = hi;
   return true;
+}
+
+export function storeRaw(parser: ParserState, start: number) {
+  parser.tokenRaw = parser.source.slice(start, parser.index);
 }
 
 /**

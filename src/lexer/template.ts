@@ -1,7 +1,7 @@
 import { ParserState, Context } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
-import { nextCodePoint, fromCodePoint } from './common';
+import { nextCP, fromCodePoint } from './common';
 import { parseEscape, Escape, handleStringError } from './string';
 import { report, Errors } from '../errors';
 
@@ -13,15 +13,15 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
   let tail = true;
   let ret: string | void = '';
 
-  let ch = nextCodePoint(parser);
+  let ch = nextCP(parser);
 
   while (ch !== Chars.Backtick) {
     if (ch === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
-      nextCodePoint(parser);
+      nextCP(parser);
       tail = false;
       break;
     } else if ((ch & 8) === 8 && ch === Chars.Backslash) {
-      ch = nextCodePoint(parser);
+      ch = nextCP(parser);
       if (ch > 0x7e) {
         ret += fromCodePoint(ch);
       } else {
@@ -54,10 +54,10 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       ret += fromCodePoint(ch);
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
-    ch = nextCodePoint(parser);
+    ch = nextCP(parser);
   }
 
-  nextCodePoint(parser); // Consume the quote or opening brace
+  nextCP(parser); // Consume the quote or opening brace
   parser.tokenValue = ret;
   if (tail) {
     parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
@@ -94,7 +94,7 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
       // do nothing
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
-    ch = nextCodePoint(parser);
+    ch = nextCP(parser);
   }
 
   return ch;
