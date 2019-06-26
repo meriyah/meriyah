@@ -46,7 +46,7 @@ export declare function parseCatchBlock(parser: ParserState, context: Context, s
 export declare function parseDoWhileStatement(parser: ParserState, context: Context, scope: ScopeState, labels: any, start: number, line: number, column: number): ESTree.DoWhileStatement;
 export declare function parseLetIdentOrVarDeclarationStatement(parser: ParserState, context: Context, scope: ScopeState, start: number, line: number, column: number): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement;
 export declare function parseVariableStatement(parser: ParserState, context: Context, scope: ScopeState, origin: BindingOrigin, start: number, line: number, column: number): ESTree.VariableDeclaration;
-export declare function parseVariableDeclarationList(parser: ParserState, context: Context, scope: ScopeState, verifyDuplicates: 0 | 1, type: BindingType, origin: BindingOrigin): ESTree.VariableDeclarator[];
+export declare function parseVariableDeclarationList(parser: ParserState, context: Context, scope: ScopeState, verifyDuplicates: 0 | 1, isVarDecl: 0 | 1, type: BindingType, origin: BindingOrigin): ESTree.VariableDeclarator[];
 export declare function parseForStatement(parser: ParserState, context: Context, scope: ScopeState, labels: any, start: number, line: number, column: number): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement;
 export declare function parseExpression(parser: ParserState, context: Context, assignable: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
 export declare function parseSequenceExpression(parser: ParserState, context: Context, start: number, line: number, column: number, expr: ESTree.AssignmentExpression | ESTree.Expression): ESTree.SequenceExpression;
@@ -95,5 +95,5 @@ export declare function parseDecorators(parser: ParserState, context: Context): 
 export declare function parseDecoratorList(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Decorator;
 export declare function parseClassBody(parser: ParserState, context: Context, inheritedContext: Context, scope: any, type: BindingType, origin: BindingOrigin, inGroup: 0 | 1): ESTree.ClassBody;
 export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number, line: number, column: number): ESTree.FieldDefinition;
-export declare function parseBindingPattern(parser: ParserState, context: Context, scope: any, dupeChecks: 0 | 1, type: BindingType, origin: BindingOrigin, start: number, line: number, column: number): ESTree.Pattern | ESTree.Identifier;
+export declare function parseBindingPattern(parser: ParserState, context: Context, scope: any, dupeChecks: 0 | 1, isVarDecl: 0 | 1, type: BindingType, origin: BindingOrigin, start: number, line: number, column: number): ESTree.Pattern | ESTree.Identifier;
 //# sourceMappingURL=parser.d.ts.map

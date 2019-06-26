@@ -50,8 +50,8 @@ export declare const enum PropertyKind {
 }
 export declare const enum BindingType {
     None = 0,
-    ArgList = 1,
-    Variable = 4,
+    Variable = 1,
+    ArgList = 2,
     Let = 8,
     Const = 16
 }
@@ -109,7 +109,7 @@ export interface ParserState {
     startIndex: number;
     startColumn: number;
     startLine: number;
-    columnPos: number;
+    colPos: number;
     linePos: number;
     end: number;
     token: Token;

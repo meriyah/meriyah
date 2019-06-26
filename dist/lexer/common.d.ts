@@ -1,5 +1,5 @@
 import { ParserState } from '../common';
-export declare const enum ScannerState {
+export declare const enum LexerState {
     None = 0,
     NewLine = 1,
     SameLine = 2,
