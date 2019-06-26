@@ -16,8 +16,8 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~81 000 unit tests with full code coverage))
-* Lightweight - ~76 KB minified
+* Very well tested (~81 000 unit tests with full code coverage)
+* Lightweight - ~82 KB minified
 
 ## ESNext features
 
@@ -122,14 +122,10 @@ The second argument allows you to specify various options:
 
 ## ECMAScript compability
 
-Out of the box Meriyah is 100% ECMA spec compatible, but it's main focus is on performance.
-Therefore, you must enable several [options](https://github.com/meriyah/meriyah#options) by your own choice to make sure your code parses with 100% ECMA spec compability.
+Meriyah is 100% ECMA spec compatible, but you have to enable several [options](https://github.com/meriyah/meriyah#options) to make sure your code parses with 100% ECMA spec compability. This is done because Mariah's main focus is on performance, and each option you enable will have impact on it's performance.
 
 Also note that support for additional ECMAScript features for Web Browsers (*annexB*) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
 
-This is done because AnnexB is an extension of the language, and also `Test262` have this off by default and has it own [web compat tests](https://github.com/tc39/test262/tree/master/test/annexB) separated from the main tests.
+This is done because AnnexB is an extension of the language, and also beaucse all the `Test262 suite` tests has no web compability. 
 
 Lexical binding and scope tracking has to be enabled with the `lexical` option.
-
-
-
