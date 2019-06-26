@@ -122,7 +122,7 @@ The second argument allows you to specify various options:
 
 ## ECMAScript compability
 
-Meriyah is 100% ECMA spec compatible, but you have to enable several [options](https://github.com/meriyah/meriyah#options) to make sure your code parses with 100% ECMA spec compability. This is done because Mariah's main focus is on performance, and each option you enable will have impact on it's performance.
+Meriyah is 100% ECMA spec compatible, but you have to enable several [options](https://github.com/meriyah/meriyah#options) to make sure your code parses with 100% ECMA spec compability. This is done because Meriyah's main focus is on performance, and each option you enable will have impact on it's performance.
 
 Also note that support for additional ECMAScript features for Web Browsers (*annexB*) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
 
