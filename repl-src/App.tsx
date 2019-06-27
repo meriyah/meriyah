@@ -14,7 +14,7 @@ export class App extends React.Component<any, any> {
     super(props);
     this.state = {
       jsCode: initialCode,
-      settings: {},
+      settings: { module: true },
       menuOpened: true
     };
   }
