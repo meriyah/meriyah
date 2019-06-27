@@ -197,7 +197,7 @@ export interface Options {
 export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
   let sourceFile = '';
   if (options != null) {
-    if (options.module) context |= Context.Module;
+    if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
     if (options.loc) context |= Context.OptionsLoc;
     if (options.ranges) context |= Context.OptionsRanges;
@@ -4298,7 +4298,9 @@ export function parseFunctionDeclaration(
 
       // A function behaves as a lexical binding, except in a script scope, or in any function scope.
       const mode =
-        context & Context.TopLevel && (context & Context.Module) === 0 ? BindingType.Variable : BindingType.Let;
+        ((context & Context.InGlobal) === 0 || (context & Context.Module) === 0) && context & Context.TopLevel
+          ? BindingType.Variable
+          : BindingType.Let;
 
       addFunctionName(parser, context, scope, parser.tokenValue, mode, 1);
 
