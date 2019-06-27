@@ -11,7 +11,7 @@ export const LEFT_MENU_CONFIG = [
       { title: "Implied strict", value: "impliedStrict", selected: false },
       { title: "JSX", value: "jsx", selected: false, disabled: true }, // grayed out
       { title: "Line and column-based", value: "loc", selected: false },
-      { title: "Lexical", value: "lexial", selected: false },
+      { title: "Lexical", value: "lexical", selected: false },
       { title: "Next", value: "next", selected: false },
       { title: "Raw", value: "raw", selected: false },
       { title: "Web compat", value: "webcompat", selected: false }
@@ -20,8 +20,8 @@ export const LEFT_MENU_CONFIG = [
   {
     category: "Parsers",
     items: [
-      { title: "EcmaScript (js)", value: "js", selected: false },
-      { title: "TypeScript (ts)", value: "ts", selected: false, disabled: true } // grayed out
+      { title: "JavaScript", value: "js", selected: false },
+      { title: "TypeScript", value: "ts", selected: false, disabled: true } // grayed out
     ]
   }
 ];
