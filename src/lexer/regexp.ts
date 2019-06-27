@@ -1,7 +1,7 @@
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { Token } from '../token';
-import { nextCodePoint, isIdentifierPart } from './';
+import { nextCP, isIdentifierPart } from './';
 import { report, Errors } from '../errors';
 
 /**
@@ -23,7 +23,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 
   loop: while (true) {
     const ch = parser.nextCP;
-    nextCodePoint(parser);
+    nextCP(parser);
 
     if (preparseState & RegexState.Escape) {
       preparseState &= ~RegexState.Escape;
@@ -71,7 +71,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 
   const { index: flagStart } = parser;
 
-  loop: while (parser.index < parser.source.length) {
+  loop: while (isIdentifierPart(parser.nextCP)) {
     switch (parser.nextCP) {
       case Chars.LowerG:
         if (mask & RegexFlags.Global) report(parser, Errors.DuplicateRegExpFlag, 'g');
@@ -104,11 +104,10 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         break;
 
       default:
-        if (!isIdentifierPart(parser.nextCP)) break loop;
         report(parser, Errors.UnexpectedTokenRegExpFlag);
     }
 
-    nextCodePoint(parser);
+    nextCP(parser);
   }
 
   const flags = parser.source.slice(flagStart, parser.index);

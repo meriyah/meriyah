@@ -16,8 +16,8 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~81 000 unit tests with full code coverage))
-* Lightweight - ~76 KB minified
+* Very well tested (~81 000 unit tests with full code coverage)
+* Lightweight - ~82 KB minified
 
 ## ESNext features
 
@@ -119,3 +119,13 @@ The second argument allows you to specify various options:
 | `ranges`          | Append start and end offsets to each node |
 | `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
 | `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
+
+## ECMAScript compability
+
+Meriyah is 100% ECMA spec compatible, but you have to enable several [options](https://github.com/meriyah/meriyah#options) to make sure your code parses with 100% ECMA spec compability. This is done because Meriyah's main focus is on performance, and each option you enable will have impact on it's performance.
+
+Also note that support for additional ECMAScript features for Web Browsers (*annexB*) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
+
+This is done because AnnexB is an extension of the language, and also beaucse all the `Test262 suite` tests has no web compability. 
+
+Lexical binding and scope tracking has to be enabled with the `lexical` option.

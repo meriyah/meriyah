@@ -6040,6 +6040,7 @@ export function parseMethodFormals(
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
   const params: ESTree.Expression[] = [];
+
   parser.flags &= ~Flags.SimpleParameterList;
   let setterArgs = 0;
 
@@ -6053,113 +6054,111 @@ export function parseMethodFormals(
 
   if (kind & PropertyKind.Getter) {
     report(parser, Errors.AccessorWrongArgs, 'Getter', 'no', 's');
-  } else if (kind & PropertyKind.Setter && parser.token === Token.Ellipsis) {
-    report(parser, Errors.BadSetterRestParameter);
-  } else {
-    let isComplex: 0 | 1 = 0;
-    while (parser.token !== Token.RightParen) {
-      let left: any;
-      const { tokenIndex, linePos, colPos } = parser;
-      if (parser.token & Token.IsIdentifier) {
-        if (
-          (context & Context.Strict) === 0 &&
-          ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
-            (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
-        ) {
-          isComplex = 1;
-        }
-        if (context & Context.OptionsLexical) {
-          declareName(parser, context, scope, parser.tokenValue, type, 0, 0);
-        }
-        left = parseAndClassifyIdentifier(parser, context, type, tokenIndex, linePos, colPos);
-      } else {
-        if (parser.token === Token.LeftBrace) {
-          left = parseObjectLiteralOrPattern(
-            parser,
-            context,
-            scope,
-            1,
-            inGroup,
-            type,
-            BindingOrigin.None,
-            tokenIndex,
-            linePos,
-            colPos
-          );
-        } else if (parser.token === Token.LeftBracket) {
-          left = parseArrayExpressionOrPattern(
-            parser,
-            context,
-            scope,
-            1,
-            inGroup,
-            type,
-            BindingOrigin.None,
-            tokenIndex,
-            linePos,
-            colPos
-          );
-        } else if (parser.token === Token.Ellipsis) {
-          left = parseSpreadElement(
-            parser,
-            context,
-            scope,
-            Token.RightParen,
-            type,
-            BindingOrigin.None,
-            0,
-            inGroup,
-            tokenIndex,
-            linePos,
-            colPos
-          );
-        }
-
-        isComplex = 1;
-
-        reinterpretToPattern(parser, left);
-
-        if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidBindingDestruct);
-
-        if (type && parser.destructible & DestructuringKind.AssignableDestruct)
-          report(parser, Errors.InvalidBindingDestruct);
-      }
-
-      if (parser.token === Token.Assign) {
-        nextToken(parser, context | Context.AllowRegExp);
-
-        isComplex = 1;
-
-        const right = parseExpression(
-          parser,
-          (context | Context.DisallowIn) ^ Context.DisallowIn,
-          1,
-          0,
-          parser.tokenIndex,
-          parser.linePos,
-          parser.colPos
-        );
-
-        left = finishNode(parser, context, tokenIndex, linePos, colPos, {
-          type: 'AssignmentPattern',
-          left,
-          right
-        } as any);
-      }
-      setterArgs++;
-      params.push(left);
-
-      if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
-    }
-
-    if (isComplex) parser.flags |= Flags.SimpleParameterList;
-
-    if (kind & PropertyKind.Setter && setterArgs !== 1) {
-      report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
-    }
-
-    if (context & Context.OptionsLexical) verifyArguments(parser, scope.lexicals);
   }
+  if (kind & PropertyKind.Setter && parser.token === Token.Ellipsis) {
+    report(parser, Errors.BadSetterRestParameter);
+  }
+
+  while (parser.token !== Token.RightParen) {
+    let left: any;
+    const { tokenIndex, tokenValue, linePos, colPos } = parser;
+    if (parser.token & Token.IsIdentifier) {
+      if (
+        (context & Context.Strict) === 0 &&
+        ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
+          (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+      ) {
+        parser.flags |= Flags.SimpleParameterList;
+      }
+      if (context & Context.OptionsLexical) {
+        declareName(parser, context, scope, tokenValue, type, 0, 0);
+      }
+      left = parseAndClassifyIdentifier(parser, context, type, tokenIndex, linePos, colPos);
+    } else {
+      if (parser.token === Token.LeftBrace) {
+        left = parseObjectLiteralOrPattern(
+          parser,
+          context,
+          scope,
+          1,
+          inGroup,
+          type,
+          BindingOrigin.None,
+          tokenIndex,
+          linePos,
+          colPos
+        );
+      } else if (parser.token === Token.LeftBracket) {
+        left = parseArrayExpressionOrPattern(
+          parser,
+          context,
+          scope,
+          1,
+          inGroup,
+          type,
+          BindingOrigin.None,
+          tokenIndex,
+          linePos,
+          colPos
+        );
+      } else if (parser.token === Token.Ellipsis) {
+        left = parseSpreadElement(
+          parser,
+          context,
+          scope,
+          Token.RightParen,
+          type,
+          BindingOrigin.None,
+          0,
+          inGroup,
+          tokenIndex,
+          linePos,
+          colPos
+        );
+      }
+
+      parser.flags |= Flags.SimpleParameterList;
+
+      reinterpretToPattern(parser, left);
+
+      if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidBindingDestruct);
+
+      if (type && parser.destructible & DestructuringKind.AssignableDestruct)
+        report(parser, Errors.InvalidBindingDestruct);
+    }
+
+    if (parser.token === Token.Assign) {
+      nextToken(parser, context | Context.AllowRegExp);
+
+      parser.flags |= Flags.SimpleParameterList;
+
+      const right = parseExpression(
+        parser,
+        (context | Context.DisallowIn) ^ Context.DisallowIn,
+        1,
+        0,
+        parser.tokenIndex,
+        parser.linePos,
+        parser.colPos
+      );
+
+      left = finishNode(parser, context, tokenIndex, linePos, colPos, {
+        type: 'AssignmentPattern',
+        left,
+        right
+      } as any);
+    }
+    setterArgs++;
+    params.push(left);
+
+    if (parser.token !== Token.RightParen) consume(parser, context, Token.Comma);
+  }
+
+  if (kind & PropertyKind.Setter && setterArgs !== 1) {
+    report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
+  }
+
+  if (context & Context.OptionsLexical) verifyArguments(parser, scope.lexicals);
 
   consume(parser, context, Token.RightParen);
   return params;

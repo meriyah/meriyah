@@ -2,7 +2,7 @@ import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
-import { toHex, nextCodePoint, fromCodePoint, CharTypes, CharFlags } from './';
+import { toHex, nextCP, fromCodePoint, CharTypes, CharFlags, storeRaw } from './';
 
 // Intentionally negative
 export const enum Escape {
@@ -20,20 +20,20 @@ export function scanString(parser: ParserState, context: Context): any {
   const quote = parser.nextCP;
   const { index: start } = parser;
   let ret: string | void = '';
-  let ch = nextCodePoint(parser);
+  let ch = nextCP(parser);
   let marker = parser.index; // Consumes the quote
   while ((CharTypes[ch] & CharFlags.LineTerminator) === 0) {
     if (ch === quote) {
       ret += parser.source.slice(marker, parser.index);
-      nextCodePoint(parser); // skip closing quote
-      if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
+      nextCP(parser); // skip closing quote
+      if (context & Context.OptionsRaw) storeRaw(parser, start);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }
 
     if ((ch & 8) === 8 && ch === Chars.Backslash) {
       ret += parser.source.slice(marker, parser.index);
-      const ch = nextCodePoint(parser);
+      const ch = nextCP(parser);
 
       if (ch > 0x7e) {
         ret += fromCodePoint(ch);
@@ -47,7 +47,7 @@ export function scanString(parser: ParserState, context: Context): any {
     }
 
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
-    ch = nextCodePoint(parser);
+    ch = nextCP(parser);
   }
 
   report(parser, Errors.UnterminatedString);
@@ -170,10 +170,10 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     // HexEscapeSequence
     // \x HexDigit HexDigit
     case Chars.LowerX: {
-      const ch1 = nextCodePoint(parser);
+      const ch1 = nextCP(parser);
       if ((CharTypes[ch1] & CharFlags.Hex) === 0) return Escape.InvalidHex;
       const hi = toHex(ch1);
-      const ch2 = nextCodePoint(parser);
+      const ch2 = nextCP(parser);
       if ((CharTypes[ch2] & CharFlags.Hex) === 0) return Escape.InvalidHex;
       const lo = toHex(ch2);
 
@@ -184,11 +184,11 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     // \u HexDigit HexDigit HexDigit HexDigit
     // \u { HexDigit HexDigit HexDigit ... }
     case Chars.LowerU: {
-      const ch = nextCodePoint(parser);
+      const ch = nextCP(parser);
 
       if (parser.nextCP === Chars.LeftBrace) {
         let code = 0;
-        while ((CharTypes[nextCodePoint(parser)] & CharFlags.Hex) !== 0) {
+        while ((CharTypes[nextCP(parser)] & CharFlags.Hex) !== 0) {
           code = (code << 4) | toHex(parser.nextCP);
           if (code > Chars.NonBMPMax) return Escape.OutOfRange;
         }

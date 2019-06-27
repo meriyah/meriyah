@@ -346,7 +346,7 @@ export class ParseError extends SyntaxError {
   public line: number;
   public column: number;
   public description: string;
-  constructor(index: number, line: number, column: number, source: string, type: Errors, ...params: string[]) {
+  constructor(startindex: number, line: number, column: number, source: string, type: Errors, ...params: string[]) {
     let message =
       '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     const lines = source.split('\n');
@@ -358,7 +358,7 @@ export class ParseError extends SyntaxError {
 
     super(`${message}`);
 
-    this.index = index;
+    this.index = startindex;
     this.line = line;
     this.column = column;
     this.description = message;
@@ -374,8 +374,8 @@ export class ParseError extends SyntaxError {
  * @param {...string[]} params
  * @returns {never}
  */
-export function report(state: ParserState, type: Errors, ...params: string[]): never {
-  throw new ParseError(state.index, state.line, state.column, state.source, type, ...params);
+export function report(parser: ParserState, type: Errors, ...params: string[]): never {
+  throw new ParseError(parser.index, parser.line, parser.column, parser.source, type, ...params);
 }
 
 /**
@@ -391,12 +391,12 @@ export function report(state: ParserState, type: Errors, ...params: string[]): n
  * @returns {never}
  */
 export function reportAt(
-  state: ParserState,
+  parser: ParserState,
   index: number,
   line: number,
   column: number,
   type: Errors,
   ...params: string[]
 ): never {
-  throw new ParseError(index, line, column, state.source, type, ...params);
+  throw new ParseError(index, line, column, parser.source, type, ...params);
 }
