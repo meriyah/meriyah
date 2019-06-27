@@ -1964,7 +1964,6 @@ function parseVariableDeclaration(
             context & Context.Strict))
       ) {
         reportAt(
-          parser,
           tokenIndex,
           parser.line,
           parser.index - 3,
@@ -2351,7 +2350,6 @@ function parseImportNamespaceSpecifier(
     validateBindingIdentifier(parser, context, BindingType.Const, parser.token, 0);
   } else {
     reportAt(
-      parser,
       tokenIndex,
       parser.line,
       parser.index,
@@ -3272,7 +3270,7 @@ export function parseAwaitExpressionOrIdentifier(
     if (inNewExpression) {
       report(parser, Errors.InvalidAwaitIdent);
     } else if (context & Context.InArgList) {
-      reportAt(parser, parser.index, parser.line, parser.index, Errors.AwaitInParameter);
+      reportAt(parser.index, parser.line, parser.index, Errors.AwaitInParameter);
     }
 
     nextToken(parser, context | Context.AllowRegExp);
@@ -3334,10 +3332,10 @@ export function parseFunctionBody(
           // in the body of a function with non-simple parameter list, on
           // 29/7/2015. https://goo.gl/ueA7Ln
           if (parser.flags & Flags.SimpleParameterList) {
-            reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
+            reportAt(parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
           }
           if (parser.flags & Flags.Octals) {
-            reportAt(parser, parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
+            reportAt(parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
           }
         }
       }
@@ -4575,7 +4573,7 @@ export function parseArrayExpressionOrPattern(
 
         if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
           if (parser.assignable & AssignmentKind.NotAssignable) {
-            reportAt(parser, parser.index, parser.line, parser.index - 3, Errors.InvalidLHS);
+            reportAt(parser.index, parser.line, parser.index - 3, Errors.InvalidLHS);
           } else if (context & Context.OptionsLexical) {
             declareName(parser, context, scope, tokenValue, type, 0, 0);
             if (origin & BindingOrigin.Export) {
@@ -5944,7 +5942,6 @@ export function parseObjectLiteralOrPattern(
             );
           } else {
             reportAt(
-              parser,
               index,
               line,
               index,
@@ -7626,7 +7623,7 @@ function parseClassElementList(
     kind |= PropertyKind.ClassField;
     context = context | Context.InClass;
   } else {
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+    report(parser, Errors.Unexpected);
   }
 
   if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {

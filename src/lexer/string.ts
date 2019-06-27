@@ -72,14 +72,10 @@ export function parseEscape(parser: ParserState, context: Context, first: number
 
     // Line continuations
     case Chars.CarriageReturn: {
-      const { index } = parser;
-
-      if (index < parser.end) {
-        const ch = parser.source.charCodeAt(index);
-
-        if (ch === Chars.LineFeed) {
-          parser.nextCP = ch;
-          parser.index = index + 1;
+      if (parser.index < parser.end) {
+        if (parser.nextCP === Chars.LineFeed) {
+          parser.index = parser.index + 1;
+          parser.nextCP = parser.source.charCodeAt(parser.index);
         }
       }
     }
