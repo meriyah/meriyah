@@ -1,6 +1,6 @@
 export { scanSingleToken, nextToken } from './scan';
 export { skipMultiLineComment, skipSingleLineComment, skipHashBang } from './comments';
-export { nextCodePoint, consumeMultiUnitCodePoint, isExoticECMAScriptWhitespace, fromCodePoint, toHex, consumeLineFeed, advanceNewline, LexerState } from './common';
+export { nextCP, consumeMultiUnitCodePoint, isExoticECMAScriptWhitespace, fromCodePoint, toHex, storeRaw, consumeLineFeed, advanceNewline, LexerState } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
 export { scanIdentifier, scanIdentifierSlowCase, scanUnicodeIdentifier, scanPrivateName, scanUnicodeEscapeValue } from './identifier';
 export { scanString } from './string';

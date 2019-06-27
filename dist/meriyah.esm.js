@@ -329,7 +329,7 @@ const errorMessages = {
     [159]: 'Unexpected private field'
 };
 class ParseError extends SyntaxError {
-    constructor(index, line, column, source, type, ...params) {
+    constructor(startindex, line, column, source, type, ...params) {
         let message = '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_, i) => params[i]);
         const lines = source.split('\n');
         message = message + '\n' + lines[line - 1] + '\n';
@@ -338,17 +338,17 @@ class ParseError extends SyntaxError {
         }
         message += '^\n';
         super(`${message}`);
-        this.index = index;
+        this.index = startindex;
         this.line = line;
         this.column = column;
         this.description = message;
     }
 }
-function report(state, type, ...params) {
-    throw new ParseError(state.index, state.line, state.column, state.source, type, ...params);
+function report(parser, type, ...params) {
+    throw new ParseError(parser.index, parser.line, parser.column, parser.source, type, ...params);
 }
-function reportAt(state, index, line, column, type, ...params) {
-    throw new ParseError(index, line, column, state.source, type, ...params);
+function reportAt(parser, index, line, column, type, ...params) {
+    throw new ParseError(index, line, column, parser.source, type, ...params);
 }
 
 const TokenLookup = [
@@ -511,10 +511,10 @@ function scanSingleToken(parser, context, state) {
                 case 16842798:
                 case 133:
                 case 129:
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     return token;
                 case 124:
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     break;
                 case 130:
                     state |= 1 | 4;
@@ -523,7 +523,6 @@ function scanSingleToken(parser, context, state) {
                 case 135:
                     consumeLineFeed(parser, (state & 4) !== 0);
                     state = (state | 4 | 1) ^ 4;
-                    parser.flags |= 1;
                     break;
                 case 208897:
                     return scanIdentifier(parser, context);
@@ -538,62 +537,82 @@ function scanSingleToken(parser, context, state) {
                 case 131:
                     return scanPrivateName(parser);
                 case 16842797:
-                    if (nextCodePoint(parser) !== 61) {
+                    if (nextCP(parser) !== 61) {
                         return 16842797;
                     }
-                    if (nextCodePoint(parser) !== 61) {
+                    if (nextCP(parser) !== 61) {
                         return 8455740;
                     }
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     return 8455738;
                 case 8456756:
-                    if (nextCodePoint(parser) !== 61)
+                    if (nextCP(parser) !== 61)
                         return 8456756;
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     return 4194342;
+                case -2143289315: {
+                    nextCP(parser);
+                    if (parser.index >= parser.end)
+                        return -2143289315;
+                    const next = parser.nextCP;
+                    if (next === 61) {
+                        if (nextCP(parser) === 61) {
+                            nextCP(parser);
+                            return 8455737;
+                        }
+                        else {
+                            return 8455739;
+                        }
+                    }
+                    else if (next === 62) {
+                        nextCP(parser);
+                        return 10;
+                    }
+                    return -2143289315;
+                }
                 case 8456755: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 8456755;
                     const next = parser.nextCP;
                     if (next === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 4194340;
                     }
                     if (next !== 42)
                         return 8456755;
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.nextCP !== 61)
                         return 8457014;
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     return 4194337;
                 }
                 case 8455238:
-                    if (nextCodePoint(parser) !== 61)
+                    if (nextCP(parser) !== 61)
                         return 8455238;
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     return 4194343;
                 case 25233711: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 25233711;
                     if (parser.nextCP === 43) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 33619995;
                     }
                     if (parser.nextCP === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 4194338;
                     }
                     return 25233711;
                 }
                 case 25233712: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 25233712;
                     const next = parser.nextCP;
                     if (next === 45) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         if ((context & 2048) === 0 &&
                             (state & 1 || isStartOfLine) &&
                             parser.nextCP === 62) {
@@ -605,22 +624,22 @@ function scanSingleToken(parser, context, state) {
                         return 33619996;
                     }
                     if (next === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 4194339;
                     }
                     return 25233712;
                 }
                 case 8456757: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index < parser.end) {
                         const ch = parser.nextCP;
                         if (ch === 47) {
-                            nextCodePoint(parser);
+                            nextCP(parser);
                             state = skipSingleLineComment(parser, state);
                             continue;
                         }
                         else if (ch === 42) {
-                            nextCodePoint(parser);
+                            nextCP(parser);
                             state = skipMultiLineComment(parser, state);
                             continue;
                         }
@@ -628,28 +647,27 @@ function scanSingleToken(parser, context, state) {
                             return scanRegularExpression(parser, context);
                         }
                         else if (ch === 61) {
-                            nextCodePoint(parser);
+                            nextCP(parser);
                             return 4259877;
                         }
                     }
                     return 8456757;
                 }
                 case 8455999:
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 8455999;
                     switch (parser.nextCP) {
                         case 60:
-                            nextCodePoint(parser);
-                            if (parser.nextCP === 61) {
-                                nextCodePoint(parser);
+                            if (nextCP(parser) === 61) {
+                                nextCP(parser);
                                 return 4194334;
                             }
                             else {
                                 return 8456257;
                             }
                         case 61:
-                            nextCodePoint(parser);
+                            nextCP(parser);
                             return 8455997;
                         case 33:
                             if ((context & 2048) === 0 &&
@@ -661,60 +679,38 @@ function scanSingleToken(parser, context, state) {
                         default:
                             return 8455999;
                     }
-                case -2143289315: {
-                    nextCodePoint(parser);
-                    if (parser.index >= parser.end)
-                        return -2143289315;
-                    const next = parser.nextCP;
-                    if (next === 61) {
-                        nextCodePoint(parser);
-                        if (parser.nextCP === 61) {
-                            nextCodePoint(parser);
-                            return 8455737;
-                        }
-                        else {
-                            return 8455739;
-                        }
-                    }
-                    else if (next === 62) {
-                        nextCodePoint(parser);
-                        return 10;
-                    }
-                    return -2143289315;
-                }
                 case 8454981: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 8454981;
                     const next = parser.nextCP;
                     if (next === 124) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 8978744;
                     }
                     else if (next === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 4194344;
                     }
                     return 8454981;
                 }
                 case 8456000: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 8456000;
                     const next = parser.nextCP;
                     if (next === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 8455998;
                     }
                     if (next !== 62)
                         return 8456000;
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index < parser.end) {
                         const next = parser.nextCP;
                         if (next === 62) {
-                            nextCodePoint(parser);
-                            if (parser.nextCP === 61) {
-                                nextCodePoint(parser);
+                            if (nextCP(parser) === 61) {
+                                nextCP(parser);
                                 return 4194336;
                             }
                             else {
@@ -722,34 +718,34 @@ function scanSingleToken(parser, context, state) {
                             }
                         }
                         else if (next === 61) {
-                            nextCodePoint(parser);
+                            nextCP(parser);
                             return 4194335;
                         }
                     }
                     return 8456258;
                 }
                 case 8455492: {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if (parser.index >= parser.end)
                         return 8455492;
                     const next = parser.nextCP;
                     if (next === 38) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 8978999;
                     }
                     if (next === 61) {
-                        nextCodePoint(parser);
+                        nextCP(parser);
                         return 4194345;
                     }
                     return 8455492;
                 }
                 case 67108877:
-                    nextCodePoint(parser);
+                    nextCP(parser);
                     if ((CharTypes[parser.nextCP] & 1024) !== 0)
                         return scanNumber(parser, context, 1);
                     if (parser.nextCP === 46) {
-                        if (nextCodePoint(parser) === 46) {
-                            nextCodePoint(parser);
+                        if (nextCP(parser) === 46) {
+                            nextCP(parser);
                             return 14;
                         }
                     }
@@ -768,7 +764,7 @@ function scanSingleToken(parser, context, state) {
                 return scanIdentifierSlowCase(parser, context, 0, 0);
             }
             if (isExoticECMAScriptWhitespace(first)) {
-                nextCodePoint(parser);
+                nextCP(parser);
                 continue;
             }
             report(parser, 18, fromCodePoint(first));
@@ -804,15 +800,15 @@ function skipSingleLineComment(parser, state) {
             advanceNewline(parser);
             return state;
         }
-        nextCodePoint(parser);
+        nextCP(parser);
     }
     return state;
 }
 function skipMultiLineComment(parser, state) {
     while (parser.index < parser.end) {
         while (parser.nextCP === 42) {
-            if (nextCodePoint(parser) === 47) {
-                nextCodePoint(parser);
+            if (nextCP(parser) === 47) {
+                nextCP(parser);
                 return state;
             }
         }
@@ -829,13 +825,13 @@ function skipMultiLineComment(parser, state) {
             advanceNewline(parser);
         }
         else {
-            nextCodePoint(parser);
+            nextCP(parser);
         }
     }
     report(parser, 16);
 }
 
-function nextCodePoint(parser) {
+function nextCP(parser) {
     parser.column++;
     return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
@@ -853,6 +849,9 @@ function consumeMultiUnitCodePoint(parser, hi) {
     parser.column++;
     parser.nextCP = hi;
     return true;
+}
+function storeRaw(parser, start) {
+    parser.tokenRaw = parser.source.slice(start, parser.index);
 }
 function consumeLineFeed(parser, lastIsCR) {
     parser.nextCP = parser.source.charCodeAt(++parser.index);
@@ -969,10 +968,10 @@ const descKeywordTable = Object.create(null, {
 
 function scanIdentifier(parser, context) {
     const canBeKeyword = CharTypes[parser.nextCP] & 64;
-    while ((CharTypes[nextCodePoint(parser)] & 2) !== 0) { }
+    while ((CharTypes[nextCP(parser)] & 2) !== 0) { }
     parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
     const hasEscape = CharTypes[parser.nextCP] & 131072;
-    if (!hasEscape && parser.nextCP < 0x7e) {
+    if ((parser.nextCP & ~0x7f) === 0 && !hasEscape) {
         return descKeywordTable[parser.tokenValue] || 208897;
     }
     return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
@@ -998,7 +997,7 @@ function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
             start = parser.index;
         }
         else if (isIdentifierPart(parser.nextCP) || consumeMultiUnitCodePoint(parser, parser.nextCP)) {
-            nextCodePoint(parser);
+            nextCP(parser);
         }
         else {
             break;
@@ -1025,7 +1024,7 @@ function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
     return 208897;
 }
 function scanPrivateName(parser) {
-    nextCodePoint(parser);
+    nextCP(parser);
     if ((CharTypes[parser.nextCP] & 1024) !== 0 ||
         ((CharTypes[parser.nextCP] & 1) === 0 &&
             ((unicodeLookup[(parser.nextCP >>> 5) + 0] >>> parser.nextCP) & 31 & 1) === 0)) {
@@ -1043,7 +1042,7 @@ function scanIdentifierUnicodeEscape(parser) {
 function scanUnicodeEscapeValue(parser) {
     let codePoint = 0;
     if (parser.nextCP === 123) {
-        while (CharTypes[nextCodePoint(parser)] & 4096) {
+        while (CharTypes[nextCP(parser)] & 4096) {
             codePoint = (codePoint << 4) | toHex(parser.nextCP);
             if (codePoint > 1114111) {
                 report(parser, 114);
@@ -1052,7 +1051,7 @@ function scanUnicodeEscapeValue(parser) {
         if (codePoint < 1 || parser.nextCP !== 125) {
             report(parser, 6);
         }
-        nextCodePoint(parser);
+        nextCP(parser);
         return codePoint;
     }
     if ((CharTypes[parser.nextCP] & 4096) === 0)
@@ -1075,20 +1074,20 @@ function scanString(parser, context) {
     const quote = parser.nextCP;
     const { index: start } = parser;
     let ret = '';
-    let ch = nextCodePoint(parser);
+    let ch = nextCP(parser);
     let marker = parser.index;
     while ((CharTypes[ch] & 512) === 0) {
         if (ch === quote) {
             ret += parser.source.slice(marker, parser.index);
-            nextCodePoint(parser);
+            nextCP(parser);
             if (context & 512)
-                parser.tokenRaw = parser.source.slice(start, parser.index);
+                storeRaw(parser, start);
             parser.tokenValue = ret;
             return 134283267;
         }
         if ((ch & 8) === 8 && ch === 92) {
             ret += parser.source.slice(marker, parser.index);
-            const ch = nextCodePoint(parser);
+            const ch = nextCP(parser);
             if (ch > 0x7e) {
                 ret += fromCodePoint(ch);
             }
@@ -1103,7 +1102,7 @@ function scanString(parser, context) {
         }
         if (parser.index >= parser.end)
             report(parser, 14);
-        ch = nextCodePoint(parser);
+        ch = nextCP(parser);
     }
     report(parser, 14);
 }
@@ -1199,21 +1198,21 @@ function parseEscape(parser, context, first) {
         case 57:
             return -3;
         case 120: {
-            const ch1 = nextCodePoint(parser);
+            const ch1 = nextCP(parser);
             if ((CharTypes[ch1] & 4096) === 0)
                 return -4;
             const hi = toHex(ch1);
-            const ch2 = nextCodePoint(parser);
+            const ch2 = nextCP(parser);
             if ((CharTypes[ch2] & 4096) === 0)
                 return -4;
             const lo = toHex(ch2);
             return (hi << 4) | lo;
         }
         case 117: {
-            const ch = nextCodePoint(parser);
+            const ch = nextCP(parser);
             if (parser.nextCP === 123) {
                 let code = 0;
-                while ((CharTypes[nextCodePoint(parser)] & 4096) !== 0) {
+                while ((CharTypes[nextCP(parser)] & 4096) !== 0) {
                     code = (code << 4) | toHex(parser.nextCP);
                     if (code > 1114111)
                         return -5;
@@ -1276,15 +1275,15 @@ function scanNumber(parser, context, isFloat) {
     let kind = 16;
     let value = 0;
     if (isFloat) {
-        while (CharTypes[nextCodePoint(parser)] & 1024) { }
+        while (CharTypes[nextCP(parser)] & 1024) { }
     }
     else {
         if (parser.nextCP === 48) {
-            nextCodePoint(parser);
+            nextCP(parser);
             if ((parser.nextCP | 32) === 120) {
                 kind = 8;
                 let digits = 0;
-                while (CharTypes[nextCodePoint(parser)] & 4096) {
+                while (CharTypes[nextCP(parser)] & 4096) {
                     value = value * 0x10 + toHex(parser.nextCP);
                     digits++;
                 }
@@ -1294,7 +1293,7 @@ function scanNumber(parser, context, isFloat) {
             else if ((parser.nextCP | 32) === 111) {
                 kind = 4;
                 let digits = 0;
-                while (CharTypes[nextCodePoint(parser)] & 2048) {
+                while (CharTypes[nextCP(parser)] & 2048) {
                     value = value * 8 + (parser.nextCP - 48);
                     digits++;
                 }
@@ -1304,7 +1303,7 @@ function scanNumber(parser, context, isFloat) {
             else if ((parser.nextCP | 32) === 98) {
                 kind = 2;
                 let digits = 0;
-                while (CharTypes[nextCodePoint(parser)] & 8192) {
+                while (CharTypes[nextCP(parser)] & 8192) {
                     value = value * 2 + (parser.nextCP - 48);
                     digits++;
                 }
@@ -1322,7 +1321,7 @@ function scanNumber(parser, context, isFloat) {
                         break;
                     }
                     value = value * 8 + (parser.nextCP - 48);
-                } while (CharTypes[nextCodePoint(parser)] & 1024);
+                } while (CharTypes[nextCP(parser)] & 1024);
             }
             else if (CharTypes[parser.nextCP] & 262144) {
                 if (context & 1024)
@@ -1335,7 +1334,7 @@ function scanNumber(parser, context, isFloat) {
         if (kind & (16 | 32)) {
             if (isFloat) {
                 let digit = 9;
-                while (digit >= 0 && CharTypes[nextCodePoint(parser)] & 1024) {
+                while (digit >= 0 && CharTypes[nextCP(parser)] & 1024) {
                     value = 10 * value + (parser.nextCP - 48);
                     --digit;
                 }
@@ -1347,13 +1346,13 @@ function scanNumber(parser, context, isFloat) {
                 }
             }
             while (CharTypes[parser.nextCP] & 1024) {
-                nextCodePoint(parser);
+                nextCP(parser);
             }
             if (parser.nextCP === 46) {
                 isFloat = 1;
-                nextCodePoint(parser);
+                nextCP(parser);
                 while (CharTypes[parser.nextCP] & 1024) {
-                    nextCodePoint(parser);
+                    nextCP(parser);
                 }
             }
         }
@@ -1364,56 +1363,58 @@ function scanNumber(parser, context, isFloat) {
         if (isFloat)
             report(parser, 11);
         isBigInt = 1;
-        nextCodePoint(parser);
+        nextCP(parser);
     }
     else if ((parser.nextCP | 32) === 101) {
         if ((kind & (16 | 32)) === 0) {
             report(parser, 10);
         }
-        nextCodePoint(parser);
+        nextCP(parser);
         if (CharTypes[parser.nextCP] & 32768) {
-            nextCodePoint(parser);
+            nextCP(parser);
         }
         let exponentDigits = 0;
         while (CharTypes[parser.nextCP] & 1024) {
-            nextCodePoint(parser);
+            nextCP(parser);
             exponentDigits++;
         }
         if (exponentDigits < 1) {
             report(parser, 10);
         }
     }
-    if (CharTypes[parser.nextCP] & 1024 || isIdentifierStart(parser.nextCP)) {
+    if ((parser.index < parser.end && CharTypes[parser.nextCP] & 1024) || isIdentifierStart(parser.nextCP)) {
         report(parser, 12);
     }
+    if (kind & (1 | 2 | 8 | 4)) {
+        parser.tokenValue = value;
+    }
+    else {
+        const raw = parser.source.slice(parser.tokenIndex, parser.index);
+        parser.tokenValue =
+            kind & 32 ? parseFloat(raw) : isBigInt ? parseInt(raw, 0xa) : +raw;
+    }
+    if (isBigInt) {
+        storeRaw(parser, parser.tokenIndex);
+        return 122;
+    }
     if (context & 512)
-        parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-    parser.tokenValue =
-        kind & (1 | 2 | 8 | 4)
-            ? value
-            : kind & 32
-                ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
-                : isBigInt
-                    ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
-                    : +parser.source.slice(parser.tokenIndex, parser.index);
-    if (context & 512 || isBigInt)
-        parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-    return isBigInt ? 122 : 134283266;
+        storeRaw(parser, parser.tokenIndex);
+    return 134283266;
 }
 
 function scanTemplate(parser, context) {
     const { index: start } = parser;
     let tail = true;
     let ret = '';
-    let ch = nextCodePoint(parser);
+    let ch = nextCP(parser);
     while (ch !== 96) {
         if (ch === 36 && parser.source.charCodeAt(parser.index + 1) === 123) {
-            nextCodePoint(parser);
+            nextCP(parser);
             tail = false;
             break;
         }
         else if ((ch & 8) === 8 && ch === 92) {
-            ch = nextCodePoint(parser);
+            ch = nextCP(parser);
             if (ch > 0x7e) {
                 ret += fromCodePoint(ch);
             }
@@ -1450,9 +1451,9 @@ function scanTemplate(parser, context) {
         }
         if (parser.index >= parser.end)
             report(parser, 15);
-        ch = nextCodePoint(parser);
+        ch = nextCP(parser);
     }
-    nextCodePoint(parser);
+    nextCP(parser);
     parser.tokenValue = ret;
     if (tail) {
         parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
@@ -1484,7 +1485,7 @@ function scanBadTemplate(parser, ch) {
         }
         if (parser.index >= parser.end)
             report(parser, 15);
-        ch = nextCodePoint(parser);
+        ch = nextCP(parser);
     }
     return ch;
 }
@@ -1501,7 +1502,7 @@ function scanRegularExpression(parser, context) {
     let preparseState = 0;
     loop: while (true) {
         const ch = parser.nextCP;
-        nextCodePoint(parser);
+        nextCP(parser);
         if (preparseState & 1) {
             preparseState &= ~1;
         }
@@ -1536,7 +1537,7 @@ function scanRegularExpression(parser, context) {
     const bodyEnd = parser.index - 1;
     let mask = 0;
     const { index: flagStart } = parser;
-    loop: while (parser.index < parser.source.length) {
+    loop: while (isIdentifierPart(parser.nextCP)) {
         switch (parser.nextCP) {
             case 103:
                 if (mask & 2)
@@ -1569,11 +1570,9 @@ function scanRegularExpression(parser, context) {
                 mask |= 12;
                 break;
             default:
-                if (!isIdentifierPart(parser.nextCP))
-                    break loop;
                 report(parser, 34);
         }
-        nextCodePoint(parser);
+        nextCP(parser);
     }
     const flags = parser.source.slice(flagStart, parser.index);
     const pattern = parser.source.slice(bodyStart, bodyEnd);
@@ -4526,65 +4525,60 @@ function parseMethodFormals(parser, context, scope, kind, type, inGroup) {
     if (kind & 256) {
         report(parser, 36, 'Getter', 'no', 's');
     }
-    else if (kind & 512 && parser.token === 14) {
+    if (kind & 512 && parser.token === 14) {
         report(parser, 37);
     }
-    else {
-        let isComplex = 0;
-        while (parser.token !== 1073741840) {
-            let left;
-            const { tokenIndex, linePos, colPos } = parser;
-            if (parser.token & 143360) {
-                if ((context & 1024) === 0 &&
-                    ((parser.token & 36864) === 36864 ||
-                        (parser.token & 537079808) === 537079808)) {
-                    isComplex = 1;
-                }
-                if (context & 64) {
-                    declareName(parser, context, scope, parser.tokenValue, type, 0, 0);
-                }
-                left = parseAndClassifyIdentifier(parser, context, type, tokenIndex, linePos, colPos);
+    while (parser.token !== 1073741840) {
+        let left;
+        const { tokenIndex, tokenValue, linePos, colPos } = parser;
+        if (parser.token & 143360) {
+            if ((context & 1024) === 0 &&
+                ((parser.token & 36864) === 36864 ||
+                    (parser.token & 537079808) === 537079808)) {
+                parser.flags |= 128;
             }
-            else {
-                if (parser.token === 2162700) {
-                    left = parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, type, 0, tokenIndex, linePos, colPos);
-                }
-                else if (parser.token === 69271571) {
-                    left = parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, type, 0, tokenIndex, linePos, colPos);
-                }
-                else if (parser.token === 14) {
-                    left = parseSpreadElement(parser, context, scope, 1073741840, type, 0, 0, inGroup, tokenIndex, linePos, colPos);
-                }
-                isComplex = 1;
-                reinterpretToPattern(parser, left);
-                if (parser.destructible & 16)
-                    report(parser, 51);
-                if (type && parser.destructible & 32)
-                    report(parser, 51);
+            if (context & 64) {
+                declareName(parser, context, scope, tokenValue, type, 0, 0);
             }
-            if (parser.token === -2143289315) {
-                nextToken(parser, context | 32768);
-                isComplex = 1;
-                const right = parseExpression(parser, (context | 134217728) ^ 134217728, 1, 0, parser.tokenIndex, parser.linePos, parser.colPos);
-                left = finishNode(parser, context, tokenIndex, linePos, colPos, {
-                    type: 'AssignmentPattern',
-                    left,
-                    right
-                });
-            }
-            setterArgs++;
-            params.push(left);
-            if (parser.token !== 1073741840)
-                consume(parser, context, -1073741806);
+            left = parseAndClassifyIdentifier(parser, context, type, tokenIndex, linePos, colPos);
         }
-        if (isComplex)
+        else {
+            if (parser.token === 2162700) {
+                left = parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, type, 0, tokenIndex, linePos, colPos);
+            }
+            else if (parser.token === 69271571) {
+                left = parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, type, 0, tokenIndex, linePos, colPos);
+            }
+            else if (parser.token === 14) {
+                left = parseSpreadElement(parser, context, scope, 1073741840, type, 0, 0, inGroup, tokenIndex, linePos, colPos);
+            }
             parser.flags |= 128;
-        if (kind & 512 && setterArgs !== 1) {
-            report(parser, 36, 'Setter', 'one', '');
+            reinterpretToPattern(parser, left);
+            if (parser.destructible & 16)
+                report(parser, 51);
+            if (type && parser.destructible & 32)
+                report(parser, 51);
         }
-        if (context & 64)
-            verifyArguments(parser, scope.lexicals);
+        if (parser.token === -2143289315) {
+            nextToken(parser, context | 32768);
+            parser.flags |= 128;
+            const right = parseExpression(parser, (context | 134217728) ^ 134217728, 1, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+            left = finishNode(parser, context, tokenIndex, linePos, colPos, {
+                type: 'AssignmentPattern',
+                left,
+                right
+            });
+        }
+        setterArgs++;
+        params.push(left);
+        if (parser.token !== 1073741840)
+            consume(parser, context, -1073741806);
     }
+    if (kind & 512 && setterArgs !== 1) {
+        report(parser, 36, 'Setter', 'one', '');
+    }
+    if (context & 64)
+        verifyArguments(parser, scope.lexicals);
     consume(parser, context, 1073741840);
     return params;
 }
@@ -5490,6 +5484,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '0.5.2';
+const version = '0.6.1';
 
 export { parse, parseModule, parseScript, version };
