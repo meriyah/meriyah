@@ -7,7 +7,7 @@
 
 A 100% compliant, self-hosted javascript parser with high focus on both performance and stability
 
-## [Repl](https://meriyah.github.io/meriyah/)
+## [Demo](https://meriyah.github.io/meriyah/)
 
 ## Features
 
