@@ -11,9 +11,9 @@ export const LEFT_MENU_CONFIG = [
       { title: "Strict mode", value: "impliedStrict", selected: false },
       { title: "JSX", value: "jsx", selected: false, disabled: true },
       { title: "Line/column location", value: "loc", selected: false },
-      { title: "Lexical", value: "lexical", selected: false },
+      { title: "Lexical scope tracking", value: "lexical", selected: false },
       { title: "ESNext features", value: "next", selected: false },
-      { title: "Raw property on literal node", value: "raw", selected: false },
+      { title: "Raw property", value: "raw", selected: false },
       { title: "Web compability", value: "webcompat", selected: false }
     ]
   },
