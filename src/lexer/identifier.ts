@@ -17,7 +17,7 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
   while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
   const hasEscape = CharTypes[parser.nextCP] & CharFlags.BackSlash;
-  if ((parser.nextCP & ~0x7f) === 0 && !hasEscape) {
+  if (!hasEscape && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
 
@@ -132,7 +132,6 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): number | void 
  */
 export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
-
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}
   if (parser.nextCP === Chars.LeftBrace) {
     const startPos = parser.index;

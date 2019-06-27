@@ -58,8 +58,8 @@ export const enum PropertyKind {
 
 export const enum BindingType {
   None          = 0,
-  Variable      = 1 << 0,
-  ArgList       = 1 << 1,
+  ArgList       = 1 << 0,
+  Variable      = 1 << 2,
   Let           = 1 << 3,
   Const         = 1 << 4
 }

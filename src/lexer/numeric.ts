@@ -1,6 +1,6 @@
 import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
-import { nextCP, toHex, CharTypes, CharFlags, isIdentifierStart, storeRaw } from './';
+import { nextCP, toHex, CharTypes, CharFlags, isIdentifierStart } from './';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
 
@@ -136,24 +136,20 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
 
   // The source character immediately following a numeric literal must
   // not be an identifier start or a decimal digit
-  if ((parser.index < parser.end && CharTypes[parser.nextCP] & CharFlags.Decimal) || isIdentifierStart(parser.nextCP)) {
+  if (CharTypes[parser.nextCP] & CharFlags.Decimal || isIdentifierStart(parser.nextCP)) {
     report(parser, Errors.IDStartAfterNumber);
   }
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+  parser.tokenValue =
+    kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
+      ? value
+      : kind & NumberKind.DecimalWithLeadingZero
+      ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
+      : isBigInt
+      ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
+      : +parser.source.slice(parser.tokenIndex, parser.index);
 
-  if (kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)) {
-    parser.tokenValue = value;
-  } else {
-    const raw = parser.source.slice(parser.tokenIndex, parser.index);
-    parser.tokenValue =
-      kind & NumberKind.DecimalWithLeadingZero ? parseFloat(raw) : isBigInt ? parseInt(raw, 0xa) : +raw;
-  }
+  if (context & Context.OptionsRaw || isBigInt) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
-  if (isBigInt) {
-    storeRaw(parser, parser.tokenIndex);
-    return Token.BigIntLiteral;
-  }
-
-  if (context & Context.OptionsRaw) storeRaw(parser, parser.tokenIndex);
-
-  return Token.NumericLiteral;
+  return isBigInt ? Token.BigIntLiteral : Token.NumericLiteral;
 }

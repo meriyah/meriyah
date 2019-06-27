@@ -28,7 +28,6 @@ export const enum Errors {
   ExpectedToken,
   CantAssignTo,
   CantAssignToAsyncArrow,
-  CantAssignToValidRHS,
   SuperNoConstructor,
   InvalidSuperProperty,
   UnexpectedToken,
@@ -155,7 +154,8 @@ export const enum Errors {
   DuplicateExportBinding,
   UndeclaredExportedBinding,
   UnexpectedPrivateField,
-  DuplicateLetConstBinding
+  DuplicateLetConstBinding,
+  CantAssignToValidRHS
 }
 
 /*@internal*/
@@ -173,6 +173,7 @@ export const errorMessages: {
   [Errors.StrictOctalLiteral]: 'Octal literals are not allowed in strict mode',
   [Errors.StrictDecimalWithLeadingZero]: 'Decimal integer literals with a leading zero are forbidden in strict mode',
   [Errors.ExpectedNumberInRadix]: 'Expected number in radix %0',
+  [Errors.CantAssignToValidRHS]: 'Invalid left-hand side assignment to a destructible right-hand side',
   [Errors.MissingExponent]: 'Non-number found after exponent indicator',
   [Errors.InvalidBigInt]: 'Invalid BigIntLiteral',
   [Errors.IDStartAfterNumber]: 'No identifiers allowed directly after numeric literal',
@@ -189,7 +190,6 @@ export const errorMessages: {
   [Errors.ExpectedToken]: "Expected '%0'",
   [Errors.CantAssignTo]: 'Invalid left-hand side in assignment',
   [Errors.CantAssignToAsyncArrow]: 'Invalid left-hand side in async arrow',
-  [Errors.CantAssignToValidRHS]: 'Invalid left-hand side assignment to a destructible right-hand side',
   [Errors.SuperNoConstructor]:
     'Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass',
   [Errors.InvalidSuperProperty]: 'Member access on super must be in a method',
@@ -331,10 +331,9 @@ export class ParseError extends SyntaxError {
   public column: number;
   public description: string;
   constructor(startindex: number, line: number, column: number, type: Errors, ...params: string[]) {
-    let message =
+    const message =
       '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     super(`${message}`);
-
     this.index = startindex;
     this.line = line;
     this.column = column;

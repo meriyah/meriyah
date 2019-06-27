@@ -516,7 +516,15 @@ export function parseStatement(
   switch (parser.token) {
     // BlockStatement[?Yield, ?Return]
     case Token.LeftBrace:
-      return parseBlock(parser, context, scope, labels, start, line, column) as ESTree.Statement;
+      return parseBlock(
+        parser,
+        context,
+        context & Context.OptionsLexical ? inheritScope(scope, ScopeType.Block) : scope,
+        labels,
+        start,
+        line,
+        column
+      ) as ESTree.Statement;
     // VariableStatement[?Yield]
     case Token.VarKeyword:
       return parseVariableStatement(parser, context, scope, BindingOrigin.Statement, start, line, column);
@@ -749,11 +757,7 @@ export function parseBlock(
   // Block ::
   //   '{' StatementList '}'
   const body: ESTree.Statement[] = [];
-
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
-
-  if (context & Context.OptionsLexical) scope = inheritScope(scope, ScopeType.Block);
-
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
       parser,
@@ -1563,7 +1567,17 @@ export function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
   const isLexical: number = context & Context.OptionsLexical;
-  const block = parseBlock(parser, context, scope, { $: labels }, parser.tokenIndex, parser.linePos, parser.colPos);
+  const blockScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
+
+  const block = parseBlock(
+    parser,
+    context,
+    blockScope,
+    { $: labels },
+    parser.tokenIndex,
+    parser.linePos,
+    parser.colPos
+  );
   const { tokenIndex, linePos, colPos } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, labels, isLexical, tokenIndex, linePos, colPos)
@@ -1573,7 +1587,8 @@ export function parseTryStatement(
 
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    finalizer = parseBlock(parser, context, scope, { $: labels }, tokenIndex, linePos, colPos);
+    const finalizerScope = isLexical ? inheritScope(scope, ScopeType.Block) : {};
+    finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenIndex, linePos, colPos);
   }
 
   if (!handler && !finalizer) {
@@ -1608,6 +1623,7 @@ export function parseCatchBlock(
   column: number
 ): ESTree.CatchClause {
   let param: any = null;
+  let secondScope: ScopeState = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
     if (isLexical) scope = inheritScope(scope, ScopeType.Catch);
@@ -1616,7 +1632,6 @@ export function parseCatchBlock(
       parser,
       context,
       scope,
-      0,
       0,
       BindingType.ArgList,
       BindingOrigin.None,
@@ -1634,9 +1649,19 @@ export function parseCatchBlock(
     }
 
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
+
+    if (isLexical) secondScope = inheritScope(scope, ScopeType.Block);
   }
 
-  const body = parseBlock(parser, context, scope, { $: labels }, parser.tokenIndex, parser.linePos, parser.colPos);
+  const body = parseBlock(
+    parser,
+    context,
+    secondScope,
+    { $: labels },
+    parser.tokenIndex,
+    parser.linePos,
+    parser.colPos
+  );
 
   return finishNode(parser, context, start, line, column, {
     type: 'CatchClause',
@@ -1784,7 +1809,6 @@ export function parseLetIdentOrVarDeclarationStatement(
     context,
     scope,
     1,
-    0,
     BindingType.Let,
     BindingOrigin.Statement
   );
@@ -1828,7 +1852,7 @@ function parseLexicalDeclaration(
 
   nextToken(parser, context);
 
-  const declarations = parseVariableDeclarationList(parser, context, scope, 0, 0, type, origin);
+  const declarations = parseVariableDeclarationList(parser, context, scope, 0, type, origin);
 
   if (context & Context.OptionsLexical) checkConflictingLexicalDeclarations(parser, context, scope, 1);
 
@@ -1865,7 +1889,7 @@ export function parseVariableStatement(
   //  ('var') (Identifier ('=' AssignmentExpression)?)+[',']
   //
   nextToken(parser, context);
-  const declarations = parseVariableDeclarationList(parser, context, scope, 0, 1, BindingType.Variable, origin);
+  const declarations = parseVariableDeclarationList(parser, context, scope, 0, BindingType.Variable, origin);
 
   consumeSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
@@ -1890,17 +1914,16 @@ export function parseVariableDeclarationList(
   context: Context,
   scope: ScopeState,
   verifyDuplicates: 0 | 1,
-  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator[] {
   let bindingCount = 1;
   const list: ESTree.VariableDeclarator[] = [
-    parseVariableDeclaration(parser, context, scope, verifyDuplicates, isVarDecl, type, origin)
+    parseVariableDeclaration(parser, context, scope, verifyDuplicates, type, origin)
   ];
   while (consumeOpt(parser, context, Token.Comma)) {
     bindingCount++;
-    list.push(parseVariableDeclaration(parser, context, scope, verifyDuplicates, isVarDecl, type, origin));
+    list.push(parseVariableDeclaration(parser, context, scope, verifyDuplicates, type, origin));
   }
 
   if (bindingCount > 1 && origin & BindingOrigin.ForStatement && parser.token & Token.IsInOrOf) {
@@ -1922,7 +1945,6 @@ function parseVariableDeclaration(
   context: Context,
   scope: ScopeState,
   verifyDuplicates: 0 | 1,
-  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator {
@@ -1938,18 +1960,7 @@ function parseVariableDeclaration(
 
   let init: ESTree.Expression | null = null;
 
-  const id = parseBindingPattern(
-    parser,
-    context,
-    scope,
-    verifyDuplicates,
-    isVarDecl,
-    type,
-    origin,
-    tokenIndex,
-    linePos,
-    colPos
-  );
+  const id = parseBindingPattern(parser, context, scope, verifyDuplicates, type, origin, tokenIndex, linePos, colPos);
 
   if (parser.token === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
@@ -2037,7 +2048,6 @@ export function parseForStatement(
               context | Context.DisallowIn,
               scope,
               1,
-              0,
               BindingType.Let,
               BindingOrigin.ForStatement
             )
@@ -2064,40 +2074,18 @@ export function parseForStatement(
 
       const kind = KeywordDescTable[token & Token.Type] as 'var' | 'const';
 
-      init = finishNode(
-        parser,
-        context,
-        tokenIndex,
-        linePos,
-        colPos,
-        kind === 'var'
-          ? {
-              type: 'VariableDeclaration',
-              kind,
-              declarations: parseVariableDeclarationList(
-                parser,
-                context | Context.DisallowIn,
-                scope,
-                0,
-                1,
-                BindingType.Variable,
-                BindingOrigin.ForStatement
-              )
-            }
-          : {
-              type: 'VariableDeclaration',
-              kind,
-              declarations: parseVariableDeclarationList(
-                parser,
-                context | Context.DisallowIn,
-                scope,
-                0,
-                0,
-                BindingType.Const,
-                BindingOrigin.ForStatement
-              )
-            }
-      );
+      init = finishNode(parser, context, tokenIndex, linePos, colPos, {
+        type: 'VariableDeclaration',
+        kind,
+        declarations: parseVariableDeclarationList(
+          parser,
+          context | Context.DisallowIn,
+          scope,
+          0,
+          kind === 'var' ? BindingType.Variable : BindingType.Const,
+          BindingOrigin.ForStatement
+        )
+      });
 
       if (context & Context.OptionsLexical && kind === 'const')
         checkConflictingLexicalDeclarations(parser, context, scope, 1);
@@ -5180,7 +5168,9 @@ export function parseObjectLiteralOrPattern(
       let key: ESTree.Expression | null = null;
       let value: any;
 
-      if (token & (Token.IsIdentifier | Token.Keyword)) {
+      const { token, tokenValue, linePos, colPos, tokenIndex } = parser;
+
+      if (parser.token & (Token.IsIdentifier | (parser.token & Token.Keyword))) {
         key = parseIdentifier(parser, context, tokenIndex, linePos, colPos);
 
         if (parser.token === Token.Comma || parser.token === Token.RightBrace || parser.token === Token.Assign) {
@@ -5547,7 +5537,7 @@ export function parseObjectLiteralOrPattern(
         } else {
           report(parser, Errors.UnexpectedCharAfterObjLit);
         }
-      } else if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
+      } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
         key = parseLiteral(parser, context, tokenIndex, linePos, colPos);
 
         if (parser.token === Token.Colon) {
@@ -5749,7 +5739,7 @@ export function parseObjectLiteralOrPattern(
         } else {
           report(parser, Errors.InvalidObjLitKey);
         }
-      } else if (token === Token.LeftBracket) {
+      } else if (parser.token === Token.LeftBracket) {
         key = parseComputedPropertyName(parser, context, inGroup);
 
         destructible |= parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0;
@@ -6039,7 +6029,6 @@ export function parseMethodFormals(
   //   BindingElement[?Yield, ?GeneratorParameter]
   consume(parser, context, Token.LeftParen);
   const params: ESTree.Expression[] = [];
-
   parser.flags &= ~Flags.SimpleParameterList;
   let setterArgs = 0;
 
@@ -7835,7 +7824,6 @@ export function parseBindingPattern(
   context: Context,
   scope: any,
   dupeChecks: 0 | 1,
-  isVarDecl: 0 | 1,
   type: BindingType,
   origin: BindingOrigin,
   start: number,
@@ -7849,14 +7837,17 @@ export function parseBindingPattern(
 
   if (parser.token & Token.IsIdentifier) {
     if (context & Context.OptionsLexical) {
-      declareName(parser, context, scope, parser.tokenValue, type, dupeChecks, isVarDecl);
+      const isVarDecl =
+        type & BindingType.Variable &&
+        origin & (BindingOrigin.Statement | BindingOrigin.ForStatement | BindingOrigin.Export);
+
+      declareName(parser, context, scope, parser.tokenValue, type, dupeChecks, isVarDecl as any);
 
       if (origin & BindingOrigin.Export) {
         updateExportsList(parser, parser.tokenValue);
         addBindingToExports(parser, parser.tokenValue);
       }
     }
-
     return parseAndClassifyIdentifier(parser, context, type, start, line, column);
   }
 

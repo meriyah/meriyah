@@ -6,7 +6,6 @@ export {
   isExoticECMAScriptWhitespace,
   fromCodePoint,
   toHex,
-  storeRaw,
   consumeLineFeed,
   advanceNewline,
   LexerState

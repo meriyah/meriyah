@@ -1387,7 +1387,7 @@ describe('Statements - For of', () => {
     ],
     [
       'for (const {j} of x) { var [foo] = [j] }',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1408,23 +1408,93 @@ describe('Statements - For of', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'j'
+                            name: 'j',
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 36
+                              },
+                              end: {
+                                line: 1,
+                                column: 37
+                              }
+                            }
                           }
-                        ]
+                        ],
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 35
+                          },
+                          end: {
+                            line: 1,
+                            column: 38
+                          }
+                        }
                       },
                       id: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
+                            loc: {
+                              start: {
+                                line: 1,
+                                column: 28
+                              },
+                              end: {
+                                line: 1,
+                                column: 31
+                              }
+                            }
                           }
-                        ]
+                        ],
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 27
+                          },
+                          end: {
+                            line: 1,
+                            column: 32
+                          }
+                        }
+                      },
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 27
+                        },
+                        end: {
+                          line: 1,
+                          column: 38
+                        }
                       }
                     }
-                  ]
+                  ],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 23
+                    },
+                    end: {
+                      line: 1,
+                      column: 38
+                    }
+                  }
                 }
-              ]
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 21
+                },
+                end: {
+                  line: 1,
+                  column: 40
+                }
+              }
             },
             left: {
               type: 'VariableDeclaration',
@@ -1441,33 +1511,123 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 12
+                            },
+                            end: {
+                              line: 1,
+                              column: 13
+                            }
+                          }
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 12
+                            },
+                            end: {
+                              line: 1,
+                              column: 13
+                            }
+                          }
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 12
+                          },
+                          end: {
+                            line: 1,
+                            column: 13
+                          }
+                        }
                       }
-                    ]
+                    ],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 11
+                      },
+                      end: {
+                        line: 1,
+                        column: 14
+                      }
+                    }
+                  },
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 11
+                    },
+                    end: {
+                      line: 1,
+                      column: 14
+                    }
                   }
                 }
-              ]
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 5
+                },
+                end: {
+                  line: 1,
+                  column: 14
+                }
+              }
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 18
+                },
+                end: {
+                  line: 1,
+                  column: 19
+                }
+              }
             },
-            await: false
+            await: false,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 40
+              }
+            }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 40
+          }
+        }
       }
     ],
     [
       'for([{a=0}] of b);',
-      Context.None,
+      Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1475,7 +1635,17 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 17
+                },
+                end: {
+                  line: 1,
+                  column: 18
+                }
+              }
             },
             left: {
               type: 'ArrayPattern',
@@ -1487,35 +1657,135 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 6
+                          },
+                          end: {
+                            line: 1,
+                            column: 7
+                          }
+                        }
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 6
+                            },
+                            end: {
+                              line: 1,
+                              column: 7
+                            }
+                          }
                         },
                         right: {
                           type: 'Literal',
-                          value: 0
+                          value: 0,
+                          loc: {
+                            start: {
+                              line: 1,
+                              column: 8
+                            },
+                            end: {
+                              line: 1,
+                              column: 9
+                            }
+                          }
+                        },
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 6
+                          },
+                          end: {
+                            line: 1,
+                            column: 9
+                          }
                         }
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 6
+                        },
+                        end: {
+                          line: 1,
+                          column: 9
+                        }
+                      }
                     }
-                  ]
+                  ],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 10
+                    }
+                  }
                 }
-              ]
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 4
+                },
+                end: {
+                  line: 1,
+                  column: 11
+                }
+              }
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 15
+                },
+                end: {
+                  line: 1,
+                  column: 16
+                }
+              }
             },
-            await: false
+            await: false,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 18
+              }
+            }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 18
+          }
+        }
       }
     ],
     [

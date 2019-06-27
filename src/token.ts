@@ -174,17 +174,17 @@ export const enum Token {
   EscapedFutureReserved   = 119 | IsIdentifier,
   ReservedIfStrict  = 120 | IsIdentifier,
 
-  PrivateName   = 121 | IsIdentifier,
+  PrivateName  = 121 | IsIdentifier,
   BigIntLiteral  = 122,
-  WhiteSpace = 124,
+  WhiteSpace           = 124,
   Illegal  = 129,
   CarriageReturn  = 130,
-  PrivateField = 131,
+  PrivateField  = 131,
   Template = 132,
   Decorator = 133,
   Target = 134 | IsIdentifier,
   LineFeed  = 135,
-  EscapedIdentifier = 136,
+  EscapedIdentifier   = 136,
 }
 
 export const KeywordDescTable = [

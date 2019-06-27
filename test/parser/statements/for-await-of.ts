@@ -47,6 +47,11 @@ describe('Statements - For await of', () => {
           parseSource(wrapper.start + exp + wrapper.finish, undefined, Context.None);
         });
       });
+      it(wrapper.start + exp + wrapper.finish, () => {
+        t.doesNotThrow(() => {
+          parseSource(wrapper.start + exp + wrapper.finish, undefined, Context.OptionsLexical);
+        });
+      });
     });
   });
 
@@ -215,7 +220,20 @@ describe('Statements - For await of', () => {
         parseSource(`async function f() { for await ${arg}; }`, undefined, Context.None);
       });
     });
-
+    it(`async function f() { for await ${arg}; }`, () => {
+      t.throws(() => {
+        parseSource(`async function f() { for await ${arg}; }`, undefined, Context.OptionsLexical);
+      });
+    });
+    it(`async function f() { for await ${arg}; }`, () => {
+      t.throws(() => {
+        parseSource(
+          `async function f() { for await ${arg}; }`,
+          undefined,
+          Context.OptionsLexical | Context.OptionsWebCompat
+        );
+      });
+    });
     it(`async function f() { 'use strict'; for await ${arg}; }`, () => {
       t.throws(() => {
         parseSource(`async function f() { 'use strict'; for await ${arg}; }`, undefined, Context.None);

@@ -64,6 +64,32 @@ describe('Miscellaneous - Comments', () => {
     '/*a\rb*/ 0',
     '/*a\nb*/ 0',
     '/*a\nc*/ 0',
+    'var p1;/* block comment 1 */ /* block comment 2 */',
+    '42 /*The*/ /*Answer*/',
+    '// one\n',
+    '//',
+    'if (x) { doThat() /* Some comment */ }',
+    'switch (answer) { case 42: /* perfect */ bingo() }',
+    'switch (answer) { case 42: bingo() /* perfect */ }',
+    '(function(){ var version = 1; /* sync */ }).call(this)',
+    '<!-- foo',
+    'var x = 1<!--foo',
+    '<!-- comment',
+    ' 	 --> comment',
+    `/**
+    * @type {number}
+    */
+   var a = 5;`,
+    `(/* comment */{
+      /* comment 2 */
+      p1: null
+  })`,
+    '/**/ function a() {function o() {}}',
+    `while (true) {
+      /**
+       * comments in empty block
+       */
+    }`,
     `/*
     Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
     For licensing, see LICENSE.md or http://ckeditor.com/license
@@ -121,11 +147,28 @@ describe('Miscellaneous - Comments', () => {
     'class F { /* before */async f /* a */ ( /* b */ ) /* c */ { /* d */ }/* after */ }',
     '/* before */class /* a */ A /* b */ extends /* c */ class /* d */ B /* e */ { /* f */ } /* g */ { /* h */ }/* after */',
     'let g = /* before */function /* a */ ( /* b */ x /* c */ , /* d */ y /* e */ ) /* f */ { /* g */ ; /* h */ ; /* i */ }/* after */;',
-    '({ /* before */set /* a */ [ /* b */ x /* c */ ] /* d */ ( /* e */ a /* f */ ) /* g */ { /* h */ }/* after */ })'
+    '({ /* before */set /* a */ [ /* b */ x /* c */ ] /* d */ ( /* e */ a /* f */ ) /* g */ { /* h */ }/* after */ })',
+    `/*
+    */-->`,
+    `/*
+    */-->the comment extends to these characters`,
+    `/* optional FirstCommentLine
+    */-->the comment extends to these characters`,
+    `/*
+    optional
+    MultiLineCommentChars */-->the comment extends to these characters`,
+    `/*
+    */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
+    `/*
+    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
+    `0/*
+    */-->`,
+    `0/*
+    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsWebCompat);
       });
     });
   }
