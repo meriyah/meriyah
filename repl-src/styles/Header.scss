@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  .items {
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      margin-left: 20px;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      &:visited {
+        color: white;
+      }
+      &:hover {
+        color: #8bd12a;
+      }
+    }
+  }
+}

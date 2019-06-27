@@ -1,0 +1,26 @@
+{
+  "name": "meriyah-public-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "repl.js",
+  "scripts": {
+    "start": "ts-node -T fuse",
+    "dist": "ts-node -T fuse dist",
+    "preview": "ts-node -T fuse preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "fuse-box": "4.0.0-alpha.49",
+    "node-sass": "^4.12.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.22",
+    "codemirror": "^5.48.0",
+    "hyperapp": "2.0.0-beta.22",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

@@ -1,0 +1,24 @@
+.left-menu {
+  .logo {
+    width: 100%;
+    height: 150px;
+    background-image: url("./assets/logo3.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .section {
+    margin-left: 10px;
+    .block {
+      padding: 10px 10px;
+      .title {
+        color: #9da5b3;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+      .items {
+        margin-top: 10px;
+      }
+    }
+  }
+}

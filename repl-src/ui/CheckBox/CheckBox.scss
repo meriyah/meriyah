@@ -1,0 +1,121 @@
+$color1: #444444;
+$color2: #444444;
+$color3: #757575;
+
+$green: #8bd12a;
+$md-checkbox-margin: 7px 0;
+$md-checkbox-checked-color: white;
+$md-checkbox-border-color: $color3;
+$md-checkbox-border-color-disabled: rgba(0, 0, 0, 0.26);
+$md-checkbox-checked-color-disabled: rgba(0, 0, 0, 0.26);
+$md-checkbox-size: 17px;
+$md-checkbox-padding: 4px;
+$md-checkmark-width: 2px;
+$md-checkmark-color: $color1;
+.checkbox-element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  &.disabled-element {
+    opacity: 0.4;
+  }
+}
+.checkbox-adapter {
+  display: block;
+  flex-direction: row;
+  margin-bottom: 15px;
+  .rows {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .row {
+      min-width: 150px;
+      flex-grow: 1;
+    }
+  }
+}
+.md-checkbox {
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  position: relative;
+  margin: $md-checkbox-margin;
+  text-align: left;
+  &.md-checkbox-inline {
+    display: inline-block;
+  }
+  label {
+    &:hover {
+      color: $green;
+    }
+    color: #cccdcf;
+    transition: color 0.3s;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    padding-left: 5px;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &:before {
+      // box
+      width: $md-checkbox-size;
+      height: $md-checkbox-size;
+      background: #fff;
+
+      border: 1px solid $md-checkbox-border-color;
+      border-radius: 2px;
+      transition: border-color 0.3s;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    &:after {
+      // checkmark
+    }
+  }
+  input[type="checkbox"] {
+    outline: 0;
+    margin-right: $md-checkbox-size - 10px;
+    visibility: hidden;
+
+    &:checked {
+      + label:before {
+        background: $green;
+        border: 1px solid $color1;
+      }
+      + label:after {
+        $md-checkmark-size: $md-checkbox-size - 2 * $md-checkbox-padding;
+        transform: rotate(-45deg);
+        top: ($md-checkbox-size / 2) - ($md-checkmark-size / 4) -
+          $md-checkbox-size/10;
+        left: $md-checkbox-padding;
+        width: $md-checkmark-size;
+        height: $md-checkmark-size / 2;
+        border: $md-checkmark-width solid $color2;
+        border-top-style: none;
+        border-right-style: none;
+      }
+    }
+    &:disabled {
+      + label:before {
+        border-color: $md-checkbox-border-color-disabled;
+      }
+      &:checked {
+        + label:before {
+          background: $md-checkbox-checked-color-disabled;
+        }
+      }
+    }
+  }
+}
