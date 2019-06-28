@@ -13,19 +13,12 @@ export const enum NumberKind {
   DecimalWithLeadingZero = 1 << 5
 }
 
-export const enum SeparatorState {
-  None = 0,
-  Allowed = 1 << 0,
-  Previous = 1 << 1
-}
-
 export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1): Token {
   let kind: NumberKind = NumberKind.Decimal;
   let char = parser.nextCP;
   let value: any = 0;
   let digit = 9;
   let atStart = !isFloat;
-  let state = SeparatorState.None;
 
   if (isFloat) {
     if (char === Chars.Underscore) report(parser, Errors.Unexpected);
@@ -39,28 +32,24 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       if ((char | 32) === Chars.LowerX) {
         kind = NumberKind.Hex;
         let digits = 0;
-
+        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Hex | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
-            if (state & SeparatorState.Allowed) {
-              state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Allowed;
-            } else if (state & SeparatorState.Previous) {
+            if (!allowSeparator) {
               report(parser, Errors.ContinuousNumericSeparator);
-            } else {
-              report(parser, Errors.TrailingNumericSeparator);
             }
+            allowSeparator = 0;
             char = nextCP(parser);
             continue;
           }
-          state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Previous;
+          allowSeparator = 1;
           value = value * 0x10 + toHex(char);
           digits++;
           char = nextCP(parser);
         }
 
-        if (parser.source.charCodeAt(parser.index - 1) === Chars.Underscore)
-          report(parser, Errors.TrailingNumericSeparator);
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
 
         char = parser.nextCP;
         if (digits < 1) report(parser, Errors.MissingHexDigits);
@@ -68,54 +57,45 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       } else if ((char | 32) === Chars.LowerO) {
         kind = NumberKind.Octal;
         let digits = 0;
-
+        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Octal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
-            //  let seenSeparator = 1;
-            if (state & SeparatorState.Allowed) {
-              state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Allowed;
-            } else if (state & SeparatorState.Previous) {
+            if (!allowSeparator) {
               report(parser, Errors.ContinuousNumericSeparator);
-            } else {
-              report(parser, Errors.TrailingNumericSeparator);
             }
+            allowSeparator = 0;
             char = nextCP(parser);
             continue;
           }
-          state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Previous;
+          allowSeparator = 1;
           value = value * 8 + (char - Chars.Zero);
           digits++;
           char = nextCP(parser);
         }
 
-        if (parser.source.charCodeAt(parser.index - 1) === Chars.Underscore)
-          report(parser, Errors.TrailingNumericSeparator);
-
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
         if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${8}`);
       } else if ((char | 32) === Chars.LowerB) {
         kind = NumberKind.Binary;
         let digits = 0;
+        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Binary | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
-            if (state & SeparatorState.Allowed) {
-              state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Allowed;
-            } else if (state & SeparatorState.Previous) {
+            if (!allowSeparator) {
               report(parser, Errors.ContinuousNumericSeparator);
-            } else {
-              report(parser, Errors.TrailingNumericSeparator);
             }
+            allowSeparator = 0;
             char = nextCP(parser);
             continue;
           }
-          state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Previous;
+          allowSeparator = 1;
           value = value * 2 + (char - Chars.Zero);
           digits++;
           char = nextCP(parser);
         }
-        if (parser.source.charCodeAt(parser.index - 1) === Chars.Underscore)
-          report(parser, Errors.TrailingNumericSeparator);
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
         if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${2}`);
       } else if (CharTypes[char] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code
@@ -242,27 +222,25 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
 }
 
 export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number): string {
-  let state = SeparatorState.None;
+  let allowSeparator = false;
   let start = parser.index;
   let ret = '';
   while (CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
     if (char === Chars.Underscore) {
-      if (state & SeparatorState.Allowed) {
-        state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Allowed;
-        ret += parser.source.substring(start, parser.index);
-      } else if (state & SeparatorState.Previous) {
-        report(parser, Errors.ContinuousNumericSeparator);
-      } else {
-        report(parser, Errors.TrailingNumericSeparator);
-      }
+      const preUnderscoreIndex = parser.index;
       char = nextCP(parser);
+      if (char === Chars.Underscore) report(parser, Errors.ContinuousNumericSeparator);
+      allowSeparator = true;
+      ret += parser.source.substring(start, preUnderscoreIndex);
       start = parser.index;
       continue;
     }
-    state = (state | SeparatorState.Allowed | SeparatorState.Previous) ^ SeparatorState.Previous;
+    allowSeparator = false;
     char = nextCP(parser);
   }
-  if (parser.source.charCodeAt(parser.index - 1) === Chars.Underscore) report(parser, Errors.TrailingNumericSeparator);
+  if (allowSeparator) {
+    report(parser, Errors.TrailingNumericSeparator);
+  }
 
   return ret + parser.source.substring(start, parser.index);
 }
