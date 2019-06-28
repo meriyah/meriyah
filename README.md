@@ -25,7 +25,8 @@ A 100% compliant, self-hosted javascript parser with high focus on both performa
 
 * [Decorators](https://github.com/tc39/proposal-decorators)
 * [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
-* [Hashbang Grammar](https://github.com/tc39/proposal-hashbang)
+* [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
+* [Numeric separators](https://github.com/tc39/proposal-numeric-separator)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
 * [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 
@@ -128,6 +129,6 @@ Meriyah is 100% ECMA spec compatible, but you have to enable several [options](h
 
 Also note that support for additional ECMAScript features for Web Browsers (*annexB*) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
 
-This is done because AnnexB is an extension of the language, and also beaucse all the `Test262 suite` tests has no web compability. 
+This is done because AnnexB is an extension of the language, and also beaucse all the `Test262 suite` tests has no web compability.
 
 Lexical binding and scope tracking has to be enabled with the `lexical` option.

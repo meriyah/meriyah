@@ -155,7 +155,9 @@ export const enum Errors {
   UndeclaredExportedBinding,
   UnexpectedPrivateField,
   DuplicateLetConstBinding,
-  CantAssignToValidRHS
+  CantAssignToValidRHS,
+  ContinuousNumericSeparator,
+  TrailingNumericSeparator
 }
 
 /*@internal*/
@@ -322,7 +324,9 @@ export const errorMessages: {
   [Errors.DuplicateExportBinding]: "Cannot export a duplicate name '%0'",
   [Errors.DuplicateLetConstBinding]: 'Duplicate %0 for-binding',
   [Errors.UndeclaredExportedBinding]: "Exported binding '%0' needs to refer to a top-level declared variable",
-  [Errors.UnexpectedPrivateField]: 'Unexpected private field'
+  [Errors.UnexpectedPrivateField]: 'Unexpected private field',
+  [Errors.TrailingNumericSeparator]: 'Numeric separators are not allowed at the end of numeric literals',
+  [Errors.ContinuousNumericSeparator]: 'Only one underscore is allowed as numeric separator'
 };
 
 export class ParseError extends SyntaxError {
