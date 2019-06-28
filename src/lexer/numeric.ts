@@ -13,16 +13,24 @@ export const enum NumberKind {
   DecimalWithLeadingZero = 1 << 5
 }
 
+/**
+ * Scans numeric literal
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param isFloat
+ */
 export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1): Token {
   let kind: NumberKind = NumberKind.Decimal;
   let char = parser.nextCP;
   let value: any = 0;
   let digit = 9;
   let atStart = !isFloat;
+  let digits = 0;
+  let allowSeparator: 0 | 1 = 0;
 
   if (isFloat) {
-    if (char === Chars.Underscore) report(parser, Errors.Unexpected);
-    value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+    value = '.' + scanDecimalDigitsOrSeparator(parser, char);
     char = parser.nextCP;
   } else {
     if (char === Chars.Zero) {
@@ -31,8 +39,6 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       // Hex
       if ((char | 32) === Chars.LowerX) {
         kind = NumberKind.Hex;
-        let digits = 0;
-        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Hex | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -49,15 +55,11 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
           char = nextCP(parser);
         }
 
-        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
-
-        char = parser.nextCP;
         if (digits < 1) report(parser, Errors.MissingHexDigits);
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
         // Octal
       } else if ((char | 32) === Chars.LowerO) {
         kind = NumberKind.Octal;
-        let digits = 0;
-        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Octal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -73,13 +75,10 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
           digits++;
           char = nextCP(parser);
         }
-
-        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
         if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${8}`);
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
       } else if ((char | 32) === Chars.LowerB) {
         kind = NumberKind.Binary;
-        let digits = 0;
-        let allowSeparator: 0 | 1 = 0;
         char = nextCP(parser);
         while (CharTypes[char] & (CharFlags.Binary | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -95,8 +94,8 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
           digits++;
           char = nextCP(parser);
         }
-        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
         if (digits < 1) report(parser, Errors.ExpectedNumberInRadix, `${2}`);
+        if (!allowSeparator) report(parser, Errors.TrailingNumericSeparator);
       } else if (CharTypes[char] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
@@ -122,24 +121,21 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
 
     // Parse decimal digits and allow trailing fractional part
     if (kind & (NumberKind.Decimal | NumberKind.DecimalWithLeadingZero)) {
-      let seenSeparator = 0;
-
       if (atStart) {
         while (digit >= 0 && CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
             char = nextCP(parser);
             if (char === Chars.Underscore) report(parser, Errors.ContinuousNumericSeparator);
-            seenSeparator = 1;
+            allowSeparator = 1;
             continue;
           }
-          seenSeparator = 0;
+          allowSeparator = 0;
           value = 10 * value + (char - Chars.Zero);
           char = nextCP(parser);
           --digit;
         }
-        if (seenSeparator) {
-          report(parser, Errors.TrailingNumericSeparator);
-        }
+
+        if (allowSeparator) report(parser, Errors.TrailingNumericSeparator);
 
         if (digit >= 0 && !isIdentifierStart(char) && char !== Chars.Period && char !== Chars.Underscore) {
           // Most numbers are pure decimal integers without fractional component
@@ -157,7 +153,7 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       // Consume any decimal dot and fractional component.
       if (char === Chars.Period) {
         char = nextCP(parser);
-        if ((char as number) === Chars.Underscore) report(parser, Errors.Unexpected);
+        if (char === Chars.Underscore) report(parser, Errors.Unexpected);
         isFloat = 1;
         value += '.' + scanDecimalDigitsOrSeparator(parser, char);
         char = parser.nextCP;
@@ -195,19 +191,15 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
 
   // The source character immediately following a numeric literal must
   // not be an identifier start or a decimal digit
-  if (CharTypes[char] & CharFlags.Decimal || isIdentifierStart(char)) {
+  if ((parser.index < parser.end && CharTypes[char] & CharFlags.Decimal) || isIdentifierStart(char)) {
     report(parser, Errors.IDStartAfterNumber);
   }
-
-  if (context & Context.OptionsRaw || isBigInt) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
   if (isBigInt) {
     parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
     parser.tokenValue = parseInt(value, 0xa);
     return Token.BigIntLiteral;
   }
-
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
   parser.tokenValue =
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
@@ -216,11 +208,19 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
       : +value;
 
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+
   return Token.NumericLiteral;
 }
 
+/**
+ * Scans numeric literal and skip underscore '_' if it exist
+ *
+ * @param parser  Parser object
+ * @param char Code point
+ */
 export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number): string {
-  let allowSeparator = false;
+  let allowSeparator: 0 | 1 = 0;
   let start = parser.index;
   let ret = '';
   while (CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
@@ -228,17 +228,16 @@ export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number):
       const preUnderscoreIndex = parser.index;
       char = nextCP(parser);
       if (char === Chars.Underscore) report(parser, Errors.ContinuousNumericSeparator);
-      allowSeparator = true;
+      allowSeparator = 1;
       ret += parser.source.substring(start, preUnderscoreIndex);
       start = parser.index;
       continue;
     }
-    allowSeparator = false;
+    allowSeparator = 0;
     char = nextCP(parser);
   }
-  if (allowSeparator) {
-    report(parser, Errors.TrailingNumericSeparator);
-  }
+
+  if (allowSeparator) report(parser, Errors.TrailingNumericSeparator);
 
   return ret + parser.source.substring(start, parser.index);
 }
