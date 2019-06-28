@@ -1271,10 +1271,10 @@
       let value = 0;
       let digit = 9;
       let atStart = !isFloat;
+      let digits = 0;
+      let allowSeparator = 0;
       if (isFloat) {
-          if (char === 95)
-              report(parser, 0);
-          value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+          value = '.' + scanDecimalDigitsOrSeparator(parser, char);
           char = parser.nextCP;
       }
       else {
@@ -1282,8 +1282,6 @@
               char = nextCP(parser);
               if ((char | 32) === 120) {
                   kind = 8;
-                  let digits = 0;
-                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (4096 | 2097152)) {
                       if (char === 95) {
@@ -1299,16 +1297,13 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (!allowSeparator)
-                      report(parser, 155);
-                  char = parser.nextCP;
                   if (digits < 1)
                       report(parser, 19);
+                  if (!allowSeparator)
+                      report(parser, 155);
               }
               else if ((char | 32) === 111) {
                   kind = 4;
-                  let digits = 0;
-                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (2048 | 2097152)) {
                       if (char === 95) {
@@ -1324,15 +1319,13 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (!allowSeparator)
-                      report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${8}`);
+                  if (!allowSeparator)
+                      report(parser, 155);
               }
               else if ((char | 32) === 98) {
                   kind = 2;
-                  let digits = 0;
-                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (8192 | 2097152)) {
                       if (char === 95) {
@@ -1348,10 +1341,10 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (!allowSeparator)
-                      report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${2}`);
+                  if (!allowSeparator)
+                      report(parser, 155);
               }
               else if (CharTypes[char] & 2048) {
                   if (context & 1024)
@@ -1380,24 +1373,22 @@
               }
           }
           if (kind & (16 | 32)) {
-              let seenSeparator = 0;
               if (atStart) {
                   while (digit >= 0 && CharTypes[char] & (1024 | 2097152)) {
                       if (char === 95) {
                           char = nextCP(parser);
                           if (char === 95)
                               report(parser, 154);
-                          seenSeparator = 1;
+                          allowSeparator = 1;
                           continue;
                       }
-                      seenSeparator = 0;
+                      allowSeparator = 0;
                       value = 10 * value + (char - 48);
                       char = nextCP(parser);
                       --digit;
                   }
-                  if (seenSeparator) {
+                  if (allowSeparator)
                       report(parser, 155);
-                  }
                   if (digit >= 0 && !isIdentifierStart(char) && char !== 46 && char !== 95) {
                       parser.tokenValue = value;
                       if (context & 512)
@@ -1438,30 +1429,26 @@
               char = parser.nextCP;
           }
       }
-      if (CharTypes[char] & 1024 || isIdentifierStart(char)) {
+      if ((parser.index < parser.end && CharTypes[char] & 1024) || isIdentifierStart(char)) {
           report(parser, 12);
       }
-      if (context & 512 || isBigInt)
-          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
       if (isBigInt) {
           parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
           parser.tokenValue = parseInt(value, 0xa);
           return 122;
       }
-      if (context & 512)
-          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
       parser.tokenValue =
           kind & (1 | 2 | 8 | 4)
               ? value
               : kind & 32
                   ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
                   : +value;
-      if (isBigInt)
-          return 122;
+      if (context & 512)
+          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
       return 134283266;
   }
   function scanDecimalDigitsOrSeparator(parser, char) {
-      let allowSeparator = false;
+      let allowSeparator = 0;
       let start = parser.index;
       let ret = '';
       while (CharTypes[char] & (1024 | 2097152)) {
@@ -1470,17 +1457,16 @@
               char = nextCP(parser);
               if (char === 95)
                   report(parser, 154);
-              allowSeparator = true;
+              allowSeparator = 1;
               ret += parser.source.substring(start, preUnderscoreIndex);
               start = parser.index;
               continue;
           }
-          allowSeparator = false;
+          allowSeparator = 0;
           char = nextCP(parser);
       }
-      if (allowSeparator) {
+      if (allowSeparator)
           report(parser, 155);
-      }
       return ret + parser.source.substring(start, parser.index);
   }
 
@@ -4091,7 +4077,6 @@
               let state = 0;
               let key = null;
               let value;
-              const { token, tokenValue, linePos, colPos, tokenIndex } = parser;
               if (parser.token & (143360 | (parser.token & 4096))) {
                   key = parseIdentifier(parser, context, tokenIndex, linePos, colPos);
                   if (parser.token === -1073741806 || parser.token === -2146435057 || parser.token === -2143289315) {
