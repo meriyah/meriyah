@@ -50,8 +50,8 @@ export declare const enum PropertyKind {
 }
 export declare const enum BindingType {
     None = 0,
-    Variable = 1,
-    ArgList = 2,
+    ArgList = 1,
+    Variable = 4,
     Let = 8,
     Const = 16
 }

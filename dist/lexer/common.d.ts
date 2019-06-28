@@ -7,7 +7,6 @@ export declare const enum LexerState {
 }
 export declare function nextCP(parser: ParserState): number;
 export declare function consumeMultiUnitCodePoint(parser: ParserState, hi: number): boolean;
-export declare function storeRaw(parser: ParserState, start: number): void;
 export declare function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void;
 export declare function advanceNewline(parser: ParserState): void;
 export declare function isExoticECMAScriptWhitespace(code: number): boolean;
