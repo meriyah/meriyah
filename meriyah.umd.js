@@ -325,7 +325,9 @@
       [149]: "Cannot export a duplicate name '%0'",
       [152]: 'Duplicate %0 for-binding',
       [150]: "Exported binding '%0' needs to refer to a top-level declared variable",
-      [151]: 'Unexpected private field'
+      [151]: 'Unexpected private field',
+      [155]: 'Numeric separators are not allowed at the end of numeric literals',
+      [154]: 'Only one underscore is allowed as numeric separator'
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -1265,117 +1267,199 @@
 
   function scanNumber(parser, context, isFloat) {
       let kind = 16;
+      let char = parser.nextCP;
       let value = 0;
+      let digit = 9;
+      let atStart = !isFloat;
+      let state = 0;
       if (isFloat) {
-          while (CharTypes[nextCP(parser)] & 1024) { }
+          if (char === 95)
+              report(parser, 0);
+          value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+          char = parser.nextCP;
       }
       else {
-          if (parser.nextCP === 48) {
-              nextCP(parser);
-              if ((parser.nextCP | 32) === 120) {
+          if (char === 48) {
+              char = nextCP(parser);
+              if ((char | 32) === 120) {
                   kind = 8;
                   let digits = 0;
-                  while (CharTypes[nextCP(parser)] & 4096) {
-                      value = value * 0x10 + toHex(parser.nextCP);
+                  char = nextCP(parser);
+                  while (CharTypes[char] & (4096 | 2097152)) {
+                      if (char === 95) {
+                          if (state & 1) {
+                              state = (state | 1 | 2) ^ 1;
+                          }
+                          else if (state & 2) {
+                              report(parser, 154);
+                          }
+                          else {
+                              report(parser, 155);
+                          }
+                          char = nextCP(parser);
+                          continue;
+                      }
+                      state = (state | 1 | 2) ^ 2;
+                      value = value * 0x10 + toHex(char);
                       digits++;
+                      char = nextCP(parser);
                   }
+                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                      report(parser, 155);
+                  char = parser.nextCP;
                   if (digits < 1)
                       report(parser, 19);
               }
-              else if ((parser.nextCP | 32) === 111) {
+              else if ((char | 32) === 111) {
                   kind = 4;
                   let digits = 0;
-                  while (CharTypes[nextCP(parser)] & 2048) {
-                      value = value * 8 + (parser.nextCP - 48);
+                  char = nextCP(parser);
+                  while (CharTypes[char] & (2048 | 2097152)) {
+                      if (char === 95) {
+                          if (state & 1) {
+                              state = (state | 1 | 2) ^ 1;
+                          }
+                          else if (state & 2) {
+                              report(parser, 154);
+                          }
+                          else {
+                              report(parser, 155);
+                          }
+                          char = nextCP(parser);
+                          continue;
+                      }
+                      state = (state | 1 | 2) ^ 2;
+                      value = value * 8 + (char - 48);
                       digits++;
+                      char = nextCP(parser);
                   }
+                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                      report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${8}`);
               }
-              else if ((parser.nextCP | 32) === 98) {
+              else if ((char | 32) === 98) {
                   kind = 2;
                   let digits = 0;
-                  while (CharTypes[nextCP(parser)] & 8192) {
-                      value = value * 2 + (parser.nextCP - 48);
+                  char = nextCP(parser);
+                  while (CharTypes[char] & (8192 | 2097152)) {
+                      if (char === 95) {
+                          if (state & 1) {
+                              state = (state | 1 | 2) ^ 1;
+                          }
+                          else if (state & 2) {
+                              report(parser, 154);
+                          }
+                          else {
+                              report(parser, 155);
+                          }
+                          char = nextCP(parser);
+                          continue;
+                      }
+                      state = (state | 1 | 2) ^ 2;
+                      value = value * 2 + (char - 48);
                       digits++;
+                      char = nextCP(parser);
                   }
+                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                      report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${2}`);
               }
-              else if (CharTypes[parser.nextCP] & 2048) {
+              else if (CharTypes[char] & 2048) {
                   if (context & 1024)
                       report(parser, 1);
                   kind = 1;
                   do {
                       if (CharTypes[parser.nextCP] & 262144) {
                           kind = 32;
-                          isFloat = 0;
+                          atStart = false;
                           break;
                       }
                       value = value * 8 + (parser.nextCP - 48);
                   } while (CharTypes[nextCP(parser)] & 1024);
+                  char = parser.nextCP;
               }
-              else if (CharTypes[parser.nextCP] & 262144) {
+              else if (CharTypes[char] & 262144) {
                   if (context & 1024)
                       report(parser, 1);
                   else
                       parser.flags = 64;
                   kind = 32;
+                  char = parser.nextCP;
+              }
+              else if (char === 95) {
+                  report(parser, 0);
               }
           }
           if (kind & (16 | 32)) {
-              if (isFloat) {
-                  let digit = 9;
-                  while (digit >= 0 && CharTypes[nextCP(parser)] & 1024) {
-                      value = 10 * value + (parser.nextCP - 48);
+              let seenSeparator = 0;
+              if (atStart) {
+                  while (digit >= 0 && CharTypes[char] & (1024 | 2097152)) {
+                      if (char === 95) {
+                          char = nextCP(parser);
+                          if (char === 95)
+                              report(parser, 154);
+                          seenSeparator = 1;
+                          continue;
+                      }
+                      seenSeparator = 0;
+                      value = 10 * value + (char - 48);
+                      char = nextCP(parser);
                       --digit;
                   }
-                  if (digit >= 0 && !isIdentifierStart(parser.nextCP) && parser.nextCP !== 46) {
+                  if (seenSeparator) {
+                      report(parser, 155);
+                  }
+                  if (digit >= 0 && !isIdentifierStart(char) && char !== 46 && char !== 95) {
+                      parser.tokenValue = value;
                       if (context & 512)
                           parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-                      parser.tokenValue = value;
                       return 134283266;
                   }
               }
-              while (CharTypes[parser.nextCP] & 1024) {
-                  nextCP(parser);
-              }
-              if (parser.nextCP === 46) {
+              value += scanDecimalDigitsOrSeparator(parser, char);
+              char = parser.nextCP;
+              if (char === 46) {
+                  char = nextCP(parser);
+                  if (char === 95)
+                      report(parser, 0);
                   isFloat = 1;
-                  nextCP(parser);
-                  while (CharTypes[parser.nextCP] & 1024) {
-                      nextCP(parser);
-                  }
+                  value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+                  char = parser.nextCP;
               }
           }
       }
+      const end = parser.index;
       let isBigInt = 0;
-      if (parser.nextCP === 110 &&
-          (kind & (16 | 2 | 4 | 8)) !== 0) {
+      if (char === 110) {
           if (isFloat)
               report(parser, 11);
           isBigInt = 1;
-          nextCP(parser);
+          char = nextCP(parser);
       }
-      else if ((parser.nextCP | 32) === 101) {
-          if ((kind & (16 | 32)) === 0) {
-              report(parser, 10);
-          }
-          nextCP(parser);
-          if (CharTypes[parser.nextCP] & 32768) {
-              nextCP(parser);
-          }
-          let exponentDigits = 0;
-          while (CharTypes[parser.nextCP] & 1024) {
-              nextCP(parser);
-              exponentDigits++;
-          }
-          if (exponentDigits < 1) {
-              report(parser, 10);
+      else {
+          if ((parser.nextCP | 32) === 101) {
+              char = nextCP(parser);
+              if (CharTypes[char] & 32768) {
+                  char = nextCP(parser);
+              }
+              const preNumericPart = parser.index;
+              if ((CharTypes[char] & 1024) < 1)
+                  report(parser, 10);
+              value += parser.source.substring(end, preNumericPart) + scanDecimalDigitsOrSeparator(parser, char);
+              char = parser.nextCP;
           }
       }
-      if (CharTypes[parser.nextCP] & 1024 || isIdentifierStart(parser.nextCP)) {
+      if (CharTypes[char] & 1024 || isIdentifierStart(char)) {
           report(parser, 12);
+      }
+      if (context & 512 || isBigInt)
+          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+      if (isBigInt) {
+          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+          parser.tokenValue = parseInt(value, 0xa);
+          return 122;
       }
       if (context & 512)
           parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
@@ -1384,12 +1468,37 @@
               ? value
               : kind & 32
                   ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
-                  : isBigInt
-                      ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
-                      : +parser.source.slice(parser.tokenIndex, parser.index);
-      if (context & 512 || isBigInt)
-          parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-      return isBigInt ? 122 : 134283266;
+                  : +value;
+      if (isBigInt)
+          return 122;
+      return 134283266;
+  }
+  function scanDecimalDigitsOrSeparator(parser, char) {
+      let state = 0;
+      let start = parser.index;
+      let ret = '';
+      while (CharTypes[char] & (1024 | 2097152)) {
+          if (char === 95) {
+              if (state & 1) {
+                  state = (state | 1 | 2) ^ 1;
+                  ret += parser.source.substring(start, parser.index);
+              }
+              else if (state & 2) {
+                  report(parser, 154);
+              }
+              else {
+                  report(parser, 155);
+              }
+              char = nextCP(parser);
+              start = parser.index;
+              continue;
+          }
+          state = (state | 1 | 2) ^ 2;
+          char = nextCP(parser);
+      }
+      if (parser.source.charCodeAt(parser.index - 1) === 95)
+          report(parser, 155);
+      return ret + parser.source.substring(start, parser.index);
   }
 
   function scanTemplate(parser, context) {
@@ -1516,12 +1625,12 @@
                   case 10:
                   case 8232:
                   case 8233:
-                      report(parser, 32);
+                      report(parser, 33);
                   default:
               }
           }
           if (parser.index >= parser.source.length) {
-              return report(parser, 32);
+              return report(parser, 33);
           }
       }
       const bodyEnd = parser.index - 1;
@@ -1531,36 +1640,36 @@
           switch (parser.nextCP) {
               case 103:
                   if (mask & 2)
-                      report(parser, 34, 'g');
+                      report(parser, 35, 'g');
                   mask |= 2;
                   break;
               case 105:
                   if (mask & 1)
-                      report(parser, 34, 'i');
+                      report(parser, 35, 'i');
                   mask |= 1;
                   break;
               case 109:
                   if (mask & 4)
-                      report(parser, 34, 'm');
+                      report(parser, 35, 'm');
                   mask |= 4;
                   break;
               case 117:
                   if (mask & 16)
-                      report(parser, 34, 'g');
+                      report(parser, 35, 'g');
                   mask |= 16;
                   break;
               case 121:
                   if (mask & 8)
-                      report(parser, 34, 'y');
+                      report(parser, 35, 'y');
                   mask |= 8;
                   break;
               case 115:
                   if (mask & 12)
-                      report(parser, 34, 's');
+                      report(parser, 35, 's');
                   mask |= 12;
                   break;
               default:
-                  report(parser, 33);
+                  report(parser, 34);
           }
           nextCP(parser);
       }
@@ -1577,7 +1686,7 @@
           RegExp(pattern);
       }
       catch (e) {
-          report(parser, 32);
+          report(parser, 33);
       }
       try {
           return new RegExp(pattern, flags);
@@ -1617,17 +1726,17 @@
               if (lex[hashed] !== undefined) {
                   if (lex.type & 4) {
                       if (!isVarDecl || (context & 256) === 0) {
-                          report(parser, 148, name);
+                          report(parser, 156, name);
                       }
                   }
                   else if (lex.type & 1) {
-                      report(parser, 148, name);
+                      report(parser, 156, name);
                   }
                   else if ((lex.type & 16) === 0 &&
                       ((context & 256) === 0 ||
                           (scope.lexicals.funcs[hashed] & 2) === 0 ||
                           context & 1024))
-                      report(parser, 148, name);
+                      report(parser, 156, name);
               }
               lex = lex['$'];
           }
@@ -1643,20 +1752,20 @@
           if (dupeChecks) {
               const lexParent = scope.lexicals['$'];
               if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
-                  report(parser, 148, name);
+                  report(parser, 156, name);
               }
               else if (scope.lexicalVariables[hashed]) {
                   if ((context & 256) === 0 ||
                       (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       (context & 1024) !== 0) {
-                      report(parser, 148, name);
+                      report(parser, 156, name);
                   }
               }
               if (lex[hashed] !== undefined &&
                   ((context & 256) === 0 ||
                       (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       context & 1024)) {
-                  report(parser, 148, name);
+                  report(parser, 156, name);
               }
           }
           lex[hashed] = lex[hashed] ? 2 : 1;
@@ -1679,18 +1788,18 @@
       for (const key in scope.lexicals) {
           if (key[0] === '$' && key.length > 1) {
               if (scope.lexicals[key] > 1)
-                  report(parser, 148, key);
+                  report(parser, 156, key);
               if (checkParent) {
                   if (scope.lexicals['$'] &&
                       scope.lexicals['$'].type & (16 | 4) &&
                       scope.lexicals['$'][key]) {
-                      report(parser, 148, key.slice(1));
+                      report(parser, 156, key.slice(1));
                   }
                   else if (((context & 256) === 0 ||
                       (context & 1024) !== 0 ||
                       !scope.lexicals.funcs[key]) &&
                       scope.lexicalVariables[key]) {
-                      report(parser, 148, key.slice(1));
+                      report(parser, 156, key.slice(1));
                   }
               }
           }
@@ -1700,14 +1809,14 @@
   function verifyArguments(parser, lex) {
       for (const key in lex) {
           if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
-              report(parser, 148, key.slice(1));
+              report(parser, 156, key.slice(1));
           }
       }
   }
   function updateExportsList(parser, name) {
       if (parser.exportedNames !== undefined && name !== '') {
           if (parser.exportedNames['$' + name]) {
-              report(parser, 149, name);
+              report(parser, 157, name);
           }
           parser.exportedNames['$' + name] = 2;
       }
@@ -3643,7 +3752,7 @@
           scope = inheritScope(scope, 16);
       const params = parseFormalParametersOrFormalList(parser, context | 8388608, scope, inGroup, 1);
       const body = parseFunctionBody(parser, context &
-          ~(0x8001000 | 8192 | 16384 | 4096 | 131072 | 268435456), inheritScope(scope, 2), 0, firstRestricted);
+          ~(0x8001000 | 8192 | 16384 | 4096 | 131072 | 268435456),  inheritScope(scope, 2) , 0, firstRestricted);
       parser.assignable = 2;
       return finishNode(parser, context, start, line, column, {
           type: 'FunctionExpression',
@@ -5476,7 +5585,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.0.0';
+  const version = '1.1.0';
 
   exports.parse = parse;
   exports.parseModule = parseModule;
