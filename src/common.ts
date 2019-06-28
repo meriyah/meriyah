@@ -15,7 +15,7 @@ export const enum Context {
   OptionsJSX            = 1 << 4,
   OptionsGlobalReturn   = 1 << 5,
   OptionsLexical        = 1 << 6,
-  OptionsParenthesized  = 1 << 7,
+  OptionsPreserveParens = 1 << 7,
   OptionsWebCompat      = 1 << 8,
   OptionsRaw            = 1 << 9,
   Strict                = 1 << 10,
@@ -35,7 +35,7 @@ export const enum Context {
   InMethod              = 1 << 25,
   AllowNewTarget        = 1 << 26,
   DisallowIn            = 1 << 27,
-  InClass               = 1 << 28
+  InClass               = 1 << 28,
 }
 
 export const enum PropertyKind {

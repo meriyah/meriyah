@@ -10,7 +10,7 @@ describe('Expressions - API', () => {
         ranges: true,
         webCompat: true,
         module: true,
-        parenthesizedExpr: true,
+        preserveParens: true,
         lexical: true,
         source: 'bullshit'
       }),
