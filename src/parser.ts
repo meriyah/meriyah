@@ -5168,8 +5168,6 @@ export function parseObjectLiteralOrPattern(
       let key: ESTree.Expression | null = null;
       let value: any;
 
-      const { token, tokenValue, linePos, colPos, tokenIndex } = parser;
-
       if (parser.token & (Token.IsIdentifier | (parser.token & Token.Keyword))) {
         key = parseIdentifier(parser, context, tokenIndex, linePos, colPos);
 

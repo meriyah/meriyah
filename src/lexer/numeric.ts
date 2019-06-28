@@ -216,8 +216,6 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
       ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
       : +value;
 
-  if (isBigInt) return Token.BigIntLiteral;
-
   return Token.NumericLiteral;
 }
 
