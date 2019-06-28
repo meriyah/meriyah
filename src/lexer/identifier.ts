@@ -3,7 +3,7 @@ import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { nextCP, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
 import { CharTypes, CharFlags, isIdentifierPart } from './charClassifier';
-import { report, Errors } from '../errors';
+import { report, reportAt, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 
 /**
@@ -17,7 +17,7 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
   while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
   const hasEscape = CharTypes[parser.nextCP] & CharFlags.BackSlash;
-  if ((parser.nextCP & ~0x7f) === 0 && !hasEscape) {
+  if (!hasEscape && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
 
@@ -134,6 +134,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}
   if (parser.nextCP === Chars.LeftBrace) {
+    const startPos = parser.index;
     while (CharTypes[nextCP(parser)] & CharFlags.Hex) {
       codePoint = (codePoint << 4) | toHex(parser.nextCP);
       // Check this early to avoid `code` wrapping to a negative on overflow (which is
@@ -145,7 +146,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
 
     // At least 4 characters have to be read
     if (codePoint < 1 || (parser.nextCP as number) !== Chars.RightBrace) {
-      report(parser, Errors.InvalidHexEscapeSequence);
+      reportAt(startPos, parser.line, startPos - 1, Errors.InvalidHexEscapeSequence);
     }
     nextCP(parser); // consumes '}'
     return codePoint;
@@ -154,11 +155,11 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
   if ((CharTypes[parser.nextCP] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence); // first one is mandatory
 
   const c2 = parser.source.charCodeAt(parser.index + 1);
-  if ((CharTypes[c2] & CharFlags.Hex) === 0) report(parser, Errors.Unexpected);
+  if ((CharTypes[c2] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
   const c3 = parser.source.charCodeAt(parser.index + 2);
-  if ((CharTypes[c3] & CharFlags.Hex) === 0) report(parser, Errors.Unexpected);
+  if ((CharTypes[c3] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
   const c4 = parser.source.charCodeAt(parser.index + 3);
-  if ((CharTypes[c4] & CharFlags.Hex) === 0) report(parser, Errors.Unexpected);
+  if ((CharTypes[c4] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
 
   codePoint = (toHex(parser.nextCP) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
 

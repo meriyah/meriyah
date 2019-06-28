@@ -101,7 +101,9 @@ describe('Lexical - Function', () => {
     ['(function() { { function foo() {} function* foo() {} } })()', Context.OptionsLexical],
     ['(function() { { async function foo() {} async function foo() {} } })()', Context.OptionsLexical],
     ['let x; { var x; }', Context.OptionsLexical],
-    ['{ var x; } let x;', Context.OptionsLexical]
+    ['{ var x; } let x;', Context.OptionsLexical],
+    ['"use strict"; function foo(bar, bar){}', Context.OptionsLexical],
+    ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict]
   ]);
 
   for (const arg of [
@@ -210,6 +212,8 @@ describe('Lexical - Function', () => {
     function* x() { yield 1; }
     { function* x() { yield 2 } }
   })();`,
+    `function a() {}
+function a() {}`,
     `(function() {
     var y;
     async function x() { y = 1; }

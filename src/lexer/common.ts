@@ -34,10 +34,6 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
   return true;
 }
 
-export function storeRaw(parser: ParserState, start: number) {
-  parser.tokenRaw = parser.source.slice(start, parser.index);
-}
-
 /**
  * Use to consume a line feed instead of `advanceNewline`.
  */

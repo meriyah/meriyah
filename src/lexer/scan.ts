@@ -211,7 +211,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           nextCP(parser);
           return token;
 
-        // Skip over non-EOL whitespace chars
+        // Skip over non-EOL whitespace chars.
         case Token.WhiteSpace:
           nextCP(parser);
           break;
@@ -234,14 +234,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.NumericLiteral:
           return scanNumber(parser, context, /* isFloat */ 0);
 
-        // Look for a string or a template string.
+        // Look for a string or a template string
         case Token.StringLiteral:
           return scanString(parser, context);
 
         case Token.Template:
           return scanTemplate(parser, context);
 
-        // Escaped identifiers
         case Token.EscapedIdentifier:
           return scanUnicodeIdentifier(parser, context);
 
@@ -265,27 +264,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           if (nextCP(parser) !== Chars.EqualSign) return Token.Modulo;
           nextCP(parser);
           return Token.ModuloAssign;
-
-        // `=`, `==`, `===`, `=>`
-        case Token.Assign: {
-          nextCP(parser);
-          if (parser.index >= parser.end) return Token.Assign;
-          const next = parser.nextCP;
-
-          if (next === Chars.EqualSign) {
-            if (nextCP(parser) === Chars.EqualSign) {
-              nextCP(parser);
-              return Token.StrictEqual;
-            } else {
-              return Token.LooseEqual;
-            }
-          } else if (next === Chars.GreaterThan) {
-            nextCP(parser);
-            return Token.Arrow;
-          }
-
-          return Token.Assign;
-        }
 
         // `*`, `**`, `*=`, `**=`
         case Token.Multiply: {
@@ -388,7 +366,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           switch (parser.nextCP) {
             case Chars.LessThan:
-              if (nextCP(parser) === Chars.EqualSign) {
+              nextCP(parser);
+              if ((parser.nextCP as number) === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.ShiftLeftAssign;
               } else {
@@ -400,6 +379,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               return Token.LessThanOrEqual;
 
             case Chars.Exclamation:
+              // Treat HTML begin-comment as comment-till-end-of-line.
               if (
                 (context & Context.Module) === 0 &&
                 parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen &&
@@ -413,6 +393,28 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               // ignore
               return Token.LessThan;
           }
+
+        // `=`, `==`, `===`, `=>`
+        case Token.Assign: {
+          nextCP(parser);
+          if (parser.index >= parser.end) return Token.Assign;
+          const next = parser.nextCP;
+
+          if (next === Chars.EqualSign) {
+            nextCP(parser);
+            if (parser.nextCP === Chars.EqualSign) {
+              nextCP(parser);
+              return Token.StrictEqual;
+            } else {
+              return Token.LooseEqual;
+            }
+          } else if (next === Chars.GreaterThan) {
+            nextCP(parser);
+            return Token.Arrow;
+          }
+
+          return Token.Assign;
+        }
 
         // `|`, `||`, `|=`
         case Token.BitwiseOr: {
@@ -449,7 +451,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             const next = parser.nextCP;
 
             if (next === Chars.GreaterThan) {
-              if (nextCP(parser) === Chars.EqualSign) {
+              nextCP(parser);
+              if (parser.nextCP === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.LogicalShiftRightAssign;
               } else {
@@ -498,8 +501,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // unreachable
       }
     } else {
-      // Non-ASCII code points can only be identifiers or whitespace.
-
       if ((first ^ Chars.LineSeparator) <= 1) {
         state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
         advanceNewline(parser);

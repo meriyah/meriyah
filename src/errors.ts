@@ -26,9 +26,8 @@ export const enum Errors {
   InvalidStringLT,
   InvalidEscapeIdentifier,
   ExpectedToken,
-  InvalidLHS,
-  InvalidLHSInAsyncArrow,
-  InvalidLHSValidRHS,
+  CantAssignTo,
+  CantAssignToAsyncArrow,
   SuperNoConstructor,
   InvalidSuperProperty,
   UnexpectedToken,
@@ -43,7 +42,7 @@ export const enum Errors {
   DeclNoName,
   StrictFunctionName,
   RestMissingArg,
-  InvalidLHSInit,
+  CantAssignToInit,
   InvalidGeneratorGetter,
   InvalidComputedPropName,
   InvalidGetSetGenerator,
@@ -75,20 +74,16 @@ export const enum Errors {
   IllegalBreak,
   InvalidLetBracket,
   InvalidDestructuringTarget,
-  InvalidRestObjBinding,
   RestDefaultInitializer,
-  NotDestructibeRestArg,
   InvalidRestNotLast,
   InvalidRestArg,
   InvalidRestDefault,
-  InvalidArrowDefaultYield,
-  InvalidExprInGroupAssign,
   StrictFunction,
   SloppyFunction,
   WebCompatFunction,
   ClassForbiddenAsStatement,
   InvalidAwaitIdent,
-  InvalidLHSInOfForLoop,
+  CantAssignToInOfForLoop,
   InvalidAssignmentInOfForLoop,
   InvalidForAwait,
   InvalidTemplateContinuation,
@@ -114,13 +109,10 @@ export const enum Errors {
   InvalidLetClassName,
   KeywordNotId,
   InvalidImportExportSloppy,
-  InvalidExportAtTopLevel,
-  InvalidNestedExport,
   UnicodeOverflow,
   InvalidExportImportSource,
   InvalidKeywordAsAlias,
   InvalidDefaultImport,
-  NoIdentOrDynamicName,
   TrailingDecorators,
   GeneratorConstructor,
   AwaitOrYieldIdentInModule,
@@ -136,7 +128,7 @@ export const enum Errors {
   InvalidStatementStart,
   StrictDelete,
   InvalidPatternTail,
-  ForLoopInvalidLHS,
+  ForLoopCantAssignTo,
   AsyncFunctionInSingleStatementContext,
   InvalidTernaryYield,
   InvalidArrowPostfix,
@@ -162,7 +154,8 @@ export const enum Errors {
   DuplicateExportBinding,
   UndeclaredExportedBinding,
   UnexpectedPrivateField,
-  DuplicateLetConstBinding
+  DuplicateLetConstBinding,
+  CantAssignToValidRHS
 }
 
 /*@internal*/
@@ -180,6 +173,7 @@ export const errorMessages: {
   [Errors.StrictOctalLiteral]: 'Octal literals are not allowed in strict mode',
   [Errors.StrictDecimalWithLeadingZero]: 'Decimal integer literals with a leading zero are forbidden in strict mode',
   [Errors.ExpectedNumberInRadix]: 'Expected number in radix %0',
+  [Errors.CantAssignToValidRHS]: 'Invalid left-hand side assignment to a destructible right-hand side',
   [Errors.MissingExponent]: 'Non-number found after exponent indicator',
   [Errors.InvalidBigInt]: 'Invalid BigIntLiteral',
   [Errors.IDStartAfterNumber]: 'No identifiers allowed directly after numeric literal',
@@ -189,14 +183,13 @@ export const errorMessages: {
   [Errors.UnterminatedComment]: 'Multiline comment was not closed properly',
   [Errors.InvalidDynamicUnicode]: 'The identifier contained dynamic unicode escape that was not closed',
   [Errors.IllegalCaracter]: "Illegal character '%0'",
-  [Errors.MissingHexDigits]: 'Missing hex digits',
+  [Errors.MissingHexDigits]: 'Missing hexadecimal digits',
   [Errors.InvalidImplicitOctals]: 'Invalid implicit octal',
   [Errors.InvalidStringLT]: 'Invalid line break in string literal',
   [Errors.InvalidEscapeIdentifier]: 'Only unicode escapes are legal in identifier names',
   [Errors.ExpectedToken]: "Expected '%0'",
-  [Errors.InvalidLHS]: 'Invalid left-hand side in assignment',
-  [Errors.InvalidLHSInAsyncArrow]: 'Invalid left-hand side in async arrow',
-  [Errors.InvalidLHSValidRHS]: 'Only the right-hand side is destructible. The left-hand side is invalid',
+  [Errors.CantAssignTo]: 'Invalid left-hand side in assignment',
+  [Errors.CantAssignToAsyncArrow]: 'Invalid left-hand side in async arrow',
   [Errors.SuperNoConstructor]:
     'Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass',
   [Errors.InvalidSuperProperty]: 'Member access on super must be in a method',
@@ -214,7 +207,7 @@ export const errorMessages: {
   [Errors.DeclNoName]: '%0 declaration must have a name in this context',
   [Errors.StrictFunctionName]: 'Function name may not be eval or arguments in strict mode',
   [Errors.RestMissingArg]: 'The rest operator is missing an argument',
-  [Errors.InvalidLHSInit]: 'Cannot assign to lhs, not destructible with this initializer',
+  [Errors.CantAssignToInit]: 'Cannot assign to lhs, not destructible with this initializer',
   [Errors.InvalidGeneratorGetter]: 'A getter cannot be a generator',
   [Errors.InvalidComputedPropName]: 'A computed property name must be followed by a colon or paren',
   [Errors.InvalidObjLitKey]: 'Object literal keys that are strings or numbers must be a method or have a colon',
@@ -237,7 +230,7 @@ export const errorMessages: {
   [Errors.DeclarationMissingInitializer]: 'Missing initializer in %0 declaration',
   [Errors.ForInOfLoopInitializer]: "'for-%0' loop head declarations can not have an initializer",
   [Errors.ForInOfLoopMultiBindings]: 'Invalid left-hand side in for-%0 loop: Must have a single binding',
-  [Errors.ForLoopInvalidLHS]: 'Invalid left-hand side in for-loop',
+  [Errors.ForLoopCantAssignTo]: 'Invalid left-hand side in for-loop',
   [Errors.InvalidShorthandPropInit]: 'Invalid shorthand property initializer',
   [Errors.DuplicateProto]: 'Property name __proto__ appears more than once in object literal',
   [Errors.InvalidLetBoundName]: 'Let is disallowed as a lexically bound name',
@@ -248,15 +241,9 @@ export const errorMessages: {
   [Errors.IllegalBreak]: 'Illegal break statement',
   [Errors.InvalidLetBracket]: 'Cannot have `let[...]` as a var name in strict mode',
   [Errors.InvalidDestructuringTarget]: 'Invalid destructuring assignment target',
-  [Errors.InvalidRestObjBinding]:
-    'The rest argument of an object binding pattern must always be a simple ident and not an array pattern',
   [Errors.RestDefaultInitializer]: 'Rest parameter may not have a default initializer',
-  [Errors.NotDestructibeRestArg]:
-    'The rest argument was not destructible as it must be last and can not have a trailing comma',
   [Errors.InvalidRestNotLast]: 'The rest argument must the be last parameter',
   [Errors.InvalidRestArg]: 'Invalid rest argument',
-  [Errors.InvalidArrowDefaultYield]: 'The arguments of an arrow cannot contain a yield expression in their defaults',
-  [Errors.InvalidExprInGroupAssign]: 'Cannot assign to list of expressions in a group',
   [Errors.StrictFunction]: 'In strict mode code, functions can only be declared at top level or inside a block',
   [Errors.SloppyFunction]:
     'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
@@ -264,7 +251,7 @@ export const errorMessages: {
     'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
   [Errors.ClassForbiddenAsStatement]: "Class declaration can't appear in single-statement context",
   [Errors.InvalidAwaitIdent]: "'await' may not be used as an identifier in this context",
-  [Errors.InvalidLHSInOfForLoop]: 'Invalid left-hand side in for-%0',
+  [Errors.CantAssignToInOfForLoop]: 'Invalid left-hand side in for-%0',
   [Errors.InvalidAssignmentInOfForLoop]: 'Invalid assignment in for-%0',
   [Errors.InvalidForAwait]: 'for await (... of ...) is only valid in async functions and async generators',
   [Errors.InvalidTemplateContinuation]:
@@ -293,13 +280,10 @@ export const errorMessages: {
   [Errors.DisallowedInContext]: "'%0' may not be used as an identifier in this context",
   [Errors.AwaitOutsideAsync]: 'Await is only valid in async functions',
   [Errors.InvalidImportExportSloppy]: 'The %0 keyword can only be used with the module goal',
-  [Errors.InvalidExportAtTopLevel]: 'The `export` keyword is only supported at the top level',
-  [Errors.InvalidNestedExport]: 'The `export` keyword can not be nested in another statement',
   [Errors.UnicodeOverflow]: 'Unicode codepoint must not be greater than 0x10FFFF',
   [Errors.InvalidExportImportSource]: '%0 source must be string',
   [Errors.InvalidKeywordAsAlias]: 'Only a identifier can be used to indicate alias',
   [Errors.InvalidDefaultImport]: "Only '*' or '{...}' can be imported after default",
-  [Errors.NoIdentOrDynamicName]: 'Method must have an identifier or dynamic name',
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
   [Errors.AwaitOrYieldIdentInModule]: "'%0' may not be used as an identifier in this context",
@@ -346,18 +330,10 @@ export class ParseError extends SyntaxError {
   public line: number;
   public column: number;
   public description: string;
-  constructor(startindex: number, line: number, column: number, source: string, type: Errors, ...params: string[]) {
-    let message =
+  constructor(startindex: number, line: number, column: number, type: Errors, ...params: string[]) {
+    const message =
       '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
-    const lines = source.split('\n');
-    message = message + '\n' + lines[line - 1] + '\n';
-    for (let i = 0; i < column; i++) {
-      message += ' ';
-    }
-    message += '^\n';
-
     super(`${message}`);
-
     this.index = startindex;
     this.line = line;
     this.column = column;
@@ -375,7 +351,7 @@ export class ParseError extends SyntaxError {
  * @returns {never}
  */
 export function report(parser: ParserState, type: Errors, ...params: string[]): never {
-  throw new ParseError(parser.index, parser.line, parser.column, parser.source, type, ...params);
+  throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
 }
 
 /**
@@ -390,13 +366,6 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
  * @param {...string[]} params
  * @returns {never}
  */
-export function reportAt(
-  parser: ParserState,
-  index: number,
-  line: number,
-  column: number,
-  type: Errors,
-  ...params: string[]
-): never {
-  throw new ParseError(index, line, column, parser.source, type, ...params);
+export function reportAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
+  throw new ParseError(index, line, column, type, ...params);
 }

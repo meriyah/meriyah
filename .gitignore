@@ -18,7 +18,3 @@ yarn-error.log*
 .rollupcache
 .fuzz-output
 .DS_Store
-cherow-rewritten.js
-
-# fuzz output
-/packages/cherow/.fuzz-output/
