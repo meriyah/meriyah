@@ -1271,7 +1271,6 @@
       let value = 0;
       let digit = 9;
       let atStart = !isFloat;
-      let state = 0;
       if (isFloat) {
           if (char === 95)
               report(parser, 0);
@@ -1284,27 +1283,23 @@
               if ((char | 32) === 120) {
                   kind = 8;
                   let digits = 0;
+                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (4096 | 2097152)) {
                       if (char === 95) {
-                          if (state & 1) {
-                              state = (state | 1 | 2) ^ 1;
-                          }
-                          else if (state & 2) {
+                          if (!allowSeparator) {
                               report(parser, 154);
                           }
-                          else {
-                              report(parser, 155);
-                          }
+                          allowSeparator = 0;
                           char = nextCP(parser);
                           continue;
                       }
-                      state = (state | 1 | 2) ^ 2;
+                      allowSeparator = 1;
                       value = value * 0x10 + toHex(char);
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                  if (!allowSeparator)
                       report(parser, 155);
                   char = parser.nextCP;
                   if (digits < 1)
@@ -1313,27 +1308,23 @@
               else if ((char | 32) === 111) {
                   kind = 4;
                   let digits = 0;
+                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (2048 | 2097152)) {
                       if (char === 95) {
-                          if (state & 1) {
-                              state = (state | 1 | 2) ^ 1;
-                          }
-                          else if (state & 2) {
+                          if (!allowSeparator) {
                               report(parser, 154);
                           }
-                          else {
-                              report(parser, 155);
-                          }
+                          allowSeparator = 0;
                           char = nextCP(parser);
                           continue;
                       }
-                      state = (state | 1 | 2) ^ 2;
+                      allowSeparator = 1;
                       value = value * 8 + (char - 48);
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                  if (!allowSeparator)
                       report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${8}`);
@@ -1341,27 +1332,23 @@
               else if ((char | 32) === 98) {
                   kind = 2;
                   let digits = 0;
+                  let allowSeparator = 0;
                   char = nextCP(parser);
                   while (CharTypes[char] & (8192 | 2097152)) {
                       if (char === 95) {
-                          if (state & 1) {
-                              state = (state | 1 | 2) ^ 1;
-                          }
-                          else if (state & 2) {
+                          if (!allowSeparator) {
                               report(parser, 154);
                           }
-                          else {
-                              report(parser, 155);
-                          }
+                          allowSeparator = 0;
                           char = nextCP(parser);
                           continue;
                       }
-                      state = (state | 1 | 2) ^ 2;
+                      allowSeparator = 1;
                       value = value * 2 + (char - 48);
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (parser.source.charCodeAt(parser.index - 1) === 95)
+                  if (!allowSeparator)
                       report(parser, 155);
                   if (digits < 1)
                       report(parser, 9, `${2}`);
@@ -1474,30 +1461,26 @@
       return 134283266;
   }
   function scanDecimalDigitsOrSeparator(parser, char) {
-      let state = 0;
+      let allowSeparator = false;
       let start = parser.index;
       let ret = '';
       while (CharTypes[char] & (1024 | 2097152)) {
           if (char === 95) {
-              if (state & 1) {
-                  state = (state | 1 | 2) ^ 1;
-                  ret += parser.source.substring(start, parser.index);
-              }
-              else if (state & 2) {
-                  report(parser, 154);
-              }
-              else {
-                  report(parser, 155);
-              }
+              const preUnderscoreIndex = parser.index;
               char = nextCP(parser);
+              if (char === 95)
+                  report(parser, 154);
+              allowSeparator = true;
+              ret += parser.source.substring(start, preUnderscoreIndex);
               start = parser.index;
               continue;
           }
-          state = (state | 1 | 2) ^ 2;
+          allowSeparator = false;
           char = nextCP(parser);
       }
-      if (parser.source.charCodeAt(parser.index - 1) === 95)
+      if (allowSeparator) {
           report(parser, 155);
+      }
       return ret + parser.source.substring(start, parser.index);
   }
 
@@ -2024,7 +2007,7 @@
               context |= 32;
           if (options.raw)
               context |= 512;
-          if (options.parenthesizedExpr)
+          if (options.preserveParens)
               context |= 128;
           if (options.impliedStrict)
               context |= 1024;
@@ -5585,7 +5568,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.1.0';
+  const version = '1.2.1';
 
   exports.parse = parse;
   exports.parseModule = parseModule;

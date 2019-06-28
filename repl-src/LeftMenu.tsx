@@ -7,16 +7,6 @@ export interface ILeftMenuInterface {
   onSettingsChange?: (values) => void;
 }
 
-const ParsingModes = [
-  ['sloppy', 'Sloppy'],
-  ['next', 'Next'],
-  ['lexial', 'Lexial'],
-  ['raw', 'Raw'],
-  ['strict', 'Strict'],
-  ['module', 'Module']
-];
-
-const Settings = [['webcompat', 'Web compat']];
 export class LeftMenu extends React.Component<ILeftMenuInterface, any> {
   constructor(props) {
     super(props);
