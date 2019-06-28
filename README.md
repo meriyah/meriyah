@@ -117,7 +117,7 @@ The second argument allows you to specify various options:
 | `loc`         | Enable line/column location information to each node |
 | `module`          | Allow parsing with module goal |
 | `next`            | Allow parsing with `ESNext` features  |
-| `parenthesizedExpr`	| Enable non-standard parenthesized expression node |
+| `preserveParens`	| Enable non-standard parenthesized expression node |
 | `raw`             | Attach raw property to each literal node |
 | `ranges`          | Append start and end offsets to each node |
 | `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
