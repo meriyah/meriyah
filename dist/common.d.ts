@@ -9,7 +9,7 @@ export declare const enum Context {
     OptionsJSX = 16,
     OptionsGlobalReturn = 32,
     OptionsLexical = 64,
-    OptionsParenthesized = 128,
+    OptionsPreserveParens = 128,
     OptionsWebCompat = 256,
     OptionsRaw = 512,
     Strict = 1024,

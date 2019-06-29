@@ -9,4 +9,5 @@ export declare const enum NumberKind {
     DecimalWithLeadingZero = 32
 }
 export declare function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1): Token;
+export declare function scanDecimalDigitsOrSeparator(parser: ParserState, char: number): string;
 //# sourceMappingURL=numeric.d.ts.map

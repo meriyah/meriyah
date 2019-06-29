@@ -13,7 +13,7 @@ export interface Options {
     directives?: boolean;
     globalReturn?: boolean;
     impliedStrict?: boolean;
-    parenthesizedExpr?: boolean;
+    preserveParens?: boolean;
     lexical?: boolean;
     source?: string;
 }

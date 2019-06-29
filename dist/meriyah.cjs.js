@@ -323,7 +323,9 @@ const errorMessages = {
     [149]: "Cannot export a duplicate name '%0'",
     [152]: 'Duplicate %0 for-binding',
     [150]: "Exported binding '%0' needs to refer to a top-level declared variable",
-    [151]: 'Unexpected private field'
+    [151]: 'Unexpected private field',
+    [155]: 'Numeric separators are not allowed at the end of numeric literals',
+    [154]: 'Only one underscore is allowed as numeric separator'
 };
 class ParseError extends SyntaxError {
     constructor(startindex, line, column, type, ...params) {
@@ -1263,131 +1265,207 @@ function nextUnicodeChar(parser) {
 
 function scanNumber(parser, context, isFloat) {
     let kind = 16;
+    let char = parser.nextCP;
     let value = 0;
+    let digit = 9;
+    let atStart = !isFloat;
+    let digits = 0;
+    let allowSeparator = 0;
     if (isFloat) {
-        while (CharTypes[nextCP(parser)] & 1024) { }
+        value = '.' + scanDecimalDigitsOrSeparator(parser, char);
+        char = parser.nextCP;
     }
     else {
-        if (parser.nextCP === 48) {
-            nextCP(parser);
-            if ((parser.nextCP | 32) === 120) {
+        if (char === 48) {
+            char = nextCP(parser);
+            if ((char | 32) === 120) {
                 kind = 8;
-                let digits = 0;
-                while (CharTypes[nextCP(parser)] & 4096) {
-                    value = value * 0x10 + toHex(parser.nextCP);
+                char = nextCP(parser);
+                while (CharTypes[char] & (4096 | 2097152)) {
+                    if (char === 95) {
+                        if (!allowSeparator) {
+                            report(parser, 154);
+                        }
+                        allowSeparator = 0;
+                        char = nextCP(parser);
+                        continue;
+                    }
+                    allowSeparator = 1;
+                    value = value * 0x10 + toHex(char);
                     digits++;
+                    char = nextCP(parser);
                 }
                 if (digits < 1)
                     report(parser, 19);
+                if (!allowSeparator)
+                    report(parser, 155);
             }
-            else if ((parser.nextCP | 32) === 111) {
+            else if ((char | 32) === 111) {
                 kind = 4;
-                let digits = 0;
-                while (CharTypes[nextCP(parser)] & 2048) {
-                    value = value * 8 + (parser.nextCP - 48);
+                char = nextCP(parser);
+                while (CharTypes[char] & (2048 | 2097152)) {
+                    if (char === 95) {
+                        if (!allowSeparator) {
+                            report(parser, 154);
+                        }
+                        allowSeparator = 0;
+                        char = nextCP(parser);
+                        continue;
+                    }
+                    allowSeparator = 1;
+                    value = value * 8 + (char - 48);
                     digits++;
+                    char = nextCP(parser);
                 }
                 if (digits < 1)
                     report(parser, 9, `${8}`);
+                if (!allowSeparator)
+                    report(parser, 155);
             }
-            else if ((parser.nextCP | 32) === 98) {
+            else if ((char | 32) === 98) {
                 kind = 2;
-                let digits = 0;
-                while (CharTypes[nextCP(parser)] & 8192) {
-                    value = value * 2 + (parser.nextCP - 48);
+                char = nextCP(parser);
+                while (CharTypes[char] & (8192 | 2097152)) {
+                    if (char === 95) {
+                        if (!allowSeparator) {
+                            report(parser, 154);
+                        }
+                        allowSeparator = 0;
+                        char = nextCP(parser);
+                        continue;
+                    }
+                    allowSeparator = 1;
+                    value = value * 2 + (char - 48);
                     digits++;
+                    char = nextCP(parser);
                 }
                 if (digits < 1)
                     report(parser, 9, `${2}`);
+                if (!allowSeparator)
+                    report(parser, 155);
             }
-            else if (CharTypes[parser.nextCP] & 2048) {
+            else if (CharTypes[char] & 2048) {
                 if (context & 1024)
                     report(parser, 1);
                 kind = 1;
                 do {
                     if (CharTypes[parser.nextCP] & 262144) {
                         kind = 32;
-                        isFloat = 0;
+                        atStart = false;
                         break;
                     }
                     value = value * 8 + (parser.nextCP - 48);
                 } while (CharTypes[nextCP(parser)] & 1024);
+                char = parser.nextCP;
             }
-            else if (CharTypes[parser.nextCP] & 262144) {
+            else if (CharTypes[char] & 262144) {
                 if (context & 1024)
                     report(parser, 1);
                 else
                     parser.flags = 64;
                 kind = 32;
+                char = parser.nextCP;
+            }
+            else if (char === 95) {
+                report(parser, 0);
             }
         }
         if (kind & (16 | 32)) {
-            if (isFloat) {
-                let digit = 9;
-                while (digit >= 0 && CharTypes[nextCP(parser)] & 1024) {
-                    value = 10 * value + (parser.nextCP - 48);
+            if (atStart) {
+                while (digit >= 0 && CharTypes[char] & (1024 | 2097152)) {
+                    if (char === 95) {
+                        char = nextCP(parser);
+                        if (char === 95)
+                            report(parser, 154);
+                        allowSeparator = 1;
+                        continue;
+                    }
+                    allowSeparator = 0;
+                    value = 10 * value + (char - 48);
+                    char = nextCP(parser);
                     --digit;
                 }
-                if (digit >= 0 && !isIdentifierStart(parser.nextCP) && parser.nextCP !== 46) {
+                if (allowSeparator)
+                    report(parser, 155);
+                if (digit >= 0 && !isIdentifierStart(char) && char !== 46 && char !== 95) {
+                    parser.tokenValue = value;
                     if (context & 512)
                         parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-                    parser.tokenValue = value;
                     return 134283266;
                 }
             }
-            while (CharTypes[parser.nextCP] & 1024) {
-                nextCP(parser);
-            }
-            if (parser.nextCP === 46) {
+            value += scanDecimalDigitsOrSeparator(parser, char);
+            char = parser.nextCP;
+            if (char === 46) {
+                char = nextCP(parser);
+                if (char === 95)
+                    report(parser, 0);
                 isFloat = 1;
-                nextCP(parser);
-                while (CharTypes[parser.nextCP] & 1024) {
-                    nextCP(parser);
-                }
+                value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+                char = parser.nextCP;
             }
         }
     }
+    const end = parser.index;
     let isBigInt = 0;
-    if (parser.nextCP === 110 &&
-        (kind & (16 | 2 | 4 | 8)) !== 0) {
+    if (char === 110) {
         if (isFloat)
             report(parser, 11);
         isBigInt = 1;
-        nextCP(parser);
+        char = nextCP(parser);
     }
-    else if ((parser.nextCP | 32) === 101) {
-        if ((kind & (16 | 32)) === 0) {
-            report(parser, 10);
-        }
-        nextCP(parser);
-        if (CharTypes[parser.nextCP] & 32768) {
-            nextCP(parser);
-        }
-        let exponentDigits = 0;
-        while (CharTypes[parser.nextCP] & 1024) {
-            nextCP(parser);
-            exponentDigits++;
-        }
-        if (exponentDigits < 1) {
-            report(parser, 10);
+    else {
+        if ((parser.nextCP | 32) === 101) {
+            char = nextCP(parser);
+            if (CharTypes[char] & 32768) {
+                char = nextCP(parser);
+            }
+            const preNumericPart = parser.index;
+            if ((CharTypes[char] & 1024) < 1)
+                report(parser, 10);
+            value += parser.source.substring(end, preNumericPart) + scanDecimalDigitsOrSeparator(parser, char);
+            char = parser.nextCP;
         }
     }
-    if (CharTypes[parser.nextCP] & 1024 || isIdentifierStart(parser.nextCP)) {
+    if ((parser.index < parser.end && CharTypes[char] & 1024) || isIdentifierStart(char)) {
         report(parser, 12);
     }
-    if (context & 512)
+    if (isBigInt) {
         parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+        parser.tokenValue = parseInt(value, 0xa);
+        return 122;
+    }
     parser.tokenValue =
         kind & (1 | 2 | 8 | 4)
             ? value
             : kind & 32
                 ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
-                : isBigInt
-                    ? parseInt(parser.source.slice(parser.tokenIndex, parser.index), 0xa)
-                    : +parser.source.slice(parser.tokenIndex, parser.index);
-    if (context & 512 || isBigInt)
+                : +value;
+    if (context & 512)
         parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
-    return isBigInt ? 122 : 134283266;
+    return 134283266;
+}
+function scanDecimalDigitsOrSeparator(parser, char) {
+    let allowSeparator = 0;
+    let start = parser.index;
+    let ret = '';
+    while (CharTypes[char] & (1024 | 2097152)) {
+        if (char === 95) {
+            const preUnderscoreIndex = parser.index;
+            char = nextCP(parser);
+            if (char === 95)
+                report(parser, 154);
+            allowSeparator = 1;
+            ret += parser.source.substring(start, preUnderscoreIndex);
+            start = parser.index;
+            continue;
+        }
+        allowSeparator = 0;
+        char = nextCP(parser);
+    }
+    if (allowSeparator)
+        report(parser, 155);
+    return ret + parser.source.substring(start, parser.index);
 }
 
 function scanTemplate(parser, context) {
@@ -1913,7 +1991,7 @@ function parseSource(source, options, context) {
             context |= 32;
         if (options.raw)
             context |= 512;
-        if (options.parenthesizedExpr)
+        if (options.preserveParens)
             context |= 128;
         if (options.impliedStrict)
             context |= 1024;
@@ -3997,7 +4075,6 @@ function parseObjectLiteralOrPattern(parser, context, scope, skipInitializer, in
             let state = 0;
             let key = null;
             let value;
-            const { token, tokenValue, linePos, colPos, tokenIndex } = parser;
             if (parser.token & (143360 | (parser.token & 4096))) {
                 key = parseIdentifier(parser, context, tokenIndex, linePos, colPos);
                 if (parser.token === -1073741806 || parser.token === -2146435057 || parser.token === -2143289315) {
@@ -5474,7 +5551,7 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.0.0';
+const version = '1.2.1';
 
 exports.parse = parse;
 exports.parseModule = parseModule;
