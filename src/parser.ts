@@ -212,7 +212,6 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.impliedStrict) context |= Context.Strict;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
     if (options.source) sourceFile = options.source;
-    if (options.source) sourceFile = options.source;
   }
 
   // Initialize parser state
@@ -4661,7 +4660,7 @@ export function parseArrayExpressionOrPattern(
             : 0 | (parser.destructible & DestructuringKind.Await)
             ? DestructuringKind.Await
             : 0;
-      } else if (parser.token & Token.IsPatternStart) {
+      } else if (token & Token.IsPatternStart) {
         left =
           parser.token === Token.LeftBrace
             ? parseObjectLiteralOrPattern(parser, context, scope, 0, inGroup, type, origin, tokenIndex, linePos, colPos)
@@ -4704,7 +4703,7 @@ export function parseArrayExpressionOrPattern(
                 : DestructuringKind.AssignableDestruct;
           }
         }
-      } else if (parser.token === Token.Ellipsis) {
+      } else if (token === Token.Ellipsis) {
         left = parseSpreadElement(
           parser,
           context,
@@ -4778,6 +4777,10 @@ export function parseArrayExpressionOrPattern(
  * @param parser  Parser object
  * @param context Context masks
  * @param destructible
+ * @param inGroup
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
  * @param node ESTree AST node
  */
 
@@ -4840,7 +4843,12 @@ function parseArrayOrObjectAssignmentPattern(
  * @param context Context masks
  * @param closingToken
  * @param type Binding type
+ * @param origin Binding origin
  * @param isAsync
+ * @param isGroup
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
  */
 function parseSpreadElement(
   parser: ParserState,
@@ -5020,6 +5028,10 @@ function parseSpreadElement(
  * @param parser  Parser object
  * @param context Context masks
  * @param kind
+ * @param inGroup
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
  */
 export function parseMethodDefinition(
   parser: ParserState,
@@ -5054,6 +5066,11 @@ export function parseMethodDefinition(
  * @param parser  Parser object
  * @param context Context masks
  * @param skipInitializer
+ * @param inGroup
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
+
  */
 function parseObjectLiteral(
   parser: ParserState,
@@ -6076,6 +6093,8 @@ export function parseObjectLiteralOrPattern(
  * @param parser parser object
  * @param context context masks
  * @param kind
+ * @param type Binding type
+ * @param inGroup
  */
 export function parseMethodFormals(
   parser: ParserState,
@@ -6243,6 +6262,10 @@ export function parseComputedPropertyName(parser: ParserState, context: Context,
  * @param parser  Parser object
  * @param context Context masks
  * @param assignable
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
+
  */
 export function parseParenthesizedExpression(
   parser: ParserState,
@@ -6494,7 +6517,10 @@ export function parseParenthesizedExpression(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param expr ESTree AST node
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
+
  */
 export function parseIdentifierOrArrow(
   parser: ParserState,
@@ -6527,6 +6553,10 @@ export function parseIdentifierOrArrow(
  * @param context Context masks
  * @param params
  * @param isAsync
+ * @param start Start index
+ * @param line Start line
+ * @param column Start of column
+
  */
 export function parseArrowFunctionExpression(
   parser: ParserState,
@@ -6802,9 +6832,7 @@ export function parseNewExpression(
   // - `new (await foo);`
   // - `new x(await foo);`
   const id = parseIdentifier(parser, context | Context.AllowRegExp, 0, start, line, column);
-  const startIdx = parser.tokenIndex;
-  const lineIdx = parser.linePos;
-  const columnIdx = parser.colPos;
+  const { tokenIndex, linePos, colPos } = parser;
 
   if (consumeOpt(parser, context, Token.Period)) {
     if (context & Context.AllowNewTarget && parser.token === Token.Target) {
@@ -6822,12 +6850,12 @@ export function parseNewExpression(
     0,
     0,
     inGroup,
-    startIdx,
-    lineIdx,
-    columnIdx
+    tokenIndex,
+    linePos,
+    colPos
   );
 
-  callee = parseMemberOrUpdateExpression(parser, context, callee, 1, inGroup, startIdx, lineIdx, columnIdx);
+  callee = parseMemberOrUpdateExpression(parser, context, callee, 1, inGroup, tokenIndex, linePos, colPos);
   parser.assignable = AssignmentKind.NotAssignable;
   return finishNode(parser, context, start, line, column, {
     type: 'NewExpression',
