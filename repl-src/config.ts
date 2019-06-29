@@ -8,7 +8,11 @@ export const LEFT_MENU_CONFIG = [
     items: [
       { title: "Directives", value: "directives", selected: false },
       { title: "ESNext features", value: "next", selected: false },
-      { title: "Distinguish Identifier", value: "identifierPattern", selected: false },
+      {
+        title: "Distinguish Identifier",
+        value: "identifierPattern",
+        selected: false
+      },
       { title: "Index-based range", value: "ranges", selected: false },
       { title: "JSX", value: "jsx", selected: false, disabled: true },
       { title: "Line/column location", value: "loc", selected: false },
@@ -27,3 +31,16 @@ export const LEFT_MENU_CONFIG = [
     ]
   }
 ];
+
+export const DEFAULT_CODE = `function dropRight(array, n, guard) {
+  var length = array == null ? 0 : array.length;
+  if (!length) {
+    return [];
+  }
+  n = (guard || n === undefined) ? 1 : toInteger(n);
+  n = length - n;
+  return baseSlice(array, 0, n < 0 ? 0 : n);
+}
+
+export default dropRight;
+`;

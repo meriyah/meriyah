@@ -2,18 +2,27 @@ import * as React from "react";
 import { LeftMenu } from "./LeftMenu";
 import "./styles/main.scss";
 import { Editor } from "./editor";
-import * as meriyah from  "../meriyah.umd.js"
+import * as meriyah from "../meriyah.umd.js";
 
 import { Header } from "./Header";
+import { DEFAULT_CODE } from './config';
 const initialCode = `function foo(bar){
   return bar;
 }`;
+
+function saveToLocalStorage(str : string){
+  localStorage.setItem("code", str);
+}
+
+function getCodeFromLocalStage(){
+  return localStorage.getItem("code") || DEFAULT_CODE;
+}
 
 export class App extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      jsCode: initialCode,
+      jsCode: getCodeFromLocalStage(),
       settings: { module: true },
       menuOpened: true
     };
@@ -23,7 +32,10 @@ export class App extends React.Component<any, any> {
 
   private parse(settings?) {
     try {
-      const out = meriyah.parse(this.state.jsCode, settings || this.state.settings);
+      const out = meriyah.parse(
+        this.state.jsCode,
+        settings || this.state.settings
+      );
 
       if (this.jsonEditor) {
         this.setState({ error: undefined });
@@ -43,6 +55,7 @@ export class App extends React.Component<any, any> {
     this.setState({ jsCode: value });
     clearTimeout(this.tm);
     this.tm = setTimeout(() => {
+      saveToLocalStorage(value);
       this.parse();
     }, 50);
   };
@@ -63,12 +76,12 @@ export class App extends React.Component<any, any> {
     return (
       <div className="layout">
         <div className="main-container">
-          <div className={leftClass.join(' ')}>
+          <div className={leftClass.join(" ")}>
             <LeftMenu onSettingsChange={this.onSettingsChange} />
             <div className={"drawer"} onClick={this.toggleMenu} />
           </div>
           <div className="right">
-            <Header />
+            <Header menuOpened={this.state.menuOpened} />
 
             <div className="editors">
               <div className="editor">

@@ -3,6 +3,7 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 
 import "codemirror/addon/selection/active-line";
+import "codemirror/addon/scroll/simplescrollbars.js";
 import * as React from "react";
 
 export interface IEditorProps {
@@ -37,7 +38,7 @@ export class Editor extends React.Component<IEditorProps> {
       this.props.mode ? this.props.mode : "javascript"
     );
     this.editor.setOption("lineWrapping", true);
-
+    //this.editor.setOption("scrollbarStyle", "simple");
     this.editor.setOption("styleActiveLine", true);
     //this.editor.setOption("styleActiveSelected", true);
 
