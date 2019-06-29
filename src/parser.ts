@@ -184,7 +184,7 @@ export interface Options {
   // The flag to enable implied strict mode
   impliedStrict?: boolean;
   // Enable non-standard parenthesized expression node
-  parenthesizedExpr?: boolean;
+  preserveParens?: boolean;
   // Enable lexical binding and scope tracking
   lexical?: boolean;
   // Adds a source attribute in every node’s loc object when the locations option is `true`
@@ -206,7 +206,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
     if (options.globalReturn) context |= Context.OptionsGlobalReturn;
     if (options.raw) context |= Context.OptionsRaw;
-    if (options.parenthesizedExpr) context |= Context.OptionsParenthesized;
+    if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
     if (options.source) sourceFile = options.source;
   }
@@ -5168,8 +5168,6 @@ export function parseObjectLiteralOrPattern(
       let key: ESTree.Expression | null = null;
       let value: any;
 
-      const { token, tokenValue, linePos, colPos, tokenIndex } = parser;
-
       if (parser.token & (Token.IsIdentifier | (parser.token & Token.Keyword))) {
         key = parseIdentifier(parser, context, tokenIndex, linePos, colPos);
 
@@ -6419,7 +6417,7 @@ export function parseParenthesizedExpression(
 
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
 
-  return context & Context.OptionsParenthesized
+  return context & Context.OptionsPreserveParens
     ? finishNode(parser, context, idxStart, lineStart, columnStart, {
         type: 'ParenthesizedExpression',
         expression: expr
