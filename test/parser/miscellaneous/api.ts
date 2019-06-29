@@ -1,14 +1,14 @@
 import * as t from 'assert';
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
-describe('Expressions - API', () => {
+describe('Miscellaneous - API', () => {
   it('should parse script code with "parse"', () => {
     t.deepEqual(
       parse('foo', {
         loc: true,
         globalReturn: true,
-        ranges: true,
         webcompat: true,
+        ranges: true,
         module: true,
         preserveParens: true,
         lexical: true,
