@@ -365,7 +365,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
-          let next = nextCP(parser);
+          const next = nextCP(parser);
           if (parser.index < parser.end) {
             if (next === Chars.LessThan) {
               if (parser.index < parser.end && nextCP(parser) === Chars.EqualSign) {

@@ -164,7 +164,8 @@ describe('Miscellaneous - Comments', () => {
     `0/*
     */-->`,
     `0/*
-    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`
+    */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
+    '<!-- -->'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

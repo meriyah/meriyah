@@ -1,17 +1,10 @@
 import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Try', () => {
-  for (let declaration of [
-    'var e',
-    'var f, e',
-    // 'var {e} = 0',
-    'let {} = 0',
-    'let {e:f} = 0',
-    '{ function e(){} }'
-  ]) {
+  for (let declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.doesNotThrow(() => {
         parseSource(

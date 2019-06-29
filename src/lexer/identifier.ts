@@ -131,7 +131,7 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): number | void 
  */
 export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
-  let char = parser.nextCP;
+  const char = parser.nextCP;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}
   if (char === Chars.LeftBrace) {
     const startPos = parser.index;

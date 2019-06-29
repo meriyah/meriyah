@@ -1,7 +1,7 @@
 import { Context } from '../../../src/common';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
-import { pass, fail } from '../../test-utils';
+import { fail } from '../../test-utils';
 
 describe('Miscellaneous - Escaped keywords', () => {
   for (const arg of [

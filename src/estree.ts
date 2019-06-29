@@ -267,13 +267,6 @@ export interface ForOfStatement extends _Statement<'ForOfStatement'> {
   await: boolean;
 }
 
-export interface ForStatement extends _Statement<'ForStatement'> {
-  init?: VariableDeclaration | Expression | null;
-  test?: Expression | null;
-  update?: Expression | null;
-  body: Statement;
-}
-
 interface _Statement<T extends string> extends _Node<T> {}
 interface T_Declaration {
   FunctionDeclaration: FunctionDeclaration;
@@ -300,18 +293,6 @@ interface T_Statement extends T_Declaration {
   ForInStatement: ForInStatement;
   ForOfStatement: ForOfStatement;
   Decorator: Decorator;
-}
-export interface ForInStatement extends _Statement<'ForInStatement'> {
-  left:
-    | Identifier
-    | MemberExpression
-    | ObjectPattern
-    | ArrayPattern
-    | AssignmentPattern
-    | RestElement
-    | VariableDeclaration;
-  right: Expression;
-  body: Statement;
 }
 
 export interface DebuggerStatement extends _Node<'DebuggerStatement'> {}
