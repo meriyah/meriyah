@@ -16,12 +16,11 @@ export function scanIdentifier(parser: ParserState, context: Context): Token {
   const canBeKeyword = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
   while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
-  const hasEscape = CharTypes[parser.nextCP] & CharFlags.BackSlash;
-  if (!hasEscape && parser.nextCP < 0x7e) {
+  if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0 && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
-
-  return scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword);
+  // Slow path that has to deal with multi unit encoding
+  return scanIdentifierSlowCase(parser, context, 0, canBeKeyword);
 }
 
 /**
@@ -48,7 +47,7 @@ export function scanUnicodeIdentifier(parser: ParserState, context: Context): To
 export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
-  hasEscape: number,
+  hasEscape: 0 | 1,
   canBeKeyword: number
 ): Token {
   let start = parser.index;
@@ -132,16 +131,13 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): number | void 
  */
 export function scanUnicodeEscapeValue(parser: ParserState): number {
   let codePoint = 0;
+  let char = parser.nextCP;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}
-  if (parser.nextCP === Chars.LeftBrace) {
+  if (char === Chars.LeftBrace) {
     const startPos = parser.index;
     while (CharTypes[nextCP(parser)] & CharFlags.Hex) {
       codePoint = (codePoint << 4) | toHex(parser.nextCP);
-      // Check this early to avoid `code` wrapping to a negative on overflow (which is
-      // reserved for abnormal conditions).
-      if (codePoint > Chars.NonBMPMax) {
-        report(parser, Errors.UnicodeOverflow);
-      }
+      if (codePoint > Chars.NonBMPMax) report(parser, Errors.UnicodeOverflow);
     }
 
     // At least 4 characters have to be read
@@ -152,7 +148,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
     return codePoint;
   }
 
-  if ((CharTypes[parser.nextCP] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence); // first one is mandatory
+  if ((CharTypes[char] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence); // first one is mandatory
 
   const c2 = parser.source.charCodeAt(parser.index + 1);
   if ((CharTypes[c2] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
@@ -161,7 +157,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
   const c4 = parser.source.charCodeAt(parser.index + 3);
   if ((CharTypes[c4] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
 
-  codePoint = (toHex(parser.nextCP) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
+  codePoint = (toHex(char) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
 
   parser.nextCP = parser.source.charCodeAt((parser.index += 4));
 

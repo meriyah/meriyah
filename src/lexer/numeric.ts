@@ -100,20 +100,19 @@ export function scanNumber(parser: ParserState, context: Context, isFloat: 0 | 1
         // Octal integer literals are not permitted in strict mode code
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
         kind = NumberKind.ImplicitOctal;
-        do {
-          if (CharTypes[parser.nextCP] & CharFlags.ImplicitOctalDigits) {
+        while (CharTypes[char] & CharFlags.Decimal) {
+          if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
             kind = NumberKind.DecimalWithLeadingZero;
             atStart = false;
             break;
           }
           value = value * 8 + (parser.nextCP - Chars.Zero);
-        } while (CharTypes[nextCP(parser)] & CharFlags.Decimal);
-        char = parser.nextCP;
+          char = nextCP(parser);
+        }
       } else if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
         else parser.flags = Flags.Octals;
         kind = NumberKind.DecimalWithLeadingZero;
-        char = parser.nextCP;
       } else if (char === Chars.Underscore) {
         report(parser, Errors.Unexpected);
       }

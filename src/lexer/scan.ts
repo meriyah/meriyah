@@ -19,7 +19,7 @@ import {
   scanPrivateName,
   fromCodePoint,
   consumeLineFeed,
-  advanceNewline
+  scanNewLine
 } from './';
 
 /*
@@ -218,7 +218,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         case Token.CarriageReturn:
           state |= LexerState.NewLine | LexerState.LastIsCR;
-          advanceNewline(parser);
+          scanNewLine(parser);
           break;
 
         case Token.LineFeed:
@@ -268,7 +268,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `*`, `**`, `*=`, `**=`
         case Token.Multiply: {
           nextCP(parser);
+
           if (parser.index >= parser.end) return Token.Multiply;
+
           const next = parser.nextCP;
 
           if (next === Chars.EqualSign) {
@@ -277,9 +279,11 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           }
 
           if (next !== Chars.Asterisk) return Token.Multiply;
+
+          if (nextCP(parser) !== Chars.EqualSign) return Token.Exponentiate;
+
           nextCP(parser);
-          if (parser.nextCP !== Chars.EqualSign) return Token.Exponentiate;
-          nextCP(parser);
+
           return Token.ExponentiateAssign;
         }
 
@@ -361,24 +365,19 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
-          nextCP(parser);
-          if (parser.index >= parser.end) return Token.LessThan;
-
-          switch (parser.nextCP) {
-            case Chars.LessThan:
-              nextCP(parser);
-              if ((parser.nextCP as number) === Chars.EqualSign) {
+          let next = nextCP(parser);
+          if (parser.index < parser.end) {
+            if (next === Chars.LessThan) {
+              if (parser.index < parser.end && nextCP(parser) === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.ShiftLeftAssign;
               } else {
                 return Token.ShiftLeft;
               }
-
-            case Chars.EqualSign:
+            } else if (next === Chars.EqualSign) {
               nextCP(parser);
               return Token.LessThanOrEqual;
-
-            case Chars.Exclamation:
+            } else if (next === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
               if (
                 (context & Context.Module) === 0 &&
@@ -388,12 +387,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 state = skipSingleLineComment(parser, state);
                 continue;
               }
-
-            default:
-              // ignore
-              return Token.LessThan;
+            }
           }
-
+          return Token.LessThan;
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
           nextCP(parser);
@@ -401,8 +397,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           const next = parser.nextCP;
 
           if (next === Chars.EqualSign) {
-            nextCP(parser);
-            if (parser.nextCP === Chars.EqualSign) {
+            if (nextCP(parser) === Chars.EqualSign) {
               nextCP(parser);
               return Token.StrictEqual;
             } else {
@@ -436,7 +431,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `>`, `>=`, `>>`, `>>>`, `>>=`, `>>>=`
         case Token.GreaterThan: {
           nextCP(parser);
+
           if (parser.index >= parser.end) return Token.GreaterThan;
+
           const next = parser.nextCP;
 
           if (next === Chars.EqualSign) {
@@ -445,14 +442,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           }
 
           if (next !== Chars.GreaterThan) return Token.GreaterThan;
+
           nextCP(parser);
 
           if (parser.index < parser.end) {
             const next = parser.nextCP;
 
             if (next === Chars.GreaterThan) {
-              nextCP(parser);
-              if (parser.nextCP === Chars.EqualSign) {
+              if (nextCP(parser) === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.LogicalShiftRightAssign;
               } else {
@@ -503,7 +500,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
     } else {
       if ((first ^ Chars.LineSeparator) <= 1) {
         state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
-        advanceNewline(parser);
+        scanNewLine(parser);
         continue;
       }
 

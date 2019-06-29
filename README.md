@@ -112,6 +112,7 @@ The second argument allows you to specify various options:
 | ----------- | ------------------------------------------------------------ |
 | `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
 | `globalReturn`    | Allow `return` in the global scope |
+| `identifierPattern` | Distinguish Identifier from IdentifierPattern |
 | `impliedStrict`   | Enable strict mode (*initial enforcement*) |
 | `lexical`         | Enable lexical binding and scope tracking |
 | `loc`         | Enable line/column location information to each node |

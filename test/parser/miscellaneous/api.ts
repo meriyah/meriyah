@@ -85,7 +85,7 @@ describe('Miscellaneous - API', () => {
     });
   });
   it('should parse module code with directive node', () => {
-    t.deepEqual(parseModule('1', { directives: true }), {
+    t.deepEqual(parseModule('1', { directives: true, identifierPattern: true }), {
       body: [
         {
           expression: {

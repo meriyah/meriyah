@@ -1,4 +1,4 @@
-import { nextCP, CharTypes, CharFlags, LexerState, advanceNewline, consumeLineFeed } from './';
+import { nextCP, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
 import { Chars } from '../chars';
 import { ParserState } from '../common';
 import { report, Errors } from '../errors';
@@ -40,7 +40,7 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState): L
   while (parser.index < parser.end) {
     if (CharTypes[parser.nextCP] & CharFlags.LineTerminator || (parser.nextCP ^ Chars.LineSeparator) <= 1) {
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
-      advanceNewline(parser);
+      scanNewLine(parser);
       return state;
     }
     nextCP(parser);
@@ -65,13 +65,13 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
 
     if (parser.nextCP === Chars.CarriageReturn) {
       state |= LexerState.NewLine | LexerState.LastIsCR;
-      advanceNewline(parser);
+      scanNewLine(parser);
     } else if (parser.nextCP === Chars.LineFeed) {
       consumeLineFeed(parser, (state & LexerState.LastIsCR) !== 0);
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
     } else if ((parser.nextCP ^ Chars.LineSeparator) <= 1) {
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
-      advanceNewline(parser);
+      scanNewLine(parser);
     } else {
       nextCP(parser);
     }

@@ -35,7 +35,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): bool
 }
 
 /**
- * Use to consume a line feed instead of `advanceNewline`.
+ * Use to consume a line feed instead of `scanNewLine`.
  */
 export function consumeLineFeed(parser: ParserState, lastIsCR: boolean) {
   parser.nextCP = parser.source.charCodeAt(++parser.index);
@@ -46,7 +46,7 @@ export function consumeLineFeed(parser: ParserState, lastIsCR: boolean) {
   }
 }
 
-export function advanceNewline(parser: ParserState) {
+export function scanNewLine(parser: ParserState) {
   parser.flags |= Flags.NewLine;
   parser.nextCP = parser.source.charCodeAt(++parser.index);
   parser.column = 0;
