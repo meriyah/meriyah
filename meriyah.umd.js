@@ -1594,12 +1594,12 @@
                   case 10:
                   case 8232:
                   case 8233:
-                      report(parser, 33);
+                      report(parser, 32);
                   default:
               }
           }
           if (parser.index >= parser.source.length) {
-              return report(parser, 33);
+              return report(parser, 32);
           }
       }
       const bodyEnd = parser.index - 1;
@@ -1609,36 +1609,36 @@
           switch (parser.nextCP) {
               case 103:
                   if (mask & 2)
-                      report(parser, 35, 'g');
+                      report(parser, 34, 'g');
                   mask |= 2;
                   break;
               case 105:
                   if (mask & 1)
-                      report(parser, 35, 'i');
+                      report(parser, 34, 'i');
                   mask |= 1;
                   break;
               case 109:
                   if (mask & 4)
-                      report(parser, 35, 'm');
+                      report(parser, 34, 'm');
                   mask |= 4;
                   break;
               case 117:
                   if (mask & 16)
-                      report(parser, 35, 'g');
+                      report(parser, 34, 'g');
                   mask |= 16;
                   break;
               case 121:
                   if (mask & 8)
-                      report(parser, 35, 'y');
+                      report(parser, 34, 'y');
                   mask |= 8;
                   break;
               case 115:
                   if (mask & 12)
-                      report(parser, 35, 's');
+                      report(parser, 34, 's');
                   mask |= 12;
                   break;
               default:
-                  report(parser, 34);
+                  report(parser, 33);
           }
           nextCP(parser);
       }
@@ -1655,7 +1655,7 @@
           RegExp(pattern);
       }
       catch (e) {
-          report(parser, 33);
+          report(parser, 32);
       }
       try {
           return new RegExp(pattern, flags);
@@ -1695,17 +1695,17 @@
               if (lex[hashed] !== undefined) {
                   if (lex.type & 4) {
                       if (!isVarDecl || (context & 256) === 0) {
-                          report(parser, 156, name);
+                          report(parser, 148, name);
                       }
                   }
                   else if (lex.type & 1) {
-                      report(parser, 156, name);
+                      report(parser, 148, name);
                   }
                   else if ((lex.type & 16) === 0 &&
                       ((context & 256) === 0 ||
                           (scope.lexicals.funcs[hashed] & 2) === 0 ||
                           context & 1024))
-                      report(parser, 156, name);
+                      report(parser, 148, name);
               }
               lex = lex['$'];
           }
@@ -1721,20 +1721,20 @@
           if (dupeChecks) {
               const lexParent = scope.lexicals['$'];
               if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
-                  report(parser, 156, name);
+                  report(parser, 148, name);
               }
               else if (scope.lexicalVariables[hashed]) {
                   if ((context & 256) === 0 ||
                       (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       (context & 1024) !== 0) {
-                      report(parser, 156, name);
+                      report(parser, 148, name);
                   }
               }
               if (lex[hashed] !== undefined &&
                   ((context & 256) === 0 ||
                       (scope.lexicals.funcs[hashed] & 2) === 0 ||
                       context & 1024)) {
-                  report(parser, 156, name);
+                  report(parser, 148, name);
               }
           }
           lex[hashed] = lex[hashed] ? 2 : 1;
@@ -1757,18 +1757,18 @@
       for (const key in scope.lexicals) {
           if (key[0] === '$' && key.length > 1) {
               if (scope.lexicals[key] > 1)
-                  report(parser, 156, key);
+                  report(parser, 148, key);
               if (checkParent) {
                   if (scope.lexicals['$'] &&
                       scope.lexicals['$'].type & (16 | 4) &&
                       scope.lexicals['$'][key]) {
-                      report(parser, 156, key.slice(1));
+                      report(parser, 148, key.slice(1));
                   }
                   else if (((context & 256) === 0 ||
                       (context & 1024) !== 0 ||
                       !scope.lexicals.funcs[key]) &&
                       scope.lexicalVariables[key]) {
-                      report(parser, 156, key.slice(1));
+                      report(parser, 148, key.slice(1));
                   }
               }
           }
@@ -1778,14 +1778,14 @@
   function verifyArguments(parser, lex) {
       for (const key in lex) {
           if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
-              report(parser, 156, key.slice(1));
+              report(parser, 148, key.slice(1));
           }
       }
   }
   function updateExportsList(parser, name) {
       if (parser.exportedNames !== undefined && name !== '') {
           if (parser.exportedNames['$' + name]) {
-              report(parser, 157, name);
+              report(parser, 149, name);
           }
           parser.exportedNames['$' + name] = 2;
       }
@@ -1985,7 +1985,7 @@
               context |= 2;
           if (options.lexical)
               context |= 64;
-          if (options.webCompat)
+          if (options.webcompat)
               context |= 256;
           if (options.directives)
               context |= 8 | 512;
