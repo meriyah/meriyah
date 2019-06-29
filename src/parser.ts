@@ -172,7 +172,7 @@ export interface Options {
   // The flag to enable start and end offsets to each node
   ranges?: boolean;
   // Enable web compability
-  webCompat?: boolean;
+  webcompat?: boolean;
   // The flag to enable line/column location information to each node
   loc?: boolean;
   // The flag to attach raw property to each literal and identifier node
@@ -202,7 +202,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.loc) context |= Context.OptionsLoc;
     if (options.ranges) context |= Context.OptionsRanges;
     if (options.lexical) context |= Context.OptionsLexical;
-    if (options.webCompat) context |= Context.OptionsWebCompat;
+    if (options.webcompat) context |= Context.OptionsWebCompat;
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
     if (options.globalReturn) context |= Context.OptionsGlobalReturn;
     if (options.raw) context |= Context.OptionsRaw;

@@ -8,7 +8,7 @@ describe('Expressions - API', () => {
         loc: true,
         globalReturn: true,
         ranges: true,
-        webCompat: true,
+        webcompat: true,
         module: true,
         preserveParens: true,
         lexical: true,
