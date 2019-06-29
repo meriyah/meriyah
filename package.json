@@ -67,7 +67,9 @@
     "coveralls": "^3.0.4",
     "cross-env": "^5.2.0",
     "eslint": "^6.0.1",
-    "husky": "^2.4.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "husky": "^2.3.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "path": "^0.12.7",
@@ -91,5 +93,8 @@
     "hooks": {
       "pre-commit": "node ./scripts/prettier.js check-changed"
     }
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }

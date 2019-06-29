@@ -9,6 +9,7 @@
 // Based on similar script in Jest
 // https://github.com/facebook/jest/blob/a7acc5ae519613647ff2c253dd21933d6f94b47f/scripts/prettier.js
 
+/*eslint no-process-exit:0*/
 const chalk = require('chalk');
 const glob = require('glob');
 const prettier = require('prettier');
