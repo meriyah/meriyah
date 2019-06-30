@@ -4,6 +4,94 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Lexical - Lexical', () => {
+  const letbinds = [
+    'let x;',
+    'let x = 0;',
+    'let x = undefined;',
+    'let x = function() {};',
+    'let x, y;',
+    'let y, x;',
+    'const x = 0;',
+    'const x = undefined;',
+    'const x = function() {};',
+    'const x = 2, y = 3;',
+    'const y = 4, x = 5;'
+  ];
+  const varbinds = ['var x;', 'var x = 0;', 'var x = undefined;', 'var x = function() {};', 'var x, y;', 'var y, x;'];
+
+  for (let l = 0; l < letbinds.length; ++l) {
+    // Test conflicting let/var bindings.
+    for (let v = 0; v < varbinds.length; ++v) {
+      const case1 = letbinds[l] + varbinds[v];
+      it(case1, () => {
+        t.throws(() => {
+          parseSource(case1, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+
+      const case2 = letbinds[l] + varbinds[v];
+
+      it(case2, () => {
+        t.throws(() => {
+          parseSource(case2, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+
+      const case3 = letbinds[l] + '{' + varbinds[v] + '}';
+
+      it(case3, () => {
+        t.throws(() => {
+          parseSource(
+            letbinds[l] + '{' + varbinds[v] + '}',
+            undefined,
+            Context.OptionsWebCompat | Context.OptionsLexical
+          );
+        });
+      });
+
+      const case4 = '{' + varbinds[v] + '}' + letbinds[l];
+
+      it(case4, () => {
+        t.throws(() => {
+          parseSource(case4, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+
+      const case5 = '{' + varbinds[v] + '}' + letbinds[l];
+
+      it(case5, () => {
+        t.throws(() => {
+          parseSource(case5, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+    }
+
+    // Test conflicting let/let bindings.
+    for (let k = 0; k < letbinds.length; ++k) {
+      const case6 = letbinds[l] + letbinds[k];
+
+      it(case6, () => {
+        t.throws(() => {
+          parseSource(case6, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+
+      it(case6, () => {
+        t.doesNotThrow(() => {
+          parseSource(case6, undefined, Context.OptionsWebCompat);
+        });
+      });
+
+      const case7 = letbinds[k] + letbinds[l];
+
+      it(case7, () => {
+        t.throws(() => {
+          parseSource(case7, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        });
+      });
+    }
+  }
+
   fail('Lexical - Lexical (fail)', [
     ['let x; var x;', Context.OptionsLexical],
     ['var x; let x;', Context.OptionsLexical],
