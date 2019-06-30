@@ -42,7 +42,7 @@ describe('Lexer - Comments', () => {
     [Context.OptionsWebCompat, Token.EOF, '\n--' + '>', '']
   ];
 
-  for (const [ctx, token, op, value] of tokens) {
+  for (const [ctx, token, op] of tokens) {
     it(`scans '${op}' at the end`, () => {
       const state = create(op);
       const found = scanSingleToken(state, ctx, 0);

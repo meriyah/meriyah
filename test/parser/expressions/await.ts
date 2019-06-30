@@ -144,7 +144,7 @@ describe('Expressions - Await', () => {
     });
   }
 
-  for (let arg of [
+  for (const arg of [
     `async function f(await) {}`,
     `async function f(...await) {}`,
     `async function f(await = 1) {}`,

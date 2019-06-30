@@ -3,7 +3,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Lexical - Lex / Var', () => {
+describe('Lexical - Lexical', () => {
   const letbinds = [
     'let x;',
     'let x = 0;',
@@ -81,7 +81,7 @@ describe('Lexical - Lex / Var', () => {
     }
   }
 
-  fail('Lexical - Lex / Var (fail)', [
+  fail('Lexical - Lexical (fail)', [
     ['let x; var x;', Context.OptionsLexical],
     ['var x; let x;', Context.OptionsLexical],
     ['let x; { var x }', Context.OptionsLexical],

@@ -463,7 +463,6 @@ describe('Expressions - Async', () => {
                 type: 'BlockStatement'
               },
 
-
               params: [
                 {
                   name: 'p',

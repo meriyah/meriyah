@@ -4,7 +4,7 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Try', () => {
-  for (let declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
+  for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.doesNotThrow(() => {
         parseSource(
@@ -16,7 +16,7 @@ describe('Miscellaneous - Try', () => {
     });
   }
 
-  for (let declaration of [
+  for (const declaration of [
     'let e',
     'let f, g, e',
     'let [f] = [], [] = [], e = e, h',

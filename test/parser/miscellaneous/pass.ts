@@ -9321,7 +9321,7 @@ for ({[2e308]: {"_"() {}, get [""]() {
 }}[++q], a, b, q = true, [(true ? arguments : ("foo"))[{}]]: c[this]} in [] = arguments) do ; while ((function () {
   "cù:";
   "";
-  "[×";
+  " [×";
   "";
 } <= "".constructor)[this] ^= null(...this(), new (l ? /[-]+?/iu : (true))(...0), ...null ? this : false, ...new /\ufA3eDA^\b/g, class {
   static [/\\ude85+/my]() {
