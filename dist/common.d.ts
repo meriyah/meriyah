@@ -29,7 +29,8 @@ export declare const enum Context {
     InMethod = 33554432,
     AllowNewTarget = 67108864,
     DisallowIn = 134217728,
-    InClass = 268435456
+    InClass = 268435456,
+    OptionsIdentifierPattern = 536870912
 }
 export declare const enum PropertyKind {
     None = 0,
