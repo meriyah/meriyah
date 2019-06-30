@@ -2,7 +2,7 @@ import { Context } from '../../../src/common';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Miscellaneous - Failure', () => {
+describe('Miscellaneous - Hashbang', () => {
   for (const arg of [
     '/**/ #!\n',
     '//---\n #!\n',
@@ -25,17 +25,17 @@ describe('Miscellaneous - Failure', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
       });
     });
   }
@@ -49,17 +49,17 @@ describe('Miscellaneous - Failure', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
       });
     });
   }
