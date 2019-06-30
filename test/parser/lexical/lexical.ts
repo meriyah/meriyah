@@ -19,9 +19,9 @@ describe('Lexical - Lexical', () => {
   ];
   const varbinds = ['var x;', 'var x = 0;', 'var x = undefined;', 'var x = function() {};', 'var x, y;', 'var y, x;'];
 
-  for (var l = 0; l < letbinds.length; ++l) {
+  for (let l = 0; l < letbinds.length; ++l) {
     // Test conflicting let/var bindings.
-    for (var v = 0; v < varbinds.length; ++v) {
+    for (let v = 0; v < varbinds.length; ++v) {
       it(letbinds[l] + varbinds[v], () => {
         t.throws(() => {
           parseSource(letbinds[l] + varbinds[v], undefined, Context.OptionsWebCompat | Context.OptionsLexical);
@@ -66,7 +66,7 @@ describe('Lexical - Lexical', () => {
     }
 
     // Test conflicting let/let bindings.
-    for (var k = 0; k < letbinds.length; ++k) {
+    for (let k = 0; k < letbinds.length; ++k) {
       it(letbinds[l] + letbinds[k], () => {
         t.throws(() => {
           parseSource(letbinds[l] + letbinds[k], undefined, Context.OptionsWebCompat | Context.OptionsLexical);

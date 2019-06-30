@@ -19,6 +19,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-use-before-define': [2, { functions: false }], // https://github.com/eslint/eslint/issues/11903
         '@typescript-eslint/indent': 0,
+        'prefer-const': ['error', { destructuring: 'all' }],
 
         // TODO: enable it when all problems addressed
         '@typescript-eslint/explicit-function-return-type': 0,
