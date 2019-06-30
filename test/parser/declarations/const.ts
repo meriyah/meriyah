@@ -161,6 +161,7 @@ describe('Declarations - const', () => {
     'const [[a]] = [[]];',
     'const {foo:a,bar} = x;',
     'const {foo,bar:b} = x;',
+    'const foo = () => { return bar, baz; };',
     'const val = (function f(a, b = (() => a)) {})',
     'const { a, b, ...c } = { a: 1, b: 2, c: 3 };'
   ]) {

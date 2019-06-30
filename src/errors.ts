@@ -169,7 +169,7 @@ export const errorMessages: {
   [Errors.StrictOctalEscape]: 'Octal escape sequences are not allowed in strict mode',
   [Errors.TemplateOctalLiteral]: 'Octal escape sequences are not allowed in template strings',
   [Errors.InvalidPrivateName]: 'Unexpected token `#`',
-  [Errors.InvalidUnicodeEscapeSequence]: 'Invalid Unicode escape sequence',
+  [Errors.InvalidUnicodeEscapeSequence]: 'Illegal Unicode escape sequence',
   [Errors.InvalidCodePoint]: 'Invalid code point %0',
   [Errors.InvalidHexEscapeSequence]: 'Invalid hexadecimal escape sequence',
   [Errors.StrictOctalLiteral]: 'Octal literals are not allowed in strict mode',

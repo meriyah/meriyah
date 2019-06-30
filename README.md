@@ -1,13 +1,15 @@
-# Meriyah
+<h1 align="center">Meriyah</h1>
 
-[![NPM version](https://img.shields.io/npm/v/meriyah.svg?style=flat-square)](https://www.npmjs.com/package/meriyah)
-[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/context:javascript)
-[![Total Alerts](https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/meriyah/meriyah/alerts)
-[![CircleCI](https://circleci.com/gh/meriyah/meriyah.svg?style=svg)](https://circleci.com/gh/meriyah/meriyah)
+<p align="center"> 100% compliant, self-hosted javascript parser with high focus on both performance and stability</p>
 
-A 100% compliant, self-hosted javascript parser with high focus on both performance and stability
+<p align="center">
+    <a href="https://www.npmjs.com/package/meriyah"><img src="https://img.shields.io/npm/v/meriyah.svg?style=flat-square" alt="Azure Pipelines"/></a>
+    <a href="https://lgtm.com/projects/g/meriyah/meriyah/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="GitHub license" /></a>
+    <a href="https://lgtm.com/projects/g/meriyah/meriyah/alerts"><img src="https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="Total alerts" /></a>
+    <a href="https://circleci.com/gh/meriyah/meriyah"><img src="https://circleci.com/gh/meriyah/meriyah.svg?style=svg" alt="Circle" /></a>
+</p>
 
-## [Demo](https://meriyah.github.io/meriyah/)
+<br>
 
 ## Features
 
@@ -38,8 +40,40 @@ Meriyah generates `AST` according to [ESTree AST format](https://github.com/estr
 
 The `parse` method exposed by meriyah takes an optional `options` object which allows you to specify whether to parse in [`script`](https://tc39.github.io/ecma262/#sec-parse-script) mode (the default) or in [`module`](https://tc39.github.io/ecma262/#sec-parsemodule) mode.
 
+This is the available options:
 
-Here is a quick example to parse a script:
+```js
+{
+  // The flag to allow module code
+  module: false;
+  // The flag to enable stage 3 support (ESNext)
+  next: false;
+  // The flag to enable start and end offsets to each node
+  ranges: false;
+  // Enable web compability
+  webcompat: false;
+  // The flag to enable line/column location information to each node
+  loc: false;
+  // The flag to attach raw property to each literal and identifier node
+  raw: false;
+  // Enabled directives
+  directives: false;
+  // The flag to allow return in the global scope
+  globalReturn: false;
+  // The flag to enable implied strict mode
+  impliedStrict: false;
+  // Enable non-standard parenthesized expression node
+  preserveParens: false;
+  // Enable lexical binding and scope tracking
+  lexical: false;
+  // Adds a source attribute in every node’s loc object when the locations option is `true`
+  source: false;
+  // Distinguish Identifier from IdentifierPattern
+  identifierPattern: false;
+}
+```
+
+Example usage:
 
 ```js
 
@@ -102,26 +136,6 @@ This will return when serialized in json:
     ]
 }
 ```
-
-
-## Options
-
-The second argument allows you to specify various options:
-
-| Option        | Description |
-| ----------- | ------------------------------------------------------------ |
-| `directives`      | Enable [directive prologue](https://github.com/danez/estree/blob/directive/es5.md#directive) to each literal node |
-| `globalReturn`    | Allow `return` in the global scope |
-| `impliedStrict`   | Enable strict mode (*initial enforcement*) |
-| `lexical`         | Enable lexical binding and scope tracking |
-| `loc`         | Enable line/column location information to each node |
-| `module`          | Allow parsing with module goal |
-| `next`            | Allow parsing with `ESNext` features  |
-| `preserveParens`	| Enable non-standard parenthesized expression node |
-| `raw`             | Attach raw property to each literal node |
-| `ranges`          | Append start and end offsets to each node |
-| `source`          | Adds a source attribute in every node’s loc object when the locations option is `true`.|
-| `webcompat`       | Enable [web compability](https://tc39.github.io/ecma262/#sec-additional-ecmascript-features-for-web-browsers) |
 
 ## ECMAScript compability
 

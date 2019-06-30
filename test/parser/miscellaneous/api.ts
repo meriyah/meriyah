@@ -1,14 +1,14 @@
 import * as t from 'assert';
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
-describe('Expressions - API', () => {
+describe('Miscellaneous - API', () => {
   it('should parse script code with "parse"', () => {
     t.deepEqual(
       parse('foo', {
         loc: true,
         globalReturn: true,
+        webcompat: true,
         ranges: true,
-        webCompat: true,
         module: true,
         preserveParens: true,
         lexical: true,
@@ -85,7 +85,7 @@ describe('Expressions - API', () => {
     });
   });
   it('should parse module code with directive node', () => {
-    t.deepEqual(parseModule('1', { directives: true }), {
+    t.deepEqual(parseModule('1', { directives: true, identifierPattern: true }), {
       body: [
         {
           expression: {

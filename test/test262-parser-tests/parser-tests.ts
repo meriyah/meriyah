@@ -71,7 +71,7 @@ const expectations = {
 };
 
 const parse = (src: string, module: boolean) =>
-  (module ? parseModule : parseScript)(src, { webCompat: true, lexical: true });
+  (module ? parseModule : parseScript)(src, { webcompat: true, lexical: true });
 
 const isModule = (val: string) => /\.module\.js/.test(val);
 
