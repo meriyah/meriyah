@@ -44,7 +44,8 @@ const expectations = {
     '3bc2b27a7430f818.js',
     'e3fbcf63d7e43ead.js',
     '15a6123f6b825c38.js',
-    '147fa078a7436e0e.js'
+    '147fa078a7436e0e.js',
+    'fd2a45941e114896.js'
   ],
   early: [
     'eeb5ffaafa815bb2.js',
@@ -65,8 +66,7 @@ const expectations = {
     '1aff49273f3e3a98.js',
     '12a74c60f52a60de.js',
     '0f5f47108da5c34e.js',
-    '06593c3474233eca.js',
-    'fd2a45941e114896.js'
+    '06593c3474233eca.js'
   ]
 };
 
