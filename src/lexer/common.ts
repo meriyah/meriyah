@@ -57,8 +57,8 @@ export function scanNewLine(parser: ParserState) {
 export function isExoticECMAScriptWhitespace(code: number): boolean {
   /**
    * There are 25 white space characters we need to correctly class.
-   * Lucky for us that we have already classified the lower ASCII range (127) white space, so
-   * what we have to do now is to validate against the remaining
+   * The lower ASCII range (127) white space have already been classified, so
+   * only needed is to validate against the remaining
    * 15 Unicode category "Zs" ("Space_Separator") chars.
    *
    * - 0x1680
