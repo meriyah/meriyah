@@ -15,7 +15,7 @@ export function skipHashBang(parser: ParserState): void {
   if (index === parser.end) return;
   if (parser.nextCP === Chars.ByteOrderMark) {
     parser.index = ++index;
-    parser.nextCP = parser.source.charCodeAt(index);
+    parser.nextCP = parser.source.charCodeAt(parser.index);
   }
 
   if (index < parser.end && parser.nextCP === Chars.Hash) {
