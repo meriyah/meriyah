@@ -68,7 +68,6 @@ describe('Lexical - Lexical', () => {
 
     // Test conflicting let/let bindings.
     for (let k = 0; k < letbinds.length; ++k) {
-
       const case6 = letbinds[l] + letbinds[k];
 
       it(case6, () => {
