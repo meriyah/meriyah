@@ -41,10 +41,10 @@
       0,
       0,
       0,
-      4,
+      0,
       512 | 524288,
-      4,
-      4,
+      0,
+      0,
       512 | 1048576,
       0,
       0,
@@ -64,7 +64,7 @@
       0,
       0,
       0,
-      4,
+      0,
       0,
       0,
       0,
@@ -74,7 +74,7 @@
       0,
       0,
       0,
-      128,
+      0,
       32768,
       0,
       32768,
@@ -768,23 +768,8 @@
   }
 
   function skipHashBang(parser) {
-      let index = parser.index;
-      if (index === parser.end)
-          return;
-      if (parser.nextCP === 65519) {
-          parser.index = ++index;
-          parser.nextCP = parser.source.charCodeAt(index);
-      }
-      if (index < parser.end && parser.nextCP === 35) {
-          index++;
-          if (index < parser.end && parser.source.charCodeAt(index) === 33) {
-              parser.index = index + 1;
-              parser.nextCP = parser.source.charCodeAt(parser.index);
-              skipSingleLineComment(parser, 0);
-          }
-          else {
-              report(parser, 18, '#');
-          }
+      if (parser.nextCP === 35 && parser.source.charCodeAt(parser.index + 1) === 33) {
+          skipSingleLineComment(parser, 0);
       }
   }
   function skipSingleLineComment(parser, state) {
@@ -1014,12 +999,8 @@
       return 208897;
   }
   function scanPrivateName(parser) {
-      nextCP(parser);
-      if ((CharTypes[parser.nextCP] & 1024) !== 0 ||
-          ((CharTypes[parser.nextCP] & 1) === 0 &&
-              ((unicodeLookup[(parser.nextCP >>> 5) + 0] >>> parser.nextCP) & 31 & 1) === 0)) {
+      if (!isIdentifierStart(nextCP(parser)))
           report(parser, 97);
-      }
       return 131;
   }
   function scanIdentifierUnicodeEscape(parser) {
@@ -1047,16 +1028,16 @@
       }
       if ((CharTypes[char] & 4096) === 0)
           report(parser, 6);
-      const c2 = parser.source.charCodeAt(parser.index + 1);
-      if ((CharTypes[c2] & 4096) === 0)
+      const char2 = parser.source.charCodeAt(parser.index + 1);
+      if ((CharTypes[char2] & 4096) === 0)
           report(parser, 6);
-      const c3 = parser.source.charCodeAt(parser.index + 2);
-      if ((CharTypes[c3] & 4096) === 0)
+      const char3 = parser.source.charCodeAt(parser.index + 2);
+      if ((CharTypes[char3] & 4096) === 0)
           report(parser, 6);
-      const c4 = parser.source.charCodeAt(parser.index + 3);
-      if ((CharTypes[c4] & 4096) === 0)
+      const char4 = parser.source.charCodeAt(parser.index + 3);
+      if ((CharTypes[char4] & 4096) === 0)
           report(parser, 6);
-      codePoint = (toHex(char) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
+      codePoint = (toHex(char) << 12) | (toHex(char2) << 8) | (toHex(char3) << 4) | toHex(char4);
       parser.nextCP = parser.source.charCodeAt((parser.index += 4));
       return codePoint;
   }
@@ -1997,7 +1978,8 @@
               sourceFile = options.source;
       }
       const parser = create(source, sourceFile);
-      skipHashBang(parser);
+      if (context & 1)
+          skipHashBang(parser);
       const scope = context & 64 ? initblockScope() : {};
       let body = [];
       let sourceType = 'script';
