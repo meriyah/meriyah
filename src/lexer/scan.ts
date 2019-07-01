@@ -1,11 +1,7 @@
-import { skipSingleLineComment, skipMultiLineComment, LexerState } from './';
-import { CharTypes, CharFlags } from './charClassifier';
-import { Chars } from '../chars';
-import { Token } from '../token';
-import { ParserState, Context, Flags } from '../common';
-import { report, Errors } from '../errors';
-import { isIDStart } from '../unicode';
 import {
+  skipSingleLineComment,
+  skipMultiLineComment,
+  LexerState,
   nextCP,
   consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
@@ -21,6 +17,12 @@ import {
   consumeLineFeed,
   scanNewLine
 } from './';
+import { CharTypes, CharFlags } from './charClassifier';
+import { Chars } from '../chars';
+import { Token } from '../token';
+import { ParserState, Context, Flags } from '../common';
+import { report, Errors } from '../errors';
+import { isIDStart } from '../unicode';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
