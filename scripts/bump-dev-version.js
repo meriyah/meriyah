@@ -29,6 +29,7 @@ async function savePackageJson(pkg, isLockfile) {
 }
 
 async function run() {
+  /*eslint-disable*/
   const versionRegExp = /(\d+)\.(\d+)\.(\d+)($|\-)/;
   const match = project.pkg.version.match(versionRegExp);
   if (match === null) {

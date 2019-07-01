@@ -3132,6 +3132,7 @@ export function parseBinaryExpression(
     // 0 precedence will terminate binary expression parsing
     if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
     nextToken(parser, context | Context.AllowRegExp);
+    /*eslint-disable*/
     left = finishNode(parser, context, start, line, column, {
       type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
       left,
