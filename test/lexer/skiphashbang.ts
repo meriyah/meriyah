@@ -1,13 +1,13 @@
 import * as t from 'assert';
 import { Flags, Context } from '../../src/common';
 import { create } from '../../src/parser';
-import { scanSingleToken, skipHashBang } from '../../src/lexer';
+import { skipHashBang } from '../../src/lexer';
 
 describe('Lexer - skiphashbang', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
       const state = create(opts.source);
-      const token = skipHashBang(state);
+      skipHashBang(state);
       t.deepEqual(
         {
           value: state.tokenValue,
@@ -61,38 +61,6 @@ describe('Lexer - skiphashbang', () => {
     column: 0
   });
 
-  pass('skips a BOM in an otherwise empty source', {
-    source: '\uFFEF',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 1,
-    line: 1,
-    column: 0
-  });
-
-  pass('skips a BOM before an identifier', {
-    source: '\uFFEFfoo',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 1,
-    line: 1,
-    column: 0
-  });
-
-  fail('skips a BOM and fails before a lone hash', '\uFFEF# foo');
-
-  pass('skips a BOM before a lone exclamation', {
-    source: '\uFFEF! foo',
-    newLine: false,
-    hasNext: false,
-    value: '',
-    index: 1,
-    line: 1,
-    column: 0
-  });
-
   pass('skips a shebang+LF before a lone hash', {
     source: '#!/foo/bar/baz -abc\n# foo',
     hasNext: true,
@@ -139,15 +107,6 @@ describe('Lexer - skiphashbang', () => {
     hasNext: false,
     value: '',
     index: 20,
-    line: 2,
-    column: 0
-  });
-  pass('skips a BOM+shebang+LF in an otherwise empty source', {
-    source: '\uFFEF#!/foo/bar/baz -abc\n',
-    newLine: true,
-    hasNext: false,
-    value: '',
-    index: 21,
     line: 2,
     column: 0
   });

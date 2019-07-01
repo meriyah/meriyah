@@ -5,9 +5,7 @@ export const enum CharFlags {
   None = 0,
   IdentifierStart       = 1 << 0,
   IdentifierPart        = 1 << 1,
-  WhiteSpace            = 1 << 2, // ECMA-262 11.2 White Space
   KeywordCandidate      = 1 << 6,
-  Asterisk              = 1 << 7,
   LineTerminator        = 1 << 9, // ECMA-262 11.3 Line Terminators
   Decimal               = 1 << 10,
   Octal                 = 1 << 11,
@@ -34,10 +32,10 @@ export const CharTypes = [
   CharFlags.None /* 0x06   */,
   CharFlags.None /* 0x07   */,
   CharFlags.None /* 0x08   */,
-  CharFlags.WhiteSpace /* 0x09   */,
+  CharFlags.None /* 0x09   */,
   CharFlags.LineTerminator | CharFlags.CarriageReturn /* 0x0A   */,
-  CharFlags.WhiteSpace /* 0x0B   */,
-  CharFlags.WhiteSpace /* 0x0C   */,
+  CharFlags.None /* 0x0B   */,
+  CharFlags.None /* 0x0C   */,
   CharFlags.LineTerminator | CharFlags.LineFeed /* 0x0D   */,
   CharFlags.None /* 0x0E   */,
   CharFlags.None /* 0x0F   */,
@@ -57,7 +55,7 @@ export const CharTypes = [
   CharFlags.None /* 0x1D   */,
   CharFlags.None /* 0x1E   */,
   CharFlags.None /* 0x1F   */,
-  CharFlags.WhiteSpace /* 0x20   */,
+  CharFlags.None /* 0x20   */,
   CharFlags.None /* 0x21 ! */,
   CharFlags.None /* 0x22   */,
   CharFlags.None /* 0x23 # */,
@@ -67,7 +65,7 @@ export const CharTypes = [
   CharFlags.None /* 0x27   */,
   CharFlags.None /* 0x28   */,
   CharFlags.None /* 0x29   */,
-  CharFlags.Asterisk /* 0x2A   */,
+  CharFlags.None /* 0x2A   */,
   CharFlags.Exponent /* 0x2B   */,
   CharFlags.None /* 0x2C   */,
   CharFlags.Exponent /* 0x2D   */,
@@ -148,11 +146,11 @@ export const CharTypes = [
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x78 x */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x79 y */,
   CharFlags.IdentifierStart | CharFlags.IdentifierPart | CharFlags.KeywordCandidate /* 0x7A z */,
-  CharFlags.None /* 0x7B   */,
-  CharFlags.None /* 0x7C   */,
-  CharFlags.None /* 0x7D   */,
-  CharFlags.None /* 0x7E   */,
-  CharFlags.None /* 0x7F   */
+  CharFlags.None /* 0x7B */,
+  CharFlags.None /* 0x7C */,
+  CharFlags.None /* 0x7D */,
+  CharFlags.None /* 0x7E */,
+  CharFlags.None /* 0x7F */
 ];
 
 export function isIdentifierStart(code: number): number {

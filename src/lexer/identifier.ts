@@ -2,7 +2,7 @@ import { ParserState, Context } from '../common';
 import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { nextCP, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
-import { CharTypes, CharFlags, isIdentifierPart } from './charClassifier';
+import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart } from './charClassifier';
 import { report, reportAt, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 
@@ -97,15 +97,7 @@ export function scanIdentifierSlowCase(
  * @param parser  Parser object
  */
 export function scanPrivateName(parser: ParserState): Token {
-  nextCP(parser); // consumes '#'
-  if (
-    (CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0 ||
-    ((CharTypes[parser.nextCP] & CharFlags.IdentifierStart) === 0 &&
-      ((unicodeLookup[(parser.nextCP >>> 5) + 0] >>> parser.nextCP) & 31 & 1) === 0)
-  ) {
-    report(parser, Errors.MissingPrivateName);
-  }
-
+  if (!isIdentifierStart(nextCP(parser))) report(parser, Errors.MissingPrivateName);
   return Token.PrivateField;
 }
 
@@ -116,7 +108,7 @@ export function scanPrivateName(parser: ParserState): Token {
  */
 export function scanIdentifierUnicodeEscape(parser: ParserState): number | void {
   // Check for Unicode escape of the form '\uXXXX'
-  // and return code point value if valid Unicode escape is found. Otherwise return -1.
+  // and return code point value if valid Unicode escape is found.
   if (parser.index + 5 < parser.end && parser.source.charCodeAt(parser.index + 1) === Chars.LowerU) {
     parser.nextCP = parser.source.charCodeAt((parser.index += 2));
     return scanUnicodeEscapeValue(parser);
@@ -150,14 +142,14 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
 
   if ((CharTypes[char] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence); // first one is mandatory
 
-  const c2 = parser.source.charCodeAt(parser.index + 1);
-  if ((CharTypes[c2] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
-  const c3 = parser.source.charCodeAt(parser.index + 2);
-  if ((CharTypes[c3] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
-  const c4 = parser.source.charCodeAt(parser.index + 3);
-  if ((CharTypes[c4] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  const char2 = parser.source.charCodeAt(parser.index + 1);
+  if ((CharTypes[char2] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  const char3 = parser.source.charCodeAt(parser.index + 2);
+  if ((CharTypes[char3] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
+  const char4 = parser.source.charCodeAt(parser.index + 3);
+  if ((CharTypes[char4] & CharFlags.Hex) === 0) report(parser, Errors.InvalidHexEscapeSequence);
 
-  codePoint = (toHex(char) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
+  codePoint = (toHex(char) << 12) | (toHex(char2) << 8) | (toHex(char3) << 4) | toHex(char4);
 
   parser.nextCP = parser.source.charCodeAt((parser.index += 4));
 

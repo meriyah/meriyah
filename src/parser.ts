@@ -218,7 +218,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   const parser = create(source, sourceFile);
 
   // See: https://github.com/tc39/proposal-hashbang
-  skipHashBang(parser);
+  if (context & Context.OptionsNext) skipHashBang(parser);
 
   const scope: any = context & Context.OptionsLexical ? initblockScope() : {};
 

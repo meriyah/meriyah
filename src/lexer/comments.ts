@@ -1,6 +1,6 @@
 import { nextCP, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
 import { Chars } from '../chars';
-import { ParserState } from '../common';
+import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
 
 /**
@@ -11,22 +11,8 @@ import { report, Errors } from '../errors';
 export function skipHashBang(parser: ParserState): void {
   // HashbangComment ::
   //   #!  SingleLineCommentChars
-  let index = parser.index;
-  if (index === parser.end) return;
-  if (parser.nextCP === Chars.ByteOrderMark) {
-    parser.index = ++index;
-    parser.nextCP = parser.source.charCodeAt(index);
-  }
-
-  if (index < parser.end && parser.nextCP === Chars.Hash) {
-    index++;
-    if (index < parser.end && parser.source.charCodeAt(index) === Chars.Exclamation) {
-      parser.index = index + 1;
-      parser.nextCP = parser.source.charCodeAt(parser.index);
-      skipSingleLineComment(parser, LexerState.None);
-    } else {
-      report(parser, Errors.IllegalCaracter, '#');
-    }
+  if (parser.nextCP === Chars.Hash && parser.source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
+    skipSingleLineComment(parser, LexerState.None);
   }
 }
 

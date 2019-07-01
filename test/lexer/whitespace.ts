@@ -375,16 +375,6 @@ describe('Lexer - Whitespace', () => {
     column: 17
   });
 
-  pass('skips no break space in a string', {
-    source: "'\\u00A0str\\u00A0ing\\u00A0'",
-    hasNext: false,
-    value: ' str ing ',
-    newLine: false,
-    line: 1,
-    index: 26,
-    column: 26
-  });
-
   pass('skips vertical tab in a string', {
     source: "'\\u000Bstr\\u000Bing\\u000B'",
     hasNext: false,
@@ -413,16 +403,6 @@ describe('Lexer - Whitespace', () => {
     line: 1,
     index: 14,
     column: 14
-  });
-
-  pass('skips multiline comment with space - #1', {
-    source: "'\u00A0str\u00A0ing\u00A0'",
-    hasNext: false,
-    value: ' str ing ',
-    newLine: false,
-    line: 1,
-    index: 11,
-    column: 11
   });
 
   pass('skips multiline comment with space - #1', {
