@@ -1,5 +1,5 @@
 import * as t from 'assert';
-import { Flags } from '../../src/common';
+import { Flags, Context } from '../../src/common';
 import { create } from '../../src/parser';
 import { skipHashBang } from '../../src/lexer';
 
@@ -24,14 +24,6 @@ describe('Lexer - skiphashbang', () => {
       );
     });
   }
-
-  function fail(name: string, source: string) {
-    it(name, () => {
-      const parser = create(source);
-      t.throws(() => skipHashBang(parser));
-    });
-  }
-
   pass('skips nothing in an empty source', {
     source: '',
     newLine: false,

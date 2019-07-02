@@ -21,7 +21,6 @@ export interface T_Node extends T_Statement, T_Expression, T_Pattern, T_ModuleDe
   MethodDefinition: MethodDefinition;
   VariableDeclarator: VariableDeclarator;
 }
-/*eslint-disable*/
 interface _Expression<T extends string> extends _Node<T> {}
 interface T_Expression {
   Identifier: Identifier;
@@ -183,7 +182,7 @@ export type Expression =
   | ClassExpression
   | MetaProperty
   | AwaitExpression;
-/*eslint-disable*/
+
 export interface EmptyStatement extends _Node<'EmptyStatement'> {}
 
 export interface BlockStatement extends _Node<'BlockStatement'> {
@@ -267,7 +266,7 @@ export interface ForOfStatement extends _Statement<'ForOfStatement'> {
   body: Statement;
   await: boolean;
 }
-/*eslint-disable*/
+
 interface _Statement<T extends string> extends _Node<T> {}
 interface T_Declaration {
   FunctionDeclaration: FunctionDeclaration;
@@ -295,13 +294,12 @@ interface T_Statement extends T_Declaration {
   ForOfStatement: ForOfStatement;
   Decorator: Decorator;
 }
-/*eslint-disable*/
+
 export interface DebuggerStatement extends _Node<'DebuggerStatement'> {}
 
 export type Declaration = FunctionDeclaration | VariableDeclaration | ClassDeclaration;
-
-/*eslint-disable*/
 interface _Declaration<T extends string> extends _Statement<T> {}
+interface BaseDeclaration extends _Node<'ExpressionStatement'> {}
 
 export interface FunctionDeclaration extends _Declaration<'FunctionDeclaration'> {
   id: Identifier | null;
@@ -347,7 +345,6 @@ type Expression =
   | Identifier
   | AwaitExpression;
 
-/*eslint-disable*/
 export interface ThisExpression extends _Expression<'ThisExpression'> {}
 
 export interface ArrayExpression extends _Expression<'ArrayExpression'> {
@@ -443,7 +440,6 @@ export interface CatchClause extends _Node<'CatchClause'> {
   param: Pattern;
   body: BlockStatement;
 }
-/*eslint-disable*/
 interface _Pattern<T extends string> extends _Node<T> {}
 
 interface T_Pattern {
@@ -521,7 +517,6 @@ export type AssignmentOperator =
 
 export type UpdateOperator = '++' | '--';
 
-/*eslint-disable*/
 export interface Super extends _Node<'Super'> {}
 
 export interface SpreadElement extends _Node<'SpreadElement'> {
@@ -643,7 +638,7 @@ interface _ModuleSpecifier<T extends string> extends _Node<T> {
 }
 
 export type ModuleSpecifier = ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier | ExportSpecifier;
-/*eslint-disable*/
+
 interface _ModuleDeclaration<T extends string> extends _Node<T> {}
 export interface ImportDeclaration extends _ModuleDeclaration<'ImportDeclaration'> {
   specifiers: (ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier)[];
@@ -652,10 +647,8 @@ export interface ImportDeclaration extends _ModuleDeclaration<'ImportDeclaration
 export interface ImportSpecifier extends _ModuleSpecifier<'ImportSpecifier'> {
   imported: Identifier;
 }
-
-/*eslint-disable*/
 export interface ImportDefaultSpecifier extends _ModuleSpecifier<'ImportDefaultSpecifier'> {}
-/*eslint-disable*/
+
 export interface ImportNamespaceSpecifier extends _ModuleSpecifier<'ImportNamespaceSpecifier'> {}
 
 export interface ExportNamedDeclaration extends _ModuleDeclaration<'ExportNamedDeclaration'> {
