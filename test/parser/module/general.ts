@@ -1,6 +1,5 @@
 import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
-import * as t from 'assert';
 
 describe('Module - General', () => {
   fail('Module - Import (fail)', [

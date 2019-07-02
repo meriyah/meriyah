@@ -1,5 +1,5 @@
 import * as t from 'assert';
-import { Flags, Context } from '../../src/common';
+import { Flags } from '../../src/common';
 import { create } from '../../src/parser';
 import { skipHashBang } from '../../src/lexer';
 

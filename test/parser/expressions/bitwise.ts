@@ -1,5 +1,5 @@
 import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
+import { pass } from '../../test-utils';
 
 describe('Expressions - Conditional', () => {
   pass('Expressions - Conditional (pass)', [

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 'use strict';
 
 const UnicodeCodeCount = 0x110000; /* codes */
