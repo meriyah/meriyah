@@ -5541,7 +5541,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.2.1');
+      const version = exports('version', '1.2.4');
 
     }
   };

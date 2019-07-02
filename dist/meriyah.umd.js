@@ -5536,7 +5536,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.2.1';
+  const version = '1.2.4';
 
   exports.parse = parse;
   exports.parseModule = parseModule;
