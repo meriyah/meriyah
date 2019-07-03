@@ -1,110 +1,10 @@
-interface _Node<T extends string> {
-  type: T;
-  start?: number;
-  end?: number;
-  loc?: SourceLocation | null;
-  range?: [number, number];
-}
-
-export interface T_Node extends T_Statement, T_Expression, T_Pattern, T_ModuleDeclaration, T_ModuleSpecifier {
-  Program: Program;
-  SwitchCase: SwitchCase;
-  CatchClause: CatchClause;
-  Property: Property | AssignmentProperty;
-  Super: Super;
-  SpreadElement: SpreadElement;
-  TemplateElement: TemplateElement;
-  ClassBody: ClassBody;
-  FieldDefinition: FieldDefinition;
-  PrivateName: PrivateName;
-  Decorator: Decorator;
-  MethodDefinition: MethodDefinition;
-  VariableDeclarator: VariableDeclarator;
-}
-/*eslint-disable*/
-interface _Expression<T extends string> extends _Node<T> {}
-interface T_Expression {
-  Identifier: Identifier;
-  Literal: Literal | RegExpLiteral;
-  BigIntLiteral: BigIntLiteral;
-  ThisExpression: ThisExpression;
-  ArrayExpression: ArrayExpression;
-  ObjectExpression: ObjectExpression;
-  FunctionExpression: FunctionExpression;
-  UnaryExpression: UnaryExpression;
-  UpdateExpression: UpdateExpression;
-  BinaryExpression: BinaryExpression;
-  ImportExpression: ImportExpression;
-  AssignmentExpression: AssignmentExpression;
-  LogicalExpression: LogicalExpression;
-  MemberExpression: MemberExpression;
-  ConditionalExpression: ConditionalExpression;
-  CallExpression: CallExpression;
-  NewExpression: NewExpression;
-  SequenceExpression: SequenceExpression;
-  ArrowFunctionExpression: ArrowFunctionExpression;
-  YieldExpression: YieldExpression;
-  TemplateLiteral: TemplateLiteral;
-  TaggedTemplateExpression: TaggedTemplateExpression;
-  ClassExpression: ClassExpression;
-  MetaProperty: MetaProperty;
-  AwaitExpression: AwaitExpression;
-}
-interface T_ModuleSpecifier {
-  ImportSpecifier: ImportSpecifier;
-  ImportDefaultSpecifier: ImportDefaultSpecifier;
-  ImportNamespaceSpecifier: ImportNamespaceSpecifier;
-  ExportSpecifier: ExportSpecifier;
-}
-interface T_ModuleDeclaration {
-  ImportDeclaration: ImportDeclaration;
-  ExportNamedDeclaration: ExportNamedDeclaration;
-  ExportDefaultDeclaration: ExportDefaultDeclaration;
-  ExportAllDeclaration: ExportAllDeclaration;
-}
-
-interface T_Pattern {
-  Identifier: Identifier;
-  ObjectPattern: ObjectPattern;
-  ArrayPattern: ArrayPattern;
-  MemberExpression: MemberExpression;
-  AssignmentPattern: AssignmentPattern;
-  RestElement: RestElement;
-}
-export type Node =
-  | Identifier
-  | Literal
-  | BigIntLiteral
-  | Program
-  | Function
-  | SwitchCase
-  | CatchClause
-  | VariableDeclarator
-  | Statement
-  | Expression
-  | Property
-  | AssignmentProperty
-  | Super
-  | TemplateElement
-  | SpreadElement
-  | Pattern
-  | ClassBody
-  | Decorator
-  | MethodDefinition
-  | ModuleDeclaration
-  | ModuleSpecifier;
-
-export type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
-
-export interface Comment {
-  type: CommentType;
-  value: string;
+export interface _Node {
   start?: number;
   end?: number;
   loc?: SourceLocation | null;
 }
 
-interface SourceLocation {
+export interface SourceLocation {
   source?: string | null;
   start: Position;
   end: Position;
@@ -116,565 +16,754 @@ export interface Position {
   /** >= 0 */
   column: number;
 }
-/**
- * Core types
- */
-export interface Program extends _Node<'Program'> {
-  sourceType: 'script' | 'module';
-  body: (Statement | ModuleDeclaration)[];
-  comments?: Comment[];
+
+export type Labels = any; // Fix!
+export type Scope = any; // Fix!
+
+export type ArgumentExpression =
+  | ArrayExpression
+  | AssignmentExpression
+  | ConditionalExpression
+  | Literal
+  | BinaryExpression
+  | LogicalExpression
+  | SequenceExpression;
+
+export type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
+
+export interface Comment {
+  type: CommentType;
+  value: string;
+  start?: number;
+  end?: number;
+  loc?: SourceLocation | null;
 }
 
-interface BaseFunction extends _Node<'Function'> {
-  params: Pattern[];
-  generator?: boolean;
-  async?: boolean;
-  body: BlockStatement | Expression;
-}
-
-export type Function = FunctionDeclaration | FunctionExpression | ArrowFunctionExpression;
-
-export type Statement =
-  | ExpressionStatement
+export type Node =
+  | ArrayExpression
+  | ArrayPattern
+  | ArrowFunctionExpression
+  | AssignmentExpression
+  | AssignmentPattern
+  | AwaitExpression
+  | BigIntLiteral
+  | BinaryExpression
   | BlockStatement
-  | EmptyStatement
+  | BreakStatement
+  | CallExpression
+  | ImportExpression
+  | CatchClause
+  | ClassBody
+  | ClassDeclaration
+  | ClassExpression
+  | ClassProperty
+  | ConditionalExpression
+  | ContinueStatement
   | DebuggerStatement
-  | WithStatement
-  | ReturnStatement
+  | Decorator
+  | DoWhileStatement
+  | EmptyStatement
+  | ExportAllDeclaration
+  | ExportDefaultDeclaration
+  | ExportNamespaceSpecifier
+  | ExportNamedDeclaration
+  | ExportSpecifier
+  | ExpressionStatement
+  | FieldDefinition
+  | ForInStatement
+  | ForOfStatement
+  | ForStatement
+  | FunctionDeclaration
+  | FunctionExpression
+  | Identifier
+  | IfStatement
+  | Import
+  | ImportDeclaration
+  | ImportDefaultSpecifier
+  | ImportNamespaceSpecifier
+  | ImportSpecifier
+  | JSXAttribute
+  | JSXClosingElement
+  | JSXClosingFragment
+  | JSXElement
+  | JSXEmptyExpression
+  | JSXExpressionContainer
+  | JSXFragment
+  | JSXIdentifier
+  | JSXOpeningElement
+  | JSXOpeningFragment
+  | JSXSpreadAttribute
+  | JSXSpreadChild
+  | JSXMemberExpression
+  | JSXText
   | LabeledStatement
+  | Literal
+  | LogicalExpression
+  | MemberExpression
+  | MetaProperty
+  | MethodDefinition
+  | NewExpression
+  | ObjectExpression
+  | ObjectPattern
+  | ParenthesizedExpression
+  | PrivateName
+  | Program
+  | Property
+  | RestElement
+  | ReturnStatement
+  | SequenceExpression
+  | SpreadElement
+  | Super
+  | SwitchCase
+  | SwitchStatement
+  | TaggedTemplateExpression
+  | TemplateElement
+  | TemplateLiteral
+  | ThisExpression
+  | ThrowStatement
+  | TryStatement
+  | UpdateExpression
+  | UnaryExpression
+  | VariableDeclaration
+  | VariableDeclarator
+  | WhileStatement
+  | WithStatement
+  | YieldExpression;
+export type BindingPattern =
+  | ArrayPattern
+  | ObjectPattern
+  | ArrayExpression
+  | AssignmentExpression
+  | ObjectExpression
+  | Identifier;
+export type BindingName = BindingPattern | Identifier;
+export type ClassElement = ClassProperty | FunctionExpression | MethodDefinition;
+export type DeclarationStatement =
+  | ClassDeclaration
+  | ClassExpression
+  | ExportDefaultDeclaration
+  | ExportNamespaceSpecifier
+  | ExportAllDeclaration
+  | ExportNamedDeclaration
+  | FunctionDeclaration;
+export type EntityName = Identifier;
+export type ExportDeclaration = ClassDeclaration | ClassExpression | FunctionDeclaration | VariableDeclaration;
+export type Expression =
+  | ArrowFunctionExpression
+  | AssignmentExpression
+  | BinaryExpression
+  | ConditionalExpression
+  | JSXClosingElement
+  | JSXClosingFragment
+  | JSXExpressionContainer
+  | JSXOpeningElement
+  | JSXOpeningFragment
+  | JSXSpreadChild
+  | LogicalExpression
+  | NewExpression
+  | RestElement
+  | SequenceExpression
+  | SpreadElement
+  | TSUnaryExpression ///
+  | YieldExpression;
+export type ForInitialiser = Expression | VariableDeclaration;
+export type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier;
+export type IterationStatement = DoWhileStatement | ForInStatement | ForOfStatement | ForStatement | WhileStatement;
+export type JSXChild = JSXElement | JSXExpression | JSXFragment | JSXText;
+export type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionContainer;
+export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression;
+export type LeftHandSideExpression =
+  | CallExpression
+  | ImportExpression
+  | ClassExpression
+  | ClassDeclaration
+  | FunctionExpression
+  | LiteralExpression
+  | MemberExpression
+  | PrimaryExpression
+  | TaggedTemplateExpression;
+export type LiteralExpression = BigIntLiteral | Literal | TemplateLiteral;
+export type ObjectLiteralElementLike = MethodDefinition | Property | RestElement | SpreadElement;
+export type Parameter = AssignmentPattern | RestElement | ArrayPattern | ObjectPattern | Identifier;
+export type PrimaryExpression =
+  | ArrayExpression
+  | ArrayPattern
+  | ClassExpression
+  | FunctionExpression
+  | Identifier
+  | Import
+  | JSXElement
+  | JSXFragment
+  | JSXOpeningElement
+  | Literal
+  | LiteralExpression
+  | MetaProperty
+  | ObjectExpression
+  | ObjectPattern
+  | Super
+  | TemplateLiteral
+  | ThisExpression;
+export type PropertyName = Identifier | Literal;
+export type Statement =
+  | BlockStatement
   | BreakStatement
   | ContinueStatement
-  | Decorator
+  | DebuggerStatement
+  | DeclarationStatement
+  | EmptyStatement
+  | ExpressionStatement
   | IfStatement
+  | IterationStatement
+  | ImportDeclaration
+  | LabeledStatement
+  | ReturnStatement
   | SwitchStatement
   | ThrowStatement
   | TryStatement
-  | WhileStatement
-  | DoWhileStatement
-  | ForStatement
-  | ForInStatement
-  | ForOfStatement
-  | Declaration;
+  | VariableDeclaration
+  | WithStatement;
 
-export type Expression =
-  | Identifier
-  | Literal
-  | RegExpLiteral
-  | ThisExpression
-  | ArrayExpression
-  | ObjectExpression
-  | FunctionExpression
-  | UnaryExpression
-  | UpdateExpression
-  | BinaryExpression
-  | AssignmentExpression
-  | LogicalExpression
-  | MemberExpression
-  | PrivateName
-  | ConditionalExpression
-  | CallExpression
-  | ImportExpression
-  | NewExpression
-  | SequenceExpression
-  | ArrowFunctionExpression
-  | YieldExpression
-  | TemplateLiteral
-  | TaggedTemplateExpression
-  | ClassExpression
-  | MetaProperty
-  | AwaitExpression;
-/*eslint-disable*/
-export interface EmptyStatement extends _Node<'EmptyStatement'> {}
+// dsaf
+export type TSUnaryExpression = AwaitExpression | LeftHandSideExpression | UnaryExpression | UpdateExpression;
 
-export interface BlockStatement extends _Node<'BlockStatement'> {
-  body: Statement[];
-  innerComments?: Comment[];
-}
-
-export interface ExpressionStatement extends _Node<'ExpressionStatement'> {
-  expression: Expression;
-  directive?: string;
-}
-
-export interface IfStatement extends _Node<'IfStatement'> {
-  test: Expression;
-  consequent: Statement;
-  alternate?: Statement | null;
-}
-
-export interface LabeledStatement extends _Node<'LabeledStatement'> {
-  label: Identifier;
-  body: Statement;
-}
-
-export interface BreakStatement extends _Node<'BreakStatement'> {
-  label?: Identifier | null;
-}
-
-export interface ContinueStatement extends _Node<'ContinueStatement'> {
-  label?: Identifier | null;
-}
-
-export interface WithStatement extends _Node<'WithStatement'> {
-  object: Expression;
-  body: Statement;
-}
-
-export interface SwitchStatement extends _Node<'SwitchStatement'> {
-  discriminant: Expression;
-  cases: SwitchCase[];
-}
-
-export interface ReturnStatement extends _Node<'ReturnStatement'> {
-  argument?: Expression | null;
-}
-
-export interface ThrowStatement extends _Node<'ThrowStatement'> {
-  argument: Expression;
-}
-
-export interface TryStatement extends _Node<'TryStatement'> {
-  block: BlockStatement;
-  handler?: CatchClause | null;
-  finalizer?: BlockStatement | null;
-}
-
-export interface WhileStatement extends _Node<'WhileStatement'> {
-  test: Expression;
-  body: Statement;
-}
-
-export interface DoWhileStatement extends _Node<'DoWhileStatement'> {
-  body: Statement;
-  test: Expression;
-}
-
-export interface ForStatement extends _Node<'ForStatement'> {
-  init?: VariableDeclaration | Expression | null;
-  test?: Expression | null;
-  update?: Expression | null;
-  body: Statement;
-}
-export interface ForInStatement extends _Statement<'ForInStatement'> {
-  left: VariableDeclaration | Pattern;
+interface BinaryExpressionBase extends _Node {
+  operator: string;
+  left: Expression;
   right: Expression;
-  body: Statement;
 }
 
-export interface ForOfStatement extends _Statement<'ForOfStatement'> {
-  left: VariableDeclaration | Pattern;
-  right: Expression;
-  body: Statement;
-  await: boolean;
-}
-/*eslint-disable*/
-interface _Statement<T extends string> extends _Node<T> {}
-interface T_Declaration {
-  FunctionDeclaration: FunctionDeclaration;
-  VariableDeclaration: VariableDeclaration;
-  ClassDeclaration: ClassDeclaration;
-}
-interface T_Statement extends T_Declaration {
-  ExpressionStatement: ExpressionStatement;
-  BlockStatement: BlockStatement;
-  EmptyStatement: EmptyStatement;
-  DebuggerStatement: DebuggerStatement;
-  WithStatement: WithStatement;
-  ReturnStatement: ReturnStatement;
-  LabeledStatement: LabeledStatement;
-  BreakStatement: BreakStatement;
-  ContinueStatement: ContinueStatement;
-  IfStatement: IfStatement;
-  SwitchStatement: SwitchStatement;
-  ThrowStatement: ThrowStatement;
-  TryStatement: TryStatement;
-  WhileStatement: WhileStatement;
-  DoWhileStatement: DoWhileStatement;
-  ForStatement: ForStatement;
-  ForInStatement: ForInStatement;
-  ForOfStatement: ForOfStatement;
-  Decorator: Decorator;
-}
-/*eslint-disable*/
-export interface DebuggerStatement extends _Node<'DebuggerStatement'> {}
-
-export type Declaration = FunctionDeclaration | VariableDeclaration | ClassDeclaration;
-
-/*eslint-disable*/
-interface _Declaration<T extends string> extends _Statement<T> {}
-
-export interface FunctionDeclaration extends _Declaration<'FunctionDeclaration'> {
+interface ClassDeclarationBase extends _Node {
   id: Identifier | null;
-  params: Pattern[];
-  body: BlockStatement;
-  generator: boolean;
-  async: boolean;
+  body: ClassBody;
+  superClass: Expression | null;
+  decorators?: Decorator[];
 }
 
-export interface VariableDeclaration extends _Declaration<'VariableDeclaration'> {
-  declarations: VariableDeclarator[];
-  kind: 'var' | 'let' | 'const';
-}
-
-export interface VariableDeclarator extends _Node<'VariableDeclarator'> {
-  id: Pattern;
-  init?: Expression | null;
-}
-type Expression =
-  | ThisExpression
-  | ArrayExpression
-  | ObjectExpression
-  | FunctionExpression
-  | ArrowFunctionExpression
-  | YieldExpression
-  | Literal
-  | BigIntLiteral
-  | UnaryExpression
-  | UpdateExpression
-  | BinaryExpression
-  | AssignmentExpression
-  | LogicalExpression
-  | MemberExpression
-  | ConditionalExpression
-  | ImportExpression
-  | CallExpression
-  | NewExpression
-  | SequenceExpression
-  | TemplateLiteral
-  | TaggedTemplateExpression
-  | ClassExpression
-  | MetaProperty
-  | Identifier
-  | AwaitExpression;
-
-/*eslint-disable*/
-export interface ThisExpression extends _Expression<'ThisExpression'> {}
-
-export interface ArrayExpression extends _Expression<'ArrayExpression'> {
-  elements: (Expression | SpreadElement)[];
-}
-
-export interface ObjectExpression extends _Expression<'ObjectExpression'> {
-  properties: Property[];
-}
-
-export interface Property extends _Node<'Property'> {
+interface ClassPropertyBase extends _Node {
   key: Expression;
+  value: Expression;
   computed: boolean;
-  value: Expression | null;
-  kind: 'init' | 'get' | 'set';
-  method: boolean;
-  shorthand: boolean;
+  static: boolean;
+  decorators?: Decorator[];
 }
-export interface FunctionExpression extends _Expression<'FunctionExpression'> {
-  id?: Identifier | null;
-  body: BlockStatement;
-  params: Pattern[];
-  async: boolean;
+
+interface FunctionDeclarationBase extends _Node {
+  id: Identifier | null;
   generator: boolean;
+  async: boolean;
+  params: Parameter[];
+  body?: BlockStatement | null;
 }
 
-export interface SequenceExpression extends _Expression<'SequenceExpression'> {
-  expressions: Expression[];
-}
-
-export interface UnaryExpression extends _Expression<'UnaryExpression'> {
-  operator: UnaryOperator;
-  prefix: true;
-  argument: Expression;
-}
-
-export interface BinaryExpression extends _Expression<'BinaryExpression'> {
-  operator: BinaryOperator;
-  left: Expression;
-  right: Expression;
-}
-
-export interface AssignmentExpression extends _Expression<'AssignmentExpression'> {
-  operator: AssignmentOperator;
-  left: Pattern | MemberExpression;
-  right: Expression;
-}
-
-export interface UpdateExpression extends _Expression<'UpdateExpression'> {
-  operator: UpdateOperator;
-  argument: Expression;
-  prefix: boolean;
-}
-
-export interface LogicalExpression extends _Expression<'LogicalExpression'> {
-  operator: LogicalOperator;
-  left: Expression;
-  right: Expression;
-}
-
-export interface ConditionalExpression extends _Expression<'ConditionalExpression'> {
-  test: Expression;
-  alternate: Expression;
-  consequent: Expression;
-}
-
-export interface CallExpression extends _Expression<'CallExpression'> {
-  callee: Expression | Super;
-  arguments: (Expression | SpreadElement)[];
-}
-
-export interface ImportExpression extends _Expression<'ImportExpression'> {
-  source: Expression;
-}
-
-export interface NewExpression extends _Expression<'NewExpression'> {
-  callee: Expression;
-  arguments: (Expression | SpreadElement)[];
-}
-export interface MemberExpression extends _Expression<'MemberExpression'> {
+interface MethodDefinitionBase extends _Node {
+  key: Expression | PrivateName | null;
+  value: FunctionExpression;
   computed: boolean;
-  object: Expression | Super;
-  property: Expression | PrivateName;
+  static: boolean;
+  kind: 'method' | 'get' | 'set' | 'constructor';
+  decorators?: Decorator[];
 }
 
-export type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
-
-export interface SwitchCase extends _Node<'SwitchCase'> {
-  test: Expression | null;
-  consequent: Statement[];
-}
-export interface CatchClause extends _Node<'CatchClause'> {
-  param: Pattern;
-  body: BlockStatement;
-}
-/*eslint-disable*/
-interface _Pattern<T extends string> extends _Node<T> {}
-
-interface T_Pattern {
-  Identifier: Identifier;
-  ObjectPattern: ObjectPattern;
-  ArrayPattern: ArrayPattern;
-  MemberExpression: MemberExpression;
-  AssignmentPattern: AssignmentPattern;
-  RestElement: RestElement;
-}
-export interface Identifier extends _Expression<'Identifier'>, _Pattern<'Identifier'> {
-  name: string;
-  raw?: string;
+export interface ArrayExpression extends _Node {
+  type: 'ArrayExpression';
+  elements: any[];
 }
 
-export interface Literal extends _Expression<'Literal'> {
-  value: string | boolean | null | number | RegExp | bigint;
-  raw?: string;
+export interface ArrayPattern extends _Node {
+  type: 'ArrayPattern';
+  elements: Expression[];
+  decorators?: Decorator[];
 }
 
-export interface BigIntLiteral extends _Expression<'BigIntLiteral'> {
+export interface ArrowFunctionExpression extends _Node {
+  type: 'ArrowFunctionExpression';
+  params: Parameter[];
+  body: Expression | BlockStatement;
+  async: boolean;
+  expression: boolean;
+}
+
+export interface AssignmentExpression extends BinaryExpressionBase {
+  type: 'AssignmentExpression';
+}
+
+export interface AssignmentPattern extends _Node {
+  type: 'AssignmentPattern';
+  left: BindingName;
+  right?: Expression;
+  decorators?: Decorator[];
+}
+
+export interface AwaitExpression extends _Node {
+  type: 'AwaitExpression';
+  argument: TSUnaryExpression;
+}
+
+export interface BigIntLiteral extends _Node {
+  type: 'BigIntLiteral';
   value: boolean | number | string | null;
   bigint: string;
   raw?: string;
 }
 
-export interface RegExpLiteral extends _Expression<'Literal'> {
-  value: RegExp | null;
-  raw?: string;
-  regex: { pattern: string; flags: string };
+export interface BinaryExpression extends BinaryExpressionBase {
+  type: 'BinaryExpression';
 }
 
-export type UnaryOperator = '-' | '+' | '!' | '~' | 'typeof' | 'void' | 'delete';
-
-export type BinaryOperator =
-  | '=='
-  | '!='
-  | '==='
-  | '!=='
-  | '<'
-  | '<='
-  | '>'
-  | '>='
-  | '<<'
-  | '>>'
-  | '>>>'
-  | '+'
-  | '-'
-  | '*'
-  | '/'
-  | '%'
-  | '**'
-  | '|'
-  | '^'
-  | '&'
-  | 'in'
-  | 'instanceof';
-
-export type LogicalOperator = '||' | '&&';
-
-export type AssignmentOperator =
-  | '='
-  | '+='
-  | '-='
-  | '*='
-  | '/='
-  | '%='
-  | '**='
-  | '<<='
-  | '>>='
-  | '>>>='
-  | '|='
-  | '^='
-  | '&=';
-
-export type UpdateOperator = '++' | '--';
-
-/*eslint-disable*/
-export interface Super extends _Node<'Super'> {}
-
-export interface SpreadElement extends _Node<'SpreadElement'> {
-  argument: Expression;
+export interface BlockStatement extends _Node {
+  type: 'BlockStatement';
+  body: Statement[];
 }
 
-export interface ArrowFunctionExpression extends _Expression<'ArrowFunctionExpression'> {
-  expression: boolean;
-  body: BlockStatement | Expression;
-  params: Pattern[];
-  async: boolean;
+export interface BreakStatement extends _Node {
+  type: 'BreakStatement';
+  label: Identifier | null;
 }
 
-export interface YieldExpression extends _Expression<'YieldExpression'> {
-  argument?: Expression | null;
-  delegate: boolean;
+export interface ImportExpression extends _Node {
+  type: 'ImportExpression';
+  source: Expression;
 }
 
-export interface TemplateLiteral extends _Expression<'TemplateLiteral'> {
-  quasis: TemplateElement[];
-  expressions: Expression[];
+export interface CallExpression extends _Node {
+  type: 'CallExpression';
+  callee: any; //Expression | Super;
+  arguments: (Expression | SpreadElement)[];
 }
 
-export interface TaggedTemplateExpression extends _Expression<'TaggedTemplateExpression'> {
-  tag: Expression;
-  quasi: TemplateLiteral;
+export interface CatchClause extends _Node {
+  type: 'CatchClause';
+  param: BindingName | null;
+  body: BlockStatement;
 }
 
-export interface TemplateElement extends _Node<'TemplateElement'> {
-  value: { cooked: string | null; raw: string };
-  tail: boolean;
+export interface ClassBody extends _Node {
+  type: 'ClassBody';
+  body: (ClassElement | FieldDefinition)[];
 }
 
-export interface AssignmentProperty extends _Node<'Property'> {
-  value: Pattern;
-  kind: 'init';
-  method: boolean; // false
-}
-
-export interface ObjectPattern extends _Pattern<'ObjectPattern'> {
-  properties: AssignmentProperty[];
-}
-
-export interface ArrayPattern extends _Pattern<'ArrayPattern'> {
-  elements: Pattern[];
-}
-
-export interface RestElement extends _Pattern<'RestElement'> {
-  argument: Pattern;
-}
-
-export interface AssignmentPattern extends _Pattern<'AssignmentPattern'> {
-  left: Pattern;
-  right: Expression;
-}
-
-export interface ClassBody extends _Node<'ClassBody'> {
-  body: MethodDefinition[];
-  decorators?: Decorator[] | null;
-}
-export interface PrivateMemberExpression extends _Node<'FieldDefinition'> {
-  object: Expression;
-  property: PrivateName;
-}
-export interface Decorator extends _Node<'Decorator'> {
-  expression: Expression;
-}
-export interface PrivateName extends _Node<'PrivateName'> {
-  name: string;
-}
-export interface FieldDefinition extends _Node<'FieldDefinition'> {
+export interface FieldDefinition extends _Node {
   key: PrivateName | Expression;
   value: any;
   decorators?: Decorator[] | null;
   computed: boolean;
   static: boolean;
 }
-export interface MethodDefinition extends _Node<'MethodDefinition'> {
-  key: Expression;
-  value: FunctionExpression;
-  kind: 'constructor' | 'method' | 'get' | 'set';
-  computed: boolean;
-  static: boolean;
-  decorators?: Decorator[] | null;
+export interface PrivateName extends _Node {
+  type: 'PrivateName';
+  name: string;
+}
+export interface ClassDeclaration extends ClassDeclarationBase {
+  type: 'ClassDeclaration';
 }
 
-export interface ClassDeclaration extends _Declaration<'ClassDeclaration'> {
-  id: Identifier | null;
-  superClass: Expression | null;
-  body: ClassBody;
-  decorators?: Decorator[] | null;
+export interface ClassExpression extends ClassDeclarationBase {
+  type: 'ClassExpression';
 }
 
-export interface ClassExpression extends _Expression<'ClassExpression'> {
-  id: Identifier | null;
-  superClass: Expression | null;
-  body: ClassBody;
-  decorators?: Decorator[] | null;
+export interface ClassProperty extends ClassPropertyBase {
+  type: 'ClassProperty';
 }
-export interface MetaProperty extends _Expression<'MetaProperty'> {
+
+export interface ConditionalExpression extends _Node {
+  type: 'ConditionalExpression';
+  test: Expression;
+  consequent: Expression;
+  alternate: Expression;
+}
+
+export interface ContinueStatement extends _Node {
+  type: 'ContinueStatement';
+  label: Identifier | null;
+}
+
+export interface DebuggerStatement extends _Node {
+  type: 'DebuggerStatement';
+}
+
+export interface Decorator extends _Node {
+  type: 'Decorator';
+  expression: LeftHandSideExpression;
+}
+
+export interface DoWhileStatement extends _Node {
+  type: 'DoWhileStatement';
+  test: Expression;
+  body: Statement;
+}
+
+export interface EmptyStatement extends _Node {
+  type: 'EmptyStatement';
+}
+
+export interface ExportAllDeclaration extends _Node {
+  type: 'ExportAllDeclaration';
+  source: Literal;
+}
+
+export interface ExportNamespaceSpecifier extends _Node {
+  type: 'ExportNamespaceSpecifier';
+  specifier: Identifier;
+}
+export interface ExportDefaultDeclaration extends _Node {
+  type: 'ExportDefaultDeclaration';
+  declaration: ExportDeclaration | Expression;
+}
+
+export interface ExportNamedDeclaration extends _Node {
+  type: 'ExportNamedDeclaration';
+  declaration: ExportDeclaration | null;
+  specifiers: (ExportNamespaceSpecifier | ExportSpecifier)[];
+  source: Literal | null;
+}
+
+export interface ExportSpecifier extends _Node {
+  type: 'ExportSpecifier';
+  local: Identifier;
+  exported: Identifier;
+}
+
+export interface ExpressionStatement extends _Node {
+  type: 'ExpressionStatement';
+  expression: Expression;
+}
+
+export interface ForInStatement extends _Node {
+  type: 'ForInStatement';
+  left: ForInitialiser;
+  right: Expression;
+  body: Statement;
+}
+
+export interface ForOfStatement extends _Node {
+  type: 'ForOfStatement';
+  left: ForInitialiser;
+  right: Expression;
+  body: Statement;
+  await: boolean;
+}
+
+export interface ForStatement extends _Node {
+  type: 'ForStatement';
+  init: Expression | ForInitialiser | null;
+  test: Expression | null;
+  update: Expression | null;
+  body: Statement;
+}
+
+export interface FunctionDeclaration extends FunctionDeclarationBase {
+  type: 'FunctionDeclaration';
+}
+
+export interface FunctionExpression extends FunctionDeclarationBase {
+  type: 'FunctionExpression';
+}
+
+export interface Identifier extends _Node {
+  type: 'Identifier';
+  name: string;
+  optional?: boolean;
+  decorators?: Decorator[];
+}
+
+export interface IfStatement extends _Node {
+  type: 'IfStatement';
+  test: Expression;
+  consequent: Statement;
+  alternate: Statement | null;
+}
+
+export interface Import extends _Node {
+  type: 'Import';
+}
+
+export interface ImportDeclaration extends _Node {
+  type: 'ImportDeclaration';
+  source: Expression;
+  specifiers: ImportClause[];
+}
+
+export interface ImportDefaultSpecifier extends _Node {
+  type: 'ImportDefaultSpecifier';
+  local: Identifier;
+}
+
+export interface ImportNamespaceSpecifier extends _Node {
+  type: 'ImportNamespaceSpecifier';
+  local: Identifier;
+}
+
+export interface ImportSpecifier extends _Node {
+  type: 'ImportSpecifier';
+  local: Identifier;
+  imported: Identifier;
+}
+
+export interface JSXAttribute extends _Node {
+  type: 'JSXAttribute';
+  name: JSXIdentifier;
+  value: Literal | JSXExpression | null;
+}
+
+export interface JSXClosingElement extends _Node {
+  type: 'JSXClosingElement';
+  name: JSXTagNameExpression;
+}
+
+export interface JSXClosingFragment extends _Node {
+  type: 'JSXClosingFragment';
+}
+
+export interface JSXElement extends _Node {
+  type: 'JSXElement';
+  openingElement: JSXOpeningElement;
+  closingElement: JSXClosingElement | null;
+  children: JSXChild[];
+}
+
+export interface JSXEmptyExpression extends _Node {
+  type: 'JSXEmptyExpression';
+}
+
+export interface JSXExpressionContainer extends _Node {
+  type: 'JSXExpressionContainer';
+  expression: Expression | JSXEmptyExpression;
+}
+
+export interface JSXFragment extends _Node {
+  type: 'JSXFragment';
+  openingFragment: JSXOpeningFragment;
+  closingFragment: JSXClosingFragment;
+  children: JSXChild[];
+}
+
+export interface JSXIdentifier extends _Node {
+  type: 'JSXIdentifier';
+  name: string;
+}
+
+export interface JSXMemberExpression extends _Node {
+  type: 'JSXMemberExpression';
+  object: JSXTagNameExpression;
+  property: JSXIdentifier;
+}
+
+export interface JSXOpeningElement extends _Node {
+  type: 'JSXOpeningElement';
+  selfClosing: boolean;
+  name: JSXTagNameExpression;
+  attributes: JSXAttribute[];
+}
+
+export interface JSXOpeningFragment extends _Node {
+  type: 'JSXOpeningFragment';
+}
+
+export interface JSXSpreadAttribute extends _Node {
+  type: 'JSXSpreadAttribute';
+  argument: Expression;
+}
+
+export interface JSXSpreadChild extends _Node {
+  type: 'JSXSpreadChild';
+  expression: Expression | JSXEmptyExpression;
+}
+
+export interface JSXText extends _Node {
+  type: 'JSXText';
+  value: string;
+  raw: string;
+}
+
+export interface LabeledStatement extends _Node {
+  type: 'LabeledStatement';
+  label: Identifier;
+  body: Statement;
+}
+
+export interface Literal extends _Node {
+  type: 'Literal';
+}
+
+export interface LogicalExpression extends BinaryExpressionBase {
+  type: 'LogicalExpression';
+}
+
+export interface MemberExpression extends _Node {
+  type: 'MemberExpression';
+  object: Expression | Super;
+  property: Expression | PrivateName;
+  computed?: boolean;
+}
+
+export type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
+
+export interface MetaProperty extends _Node {
+  type: 'MetaProperty';
   meta: Identifier;
   property: Identifier;
 }
 
-interface T_ModuleDeclaration {
-  ImportDeclaration: ImportDeclaration;
-  ExportNamedDeclaration: ExportNamedDeclaration;
-  ExportDefaultDeclaration: ExportDefaultDeclaration;
-  ExportAllDeclaration: ExportAllDeclaration;
+export interface MethodDefinition extends MethodDefinitionBase {
+  type: 'MethodDefinition';
 }
 
-export type ModuleDeclaration =
-  | ImportDeclaration
-  | ExportNamedDeclaration
-  | ExportDefaultDeclaration
-  | ExportAllDeclaration;
-interface _ModuleSpecifier<T extends string> extends _Node<T> {
-  local: Identifier;
+export interface NewExpression extends _Node {
+  type: 'NewExpression';
+  callee: LeftHandSideExpression;
+  arguments: Expression[];
 }
 
-export type ModuleSpecifier = ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier | ExportSpecifier;
-/*eslint-disable*/
-interface _ModuleDeclaration<T extends string> extends _Node<T> {}
-export interface ImportDeclaration extends _ModuleDeclaration<'ImportDeclaration'> {
-  specifiers: (ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier)[];
-  source: Literal;
-}
-export interface ImportSpecifier extends _ModuleSpecifier<'ImportSpecifier'> {
-  imported: Identifier;
+export interface ObjectExpression extends _Node {
+  type: 'ObjectExpression';
+  properties: ObjectLiteralElementLike[];
 }
 
-/*eslint-disable*/
-export interface ImportDefaultSpecifier extends _ModuleSpecifier<'ImportDefaultSpecifier'> {}
-/*eslint-disable*/
-export interface ImportNamespaceSpecifier extends _ModuleSpecifier<'ImportNamespaceSpecifier'> {}
-
-export interface ExportNamedDeclaration extends _ModuleDeclaration<'ExportNamedDeclaration'> {
-  declaration: Declaration | null;
-  specifiers: ExportSpecifier[];
-  source: Literal | null;
+export interface ObjectPattern extends _Node {
+  type: 'ObjectPattern';
+  properties: ObjectLiteralElementLike[];
+  decorators?: Decorator[];
 }
 
-export interface ExportSpecifier extends _ModuleSpecifier<'ExportSpecifier'> {
-  exported: Identifier;
-}
-export interface ExportDefaultDeclaration extends _ModuleDeclaration<'ExportDefaultDeclaration'> {
-  declaration: Declaration | Expression;
-}
-
-export interface ExportAllDeclaration extends _ModuleDeclaration<'ExportAllDeclaration'> {
-  source: Literal;
+export interface Program extends _Node {
+  type: 'Program';
+  body: Statement[];
+  sourceType: 'module' | 'script';
 }
 
-export interface AwaitExpression extends _Expression<'AwaitExpression'> {
+export interface ParenthesizedExpression extends _Node {
+  type: 'ParenthesizedExpression';
+  expression: Expression;
+}
+
+export interface Property extends _Node {
+  type: 'Property';
+  key: Expression;
+  value: Expression | AssignmentPattern | BindingName;
+  computed: boolean;
+  method: boolean;
+  shorthand: boolean;
+  kind: 'init' | 'get' | 'set';
+}
+
+export interface RestElement extends _Node {
+  type: 'RestElement';
+  argument: BindingName | Expression | PropertyName;
+  value?: AssignmentPattern;
+  decorators?: Decorator[];
+}
+
+export interface ReturnStatement extends _Node {
+  type: 'ReturnStatement';
+  argument: Expression | null;
+}
+
+export interface SequenceExpression extends _Node {
+  type: 'SequenceExpression';
+  expressions: Expression[];
+}
+
+export interface SpreadElement extends _Node {
+  type: 'SpreadElement';
+  argument: BindingName | Expression | PropertyName;
+}
+
+export interface Super extends _Node {
+  type: 'Super';
+}
+
+export interface SwitchCase extends _Node {
+  type: 'SwitchCase';
+  test: Expression | null;
+  consequent: Statement[];
+}
+
+export interface SwitchStatement extends _Node {
+  type: 'SwitchStatement';
+  discriminant: Expression;
+  cases: SwitchCase[];
+}
+
+export interface TaggedTemplateExpression extends _Node {
+  type: 'TaggedTemplateExpression';
+  tag: Expression;
+  quasi: TemplateLiteral;
+}
+
+export interface TemplateElement extends _Node {
+  type: 'TemplateElement';
+  value: {
+    raw: string;
+    cooked: string;
+  };
+  tail: boolean;
+}
+
+export interface TemplateLiteral extends _Node {
+  type: 'TemplateLiteral';
+  quasis: TemplateElement[];
+  expressions: Expression[];
+}
+
+export interface ThisExpression extends _Node {
+  type: 'ThisExpression';
+}
+
+export interface ThrowStatement extends _Node {
+  type: 'ThrowStatement';
+  argument: Statement | null;
+}
+
+export interface TryStatement extends _Node {
+  type: 'TryStatement';
+  block: BlockStatement;
+  handler: CatchClause | null;
+  finalizer: BlockStatement | null;
+}
+
+export type UnaryOperator = '-' | '+' | '!' | '~' | 'typeof' | 'void' | 'delete';
+export type UpdateOperator = '++' | '--';
+
+export interface UpdateExpression extends _Node {
+  type: 'UpdateExpression';
+  operator: UpdateOperator;
   argument: Expression;
+  prefix: boolean;
+}
+
+export interface UnaryExpression extends _Node {
+  operator: UnaryOperator;
+  prefix: true;
+  argument: Expression;
+}
+
+export interface VariableDeclaration extends _Node {
+  type: 'VariableDeclaration';
+  declarations: VariableDeclarator[];
+  kind: 'let' | 'const' | 'var';
+}
+
+export interface VariableDeclarator extends _Node {
+  type: 'VariableDeclarator';
+  id: Expression | BindingName;
+  init: Expression | null;
+  definite?: boolean;
+}
+
+export interface WhileStatement extends _Node {
+  type: 'WhileStatement';
+  test: Expression;
+  body: Statement;
+}
+
+export interface WithStatement extends _Node {
+  type: 'WithStatement';
+  object: Expression;
+  body: Statement;
+}
+
+export interface YieldExpression extends _Node {
+  type: 'YieldExpression';
+  delegate: boolean;
+  argument?: Expression | null;
 }
