@@ -25,13 +25,6 @@ describe('Lexer - skiphashbang', () => {
     });
   }
 
-  function fail(name: string, source: string) {
-    it(name, () => {
-      const parser = create(source);
-      t.throws(() => skipHashBang(parser));
-    });
-  }
-
   pass('skips nothing in an empty source', {
     source: '',
     newLine: false,

@@ -4,7 +4,6 @@ import { Chars } from '../chars';
 import { nextCP, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
 import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart } from './charClassifier';
 import { report, reportAt, Errors } from '../errors';
-import { unicodeLookup } from '../unicode';
 
 /**
  * Scans identifier

@@ -1,13 +1,20 @@
+import { CharTypes, CharFlags } from './charClassifier';
+import { Chars } from '../chars';
+import { Token } from '../token';
+import { ParserState, Context, Flags } from '../common';
+import { report, Errors } from '../errors';
+import { isIDStart } from '../unicode';
 import {
+  nextCP,
   skipSingleLineComment,
   skipMultiLineComment,
   LexerState,
-  nextCP,
   consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
   scanRegularExpression,
   scanTemplate,
   scanNumber,
+  NumberKind,
   scanString,
   scanIdentifier,
   scanUnicodeIdentifier,
@@ -17,12 +24,6 @@ import {
   consumeLineFeed,
   scanNewLine
 } from './';
-import { CharTypes, CharFlags } from './charClassifier';
-import { Chars } from '../chars';
-import { Token } from '../token';
-import { ParserState, Context, Flags } from '../common';
-import { report, Errors } from '../errors';
-import { isIDStart } from '../unicode';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
@@ -191,10 +192,10 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
     parser.colPos = parser.column;
     parser.linePos = parser.line;
 
-    const first = parser.nextCP;
+    const char = parser.nextCP;
 
-    if (first <= 0x7e) {
-      const token = TokenLookup[first];
+    if (char <= 0x7e) {
+      const token = TokenLookup[char];
 
       switch (token) {
         case Token.LeftParen:
@@ -234,11 +235,11 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // Look for a decimal number.
         case Token.NumericLiteral:
-          return scanNumber(parser, context, /* isFloat */ 0);
+          return scanNumber(parser, context, NumberKind.Decimal);
 
         // Look for a string or a template string
         case Token.StringLiteral:
-          return scanString(parser, context);
+          return scanString(parser, context, char);
 
         case Token.Template:
           return scanTemplate(parser, context);
@@ -487,7 +488,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `.`, `...`, `.123` (numeric literal)
         case Token.Period:
           nextCP(parser);
-          if ((CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0) return scanNumber(parser, context, /* isFloat */ 1);
+          if ((CharTypes[parser.nextCP] & CharFlags.Decimal) !== 0)
+            return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
           if (parser.nextCP === Chars.Period) {
             if (nextCP(parser) === Chars.Period) {
               nextCP(parser);
@@ -500,24 +502,24 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // unreachable
       }
     } else {
-      if ((first ^ Chars.LineSeparator) <= 1) {
+      if ((char ^ Chars.LineSeparator) <= 1) {
         state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
         scanNewLine(parser);
         continue;
       }
 
-      if (isIDStart(first) || consumeMultiUnitCodePoint(parser, first)) {
+      if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
         parser.tokenValue = '';
         return scanIdentifierSlowCase(parser, context, /* hasEscape */ 0, /* canBeKeyword */ 0);
       }
 
-      if (isExoticECMAScriptWhitespace(first)) {
+      if (isExoticECMAScriptWhitespace(char)) {
         nextCP(parser);
         continue;
       }
 
       // Invalid ASCII code point/unit
-      report(parser, Errors.IllegalCaracter, fromCodePoint(first));
+      report(parser, Errors.IllegalCaracter, fromCodePoint(char));
     }
   }
   return Token.EOF;

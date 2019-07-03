@@ -3132,7 +3132,6 @@ export function parseBinaryExpression(
     // 0 precedence will terminate binary expression parsing
     if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
     nextToken(parser, context | Context.AllowRegExp);
-    /*eslint-disable*/
     left = finishNode(parser, context, start, line, column, {
       type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
       left,
@@ -3147,7 +3146,7 @@ export function parseBinaryExpression(
         parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenIndex, parser.linePos, parser.colPos)
       ),
       operator: KeywordDescTable[t & Token.Type] as ESTree.LogicalOperator
-    } as ESTree.BinaryExpression | ESTree.LogicalExpression);
+    } as any);
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);

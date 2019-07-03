@@ -160,6 +160,7 @@ describe('src/lexer/scan', () => {
     [Context.OptionsRaw, Token.BigIntLiteral, '123456789000000000000000n', 123456789000000000000000],
     [Context.None, Token.BigIntLiteral, '0xfn', 15],
     [Context.None, Token.BigIntLiteral, '0n', 0],
+    [Context.None, Token.BigIntLiteral, '0098n', 98],
 
     // Numeric separators
     [Context.OptionsRaw, Token.NumericLiteral, '0', 0],
@@ -303,9 +304,17 @@ describe('src/lexer/scan', () => {
   fail('fails on 1_1_', '1_1_', Context.None);
   fail('fails on 1__1_', '1__1_', Context.None);
   fail('fails on 1_1__', '1_1__', Context.None);
+  fail('fails on 1_.1', '1_.1', Context.None);
+  fail('fails on 1_.1_', '1_.1_', Context.None);
   fail('fails on 0O1_', '0O1_', Context.None);
   fail('fails on 0O1__', '0O1__', Context.None);
   fail('fails on 0O1_1_', '0O1_1_', Context.None);
   fail('fails on 0O1__1_', '0O1__1_', Context.None);
   fail('fails on 0O1_1__', '0O1_1__', Context.None);
+  fail('fails on 09.3en', '09.3en', Context.None);
+  fail('fails on 09.3e-1n', '09.3e-n', Context.None);
+  fail('fails on 00123n', '00123n', Context.None);
+  fail('fails on .3e-1n', '.3e-1n', Context.None);
+  fail('fails on .3e-1n', '.3e-n', Context.None);
+  fail('fails on .0000000001n', '.0000000001n', Context.None);
 });

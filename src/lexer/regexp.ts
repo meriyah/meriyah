@@ -68,11 +68,12 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   }
 
   let mask = RegexFlags.Empty;
+  let char = parser.nextCP;
 
   const { index: flagStart } = parser;
 
-  loop: while (isIdentifierPart(parser.nextCP)) {
-    switch (parser.nextCP) {
+  while (isIdentifierPart(char)) {
+    switch (char) {
       case Chars.LowerG:
         if (mask & RegexFlags.Global) report(parser, Errors.DuplicateRegExpFlag, 'g');
         mask |= RegexFlags.Global;
@@ -107,7 +108,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         report(parser, Errors.UnexpectedTokenRegExpFlag);
     }
 
-    nextCP(parser);
+    char = nextCP(parser);
   }
 
   const flags = parser.source.slice(flagStart, parser.index);

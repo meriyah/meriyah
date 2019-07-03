@@ -16,14 +16,15 @@ export const enum Escape {
 /**
  * Scan a string token.
  */
-export function scanString(parser: ParserState, context: Context): any {
-  const quote = parser.nextCP;
+export function scanString(parser: ParserState, context: Context, quote: number): any {
   const { index: start } = parser;
+
   let ret: string | void = '';
-  let ch = nextCP(parser);
+  let char = nextCP(parser);
   let marker = parser.index; // Consumes the quote
-  while ((CharTypes[ch] & CharFlags.LineTerminator) === 0) {
-    if (ch === quote) {
+
+  while ((CharTypes[char] & CharFlags.LineTerminator) === 0) {
+    if (char === quote) {
       ret += parser.source.slice(marker, parser.index);
       nextCP(parser); // skip closing quote
       if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
@@ -31,14 +32,14 @@ export function scanString(parser: ParserState, context: Context): any {
       return Token.StringLiteral;
     }
 
-    if ((ch & 8) === 8 && ch === Chars.Backslash) {
+    if ((char & 8) === 8 && char === Chars.Backslash) {
       ret += parser.source.slice(marker, parser.index);
-      const ch = nextCP(parser);
+      char = nextCP(parser);
 
-      if (ch > 0x7e) {
-        ret += fromCodePoint(ch);
+      if (char > 0x7e) {
+        ret += fromCodePoint(char);
       } else {
-        const code = parseEscape(parser, context, ch);
+        const code = parseEscape(parser, context, char);
 
         if (code >= 0) ret += fromCodePoint(code);
         else handleStringError(parser, code as Escape, /* isTemplate */ 0);
@@ -47,7 +48,8 @@ export function scanString(parser: ParserState, context: Context): any {
     }
 
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
-    ch = nextCP(parser);
+
+    char = nextCP(parser);
   }
 
   report(parser, Errors.UnterminatedString);

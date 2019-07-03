@@ -10,6 +10,18 @@ export const enum LexerState {
   LastIsCR = 1 << 2
 }
 
+export const enum NumberKind {
+  ImplicitOctal = 1 << 0,
+  Binary = 1 << 1,
+  Octal = 1 << 2,
+  Hex = 1 << 3,
+  Decimal = 1 << 4,
+  DecimalWithLeadingZero = 1 << 5,
+  Float = 1 << 6,
+  DecimalNumberKind = Decimal | DecimalWithLeadingZero,
+  ValidBigIntKind = Binary | Decimal | Hex | Octal | DecimalWithLeadingZero
+}
+
 /**
  * Advances this lexer's current index.
  * @param parser The parser instance
@@ -19,25 +31,24 @@ export function nextCP(parser: ParserState): number {
   return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
 
-export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): boolean {
+export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 1 {
   // See: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-string-type
-  if ((hi & 0xfc00) !== Chars.LeadSurrogateMin) return false;
+  if ((hi & 0xfc00) !== Chars.LeadSurrogateMin) return 0;
   const lo = parser.source.charCodeAt(parser.index + 1);
-  if ((lo & 0xfc00) !== 0xdc00) return false;
-  hi = Chars.NonBMPMin + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
+  if ((lo & 0xfc00) !== 0xdc00) return 0;
+  hi = parser.nextCP = Chars.NonBMPMin + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
   if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
     report(parser, Errors.IllegalCaracter, fromCodePoint(hi));
   }
   parser.index++;
   parser.column++;
-  parser.nextCP = hi;
-  return true;
+  return 1;
 }
 
 /**
  * Use to consume a line feed instead of `scanNewLine`.
  */
-export function consumeLineFeed(parser: ParserState, lastIsCR: boolean) {
+export function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void {
   parser.nextCP = parser.source.charCodeAt(++parser.index);
   parser.flags |= Flags.NewLine;
   if (!lastIsCR) {
@@ -46,7 +57,7 @@ export function consumeLineFeed(parser: ParserState, lastIsCR: boolean) {
   }
 }
 
-export function scanNewLine(parser: ParserState) {
+export function scanNewLine(parser: ParserState): void {
   parser.flags |= Flags.NewLine;
   parser.nextCP = parser.source.charCodeAt(++parser.index);
   parser.column = 0;

@@ -1,6 +1,6 @@
 import { nextCP, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
 import { Chars } from '../chars';
-import { ParserState, Context } from '../common';
+import { ParserState } from '../common';
 import { report, Errors } from '../errors';
 
 /**
@@ -10,7 +10,7 @@ import { report, Errors } from '../errors';
  */
 export function skipHashBang(parser: ParserState): void {
   // HashbangComment ::
-  //   #!  SingleLineCommentChars
+  //   #!  SingleLineCommentChars_opt
   if (parser.nextCP === Chars.Hash && parser.source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
     skipSingleLineComment(parser, LexerState.None);
   }
