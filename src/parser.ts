@@ -3182,7 +3182,7 @@ export function parseYieldExpressionOrIdentifier(
   start: number,
   line: number,
   column: number
-): ESTree.YieldExpression | ESTree.Identifier | ESTree.ArrowFunctionExpression {
+): ESTree.IdentifierOrExpression | ESTree.YieldExpression {
   if (context & Context.InYieldContext) {
     // YieldExpression[In] :
     //     yield
@@ -3232,7 +3232,7 @@ export function parseAwaitExpressionOrIdentifier(
   start: number,
   line: number,
   column: number
-): ESTree.Identifier | ESTree.Expression | ESTree.ArrowFunctionExpression | ESTree.AwaitExpression {
+): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
   if (context & Context.InAwaitContext) {
     if (inNewExpression) {
       report(parser, Errors.InvalidAwaitIdent);
@@ -5183,7 +5183,7 @@ export function parseObjectLiteralOrPattern(
     } else {
       let state = PropertyKind.None;
       let key: ESTree.Expression | null = null;
-      let value: any;
+      let value;
 
       if (parser.token & (Token.IsIdentifier | (parser.token & Token.Keyword))) {
         key = parseIdentifier(parser, context, 0, tokenIndex, linePos, colPos);

@@ -20,11 +20,14 @@ export interface Position {
 export type Labels = any; // Fix!
 export type Scope = any; // Fix!
 
+export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
+
 export type ArgumentExpression =
   | ArrayExpression
   | AssignmentExpression
   | ConditionalExpression
   | Literal
+  | SpreadElement
   | BinaryExpression
   | LogicalExpression
   | SequenceExpression;
@@ -164,7 +167,10 @@ export type Expression =
   | RestElement
   | SequenceExpression
   | SpreadElement
-  | TSUnaryExpression ///
+  | AwaitExpression
+  | LeftHandSideExpression
+  | UnaryExpression
+  | UpdateExpression
   | YieldExpression;
 export type ForInitialiser = Expression | VariableDeclaration;
 export type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier;
@@ -203,6 +209,31 @@ export type PrimaryExpression =
   | Super
   | TemplateLiteral
   | ThisExpression;
+export type PrimaryExpressionExtended =
+  | ArrayExpression
+  | ArrowFunctionExpression
+  | ArrayPattern
+  | AwaitExpression
+  | Expression
+  | ClassExpression
+  | FunctionExpression
+  | Identifier
+  | Import
+  | JSXElement
+  | JSXFragment
+  | JSXOpeningElement
+  | Literal
+  | LiteralExpression
+  | MetaProperty
+  | ObjectExpression
+  | ObjectPattern
+  | PrivateName
+  | NewExpression
+  | Super
+  | TemplateLiteral
+  | ThisExpression
+  | UnaryExpression
+  | UpdateExpression;
 export type PropertyName = Identifier | Literal;
 export type Statement =
   | BlockStatement
@@ -222,15 +253,6 @@ export type Statement =
   | TryStatement
   | VariableDeclaration
   | WithStatement;
-
-// dsaf
-export type TSUnaryExpression = AwaitExpression | LeftHandSideExpression | UnaryExpression | UpdateExpression;
-
-interface BinaryExpressionBase extends _Node {
-  operator: string;
-  left: Expression;
-  right: Expression;
-}
 
 interface ClassDeclarationBase extends _Node {
   id: Identifier | null;
@@ -272,7 +294,6 @@ export interface ArrayExpression extends _Node {
 export interface ArrayPattern extends _Node {
   type: 'ArrayPattern';
   elements: Expression[];
-  decorators?: Decorator[];
 }
 
 export interface ArrowFunctionExpression extends _Node {
@@ -283,31 +304,36 @@ export interface ArrowFunctionExpression extends _Node {
   expression: boolean;
 }
 
-export interface AssignmentExpression extends BinaryExpressionBase {
+export interface AssignmentExpression extends _Node {
   type: 'AssignmentExpression';
+  operator: string;
+  left: Expression;
+  right: Expression;
 }
 
 export interface AssignmentPattern extends _Node {
   type: 'AssignmentPattern';
   left: BindingName;
   right?: Expression;
-  decorators?: Decorator[];
 }
 
 export interface AwaitExpression extends _Node {
   type: 'AwaitExpression';
-  argument: TSUnaryExpression;
+  argument: Expression;
 }
 
 export interface BigIntLiteral extends _Node {
   type: 'BigIntLiteral';
-  value: boolean | number | string | null;
+  value: number | null;
   bigint: string;
   raw?: string;
 }
 
-export interface BinaryExpression extends BinaryExpressionBase {
+export interface BinaryExpression extends _Node {
   type: 'BinaryExpression';
+  operator: string;
+  left: Expression;
+  right: Expression;
 }
 
 export interface BlockStatement extends _Node {
@@ -463,7 +489,6 @@ export interface Identifier extends _Node {
   type: 'Identifier';
   name: string;
   optional?: boolean;
-  decorators?: Decorator[];
 }
 
 export interface IfStatement extends _Node {
@@ -585,8 +610,11 @@ export interface Literal extends _Node {
   type: 'Literal';
 }
 
-export interface LogicalExpression extends BinaryExpressionBase {
+export interface LogicalExpression extends _Node {
   type: 'LogicalExpression';
+  operator: string;
+  left: Expression;
+  right: Expression;
 }
 
 export interface MemberExpression extends _Node {
@@ -622,7 +650,6 @@ export interface ObjectExpression extends _Node {
 export interface ObjectPattern extends _Node {
   type: 'ObjectPattern';
   properties: ObjectLiteralElementLike[];
-  decorators?: Decorator[];
 }
 
 export interface Program extends _Node {
@@ -650,7 +677,6 @@ export interface RestElement extends _Node {
   type: 'RestElement';
   argument: BindingName | Expression | PropertyName;
   value?: AssignmentPattern;
-  decorators?: Decorator[];
 }
 
 export interface ReturnStatement extends _Node {
