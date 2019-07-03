@@ -489,9 +489,9 @@
           parser.tokenIndex = parser.index;
           parser.colPos = parser.column;
           parser.linePos = parser.line;
-          const first = parser.nextCP;
-          if (first <= 0x7e) {
-              const token = TokenLookup[first];
+          const char = parser.nextCP;
+          if (char <= 0x7e) {
+              const token = TokenLookup[char];
               switch (token) {
                   case 67174411:
                   case 1073741840:
@@ -522,9 +522,9 @@
                   case 208897:
                       return scanIdentifier(parser, context);
                   case 134283266:
-                      return scanNumber(parser, context, 0);
+                      return scanNumber(parser, context, 16);
                   case 134283267:
-                      return scanString(parser, context);
+                      return scanString(parser, context, char);
                   case 132:
                       return scanTemplate(parser, context);
                   case 136:
@@ -736,7 +736,7 @@
                   case 67108877:
                       nextCP(parser);
                       if ((CharTypes[parser.nextCP] & 1024) !== 0)
-                          return scanNumber(parser, context, 1);
+                          return scanNumber(parser, context, 64 | 16);
                       if (parser.nextCP === 46) {
                           if (nextCP(parser) === 46) {
                               nextCP(parser);
@@ -748,20 +748,20 @@
               }
           }
           else {
-              if ((first ^ 8232) <= 1) {
+              if ((char ^ 8232) <= 1) {
                   state = (state | 4 | 1) ^ 4;
                   scanNewLine(parser);
                   continue;
               }
-              if (isIDStart(first) || consumeMultiUnitCodePoint(parser, first)) {
+              if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
                   parser.tokenValue = '';
                   return scanIdentifierSlowCase(parser, context, 0, 0);
               }
-              if (isExoticECMAScriptWhitespace(first)) {
+              if (isExoticECMAScriptWhitespace(char)) {
                   nextCP(parser);
                   continue;
               }
-              report(parser, 18, fromCodePoint(first));
+              report(parser, 18, fromCodePoint(char));
           }
       }
       return 1048576;
@@ -816,18 +816,17 @@
   }
   function consumeMultiUnitCodePoint(parser, hi) {
       if ((hi & 0xfc00) !== 55296)
-          return false;
+          return 0;
       const lo = parser.source.charCodeAt(parser.index + 1);
       if ((lo & 0xfc00) !== 0xdc00)
-          return false;
-      hi = 65536 + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
+          return 0;
+      hi = parser.nextCP = 65536 + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
       if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
           report(parser, 18, fromCodePoint(hi));
       }
       parser.index++;
       parser.column++;
-      parser.nextCP = hi;
-      return true;
+      return 1;
   }
   function consumeLineFeed(parser, lastIsCR) {
       parser.nextCP = parser.source.charCodeAt(++parser.index);
@@ -1042,14 +1041,13 @@
       return codePoint;
   }
 
-  function scanString(parser, context) {
-      const quote = parser.nextCP;
+  function scanString(parser, context, quote) {
       const { index: start } = parser;
       let ret = '';
-      let ch = nextCP(parser);
+      let char = nextCP(parser);
       let marker = parser.index;
-      while ((CharTypes[ch] & 512) === 0) {
-          if (ch === quote) {
+      while ((CharTypes[char] & 512) === 0) {
+          if (char === quote) {
               ret += parser.source.slice(marker, parser.index);
               nextCP(parser);
               if (context & 512)
@@ -1057,14 +1055,14 @@
               parser.tokenValue = ret;
               return 134283267;
           }
-          if ((ch & 8) === 8 && ch === 92) {
+          if ((char & 8) === 8 && char === 92) {
               ret += parser.source.slice(marker, parser.index);
-              const ch = nextCP(parser);
-              if (ch > 0x7e) {
-                  ret += fromCodePoint(ch);
+              char = nextCP(parser);
+              if (char > 0x7e) {
+                  ret += fromCodePoint(char);
               }
               else {
-                  const code = parseEscape(parser, context, ch);
+                  const code = parseEscape(parser, context, char);
                   if (code >= 0)
                       ret += fromCodePoint(code);
                   else
@@ -1074,7 +1072,7 @@
           }
           if (parser.index >= parser.end)
               report(parser, 14);
-          ch = nextCP(parser);
+          char = nextCP(parser);
       }
       report(parser, 14);
   }
@@ -1241,17 +1239,18 @@
       return ((hi & 0x3ff) << 10) | (lo & 0x3ff) | 0x10000;
   }
 
-  function scanNumber(parser, context, isFloat) {
-      let kind = 16;
+  function scanNumber(parser, context, kind) {
       let char = parser.nextCP;
       let value = 0;
       let digit = 9;
-      let atStart = !isFloat;
+      let atStart = kind & 64 ? 1 : 0;
       let digits = 0;
       let allowSeparator = 0;
-      if (isFloat) {
+      if (kind & 64) {
           value = '.' + scanDecimalDigitsOrSeparator(parser, char);
           char = parser.nextCP;
+          if (char === 110)
+              report(parser, 11);
       }
       else {
           if (char === 48) {
@@ -1261,9 +1260,8 @@
                   char = nextCP(parser);
                   while (CharTypes[char] & (4096 | 2097152)) {
                       if (char === 95) {
-                          if (!allowSeparator) {
+                          if (!allowSeparator)
                               report(parser, 154);
-                          }
                           allowSeparator = 0;
                           char = nextCP(parser);
                           continue;
@@ -1273,10 +1271,9 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (digits < 1)
-                      report(parser, 19);
-                  if (!allowSeparator)
-                      report(parser, 155);
+                  if (digits < 1 || !allowSeparator) {
+                      report(parser, digits < 1 ? 19 : 155);
+                  }
               }
               else if ((char | 32) === 111) {
                   kind = 4;
@@ -1295,10 +1292,9 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (digits < 1)
-                      report(parser, 9, `${8}`);
-                  if (!allowSeparator)
-                      report(parser, 155);
+                  if (digits < 1 || !allowSeparator) {
+                      report(parser, digits < 1 ? 19 : 155);
+                  }
               }
               else if ((char | 32) === 98) {
                   kind = 2;
@@ -1317,10 +1313,9 @@
                       digits++;
                       char = nextCP(parser);
                   }
-                  if (digits < 1)
-                      report(parser, 9, `${2}`);
-                  if (!allowSeparator)
-                      report(parser, 155);
+                  if (digits < 1 || !allowSeparator) {
+                      report(parser, digits < 1 ? 19 : 155);
+                  }
               }
               else if (CharTypes[char] & 2048) {
                   if (context & 1024)
@@ -1329,10 +1324,10 @@
                   while (CharTypes[char] & 1024) {
                       if (CharTypes[char] & 262144) {
                           kind = 32;
-                          atStart = false;
+                          atStart = 0;
                           break;
                       }
-                      value = value * 8 + (parser.nextCP - 48);
+                      value = value * 8 + (char - 48);
                       char = nextCP(parser);
                   }
               }
@@ -1347,7 +1342,7 @@
                   report(parser, 0);
               }
           }
-          if (kind & (16 | 32)) {
+          if (kind & 48) {
               if (atStart) {
                   while (digit >= 0 && CharTypes[char] & (1024 | 2097152)) {
                       if (char === 95) {
@@ -1364,7 +1359,7 @@
                   }
                   if (allowSeparator)
                       report(parser, 155);
-                  if (digit >= 0 && !isIdentifierStart(char) && char !== 46 && char !== 95) {
+                  if (digit >= 0 && !isIdentifierStart(char) && char !== 46) {
                       parser.tokenValue = value;
                       if (context & 512)
                           parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
@@ -1374,33 +1369,29 @@
               value += scanDecimalDigitsOrSeparator(parser, char);
               char = parser.nextCP;
               if (char === 46) {
-                  char = nextCP(parser);
-                  if (char === 95)
+                  if (nextCP(parser) === 95)
                       report(parser, 0);
-                  isFloat = 1;
-                  value += '.' + scanDecimalDigitsOrSeparator(parser, char);
+                  kind = 64;
+                  value += '.' + scanDecimalDigitsOrSeparator(parser, parser.nextCP);
                   char = parser.nextCP;
               }
           }
       }
       const end = parser.index;
       let isBigInt = 0;
-      if (char === 110) {
-          if (isFloat)
-              report(parser, 11);
+      if (char === 110 && kind & 62) {
           isBigInt = 1;
           char = nextCP(parser);
       }
       else {
-          if ((parser.nextCP | 32) === 101) {
+          if ((char | 32) === 101) {
               char = nextCP(parser);
-              if (CharTypes[char] & 32768) {
+              if (CharTypes[char] & 32768)
                   char = nextCP(parser);
-              }
-              const preNumericPart = parser.index;
+              const { index } = parser;
               if ((CharTypes[char] & 1024) < 1)
                   report(parser, 10);
-              value += parser.source.substring(end, preNumericPart) + scanDecimalDigitsOrSeparator(parser, char);
+              value += parser.source.substring(end, index) + scanDecimalDigitsOrSeparator(parser, char);
               char = parser.nextCP;
           }
       }
@@ -1416,7 +1407,7 @@
           kind & (1 | 2 | 8 | 4)
               ? value
               : kind & 32
-                  ? parseFloat(parser.source.slice(parser.tokenIndex, parser.index))
+                  ? parseFloat(parser.source.substring(parser.tokenIndex, parser.index))
                   : +value;
       if (context & 512)
           parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
@@ -1428,12 +1419,12 @@
       let ret = '';
       while (CharTypes[char] & (1024 | 2097152)) {
           if (char === 95) {
-              const preUnderscoreIndex = parser.index;
+              const { index } = parser;
               char = nextCP(parser);
               if (char === 95)
                   report(parser, 154);
               allowSeparator = 1;
-              ret += parser.source.substring(start, preUnderscoreIndex);
+              ret += parser.source.substring(start, index);
               start = parser.index;
               continue;
           }
@@ -1579,9 +1570,10 @@
       }
       const bodyEnd = parser.index - 1;
       let mask = 0;
+      let char = parser.nextCP;
       const { index: flagStart } = parser;
-      loop: while (isIdentifierPart(parser.nextCP)) {
-          switch (parser.nextCP) {
+      while (isIdentifierPart(char)) {
+          switch (char) {
               case 103:
                   if (mask & 2)
                       report(parser, 34, 'g');
@@ -1615,7 +1607,7 @@
               default:
                   report(parser, 33);
           }
-          nextCP(parser);
+          char = nextCP(parser);
       }
       const flags = parser.source.slice(flagStart, parser.index);
       const pattern = parser.source.slice(bodyStart, bodyEnd);
@@ -5536,7 +5528,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.2.4';
+  const version = '1.2.5';
 
   exports.parse = parse;
   exports.parseModule = parseModule;
