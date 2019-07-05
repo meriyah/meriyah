@@ -3,7 +3,7 @@ import { Token, KeywordDescTable } from './token';
 import * as ESTree from './estree';
 import { report, reportAt, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
-import { scanJSXIdentifier, scanJSXToken, scanJsxAttributeValue } from './lexer/jsx';
+import { scanJSXIdentifier, scanJSXToken, scanJSXAttributeValue } from './lexer/jsx';
 
 import {
   declareName,
@@ -8352,9 +8352,7 @@ function parseJsxAttribute(
   }
 
   if (parser.token === Token.Assign) {
-    scanJsxAttributeValue(parser, context);
-
-    switch (parser.token) {
+    switch (scanJSXAttributeValue(parser, context)) {
       case Token.StringLiteral:
         value = parseLiteral(parser, context, start, line, column);
         break;
