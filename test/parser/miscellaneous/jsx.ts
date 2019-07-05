@@ -34,7 +34,11 @@ describe('Miscellaneous - JSX', () => {
     ['<f><g/></ff>;', Context.OptionsJSX],
     // ['<:path />', Context.OptionsJSX],
     ['<path></svg:path>', Context.OptionsJSX],
-    // ['<foo.bar></foo.baz>', Context.OptionsJSX],
+    ['<foo.bar></foo.baz>', Context.OptionsJSX],
+    ['<chinese:alladinfoo.bar></foo.baz>', Context.OptionsJSX],
+    ['<foo:bar></foo.baz>', Context.OptionsJSX],
+    ['<foo:bar.baz></foo.baz:bar>', Context.OptionsJSX],
+    ['<foo.bar></foo.baz>', Context.OptionsJSX],
     ['var x = <div>one</div> /* intervening comment */ <div>two</div>;', Context.OptionsJSX],
     ['<tag className=></tag>', Context.OptionsJSX],
     //['<tag ... ></tag>', Context.OptionsJSX],
@@ -78,7 +82,7 @@ describe('Miscellaneous - JSX', () => {
     ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX]
   ]);
 
-  pass('Expressions - Additive (pass)', [
+  pass('Miscellaneous - JSX (pass)', [
     [
       `<!--ccc-->`,
       Context.OptionsJSX,

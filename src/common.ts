@@ -412,27 +412,19 @@ export function finishNode<T extends Node>(
 
 
   /** @internal */
-  export function isEqualTagName(lhs: any, rhs: any): boolean {
-    if (lhs.type !== rhs.type) {
-        return false;
-    }
-
-    if (lhs.type === 'JSXIdentifier') {
-        return lhs.name === rhs.name;
-    }
-
-    if (lhs.type === 'JSXNamespacedName') {
-      return lhs.namespace + ':' + lhs.name === rhs.namespace + ':' + rhs.name;
-    }
-
-    if (lhs.type === 'JSXMemberExpression') {
-      (
-        isEqualTagName(lhs.object, rhs.object) + '.' +
-        isEqualTagName(lhs.property, rhs.property)
-    ) === (
-      isEqualTagName(lhs.object, rhs.object) + '.' +
-        isEqualTagName(lhs.property, rhs.property)
-  )
-    }
-    return true;
+  export function isEqualTagName(elementName: any): any {
+    switch (elementName.type) {
+      case 'JSXIdentifier':
+          return elementName.name;
+      case 'JSXNamespacedName':
+          return elementName.namespace + ':' + elementName.name;
+      case 'JSXMemberExpression':
+          return (
+            isEqualTagName(elementName.object) + '.' +
+            isEqualTagName(elementName.property)
+          );
+          /* istanbul ignore next */
+      default:
+          // ignore
+  }
 }

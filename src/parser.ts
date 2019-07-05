@@ -8024,9 +8024,9 @@ function parseJSXRootElementOrFragment(
       parser.linePos,
       parser.colPos
     );
-    if (!isEqualTagName(closingElement.name, openingElement.name)) {
-      report(parser, Errors.Unexpected);
-    }
+    const open = isEqualTagName(openingElement.name);
+    const close = isEqualTagName(closingElement.name);
+    if (open !== close) report(parser, Errors.Unexpected);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8244,6 +8244,7 @@ function parseJSXElementName(
   column: number
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression {
   scanJSXIdentifier(parser);
+
   let name: any = parseJSXIdentifier(parser, context, start, line, column);
 
   // Namespace
