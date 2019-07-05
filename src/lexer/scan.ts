@@ -343,6 +343,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.Subtract;
         }
 
+        // `/`, `/=`, `/>`, '/*..*/'
         case Token.Divide: {
           nextCP(parser);
           if (parser.index < parser.end) {
@@ -390,6 +391,18 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 state = skipSingleLineComment(parser, state);
                 continue;
               }
+            } else if (next === Chars.Slash) {
+              if (!(context & Context.OptionsJSX)) break;
+              const index = parser.index + 1;
+
+              // Check that it's not a comment start.
+              if (index < parser.end) {
+                const next = parser.source.charCodeAt(index);
+                if (next === Chars.Asterisk || next === Chars.Slash) break;
+              }
+
+              nextCP(parser);
+              return Token.JSXClose;
             }
           }
           return Token.LessThan;

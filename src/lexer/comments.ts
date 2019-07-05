@@ -4,7 +4,7 @@ import { ParserState } from '../common';
 import { report, Errors } from '../errors';
 
 /**
- * Skips BOM and hasbang (stage 3)
+ * Skips hasbang (stage 3)
  *
  * @param parser  Parser object
  */
