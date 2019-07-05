@@ -8237,7 +8237,7 @@ function parseJSXElementName(
   line: number,
   column: number
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression {
-  scanJSXIdentifier(parser, context);
+  scanJSXIdentifier(parser);
   let elementName: any = parseJSXIdentifier(parser, context, 0, start, line, column);
 
   // Namespace
@@ -8245,7 +8245,7 @@ function parseJSXElementName(
 
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
-    scanJSXIdentifier(parser, context);
+    scanJSXIdentifier(parser);
     elementName = parseJSXMemberExpression(parser, context, elementName, start, line, column);
   }
   return elementName;
@@ -8344,7 +8344,7 @@ function parseJsxAttribute(
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
   if (parser.token === Token.LeftBrace) return parseJSXSpreadAttribute(parser, context, start, line, column);
 
-  scanJSXIdentifier(parser, context);
+  scanJSXIdentifier(parser);
   let value = null;
   let name = parseJSXIdentifier(parser, context, 0, start, line, column);
   if (parser.token === Token.Colon) {

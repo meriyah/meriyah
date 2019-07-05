@@ -58,12 +58,13 @@ export function scanJSXToken(parser: ParserState): Token {
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
   return (parser.token = Token.JSXText);
 }
-export function scanJSXIdentifier(parser: ParserState, _context: Context): Token {
+
+export function scanJSXIdentifier(parser: ParserState): Token {
   if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
     const firstCharPosition = parser.index;
 
     while (parser.index < parser.end) {
-      let char = parser.nextCP;
+      const char = parser.nextCP;
       if (
         char === Chars.Hyphen ||
         (firstCharPosition === parser.index ? isIdentifierStart(char) : isIdentifierPart(char))
