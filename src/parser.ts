@@ -8205,6 +8205,10 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
       type: 'JSXOpeningFragment'
     });
   }
+
+  if ((parser.token & Token.IsIdentifier) !== Token.IsIdentifier && (parser.token & Token.Keyword) !== Token.Keyword)
+    report(parser, Errors.Unexpected);
+
   const tagName = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
   const attributes = parseJSXAttributes(parser, context);
   const selfClosing = parser.token === Token.Divide;
