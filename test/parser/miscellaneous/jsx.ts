@@ -76,53 +76,180 @@ describe('Expressions - Additive', () => {
       }
     ],
     [
-      `<div {...[<div/>]} />`,
-      Context.OptionsJSX,
+      `<div>{111}</div>`,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 16,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 16,
             expression: {
               type: 'JSXElement',
-              children: [],
+              start: 0,
+              end: 16,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 5,
+                attributes: [],
                 name: {
                   type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
                   name: 'div'
                 },
+                selfClosing: false
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                start: 10,
+                end: 16,
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 12,
+                  end: 15,
+                  name: 'div'
+                }
+              },
+              children: [
+                {
+                  type: 'JSXExpressionContainer',
+                  start: 5,
+                  end: 10,
+                  expression: {
+                    type: 'Literal',
+                    start: 6,
+                    end: 9,
+                    value: 111,
+                    raw: '111'
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      `<div></div>`,
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 11,
+        body: [
+          {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 11,
+            expression: {
+              type: 'JSXElement',
+              start: 0,
+              end: 11,
+              openingElement: {
+                type: 'JSXOpeningElement',
+                start: 0,
+                end: 5,
+                attributes: [],
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
+                  name: 'div'
+                },
+                selfClosing: false
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                start: 5,
+                end: 11,
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 7,
+                  end: 10,
+                  name: 'div'
+                }
+              },
+              children: []
+            }
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      `<div {...[<div/>]} />`,
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 21,
+        body: [
+          {
+            type: 'ExpressionStatement',
+            start: 0,
+            end: 21,
+            expression: {
+              type: 'JSXElement',
+              start: 0,
+              end: 21,
+              openingElement: {
+                type: 'JSXOpeningElement',
+                start: 0,
+                end: 21,
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
+                    start: 5,
+                    end: 18,
                     argument: {
                       type: 'ArrayExpression',
+                      start: 9,
+                      end: 17,
                       elements: [
                         {
                           type: 'JSXElement',
-                          children: [],
+                          start: 10,
+                          end: 16,
                           openingElement: {
                             type: 'JSXOpeningElement',
+                            start: 10,
+                            end: 16,
+                            attributes: [],
                             name: {
                               type: 'JSXIdentifier',
+                              start: 11,
+                              end: 14,
                               name: 'div'
                             },
-                            attributes: [],
                             selfClosing: true
                           },
-                          closingElement: null
+                          closingElement: null,
+                          children: []
                         }
                       ]
                     }
                   }
                 ],
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
+                  name: 'div'
+                },
                 selfClosing: true
               },
-              closingElement: null
+              closingElement: null,
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -168,299 +295,449 @@ describe('Expressions - Additive', () => {
     ],
     [
       `<div >xxx{111}xxx{222}</div>`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 28,
             expression: {
               type: 'JSXElement',
-              children: [
-                {
-                  type: 'JSXText',
-                  value: 'xxx'
-                },
-                {
-                  type: 'JSXExpressionContainer',
-                  expression: {
-                    type: 'Literal',
-                    value: 111
-                  }
-                },
-                {
-                  type: 'JSXText',
-                  value: 'xxx'
-                },
-                {
-                  type: 'JSXExpressionContainer',
-                  expression: {
-                    type: 'Literal',
-                    value: 222
-                  }
-                }
-              ],
+              start: 0,
+              end: 28,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 6,
+                attributes: [],
                 name: {
                   type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
                   name: 'div'
                 },
-                attributes: [],
                 selfClosing: false
               },
               closingElement: {
                 type: 'JSXClosingElement',
+                start: 22,
+                end: 28,
                 name: {
                   type: 'JSXIdentifier',
+                  start: 24,
+                  end: 27,
                   name: 'div'
                 }
-              }
+              },
+              children: [
+                {
+                  type: 'JSXText',
+                  start: 6,
+                  end: 9,
+                  value: 'xxx',
+                  raw: 'xxx'
+                },
+                {
+                  type: 'JSXExpressionContainer',
+                  start: 9,
+                  end: 14,
+                  expression: {
+                    type: 'Literal',
+                    start: 10,
+                    end: 13,
+                    value: 111,
+                    raw: '111'
+                  }
+                },
+                {
+                  type: 'JSXText',
+                  start: 14,
+                  end: 17,
+                  value: 'xxx',
+                  raw: 'xxx'
+                },
+                {
+                  type: 'JSXExpressionContainer',
+                  start: 17,
+                  end: 22,
+                  expression: {
+                    type: 'Literal',
+                    start: 18,
+                    end: 21,
+                    value: 222,
+                    raw: '222'
+                  }
+                }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       `<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 67,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 67,
             expression: {
               type: 'JSXElement',
+              start: 0,
+              end: 67,
+              openingElement: {
+                type: 'JSXOpeningElement',
+                start: 0,
+                end: 6,
+                attributes: [],
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
+                  name: 'div'
+                },
+                selfClosing: false
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                start: 61,
+                end: 67,
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 63,
+                  end: 66,
+                  name: 'div'
+                }
+              },
               children: [
                 {
                   type: 'JSXText',
-                  value: 'xxx'
+                  start: 6,
+                  end: 9,
+                  value: 'xxx',
+                  raw: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
+                  start: 9,
+                  end: 53,
                   expression: {
                     type: 'FunctionExpression',
+                    start: 10,
+                    end: 52,
+                    id: null,
+                    generator: false,
+                    async: false,
                     params: [],
                     body: {
                       type: 'BlockStatement',
+                      start: 20,
+                      end: 52,
                       body: [
                         {
                           type: 'ReturnStatement',
+                          start: 21,
+                          end: 51,
                           argument: {
                             type: 'JSXElement',
-                            children: [
-                              {
-                                type: 'JSXText',
-                                value: '111'
-                              }
-                            ],
+                            start: 28,
+                            end: 51,
                             openingElement: {
                               type: 'JSXOpeningElement',
-                              name: {
-                                type: 'JSXIdentifier',
-                                name: 'div'
-                              },
+                              start: 28,
+                              end: 42,
                               attributes: [
                                 {
                                   type: 'JSXAttribute',
-                                  value: {
-                                    type: 'JSXExpressionContainer',
-                                    expression: {
-                                      type: 'Identifier',
-                                      name: 'aaa'
-                                    }
-                                  },
+                                  start: 33,
+                                  end: 41,
                                   name: {
                                     type: 'JSXIdentifier',
+                                    start: 33,
+                                    end: 35,
                                     name: 'id'
+                                  },
+                                  value: {
+                                    type: 'JSXExpressionContainer',
+                                    start: 36,
+                                    end: 41,
+                                    expression: {
+                                      type: 'Identifier',
+                                      start: 37,
+                                      end: 40,
+                                      name: 'aaa'
+                                    }
                                   }
                                 }
                               ],
+                              name: {
+                                type: 'JSXIdentifier',
+                                start: 29,
+                                end: 32,
+                                name: 'div'
+                              },
                               selfClosing: false
                             },
                             closingElement: {
                               type: 'JSXClosingElement',
+                              start: 45,
+                              end: 51,
                               name: {
                                 type: 'JSXIdentifier',
+                                start: 47,
+                                end: 50,
                                 name: 'div'
                               }
-                            }
+                            },
+                            children: [
+                              {
+                                type: 'JSXText',
+                                start: 42,
+                                end: 45,
+                                value: '111',
+                                raw: '111'
+                              }
+                            ]
                           }
                         }
                       ]
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
+                    }
                   }
                 },
                 {
                   type: 'JSXText',
-                  value: 'xxx'
+                  start: 53,
+                  end: 56,
+                  value: 'xxx',
+                  raw: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
+                  start: 56,
+                  end: 61,
                   expression: {
                     type: 'Literal',
-                    value: 222
+                    start: 57,
+                    end: 60,
+                    value: 222,
+                    raw: '222'
                   }
                 }
-              ],
-              openingElement: {
-                type: 'JSXOpeningElement',
-                name: {
-                  type: 'JSXIdentifier',
-                  name: 'div'
-                },
-                attributes: [],
-                selfClosing: false
-              },
-              closingElement: {
-                type: 'JSXClosingElement',
-                name: {
-                  type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       `<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 57,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 57,
             expression: {
               type: 'JSXElement',
-              children: [
-                {
-                  type: 'JSXElement',
-                  children: [
-                    {
-                      type: 'JSXText',
-                      value: '111'
-                    }
-                  ],
-                  openingElement: {
-                    type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    },
-                    attributes: [],
-                    selfClosing: false
-                  },
-                  closingElement: {
-                    type: 'JSXClosingElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
-                },
-                {
-                  type: 'JSXElement',
-                  children: [
-                    {
-                      type: 'JSXText',
-                      value: '222'
-                    }
-                  ],
-                  openingElement: {
-                    type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    },
-                    attributes: [],
-                    selfClosing: false
-                  },
-                  closingElement: {
-                    type: 'JSXClosingElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
-                },
-                {
-                  type: 'JSXElement',
-                  children: [
-                    {
-                      type: 'JSXText',
-                      value: '333'
-                    }
-                  ],
-                  openingElement: {
-                    type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    },
-                    attributes: [],
-                    selfClosing: false
-                  },
-                  closingElement: {
-                    type: 'JSXClosingElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
-                },
-                {
-                  type: 'JSXElement',
-                  children: [
-                    {
-                      type: 'JSXText',
-                      value: '444'
-                    }
-                  ],
-                  openingElement: {
-                    type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    },
-                    attributes: [],
-                    selfClosing: false
-                  },
-                  closingElement: {
-                    type: 'JSXClosingElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
-                }
-              ],
+              start: 0,
+              end: 57,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 4,
+                attributes: [],
                 name: {
                   type: 'JSXIdentifier',
+                  start: 1,
+                  end: 3,
                   name: 'ul'
                 },
-                attributes: [],
                 selfClosing: false
               },
               closingElement: {
                 type: 'JSXClosingElement',
+                start: 52,
+                end: 57,
                 name: {
                   type: 'JSXIdentifier',
+                  start: 54,
+                  end: 56,
                   name: 'ul'
                 }
-              }
+              },
+              children: [
+                {
+                  type: 'JSXElement',
+                  start: 4,
+                  end: 16,
+                  openingElement: {
+                    type: 'JSXOpeningElement',
+                    start: 4,
+                    end: 8,
+                    attributes: [],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 5,
+                      end: 7,
+                      name: 'li'
+                    },
+                    selfClosing: false
+                  },
+                  closingElement: {
+                    type: 'JSXClosingElement',
+                    start: 11,
+                    end: 16,
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 13,
+                      end: 15,
+                      name: 'li'
+                    }
+                  },
+                  children: [
+                    {
+                      type: 'JSXText',
+                      start: 8,
+                      end: 11,
+                      value: '111',
+                      raw: '111'
+                    }
+                  ]
+                },
+                {
+                  type: 'JSXElement',
+                  start: 16,
+                  end: 28,
+                  openingElement: {
+                    type: 'JSXOpeningElement',
+                    start: 16,
+                    end: 20,
+                    attributes: [],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 17,
+                      end: 19,
+                      name: 'li'
+                    },
+                    selfClosing: false
+                  },
+                  closingElement: {
+                    type: 'JSXClosingElement',
+                    start: 23,
+                    end: 28,
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 25,
+                      end: 27,
+                      name: 'li'
+                    }
+                  },
+                  children: [
+                    {
+                      type: 'JSXText',
+                      start: 20,
+                      end: 23,
+                      value: '222',
+                      raw: '222'
+                    }
+                  ]
+                },
+                {
+                  type: 'JSXElement',
+                  start: 28,
+                  end: 40,
+                  openingElement: {
+                    type: 'JSXOpeningElement',
+                    start: 28,
+                    end: 32,
+                    attributes: [],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 29,
+                      end: 31,
+                      name: 'li'
+                    },
+                    selfClosing: false
+                  },
+                  closingElement: {
+                    type: 'JSXClosingElement',
+                    start: 35,
+                    end: 40,
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 37,
+                      end: 39,
+                      name: 'li'
+                    }
+                  },
+                  children: [
+                    {
+                      type: 'JSXText',
+                      start: 32,
+                      end: 35,
+                      value: '333',
+                      raw: '333'
+                    }
+                  ]
+                },
+                {
+                  type: 'JSXElement',
+                  start: 40,
+                  end: 52,
+                  openingElement: {
+                    type: 'JSXOpeningElement',
+                    start: 40,
+                    end: 44,
+                    attributes: [],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 41,
+                      end: 43,
+                      name: 'li'
+                    },
+                    selfClosing: false
+                  },
+                  closingElement: {
+                    type: 'JSXClosingElement',
+                    start: 47,
+                    end: 52,
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 49,
+                      end: 51,
+                      name: 'li'
+                    }
+                  },
+                  children: [
+                    {
+                      type: 'JSXText',
+                      start: 44,
+                      end: 47,
+                      value: '444',
+                      raw: '444'
+                    }
+                  ]
+                }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -1719,48 +1996,68 @@ describe('Expressions - Additive', () => {
     ],
     [
       `<></>`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 5,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 5,
             expression: {
               type: 'JSXFragment',
-              children: [],
+              start: 0,
+              end: 5,
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
+                start: 0,
+                end: 2
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
+                type: 'JSXClosingFragment',
+                start: 2,
+                end: 5
+              },
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       `<    ></   >`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 12,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 12,
             expression: {
               type: 'JSXFragment',
-              children: [],
+              start: 0,
+              end: 12,
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
+                start: 0,
+                end: 6
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
+                type: 'JSXClosingFragment',
+                start: 6,
+                end: 12
+              },
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -3131,118 +3428,172 @@ describe('Expressions - Additive', () => {
 
     [
       '<n:a />',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 7,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 7,
             expression: {
               type: 'JSXElement',
-              children: [],
+              start: 0,
+              end: 7,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 7,
+                attributes: [],
                 name: {
                   type: 'JSXNamespacedName',
+                  start: 1,
+                  end: 4,
                   namespace: {
                     type: 'JSXIdentifier',
+                    start: 1,
+                    end: 2,
                     name: 'n'
                   },
                   name: {
                     type: 'JSXIdentifier',
+                    start: 3,
+                    end: 4,
                     name: 'a'
                   }
                 },
-                attributes: [],
                 selfClosing: true
               },
-              closingElement: null
+              closingElement: null,
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '<a:b><a:b></a:b></a:b>;',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 23,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 23,
             expression: {
               type: 'JSXElement',
-              children: [
-                {
-                  type: 'JSXElement',
-                  children: [],
-                  openingElement: {
-                    type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXNamespacedName',
-                      namespace: {
-                        type: 'JSXIdentifier',
-                        name: 'a'
-                      },
-                      name: {
-                        type: 'JSXIdentifier',
-                        name: 'b'
-                      }
-                    },
-                    attributes: [],
-                    selfClosing: false
-                  },
-                  closingElement: {
-                    type: 'JSXClosingElement',
-                    name: {
-                      type: 'JSXNamespacedName',
-                      namespace: {
-                        type: 'JSXIdentifier',
-                        name: 'a'
-                      },
-                      name: {
-                        type: 'JSXIdentifier',
-                        name: 'b'
-                      }
-                    }
-                  }
-                }
-              ],
+              start: 0,
+              end: 22,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 5,
+                attributes: [],
                 name: {
                   type: 'JSXNamespacedName',
+                  start: 1,
+                  end: 4,
                   namespace: {
                     type: 'JSXIdentifier',
+                    start: 1,
+                    end: 2,
                     name: 'a'
                   },
                   name: {
                     type: 'JSXIdentifier',
+                    start: 3,
+                    end: 4,
                     name: 'b'
                   }
                 },
-                attributes: [],
                 selfClosing: false
               },
               closingElement: {
                 type: 'JSXClosingElement',
+                start: 16,
+                end: 22,
                 name: {
                   type: 'JSXNamespacedName',
+                  start: 18,
+                  end: 21,
                   namespace: {
                     type: 'JSXIdentifier',
+                    start: 18,
+                    end: 19,
                     name: 'a'
                   },
                   name: {
                     type: 'JSXIdentifier',
+                    start: 20,
+                    end: 21,
                     name: 'b'
                   }
                 }
-              }
+              },
+              children: [
+                {
+                  type: 'JSXElement',
+                  start: 5,
+                  end: 16,
+                  openingElement: {
+                    type: 'JSXOpeningElement',
+                    start: 5,
+                    end: 10,
+                    attributes: [],
+                    name: {
+                      type: 'JSXNamespacedName',
+                      start: 6,
+                      end: 9,
+                      namespace: {
+                        type: 'JSXIdentifier',
+                        start: 6,
+                        end: 7,
+                        name: 'a'
+                      },
+                      name: {
+                        type: 'JSXIdentifier',
+                        start: 8,
+                        end: 9,
+                        name: 'b'
+                      }
+                    },
+                    selfClosing: false
+                  },
+                  closingElement: {
+                    type: 'JSXClosingElement',
+                    start: 10,
+                    end: 16,
+                    name: {
+                      type: 'JSXNamespacedName',
+                      start: 12,
+                      end: 15,
+                      namespace: {
+                        type: 'JSXIdentifier',
+                        start: 12,
+                        end: 13,
+                        name: 'a'
+                      },
+                      name: {
+                        type: 'JSXIdentifier',
+                        start: 14,
+                        end: 15,
+                        name: 'b'
+                      }
+                    }
+                  },
+                  children: []
+                }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -6600,65 +6951,93 @@ describe('Expressions - Additive', () => {
     ],
     [
       'var rewrites4 = <div a={() => this}></div>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 42,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 0,
+            end: 42,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 42,
+                id: {
+                  type: 'Identifier',
+                  start: 4,
+                  end: 13,
+                  name: 'rewrites4'
+                },
                 init: {
                   type: 'JSXElement',
-                  children: [],
+                  start: 16,
+                  end: 42,
                   openingElement: {
                     type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'div'
-                    },
+                    start: 16,
+                    end: 36,
                     attributes: [
                       {
                         type: 'JSXAttribute',
-                        value: {
-                          type: 'JSXExpressionContainer',
-                          expression: {
-                            type: 'ArrowFunctionExpression',
-                            body: {
-                              type: 'ThisExpression'
-                            },
-                            params: [],
-                            async: false,
-                            expression: true
-                          }
-                        },
+                        start: 21,
+                        end: 35,
                         name: {
                           type: 'JSXIdentifier',
+                          start: 21,
+                          end: 22,
                           name: 'a'
+                        },
+                        value: {
+                          type: 'JSXExpressionContainer',
+                          start: 23,
+                          end: 35,
+                          expression: {
+                            type: 'ArrowFunctionExpression',
+                            start: 24,
+                            end: 34,
+                            expression: true,
+                            async: false,
+                            params: [],
+                            body: {
+                              type: 'ThisExpression',
+                              start: 30,
+                              end: 34
+                            }
+                          }
                         }
                       }
                     ],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 17,
+                      end: 20,
+                      name: 'div'
+                    },
                     selfClosing: false
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
+                    start: 36,
+                    end: 42,
                     name: {
                       type: 'JSXIdentifier',
+                      start: 38,
+                      end: 41,
                       name: 'div'
                     }
-                  }
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'rewrites4'
+                  },
+                  children: []
                 }
               }
-            ]
+            ],
+            kind: 'var'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -6737,76 +7116,108 @@ describe('Expressions - Additive', () => {
     ],
     [
       'var rewrites6 = <div a={{p}}></div>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 35,
         body: [
           {
             type: 'VariableDeclaration',
-            kind: 'var',
+            start: 0,
+            end: 35,
             declarations: [
               {
                 type: 'VariableDeclarator',
+                start: 4,
+                end: 35,
+                id: {
+                  type: 'Identifier',
+                  start: 4,
+                  end: 13,
+                  name: 'rewrites6'
+                },
                 init: {
                   type: 'JSXElement',
-                  children: [],
+                  start: 16,
+                  end: 35,
                   openingElement: {
                     type: 'JSXOpeningElement',
-                    name: {
-                      type: 'JSXIdentifier',
-                      name: 'div'
-                    },
+                    start: 16,
+                    end: 29,
                     attributes: [
                       {
                         type: 'JSXAttribute',
+                        start: 21,
+                        end: 28,
+                        name: {
+                          type: 'JSXIdentifier',
+                          start: 21,
+                          end: 22,
+                          name: 'a'
+                        },
                         value: {
                           type: 'JSXExpressionContainer',
+                          start: 23,
+                          end: 28,
                           expression: {
                             type: 'ObjectExpression',
+                            start: 24,
+                            end: 27,
                             properties: [
                               {
                                 type: 'Property',
+                                start: 25,
+                                end: 26,
+                                method: false,
+                                shorthand: true,
+                                computed: false,
                                 key: {
                                   type: 'Identifier',
-                                  name: 'p'
-                                },
-                                value: {
-                                  type: 'Identifier',
+                                  start: 25,
+                                  end: 26,
                                   name: 'p'
                                 },
                                 kind: 'init',
-                                computed: false,
-                                method: false,
-                                shorthand: true
+                                value: {
+                                  type: 'Identifier',
+                                  start: 25,
+                                  end: 26,
+                                  name: 'p'
+                                }
                               }
                             ]
                           }
-                        },
-                        name: {
-                          type: 'JSXIdentifier',
-                          name: 'a'
                         }
                       }
                     ],
+                    name: {
+                      type: 'JSXIdentifier',
+                      start: 17,
+                      end: 20,
+                      name: 'div'
+                    },
                     selfClosing: false
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
+                    start: 29,
+                    end: 35,
                     name: {
                       type: 'JSXIdentifier',
+                      start: 31,
+                      end: 34,
                       name: 'div'
                     }
-                  }
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'rewrites6'
+                  },
+                  children: []
                 }
               }
-            ]
+            ],
+            kind: 'var'
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -8629,44 +9040,62 @@ describe('Expressions - Additive', () => {
     ],
     [
       '<img width={320}/>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 18,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 18,
             expression: {
               type: 'JSXElement',
-              children: [],
+              start: 0,
+              end: 18,
               openingElement: {
                 type: 'JSXOpeningElement',
-                name: {
-                  type: 'JSXIdentifier',
-                  name: 'img'
-                },
+                start: 0,
+                end: 18,
                 attributes: [
                   {
                     type: 'JSXAttribute',
-                    value: {
-                      type: 'JSXExpressionContainer',
-                      expression: {
-                        type: 'Literal',
-                        value: 320
-                      }
-                    },
+                    start: 5,
+                    end: 16,
                     name: {
                       type: 'JSXIdentifier',
+                      start: 5,
+                      end: 10,
                       name: 'width'
+                    },
+                    value: {
+                      type: 'JSXExpressionContainer',
+                      start: 11,
+                      end: 16,
+                      expression: {
+                        type: 'Literal',
+                        start: 12,
+                        end: 15,
+                        value: 320
+                      }
                     }
                   }
                 ],
+                name: {
+                  type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
+                  name: 'img'
+                },
                 selfClosing: true
               },
-              closingElement: null
+              closingElement: null,
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -8747,102 +9176,149 @@ describe('Expressions - Additive', () => {
 
     [
       '<SolarSystem.Earth.America.USA.California.mountain-view />',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 58,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 58,
             expression: {
               type: 'JSXElement',
-              children: [],
+              start: 0,
+              end: 58,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 58,
+                attributes: [],
                 name: {
                   type: 'JSXMemberExpression',
+                  start: 1,
+                  end: 55,
                   object: {
                     type: 'JSXMemberExpression',
+                    start: 1,
+                    end: 41,
                     object: {
                       type: 'JSXMemberExpression',
+                      start: 1,
+                      end: 30,
                       object: {
                         type: 'JSXMemberExpression',
+                        start: 1,
+                        end: 26,
                         object: {
                           type: 'JSXMemberExpression',
+                          start: 1,
+                          end: 18,
                           object: {
                             type: 'JSXIdentifier',
+                            start: 1,
+                            end: 12,
                             name: 'SolarSystem'
                           },
                           property: {
                             type: 'JSXIdentifier',
+                            start: 13,
+                            end: 18,
                             name: 'Earth'
                           }
                         },
                         property: {
                           type: 'JSXIdentifier',
+                          start: 19,
+                          end: 26,
                           name: 'America'
                         }
                       },
                       property: {
                         type: 'JSXIdentifier',
+                        start: 27,
+                        end: 30,
                         name: 'USA'
                       }
                     },
                     property: {
                       type: 'JSXIdentifier',
+                      start: 31,
+                      end: 41,
                       name: 'California'
                     }
                   },
                   property: {
                     type: 'JSXIdentifier',
+                    start: 42,
+                    end: 55,
                     name: 'mountain-view'
                   }
                 },
-                attributes: [],
                 selfClosing: true
               },
-              closingElement: null
+              closingElement: null,
+              children: []
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
       '<div> foo:bar</div>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 19,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 19,
             expression: {
               type: 'JSXElement',
-              children: [
-                {
-                  type: 'JSXText',
-                  value: ' foo:bar'
-                }
-              ],
+              start: 0,
+              end: 19,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 5,
+                attributes: [],
                 name: {
                   type: 'JSXIdentifier',
+                  start: 1,
+                  end: 4,
                   name: 'div'
                 },
-                attributes: [],
                 selfClosing: false
               },
               closingElement: {
                 type: 'JSXClosingElement',
+                start: 13,
+                end: 19,
                 name: {
                   type: 'JSXIdentifier',
+                  start: 15,
+                  end: 18,
                   name: 'div'
                 }
-              }
+              },
+              children: [
+                {
+                  type: 'JSXText',
+                  start: 5,
+                  end: 13,
+                  value: ' foo:bar',
+                  raw: ' foo:bar'
+                }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [
@@ -9861,59 +10337,83 @@ describe('Expressions - Additive', () => {
     ],
     [
       '<title>{ {caption} }</title>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
-        sourceType: 'script',
+        start: 0,
+        end: 28,
         body: [
           {
             type: 'ExpressionStatement',
+            start: 0,
+            end: 28,
             expression: {
               type: 'JSXElement',
-              children: [
-                {
-                  type: 'JSXExpressionContainer',
-                  expression: {
-                    type: 'ObjectExpression',
-                    properties: [
-                      {
-                        type: 'Property',
-                        key: {
-                          type: 'Identifier',
-                          name: 'caption'
-                        },
-                        value: {
-                          type: 'Identifier',
-                          name: 'caption'
-                        },
-                        kind: 'init',
-                        computed: false,
-                        method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ],
+              start: 0,
+              end: 28,
               openingElement: {
                 type: 'JSXOpeningElement',
+                start: 0,
+                end: 7,
+                attributes: [],
                 name: {
                   type: 'JSXIdentifier',
+                  start: 1,
+                  end: 6,
                   name: 'title'
                 },
-                attributes: [],
                 selfClosing: false
               },
               closingElement: {
                 type: 'JSXClosingElement',
+                start: 20,
+                end: 28,
                 name: {
                   type: 'JSXIdentifier',
+                  start: 22,
+                  end: 27,
                   name: 'title'
                 }
-              }
+              },
+              children: [
+                {
+                  type: 'JSXExpressionContainer',
+                  start: 7,
+                  end: 20,
+                  expression: {
+                    type: 'ObjectExpression',
+                    start: 9,
+                    end: 18,
+                    properties: [
+                      {
+                        type: 'Property',
+                        start: 10,
+                        end: 17,
+                        method: false,
+                        shorthand: true,
+                        computed: false,
+                        key: {
+                          type: 'Identifier',
+                          start: 10,
+                          end: 17,
+                          name: 'caption'
+                        },
+                        kind: 'init',
+                        value: {
+                          type: 'Identifier',
+                          start: 10,
+                          end: 17,
+                          name: 'caption'
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           }
-        ]
+        ],
+        sourceType: 'script'
       }
     ],
     [

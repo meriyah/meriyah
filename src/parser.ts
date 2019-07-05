@@ -8052,7 +8052,7 @@ function parseJSXClosingElement(
   column: number
 ): ESTree.JSXClosingElement {
   consume(parser, context, Token.JSXClose);
-  const name = parseJSXElementName(parser, context, start, line, column);
+  const name = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
   if (isJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
@@ -8108,6 +8108,8 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
   const children: ESTree.JSXElement[] = [];
   while (parser.token !== Token.JSXClose) {
     parser.index = parser.tokenIndex = parser.startIndex;
+    parser.column = parser.colPos = parser.startColumn;
+    parser.line = parser.linePos = parser.startLine;
     scanJSXToken(parser);
     children.push(parseJSXChild(parser, context, parser.tokenIndex, parser.linePos, parser.colPos));
   }
@@ -8199,8 +8201,8 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
       type: 'JSXOpeningFragment'
     });
   }
-  const tagName = parseJSXElementName(parser, context, start, line, column);
-  const attributes = parseJSXAttributes(parser, context, start, line, column);
+  const tagName = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
+  const attributes = parseJSXAttributes(parser, context);
   const selfClosing = parser.token === Token.Divide;
   if (parser.token === Token.GreaterThan) {
     scanJSXToken(parser);
@@ -8238,17 +8240,17 @@ function parseJSXElementName(
   column: number
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression {
   scanJSXIdentifier(parser);
-  let elementName: any = parseJSXIdentifier(parser, context, 0, start, line, column);
+  let name: any = parseJSXIdentifier(parser, context, start, line, column);
 
   // Namespace
-  if (parser.token === Token.Colon) return parseJSXNamespacedName(parser, context, elementName, start, line, column);
+  if (parser.token === Token.Colon) return parseJSXNamespacedName(parser, context, name, start, line, column);
 
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
     scanJSXIdentifier(parser);
-    elementName = parseJSXMemberExpression(parser, context, elementName, start, line, column);
+    name = parseJSXMemberExpression(parser, context, name, start, line, column);
   }
-  return elementName;
+  return name;
 }
 
 /**
@@ -8268,7 +8270,7 @@ export function parseJSXMemberExpression(
   line: number,
   column: number
 ): ESTree.JSXMemberExpression {
-  const property = parseJSXIdentifier(parser, context, 0, start, line, column);
+  const property = parseJSXIdentifier(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXMemberExpression',
     object,
@@ -8287,15 +8289,12 @@ export function parseJSXMemberExpression(
  */
 export function parseJSXAttributes(
   parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number
+  context: Context
 ): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] {
   const attributes: (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] = [];
   while (parser.index < parser.end) {
     if (parser.token === Token.Divide || parser.token === Token.GreaterThan) break;
-    attributes.push(parseJsxAttribute(parser, context, start, line, column));
+    attributes.push(parseJsxAttribute(parser, context, parser.tokenIndex, parser.linePos, parser.colPos));
   }
   return attributes;
 }
@@ -8346,21 +8345,24 @@ function parseJsxAttribute(
 
   scanJSXIdentifier(parser);
   let value = null;
-  let name = parseJSXIdentifier(parser, context, 0, start, line, column);
+  let name = parseJSXIdentifier(parser, context, start, line, column);
+
   if (parser.token === Token.Colon) {
     name = parseJSXNamespacedName(parser, context, name, start, line, column);
   }
 
   if (parser.token === Token.Assign) {
-    switch (scanJSXAttributeValue(parser, context)) {
+    const token = scanJSXAttributeValue(parser, context);
+    const { tokenIndex, linePos, colPos } = parser;
+    switch (token) {
       case Token.StringLiteral:
-        value = parseLiteral(parser, context, start, line, column);
+        value = parseLiteral(parser, context, tokenIndex, linePos, colPos);
         break;
       case Token.LessThan:
-        value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, start, line, column);
+        value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 1, start, line, column);
+        value = parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -8393,7 +8395,7 @@ function parseJSXNamespacedName(
   column: number
 ): any {
   consume(parser, context, Token.Colon);
-  const name = parseJSXIdentifier(parser, context, 0, start, line, column);
+  const name = parseJSXIdentifier(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXNamespacedName',
     namespace,
@@ -8420,14 +8422,15 @@ function parseJSXExpressionContainer(
   column: number
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
   consume(parser, context, Token.LeftBrace);
-  if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, start, line, column);
+  const { tokenIndex, linePos, colPos } = parser;
+  if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
 
   let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
 
   if (parser.token !== Token.RightBrace) {
-    expression = parseExpression(parser, context, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+    expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
   } else {
-    expression = parseJSXEmptyExpression(parser, context, start, line, column);
+    expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
   }
   if (isJSXChild) {
     consume(parser, context, Token.RightBrace);
@@ -8492,7 +8495,6 @@ function parseJSXEmptyExpression(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
  * @param start
  * @param line
  * @param column
@@ -8500,7 +8502,6 @@ function parseJSXEmptyExpression(
 export function parseJSXIdentifier(
   parser: ParserState,
   context: Context,
-  isPattern: 0 | 1,
   start: number,
   line: number,
   column: number
@@ -8508,21 +8509,8 @@ export function parseJSXIdentifier(
   const { tokenValue } = parser;
   nextToken(parser, context);
 
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsIdentifierPattern
-      ? {
-          type: 'JSXIdentifier',
-          name: tokenValue,
-          pattern: isPattern === 1
-        }
-      : {
-          type: 'JSXIdentifier',
-          name: tokenValue
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'JSXIdentifier',
+    name: tokenValue
+  });
 }

@@ -14,6 +14,8 @@ import { scanSingleToken } from './scan';
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
   parser.startIndex = parser.index;
+  parser.startColumn = parser.column;
+  parser.startLine = parser.line;
   parser.token =
     CharTypes[parser.nextCP] & CharFlags.StringLiteral
       ? scanJSXString(parser)
