@@ -1,8 +1,8 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
-describe('Expressions - Additive', () => {
-  fail('Declarations - Async Function (fail)', [
+describe('Miscellaneous - JSX', () => {
+  fail('Miscellaneous - JSX (fail)', [
     ['<', Context.None],
     ['>', Context.None],
     ['<>', Context.None],
@@ -16,18 +16,35 @@ describe('Expressions - Additive', () => {
     ['</>', Context.OptionsJSX],
     ['<><//>', Context.OptionsJSX],
     ['<p>', Context.OptionsJSX],
-    //['<p></q>', Context.OptionsJSX],
+    ['<p></q>', Context.OptionsJSX],
     ['<p></>', Context.OptionsJSX],
     ['<p><q></p>', Context.OptionsJSX],
+    // ['<1/>', Context.OptionsJSX],
+    ['<div>one</div><div>two</div>', Context.OptionsJSX],
+    ['</>', Context.OptionsJSX],
+    // ['<a:b.c />', Context.OptionsJSX],
+    ['<a/!', Context.OptionsJSX],
+    ['<img src={}>', Context.OptionsJSX],
+    ['<a b=: />', Context.OptionsJSX],
+    ['<xyz. />', Context.OptionsJSX],
+    // ['<.abc />', Context.OptionsJSX],
+    ['<Foo></Bar>', Context.OptionsJSX],
+    ['<dd><e></e></dddd>;', Context.OptionsJSX],
+    ['<{...b} {...a }>{...b}</{...b}>', Context.OptionsJSX],
+    ['<f><g/></ff>;', Context.OptionsJSX],
+    // ['<:path />', Context.OptionsJSX],
+    ['<path></svg:path>', Context.OptionsJSX],
+    // ['<foo.bar></foo.baz>', Context.OptionsJSX],
+    ['var x = <div>one</div> /* intervening comment */ <div>two</div>;', Context.OptionsJSX],
     ['<tag className=></tag>', Context.OptionsJSX],
     //['<tag ... ></tag>', Context.OptionsJSX],
     // ['<tag ...className></tag>', Context.OptionsJSX],
     ['<tag ${"className"}="tag"></tag>', Context.OptionsJSX],
     ['<a: />;', Context.OptionsJSX],
     //['<:a />;', Context.OptionsJSX],
-    // ['<a></b>', Context.OptionsJSX],
+    ['<a></b>', Context.OptionsJSX],
     ['<a foo="bar;', Context.OptionsJSX],
-    //['<a:b></b>;', Context.OptionsJSX],
+    ['<a:b></b>;', Context.OptionsJSX],
     ['<a.b:c></a.b:c>;', Context.OptionsJSX],
     ['<a[foo]></a[foo]>;', Context.OptionsJSX],
     ['<a["foo"]></a["foo"]>;', Context.OptionsJSX],
@@ -41,10 +58,8 @@ describe('Expressions - Additive', () => {
     // ['<a .../*hai*/asdf/>;', Context.OptionsJSX],
     [' > ;', Context.OptionsJSX],
     ['<a>;</>;', Context.OptionsJSX],
-    //['<a b></b>;', Context.OptionsJSX],
-    // ['<a b c></a>;', Context.OptionsJSX],
-    // ['<a.b c></a.b>;', Context.OptionsJSX],
-    // ['<a.b.c></a>;', Context.OptionsJSX],
+    ['<a b></b>;', Context.OptionsJSX],
+    ['<a.b.c></a>;', Context.OptionsJSX],
     [' < .a > ;', Context.OptionsJSX],
     ['a > ;', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
@@ -54,7 +69,6 @@ describe('Expressions - Additive', () => {
     ['<div className"app">', Context.OptionsJSX],
     ['<div {props} />', Context.OptionsJSX],
     ['<a>></a>', Context.OptionsJSX],
-    //['<a>}</a>', Context.OptionsJSX],
     ['<div {...props}>stuff</div {...props}>', Context.OptionsJSX],
     ['<a><</a>', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
@@ -62,7 +76,6 @@ describe('Expressions - Additive', () => {
     ['[foo] > ;', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
     ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX]
-    //['<a>{"str"};}</a>;', Context.OptionsJSX],
   ]);
 
   pass('Expressions - Additive (pass)', [

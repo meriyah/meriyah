@@ -409,3 +409,30 @@ export function finishNode<T extends Node>(
 
   return node;
 }
+
+
+  /** @internal */
+  export function isEqualTagName(lhs: any, rhs: any): boolean {
+    if (lhs.type !== rhs.type) {
+        return false;
+    }
+
+    if (lhs.type === 'JSXIdentifier') {
+        return lhs.name === rhs.name;
+    }
+
+    if (lhs.type === 'JSXNamespacedName') {
+      return lhs.namespace + ':' + lhs.name === rhs.namespace + ':' + rhs.name;
+    }
+
+    if (lhs.type === 'JSXMemberExpression') {
+      (
+        isEqualTagName(lhs.object, rhs.object) + '.' +
+        isEqualTagName(lhs.property, rhs.property)
+    ) === (
+      isEqualTagName(lhs.object, rhs.object) + '.' +
+        isEqualTagName(lhs.property, rhs.property)
+  )
+    }
+    return true;
+}

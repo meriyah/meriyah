@@ -4,6 +4,7 @@ import * as ESTree from './estree';
 import { report, reportAt, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
 import { scanJSXIdentifier, scanJSXToken, scanJSXAttributeValue } from './lexer/jsx';
+import { isEqualTagName } from './common';
 
 import {
   declareName,
@@ -8023,6 +8024,9 @@ function parseJSXRootElementOrFragment(
       parser.linePos,
       parser.colPos
     );
+    if (!isEqualTagName(closingElement.name, openingElement.name)) {
+      report(parser, Errors.Unexpected);
+    }
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8315,7 +8319,7 @@ export function parseJSXSpreadAttribute(
   line: number,
   column: number
 ): ESTree.JSXSpreadAttribute {
-  consume(parser, context, Token.LeftBrace);
+  nextToken(parser, context);
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(parser, context, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
   consume(parser, context, Token.RightBrace);
@@ -8342,7 +8346,6 @@ function parseJsxAttribute(
   column: number
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
   if (parser.token === Token.LeftBrace) return parseJSXSpreadAttribute(parser, context, start, line, column);
-
   scanJSXIdentifier(parser);
   let value = null;
   let name = parseJSXIdentifier(parser, context, start, line, column);
