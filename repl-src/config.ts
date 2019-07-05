@@ -14,7 +14,7 @@ export const LEFT_MENU_CONFIG = [
         selected: false
       },
       { title: "Index-based range", value: "ranges", selected: false },
-      { title: "JSX", value: "jsx", selected: false, disabled: true },
+      { title: "JSX", value: "jsx", selected: false },
       { title: "Line/column location", value: "loc", selected: false },
       { title: "Lexical scope tracking", value: "lexical", selected: false },
       { title: "Preserve parens", value: "preserveParens", selected: false },
