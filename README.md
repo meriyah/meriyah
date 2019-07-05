@@ -18,6 +18,7 @@
 * Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
 * Support TC39 proposals via option
 * Support for additional ECMAScript features for Web Browsers
+* JSX support via option
 * Optionally track syntactic node locations
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
@@ -72,6 +73,8 @@ This is the available options:
   source: false;
   // Distinguish Identifier from IdentifierPattern
   identifierPattern: false;
+   // Enable React JSX parsing
+  jsx: false
 }
 ```
 
