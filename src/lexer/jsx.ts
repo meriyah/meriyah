@@ -52,7 +52,7 @@ export function scanJSXToken(parser: ParserState): Token {
 
   if (parser.index >= parser.end) return (parser.token = Token.EOF);
 
-  let char = parser.source.charCodeAt(parser.index);
+  const char = parser.source.charCodeAt(parser.index);
 
   if (char === Chars.LessThan) {
     if (parser.source.charCodeAt(parser.index + 1) === Chars.Slash) {
