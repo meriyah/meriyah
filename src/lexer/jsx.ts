@@ -1,4 +1,4 @@
-import { CharFlags, CharTypes, isIdentifierStart, isIdentifierPart } from './charClassifier';
+import { CharFlags, CharTypes } from './charClassifier';
 import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context } from '../common';
@@ -81,18 +81,15 @@ export function scanJSXToken(parser: ParserState): Token {
 
 /**
  * Scans JSX identifier
+ *
  * @param parser The parser instance
- * @param context Context masks
  */
 export function scanJSXIdentifier(parser: ParserState): Token {
   if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
-
-    while (parser.index < parser.end) {
-      const char = parser.nextCP;
-      if (char === Chars.Hyphen || (index === parser.index ? isIdentifierStart(char) : isIdentifierPart(char))) {
-        nextCP(parser);
-      } else break;
+    let char = parser.nextCP;
+    while ((CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) !== 0) {
+      char = nextCP(parser);
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }

@@ -87,8 +87,209 @@ describe('Miscellaneous - JSX', () => {
       }
     ],
     [
+      `class Columns extends React.Component {
+        render() {
+          return (
+            <>
+              <td>Hello</td>
+              <td>World</td>
+            </>
+          );
+        }
+      }`,
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'Columns',
+              start: 6,
+              end: 13
+            },
+            superClass: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'React',
+                start: 22,
+                end: 27
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'Component',
+                start: 28,
+                end: 37
+              },
+              start: 22,
+              end: 37
+            },
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: false,
+                  key: {
+                    type: 'Identifier',
+                    name: 'render',
+                    start: 48,
+                    end: 54
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: [
+                        {
+                          type: 'ReturnStatement',
+                          argument: {
+                            type: 'JSXFragment',
+                            children: [
+                              {
+                                type: 'JSXText',
+                                value: '\n              ',
+                                start: 92,
+                                end: 107
+                              },
+                              {
+                                type: 'JSXElement',
+                                children: [
+                                  {
+                                    type: 'JSXText',
+                                    value: 'Hello',
+                                    start: 111,
+                                    end: 116
+                                  }
+                                ],
+                                openingElement: {
+                                  type: 'JSXOpeningElement',
+                                  name: {
+                                    type: 'JSXIdentifier',
+                                    name: 'td',
+                                    start: 108,
+                                    end: 110
+                                  },
+                                  attributes: [],
+                                  selfClosing: false,
+                                  start: 107,
+                                  end: 111
+                                },
+                                closingElement: {
+                                  type: 'JSXClosingElement',
+                                  name: {
+                                    type: 'JSXIdentifier',
+                                    name: 'td',
+                                    start: 118,
+                                    end: 120
+                                  },
+                                  start: 116,
+                                  end: 121
+                                },
+                                start: 107,
+                                end: 121
+                              },
+                              {
+                                type: 'JSXText',
+                                value: '\n              ',
+                                start: 121,
+                                end: 136
+                              },
+                              {
+                                type: 'JSXElement',
+                                children: [
+                                  {
+                                    type: 'JSXText',
+                                    value: 'World',
+                                    start: 140,
+                                    end: 145
+                                  }
+                                ],
+                                openingElement: {
+                                  type: 'JSXOpeningElement',
+                                  name: {
+                                    type: 'JSXIdentifier',
+                                    name: 'td',
+                                    start: 137,
+                                    end: 139
+                                  },
+                                  attributes: [],
+                                  selfClosing: false,
+                                  start: 136,
+                                  end: 140
+                                },
+                                closingElement: {
+                                  type: 'JSXClosingElement',
+                                  name: {
+                                    type: 'JSXIdentifier',
+                                    name: 'td',
+                                    start: 147,
+                                    end: 149
+                                  },
+                                  start: 145,
+                                  end: 150
+                                },
+                                start: 136,
+                                end: 150
+                              },
+                              {
+                                type: 'JSXText',
+                                value: '\n            ',
+                                start: 150,
+                                end: 163
+                              }
+                            ],
+                            openingFragment: {
+                              type: 'JSXOpeningFragment',
+                              start: 90,
+                              end: 92
+                            },
+                            closingFragment: {
+                              type: 'JSXClosingFragment',
+                              start: 163,
+                              end: 166
+                            },
+                            start: 90,
+                            end: 166
+                          },
+                          start: 69,
+                          end: 179
+                        }
+                      ],
+                      start: 57,
+                      end: 189
+                    },
+                    async: false,
+                    generator: false,
+                    id: null,
+                    start: 54,
+                    end: 189
+                  },
+                  start: 48,
+                  end: 189
+                }
+              ],
+              start: 38,
+              end: 197
+            },
+            start: 0,
+            end: 197
+          }
+        ],
+        start: 0,
+        end: 197
+      }
+    ],
+    [
       `<div>{111}</div>`,
-      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -135,8 +336,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'Literal',
                     start: 6,
                     end: 9,
-                    value: 111,
-                    raw: '111'
+                    value: 111
                   }
                 }
               ]
@@ -306,7 +506,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       `<div >xxx{111}xxx{222}</div>`,
-      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -349,8 +549,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 6,
                   end: 9,
-                  value: 'xxx',
-                  raw: 'xxx'
+                  value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -360,16 +559,14 @@ describe('Miscellaneous - JSX', () => {
                     type: 'Literal',
                     start: 10,
                     end: 13,
-                    value: 111,
-                    raw: '111'
+                    value: 111
                   }
                 },
                 {
                   type: 'JSXText',
                   start: 14,
                   end: 17,
-                  value: 'xxx',
-                  raw: 'xxx'
+                  value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -379,8 +576,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'Literal',
                     start: 18,
                     end: 21,
-                    value: 222,
-                    raw: '222'
+                    value: 222
                   }
                 }
               ]
@@ -392,7 +588,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       `<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
-      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -435,8 +631,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 6,
                   end: 9,
-                  value: 'xxx',
-                  raw: 'xxx'
+                  value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -515,8 +710,7 @@ describe('Miscellaneous - JSX', () => {
                                 type: 'JSXText',
                                 start: 42,
                                 end: 45,
-                                value: '111',
-                                raw: '111'
+                                value: '111'
                               }
                             ]
                           }
@@ -529,8 +723,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 53,
                   end: 56,
-                  value: 'xxx',
-                  raw: 'xxx'
+                  value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -540,8 +733,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'Literal',
                     start: 57,
                     end: 60,
-                    value: 222,
-                    raw: '222'
+                    value: 222
                   }
                 }
               ]
@@ -553,7 +745,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       `<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>`,
-      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsRaw,
+      Context.OptionsJSX | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -625,8 +817,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 8,
                       end: 11,
-                      value: '111',
-                      raw: '111'
+                      value: '111'
                     }
                   ]
                 },
@@ -663,8 +854,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 20,
                       end: 23,
-                      value: '222',
-                      raw: '222'
+                      value: '222'
                     }
                   ]
                 },
@@ -701,8 +891,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 32,
                       end: 35,
-                      value: '333',
-                      raw: '333'
+                      value: '333'
                     }
                   ]
                 },
@@ -739,8 +928,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 44,
                       end: 47,
-                      value: '444',
-                      raw: '444'
+                      value: '444'
                     }
                   ]
                 }
@@ -9322,8 +9510,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 5,
                   end: 13,
-                  value: ' foo:bar',
-                  raw: ' foo:bar'
+                  value: ' foo:bar'
                 }
               ]
             }

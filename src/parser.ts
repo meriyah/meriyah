@@ -4,8 +4,6 @@ import * as ESTree from './estree';
 import { report, reportAt, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
 import { scanJSXIdentifier, scanJSXToken, scanJSXAttributeValue } from './lexer/jsx';
-import { isEqualTagName } from './common';
-
 import {
   declareName,
   declareAndDedupe,
@@ -41,7 +39,8 @@ import {
   validateAndDeclareLabel,
   finishNode,
   HoistedClassFlags,
-  HoistedFunctionFlags
+  HoistedFunctionFlags,
+  isEqualTagName
 } from './common';
 
 /**
@@ -7975,6 +7974,7 @@ function parseAndClassifyIdentifier(
  * @param line
  * @param column
  */
+
 function parseJSXRootElementOrFragment(
   parser: ParserState,
   context: Context,
@@ -7983,9 +7983,28 @@ function parseJSXRootElementOrFragment(
   line: number,
   column: number
 ): ESTree.JSXElement | ESTree.JSXFragment {
-  const openingElement:
-    | ESTree.JSXOpeningElement
-    | ESTree.JSXOpeningFragment = parseJSXOpeningFragmentOrSelfCloseElement(
+  nextToken(parser, context);
+
+  // JSX fragments
+  if (parser.token === Token.GreaterThan) {
+    return finishNode(parser, context, start, line, column, {
+      type: 'JSXFragment',
+      openingFragment: parseOpeningFragment(parser, context, start, line, column),
+      children: parseJSXChildren(parser, context),
+      closingFragment: parseJSXClosingFragment(
+        parser,
+        context,
+        isJSXChild,
+        parser.tokenIndex,
+        parser.linePos,
+        parser.colPos
+      )
+    });
+  }
+
+  let closingElement: ESTree.JSXClosingElement | null = null;
+  let children: ESTree.JSXChild[] = [];
+  const openingElement: ESTree.JSXOpeningElement = parseJSXOpeningFragmentOrSelfCloseElement(
     parser,
     context,
     isJSXChild,
@@ -7993,26 +8012,6 @@ function parseJSXRootElementOrFragment(
     line,
     column
   );
-  let children: ESTree.JSXChild[] = [];
-  let closingElement: ESTree.JSXClosingElement | ESTree.JSXClosingFragment | null = null;
-
-  if (openingElement.type === 'JSXOpeningFragment') {
-    children = parseJSXChildren(parser, context);
-    closingElement = parseJSXClosingFragment(
-      parser,
-      context,
-      isJSXChild,
-      parser.tokenIndex,
-      parser.linePos,
-      parser.colPos
-    );
-    return finishNode(parser, context, start, line, column, {
-      type: 'JSXFragment',
-      children,
-      openingFragment: openingElement,
-      closingFragment: closingElement
-    });
-  }
 
   if (!openingElement.selfClosing) {
     children = parseJSXChildren(parser, context);
@@ -8024,9 +8023,8 @@ function parseJSXRootElementOrFragment(
       parser.linePos,
       parser.colPos
     );
-    const open = isEqualTagName(openingElement.name);
     const close = isEqualTagName(closingElement.name);
-    if (open !== close) report(parser, Errors.Unexpected);
+    if (isEqualTagName(openingElement.name) !== close) report(parser, Errors.ExpectedJSXClosingTag, close);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8034,6 +8032,28 @@ function parseJSXRootElementOrFragment(
     children,
     openingElement,
     closingElement
+  });
+}
+
+/**
+ * Parses JSX opening fragment
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseOpeningFragment(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  line: number,
+  column: number
+): ESTree.JSXOpeningFragment {
+  scanJSXToken(parser);
+  return finishNode(parser, context, start, line, column, {
+    type: 'JSXOpeningFragment'
   });
 }
 
@@ -8161,23 +8181,10 @@ export function parseJSXText(
 ): ESTree.JSXText {
   const value = parser.tokenValue;
   scanJSXToken(parser);
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsRaw
-      ? {
-          type: 'JSXText',
-          value,
-          raw: value
-        }
-      : {
-          type: 'JSXText',
-          value
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'JSXText',
+    value
+  });
 }
 
 /**
@@ -8197,15 +8204,7 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   start: number,
   line: number,
   column: number
-): ESTree.JSXOpeningElement | ESTree.JSXOpeningFragment {
-  consume(parser, context, Token.LessThan);
-  if (parser.token === Token.GreaterThan) {
-    scanJSXToken(parser);
-    return finishNode(parser, context, start, line, column, {
-      type: 'JSXOpeningFragment'
-    });
-  }
-
+): ESTree.JSXOpeningElement {
   if ((parser.token & Token.IsIdentifier) !== Token.IsIdentifier && (parser.token & Token.Keyword) !== Token.Keyword)
     report(parser, Errors.Unexpected);
 
