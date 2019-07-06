@@ -8155,7 +8155,7 @@ function parseJSXChild(parser: ParserState, context: Context, start: number, lin
     case Token.Identifier:
       return parseJSXText(parser, context, start, line, column);
     case Token.LeftBrace:
-      return parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 0, start, line, column);
+      return parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 0, /* isAttr */ 0, start, line, column);
     case Token.LessThan:
       return parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 0, start, line, column);
     default:
@@ -8358,6 +8358,7 @@ function parseJsxAttribute(
     name = parseJSXNamespacedName(parser, context, name, start, line, column);
   }
 
+  // HTML empty attribute
   if (parser.token === Token.Assign) {
     const token = scanJSXAttributeValue(parser, context);
     const { tokenIndex, linePos, colPos } = parser;
@@ -8369,7 +8370,15 @@ function parseJsxAttribute(
         value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
+        value = parseJSXExpressionContainer(
+          parser,
+          context,
+          /*isJSXChild*/ 1,
+          /* isAttr */ 1,
+          tokenIndex,
+          linePos,
+          colPos
+        );
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -8424,6 +8433,7 @@ function parseJSXExpressionContainer(
   parser: ParserState,
   context: Context,
   isJSXChild: 0 | 1,
+  isAttr: 0 | 1,
   start: number,
   line: number,
   column: number
@@ -8437,6 +8447,10 @@ function parseJSXExpressionContainer(
   if (parser.token !== Token.RightBrace) {
     expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
   } else {
+    // JSX attributes must only be assigned a non-empty 'expression'
+    if (isAttr) {
+      report(parser, Errors.InvalidNonEmptyJSXExpr);
+    }
     expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
   }
   if (isJSXChild) {

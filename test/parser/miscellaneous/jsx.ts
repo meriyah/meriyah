@@ -20,6 +20,7 @@ describe('Miscellaneous - JSX', () => {
     ['<p></>', Context.OptionsJSX],
     ['<p><q></p>', Context.OptionsJSX],
     ['<1/>', Context.OptionsJSX],
+    [`<div id={}></div>`, Context.OptionsJSX],
     ['<div>one</div><div>two</div>', Context.OptionsJSX],
     ['</>', Context.OptionsJSX],
     ['<a/!', Context.OptionsJSX],

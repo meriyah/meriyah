@@ -160,7 +160,8 @@ export const enum Errors {
   TrailingNumericSeparator,
   InvalidJSXAttributeValue,
   ExpectedJSXClosingTag,
-  AdjacentJSXElements
+  AdjacentJSXElements,
+  InvalidNonEmptyJSXExpr
 }
 
 /*@internal*/
@@ -332,7 +333,8 @@ export const errorMessages: {
   [Errors.ContinuousNumericSeparator]: 'Only one underscore is allowed as numeric separator',
   [Errors.InvalidJSXAttributeValue]: 'JSX value should be either an expression or a quoted JSX text',
   [Errors.ExpectedJSXClosingTag]: 'Expected corresponding JSX closing tag for %0',
-  [Errors.AdjacentJSXElements]: 'Adjacent JSX elements must be wrapped in an enclosing tag'
+  [Errors.AdjacentJSXElements]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
+  [Errors.InvalidNonEmptyJSXExpr]: "JSX attributes must only be assigned a non-empty 'expression'"
 };
 
 export class ParseError extends SyntaxError {
