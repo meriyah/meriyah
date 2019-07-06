@@ -3,7 +3,7 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
-import { nextCP, LexerState } from './';
+import { nextCP, LexerState, TokenLookup } from './';
 import { scanSingleToken } from './scan';
 
 /**
@@ -51,31 +51,34 @@ export function scanJSXString(parser: ParserState): Token {
  */
 export function scanJSXToken(parser: ParserState): Token {
   parser.startIndex = parser.tokenIndex = parser.index;
+  parser.startColumn = parser.colPos = parser.column;
+  parser.startLine = parser.linePos = parser.line;
 
   if (parser.index >= parser.end) return (parser.token = Token.EOF);
 
-  const char = parser.source.charCodeAt(parser.index);
+  const token = TokenLookup[parser.source.charCodeAt(parser.index)];
 
-  if (char === Chars.LessThan) {
-    if (parser.source.charCodeAt(parser.index + 1) === Chars.Slash) {
-      parser.column += 2;
-      parser.nextCP = parser.source.charCodeAt((parser.index += 2));
-      return (parser.token = Token.JSXClose);
+  switch (token) {
+    case Token.LessThan: {
+      nextCP(parser);
+      if (parser.nextCP === Chars.Slash) {
+        nextCP(parser);
+        return (parser.token = Token.JSXClose);
+      }
+
+      return (parser.token = Token.LessThan);
     }
-    nextCP(parser);
-    return (parser.token = Token.LessThan);
+    case Token.LeftBrace: {
+      nextCP(parser);
+      return (parser.token = Token.LeftBrace);
+    }
+    default: // ignore
   }
 
-  if (char === Chars.LeftBrace) {
-    nextCP(parser);
-    return (parser.token = Token.LeftBrace);
-  }
-
-  while (parser.index < parser.end) {
-    if (CharTypes[nextCP(parser)] & CharFlags.JSXToken) break;
-  }
+  while (parser.index < parser.end && (CharTypes[nextCP(parser)] & CharFlags.JSXToken) === 0) {}
 
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+
   return (parser.token = Token.JSXText);
 }
 

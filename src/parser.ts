@@ -8370,15 +8370,7 @@ function parseJsxAttribute(
         value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(
-          parser,
-          context,
-          /*isJSXChild*/ 1,
-          /* isAttr */ 1,
-          tokenIndex,
-          linePos,
-          colPos
-        );
+        value = parseJSXExpressionContainer(parser, context, 1, 1, tokenIndex, linePos, colPos);
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -8438,20 +8430,18 @@ function parseJSXExpressionContainer(
   line: number,
   column: number
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
-  consume(parser, context, Token.LeftBrace);
+  nextToken(parser, context);
   const { tokenIndex, linePos, colPos } = parser;
   if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
 
   let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
 
-  if (parser.token !== Token.RightBrace) {
-    expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
-  } else {
+  if (parser.token === Token.RightBrace) {
     // JSX attributes must only be assigned a non-empty 'expression'
-    if (isAttr) {
-      report(parser, Errors.InvalidNonEmptyJSXExpr);
-    }
+    if (isAttr) report(parser, Errors.InvalidNonEmptyJSXExpr);
     expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
+  } else {
+    expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
   }
   if (isJSXChild) {
     consume(parser, context, Token.RightBrace);
