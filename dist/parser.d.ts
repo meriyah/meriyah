@@ -17,6 +17,7 @@ export interface Options {
     lexical?: boolean;
     source?: string;
     identifierPattern?: boolean;
+    jsx?: boolean;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState): ESTree.Statement[];
@@ -97,4 +98,11 @@ export declare function parseDecoratorList(parser: ParserState, context: Context
 export declare function parseClassBody(parser: ParserState, context: Context, inheritedContext: Context, scope: ESTree.Scope, type: BindingType, origin: BindingOrigin, inGroup: 0 | 1): ESTree.ClassBody;
 export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number, line: number, column: number): ESTree.FieldDefinition;
 export declare function parseBindingPattern(parser: ParserState, context: Context, scope: ESTree.Scope, dupeChecks: 0 | 1, type: BindingType, origin: BindingOrigin, start: number, line: number, column: number): ESTree.BindingPattern;
+export declare function parseJSXClosingFragment(parser: ParserState, context: Context, isJSXChild: 0 | 1, start: number, line: number, column: number): ESTree.JSXClosingFragment;
+export declare function parseJSXChildren(parser: ParserState, context: Context): ESTree.JSXChild[];
+export declare function parseJSXText(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXText;
+export declare function parseJSXMemberExpression(parser: ParserState, context: Context, object: any, start: number, line: number, column: number): ESTree.JSXMemberExpression;
+export declare function parseJSXAttributes(parser: ParserState, context: Context): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[];
+export declare function parseJSXSpreadAttribute(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXSpreadAttribute;
+export declare function parseJSXIdentifier(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXIdentifier;
 //# sourceMappingURL=parser.d.ts.map

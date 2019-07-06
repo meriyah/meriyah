@@ -3,7 +3,8 @@ export declare const enum LexerState {
     None = 0,
     NewLine = 1,
     SameLine = 2,
-    LastIsCR = 4
+    LastIsCR = 4,
+    InJSXMode = 8
 }
 export declare const enum NumberKind {
     ImplicitOctal = 1,

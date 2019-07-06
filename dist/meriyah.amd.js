@@ -62,12 +62,12 @@ define(['exports'], function (exports) { 'use strict';
       0,
       0,
       0,
-      0,
+      4194304,
       0,
       1 | 2,
       0,
       0,
-      0,
+      4194304,
       0,
       0,
       0,
@@ -88,7 +88,7 @@ define(['exports'], function (exports) { 'use strict';
       2 | 1024 | 262144 | 4096,
       0,
       0,
-      0,
+      8388608,
       0,
       0,
       0,
@@ -151,7 +151,7 @@ define(['exports'], function (exports) { 'use strict';
       1 | 2 | 64,
       1 | 2 | 64,
       1 | 2 | 64,
-      0,
+      8388608,
       0,
       0,
       0,
@@ -323,7 +323,10 @@ define(['exports'], function (exports) { 'use strict';
       [150]: "Exported binding '%0' needs to refer to a top-level declared variable",
       [151]: 'Unexpected private field',
       [155]: 'Numeric separators are not allowed at the end of numeric literals',
-      [154]: 'Only one underscore is allowed as numeric separator'
+      [154]: 'Only one underscore is allowed as numeric separator',
+      [156]: 'JSX value should be either an expression or a quoted JSX text',
+      [157]: 'Expected corresponding JSX closing tag for %0',
+      [158]: 'Adjacent JSX elements must be wrapped in an enclosing tag'
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -647,6 +650,18 @@ define(['exports'], function (exports) { 'use strict';
                                   continue;
                               }
                           }
+                          else if (next === 47) {
+                              if (!(context & 16))
+                                  break;
+                              const index = parser.index + 1;
+                              if (index < parser.end) {
+                                  const next = parser.source.charCodeAt(index);
+                                  if (next === 42 || next === 47)
+                                      break;
+                              }
+                              nextCP(parser);
+                              return 25;
+                          }
                       }
                       return 8455999;
                   case -2143289315: {
@@ -876,7 +891,7 @@ define(['exports'], function (exports) { 'use strict';
       'implements', 'interface', 'package', 'private', 'protected', 'public', 'static', 'yield',
       'as', 'async', 'await', 'constructor', 'get', 'set', 'from', 'of',
       'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
-      'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target'
+      'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
   ];
   const descKeywordTable = Object.create(null, {
       this: { value: 86110 },
@@ -1434,30 +1449,30 @@ define(['exports'], function (exports) { 'use strict';
 
   function scanTemplate(parser, context) {
       const { index: start } = parser;
-      let tail = true;
+      let tail = 1;
       let ret = '';
-      let ch = nextCP(parser);
-      while (ch !== 96) {
-          if (ch === 36 && parser.source.charCodeAt(parser.index + 1) === 123) {
+      let char = nextCP(parser);
+      while (char !== 96) {
+          if (char === 36 && parser.source.charCodeAt(parser.index + 1) === 123) {
               nextCP(parser);
-              tail = false;
+              tail = 0;
               break;
           }
-          else if ((ch & 8) === 8 && ch === 92) {
-              ch = nextCP(parser);
-              if (ch > 0x7e) {
-                  ret += fromCodePoint(ch);
+          else if ((char & 8) === 8 && char === 92) {
+              char = nextCP(parser);
+              if (char > 0x7e) {
+                  ret += fromCodePoint(char);
               }
               else {
-                  const code = parseEscape(parser, context | 1024, ch);
+                  const code = parseEscape(parser, context | 1024, char);
                   if (code >= 0) {
                       ret += fromCodePoint(code);
                   }
                   else if (code !== -1 && context & 65536) {
                       ret = undefined;
-                      ch = scanBadTemplate(parser, ch);
-                      if (ch < 0) {
-                          tail = false;
+                      char = scanBadTemplate(parser, char);
+                      if (char < 0) {
+                          tail = 0;
                       }
                       break;
                   }
@@ -1467,21 +1482,21 @@ define(['exports'], function (exports) { 'use strict';
               }
           }
           else {
-              if (ch === 13) {
+              if (char === 13) {
                   if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === 10) {
-                      ret += fromCodePoint(ch);
+                      ret += fromCodePoint(char);
                       parser.nextCP = parser.source.charCodeAt(++parser.index);
                   }
               }
-              if (ch === 10 || ch === 8232 || ch === 8233) {
+              if (((char & 83) < 3 && char === 10) || (char ^ 8232) <= 1) {
                   parser.column = -1;
                   parser.line++;
               }
-              ret += fromCodePoint(ch);
+              ret += fromCodePoint(char);
           }
           if (parser.index >= parser.end)
               report(parser, 15);
-          ch = nextCP(parser);
+          char = nextCP(parser);
       }
       nextCP(parser);
       parser.tokenValue = ret;
@@ -1628,135 +1643,70 @@ define(['exports'], function (exports) { 'use strict';
       }
   }
 
-  function initblockScope() {
-      return {
-          var: {},
-          lexicalVariables: {},
-          lexicals: { funcs: [] }
-      };
+  function scanJSXAttributeValue(parser, context) {
+      parser.startIndex = parser.index;
+      parser.startColumn = parser.column;
+      parser.startLine = parser.line;
+      parser.token =
+          CharTypes[parser.nextCP] & 4194304
+              ? scanJSXString(parser)
+              : scanSingleToken(parser, context, 0);
+      return parser.token;
   }
-  function inheritScope(scope, type) {
-      return {
-          var: scope.var,
-          lexicalVariables: {
-              $: scope.lexicalVariables
-          },
-          lexicals: {
-              $: scope.lexicals,
-              type,
-              funcs: []
+  function scanJSXString(parser) {
+      const quote = parser.nextCP;
+      let char = nextCP(parser);
+      const start = parser.index;
+      while (char !== quote) {
+          if (parser.index >= parser.end)
+              report(parser, 14);
+          char = nextCP(parser);
+      }
+      if (char !== quote)
+          report(parser, 14);
+      parser.tokenValue = parser.source.slice(start, parser.index);
+      nextCP(parser);
+      return 134283267;
+  }
+  function scanJSXToken(parser) {
+      parser.startIndex = parser.tokenIndex = parser.index;
+      if (parser.index >= parser.end)
+          return (parser.token = 1048576);
+      const char = parser.source.charCodeAt(parser.index);
+      if (char === 60) {
+          if (parser.source.charCodeAt(parser.index + 1) === 47) {
+              parser.column += 2;
+              parser.nextCP = parser.source.charCodeAt((parser.index += 2));
+              return (parser.token = 25);
           }
-      };
+          nextCP(parser);
+          return (parser.token = 8455999);
+      }
+      if (char === 123) {
+          nextCP(parser);
+          return (parser.token = 2162700);
+      }
+      while (parser.index < parser.end) {
+          if (CharTypes[nextCP(parser)] & 8388608)
+              break;
+      }
+      parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+      return (parser.token = 137);
   }
-  function declareName(parser, context, scope, name, bindingType, dupeChecks, isVarDecl) {
-      if (scope === null)
-          return;
-      const hashed = '$' + name;
-      if (bindingType & 4) {
-          let lex = scope.lexicals;
-          while (lex !== undefined) {
-              if (lex[hashed] !== undefined) {
-                  if (lex.type & 4) {
-                      if (!isVarDecl || (context & 256) === 0) {
-                          report(parser, 148, name);
-                      }
-                  }
-                  else if (lex.type & 1) {
-                      report(parser, 148, name);
-                  }
-                  else if ((lex.type & 16) === 0 &&
-                      ((context & 256) === 0 ||
-                          (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                          context & 1024))
-                      report(parser, 148, name);
+  function scanJSXIdentifier(parser) {
+      if ((parser.token & 143360) === 143360) {
+          const { index } = parser;
+          while (parser.index < parser.end) {
+              const char = parser.nextCP;
+              if (char === 45 || (index === parser.index ? isIdentifierStart(char) : isIdentifierPart(char))) {
+                  nextCP(parser);
               }
-              lex = lex['$'];
+              else
+                  break;
           }
-          scope.var[hashed] = scope.var[hashed] ? 2 : 1;
-          let lexicalVariables = scope.lexicalVariables;
-          while (lexicalVariables !== undefined) {
-              lexicalVariables[hashed] = 1;
-              lexicalVariables = lexicalVariables['$'];
-          }
+          parser.tokenValue += parser.source.slice(index, parser.index);
       }
-      else {
-          const lex = scope.lexicals;
-          if (dupeChecks) {
-              const lexParent = scope.lexicals['$'];
-              if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
-                  report(parser, 148, name);
-              }
-              else if (scope.lexicalVariables[hashed]) {
-                  if ((context & 256) === 0 ||
-                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                      (context & 1024) !== 0) {
-                      report(parser, 148, name);
-                  }
-              }
-              if (lex[hashed] !== undefined &&
-                  ((context & 256) === 0 ||
-                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                      context & 1024)) {
-                  report(parser, 148, name);
-              }
-          }
-          lex[hashed] = lex[hashed] ? 2 : 1;
-      }
-  }
-  function declareAndDedupe(parser, context, scope, name, type, isVarDecl) {
-      declareName(parser, context, scope, name, type, 1, isVarDecl);
-      if (scope === null)
-          return;
-      if (context & 256)
-          scope.lexicals.funcs['$' + name] = 1;
-  }
-  function addFunctionName(parser, context, scope, name, type, isVarDecl) {
-      declareName(parser, context, scope, name, type, 1, isVarDecl);
-      if (context & 256 && !('$' + name in scope.lexicals.funcs)) {
-          scope.lexicals.funcs['$' + name] = 2;
-      }
-  }
-  function checkConflictingLexicalDeclarations(parser, context, scope, checkParent) {
-      for (const key in scope.lexicals) {
-          if (key[0] === '$' && key.length > 1) {
-              if (scope.lexicals[key] > 1)
-                  report(parser, 148, key);
-              if (checkParent) {
-                  if (scope.lexicals['$'] &&
-                      scope.lexicals['$'].type & (16 | 4) &&
-                      scope.lexicals['$'][key]) {
-                      report(parser, 148, key.slice(1));
-                  }
-                  else if (((context & 256) === 0 ||
-                      (context & 1024) !== 0 ||
-                      !scope.lexicals.funcs[key]) &&
-                      scope.lexicalVariables[key]) {
-                      report(parser, 148, key.slice(1));
-                  }
-              }
-          }
-      }
-      return false;
-  }
-  function verifyArguments(parser, lex) {
-      for (const key in lex) {
-          if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
-              report(parser, 148, key.slice(1));
-          }
-      }
-  }
-  function updateExportsList(parser, name) {
-      if (parser.exportedNames !== undefined && name !== '') {
-          if (parser.exportedNames['$' + name]) {
-              report(parser, 149, name);
-          }
-          parser.exportedNames['$' + name] = 2;
-      }
-  }
-  function addBindingToExports(parser, name) {
-      if (parser.exportedBindings !== undefined && name !== '') {
-          parser.exportedBindings['$' + name] = 2;
-      }
+      return parser.token;
   }
 
   function consumeSemicolon(parser, context) {
@@ -1908,6 +1858,149 @@ define(['exports'], function (exports) { 'use strict';
       }
       return node;
   }
+  function isEqualTagName(elementName) {
+      switch (elementName.type) {
+          case 'JSXIdentifier':
+              return elementName.name;
+          case 'JSXNamespacedName':
+              return elementName.namespace + ':' + elementName.name;
+          case 'JSXMemberExpression':
+              return (isEqualTagName(elementName.object) + '.' +
+                  isEqualTagName(elementName.property));
+          default:
+      }
+  }
+
+  function initblockScope() {
+      return {
+          var: {},
+          lexicalVariables: {},
+          lexicals: { funcs: [] }
+      };
+  }
+  function inheritScope(scope, type) {
+      return {
+          var: scope.var,
+          lexicalVariables: {
+              $: scope.lexicalVariables
+          },
+          lexicals: {
+              $: scope.lexicals,
+              type,
+              funcs: []
+          }
+      };
+  }
+  function declareName(parser, context, scope, name, bindingType, dupeChecks, isVarDecl) {
+      if (scope === null)
+          return;
+      const hashed = '$' + name;
+      if (bindingType & 4) {
+          let lex = scope.lexicals;
+          while (lex !== undefined) {
+              if (lex[hashed] !== undefined) {
+                  if (lex.type & 4) {
+                      if (!isVarDecl || (context & 256) === 0) {
+                          report(parser, 148, name);
+                      }
+                  }
+                  else if (lex.type & 1) {
+                      report(parser, 148, name);
+                  }
+                  else if ((lex.type & 16) === 0 &&
+                      ((context & 256) === 0 ||
+                          (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                          context & 1024))
+                      report(parser, 148, name);
+              }
+              lex = lex['$'];
+          }
+          scope.var[hashed] = scope.var[hashed] ? 2 : 1;
+          let lexicalVariables = scope.lexicalVariables;
+          while (lexicalVariables !== undefined) {
+              lexicalVariables[hashed] = 1;
+              lexicalVariables = lexicalVariables['$'];
+          }
+      }
+      else {
+          const lex = scope.lexicals;
+          if (dupeChecks) {
+              const lexParent = scope.lexicals['$'];
+              if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
+                  report(parser, 148, name);
+              }
+              else if (scope.lexicalVariables[hashed]) {
+                  if ((context & 256) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                      (context & 1024) !== 0) {
+                      report(parser, 148, name);
+                  }
+              }
+              if (lex[hashed] !== undefined &&
+                  ((context & 256) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                      context & 1024)) {
+                  report(parser, 148, name);
+              }
+          }
+          lex[hashed] = lex[hashed] ? 2 : 1;
+      }
+  }
+  function declareAndDedupe(parser, context, scope, name, type, isVarDecl) {
+      declareName(parser, context, scope, name, type, 1, isVarDecl);
+      if (scope === null)
+          return;
+      if (context & 256)
+          scope.lexicals.funcs['$' + name] = 1;
+  }
+  function addFunctionName(parser, context, scope, name, type, isVarDecl) {
+      declareName(parser, context, scope, name, type, 1, isVarDecl);
+      if (context & 256 && !('$' + name in scope.lexicals.funcs)) {
+          scope.lexicals.funcs['$' + name] = 2;
+      }
+  }
+  function checkConflictingLexicalDeclarations(parser, context, scope, checkParent) {
+      for (const key in scope.lexicals) {
+          if (key[0] === '$' && key.length > 1) {
+              if (scope.lexicals[key] > 1)
+                  report(parser, 148, key);
+              if (checkParent) {
+                  if (scope.lexicals['$'] &&
+                      scope.lexicals['$'].type & (16 | 4) &&
+                      scope.lexicals['$'][key]) {
+                      report(parser, 148, key.slice(1));
+                  }
+                  else if (((context & 256) === 0 ||
+                      (context & 1024) !== 0 ||
+                      !scope.lexicals.funcs[key]) &&
+                      scope.lexicalVariables[key]) {
+                      report(parser, 148, key.slice(1));
+                  }
+              }
+          }
+      }
+      return false;
+  }
+  function verifyArguments(parser, lex) {
+      for (const key in lex) {
+          if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
+              report(parser, 148, key.slice(1));
+          }
+      }
+  }
+  function updateExportsList(parser, name) {
+      if (parser.exportedNames !== undefined && name !== '') {
+          if (parser.exportedNames['$' + name]) {
+              report(parser, 149, name);
+          }
+          parser.exportedNames['$' + name] = 2;
+      }
+  }
+  function addBindingToExports(parser, name) {
+      if (parser.exportedBindings !== undefined && name !== '') {
+          parser.exportedBindings['$' + name] = 2;
+      }
+  }
 
   function create(source, sourceFile) {
       return {
@@ -1960,6 +2053,8 @@ define(['exports'], function (exports) { 'use strict';
               context |= 128;
           if (options.impliedStrict)
               context |= 1024;
+          if (options.jsx)
+              context |= 16;
           if (options.identifierPattern)
               context |= 536870912;
           if (options.source)
@@ -3329,6 +3424,11 @@ define(['exports'], function (exports) { 'use strict';
           }
           parser.assignable = 2;
           return parseUnaryExpression(parser, context, start, line, column, inGroup);
+      }
+      if (token === 8455999) {
+          if (context & 16) {
+              return parseJSXRootElementOrFragment(parser, context, 1, start, line, column);
+          }
       }
       if ((token & 33619968) === 33619968) {
           if (inNewExpression)
@@ -5511,6 +5611,258 @@ define(['exports'], function (exports) { 'use strict';
       nextToken(parser, context);
       return finishNode(parser, context, start, line, column, {
           type: 'Identifier',
+          name: tokenValue
+      });
+  }
+  function parseJSXRootElementOrFragment(parser, context, isJSXChild, start, line, column) {
+      const openingElement = parseJSXOpeningFragmentOrSelfCloseElement(parser, context, isJSXChild, start, line, column);
+      let children = [];
+      let closingElement = null;
+      if (openingElement.type === 'JSXOpeningFragment') {
+          children = parseJSXChildren(parser, context);
+          closingElement = parseJSXClosingFragment(parser, context, isJSXChild, parser.tokenIndex, parser.linePos, parser.colPos);
+          return finishNode(parser, context, start, line, column, {
+              type: 'JSXFragment',
+              children,
+              openingFragment: openingElement,
+              closingFragment: closingElement
+          });
+      }
+      if (!openingElement.selfClosing) {
+          children = parseJSXChildren(parser, context);
+          closingElement = parseJSXClosingElement(parser, context, isJSXChild, parser.tokenIndex, parser.linePos, parser.colPos);
+          const open = isEqualTagName(openingElement.name);
+          const close = isEqualTagName(closingElement.name);
+          if (open !== close)
+              report(parser, 0);
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXElement',
+          children,
+          openingElement,
+          closingElement
+      });
+  }
+  function parseJSXClosingElement(parser, context, isJSXChild, start, line, column) {
+      consume(parser, context, 25);
+      const name = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
+      if (isJSXChild) {
+          consume(parser, context, 8456000);
+      }
+      else {
+          parser.token = scanJSXToken(parser);
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXClosingElement',
+          name
+      });
+  }
+  function parseJSXClosingFragment(parser, context, isJSXChild, start, line, column) {
+      consume(parser, context, 25);
+      if ((parser.token & 143360) === 143360) {
+          report(parser, 0);
+      }
+      if (isJSXChild) {
+          consume(parser, context, 8456000);
+      }
+      else {
+          consume(parser, context, 8456000);
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXClosingFragment'
+      });
+  }
+  function parseJSXChildren(parser, context) {
+      const children = [];
+      while (parser.token !== 25) {
+          parser.index = parser.tokenIndex = parser.startIndex;
+          parser.column = parser.colPos = parser.startColumn;
+          parser.line = parser.linePos = parser.startLine;
+          scanJSXToken(parser);
+          children.push(parseJSXChild(parser, context, parser.tokenIndex, parser.linePos, parser.colPos));
+      }
+      return children;
+  }
+  function parseJSXChild(parser, context, start, line, column) {
+      switch (parser.token) {
+          case 137:
+          case 208897:
+              return parseJSXText(parser, context, start, line, column);
+          case 2162700:
+              return parseJSXExpressionContainer(parser, context, 0, start, line, column);
+          case 8455999:
+              return parseJSXRootElementOrFragment(parser, context, 0, start, line, column);
+          default:
+              report(parser, 0);
+      }
+  }
+  function parseJSXText(parser, context, start, line, column) {
+      const value = parser.tokenValue;
+      scanJSXToken(parser);
+      return finishNode(parser, context, start, line, column, context & 512
+          ? {
+              type: 'JSXText',
+              value,
+              raw: value
+          }
+          : {
+              type: 'JSXText',
+              value
+          });
+  }
+  function parseJSXOpeningFragmentOrSelfCloseElement(parser, context, isJSXChild, start, line, column) {
+      consume(parser, context, 8455999);
+      if (parser.token === 8456000) {
+          scanJSXToken(parser);
+          return finishNode(parser, context, start, line, column, {
+              type: 'JSXOpeningFragment'
+          });
+      }
+      if ((parser.token & 143360) !== 143360 && (parser.token & 4096) !== 4096)
+          report(parser, 0);
+      const tagName = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
+      const attributes = parseJSXAttributes(parser, context);
+      const selfClosing = parser.token === 8456757;
+      if (parser.token === 8456000) {
+          scanJSXToken(parser);
+      }
+      else {
+          consume(parser, context, 8456757);
+          if (isJSXChild) {
+              consume(parser, context, 8456000);
+          }
+          else {
+              scanJSXToken(parser);
+          }
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXOpeningElement',
+          name: tagName,
+          attributes,
+          selfClosing
+      });
+  }
+  function parseJSXElementName(parser, context, start, line, column) {
+      scanJSXIdentifier(parser);
+      let name = parseJSXIdentifier(parser, context, start, line, column);
+      if (parser.token === 21)
+          return parseJSXNamespacedName(parser, context, name, start, line, column);
+      while (consumeOpt(parser, context, 67108877)) {
+          scanJSXIdentifier(parser);
+          name = parseJSXMemberExpression(parser, context, name, start, line, column);
+      }
+      return name;
+  }
+  function parseJSXMemberExpression(parser, context, object, start, line, column) {
+      const property = parseJSXIdentifier(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXMemberExpression',
+          object,
+          property
+      });
+  }
+  function parseJSXAttributes(parser, context) {
+      const attributes = [];
+      while (parser.index < parser.end) {
+          if (parser.token === 8456757 || parser.token === 8456000)
+              break;
+          attributes.push(parseJsxAttribute(parser, context, parser.tokenIndex, parser.linePos, parser.colPos));
+      }
+      return attributes;
+  }
+  function parseJSXSpreadAttribute(parser, context, start, line, column) {
+      nextToken(parser, context);
+      consume(parser, context, 14);
+      const expression = parseExpression(parser, context, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+      consume(parser, context, -2146435057);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXSpreadAttribute',
+          argument: expression
+      });
+  }
+  function parseJsxAttribute(parser, context, start, line, column) {
+      if (parser.token === 2162700)
+          return parseJSXSpreadAttribute(parser, context, start, line, column);
+      scanJSXIdentifier(parser);
+      let value = null;
+      let name = parseJSXIdentifier(parser, context, start, line, column);
+      if (parser.token === 21) {
+          name = parseJSXNamespacedName(parser, context, name, start, line, column);
+      }
+      if (parser.token === -2143289315) {
+          const token = scanJSXAttributeValue(parser, context);
+          const { tokenIndex, linePos, colPos } = parser;
+          switch (token) {
+              case 134283267:
+                  value = parseLiteral(parser, context, tokenIndex, linePos, colPos);
+                  break;
+              case 8455999:
+                  value = parseJSXRootElementOrFragment(parser, context, 1, tokenIndex, linePos, colPos);
+                  break;
+              case 2162700:
+                  value = parseJSXExpressionContainer(parser, context, 1, tokenIndex, linePos, colPos);
+                  break;
+              default:
+                  report(parser, 156);
+          }
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXAttribute',
+          value,
+          name
+      });
+  }
+  function parseJSXNamespacedName(parser, context, namespace, start, line, column) {
+      consume(parser, context, 21);
+      const name = parseJSXIdentifier(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXNamespacedName',
+          namespace,
+          name
+      });
+  }
+  function parseJSXExpressionContainer(parser, context, isJSXChild, start, line, column) {
+      consume(parser, context, 2162700);
+      const { tokenIndex, linePos, colPos } = parser;
+      if (parser.token === 14)
+          return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
+      let expression = null;
+      if (parser.token !== -2146435057) {
+          expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
+      }
+      else {
+          expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
+      }
+      if (isJSXChild) {
+          consume(parser, context, -2146435057);
+      }
+      else {
+          scanJSXToken(parser);
+      }
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXExpressionContainer',
+          expression
+      });
+  }
+  function parseJSXSpreadChild(parser, context, start, line, column) {
+      consume(parser, context, 14);
+      const expression = parseExpression(parser, context, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+      consume(parser, context, -2146435057);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXSpreadChild',
+          expression
+      });
+  }
+  function parseJSXEmptyExpression(parser, context, start, line, column) {
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXEmptyExpression'
+      });
+  }
+  function parseJSXIdentifier(parser, context, start, line, column) {
+      const { tokenValue } = parser;
+      nextToken(parser, context);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXIdentifier',
           name: tokenValue
       });
   }

@@ -13,7 +13,9 @@ export declare const enum CharFlags {
     ImplicitOctalDigits = 262144,
     CarriageReturn = 524288,
     LineFeed = 1048576,
-    Underscore = 2097152
+    Underscore = 2097152,
+    StringLiteral = 4194304,
+    JSXToken = 8388608
 }
 export declare const CharTypes: number[];
 export declare function isIdentifierStart(code: number): number;
