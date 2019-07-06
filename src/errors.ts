@@ -157,7 +157,10 @@ export const enum Errors {
   DuplicateLetConstBinding,
   CantAssignToValidRHS,
   ContinuousNumericSeparator,
-  TrailingNumericSeparator
+  TrailingNumericSeparator,
+  InvalidJSXAttributeValue,
+  ExpectedJSXClosingTag,
+  AdjacentJSXElements
 }
 
 /*@internal*/
@@ -326,7 +329,10 @@ export const errorMessages: {
   [Errors.UndeclaredExportedBinding]: "Exported binding '%0' needs to refer to a top-level declared variable",
   [Errors.UnexpectedPrivateField]: 'Unexpected private field',
   [Errors.TrailingNumericSeparator]: 'Numeric separators are not allowed at the end of numeric literals',
-  [Errors.ContinuousNumericSeparator]: 'Only one underscore is allowed as numeric separator'
+  [Errors.ContinuousNumericSeparator]: 'Only one underscore is allowed as numeric separator',
+  [Errors.InvalidJSXAttributeValue]: 'JSX value should be either an expression or a quoted JSX text',
+  [Errors.ExpectedJSXClosingTag]: 'Expected corresponding JSX closing tag for %0',
+  [Errors.AdjacentJSXElements]: 'Adjacent JSX elements must be wrapped in an enclosing tag'
 };
 
 export class ParseError extends SyntaxError {

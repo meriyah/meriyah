@@ -36,7 +36,7 @@ export const enum Context {
   AllowNewTarget        = 1 << 26,
   DisallowIn            = 1 << 27,
   InClass               = 1 << 28,
-  OptionsIdentifierPattern = 1 << 29,
+  OptionsIdentifierPattern = 1 << 29
 }
 
 export const enum PropertyKind {
@@ -408,4 +408,23 @@ export function finishNode<T extends Node>(
   }
 
   return node;
+}
+
+
+  /** @internal */
+  export function isEqualTagName(elementName: any): any {
+    switch (elementName.type) {
+      case 'JSXIdentifier':
+          return elementName.name;
+      case 'JSXNamespacedName':
+          return elementName.namespace + ':' + elementName.name;
+      case 'JSXMemberExpression':
+          return (
+            isEqualTagName(elementName.object) + '.' +
+            isEqualTagName(elementName.property)
+          );
+          /* istanbul ignore next */
+      default:
+          // ignore
+  }
 }

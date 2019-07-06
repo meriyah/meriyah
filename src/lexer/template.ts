@@ -10,29 +10,29 @@ import { report, Errors } from '../errors';
  */
 export function scanTemplate(parser: ParserState, context: Context): Token {
   const { index: start } = parser;
-  let tail = true;
+  let tail = 1;
   let ret: string | void = '';
 
-  let ch = nextCP(parser);
+  let char = nextCP(parser);
 
-  while (ch !== Chars.Backtick) {
-    if (ch === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
-      nextCP(parser);
-      tail = false;
+  while (char !== Chars.Backtick) {
+    if (char === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
+      nextCP(parser); // Skip: '}'
+      tail = 0;
       break;
-    } else if ((ch & 8) === 8 && ch === Chars.Backslash) {
-      ch = nextCP(parser);
-      if (ch > 0x7e) {
-        ret += fromCodePoint(ch);
+    } else if ((char & 8) === 8 && char === Chars.Backslash) {
+      char = nextCP(parser);
+      if (char > 0x7e) {
+        ret += fromCodePoint(char);
       } else {
-        const code = parseEscape(parser, context | Context.Strict, ch);
+        const code = parseEscape(parser, context | Context.Strict, char);
         if (code >= 0) {
           ret += fromCodePoint(code);
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
           ret = undefined;
-          ch = scanBadTemplate(parser, ch);
-          if (ch < 0) {
-            tail = false;
+          char = scanBadTemplate(parser, char);
+          if (char < 0) {
+            tail = 0;
           }
           break;
         } else {
@@ -40,21 +40,21 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         }
       }
     } else {
-      if (ch === Chars.CarriageReturn) {
+      if (char === Chars.CarriageReturn) {
         if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-          ret += fromCodePoint(ch);
+          ret += fromCodePoint(char);
           parser.nextCP = parser.source.charCodeAt(++parser.index);
         }
       }
 
-      if (ch === Chars.LineFeed || ch === Chars.LineSeparator || ch === Chars.ParagraphSeparator) {
+      if (((char & 83) < 3 && char === Chars.LineFeed) || (char ^ Chars.LineSeparator) <= 1) {
         parser.column = -1;
         parser.line++;
       }
-      ret += fromCodePoint(ch);
+      ret += fromCodePoint(char);
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
-    ch = nextCP(parser);
+    char = nextCP(parser);
   }
 
   nextCP(parser); // Consume the quote or opening brace

@@ -7,7 +7,8 @@ export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
   SameLine = 1 << 1,
-  LastIsCR = 1 << 2
+  LastIsCR = 1 << 2,
+  InJSXMode = 1 << 3
 }
 
 export const enum NumberKind {

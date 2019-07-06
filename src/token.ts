@@ -185,6 +185,7 @@ export const enum Token {
   Target = 134 | IsIdentifier,
   LineFeed  = 135,
   EscapedIdentifier   = 136,
+  JSXText   = 137,
 }
 
 export const KeywordDescTable = [
@@ -228,7 +229,7 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target'
+  'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference

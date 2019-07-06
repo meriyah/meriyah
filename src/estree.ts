@@ -597,7 +597,7 @@ export interface JSXSpreadChild extends _Node {
 export interface JSXText extends _Node {
   type: 'JSXText';
   value: string;
-  raw: string;
+  raw?: string;
 }
 
 export interface LabeledStatement extends _Node {
