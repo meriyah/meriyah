@@ -74,7 +74,7 @@ var meriyah = (function (exports) {
       0,
       32768,
       0,
-      32768,
+      32768 | 16777216,
       0,
       0,
       2 | 1024 | 8192 | 2048 | 4096,
@@ -327,7 +327,8 @@ var meriyah = (function (exports) {
       [154]: 'Only one underscore is allowed as numeric separator',
       [156]: 'JSX value should be either an expression or a quoted JSX text',
       [157]: 'Expected corresponding JSX closing tag for %0',
-      [158]: 'Adjacent JSX elements must be wrapped in an enclosing tag'
+      [158]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
+      [159]: "JSX attributes must only be assigned a non-empty 'expression'"
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -1671,43 +1672,171 @@ var meriyah = (function (exports) {
   }
   function scanJSXToken(parser) {
       parser.startIndex = parser.tokenIndex = parser.index;
+      parser.startColumn = parser.colPos = parser.column;
+      parser.startLine = parser.linePos = parser.line;
       if (parser.index >= parser.end)
           return (parser.token = 1048576);
-      const char = parser.source.charCodeAt(parser.index);
-      if (char === 60) {
-          if (parser.source.charCodeAt(parser.index + 1) === 47) {
-              parser.column += 2;
-              parser.nextCP = parser.source.charCodeAt((parser.index += 2));
-              return (parser.token = 25);
+      const token = TokenLookup[parser.source.charCodeAt(parser.index)];
+      switch (token) {
+          case 8455999: {
+              nextCP(parser);
+              if (parser.nextCP === 47) {
+                  nextCP(parser);
+                  return (parser.token = 25);
+              }
+              return (parser.token = 8455999);
           }
-          nextCP(parser);
-          return (parser.token = 8455999);
+          case 2162700: {
+              nextCP(parser);
+              return (parser.token = 2162700);
+          }
+          default:
       }
-      if (char === 123) {
-          nextCP(parser);
-          return (parser.token = 2162700);
-      }
-      while (parser.index < parser.end) {
-          if (CharTypes[nextCP(parser)] & 8388608)
-              break;
-      }
+      while (parser.index < parser.end && (CharTypes[nextCP(parser)] & 8388608) === 0) { }
       parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
       return (parser.token = 137);
   }
   function scanJSXIdentifier(parser) {
       if ((parser.token & 143360) === 143360) {
           const { index } = parser;
-          while (parser.index < parser.end) {
-              const char = parser.nextCP;
-              if (char === 45 || (index === parser.index ? isIdentifierStart(char) : isIdentifierPart(char))) {
-                  nextCP(parser);
-              }
-              else
-                  break;
+          let char = parser.nextCP;
+          while ((CharTypes[char] & (16777216 | 2)) !== 0) {
+              char = nextCP(parser);
           }
           parser.tokenValue += parser.source.slice(index, parser.index);
       }
       return parser.token;
+  }
+
+  function initblockScope() {
+      return {
+          var: {},
+          lexicalVariables: {},
+          lexicals: { funcs: [] }
+      };
+  }
+  function inheritScope(scope, type) {
+      return {
+          var: scope.var,
+          lexicalVariables: {
+              $: scope.lexicalVariables
+          },
+          lexicals: {
+              $: scope.lexicals,
+              type,
+              funcs: []
+          }
+      };
+  }
+  function declareName(parser, context, scope, name, bindingType, dupeChecks, isVarDecl) {
+      if (scope === null)
+          return;
+      const hashed = '$' + name;
+      if (bindingType & 4) {
+          let lex = scope.lexicals;
+          while (lex !== undefined) {
+              if (lex[hashed] !== undefined) {
+                  if (lex.type & 4) {
+                      if (!isVarDecl || (context & 256) === 0) {
+                          report(parser, 148, name);
+                      }
+                  }
+                  else if (lex.type & 1) {
+                      report(parser, 148, name);
+                  }
+                  else if ((lex.type & 16) === 0 &&
+                      ((context & 256) === 0 ||
+                          (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                          context & 1024))
+                      report(parser, 148, name);
+              }
+              lex = lex['$'];
+          }
+          scope.var[hashed] = scope.var[hashed] ? 2 : 1;
+          let lexicalVariables = scope.lexicalVariables;
+          while (lexicalVariables !== undefined) {
+              lexicalVariables[hashed] = 1;
+              lexicalVariables = lexicalVariables['$'];
+          }
+      }
+      else {
+          const lex = scope.lexicals;
+          if (dupeChecks) {
+              const lexParent = scope.lexicals['$'];
+              if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
+                  report(parser, 148, name);
+              }
+              else if (scope.lexicalVariables[hashed]) {
+                  if ((context & 256) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                      (context & 1024) !== 0) {
+                      report(parser, 148, name);
+                  }
+              }
+              if (lex[hashed] !== undefined &&
+                  ((context & 256) === 0 ||
+                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
+                      context & 1024)) {
+                  report(parser, 148, name);
+              }
+          }
+          lex[hashed] = lex[hashed] ? 2 : 1;
+      }
+  }
+  function declareAndDedupe(parser, context, scope, name, type, isVarDecl) {
+      declareName(parser, context, scope, name, type, 1, isVarDecl);
+      if (scope === null)
+          return;
+      if (context & 256)
+          scope.lexicals.funcs['$' + name] = 1;
+  }
+  function addFunctionName(parser, context, scope, name, type, isVarDecl) {
+      declareName(parser, context, scope, name, type, 1, isVarDecl);
+      if (context & 256 && !('$' + name in scope.lexicals.funcs)) {
+          scope.lexicals.funcs['$' + name] = 2;
+      }
+  }
+  function checkConflictingLexicalDeclarations(parser, context, scope, checkParent) {
+      for (const key in scope.lexicals) {
+          if (key[0] === '$' && key.length > 1) {
+              if (scope.lexicals[key] > 1)
+                  report(parser, 148, key);
+              if (checkParent) {
+                  if (scope.lexicals['$'] &&
+                      scope.lexicals['$'].type & (16 | 4) &&
+                      scope.lexicals['$'][key]) {
+                      report(parser, 148, key.slice(1));
+                  }
+                  else if (((context & 256) === 0 ||
+                      (context & 1024) !== 0 ||
+                      !scope.lexicals.funcs[key]) &&
+                      scope.lexicalVariables[key]) {
+                      report(parser, 148, key.slice(1));
+                  }
+              }
+          }
+      }
+      return false;
+  }
+  function verifyArguments(parser, lex) {
+      for (const key in lex) {
+          if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
+              report(parser, 148, key.slice(1));
+          }
+      }
+  }
+  function updateExportsList(parser, name) {
+      if (parser.exportedNames !== undefined && name !== '') {
+          if (parser.exportedNames['$' + name]) {
+              report(parser, 149, name);
+          }
+          parser.exportedNames['$' + name] = 2;
+      }
+  }
+  function addBindingToExports(parser, name) {
+      if (parser.exportedBindings !== undefined && name !== '') {
+          parser.exportedBindings['$' + name] = 2;
+      }
   }
 
   function consumeSemicolon(parser, context) {
@@ -1869,137 +1998,6 @@ var meriyah = (function (exports) {
               return (isEqualTagName(elementName.object) + '.' +
                   isEqualTagName(elementName.property));
           default:
-      }
-  }
-
-  function initblockScope() {
-      return {
-          var: {},
-          lexicalVariables: {},
-          lexicals: { funcs: [] }
-      };
-  }
-  function inheritScope(scope, type) {
-      return {
-          var: scope.var,
-          lexicalVariables: {
-              $: scope.lexicalVariables
-          },
-          lexicals: {
-              $: scope.lexicals,
-              type,
-              funcs: []
-          }
-      };
-  }
-  function declareName(parser, context, scope, name, bindingType, dupeChecks, isVarDecl) {
-      if (scope === null)
-          return;
-      const hashed = '$' + name;
-      if (bindingType & 4) {
-          let lex = scope.lexicals;
-          while (lex !== undefined) {
-              if (lex[hashed] !== undefined) {
-                  if (lex.type & 4) {
-                      if (!isVarDecl || (context & 256) === 0) {
-                          report(parser, 148, name);
-                      }
-                  }
-                  else if (lex.type & 1) {
-                      report(parser, 148, name);
-                  }
-                  else if ((lex.type & 16) === 0 &&
-                      ((context & 256) === 0 ||
-                          (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                          context & 1024))
-                      report(parser, 148, name);
-              }
-              lex = lex['$'];
-          }
-          scope.var[hashed] = scope.var[hashed] ? 2 : 1;
-          let lexicalVariables = scope.lexicalVariables;
-          while (lexicalVariables !== undefined) {
-              lexicalVariables[hashed] = 1;
-              lexicalVariables = lexicalVariables['$'];
-          }
-      }
-      else {
-          const lex = scope.lexicals;
-          if (dupeChecks) {
-              const lexParent = scope.lexicals['$'];
-              if (lexParent && lexParent.type & (16 | 4) && lexParent[hashed]) {
-                  report(parser, 148, name);
-              }
-              else if (scope.lexicalVariables[hashed]) {
-                  if ((context & 256) === 0 ||
-                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                      (context & 1024) !== 0) {
-                      report(parser, 148, name);
-                  }
-              }
-              if (lex[hashed] !== undefined &&
-                  ((context & 256) === 0 ||
-                      (scope.lexicals.funcs[hashed] & 2) === 0 ||
-                      context & 1024)) {
-                  report(parser, 148, name);
-              }
-          }
-          lex[hashed] = lex[hashed] ? 2 : 1;
-      }
-  }
-  function declareAndDedupe(parser, context, scope, name, type, isVarDecl) {
-      declareName(parser, context, scope, name, type, 1, isVarDecl);
-      if (scope === null)
-          return;
-      if (context & 256)
-          scope.lexicals.funcs['$' + name] = 1;
-  }
-  function addFunctionName(parser, context, scope, name, type, isVarDecl) {
-      declareName(parser, context, scope, name, type, 1, isVarDecl);
-      if (context & 256 && !('$' + name in scope.lexicals.funcs)) {
-          scope.lexicals.funcs['$' + name] = 2;
-      }
-  }
-  function checkConflictingLexicalDeclarations(parser, context, scope, checkParent) {
-      for (const key in scope.lexicals) {
-          if (key[0] === '$' && key.length > 1) {
-              if (scope.lexicals[key] > 1)
-                  report(parser, 148, key);
-              if (checkParent) {
-                  if (scope.lexicals['$'] &&
-                      scope.lexicals['$'].type & (16 | 4) &&
-                      scope.lexicals['$'][key]) {
-                      report(parser, 148, key.slice(1));
-                  }
-                  else if (((context & 256) === 0 ||
-                      (context & 1024) !== 0 ||
-                      !scope.lexicals.funcs[key]) &&
-                      scope.lexicalVariables[key]) {
-                      report(parser, 148, key.slice(1));
-                  }
-              }
-          }
-      }
-      return false;
-  }
-  function verifyArguments(parser, lex) {
-      for (const key in lex) {
-          if (key[0] === '$' && key.length > 1 && lex[key] > 1) {
-              report(parser, 148, key.slice(1));
-          }
-      }
-  }
-  function updateExportsList(parser, name) {
-      if (parser.exportedNames !== undefined && name !== '') {
-          if (parser.exportedNames['$' + name]) {
-              report(parser, 149, name);
-          }
-          parser.exportedNames['$' + name] = 2;
-      }
-  }
-  function addBindingToExports(parser, name) {
-      if (parser.exportedBindings !== undefined && name !== '') {
-          parser.exportedBindings['$' + name] = 2;
       }
   }
 
@@ -5616,32 +5614,36 @@ var meriyah = (function (exports) {
       });
   }
   function parseJSXRootElementOrFragment(parser, context, isJSXChild, start, line, column) {
-      const openingElement = parseJSXOpeningFragmentOrSelfCloseElement(parser, context, isJSXChild, start, line, column);
-      let children = [];
-      let closingElement = null;
-      if (openingElement.type === 'JSXOpeningFragment') {
-          children = parseJSXChildren(parser, context);
-          closingElement = parseJSXClosingFragment(parser, context, isJSXChild, parser.tokenIndex, parser.linePos, parser.colPos);
+      nextToken(parser, context);
+      if (parser.token === 8456000) {
           return finishNode(parser, context, start, line, column, {
               type: 'JSXFragment',
-              children,
-              openingFragment: openingElement,
-              closingFragment: closingElement
+              openingFragment: parseOpeningFragment(parser, context, start, line, column),
+              children: parseJSXChildren(parser, context),
+              closingFragment: parseJSXClosingFragment(parser, context, isJSXChild, parser.tokenIndex, parser.linePos, parser.colPos)
           });
       }
+      let closingElement = null;
+      let children = [];
+      const openingElement = parseJSXOpeningFragmentOrSelfCloseElement(parser, context, isJSXChild, start, line, column);
       if (!openingElement.selfClosing) {
           children = parseJSXChildren(parser, context);
           closingElement = parseJSXClosingElement(parser, context, isJSXChild, parser.tokenIndex, parser.linePos, parser.colPos);
-          const open = isEqualTagName(openingElement.name);
           const close = isEqualTagName(closingElement.name);
-          if (open !== close)
-              report(parser, 0);
+          if (isEqualTagName(openingElement.name) !== close)
+              report(parser, 157, close);
       }
       return finishNode(parser, context, start, line, column, {
           type: 'JSXElement',
           children,
           openingElement,
           closingElement
+      });
+  }
+  function parseOpeningFragment(parser, context, start, line, column) {
+      scanJSXToken(parser);
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXOpeningFragment'
       });
   }
   function parseJSXClosingElement(parser, context, isJSXChild, start, line, column) {
@@ -5690,7 +5692,7 @@ var meriyah = (function (exports) {
           case 208897:
               return parseJSXText(parser, context, start, line, column);
           case 2162700:
-              return parseJSXExpressionContainer(parser, context, 0, start, line, column);
+              return parseJSXExpressionContainer(parser, context, 0, 0, start, line, column);
           case 8455999:
               return parseJSXRootElementOrFragment(parser, context, 0, start, line, column);
           default:
@@ -5700,25 +5702,12 @@ var meriyah = (function (exports) {
   function parseJSXText(parser, context, start, line, column) {
       const value = parser.tokenValue;
       scanJSXToken(parser);
-      return finishNode(parser, context, start, line, column, context & 512
-          ? {
-              type: 'JSXText',
-              value,
-              raw: value
-          }
-          : {
-              type: 'JSXText',
-              value
-          });
+      return finishNode(parser, context, start, line, column, {
+          type: 'JSXText',
+          value
+      });
   }
   function parseJSXOpeningFragmentOrSelfCloseElement(parser, context, isJSXChild, start, line, column) {
-      consume(parser, context, 8455999);
-      if (parser.token === 8456000) {
-          scanJSXToken(parser);
-          return finishNode(parser, context, start, line, column, {
-              type: 'JSXOpeningFragment'
-          });
-      }
       if ((parser.token & 143360) !== 143360 && (parser.token & 4096) !== 4096)
           report(parser, 0);
       const tagName = parseJSXElementName(parser, context, parser.tokenIndex, parser.linePos, parser.colPos);
@@ -5801,7 +5790,7 @@ var meriyah = (function (exports) {
                   value = parseJSXRootElementOrFragment(parser, context, 1, tokenIndex, linePos, colPos);
                   break;
               case 2162700:
-                  value = parseJSXExpressionContainer(parser, context, 1, tokenIndex, linePos, colPos);
+                  value = parseJSXExpressionContainer(parser, context, 1, 1, tokenIndex, linePos, colPos);
                   break;
               default:
                   report(parser, 156);
@@ -5822,17 +5811,19 @@ var meriyah = (function (exports) {
           name
       });
   }
-  function parseJSXExpressionContainer(parser, context, isJSXChild, start, line, column) {
-      consume(parser, context, 2162700);
+  function parseJSXExpressionContainer(parser, context, isJSXChild, isAttr, start, line, column) {
+      nextToken(parser, context);
       const { tokenIndex, linePos, colPos } = parser;
       if (parser.token === 14)
           return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
       let expression = null;
-      if (parser.token !== -2146435057) {
-          expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
+      if (parser.token === -2146435057) {
+          if (isAttr)
+              report(parser, 159);
+          expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
       }
       else {
-          expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
+          expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
       }
       if (isJSXChild) {
           consume(parser, context, -2146435057);
@@ -5877,7 +5868,7 @@ var meriyah = (function (exports) {
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.2.6';
+  const version = '1.3.0';
 
   exports.parse = parse;
   exports.parseModule = parseModule;

@@ -15,7 +15,8 @@ export declare const enum CharFlags {
     LineFeed = 1048576,
     Underscore = 2097152,
     StringLiteral = 4194304,
-    JSXToken = 8388608
+    JSXToken = 8388608,
+    Hyphen = 16777216
 }
 export declare const CharTypes: number[];
 export declare function isIdentifierStart(code: number): number;
