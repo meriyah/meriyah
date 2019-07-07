@@ -4,8 +4,6 @@ import * as ESTree from './estree';
 import { report, reportAt, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
 import { scanJSXIdentifier, scanJSXToken, scanJSXAttributeValue } from './lexer/jsx';
-import { isEqualTagName } from './common';
-
 import {
   declareName,
   declareAndDedupe,
@@ -41,7 +39,8 @@ import {
   validateAndDeclareLabel,
   finishNode,
   HoistedClassFlags,
-  HoistedFunctionFlags
+  HoistedFunctionFlags,
+  isEqualTagName
 } from './common';
 
 /**
@@ -7975,6 +7974,7 @@ function parseAndClassifyIdentifier(
  * @param line
  * @param column
  */
+
 function parseJSXRootElementOrFragment(
   parser: ParserState,
   context: Context,
@@ -7983,9 +7983,28 @@ function parseJSXRootElementOrFragment(
   line: number,
   column: number
 ): ESTree.JSXElement | ESTree.JSXFragment {
-  const openingElement:
-    | ESTree.JSXOpeningElement
-    | ESTree.JSXOpeningFragment = parseJSXOpeningFragmentOrSelfCloseElement(
+  nextToken(parser, context);
+
+  // JSX fragments
+  if (parser.token === Token.GreaterThan) {
+    return finishNode(parser, context, start, line, column, {
+      type: 'JSXFragment',
+      openingFragment: parseOpeningFragment(parser, context, start, line, column),
+      children: parseJSXChildren(parser, context),
+      closingFragment: parseJSXClosingFragment(
+        parser,
+        context,
+        isJSXChild,
+        parser.tokenIndex,
+        parser.linePos,
+        parser.colPos
+      )
+    });
+  }
+
+  let closingElement: ESTree.JSXClosingElement | null = null;
+  let children: ESTree.JSXChild[] = [];
+  const openingElement: ESTree.JSXOpeningElement = parseJSXOpeningFragmentOrSelfCloseElement(
     parser,
     context,
     isJSXChild,
@@ -7993,26 +8012,6 @@ function parseJSXRootElementOrFragment(
     line,
     column
   );
-  let children: ESTree.JSXChild[] = [];
-  let closingElement: ESTree.JSXClosingElement | ESTree.JSXClosingFragment | null = null;
-
-  if (openingElement.type === 'JSXOpeningFragment') {
-    children = parseJSXChildren(parser, context);
-    closingElement = parseJSXClosingFragment(
-      parser,
-      context,
-      isJSXChild,
-      parser.tokenIndex,
-      parser.linePos,
-      parser.colPos
-    );
-    return finishNode(parser, context, start, line, column, {
-      type: 'JSXFragment',
-      children,
-      openingFragment: openingElement,
-      closingFragment: closingElement
-    });
-  }
 
   if (!openingElement.selfClosing) {
     children = parseJSXChildren(parser, context);
@@ -8024,9 +8023,8 @@ function parseJSXRootElementOrFragment(
       parser.linePos,
       parser.colPos
     );
-    const open = isEqualTagName(openingElement.name);
     const close = isEqualTagName(closingElement.name);
-    if (open !== close) report(parser, Errors.Unexpected);
+    if (isEqualTagName(openingElement.name) !== close) report(parser, Errors.ExpectedJSXClosingTag, close);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8034,6 +8032,28 @@ function parseJSXRootElementOrFragment(
     children,
     openingElement,
     closingElement
+  });
+}
+
+/**
+ * Parses JSX opening fragment
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseOpeningFragment(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  line: number,
+  column: number
+): ESTree.JSXOpeningFragment {
+  scanJSXToken(parser);
+  return finishNode(parser, context, start, line, column, {
+    type: 'JSXOpeningFragment'
   });
 }
 
@@ -8135,7 +8155,7 @@ function parseJSXChild(parser: ParserState, context: Context, start: number, lin
     case Token.Identifier:
       return parseJSXText(parser, context, start, line, column);
     case Token.LeftBrace:
-      return parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 0, start, line, column);
+      return parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 0, /* isAttr */ 0, start, line, column);
     case Token.LessThan:
       return parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 0, start, line, column);
     default:
@@ -8161,23 +8181,10 @@ export function parseJSXText(
 ): ESTree.JSXText {
   const value = parser.tokenValue;
   scanJSXToken(parser);
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsRaw
-      ? {
-          type: 'JSXText',
-          value,
-          raw: value
-        }
-      : {
-          type: 'JSXText',
-          value
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'JSXText',
+    value
+  });
 }
 
 /**
@@ -8197,15 +8204,7 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   start: number,
   line: number,
   column: number
-): ESTree.JSXOpeningElement | ESTree.JSXOpeningFragment {
-  consume(parser, context, Token.LessThan);
-  if (parser.token === Token.GreaterThan) {
-    scanJSXToken(parser);
-    return finishNode(parser, context, start, line, column, {
-      type: 'JSXOpeningFragment'
-    });
-  }
-
+): ESTree.JSXOpeningElement {
   if ((parser.token & Token.IsIdentifier) !== Token.IsIdentifier && (parser.token & Token.Keyword) !== Token.Keyword)
     report(parser, Errors.Unexpected);
 
@@ -8359,6 +8358,7 @@ function parseJsxAttribute(
     name = parseJSXNamespacedName(parser, context, name, start, line, column);
   }
 
+  // HTML empty attribute
   if (parser.token === Token.Assign) {
     const token = scanJSXAttributeValue(parser, context);
     const { tokenIndex, linePos, colPos } = parser;
@@ -8370,7 +8370,7 @@ function parseJsxAttribute(
         value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 1, tokenIndex, linePos, colPos);
+        value = parseJSXExpressionContainer(parser, context, 1, 1, tokenIndex, linePos, colPos);
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -8425,20 +8425,23 @@ function parseJSXExpressionContainer(
   parser: ParserState,
   context: Context,
   isJSXChild: 0 | 1,
+  isAttr: 0 | 1,
   start: number,
   line: number,
   column: number
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
-  consume(parser, context, Token.LeftBrace);
+  nextToken(parser, context);
   const { tokenIndex, linePos, colPos } = parser;
   if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
 
   let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
 
-  if (parser.token !== Token.RightBrace) {
-    expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
-  } else {
+  if (parser.token === Token.RightBrace) {
+    // JSX attributes must only be assigned a non-empty 'expression'
+    if (isAttr) report(parser, Errors.InvalidNonEmptyJSXExpr);
     expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
+  } else {
+    expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
   }
   if (isJSXChild) {
     consume(parser, context, Token.RightBrace);

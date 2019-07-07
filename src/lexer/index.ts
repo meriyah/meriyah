@@ -1,4 +1,4 @@
-export { scanSingleToken, nextToken } from './scan';
+export { scanSingleToken, nextToken, TokenLookup } from './scan';
 export { skipMultiLineComment, skipSingleLineComment, skipHashBang } from './comments';
 export {
   nextCP,

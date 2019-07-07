@@ -19,6 +19,7 @@ export const enum CharFlags {
   Underscore            = 1 << 21,
   StringLiteral         = 1 << 22,
   JSXToken              = 1 << 23,
+  Hyphen    = 1 << 24,
 }
 
 /**
@@ -70,7 +71,7 @@ export const CharTypes = [
   CharFlags.None /* 0x2A   */,
   CharFlags.Exponent /* 0x2B   */,
   CharFlags.None /* 0x2C   */,
-  CharFlags.Exponent /* 0x2D   */,
+  CharFlags.Exponent | CharFlags.Hyphen /* 0x2D   */,
   CharFlags.None /* 0x2E   */,
   CharFlags.None /* 0x2F   */,
   CharFlags.IdentifierPart | CharFlags.Decimal | CharFlags.Binary | CharFlags.Octal | CharFlags.Hex /* 0x30 0 */,
