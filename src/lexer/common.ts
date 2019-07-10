@@ -25,6 +25,7 @@ export const enum NumberKind {
 
 /**
  * Advances this lexer's current index.
+ *
  * @param parser The parser instance
  */
 export function nextCP(parser: ParserState): number {
@@ -32,6 +33,12 @@ export function nextCP(parser: ParserState): number {
   return (parser.nextCP = parser.source.charCodeAt(++parser.index));
 }
 
+/**
+ * Consumes multi unit code point
+ *
+ * @param parser The parser instance
+ * @param hi Code point to validate
+ */
 export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 1 {
   // See: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-string-type
   if ((hi & 0xfc00) !== Chars.LeadSurrogateMin) return 0;

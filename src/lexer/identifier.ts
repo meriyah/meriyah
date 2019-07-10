@@ -11,15 +11,14 @@ import { report, reportAt, Errors } from '../errors';
  * @param parser  Parser object
  * @param context Context masks
  */
-export function scanIdentifier(parser: ParserState, context: Context): Token {
-  const canBeKeyword = CharTypes[parser.nextCP] & CharFlags.KeywordCandidate;
+export function scanIdentifier(parser: ParserState, context: Context, isValidAsKeyword: 0 | 1): Token {
   while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
   if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0 && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
   // Slow path that has to deal with multi unit encoding
-  return scanIdentifierSlowCase(parser, context, 0, canBeKeyword);
+  return scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
 }
 
 /**
@@ -47,7 +46,7 @@ export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
   hasEscape: 0 | 1,
-  canBeKeyword: number
+  isValidAsKeyword: number
 ): Token {
   let start = parser.index;
   while (parser.index < parser.end) {
@@ -56,7 +55,7 @@ export function scanIdentifierSlowCase(
       hasEscape = 1;
       const code = scanIdentifierUnicodeEscape(parser) as number;
       if (!isIdentifierPart(code)) report(parser, Errors.InvalidUnicodeEscapeSequence);
-      canBeKeyword = canBeKeyword && CharTypes[code] & CharFlags.KeywordCandidate;
+      isValidAsKeyword = isValidAsKeyword && CharTypes[code] & CharFlags.KeywordCandidate;
       parser.tokenValue += fromCodePoint(code);
       start = parser.index;
     } else if (isIdentifierPart(parser.nextCP) || consumeMultiUnitCodePoint(parser, parser.nextCP)) {
@@ -70,21 +69,21 @@ export function scanIdentifierSlowCase(
     parser.tokenValue += parser.source.slice(start, parser.index);
   }
 
-  const length = (parser.tokenValue as string).length;
+  const length = parser.tokenValue.length;
 
-  if (canBeKeyword && (length >= 2 && length <= 11)) {
-    const keyword: Token | undefined = descKeywordTable[parser.tokenValue as string];
+  if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+    const t: Token | undefined = descKeywordTable[parser.tokenValue];
 
-    return keyword === void 0
+    return t === void 0
       ? Token.Identifier
-      : keyword === Token.YieldKeyword || !hasEscape
-      ? keyword
-      : context & Context.Strict && (keyword === Token.LetKeyword || keyword === Token.StaticKeyword)
+      : t === Token.YieldKeyword || !hasEscape
+      ? t
+      : context & Context.Strict && (t === Token.LetKeyword || t === Token.StaticKeyword)
       ? Token.EscapedFutureReserved
-      : (keyword & Token.FutureReserved) === Token.FutureReserved
+      : (t & Token.FutureReserved) === Token.FutureReserved
       ? context & Context.Strict
         ? Token.EscapedFutureReserved
-        : keyword
+        : t
       : Token.EscapedReserved;
   }
   return Token.Identifier;

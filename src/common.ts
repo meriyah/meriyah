@@ -7,101 +7,101 @@ import { nextToken } from './lexer/scan';
  * The core context, passed around everywhere as a simple immutable bit set.
  */
 export const enum Context {
-  None                  = 0,
-  OptionsNext           = 1 << 0,
-  OptionsRanges         = 1 << 1,
-  OptionsLoc            = 1 << 2,
-  OptionsDirectives     = 1 << 3,
-  OptionsJSX            = 1 << 4,
-  OptionsGlobalReturn   = 1 << 5,
-  OptionsLexical        = 1 << 6,
+  None = 0,
+  OptionsNext = 1 << 0,
+  OptionsRanges = 1 << 1,
+  OptionsLoc = 1 << 2,
+  OptionsDirectives = 1 << 3,
+  OptionsJSX = 1 << 4,
+  OptionsGlobalReturn = 1 << 5,
+  OptionsLexical = 1 << 6,
   OptionsPreserveParens = 1 << 7,
-  OptionsWebCompat      = 1 << 8,
-  OptionsRaw            = 1 << 9,
-  Strict                = 1 << 10,
-  Module                = 1 << 11, // Current code should be parsed as a module body
-  InSwitch              = 1 << 12,
-  InGlobal              = 1 << 13,
-  TopLevel              = 1 << 14,
-  AllowRegExp           = 1 << 15,
-  TaggedTemplate        = 1 << 16,
-  InIteration           = 1 << 17,
-  SuperProperty         = 1 << 18,
-  SuperCall             = 1 << 19,
-  InYieldContext        = 1 << 21,
-  InAwaitContext        = 1 << 22,
-  InArgList             = 1 << 23,
-  InConstructor         = 1 << 24,
-  InMethod              = 1 << 25,
-  AllowNewTarget        = 1 << 26,
-  DisallowIn            = 1 << 27,
-  InClass               = 1 << 28,
+  OptionsWebCompat = 1 << 8,
+  OptionsRaw = 1 << 9,
+  Strict = 1 << 10,
+  Module = 1 << 11, // Current code should be parsed as a module body
+  InSwitch = 1 << 12,
+  InGlobal = 1 << 13,
+  TopLevel = 1 << 14,
+  AllowRegExp = 1 << 15,
+  TaggedTemplate = 1 << 16,
+  InIteration = 1 << 17,
+  SuperProperty = 1 << 18,
+  SuperCall = 1 << 19,
+  InYieldContext = 1 << 21,
+  InAwaitContext = 1 << 22,
+  InArgList = 1 << 23,
+  InConstructor = 1 << 24,
+  InMethod = 1 << 25,
+  AllowNewTarget = 1 << 26,
+  DisallowIn = 1 << 27,
+  InClass = 1 << 28,
   OptionsIdentifierPattern = 1 << 29
 }
 
 export const enum PropertyKind {
-  None        = 0,
-  Method      = 1 << 0,
-  Computed    = 1 << 1,
-  Shorthand   = 1 << 2,
-  Generator   = 1 << 3,
-  Async       = 1 << 4,
-  Static      = 1 << 5,
+  None = 0,
+  Method = 1 << 0,
+  Computed = 1 << 1,
+  Shorthand = 1 << 2,
+  Generator = 1 << 3,
+  Async = 1 << 4,
+  Static = 1 << 5,
   Constructor = 1 << 6,
-  ClassField  = 1 << 7,
-  Getter      = 1 << 8,
-  Setter      = 1 << 9,
-  Extends     = 1 << 10,
-  Literal     = 1 << 11,
+  ClassField = 1 << 7,
+  Getter = 1 << 8,
+  Setter = 1 << 9,
+  Extends = 1 << 10,
+  Literal = 1 << 11,
   PrivateField = 1 << 12,
   GetSet = Getter | Setter
 }
 
 export const enum BindingType {
-  None          = 0,
-  ArgList       = 1 << 0,
-  Variable      = 1 << 2,
-  Let           = 1 << 3,
-  Const         = 1 << 4
+  None = 0,
+  ArgList = 1 << 0,
+  Variable = 1 << 2,
+  Let = 1 << 3,
+  Const = 1 << 4
 }
 
 export const enum BindingOrigin {
-  None          = 0,
-  Declaration   = 1 << 0,
-  Arrow         = 1 << 1,
-  ForStatement  = 1 << 2,
-  Statement     = 1 << 3,
-  Export        = 1 << 4
+  None = 0,
+  Declaration = 1 << 0,
+  Arrow = 1 << 1,
+  ForStatement = 1 << 2,
+  Statement = 1 << 3,
+  Export = 1 << 4
 }
 
 export const enum AssignmentKind {
-  None           = 0,
-  Assignable   = 1 << 0,
-  NotAssignable   = 1 << 1
+  None = 0,
+  Assignable = 1 << 0,
+  NotAssignable = 1 << 1
 }
 
 export const enum DestructuringKind {
-  None               = 0,
-  MustDestruct       = 1 << 3,
-  CannotDestruct     = 1 << 4,
+  None = 0,
+  MustDestruct = 1 << 3,
+  CannotDestruct = 1 << 4,
   // Only destructible if assignable
   AssignableDestruct = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
-  SeenProto          = 1 << 6,
-  Await              = 1 << 7,
-  Yield              = 1 << 8,
+  SeenProto = 1 << 6,
+  Await = 1 << 7,
+  Yield = 1 << 8
 }
 
 /**
  * The mutable parser flags, in case any flags need passed by reference.
  */
 export const enum Flags {
-  None                = 0,
-  NewLine             = 1 << 0,
-  HasConstructor      = 1 << 5,
-  Octals              = 1 << 6,
+  None = 0,
+  NewLine = 1 << 0,
+  HasConstructor = 1 << 5,
+  Octals = 1 << 6,
   SimpleParameterList = 1 << 7,
-  Yield               = 1 << 8,
+  Yield = 1 << 8
 }
 
 export const enum HoistedClassFlags {
@@ -118,7 +118,7 @@ export const enum HoistedFunctionFlags {
 
 export const enum FunctionStatement {
   Disallow,
-  Allow,
+  Allow
 }
 
 /**
@@ -292,11 +292,11 @@ export function validateBindingIdentifier(
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
-      report(parser, Errors.AwaitOutsideAsync);
+    report(parser, Errors.AwaitOutsideAsync);
   }
 
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
-      report(parser, Errors.DisallowedInContext, 'yield');
+    report(parser, Errors.DisallowedInContext, 'yield');
   }
 
   if (t === Token.EscapedReserved) {
@@ -309,7 +309,7 @@ export function validateBindingIdentifier(
  *
  * @param parser Parser state
  * @param context Context masks
-  * @param t Token
+ * @param t Token
  */
 
 export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
@@ -346,7 +346,6 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
  * @param isIterationStatement
  */
 export function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
-
   while (labels) {
     if (labels['$' + name]) {
       if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
@@ -383,7 +382,7 @@ export function finishNode<T extends Node>(
   start: number,
   line: number,
   column: number,
-  node: T,
+  node: T
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
@@ -394,37 +393,33 @@ export function finishNode<T extends Node>(
     node.loc = {
       start: {
         line,
-        column,
+        column
       },
       end: {
         line: parser.startLine,
-        column: parser.startColumn,
+        column: parser.startColumn
       }
     };
 
     if (parser.sourceFile) {
       node.loc.source = parser.sourceFile;
-  }
+    }
   }
 
   return node;
 }
 
-
-  /** @internal */
-  export function isEqualTagName(elementName: any): any {
-    switch (elementName.type) {
-      case 'JSXIdentifier':
-          return elementName.name;
-      case 'JSXNamespacedName':
-          return elementName.namespace + ':' + elementName.name;
-      case 'JSXMemberExpression':
-          return (
-            isEqualTagName(elementName.object) + '.' +
-            isEqualTagName(elementName.property)
-          );
-          /* istanbul ignore next */
-      default:
-          // ignore
+/** @internal */
+export function isEqualTagName(elementName: any): any {
+  switch (elementName.type) {
+    case 'JSXIdentifier':
+      return elementName.name;
+    case 'JSXNamespacedName':
+      return elementName.namespace + ':' + elementName.name;
+    case 'JSXMemberExpression':
+      return isEqualTagName(elementName.object) + '.' + isEqualTagName(elementName.property);
+    /* istanbul ignore next */
+    default:
+    // ignore
   }
 }
