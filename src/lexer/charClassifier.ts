@@ -19,7 +19,7 @@ export const enum CharFlags {
   Underscore            = 1 << 21,
   StringLiteral         = 1 << 22,
   JSXToken              = 1 << 23,
-  Hyphen    = 1 << 24,
+  Hyphen                = 1 << 24,
 }
 
 /**

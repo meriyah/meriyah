@@ -137,32 +137,32 @@ export const TokenLookup = [
   /*  94 - ^                  */ Token.BitwiseXor,
   /*  95 - _                  */ Token.Identifier,
   /*  96 - `                  */ Token.Template,
-  /*  97 - a                  */ Token.Identifier,
-  /*  98 - b                  */ Token.Identifier,
-  /*  99 - c                  */ Token.Identifier,
-  /* 100 - d                  */ Token.Identifier,
-  /* 101 - e                  */ Token.Identifier,
-  /* 102 - f                  */ Token.Identifier,
-  /* 103 - g                  */ Token.Identifier,
+  /*  97 - a                  */ Token.Keyword,
+  /*  98 - b                  */ Token.Keyword,
+  /*  99 - c                  */ Token.Keyword,
+  /* 100 - d                  */ Token.Keyword,
+  /* 101 - e                  */ Token.Keyword,
+  /* 102 - f                  */ Token.Keyword,
+  /* 103 - g                  */ Token.Keyword,
   /* 104 - h                  */ Token.Identifier,
-  /* 105 - i                  */ Token.Identifier,
+  /* 105 - i                  */ Token.Keyword,
   /* 106 - j                  */ Token.Identifier,
   /* 107 - k                  */ Token.Identifier,
-  /* 108 - l                  */ Token.Identifier,
+  /* 108 - l                  */ Token.Keyword,
   /* 109 - m                  */ Token.Identifier,
-  /* 110 - n                  */ Token.Identifier,
+  /* 110 - n                  */ Token.Keyword,
   /* 111 - o                  */ Token.Identifier,
-  /* 112 - p                  */ Token.Identifier,
+  /* 112 - p                  */ Token.Keyword,
   /* 113 - q                  */ Token.Identifier,
-  /* 114 - r                  */ Token.Identifier,
-  /* 115 - s                  */ Token.Identifier,
-  /* 116 - t                  */ Token.Identifier,
+  /* 114 - r                  */ Token.Keyword,
+  /* 115 - s                  */ Token.Keyword,
+  /* 116 - t                  */ Token.Keyword,
   /* 117 - u                  */ Token.Identifier,
-  /* 118 - v                  */ Token.Identifier,
-  /* 119 - w                  */ Token.Identifier,
+  /* 118 - v                  */ Token.Keyword,
+  /* 119 - w                  */ Token.Keyword,
   /* 120 - x                  */ Token.Identifier,
-  /* 121 - y                  */ Token.Identifier,
-  /* 122 - z                  */ Token.Identifier,
+  /* 121 - y                  */ Token.Keyword,
+  /* 122 - z                  */ Token.Keyword,
   /* 123 - {                  */ Token.LeftBrace,
   /* 124 - |                  */ Token.BitwiseOr,
   /* 125 - }                  */ Token.RightBrace,
@@ -229,9 +229,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
           break;
 
+        // Look for identifier or keyword
+        case Token.Keyword:
+          return scanIdentifier(parser, context, /* isValidAsKeyword */ 1);
+
         // Look for an identifier
         case Token.Identifier:
-          return scanIdentifier(parser, context);
+          return scanIdentifier(parser, context, /* isValidAsKeyword */ 0);
 
         // Look for a decimal number.
         case Token.NumericLiteral:
