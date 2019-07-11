@@ -446,32 +446,32 @@ const TokenLookup = [
     8455238,
     208897,
     132,
+    4096,
+    4096,
+    4096,
+    4096,
+    4096,
+    4096,
+    4096,
+    208897,
+    4096,
     208897,
     208897,
+    4096,
     208897,
+    4096,
     208897,
+    4096,
     208897,
+    4096,
+    4096,
+    4096,
     208897,
+    4096,
+    4096,
     208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
-    208897,
+    4096,
+    4096,
     2162700,
     8454981,
     -2146435057,
@@ -521,8 +521,10 @@ function scanSingleToken(parser, context, state) {
                     consumeLineFeed(parser, (state & 4) !== 0);
                     state = (state | 4 | 1) ^ 4;
                     break;
+                case 4096:
+                    return scanIdentifier(parser, context, 1);
                 case 208897:
-                    return scanIdentifier(parser, context);
+                    return scanIdentifier(parser, context, 0);
                 case 134283266:
                     return scanNumber(parser, context, 16);
                 case 134283267:
@@ -955,14 +957,13 @@ const descKeywordTable = Object.create(null, {
     target: { value: 143494 },
 });
 
-function scanIdentifier(parser, context) {
-    const canBeKeyword = CharTypes[parser.nextCP] & 64;
+function scanIdentifier(parser, context, isValidAsKeyword) {
     while ((CharTypes[nextCP(parser)] & 2) !== 0) { }
     parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
     if ((CharTypes[parser.nextCP] & 131072) === 0 && parser.nextCP < 0x7e) {
         return descKeywordTable[parser.tokenValue] || 208897;
     }
-    return scanIdentifierSlowCase(parser, context, 0, canBeKeyword);
+    return scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
 }
 function scanUnicodeIdentifier(parser, context) {
     const cookedChar = scanIdentifierUnicodeEscape(parser);
@@ -971,7 +972,7 @@ function scanUnicodeIdentifier(parser, context) {
     parser.tokenValue = fromCodePoint(cookedChar);
     return scanIdentifierSlowCase(parser, context, 1, CharTypes[cookedChar] & 64);
 }
-function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
+function scanIdentifierSlowCase(parser, context, hasEscape, isValidAsKeyword) {
     let start = parser.index;
     while (parser.index < parser.end) {
         if (parser.nextCP === 92) {
@@ -980,7 +981,7 @@ function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
             const code = scanIdentifierUnicodeEscape(parser);
             if (!isIdentifierPart(code))
                 report(parser, 4);
-            canBeKeyword = canBeKeyword && CharTypes[code] & 64;
+            isValidAsKeyword = isValidAsKeyword && CharTypes[code] & 64;
             parser.tokenValue += fromCodePoint(code);
             start = parser.index;
         }
@@ -995,18 +996,18 @@ function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
         parser.tokenValue += parser.source.slice(start, parser.index);
     }
     const length = parser.tokenValue.length;
-    if (canBeKeyword && (length >= 2 && length <= 11)) {
-        const keyword = descKeywordTable[parser.tokenValue];
-        return keyword === void 0
+    if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+        const t = descKeywordTable[parser.tokenValue];
+        return t === void 0
             ? 208897
-            : keyword === 241770 || !hasEscape
-                ? keyword
-                : context & 1024 && (keyword === 268677192 || keyword === 36969)
+            : t === 241770 || !hasEscape
+                ? t
+                : context & 1024 && (t === 268677192 || t === 36969)
                     ? 143479
-                    : (keyword & 36864) === 36864
+                    : (t & 36864) === 36864
                         ? context & 1024
                             ? 143479
-                            : keyword
+                            : t
                         : 143478;
     }
     return 208897;
@@ -1976,11 +1977,11 @@ function finishNode(parser, context, start, line, column, node) {
         node.loc = {
             start: {
                 line,
-                column,
+                column
             },
             end: {
                 line: parser.startLine,
-                column: parser.startColumn,
+                column: parser.startColumn
             }
         };
         if (parser.sourceFile) {
@@ -1996,8 +1997,7 @@ function isEqualTagName(elementName) {
         case 'JSXNamespacedName':
             return elementName.namespace + ':' + elementName.name;
         case 'JSXMemberExpression':
-            return (isEqualTagName(elementName.object) + '.' +
-                isEqualTagName(elementName.property));
+            return isEqualTagName(elementName.object) + '.' + isEqualTagName(elementName.property);
         default:
     }
 }
