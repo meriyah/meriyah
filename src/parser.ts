@@ -195,6 +195,8 @@ export interface Options {
   identifierPattern?: boolean;
   // Enable React JSX parsing
   jsx?: boolean;
+  //
+  deFacto?: boolean;
 }
 
 /**
@@ -216,6 +218,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
+    if (options.deFacto) context |= Context.OptionsDeFacto;
     if (options.source) sourceFile = options.source;
   }
 
@@ -1692,7 +1695,17 @@ export function parseDoWhileStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, 1, parser.tokenIndex, parser.linePos, parser.colPos);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  // Fixes edge case where mayority of parser & js engines allowes
+  // cases like
+  //
+  // do;while(0) 0;
+  //
+  if (context & Context.OptionsDeFacto) {
+    consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
+    // doStatement[?Yield, ?Await, ?Return]while(Expression[+In, ?Yield, ?Await] ) ;
+  } else {
+    consumeSemicolon(parser, context | Context.AllowRegExp);
+  }
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
     body,

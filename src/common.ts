@@ -36,7 +36,8 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   InClass = 1 << 28,
-  OptionsIdentifierPattern = 1 << 29
+  OptionsIdentifierPattern = 1 << 29,
+  OptionsDeFacto = 1 << 30,
 }
 
 export const enum PropertyKind {

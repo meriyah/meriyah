@@ -13,10 +13,38 @@ describe('Statements - Do while', () => {
     ['do try {} catch {} while(x) x', Context.None],
     ['do if (x) {} while(x) x', Context.None],
     ['do debugger; while(x) x', Context.None],
-    ['do debugger while(x) x', Context.None]
+    ['do debugger while(x) x', Context.None],
+    ['do;while(0) 0;', Context.None]
   ]);
 
   pass('Statements - Do while (pass)', [
+    [
+      `do;while(0) 0;`,
+      Context.OptionsDeFacto,
+      {
+        body: [
+          {
+            body: {
+              type: 'EmptyStatement'
+            },
+            test: {
+              type: 'Literal',
+              value: 0
+            },
+            type: 'DoWhileStatement'
+          },
+          {
+            expression: {
+              type: 'Literal',
+              value: 0
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
     [
       `do x
     while ({ [y]: {} ? null : false  })`,
