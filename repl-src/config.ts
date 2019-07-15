@@ -7,6 +7,7 @@ export const LEFT_MENU_CONFIG = [
     category: "Parsing Modes",
     items: [
       { title: "Directives", value: "directives", selected: false },
+      { title: "Allow deviaton from the spec", value: "deFacto", selected: false },
       { title: "ESNext features", value: "next", selected: false },
       {
         title: "Distinguish Identifier",
