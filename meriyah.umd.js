@@ -330,7 +330,8 @@
       [154]: 'Only one underscore is allowed as numeric separator',
       [156]: 'JSX value should be either an expression or a quoted JSX text',
       [157]: 'Expected corresponding JSX closing tag for %0',
-      [158]: 'Adjacent JSX elements must be wrapped in an enclosing tag'
+      [158]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
+      [159]: "JSX attributes must only be assigned a non-empty 'expression'"
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -447,32 +448,32 @@
       8455238,
       208897,
       132,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      208897,
+      4096,
       208897,
       208897,
+      4096,
       208897,
+      4096,
       208897,
+      4096,
       208897,
+      4096,
+      4096,
+      4096,
       208897,
+      4096,
+      4096,
       208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
-      208897,
+      4096,
+      4096,
       2162700,
       8454981,
       -2146435057,
@@ -522,8 +523,10 @@
                       consumeLineFeed(parser, (state & 4) !== 0);
                       state = (state | 4 | 1) ^ 4;
                       break;
+                  case 4096:
+                      return scanIdentifier(parser, context, 1);
                   case 208897:
-                      return scanIdentifier(parser, context);
+                      return scanIdentifier(parser, context, 0);
                   case 134283266:
                       return scanNumber(parser, context, 16);
                   case 134283267:
@@ -956,14 +959,13 @@
       target: { value: 143494 },
   });
 
-  function scanIdentifier(parser, context) {
-      const canBeKeyword = CharTypes[parser.nextCP] & 64;
+  function scanIdentifier(parser, context, isValidAsKeyword) {
       while ((CharTypes[nextCP(parser)] & 2) !== 0) { }
       parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
       if ((CharTypes[parser.nextCP] & 131072) === 0 && parser.nextCP < 0x7e) {
           return descKeywordTable[parser.tokenValue] || 208897;
       }
-      return scanIdentifierSlowCase(parser, context, 0, canBeKeyword);
+      return scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
   }
   function scanUnicodeIdentifier(parser, context) {
       const cookedChar = scanIdentifierUnicodeEscape(parser);
@@ -972,7 +974,7 @@
       parser.tokenValue = fromCodePoint(cookedChar);
       return scanIdentifierSlowCase(parser, context, 1, CharTypes[cookedChar] & 64);
   }
-  function scanIdentifierSlowCase(parser, context, hasEscape, canBeKeyword) {
+  function scanIdentifierSlowCase(parser, context, hasEscape, isValidAsKeyword) {
       let start = parser.index;
       while (parser.index < parser.end) {
           if (parser.nextCP === 92) {
@@ -981,7 +983,7 @@
               const code = scanIdentifierUnicodeEscape(parser);
               if (!isIdentifierPart(code))
                   report(parser, 4);
-              canBeKeyword = canBeKeyword && CharTypes[code] & 64;
+              isValidAsKeyword = isValidAsKeyword && CharTypes[code] & 64;
               parser.tokenValue += fromCodePoint(code);
               start = parser.index;
           }
@@ -996,18 +998,18 @@
           parser.tokenValue += parser.source.slice(start, parser.index);
       }
       const length = parser.tokenValue.length;
-      if (canBeKeyword && (length >= 2 && length <= 11)) {
-          const keyword = descKeywordTable[parser.tokenValue];
-          return keyword === void 0
+      if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+          const t = descKeywordTable[parser.tokenValue];
+          return t === void 0
               ? 208897
-              : keyword === 241770 || !hasEscape
-                  ? keyword
-                  : context & 1024 && (keyword === 268677192 || keyword === 36969)
+              : t === 241770 || !hasEscape
+                  ? t
+                  : context & 1024 && (t === 268677192 || t === 36969)
                       ? 143479
-                      : (keyword & 36864) === 36864
+                      : (t & 36864) === 36864
                           ? context & 1024
                               ? 143479
-                              : keyword
+                              : t
                           : 143478;
       }
       return 208897;
@@ -1674,26 +1676,27 @@
   }
   function scanJSXToken(parser) {
       parser.startIndex = parser.tokenIndex = parser.index;
+      parser.startColumn = parser.colPos = parser.column;
+      parser.startLine = parser.linePos = parser.line;
       if (parser.index >= parser.end)
           return (parser.token = 1048576);
-      const char = parser.source.charCodeAt(parser.index);
-      if (char === 60) {
-          if (parser.source.charCodeAt(parser.index + 1) === 47) {
-              parser.column += 2;
-              parser.nextCP = parser.source.charCodeAt((parser.index += 2));
-              return (parser.token = 25);
+      const token = TokenLookup[parser.source.charCodeAt(parser.index)];
+      switch (token) {
+          case 8455999: {
+              nextCP(parser);
+              if (parser.nextCP === 47) {
+                  nextCP(parser);
+                  return (parser.token = 25);
+              }
+              return (parser.token = 8455999);
           }
-          nextCP(parser);
-          return (parser.token = 8455999);
+          case 2162700: {
+              nextCP(parser);
+              return (parser.token = 2162700);
+          }
+          default:
       }
-      if (char === 123) {
-          nextCP(parser);
-          return (parser.token = 2162700);
-      }
-      while (parser.index < parser.end) {
-          if (CharTypes[nextCP(parser)] & 8388608)
-              break;
-      }
+      while (parser.index < parser.end && (CharTypes[nextCP(parser)] & 8388608) === 0) { }
       parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
       return (parser.token = 137);
   }
@@ -1976,11 +1979,11 @@
           node.loc = {
               start: {
                   line,
-                  column,
+                  column
               },
               end: {
                   line: parser.startLine,
-                  column: parser.startColumn,
+                  column: parser.startColumn
               }
           };
           if (parser.sourceFile) {
@@ -1996,8 +1999,7 @@
           case 'JSXNamespacedName':
               return elementName.namespace + ':' + elementName.name;
           case 'JSXMemberExpression':
-              return (isEqualTagName(elementName.object) + '.' +
-                  isEqualTagName(elementName.property));
+              return isEqualTagName(elementName.object) + '.' + isEqualTagName(elementName.property);
           default:
       }
   }
@@ -2057,6 +2059,8 @@
               context |= 16;
           if (options.identifierPattern)
               context |= 536870912;
+          if (options.deFacto)
+              context |= 1073741824;
           if (options.source)
               sourceFile = options.source;
       }
@@ -2592,7 +2596,12 @@
       consume(parser, context | 32768, 67174411);
       const test = parseExpressions(parser, context, 1, parser.tokenIndex, parser.linePos, parser.colPos);
       consume(parser, context | 32768, 1073741840);
-      consumeSemicolon(parser, context | 32768);
+      if (context & 1073741824) {
+          consumeOpt(parser, context | 32768, -2146435055);
+      }
+      else {
+          consumeSemicolon(parser, context | 32768);
+      }
       return finishNode(parser, context, start, line, column, {
           type: 'DoWhileStatement',
           body,
@@ -5693,7 +5702,7 @@
           case 208897:
               return parseJSXText(parser, context, start, line, column);
           case 2162700:
-              return parseJSXExpressionContainer(parser, context, 0, start, line, column);
+              return parseJSXExpressionContainer(parser, context, 0, 0, start, line, column);
           case 8455999:
               return parseJSXRootElementOrFragment(parser, context, 0, start, line, column);
           default:
@@ -5791,7 +5800,7 @@
                   value = parseJSXRootElementOrFragment(parser, context, 1, tokenIndex, linePos, colPos);
                   break;
               case 2162700:
-                  value = parseJSXExpressionContainer(parser, context, 1, tokenIndex, linePos, colPos);
+                  value = parseJSXExpressionContainer(parser, context, 1, 1, tokenIndex, linePos, colPos);
                   break;
               default:
                   report(parser, 156);
@@ -5812,17 +5821,19 @@
           name
       });
   }
-  function parseJSXExpressionContainer(parser, context, isJSXChild, start, line, column) {
-      consume(parser, context, 2162700);
+  function parseJSXExpressionContainer(parser, context, isJSXChild, isAttr, start, line, column) {
+      nextToken(parser, context);
       const { tokenIndex, linePos, colPos } = parser;
       if (parser.token === 14)
           return parseJSXSpreadChild(parser, context, tokenIndex, linePos, colPos);
       let expression = null;
-      if (parser.token !== -2146435057) {
-          expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
+      if (parser.token === -2146435057) {
+          if (isAttr)
+              report(parser, 159);
+          expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
       }
       else {
-          expression = parseJSXEmptyExpression(parser, context, tokenIndex, linePos, colPos);
+          expression = parseExpression(parser, context, 1, 0, 0, tokenIndex, linePos, colPos);
       }
       if (isJSXChild) {
           consume(parser, context, -2146435057);
@@ -5867,7 +5878,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.3.0';
+  const version = '1.3.2';
 
   exports.parse = parse;
   exports.parseModule = parseModule;
