@@ -20,7 +20,7 @@ describe('Statements - Do while', () => {
   pass('Statements - Do while (pass)', [
     [
       `do;while(0) 0;`,
-      Context.OptionsDeFacto,
+      Context.OptionsSpecDeviation,
       {
         body: [
           {

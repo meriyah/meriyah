@@ -37,7 +37,7 @@ export const enum Context {
   DisallowIn = 1 << 27,
   InClass = 1 << 28,
   OptionsIdentifierPattern = 1 << 29,
-  OptionsDeFacto = 1 << 30,
+  OptionsSpecDeviation = 1 << 30,
 }
 
 export const enum PropertyKind {
@@ -160,8 +160,10 @@ export interface ParserState {
  * @param parser Parser object
  * @param context Context masks
  */
-export function consumeSemicolon(parser: ParserState, context: Context): void {
-  if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
+
+export function consumeSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
+  if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
+  && !specDeviation) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
   consumeOpt(parser, context, Token.Semicolon);
