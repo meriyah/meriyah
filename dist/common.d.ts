@@ -30,7 +30,8 @@ export declare const enum Context {
     AllowNewTarget = 67108864,
     DisallowIn = 134217728,
     InClass = 268435456,
-    OptionsIdentifierPattern = 536870912
+    OptionsIdentifierPattern = 536870912,
+    OptionsSpecDeviation = 1073741824
 }
 export declare const enum PropertyKind {
     None = 0,
@@ -127,7 +128,7 @@ export interface ParserState {
     exportedNames: any;
     exportedBindings: any;
 }
-export declare function consumeSemicolon(parser: ParserState, context: Context): void;
+export declare function consumeSemicolon(parser: ParserState, context: Context, specDeviation?: number): void;
 export declare function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1;
 export declare function consumeOpt(parser: ParserState, context: Context, t: Token): boolean;
 export declare function consume(parser: ParserState, context: Context, t: Token): void;

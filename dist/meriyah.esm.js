@@ -1837,8 +1837,9 @@ function addBindingToExports(parser, name) {
     }
 }
 
-function consumeSemicolon(parser, context) {
-    if ((parser.flags & 1) === 0 && (parser.token & 1048576) !== 1048576) {
+function consumeSemicolon(parser, context, specDeviation) {
+    if ((parser.flags & 1) === 0 && (parser.token & 1048576) !== 1048576
+        && !specDeviation) {
         report(parser, 28, KeywordDescTable[parser.token & 255]);
     }
     consumeOpt(parser, context, -2146435055);
@@ -2053,6 +2054,8 @@ function parseSource(source, options, context) {
             context |= 16;
         if (options.identifierPattern)
             context |= 536870912;
+        if (options.specDeviation)
+            context |= 1073741824;
         if (options.source)
             sourceFile = options.source;
     }
@@ -2588,7 +2591,7 @@ function parseDoWhileStatement(parser, context, scope, labels, start, line, colu
     consume(parser, context | 32768, 67174411);
     const test = parseExpressions(parser, context, 1, parser.tokenIndex, parser.linePos, parser.colPos);
     consume(parser, context | 32768, 1073741840);
-    consumeSemicolon(parser, context | 32768);
+    consumeSemicolon(parser, context | 32768, context & 1073741824);
     return finishNode(parser, context, start, line, column, {
         type: 'DoWhileStatement',
         body,
@@ -5865,6 +5868,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.3.0';
+const version = '1.3.2';
 
 export { parse, parseModule, parseScript, version };

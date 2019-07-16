@@ -18,6 +18,7 @@ export interface Options {
     source?: string;
     identifierPattern?: boolean;
     jsx?: boolean;
+    specDeviation?: boolean;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState): ESTree.Statement[];

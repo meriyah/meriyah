@@ -464,6 +464,7 @@ export interface UpdateExpression extends _Node {
     prefix: boolean;
 }
 export interface UnaryExpression extends _Node {
+    type: 'UnaryExpression';
     operator: UnaryOperator;
     prefix: true;
     argument: Expression;
