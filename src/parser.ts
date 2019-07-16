@@ -195,6 +195,8 @@ export interface Options {
   identifierPattern?: boolean;
   // Enable React JSX parsing
   jsx?: boolean;
+  // Allow edge cases that deviate from the spec
+  specDeviation?: boolean;
 }
 
 /**
@@ -216,6 +218,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
+    if (options.specDeviation) context |= Context.OptionsSpecDeviation;
     if (options.source) sourceFile = options.source;
   }
 
@@ -1692,7 +1695,7 @@ export function parseDoWhileStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, 1, parser.tokenIndex, parser.linePos, parser.colPos);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  consumeSemicolon(parser, context | Context.AllowRegExp, context & Context.OptionsSpecDeviation);
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
     body,
