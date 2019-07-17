@@ -173,13 +173,12 @@ describe('Miscellaneous - Cover grammar', () => {
           parseSource(fn(`...{`), undefined, Context.OptionsWebCompat);
         });
       });
-      /*
+
       it(fn(`...[p.q]`), () => {
         t.throws(() => {
           parseSource(fn(`...[p.q]`), undefined, Context.OptionsWebCompat);
         });
       });
-      */
 
       it(fn(`...[0]`), () => {
         t.throws(() => {
@@ -3111,8 +3110,6 @@ describe('Miscellaneous - Cover grammar', () => {
     'f = async function* g([_, x]) {}',
     'f = async function* g([{ u: v, w: x, y: z } = { u: 444, w: 555, y: 666 }]) {}',
     'f = async function* g([, , ...x]) {}',
-    '[(x) = y] = z',
-    '[(x) = y]',
     'f = async function* g([[] = function() { initCount += 1; }()] = [[23]]) {}',
     'var C = class { static async *method({ w: [x, y, z] = [4, 5, 6] }) {}}',
     'class C { async *method([x, y, z] = [1, 2, 3]) {}}',
