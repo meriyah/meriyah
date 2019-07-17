@@ -73,7 +73,11 @@ export const enum BindingOrigin {
   Arrow = 1 << 1,
   ForStatement = 1 << 2,
   Statement = 1 << 3,
-  Export = 1 << 4
+  Export = 1 << 4,
+  Other = 1 << 5,
+  IfStatement = 1 << 6,
+  BlockStatement = 1 << 9,
+  TopLevel = 1 << 10
 }
 
 export const enum AssignmentKind {
