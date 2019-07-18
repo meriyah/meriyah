@@ -373,36 +373,36 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
-          const next = nextCP(parser);
+          let ch = nextCP(parser);
           if (parser.index < parser.end) {
-            if (next === Chars.LessThan) {
+            if (ch === Chars.LessThan) {
               if (parser.index < parser.end && nextCP(parser) === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.ShiftLeftAssign;
               } else {
                 return Token.ShiftLeft;
               }
-            } else if (next === Chars.EqualSign) {
+            } else if (ch === Chars.EqualSign) {
               nextCP(parser);
               return Token.LessThanOrEqual;
-            } else if (next === Chars.Exclamation) {
+            } else if (ch === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
               if (
                 (context & Context.Module) === 0 &&
-                parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen &&
-                parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen
+                parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen &&
+                parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen
               ) {
                 state = skipSingleLineComment(parser, state);
                 continue;
               }
-            } else if (next === Chars.Slash) {
+            } else if (ch === Chars.Slash) {
               if (!(context & Context.OptionsJSX)) break;
               const index = parser.index + 1;
 
               // Check that it's not a comment start.
               if (index < parser.end) {
-                const next = parser.source.charCodeAt(index);
-                if (next === Chars.Asterisk || next === Chars.Slash) break;
+                ch = parser.source.charCodeAt(index);
+                if (ch === Chars.Asterisk || ch === Chars.Slash) break;
               }
 
               nextCP(parser);
@@ -414,16 +414,16 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.Assign: {
           nextCP(parser);
           if (parser.index >= parser.end) return Token.Assign;
-          const next = parser.nextCP;
+          const ch = parser.nextCP;
 
-          if (next === Chars.EqualSign) {
+          if (ch === Chars.EqualSign) {
             if (nextCP(parser) === Chars.EqualSign) {
               nextCP(parser);
               return Token.StrictEqual;
             } else {
               return Token.LooseEqual;
             }
-          } else if (next === Chars.GreaterThan) {
+          } else if (ch === Chars.GreaterThan) {
             nextCP(parser);
             return Token.Arrow;
           }
@@ -454,28 +454,28 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           if (parser.index >= parser.end) return Token.GreaterThan;
 
-          const next = parser.nextCP;
+          const ch = parser.nextCP;
 
-          if (next === Chars.EqualSign) {
+          if (ch === Chars.EqualSign) {
             nextCP(parser);
             return Token.GreaterThanOrEqual;
           }
 
-          if (next !== Chars.GreaterThan) return Token.GreaterThan;
+          if (ch !== Chars.GreaterThan) return Token.GreaterThan;
 
           nextCP(parser);
 
           if (parser.index < parser.end) {
-            const next = parser.nextCP;
+            const ch = parser.nextCP;
 
-            if (next === Chars.GreaterThan) {
+            if (ch === Chars.GreaterThan) {
               if (nextCP(parser) === Chars.EqualSign) {
                 nextCP(parser);
                 return Token.LogicalShiftRightAssign;
               } else {
                 return Token.LogicalShiftRight;
               }
-            } else if (next === Chars.EqualSign) {
+            } else if (ch === Chars.EqualSign) {
               nextCP(parser);
               return Token.ShiftRightAssign;
             }
@@ -488,14 +488,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.BitwiseAnd: {
           nextCP(parser);
           if (parser.index >= parser.end) return Token.BitwiseAnd;
-          const next = parser.nextCP;
+          const ch = parser.nextCP;
 
-          if (next === Chars.Ampersand) {
+          if (ch === Chars.Ampersand) {
             nextCP(parser);
             return Token.LogicalAnd;
           }
 
-          if (next === Chars.EqualSign) {
+          if (ch === Chars.EqualSign) {
             nextCP(parser);
             return Token.BitwiseAndAssign;
           }

@@ -30,7 +30,7 @@ export const enum Context {
   SuperCall = 1 << 19,
   InYieldContext = 1 << 21,
   InAwaitContext = 1 << 22,
-  InArgList = 1 << 23,
+  InArgumentList = 1 << 23,
   InConstructor = 1 << 24,
   InMethod = 1 << 25,
   AllowNewTarget = 1 << 26,
@@ -58,12 +58,13 @@ export const enum PropertyKind {
   GetSet = Getter | Setter
 }
 
-export const enum BindingType {
+export const enum BindingKind {
   None = 0,
-  ArgList = 1 << 0,
+  ArgumentList = 1 << 0,
+  EmptyBinding  = 1 << 1,
   Variable = 1 << 2,
   Let = 1 << 3,
-  Const = 1 << 4
+  Const = 1 << 4,
 }
 
 export const enum BindingOrigin {
@@ -72,7 +73,11 @@ export const enum BindingOrigin {
   Arrow = 1 << 1,
   ForStatement = 1 << 2,
   Statement = 1 << 3,
-  Export = 1 << 4
+  Export = 1 << 4,
+  Other = 1 << 5,
+  IfStatement = 1 << 6,
+  BlockStatement = 1 << 9,
+  TopLevel = 1 << 10
 }
 
 export const enum AssignmentKind {
@@ -262,7 +267,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
 export function validateBindingIdentifier(
   parser: ParserState,
   context: Context,
-  type: BindingType,
+  type: BindingKind,
   t: Token,
   skipEvalArgCheck: 0 | 1
 ): void {
@@ -290,7 +295,7 @@ export function validateBindingIdentifier(
     report(parser, Errors.KeywordNotId);
   }
 
-  if (type & (BindingType.Let | BindingType.Const) && t === Token.LetKeyword) {
+  if (type & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
 

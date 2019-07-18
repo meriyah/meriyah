@@ -1,5 +1,5 @@
 import { report, Errors } from './errors';
-import { Context, ParserState, BindingType } from './common';
+import { Context, ParserState, BindingKind } from './common';
 
 /**
  * Scope types
@@ -10,7 +10,7 @@ export const enum ScopeType {
   Block = 1 << 1,
   Catch = 1 << 2,
   Switch = 1 << 3,
-  ArgList = 1 << 4
+  ArgumentList = 1 << 4
 }
 /**
  * Scope masks
@@ -73,7 +73,7 @@ export function declareName(
   context: Context,
   scope: any,
   name: string,
-  bindingType: BindingType,
+  bindingType: BindingKind,
   dupeChecks: 0 | 1,
   isVarDecl: 0 | 1
 ): void {
@@ -81,7 +81,7 @@ export function declareName(
 
   const hashed = '$' + name;
 
-  if (bindingType & BindingType.Variable) {
+  if (bindingType & BindingKind.Variable) {
     let lex = scope.lexicals;
 
     while (lex !== undefined) {
@@ -93,7 +93,7 @@ export function declareName(
         } else if (lex.type & ScopeType.For) {
           report(parser, Errors.DuplicateBinding, name);
         } else if (
-          (lex.type & ScopeType.ArgList) === 0 &&
+          (lex.type & ScopeType.ArgumentList) === 0 &&
           ((context & Context.OptionsWebCompat) === 0 ||
             (scope.lexicals.funcs[hashed] & ScopeMasks.Undeclared) === 0 ||
             context & Context.Strict)
@@ -119,7 +119,7 @@ export function declareName(
     if (dupeChecks) {
       const lexParent = scope.lexicals['$'];
 
-      if (lexParent && lexParent.type & (ScopeType.ArgList | ScopeType.Catch) && lexParent[hashed]) {
+      if (lexParent && lexParent.type & (ScopeType.ArgumentList | ScopeType.Catch) && lexParent[hashed]) {
         report(parser, Errors.DuplicateBinding, name);
       } else if (scope.lexicalVariables[hashed]) {
         if (
@@ -160,7 +160,7 @@ export function declareAndDedupe(
   context: Context,
   scope: any,
   name: string,
-  type: BindingType,
+  type: BindingKind,
   isVarDecl: 0 | 1
 ): void {
   declareName(parser, context, scope, name, type, 1, isVarDecl);
@@ -172,7 +172,7 @@ export function declareUnboundVariable(
   context: Context,
   scope: any,
   name: string,
-  type: BindingType
+  type: BindingKind
 ): void {
   declareName(parser, context, scope, name, type, 1, 0);
 }
@@ -189,7 +189,7 @@ export function addFunctionName(
   context: Context,
   scope: any,
   name: string,
-  type: BindingType,
+  type: BindingKind,
   isVarDecl: 0 | 1
 ): void {
   declareName(parser, context, scope, name, type, 1, isVarDecl);
@@ -218,7 +218,7 @@ export function checkConflictingLexicalDeclarations(
       if (checkParent) {
         if (
           scope.lexicals['$'] &&
-          scope.lexicals['$'].type & (ScopeType.ArgList | ScopeType.Catch) &&
+          scope.lexicals['$'].type & (ScopeType.ArgumentList | ScopeType.Catch) &&
           scope.lexicals['$'][key]
         ) {
           report(parser, Errors.DuplicateBinding, key.slice(1));
