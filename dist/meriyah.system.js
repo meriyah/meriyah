@@ -3675,6 +3675,7 @@ System.register('meriyah', [], function (exports) {
               if (parser.token !== -1073741806)
                   break;
               nextToken(parser, context | 32768);
+              parser.assignable |= 1;
               if (parser.token === 1073741840)
                   break;
           }
@@ -5052,7 +5053,7 @@ System.register('meriyah', [], function (exports) {
               if (parser.token === 86103)
                   return parseFunctionExpression(parser, context, 1, inGroup, start, line, column);
               if ((parser.token & 143360) === 143360) {
-                  if (parser.assignable & 2)
+                  if ((parser.assignable & 1) === 0)
                       report(parser, 47);
                   if (parser.token === 209005)
                       report(parser, 29);
