@@ -3706,6 +3706,7 @@ export function parsePrimaryExpressionExtended(
   if (context & Context.InClass && parser.token === Token.Arguments) {
     report(parser, Errors.InvalidClassFieldArgEval);
   }
+
   if ((token & Token.IsIdentifier) === Token.IsIdentifier) {
     const tokenValue = parser.tokenValue;
     const expr = parseIdentifier(parser, context | Context.TaggedTemplate, identifierPattern, start, line, column);
@@ -4096,6 +4097,8 @@ export function parseArguments(
     if (parser.token !== Token.Comma) break;
 
     nextToken(parser, context | Context.AllowRegExp);
+
+    parser.assignable |= AssignmentKind.Assignable;
 
     if (parser.token === Token.RightParen) break;
   }
@@ -6879,12 +6882,13 @@ export function parseAsyncExpression(
   let scope = {};
   if ((flags & Flags.NewLine) === 0) {
     // async function ...
+
     if (parser.token === Token.FunctionKeyword)
       return parseFunctionExpression(parser, context, /* isAsync */ 1, inGroup, start, line, column);
 
     // async Identifier => ...
     if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-      if (parser.assignable & AssignmentKind.NotAssignable) report(parser, Errors.InvalidAsyncParamList);
+      if ((parser.assignable & AssignmentKind.Assignable) === 0) report(parser, Errors.InvalidAsyncParamList);
       if (parser.token === Token.AwaitKeyword) report(parser, Errors.AwaitInParameter);
 
       if (context & Context.OptionsLexical) {
