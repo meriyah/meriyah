@@ -174,12 +174,6 @@ describe('Miscellaneous - Cover grammar', () => {
         });
       });
 
-      it(fn(`...[p.q]`), () => {
-        t.throws(() => {
-          parseSource(fn(`...[p.q]`), undefined, Context.OptionsWebCompat);
-        });
-      });
-
       it(fn(`...[0]`), () => {
         t.throws(() => {
           parseSource(fn(`...[0]`), undefined, Context.OptionsWebCompat);
