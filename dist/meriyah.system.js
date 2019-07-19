@@ -639,9 +639,9 @@ System.register('meriyah', [], function (exports) {
                           return 8456757;
                       }
                       case 8455999:
-                          const next = nextCP(parser);
+                          let ch = nextCP(parser);
                           if (parser.index < parser.end) {
-                              if (next === 60) {
+                              if (ch === 60) {
                                   if (parser.index < parser.end && nextCP(parser) === 61) {
                                       nextCP(parser);
                                       return 4194334;
@@ -650,25 +650,25 @@ System.register('meriyah', [], function (exports) {
                                       return 8456257;
                                   }
                               }
-                              else if (next === 61) {
+                              else if (ch === 61) {
                                   nextCP(parser);
                                   return 8455997;
                               }
-                              else if (next === 33) {
+                              else if (ch === 33) {
                                   if ((context & 2048) === 0 &&
-                                      parser.source.charCodeAt(parser.index + 1) === 45 &&
-                                      parser.source.charCodeAt(parser.index + 2) === 45) {
+                                      parser.source.charCodeAt(parser.index + 2) === 45 &&
+                                      parser.source.charCodeAt(parser.index + 1) === 45) {
                                       state = skipSingleLineComment(parser, state);
                                       continue;
                                   }
                               }
-                              else if (next === 47) {
+                              else if (ch === 47) {
                                   if (!(context & 16))
                                       break;
                                   const index = parser.index + 1;
                                   if (index < parser.end) {
-                                      const next = parser.source.charCodeAt(index);
-                                      if (next === 42 || next === 47)
+                                      ch = parser.source.charCodeAt(index);
+                                      if (ch === 42 || ch === 47)
                                           break;
                                   }
                                   nextCP(parser);
@@ -680,8 +680,8 @@ System.register('meriyah', [], function (exports) {
                           nextCP(parser);
                           if (parser.index >= parser.end)
                               return -2143289315;
-                          const next = parser.nextCP;
-                          if (next === 61) {
+                          const ch = parser.nextCP;
+                          if (ch === 61) {
                               if (nextCP(parser) === 61) {
                                   nextCP(parser);
                                   return 8455737;
@@ -690,7 +690,7 @@ System.register('meriyah', [], function (exports) {
                                   return 8455739;
                               }
                           }
-                          else if (next === 62) {
+                          else if (ch === 62) {
                               nextCP(parser);
                               return 10;
                           }
@@ -715,17 +715,17 @@ System.register('meriyah', [], function (exports) {
                           nextCP(parser);
                           if (parser.index >= parser.end)
                               return 8456000;
-                          const next = parser.nextCP;
-                          if (next === 61) {
+                          const ch = parser.nextCP;
+                          if (ch === 61) {
                               nextCP(parser);
                               return 8455998;
                           }
-                          if (next !== 62)
+                          if (ch !== 62)
                               return 8456000;
                           nextCP(parser);
                           if (parser.index < parser.end) {
-                              const next = parser.nextCP;
-                              if (next === 62) {
+                              const ch = parser.nextCP;
+                              if (ch === 62) {
                                   if (nextCP(parser) === 61) {
                                       nextCP(parser);
                                       return 4194336;
@@ -734,7 +734,7 @@ System.register('meriyah', [], function (exports) {
                                       return 8456259;
                                   }
                               }
-                              else if (next === 61) {
+                              else if (ch === 61) {
                                   nextCP(parser);
                                   return 4194335;
                               }
@@ -745,12 +745,12 @@ System.register('meriyah', [], function (exports) {
                           nextCP(parser);
                           if (parser.index >= parser.end)
                               return 8455492;
-                          const next = parser.nextCP;
-                          if (next === 38) {
+                          const ch = parser.nextCP;
+                          if (ch === 38) {
                               nextCP(parser);
                               return 8978999;
                           }
-                          if (next === 61) {
+                          if (ch === 61) {
                               nextCP(parser);
                               return 4194345;
                           }
@@ -2124,7 +2124,7 @@ System.register('meriyah', [], function (exports) {
               statements.push(parseDirective(parser, context, expr, token, tokenIndex, linePos, colPos));
           }
           while (parser.token !== 1048576) {
-              statements.push(parseStatementListItem(parser, context, scope, {}, parser.tokenIndex, parser.linePos, parser.colPos));
+              statements.push(parseStatementListItem(parser, context, scope, 1024, {}, parser.tokenIndex, parser.linePos, parser.colPos));
           }
           return statements;
       }
@@ -2155,13 +2155,13 @@ System.register('meriyah', [], function (exports) {
               case 86105:
                   return parseImportDeclaration(parser, context, scope, start, line, column);
               default:
-                  return parseStatementListItem(parser, context, scope, {}, start, line, column);
+                  return parseStatementListItem(parser, context, scope, 1024, {}, start, line, column);
           }
       }
-      function parseStatementListItem(parser, context, scope, labels, start, line, column) {
+      function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
           switch (parser.token) {
               case 86103:
-                  return parseFunctionDeclaration(parser, context, scope, 1, 0, 0, start, line, column);
+                  return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 0, start, line, column);
               case 133:
                   if (context & 2048)
                       return parseDecorators(parser, context);
@@ -2170,7 +2170,7 @@ System.register('meriyah', [], function (exports) {
               case 268521545:
                   return parseLexicalDeclaration(parser, context, scope, 16, 8, start, line, column);
               case 268677192:
-                  return parseLetIdentOrVarDeclarationStatement(parser, context, scope, start, line, column);
+                  return parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, start, line, column);
               case 20563:
                   report(parser, 106, 'export');
               case 86105:
@@ -2182,12 +2182,12 @@ System.register('meriyah', [], function (exports) {
                           report(parser, 106, 'import');
                   }
               case 143468:
-                  return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, labels, 1, start, line, column);
+                  return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, origin, labels, 1, start, line, column);
               default:
-                  return parseStatement(parser, context, scope, labels, 1, start, line, column);
+                  return parseStatement(parser, context, scope, origin, labels, 1, start, line, column);
           }
       }
-      function parseStatement(parser, context, scope, labels, allowFuncDecl, start, line, column) {
+      function parseStatement(parser, context, scope, origin, labels, allowFuncDecl, start, line, column) {
           switch (parser.token) {
               case 2162700:
                   return parseBlock(parser, context, context & 64 ? inheritScope(scope, 2) : scope, labels, start, line, column);
@@ -2220,7 +2220,7 @@ System.register('meriyah', [], function (exports) {
               case 20559:
                   return parseDebuggerStatement(parser, context, start, line, column);
               case 143468:
-                  return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, labels, 0, start, line, column);
+                  return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, origin, labels, 0, start, line, column);
               case 86103:
                   report(parser, context & 1024
                       ? 76
@@ -2230,10 +2230,10 @@ System.register('meriyah', [], function (exports) {
               case 86093:
                   report(parser, 79);
               default:
-                  return parseExpressionOrLabelledStatement(parser, context, scope, labels, allowFuncDecl, start, line, column);
+                  return parseExpressionOrLabelledStatement(parser, context, scope, origin, labels, allowFuncDecl, start, line, column);
           }
       }
-      function parseExpressionOrLabelledStatement(parser, context, scope, labels, allowFuncDecl, start, line, column) {
+      function parseExpressionOrLabelledStatement(parser, context, scope, origin, labels, allowFuncDecl, start, line, column) {
           const { tokenValue, token } = parser;
           let expr;
           switch (token) {
@@ -2242,16 +2242,16 @@ System.register('meriyah', [], function (exports) {
                   if (context & 1024)
                       report(parser, 86);
                   if (parser.token === 21)
-                      return parseLabelledStatement(parser, context, scope, labels, tokenValue, expr, token, allowFuncDecl, start, line, column);
+                      return parseLabelledStatement(parser, context, scope, origin, labels, tokenValue, expr, token, allowFuncDecl, start, line, column);
                   if (parser.token === 69271571) {
                       report(parser, 85);
                   }
                   break;
               default:
-                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+                  expr = parsePrimaryExpressionExtended(parser, context, 2, 0, 1, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos);
           }
           if (token & 143360 && parser.token === 21) {
-              return parseLabelledStatement(parser, context, scope, labels, tokenValue, expr, token, allowFuncDecl, start, line, column);
+              return parseLabelledStatement(parser, context, scope, origin, labels, tokenValue, expr, token, allowFuncDecl, start, line, column);
           }
           expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
           expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr);
@@ -2264,7 +2264,7 @@ System.register('meriyah', [], function (exports) {
           const body = [];
           consume(parser, context | 32768, 2162700);
           while (parser.token !== -2146435057) {
-              body.push(parseStatementListItem(parser, (context | 16384) ^ 16384, scope, { $: labels }, parser.tokenIndex, parser.linePos, parser.colPos));
+              body.push(parseStatementListItem(parser, (context | 16384) ^ 16384, scope, 512, { $: labels }, parser.tokenIndex, parser.linePos, parser.colPos));
           }
           consume(parser, context | 32768, -2146435057);
           return finishNode(parser, context, start, line, column, {
@@ -2292,34 +2292,34 @@ System.register('meriyah', [], function (exports) {
               expression
           });
       }
-      function parseLabelledStatement(parser, context, scope, labels, label, expr, token, allowFuncDecl, start, line, column) {
-          validateBindingIdentifier(parser, context, 0, token, 1);
+      function parseLabelledStatement(parser, context, scope, origin, labels, label, expr, token, allowFuncDecl, start, line, column) {
+          validateBindingIdentifier(parser, context, 2, token, 1);
           validateAndDeclareLabel(parser, labels, label);
           nextToken(parser, context | 32768);
           const body = allowFuncDecl &&
               (context & 1024) === 0 &&
               context & 256 &&
               parser.token === 86103
-              ? parseFunctionDeclaration(parser, context, scope, 0, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos)
-              : parseStatement(parser, (context | 16384) ^ 16384, scope, labels, allowFuncDecl, parser.tokenIndex, parser.linePos, parser.colPos);
+              ? parseFunctionDeclaration(parser, context, scope, origin, 0, 0, 0, parser.tokenIndex, parser.linePos, parser.colPos)
+              : parseStatement(parser, (context | 16384) ^ 16384, scope, origin, labels, allowFuncDecl, parser.tokenIndex, parser.linePos, parser.colPos);
           return finishNode(parser, context, start, line, column, {
               type: 'LabeledStatement',
               label: expr,
               body
           });
       }
-      function parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, labels, allowFuncDecl, start, line, column) {
+      function parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, origin, labels, allowFuncDecl, start, line, column) {
           const { token, tokenValue } = parser;
           let expr = parseIdentifier(parser, context, 0, start, line, column);
           if (parser.token === 21) {
-              return parseLabelledStatement(parser, context, scope, labels, tokenValue, expr, token, 1, start, line, column);
+              return parseLabelledStatement(parser, context, scope, origin, labels, tokenValue, expr, token, 1, start, line, column);
           }
           const asyncNewLine = parser.flags & 1;
           if (!asyncNewLine) {
               if (parser.token === 86103) {
                   if (!allowFuncDecl)
                       report(parser, 127);
-                  return parseFunctionDeclaration(parser, context, scope, 1, 0, 1, start, line, column);
+                  return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 1, start, line, column);
               }
               if ((parser.token & 143360) === 143360) {
                   if (parser.assignable & 2)
@@ -2426,8 +2426,8 @@ System.register('meriyah', [], function (exports) {
           return context & 1024 ||
               (context & 256) === 0 ||
               parser.token !== 86103
-              ? parseStatement(parser, context, scope, { $: labels }, 0, parser.tokenIndex, parser.linePos, parser.colPos)
-              : parseFunctionDeclaration(parser, context, scope, 0, 0, 0, start, line, column);
+              ? parseStatement(parser, context, scope, 64, { $: labels }, 0, parser.tokenIndex, parser.linePos, parser.colPos)
+              : parseFunctionDeclaration(parser, context, scope, 0, 0, 0, 0, start, line, column);
       }
       function parseSwitchStatement(parser, context, scope, labels, start, line, column) {
           nextToken(parser, context);
@@ -2456,7 +2456,7 @@ System.register('meriyah', [], function (exports) {
               while (parser.token !== 20555 &&
                   parser.token !== -2146435057 &&
                   parser.token !== 20560) {
-                  consequent.push(parseStatementListItem(parser, (context | 4096 | 16384) ^ 16384, scope, {
+                  consequent.push(parseStatementListItem(parser, (context | 4096 | 16384) ^ 16384, scope, 512, {
                       $: labels
                   }, parser.tokenIndex, parser.linePos, parser.colPos));
               }
@@ -2486,7 +2486,7 @@ System.register('meriyah', [], function (exports) {
           });
       }
       function parseIterationStatementBody(parser, context, scope, labels) {
-          return parseStatement(parser, ((context | 16384 | 134217728) ^ (16384 | 134217728)) | 131072, scope, { loop: 1, $: labels }, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+          return parseStatement(parser, ((context | 16384 | 134217728) ^ (16384 | 134217728)) | 131072, scope, 32, { loop: 1, $: labels }, 0, parser.tokenIndex, parser.linePos, parser.colPos);
       }
       function parseContinueStatement(parser, context, labels, start, line, column) {
           if ((context & 131072) === 0)
@@ -2530,7 +2530,7 @@ System.register('meriyah', [], function (exports) {
           consume(parser, context | 32768, 67174411);
           const object = parseExpressions(parser, context, 1, parser.tokenIndex, parser.linePos, parser.colPos);
           consume(parser, context | 32768, 1073741840);
-          const body = parseStatement(parser, (context | 16384) ^ 16384, scope, labels, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+          const body = parseStatement(parser, (context | 16384) ^ 16384, scope, 512, labels, 0, parser.tokenIndex, parser.linePos, parser.colPos);
           return finishNode(parser, context, start, line, column, {
               type: 'WithStatement',
               object,
@@ -2609,7 +2609,7 @@ System.register('meriyah', [], function (exports) {
               test
           });
       }
-      function parseLetIdentOrVarDeclarationStatement(parser, context, scope, start, line, column) {
+      function parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, start, line, column) {
           const { token, tokenValue } = parser;
           let expr = parseIdentifier(parser, context, 0, start, line, column);
           if ((parser.token & (143360 | 2097152)) === 0) {
@@ -2617,7 +2617,7 @@ System.register('meriyah', [], function (exports) {
               if (context & 1024)
                   report(parser, 86);
               if (parser.token === 21) {
-                  return parseLabelledStatement(parser, context, scope, {}, tokenValue, expr, token, 0, start, line, column);
+                  return parseLabelledStatement(parser, context, scope, origin, {}, tokenValue, expr, token, 0, start, line, column);
               }
               expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
               expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr);
@@ -2763,8 +2763,8 @@ System.register('meriyah', [], function (exports) {
           else if ((token & 2097152) === 2097152) {
               init =
                   token === 2162700
-                      ? parseObjectLiteralOrPattern(parser, context, scope, 1, 0, 0, 4, tokenIndex, linePos, colPos)
-                      : parseArrayExpressionOrPattern(parser, context, scope, 1, 0, 0, 4, tokenIndex, linePos, colPos);
+                      ? parseObjectLiteralOrPattern(parser, context, scope, 1, 0, 2, 4, tokenIndex, linePos, colPos)
+                      : parseArrayExpressionOrPattern(parser, context, scope, 1, 0, 2, 4, tokenIndex, linePos, colPos);
               destructible = parser.destructible;
               if (context & 256 && destructible & 64) {
                   report(parser, 63);
@@ -2957,7 +2957,7 @@ System.register('meriyah', [], function (exports) {
           if (consumeOpt(parser, context | 32768, 20560)) {
               switch (parser.token) {
                   case 86103: {
-                      declaration = parseFunctionDeclaration(parser, context, scope, 1, 1, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+                      declaration = parseFunctionDeclaration(parser, context, scope, 1024, 1, 1, 0, parser.tokenIndex, parser.linePos, parser.colPos);
                       break;
                   }
                   case 133:
@@ -2972,7 +2972,7 @@ System.register('meriyah', [], function (exports) {
                       const { flags } = parser;
                       if ((flags & 1) === 0) {
                           if (parser.token === 86103) {
-                              declaration = parseFunctionDeclaration(parser, context, scope, 1, 1, 1, idxBeforeAsync, lineBeforeAsync, columnBeforeAsync);
+                              declaration = parseFunctionDeclaration(parser, context, scope, 1024, 1, 1, 1, idxBeforeAsync, lineBeforeAsync, columnBeforeAsync);
                           }
                           else {
                               if (parser.token === 67174411) {
@@ -3085,7 +3085,7 @@ System.register('meriyah', [], function (exports) {
                   declaration = parseClassDeclaration(parser, context, scope, 2, parser.tokenIndex, parser.linePos, parser.colPos);
                   break;
               case 86103:
-                  declaration = parseFunctionDeclaration(parser, context, scope, 1, 2, 0, parser.tokenIndex, parser.linePos, parser.colPos);
+                  declaration = parseFunctionDeclaration(parser, context, scope, 1024, 1, 2, 0, parser.tokenIndex, parser.linePos, parser.colPos);
                   break;
               case 268677192:
                   declaration = parseLexicalDeclaration(parser, context, scope, 8, 16, parser.tokenIndex, parser.linePos, parser.colPos);
@@ -3102,7 +3102,7 @@ System.register('meriyah', [], function (exports) {
                   const columnxAfterAsync = parser.colPos;
                   nextToken(parser, context);
                   if ((parser.flags & 1) === 0 && parser.token === 86103) {
-                      declaration = parseFunctionDeclaration(parser, context, scope, 1, 2, 1, idxAfterAsync, lineAfterAsync, columnxAfterAsync);
+                      declaration = parseFunctionDeclaration(parser, context, scope, 1024, 1, 2, 1, idxAfterAsync, lineAfterAsync, columnxAfterAsync);
                       if (context & 64) {
                           key = declaration.id ? declaration.id.name : '';
                           addBindingToExports(parser, key);
@@ -3121,7 +3121,7 @@ System.register('meriyah', [], function (exports) {
           });
       }
       function parseExpression(parser, context, allowAssign, identifierPattern, inGroup, start, line, column) {
-          let expr = parsePrimaryExpressionExtended(parser, context, 0, 0, allowAssign, identifierPattern, inGroup, start, line, column);
+          let expr = parsePrimaryExpressionExtended(parser, context, 2, 0, allowAssign, identifierPattern, inGroup, start, line, column);
           expr = parseMemberOrUpdateExpression(parser, context, expr, 0, inGroup, start, line, column);
           return parseAssignmentExpression(parser, context, inGroup, start, line, column, expr);
       }
@@ -3307,7 +3307,7 @@ System.register('meriyah', [], function (exports) {
                   verifyArguments(parser, scope.lexicals['$']);
           }
           while (parser.token !== -2146435057) {
-              body.push(parseStatementListItem(parser, context, scope, {}, parser.tokenIndex, parser.linePos, parser.colPos));
+              body.push(parseStatementListItem(parser, context, scope, 512, {}, parser.tokenIndex, parser.linePos, parser.colPos));
           }
           consume(parser, origin & (2 | 1) ? context | 32768 : context, -2146435057);
           parser.flags &= ~(128 | 64);
@@ -3344,7 +3344,7 @@ System.register('meriyah', [], function (exports) {
           return finishNode(parser, context, start, line, column, { type: 'Super' });
       }
       function parseLeftHandSideExpression(parser, context, allowAssign, inGroup, start, line, column) {
-          const expression = parsePrimaryExpressionExtended(parser, context, 0, 0, allowAssign, 0, inGroup, start, line, column);
+          const expression = parsePrimaryExpressionExtended(parser, context, 2, 0, allowAssign, 0, inGroup, start, line, column);
           return parseMemberOrUpdateExpression(parser, context, expression, 0, inGroup, start, line, column);
       }
       function parseMemberOrUpdateExpression(parser, context, expr, inNewExpression, inGroup, start, line, column) {
@@ -3675,7 +3675,6 @@ System.register('meriyah', [], function (exports) {
               if (parser.token !== -1073741806)
                   break;
               nextToken(parser, context | 32768);
-              parser.assignable |= 1;
               if (parser.token === 1073741840)
                   break;
           }
@@ -3733,7 +3732,7 @@ System.register('meriyah', [], function (exports) {
               type: 'ThisExpression'
           });
       }
-      function parseFunctionDeclaration(parser, context, scope, allowGen, flags, isAsync, start, line, column) {
+      function parseFunctionDeclaration(parser, context, scope, _origin, allowGen, flags, isAsync, start, line, column) {
           nextToken(parser, context | 32768);
           const isGenerator = allowGen ? optionalBit(parser, context, 8456755) : 0;
           let id = null;
@@ -3817,7 +3816,7 @@ System.register('meriyah', [], function (exports) {
           });
       }
       function parseArrayLiteral(parser, context, skipInitializer, inGroup, start, line, column) {
-          const expr = parseArrayExpressionOrPattern(parser, context, null, skipInitializer, inGroup, 0, 0, start, line, column);
+          const expr = parseArrayExpressionOrPattern(parser, context, null, skipInitializer, inGroup, 2, 0, start, line, column);
           if (context & 256 && parser.destructible & 64) {
               report(parser, 63);
           }
@@ -3846,10 +3845,6 @@ System.register('meriyah', [], function (exports) {
                           }
                           else if (context & 64) {
                               declareName(parser, context, scope, tokenValue, type, 0, 0);
-                              if (origin & 16) {
-                                  updateExportsList(parser, tokenValue);
-                                  addBindingToExports(parser, tokenValue);
-                              }
                           }
                           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenIndex, parser.linePos, parser.colPos);
                           left = finishNode(parser, context, tokenIndex, linePos, colPos, {
@@ -3872,11 +3867,13 @@ System.register('meriyah', [], function (exports) {
                           }
                       }
                       else {
-                          if (type)
-                              destructible |= 16;
+                          destructible |=
+                              type & 1
+                                  ? 32
+                                  : (type & 2) === 0
+                                      ? 16
+                                      : 0;
                           left = parseMemberOrUpdateExpression(parser, context, left, 0, inGroup, tokenIndex, linePos, colPos);
-                          if (parser.assignable & 2)
-                              destructible |= 16;
                           if (parser.token !== -1073741806 && parser.token !== 20) {
                               if (parser.token !== -2143289315)
                                   destructible |= 16;
@@ -3884,7 +3881,7 @@ System.register('meriyah', [], function (exports) {
                           }
                           else if (parser.token !== -2143289315) {
                               destructible |=
-                                  type || parser.assignable & 2
+                                  parser.assignable & 2
                                       ? 16
                                       : 32;
                           }
@@ -3922,7 +3919,7 @@ System.register('meriyah', [], function (exports) {
                           }
                           else if (parser.token !== -2143289315) {
                               destructible |=
-                                  type || parser.assignable & 2
+                                  parser.assignable & 2
                                       ? 16
                                       : 32;
                           }
@@ -3938,19 +3935,19 @@ System.register('meriyah', [], function (exports) {
                       left = parseLeftHandSideExpression(parser, context, 1, 0, tokenIndex, linePos, colPos);
                       if (parser.token !== -1073741806 && parser.token !== 20) {
                           left = parseAssignmentExpression(parser, context, inGroup, tokenIndex, linePos, colPos, left);
-                          if (type && token === 67174411)
+                          if ((type & (2 | 1)) === 0 && token === 67174411)
                               destructible |= 16;
                       }
                       else if (parser.assignable & 2) {
                           destructible |= 16;
                       }
-                      else if (token === 67174411) {
-                          destructible |=
-                              parser.assignable & 1 && !type
-                                  ? 32
-                                  : token === 67174411 || parser.assignable & 2
-                                      ? 16
-                                      : 0;
+                      else if (token === 67174411 &&
+                          parser.assignable & 1 &&
+                          type & (2 | 1)) {
+                          destructible |= 32;
+                      }
+                      else if (token === 67174411 || parser.assignable & 2) {
+                          destructible |= 16;
                       }
                   }
                   elements.push(left);
@@ -4050,7 +4047,7 @@ System.register('meriyah', [], function (exports) {
                   }
                   else if (token !== -2143289315) {
                       destructible |=
-                          type || parser.assignable & 2
+                          parser.assignable & 2
                               ? 16
                               : 32;
                   }
@@ -4063,8 +4060,7 @@ System.register('meriyah', [], function (exports) {
               }
           }
           else {
-              if (type)
-                  report(parser, 40);
+              destructible |= 32;
               argument = parseLeftHandSideExpression(parser, context, 1, inGroup, parser.tokenIndex, parser.linePos, parser.colPos);
               const { token, tokenIndex } = parser;
               if (token === -2143289315 && token !== closingToken && token !== -1073741806) {
@@ -4092,13 +4088,8 @@ System.register('meriyah', [], function (exports) {
               });
           }
           if (parser.token !== closingToken) {
-              if (!isAsync && type & 1) {
-                  report(parser, parser.token === -1073741806
-                      ? 58
-                      : parser.token === -2143289315
-                          ? 72
-                          : 73);
-              }
+              if (type & 1)
+                  destructible |= isAsync ? 16 : 32;
               if (consumeOpt(parser, context | 32768, -2143289315)) {
                   if (destructible & 16)
                       report(parser, 24);
@@ -4138,7 +4129,7 @@ System.register('meriyah', [], function (exports) {
           });
       }
       function parseObjectLiteral(parser, context, skipInitializer, inGroup, start, line, column) {
-          const expr = parseObjectLiteralOrPattern(parser, context, null, skipInitializer, inGroup, 0, 0, start, line, column);
+          const expr = parseObjectLiteralOrPattern(parser, context, null, skipInitializer, inGroup, 2, 0, start, line, column);
           if (context & 256 && parser.destructible & 64) {
               report(parser, 63);
           }
@@ -4274,7 +4265,7 @@ System.register('meriyah', [], function (exports) {
                                   }
                                   else if (token !== -2143289315) {
                                       destructible |=
-                                          type || parser.assignable & 2
+                                          parser.assignable & 2
                                               ? 16
                                               : 32;
                                   }
@@ -4447,7 +4438,7 @@ System.register('meriyah', [], function (exports) {
                                   }
                                   else if (parser.token !== -2143289315) {
                                       destructible |=
-                                          type || parser.assignable & 2
+                                          parser.assignable & 2
                                               ? 16
                                               : 32;
                                   }
@@ -4556,7 +4547,7 @@ System.register('meriyah', [], function (exports) {
                                   }
                                   else if (token !== -2143289315) {
                                       destructible |=
-                                          type || parser.assignable & 2
+                                          parser.assignable & 2
                                               ? 16
                                               : 32;
                                   }
@@ -4707,7 +4698,7 @@ System.register('meriyah', [], function (exports) {
                   reinterpretToPattern(parser, left);
                   if (parser.destructible & 16)
                       report(parser, 50);
-                  if (type && parser.destructible & 32)
+                  if (parser.destructible & 32)
                       report(parser, 50);
               }
               if (parser.token === -2143289315) {
@@ -4764,7 +4755,7 @@ System.register('meriyah', [], function (exports) {
                   if (context & 64) {
                       declareName(parser, context, scope, parser.tokenValue, 1, 0, 0);
                   }
-                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 0, 1, tokenIndex, linePos, colPos);
+                  expr = parsePrimaryExpressionExtended(parser, context, 1, 0, 1, 0, 1, tokenIndex, linePos, colPos);
                   if ((parser.token & 1073741824) === 1073741824) {
                       if (parser.assignable & 2) {
                           destructible |= 16;
@@ -4791,8 +4782,8 @@ System.register('meriyah', [], function (exports) {
               else if (token & 2097152) {
                   expr =
                       token === 2162700
-                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, 0, 0, tokenIndex, linePos, colPos)
-                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 0, 0, tokenIndex, linePos, colPos);
+                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, 1, 0, tokenIndex, linePos, colPos)
+                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 1, 0, tokenIndex, linePos, colPos);
                   destructible |= parser.destructible;
                   isComplex = 1;
                   parser.assignable = 2;
@@ -4993,7 +4984,7 @@ System.register('meriyah', [], function (exports) {
                   reinterpretToPattern(parser, left);
                   if (parser.destructible & 16)
                       report(parser, 50);
-                  if (type && parser.destructible & 32)
+                  if (parser.destructible & 32)
                       report(parser, 50);
               }
               if (parser.token === -2143289315) {
@@ -5029,7 +5020,7 @@ System.register('meriyah', [], function (exports) {
               report(parser, 95);
           }
           parser.assignable = 2;
-          let callee = parsePrimaryExpressionExtended(parser, context, 0, 1, 0, 0, inGroup, tokenIndex, linePos, colPos);
+          let callee = parsePrimaryExpressionExtended(parser, context, 2, 1, 0, 0, inGroup, tokenIndex, linePos, colPos);
           callee = parseMemberOrUpdateExpression(parser, context, callee, 1, inGroup, tokenIndex, linePos, colPos);
           parser.assignable = 2;
           return finishNode(parser, context, start, line, column, {
@@ -5108,7 +5099,7 @@ System.register('meriyah', [], function (exports) {
                   if (context & 64) {
                       declareName(parser, context, scope, parser.tokenValue, 1, 0, 0);
                   }
-                  expr = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 0, 1, tokenIndex, linePos, colPos);
+                  expr = parsePrimaryExpressionExtended(parser, context, 1, 0, 1, 0, 1, tokenIndex, linePos, colPos);
                   if ((parser.token & 1073741824) === 1073741824) {
                       if (parser.assignable & 2) {
                           destructible |= 16;
@@ -5135,8 +5126,8 @@ System.register('meriyah', [], function (exports) {
               else if (token & 2097152) {
                   expr =
                       token === 2162700
-                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, 0, 0, tokenIndex, linePos, colPos)
-                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 0, 0, tokenIndex, linePos, colPos);
+                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, 1, 0, tokenIndex, linePos, colPos)
+                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 1, 0, tokenIndex, linePos, colPos);
                   destructible |= parser.destructible;
                   isComplex = 1;
                   parser.assignable = 2;
@@ -5272,7 +5263,7 @@ System.register('meriyah', [], function (exports) {
           else {
               inheritedContext = (inheritedContext | 524288) ^ 524288;
           }
-          const body = parseClassBody(parser, inheritedContext, context, scope, 0, 1, 0);
+          const body = parseClassBody(parser, inheritedContext, context, scope, 2, 1, 0);
           return finishNode(parser, context, start, line, column, context & 1
               ? {
                   type: 'ClassDeclaration',
@@ -5312,7 +5303,7 @@ System.register('meriyah', [], function (exports) {
           else {
               inheritedContext = (inheritedContext | 524288) ^ 524288;
           }
-          const body = parseClassBody(parser, inheritedContext, context, null, 0, 0, inGroup);
+          const body = parseClassBody(parser, inheritedContext, context, null, 2, 0, inGroup);
           parser.assignable = 2;
           return finishNode(parser, context, start, line, column, context & 1
               ? {
@@ -5338,7 +5329,7 @@ System.register('meriyah', [], function (exports) {
       }
       function parseDecoratorList(parser, context, start, line, column) {
           nextToken(parser, context | 32768);
-          let expression = parsePrimaryExpressionExtended(parser, context, 0, 0, 1, 0, 0, start, line, column);
+          let expression = parsePrimaryExpressionExtended(parser, context, 2, 0, 1, 0, 0, start, line, column);
           expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start, line, column);
           return finishNode(parser, context, start, line, column, {
               type: 'Decorator',
@@ -5546,7 +5537,7 @@ System.register('meriyah', [], function (exports) {
               const columnAfterAssign = parser.colPos;
               if (parser.token === 537079925)
                   report(parser, 121);
-              value = parsePrimaryExpressionExtended(parser, context | 268435456, 0, 0, 1, 0, 0, idxAfterAssign, lineAfterAssign, columnAfterAssign);
+              value = parsePrimaryExpressionExtended(parser, context | 268435456, 2, 0, 1, 0, 0, idxAfterAssign, lineAfterAssign, columnAfterAssign);
               if ((parser.token & -2147483648) !== -2147483648) {
                   value = parseMemberOrUpdateExpression(parser, context | 268435456, value, 0, 0, idxAfterAssign, lineAfterAssign, columnAfterAssign);
                   if ((parser.token & -2147483648) !== -2147483648) {
@@ -5582,12 +5573,10 @@ System.register('meriyah', [], function (exports) {
               ? parseArrayExpressionOrPattern(parser, context, scope, 1, 0, type, origin, start, line, column)
               : parseObjectLiteralOrPattern(parser, context, scope, 1, 0, type, origin, start, line, column);
           reinterpretToPattern(parser, left);
-          if (parser.destructible & 16) {
+          if (parser.destructible & 16)
               report(parser, 50);
-          }
-          if (type && parser.destructible & 32) {
+          if (parser.destructible & 32)
               report(parser, 50);
-          }
           return left;
       }
       function parseAndClassifyIdentifier(parser, context, type, start, line, column) {
