@@ -24,13 +24,6 @@ export const LEFT_MENU_CONFIG = [
       { title: "Web compability", value: "webcompat", selected: false }
     ]
   },
-  {
-    category: "Parsers",
-    items: [
-      { title: "JavaScript", value: "js", selected: true, disabled: true },
-      { title: "TypeScript", value: "ts", selected: false, disabled: true }
-    ]
-  }
 ];
 
 export const DEFAULT_CODE = `function dropRight(array, n, guard) {
