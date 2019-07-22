@@ -18,7 +18,6 @@ export interface Position {
 }
 
 export type Labels = any; // Fix!
-export type Scope = any; // Fix!
 
 export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 

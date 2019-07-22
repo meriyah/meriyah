@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node } from './estree';
+import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
 
 export const presetBlockIdentifiers: { [key: string]: string } = {
@@ -160,6 +160,11 @@ export const enum ScopeKind {
   ForHeader = 1 << 15,
   FunctionParams = 1 << 16
 }
+
+/**
+ * The type of the `onComment` option.
+ */
+export type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
 
 /**
  * Lexical scope interface

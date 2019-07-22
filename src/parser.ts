@@ -12,6 +12,7 @@ import {
   consumeOpt,
   consume,
   Flags,
+  OnComment,
   pushComment,
   reinterpretToPattern,
   DestructuringKind,
@@ -43,7 +44,7 @@ import {
  * Create a new parser instance
  */
 
-export function create(source: string, sourceFile: string | void, onComment: any | void): ParserState {
+export function create(source: string, sourceFile: string | void, onComment: OnComment | void): ParserState {
   return {
     /**
      * The source code to be parsed
@@ -204,7 +205,7 @@ export interface Options {
  */
 export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
   let sourceFile = '';
-  let onComment: any;
+  let onComment;
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
@@ -233,7 +234,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   // See: https://github.com/tc39/proposal-hashbang
   if (context & Context.OptionsNext) skipHashBang(parser);
 
-  const scope: ScopeState | null = context & Context.OptionsLexical ? createScope() : null;
+  const scope: ScopeState | undefined = context & Context.OptionsLexical ? createScope() : void 0;
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -289,7 +290,7 @@ export function parseSource(source: string, options: Options | void, context: Co
 export function parseStatementList(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null
+  scope: ScopeState | undefined
 ): ESTree.Statement[] {
   // StatementList ::
   //   (StatementListItem)* <end_token>
@@ -332,7 +333,7 @@ export function parseStatementList(
 export function parseModuleItemList(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null
+  scope: ScopeState | undefined
 ): (ReturnType<typeof parseDirective | typeof parseModuleItem>)[] {
   // ecma262/#prod-Module
   // Module :
@@ -393,7 +394,7 @@ export function parseModuleItemList(
 export function parseModuleItem(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   start: number,
   line: number,
   column: number
@@ -426,7 +427,7 @@ export function parseModuleItem(
 export function parseStatementListItem(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   labels: ESTree.Labels,
   start: number,
@@ -517,7 +518,7 @@ export function parseStatementListItem(
 export function parseStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -636,7 +637,7 @@ export function parseStatement(
 export function parseExpressionOrLabelledStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -788,7 +789,7 @@ export function parseExpressionOrLabelledStatement(
 export function parseBlock(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -890,7 +891,7 @@ export function parseExpressionStatement(
 export function parseLabelledStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   labels: ESTree.Labels,
   value: string,
@@ -962,7 +963,7 @@ export function parseLabelledStatement(
 export function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -1241,7 +1242,7 @@ export function parseThrowStatement(
 export function parseIfStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1294,7 +1295,7 @@ export function parseIfStatement(
 export function parseConsequentOrAlternate(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1340,7 +1341,7 @@ export function parseConsequentOrAlternate(
 export function parseSwitchStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1427,7 +1428,7 @@ export function parseSwitchStatement(
 export function parseWhileStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1458,7 +1459,7 @@ export function parseWhileStatement(
 export function parseIterationStatementBody(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels
 ): ESTree.Statement {
   return parseStatement(
@@ -1556,7 +1557,7 @@ export function parseBreakStatement(
 export function parseWithStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1626,7 +1627,7 @@ export function parseDebuggerStatement(
 export function parseTryStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1645,7 +1646,7 @@ export function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const tryScoop = scope ? addChildScope(scope, ScopeKind.Try) : null;
+  const tryScoop = scope ? addChildScope(scope, ScopeKind.Try) : void 0;
 
   const block = parseBlock(parser, context, tryScoop, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
   const { tokenPos, linePos, colPos } = parser;
@@ -1685,14 +1686,14 @@ export function parseTryStatement(
 export function parseCatchBlock(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
   column: number
 ): ESTree.CatchClause {
   let param: ESTree.BindingName | null = null;
-  let secondscope: ScopeState | null = scope;
+  let secondscope: ScopeState | undefined = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
     if (scope) scope = addChildScope(scope, ScopeKind.CatchHead);
@@ -1740,7 +1741,7 @@ export function parseCatchBlock(
 export function parseDoWhileStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -1776,7 +1777,7 @@ export function parseDoWhileStatement(
 export function parseLetIdentOrVarDeclarationStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   start: number,
   line: number,
@@ -1885,7 +1886,7 @@ export function parseLetIdentOrVarDeclarationStatement(
 function parseLexicalDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   type: BindingKind,
   origin: BindingOrigin,
   start: number,
@@ -1924,7 +1925,7 @@ function parseLexicalDeclaration(
 export function parseVariableStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   start: number,
   line: number,
@@ -1957,7 +1958,7 @@ export function parseVariableStatement(
 export function parseVariableDeclarationList(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   type: BindingKind,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator[] {
@@ -1985,7 +1986,7 @@ export function parseVariableDeclarationList(
 function parseVariableDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   type: BindingKind,
   origin: BindingOrigin
 ): ESTree.VariableDeclarator {
@@ -2051,7 +2052,7 @@ function parseVariableDeclaration(
 export function parseForStatement(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -2134,7 +2135,7 @@ export function parseForStatement(
         ? parseObjectLiteralOrPattern(
             parser,
             context,
-            null,
+            void 0,
             1,
             0,
             BindingKind.EmptyBinding,
@@ -2146,7 +2147,7 @@ export function parseForStatement(
         : parseArrayExpressionOrPattern(
             parser,
             context,
-            null,
+            void 0,
             1,
             0,
             BindingKind.EmptyBinding,
@@ -2262,7 +2263,7 @@ export function parseForStatement(
 function parseImportDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   start: number,
   line: number,
   column: number
@@ -2355,7 +2356,7 @@ function parseImportDeclaration(
 function parseImportNamespaceSpecifier(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[]
 ): void {
   // NameSpaceImport:
@@ -2410,7 +2411,7 @@ function parseModuleSpecifier(parser: ParserState, context: Context): ESTree.Lit
 function parseImportSpecifierOrNamedImports(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[]
 ): (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] {
   // NamedImports :
@@ -2524,7 +2525,7 @@ function parseImportCallDeclaration(
 function parseExportDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   start: number,
   line: number,
   column: number
@@ -3324,7 +3325,7 @@ export function parseAwaitExpressionOrIdentifier(
 export function parseFunctionBody(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   firstRestricted: Token | undefined,
   scopeError: any
@@ -3772,7 +3773,7 @@ export function parsePrimaryExpressionExtended(
 
       if (!allowAssign) report(parser, Errors.InvalidAssignmentTarget);
 
-      let scope = null;
+      let scope: ScopeState | undefined = void 0;
 
       if (context & Context.OptionsLexical) {
         scope = addChildScope(createScope(), ScopeKind.ArrowParams);
@@ -4301,7 +4302,7 @@ export function parseThisExpression(
 export function parseFunctionDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | null,
+  scope: ScopeState | undefined,
   origin: BindingOrigin,
   allowGen: 0 | 1,
   flags: HoistedFunctionFlags,
@@ -4543,7 +4544,7 @@ function parseArrayLiteral(
   const expr = parseArrayExpressionOrPattern(
     parser,
     context,
-    null,
+    void 0,
     skipInitializer,
     inGroup,
     BindingKind.EmptyBinding,
@@ -4575,7 +4576,7 @@ function parseArrayLiteral(
 export function parseArrayExpressionOrPattern(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
   type: BindingKind,
@@ -4880,7 +4881,7 @@ function parseArrayOrObjectAssignmentPattern(
 function parseSpreadElement(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   closingToken: Token,
   type: BindingKind,
   origin: BindingOrigin,
@@ -5155,7 +5156,7 @@ function parseObjectLiteral(
   const expr = parseObjectLiteralOrPattern(
     parser,
     context,
-    null,
+    void 0,
     skipInitializer,
     inGroup,
     BindingKind.EmptyBinding,
@@ -5187,7 +5188,7 @@ function parseObjectLiteral(
 export function parseObjectLiteralOrPattern(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
   type: BindingKind,
@@ -5658,7 +5659,7 @@ export function parseObjectLiteralOrPattern(
               lineAfterColon,
               columnAfterColon
             );
-
+            // FIX ME
             const { token, tokenValue: tv } = parser;
 
             value = parseMemberOrUpdateExpression(
@@ -6113,7 +6114,7 @@ export function parseObjectLiteralOrPattern(
 export function parseMethodFormals(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   kind: PropertyKind,
   type: BindingKind,
   inGroup: 0 | 1
@@ -6566,7 +6567,7 @@ export function parseIdentifierOrArrow(
   const expr = parseIdentifier(parser, context, 0, start, line, column);
   parser.assignable = AssignmentKind.Assignable;
   if (parser.token === Token.Arrow) {
-    let scope = null;
+    let scope: ScopeState | undefined = void 0;
     if (context & Context.OptionsLexical) {
       scope = addChildScope(createScope(), ScopeKind.ArrowParams);
       addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
@@ -6593,7 +6594,7 @@ export function parseIdentifierOrArrow(
 export function parseArrowFunctionExpression(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   params: any, // ESTree.Pattern[],
   isAsync: 0 | 1,
   start: number,
@@ -6687,7 +6688,7 @@ export function parseArrowFunctionExpression(
 export function parseFormalParametersOrFormalList(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   inGroup: 0 | 1,
   type: BindingKind
 ): any[] {
@@ -7060,7 +7061,7 @@ export function parseAsyncExpression(
   column: number
 ): ESTree.Expression {
   const { flags } = parser;
-  let scope = null;
+  let scope: ScopeState | undefined = void 0;
   if ((flags & Flags.NewLine) === 0) {
     // async function ...
     if (parser.token === Token.FunctionKeyword)
@@ -7378,7 +7379,7 @@ export function parseRegExpLiteral(
 export function parseClassDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   flags: HoistedClassFlags,
   start: number,
   line: number,
@@ -7646,7 +7647,7 @@ export function parseClassBody(
   parser: ParserState,
   context: Context,
   inheritedContext: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   type: BindingKind,
   origin: BindingOrigin,
   inGroup: 0 | 1
@@ -7793,7 +7794,7 @@ export function parseClassBody(
 function parseClassElementList(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   inheritedContext: Context,
   type: BindingKind,
   decorators: ESTree.Decorator[],
@@ -8084,7 +8085,7 @@ export function parseFieldDefinition(
 export function parseBindingPattern(
   parser: ParserState,
   context: Context,
-  scope: ESTree.Scope,
+  scope: ScopeState | undefined,
   type: BindingKind,
   origin: BindingOrigin,
   start: number,
