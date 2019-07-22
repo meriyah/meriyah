@@ -34,11 +34,15 @@ describe('Statements - For', () => {
     `for (var [[] = function() { a += 1; }()] = [[23]]; b < 1; ) {}`,
     `for (let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: '' }; e < 1; ) {}`,
     `for (let [,] = a(); b < 1; ) {}`,
-    `for (const { x, } = { x: 23 }; a < 1; ) {};
-        for (const { x, } = { x: 23 }; a < 1; ) {};
-        for (const { x, } = { x: 23 }; a < 1; ) {};
-        for (const { x, } = { x: 23 }; a < 1; ) {};
-        for (const { x, } = { x: 23 }; a < 1; ) {};`,
+    //    `for (const [ x, ] = y; a < 1; ) {};
+    //    for (const [ x, ] =  z; a < 1; ) {};`,
+    `for (let i = 0; i < 10; ++i) {
+      console.log(i);
+  }
+  for (let i = 0; i < 10; ++i) {
+      console.log(i);
+  }`,
+    'for (x(x in t);;) x',
     'for (((x)=>{}).x of y);',
     `for (const {} = obj; a < 1; ) {}`,
     'for (j=x; j<10; ++j) { [foo] = [j] }',
@@ -577,6 +581,9 @@ describe('Statements - For', () => {
     ['for (var {a:=c} = z);', Context.None],
     ['for (var {[x]: y} = z);', Context.None],
     ['for (var {[x]} = z);', Context.None],
+    ['for(x of 3)break/', Context.None],
+    ['for(x of 3)continue/', Context.None],
+    ['for(x of 3)p/', Context.None],
     ['for (var {[x]: y});', Context.None],
     ['for (var {[x]: y = z});', Context.None],
     ['for (var {[x]: y = z} = a);', Context.None],

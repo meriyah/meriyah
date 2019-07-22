@@ -4,6 +4,59 @@ import { pass } from '../../test-utils';
 describe('Expressions - Additive', () => {
   pass('Expressions - Additive (pass)', [
     [
+      'async = a + await;  a = async++;',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'async'
+              },
+              operator: '=',
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'await'
+                },
+                operator: '+'
+              }
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              operator: '=',
+              right: {
+                type: 'UpdateExpression',
+                argument: {
+                  type: 'Identifier',
+                  name: 'async'
+                },
+                operator: '++',
+                prefix: false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       'd = a + b;  a = b;',
       Context.OptionsRanges,
       {

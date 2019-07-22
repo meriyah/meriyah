@@ -137,7 +137,7 @@ describe('Lexer - Identifiers', () => {
 
   for (const [ctx, token, op, value] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = create(op);
+      const state = create(op, '', undefined);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
@@ -157,7 +157,7 @@ describe('Lexer - Identifiers', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const state = create(`${op} `);
+      const state = create(`${op} `, '', undefined);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
@@ -179,7 +179,7 @@ describe('Lexer - Identifiers', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = create(source);
+      const state = create(source, '', undefined);
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }

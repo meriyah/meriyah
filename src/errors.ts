@@ -161,7 +161,11 @@ export const enum Errors {
   InvalidJSXAttributeValue,
   ExpectedJSXClosingTag,
   AdjacentJSXElements,
-  InvalidNonEmptyJSXExpr
+  InvalidNonEmptyJSXExpr,
+  DuplicateIdentifier,
+  ShadowedCatchClause,
+  InvalidDotProperty,
+  UnclosedSpreadElement
 }
 
 /*@internal*/
@@ -334,7 +338,11 @@ export const errorMessages: {
   [Errors.InvalidJSXAttributeValue]: 'JSX value should be either an expression or a quoted JSX text',
   [Errors.ExpectedJSXClosingTag]: 'Expected corresponding JSX closing tag for %0',
   [Errors.AdjacentJSXElements]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
-  [Errors.InvalidNonEmptyJSXExpr]: "JSX attributes must only be assigned a non-empty 'expression'"
+  [Errors.InvalidNonEmptyJSXExpr]: "JSX attributes must only be assigned a non-empty 'expression'",
+  [Errors.DuplicateIdentifier]: "'%0' has already been declared",
+  [Errors.ShadowedCatchClause]: "'%0' shadowed a catch clause binding",
+  [Errors.InvalidDotProperty]: 'Dot property must be an identifier',
+  [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument'
 };
 
 export class ParseError extends SyntaxError {
@@ -367,6 +375,9 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
   throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
 }
 
+export function reportScopeError(scope: any): never {
+  throw new ParseError(scope.index, scope.line, scope.column, scope.type);
+}
 /**
  * Throws an error at a given position
  *
@@ -379,6 +390,6 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
  * @param {...string[]} params
  * @returns {never}
  */
-export function reportAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
+export function reportMessageAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
   throw new ParseError(index, line, column, type, ...params);
 }

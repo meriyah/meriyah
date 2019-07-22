@@ -117,7 +117,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 
   parser.tokenRegExp = { pattern, flags };
 
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
 
   parser.tokenValue = validate(parser, pattern, flags);
 

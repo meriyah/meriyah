@@ -6,7 +6,7 @@ import { skipHashBang } from '../../src/lexer';
 describe('Lexer - skiphashbang', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const state = create(opts.source);
+      const state = create(opts.source, '', undefined);
       skipHashBang(state);
       t.deepEqual(
         {
@@ -24,7 +24,6 @@ describe('Lexer - skiphashbang', () => {
       );
     });
   }
-
   pass('skips nothing in an empty source', {
     source: '',
     newLine: false,

@@ -7,7 +7,7 @@ import { scanSingleToken } from '../../src/lexer/scan';
 describe('lexer - privatename', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const state = create(opts.source);
+      const state = create(opts.source, '', undefined);
       const token = scanSingleToken(state, opts.ctx, 0);
       t.deepEqual(
         {
@@ -35,7 +35,7 @@ describe('lexer - privatename', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = create(source);
+      const state = create(source, '', undefined);
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }

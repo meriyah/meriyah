@@ -758,6 +758,7 @@ export interface UpdateExpression extends _Node {
 }
 
 export interface UnaryExpression extends _Node {
+  type: 'UnaryExpression';
   operator: UnaryOperator;
   prefix: true;
   argument: Expression;

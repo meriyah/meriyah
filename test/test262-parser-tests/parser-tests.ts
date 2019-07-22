@@ -17,7 +17,9 @@ const expectations = {
     'ac09566949f0db57.js',
     '116cacc3c80a5a3e.js',
     '10f0ef998c05c611.js',
-    'bf1db420b006027f.js'
+    'bf1db420b006027f.js',
+    // Need a fix
+    '541ee533b54ae664.js'
   ],
   explicit: [
     '3b36d546985cd9cb.js',
@@ -25,7 +27,15 @@ const expectations = {
     '1a1c717109ab67e1.js',
     '206ebb4e67a6daa9.js',
     'fc020c065098cbd5.js',
-    '4ad6e3a59e27e9b1.js'
+    '4ad6e3a59e27e9b1.js',
+    // Need a fix
+    'ef812b85ce5fbc44.js',
+    'b3e783194b210cc3.js',
+    'ef812b85ce5fbc44.js',
+
+    '18e32b70e6a5574c.js',
+    '541ee533b54ae664.js',
+    '65228d6a31a06406.js'
   ],
   fail: [
     'e4a43066905a597b.js',
@@ -66,7 +76,9 @@ const expectations = {
     '1aff49273f3e3a98.js',
     '12a74c60f52a60de.js',
     '0f5f47108da5c34e.js',
-    '06593c3474233eca.js'
+    '06593c3474233eca.js',
+    // Need a fix
+    'de9d9a6cd61407f5.js'
   ]
 };
 

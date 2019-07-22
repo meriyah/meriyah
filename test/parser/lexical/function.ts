@@ -59,6 +59,7 @@ describe('Lexical - Function', () => {
     ['function foo([x], {x:x}) {}', Context.OptionsLexical],
     ['function foo([x], x) {}', Context.OptionsLexical],
     ['function foo(x, [x]) {}', Context.OptionsLexical],
+    ['function g() { { var x; let x; } }', Context.OptionsLexical],
     ['function f() { { { var x; } let x; } }', Context.OptionsLexical],
     ['function f() { { { var x; } let x; } }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['function f() { { var x; let x; } }', Context.OptionsLexical | Context.OptionsWebCompat],
@@ -100,16 +101,33 @@ describe('Lexical - Function', () => {
     ['(function() { { function* foo() {} function foo() {} } })()', Context.OptionsLexical],
     ['(function() { { function foo() {} function* foo() {} } })()', Context.OptionsLexical],
     ['(function() { { async function foo() {} async function foo() {} } })()', Context.OptionsLexical],
+    ['function f(...rest, b){}', Context.OptionsLexical],
     ['let x; { var x; }', Context.OptionsLexical],
     ['{ var x; } let x;', Context.OptionsLexical],
+    ['function f(...a,){}', Context.OptionsLexical],
+    ['function f(...a = x,){}', Context.OptionsLexical],
+    ['function f(...a = x,){}', Context.OptionsLexical],
+    ['function f(...a,){}', Context.OptionsLexical],
+    ['function f(...a = x,){}', Context.OptionsLexical],
+    ['function f({a: x, b: x}) {}', Context.OptionsLexical],
+    ['function f({x, x}) {}', Context.OptionsLexical],
+    ['function f(x, {a: {b: x}}) {}', Context.OptionsLexical],
+    ['function f(x, {a: {x}}) {}', Context.OptionsLexical],
+    ['function f(x, {15: x}) {}', Context.OptionsLexical],
+    ['function f({a: x, ...{x}}) {}', Context.OptionsLexical],
+    ['function f({a: x, ...x}) {}', Context.OptionsLexical],
+    ['function f(x, {a: x}) {}', Context.OptionsLexical],
+    ['function f(x, {"foo": x}) {}', Context.OptionsLexical],
     ['"use strict"; function foo(bar, bar){}', Context.OptionsLexical],
-    ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict]
+    ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict],
+    ['function f(x) { let x }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
     '{ function* foo() {}; }; let foo;',
     'function f(x) { { let x } }',
     'function f(x) { { const x = y } }',
+    'function f(x) { { var x } }',
     'function f(f) { }',
     'function f([f]) { }',
     'function f(x) { function x() {} }',
@@ -207,6 +225,7 @@ describe('Lexical - Function', () => {
   for (const arg of [
     '{  let f = 123;  if (false) ; else function f() {  }  }',
     'function f(a){ var a }',
+    'function f(x) { { var x } }',
     // Lexical shadowing allowed, no hoisting
     `(function() {
     function* x() { yield 1; }
@@ -231,6 +250,9 @@ function a() {}`,
     '(function() { { function foo() {} function* foo() {} } })()',
     '(function() { { async function foo() {} async function foo() {} } })()',
     'function g() { var x = 1; { let x = 2; function g() { x; } g(); } }',
+    'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()',
+    'function *f(){} { function *f(){} }',
+    'function f(x) { { let x } }',
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()'
   ]) {
     it(`${arg}`, () => {
@@ -249,6 +271,7 @@ function a() {}`,
     'function f([{foo}] = x, [{foo}]){}',
     'function f(b, a, b, a = x) {}',
     'let x = a; function x(){};',
+    'function f(x) { { let x } }',
     'const x = a; function x(){};',
     'function f([b, a], b) {}',
     'function f([b, a], {b}) {}'

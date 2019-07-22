@@ -11,6 +11,12 @@ describe('Lexical - AnnexB', () => {
     ['function f() {} ; function f() {}', Context.Module | Context.OptionsLexical],
     ['{ if (x) function f() {} ; function f() {} }', Context.None | Context.OptionsLexical],
     ['let x; var x;', Context.None | Context.OptionsLexical],
+    ['var x; let x;', Context.None | Context.OptionsLexical],
+
+    ['var x; let x;', Context.None | Context.OptionsLexical],
+    ['var x; let x;', Context.None | Context.OptionsLexical],
+    ['var x; let x;', Context.None | Context.OptionsLexical],
+    ['var x; let x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical]
   ]);
 

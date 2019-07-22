@@ -60,6 +60,22 @@ describe('Lexical - Switch', () => {
     ['switch (0) { case 1: function f() {} default: async function* f() {} }', Context.OptionsLexical],
     ['switch (0) { case 1: const f = 0; default: class f {} }', Context.OptionsLexical],
     ['switch (0) { case 1: const f = 0; default: async function* f() {} }', Context.OptionsLexical],
+    ['switch (0) { case 1: var f = 0; default: async function* f() {} }', Context.OptionsLexical],
+    ['switch (0) { case 1: let f = 0; default: var f; }', Context.OptionsLexical],
+    ['switch (0) { case 1: var f = 0; default: let f; }', Context.OptionsLexical],
+    ['switch (0) { case 1: var f = 0; ({f}) default: let x; }', Context.OptionsLexical],
+    ['switch (0) { case 1: var f = 0; const {f} = x; default: let x; }', Context.OptionsLexical],
+    [
+      'switch (0) { case 1: let f = 0; var {f} = x; default: let x; }',
+      Context.OptionsLexical | Context.OptionsWebCompat
+    ],
+    [
+      'switch (0) { case 1: const f = 0; default: async function* f() {} }',
+      Context.OptionsLexical | Context.OptionsWebCompat
+    ],
+    ['switch (0) { case 1: let f = 0; var {f} = x; default: let x; }', Context.OptionsLexical],
+    ['switch (0) { case 1: const f = 0; default: async function* f() {} }', Context.OptionsLexical],
+    ['switch (0) { case 1: const f = 0; x; default: let {f} = x; } var {f} = f', Context.OptionsLexical],
     ['switch (0) { case 1: class f {} default: class f {} }', Context.OptionsLexical],
     ['switch (0) { case 1: class f {} default: async function* f() {} }', Context.OptionsLexical],
     ['switch (0) { case 1: async function* f() {} default: var f }', Context.OptionsLexical],
@@ -90,6 +106,7 @@ describe('Lexical - Switch', () => {
     ['switch (0) { case 1: var f; default: function* f() {} }', Context.OptionsLexical],
     ['switch (0) { default: let f; if (false) ; else function f() {  } }', Context.OptionsLexical],
     ['switch(0) { case 0: let a; case 1: let a; }', Context.OptionsLexical],
+    ['switch (0) { case 1: function f() {} default: var f }', Context.OptionsLexical],
     ['switch(0) { case 0: let a; default: let a; }', Context.OptionsLexical],
     ['switch(0) { default: let a; case 0: let a; }', Context.OptionsLexical],
     ['switch(0) { case 0: let a; case 1: var a; }', Context.OptionsLexical],
@@ -100,7 +117,9 @@ describe('Lexical - Switch', () => {
     ['switch(0) { case 0: const a = 0; default: var a; }', Context.OptionsLexical],
     ['switch(0) { case 0: var a; default: const a = 0; }', Context.OptionsLexical],
     ['switch(0) { default: const a = 0; case 0: var a; }', Context.OptionsLexical],
-    ['switch(0) { default: var a; case 0: const a = 0; }', Context.OptionsLexical]
+    ['switch(0) { default: var a; case 0: const a = 0; }', Context.OptionsLexical],
+    ['switch (x) { default: async function *f(){} async function *f(){} }', Context.OptionsLexical],
+    ['switch (x) { default: function f(){} function f(){} }', Context.OptionsLexical | Context.Strict]
   ]);
 
   for (const arg of [
@@ -108,6 +127,9 @@ describe('Lexical - Switch', () => {
     'switch (x) { case a: var foo; break; default: var foo; break; }',
     'switch (0) { case 1: var f; default: var f }',
     'switch (0) { case 1: var f; default: var f; }',
+    'switch (0) { case 1: let f = 0; default: [f] }',
+    'switch (0) { case 1: let f = 0; x; default: let x; } var {f} = f',
+    'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
     'switch (x) { case a: var foo; break; default: var foo; break; }'
   ]) {
     it(`${arg}`, () => {
@@ -120,10 +142,17 @@ describe('Lexical - Switch', () => {
   for (const arg of [
     'switch (0) { case 1: var f; default: var f }',
     'switch (x) { case a: var foo; break; default: var foo; break; }',
+    'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
     'switch (x) {case a: function f(){}; break; case b: function f(){}; break; }',
-    'switch (0) { case 1: function f() {} default: var f }',
+    // 'switch (0) { case 1: function f() {} default: var f }',
+    'switch (0) { case 1: let f = 0; x; default: let x; } var {f} = f',
     'switch (0) { case 1: function f() {} default: async function f() {} }',
     'switch (0) { case 1: async function f() {} default: function f() {} }',
+    'switch (x) { case c: function f(){} function f(){} }',
+    'switch (x) { default: function *f(){} function *f(){} }',
+    'switch (x) { case c: function *f(){} function *f(){} }',
+    'switch (0) { case 1: let f = 0; default: [f] }',
+    'switch (x) { default: async function f(){} async function f(){} }',
     'switch (0) { default: let f; if (false) ; else function f() {  } }',
     'switch (0) { case 1: var f; default: var f; }',
     'for (let f of [0]) { switch (1) { case 1:function f() {  } }}'

@@ -381,13 +381,13 @@ describe('Statements - For in', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg} ${arg}`, undefined, Context.None);
+        parseSource(`${arg}`, undefined, Context.None);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg} ${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
 

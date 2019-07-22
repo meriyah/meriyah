@@ -6,7 +6,7 @@ import { scanSingleToken } from '../../src/lexer/scan';
 describe('Lexer - Whitespace', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const state = create(opts.source);
+      const state = create(opts.source, '', undefined);
       scanSingleToken(state, Context.OptionsWebCompat, 0);
       t.deepEqual(
         {

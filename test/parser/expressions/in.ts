@@ -11,7 +11,8 @@ describe('Expressions -In', () => {
     'Math.pow(2,30)-1 in {}',
     '+0 in {}',
     '+0 in []',
-    '0.001 in a[2]'
+    '0.001 in a[2]',
+    '0.001 in async[2]'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -33,6 +34,31 @@ describe('Expressions -In', () => {
   }
 
   pass('Expressions -In', [
+    [
+      'x in async',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'x'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'async'
+              },
+              operator: 'in'
+            }
+          }
+        ]
+      }
+    ],
     [
       'x in Number',
       Context.None,

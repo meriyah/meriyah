@@ -9,11 +9,32 @@ describe('Lexical - If', () => {
     ['if (x) {} else var foo = 1; let foo = 1;', Context.OptionsLexical],
     ['if (x) var foo = 1; else {} let foo = 1;', Context.OptionsLexical],
     ['if (x) var foo = 1; let foo = 1;', Context.OptionsLexical],
-
+    ['if (x) function f(){}', Context.OptionsLexical],
+    ['do async function f(){} while (x);', Context.OptionsLexical],
+    [
+      `if (x) x;
+    else async function f(){}`,
+      Context.OptionsLexical
+    ],
+    [
+      `if (x) x;
+    else async function *f(){}`,
+      Context.OptionsLexical
+    ],
+    [
+      `if (x) x;
+    else function *f(){}`,
+      Context.OptionsLexical
+    ],
+    [
+      `if (x) x;
+    else function(){}`,
+      Context.OptionsLexical
+    ],
+    ['if (x) async function f(){}', Context.OptionsLexical],
     ['if (x) {} else if (y) {} else var foo = 1; let foo = 1;', Context.OptionsLexical],
     ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsLexical],
     ['const x = a; function x(){};', Context.OptionsLexical],
-    ['if (x) var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
     ['if (x) var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
     ['if (x) {} else var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
     ['if (x) var foo = 1; else {} let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],

@@ -1,8 +1,8 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
-describe('Statements - Switch', () => {
-  fail('Statements - Switch (fail)', [
+describe('Statements  Switch', () => {
+  fail('Statements  Switch (fail)', [
     ['switch(x) { default: default: }', Context.None],
     ['switch(x) { default: break; default: break; }', Context.None],
     ['switch(x) { case y: break; case z: break; default: default: }', Context.None],
@@ -15,7 +15,159 @@ describe('Statements - Switch', () => {
     ['do {} while(x) x', Context.None]
   ]);
 
-  pass('Statements - Switch (pass)', [
+  pass('Statements  Switch (pass)', [
+    [
+      `for (let i = 0; i < 1; ++i) {
+        switch (a) {
+          case 2:
+              foo:a = 3;
+              break;
+        }
+    }`,
+      Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  cases: [
+                    {
+                      consequent: [
+                        {
+                          body: {
+                            end: 93,
+                            expression: {
+                              end: 92,
+                              left: {
+                                end: 88,
+                                name: 'a',
+                                start: 87,
+                                type: 'Identifier'
+                              },
+                              operator: '=',
+                              right: {
+                                end: 92,
+                                start: 91,
+                                type: 'Literal',
+                                value: 3
+                              },
+                              start: 87,
+                              type: 'AssignmentExpression'
+                            },
+                            start: 87,
+                            type: 'ExpressionStatement'
+                          },
+                          end: 93,
+                          label: {
+                            end: 86,
+                            name: 'foo',
+                            start: 83,
+                            type: 'Identifier'
+                          },
+                          start: 83,
+                          type: 'LabeledStatement'
+                        },
+                        {
+                          end: 114,
+                          label: null,
+                          start: 108,
+                          type: 'BreakStatement'
+                        }
+                      ],
+                      end: 114,
+                      start: 61,
+                      test: {
+                        end: 67,
+                        start: 66,
+                        type: 'Literal',
+                        value: 2
+                      },
+                      type: 'SwitchCase'
+                    }
+                  ],
+                  discriminant: {
+                    end: 47,
+                    name: 'a',
+                    start: 46,
+                    type: 'Identifier'
+                  },
+                  end: 124,
+                  start: 38,
+                  type: 'SwitchStatement'
+                }
+              ],
+              end: 130,
+              start: 28,
+              type: 'BlockStatement'
+            },
+            end: 130,
+            init: {
+              declarations: [
+                {
+                  end: 14,
+                  id: {
+                    end: 10,
+                    name: 'i',
+                    start: 9,
+                    type: 'Identifier'
+                  },
+                  init: {
+                    end: 14,
+                    start: 13,
+                    type: 'Literal',
+                    value: 0
+                  },
+                  start: 9,
+                  type: 'VariableDeclarator'
+                }
+              ],
+              end: 14,
+              kind: 'let',
+              start: 5,
+              type: 'VariableDeclaration'
+            },
+            start: 0,
+            test: {
+              end: 21,
+              left: {
+                end: 17,
+                name: 'i',
+                start: 16,
+                type: 'Identifier'
+              },
+              operator: '<',
+              right: {
+                end: 21,
+                start: 20,
+                type: 'Literal',
+                value: 1
+              },
+              start: 16,
+              type: 'BinaryExpression'
+            },
+            type: 'ForStatement',
+            update: {
+              argument: {
+                end: 26,
+                name: 'i',
+                start: 25,
+                type: 'Identifier'
+              },
+              end: 26,
+              operator: '++',
+              prefix: true,
+              start: 23,
+              type: 'UpdateExpression'
+            }
+          }
+        ],
+        end: 130,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
     [
       'switch(foo) {}',
       Context.OptionsRanges,
@@ -282,37 +434,6 @@ describe('Statements - Switch', () => {
           }
         ],
         sourceType: 'script'
-      }
-    ],
-    [
-      'switch (answer) { case /(?=\x2d?)/gmy: }',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'SwitchStatement',
-            discriminant: {
-              type: 'Identifier',
-              name: 'answer'
-            },
-            cases: [
-              {
-                type: 'SwitchCase',
-                test: {
-                  type: 'Literal',
-                  value: /(?=-?)/gmy,
-                  regex: {
-                    pattern: '(?=-?)',
-                    flags: 'gmy'
-                  }
-                },
-                consequent: []
-              }
-            ]
-          }
-        ]
       }
     ],
     [
