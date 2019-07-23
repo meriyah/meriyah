@@ -1788,6 +1788,9 @@ export function parseLetIdentOrVarDeclarationStatement(
   // If the next token is an identifier, `[`, or `{`, this is not
   // a `let` declaration, and we parse it as an identifier.
   if ((parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0) {
+    if (parser.flags & Flags.NewLine && parser.token === Token.LeftBracket) {
+      report(parser, Errors.RestricedLetProduction);
+    }
     parser.assignable = AssignmentKind.Assignable;
 
     if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
