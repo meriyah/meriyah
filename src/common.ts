@@ -223,7 +223,7 @@ export interface ParserState {
  * @param context Context masks
  */
 
-export function consumeSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
+export function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
   if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
   && !specDeviation) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
@@ -361,6 +361,9 @@ export function validateBindingIdentifier(
     report(parser, Errors.KeywordNotId);
   }
 
+   // The BoundNames of LexicalDeclaration and ForDeclaration must not
+   // contain 'let'. (CatchParameter is the only lexical binding form
+   // without this restriction.)
   if (type & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }

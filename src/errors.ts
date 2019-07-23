@@ -285,7 +285,7 @@ export const errorMessages: {
     'The use of a future reserved word for an identifier is invalid. The identifier name is reserved in strict mode',
   [Errors.KeywordNotId]: 'The use of a keyword for an identifier is invalid',
   [Errors.InvalidLetClassName]: "Can not use 'let' as a class name",
-  [Errors.InvalidLetConstBinding]: 'Can not use `let` when binding through `let` or `const`',
+  [Errors.InvalidLetConstBinding]: "'A lexical declaration can't define a 'let' binding",
   [Errors.InvalidStrictLet]: 'Can not use `let` as variable name in strict mode',
   [Errors.DisallowedInContext]: "'%0' may not be used as an identifier in this context",
   [Errors.AwaitOutsideAsync]: 'Await is only valid in async functions',

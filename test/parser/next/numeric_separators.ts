@@ -1,7 +1,5 @@
 import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
-import * as t from 'assert';
-import { parseSource } from '../../../src/parser';
 
 describe('Next - Numeric separators', () => {
   fail('Next - Numeric separators (fail)', [

@@ -21,7 +21,7 @@ import {
   validateBindingIdentifier,
   isStrictReservedWord,
   optionalBit,
-  consumeSemicolon,
+  matchOrInsertSemicolon,
   isPropertyWithPrivateFieldKey,
   isValidLabel,
   validateAndDeclareLabel,
@@ -846,7 +846,7 @@ export function parseReturnStatement(
       ? null
       : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.line, parser.column);
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return finishNode(parser, context, start, line, column, {
     type: 'ReturnStatement',
@@ -871,7 +871,7 @@ export function parseExpressionStatement(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'ExpressionStatement',
     expression
@@ -921,7 +921,7 @@ export function parseLabelledStatement(
       ? parseFunctionDeclaration(
           parser,
           context,
-          addChildScope(scope, ScopeKind.FakeBlock),
+          scope,
           origin,
           0,
           HoistedFunctionFlags.None,
@@ -1167,7 +1167,7 @@ export function parseDirective(
       }
     }
 
-    consumeSemicolon(parser, context | Context.AllowRegExp);
+    matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   }
 
   return context & Context.OptionsDirectives
@@ -1223,7 +1223,7 @@ export function parseThrowStatement(
     parser.linePos,
     parser.colPos
   );
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'ThrowStatement',
     argument
@@ -1319,7 +1319,7 @@ export function parseConsequentOrAlternate(
     : parseFunctionDeclaration(
         parser,
         context,
-        addChildScope(scope, ScopeKind.FakeBlock),
+        addChildScope(scope, ScopeKind.None),
         BindingOrigin.None,
         0,
         HoistedFunctionFlags.None,
@@ -1502,7 +1502,7 @@ export function parseContinueStatement(
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 1))
       report(parser, Errors.UnknownLabel, tokenValue);
   }
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'ContinueStatement',
     label
@@ -1538,7 +1538,7 @@ export function parseBreakStatement(
     report(parser, Errors.IllegalBreak);
   }
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'BreakStatement',
     label
@@ -1609,7 +1609,7 @@ export function parseDebuggerStatement(
   // DebuggerStatement ::
   //   'debugger' ';'
   nextToken(parser, context | Context.AllowRegExp);
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'DebuggerStatement'
   });
@@ -1646,9 +1646,9 @@ export function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const tryScoop = scope ? addChildScope(scope, ScopeKind.Try) : void 0;
+  const firstScope = scope ? addChildScope(scope, ScopeKind.Try) : void 0;
 
-  const block = parseBlock(parser, context, tryScoop, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
+  const block = parseBlock(parser, context, firstScope, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
   const { tokenPos, linePos, colPos } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, labels, tokenPos, linePos, colPos)
@@ -1658,7 +1658,7 @@ export function parseTryStatement(
 
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    const finalizerScope = tryScoop ? addChildScope(scope, ScopeKind.Finally) : void 0;
+    const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.Finally) : void 0;
     finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenPos, linePos, colPos);
   }
 
@@ -1756,7 +1756,7 @@ export function parseDoWhileStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  consumeSemicolon(parser, context | Context.AllowRegExp, context & Context.OptionsSpecDeviation);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp, context & Context.OptionsSpecDeviation);
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
     body,
@@ -1788,9 +1788,6 @@ export function parseLetIdentOrVarDeclarationStatement(
   // If the next token is an identifier, `[`, or `{`, this is not
   // a `let` declaration, and we parse it as an identifier.
   if ((parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0) {
-    if (parser.flags & Flags.NewLine && parser.token === Token.LeftBracket) {
-      report(parser, Errors.RestricedLetProduction);
-    }
     parser.assignable = AssignmentKind.Assignable;
 
     if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
@@ -1866,7 +1863,7 @@ export function parseLetIdentOrVarDeclarationStatement(
    */
   const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, BindingOrigin.Statement);
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'VariableDeclaration',
     kind: 'let',
@@ -1905,7 +1902,7 @@ function parseLexicalDeclaration(
 
   const declarations = parseVariableDeclarationList(parser, context, scope, type, origin);
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return finishNode(parser, context, start, line, column, {
     type: 'VariableDeclaration',
@@ -1940,7 +1937,7 @@ export function parseVariableStatement(
   nextToken(parser, context);
   const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Variable, origin);
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, start, line, column, {
     type: 'VariableDeclaration',
     kind: 'var',
@@ -2338,7 +2335,7 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
-  consumeSemicolon(parser, context | Context.AllowRegExp);
+  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return finishNode(parser, context, start, line, column, {
     type: 'ImportDeclaration',
@@ -2664,7 +2661,7 @@ function parseExportDeclaration(
       default:
         // export default [lookahead ∉ {function, class}] AssignmentExpression[In] ;
         declaration = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-        consumeSemicolon(parser, context | Context.AllowRegExp);
+        matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
     }
 
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
@@ -2704,7 +2701,7 @@ function parseExportDeclaration(
 
       source = parseLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
 
-      consumeSemicolon(parser, context | Context.AllowRegExp);
+      matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
       return finishNode(
         parser,
@@ -2796,7 +2793,7 @@ function parseExportDeclaration(
         }
       }
 
-      consumeSemicolon(parser, context | Context.AllowRegExp);
+      matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
       break;
     }
@@ -6742,6 +6739,10 @@ export function parseFormalParametersOrFormalList(
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
+        // Strict-mode disallows duplicate args. We may not know whether we are
+        // in strict mode or not (since the function body hasn't been parsed).
+        // In such cases the potential error will be saved on the parser object
+        // and thrown later if there was any duplicates.
         if (type & BindingKind.Variable) {
           addVarName(parser, context, scope, tokenValue, BindingKind.ArgumentList);
         } else {
