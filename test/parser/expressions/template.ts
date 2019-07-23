@@ -9,6 +9,8 @@ describe('Expressions - Template', () => {
     '`${1}`',
     'example3 = 1 + `${foo}${bar}${baz}`',
     '`${""}`',
+    'y`${y,0}`',
+    '`${y,0}`',
     'foo = `${1}${f}oo${true}${b}ar${0}${baz}`',
     'bar = bar`wow\naB${ 42 } ${_.baz()}`',
     'bar`wow\na${ 42 }b ${_.foobar()}`',
@@ -19,6 +21,7 @@ describe('Expressions - Template', () => {
     'function z() {}; `${z}${z}${z}`;',
     "function z() {}; `${'z'}${z}${z}`;",
     "function z() {}; `${'z'}${'z'}${z}`;",
+    "function z() {}; `${'z'}${'z'}${async}`;",
     "function z() {}; '' + z + '';",
     'function z() {}; z`${`${z}`}`;',
     'function z() {}; z``;',
@@ -35,6 +38,7 @@ describe('Expressions - Template', () => {
     '`a\\u{d}c`',
     '`a\\u{062}c`',
     '`a\\u{000000062}c`',
+    'async`\n${0}`',
     'foo`\n${0}`',
     'foo`\\\n${0}`',
     'foo`\\r${0}`',
@@ -142,6 +146,8 @@ describe('Expressions - Template', () => {
     'tag`foo${a \r}`',
     'tag`foo${// comment\na}`',
     'tag`foo${\n a}`',
+    'tag`foo${\n async}`',
+    'tag`async${\n a}`',
     '`a${b}`',
     "'use strict'; `no-subst-template`",
     "function foo(){ 'use strict';`template-head${a}`}",
@@ -243,6 +249,7 @@ describe('Expressions - Template', () => {
     '`foo${a // comment\n}`',
     '`foo${a \n}`',
     '`foo${a \r\n}`',
+    '`async${a \r\n}`',
     '`foo${a \r}`',
     '`foo${/* comment */ a}`',
     '`foo${// comment\na}`',
@@ -253,6 +260,7 @@ describe('Expressions - Template', () => {
     'a``',
     'let a;',
     'var foo = `simple template`;',
+    'var async = `simple template`;',
     'let foo = f`template with function`;',
     'const foo = f`template with ${some} ${variables}`;',
     'var foo = f`template with ${some}${variables}${attached}`;',
@@ -328,6 +336,8 @@ describe('Expressions - Template', () => {
     'test`\\uG`;',
     'test`\\xG`;',
     'test`\\18`;',
+    '(`\n`)',
+    '(`\r`)',
     'new nestedNewOperatorFunction`1``2``3``array`'
   ]) {
     it(`${arg}`, () => {
@@ -412,6 +422,43 @@ describe('Expressions - Template', () => {
     ['`\\u{11ffff}${', Context.None]
   ]);
   pass('Expressions - Template (pass)', [
+    [
+      'var await = `simple template`;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                init: {
+                  type: 'TemplateLiteral',
+                  expressions: [],
+                  quasis: [
+                    {
+                      type: 'TemplateElement',
+                      value: {
+                        cooked: 'simple template',
+                        raw: 'simple template'
+                      },
+                      tail: true
+                    }
+                  ]
+                },
+                id: {
+                  type: 'Identifier',
+                  name: 'await'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
     [
       '`${y, x`)`}`',
       Context.None,

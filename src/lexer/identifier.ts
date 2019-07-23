@@ -3,7 +3,7 @@ import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { nextCP, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
 import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart } from './charClassifier';
-import { report, reportAt, Errors } from '../errors';
+import { report, reportMessageAt, Errors } from '../errors';
 
 /**
  * Scans identifier
@@ -13,7 +13,7 @@ import { report, reportAt, Errors } from '../errors';
  */
 export function scanIdentifier(parser: ParserState, context: Context, isValidAsKeyword: 0 | 1): Token {
   while ((CharTypes[nextCP(parser)] & CharFlags.IdentifierPart) !== 0) {}
-  parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+  parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
   if ((CharTypes[parser.nextCP] & CharFlags.BackSlash) === 0 && parser.nextCP < 0x7e) {
     return descKeywordTable[parser.tokenValue] || Token.Identifier;
   }
@@ -132,7 +132,7 @@ export function scanUnicodeEscapeValue(parser: ParserState): number {
 
     // At least 4 characters have to be read
     if (codePoint < 1 || (parser.nextCP as number) !== Chars.RightBrace) {
-      reportAt(startPos, parser.line, startPos - 1, Errors.InvalidHexEscapeSequence);
+      reportMessageAt(startPos, parser.line, startPos - 1, Errors.InvalidHexEscapeSequence);
     }
     nextCP(parser); // consumes '}'
     return codePoint;

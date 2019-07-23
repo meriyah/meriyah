@@ -8,6 +8,8 @@ import {
   nextCP,
   skipSingleLineComment,
   skipMultiLineComment,
+  skipSingleHTMLComment,
+  CommentType,
   LexerState,
   consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
@@ -178,7 +180,7 @@ export const TokenLookup = [
  */
 export function nextToken(parser: ParserState, context: Context): void {
   parser.flags = (parser.flags | Flags.NewLine) ^ Flags.NewLine;
-  parser.startIndex = parser.index;
+  parser.startPos = parser.index;
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
   parser.token = scanSingleToken(parser, context, LexerState.None);
@@ -188,7 +190,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
   const isStartOfLine = parser.index === 0;
 
   while (parser.index < parser.end) {
-    parser.tokenIndex = parser.index;
+    parser.tokenPos = parser.index;
     parser.colPos = parser.column;
     parser.linePos = parser.line;
 
@@ -303,14 +305,15 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `+`, `++`, `+=`
         case Token.Add: {
           nextCP(parser);
-          if (parser.index >= parser.end) return Token.Add;
 
-          if (parser.nextCP === Chars.Plus) {
+          const ch = parser.nextCP;
+
+          if (ch === Chars.Plus) {
             nextCP(parser);
             return Token.Increment;
           }
 
-          if (parser.nextCP === Chars.EqualSign) {
+          if (ch === Chars.EqualSign) {
             nextCP(parser);
             return Token.AddAssign;
           }
@@ -322,24 +325,20 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.Subtract: {
           nextCP(parser);
           if (parser.index >= parser.end) return Token.Subtract;
-          const next = parser.nextCP;
+          const ch = parser.nextCP;
 
-          if (next === Chars.Hyphen) {
+          if (ch === Chars.Hyphen) {
             nextCP(parser);
-            if (
-              (context & Context.Module) === 0 &&
-              (state & LexerState.NewLine || isStartOfLine) &&
-              parser.nextCP === Chars.GreaterThan
-            ) {
+            if ((state & LexerState.NewLine || isStartOfLine) && parser.nextCP === Chars.GreaterThan) {
               if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
-              state = skipSingleLineComment(parser, state);
+              state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLClose);
               continue;
             }
 
             return Token.Decrement;
           }
 
-          if (next === Chars.EqualSign) {
+          if (ch === Chars.EqualSign) {
             nextCP(parser);
             return Token.SubtractAssign;
           }
@@ -354,7 +353,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             const ch = parser.nextCP;
             if (ch === Chars.Slash) {
               nextCP(parser);
-              state = skipSingleLineComment(parser, state);
+              state = skipSingleLineComment(parser, state, CommentType.Single);
               continue;
             } else if (ch === Chars.Asterisk) {
               nextCP(parser);
@@ -388,15 +387,15 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             } else if (ch === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
               if (
-                (context & Context.Module) === 0 &&
                 parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen &&
                 parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen
               ) {
-                state = skipSingleLineComment(parser, state);
+                state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLOpen);
                 continue;
               }
+              return Token.LessThan;
             } else if (ch === Chars.Slash) {
-              if (!(context & Context.OptionsJSX)) break;
+              if (!(context & Context.OptionsJSX)) return Token.LessThan;
               const index = parser.index + 1;
 
               // Check that it's not a comment start.
@@ -404,7 +403,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 ch = parser.source.charCodeAt(index);
                 if (ch === Chars.Asterisk || ch === Chars.Slash) break;
               }
-
               nextCP(parser);
               return Token.JSXClose;
             }

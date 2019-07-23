@@ -186,6 +186,7 @@ describe('Expressions - Call', () => {
     'foo.bar(0, ...[1], 2, 3, ...[4, 5], 6, 7, 8, ...[9])',
     'fn(...b(), d())',
     'fn(a(), ...b())',
+    'fn(async(), ...b())',
     'fn(a(), ...b(), ...c(), d(), e())',
     'foo(1, ...[2], 3)',
     'foo(...[1])',
@@ -582,6 +583,316 @@ describe('Expressions - Call', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      '"foo", async',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Literal',
+                  value: 'foo'
+                },
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(async,)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo("abc", async)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Literal',
+                  value: 'abc'
+                },
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(1, async,)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Literal',
+                  value: 1
+                },
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(async,await,)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                },
+                {
+                  type: 'Identifier',
+                  name: 'await'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(async.await[foo])',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    computed: false,
+                    property: {
+                      type: 'Identifier',
+                      name: 'await'
+                    }
+                  },
+                  computed: true,
+                  property: {
+                    type: 'Identifier',
+                    name: 'foo'
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(async.abc = await)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'AssignmentExpression',
+                  left: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    computed: false,
+                    property: {
+                      type: 'Identifier',
+                      name: 'abc'
+                    }
+                  },
+                  operator: '=',
+                  right: {
+                    type: 'Identifier',
+                    name: 'await'
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(123, async,await,)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Literal',
+                  value: 123
+                },
+                {
+                  type: 'Identifier',
+                  name: 'async'
+                },
+                {
+                  type: 'Identifier',
+                  name: 'await'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo("string", async / 1 -2, await,)',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'Literal',
+                  value: 'string'
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    right: {
+                      type: 'Literal',
+                      value: 1
+                    },
+                    operator: '/'
+                  },
+                  right: {
+                    type: 'Literal',
+                    value: 2
+                  },
+                  operator: '-'
+                },
+                {
+                  type: 'Identifier',
+                  name: 'await'
+                }
+              ]
+            }
+          }
+        ]
       }
     ],
     [

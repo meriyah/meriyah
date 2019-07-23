@@ -82,6 +82,7 @@ describe('Miscellaneous - Try', () => {
     ['try {} catch (a) { const a = 1; } ', Context.OptionsLexical],
     ['try { } catch (x) { for (var x of []) {} }', Context.OptionsLexical],
     ['try { } catch (x) { let x; }', Context.OptionsLexical],
+    ['try { } catch (e) { async function f(){} async function f(){} }', Context.OptionsLexical],
     ['try {} catch (foo) { var foo; }', Context.OptionsLexical],
     ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
     ['try {} catch (foo) { try {} catch (_) { var foo; } }', Context.OptionsLexical],
@@ -126,7 +127,17 @@ describe('Miscellaneous - Try', () => {
     ['try {} catch ({ foo }) { var foo; }', Context.OptionsLexical],
     ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
     ['try {} catch ([foo, foo]) {}', Context.OptionsLexical],
-    ['try {} catch ([foo, foo]) {}', Context.OptionsWebCompat | Context.OptionsLexical]
+    ['try {} catch ([foo, foo]) {}', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['try { } catch (e) { function f(){} function f(){} }', Context.OptionsLexical],
+    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
+    ['try { function *f(){} var f } catch (e) {}', Context.OptionsLexical],
+    ['try { function(){} var f } catch (e) {}', Context.OptionsLexical],
+    ['try {} catch (e) { let e = x; }', Context.OptionsLexical],
+    ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
+    ['try {} catch (e) { { var e = x; } }', Context.OptionsLexical],
+    ['const a = 1, a = 2', Context.OptionsLexical],
+    ['try {} catch (x) { { let x } ', Context.OptionsLexical],
+    ['try {} catch (x) { let x }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
@@ -162,6 +173,7 @@ describe('Miscellaneous - Try', () => {
     'try {} catch (e) { var e = x; }',
     'try {} catch (e) { for (var e;;) {} }',
     'try {} catch (e) { for (var e in y) {} }',
+    'try {} catch (x) { { var x } }',
     'try {} catch (e) { for (let e;;) {} }',
     'try {} catch (e) { for (const e = y;;) {} }',
     'try {} catch (e) { for (let e in y) {} }',
@@ -182,11 +194,25 @@ describe('Miscellaneous - Try', () => {
     'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
     'try {} catch (e) { var e = x; }',
     'try {} catch(e) { var e; }',
+    'try { } catch (e) { function *f(){} function *f(){} }',
+    'try { } finally { async function f(){} async function f(){} }',
+    'try { } finally { async function *f(){} async function *f(){} }',
+    'try { } finally { function f(){} function f(){} }',
+    'try { } finally { function a(){} function a(){} }',
+    'try { } finally { async function f(){} async function f(){} }',
+    'try { } finally { async function f(){} async function f(){} }',
     'try { throw 0; } catch(e) { { function e(){} } }',
+    'try {} catch (e) { for (let e = 1;;) {} }',
+    'try {} catch (e) { for (var e = 1;;) {} }',
+    'try {} catch (e) { for (const e of y) {} }',
+    'try {} catch (e) { for (let e of y) {} }',
+    'try {} catch (e) { { var e = x; } }',
     'try {} catch (foo) {if (1) function foo() {}}',
     'try {} catch (foo) {}  let foo;',
     'try { } catch (foo) { try { } catch (_) { var foo; } }',
     'try {} catch (foo) {} var foo;',
+    'try { } catch (e) { async function f(){} async function f(){} }',
+    'try { } catch (e) { function f(){} function f(){} }',
     'try {} catch (foo) { var foo; }'
   ]) {
     it(`${arg}`, () => {

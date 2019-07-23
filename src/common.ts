@@ -1,7 +1,15 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node } from './estree';
+import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
+
+export const presetBlockIdentifiers: { [key: string]: string } = {
+  ['Infinity']: 'Infinity',
+  ['NaN']: 'NaN',
+  ['Number']: 'Number',
+  ['String']: 'String',
+  ['undefined']: 'undefined'
+};
 
 /**
  * The core context, passed around everywhere as a simple immutable bit set.
@@ -22,7 +30,7 @@ export const enum Context {
   Module = 1 << 11, // Current code should be parsed as a module body
   InSwitch = 1 << 12,
   InGlobal = 1 << 13,
-  TopLevel = 1 << 14,
+  InClass = 1 << 14,
   AllowRegExp = 1 << 15,
   TaggedTemplate = 1 << 16,
   InIteration = 1 << 17,
@@ -35,9 +43,8 @@ export const enum Context {
   InMethod = 1 << 25,
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
-  InClass = 1 << 28,
-  OptionsIdentifierPattern = 1 << 29,
-  OptionsSpecDeviation = 1 << 30,
+  OptionsIdentifierPattern = 1 << 28,
+  OptionsSpecDeviation = 1 << 29,
 }
 
 export const enum PropertyKind {
@@ -65,6 +72,14 @@ export const enum BindingKind {
   Variable = 1 << 2,
   Let = 1 << 3,
   Const = 1 << 4,
+  Class = 1 << 5,
+  FunctionLexical = 1 << 6,
+  FunctionStatement = 1 << 7,
+  CatchPattern = 1 << 8,
+  CatchIdentifier  = 1 << 9,
+  CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
+  LexicalOrFunction = Variable | FunctionLexical,
+  LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
 }
 
 export const enum BindingOrigin {
@@ -75,9 +90,8 @@ export const enum BindingOrigin {
   Statement = 1 << 3,
   Export = 1 << 4,
   Other = 1 << 5,
-  IfStatement = 1 << 6,
-  BlockStatement = 1 << 9,
-  TopLevel = 1 << 10
+  BlockStatement = 1 << 7,
+  TopLevel = 1 << 8,
 }
 
 export const enum AssignmentKind {
@@ -107,7 +121,8 @@ export const enum Flags {
   HasConstructor = 1 << 5,
   Octals = 1 << 6,
   SimpleParameterList = 1 << 7,
-  Yield = 1 << 8
+  HasStrictReserved = 1 << 8,
+  StrictEvalArguments = 1 << 9,
 }
 
 export const enum HoistedClassFlags {
@@ -122,9 +137,50 @@ export const enum HoistedFunctionFlags {
   Export = 1 << 1
 }
 
-export const enum FunctionStatement {
-  Disallow,
-  Allow
+/**
+ * Scope types
+ */
+export const enum ScopeKind {
+  None = 0,
+  For = 1 << 0,
+  Block = 1 << 1,
+  Catch = 1 << 2,
+  Switch = 1 << 3,
+  ArgList = 1 << 4,
+  Try = 1 << 5,
+  CatchHead = 1 << 6,
+  CatchBody = 1 << 7,
+  Finally = 1 << 8,
+  FuncBody = 1 << 9,
+  FuncRoot = 1 << 10,
+  ArrowParams = 1 << 11,
+  FakeBlock = 1 << 12,
+  Global = 1 << 13,
+  CatchIdentifier = 1 << 14,
+  ForHeader = 1 << 15,
+  FunctionParams = 1 << 16
+}
+
+/**
+ * The type of the `onComment` option.
+ */
+export type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
+
+/**
+ * Lexical scope interface
+ */
+export interface ScopeState {
+  parent: ScopeState | undefined;
+  type: ScopeKind;
+  scopeError?: ScopeError | null;
+}
+
+/** Scope error interface */
+export interface ScopeError {
+  type: Errors;
+  index: number;
+  line: number;
+  column: number;
 }
 
 /**
@@ -136,14 +192,15 @@ export interface ParserState {
   index: number;
   line: number;
   column: number;
-  tokenIndex: number;
-  startIndex: number;
+  tokenPos: number;
+  startPos: number;
   startColumn: number;
   startLine: number;
   colPos: number;
   linePos: number;
   end: number;
   token: Token;
+  onComment: any;
   tokenValue: any;
   tokenRaw: string;
   tokenRegExp: void | {
@@ -172,6 +229,15 @@ export function consumeSemicolon(parser: ParserState, context: Context, specDevi
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
   consumeOpt(parser, context, Token.Semicolon);
+}
+
+export function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1 {
+  if (index - tokenPos < 13 && tokenValue === 'use strict') {
+    if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+      return 1;
+    }
+  }
+  return 0;
 }
 
 /**
@@ -376,10 +442,10 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
  */
 export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
   let set = labels;
-  do {
+  while (set) {
     if (set['$' + name]) report(parser, Errors.LabelRedeclaration, name);
     set = set['$'];
-  } while (set);
+  }
 
   labels['$' + name] = 1;
 }
@@ -394,7 +460,7 @@ export function finishNode<T extends Node>(
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
-    node.end = parser.startIndex;
+    node.end = parser.startPos;
   }
 
   if (context & Context.OptionsLoc) {
@@ -430,4 +496,196 @@ export function isEqualTagName(elementName: any): any {
     default:
     // ignore
   }
+}
+
+export function recordScopeError(parser: ParserState, type: Errors): ScopeError {
+  const { index, line, column } = parser;
+  return {
+    type,
+    index, line, column
+  }
+}
+
+/**
+ * Creates a block scope
+ */
+export function createScope(): ScopeState {
+  return {
+    parent: void 0,
+    type: ScopeKind.Global
+  };
+}
+
+/**
+ * Inherit scope
+ *
+ * @param scope Parser object
+ * @param type Scope type
+ */
+export function addChildScope(parent: any, type: ScopeKind): ScopeState {
+  return {
+    parent,
+    type,
+    scopeError: void 0
+  };
+}
+
+export function addVarName(
+  parser: ParserState,
+  context: Context,
+  scope: ScopeState,
+  name: any,
+  type: BindingKind
+): void {
+  if (scope === null) return;
+
+  const hashed = '#' + name;
+  const isLexicalBinding = (type & BindingKind.LexicalBinding) !== 0;
+  const isWebCompat =  context & Context.OptionsWebCompat && (context & Context.Strict) === 0
+
+  let currentScope: any = scope;
+
+  while (currentScope && (currentScope.type & ScopeKind.FuncRoot) === 0) {
+
+    const value: ScopeKind = currentScope[hashed];
+
+    if (value & BindingKind.LexicalBinding) {
+      if (isWebCompat &&
+        ((type & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
+          (value & BindingKind.FunctionStatement && type & BindingKind.LexicalOrFunction))
+      ) {
+      } else {
+        report(parser, Errors.DuplicateBinding, name);
+      }
+    }
+    if (currentScope === scope) {
+        if (value && (value & BindingKind.EmptyBinding) === 0 && isLexicalBinding) {
+          report(parser, Errors.DuplicateBinding, name);
+        } else if (value & BindingKind.ArgumentList && type & BindingKind.ArgumentList) {
+          currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
+        }
+    }
+    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
+      if (((value & BindingKind.CatchIdentifier) === 0 || (context & Context.OptionsWebCompat) === 0) || context & Context.Strict) {
+        report(parser, Errors.DuplicateBinding, name);
+      }
+    }
+
+    currentScope[hashed] = type;
+
+    currentScope = currentScope.parent;
+  }
+}
+
+export function addBlockName(
+  parser: ParserState,
+  context: Context,
+  scope: any,
+  name: string,
+  type: BindingKind,
+  origin: BindingOrigin
+) {
+  if (!scope) return;
+
+  if (presetBlockIdentifiers[name]) report(parser, Errors.DuplicateIdentifier, name);
+
+  const hashed = '#' + name;
+  const value = scope[hashed];
+
+  if (value && (value & BindingKind.EmptyBinding) === 0) {
+    if (type & BindingKind.ArgumentList) {
+      scope.scopeError = recordScopeError(parser, Errors.Unexpected);
+    } else if (
+      context & Context.OptionsWebCompat &&
+      value & BindingKind.FunctionLexical &&
+      origin & BindingOrigin.BlockStatement
+    ) {
+    } else {
+      report(parser, Errors.DuplicateBinding, name);
+    }
+  }
+
+  if (
+    scope.type & ScopeKind.FuncBody &&
+    (scope.parent[hashed] && (scope.parent[hashed] & BindingKind.EmptyBinding) === 0)
+  ) {
+    report(parser, Errors.DuplicateBinding, name);
+  }
+
+  if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.EmptyBinding) === 0) {
+    if (type & BindingKind.ArgumentList) {
+      scope.scopeError = recordScopeError(parser, Errors.Unexpected);
+    } else if ((type & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) === 0) {
+      report(parser, Errors.DuplicateBinding, name);
+    }
+  }
+
+  if (type & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
+    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) report(parser, Errors.ShadowedCatchClause, name);
+  } else if (scope.type & ScopeKind.CatchBody) {
+    if (scope.parent[hashed] & BindingKind.CatchIdentifierOrPattern) report(parser, Errors.ShadowedCatchClause, name);
+  }
+
+  let currentScope = scope.parent;
+
+  while (currentScope && (currentScope.type & ScopeKind.FuncRoot) !== ScopeKind.FuncRoot) {
+    const value = currentScope[hashed];
+    if (currentScope.type & ScopeKind.ArrowParams) {
+       if (value & BindingKind.EmptyBinding && (type & BindingKind.CatchIdentifierOrPattern) === 0 ) {
+        report(parser, Errors.DuplicateBinding, name);
+      } else  if (type & BindingKind.ArgumentList) {
+          currentScope.dupeParamErrorToken = recordScopeError(parser, Errors.Unexpected);
+      }
+    }
+    currentScope = currentScope.parent;
+  }
+
+  scope[hashed] = type;
+}
+
+/**
+ * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
+ * for duplicates
+ *
+ * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
+ *
+ * @param parser Parser object
+ * @param name Exported name
+ */
+export function updateExportsList(parser: ParserState, name: string): void {
+  if (parser.exportedNames !== void 0 && name !== '') {
+    if (parser.exportedNames['#' + name]) {
+      report(parser, Errors.DuplicateExportBinding, name);
+    }
+    parser.exportedNames['#' + name] = 1;
+  }
+}
+
+/**
+ * Appends a name to the `ExportedBindings` of the `ExportsList`,
+ *
+ * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
+ *
+ * @param parser Parser object
+ * @param name Exported binding name
+ */
+export function addBindingToExports(parser: ParserState, name: string): void {
+  if (parser.exportedBindings !== void 0 && name !== '') {
+    parser.exportedBindings['#' + name] = 1;
+  }
+}
+
+export function pushComment(context: Context, array: any[]): any {
+  return function(type: string, value: string, start: number, end: number) {
+    const comment: any = {
+      type,
+      value
+    };
+
+    if (context & Context.OptionsLoc) {
+      comment.start = start;
+      comment.end = end;
+    }
+    array.push(comment);
+  };
 }

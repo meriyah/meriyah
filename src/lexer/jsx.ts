@@ -13,7 +13,7 @@ import { scanSingleToken } from './scan';
  * @param context Context masks
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
-  parser.startIndex = parser.index;
+  parser.startPos = parser.index;
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
   parser.token =
@@ -50,7 +50,7 @@ export function scanJSXString(parser: ParserState): Token {
  * @param parser The parser object
  */
 export function scanJSXToken(parser: ParserState): Token {
-  parser.startIndex = parser.tokenIndex = parser.index;
+  parser.startPos = parser.tokenPos = parser.index;
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
 
@@ -77,7 +77,7 @@ export function scanJSXToken(parser: ParserState): Token {
 
   while (parser.index < parser.end && (CharTypes[nextCP(parser)] & CharFlags.JSXToken) === 0) {}
 
-  parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
+  parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
 
   return (parser.token = Token.JSXText);
 }

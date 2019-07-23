@@ -53,7 +53,22 @@ describe('Lexical - Arrows', () => {
     ['({"x": y, x: x = y}) => { let y; }', Context.OptionsLexical],
     ['({1: x, 2: x}) => a', Context.OptionsLexical],
     ['({2: y, "x": x = y}) => { let y; }', Context.OptionsLexical],
-    ['(a) => { let a; }', Context.OptionsLexical]
+    ['(a) => { let a; }', Context.OptionsLexical],
+    ['(...a,) => x', Context.OptionsLexical],
+    ['(...a = x,) => x', Context.OptionsLexical],
+    ['(...a,)', Context.OptionsLexical],
+    ['([b, a], b) => {}', Context.OptionsLexical],
+    ['([b, a, b, a]) => {}', Context.OptionsLexical],
+    ['([b, a], b=x) => {}', Context.OptionsLexical],
+    ['([b, a], ...b) => {}', Context.OptionsLexical],
+    ['([b, a], {b}) => {}', Context.OptionsLexical],
+    ['(a, b, a) => {}', Context.OptionsLexical],
+    ['(b, a, b, a) => {}', Context.OptionsLexical],
+    ['(b, a, b, a = x) => {}', Context.OptionsLexical],
+    ['(b, a, b, a, [x]) => {}', Context.OptionsLexical],
+    ['([a,b,c]) => { const c = x; }', Context.OptionsLexical],
+    ['(x) => { const x = y }', Context.OptionsLexical],
+    ['(x) => { let x }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
@@ -61,6 +76,8 @@ describe('Lexical - Arrows', () => {
     '(x) => { var x; }',
     'x => { function x() {} }',
     'x => { var x; }',
+    'g => { try {}  catch (g) {} }',
+    'g => { try {} catch ([g]) {} }',
     '() => { let foo; }; foo => {}',
     '() => { let foo; }; () => { let foo; }'
   ]) {
@@ -74,6 +91,8 @@ describe('Lexical - Arrows', () => {
   for (const arg of [
     '(x) => { function x() {} }',
     '(x) => { var x; }',
+    'g => { try {}  catch (g) {} }',
+    'g => { try {} catch ([g]) {} }',
     'x => { function x() {} }',
     'x => { var x; }',
     '() => { let foo; }; foo => {}',

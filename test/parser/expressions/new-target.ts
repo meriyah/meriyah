@@ -38,6 +38,7 @@ describe('Expressions - New target', () => {
     'function foo(){ var x = function() {new.target;}; x();}',
     'function foo(){ var o = { "foo" : function () { new.target}}; o.foo();}',
     `function f(x=() => new.target) {}`,
+    'function x(){""[new.target]}',
     'function foo(){with({}) {new.target;}}',
     'function foo() { function parent(x) { new x();}; function child(){ with(new.target) {toString();}}; parent(child); }',
     'function a(){try { throw Error;} catch(e){new.target;}}',

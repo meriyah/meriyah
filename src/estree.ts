@@ -18,7 +18,6 @@ export interface Position {
 }
 
 export type Labels = any; // Fix!
-export type Scope = any; // Fix!
 
 export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 
@@ -758,6 +757,7 @@ export interface UpdateExpression extends _Node {
 }
 
 export interface UnaryExpression extends _Node {
+  type: 'UnaryExpression';
   operator: UnaryOperator;
   prefix: true;
   argument: Expression;

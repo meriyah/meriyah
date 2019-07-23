@@ -23,7 +23,7 @@
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~81 000 unit tests with full code coverage)
+* Very well tested (~83 000 unit tests with full code coverage)
 * Lightweight - ~82 KB minified
 
 ## ESNext features

@@ -8,6 +8,7 @@ describe('Expressions - New', () => {
     'new x(1);',
     'new x;',
     'new new x;',
+    'new new x.y;',
     'new (function(foo){this.foo=foo;})(1);',
     'new (function(foo){this.foo=foo;})();',
     'new (function test(foo){this.foo=foo;})(1);',
@@ -19,12 +20,30 @@ describe('Expressions - New', () => {
     'new (bar = function(foo) {this.foo=foo;})();',
     'new x(1);',
     'new x();',
+    'new x();',
+    'new x()()()()()()();',
+    'new (x()()()()()()());',
     'new new x()();',
     'new function(foo) {\n    this.foo = foo;\n}(1);',
     'new function(foo) {\n    this.foo = foo;\n}();',
     'new function test(foo) {\n    this.foo = foo;\n}(1);',
     'new function test(foo) {\n    this.foo = foo;\n}();',
     'new true();',
+    'new async()()',
+    'new a()().b.c[d];',
+    'new async()().b.c[d];',
+    'new (a()().b.c[d]);',
+    'new (b());',
+    'new (async(await));',
+    'new async / b',
+    'new async / await',
+    'new async / await()',
+    'new async / await(async = foo)',
+    'new async / await(async,)',
+    'new async / await(foo, async)',
+    'new async / await("foo", async)',
+    'new async / await(123, async)',
+    'new async / await(foo, async)',
     'new 0();',
     'new (!0)();',
     'new (bar = function(foo) {\n    this.foo = foo;\n})(123);',
@@ -40,11 +59,6 @@ describe('Expressions - New', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
-      });
-    });
   }
   fail('Expressions - New (fail)', [
     ['function f(){ new.foo }', Context.None],
@@ -54,6 +68,9 @@ describe('Expressions - New', () => {
     ['function f(){ new.target-- }', Context.None],
     ['(f=new.target) => {}', Context.None],
     ['new x() = y', Context.None],
+    ['new a.b.c.(d).e.f.g[(b)]();', Context.None],
+    ['new a.async.c.(d).e.f.g[(async)]();', Context.None],
+    ['new async = async.await', Context.None],
     ['++new x()', Context.None],
     ['new x()++', Context.None],
     ['new new .target', Context.None],
@@ -66,13 +83,14 @@ describe('Expressions - New', () => {
     ['new ()=>{}', Context.None],
     ['new x=>{}', Context.None],
     ['new (x)=>{}', Context.None],
+    ['new a = b', Context.None],
     ['function *f(){ new yield }', Context.None],
     ['"use strict"; new yield()', Context.None],
     ['function *f(){ new yield }', Context.None],
     ['function *f(){ new yield x }', Context.None],
     ['function *f(){ new yield x(); }', Context.None],
-    //['new x++', Context.None ],
-    // ['new x.y++', Context.None ],
+    ['new x++', Context.None],
+    ['new x.y++', Context.None],
     [
       `function f() {
       new.target++;

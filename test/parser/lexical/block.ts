@@ -39,7 +39,6 @@ describe('Lexical - Block', () => {
     ['{ const f = 0; var f }', Context.OptionsLexical],
     ['{ function f() {} async function f() {} }', Context.OptionsLexical],
     ['{ function f() {} function f() {} }', Context.Strict | Context.OptionsLexical],
-    ['{ function f() {} function f() {} }', Context.OptionsWebCompat | Context.Strict | Context.OptionsLexical],
     ['{ function f() {} let f }', Context.OptionsLexical],
     ['{ { var f; } function f() {} }', Context.OptionsLexical],
     ['{ { var f; } async function* f() {}; }', Context.OptionsLexical],
@@ -104,8 +103,7 @@ describe('Lexical - Block', () => {
     ['{ function* f() {} function* f() {} }', Context.OptionsLexical],
     ['{ function* f() {} let f; }', Context.OptionsLexical],
     ['{ function* f() {} var f; }', Context.OptionsLexical],
-    ['{ var f; let f; }', Context.OptionsLexical],
-    ['{ var f; function f() {} }', Context.OptionsLexical],
+    ['{ function f(){} function f(){} }', Context.OptionsLexical],
     ['for (let x of []) { var x;  }', Context.OptionsLexical],
     ['for (const x in {}) { var x; }', Context.OptionsLexical],
     ['{ let a; function a() {}; }', Context.OptionsLexical],
@@ -118,13 +116,51 @@ describe('Lexical - Block', () => {
     ['{ class f {}; { var f; } }', Context.OptionsLexical],
     ['{ function f() {} var f; }', Context.OptionsLexical],
     ['{ const a = 1; function a(){} }', Context.OptionsLexical],
+    ['{ async function *f(){} class f {} }', Context.OptionsLexical],
+    ['{ function f(){} class f {} }', Context.OptionsLexical],
+    ['{ function *f(){} class f {} }', Context.OptionsLexical],
+    ['{ async function *f(){} const f = x }', Context.OptionsLexical],
+    ['{ class f {} async function f(){} }', Context.OptionsLexical],
+    ['{ class f {} function *f(){} }', Context.OptionsLexical],
+    ['{ const f = x; async function f(){} }', Context.OptionsLexical],
+    ['{ const f = x; async function *f(){} }', Context.OptionsLexical],
+    ['{ const f = x; function *f(){} }', Context.OptionsLexical],
+    ['async function *f(){} async function *f(){} }', Context.OptionsLexical],
+    ['{ let f; async function f(){} }', Context.OptionsLexical],
+    ['{ let f; async function *f(){} }', Context.OptionsLexical],
+    ['{ let f; function f(){} }', Context.OptionsLexical],
+    ['{ var f; async function f(){} }', Context.OptionsLexical],
+    ['{ var f; function *f(){} }', Context.OptionsLexical],
     ['{ const a = 1; function a(){} }', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
+    [
+      `{
+      for (var x;;);
+      const x = 1
+    }`,
+      Context.OptionsWebCompat | Context.OptionsLexical
+    ],
+    [
+      `function f(){
+      for (var x;;);
+      const x = 1
+    }`,
+      Context.OptionsWebCompat | Context.OptionsLexical
+    ],
+    [`# { # }`, Context.OptionsWebCompat | Context.OptionsLexical],
+    ['{ # } #', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['try { # var f } catch (e) {}', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['try { } catch (e) { # # }', Context.OptionsWebCompat | Context.OptionsLexical],
+    ['{ async function *f(){} let f }', Context.OptionsWebCompat | Context.OptionsLexical],
+    //['switch (x) { case c: async function f(){} async function f(){} }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical]
   ]);
 
   for (const arg of [
     'function x() { { var f; var f } }',
     'function f() {} var f;',
+    '{ let x; } var x',
     'var f; function f() {}',
     '{ var f; var f }',
     'function x() { { var f; var f } }',
@@ -148,6 +184,13 @@ describe('Lexical - Block', () => {
     '{ function f() {} ; function f() {} }',
     '{ if (x) function f() {} ; function f() {} }',
     '{ var f = 123; if (true) function f(){} }',
+    '{ async function f(){} } async function f(){}',
+    '{ async function *f(){} } async function *f(){}',
+    '{ function f(){} } function f(){}',
+    '{ function *f(){} } function *f(){}',
+    '{ async function f(){} } async function f(){}',
+    '{ async function f(){} } async function f(){}',
+    '{ async function f(){} } async function f(){}',
     '{ let foo = 1; { let foo = 2; } }',
     '{ async function f() {} async function* f() {} }',
     '{ async function f() {} function f() {} }',
@@ -157,9 +200,9 @@ describe('Lexical - Block', () => {
     'try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }',
     'try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }',
     'let f = 123; switch (1) { default: function f() {  }  }',
-    '{ async function f() {} var f; }',
     '{ async function* f() {} async function f() {} }',
     '{ function* f() {} function f() {} }',
+    '{ let x; } var x',
     '{ function* f() {} function* f() {} }',
     '{ var f; var f; }',
     'function f() {}  var f;',

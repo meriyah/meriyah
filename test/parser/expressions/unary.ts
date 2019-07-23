@@ -100,6 +100,50 @@ describe('Expressions - Unary', () => {
 
   pass('Expressions - Unary (pass)', [
     [
+      'typeof async',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'UnaryExpression',
+              operator: 'typeof',
+              argument: {
+                type: 'Identifier',
+                name: 'async'
+              },
+              prefix: true
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'typeof await',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'UnaryExpression',
+              operator: 'typeof',
+              argument: {
+                type: 'Identifier',
+                name: 'await'
+              },
+              prefix: true
+            }
+          }
+        ]
+      }
+    ],
+    [
       'typeof x',
       Context.None,
       {

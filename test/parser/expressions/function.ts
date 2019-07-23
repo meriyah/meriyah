@@ -202,11 +202,17 @@ describe('Expressions - Functions', () => {
     'function f([,foo] = x){}',
     'function f([,,foo]){}',
     'function f([,,foo] = x){}',
+    'function f([,,async] = x){}',
     'function f([foo,bar]){}',
+    'function f(async,){}',
+    'function f([,async]){}',
+    'function f(async = 1){}',
+    'function f(foo, async = 1){}',
     'function f([foo,bar] = x){}',
     'function f([foo,,bar]){}',
     'function f([foo,,bar] = x){}',
     'function f([foo], [bar]){}',
+    'function f([foo], [async]){}',
     'function f([foo] = x, [bar] = y){}',
     'function f([foo], b){}',
     'function f([foo] = x, b){}',
@@ -263,6 +269,9 @@ describe('Expressions - Functions', () => {
     ['"use strict"; (function foo(){  007 })', Context.None],
     ['(function break(){})', Context.None],
     ['(function function(){})', Context.None],
+    ['function f(1, async = 1){}', Context.None],
+    ['function f("abc", async = 1){}', Context.None],
+    ['function f(1, async = b){}', Context.None],
     ['(function implements(){})', Context.Strict],
     ['(function public(){})', Context.Strict],
     ['(function let(){})', Context.Strict],
@@ -281,11 +290,89 @@ describe('Expressions - Functions', () => {
     ['function f({foo,,} = x){}', Context.None],
     ['function f({,foo} = x){}', Context.None],
     ['function f({,,foo} = x){}', Context.None],
+    ['function f({,,async} = await){}', Context.None],
     ['function f({foo,,bar} = x){}', Context.None],
     ['function f({...{a: b}}){}', Context.None],
     ['function f({...a.b}){}', Context.None]
   ]);
   pass('Expressions - Functions (pass)', [
+    [
+      `function f(async = await){}`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'AssignmentPattern',
+                left: {
+                  type: 'Identifier',
+                  name: 'async'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'await'
+                }
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      `function f([async = await]){}`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'ArrayPattern',
+                elements: [
+                  {
+                    type: 'AssignmentPattern',
+                    left: {
+                      type: 'Identifier',
+                      name: 'async'
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'await'
+                    }
+                  }
+                ]
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            }
+          }
+        ]
+      }
+    ],
     [
       `(function () {
         let q;

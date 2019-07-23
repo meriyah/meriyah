@@ -1,5 +1,11 @@
 export { scanSingleToken, nextToken, TokenLookup } from './scan';
-export { skipMultiLineComment, skipSingleLineComment, skipHashBang } from './comments';
+export {
+  skipMultiLineComment,
+  skipSingleLineComment,
+  skipHashBang,
+  skipSingleHTMLComment,
+  CommentType
+} from './comments';
 export {
   nextCP,
   consumeMultiUnitCodePoint,

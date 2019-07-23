@@ -63,7 +63,7 @@ describe('src/lexer/scan', () => {
 
   for (const [ctx, token, op] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = create(op);
+      const state = create(op, '', undefined);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
@@ -81,7 +81,7 @@ describe('src/lexer/scan', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const state = create(`${op} rest`);
+      const state = create(`${op} rest`, '', undefined);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
