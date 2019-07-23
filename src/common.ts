@@ -3,14 +3,6 @@ import { Errors, report } from './errors';
 import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
 
-export const presetBlockIdentifiers: { [key: string]: string } = {
-  ['Infinity']: 'Infinity',
-  ['NaN']: 'NaN',
-  ['Number']: 'Number',
-  ['String']: 'String',
-  ['undefined']: 'undefined'
-};
-
 /**
  * The core context, passed around everywhere as a simple immutable bit set.
  */
@@ -540,7 +532,6 @@ export function addVarName(
   name: any,
   type: BindingKind
 ): void {
-  if (scope === null) return;
 
   const hashed = '#' + name;
   const isLexicalBinding = (type & BindingKind.LexicalBinding) !== 0;
@@ -588,9 +579,6 @@ export function addBlockName(
   type: BindingKind,
   origin: BindingOrigin
 ) {
-  if (!scope) return;
-
-  if (presetBlockIdentifiers[name]) report(parser, Errors.DuplicateIdentifier, name);
 
   const hashed = '#' + name;
   const value = scope[hashed];
