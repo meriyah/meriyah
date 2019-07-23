@@ -493,6 +493,12 @@ export function isEqualTagName(elementName: any): any {
   }
 }
 
+export function createArrowScope(parser: ParserState, context: Context, value: string) {
+  const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
+  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.Other);
+  return scope;
+}
+
 export function recordScopeError(parser: ParserState, type: Errors): ScopeError {
   const { index, line, column } = parser;
   return {

@@ -1172,6 +1172,34 @@ describe('Expressions - Arrow', () => {
       }
     ],
     [
+      'let => {}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: []
+              },
+              params: [
+                {
+                  type: 'Identifier',
+                  name: 'let'
+                }
+              ],
+              async: false,
+              expression: false
+            }
+          }
+        ]
+      }
+    ],
+    [
       'f = ([[,] = g()]) => {}',
       Context.OptionsWebCompat,
       {

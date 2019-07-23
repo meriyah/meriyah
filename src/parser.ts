@@ -37,7 +37,8 @@ import {
   addBindingToExports,
   updateExportsList,
   isEqualTagName,
-  isValidStrictMode
+  isValidStrictMode,
+  createArrowScope
 } from './common';
 
 /**
@@ -196,7 +197,6 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-
   // Allowes comment extraction. Accepts either a function or array
   onComment?: OnComment;
 }
@@ -598,6 +598,11 @@ export function parseStatement(
       return parseDebuggerStatement(parser, context, start, line, column);
     case Token.AsyncKeyword:
       return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, origin, labels, 0, start, line, column);
+    // Miscellaneous error cases arguably better caught here than elsewhere
+    case Token.CatchKeyword:
+      report(parser, Errors.CatchWithoutTry);
+    case Token.FinallyKeyword:
+      report(parser, Errors.FinallyWithoutTry);
     case Token.FunctionKeyword:
       // FunctionDeclaration & ClassDeclaration is forbidden by lookahead
       // restriction in an arbitrary statement position.
@@ -1836,6 +1841,27 @@ export function parseLetIdentOrVarDeclarationStatement(
     }
 
     /**
+     * ArrowFunction :
+     *   ArrowParameters => ConciseBody
+     *
+     * ConciseBody :
+     *   [lookahead not {] AssignmentExpression
+     *   { FunctionBody }
+     *
+     */
+    if (parser.token === Token.Arrow) {
+      let scope: ScopeState | undefined = void 0;
+
+      if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+
+      parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+
+      expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column) as any;
+
+      return parseExpressionStatement(parser, context, expr, start, line, column);
+    }
+
+    /**
      * UpdateExpression ::
      *   ('++' | '--')? LeftHandSideExpression
      *
@@ -2652,10 +2678,7 @@ function parseExportDeclaration(
                 declaration as any
               );
             } else if (parser.token & Token.IsIdentifier) {
-              if (scope) {
-                scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-                addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
-              }
+              if (scope) scope = createArrowScope(parser, context, parser.tokenValue);
 
               declaration = parseIdentifier(parser, context, 0, parser.tokenPos, parser.linePos, parser.colPos);
               declaration = parseArrowFunctionExpression(
@@ -3790,10 +3813,8 @@ export function parsePrimaryExpressionExtended(
 
       let scope: ScopeState | undefined = void 0;
 
-      if (context & Context.OptionsLexical) {
-        scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-        addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
-      }
+      if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+
       return parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
     }
 
@@ -6583,10 +6604,8 @@ export function parseIdentifierOrArrow(
   parser.assignable = AssignmentKind.Assignable;
   if (parser.token === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
-    if (context & Context.OptionsLexical) {
-      scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-      addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
-    }
+
+    if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
 
     parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 

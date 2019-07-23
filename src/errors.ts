@@ -165,7 +165,9 @@ export const enum Errors {
   DuplicateIdentifier,
   ShadowedCatchClause,
   InvalidDotProperty,
-  UnclosedSpreadElement
+  UnclosedSpreadElement,
+  CatchWithoutTry,
+  FinallyWithoutTry
 }
 
 /*@internal*/
@@ -342,7 +344,9 @@ export const errorMessages: {
   [Errors.DuplicateIdentifier]: "'%0' has already been declared",
   [Errors.ShadowedCatchClause]: "'%0' shadowed a catch clause binding",
   [Errors.InvalidDotProperty]: 'Dot property must be an identifier',
-  [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument'
+  [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument',
+  [Errors.CatchWithoutTry]: 'Catch without try',
+  [Errors.FinallyWithoutTry]: 'Finally without try'
 };
 
 export class ParseError extends SyntaxError {
