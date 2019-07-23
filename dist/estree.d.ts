@@ -13,7 +13,6 @@ export interface Position {
     column: number;
 }
 export declare type Labels = any;
-export declare type Scope = any;
 export declare type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 export declare type ArgumentExpression = ArrayExpression | AssignmentExpression | ConditionalExpression | Literal | SpreadElement | BinaryExpression | LogicalExpression | SequenceExpression;
 export declare type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
@@ -464,6 +463,7 @@ export interface UpdateExpression extends _Node {
     prefix: boolean;
 }
 export interface UnaryExpression extends _Node {
+    type: 'UnaryExpression';
     operator: UnaryOperator;
     prefix: true;
     argument: Expression;
