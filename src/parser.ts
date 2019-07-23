@@ -196,8 +196,9 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-  // Create a top-level comments array containing all comments
-  onComment?: any;
+
+  // Allowes comment extraction. Accepts either a function or array
+  onComment?: OnComment;
 }
 
 /**
