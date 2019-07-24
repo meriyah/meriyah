@@ -84,10 +84,8 @@ parsers = [
 ];
 
 fixtureList = [
-//    'tsserver',
+     'tsserver',
      'jquery-1.9.1',
-//      'XMLHttpRequest',
-      'jQuery.Mobile 1.4.2',
       'angular-1.6.6',
       'React 0.13.3',
       'typescript-2.5'
