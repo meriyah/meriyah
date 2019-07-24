@@ -5,7 +5,7 @@ import { parseSource } from '../../../src/parser';
 
 describe('Lexical - Class', () => {
   fail('Lexical - Class (fail)', [
-    ['class C {}', Context.OptionsLexical],
+    ['class C {} class C {}', Context.OptionsLexical],
     ['class A { static f(a, a){} }', Context.OptionsLexical],
     ['class A { static f([a, a]){} }', Context.OptionsLexical],
     ['class A { static f({a, a}){} }', Context.OptionsLexical],

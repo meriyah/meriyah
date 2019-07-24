@@ -150,6 +150,7 @@ describe('Miscellaneous - Try', () => {
     ['try { } finally { async function f(){} async function f(){} }', Context.OptionsLexical],
     ['try {} catch (x) { { let x } ', Context.OptionsLexical],
     ['try {} catch (x) { let x }', Context.OptionsLexical],
+    ['let e; try {} catch (e) { let e; }', Context.OptionsLexical],
     ['try {} catch (x) { { let x } ', Context.OptionsLexical | Context.OptionsWebCompat],
     ['try {} catch (x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat],
     [
@@ -229,7 +230,6 @@ describe('Miscellaneous - Try', () => {
     try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }`,
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
-    'let e; try {} catch (e) { let e; }',
     'try {} catch (foo) { { let foo; } }',
     'try {} catch (foo) { function x() { var foo; } }',
     'try {} catch (foo) { function x(foo) {} }',
@@ -261,8 +261,7 @@ describe('Miscellaneous - Try', () => {
     'try { } catch (e) { function f(){} function f(){} }',
     'try {} catch (foo) { var foo; }',
     'try {} catch (e) { for (var e of y) {} }',
-    'try { } catch (e) { function *f(){} function *f(){} }',
-    'try { } catch (e) { async function *f(){} async function *f(){} }'
+    'try { } catch (e) { function *f(){} function *f(){} }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -132,7 +132,6 @@ describe('Lexical - Function', () => {
     ['"use strict"; function foo(bar, bar){}', Context.OptionsLexical],
     ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict],
     ['function f(x) { let x }', Context.OptionsLexical],
-    [`(function foo() { { let f = 2; { let y = 3; function f() { y = 2; } f(); } }})();`, Context.OptionsLexical],
     ['function f(x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['function f(a, b, a, c = 10) { }', Context.OptionsLexical],
     ['function f(a, b = 10, a) { }', Context.OptionsLexical],

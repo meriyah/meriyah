@@ -621,7 +621,7 @@ export function addVarName(
 export function addBlockName(
   parser: ParserState,
   context: Context,
-  scope: ScopeState,
+  scope: any,
   name: string,
   type: BindingKind,
   origin: BindingOrigin
