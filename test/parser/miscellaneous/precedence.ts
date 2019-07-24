@@ -4,6 +4,843 @@ import { pass } from '../../test-utils';
 describe('Miscellaneous - Precedence', () => {
   pass('Miscellaneous - Precedence (pass)', [
     [
+      'x = a > b instanceof c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'x',
+                start: 0,
+                end: 1
+              },
+              operator: '=',
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 4,
+                    end: 5
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'b',
+                    start: 8,
+                    end: 9
+                  },
+                  operator: '>',
+                  start: 4,
+                  end: 9
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c',
+                  start: 21,
+                  end: 22
+                },
+                operator: 'instanceof',
+                start: 4,
+                end: 22
+              },
+              start: 0,
+              end: 22
+            },
+            start: 0,
+            end: 22
+          }
+        ],
+        start: 0,
+        end: 22
+      }
+    ],
+    [
+      'foo( a instanceof b + c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 5,
+                    end: 6
+                  },
+                  right: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 18,
+                      end: 19
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 22,
+                      end: 23
+                    },
+                    operator: '+',
+                    start: 18,
+                    end: 23
+                  },
+                  operator: 'instanceof',
+                  start: 5,
+                  end: 23
+                }
+              ],
+              start: 0,
+              end: 25
+            },
+            start: 0,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ],
+    [
+      'foo( a instanceof b > c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 5,
+                      end: 6
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 18,
+                      end: 19
+                    },
+                    operator: 'instanceof',
+                    start: 5,
+                    end: 19
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 22,
+                    end: 23
+                  },
+                  operator: '>',
+                  start: 5,
+                  end: 23
+                }
+              ],
+              start: 0,
+              end: 25
+            },
+            start: 0,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ],
+    [
+      'foo( a + b instanceof c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 5,
+                      end: 6
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 9,
+                      end: 10
+                    },
+                    operator: '+',
+                    start: 5,
+                    end: 10
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 22,
+                    end: 23
+                  },
+                  operator: 'instanceof',
+                  start: 5,
+                  end: 23
+                }
+              ],
+              start: 0,
+              end: 25
+            },
+            start: 0,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ],
+    [
+      'foo( a + b ** c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 5,
+                    end: 6
+                  },
+                  right: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 9,
+                      end: 10
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 14,
+                      end: 15
+                    },
+                    operator: '**',
+                    start: 9,
+                    end: 15
+                  },
+                  operator: '+',
+                  start: 5,
+                  end: 15
+                }
+              ],
+              start: 0,
+              end: 17
+            },
+            start: 0,
+            end: 17
+          }
+        ],
+        start: 0,
+        end: 17
+      }
+    ],
+    [
+      'foo( a / b + c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 5,
+                      end: 6
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 9,
+                      end: 10
+                    },
+                    operator: '/',
+                    start: 5,
+                    end: 10
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 13,
+                    end: 14
+                  },
+                  operator: '+',
+                  start: 5,
+                  end: 14
+                }
+              ],
+              start: 0,
+              end: 16
+            },
+            start: 0,
+            end: 16
+          }
+        ],
+        start: 0,
+        end: 16
+      }
+    ],
+    [
+      'foo( a > b instanceof c )',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              arguments: [
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 5,
+                      end: 6
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 9,
+                      end: 10
+                    },
+                    operator: '>',
+                    start: 5,
+                    end: 10
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 22,
+                    end: 23
+                  },
+                  operator: 'instanceof',
+                  start: 5,
+                  end: 23
+                }
+              ],
+              start: 0,
+              end: 25
+            },
+            start: 0,
+            end: 25
+          }
+        ],
+        start: 0,
+        end: 25
+      }
+    ],
+    [
+      'x, a instanceof b + c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 0,
+                  end: 1
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 3,
+                    end: 4
+                  },
+                  right: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 16,
+                      end: 17
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 20,
+                      end: 21
+                    },
+                    operator: '+',
+                    start: 16,
+                    end: 21
+                  },
+                  operator: 'instanceof',
+                  start: 3,
+                  end: 21
+                }
+              ],
+              start: 0,
+              end: 21
+            },
+            start: 0,
+            end: 21
+          }
+        ],
+        start: 0,
+        end: 21
+      }
+    ],
+    [
+      'x, a ** b + c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 0,
+                  end: 1
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 3,
+                      end: 4
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 8,
+                      end: 9
+                    },
+                    operator: '**',
+                    start: 3,
+                    end: 9
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 12,
+                    end: 13
+                  },
+                  operator: '+',
+                  start: 3,
+                  end: 13
+                }
+              ],
+              start: 0,
+              end: 13
+            },
+            start: 0,
+            end: 13
+          }
+        ],
+        start: 0,
+        end: 13
+      }
+    ],
+    [
+      'x, a + b instanceof c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 0,
+                  end: 1
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 3,
+                      end: 4
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 7,
+                      end: 8
+                    },
+                    operator: '+',
+                    start: 3,
+                    end: 8
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 20,
+                    end: 21
+                  },
+                  operator: 'instanceof',
+                  start: 3,
+                  end: 21
+                }
+              ],
+              start: 0,
+              end: 21
+            },
+            start: 0,
+            end: 21
+          }
+        ],
+        start: 0,
+        end: 21
+      }
+    ],
+    [
+      'x, a + b ** c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 0,
+                  end: 1
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 3,
+                    end: 4
+                  },
+                  right: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 7,
+                      end: 8
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 12,
+                      end: 13
+                    },
+                    operator: '**',
+                    start: 7,
+                    end: 13
+                  },
+                  operator: '+',
+                  start: 3,
+                  end: 13
+                }
+              ],
+              start: 0,
+              end: 13
+            },
+            start: 0,
+            end: 13
+          }
+        ],
+        start: 0,
+        end: 13
+      }
+    ],
+    [
+      'x, a / b + c',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 0,
+                  end: 1
+                },
+                {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a',
+                      start: 3,
+                      end: 4
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 7,
+                      end: 8
+                    },
+                    operator: '/',
+                    start: 3,
+                    end: 8
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 11,
+                    end: 12
+                  },
+                  operator: '+',
+                  start: 3,
+                  end: 12
+                }
+              ],
+              start: 0,
+              end: 12
+            },
+            start: 0,
+            end: 12
+          }
+        ],
+        start: 0,
+        end: 12
+      }
+    ],
+    [
+      'foo[ a + b ** c ]',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              computed: true,
+              property: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 5,
+                  end: 6
+                },
+                right: {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'b',
+                    start: 9,
+                    end: 10
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 14,
+                    end: 15
+                  },
+                  operator: '**',
+                  start: 9,
+                  end: 15
+                },
+                operator: '+',
+                start: 5,
+                end: 15
+              },
+              start: 0,
+              end: 17
+            },
+            start: 0,
+            end: 17
+          }
+        ],
+        start: 0,
+        end: 17
+      }
+    ],
+    [
+      'foo[ a + b / c ]',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'foo',
+                start: 0,
+                end: 3
+              },
+              computed: true,
+              property: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 5,
+                  end: 6
+                },
+                right: {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'b',
+                    start: 9,
+                    end: 10
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 13,
+                    end: 14
+                  },
+                  operator: '/',
+                  start: 9,
+                  end: 14
+                },
+                operator: '+',
+                start: 5,
+                end: 14
+              },
+              start: 0,
+              end: 16
+            },
+            start: 0,
+            end: 16
+          }
+        ],
+        start: 0,
+        end: 16
+      }
+    ],
+    [
       '(a * b + c) * d',
       Context.OptionsRanges,
       {
@@ -552,6 +1389,553 @@ describe('Miscellaneous - Precedence', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'foo[ a > b instanceof c ]',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              computed: true,
+              property: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'b'
+                  },
+                  operator: '>'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: 'instanceof'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'for ( a instanceof b + c ;;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '+'
+              },
+              operator: 'instanceof'
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+    [
+      'for ( a instanceof b > c ;;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: 'instanceof'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '>'
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+    [
+      'for ( a ** b + c ;;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '**'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '+'
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+    [
+      'for ( a + b ** c ;;);',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ForStatement',
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '**'
+              },
+              operator: '+'
+            },
+            test: null,
+            update: null
+          }
+        ]
+      }
+    ],
+    [
+      '( a + b instanceof c )',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '+'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: 'instanceof'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '( a + b ** c )',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '**'
+              },
+              operator: '+'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '( a + b / c )',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '/'
+              },
+              operator: '+'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '( a / b + c )',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '/'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '+'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a instanceof b + c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '+'
+              },
+              operator: 'instanceof'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a instanceof b > c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: 'instanceof'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '>'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a ** b + c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '**'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '+'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a + b instanceof c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '+'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: 'instanceof'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a + b ** c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '**'
+              },
+              operator: '+'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
+      }
+    ],
+    [
+      'if ( a / b + c ) ;',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'IfStatement',
+            test: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '/'
+              },
+              right: {
+                type: 'Identifier',
+                name: 'c'
+              },
+              operator: '+'
+            },
+            consequent: {
+              type: 'EmptyStatement'
+            },
+            alternate: null
+          }
+        ]
       }
     ],
     [

@@ -16,6 +16,8 @@ describe('Expressions - Async', () => {
     'const answer = async => 42;',
     'async function await() {}',
     'class X { async await(){} }',
+    'foo(async,)',
+    'foo("", async)',
     'f(x, async(y, z))',
     'class X { static async await(){} }',
     'x = async(y);',
@@ -45,12 +47,16 @@ describe('Expressions - Async', () => {
     ['var O = { async method() {var [ await ] = 1;}', Context.None],
     ['let async => async', Context.None],
     ['f(async\nfoo=>c)', Context.None],
+    ['function f() {for (let in {}) {}}', Context.Strict],
     ['f(async\nfunction(){})', Context.None],
     ['async function f(){ return await => {}; }', Context.None],
     ['foo(async[])', Context.None],
     ['class x {async \n foo() {}}', Context.None],
+    ['class X { async(async => {}) {} }', Context.None],
     ['async\nfunction f(){await x}', Context.None],
     ['async\nfunction f(){await x}', Context.None],
+    ['async\nfunction f(){await x}', Context.Strict],
+    ['async\nfunction f(){await x}', Context.Strict],
     ['let f = async\nfunction g(){await x}', Context.None],
     ['async (a, ...b=fail) => a;', Context.None],
     ['async(yield);', Context.Strict],
@@ -354,6 +360,46 @@ describe('Expressions - Async', () => {
 
               async: true,
               expression: true
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'function f() {for (let in {}) {}}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ForInStatement',
+                  body: {
+                    type: 'BlockStatement',
+                    body: []
+                  },
+                  left: {
+                    type: 'Identifier',
+                    name: 'let'
+                  },
+                  right: {
+                    type: 'ObjectExpression',
+                    properties: []
+                  }
+                }
+              ]
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'f'
             }
           }
         ]

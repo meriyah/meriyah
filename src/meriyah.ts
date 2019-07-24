@@ -5,22 +5,26 @@ import * as ESTree from './estree';
 /**
  * Parse a script, optionally with various options.
  */
-export function parseScript(source: string, options: Options | void): ESTree.Program {
+export function parseScript(source: string, options?: Options): ESTree.Program {
   return parseSource(source, options, Context.None);
 }
 
 /**
  * Parse a module, optionally with various options.
  */
-export function parseModule(source: string, options: Options | void): ESTree.Program {
+export function parseModule(source: string, options?: Options): ESTree.Program {
   return parseSource(source, options, Context.Strict | Context.Module);
 }
 
 /**
  * Parse a module or a script, optionally with various options.
  */
-export function parse(source: string, options: Options | void): ESTree.Program {
+export function parse(source: string, options?: Options): ESTree.Program {
   return parseSource(source, options, Context.None);
 }
 
-export const version = '1.4.0';
+// Exported to public
+export { ESTree, Options };
+
+// Export current version
+export const version = '1.4.1';

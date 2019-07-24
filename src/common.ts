@@ -3,14 +3,6 @@ import { Errors, report } from './errors';
 import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
 
-export const presetBlockIdentifiers: { [key: string]: string } = {
-  ['Infinity']: 'Infinity',
-  ['NaN']: 'NaN',
-  ['Number']: 'Number',
-  ['String']: 'String',
-  ['undefined']: 'undefined'
-};
-
 /**
  * The core context, passed around everywhere as a simple immutable bit set.
  */
@@ -223,7 +215,7 @@ export interface ParserState {
  * @param context Context masks
  */
 
-export function consumeSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
+export function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
   if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
   && !specDeviation) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
@@ -361,6 +353,9 @@ export function validateBindingIdentifier(
     report(parser, Errors.KeywordNotId);
   }
 
+   // The BoundNames of LexicalDeclaration and ForDeclaration must not
+   // contain 'let'. (CatchParameter is the only lexical binding form
+   // without this restriction.)
   if (type & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
@@ -498,6 +493,12 @@ export function isEqualTagName(elementName: any): any {
   }
 }
 
+export function createArrowScope(parser: ParserState, context: Context, value: string) {
+  const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
+  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.Other);
+  return scope;
+}
+
 export function recordScopeError(parser: ParserState, type: Errors): ScopeError {
   const { index, line, column } = parser;
   return {
@@ -537,7 +538,6 @@ export function addVarName(
   name: any,
   type: BindingKind
 ): void {
-  if (scope === null) return;
 
   const hashed = '#' + name;
   const isLexicalBinding = (type & BindingKind.LexicalBinding) !== 0;
@@ -585,9 +585,6 @@ export function addBlockName(
   type: BindingKind,
   origin: BindingOrigin
 ) {
-  if (!scope) return;
-
-  if (presetBlockIdentifiers[name]) report(parser, Errors.DuplicateIdentifier, name);
 
   const hashed = '#' + name;
   const value = scope[hashed];

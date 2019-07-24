@@ -3,11 +3,11 @@
 <p align="center"> 100% compliant, self-hosted javascript parser with high focus on both performance and stability</p>
 
 <p align="center">
-    <a href="https://www.npmjs.com/package/meriyah"><img src="https://img.shields.io/npm/v/meriyah.svg?style=flat-square" alt="Azure Pipelines"/></a>
+    <a href="https://www.npmjs.com/package/meriyah"><img src="https://img.shields.io/npm/v/meriyah.svg?style=flat-square" alt="Meriyah NPM"/></a>
     <a href="https://lgtm.com/projects/g/meriyah/meriyah/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="GitHub license" /></a>
     <a href="https://lgtm.com/projects/g/meriyah/meriyah/alerts"><img src="https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="Total alerts" /></a>
     <a href="https://circleci.com/gh/meriyah/meriyah"><img src="https://circleci.com/gh/meriyah/meriyah.svg?style=svg" alt="Circle" /></a>
-    <a href="https://github.com/meriyah/meriyah/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/meriyah/meriyah.svg" alt="Circle" /></a>
+    <a href="https://github.com/meriyah/meriyah/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/meriyah/meriyah.svg" alt="License" /></a>
 
 </p>
 
@@ -37,6 +37,12 @@
 
 **Note:** These features need to be enabled with the `next` option.
 
+## Installation
+
+```sh
+npm install meriyah --save-dev
+```
+
 ## API
 
 Meriyah generates `AST` according to [ESTree AST format](https://github.com/estree/estree), and can be used to perform [syntactic analysis](https://en.wikipedia.org/wiki/Parsing) (parsing) of a JavaScript program, and with `ES2015` and later a JavaScript program can be either [a script or a module](https://tc39.github.io/ecma262/index.html#sec-ecmascript-language-scripts-and-modules).
@@ -49,32 +55,49 @@ This is the available options:
 {
   // The flag to allow module code
   module: false;
+
   // The flag to enable stage 3 support (ESNext)
   next: false;
+
   // The flag to enable start and end offsets to each node
   ranges: false;
+
   // Enable web compability
   webcompat: false;
+
   // The flag to enable line/column location information to each node
   loc: false;
+
   // The flag to attach raw property to each literal and identifier node
   raw: false;
+
   // Enabled directives
   directives: false;
+
   // The flag to allow return in the global scope
   globalReturn: false;
+
   // The flag to enable implied strict mode
   impliedStrict: false;
+
+  // Allowes comment extraction. Accepts either a function or array
+  onComment: []
+
   // Enable non-standard parenthesized expression node
   preserveParens: false;
+
   // Enable lexical binding and scope tracking
   lexical: false;
+
   // Adds a source attribute in every node’s loc object when the locations option is `true`
   source: false;
+
   // Distinguish Identifier from IdentifierPattern
   identifierPattern: false;
+
    // Enable React JSX parsing
   jsx: false
+
   // Allow edge cases that deviate from the spec
   specDeviation: false
 }
@@ -143,12 +166,3 @@ This will return when serialized in json:
     ]
 }
 ```
-## ECMAScript compability
-
-Meriyah is 100% ECMA spec compatible, but you have to enable several [options](https://github.com/meriyah/meriyah#options) to make sure your code parses with 100% ECMA spec compability. This is done because Meriyah's main focus is on performance, and each option you enable will have impact on it's performance.
-
-Also note that support for additional ECMAScript features for Web Browsers (*annexB*) isn't enabled by default as in other parsers, but you can instead parse with and without web compability .
-
-This is done because AnnexB is an extension of the language, and also beaucse all the `Test262 suite` tests has no web compability.
-
-Lexical binding and scope tracking has to be enabled with the `lexical` option.
