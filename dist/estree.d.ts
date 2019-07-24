@@ -340,6 +340,8 @@ export interface LabeledStatement extends _Node {
 }
 export interface Literal extends _Node {
     type: 'Literal';
+    value: boolean | number | string | null;
+    raw?: string;
 }
 export interface LogicalExpression extends _Node {
     type: 'LogicalExpression';

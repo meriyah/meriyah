@@ -272,7 +272,7 @@ const errorMessages = {
     [100]: 'The use of a future reserved word for an identifier is invalid. The identifier name is reserved in strict mode',
     [105]: 'The use of a keyword for an identifier is invalid',
     [104]: "Can not use 'let' as a class name",
-    [103]: 'Can not use `let` when binding through `let` or `const`',
+    [103]: "'A lexical declaration can't define a 'let' binding",
     [102]: 'Can not use `let` as variable name in strict mode',
     [99]: "'%0' may not be used as an identifier in this context",
     [101]: 'Await is only valid in async functions',
@@ -329,7 +329,9 @@ const errorMessages = {
     [160]: "'%0' has already been declared",
     [161]: "'%0' shadowed a catch clause binding",
     [162]: 'Dot property must be an identifier',
-    [163]: 'Encountered invalid input after spread/rest argument'
+    [163]: 'Encountered invalid input after spread/rest argument',
+    [164]: 'Catch without try',
+    [165]: 'Finally without try'
 };
 class ParseError extends SyntaxError {
     constructor(startindex, line, column, type, ...params) {
@@ -1722,14 +1724,7 @@ function scanJSXIdentifier(parser) {
     return parser.token;
 }
 
-const presetBlockIdentifiers = {
-    ['Infinity']: 'Infinity',
-    ['NaN']: 'NaN',
-    ['Number']: 'Number',
-    ['String']: 'String',
-    ['undefined']: 'undefined'
-};
-function consumeSemicolon(parser, context, specDeviation) {
+function matchOrInsertSemicolon(parser, context, specDeviation) {
     if ((parser.flags & 1) === 0 && (parser.token & 1048576) !== 1048576
         && !specDeviation) {
         report(parser, 28, KeywordDescTable[parser.token & 255]);
@@ -1898,6 +1893,11 @@ function isEqualTagName(elementName) {
         default:
     }
 }
+function createArrowScope(parser, context, value) {
+    const scope = addChildScope(createScope(), 2048);
+    addBlockName(parser, context, scope, value, 1, 32);
+    return scope;
+}
 function recordScopeError(parser, type) {
     const { index, line, column } = parser;
     return {
@@ -1919,8 +1919,6 @@ function addChildScope(parent, type) {
     };
 }
 function addVarName(parser, context, scope, name, type) {
-    if (scope === null)
-        return;
     const hashed = '#' + name;
     const isLexicalBinding = (type & 248) !== 0;
     const isWebCompat = context & 256 && (context & 1024) === 0;
@@ -1953,10 +1951,6 @@ function addVarName(parser, context, scope, name, type) {
     }
 }
 function addBlockName(parser, context, scope, name, type, origin) {
-    if (!scope)
-        return;
-    if (presetBlockIdentifiers[name])
-        report(parser, 160, name);
     const hashed = '#' + name;
     const value = scope[hashed];
     if (value && (value & 2) === 0) {
@@ -2238,6 +2232,10 @@ function parseStatement(parser, context, scope, origin, labels, allowFuncDecl, s
             return parseDebuggerStatement(parser, context, start, line, column);
         case 143468:
             return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, origin, labels, 0, start, line, column);
+        case 20556:
+            report(parser, 164);
+        case 20565:
+            report(parser, 165);
         case 86103:
             report(parser, context & 1024
                 ? 76
@@ -2295,14 +2293,14 @@ function parseReturnStatement(parser, context, start, line, column) {
     const argument = parser.flags & 1 || parser.token & 1048576
         ? null
         : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.line, parser.column);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'ReturnStatement',
         argument
     });
 }
 function parseExpressionStatement(parser, context, expression, start, line, column) {
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression
@@ -2316,7 +2314,7 @@ function parseLabelledStatement(parser, context, scope, origin, labels, value, e
         (context & 1024) === 0 &&
         context & 256 &&
         parser.token === 86103
-        ? parseFunctionDeclaration(parser, context, addChildScope(scope, 4096), origin, 0, 0, 0, parser.tokenPos, parser.linePos, parser.colPos)
+        ? parseFunctionDeclaration(parser, context, scope, origin, 0, 0, 0, parser.tokenPos, parser.linePos, parser.colPos)
         : parseStatement(parser, context, scope, origin, labels, allowFuncDecl, parser.tokenPos, parser.linePos, parser.colPos);
     return finishNode(parser, context, start, line, column, {
         type: 'LabeledStatement',
@@ -2389,7 +2387,7 @@ function parseDirective(parser, context, expression, token, start, line, column)
                 expression = parseSequenceExpression(parser, context, 0, start, line, column, expression);
             }
         }
-        consumeSemicolon(parser, context | 32768);
+        matchOrInsertSemicolon(parser, context | 32768);
     }
     return context & 8
         ? finishNode(parser, context, start, line, column, {
@@ -2413,7 +2411,7 @@ function parseThrowStatement(parser, context, start, line, column) {
     if (parser.flags & 1)
         report(parser, 91);
     const argument = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'ThrowStatement',
         argument
@@ -2425,11 +2423,11 @@ function parseIfStatement(parser, context, scope, labels, start, line, column) {
     parser.assignable = 1;
     const test = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.line, parser.colPos);
     consume(parser, context | 32768, 1073741840);
-    const consequent = parseConsequentOrAlternate(parser, context, scope, labels, parser.tokenPos, parser.linePos, parser.colPos);
+    const consequent = parseConsequentOrAlternative(parser, context, scope, labels, parser.tokenPos, parser.linePos, parser.colPos);
     let alternate = null;
     if (parser.token === 20562) {
         nextToken(parser, context | 32768);
-        alternate = parseConsequentOrAlternate(parser, context, scope, labels, parser.tokenPos, parser.linePos, parser.colPos);
+        alternate = parseConsequentOrAlternative(parser, context, scope, labels, parser.tokenPos, parser.linePos, parser.colPos);
     }
     return finishNode(parser, context, start, line, column, {
         type: 'IfStatement',
@@ -2438,12 +2436,12 @@ function parseIfStatement(parser, context, scope, labels, start, line, column) {
         alternate
     });
 }
-function parseConsequentOrAlternate(parser, context, scope, labels, start, line, column) {
+function parseConsequentOrAlternative(parser, context, scope, labels, start, line, column) {
     return context & 1024 ||
         (context & 256) === 0 ||
         parser.token !== 86103
         ? parseStatement(parser, context, scope, 0, { $: labels }, 0, parser.tokenPos, parser.linePos, parser.colPos)
-        : parseFunctionDeclaration(parser, context, addChildScope(scope, 4096), 0, 0, 0, 0, start, line, column);
+        : parseFunctionDeclaration(parser, context, scope, 0, 0, 0, 0, start, line, column);
 }
 function parseSwitchStatement(parser, context, scope, labels, start, line, column) {
     nextToken(parser, context);
@@ -2515,7 +2513,7 @@ function parseContinueStatement(parser, context, labels, start, line, column) {
         if (!isValidLabel(parser, labels, tokenValue, 1))
             report(parser, 142, tokenValue);
     }
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'ContinueStatement',
         label
@@ -2533,7 +2531,7 @@ function parseBreakStatement(parser, context, labels, start, line, column) {
     else if ((context & (4096 | 131072)) === 0) {
         report(parser, 69);
     }
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'BreakStatement',
         label
@@ -2555,15 +2553,15 @@ function parseWithStatement(parser, context, scope, labels, start, line, column)
 }
 function parseDebuggerStatement(parser, context, start, line, column) {
     nextToken(parser, context | 32768);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'DebuggerStatement'
     });
 }
 function parseTryStatement(parser, context, scope, labels, start, line, column) {
     nextToken(parser, context | 32768);
-    const tryScoop = scope ? addChildScope(scope, 32) : void 0;
-    const block = parseBlock(parser, context, tryScoop, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
+    const firstScope = scope ? addChildScope(scope, 32) : void 0;
+    const block = parseBlock(parser, context, firstScope, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
     const { tokenPos, linePos, colPos } = parser;
     const handler = consumeOpt(parser, context | 32768, 20556)
         ? parseCatchBlock(parser, context, scope, labels, tokenPos, linePos, colPos)
@@ -2571,7 +2569,7 @@ function parseTryStatement(parser, context, scope, labels, start, line, column) 
     let finalizer = null;
     if (parser.token === 20565) {
         nextToken(parser, context | 32768);
-        const finalizerScope = tryScoop ? addChildScope(scope, 256) : void 0;
+        const finalizerScope = firstScope ? addChildScope(scope, 256) : void 0;
         finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenPos, linePos, colPos);
     }
     if (!handler && !finalizer) {
@@ -2586,7 +2584,7 @@ function parseTryStatement(parser, context, scope, labels, start, line, column) 
 }
 function parseCatchBlock(parser, context, scope, labels, start, line, column) {
     let param = null;
-    let secondscope = scope;
+    let additionalScope = scope;
     if (consumeOpt(parser, context, 67174411)) {
         if (scope)
             scope = addChildScope(scope, 64);
@@ -2601,9 +2599,9 @@ function parseCatchBlock(parser, context, scope, labels, start, line, column) {
         }
         consume(parser, context | 32768, 1073741840);
         if (scope)
-            secondscope = addChildScope(scope, 128);
+            additionalScope = addChildScope(scope, 128);
     }
-    const body = parseBlock(parser, context, secondscope, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
+    const body = parseBlock(parser, context, additionalScope, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
     return finishNode(parser, context, start, line, column, {
         type: 'CatchClause',
         param,
@@ -2617,7 +2615,7 @@ function parseDoWhileStatement(parser, context, scope, labels, start, line, colu
     consume(parser, context | 32768, 67174411);
     const test = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
     consume(parser, context | 32768, 1073741840);
-    consumeSemicolon(parser, context | 32768, context & 536870912);
+    matchOrInsertSemicolon(parser, context | 32768, context & 536870912);
     return finishNode(parser, context, start, line, column, {
         type: 'DoWhileStatement',
         body,
@@ -2634,6 +2632,14 @@ function parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, 
         if (parser.token === 21) {
             return parseLabelledStatement(parser, context, scope, origin, {}, tokenValue, expr, token, 0, start, line, column);
         }
+        if (parser.token === 10) {
+            let scope = void 0;
+            if (context & 64)
+                scope = createArrowScope(parser, context, tokenValue);
+            parser.flags = (parser.flags | 128) ^ 128;
+            expr = parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
+            return parseExpressionStatement(parser, context, expr, start, line, column);
+        }
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
         expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr);
         if (parser.token === -1073741806) {
@@ -2642,7 +2648,7 @@ function parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, 
         return parseExpressionStatement(parser, context, expr, start, line, column);
     }
     const declarations = parseVariableDeclarationList(parser, context, scope, 8, 8);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'VariableDeclaration',
         kind: 'let',
@@ -2652,7 +2658,7 @@ function parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, 
 function parseLexicalDeclaration(parser, context, scope, type, origin, start, line, column) {
     nextToken(parser, context);
     const declarations = parseVariableDeclarationList(parser, context, scope, type, origin);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'VariableDeclaration',
         kind: type & 8 ? 'let' : 'const',
@@ -2662,7 +2668,7 @@ function parseLexicalDeclaration(parser, context, scope, type, origin, start, li
 function parseVariableStatement(parser, context, scope, origin, start, line, column) {
     nextToken(parser, context);
     const declarations = parseVariableDeclarationList(parser, context, scope, 4, origin);
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'VariableDeclaration',
         kind: 'var',
@@ -2883,7 +2889,7 @@ function parseImportDeclaration(parser, context, scope, start, line, column) {
             report(parser, 28, KeywordDescTable[parser.token & 255]);
         source = parseModuleSpecifier(parser, context);
     }
-    consumeSemicolon(parser, context | 32768);
+    matchOrInsertSemicolon(parser, context | 32768);
     return finishNode(parser, context, start, line, column, {
         type: 'ImportDeclaration',
         specifiers,
@@ -2985,10 +2991,8 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
                             declaration = parseAssignmentExpression(parser, context, 0, parser.tokenPos, lineBeforeAsync, columnBeforeAsync, declaration);
                         }
                         else if (parser.token & 143360) {
-                            if (scope) {
-                                scope = addChildScope(createScope(), 2048);
-                                addBlockName(parser, context, scope, parser.tokenValue, 1, 32);
-                            }
+                            if (scope)
+                                scope = createArrowScope(parser, context, parser.tokenValue);
                             declaration = parseIdentifier(parser, context, 0, parser.tokenPos, parser.linePos, parser.colPos);
                             declaration = parseArrowFunctionExpression(parser, context, scope, [declaration], 1, idxBeforeAsync, lineBeforeAsync, columnBeforeAsync);
                         }
@@ -2997,7 +3001,7 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
                 break;
             default:
                 declaration = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-                consumeSemicolon(parser, context | 32768);
+                matchOrInsertSemicolon(parser, context | 32768);
         }
         if (scope)
             updateExportsList(parser, 'default');
@@ -3021,7 +3025,7 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
             if (parser.token !== 134283267)
                 report(parser, 108, 'Export');
             source = parseLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
-            consumeSemicolon(parser, context | 32768);
+            matchOrInsertSemicolon(parser, context | 32768);
             return finishNode(parser, context, start, line, column, ecma262PR
                 ? {
                     type: 'ExportNamedDeclaration',
@@ -3082,7 +3086,7 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
                     addBindingToExports(parser, tmpExportedBindings[i]);
                 }
             }
-            consumeSemicolon(parser, context | 32768);
+            matchOrInsertSemicolon(parser, context | 32768);
             break;
         }
         case 86093:
@@ -3503,10 +3507,8 @@ function parsePrimaryExpressionExtended(parser, context, type, inNewExpression, 
             if (!allowAssign)
                 report(parser, 57);
             let scope = void 0;
-            if (context & 64) {
-                scope = addChildScope(createScope(), 2048);
-                addBlockName(parser, context, scope, tokenValue, 1, 32);
-            }
+            if (context & 64)
+                scope = createArrowScope(parser, context, tokenValue);
             return parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
         }
         parser.assignable =
@@ -4923,10 +4925,8 @@ function parseIdentifierOrArrow(parser, context, start, line, column) {
     parser.assignable = 1;
     if (parser.token === 10) {
         let scope = void 0;
-        if (context & 64) {
-            scope = addChildScope(createScope(), 2048);
-            addBlockName(parser, context, scope, tokenValue, 1, 32);
-        }
+        if (context & 64)
+            scope = createArrowScope(parser, context, tokenValue);
         parser.flags = (parser.flags | 128) ^ 128;
         return parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
     }
@@ -5935,6 +5935,12 @@ function parseJSXIdentifier(parser, context, start, line, column) {
     });
 }
 
+
+
+var estree = /*#__PURE__*/Object.freeze({
+
+});
+
 function parseScript(source, options) {
     return parseSource(source, options, 0);
 }
@@ -5944,6 +5950,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.4.0';
+const version = '1.4.1';
 
-export { parse, parseModule, parseScript, version };
+export { estree as ESTree, parse, parseModule, parseScript, version };

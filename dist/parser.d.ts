@@ -18,7 +18,7 @@ export interface Options {
     identifierPattern?: boolean;
     jsx?: boolean;
     specDeviation?: boolean;
-    onComment?: any;
+    onComment?: OnComment;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState | undefined): ESTree.Statement[];
@@ -36,7 +36,7 @@ export declare function parseDirective(parser: ParserState, context: Context, ex
 export declare function parseEmptyStatement(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.EmptyStatement;
 export declare function parseThrowStatement(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.ThrowStatement;
 export declare function parseIfStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.IfStatement;
-export declare function parseConsequentOrAlternate(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.Statement | ESTree.FunctionDeclaration;
+export declare function parseConsequentOrAlternative(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.Statement | ESTree.FunctionDeclaration;
 export declare function parseSwitchStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.SwitchStatement;
 export declare function parseWhileStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.WhileStatement;
 export declare function parseIterationStatementBody(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels): ESTree.Statement;

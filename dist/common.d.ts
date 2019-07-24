@@ -1,9 +1,6 @@
 import { Token } from './token';
 import { Errors } from './errors';
 import { Node, Comment } from './estree';
-export declare const presetBlockIdentifiers: {
-    [key: string]: string;
-};
 export declare const enum Context {
     None = 0,
     OptionsNext = 1,
@@ -173,7 +170,7 @@ export interface ParserState {
     exportedNames: any;
     exportedBindings: any;
 }
-export declare function consumeSemicolon(parser: ParserState, context: Context, specDeviation?: number): void;
+export declare function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void;
 export declare function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1;
 export declare function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1;
 export declare function consumeOpt(parser: ParserState, context: Context, t: Token): boolean;
@@ -185,6 +182,7 @@ export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
 export declare function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void;
 export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, line: number, column: number, node: T): T;
+export declare function createArrowScope(parser: ParserState, context: Context, value: string): ScopeState;
 export declare function recordScopeError(parser: ParserState, type: Errors): ScopeError;
 export declare function createScope(): ScopeState;
 export declare function addChildScope(parent: any, type: ScopeKind): ScopeState;
