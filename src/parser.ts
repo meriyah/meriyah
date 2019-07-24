@@ -38,7 +38,8 @@ import {
   updateExportsList,
   isEqualTagName,
   isValidStrictMode,
-  createArrowScope
+  createArrowScope,
+  addVarOrBlock
 } from './common';
 
 /**
@@ -1856,36 +1857,34 @@ export function parseLetIdentOrVarDeclarationStatement(
 
       parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
-      expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column) as any;
+      expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
+    } else {
+      /**
+       * UpdateExpression ::
+       *   ('++' | '--')? LeftHandSideExpression
+       *
+       * MemberExpression ::
+       *   (PrimaryExpression | FunctionLiteral | ClassLiteral)
+       *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
+       *
+       * CallExpression ::
+       *   (SuperCall | ImportCall)
+       *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
+       *
+       * LeftHandSideExpression ::
+       *   (NewExpression | MemberExpression) ...
+       */
 
-      return parseExpressionStatement(parser, context, expr, start, line, column);
+      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+
+      /**
+       * AssignmentExpression :
+       *   1. ConditionalExpression
+       *   2. LeftHandSideExpression = AssignmentExpression
+       *
+       */
+      expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
     }
-
-    /**
-     * UpdateExpression ::
-     *   ('++' | '--')? LeftHandSideExpression
-     *
-     * MemberExpression ::
-     *   (PrimaryExpression | FunctionLiteral | ClassLiteral)
-     *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
-     *
-     * CallExpression ::
-     *   (SuperCall | ImportCall)
-     *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
-     *
-     * LeftHandSideExpression ::
-     *   (NewExpression | MemberExpression) ...
-     */
-
-    expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
-
-    /**
-     * AssignmentExpression :
-     *   1. ConditionalExpression
-     *   2. LeftHandSideExpression = AssignmentExpression
-     *
-     */
-    expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
 
     /** Sequence expression
      */
@@ -1906,6 +1905,7 @@ export function parseLetIdentOrVarDeclarationStatement(
   const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, BindingOrigin.Statement);
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
+
   return finishNode(parser, context, start, line, column, {
     type: 'VariableDeclaration',
     kind: 'let',
@@ -4683,7 +4683,7 @@ export function parseArrayExpressionOrPattern(
           if (parser.assignable & AssignmentKind.NotAssignable) {
             reportMessageAt(parser.index, parser.line, parser.index - 3, Errors.CantAssignTo);
           } else if (scope) {
-            addVarName(parser, context, scope, tokenValue, type);
+            addVarOrBlock(parser, context, scope, tokenValue, type, origin);
           }
           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
 
@@ -4697,11 +4697,7 @@ export function parseArrayExpressionOrPattern(
           if (parser.assignable & AssignmentKind.NotAssignable) {
             destructible |= DestructuringKind.CannotDestruct;
           } else if (scope) {
-            addVarName(parser, context, scope, tokenValue, type);
-            if (origin & BindingOrigin.Export) {
-              updateExportsList(parser, tokenValue);
-              addBindingToExports(parser, tokenValue);
-            }
+            addVarOrBlock(parser, context, scope, tokenValue, type, origin);
           }
         } else {
           destructible |=
@@ -5318,13 +5314,8 @@ export function parseObjectLiteralOrPattern(
             validateBindingIdentifier(parser, context, type, token, 0);
           }
 
-          if (scope) {
-            addVarName(parser, context, scope, tokenValue, type);
-            if (origin & BindingOrigin.Export) {
-              updateExportsList(parser, tokenValue);
-              addBindingToExports(parser, tokenValue);
-            }
-          }
+          if (scope) addVarOrBlock(parser, context, scope, tokenValue, type, origin);
+
           if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
             destructible |= DestructuringKind.MustDestruct;
 
@@ -5398,7 +5389,7 @@ export function parseObjectLiteralOrPattern(
                 if (parser.assignable & AssignmentKind.NotAssignable) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarName(parser, context, scope, valueAfterColon, type);
+                  addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
                 }
               } else {
                 destructible |=
@@ -5412,7 +5403,7 @@ export function parseObjectLiteralOrPattern(
               } else if (token !== Token.Assign) {
                 destructible |= DestructuringKind.AssignableDestruct;
               } else if (scope) {
-                addVarName(parser, context, scope, valueAfterColon, type);
+                addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
               }
               value = parseAssignmentExpression(
                 parser,
@@ -5713,7 +5704,7 @@ export function parseObjectLiteralOrPattern(
                 if (parser.assignable & AssignmentKind.NotAssignable) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope) {
-                  addVarName(parser, context, scope, tv, type);
+                  addVarOrBlock(parser, context, scope, tv, type, origin);
                 }
               } else {
                 destructible |=
@@ -5894,7 +5885,7 @@ export function parseObjectLiteralOrPattern(
                 if (parser.assignable & AssignmentKind.NotAssignable) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarName(parser, context, scope, tokenValue, type);
+                  addVarOrBlock(parser, context, scope, tokenValue, type, origin);
                 }
               } else {
                 destructible |=
@@ -6772,7 +6763,7 @@ export function parseFormalParametersOrFormalList(
         }
       }
 
-      if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
+      if (scope) {
         // Strict-mode disallows duplicate args. We may not know whether we are
         // in strict mode or not (since the function body hasn't been parsed).
         // In such cases the potential error will be saved on the parser object
@@ -8138,18 +8129,8 @@ export function parseBindingPattern(
   //   ObjectLiteral
 
   if (parser.token & Token.IsIdentifier) {
-    if (scope) {
-      if (type & BindingKind.Variable) {
-        addVarName(parser, context, scope, parser.tokenValue, type);
-      } else {
-        addBlockName(parser, context, scope, parser.tokenValue, type, BindingOrigin.Other);
-      }
+    if (scope) addVarOrBlock(parser, context, scope, parser.tokenValue, type, origin);
 
-      if (origin & BindingOrigin.Export) {
-        updateExportsList(parser, parser.tokenValue);
-        addBindingToExports(parser, parser.tokenValue);
-      }
-    }
     return parseAndClassifyIdentifier(parser, context, type, start, line, column);
   }
 

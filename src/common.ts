@@ -541,7 +541,7 @@ export function addVarName(
 
   const hashed = '#' + name;
   const isLexicalBinding = (type & BindingKind.LexicalBinding) !== 0;
-  const isWebCompat =  context & Context.OptionsWebCompat && (context & Context.Strict) === 0
+  const isWebCompat =  context & Context.OptionsWebCompat && (context & Context.Strict) === 0;
 
   let currentScope: any = scope;
 
@@ -575,6 +575,23 @@ export function addVarName(
 
     currentScope = currentScope.parent;
   }
+}
+
+export function addVarOrBlock(parser: ParserState,
+  context: Context,
+  scope: any,
+  name: string,
+  type: BindingKind,
+  origin: BindingOrigin) {
+    if (type & BindingKind.Variable) {
+      addVarName(parser, context, scope, name, type);
+    } else {
+      addBlockName(parser, context, scope, name, type, BindingOrigin.Other);
+    }
+    if (origin & BindingOrigin.Export) {
+      updateExportsList(parser, parser.tokenValue);
+      addBindingToExports(parser, parser.tokenValue);
+    }
 }
 
 export function addBlockName(
@@ -628,10 +645,10 @@ export function addBlockName(
   while (currentScope && (currentScope.type & ScopeKind.FuncRoot) !== ScopeKind.FuncRoot) {
     const value = currentScope[hashed];
     if (currentScope.type & ScopeKind.ArrowParams) {
-       if (value & BindingKind.EmptyBinding && (type & BindingKind.CatchIdentifierOrPattern) === 0 ) {
+       if (value && (value & BindingKind.EmptyBinding) === 0 && (type & BindingKind.CatchIdentifierOrPattern) === 0 ) {
         report(parser, Errors.DuplicateBinding, name);
-      } else  if (type & BindingKind.ArgumentList) {
-          currentScope.dupeParamErrorToken = recordScopeError(parser, Errors.Unexpected);
+      } else if (type & BindingKind.ArgumentList) {
+        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
       }
     }
     currentScope = currentScope.parent;

@@ -1,7 +1,12 @@
 import { Context } from '../../../src/common';
-import { pass } from '../../test-utils';
+import { pass, fail } from '../../test-utils';
 
 describe('Expressions - Block', () => {
+  fail('Expressions - Array (fail)', [
+    ['{ let {x} }', Context.None],
+    ['{ let {} }', Context.None],
+    ['{ let [] }', Context.None]
+  ]);
   pass('Expressions - Block (pass)', [
     [
       '{}',
@@ -15,6 +20,155 @@ describe('Expressions - Block', () => {
             body: []
           }
         ]
+      }
+    ],
+    [
+      '{ let x }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'BlockStatement',
+            body: [
+              {
+                type: 'VariableDeclaration',
+                kind: 'let',
+                declarations: [
+                  {
+                    type: 'VariableDeclarator',
+                    init: null,
+                    id: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 6,
+                      end: 7
+                    },
+                    start: 6,
+                    end: 7
+                  }
+                ],
+                start: 2,
+                end: 7
+              }
+            ],
+            start: 0,
+            end: 9
+          }
+        ],
+        start: 0,
+        end: 9
+      }
+    ],
+    [
+      '{ let [] = y }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        start: 0,
+        end: 14,
+        body: [
+          {
+            type: 'BlockStatement',
+            start: 0,
+            end: 14,
+            body: [
+              {
+                type: 'VariableDeclaration',
+                start: 2,
+                end: 12,
+                declarations: [
+                  {
+                    type: 'VariableDeclarator',
+                    start: 6,
+                    end: 12,
+                    id: {
+                      type: 'ArrayPattern',
+                      start: 6,
+                      end: 8,
+                      elements: []
+                    },
+                    init: {
+                      type: 'Identifier',
+                      start: 11,
+                      end: 12,
+                      name: 'y'
+                    }
+                  }
+                ],
+                kind: 'let'
+              }
+            ]
+          }
+        ],
+        sourceType: 'script'
+      }
+    ],
+    [
+      '{ let {x} = y }',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'BlockStatement',
+            body: [
+              {
+                type: 'VariableDeclaration',
+                kind: 'let',
+                declarations: [
+                  {
+                    type: 'VariableDeclarator',
+                    init: {
+                      type: 'Identifier',
+                      name: 'y',
+                      start: 12,
+                      end: 13
+                    },
+                    id: {
+                      type: 'ObjectPattern',
+                      properties: [
+                        {
+                          type: 'Property',
+                          key: {
+                            type: 'Identifier',
+                            name: 'x',
+                            start: 7,
+                            end: 8
+                          },
+                          value: {
+                            type: 'Identifier',
+                            name: 'x',
+                            start: 7,
+                            end: 8
+                          },
+                          kind: 'init',
+                          computed: false,
+                          method: false,
+                          shorthand: true,
+                          start: 7,
+                          end: 8
+                        }
+                      ],
+                      start: 6,
+                      end: 9
+                    },
+                    start: 6,
+                    end: 13
+                  }
+                ],
+                start: 2,
+                end: 13
+              }
+            ],
+            start: 0,
+            end: 15
+          }
+        ],
+        start: 0,
+        end: 15
       }
     ],
     [

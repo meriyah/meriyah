@@ -8,6 +8,7 @@ describe('Statements  Switch', () => {
     ['switch(x) { case y: break; case z: break; default: default: }', Context.None],
     ['switch(x) { default: default: case y: break; case z: break; }', Context.None],
     ['switch(0) { case 0: !function(){ break; }; }', Context.None],
+    ['switch (a) { case b: let [x] }', Context.None],
     ['switch(0) { case 0: function f(){ break; } }', Context.None],
     ['switch(0) { default: !function(){ break; }; }', Context.None],
     ['switch(0) { default: function f(){ break; } }', Context.None],
@@ -434,6 +435,76 @@ describe('Statements  Switch', () => {
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'switch (a) { case b: let [x] = y }',
+      Context.OptionsRanges | Context.OptionsRaw,
+      {
+        body: [
+          {
+            cases: [
+              {
+                consequent: [
+                  {
+                    declarations: [
+                      {
+                        end: 32,
+                        id: {
+                          elements: [
+                            {
+                              end: 27,
+                              name: 'x',
+                              start: 26,
+                              type: 'Identifier'
+                            }
+                          ],
+                          end: 28,
+                          start: 25,
+                          type: 'ArrayPattern'
+                        },
+                        init: {
+                          end: 32,
+                          name: 'y',
+                          start: 31,
+                          type: 'Identifier'
+                        },
+                        start: 25,
+                        type: 'VariableDeclarator'
+                      }
+                    ],
+                    end: 32,
+                    kind: 'let',
+                    start: 21,
+                    type: 'VariableDeclaration'
+                  }
+                ],
+                end: 32,
+                start: 13,
+                test: {
+                  end: 19,
+                  name: 'b',
+                  start: 18,
+                  type: 'Identifier'
+                },
+                type: 'SwitchCase'
+              }
+            ],
+            discriminant: {
+              end: 9,
+              name: 'a',
+              start: 8,
+              type: 'Identifier'
+            },
+            end: 34,
+            start: 0,
+            type: 'SwitchStatement'
+          }
+        ],
+        end: 34,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
       }
     ],
     [

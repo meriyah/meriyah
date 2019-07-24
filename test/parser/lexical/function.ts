@@ -24,6 +24,7 @@ describe('Lexical - Function', () => {
     ['function f(b, a, b, a, [fine]) {"use strict"}', Context.OptionsLexical],
     ['function f(b, a, b, a = x) {"use strict"}', Context.OptionsLexical],
     ['function f(b, a, b, ...a) {"use strict"}', Context.OptionsLexical],
+    ['function x([public], public){}', Context.OptionsLexical],
     ['function f([a, a]) {}', Context.OptionsLexical],
     ['function f([a, b, a]) {}', Context.OptionsLexical],
     ['function f([b, a, a]) {}', Context.OptionsLexical],
