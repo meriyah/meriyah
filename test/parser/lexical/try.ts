@@ -229,6 +229,7 @@ describe('Miscellaneous - Try', () => {
     try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }`,
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
+    'let e; try {} catch (e) { let e; }',
     'try {} catch (foo) { { let foo; } }',
     'try {} catch (foo) { function x() { var foo; } }',
     'try {} catch (foo) { function x(foo) {} }',

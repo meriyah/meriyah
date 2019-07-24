@@ -132,7 +132,27 @@ describe('Lexical - Function', () => {
     ['"use strict"; function foo(bar, bar){}', Context.OptionsLexical],
     ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict],
     ['function f(x) { let x }', Context.OptionsLexical],
-    ['function f(x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat]
+    [`(function foo() { { let f = 2; { let y = 3; function f() { y = 2; } f(); } }})();`, Context.OptionsLexical],
+    ['function f(x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['function f(a, b, a, c = 10) { }', Context.OptionsLexical],
+    ['function f(a, b = 10, a) { }', Context.OptionsLexical],
+    ['function foo(a) { let a; }', Context.OptionsLexical],
+    ['function foo(a, b = () => a) { const b = 1; };', Context.OptionsLexical],
+    ['function foo(a, b = () => a) { let b; };', Context.OptionsLexical],
+    ['function foo(arguments, b = () => arguments) { let arguments; };', Context.OptionsLexical],
+    ['function foo(arguments, b = () => arguments) { const arguments = 1; };', Context.OptionsLexical],
+    ['(a, b = () => a) => { let b; };', Context.OptionsLexical],
+    ['(a, b = () => a) => { const b = 1; };', Context.OptionsLexical],
+    ['(arguments, b = () => arguments) => { let arguments; };', Context.OptionsLexical],
+    ['function foo({a, b = () => a}) { let b; };', Context.OptionsLexical],
+    ['function foo([a], b = () => a) { const b = 1; };', Context.OptionsLexical],
+    ['function foo([arguments, b = () => arguments]) { let arguments; };', Context.OptionsLexical],
+    ['function foo() {try {} catch({x:x, x:x}) {} }', Context.OptionsLexical],
+    ['function foo() {try {} catch([x, x]) {} }', Context.OptionsLexical],
+    ['function foo() {try {} catch({z1, x:{z:[z1]}}) {} }', Context.OptionsLexical],
+    ['function foo() {try {} catch([x]) { let x = 10;} }', Context.OptionsLexical],
+    ['function foo() {try {} catch([x]) { function x() {} } }', Context.OptionsLexical],
+    ['function foo() {try {} catch([x]) { var x = 10;} }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
@@ -267,6 +287,37 @@ function a() {}`,
     'function f(x) { { let x } }',
     'async function *f(){} { async function *f(){} }',
     'async function f(){} { async function f(){} }',
+    'function f(x) { var x }',
+    `(function foo(y, z) {{ function x() {} } })(1);`,
+    // Complex parameter shouldn't be shadowed
+    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    // Nested complex parameter shouldn't be shadowed
+    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    // Complex parameter shouldn't be shadowed
+    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    // Nested complex parameter shouldn't be shadowed
+    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    // Rest parameter shouldn't be shadowed
+    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    // Don't shadow complex rest parameter
+    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    // Hoisting is not affected by other simple parameters
+    `(function foo(y, z) {{function x() {}} })(1);`,
+    // Hoisting is not affected by other complex parameters
+    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    // Should allow shadowing function names
+    `{(function foo() { { function foo() { return 0; } } })();}`,
+    // rest parameter shouldn't be shadowed
+    '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
+    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
+    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
+    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
+    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
+    '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
+    '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
+    '(function foo(x) { {  function x() {} } })(1);',
+    '(function foo([[x]]) { { function x() {}}})([[1]]);',
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()'
   ]) {
     it(`${arg}`, () => {
@@ -300,7 +351,98 @@ function a() {}`,
     'function f(x) { { let x } }',
     'const x = a; function x(){};',
     'function f([b, a], b) {}',
-    'function f([b, a], {b}) {}'
+    'function f([b, a], {b}) {}',
+    // rest parameter shouldn't be shadowed
+    '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
+    `(function foo(y, z) {{ function x() {} } })(1);`,
+    // Complex parameter shouldn't be shadowed
+    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    // Nested complex parameter shouldn't be shadowed
+    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    // Complex parameter shouldn't be shadowed
+    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    // Nested complex parameter shouldn't be shadowed
+    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    // Rest parameter shouldn't be shadowed
+    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    // Don't shadow complex rest parameter
+    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    // Hoisting is not affected by other simple parameters
+    `(function foo(y, z) {{function x() {}} })(1);`,
+    // Hoisting is not affected by other complex parameters
+    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    // Should allow shadowing function names
+    `{(function foo() { { function foo() { return 0; } } })();}`,
+    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
+    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
+    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
+    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
+    '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
+    '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
+    '(function foo(x) { {  function x() {} } })(1);',
+    '(function foo([[x]]) { { function x() {}}})([[1]]);',
+    'function f(x) { var x }',
+    `(function() {
+      var x = 1;
+      (() => x);
+      var y = "y";
+      var z = "z";
+      (function() {
+        var x = 2;
+        (function() {
+          y;
+          debugger;
+        })();
+      })();
+      return y;
+    })();`,
+    `(function() {
+      var x = 1;
+      (() => x);
+      var y = "y";
+      var z = "z";
+      (function() {
+        var x = 2;
+        (() => {
+          y;
+          a;
+          this;
+          debugger;
+        })();
+      })();
+      return y;
+    })();`,
+    `function f9() {
+      let a1= "level1";
+      try {
+          throw "level2";
+
+      } catch(e) {
+          let a1= "level2";
+              try {
+              throw "level3";
+          } catch(e1) {
+              a1 += "level3";
+          }
+      }
+    };`,
+    `function f5()
+    {
+        var a1 = 10;
+        let a2 = "a2";
+        const a4 = "a4_const";
+        let a5 = "a5_let";
+        {
+            let a1 = "level1";
+            let a2 = 222;
+            const a3 = "a3_const";
+            let a4 = "a4_level1";
+            a3;
+        }
+
+        return 10;
+    }`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
