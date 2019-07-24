@@ -3244,6 +3244,40 @@ describe('Declarations - Let', () => {
       }
     ],
     [
+      'l\\u0065t\na',
+      Context.OptionsRanges,
+      {
+        body: [
+          {
+            end: 8,
+            expression: {
+              end: 8,
+              name: 'let',
+              start: 0,
+              type: 'Identifier'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          },
+          {
+            end: 10,
+            expression: {
+              end: 10,
+              name: 'a',
+              start: 9,
+              type: 'Identifier'
+            },
+            start: 9,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 10,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
       'let {x} = a, {y} = obj;',
       Context.OptionsRanges,
       {

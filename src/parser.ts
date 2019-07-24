@@ -666,7 +666,6 @@ export function parseExpressionOrLabelledStatement(
   switch (token) {
     case Token.LetKeyword:
       expr = parseIdentifier(parser, context, 0, start, line, column);
-
       if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
       if (parser.token === Token.Colon)
@@ -1809,7 +1808,10 @@ export function parseLetIdentOrVarDeclarationStatement(
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context, 0, start, line, column);
   // If the next token is an identifier, `[`, or `{`, this is not
   // a `let` declaration, and we parse it as an identifier.
-  if ((parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0) {
+  if (
+    (parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0 ||
+    (parser.flags & Flags.NewLine && parser.token & Token.IsIdentifier)
+  ) {
     parser.assignable = AssignmentKind.Assignable;
 
     if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
@@ -2343,7 +2345,7 @@ function parseImportDeclaration(
     if (parser.token & Token.IsIdentifier) {
       validateBindingIdentifier(parser, context, BindingKind.Const, parser.token, 0);
       if (context & Context.OptionsLexical)
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, BindingOrigin.Other);
+        addBlockName(parser, context, scope as ScopeState, parser.tokenValue, BindingKind.Let, BindingOrigin.Other);
       const local = parseIdentifier(parser, context, 0, tokenPos, linePos, colPos);
       specifiers.push(
         finishNode(parser, context, tokenPos, linePos, colPos, {
@@ -4404,7 +4406,7 @@ export function parseFunctionDeclaration(
       if (type & BindingKind.Variable) {
         addVarName(parser, context, scope as ScopeState, parser.tokenValue, type);
       } else {
-        addBlockName(parser, context, scope, parser.tokenValue, type, origin);
+        addBlockName(parser, context, scope as ScopeState, parser.tokenValue, type, origin);
       }
 
       innerscope = addChildScope(innerscope, ScopeKind.FuncRoot);
@@ -6356,7 +6358,14 @@ export function parseParenthesizedExpression(
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
       if (context & Context.OptionsLexical) {
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+        addBlockName(
+          parser,
+          context,
+          scope as ScopeState,
+          parser.tokenValue,
+          BindingKind.ArgumentList,
+          BindingOrigin.Other
+        );
       }
       expr = parsePrimaryExpressionExtended(
         parser,
