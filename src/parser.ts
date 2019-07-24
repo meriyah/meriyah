@@ -1806,113 +1806,96 @@ export function parseLetIdentOrVarDeclarationStatement(
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
   const { token, tokenValue } = parser;
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context, 0, start, line, column);
-  // If the next token is an identifier, `[`, or `{`, this is not
-  // a `let` declaration, and we parse it as an identifier.
-  if (
-    (parser.token & (Token.IsIdentifier | Token.IsPatternStart)) === 0 ||
-    (parser.flags & Flags.NewLine && parser.token & Token.IsIdentifier)
-  ) {
-    parser.assignable = AssignmentKind.Assignable;
 
-    if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
-
-    /** LabelledStatement[Yield, Await, Return]:
-     *
-     * ExpressionStatement | LabelledStatement ::
-     * Expression ';'
-     *   Identifier ':' Statement
-     *
-     * ExpressionStatement[Yield] :
-     *   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
+  if (parser.token & (Token.IsIdentifier | Token.IsPatternStart)) {
+    /* VariableDeclarations ::
+     *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
+    const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, BindingOrigin.Statement);
 
-    if (parser.token === Token.Colon) {
-      return parseLabelledStatement(
-        parser,
-        context,
-        scope,
-        origin,
-        {},
-        tokenValue,
-        expr,
-        token,
-        0,
-        start,
-        line,
-        column
-      );
-    }
+    matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-    /**
-     * ArrowFunction :
-     *   ArrowParameters => ConciseBody
-     *
-     * ConciseBody :
-     *   [lookahead not {] AssignmentExpression
-     *   { FunctionBody }
-     *
-     */
-    if (parser.token === Token.Arrow) {
-      let scope: ScopeState | undefined = void 0;
+    return finishNode(parser, context, start, line, column, {
+      type: 'VariableDeclaration',
+      kind: 'let',
+      declarations
+    });
+  }
+  // 'Let' as identifier
+  parser.assignable = AssignmentKind.Assignable;
 
-      if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+  if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
-      parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+  /** LabelledStatement[Yield, Await, Return]:
+   *
+   * ExpressionStatement | LabelledStatement ::
+   * Expression ';'
+   *   Identifier ':' Statement
+   *
+   * ExpressionStatement[Yield] :
+   *   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
+   */
 
-      expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
-    } else {
-      /**
-       * UpdateExpression ::
-       *   ('++' | '--')? LeftHandSideExpression
-       *
-       * MemberExpression ::
-       *   (PrimaryExpression | FunctionLiteral | ClassLiteral)
-       *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
-       *
-       * CallExpression ::
-       *   (SuperCall | ImportCall)
-       *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
-       *
-       * LeftHandSideExpression ::
-       *   (NewExpression | MemberExpression) ...
-       */
-
-      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
-
-      /**
-       * AssignmentExpression :
-       *   1. ConditionalExpression
-       *   2. LeftHandSideExpression = AssignmentExpression
-       *
-       */
-      expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
-    }
-
-    /** Sequence expression
-     */
-    if (parser.token === Token.Comma) {
-      expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
-    }
-
-    /**
-     * ExpressionStatement[Yield, Await]:
-     *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
-     */
-    return parseExpressionStatement(parser, context, expr, start, line, column);
+  if (parser.token === Token.Colon) {
+    return parseLabelledStatement(parser, context, scope, origin, {}, tokenValue, expr, token, 0, start, line, column);
   }
 
-  /* VariableDeclarations ::
-   *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
+  /**
+   * ArrowFunction :
+   *   ArrowParameters => ConciseBody
+   *
+   * ConciseBody :
+   *   [lookahead not {] AssignmentExpression
+   *   { FunctionBody }
+   *
    */
-  const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, BindingOrigin.Statement);
+  if (parser.token === Token.Arrow) {
+    let scope: ScopeState | undefined = void 0;
 
-  matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
+    if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
 
-  return finishNode(parser, context, start, line, column, {
-    type: 'VariableDeclaration',
-    kind: 'let',
-    declarations
-  });
+    parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
+
+    expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
+  } else {
+    /**
+     * UpdateExpression ::
+     *   ('++' | '--')? LeftHandSideExpression
+     *
+     * MemberExpression ::
+     *   (PrimaryExpression | FunctionLiteral | ClassLiteral)
+     *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
+     *
+     * CallExpression ::
+     *   (SuperCall | ImportCall)
+     *     ('[' Expression ']' | '.' Identifier | Arguments | TemplateLiteral)*
+     *
+     * LeftHandSideExpression ::
+     *   (NewExpression | MemberExpression) ...
+     */
+
+    expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+
+    /**
+     * AssignmentExpression :
+     *   1. ConditionalExpression
+     *   2. LeftHandSideExpression = AssignmentExpression
+     *
+     */
+    expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
+  }
+
+  /** Sequence expression
+   */
+  if (parser.token === Token.Comma) {
+    expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
+  }
+
+  /**
+   * ExpressionStatement[Yield, Await]:
+   *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
+   */
+  return parseExpressionStatement(parser, context, expr, start, line, column);
 }
 
 /**

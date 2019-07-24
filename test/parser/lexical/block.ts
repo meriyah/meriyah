@@ -14,11 +14,26 @@ describe('Lexical - Block', () => {
     ['{ var x; } let x;', Context.OptionsLexical],
     ['let x; var x;', Context.OptionsLexical],
     ['var x; let x;', Context.OptionsLexical],
+    ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
     ['{ { var f; } function* f() {}; }', Context.OptionsLexical],
     ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
     ['{ async function f() {} class f {} }', Context.OptionsLexical],
     ['{ async function f() {} function f() {} }', Context.OptionsLexical],
     ['{ async function f() {} function* f() {} }', Context.OptionsLexical],
+    ['{ const f = 0; function* f() {} }', Context.OptionsLexical],
+    ['function x() { { async function* f() {}; var f; } }', Context.OptionsLexical],
+    ['function x() { { const f = 0; var f; } }', Context.OptionsLexical],
+    ['{ { var f; } let f; }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ let f; { var f; } }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ let f; function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ async function f() {} let f }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ async function f() {} var f }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ async function* f() {} const f = 0 }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ { var f; } async function f() {}; }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ { var f; } class f {}; }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
+    ['{ { var f; } let f; }', Context.OptionsLexical],
+    ['{ let f; { var f; } }', Context.OptionsLexical],
+    ['{ let f; function* f() {} }', Context.OptionsLexical],
     ['{ async function f() {} let f }', Context.OptionsLexical],
     ['{ async function f() {} var f }', Context.OptionsLexical],
     ['{ function a(){} function a(){} }', Context.OptionsLexical],
@@ -30,6 +45,8 @@ describe('Lexical - Block', () => {
     ['{ class f {} async function f() {} }', Context.OptionsLexical],
     ['{ const f = 0; { var f; } }', Context.OptionsLexical],
     ['{ const f = 0; const f = 0 }', Context.OptionsLexical],
+    ['{ const f = 0; { var f; } }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
+    ['{ const f = 0; const f = 0 }', Context.OptionsLexical | Context.OptionsWebCompat | Context.Strict],
     ['{ class f {} function f() {} }', Context.OptionsLexical],
     ['{ class f {} var f }', Context.OptionsLexical],
     ['{ const f = 0; async function* f() {} }', Context.OptionsLexical],
@@ -53,6 +70,9 @@ describe('Lexical - Block', () => {
     ['{ class f {}; var f; }', Context.OptionsLexical],
     ['{ function* f() {}; var f; }', Context.OptionsLexical],
     ['{ let f; var f; }', Context.OptionsLexical],
+    ['{ class f {}; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ function* f() {}; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['{ let f; var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['for (const x in {}) { var x; }', Context.OptionsLexical],
     ['{ async function f() {} let f }', Context.OptionsLexical],
     ['{ async function* f() {} async function f() {} }', Context.OptionsLexical],
@@ -75,6 +95,7 @@ describe('Lexical - Block', () => {
     ['{ async function f() {} const f = 0 }', Context.OptionsLexical],
     ['{ async function* f() {} function f() {} }', Context.OptionsLexical],
     ['{ async function* f() {} let f }', Context.OptionsLexical],
+    ['{ async function* f() {} let f }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['{ async function* f() {}; var f; }', Context.OptionsLexical],
     ['{ let f; var f }', Context.OptionsLexical],
     [' { function a() {} } { let a; function a() {}; }', Context.OptionsLexical],
@@ -153,7 +174,6 @@ describe('Lexical - Block', () => {
     ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try { } catch (e) { # # }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['{ async function *f(){} let f }', Context.OptionsWebCompat | Context.OptionsLexical],
-    //['switch (x) { case c: async function f(){} async function f(){} }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical]
   ]);
 
@@ -186,12 +206,18 @@ describe('Lexical - Block', () => {
     '{ var f = 123; if (true) function f(){} }',
     '{ async function f(){} } async function f(){}',
     '{ async function *f(){} } async function *f(){}',
+    `{ function f(){} } function f(){}
+    { function f(){} } function f(){}`,
+    `{ let foo = 1; { let foo = 2; } }
+    { let foo = 1; { let foo = 2; } }`,
     '{ function f(){} } function f(){}',
     '{ function *f(){} } function *f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ let foo = 1; { let foo = 2; } }',
+    `function f() {}  var f;
+    function f() {}  var f;`,
     '{ async function f() {} async function* f() {} }',
     '{ async function f() {} function f() {} }',
     '{ function f() { a = f; f = 123; b = f; return x; } }',
@@ -199,12 +225,16 @@ describe('Lexical - Block', () => {
     '{ let f = 123; if (false) ; else function f() {  } }',
     'try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }',
     'try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }',
+    `try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
+    try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }`,
     'let f = 123; switch (1) { default: function f() {  }  }',
     '{ async function* f() {} async function f() {} }',
     '{ function* f() {} function f() {} }',
     '{ let x; } var x',
     '{ function* f() {} function* f() {} }',
     '{ var f; var f; }',
+    `{ var f; var f; }
+    { var f; var f; }`,
     'function f() {}  var f;',
     '{ function a(){} function a(){} }',
     '{ var a; { let a; } }',
@@ -225,6 +255,18 @@ describe('Lexical - Block', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }

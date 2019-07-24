@@ -9,7 +9,7 @@ describe('Lexical - If', () => {
     ['if (x) {} else var foo = 1; let foo = 1;', Context.OptionsLexical],
     ['if (x) var foo = 1; else {} let foo = 1;', Context.OptionsLexical],
     ['if (x) var foo = 1; let foo = 1;', Context.OptionsLexical],
-    ['if (x) function f(){}', Context.OptionsLexical],
+    ['if (x) var foo = 1; let foo = 1;', Context.OptionsLexical | Context.OptionsWebCompat],
     ['do async function f(){} while (x);', Context.OptionsLexical],
     [
       `if (x) x;
@@ -33,6 +33,13 @@ describe('Lexical - If', () => {
     ],
     ['if (x) async function f(){}', Context.OptionsLexical],
     ['if (x) {} else if (y) {} else var foo = 1; let foo = 1;', Context.OptionsLexical],
+    ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsLexical | Context.OptionsNext],
+    [
+      'if (x) { if (y) var foo = 1; } let foo = 1;',
+      Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext
+    ],
+    ['const x = a; function x(){};', Context.OptionsLexical | Context.Module | Context.Strict],
+    ['if (x) var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical | Context.Strict],
     ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsLexical],
     ['const x = a; function x(){};', Context.OptionsLexical],
     ['if (x) var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
@@ -46,6 +53,11 @@ describe('Lexical - If', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }

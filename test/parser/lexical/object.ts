@@ -21,6 +21,16 @@ describe('Lexical - Object', () => {
     ['!{ set f({a, a}){} };', Context.OptionsLexical],
     ['!{ set f([a, a]){} };', Context.OptionsLexical],
     ['!{ set f(a) { let a; } };', Context.OptionsLexical],
+    ['!{ f({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ *g(a, a){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ *g([a, a]){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ *g({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ f(a) { let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ f([a]){ let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ f({a}){ let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ set f({a, a}){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ set f([a, a]){} };', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{ set f(a) { let a; } };', Context.OptionsLexical | Context.OptionsWebCompat],
     ['!{ set f([a]){ let a; } };', Context.OptionsLexical],
     ['!{ set f({a}){ let a; } };', Context.OptionsLexical],
     ['!{f(x) { let x }}', Context.OptionsLexical],
@@ -44,6 +54,11 @@ describe('Lexical - Object', () => {
     ['!{f([b, a], ...b) {}}', Context.OptionsLexical],
     ['!{f(){ let x; var x; }}', Context.OptionsLexical],
     ['!{f(){ var x; let x; }}', Context.OptionsLexical],
+    ['!{f([b, a], {b}) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{f([b, a], b=x) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['!{f([b, a], ...b) {}}', Context.OptionsLexical | Context.Strict],
+    ['!{f(){ let x; var x; }}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['!{f(){ var x; let x; }}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['!{f(){ const x = y; var x; }}', Context.OptionsLexical],
     ['!{f(){ var x; const x = y; }}', Context.OptionsLexical],
     ['!{f(){ let x; function x(){} }}', Context.OptionsLexical],
@@ -52,6 +67,10 @@ describe('Lexical - Object', () => {
     ['!{f(){ function x(){} const x = y; }}', Context.OptionsLexical],
     ['!{ *foo(x) { let x = 3; } }', Context.OptionsLexical],
     ['!{ *foo(x) { const x = 3; } }', Context.OptionsLexical],
+    ['!{f(){ const x = y; function x(){} }}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['!{f(){ function x(){} const x = y; }}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['!{ *foo(x) { let x = 3; } }', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['!{ *foo(x) { const x = 3; } }', Context.OptionsLexical | Context.Strict | Context.Module],
     ['!{f({b}, ...b) {}}', Context.OptionsLexical],
     ['!{f({a: b}, ...b) {}}', Context.OptionsLexical],
     ['!{f({"a": b}, ...b) {}}', Context.OptionsLexical],
@@ -74,6 +93,18 @@ describe('Lexical - Object', () => {
         parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
   }
 
   for (const arg of [
@@ -86,6 +117,12 @@ describe('Lexical - Object', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }

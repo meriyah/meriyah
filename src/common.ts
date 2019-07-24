@@ -652,29 +652,11 @@ export function addBlockName(
   if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.EmptyBinding) === 0) {
     if (type & BindingKind.ArgumentList) {
       scope.scopeError = recordScopeError(parser, Errors.Unexpected);
-    } else if ((type & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) === 0) {
-      report(parser, Errors.DuplicateBinding, name);
     }
   }
 
-  if (type & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
-    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) report(parser, Errors.ShadowedCatchClause, name);
-  } else if (scope.type & ScopeKind.CatchBody) {
+  if (scope.type & ScopeKind.CatchBody) {
     if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern) report(parser, Errors.ShadowedCatchClause, name);
-  }
-
-  let currentScope: any = scope.parent;
-
-  while (currentScope && (currentScope.type & ScopeKind.FuncRoot) !== ScopeKind.FuncRoot) {
-    const value = currentScope['#' + name];
-    if (currentScope.type & ScopeKind.ArrowParams) {
-       if (value && (value & BindingKind.EmptyBinding) === 0 && (type & BindingKind.CatchIdentifierOrPattern) === 0 ) {
-        report(parser, Errors.DuplicateBinding, name);
-      } else if (type & BindingKind.ArgumentList) {
-        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
-      }
-    }
-    currentScope = currentScope.parent;
   }
 
   (scope as any)['#' + name] = type;

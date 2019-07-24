@@ -12,12 +12,9 @@ describe('Lexical - AnnexB', () => {
     ['{ if (x) function f() {} ; function f() {} }', Context.None | Context.OptionsLexical],
     ['let x; var x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical],
-
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical]
+    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
+    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
+    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext]
   ]);
 
   for (const arg of [
@@ -121,6 +118,12 @@ describe('Lexical - AnnexB', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }

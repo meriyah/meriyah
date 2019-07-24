@@ -58,6 +58,9 @@ describe('Lexical - Function', () => {
     ['function foo([x, x]) {}', Context.OptionsLexical],
     ['function foo([x], [x]) {}', Context.OptionsLexical],
     ['function foo([x], {x:x}) {}', Context.OptionsLexical],
+    ['function foo([x, x]) {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function foo([x], [x]) {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function foo([x], {x:x}) {}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['function foo([x], x) {}', Context.OptionsLexical],
     ['function foo(x, [x]) {}', Context.OptionsLexical],
     ['function g() { { var x; let x; } }', Context.OptionsLexical],
@@ -83,6 +86,9 @@ describe('Lexical - Function', () => {
     ['function f(x = 0, x) {}', Context.OptionsLexical],
     ['0, function(x = 0, x) {};', Context.OptionsLexical],
     ['function foo(a, a = b) {}', Context.OptionsLexical],
+    ['function f(x = 0, x) {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['0, function(x = 0, x) {};', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function foo(a, a = b) {}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['function f([foo], [foo]){}', Context.OptionsLexical],
     ['function f([foo] = x, [foo] = y){}', Context.OptionsLexical],
     ['function f({foo} = x, {foo}){}', Context.OptionsLexical],
@@ -109,6 +115,10 @@ describe('Lexical - Function', () => {
     ['function f(...a = x,){}', Context.OptionsLexical],
     ['function f(...a = x,){}', Context.OptionsLexical],
     ['function f(...a,){}', Context.OptionsLexical],
+    ['function f(...a,){}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function f(...a = x,){}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function f(...a = x,){}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['function f(...a,){}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['function f(...a = x,){}', Context.OptionsLexical],
     ['function f({a: x, b: x}) {}', Context.OptionsLexical],
     ['function f({x, x}) {}', Context.OptionsLexical],
@@ -121,7 +131,8 @@ describe('Lexical - Function', () => {
     ['function f(x, {"foo": x}) {}', Context.OptionsLexical],
     ['"use strict"; function foo(bar, bar){}', Context.OptionsLexical],
     ['function foo(bar, bar){}', Context.OptionsLexical | Context.Module | Context.Strict],
-    ['function f(x) { let x }', Context.OptionsLexical]
+    ['function f(x) { let x }', Context.OptionsLexical],
+    ['function f(x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat]
   ]);
 
   for (const arg of [
@@ -254,11 +265,25 @@ function a() {}`,
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()',
     'function *f(){} { function *f(){} }',
     'function f(x) { { let x } }',
+    'async function *f(){} { async function *f(){} }',
+    'async function f(){} { async function f(){} }',
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
   }

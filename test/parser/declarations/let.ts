@@ -84,6 +84,8 @@ describe('Declarations - Let', () => {
     'for (var [let] = 1; let < 1; let++) {}',
     'for (var [let] in {}) {}',
     'var let',
+    'let;',
+    `let.let = foo`,
     'var [let] = []',
     'let f = /* before */async /* a */ ( /* b */ a /* c */ , /* d */ b /* e */ ) /* f */ => /* g */ { /* h */ ; /* i */ }/* after */;',
     'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
@@ -329,6 +331,10 @@ describe('Declarations - Let', () => {
     'let { s: t = a(), u: v = b(), w: x = c(), y: z = d() } = { s: null, u: 0, w: false, y: "" };',
     'let {} = obj;',
     'let {} = undefined;',
+    'let {} = obj;',
+    'let {} = undefined;',
+    'let [, , ...x] = [1, 2];',
+    'let test262id8;',
     'foo: let: y;',
     'let {a, b, c} = {}, e, f;',
     'let {a, b} = {}, c = 0;',
@@ -392,6 +398,14 @@ describe('Declarations - Let', () => {
     ['let b = async () => []; for (a in await b());', Context.None],
     ['let x = y, {z};', Context.None],
     ['let x, {y};', Context.None],
+    ['let {[Symbol.iterator]: a} of []', Context.None],
+    ['let {0: a} of []', Context.None],
+    ['(let {"a": a = 1} of [])', Context.None],
+    ['let {0: a = 1} of []', Context.None],
+    ['for (let [let];;;) {}', Context.None],
+    ['for (let x, y, z, let = 1;;;) {}', Context.None],
+    ['let x,;', Context.None],
+    ['"use strict"; const let = 1;', Context.None],
     ['"use strict"; let { let } = {};', Context.None],
     ['"use strict"; const { let } = {};', Context.None],
     ['"use strict"; let [let] = [];', Context.None],
@@ -434,6 +448,52 @@ describe('Declarations - Let', () => {
     ['let {...let} = {a: 1, b: 2};', Context.Module | Context.Strict],
     ['let const', Context.None],
     ['const let', Context.None],
+    [
+      `let
+    [let;`,
+      Context.None
+    ],
+    ['for (;false;) let x = 1;', Context.None],
+    ['do let x; while (false)', Context.None],
+    ['if (true) {} else let x;', Context.None],
+    ['if (true) let x;', Context.None],
+    ['label: let x;', Context.None],
+    ['while (false) let x;', Context.None],
+    [
+      `let  // start of a LexicalDeclaration, *not* an ASI opportunity
+    [let = "irrelevant initializer";`,
+      Context.None
+    ],
+    // Acorn issue: https://github.com/acornjs/acorn/issues/586
+    ['let let', Context.None],
+    ['label: let x;', Context.None],
+    [
+      `do let
+      [x] = 0
+      while (false);`,
+      Context.None
+    ],
+    ['let {a: o.a} = obj;', Context.None],
+    ['let default', Context.None],
+    ['let test = 2, let = 1;', Context.None],
+    ['do let x = 1; while (false)', Context.None],
+    ['if (true) {} else let x = 1;', Context.None],
+    ['if (true) let x = 1;', Context.None],
+    ['do let x; while (false)', Context.None],
+    ['let [...x = []] = [];', Context.None],
+    ['if (true) {} else let x;', Context.None],
+    ['let {...{}} = {};', Context.None],
+    ['let [...[ x ] = []] = [];', Context.None],
+    ['let [...[ x ] = []] = [];', Context.None],
+    ['let [...{ x } = []] = [];', Context.None],
+    ['let [...x, y] = [1, 2, 3];', Context.None],
+    ['let [...{ x }, y] = [1, 2, 3];', Context.None],
+    ['let [...x = []] = [];', Context.None],
+    // 'let' should not be an allowed name in destructuring let declarations
+    ['let [a, let, b] = [1, 2, 3];', Context.None],
+    // Babylon issue: https://github.com/babel/babylon/issues/148
+    ['let { ...x, y, z } = obj;', Context.None],
+    ['let { x, ...y, ...z } = obj;', Context.None],
     ['let let', Context.None],
     ['for (let\nfoo();;);', Context.None],
     ['for (let foo);', Context.None],
@@ -3244,36 +3304,35 @@ describe('Declarations - Let', () => {
       }
     ],
     [
-      'l\\u0065t\na',
-      Context.OptionsRanges,
+      `a = let;
+      []`,
+      Context.None,
       {
         body: [
           {
-            end: 8,
             expression: {
-              end: 8,
-              name: 'let',
-              start: 0,
-              type: 'Identifier'
+              left: {
+                name: 'a',
+                type: 'Identifier'
+              },
+              operator: '=',
+              right: {
+                name: 'let',
+                type: 'Identifier'
+              },
+              type: 'AssignmentExpression'
             },
-            start: 0,
             type: 'ExpressionStatement'
           },
           {
-            end: 10,
             expression: {
-              end: 10,
-              name: 'a',
-              start: 9,
-              type: 'Identifier'
+              elements: [],
+              type: 'ArrayExpression'
             },
-            start: 9,
             type: 'ExpressionStatement'
           }
         ],
-        end: 10,
         sourceType: 'script',
-        start: 0,
         type: 'Program'
       }
     ],

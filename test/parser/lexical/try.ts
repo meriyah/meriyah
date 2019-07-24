@@ -69,6 +69,8 @@ describe('Miscellaneous - Try', () => {
   }
 
   fail('Statements - Try (fail)', [
+    ['try {} catch (arguments) { }', Context.OptionsLexical | Context.Strict],
+    ['try {} catch (arguments) { }', Context.Strict],
     ['try {} catch (e) { for (var e in y) {} }', Context.OptionsLexical],
     ['try {} catch (e) { for (var e;;) {} }', Context.OptionsLexical],
     ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
@@ -108,7 +110,6 @@ describe('Miscellaneous - Try', () => {
     ['try {} catch ({e = 0, a: e}) {}', Context.OptionsLexical],
     ['try {} catch ({e, e}) {}', Context.OptionsLexical],
     ['function f() { try {} catch (e) { function e(){} } }', Context.OptionsLexical],
-    // ['try {} catch (e) { for (var e of y) {} }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try {} catch (e) { for (var e of y) {} }', Context.OptionsLexical],
     ['try {} catch (e) { let e = x; }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try {} catch (e) { const e = x; }', Context.OptionsWebCompat | Context.OptionsLexical],
@@ -126,18 +127,36 @@ describe('Miscellaneous - Try', () => {
     ['try {} catch ([foo]) { var foo; }', Context.OptionsLexical],
     ['try {} catch ({ foo }) { var foo; }', Context.OptionsLexical],
     ['try {} catch (foo) { let foo; }', Context.OptionsLexical],
+    ['try { async function *f(){} var f } catch (e) {}', Context.OptionsLexical],
+    ['try { function f(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try {} catch ([foo, foo]) {}', Context.OptionsLexical],
     ['try {} catch ([foo, foo]) {}', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try { } catch (e) { function f(){} function f(){} }', Context.OptionsLexical],
     ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
     ['try { function *f(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try { function(){} var f } catch (e) {}', Context.OptionsLexical],
+    ['try { async function f(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try {} catch (e) { let e = x; }', Context.OptionsLexical],
+    ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
+    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
+    ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
+    ['try { } finally { function(){} function(){} }', Context.OptionsLexical],
     ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
+    ['try { } finally { function *f(){} function *f(){} }', Context.OptionsLexical],
     ['try {} catch (e) { { var e = x; } }', Context.OptionsLexical],
     ['const a = 1, a = 2', Context.OptionsLexical],
+    ['try { } finally { function f(){} function f(){} }', Context.OptionsLexical],
+    ['try { } finally { async function *f(){} async function *f(){} }', Context.OptionsLexical],
+    ['try { } finally { async function f(){} async function f(){} }', Context.OptionsLexical],
     ['try {} catch (x) { { let x } ', Context.OptionsLexical],
-    ['try {} catch (x) { let x }', Context.OptionsLexical]
+    ['try {} catch (x) { let x }', Context.OptionsLexical],
+    ['try {} catch (x) { { let x } ', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['try {} catch (x) { let x }', Context.OptionsLexical | Context.OptionsWebCompat],
+    [
+      `try {} catch (foo) {}  let foo;
+    try {} catch (foo) {}  let foo;`,
+      Context.OptionsLexical
+    ]
   ]);
 
   for (const arg of [
@@ -147,14 +166,20 @@ describe('Miscellaneous - Try', () => {
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
+    `try {} catch (foo) { { let foo; } }
+    try {} catch (foo) { { let foo; } }`,
     'try {} catch (foo) { function x() { var foo; } }',
     'try {} catch (foo) { function x(foo) {} }',
     'try {} catch(x) { x = 0; }',
     'try {} catch(x) { with ({}) { x = 1; } }',
+    `try {} catch(x) { with ({}) { x = 1; } }
+    try {} catch(x) { with ({}) { x = 1; } }`,
     'try {} catch (foo) {} var foo;',
     'try { } catch (a) { { const a = b; } }',
     'var foo; try {} catch (_) { const foo = 1; }',
     'try {} catch (foo) { { let foo; } }',
+    `try {} catch (foo) { { let foo; } }
+    try {} catch (foo) { { let foo; } }`,
     'var foo; try {} catch (_) { let foo; }',
     'try {} catch (e) { { let e = x; } }',
     'try {} catch (foo) {} let foo;',
@@ -167,6 +192,18 @@ describe('Miscellaneous - Try', () => {
         parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+      });
+    });
   }
 
   for (const arg of [
@@ -175,6 +212,10 @@ describe('Miscellaneous - Try', () => {
     'try {} catch (e) { for (var e in y) {} }',
     'try {} catch (x) { { var x } }',
     'try {} catch (e) { for (let e;;) {} }',
+    `try {} catch (e) { for (let e;;) {} }
+    try {} catch (e) { for (let e;;) {} }`,
+    `try {} catch (e) { for (const e = y;;) {} }
+    try {} catch (e) { for (const e = y;;) {} }`,
     'try {} catch (e) { for (const e = y;;) {} }',
     'try {} catch (e) { for (let e in y) {} }',
     'try {} catch (e) { for (const e in y) {} }',
@@ -184,6 +225,8 @@ describe('Miscellaneous - Try', () => {
     'try { f; } catch (exception) { err1 = exception; } switch (1) { case 1: function f() {  } } try { f; } catch (exception) { err2 = exception; }',
     'try { throw {}; } catch ({ f }) {  if (false) ; else function f() {  }  }',
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
+    `try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
+    try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }`,
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
@@ -193,6 +236,8 @@ describe('Miscellaneous - Try', () => {
     'try {} catch (e) { for (var e of y) {} }',
     'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
     'try {} catch (e) { var e = x; }',
+    `try {} catch (e) { var e = x; }
+    try {} catch (e) { var e = x; }`,
     'try {} catch(e) { var e; }',
     'try { } catch (e) { function *f(){} function *f(){} }',
     'try { } finally { async function f(){} async function f(){} }',
@@ -213,11 +258,20 @@ describe('Miscellaneous - Try', () => {
     'try {} catch (foo) {} var foo;',
     'try { } catch (e) { async function f(){} async function f(){} }',
     'try { } catch (e) { function f(){} function f(){} }',
-    'try {} catch (foo) { var foo; }'
+    'try {} catch (foo) { var foo; }',
+    'try {} catch (e) { for (var e of y) {} }',
+    'try { } catch (e) { function *f(){} function *f(){} }',
+    'try { } catch (e) { async function *f(){} async function *f(){} }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }
