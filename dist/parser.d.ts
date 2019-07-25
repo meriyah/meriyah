@@ -83,7 +83,7 @@ export declare function parseMethodDefinition(parser: ParserState, context: Cont
 export declare function parseObjectLiteralOrPattern(parser: ParserState, context: Context, scope: ScopeState | undefined, skipInitializer: 0 | 1, inGroup: 0 | 1, type: BindingKind, origin: BindingOrigin, start: number, line: number, column: number): ESTree.ObjectExpression | ESTree.ObjectPattern | ESTree.AssignmentExpression;
 export declare function parseMethodFormals(parser: ParserState, context: Context, scope: ScopeState | undefined, kind: PropertyKind, type: BindingKind, inGroup: 0 | 1): any[];
 export declare function parseComputedPropertyName(parser: ParserState, context: Context, inGroup: 0 | 1): ESTree.Expression;
-export declare function parseParenthesizedExpression(parser: ParserState, context: Context, assignable: 0 | 1, start: number, line: number, column: number): any;
+export declare function parseParenthesizedExpression(parser: ParserState, context: Context, assignable: 0 | 1, kind: BindingKind, origin: BindingOrigin, start: number, line: number, column: number): any;
 export declare function parseIdentifierOrArrow(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Identifier | ESTree.ArrowFunctionExpression;
 export declare function parseArrowFunctionExpression(parser: ParserState, context: Context, scope: ScopeState | undefined, params: any, isAsync: 0 | 1, start: number, line: number, column: number): ESTree.ArrowFunctionExpression;
 export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, scope: ScopeState | undefined, inGroup: 0 | 1, type: BindingKind): any[];

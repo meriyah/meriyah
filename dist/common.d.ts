@@ -186,7 +186,8 @@ export declare function createArrowScope(parser: ParserState, context: Context, 
 export declare function recordScopeError(parser: ParserState, type: Errors): ScopeError;
 export declare function createScope(): ScopeState;
 export declare function addChildScope(parent: any, type: ScopeKind): ScopeState;
-export declare function addVarName(parser: ParserState, context: Context, scope: ScopeState, name: any, type: BindingKind): void;
+export declare function addVarOrBlock(parser: ParserState, context: Context, scope: ScopeState, name: string, type: BindingKind, origin: BindingOrigin): void;
+export declare function addVarName(parser: ParserState, context: Context, scope: ScopeState, name: string, type: BindingKind): void;
 export declare function addBlockName(parser: ParserState, context: Context, scope: any, name: string, type: BindingKind, origin: BindingOrigin): void;
 export declare function updateExportsList(parser: ParserState, name: string): void;
 export declare function addBindingToExports(parser: ParserState, name: string): void;

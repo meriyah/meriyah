@@ -1929,15 +1929,24 @@ System.register('meriyah', [], function (exports) {
               scopeError: void 0
           };
       }
+      function addVarOrBlock(parser, context, scope, name, type, origin) {
+          if (type & 4) {
+              addVarName(parser, context, scope, name, type);
+          }
+          else {
+              addBlockName(parser, context, scope, name, type, 32);
+          }
+          if (origin & 16) {
+              updateExportsList(parser, parser.tokenValue);
+              addBindingToExports(parser, parser.tokenValue);
+          }
+      }
       function addVarName(parser, context, scope, name, type) {
-          const hashed = '#' + name;
-          const isLexicalBinding = (type & 248) !== 0;
-          const isWebCompat = context & 256 && (context & 1024) === 0;
           let currentScope = scope;
           while (currentScope && (currentScope.type & 1024) === 0) {
-              const value = currentScope[hashed];
+              const value = currentScope['#' + name];
               if (value & 248) {
-                  if (isWebCompat &&
+                  if (context & 256 && (context & 1024) === 0 &&
                       ((type & 128 && value & 68) ||
                           (value & 128 && type & 68))) ;
                   else {
@@ -1945,10 +1954,7 @@ System.register('meriyah', [], function (exports) {
                   }
               }
               if (currentScope === scope) {
-                  if (value && (value & 2) === 0 && isLexicalBinding) {
-                      report(parser, 148, name);
-                  }
-                  else if (value & 1 && type & 1) {
+                  if (value & 1 && type & 1) {
                       currentScope.scopeError = recordScopeError(parser, 0);
                   }
               }
@@ -1957,13 +1963,12 @@ System.register('meriyah', [], function (exports) {
                       report(parser, 148, name);
                   }
               }
-              currentScope[hashed] = type;
+              currentScope['#' + name] = type;
               currentScope = currentScope.parent;
           }
       }
       function addBlockName(parser, context, scope, name, type, origin) {
-          const hashed = '#' + name;
-          const value = scope[hashed];
+          const value = scope['#' + name];
           if (value && (value & 2) === 0) {
               if (type & 1) {
                   scope.scopeError = recordScopeError(parser, 0);
@@ -1976,39 +1981,19 @@ System.register('meriyah', [], function (exports) {
               }
           }
           if (scope.type & 512 &&
-              (scope.parent[hashed] && (scope.parent[hashed] & 2) === 0)) {
+              (scope.parent['#' + name] && (scope.parent['#' + name] & 2) === 0)) {
               report(parser, 148, name);
           }
           if (scope.type & 2048 && value && (value & 2) === 0) {
               if (type & 1) {
                   scope.scopeError = recordScopeError(parser, 0);
               }
-              else if ((type & (512 | 256)) === 0) {
-                  report(parser, 148, name);
-              }
           }
-          if (type & (512 | 256)) {
-              if (value & (512 | 256))
+          if (scope.type & 128) {
+              if (scope.parent['#' + name] & 768)
                   report(parser, 161, name);
           }
-          else if (scope.type & 128) {
-              if (scope.parent[hashed] & 768)
-                  report(parser, 161, name);
-          }
-          let currentScope = scope.parent;
-          while (currentScope && (currentScope.type & 1024) !== 1024) {
-              const value = currentScope[hashed];
-              if (currentScope.type & 2048) {
-                  if (value & 2 && (type & 768) === 0) {
-                      report(parser, 148, name);
-                  }
-                  else if (type & 1) {
-                      currentScope.dupeParamErrorToken = recordScopeError(parser, 0);
-                  }
-              }
-              currentScope = currentScope.parent;
-          }
-          scope[hashed] = type;
+          scope['#' + name] = type;
       }
       function updateExportsList(parser, name) {
           if (parser.exportedNames !== void 0 && name !== '') {
@@ -2211,24 +2196,24 @@ System.register('meriyah', [], function (exports) {
       }
       function parseStatement(parser, context, scope, origin, labels, allowFuncDecl, start, line, column) {
           switch (parser.token) {
-              case 2162700:
-                  return parseBlock(parser, context, scope ? addChildScope(scope, 2) : scope, labels, start, line, column);
               case 268521543:
                   return parseVariableStatement(parser, context, scope, 8, start, line, column);
               case 20571:
                   return parseReturnStatement(parser, context, start, line, column);
               case 20568:
                   return parseIfStatement(parser, context, scope, labels, start, line, column);
+              case 20566:
+                  return parseForStatement(parser, context, scope, labels, start, line, column);
               case 20561:
                   return parseDoWhileStatement(parser, context, scope, labels, start, line, column);
               case 20577:
                   return parseWhileStatement(parser, context, scope, labels, start, line, column);
-              case 20566:
-                  return parseForStatement(parser, context, scope, labels, start, line, column);
               case 86109:
                   return parseSwitchStatement(parser, context, scope, labels, start, line, column);
               case -2146435055:
                   return parseEmptyStatement(parser, context, start, line, column);
+              case 2162700:
+                  return parseBlock(parser, context, scope ? addChildScope(scope, 2) : scope, labels, start, line, column);
               case 86111:
                   return parseThrowStatement(parser, context, start, line, column);
               case 20554:
@@ -2636,35 +2621,36 @@ System.register('meriyah', [], function (exports) {
       function parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, start, line, column) {
           const { token, tokenValue } = parser;
           let expr = parseIdentifier(parser, context, 0, start, line, column);
-          if ((parser.token & (143360 | 2097152)) === 0) {
-              parser.assignable = 1;
-              if (context & 1024)
-                  report(parser, 86);
-              if (parser.token === 21) {
-                  return parseLabelledStatement(parser, context, scope, origin, {}, tokenValue, expr, token, 0, start, line, column);
-              }
-              if (parser.token === 10) {
-                  let scope = void 0;
-                  if (context & 64)
-                      scope = createArrowScope(parser, context, tokenValue);
-                  parser.flags = (parser.flags | 128) ^ 128;
-                  expr = parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
-                  return parseExpressionStatement(parser, context, expr, start, line, column);
-              }
+          if (parser.token & (143360 | 2097152)) {
+              const declarations = parseVariableDeclarationList(parser, context, scope, 8, 8);
+              matchOrInsertSemicolon(parser, context | 32768);
+              return finishNode(parser, context, start, line, column, {
+                  type: 'VariableDeclaration',
+                  kind: 'let',
+                  declarations
+              });
+          }
+          parser.assignable = 1;
+          if (context & 1024)
+              report(parser, 86);
+          if (parser.token === 21) {
+              return parseLabelledStatement(parser, context, scope, origin, {}, tokenValue, expr, token, 0, start, line, column);
+          }
+          if (parser.token === 10) {
+              let scope = void 0;
+              if (context & 64)
+                  scope = createArrowScope(parser, context, tokenValue);
+              parser.flags = (parser.flags | 128) ^ 128;
+              expr = parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
+          }
+          else {
               expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
               expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr);
-              if (parser.token === -1073741806) {
-                  expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
-              }
-              return parseExpressionStatement(parser, context, expr, start, line, column);
           }
-          const declarations = parseVariableDeclarationList(parser, context, scope, 8, 8);
-          matchOrInsertSemicolon(parser, context | 32768);
-          return finishNode(parser, context, start, line, column, {
-              type: 'VariableDeclaration',
-              kind: 'let',
-              declarations
-          });
+          if (parser.token === -1073741806) {
+              expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
+          }
+          return parseExpressionStatement(parser, context, expr, start, line, column);
       }
       function parseLexicalDeclaration(parser, context, scope, type, origin, start, line, column) {
           nextToken(parser, context);
@@ -3538,7 +3524,7 @@ System.register('meriyah', [], function (exports) {
               case 69271571:
                   return parseArrayLiteral(parser, context, allowAssign ? 0 : 1, inGroup, start, line, column);
               case 67174411:
-                  return parseParenthesizedExpression(parser, context & ~134217728, allowAssign, start, line, column);
+                  return parseParenthesizedExpression(parser, context & ~134217728, allowAssign, 1, 0, start, line, column);
               case 131:
                   return parsePrivateName(parser, context, start, line, column);
               case 133:
@@ -3874,7 +3860,7 @@ System.register('meriyah', [], function (exports) {
                               reportMessageAt(parser.index, parser.line, parser.index - 3, 24);
                           }
                           else if (scope) {
-                              addVarName(parser, context, scope, tokenValue, type);
+                              addVarOrBlock(parser, context, scope, tokenValue, type, origin);
                           }
                           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
                           left = finishNode(parser, context, tokenPos, linePos, colPos, {
@@ -3889,11 +3875,7 @@ System.register('meriyah', [], function (exports) {
                               destructible |= 16;
                           }
                           else if (scope) {
-                              addVarName(parser, context, scope, tokenValue, type);
-                              if (origin & 16) {
-                                  updateExportsList(parser, tokenValue);
-                                  addBindingToExports(parser, tokenValue);
-                              }
+                              addVarOrBlock(parser, context, scope, tokenValue, type, origin);
                           }
                       }
                       else {
@@ -4198,13 +4180,8 @@ System.register('meriyah', [], function (exports) {
                           else {
                               validateBindingIdentifier(parser, context, type, token, 0);
                           }
-                          if (scope) {
-                              addVarName(parser, context, scope, tokenValue, type);
-                              if (origin & 16) {
-                                  updateExportsList(parser, tokenValue);
-                                  addBindingToExports(parser, tokenValue);
-                              }
-                          }
+                          if (scope)
+                              addVarOrBlock(parser, context, scope, tokenValue, type, origin);
                           if (consumeOpt(parser, context | 32768, -2143289315)) {
                               destructible |= 8;
                               const right = parseExpression(parser, (context | 134217728) ^ 134217728, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
@@ -4244,7 +4221,7 @@ System.register('meriyah', [], function (exports) {
                                           destructible |= 16;
                                       }
                                       else if (scope && (tokenAfterColon & 143360) === 143360) {
-                                          addVarName(parser, context, scope, valueAfterColon, type);
+                                          addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
                                       }
                                   }
                                   else {
@@ -4262,7 +4239,7 @@ System.register('meriyah', [], function (exports) {
                                       destructible |= 32;
                                   }
                                   else if (scope) {
-                                      addVarName(parser, context, scope, valueAfterColon, type);
+                                      addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
                                   }
                                   value = parseAssignmentExpression(parser, context, inGroup, idxAfterColon, lineAfterColon, columnAfterColon, value);
                               }
@@ -4426,7 +4403,7 @@ System.register('meriyah', [], function (exports) {
                                           destructible |= 16;
                                       }
                                       else if (scope) {
-                                          addVarName(parser, context, scope, tv, type);
+                                          addVarOrBlock(parser, context, scope, tv, type, origin);
                                       }
                                   }
                                   else {
@@ -4527,7 +4504,7 @@ System.register('meriyah', [], function (exports) {
                                           destructible |= 16;
                                       }
                                       else if (scope && (tokenAfterColon & 143360) === 143360) {
-                                          addVarName(parser, context, scope, tokenValue, type);
+                                          addVarOrBlock(parser, context, scope, tokenValue, type, origin);
                                       }
                                   }
                                   else {
@@ -4769,7 +4746,7 @@ System.register('meriyah', [], function (exports) {
           consume(parser, context, 20);
           return key;
       }
-      function parseParenthesizedExpression(parser, context, assignable, start, line, column) {
+      function parseParenthesizedExpression(parser, context, assignable, kind, origin, start, line, column) {
           parser.flags = (parser.flags | 128) ^ 128;
           nextToken(parser, context | 32768);
           const scope = context & 64 ? addChildScope(createScope(), 2048) : void 0;
@@ -4782,28 +4759,30 @@ System.register('meriyah', [], function (exports) {
           parser.destructible &= ~(256 | 128);
           let expr;
           let expressions = [];
-          let toplevelComma = 0;
+          let isSequence = 0;
           let isComplex = 0;
-          const idxStart = parser.tokenPos;
-          const lineStart = parser.linePos;
-          const columnStart = parser.colPos;
+          const { tokenPos: iStart, linePos: lStart, colPos: cStart } = parser;
           parser.assignable = 1;
           while (parser.token !== 1073741840) {
               const { token, tokenPos, linePos, colPos } = parser;
               if (token & (143360 | 4096)) {
-                  if (context & 64) {
+                  if (scope)
                       addBlockName(parser, context, scope, parser.tokenValue, 1, 32);
-                  }
-                  expr = parsePrimaryExpressionExtended(parser, context, 1, 0, 1, 0, 1, tokenPos, linePos, colPos);
+                  expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
                   if ((parser.token & 1073741824) === 1073741824) {
                       if (parser.assignable & 2) {
                           destructible |= 16;
                           isComplex = 1;
                       }
-                      else if ((token & 537079808) === 537079808 ||
-                          (token & 36864) === 36864) {
-                          isComplex = 1;
+                      else if ((token & 537079808) === 537079808) {
+                          parser.flags |= 512;
                       }
+                      parser.flags |=
+                          (token & 537079808) === 537079808
+                              ? 512
+                              : (token & 36864) === 36864
+                                  ? 256
+                                  : 0;
                   }
                   else {
                       if (parser.token === -2143289315) {
@@ -4818,11 +4797,11 @@ System.register('meriyah', [], function (exports) {
                       }
                   }
               }
-              else if (token & 2097152) {
+              else if ((token & 2097152) === 2097152) {
                   expr =
                       token === 2162700
-                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, 1, 0, tokenPos, linePos, colPos)
-                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 1, 0, tokenPos, linePos, colPos);
+                          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos)
+                          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos);
                   destructible |= parser.destructible;
                   isComplex = 1;
                   parser.assignable = 2;
@@ -4837,11 +4816,11 @@ System.register('meriyah', [], function (exports) {
                   }
               }
               else if (token === 14) {
-                  expr = parseSpreadElement(parser, context, scope, 1073741840, 1, 0, 0, 1, tokenPos, linePos, colPos);
+                  expr = parseSpreadElement(parser, context, scope, 1073741840, kind, origin, 0, 1, tokenPos, linePos, colPos);
                   if (parser.destructible & 16)
                       report(parser, 74);
                   isComplex = 1;
-                  if (toplevelComma && (parser.token & 1073741824) === 1073741824) {
+                  if (isSequence && (parser.token & 1073741824) === 1073741824) {
                       expressions.push(expr);
                   }
                   destructible |= 8;
@@ -4850,21 +4829,21 @@ System.register('meriyah', [], function (exports) {
               else {
                   destructible |= 16;
                   expr = parseExpression(parser, context, 1, 0, 1, tokenPos, linePos, colPos);
-                  if (toplevelComma && (parser.token & 1073741824) === 1073741824) {
+                  if (isSequence && (parser.token & 1073741824) === 1073741824) {
                       expressions.push(expr);
                   }
                   if (parser.token === -1073741806) {
-                      if (!toplevelComma) {
-                          toplevelComma = 1;
+                      if (!isSequence) {
+                          isSequence = 1;
                           expressions = [expr];
                       }
                   }
-                  if (toplevelComma) {
+                  if (isSequence) {
                       while (consumeOpt(parser, context | 32768, -1073741806)) {
                           expressions.push(parseExpression(parser, context, 1, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
                       }
                       parser.assignable = 2;
-                      expr = finishNode(parser, context, idxStart, lineStart, columnStart, {
+                      expr = finishNode(parser, context, iStart, lStart, cStart, {
                           type: 'SequenceExpression',
                           expressions
                       });
@@ -4873,13 +4852,13 @@ System.register('meriyah', [], function (exports) {
                   parser.destructible = destructible;
                   return expr;
               }
-              if (toplevelComma && (parser.token & 1073741824) === 1073741824) {
+              if (isSequence && (parser.token & 1073741824) === 1073741824) {
                   expressions.push(expr);
               }
               if (!consumeOpt(parser, context | 32768, -1073741806))
                   break;
-              if (!toplevelComma) {
-                  toplevelComma = 1;
+              if (!isSequence) {
+                  isSequence = 1;
                   expressions = [expr];
               }
               if (parser.token === 1073741840) {
@@ -4887,9 +4866,9 @@ System.register('meriyah', [], function (exports) {
                   break;
               }
           }
-          if (toplevelComma) {
+          if (isSequence) {
               parser.assignable = 2;
-              expr = finishNode(parser, context, idxStart, lineStart, columnStart, {
+              expr = finishNode(parser, context, iStart, lStart, cStart, {
                   type: 'SequenceExpression',
                   expressions
               });
@@ -4917,14 +4896,14 @@ System.register('meriyah', [], function (exports) {
               if (context & (1024 | 2097152) && destructible & 256) {
                   report(parser, 30);
               }
-              return parseArrowFunctionExpression(parser, context, scope, toplevelComma ? expressions : [expr], 0, start, line, column);
+              return parseArrowFunctionExpression(parser, context, scope, isSequence ? expressions : [expr], 0, start, line, column);
           }
           else if (destructible & 8) {
               report(parser, 147);
           }
           parser.destructible = ((parser.destructible | 256) ^ 256) | destructible;
           return context & 128
-              ? finishNode(parser, context, idxStart, lineStart, columnStart, {
+              ? finishNode(parser, context, iStart, lStart, cStart, {
                   type: 'ParenthesizedExpression',
                   expression: expr
               })
@@ -5004,7 +4983,7 @@ System.register('meriyah', [], function (exports) {
                           parser.flags |= 256;
                       }
                   }
-                  if (scope && (parser.token & 143360) === 143360) {
+                  if (scope) {
                       if (type & 4) {
                           addVarName(parser, context, scope, tokenValue, 1);
                       }
@@ -5192,10 +5171,12 @@ System.register('meriyah', [], function (exports) {
                           destructible |= 16;
                           isComplex = 1;
                       }
-                      else if ((token & 537079808) === 537079808 ||
-                          (token & 36864) === 36864) {
-                          isComplex = 1;
-                      }
+                      parser.flags |=
+                          (token & 537079808) === 537079808
+                              ? 512
+                              : (token & 36864) === 36864
+                                  ? 256
+                                  : 0;
                   }
                   else {
                       if (parser.token === -2143289315) {
@@ -5639,18 +5620,8 @@ System.register('meriyah', [], function (exports) {
       }
       function parseBindingPattern(parser, context, scope, type, origin, start, line, column) {
           if (parser.token & 143360) {
-              if (scope) {
-                  if (type & 4) {
-                      addVarName(parser, context, scope, parser.tokenValue, type);
-                  }
-                  else {
-                      addBlockName(parser, context, scope, parser.tokenValue, type, 32);
-                  }
-                  if (origin & 16) {
-                      updateExportsList(parser, parser.tokenValue);
-                      addBindingToExports(parser, parser.tokenValue);
-                  }
-              }
+              if (scope)
+                  addVarOrBlock(parser, context, scope, parser.tokenValue, type, origin);
               return parseAndClassifyIdentifier(parser, context, type, start, line, column);
           }
           if ((parser.token & 2097152) !== 2097152)
@@ -5962,7 +5933,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.4.1');
+      const version = exports('version', '1.4.2');
 
     }
   };
