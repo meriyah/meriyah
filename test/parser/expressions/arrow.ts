@@ -521,6 +521,8 @@ describe('Expressions - Arrow', () => {
     ['()=c=>{}=>{};', Context.None],
     ['x = ()+c=>{}', Context.None],
     ['x = ()c++=>{};', Context.None],
+    ['() => { let [x] }', Context.None],
+    ['() => { let [] }', Context.None],
     ['a = b\n=> c', Context.None],
     ['a = b\n=>\nc', Context.None],
     ['a\n= b\n=> c', Context.None],
@@ -1169,6 +1171,177 @@ describe('Expressions - Arrow', () => {
             }
           }
         ]
+      }
+    ],
+
+    [
+      '() => { let x }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: [
+                  {
+                    type: 'VariableDeclaration',
+                    kind: 'let',
+                    declarations: [
+                      {
+                        type: 'VariableDeclarator',
+                        init: null,
+                        id: {
+                          type: 'Identifier',
+                          name: 'x'
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              params: [],
+              async: false,
+              expression: false
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let => a + b',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            expression: {
+              async: false,
+              body: {
+                left: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                operator: '+',
+                right: {
+                  name: 'b',
+                  type: 'Identifier'
+                },
+                type: 'BinaryExpression'
+              },
+              expression: true,
+              params: [
+                {
+                  name: 'let',
+                  type: 'Identifier'
+                }
+              ],
+              type: 'ArrowFunctionExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'async let => {}, let => {}',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            expression: {
+              expressions: [
+                {
+                  async: true,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [
+                    {
+                      name: 'let',
+                      type: 'Identifier'
+                    }
+                  ],
+                  type: 'ArrowFunctionExpression'
+                },
+                {
+                  async: false,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [
+                    {
+                      name: 'let',
+                      type: 'Identifier'
+                    }
+                  ],
+                  type: 'ArrowFunctionExpression'
+                }
+              ],
+              type: 'SequenceExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'let => {}, let => {}',
+      Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            expression: {
+              expressions: [
+                {
+                  async: false,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [
+                    {
+                      name: 'let',
+                      type: 'Identifier'
+                    }
+                  ],
+                  type: 'ArrowFunctionExpression'
+                },
+                {
+                  async: false,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [
+                    {
+                      name: 'let',
+                      type: 'Identifier'
+                    }
+                  ],
+                  type: 'ArrowFunctionExpression'
+                }
+              ],
+              type: 'SequenceExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [
@@ -3813,6 +3986,47 @@ describe('Expressions - Arrow', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '() => { let {} = y }',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              async: false,
+              body: {
+                body: [
+                  {
+                    declarations: [
+                      {
+                        id: {
+                          properties: [],
+                          type: 'ObjectPattern'
+                        },
+                        init: {
+                          name: 'y',
+                          type: 'Identifier'
+                        },
+                        type: 'VariableDeclarator'
+                      }
+                    ],
+                    kind: 'let',
+                    type: 'VariableDeclaration'
+                  }
+                ],
+                type: 'BlockStatement'
+              },
+              expression: false,
+              params: [],
+              type: 'ArrowFunctionExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ],
     [

@@ -5,6 +5,7 @@ import { parseSource } from '../../../src/parser';
 
 describe('Lexical - Class', () => {
   fail('Lexical - Class (fail)', [
+    ['class C {} class C {}', Context.OptionsLexical],
     ['class A { static f(a, a){} }', Context.OptionsLexical],
     ['class A { static f([a, a]){} }', Context.OptionsLexical],
     ['class A { static f({a, a}){} }', Context.OptionsLexical],
@@ -24,6 +25,12 @@ describe('Lexical - Class', () => {
     ['class o {f(b, a, b, a, [fine]) {}}', Context.OptionsLexical],
     ['class o {f(b, a, b, a = x) {}}', Context.OptionsLexical],
     ['class o {f(b, a, b, ...a) {}}', Context.OptionsLexical],
+    ['class o {f(a, b, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['class o {f(b, a, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['class o {f(a, a, b) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['class o {f(b, a, b, a) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['class o {f(b, a, b, a, [fine]) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
+    ['class o {f(b, a, b, a = x) {}}', Context.OptionsLexical | Context.OptionsWebCompat],
     ['class o {f([a, a]) {}}', Context.OptionsLexical],
     ['class o {f([a, b, a]) {}}', Context.OptionsLexical],
     ['class o {f([b, a, a]) {}}', Context.OptionsLexical],
@@ -32,16 +39,15 @@ describe('Lexical - Class', () => {
     ['class o {f([b, a], {b}) {}}', Context.OptionsLexical],
     ['class o {f([b, a], b=x) {}}', Context.OptionsLexical],
     ['class o {f([b, a], ...b) {}}', Context.OptionsLexical],
+    ['class o {f([b, a], b) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['class o {f([b, a], {b}) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['class o {f([b, a], b=x) {}}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['class o {f(){ let x; var x; }}', Context.OptionsLexical],
     ['class o {f(){ var x; let x; }}', Context.OptionsLexical],
     ['class o {f(){ const x = y; var x; }}', Context.OptionsLexical],
     ['class o {f(){ var x; const x = y; }}', Context.OptionsLexical],
     ['class o {f(){ let x; function x(){} }}', Context.OptionsLexical],
-    ['class o {f(){ function x(){} let x; }}', Context.OptionsLexical],
-    ['class o {f([b, a], ...b) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], ...b) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], ...b) {}}', Context.OptionsLexical],
-    ['class o {f([b, a], ...b) {}}', Context.OptionsLexical]
+    ['class o {f(){ function x(){} let x; }}', Context.OptionsLexical]
   ]);
 
   for (const arg of [
@@ -64,6 +70,18 @@ describe('Lexical - Class', () => {
         parseSource(`${arg}`, undefined, Context.OptionsLexical);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+      });
+    });
   }
 
   for (const arg of [
@@ -84,6 +102,12 @@ describe('Lexical - Class', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
       });
     });
   }

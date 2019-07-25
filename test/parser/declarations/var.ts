@@ -572,6 +572,26 @@ describe('Declarations - Var', () => {
     'var z = (x %= 2);',
     'var z = (x &= y);',
     'var z = {};',
+    `var {x, y} = o`,
+    'var {x: x, y: y} = o',
+    'var {x=1, y=2} = o',
+    'var a;',
+    'var f, g = 42, h = false;',
+    `var a = [ , 1 ], b = [ 1, ], c = [ 1, , 2 ], d = [ 1, , , ];`,
+    `var foo = { }; foo.eval = {};`,
+    `var TRIM = 'trim' in String.prototype;`,
+    `var foo = { eval: 1 };`,
+    `var foo = { }; foo.eval = {};`,
+    `{ var foo; };`,
+    `var foo; { var foo; };`,
+    `var foo; { function foo() {} };`,
+    `{ var {foo=a} = {}; };`,
+    `{ var foo = a; };`,
+    `{ var {foo} = {foo: a}; };`,
+    `var [[x]] = [null];`,
+    `var [fn = function () {}, xFn = function x() {}] = [];`,
+    `var arrow = () => {};`,
+    'var {a: [o, {p}]} = d;',
     'var { ...x } = z;',
     'var _ref = { z: "bar" };',
     'var { x, ...y } = z;',
@@ -594,6 +614,19 @@ describe('Declarations - Var', () => {
     'var x = -1;',
     'var {[a]: [b]} = c',
     'var {[a]: b} = c',
+    `try{
+      try {
+        var intry__intry__var;
+      } catch (e) {
+        var intry__incatch__var;
+      }
+  }catch(e){
+      try {
+        var incatch__intry__var;
+      } catch (e) {
+          var incatch__incatch__var;
+      }
+  };`,
     'var {a: [b]} = c'
   ]) {
     it(`${arg}`, () => {
@@ -638,6 +671,29 @@ describe('Declarations - Var', () => {
   }
 
   fail('Declarations - Var (fail)', [
+    ['var x += 1;', Context.None],
+    ['var x | true;', Context.None],
+    ['var x && 1;', Context.None],
+    ['var --x;', Context.None],
+    ['var x>>1;', Context.None],
+    [`var x in [];`, Context.None],
+    [`var var`, Context.None],
+    [`var var = 2000000;`, Context.None],
+    [`var [var] = obj`, Context.None],
+    [`[var] = obj`, Context.None],
+    // Cannot use abbreviated destructuring syntax for keyword 'var'
+    [`function var() { }`, Context.None],
+    [`function a({var}) { }`, Context.None],
+    [`(function a(var) { })`, Context.None],
+    [`(function a([{var}]) { })`, Context.None],
+    [`(function a({ hello: {var}}) { })`, Context.None],
+    [`(function a({ 0: [var]}) { })`, Context.None],
+    [`class var { }`, Context.None],
+    [`var [...[ x ] = []] = [];`, Context.None],
+    [`var [...{ x } = []] = [];`, Context.None],
+    [`var [...x, y] = [1, 2, 3];`, Context.None],
+    [`var [...{ x }, y] = [1, 2, 3];`, Context.None],
+    ['var a.b;', Context.None],
     ['var [];', Context.None],
     ['var [a];', Context.None],
     ['var { key: bar/x } = {}', Context.None],

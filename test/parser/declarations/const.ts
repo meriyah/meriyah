@@ -93,6 +93,12 @@ describe('Declarations - const', () => {
   }
 
   for (const arg of [
+    'const a = Infinity;',
+    'const b = -Infinity;',
+    'const c = +Infinity;',
+    'const d = /abc/;',
+    'const e = /abc/g;',
+    'const f = /abc/gi;',
     'const [] = x;',
     'const [,] = x;',
     'const [,,] = x;',
@@ -201,6 +207,19 @@ describe('Declarations - const', () => {
     ['for (const {};;);', Context.None],
     ['const {};', Context.None],
     ['const foo;', Context.None],
+    [`do const x = 1; while (false)`, Context.None],
+    ['while (false) const x = 1;', Context.None],
+    ['label: const x;', Context.None],
+    ['while (false) const x;', Context.None],
+    ['const [...x = []] = [];', Context.None],
+    ['const [...[x], y] = [1, 2, 3];', Context.None],
+    ['const x, y = 1;', Context.None],
+    ['do const x = 1; while (false)', Context.None],
+    ['const [...{ x }, y] = [1, 2, 3];', Context.None],
+    ['const [...x, y] = [1, 2, 3];', Context.None],
+    // Babylon PR: https://github.com/babel/babylon/pull/195
+    ['const { foo: enum } = bar();', Context.None],
+    ['function foo({ bar: enum }) {}', Context.None],
     ['const foo', Context.None],
     ['const foo, bar;', Context.None],
     ['const foo, bar', Context.None],
