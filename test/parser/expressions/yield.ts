@@ -20,6 +20,8 @@ describe('Expressions - Yield', () => {
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152)); async  (x = y) => {} }',
     'function* foo() { class x extends (yield* (e = "x") => {}) {} }',
     'function* foo() {  return ( yield* ( ( j ) => {}) ) }',
+    `({get a(){}});
+    yield;`,
     'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
     `function* foo() { switch ( y (yield) - ((a) => {})) { } }`,
     `function* foo() { switch ( y (yield) - (async (a) => {})) { } }`,
@@ -105,6 +107,18 @@ describe('Expressions - Yield', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
+      });
+    });
   }
 
   for (const arg of [
@@ -153,6 +167,12 @@ describe('Expressions - Yield', () => {
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
         parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`"use strict"; ${arg}`, () => {
+      t.throws(() => {
+        parseSource(`"use strict"; ${arg}`, undefined, Context.OptionsWebCompat);
       });
     });
 
@@ -249,6 +269,17 @@ describe('Expressions - Yield', () => {
     it(`"use strict"; function f() { ${test} }`, () => {
       t.throws(() => {
         parseSource(`"use strict"; function f() { ${test} }`, undefined, Context.None);
+      });
+    });
+
+    // Function context.
+    it(`"use strict"; function f() { ${test} }`, () => {
+      t.throws(() => {
+        parseSource(
+          `"use strict"; function f() { ${test} }`,
+          undefined,
+          Context.OptionsWebCompat | Context.OptionsNext
+        );
       });
     });
 
@@ -1293,6 +1324,41 @@ yield d;
       }
     ],
 
+    [
+      'yield *= x;',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'yield',
+                start: 0,
+                end: 5
+              },
+              operator: '*=',
+              right: {
+                type: 'Identifier',
+                name: 'x',
+                start: 9,
+                end: 10
+              },
+              start: 0,
+              end: 10
+            },
+            start: 0,
+            end: 11
+          }
+        ],
+        start: 0,
+        end: 11
+      }
+    ],
     [
       'function* g() { yield 1; try { yield 2; } catch (e) { yield e; } yield 3; }',
       Context.OptionsRanges,

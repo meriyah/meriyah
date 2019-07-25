@@ -1090,6 +1090,8 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
       (context | Context.DisallowIn) ^ Context.DisallowIn,
       expr,
       1,
+      BindingKind.ArgumentList,
+      BindingOrigin.None,
       asyncNewLine,
       start,
       line,
@@ -1900,6 +1902,8 @@ export function parseLetIdentOrVarDeclarationStatement(
 
   if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
+  if (parser.token === Token.LetKeyword) report(parser, Errors.InvalidLetBoundName);
+
   /** LabelledStatement[Yield, Await, Return]:
    *
    * ExpressionStatement | LabelledStatement ::
@@ -2086,7 +2090,7 @@ export function parseVariableDeclarationList(
  *
  * @param parser  Parser object
  * @param context Context masks
- *  * @param start Start pos of node
+ * @param start Start pos of node
  * @param start Start pos of node
  * @param line
  * @param column
@@ -2158,10 +2162,9 @@ function parseVariableDeclaration(
  *
  * @param parser Parser object
  * @param context Context masks
-  * @param start Start pos of node
-* @param start Start pos of node
-* @param line
-* @param column
+ * @param start Start pos of node
+ * @param line
+ * @param column
 
  */
 export function parseForStatement(
@@ -2329,9 +2332,7 @@ export function parseForStatement(
         });
   }
 
-  if (forAwait) {
-    report(parser, Errors.InvalidForAwait);
-  }
+  if (forAwait) report(parser, Errors.InvalidForAwait);
 
   if (!isVarDecl) {
     if (destructible & DestructuringKind.MustDestruct && parser.token !== Token.Assign) {
@@ -2732,6 +2733,8 @@ function parseExportDeclaration(
                 (context | Context.DisallowIn) ^ Context.DisallowIn,
                 declaration,
                 1,
+                BindingKind.ArgumentList,
+                BindingOrigin.None,
                 flags,
                 idxBeforeAsync,
                 lineBeforeAsync,
@@ -7179,6 +7182,8 @@ export function parseAsyncExpression(
       (context | Context.DisallowIn) ^ Context.DisallowIn,
       expr,
       assignable,
+      BindingKind.ArgumentList,
+      BindingOrigin.None,
       flags,
       start,
       line,
@@ -7210,13 +7215,21 @@ export function parseAsyncExpression(
  * @param context  Context masks
  * @param callee  ESTree AST node
  * @param assignable
- * @param asyncNewLine
+ * @param kind Binding kind
+ * @param origin Binding origin
+ * @param flags Mutual parser flags
+ * @param start Start pos of node
+ * @param line Line pos of node
+ * @param column Column pos of node
  */
+
 export function parseAsyncArrowOrCallExpression(
   parser: ParserState,
   context: Context,
   callee: ESTree.Identifier | void,
   assignable: 0 | 1,
+  kind: BindingKind,
+  origin: BindingOrigin,
   flags: Flags,
   start: number,
   line: number,
@@ -7253,20 +7266,9 @@ export function parseAsyncArrowOrCallExpression(
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
       if (scope) {
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+        addBlockName(parser, context, scope, parser.tokenValue, kind, BindingOrigin.Other);
       }
-      expr = parsePrimaryExpressionExtended(
-        parser,
-        context,
-        BindingKind.ArgumentList,
-        0,
-        1,
-        0,
-        1,
-        tokenPos,
-        linePos,
-        colPos
-      );
+      expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
 
       if ((parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
         if (parser.assignable & AssignmentKind.NotAssignable) {
@@ -7296,30 +7298,8 @@ export function parseAsyncArrowOrCallExpression(
     } else if (token & Token.IsPatternStart) {
       expr =
         token === Token.LeftBrace
-          ? parseObjectLiteralOrPattern(
-              parser,
-              context,
-              scope,
-              0,
-              1,
-              BindingKind.ArgumentList,
-              BindingOrigin.None,
-              tokenPos,
-              linePos,
-              colPos
-            )
-          : parseArrayExpressionOrPattern(
-              parser,
-              context,
-              scope,
-              0,
-              1,
-              BindingKind.ArgumentList,
-              BindingOrigin.None,
-              tokenPos,
-              linePos,
-              colPos
-            );
+          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos)
+          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos);
 
       destructible |= parser.destructible;
 
@@ -7344,8 +7324,8 @@ export function parseAsyncArrowOrCallExpression(
         context,
         scope,
         Token.RightParen,
-        BindingKind.ArgumentList,
-        BindingOrigin.None,
+        kind,
+        origin,
         1,
         1,
         tokenPos,

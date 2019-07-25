@@ -217,7 +217,8 @@ export const errorMessages: {
   [Errors.AccessorWrongArgs]: '%0 functions must have exactly %1 argument%2',
   [Errors.BadSetterRestParameter]: 'Setter function argument must not be a rest parameter',
   [Errors.DeclNoName]: '%0 declaration must have a name in this context',
-  [Errors.StrictFunctionName]: 'Function name may not be eval or arguments in strict mode',
+  [Errors.StrictFunctionName]:
+    'Function name may not contain any reserved words or be eval or arguments in strict mode',
   [Errors.RestMissingArg]: 'The rest operator is missing an argument',
   [Errors.CantAssignToInit]: 'Cannot assign to lhs, not destructible with this initializer',
   [Errors.InvalidGeneratorGetter]: 'A getter cannot be a generator',

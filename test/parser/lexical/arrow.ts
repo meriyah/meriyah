@@ -164,8 +164,10 @@ describe('Lexical - Arrows', () => {
     'x => { function x() {} }',
     'async a => let [a]',
     'x => { var x; }',
+    'a => { for (let a of b) c }',
     'a => { let {b} = a }',
     '() => { let foo; }; foo => {}',
+    'a => { for (let a of b) c }',
     '() => { let foo; }; () => { let foo; }'
   ]) {
     it(`${arg}`, () => {
