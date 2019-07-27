@@ -197,22 +197,22 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         return code;
       } else {
         if ((CharTypes[ch] & CharFlags.Hex) === 0) return Escape.InvalidHex; // first one is mandatory
-        const c2 = parser.source.charCodeAt(parser.index + 1);
-        if ((CharTypes[c2] & CharFlags.Hex) === 0) return Escape.InvalidHex;
-        const c3 = parser.source.charCodeAt(parser.index + 2);
-        if ((CharTypes[c3] & CharFlags.Hex) === 0) return Escape.InvalidHex;
-        const c4 = parser.source.charCodeAt(parser.index + 3);
-        if ((CharTypes[c4] & CharFlags.Hex) === 0) return Escape.InvalidHex;
+        const ch2 = parser.source.charCodeAt(parser.index + 1);
+        if ((CharTypes[ch2] & CharFlags.Hex) === 0) return Escape.InvalidHex;
+        const ch3 = parser.source.charCodeAt(parser.index + 2);
+        if ((CharTypes[ch3] & CharFlags.Hex) === 0) return Escape.InvalidHex;
+        const ch4 = parser.source.charCodeAt(parser.index + 3);
+        if ((CharTypes[ch4] & CharFlags.Hex) === 0) return Escape.InvalidHex;
 
         parser.index += 3;
         parser.column += 3;
 
-        return (toHex(ch) << 12) | (toHex(c2) << 8) | (toHex(c3) << 4) | toHex(c4);
+        return (toHex(ch) << 12) | (toHex(ch2) << 8) | (toHex(ch3) << 4) | toHex(ch4);
       }
     }
 
     default:
-      return nextUnicodeChar(parser);
+      return first;
   }
 }
 
@@ -235,15 +235,4 @@ export function handleStringError(state: ParserState, code: Escape, isTemplate: 
 
     default:
   }
-}
-export function nextUnicodeChar(parser: ParserState) {
-  let { index } = parser;
-  const hi = parser.source.charCodeAt(index++);
-
-  if (hi < 0xd800 || hi > 0xdbff) return hi;
-  if (index === parser.source.length) return hi;
-  const lo = parser.source.charCodeAt(index);
-
-  if (lo < 0xdc00 || lo > 0xdfff) return hi;
-  return ((hi & 0x3ff) << 10) | (lo & 0x3ff) | 0x10000;
 }
