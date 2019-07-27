@@ -18,7 +18,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
   let char = parser.currentChar;
   let value: any = 0;
   let digit = 9;
-  let atStart = kind & NumberKind.Float ? 1 : 0;
+  let atStart = kind & NumberKind.Float ? 0 : 1;
   let digits = 0;
   let allowSeparator: 0 | 1 = 0;
 

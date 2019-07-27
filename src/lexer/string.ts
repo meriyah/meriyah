@@ -207,6 +207,8 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         parser.index += 3;
         parser.column += 3;
 
+        parser.currentChar = parser.source.charCodeAt(parser.index);
+
         return (toHex(ch) << 12) | (toHex(ch2) << 8) | (toHex(ch3) << 4) | toHex(ch4);
       }
     }
