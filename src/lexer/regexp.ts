@@ -1,7 +1,7 @@
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { Token } from '../token';
-import { nextCP, isIdentifierPart } from './';
+import { advanceChar, isIdentifierPart } from './';
 import { report, Errors } from '../errors';
 
 /**
@@ -22,8 +22,8 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   let preparseState = RegexState.Empty;
 
   loop: while (true) {
-    const ch = parser.nextCP;
-    nextCP(parser);
+    const ch = parser.currentChar;
+    advanceChar(parser);
 
     if (preparseState & RegexState.Escape) {
       preparseState &= ~RegexState.Escape;
@@ -68,7 +68,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   }
 
   let mask = RegexFlags.Empty;
-  let char = parser.nextCP;
+  let char = parser.currentChar;
 
   const { index: flagStart } = parser;
 
@@ -108,7 +108,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         report(parser, Errors.UnexpectedTokenRegExpFlag);
     }
 
-    char = nextCP(parser);
+    char = advanceChar(parser);
   }
 
   const flags = parser.source.slice(flagStart, parser.index);

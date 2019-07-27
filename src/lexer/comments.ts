@@ -1,4 +1,4 @@
-import { nextCP, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
+import { advanceChar, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { report, Errors } from '../errors';
@@ -21,7 +21,7 @@ export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose',
 export function skipHashBang(parser: ParserState): void {
   // HashbangComment ::
   //   #!  SingleLineCommentChars_opt
-  if (parser.nextCP === Chars.Hash && parser.source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
+  if (parser.currentChar === Chars.Hash && parser.source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
     skipSingleLineComment(parser, LexerState.None, CommentType.HashBang);
   }
 }
@@ -45,12 +45,12 @@ export function skipSingleHTMLComment(
 export function skipSingleLineComment(parser: ParserState, state: LexerState, type: CommentType): LexerState {
   const { index } = parser;
   while (parser.index < parser.end) {
-    if (CharTypes[parser.nextCP] & CharFlags.LineTerminator || (parser.nextCP ^ Chars.LineSeparator) <= 1) {
+    if (CharTypes[parser.currentChar] & CharFlags.LineTerminator || (parser.currentChar ^ Chars.LineSeparator) <= 1) {
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
       scanNewLine(parser);
       return state;
     }
-    nextCP(parser);
+    advanceChar(parser);
   }
   if (parser.onComment)
     parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), parser, parser.index);
@@ -66,9 +66,9 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
 export function skipMultiLineComment(parser: ParserState, state: LexerState): LexerState | void {
   const { index } = parser;
   while (parser.index < parser.end) {
-    while (parser.nextCP === Chars.Asterisk) {
-      if (nextCP(parser) === Chars.Slash) {
-        nextCP(parser);
+    while (parser.currentChar === Chars.Asterisk) {
+      if (advanceChar(parser) === Chars.Slash) {
+        advanceChar(parser);
         if (parser.onComment)
           parser.onComment(
             CommentTypes[CommentType.Multi & 0xff],
@@ -80,17 +80,17 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
       }
     }
 
-    if (parser.nextCP === Chars.CarriageReturn) {
+    if (parser.currentChar === Chars.CarriageReturn) {
       state |= LexerState.NewLine | LexerState.LastIsCR;
       scanNewLine(parser);
-    } else if (parser.nextCP === Chars.LineFeed) {
+    } else if (parser.currentChar === Chars.LineFeed) {
       consumeLineFeed(parser, (state & LexerState.LastIsCR) !== 0);
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
-    } else if ((parser.nextCP ^ Chars.LineSeparator) <= 1) {
+    } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
       scanNewLine(parser);
     } else {
-      nextCP(parser);
+      advanceChar(parser);
     }
   }
 

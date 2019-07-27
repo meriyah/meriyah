@@ -1,7 +1,7 @@
 import { ParserState, Context } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
-import { nextCP, fromCodePoint } from './common';
+import { advanceChar, fromCodePoint } from './common';
 import { parseEscape, Escape, handleStringError } from './string';
 import { report, Errors } from '../errors';
 
@@ -13,15 +13,15 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
   let tail = 1;
   let ret: string | void = '';
 
-  let char = nextCP(parser);
+  let char = advanceChar(parser);
 
   while (char !== Chars.Backtick) {
     if (char === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
-      nextCP(parser); // Skip: '}'
+      advanceChar(parser); // Skip: '}'
       tail = 0;
       break;
     } else if ((char & 8) === 8 && char === Chars.Backslash) {
-      char = nextCP(parser);
+      char = advanceChar(parser);
       if (char > 0x7e) {
         ret += fromCodePoint(char);
       } else {
@@ -43,7 +43,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       if (char === Chars.CarriageReturn) {
         if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
           ret += fromCodePoint(char);
-          parser.nextCP = parser.source.charCodeAt(++parser.index);
+          parser.currentChar = parser.source.charCodeAt(++parser.index);
         }
       }
 
@@ -54,10 +54,10 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       ret += fromCodePoint(char);
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
-    char = nextCP(parser);
+    char = advanceChar(parser);
   }
 
-  nextCP(parser); // Consume the quote or opening brace
+  advanceChar(parser); // Consume the quote or opening brace
   parser.tokenValue = ret;
   if (tail) {
     parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
@@ -94,7 +94,7 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
       // do nothing
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
-    ch = nextCP(parser);
+    ch = advanceChar(parser);
   }
 
   return ch;

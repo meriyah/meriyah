@@ -385,6 +385,7 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
 export function reportScopeError(scope: any): never {
   throw new ParseError(scope.index, scope.line, scope.column, scope.type);
 }
+
 /**
  * Throws an error at a given position
  *
@@ -395,8 +396,21 @@ export function reportScopeError(scope: any): never {
  * @param {number} column
  * @param {Errors} type
  * @param {...string[]} params
- * @returns {never}
  */
 export function reportMessageAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
   throw new ParseError(index, line, column, type, ...params);
+}
+
+/**
+ * Throws an error at a given position
+ *
+ * @export
+ * @param {ParserState} state
+ * @param {number} index
+ * @param {number} line
+ * @param {number} column
+ * @param {Errors} type
+ */
+export function reportScannerError(index: number, line: number, column: number, type: Errors): never {
+  throw new ParseError(index, line, column, type);
 }

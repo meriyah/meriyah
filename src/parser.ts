@@ -137,7 +137,7 @@ export function create(source: string, sourceFile: string | void, onComment: OnC
     /**
      * The code point at the current index
      */
-    nextCP: source.charCodeAt(0),
+    currentChar: source.charCodeAt(0),
 
     /**
      *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
@@ -4110,7 +4110,7 @@ export function parseTemplateLiteral(
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateLiteral',
     expressions: [],
-    quasis: [parseTemplateTail(parser, context)]
+    quasis: [parseTemplateTail(parser, context, start, line, column)]
   });
 }
 
@@ -4121,12 +4121,18 @@ export function parseTemplateLiteral(
  * @param context Context masks
  * @returns {ESTree.TemplateElement}
  */
-export function parseTemplateTail(parser: ParserState, context: Context): ESTree.TemplateElement {
-  const { tokenValue, tokenRaw, startPos, linePos, colPos } = parser;
+export function parseTemplateTail(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  line: number,
+  column: number
+): ESTree.TemplateElement {
+  const { tokenValue, tokenRaw } = parser;
 
   consume(parser, context, Token.TemplateTail);
 
-  return finishNode(parser, context, startPos, linePos, colPos, {
+  return finishNode(parser, context, start, line, column, {
     type: 'TemplateElement',
     value: {
       cooked: tokenValue,
@@ -4149,7 +4155,7 @@ export function parseTemplate(
   line: number,
   column: number
 ): ESTree.TemplateLiteral {
-  const quasis = [parseTemplateSpans(parser, context, /* tail */ false)];
+  const quasis = [parseTemplateSpans(parser, context, /* tail */ false, start, line, column)];
 
   consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
   const expressions = [
@@ -4166,12 +4172,12 @@ export function parseTemplate(
   if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateTail) {
     const { tokenPos, linePos, colPos } = parser;
-    quasis.push(parseTemplateSpans(parser, context, /* tail */ false));
+    quasis.push(parseTemplateSpans(parser, context, /* tail */ false, tokenPos, linePos, colPos));
     consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
     expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
   }
 
-  quasis.push(parseTemplateSpans(parser, context, /* tail */ true));
+  quasis.push(parseTemplateSpans(parser, context, /* tail */ true, parser.tokenPos, parser.linePos, parser.colPos));
 
   nextToken(parser, context);
 
@@ -4188,9 +4194,15 @@ export function parseTemplate(
  * @param parser  Parser object
  * @param tail
  */
-export function parseTemplateSpans(parser: ParserState, context: Context, tail: boolean): ESTree.TemplateElement {
-  const { tokenPos, linePos, colPos } = parser;
-  return finishNode(parser, context, tokenPos, linePos, colPos, {
+export function parseTemplateSpans(
+  parser: ParserState,
+  context: Context,
+  tail: boolean,
+  start: number,
+  line: number,
+  column: number
+): ESTree.TemplateElement {
+  return finishNode(parser, context, start, line, column, {
     type: 'TemplateElement',
     value: {
       cooked: parser.tokenValue,

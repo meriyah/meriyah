@@ -26,9 +26,9 @@ export const enum NumberKind {
  *
  * @param parser The parser instance
  */
-export function nextCP(parser: ParserState): number {
+export function advanceChar(parser: ParserState): number {
   parser.column++;
-  return (parser.nextCP = parser.source.charCodeAt(++parser.index));
+  return (parser.currentChar = parser.source.charCodeAt(++parser.index));
 }
 
 /**
@@ -42,7 +42,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
   if ((hi & 0xfc00) !== Chars.LeadSurrogateMin) return 0;
   const lo = parser.source.charCodeAt(parser.index + 1);
   if ((lo & 0xfc00) !== 0xdc00) return 0;
-  hi = parser.nextCP = Chars.NonBMPMin + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
+  hi = parser.currentChar = Chars.NonBMPMin + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
   if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
     report(parser, Errors.IllegalCaracter, fromCodePoint(hi));
   }
@@ -55,7 +55,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
  * Use to consume a line feed instead of `scanNewLine`.
  */
 export function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void {
-  parser.nextCP = parser.source.charCodeAt(++parser.index);
+  parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.flags |= Flags.NewLine;
   if (!lastIsCR) {
     parser.column = 0;
@@ -65,7 +65,7 @@ export function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void {
 
 export function scanNewLine(parser: ParserState): void {
   parser.flags |= Flags.NewLine;
-  parser.nextCP = parser.source.charCodeAt(++parser.index);
+  parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.column = 0;
   parser.line++;
 }

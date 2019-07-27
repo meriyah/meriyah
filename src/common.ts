@@ -202,7 +202,7 @@ export interface ParserState {
   sourceFile: string | void;
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
-  nextCP: number;
+  currentChar: number;
   exportedNames: any;
   exportedBindings: any;
 }
