@@ -198,7 +198,7 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-  // Allowes comment extraction. Accepts either a function or array
+  // Allowes comment extraction. Accepts either a a callback function or an array
   onComment?: OnComment;
 }
 
@@ -1902,8 +1902,6 @@ export function parseLetIdentOrVarDeclarationStatement(
 
   if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
-  if (parser.token === Token.LetKeyword) report(parser, Errors.InvalidLetBoundName);
-
   /** LabelledStatement[Yield, Await, Return]:
    *
    * ExpressionStatement | LabelledStatement ::
@@ -2404,7 +2402,7 @@ function parseImportDeclaration(
 
   nextToken(parser, context);
 
-  let source: ESTree.Literal;
+  let source: ESTree.Literal | null = null;
 
   // This is `import("...")` call or `import.meta` meta property case.
   //
@@ -3955,7 +3953,7 @@ export function parsePrimaryExpressionExtended(
       return parseImportCallExpression(parser, context, inNewExpression, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
-        return parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, start, line, column);
+        return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
     default:
       if (
         context & Context.Strict
@@ -6451,7 +6449,7 @@ export function parseParenthesizedExpression(
 
       expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
 
-      if ((parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
+      if (parser.token === Token.RightParen || parser.token === Token.Comma) {
         if (parser.assignable & AssignmentKind.NotAssignable) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
@@ -6474,7 +6472,7 @@ export function parseParenthesizedExpression(
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 1, tokenPos, linePos, colPos);
 
-        if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+        if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 1, tokenPos, linePos, colPos, expr);
         }
       }
@@ -6490,14 +6488,14 @@ export function parseParenthesizedExpression(
 
       parser.assignable = AssignmentKind.NotAssignable;
 
-      if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+      if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
         if (destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidPatternTail);
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
 
         destructible |= DestructuringKind.CannotDestruct;
 
-        if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+        if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 0, tokenPos, linePos, colPos, expr);
         }
       }
@@ -6520,7 +6518,7 @@ export function parseParenthesizedExpression(
 
       isComplex = 1;
 
-      if (isSequence && (parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
+      if (isSequence && (parser.token === Token.RightParen || parser.token === Token.Comma)) {
         expressions.push(expr);
       }
       destructible |= DestructuringKind.MustDestruct;
@@ -6530,7 +6528,7 @@ export function parseParenthesizedExpression(
 
       expr = parseExpression(parser, context, 1, 0, 1, tokenPos, linePos, colPos);
 
-      if (isSequence && (parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
+      if (isSequence && (parser.token === Token.RightParen || parser.token === Token.Comma)) {
         expressions.push(expr);
       }
 
@@ -6561,7 +6559,7 @@ export function parseParenthesizedExpression(
       return expr;
     }
 
-    if (isSequence && (parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
+    if (isSequence && (parser.token === Token.RightParen || parser.token === Token.Comma)) {
       expressions.push(expr);
     }
 
@@ -7270,7 +7268,7 @@ export function parseAsyncArrowOrCallExpression(
       }
       expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
 
-      if ((parser.token & Token.IsCommaOrRightParen) === Token.IsCommaOrRightParen) {
+      if (parser.token === Token.RightParen || parser.token === Token.Comma) {
         if (parser.assignable & AssignmentKind.NotAssignable) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
@@ -7291,7 +7289,7 @@ export function parseAsyncArrowOrCallExpression(
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 1, tokenPos, linePos, colPos);
 
-        if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+        if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 1, tokenPos, linePos, colPos, expr);
         }
       }
@@ -7307,14 +7305,14 @@ export function parseAsyncArrowOrCallExpression(
 
       parser.assignable = AssignmentKind.NotAssignable;
 
-      if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+      if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
         if (destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidPatternTail);
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
 
         destructible |= DestructuringKind.CannotDestruct;
 
-        if ((parser.token & Token.IsCommaOrRightParen) !== Token.IsCommaOrRightParen) {
+        if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 0, parser.tokenPos, parser.linePos, parser.colPos, expr);
         }
       }
@@ -8248,7 +8246,7 @@ function parseAndClassifyIdentifier(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
+ * @param inJSXChild
  * @param start
  * @param line
  * @param column
@@ -8257,7 +8255,7 @@ function parseAndClassifyIdentifier(
 function parseJSXRootElementOrFragment(
   parser: ParserState,
   context: Context,
-  isJSXChild: 0 | 1,
+  inJSXChild: 0 | 1,
   start: number,
   line: number,
   column: number
@@ -8273,7 +8271,7 @@ function parseJSXRootElementOrFragment(
       closingFragment: parseJSXClosingFragment(
         parser,
         context,
-        isJSXChild,
+        inJSXChild,
         parser.tokenPos,
         parser.linePos,
         parser.colPos
@@ -8283,10 +8281,11 @@ function parseJSXRootElementOrFragment(
 
   let closingElement: ESTree.JSXClosingElement | null = null;
   let children: ESTree.JSXChild[] = [];
+
   const openingElement: ESTree.JSXOpeningElement = parseJSXOpeningFragmentOrSelfCloseElement(
     parser,
     context,
-    isJSXChild,
+    inJSXChild,
     start,
     line,
     column
@@ -8297,7 +8296,7 @@ function parseJSXRootElementOrFragment(
     closingElement = parseJSXClosingElement(
       parser,
       context,
-      isJSXChild,
+      inJSXChild,
       parser.tokenPos,
       parser.linePos,
       parser.colPos
@@ -8341,7 +8340,7 @@ export function parseOpeningFragment(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
+ * @param inJSXChild
  * @param start
  * @param line
  * @param column
@@ -8349,14 +8348,14 @@ export function parseOpeningFragment(
 function parseJSXClosingElement(
   parser: ParserState,
   context: Context,
-  isJSXChild: 0 | 1,
+  inJSXChild: 0 | 1,
   start: number,
   line: number,
   column: number
 ): ESTree.JSXClosingElement {
   consume(parser, context, Token.JSXClose);
   const name = parseJSXElementName(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
-  if (isJSXChild) {
+  if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
     parser.token = scanJSXToken(parser);
@@ -8373,7 +8372,7 @@ function parseJSXClosingElement(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
+ * @param inJSXChild
  * @param start
  * @param line
  * @param column
@@ -8381,16 +8380,18 @@ function parseJSXClosingElement(
 export function parseJSXClosingFragment(
   parser: ParserState,
   context: Context,
-  isJSXChild: 0 | 1,
+  inJSXChild: 0 | 1,
   start: number,
   line: number,
   column: number
 ): ESTree.JSXClosingFragment {
   consume(parser, context, Token.JSXClose);
+
   if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-    report(parser, Errors.Unexpected); // Expected_corresponding_closing_tag_for_JSX_fragment
+    report(parser, Errors.UnCorrespondingFragmentTag);
   }
-  if (isJSXChild) {
+
+  if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
     consume(parser, context, Token.GreaterThan);
@@ -8429,17 +8430,12 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
  * @param column
  */
 function parseJSXChild(parser: ParserState, context: Context, start: number, line: number, column: number): any {
-  switch (parser.token) {
-    case Token.JSXText:
-    case Token.Identifier:
-      return parseJSXText(parser, context, start, line, column);
-    case Token.LeftBrace:
-      return parseJSXExpressionContainer(parser, context, /*isJSXChild*/ 0, /* isAttr */ 0, start, line, column);
-    case Token.LessThan:
-      return parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 0, start, line, column);
-    default:
-      report(parser, Errors.Unexpected);
-  }
+  if (parser.token === Token.JSXText) return parseJSXText(parser, context, start, line, column);
+  if (parser.token === Token.LeftBrace)
+    return parseJSXExpressionContainer(parser, context, /*inJSXChild*/ 0, /* isAttr */ 0, start, line, column);
+  if (parser.token === Token.LessThan)
+    return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 0, start, line, column);
+  report(parser, Errors.Unexpected);
 }
 
 /**
@@ -8458,11 +8454,10 @@ export function parseJSXText(
   line: number,
   column: number
 ): ESTree.JSXText {
-  const value = parser.tokenValue;
   scanJSXToken(parser);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXText',
-    value
+    value: parser.tokenValue as string
   });
 }
 
@@ -8471,7 +8466,7 @@ export function parseJSXText(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
+ * @param inJSXChild
  * @param start
  * @param line
  * @param column
@@ -8479,7 +8474,7 @@ export function parseJSXText(
 function parseJSXOpeningFragmentOrSelfCloseElement(
   parser: ParserState,
   context: Context,
-  isJSXChild: 0 | 1,
+  inJSXChild: 0 | 1,
   start: number,
   line: number,
   column: number
@@ -8494,7 +8489,7 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
     scanJSXToken(parser);
   } else {
     consume(parser, context, Token.Divide);
-    if (isJSXChild) {
+    if (inJSXChild) {
       consume(parser, context, Token.GreaterThan);
     } else {
       scanJSXToken(parser);
@@ -8527,17 +8522,17 @@ function parseJSXElementName(
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression {
   scanJSXIdentifier(parser);
 
-  let name: any = parseJSXIdentifier(parser, context, start, line, column);
+  let key: ESTree.JSXIdentifier | ESTree.JSXMemberExpression = parseJSXIdentifier(parser, context, start, line, column);
 
   // Namespace
-  if (parser.token === Token.Colon) return parseJSXNamespacedName(parser, context, name, start, line, column);
+  if (parser.token === Token.Colon) return parseJSXNamespacedName(parser, context, key, start, line, column);
 
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
     scanJSXIdentifier(parser);
-    name = parseJSXMemberExpression(parser, context, name, start, line, column);
+    key = parseJSXMemberExpression(parser, context, key, start, line, column);
   }
-  return name;
+  return key;
 }
 
 /**
@@ -8562,7 +8557,7 @@ export function parseJSXMemberExpression(
     type: 'JSXMemberExpression',
     object,
     property
-  } as any);
+  });
 }
 
 /**
@@ -8579,8 +8574,7 @@ export function parseJSXAttributes(
   context: Context
 ): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] {
   const attributes: (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] = [];
-  while (parser.index < parser.end) {
-    if (parser.token === Token.Divide || parser.token === Token.GreaterThan) break;
+  while (parser.token !== Token.Divide && parser.token !== Token.GreaterThan) {
     attributes.push(parseJsxAttribute(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return attributes;
@@ -8602,7 +8596,7 @@ export function parseJSXSpreadAttribute(
   line: number,
   column: number
 ): ESTree.JSXSpreadAttribute {
-  nextToken(parser, context);
+  nextToken(parser, context); // skips: '{'
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
   consume(parser, context, Token.RightBrace);
@@ -8646,7 +8640,7 @@ function parseJsxAttribute(
         value = parseLiteral(parser, context, tokenPos, linePos, colPos);
         break;
       case Token.LessThan:
-        value = parseJSXRootElementOrFragment(parser, context, /*isJSXChild*/ 1, tokenPos, linePos, colPos);
+        value = parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, tokenPos, linePos, colPos);
         break;
       case Token.LeftBrace:
         value = parseJSXExpressionContainer(parser, context, 1, 1, tokenPos, linePos, colPos);
@@ -8695,7 +8689,7 @@ function parseJSXNamespacedName(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param isJSXChild
+ * @param inJSXChild
  * @param start
  * @param line
  * @param column
@@ -8703,7 +8697,7 @@ function parseJSXNamespacedName(
 function parseJSXExpressionContainer(
   parser: ParserState,
   context: Context,
-  isJSXChild: 0 | 1,
+  inJSXChild: 0 | 1,
   isAttr: 0 | 1,
   start: number,
   line: number,
@@ -8722,7 +8716,7 @@ function parseJSXExpressionContainer(
   } else {
     expression = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
   }
-  if (isJSXChild) {
+  if (inJSXChild) {
     consume(parser, context, Token.RightBrace);
   } else {
     scanJSXToken(parser);

@@ -486,7 +486,7 @@ describe('Declarations - Let', () => {
     ['let [...[ x ] = []] = [];', Context.None],
     ['let [...[ x ] = []] = [];', Context.None],
     ['let [...{ x } = []] = [];', Context.None],
-    ['let\\nlet', Context.None],
+    ['let\nlet', Context.None],
     ['do let [x] = 0; while (false);', Context.None],
     ['if (x) let [x] = y; else x;', Context.None],
     ['do let [] while (a);', Context.None],

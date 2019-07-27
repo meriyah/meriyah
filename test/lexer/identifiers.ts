@@ -79,6 +79,7 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.Identifier, 'ab\\u{00072}', 'abr'],
     [Context.None, Token.Identifier, 'ab\\u{072}', 'abr'],
     [Context.None, Token.Identifier, '\\u{4fff}', '俿'],
+    [Context.None, Token.Identifier, '\\u{222}', 'Ȣ'],
     [Context.None, Token.Identifier, '\\u{1EE00}', '{Ȁ'],
     [Context.None, Token.Identifier, 'a\\u{0000000000000000000071}c', 'aqc'],
 
@@ -219,6 +220,7 @@ describe('Lexer - Identifiers', () => {
   fail('fails on \\u007', '\\u007', Context.OptionsNext);
   fail('fails on \\u007Xvwxyz', '\\u007Xvwxyz', Context.OptionsNext);
   fail('fails on abc\\u{}', 'abc\\u{}', Context.OptionsNext);
+  fail('fails on abc\\u{}', 'abc\\u{}', Context.OptionsWebCompat);
   fail('fails on abc\\u}', 'abc\\u}', Context.OptionsNext);
   fail('fails on abc\\u{', 'abc\\u{', Context.OptionsNext);
   fail('fails on \\u{70bc', '\\u{70bc', Context.OptionsNext);
@@ -227,6 +229,9 @@ describe('Lexer - Identifiers', () => {
   fail('fails on \\u{10401', '\\u{10401', Context.None);
   fail('fails on \\u104', '\\u104', Context.None);
   fail('fails on \\u{!', '\\u{!', Context.None);
+  fail('fails on \\u{}', '\\u{}', Context.None);
+  fail('fails on \\u}', '\\u}', Context.None);
+  fail('fails on \\}', '\\}', Context.None);
   fail('fails on \\u', '\\u', Context.None);
   fail('fails on \\u{4fff', '\\u{4fff', Context.None);
   fail('fails on \\u{4ff', '\\u{4ff', Context.None);

@@ -167,7 +167,8 @@ export const enum Errors {
   InvalidDotProperty,
   UnclosedSpreadElement,
   CatchWithoutTry,
-  FinallyWithoutTry
+  FinallyWithoutTry,
+  UnCorrespondingFragmentTag
 }
 
 /*@internal*/
@@ -347,7 +348,8 @@ export const errorMessages: {
   [Errors.InvalidDotProperty]: 'Dot property must be an identifier',
   [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument',
   [Errors.CatchWithoutTry]: 'Catch without try',
-  [Errors.FinallyWithoutTry]: 'Finally without try'
+  [Errors.FinallyWithoutTry]: 'Finally without try',
+  [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment'
 };
 
 export class ParseError extends SyntaxError {
