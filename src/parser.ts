@@ -2213,23 +2213,38 @@ export function parseForStatement(
         if (parser.token === Token.OfKeyword) report(parser, Errors.ForOfLet);
       }
     } else {
-      // 'var', 'const'
-
       nextToken(parser, context);
 
-      const kind = KeywordDescTable[token & Token.Type] as 'var' | 'const';
-
-      init = finishNode(parser, context, tokenPos, linePos, colPos, {
-        type: 'VariableDeclaration',
-        kind,
-        declarations: parseVariableDeclarationList(
-          parser,
-          context | Context.DisallowIn,
-          scope,
-          kind === 'var' ? BindingKind.Variable : BindingKind.Const,
-          BindingOrigin.ForStatement
-        )
-      });
+      init = finishNode(
+        parser,
+        context,
+        tokenPos,
+        linePos,
+        colPos,
+        token === Token.VarKeyword
+          ? {
+              type: 'VariableDeclaration',
+              kind: 'var',
+              declarations: parseVariableDeclarationList(
+                parser,
+                context | Context.DisallowIn,
+                scope,
+                BindingKind.Variable,
+                BindingOrigin.ForStatement
+              )
+            }
+          : {
+              type: 'VariableDeclaration',
+              kind: 'const',
+              declarations: parseVariableDeclarationList(
+                parser,
+                context | Context.DisallowIn,
+                scope,
+                BindingKind.Const,
+                BindingOrigin.ForStatement
+              )
+            }
+      );
 
       parser.assignable = AssignmentKind.Assignable;
     }
@@ -7446,7 +7461,7 @@ export function parseClassDeclaration(
 
   nextToken(parser, context);
 
-  const { tokenPos, linePos, colPos, tokenValue } = parser;
+  const { tokenValue } = parser;
 
   if (
     ((parser.token & 0b0000000000000000001_0000_11111111) ^ 0b0000000000000000000_0000_01010100) >
