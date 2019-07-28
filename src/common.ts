@@ -68,8 +68,8 @@ export const enum BindingKind {
   FunctionLexical = 1 << 6,
   FunctionStatement = 1 << 7,
   CatchPattern = 1 << 8,
-  CatchIdentifier = 1 << 9,
-  CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
+  CatchNoPattern = 1 << 9,
+  CatchNoPatternOrPattern = CatchNoPattern | CatchPattern,
   LexicalOrFunction = Variable | FunctionLexical,
   LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
 }
@@ -89,15 +89,17 @@ export const enum BindingOrigin {
 export const enum AssignmentKind {
   None = 0,
   Assignable = 1 << 0,
-  NotAssignable = 1 << 1
+  CannotAssign = 1 << 1
 }
 
 export const enum DestructuringKind {
   None = 0,
-  MustDestruct = 1 << 3,
+  HasToDestruct = 1 << 3,
+  // "Cannot" rather than "can" so that this flag can be ORed together across
+  // multiple characters.
   CannotDestruct = 1 << 4,
   // Only destructible if assignable
-  AssignableDestruct = 1 << 5,
+  Assignable = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
   SeenProto = 1 << 6,
   Await = 1 << 7,
@@ -130,27 +132,22 @@ export const enum HoistedFunctionFlags {
 }
 
 /**
- * Scope types
+ * Scope kinds
  */
 export const enum ScopeKind {
   None = 0,
-  For = 1 << 0,
+  ForStatement = 1 << 0,
   Block = 1 << 1,
-  Catch = 1 << 2,
-  Switch = 1 << 3,
+  CatchStatement = 1 << 2,
+  SwitchStatement = 1 << 3,
   ArgList = 1 << 4,
-  Try = 1 << 5,
-  CatchHead = 1 << 6,
-  CatchBody = 1 << 7,
-  Finally = 1 << 8,
-  FuncBody = 1 << 9,
-  FuncRoot = 1 << 10,
-  ArrowParams = 1 << 11,
-  FakeBlock = 1 << 12,
-  Global = 1 << 13,
-  CatchIdentifier = 1 << 14,
-  ForHeader = 1 << 15,
-  FunctionParams = 1 << 16
+  TryStatement = 1 << 5,
+  CatchBlock = 1 << 6,
+  FunctionBody = 1 << 7,
+  FunctionRoot = 1 << 8,
+  FunctionParams = 1 << 9,
+  ArrowParams = 1 << 10,
+  CatchNoPattern = 1 << 11,
 }
 
 /**
@@ -518,7 +515,7 @@ export function recordScopeError(parser: ParserState, type: Errors): ScopeError 
 export function createScope(): ScopeState {
   return {
     parent: void 0,
-    type: ScopeKind.Global
+    type: ScopeKind.Block
   };
 }
 
@@ -583,7 +580,7 @@ export function addVarName(
 ): void {
   let currentScope: any = scope;
 
-  while (currentScope && (currentScope.type & ScopeKind.FuncRoot) === 0) {
+  while (currentScope && (currentScope.type & ScopeKind.FunctionRoot) === 0) {
     const value: ScopeKind = currentScope['#' + name];
 
     if (value & BindingKind.LexicalBinding) {
@@ -602,9 +599,9 @@ export function addVarName(
         currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
       }
     }
-    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
+    if (value & (BindingKind.CatchNoPattern | BindingKind.CatchPattern)) {
       if (
-        (value & BindingKind.CatchIdentifier) === 0 ||
+        (value & BindingKind.CatchNoPattern) === 0 ||
         (context & Context.OptionsWebCompat) === 0 ||
         context & Context.Strict
       ) {
@@ -652,7 +649,7 @@ export function addBlockName(
   }
 
   if (
-    scope.type & ScopeKind.FuncBody &&
+    scope.type & ScopeKind.FunctionBody &&
     ((scope as any).parent['#' + name] && ((scope as any).parent['#' + name] & BindingKind.EmptyBinding) === 0)
   ) {
     report(parser, Errors.DuplicateBinding, name);
@@ -664,8 +661,8 @@ export function addBlockName(
     }
   }
 
-  if (scope.type & ScopeKind.CatchBody) {
-    if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
+  if (scope.type & ScopeKind.CatchBlock) {
+    if ((scope as any).parent['#' + name] & BindingKind.CatchNoPatternOrPattern)
       report(parser, Errors.ShadowedCatchClause, name);
   }
 
