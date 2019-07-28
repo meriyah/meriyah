@@ -493,7 +493,6 @@ export function isEqualTagName(elementName: any): any {
   }
 }
 
-
 /**
  * Create a parsing scope for arrow head, and add lexical binding
  *
@@ -629,7 +628,6 @@ export function addBlockName(
 
   (scope as any)['#' + name] = kind;
 }
-
 
 /**
  * Adds a variable binding

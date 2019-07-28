@@ -3674,7 +3674,7 @@ export function parseMemberOrUpdateExpression(
 
         const { tokenPos, linePos, colPos } = parser;
 
-        let property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
+        const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
 
         consume(parser, context, Token.RightBracket);
 
@@ -4464,12 +4464,10 @@ export function parseFunctionDeclaration(
   let functionScope = scope ? createScope() : void 0;
 
   if (parser.token === Token.LeftParen) {
-    if ((flags & HoistedClassFlags.Hoisted) < 1) {
-      report(parser, Errors.DeclNoName, 'Function');
-    }
+    if ((flags & HoistedClassFlags.Hoisted) < 1) report(parser, Errors.DeclNoName, 'Function');
     if (scope) addBindingToExports(parser, '');
   } else {
-    let type =
+    const type =
       origin & BindingOrigin.TopLevel && ((context & Context.InGlobal) < 1 || (context & Context.Module) < 1)
         ? BindingKind.Variable
         : BindingKind.FunctionLexical;
@@ -5034,7 +5032,6 @@ function parseSpreadElement(
     }
 
     if (parser.assignable & AssignmentKind.CannotAssign) {
-      // `[...a+b]`
       destructible |= DestructuringKind.CannotDestruct;
     } else if (token === closingToken || token === Token.Comma) {
       if (scope) {
@@ -5137,9 +5134,10 @@ function parseSpreadElement(
       });
 
       destructible = DestructuringKind.CannotDestruct;
+    } else {
+      // Note the difference between '|=' and '=' above
+      destructible |= DestructuringKind.CannotDestruct;
     }
-
-    destructible |= DestructuringKind.CannotDestruct;
   }
 
   parser.destructible = destructible;
@@ -6961,7 +6959,7 @@ export function parseMembeExpressionNoCall(
 
       const { tokenPos, linePos, colPos } = parser;
 
-      let property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
+      const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
 
       consume(parser, context, Token.RightBracket);
 
@@ -7466,22 +7464,19 @@ export function parseClassDeclaration(
 
     id = parseIdentifier(parser, context, 0);
   } else {
-    if (flags & HoistedClassFlags.Hoisted) {
-      addBindingToExports(parser, '');
-    } else {
-      // Only under the "export default" context, class declaration does not require the class name.
-      //
-      //     ExportDeclaration:
-      //         ...
-      //         export default ClassDeclaration[~Yield, +Default]
-      //         ...
-      //
-      //     ClassDeclaration[Yield, Default]:
-      //         ...
-      //         [+Default] class ClassTail[?Yield]
-      //
-      report(parser, Errors.DeclNoName, 'Class');
-    }
+    // Only under the "export default" context, class declaration does not require the class name.
+    //
+    //     ExportDeclaration:
+    //         ...
+    //         export default ClassDeclaration[~Yield, +Default]
+    //         ...
+    //
+    //     ClassDeclaration[Yield, Default]:
+    //         ...
+    //         [+Default] class ClassTail[?Yield]
+    //
+    if ((flags & HoistedClassFlags.Hoisted) < 1) report(parser, Errors.DeclNoName, 'Class');
+    if (scope) addBindingToExports(parser, '');
   }
   let inheritedContext = context;
 
