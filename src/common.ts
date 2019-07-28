@@ -81,9 +81,8 @@ export const enum BindingOrigin {
   ForStatement = 1 << 2,
   Statement = 1 << 3,
   Export = 1 << 4,
-  Other = 1 << 5,
-  BlockStatement = 1 << 7,
-  TopLevel = 1 << 8
+  BlockStatement = 1 << 5,
+  TopLevel = 1 << 6
 }
 
 export const enum AssignmentKind {
@@ -502,7 +501,7 @@ export function isEqualTagName(elementName: any): any {
  */
 export function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState {
   const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.Other);
+  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.None);
   return scope;
 }
 
@@ -567,7 +566,7 @@ export function addVarOrBlock(
   if (kind & BindingKind.Variable) {
     addVarName(parser, context, scope, name, kind);
   } else {
-    addBlockName(parser, context, scope, name, kind, BindingOrigin.Other);
+    addBlockName(parser, context, scope, name, kind, origin);
   }
   if (origin & BindingOrigin.Export) {
     updateExportsList(parser, name);
