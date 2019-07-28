@@ -167,7 +167,8 @@ export const enum Errors {
   InvalidDotProperty,
   UnclosedSpreadElement,
   CatchWithoutTry,
-  FinallyWithoutTry
+  FinallyWithoutTry,
+  UnCorrespondingFragmentTag
 }
 
 /*@internal*/
@@ -217,7 +218,8 @@ export const errorMessages: {
   [Errors.AccessorWrongArgs]: '%0 functions must have exactly %1 argument%2',
   [Errors.BadSetterRestParameter]: 'Setter function argument must not be a rest parameter',
   [Errors.DeclNoName]: '%0 declaration must have a name in this context',
-  [Errors.StrictFunctionName]: 'Function name may not be eval or arguments in strict mode',
+  [Errors.StrictFunctionName]:
+    'Function name may not contain any reserved words or be eval or arguments in strict mode',
   [Errors.RestMissingArg]: 'The rest operator is missing an argument',
   [Errors.CantAssignToInit]: 'Cannot assign to lhs, not destructible with this initializer',
   [Errors.InvalidGeneratorGetter]: 'A getter cannot be a generator',
@@ -346,7 +348,8 @@ export const errorMessages: {
   [Errors.InvalidDotProperty]: 'Dot property must be an identifier',
   [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument',
   [Errors.CatchWithoutTry]: 'Catch without try',
-  [Errors.FinallyWithoutTry]: 'Finally without try'
+  [Errors.FinallyWithoutTry]: 'Finally without try',
+  [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment'
 };
 
 export class ParseError extends SyntaxError {
@@ -382,6 +385,7 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
 export function reportScopeError(scope: any): never {
   throw new ParseError(scope.index, scope.line, scope.column, scope.type);
 }
+
 /**
  * Throws an error at a given position
  *
@@ -392,8 +396,21 @@ export function reportScopeError(scope: any): never {
  * @param {number} column
  * @param {Errors} type
  * @param {...string[]} params
- * @returns {never}
  */
 export function reportMessageAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
   throw new ParseError(index, line, column, type, ...params);
+}
+
+/**
+ * Throws an error at a given position
+ *
+ * @export
+ * @param {ParserState} state
+ * @param {number} index
+ * @param {number} line
+ * @param {number} column
+ * @param {Errors} type
+ */
+export function reportScannerError(index: number, line: number, column: number, type: Errors): never {
+  throw new ParseError(index, line, column, type);
 }

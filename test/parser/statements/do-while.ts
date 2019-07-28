@@ -13,6 +13,17 @@ describe('Statements - Do while', () => {
     ['do try {} catch {} while(x) x', Context.None],
     ['do if (x) {} while(x) x', Context.None],
     ['do debugger; while(x) x', Context.None],
+    ['do x, y while (z)', Context.None],
+    ['do foo while (bar);', Context.None],
+    ['do ()=>x while(c)', Context.None],
+    [
+      `do
+    a
+    b
+  while(c);`,
+      Context.None
+    ],
+    ['do let {} = y', Context.None],
     ['do debugger while(x) x', Context.None],
     ['do;while(0) 0;', Context.None],
     ['do x: function s(){}while(y)', Context.None],
@@ -551,6 +562,51 @@ while(y)
         ],
         sourceType: 'script',
         type: 'Program'
+      }
+    ],
+
+    [
+      `do
+      ()=>x
+    while(c)`,
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'DoWhileStatement',
+            body: {
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'ArrowFunctionExpression',
+                body: {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 13,
+                  end: 14
+                },
+                params: [],
+                async: false,
+                expression: true,
+                start: 9,
+                end: 14
+              },
+              start: 9,
+              end: 14
+            },
+            test: {
+              type: 'Identifier',
+              name: 'c',
+              start: 25,
+              end: 26
+            },
+            start: 0,
+            end: 27
+          }
+        ],
+        start: 0,
+        end: 27
       }
     ],
     [

@@ -3,7 +3,7 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
-import { nextCP, LexerState, TokenLookup } from './';
+import { advanceChar, LexerState, TokenLookup } from './';
 import { scanSingleToken } from './scan';
 
 /**
@@ -17,7 +17,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
   parser.token =
-    CharTypes[parser.nextCP] & CharFlags.StringLiteral
+    CharTypes[parser.currentChar] & CharFlags.StringLiteral
       ? scanJSXString(parser)
       : scanSingleToken(parser, context, LexerState.None);
   return parser.token;
@@ -29,18 +29,18 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
  * @param parser The parser object
  */
 export function scanJSXString(parser: ParserState): Token {
-  const quote = parser.nextCP;
-  let char = nextCP(parser);
+  const quote = parser.currentChar;
+  let char = advanceChar(parser);
   const start = parser.index;
   while (char !== quote) {
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
-    char = nextCP(parser);
+    char = advanceChar(parser);
   }
 
   // check for unterminated string
   if (char !== quote) report(parser, Errors.UnterminatedString);
   parser.tokenValue = parser.source.slice(start, parser.index);
-  nextCP(parser); // skip the quote
+  advanceChar(parser); // skip the quote
   return Token.StringLiteral;
 }
 
@@ -60,22 +60,22 @@ export function scanJSXToken(parser: ParserState): Token {
 
   switch (token) {
     case Token.LessThan: {
-      nextCP(parser);
-      if (parser.nextCP === Chars.Slash) {
-        nextCP(parser);
+      advanceChar(parser);
+      if (parser.currentChar === Chars.Slash) {
+        advanceChar(parser);
         return (parser.token = Token.JSXClose);
       }
 
       return (parser.token = Token.LessThan);
     }
     case Token.LeftBrace: {
-      nextCP(parser);
+      advanceChar(parser);
       return (parser.token = Token.LeftBrace);
     }
     default: // ignore
   }
 
-  while (parser.index < parser.end && (CharTypes[nextCP(parser)] & CharFlags.JSXToken) === 0) {}
+  while (parser.index < parser.end && (CharTypes[advanceChar(parser)] & CharFlags.JSXToken) === 0) {}
 
   parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
 
@@ -90,9 +90,9 @@ export function scanJSXToken(parser: ParserState): Token {
 export function scanJSXIdentifier(parser: ParserState): Token {
   if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
-    let char = parser.nextCP;
+    let char = parser.currentChar;
     while ((CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) !== 0) {
-      char = nextCP(parser);
+      char = advanceChar(parser);
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }

@@ -36,7 +36,7 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
-  OptionsSpecDeviation = 1 << 29,
+  OptionsSpecDeviation = 1 << 29
 }
 
 export const enum PropertyKind {
@@ -60,7 +60,7 @@ export const enum PropertyKind {
 export const enum BindingKind {
   None = 0,
   ArgumentList = 1 << 0,
-  EmptyBinding  = 1 << 1,
+  EmptyBinding = 1 << 1,
   Variable = 1 << 2,
   Let = 1 << 3,
   Const = 1 << 4,
@@ -68,7 +68,7 @@ export const enum BindingKind {
   FunctionLexical = 1 << 6,
   FunctionStatement = 1 << 7,
   CatchPattern = 1 << 8,
-  CatchIdentifier  = 1 << 9,
+  CatchIdentifier = 1 << 9,
   CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
   LexicalOrFunction = Variable | FunctionLexical,
   LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
@@ -83,7 +83,7 @@ export const enum BindingOrigin {
   Export = 1 << 4,
   Other = 1 << 5,
   BlockStatement = 1 << 7,
-  TopLevel = 1 << 8,
+  TopLevel = 1 << 8
 }
 
 export const enum AssignmentKind {
@@ -114,7 +114,7 @@ export const enum Flags {
   Octals = 1 << 6,
   SimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
-  StrictEvalArguments = 1 << 9,
+  StrictEvalArguments = 1 << 9
 }
 
 export const enum HoistedClassFlags {
@@ -202,7 +202,7 @@ export interface ParserState {
   sourceFile: string | void;
   assignable: AssignmentKind | DestructuringKind;
   destructible: AssignmentKind | DestructuringKind;
-  nextCP: number;
+  currentChar: number;
   exportedNames: any;
   exportedBindings: any;
 }
@@ -216,8 +216,11 @@ export interface ParserState {
  */
 
 export function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
-  if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
-  && !specDeviation) {
+  if (
+    (parser.flags & Flags.NewLine) === 0 &&
+    (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon &&
+    !specDeviation
+  ) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
   consumeOpt(parser, context, Token.Semicolon);
@@ -353,9 +356,9 @@ export function validateBindingIdentifier(
     report(parser, Errors.KeywordNotId);
   }
 
-   // The BoundNames of LexicalDeclaration and ForDeclaration must not
-   // contain 'let'. (CatchParameter is the only lexical binding form
-   // without this restriction.)
+  // The BoundNames of LexicalDeclaration and ForDeclaration must not
+  // contain 'let'. (CatchParameter is the only lexical binding form
+  // without this restriction.)
   if (type & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
@@ -503,8 +506,10 @@ export function recordScopeError(parser: ParserState, type: Errors): ScopeError 
   const { index, line, column } = parser;
   return {
     type,
-    index, line, column
-  }
+    index,
+    line,
+    column
+  };
 }
 
 /**
@@ -531,7 +536,6 @@ export function addChildScope(parent: any, type: ScopeKind): ScopeState {
   };
 }
 
-
 /**
  * Adds either a var binding or a block scoped binding.
  *
@@ -542,21 +546,23 @@ export function addChildScope(parent: any, type: ScopeKind): ScopeState {
  * @param type Binding kind
  * @param origin Binding Origin
  */
-export function addVarOrBlock(parser: ParserState,
+export function addVarOrBlock(
+  parser: ParserState,
   context: Context,
   scope: ScopeState,
   name: string,
   type: BindingKind,
-  origin: BindingOrigin) {
-    if (type & BindingKind.Variable) {
-      addVarName(parser, context, scope, name, type);
-    } else {
-      addBlockName(parser, context, scope, name, type, BindingOrigin.Other);
-    }
-    if (origin & BindingOrigin.Export) {
-      updateExportsList(parser, parser.tokenValue);
-      addBindingToExports(parser, parser.tokenValue);
-    }
+  origin: BindingOrigin
+) {
+  if (type & BindingKind.Variable) {
+    addVarName(parser, context, scope, name, type);
+  } else {
+    addBlockName(parser, context, scope, name, type, BindingOrigin.Other);
+  }
+  if (origin & BindingOrigin.Export) {
+    updateExportsList(parser, parser.tokenValue);
+    addBindingToExports(parser, parser.tokenValue);
+  }
 }
 
 /**
@@ -575,15 +581,15 @@ export function addVarName(
   name: string,
   type: BindingKind
 ): void {
-
   let currentScope: any = scope;
 
   while (currentScope && (currentScope.type & ScopeKind.FuncRoot) === 0) {
-
     const value: ScopeKind = currentScope['#' + name];
 
     if (value & BindingKind.LexicalBinding) {
-      if (context & Context.OptionsWebCompat && (context & Context.Strict) === 0 &&
+      if (
+        context & Context.OptionsWebCompat &&
+        (context & Context.Strict) === 0 &&
         ((type & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
           (value & BindingKind.FunctionStatement && type & BindingKind.LexicalOrFunction))
       ) {
@@ -592,12 +598,16 @@ export function addVarName(
       }
     }
     if (currentScope === scope) {
-        if (value & BindingKind.ArgumentList && type & BindingKind.ArgumentList) {
-          currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
-        }
+      if (value & BindingKind.ArgumentList && type & BindingKind.ArgumentList) {
+        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
+      }
     }
     if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
-      if (((value & BindingKind.CatchIdentifier) === 0 || (context & Context.OptionsWebCompat) === 0) || context & Context.Strict) {
+      if (
+        (value & BindingKind.CatchIdentifier) === 0 ||
+        (context & Context.OptionsWebCompat) === 0 ||
+        context & Context.Strict
+      ) {
         report(parser, Errors.DuplicateBinding, name);
       }
     }
@@ -626,7 +636,6 @@ export function addBlockName(
   type: BindingKind,
   origin: BindingOrigin
 ) {
-
   const value = (scope as any)['#' + name];
 
   if (value && (value & BindingKind.EmptyBinding) === 0) {
@@ -656,7 +665,8 @@ export function addBlockName(
   }
 
   if (scope.type & ScopeKind.CatchBody) {
-    if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern) report(parser, Errors.ShadowedCatchClause, name);
+    if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
+      report(parser, Errors.ShadowedCatchClause, name);
   }
 
   (scope as any)['#' + name] = type;

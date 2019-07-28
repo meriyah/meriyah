@@ -7,7 +7,7 @@ export {
   CommentType
 } from './comments';
 export {
-  nextCP,
+  advanceChar,
   consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
   fromCodePoint,
@@ -23,7 +23,7 @@ export {
   scanIdentifierSlowCase,
   scanUnicodeIdentifier,
   scanPrivateName,
-  scanUnicodeEscapeValue
+  scanUnicodeEscape
 } from './identifier';
 export { scanString } from './string';
 export { scanNumber } from './numeric';

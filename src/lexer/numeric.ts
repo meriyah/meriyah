@@ -1,8 +1,8 @@
 import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
-import { nextCP, toHex, CharTypes, CharFlags, isIdentifierStart, NumberKind } from './';
+import { advanceChar, toHex, CharTypes, CharFlags, isIdentifierStart, NumberKind } from './';
 import { Chars } from '../chars';
-import { report, Errors } from '../errors';
+import { report, Errors, reportScannerError } from '../errors';
 
 /**
  * Scans numeric literal
@@ -15,37 +15,37 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
   // DecimalLiteral ::
   //   DecimalIntegerLiteral . DecimalDigits_opt
   //   . DecimalDigits
-  let char = parser.nextCP;
+  let char = parser.currentChar;
   let value: any = 0;
   let digit = 9;
-  let atStart = kind & NumberKind.Float ? 1 : 0;
+  let atStart = kind & NumberKind.Float ? 0 : 1;
   let digits = 0;
   let allowSeparator: 0 | 1 = 0;
 
   if (kind & NumberKind.Float) {
     value = '.' + scanDecimalDigitsOrSeparator(parser, char);
-    char = parser.nextCP;
+    char = parser.currentChar;
     // It is a Syntax Error if the MV is not an integer. (dot decimalDigits)
     if (char === Chars.LowerN) report(parser, Errors.InvalidBigInt);
   } else {
     if (char === Chars.Zero) {
-      char = nextCP(parser);
+      char = advanceChar(parser);
 
       // Hex
       if ((char | 32) === Chars.LowerX) {
         kind = NumberKind.Hex;
-        char = nextCP(parser); // skips 'X', 'x'
+        char = advanceChar(parser); // skips 'X', 'x'
         while (CharTypes[char] & (CharFlags.Hex | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
             if (!allowSeparator) report(parser, Errors.ContinuousNumericSeparator);
             allowSeparator = 0;
-            char = nextCP(parser);
+            char = advanceChar(parser);
             continue;
           }
           allowSeparator = 1;
           value = value * 0x10 + toHex(char);
           digits++;
-          char = nextCP(parser);
+          char = advanceChar(parser);
         }
 
         if (digits < 1 || !allowSeparator) {
@@ -54,40 +54,40 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         // Octal
       } else if ((char | 32) === Chars.LowerO) {
         kind = NumberKind.Octal;
-        char = nextCP(parser); // skips 'X', 'x'
+        char = advanceChar(parser); // skips 'X', 'x'
         while (CharTypes[char] & (CharFlags.Octal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
             if (!allowSeparator) {
               report(parser, Errors.ContinuousNumericSeparator);
             }
             allowSeparator = 0;
-            char = nextCP(parser);
+            char = advanceChar(parser);
             continue;
           }
           allowSeparator = 1;
           value = value * 8 + (char - Chars.Zero);
           digits++;
-          char = nextCP(parser);
+          char = advanceChar(parser);
         }
         if (digits < 1 || !allowSeparator) {
           report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
         }
       } else if ((char | 32) === Chars.LowerB) {
         kind = NumberKind.Binary;
-        char = nextCP(parser); // skips 'B', 'b'
+        char = advanceChar(parser); // skips 'B', 'b'
         while (CharTypes[char] & (CharFlags.Binary | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
             if (!allowSeparator) {
               report(parser, Errors.ContinuousNumericSeparator);
             }
             allowSeparator = 0;
-            char = nextCP(parser);
+            char = advanceChar(parser);
             continue;
           }
           allowSeparator = 1;
           value = value * 2 + (char - Chars.Zero);
           digits++;
-          char = nextCP(parser);
+          char = advanceChar(parser);
         }
         if (digits < 1 || !allowSeparator) {
           report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
@@ -103,7 +103,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
             break;
           }
           value = value * 8 + (char - Chars.Zero);
-          char = nextCP(parser);
+          char = advanceChar(parser);
         }
       } else if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
@@ -119,18 +119,32 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
       if (atStart) {
         while (digit >= 0 && CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
-            char = nextCP(parser);
-            if (char === Chars.Underscore) report(parser, Errors.ContinuousNumericSeparator);
+            char = advanceChar(parser);
+            if (char === Chars.Underscore) {
+              reportScannerError(
+                parser.index,
+                parser.line,
+                parser.index + 1 /* skips `_` */,
+                Errors.ContinuousNumericSeparator
+              );
+            }
             allowSeparator = 1;
             continue;
           }
           allowSeparator = 0;
           value = 10 * value + (char - Chars.Zero);
-          char = nextCP(parser);
+          char = advanceChar(parser);
           --digit;
         }
 
-        if (allowSeparator) report(parser, Errors.TrailingNumericSeparator);
+        if (allowSeparator) {
+          reportScannerError(
+            parser.index,
+            parser.line,
+            parser.index + 1 /* skips `_` */,
+            Errors.TrailingNumericSeparator
+          );
+        }
 
         if (digit >= 0 && !isIdentifierStart(char) && char !== Chars.Period) {
           // Most numbers are pure decimal integers without fractional component
@@ -143,14 +157,14 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
 
       value += scanDecimalDigitsOrSeparator(parser, char);
 
-      char = parser.nextCP;
+      char = parser.currentChar;
 
       // Consume any decimal dot and fractional component.
       if (char === Chars.Period) {
-        if (nextCP(parser) === Chars.Underscore) report(parser, Errors.Unexpected);
+        if (advanceChar(parser) === Chars.Underscore) report(parser, Errors.Unexpected);
         kind = NumberKind.Float;
-        value += '.' + scanDecimalDigitsOrSeparator(parser, parser.nextCP);
-        char = parser.nextCP;
+        value += '.' + scanDecimalDigitsOrSeparator(parser, parser.currentChar);
+        char = parser.currentChar;
       }
     }
   }
@@ -160,14 +174,14 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
 
   if (char === Chars.LowerN && kind & NumberKind.ValidBigIntKind) {
     isBigInt = 1;
-    char = nextCP(parser);
+    char = advanceChar(parser);
   } else {
     // Consume any exponential notation.
     if ((char | 32) === Chars.LowerE) {
-      char = nextCP(parser);
+      char = advanceChar(parser);
 
       // '-', '+'
-      if (CharTypes[char] & CharFlags.Exponent) char = nextCP(parser);
+      if (CharTypes[char] & CharFlags.Exponent) char = advanceChar(parser);
 
       const { index } = parser;
 
@@ -177,7 +191,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
       // Consume exponential digits
       value += parser.source.substring(end, index) + scanDecimalDigitsOrSeparator(parser, char);
 
-      char = parser.nextCP;
+      char = parser.currentChar;
     }
   }
 
@@ -218,18 +232,27 @@ export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number):
   while (CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
     if (char === Chars.Underscore) {
       const { index } = parser;
-      char = nextCP(parser);
-      if (char === Chars.Underscore) report(parser, Errors.ContinuousNumericSeparator);
+      char = advanceChar(parser);
+      if (char === Chars.Underscore) {
+        reportScannerError(
+          parser.index,
+          parser.line,
+          parser.index + 1 /* skips `_` */,
+          Errors.ContinuousNumericSeparator
+        );
+      }
       allowSeparator = 1;
       ret += parser.source.substring(start, index);
       start = parser.index;
       continue;
     }
     allowSeparator = 0;
-    char = nextCP(parser);
+    char = advanceChar(parser);
   }
 
-  if (allowSeparator) report(parser, Errors.TrailingNumericSeparator);
+  if (allowSeparator) {
+    reportScannerError(parser.index, parser.line, parser.index + 1 /* skips `_` */, Errors.TrailingNumericSeparator);
+  }
 
   return ret + parser.source.substring(start, parser.index);
 }

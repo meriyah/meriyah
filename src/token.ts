@@ -17,7 +17,6 @@ export const enum Token {
   IsLogical           = 1 << 19,
   IsAutoSemicolon     = 1 << 20,
   IsPatternStart      = 1 << 21, // Start of pattern, '[' or '{'
-
   IsAssignOp           = 1 << 22,
   IsBinaryOp           = 1 << 23 | IsExpressionStart,
   IsUnaryOp            = 1 << 24 | IsExpressionStart,
@@ -26,8 +25,7 @@ export const enum Token {
   IsStringOrNumber     = 1 << 27,
   VarDecl              = 1 << 28,
   IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
-  IsCommaOrRightParen  = 1 << 30,
-  IsClassField         = 1 << 31,
+  IsClassField         = 1 << 30,
 
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
@@ -52,9 +50,9 @@ export const enum Token {
   Period       = 13 | IsMemberOrCallExpression, // .
   Ellipsis     = 14, // ...
   RightBrace   = 15 | IsAutoSemicolon | IsClassField, // }
-  RightParen   = 16 | IsCommaOrRightParen, // )
+  RightParen   = 16, // )
   Semicolon    = 17 | IsAutoSemicolon | IsClassField, // ;
-  Comma        = 18 | IsCommaOrRightParen | IsClassField, // ,
+  Comma        = 18 | IsClassField, // ,
   LeftBracket  = 19 | IsExpressionStart | IsPatternStart | IsMemberOrCallExpression, // [
   RightBracket = 20, // ]
   Colon        = 21, // :
@@ -174,7 +172,7 @@ export const enum Token {
   EscapedFutureReserved   = 119 | IsIdentifier,
   ReservedIfStrict  = 120 | IsIdentifier,
 
-  PrivateName  = 121 | IsIdentifier,
+  PrivateName  = 121,
   BigIntLiteral  = 122,
   WhiteSpace           = 124,
   Illegal  = 129,

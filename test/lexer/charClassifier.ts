@@ -18,7 +18,6 @@ describe('Lexer - charClassifier', () => {
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 77],
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 78],
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 103],
-    [CharFlags.BackSlash | CharFlags.IdentifierStart, 92],
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 122]
   ];
 

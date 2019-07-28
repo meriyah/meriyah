@@ -71,6 +71,12 @@ describe('Expressions - Arrow', () => {
       });
     });
 
+    it(`async ${arg};`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`async ${arg};`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+      });
+    });
+
     it(`bar ? (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
         parseSource(`bar ? (${arg}) : baz;`, undefined, Context.None);
@@ -373,6 +379,12 @@ describe('Expressions - Arrow', () => {
       });
     });
 
+    it(`v = ${arg};`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`v = ${arg};`, undefined, Context.OptionsNext);
+      });
+    });
+
     it(`bar,  ${arg};`, () => {
       t.doesNotThrow(() => {
         parseSource(`bar,  ${arg};`, undefined, Context.None);
@@ -448,6 +460,12 @@ describe('Expressions - Arrow', () => {
     it(`var x = ()${arg} =>{}`, () => {
       t.throws(() => {
         parseSource(`var x = ()${arg} =>{}`, undefined, Context.None);
+      });
+    });
+
+    it(`var x = ()${arg} =>{}`, () => {
+      t.throws(() => {
+        parseSource(`var x = ()${arg} =>{}`, undefined, Context.OptionsNext);
       });
     });
 
