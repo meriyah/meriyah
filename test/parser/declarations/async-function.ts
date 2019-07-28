@@ -33,19 +33,19 @@ describe('Declarations - Async Function', () => {
     'async function * f() { for await ({a: a} of []); }',
     'async function * f() { for await ({0: a} of []); }',
     'async function * f() { for await ({0: a = 1} of []); }',
-    'async function f3({x}) { var y = x; var x = 2; return y; }',
-    'async function f4({x}) { { var y = x; var x = 2; } return y; }',
-    'async function f6({x}, g = () => x) { { var x = 2; } return g(); }',
-    'async function f7({x}) { var g = () => x; var x = 2; return g(); }',
-    'async function f8({x}) { { var g = () => x; var x = 2; } return g(); }',
-    'async function f9({x}, g = () => eval("x")) { var x = 2; return g(); }',
-    'async function f12(y, g = () => y) { var y = 2; return g(); }',
-    'async function f11({x}, y) { var z = y; var y = 2; return z; }',
-    'async function f13({x}, y, [z], v) { var x, y, z; return x*y*z*v }',
-    'async function f20({x}) { function x() { return 2 }; return x(); }',
-    'async function f1(x = (y = 1)) { z = 1; await undefined; w = 1; };',
-    'async function f1(a, b, c) { await a; }',
-    'async function f1({x}) { var x = 2; return x }',
+    'async function x({x}) { var y = x; var x = 2; return y; }',
+    'async function x({x}) { { var y = x; var x = 2; } return y; }',
+    'async function x({x}, g = () => x) { { var x = 2; } return g(); }',
+    'async function x({x}) { var g = () => x; var x = 2; return g(); }',
+    'async function x({x}) { { var g = () => x; var x = 2; } return g(); }',
+    'async function x({x}, g = () => eval("x")) { var x = 2; return g(); }',
+    'async function x(y, g = () => y) { var y = 2; return g(); }',
+    'async function x({x}, y) { var z = y; var y = 2; return z; }',
+    'async function x({x}, y, [z], v) { var x, y, z; return x*y*z*v }',
+    'async function x({x}) { function x() { return 2 }; return x(); }',
+    'async function x(x = (y = 1)) { z = 1; await undefined; w = 1; };',
+    'async function x(a, b, c) { await a; }',
+    'async function a({x}) { var x = 2; return x }',
     'async function a() { await 4; } var await = 5',
     'async function a() { function b() { return await; } }',
     'async function a() { var k = { async: 4 } }',
@@ -430,6 +430,15 @@ describe('Declarations - Async Function', () => {
     ['async function* f() { a = async function*(a = await) {}; }', Context.None],
     ['function f(a = async function(a = await) {}) {}', Context.None],
     ['({async\nfoo() { }})', Context.None],
+    [
+      `async function x(a=class b{
+      [a = class b{
+          [await 0](){}
+      }](){}
+    }) {
+    }`,
+      Context.None
+    ],
     ['({async get foo() { }})', Context.None],
     ['({async set foo(value) { }})', Context.None],
     ['({async foo() { var await }})', Context.None],

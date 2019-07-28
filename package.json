@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",

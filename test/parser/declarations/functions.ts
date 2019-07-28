@@ -161,6 +161,7 @@ describe('Declarations - Function', () => {
     ['function test({...[]}) {}', Context.None],
     ['function test({...x = 1}) {}', Context.None],
     ['function test({...{}}) {}', Context.None],
+    ['function w(casecase){y:j:function casecase(){}}', Context.None],
     ['function test({...x = 1}) {}', Context.None],
     ['function foo() { "use strict"; 00004; }', Context.Strict],
     ['function foo() { 00004; }', Context.Strict],
@@ -556,6 +557,7 @@ describe('Declarations - Function', () => {
     'function *f(){ class x { [yield y](){} }  }',
     'function *f(){ class x { [yield](){} }  }',
     'function *f(){ class x { yield(){} }  }',
+    'function f() { throw `${delete(y)}`; }',
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }'
   ]) {
     it(`${arg}`, () => {
@@ -572,6 +574,88 @@ describe('Declarations - Function', () => {
   }
 
   pass('Declarations - Function (pass)', [
+    [
+      'function w(casecase){y:j:function casecase(){}}',
+      Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [
+              {
+                type: 'Identifier',
+                name: 'casecase',
+                start: 11,
+                end: 19
+              }
+            ],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'LabeledStatement',
+                  label: {
+                    type: 'Identifier',
+                    name: 'y',
+                    start: 21,
+                    end: 22
+                  },
+                  body: {
+                    type: 'LabeledStatement',
+                    label: {
+                      type: 'Identifier',
+                      name: 'j',
+                      start: 23,
+                      end: 24
+                    },
+                    body: {
+                      type: 'FunctionDeclaration',
+                      params: [],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [],
+                        start: 44,
+                        end: 46
+                      },
+                      async: false,
+                      generator: false,
+                      id: {
+                        type: 'Identifier',
+                        name: 'casecase',
+                        start: 34,
+                        end: 42
+                      },
+                      start: 25,
+                      end: 46
+                    },
+                    start: 23,
+                    end: 46
+                  },
+                  start: 21,
+                  end: 46
+                }
+              ],
+              start: 20,
+              end: 47
+            },
+            async: false,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'w',
+              start: 9,
+              end: 10
+            },
+            start: 0,
+            end: 47
+          }
+        ],
+        start: 0,
+        end: 47
+      }
+    ],
     [
       'function* x() { for (const [j = yield] in (x) => {}) {} }',
       Context.None,

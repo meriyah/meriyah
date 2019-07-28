@@ -16,6 +16,11 @@ describe('Miscellaneous - Pass', () => {
     `do throw function(){}
     while(y)
     for(;;)x`,
+    `function runNearStackLimit(f) { function t() { try { t(); } catch(e) { f(); } }; try { t(); } catch(e) {} }
+     function quit() {}
+     function nop() {}
+    try { gc; } catch(e) { gc = nop; }`,
+    `a = let\n{}`,
     `throw(protected(x=>{"use strict"}))`,
     `for ({da = 2e308} of ([, , , (arguments[((f))]).break = (null)] = (/(?=\B\b)/gmuy === njbcpwhomopc.switch))) continue`,
     `for (var c, f; (/[+-\\l-]/u); ((class {}).with)) var i;`,
@@ -10047,6 +10052,20 @@ var func2 = function(argMath100,...argArr101){
   var reResult0='%$'+'º{'+'%Ã' + 'ûÛ'.search(/(?=\B.)/imy);
   return (typeof(((strvar7).replace(/a/g, ('È').replace('È', 'Ã!'+'qÄ'+'U*' + 'é%'))).replace((strvar7).replace(/a/g, ('È').replace('È', 'Ã!'+'qÄ'+'U*' + 'é%')), strvar6))  == 'boolean') ;
 };`,
+    `function* qegv() {
+  ;(null);
+  debugger
+  let [] = (((yield* ((yield)))));
+  do debugger; while ((null))
+}
+for (new ((dieqffaqtlfrca = ((((true))).yield **= ((eval)))))(((new (((++(/M^\u4afE\ufDeB$/gm).y)))((jetkknpsm))))).void in (rlil = ((false.prototype)))) var [...[]] = (((""))), sdsukajfdph, kgiujhouegnpnm = function pjsoeexyswiv([], ...{}) {
+  for (;;) ;
+  {}
+  for (var q of ((/\\B/gim))) ;
+}, [i, , , ...{}] = (({[((5192))]() {
+  "use strict"
+}, eval, [/\u1312+?/mu]: (2e308), set [(2e308)] ([]) {
+}}));`,
     `var func3 = function(argMath113,argMath114,argMath115,argMath116 = (argMath115 + argMath113)){
   if((func2.call(arrObj0 , strvar1, ary) && (~ -2147483648))) {
   }

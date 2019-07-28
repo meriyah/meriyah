@@ -33,13 +33,14 @@ describe('Statements - For', () => {
     'for ({x = y} = (z);;) {}',
     `for(var x = 0;;);`,
     `for(let x = 0;;);`,
+    'for(delete(x in y);;)x',
     `for(var a = 0;;) { let a; }`,
     `for (var { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }; a < 1; ) {}`,
     `for (var [[] = function() { a += 1; }()] = [[23]]; b < 1; ) {}`,
     `for (let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: '' }; e < 1; ) {}`,
     `for (let [,] = a(); b < 1; ) {}`,
-    //    `for (const [ x, ] = y; a < 1; ) {};
-    //    for (const [ x, ] =  z; a < 1; ) {};`,
+    `for (const [ x, ] = y; a < 1; ) {};
+     for (const [ x, ] =  z; a < 1; ) {};`,
     `for (let i = 0; i < 10; ++i) {
       console.log(i);
   }
@@ -409,6 +410,7 @@ describe('Statements - For', () => {
     'for(let a;;); let a;',
     'for(x; x < 0; x++) process(x);',
     'for(x; x < 0; x++) process(x);',
+    'for(delete((1)?y:x in y);;)x',
     'for ([x];;);',
     'for ([x.y];;);',
     'for ([x] = z;;);',
@@ -553,6 +555,8 @@ describe('Statements - For', () => {
     ['for (var {,,x} = obj);', Context.None],
     ['for (a, b);', Context.None],
     ['for (var {,,x} = obj);', Context.None],
+    ['for(delete(x in y) in z)x', Context.None],
+    ['for(delete((1)?y:x in y) in z)x', Context.None],
     ['for (a + b);', Context.None],
     ['for (a);', Context.None],
     ['for ({});', Context.None],

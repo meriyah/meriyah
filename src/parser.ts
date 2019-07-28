@@ -1053,8 +1053,9 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
         report(parser, Errors.YieldInParameter);
       }
 
-      if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
-        parser.flags |= Flags.StrictEvalArguments;
+      if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+        parser.flags |= Flags.SimpleParameterList;
+      }
 
       if (scope) {
         scope = addChildScope(createScope(), ScopeKind.FuncBody);
@@ -3476,30 +3477,23 @@ export function parseFunctionBody(
       }
       body.push(parseDirective(parser, context, expr, token, tokenPos, parser.linePos, parser.colPos));
     }
+    if (
+      context & Context.Strict &&
+      firstRestricted &&
+      ((firstRestricted & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
+        (firstRestricted & Token.FutureReserved) === Token.FutureReserved)
+    ) {
+      report(parser, Errors.StrictFunctionName);
+    }
 
-    if (context & Context.Strict) {
-      if (
-        scope &&
-        (scopeError !== void 0 && (prevContext & Context.Strict) < 1 && (context & Context.InGlobal) === 0)
-      ) {
-        reportScopeError(scopeError);
-      }
-
-      if (parser.flags & Flags.HasStrictReserved) report(parser, Errors.UnexpectedStrictReserved);
-      if (parser.flags & Flags.StrictEvalArguments) report(parser, Errors.StrictEvalArguments);
-      if (
-        firstRestricted &&
-        ((firstRestricted & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
-          (firstRestricted & Token.FutureReserved) === Token.FutureReserved)
-      ) {
-        report(parser, Errors.StrictFunctionName);
-      }
+    if (
+      context & Context.OptionsLexical &&
+      scope &&
+      (scopeError !== void 0 && (prevContext & Context.Strict) < 1 && (context & Context.InGlobal) === 0)
+    ) {
+      reportScopeError(scopeError);
     }
   }
-
-  parser.flags =
-    (parser.flags | Flags.HasStrictReserved | Flags.StrictEvalArguments) ^
-    (Flags.StrictEvalArguments | Flags.HasStrictReserved);
 
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
@@ -3890,7 +3884,9 @@ export function parsePrimaryExpressionExtended(
       parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
       if (IsEvalOrArguments) {
         if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
-        parser.flags |= Flags.StrictEvalArguments;
+        parser.flags |= Flags.SimpleParameterList;
+      } else {
+        parser.flags &= ~Flags.SimpleParameterList;
       }
 
       if (!allowAssign) report(parser, Errors.InvalidAssignmentTarget);
@@ -6259,7 +6255,7 @@ export function parseMethodFormals(
         ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
           (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       ) {
-        parser.flags |= Flags.StrictEvalArguments;
+        parser.flags |= Flags.SimpleParameterList;
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
@@ -6445,16 +6441,12 @@ export function parseParenthesizedExpression(
         if (parser.assignable & AssignmentKind.NotAssignable) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
-        } else if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-          parser.flags |= Flags.StrictEvalArguments;
+        } else if (
+          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
+          (token & Token.FutureReserved) === Token.FutureReserved
+        ) {
+          isComplex = 1;
         }
-
-        parser.flags |=
-          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-            ? Flags.StrictEvalArguments
-            : (token & Token.FutureReserved) === Token.FutureReserved
-            ? Flags.HasStrictReserved
-            : 0;
       } else {
         if (parser.token === Token.Assign) {
           isComplex = 1;
@@ -6806,15 +6798,13 @@ export function parseFormalParametersOrFormalList(
     let left: any;
     const { tokenPos, tokenValue, linePos, colPos } = parser;
     if (parser.token & Token.IsIdentifier) {
-      if ((context & Context.Strict) === 0) {
-        if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-          parser.flags |= Flags.StrictEvalArguments;
-        }
-        if ((parser.token & Token.FutureReserved) === Token.FutureReserved) {
-          parser.flags |= Flags.HasStrictReserved;
-        }
+      if (
+        (context & Context.Strict) === 0 &&
+        ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
+          (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+      ) {
+        isComplex = 1;
       }
-
       if (scope) {
         // Strict-mode disallows duplicate args. We may not know whether we are
         // in strict mode or not (since the function body hasn't been parsed).
@@ -7264,14 +7254,12 @@ export function parseAsyncArrowOrCallExpression(
         if (parser.assignable & AssignmentKind.NotAssignable) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
+        } else if (
+          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
+          (token & Token.FutureReserved) === Token.FutureReserved
+        ) {
+          isComplex = 1;
         }
-
-        parser.flags |=
-          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-            ? Flags.StrictEvalArguments
-            : (token & Token.FutureReserved) === Token.FutureReserved
-            ? Flags.HasStrictReserved
-            : 0;
       } else {
         if (parser.token === Token.Assign) {
           isComplex = 1;
