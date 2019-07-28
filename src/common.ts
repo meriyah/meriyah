@@ -4,7 +4,7 @@ import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
- * The core context, passed around everywhere as a simple immutable bit set.
+ * The core context, passed around everywhere as a simple immutable bit set
  */
 export const enum Context {
   None = 0,
@@ -39,6 +39,9 @@ export const enum Context {
   OptionsSpecDeviation = 1 << 29
 }
 
+/**
+ * Masks to track the property kind
+ */
 export const enum PropertyKind {
   None = 0,
   Method = 1 << 0,
@@ -57,6 +60,9 @@ export const enum PropertyKind {
   GetSet = Getter | Setter
 }
 
+/**
+ * Masks to track the binding kind
+ */
 export const enum BindingKind {
   None = 0,
   ArgumentList = 1 << 0,
@@ -68,29 +74,38 @@ export const enum BindingKind {
   FunctionLexical = 1 << 6,
   FunctionStatement = 1 << 7,
   CatchPattern = 1 << 8,
-  CatchNoPattern = 1 << 9,
-  CatchNoPatternOrPattern = CatchNoPattern | CatchPattern,
+  CatchIdentifier = 1 << 9,
+  CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
   LexicalOrFunction = Variable | FunctionLexical,
   LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
 }
 
-export const enum BindingOrigin {
+/**
+ * The masks to track where something begins. E.g. statements, declarations or arrows.
+ */
+export const enum Origin {
   None = 0,
-  Declaration = 1 << 0,
-  Arrow = 1 << 1,
-  ForStatement = 1 << 2,
-  Statement = 1 << 3,
-  Export = 1 << 4,
-  BlockStatement = 1 << 5,
-  TopLevel = 1 << 6
+  Statement = 1 << 0,
+  BlockStatement = 1 << 1,
+  TopLevel = 1 << 2,
+  Declaration = 1 << 3,
+  Arrow = 1 << 4,
+  ForStatement = 1 << 5,
+  Export = 1 << 6,
 }
 
+/**
+ * Masks to track the assignment kind
+ */
 export const enum AssignmentKind {
   None = 0,
   Assignable = 1 << 0,
   CannotAssign = 1 << 1
 }
 
+/**
+ * Masks to track the destructuring kind
+ */
 export const enum DestructuringKind {
   None = 0,
   HasToDestruct = 1 << 3,
@@ -146,7 +161,7 @@ export const enum ScopeKind {
   FunctionRoot = 1 << 8,
   FunctionParams = 1 << 9,
   ArrowParams = 1 << 10,
-  CatchNoPattern = 1 << 11,
+  CatchIdentifier = 1 << 11,
 }
 
 /**
@@ -501,7 +516,7 @@ export function isEqualTagName(elementName: any): any {
  */
 export function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState {
   const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.None);
+  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, Origin.None);
   return scope;
 }
 
@@ -561,14 +576,14 @@ export function addVarOrBlock(
   scope: ScopeState,
   name: string,
   kind: BindingKind,
-  origin: BindingOrigin
+  origin: Origin
 ) {
   if (kind & BindingKind.Variable) {
     addVarName(parser, context, scope, name, kind);
   } else {
     addBlockName(parser, context, scope, name, kind, origin);
   }
-  if (origin & BindingOrigin.Export) {
+  if (origin & Origin.Export) {
     updateExportsList(parser, name);
     addBindingToExports(parser, name);
   }
@@ -590,7 +605,7 @@ export function addBlockName(
   scope: any,
   name: string,
   kind: BindingKind,
-  origin: BindingOrigin
+  origin: Origin
 ) {
   const value = (scope as any)['#' + name];
 
@@ -600,7 +615,7 @@ export function addBlockName(
     } else if (
       context & Context.OptionsWebCompat &&
       value & BindingKind.FunctionLexical &&
-      origin & BindingOrigin.BlockStatement
+      origin & Origin.BlockStatement
     ) {
     } else {
       report(parser, Errors.DuplicateBinding, name);
@@ -621,7 +636,7 @@ export function addBlockName(
   }
 
   if (scope.type & ScopeKind.CatchBlock) {
-    if ((scope as any).parent['#' + name] & BindingKind.CatchNoPatternOrPattern)
+    if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
       report(parser, Errors.ShadowedCatchClause, name);
   }
 
@@ -665,9 +680,9 @@ export function addVarName(
         currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
       }
     }
-    if (value & (BindingKind.CatchNoPattern | BindingKind.CatchPattern)) {
+    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
       if (
-        (value & BindingKind.CatchNoPattern) === 0 ||
+        (value & BindingKind.CatchIdentifier) === 0 ||
         (context & Context.OptionsWebCompat) === 0 ||
         context & Context.Strict
       ) {
@@ -720,7 +735,7 @@ export function pushComment(context: Context, array: any[]): any {
       value
     };
 
-    if (context & Context.OptionsLoc) {
+    if (context & Context.OptionsRanges) {
       comment.start = start;
       comment.end = end;
     }
