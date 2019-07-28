@@ -72,8 +72,8 @@ export declare function parseTemplateTail(parser: ParserState, context: Context,
 export declare function parseTemplate(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.TemplateLiteral;
 export declare function parseTemplateSpans(parser: ParserState, context: Context, tail: boolean, start: number, line: number, column: number): ESTree.TemplateElement;
 export declare function parseArguments(parser: ParserState, context: Context, inGroup: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
-export declare function parseIdentifier(parser: ParserState, context: Context, isPattern: 0 | 1, start: number, line: number, column: number): ESTree.Identifier;
-export declare function parseLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
+export declare function parseIdentifier(parser: ParserState, context: Context, isPattern: 0 | 1): ESTree.Identifier;
+export declare function parseLiteral(parser: ParserState, context: Context): ESTree.Literal;
 export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
 export declare function parseThisExpression(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.ThisExpression;
 export declare function parseFunctionDeclaration(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: BindingOrigin, allowGen: 0 | 1, flags: HoistedFunctionFlags, isAsync: 0 | 1, start: number, line: number, column: number): ESTree.FunctionDeclaration;
@@ -91,7 +91,7 @@ export declare function parseMembeExpressionNoCall(parser: ParserState, context:
 export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number, line: number, column: number): ESTree.MetaProperty;
 export declare function parseAsyncExpression(parser: ParserState, context: Context, expr: ESTree.Identifier, inNewExpression: 0 | 1, assignable: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
-export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, assignable: 0 | 1, flags: Flags, start: number, line: number, column: number): any;
+export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, assignable: 0 | 1, kind: BindingKind, origin: BindingOrigin, flags: Flags, start: number, line: number, column: number): any;
 export declare function parseRegExpLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
 export declare function parseClassDeclaration(parser: ParserState, context: Context, scope: ScopeState | undefined, flags: HoistedClassFlags, start: number, line: number, column: number): ESTree.ClassDeclaration;
 export declare function parseClassExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.ClassExpression;
@@ -101,7 +101,7 @@ export declare function parseClassBody(parser: ParserState, context: Context, in
 export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number, line: number, column: number): ESTree.FieldDefinition;
 export declare function parseBindingPattern(parser: ParserState, context: Context, scope: ScopeState | undefined, type: BindingKind, origin: BindingOrigin, start: number, line: number, column: number): ESTree.BindingPattern;
 export declare function parseOpeningFragment(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXOpeningFragment;
-export declare function parseJSXClosingFragment(parser: ParserState, context: Context, isJSXChild: 0 | 1, start: number, line: number, column: number): ESTree.JSXClosingFragment;
+export declare function parseJSXClosingFragment(parser: ParserState, context: Context, inJSXChild: 0 | 1, start: number, line: number, column: number): ESTree.JSXClosingFragment;
 export declare function parseJSXChildren(parser: ParserState, context: Context): ESTree.JSXChild[];
 export declare function parseJSXText(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXText;
 export declare function parseJSXMemberExpression(parser: ParserState, context: Context, object: any, start: number, line: number, column: number): ESTree.JSXMemberExpression;
