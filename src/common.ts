@@ -36,7 +36,8 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
-  OptionsSpecDeviation = 1 << 29
+  OptionsSpecDeviation = 1 << 29,
+  OptionsV8 = 1 << 30,
 }
 
 /**

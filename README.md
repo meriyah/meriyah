@@ -17,14 +17,15 @@
 
 * Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
 * Support TC39 proposals via option
+* Support V8 experimental features via option
 * Support for additional ECMAScript features for Web Browsers
 * JSX support via option
 * Optionally track syntactic node locations
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~83 000 unit tests with full code coverage)
-* Lightweight - ~82 KB minified
+* Very well tested (~85 000 unit tests with full code coverage)
+* Lightweight - ~86 KB minified
 
 ## ESNext features
 
@@ -34,6 +35,12 @@
 * [Numeric separators](https://github.com/tc39/proposal-numeric-separator)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
 * [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
+
+**Note:** These features need to be enabled with the `next` option.
+
+## V8 features
+
+* Intrinsic
 
 **Note:** These features need to be enabled with the `next` option.
 

@@ -198,6 +198,8 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
+  // Enabled V8 features
+  v8?: boolean;
   // Allowes comment extraction. Accepts either a a callback function or an array
   onComment?: OnComment;
 }
@@ -221,6 +223,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
+    if (options.v8) context |= Context.OptionsV8;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
     if (options.specDeviation) context |= Context.OptionsSpecDeviation;
     if (options.source) sourceFile = options.source;
@@ -251,9 +254,7 @@ export function parseSource(source: string, options: Options | void, context: Co
 
     if (scope) {
       for (const key in parser.exportedBindings) {
-        if (key !== '#default' && !(scope as any)[key]) {
-          report(parser, Errors.UndeclaredExportedBinding, key.slice(1));
-        }
+        if (key[0] === '#' && !(scope as any)[key]) report(parser, Errors.UndeclaredExportedBinding, key.slice(1));
       }
     }
   } else {
@@ -3460,8 +3461,10 @@ export function parseFunctionBody(
   const { tokenPos, linePos, colPos } = parser;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
+
   const body: ESTree.Statement[] = [];
   const prevContext = context;
+
   if (parser.token !== Token.RightBrace) {
     while (parser.token === Token.StringLiteral) {
       const { index, tokenPos, tokenValue, token } = parser;
@@ -3946,7 +3949,7 @@ export function parsePrimaryExpressionExtended(
       return parseNullOrTrueOrFalseLiteral(parser, context, start, line, column);
     case Token.SuperKeyword:
       return parseSuperExpression(parser, context, start, line, column);
-    case Token.TemplateTail:
+    case Token.TemplateSpan:
       return parseTemplateLiteral(parser, context, start, line, column);
     case Token.TemplateContinuation:
       return parseTemplate(parser, context, start, line, column);
@@ -3959,6 +3962,8 @@ export function parsePrimaryExpressionExtended(
     case Token.LessThan:
       if (context & Context.OptionsJSX)
         return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
+    case Token.Modulo:
+      if (context & Context.OptionsV8) return parseV8Intrinsic(parser, context, start, line, column);
     default:
       if (
         context & Context.Strict
@@ -3975,12 +3980,58 @@ export function parsePrimaryExpressionExtended(
 }
 
 /**
+ * Parses V8 intrinsic
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inGroup
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseV8Intrinsic(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  line: number,
+  column: number
+): any {
+  // CallRuntime ::
+  //   '%' Identifier Arguments
+
+  nextToken(parser, context); // skips: '%'
+
+  const expr = v8IntrinsicIdentifier(parser, context);
+
+  if (parser.token !== Token.LeftParen) report(parser, Errors.Unexpected);
+
+  return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+}
+
+/**
+ * Parses V8 intrinsic identifier
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ */
+export function v8IntrinsicIdentifier(parser: ParserState, context: Context): ESTree.Identifier {
+  const { tokenValue, tokenPos, linePos, colPos } = parser;
+  nextToken(parser, context);
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
+    type: 'V8IntrinsicIdentifier',
+    name: tokenValue
+  } as any);
+}
+
+/**
  * Parses Import call expression
  *
  * @param parser  Parser object
  * @param context Context masks
  * @param inGroup
  * @param start
+ * @param line
+ * @param column
  */
 function parseImportCallExpression(
   parser: ParserState,
@@ -4128,7 +4179,6 @@ export function parseTemplateLiteral(
     quasis: [parseTemplateTail(parser, context, start, line, column)]
   });
 }
-
 /**
  * Parses template tail
  *
@@ -4145,7 +4195,7 @@ export function parseTemplateTail(
 ): ESTree.TemplateElement {
   const { tokenValue, tokenRaw } = parser;
 
-  consume(parser, context, Token.TemplateTail);
+  consume(parser, context, Token.TemplateSpan);
 
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateElement',
@@ -4170,31 +4220,27 @@ export function parseTemplate(
   line: number,
   column: number
 ): ESTree.TemplateLiteral {
-  const quasis = [parseTemplateSpans(parser, context, /* tail */ false, start, line, column)];
+  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
+
+  const quasis = [parseTemplateSpans(parser, context, /* tail */ false)];
 
   consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
-  const expressions = [
-    parseExpressions(
-      parser,
-      (context | Context.DisallowIn) ^ Context.DisallowIn,
-      0,
-      1,
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    )
-  ];
+
+  const expressions = [parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos)];
+
   if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
-  while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateTail) {
+
+  while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateSpan) {
     const { tokenPos, linePos, colPos } = parser;
-    quasis.push(parseTemplateSpans(parser, context, /* tail */ false, tokenPos, linePos, colPos));
+    quasis.push(parseTemplateSpans(parser, context, /* tail */ false));
     consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
     expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
+    if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   }
 
-  quasis.push(parseTemplateSpans(parser, context, /* tail */ true, parser.tokenPos, parser.linePos, parser.colPos));
+  quasis.push(parseTemplateSpans(parser, context, /* tail */ true));
 
-  nextToken(parser, context);
+  consume(parser, context, Token.TemplateSpan);
 
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateLiteral',
@@ -4209,15 +4255,9 @@ export function parseTemplate(
  * @param parser  Parser object
  * @param tail
  */
-export function parseTemplateSpans(
-  parser: ParserState,
-  context: Context,
-  tail: boolean,
-  start: number,
-  line: number,
-  column: number
-): ESTree.TemplateElement {
-  return finishNode(parser, context, start, line, column, {
+export function parseTemplateSpans(parser: ParserState, context: Context, tail: boolean): ESTree.TemplateElement {
+  const { tokenPos, linePos, colPos } = parser;
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'TemplateElement',
     value: {
       cooked: parser.tokenValue,
@@ -6744,7 +6784,7 @@ export function parseArrowFunctionExpression(
     switch (parser.token) {
       case Token.Period:
       case Token.LeftBracket:
-      case Token.TemplateTail:
+      case Token.TemplateSpan:
       case Token.QuestionMark:
         report(parser, Errors.InvalidAccessedBlockBodyArrow);
       case Token.LeftParen:
@@ -7003,7 +7043,7 @@ export function parseMembeExpressionNoCall(
         column
       );
       /* Template */
-    } else if (token === Token.TemplateContinuation || token === Token.TemplateTail) {
+    } else if (token === Token.TemplateContinuation || token === Token.TemplateSpan) {
       parser.assignable = AssignmentKind.CannotAssign;
 
       return parseMembeExpressionNoCall(
