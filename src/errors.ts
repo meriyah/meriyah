@@ -383,7 +383,7 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
 }
 
 export function reportScopeError(scope: any): never {
-  throw new ParseError(scope.index, scope.line, scope.column, scope.type);
+  throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
 }
 
 /**
