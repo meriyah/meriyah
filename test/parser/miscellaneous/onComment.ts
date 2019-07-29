@@ -83,4 +83,50 @@ describe('Expressions - API', () => {
       }
     ]);
   });
+
+  it('should extract multiple multiline line comment in array with ranges', () => {
+    const arr: any[] = [];
+    parseScript('/* a */ function /*b*/foo(/*c*//*d*/) { /* Multi line comment */ } // The end', {
+      ranges: true,
+      onComment: arr
+    });
+    t.deepEqual(arr, [
+      {
+        end: 7,
+        start: 2,
+        type: 'MultiLine',
+        value: ' a '
+      },
+      {
+        end: 22,
+        start: 19,
+        type: 'MultiLine',
+        value: 'b'
+      },
+      {
+        end: 31,
+        start: 28,
+        type: 'MultiLine',
+        value: 'c'
+      },
+      {
+        end: 36,
+        start: 33,
+        type: 'MultiLine',
+        value: 'd'
+      },
+      {
+        end: 64,
+        start: 42,
+        type: 'MultiLine',
+        value: ' Multi line comment '
+      },
+      {
+        end: 77,
+        start: 69,
+        type: 'SingleLine',
+        value: ' The end'
+      }
+    ]);
+  });
 });
