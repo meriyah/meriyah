@@ -9,6 +9,8 @@ describe('Expressions - Unary', () => {
     'typeof x === "undefined"',
     'delete o["y"]',
     'delete Number(7)',
+    'delete ((x) => x)',
+    'delete ((x) => x).foo',
     'delete new Number(8)',
     'delete a[2]',
     'delete o[Math.pow(2,30)]'

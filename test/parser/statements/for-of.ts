@@ -196,6 +196,7 @@ describe('Statements - For of', () => {
     ['for(a of b, c);', Context.None],
     ['for(a of b, c);', Context.None],
     ['for(a of b, c);', Context.None],
+    ['for (function(){} of x);', Context.None],
     ['for ([...[a]] = 0 of {});', Context.None],
     ['for ([] = 0 of {});', Context.None],
     ['for (let [...{ x } = []] of [[]]) {}', Context.None]
@@ -260,6 +261,11 @@ describe('Statements - For of', () => {
     'for (const { w: [x, y, z] = [4, 5, 6] } of [{}]) {}',
     'for (const { x: y = 33 } of [{ }]) {}',
     'for (const { x: y } of [{ x: 23 }]) {}',
+    'for (/foo/g[x] of c) d;',
+    'for (/foo/g.x of c) d;',
+    'for (456[x] of c) d;',
+    'for ("foo"[x] of c) d;',
+    'for ("foo".x of c) d;',
     'for (const {...x} of [{ get v() { count++; return 2; } }]) {}',
     'for (let [[] = function() { initCount += 1; return iter; }()] of [[]]) {}',
     'for (let [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[{ x: 11, y: 22, z: 33 }]]) {}',
@@ -428,6 +434,11 @@ describe('Statements - For of', () => {
     `for ( let[x] of [[34]] ) {}`,
     `for (var { x, } of [{ x: 23 }]) {}`,
     `for (var [...[,]] of [g()]) {}`,
+    'for (function(){ }[foo] of x);',
+    'for (function(){ }[x in y] of x);',
+    'for (function(){ if (a in b); }.prop of x);',
+    'for (function(){ a in b; }.prop of x);',
+
     `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`
   ]) {
     it(`${arg}`, () => {
@@ -435,6 +446,7 @@ describe('Statements - For of', () => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
+
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
@@ -443,11 +455,23 @@ describe('Statements - For of', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
 
-    it(`${arg} ${arg}`, () => {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext);
+      });
+    });
+
+    it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg} ${arg}`, undefined, Context.None);
       });

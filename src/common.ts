@@ -4,7 +4,7 @@ import { Node, Comment } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
- * The core context, passed around everywhere as a simple immutable bit set.
+ * The core context, passed around everywhere as a simple immutable bit set
  */
 export const enum Context {
   None = 0,
@@ -39,6 +39,9 @@ export const enum Context {
   OptionsSpecDeviation = 1 << 29
 }
 
+/**
+ * Masks to track the property kind
+ */
 export const enum PropertyKind {
   None = 0,
   Method = 1 << 0,
@@ -57,10 +60,13 @@ export const enum PropertyKind {
   GetSet = Getter | Setter
 }
 
+/**
+ * Masks to track the binding kind
+ */
 export const enum BindingKind {
   None = 0,
   ArgumentList = 1 << 0,
-  EmptyBinding = 1 << 1,
+  Empty = 1 << 1,
   Variable = 1 << 2,
   Let = 1 << 3,
   Const = 1 << 4,
@@ -74,30 +80,40 @@ export const enum BindingKind {
   LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
 }
 
-export const enum BindingOrigin {
+/**
+ * The masks to track where something begins. E.g. statements, declarations or arrows.
+ */
+export const enum Origin {
   None = 0,
-  Declaration = 1 << 0,
-  Arrow = 1 << 1,
-  ForStatement = 1 << 2,
-  Statement = 1 << 3,
-  Export = 1 << 4,
-  Other = 1 << 5,
-  BlockStatement = 1 << 7,
-  TopLevel = 1 << 8
+  Statement = 1 << 0,
+  BlockStatement = 1 << 1,
+  TopLevel = 1 << 2,
+  Declaration = 1 << 3,
+  Arrow = 1 << 4,
+  ForStatement = 1 << 5,
+  Export = 1 << 6,
 }
 
+/**
+ * Masks to track the assignment kind
+ */
 export const enum AssignmentKind {
   None = 0,
   Assignable = 1 << 0,
-  NotAssignable = 1 << 1
+  CannotAssign = 1 << 1
 }
 
+/**
+ * Masks to track the destructuring kind
+ */
 export const enum DestructuringKind {
   None = 0,
-  MustDestruct = 1 << 3,
+  HasToDestruct = 1 << 3,
+  // "Cannot" rather than "can" so that this flag can be ORed together across
+  // multiple characters.
   CannotDestruct = 1 << 4,
   // Only destructible if assignable
-  AssignableDestruct = 1 << 5,
+  Assignable = 1 << 5,
   // `__proto__` is a special case and only valid to parse if destructible
   SeenProto = 1 << 6,
   Await = 1 << 7,
@@ -130,27 +146,22 @@ export const enum HoistedFunctionFlags {
 }
 
 /**
- * Scope types
+ * Scope kinds
  */
 export const enum ScopeKind {
   None = 0,
-  For = 1 << 0,
+  ForStatement = 1 << 0,
   Block = 1 << 1,
-  Catch = 1 << 2,
-  Switch = 1 << 3,
+  CatchStatement = 1 << 2,
+  SwitchStatement = 1 << 3,
   ArgList = 1 << 4,
-  Try = 1 << 5,
-  CatchHead = 1 << 6,
-  CatchBody = 1 << 7,
-  Finally = 1 << 8,
-  FuncBody = 1 << 9,
-  FuncRoot = 1 << 10,
-  ArrowParams = 1 << 11,
-  FakeBlock = 1 << 12,
-  Global = 1 << 13,
-  CatchIdentifier = 1 << 14,
-  ForHeader = 1 << 15,
-  FunctionParams = 1 << 16
+  TryStatement = 1 << 5,
+  CatchBlock = 1 << 6,
+  FunctionBody = 1 << 7,
+  FunctionRoot = 1 << 8,
+  FunctionParams = 1 << 9,
+  ArrowParams = 1 << 10,
+  CatchIdentifier = 1 << 11,
 }
 
 /**
@@ -328,7 +339,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
 export function validateBindingIdentifier(
   parser: ParserState,
   context: Context,
-  type: BindingKind,
+  kind: BindingKind,
   t: Token,
   skipEvalArgCheck: 0 | 1
 ): void {
@@ -359,7 +370,7 @@ export function validateBindingIdentifier(
   // The BoundNames of LexicalDeclaration and ForDeclaration must not
   // contain 'let'. (CatchParameter is the only lexical binding form
   // without this restriction.)
-  if (type & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
+  if (kind & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
 
@@ -496,12 +507,25 @@ export function isEqualTagName(elementName: any): any {
   }
 }
 
-export function createArrowScope(parser: ParserState, context: Context, value: string) {
+/**
+ * Create a parsing scope for arrow head, and add lexical binding
+ *
+ * @param parser Parser state
+ * @param context Context masks
+ * @param value Binding name to be declared
+ */
+export function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState {
   const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
-  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, BindingOrigin.Other);
+  addBlockName(parser, context, scope, value, BindingKind.ArgumentList, Origin.None);
   return scope;
 }
 
+/**
+ * Record duplicate binding errors that may occur in a arrow head or function parameters
+*
+ * @param parser Parser state
+ * @param type Errors type
+ */
 export function recordScopeError(parser: ParserState, type: Errors): ScopeError {
   const { index, line, column } = parser;
   return {
@@ -518,7 +542,7 @@ export function recordScopeError(parser: ParserState, type: Errors): ScopeError 
 export function createScope(): ScopeState {
   return {
     parent: void 0,
-    type: ScopeKind.Global
+    type: ScopeKind.Block
   };
 }
 
@@ -526,9 +550,9 @@ export function createScope(): ScopeState {
  * Inherit scope
  *
  * @param scope Parser object
- * @param type Scope type
+ * @param type Scope kind
  */
-export function addChildScope(parent: any, type: ScopeKind): ScopeState {
+export function addChildScope(parent: ScopeState | undefined, type: ScopeKind): ScopeState {
   return {
     parent,
     type,
@@ -551,70 +575,17 @@ export function addVarOrBlock(
   context: Context,
   scope: ScopeState,
   name: string,
-  type: BindingKind,
-  origin: BindingOrigin
+  kind: BindingKind,
+  origin: Origin
 ) {
-  if (type & BindingKind.Variable) {
-    addVarName(parser, context, scope, name, type);
+  if (kind & BindingKind.Variable) {
+    addVarName(parser, context, scope, name, kind);
   } else {
-    addBlockName(parser, context, scope, name, type, BindingOrigin.Other);
+    addBlockName(parser, context, scope, name, kind, origin);
   }
-  if (origin & BindingOrigin.Export) {
-    updateExportsList(parser, parser.tokenValue);
-    addBindingToExports(parser, parser.tokenValue);
-  }
-}
-
-/**
- * Adds a variable binding
- *
- * @param parser Parser state
- * @param context Context masks
- * @param scope Scope state
- * @param name Binding name
- * @param type Binding kind
- */
-export function addVarName(
-  parser: ParserState,
-  context: Context,
-  scope: ScopeState,
-  name: string,
-  type: BindingKind
-): void {
-  let currentScope: any = scope;
-
-  while (currentScope && (currentScope.type & ScopeKind.FuncRoot) === 0) {
-    const value: ScopeKind = currentScope['#' + name];
-
-    if (value & BindingKind.LexicalBinding) {
-      if (
-        context & Context.OptionsWebCompat &&
-        (context & Context.Strict) === 0 &&
-        ((type & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
-          (value & BindingKind.FunctionStatement && type & BindingKind.LexicalOrFunction))
-      ) {
-      } else {
-        report(parser, Errors.DuplicateBinding, name);
-      }
-    }
-    if (currentScope === scope) {
-      if (value & BindingKind.ArgumentList && type & BindingKind.ArgumentList) {
-        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
-      }
-    }
-    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
-      if (
-        (value & BindingKind.CatchIdentifier) === 0 ||
-        (context & Context.OptionsWebCompat) === 0 ||
-        context & Context.Strict
-      ) {
-        report(parser, Errors.DuplicateBinding, name);
-      }
-    }
-
-    currentScope['#' + name] = type;
-
-    currentScope = currentScope.parent;
+  if (origin & Origin.Export) {
+    updateExportsList(parser, name);
+    addBindingToExports(parser, name);
   }
 }
 
@@ -633,18 +604,18 @@ export function addBlockName(
   context: Context,
   scope: any,
   name: string,
-  type: BindingKind,
-  origin: BindingOrigin
+  kind: BindingKind,
+  origin: Origin
 ) {
   const value = (scope as any)['#' + name];
 
-  if (value && (value & BindingKind.EmptyBinding) === 0) {
-    if (type & BindingKind.ArgumentList) {
+  if (value && (value & BindingKind.Empty) === 0) {
+    if (kind & BindingKind.ArgumentList) {
       scope.scopeError = recordScopeError(parser, Errors.Unexpected);
     } else if (
       context & Context.OptionsWebCompat &&
       value & BindingKind.FunctionLexical &&
-      origin & BindingOrigin.BlockStatement
+      origin & Origin.BlockStatement
     ) {
     } else {
       report(parser, Errors.DuplicateBinding, name);
@@ -652,24 +623,77 @@ export function addBlockName(
   }
 
   if (
-    scope.type & ScopeKind.FuncBody &&
-    ((scope as any).parent['#' + name] && ((scope as any).parent['#' + name] & BindingKind.EmptyBinding) === 0)
+    scope.type & ScopeKind.FunctionBody &&
+    ((scope as any).parent['#' + name] && ((scope as any).parent['#' + name] & BindingKind.Empty) === 0)
   ) {
     report(parser, Errors.DuplicateBinding, name);
   }
 
-  if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.EmptyBinding) === 0) {
-    if (type & BindingKind.ArgumentList) {
+  if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
+    if (kind & BindingKind.ArgumentList) {
       scope.scopeError = recordScopeError(parser, Errors.Unexpected);
     }
   }
 
-  if (scope.type & ScopeKind.CatchBody) {
+  if (scope.type & ScopeKind.CatchBlock) {
     if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
       report(parser, Errors.ShadowedCatchClause, name);
   }
 
-  (scope as any)['#' + name] = type;
+  (scope as any)['#' + name] = kind;
+}
+
+/**
+ * Adds a variable binding
+ *
+ * @param parser Parser state
+ * @param context Context masks
+ * @param scope Scope state
+ * @param name Binding name
+ * @param type Binding kind
+ */
+export function addVarName(
+  parser: ParserState,
+  context: Context,
+  scope: ScopeState,
+  name: string,
+  kind: BindingKind
+): void {
+  let currentScope: any = scope;
+
+  while (currentScope && (currentScope.type & ScopeKind.FunctionRoot) === 0) {
+    const value: ScopeKind = currentScope['#' + name];
+
+    if (value & BindingKind.LexicalBinding) {
+      if (
+        context & Context.OptionsWebCompat &&
+        (context & Context.Strict) === 0 &&
+        ((kind & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
+          (value & BindingKind.FunctionStatement && kind & BindingKind.LexicalOrFunction))
+      ) {
+      } else {
+        report(parser, Errors.DuplicateBinding, name);
+      }
+    }
+    if (currentScope === scope) {
+      if (value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
+        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
+      }
+    }
+    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
+      if (
+        (value & BindingKind.CatchIdentifier) === 0 ||
+        (context & Context.OptionsWebCompat) === 0 ||
+        context & Context.Strict
+      ) {
+        report(parser, Errors.DuplicateBinding, name);
+      }
+    }
+
+    currentScope['#' + name] = kind;
+
+    currentScope = currentScope.parent;
+  }
 }
 
 /**
@@ -711,7 +735,7 @@ export function pushComment(context: Context, array: any[]): any {
       value
     };
 
-    if (context & Context.OptionsLoc) {
+    if (context & Context.OptionsRanges) {
       comment.start = start;
       comment.end = end;
     }

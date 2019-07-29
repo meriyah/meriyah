@@ -8,7 +8,7 @@ import {
   Context,
   ParserState,
   PropertyKind,
-  BindingOrigin,
+  Origin,
   consumeOpt,
   consume,
   Flags,
@@ -38,7 +38,7 @@ import {
   updateExportsList,
   isEqualTagName,
   isValidStrictMode,
-  createArrowScope,
+  createArrowHeadParsingScope,
   addVarOrBlock
 } from './common';
 
@@ -314,7 +314,7 @@ export function parseStatementList(
       parser,
       context,
       scope,
-      BindingOrigin.TopLevel,
+      Origin.TopLevel,
       {},
       parser.tokenPos,
       parser.linePos,
@@ -405,7 +405,7 @@ export function parseModuleItem(
     case Token.Decorator:
       return parseDecorators(parser, context) as ESTree.Decorator[];
     default:
-      return parseStatementListItem(parser, context, scope, BindingOrigin.TopLevel, {}, start, line, column);
+      return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
 }
 
@@ -420,7 +420,7 @@ export function parseStatementListItem(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   labels: ESTree.Labels,
   start: number,
   line: number,
@@ -466,16 +466,7 @@ export function parseStatementListItem(
     // LexicalDeclaration[In, ?Yield]
     // LetOrConst BindingList[?In, ?Yield]
     case Token.ConstKeyword:
-      return parseLexicalDeclaration(
-        parser,
-        context,
-        scope,
-        BindingKind.Const,
-        BindingOrigin.Statement,
-        start,
-        line,
-        column
-      );
+      return parseLexicalDeclaration(parser, context, scope, BindingKind.Const, Origin.None, start, line, column);
     case Token.LetKeyword:
       return parseLetIdentOrVarDeclarationStatement(parser, context, scope, origin, start, line, column);
     // ExportDeclaration
@@ -511,7 +502,7 @@ export function parseStatement(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
   start: number,
@@ -538,7 +529,7 @@ export function parseStatement(
   switch (parser.token) {
     // VariableStatement[?Yield]
     case Token.VarKeyword:
-      return parseVariableStatement(parser, context, scope, BindingOrigin.Statement, start, line, column);
+      return parseVariableStatement(parser, context, scope, Origin.None, start, line, column);
     // [+Return] ReturnStatement[?Yield]
     case Token.ReturnKeyword:
       return parseReturnStatement(parser, context, start, line, column);
@@ -602,7 +593,7 @@ export function parseStatement(
         parser,
         context & Context.Strict
           ? Errors.StrictFunction
-          : (context & Context.OptionsWebCompat) === 0
+          : (context & Context.OptionsWebCompat) < 1
           ? Errors.WebCompatFunction
           : Errors.SloppyFunction
       );
@@ -636,7 +627,7 @@ export function parseExpressionOrLabelledStatement(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
   start: number,
@@ -685,7 +676,7 @@ export function parseExpressionOrLabelledStatement(
       expr = parsePrimaryExpressionExtended(
         parser,
         context,
-        BindingKind.EmptyBinding,
+        BindingKind.Empty,
         0,
         1,
         0,
@@ -807,7 +798,7 @@ export function parseBlock(
       parser,
       context,
       scope,
-      BindingOrigin.BlockStatement,
+      Origin.BlockStatement,
       { $: labels },
       parser.tokenPos,
       parser.linePos,
@@ -843,7 +834,7 @@ export function parseReturnStatement(
 ): ESTree.ReturnStatement {
   // ReturnStatement ::
   //   'return' [no line terminator] Expression? ';'
-  if ((context & Context.OptionsGlobalReturn) === 0 && context & Context.InGlobal) report(parser, Errors.IllegalReturn);
+  if ((context & Context.OptionsGlobalReturn) < 1 && context & Context.InGlobal) report(parser, Errors.IllegalReturn);
 
   nextToken(parser, context | Context.AllowRegExp);
 
@@ -904,7 +895,7 @@ export function parseLabelledStatement(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   labels: ESTree.Labels,
   value: string,
   expr: ESTree.Identifier | ESTree.Expression,
@@ -925,7 +916,7 @@ export function parseLabelledStatement(
 
   const body =
     allowFuncDecl &&
-    (context & Context.Strict) === 0 &&
+    (context & Context.Strict) < 1 &&
     context & Context.OptionsWebCompat &&
     // In sloppy mode, Annex B.3.2 allows labelled function declarations.
     // Otherwise it's a parse error.
@@ -933,7 +924,7 @@ export function parseLabelledStatement(
       ? parseFunctionDeclaration(
           parser,
           context,
-          scope,
+          addChildScope(scope, ScopeKind.Block),
           origin,
           0,
           HoistedFunctionFlags.None,
@@ -979,7 +970,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
   start: number,
@@ -1047,18 +1038,19 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
 
     // async Identifier => ...
     if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-      if (parser.assignable & AssignmentKind.NotAssignable) report(parser, Errors.InvalidAsyncParamList);
+      if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.InvalidAsyncParamList);
       if (parser.token === Token.AwaitKeyword) report(parser, Errors.AwaitInParameter);
       if (context & (Context.Strict | Context.InYieldContext) && parser.token === Token.YieldKeyword) {
         report(parser, Errors.YieldInParameter);
       }
 
-      if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
-        parser.flags |= Flags.StrictEvalArguments;
+      if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+        parser.flags |= Flags.SimpleParameterList;
+      }
 
       if (scope) {
-        scope = addChildScope(createScope(), ScopeKind.FuncBody);
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+        scope = addChildScope(createScope(), ScopeKind.FunctionBody);
+        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       const param = [parseIdentifier(parser, context, 0)];
 
@@ -1081,7 +1073,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
       expr,
       1,
       BindingKind.ArgumentList,
-      BindingOrigin.None,
+      Origin.None,
       asyncNewLine,
       start,
       line,
@@ -1090,8 +1082,8 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   } else {
     if (parser.token === Token.Arrow) {
       if (scope) {
-        scope = addChildScope(createScope(), ScopeKind.FuncBody);
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+        scope = addChildScope(createScope(), ScopeKind.FunctionBody);
+        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       expr = parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
     }
@@ -1174,7 +1166,7 @@ export function parseDirective(
   const { tokenRaw } = parser;
 
   if (token !== Token.Semicolon) {
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     expression = parseMemberOrUpdateExpression(parser, context, expression, 0, start, line, column);
 
@@ -1343,13 +1335,13 @@ export function parseConsequentOrAlternative(
 ): ESTree.Statement | ESTree.FunctionDeclaration {
   return context & Context.Strict ||
     // Disallow if web compability is off
-    (context & Context.OptionsWebCompat) === 0 ||
+    (context & Context.OptionsWebCompat) < 1 ||
     parser.token !== Token.FunctionKeyword
     ? parseStatement(
         parser,
         context,
         scope,
-        BindingOrigin.None,
+        Origin.None,
         { $: labels },
         0,
         parser.tokenPos,
@@ -1359,8 +1351,8 @@ export function parseConsequentOrAlternative(
     : parseFunctionDeclaration(
         parser,
         context,
-        scope,
-        BindingOrigin.None,
+        addChildScope(scope, ScopeKind.Block),
+        Origin.None,
         0,
         HoistedFunctionFlags.None,
         0,
@@ -1402,7 +1394,7 @@ export function parseSwitchStatement(
   consume(parser, context, Token.LeftBrace);
   const cases: ESTree.SwitchCase[] = [];
   let seenDefault: 0 | 1 = 0;
-  if (scope) scope = addChildScope(scope, ScopeKind.Switch);
+  if (scope) scope = addChildScope(scope, ScopeKind.SwitchStatement);
   while (parser.token !== Token.RightBrace) {
     const { tokenPos, linePos, colPos } = parser;
     let test: ESTree.Expression | null = null;
@@ -1432,7 +1424,7 @@ export function parseSwitchStatement(
         parser,
         context | Context.InSwitch,
         scope,
-        BindingOrigin.BlockStatement,
+        Origin.BlockStatement,
         {
           $: labels
         },
@@ -1515,7 +1507,7 @@ export function parseIterationStatementBody(
     parser,
     ((context | Context.DisallowIn) ^ Context.DisallowIn) | Context.InIteration,
     scope,
-    BindingOrigin.Other,
+    Origin.None,
     { loop: 1, $: labels },
     0,
     parser.tokenPos,
@@ -1542,10 +1534,10 @@ export function parseContinueStatement(
 ): ESTree.ContinueStatement {
   // ContinueStatement ::
   //   'continue' Identifier? ';'
-  if ((context & Context.InIteration) === 0) report(parser, Errors.IllegalContinue);
+  if ((context & Context.InIteration) < 1) report(parser, Errors.IllegalContinue);
   nextToken(parser, context);
   let label: ESTree.Identifier | undefined | null = null;
-  if ((parser.flags & Flags.NewLine) === 0 && parser.token & Token.IsIdentifier) {
+  if ((parser.flags & Flags.NewLine) < 1 && parser.token & Token.IsIdentifier) {
     const { tokenValue } = parser;
     label = parseIdentifier(parser, context | Context.AllowRegExp, 0);
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 1))
@@ -1581,12 +1573,12 @@ export function parseBreakStatement(
   //   'break' Identifier? ';'
   nextToken(parser, context | Context.AllowRegExp);
   let label: ESTree.Identifier | undefined | null = null;
-  if ((parser.flags & Flags.NewLine) === 0 && parser.token & Token.IsIdentifier) {
+  if ((parser.flags & Flags.NewLine) < 1 && parser.token & Token.IsIdentifier) {
     const { tokenValue } = parser;
     label = parseIdentifier(parser, context | Context.AllowRegExp, 0);
     if (!isValidLabel(parser, labels, tokenValue, /* requireIterationStatement */ 0))
       report(parser, Errors.UnknownLabel, tokenValue);
-  } else if ((context & (Context.InSwitch | Context.InIteration)) === 0) {
+  } else if ((context & (Context.InSwitch | Context.InIteration)) < 1) {
     report(parser, Errors.IllegalBreak);
   }
 
@@ -1632,7 +1624,7 @@ export function parseWithStatement(
     parser,
     context,
     scope,
-    BindingOrigin.BlockStatement,
+    Origin.BlockStatement,
     labels,
     0,
     parser.tokenPos,
@@ -1707,7 +1699,7 @@ export function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const firstScope = scope ? addChildScope(scope, ScopeKind.Try) : void 0;
+  const firstScope = scope ? addChildScope(scope, ScopeKind.TryStatement) : void 0;
 
   const block = parseBlock(parser, context, firstScope, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos);
   const { tokenPos, linePos, colPos } = parser;
@@ -1719,7 +1711,7 @@ export function parseTryStatement(
 
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.Finally) : void 0;
+    const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.CatchStatement) : void 0;
     finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenPos, linePos, colPos);
   }
 
@@ -1764,7 +1756,7 @@ export function parseCatchBlock(
      * Create a lexical scope around the whole catch clause,
      * including the head.
      */
-    if (scope) scope = addChildScope(scope, ScopeKind.CatchHead);
+    if (scope) scope = addChildScope(scope, ScopeKind.CatchStatement);
 
     param = parseBindingPattern(
       parser,
@@ -1773,7 +1765,7 @@ export function parseCatchBlock(
       (parser.token & Token.IsPatternStart) === Token.IsPatternStart
         ? BindingKind.CatchPattern
         : BindingKind.CatchIdentifier,
-      BindingOrigin.None,
+      Origin.None,
       parser.tokenPos,
       parser.linePos,
       parser.colPos
@@ -1790,7 +1782,7 @@ export function parseCatchBlock(
     //
     // Step 8 means that the body of a catch block always has an additional
     // lexical scope.
-    if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBody);
+    if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
   }
 
   const body = parseBlock(
@@ -1865,7 +1857,7 @@ export function parseLetIdentOrVarDeclarationStatement(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -1877,7 +1869,7 @@ export function parseLetIdentOrVarDeclarationStatement(
     /* VariableDeclarations ::
      *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
-    const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, BindingOrigin.Statement);
+    const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, Origin.None);
 
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
@@ -1918,7 +1910,7 @@ export function parseLetIdentOrVarDeclarationStatement(
   if (parser.token === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
@@ -1981,8 +1973,8 @@ function parseLexicalDeclaration(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  type: BindingKind,
-  origin: BindingOrigin,
+  kind: BindingKind,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -1993,13 +1985,13 @@ function parseLexicalDeclaration(
   //    BindingPattern
   nextToken(parser, context);
 
-  const declarations = parseVariableDeclarationList(parser, context, scope, type, origin);
+  const declarations = parseVariableDeclarationList(parser, context, scope, kind, origin);
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return finishNode(parser, context, start, line, column, {
     type: 'VariableDeclaration',
-    kind: type & BindingKind.Let ? 'let' : 'const',
+    kind: kind & BindingKind.Let ? 'let' : 'const',
     declarations
   });
 }
@@ -2022,7 +2014,7 @@ export function parseVariableStatement(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -2055,17 +2047,17 @@ export function parseVariableDeclarationList(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  type: BindingKind,
-  origin: BindingOrigin
+  kind: BindingKind,
+  origin: Origin
 ): ESTree.VariableDeclarator[] {
   let bindingCount = 1;
-  const list: ESTree.VariableDeclarator[] = [parseVariableDeclaration(parser, context, scope, type, origin)];
+  const list: ESTree.VariableDeclarator[] = [parseVariableDeclaration(parser, context, scope, kind, origin)];
   while (consumeOpt(parser, context, Token.Comma)) {
     bindingCount++;
-    list.push(parseVariableDeclaration(parser, context, scope, type, origin));
+    list.push(parseVariableDeclaration(parser, context, scope, kind, origin));
   }
 
-  if (bindingCount > 1 && origin & BindingOrigin.ForStatement && parser.token & Token.IsInOrOf) {
+  if (bindingCount > 1 && origin & Origin.ForStatement && parser.token & Token.IsInOrOf) {
     report(parser, Errors.ForInOfLoopMultiBindings, KeywordDescTable[parser.token & Token.Type]);
   }
   return list;
@@ -2087,8 +2079,8 @@ function parseVariableDeclaration(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  type: BindingKind,
-  origin: BindingOrigin
+  kind: BindingKind,
+  origin: Origin
 ): ESTree.VariableDeclarator {
   // VariableDeclaration :
   //   BindingIdentifier Initializeropt
@@ -2102,20 +2094,20 @@ function parseVariableDeclaration(
 
   let init: ESTree.Expression | ESTree.BindingName | null = null;
 
-  const id = parseBindingPattern(parser, context, scope, type, origin, tokenPos, linePos, colPos);
+  const id = parseBindingPattern(parser, context, scope, kind, origin, tokenPos, linePos, colPos);
 
   if (parser.token === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
     init = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-    if (origin & BindingOrigin.ForStatement || (token & Token.IsPatternStart) === 0) {
+    if (origin & Origin.ForStatement || (token & Token.IsPatternStart) < 1) {
       // Lexical declarations in for-in / for-of loops can't be initialized
 
       if (
         parser.token === Token.OfKeyword ||
         (parser.token === Token.InKeyword &&
           (token & Token.IsPatternStart ||
-            (type & BindingKind.Variable) === 0 ||
-            (context & Context.OptionsWebCompat) === 0 ||
+            (kind & BindingKind.Variable) < 1 ||
+            (context & Context.OptionsWebCompat) < 1 ||
             context & Context.Strict))
       ) {
         reportMessageAt(
@@ -2127,12 +2119,12 @@ function parseVariableDeclaration(
         );
       }
     }
-  } else if (
     // Normal const declarations, and const declarations in for(;;) heads, must be initialized.
-    (type & BindingKind.Const || (token & Token.IsPatternStart) > 0) &&
+  } else if (
+    (kind & BindingKind.Const || (token & Token.IsPatternStart) > 0) &&
     (parser.token & Token.IsInOrOf) !== Token.IsInOrOf
   ) {
-    report(parser, Errors.DeclarationMissingInitializer, type & BindingKind.Const ? 'const' : 'destructuring');
+    report(parser, Errors.DeclarationMissingInitializer, kind & BindingKind.Const ? 'const' : 'destructuring');
   }
 
   return finishNode(parser, context, tokenPos, linePos, colPos, {
@@ -2170,7 +2162,7 @@ export function parseForStatement(
 
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
-  if (scope) scope = addChildScope(scope, ScopeKind.ForHeader);
+  if (scope) scope = addChildScope(scope, ScopeKind.ForStatement);
 
   let test: ESTree.Expression | null = null;
   let update: ESTree.Expression | null = null;
@@ -2196,7 +2188,7 @@ export function parseForStatement(
               context | Context.DisallowIn,
               scope,
               BindingKind.Let,
-              BindingOrigin.ForStatement
+              Origin.ForStatement
             )
           });
         }
@@ -2230,7 +2222,7 @@ export function parseForStatement(
                 context | Context.DisallowIn,
                 scope,
                 BindingKind.Variable,
-                BindingOrigin.ForStatement
+                Origin.ForStatement
               )
             }
           : {
@@ -2241,7 +2233,7 @@ export function parseForStatement(
                 context | Context.DisallowIn,
                 scope,
                 BindingKind.Const,
-                BindingOrigin.ForStatement
+                Origin.ForStatement
               )
             }
       );
@@ -2259,8 +2251,8 @@ export function parseForStatement(
             void 0,
             1,
             0,
-            BindingKind.EmptyBinding,
-            BindingOrigin.ForStatement,
+            BindingKind.Empty,
+            Origin.ForStatement,
             tokenPos,
             linePos,
             colPos
@@ -2271,8 +2263,8 @@ export function parseForStatement(
             void 0,
             1,
             0,
-            BindingKind.EmptyBinding,
-            BindingOrigin.ForStatement,
+            BindingKind.Empty,
+            Origin.ForStatement,
             tokenPos,
             linePos,
             colPos
@@ -2285,7 +2277,7 @@ export function parseForStatement(
     }
 
     parser.assignable =
-      destructible & DestructuringKind.CannotDestruct ? AssignmentKind.NotAssignable : AssignmentKind.Assignable;
+      destructible & DestructuringKind.CannotDestruct ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
     init = parseMemberOrUpdateExpression(
       parser,
@@ -2301,44 +2293,58 @@ export function parseForStatement(
   }
 
   if ((parser.token & Token.IsInOrOf) === Token.IsInOrOf) {
-    const isOf = parser.token === Token.OfKeyword;
+    if (parser.token === Token.OfKeyword) {
+      if (parser.assignable & AssignmentKind.CannotAssign)
+        report(parser, Errors.CantAssignToInOfForLoop, forAwait ? 'await' : 'of');
 
-    if (parser.assignable & AssignmentKind.NotAssignable) {
-      report(parser, Errors.CantAssignToInOfForLoop, isOf && forAwait ? 'await' : isOf ? 'of' : 'in');
+      reinterpretToPattern(parser, init);
+      nextToken(parser, context | Context.AllowRegExp);
+
+      // IterationStatement:
+      //  for(LeftHandSideExpression of AssignmentExpression) Statement
+      //  forawait(LeftHandSideExpression of AssignmentExpression) Statement
+      right = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
+
+      consume(parser, context | Context.AllowRegExp, Token.RightParen);
+
+      const body = parseIterationStatementBody(parser, context, scope, labels);
+
+      return finishNode(parser, context, start, line, column, {
+        type: 'ForOfStatement',
+        body,
+        left: init,
+        right,
+        await: forAwait
+      });
     }
+
+    if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignToInOfForLoop, 'in');
+
     reinterpretToPattern(parser, init);
     nextToken(parser, context | Context.AllowRegExp);
 
     // `for await` only accepts the `for-of` type
-    if (!isOf) {
-      if (forAwait) report(parser, Errors.InvalidForAwait);
-      right = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
-    } else {
-      right = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-    }
+    if (forAwait) report(parser, Errors.InvalidForAwait);
+
+    // IterationStatement:
+    //  for(LeftHandSideExpression in Expression) Statement
+    right = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
+
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
     const body = parseIterationStatementBody(parser, context, scope, labels);
 
-    return isOf
-      ? finishNode(parser, context, start, line, column, {
-          type: 'ForOfStatement',
-          body,
-          left: init,
-          right,
-          await: forAwait
-        })
-      : finishNode(parser, context, start, line, column, {
-          type: 'ForInStatement',
-          body,
-          left: init,
-          right
-        });
+    return finishNode(parser, context, start, line, column, {
+      type: 'ForInStatement',
+      body,
+      left: init,
+      right
+    });
   }
 
   if (forAwait) report(parser, Errors.InvalidForAwait);
 
   if (!isVarDecl) {
-    if (destructible & DestructuringKind.MustDestruct && parser.token !== Token.Assign) {
+    if (destructible & DestructuringKind.HasToDestruct && parser.token !== Token.Assign) {
       report(parser, Errors.ForLoopCantAssignTo);
     }
 
@@ -2425,7 +2431,7 @@ function parseImportDeclaration(
     if (parser.token & Token.IsIdentifier) {
       validateBindingIdentifier(parser, context, BindingKind.Const, parser.token, 0);
       if (context & Context.OptionsLexical)
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, BindingOrigin.Other);
+        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, Origin.None);
       const local = parseIdentifier(parser, context, 0);
       specifiers.push(
         finishNode(parser, context, tokenPos, linePos, colPos, {
@@ -2501,7 +2507,7 @@ function parseImportNamespaceSpecifier(
     );
   }
 
-  if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, BindingOrigin.Other);
+  if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, Origin.None);
 
   const local = parseIdentifier(parser, context, 0);
 
@@ -2574,7 +2580,7 @@ function parseImportSpecifierOrNamedImports(
       local = imported;
     }
 
-    if (scope) addBlockName(parser, context, scope, tokenValue, BindingKind.Let, BindingOrigin.Other);
+    if (scope) addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
 
     specifiers.push(
       finishNode(parser, context, tokenPos, linePos, colPos, {
@@ -2682,7 +2688,7 @@ function parseExportDeclaration(
           parser,
           context,
           scope,
-          BindingOrigin.TopLevel,
+          Origin.TopLevel,
           1,
           HoistedFunctionFlags.Hoisted,
           0,
@@ -2709,25 +2715,25 @@ function parseExportDeclaration(
 
       // export default HoistableDeclaration[Default]
       case Token.AsyncKeyword:
-        const idxBeforeAsync = parser.tokenPos;
-        const lineBeforeAsync = parser.linePos;
-        const columnBeforeAsync = parser.colPos;
+        const { tokenPos, linePos, colPos } = parser;
 
         declaration = parseIdentifier(parser, context, 0);
+
         const { flags } = parser;
-        if ((flags & Flags.NewLine) === 0) {
+
+        if ((flags & Flags.NewLine) < 1) {
           if (parser.token === Token.FunctionKeyword) {
             declaration = parseFunctionDeclaration(
               parser,
               context,
               scope,
-              BindingOrigin.TopLevel,
+              Origin.TopLevel,
               1,
               HoistedFunctionFlags.Hoisted,
               1,
-              idxBeforeAsync,
-              lineBeforeAsync,
-              columnBeforeAsync
+              tokenPos,
+              linePos,
+              colPos
             );
           } else {
             if (parser.token === Token.LeftParen) {
@@ -2737,32 +2743,32 @@ function parseExportDeclaration(
                 declaration,
                 1,
                 BindingKind.ArgumentList,
-                BindingOrigin.None,
+                Origin.None,
                 flags,
-                idxBeforeAsync,
-                lineBeforeAsync,
-                columnBeforeAsync
+                tokenPos,
+                linePos,
+                colPos
               );
               declaration = parseMemberOrUpdateExpression(
                 parser,
                 context,
                 declaration as any,
                 0,
-                idxBeforeAsync,
-                lineBeforeAsync,
-                columnBeforeAsync
+                tokenPos,
+                linePos,
+                colPos
               );
               declaration = parseAssignmentExpression(
                 parser,
                 context,
                 0,
-                parser.tokenPos,
-                lineBeforeAsync,
-                columnBeforeAsync,
+                tokenPos,
+                linePos,
+                colPos,
                 declaration as any
               );
             } else if (parser.token & Token.IsIdentifier) {
-              if (scope) scope = createArrowScope(parser, context, parser.tokenValue);
+              if (scope) scope = createArrowHeadParsingScope(parser, context, parser.tokenValue);
 
               declaration = parseIdentifier(parser, context, 0);
               declaration = parseArrowFunctionExpression(
@@ -2771,9 +2777,9 @@ function parseExportDeclaration(
                 scope,
                 [declaration],
                 1,
-                idxBeforeAsync,
-                lineBeforeAsync,
-                columnBeforeAsync
+                tokenPos,
+                linePos,
+                colPos
               );
             }
           }
@@ -2865,6 +2871,7 @@ function parseExportDeclaration(
       while (parser.token & Token.IsIdentifier) {
         const { tokenPos, tokenValue, linePos, colPos } = parser;
         const local = parseIdentifier(parser, context, 0);
+
         let exported: ESTree.Identifier | null;
 
         if (parser.token === Token.AsKeyword) {
@@ -2936,7 +2943,7 @@ function parseExportDeclaration(
         parser,
         context,
         scope,
-        BindingOrigin.TopLevel,
+        Origin.TopLevel,
         1,
         HoistedFunctionFlags.Export,
         0,
@@ -2952,7 +2959,7 @@ function parseExportDeclaration(
         context,
         scope,
         BindingKind.Let,
-        BindingOrigin.Export,
+        Origin.Export,
         parser.tokenPos,
         parser.linePos,
         parser.colPos
@@ -2964,7 +2971,7 @@ function parseExportDeclaration(
         context,
         scope,
         BindingKind.Const,
-        BindingOrigin.Export,
+        Origin.Export,
         parser.tokenPos,
         parser.linePos,
         parser.colPos
@@ -2975,31 +2982,29 @@ function parseExportDeclaration(
         parser,
         context,
         scope,
-        BindingOrigin.Export,
+        Origin.Export,
         parser.tokenPos,
         parser.linePos,
         parser.colPos
       );
       break;
     case Token.AsyncKeyword:
-      const idxAfterAsync = parser.tokenPos;
-      const lineAfterAsync = parser.linePos;
-      const columnxAfterAsync = parser.colPos;
+      const { tokenPos, linePos, colPos } = parser;
 
       nextToken(parser, context);
 
-      if ((parser.flags & Flags.NewLine) === 0 && parser.token === Token.FunctionKeyword) {
+      if ((parser.flags & Flags.NewLine) < 1 && parser.token === Token.FunctionKeyword) {
         declaration = parseFunctionDeclaration(
           parser,
           context,
           scope,
-          BindingOrigin.TopLevel,
+          Origin.TopLevel,
           1,
           HoistedFunctionFlags.Export,
           1,
-          idxAfterAsync,
-          lineAfterAsync,
-          columnxAfterAsync
+          tokenPos,
+          linePos,
+          colPos
         );
         if (scope) {
           key = declaration.id ? declaration.id.name : '';
@@ -3045,7 +3050,7 @@ export function parseExpression(
   let expr = parsePrimaryExpressionExtended(
     parser,
     context,
-    BindingKind.EmptyBinding,
+    BindingKind.Empty,
     0,
     allowAssign,
     identifierPattern,
@@ -3139,7 +3144,7 @@ export function parseAssignmentExpression(
    *   LeftHandSideExpression AssignmentOperator AssignmentExpression
    */
   if ((parser.token & Token.IsAssignOp) > 0) {
-    if (parser.assignable & AssignmentKind.NotAssignable) {
+    if (parser.assignable & AssignmentKind.CannotAssign) {
       report(parser, Errors.CantAssignTo);
     }
     if (
@@ -3162,7 +3167,7 @@ export function parseAssignmentExpression(
       right
     });
 
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     return left;
   }
@@ -3225,7 +3230,7 @@ export function parseConditionalExpression(
   // expressions we always accept the 'in' keyword; see ECMA-262,
   // section 11.12, page 58.
   const alternate = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(parser, context, start, line, column, {
     type: 'ConditionalExpression',
     test,
@@ -3259,7 +3264,7 @@ export function parseBinaryExpression(
   let t: Token;
   let prec: number;
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   while (parser.token & Token.IsBinaryOp) {
     t = parser.token;
@@ -3337,7 +3342,7 @@ export function parseUnaryExpression(
     }
   }
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'UnaryExpression',
@@ -3382,7 +3387,7 @@ export function parseYieldExpressionOrIdentifier(
       }
     }
 
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     return finishNode(parser, context, start, line, column, {
       type: 'YieldExpression',
@@ -3421,7 +3426,7 @@ export function parseAwaitExpressionOrIdentifier(
 
     const argument = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
 
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     return finishNode(parser, context, start, line, column, {
       type: 'AwaitExpression',
@@ -3448,7 +3453,7 @@ export function parseFunctionBody(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   firstRestricted: Token | undefined,
   scopeError: any
 ): ESTree.BlockStatement {
@@ -3476,37 +3481,30 @@ export function parseFunctionBody(
       }
       body.push(parseDirective(parser, context, expr, token, tokenPos, parser.linePos, parser.colPos));
     }
-
-    if (context & Context.Strict) {
-      if (
-        scope &&
-        (scopeError !== void 0 && (prevContext & Context.Strict) < 1 && (context & Context.InGlobal) === 0)
-      ) {
-        reportScopeError(scopeError);
+    if (context & Context.Strict && firstRestricted) {
+      if ((firstRestricted & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+        report(parser, Errors.StrictEvalArguments);
       }
-
-      if (parser.flags & Flags.HasStrictReserved) report(parser, Errors.UnexpectedStrictReserved);
-      if (parser.flags & Flags.StrictEvalArguments) report(parser, Errors.StrictEvalArguments);
-      if (
-        firstRestricted &&
-        ((firstRestricted & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
-          (firstRestricted & Token.FutureReserved) === Token.FutureReserved)
-      ) {
+      if ((firstRestricted & Token.FutureReserved) === Token.FutureReserved) {
         report(parser, Errors.StrictFunctionName);
       }
     }
-  }
 
-  parser.flags =
-    (parser.flags | Flags.HasStrictReserved | Flags.StrictEvalArguments) ^
-    (Flags.StrictEvalArguments | Flags.HasStrictReserved);
+    if (
+      context & Context.OptionsLexical &&
+      scope &&
+      (scopeError !== void 0 && (prevContext & Context.Strict) < 1 && (context & Context.InGlobal) < 1)
+    ) {
+      reportScopeError(scopeError);
+    }
+  }
 
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
       parser,
       context,
       scope,
-      BindingOrigin.TopLevel,
+      Origin.TopLevel,
       {},
       parser.tokenPos,
       parser.linePos,
@@ -3516,7 +3514,7 @@ export function parseFunctionBody(
 
   consume(
     parser,
-    origin & (BindingOrigin.Arrow | BindingOrigin.Declaration) ? context | Context.AllowRegExp : context,
+    origin & (Origin.Arrow | Origin.Declaration) ? context | Context.AllowRegExp : context,
     Token.RightBrace
   );
 
@@ -3548,16 +3546,16 @@ export function parseSuperExpression(
   switch (parser.token) {
     case Token.LeftParen: {
       // The super property has to be within a class constructor
-      if ((context & Context.SuperCall) === 0) report(parser, Errors.SuperNoConstructor);
+      if ((context & Context.SuperCall) < 1) report(parser, Errors.SuperNoConstructor);
       if (context & Context.InClass) report(parser, Errors.UnexpectedPrivateField);
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
       break;
     }
     case Token.LeftBracket:
     case Token.Period: {
       // new super() is never allowed.
       // super() is only allowed in derived constructor
-      if ((context & Context.SuperProperty) === 0) report(parser, Errors.InvalidSuperProperty);
+      if ((context & Context.SuperProperty) < 1) report(parser, Errors.InvalidSuperProperty);
       if (context & Context.InClass) report(parser, Errors.UnexpectedPrivateField);
       parser.assignable = AssignmentKind.Assignable;
       break;
@@ -3591,7 +3589,7 @@ export function parseLeftHandSideExpression(
   const expression = parsePrimaryExpressionExtended(
     parser,
     context,
-    BindingKind.EmptyBinding,
+    BindingKind.Empty,
     0,
     allowAssign,
     0,
@@ -3622,14 +3620,14 @@ export function parseMemberOrUpdateExpression(
   column: number
 ): any {
   // Update + Member expression
-  if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) === 0) {
-    if (parser.assignable & AssignmentKind.NotAssignable) report(parser, Errors.InvalidIncDecTarget);
+  if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) < 1) {
+    if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.InvalidIncDecTarget);
 
     const { token } = parser;
 
     nextToken(parser, context);
 
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     return finishNode(parser, context, start, line, column, {
       type: 'UpdateExpression',
@@ -3666,7 +3664,7 @@ export function parseMemberOrUpdateExpression(
 
         const { tokenPos, linePos, colPos } = parser;
 
-        let property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
+        const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
 
         consume(parser, context, Token.RightBracket);
 
@@ -3685,7 +3683,7 @@ export function parseMemberOrUpdateExpression(
       case Token.LeftParen: {
         const args = parseArguments(parser, context, inGroup);
 
-        parser.assignable = AssignmentKind.NotAssignable;
+        parser.assignable = AssignmentKind.CannotAssign;
 
         expr = finishNode(parser, context, start, line, column, {
           type: 'CallExpression',
@@ -3697,7 +3695,7 @@ export function parseMemberOrUpdateExpression(
 
       /* Template */
       default: {
-        parser.assignable = AssignmentKind.NotAssignable;
+        parser.assignable = AssignmentKind.CannotAssign;
 
         expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
           type: 'TaggedTemplateExpression',
@@ -3722,7 +3720,7 @@ export function parseMemberOrUpdateExpression(
  * @param context Context masks
  */
 function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Context): any {
-  if ((parser.token & (Token.IsIdentifier | Token.Keyword)) === 0 && parser.token !== Token.PrivateField) {
+  if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1 && parser.token !== Token.PrivateField) {
     report(parser, Errors.InvalidDotProperty);
   }
 
@@ -3745,7 +3743,7 @@ function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Contex
 export function parsePrimaryExpressionExtended(
   parser: ParserState,
   context: Context,
-  type: BindingKind,
+  kind: BindingKind,
   inNewExpression: 0 | 1,
   allowAssign: 0 | 1,
   identifierPattern: 0 | 1,
@@ -3795,7 +3793,7 @@ export function parsePrimaryExpressionExtended(
     if (inNewExpression && (token !== Token.VoidKeyword || token !== Token.TypeofKeyword)) {
       report(parser, Errors.InvalidNewUnary, KeywordDescTable[parser.token & Token.Type]);
     }
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
     return parseUnaryExpression(parser, context, start, line, column, inGroup);
   }
 
@@ -3815,7 +3813,7 @@ export function parsePrimaryExpressionExtended(
 
     const arg = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
 
-    if (parser.assignable & AssignmentKind.NotAssignable) {
+    if (parser.assignable & AssignmentKind.CannotAssign) {
       report(
         parser,
         (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
@@ -3824,7 +3822,7 @@ export function parsePrimaryExpressionExtended(
       );
     }
 
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     return finishNode(parser, context, start, line, column, {
       type: 'UpdateExpression',
@@ -3869,7 +3867,7 @@ export function parsePrimaryExpressionExtended(
 
   if (parser.token === Token.LetKeyword) {
     if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
-    if (type & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetBoundName);
+    if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetBoundName);
   }
   if (context & Context.InClass && parser.token === Token.Arguments) {
     report(parser, Errors.InvalidClassFieldArgEval);
@@ -3890,26 +3888,28 @@ export function parsePrimaryExpressionExtended(
       parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
       if (IsEvalOrArguments) {
         if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
-        parser.flags |= Flags.StrictEvalArguments;
+        parser.flags |= Flags.SimpleParameterList;
+      } else {
+        parser.flags &= ~Flags.SimpleParameterList;
       }
 
       if (!allowAssign) report(parser, Errors.InvalidAssignmentTarget);
 
       let scope: ScopeState | undefined = void 0;
 
-      if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+      if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
       return parseArrowFunctionExpression(parser, context, scope, [expr], /* isAsync */ 0, start, line, column);
     }
 
     parser.assignable =
-      context & Context.Strict && IsEvalOrArguments ? AssignmentKind.NotAssignable : AssignmentKind.Assignable;
+      context & Context.Strict && IsEvalOrArguments ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
     return expr;
   }
 
   if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
     return parseLiteral(parser, context);
   }
 
@@ -3926,7 +3926,7 @@ export function parsePrimaryExpressionExtended(
         context & ~Context.DisallowIn,
         allowAssign,
         BindingKind.ArgumentList,
-        BindingOrigin.None,
+        Origin.None,
         start,
         line,
         column
@@ -4002,7 +4002,7 @@ function parseImportCallExpression(
 
   expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, line, column);
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return expr;
 }
@@ -4052,7 +4052,7 @@ export function parseBigIntLiteral(
 ): ESTree.BigIntLiteral {
   const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(
     parser,
     context,
@@ -4120,7 +4120,7 @@ export function parseTemplateLiteral(
    *   LineContinuation
    */
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateLiteral',
@@ -4364,7 +4364,7 @@ export function parseNullOrTrueOrFalseLiteral(
   const value = parser.token === Token.NullKeyword ? null : raw === 'true';
 
   nextToken(parser, context);
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(
     parser,
     context,
@@ -4398,7 +4398,7 @@ export function parseThisExpression(
   column: number
 ): ESTree.ThisExpression {
   nextToken(parser, context);
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(parser, context, start, line, column, {
     type: 'ThisExpression'
   });
@@ -4419,7 +4419,7 @@ export function parseFunctionDeclaration(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
-  origin: BindingOrigin,
+  origin: Origin,
   allowGen: 0 | 1,
   flags: HoistedFunctionFlags,
   isAsync: 0 | 1,
@@ -4451,16 +4451,14 @@ export function parseFunctionDeclaration(
   let firstRestricted: Token | undefined;
 
   // Create a new function scope
-  let innerscope = context & Context.OptionsLexical ? createScope() : void 0;
+  let functionScope = scope ? createScope() : void 0;
 
   if (parser.token === Token.LeftParen) {
-    if ((flags & HoistedClassFlags.Hoisted) === 0) {
-      report(parser, Errors.DeclNoName, 'Function');
-    }
-    if (innerscope) addBindingToExports(parser, '');
+    if ((flags & HoistedClassFlags.Hoisted) < 1) report(parser, Errors.DeclNoName, 'Function');
+    if (scope) addBindingToExports(parser, '');
   } else {
-    let type =
-      (context & 0b0000000000000000001_1000_00000000) === 0b0000000000000000001_0000_00000000
+    const type =
+      origin & Origin.TopLevel && ((context & Context.InGlobal) < 1 || (context & Context.Module) < 1)
         ? BindingKind.Variable
         : BindingKind.FunctionLexical;
 
@@ -4472,22 +4470,14 @@ export function parseFunctionDeclaration(
       0
     );
 
-    if (innerscope) {
-      if (!allowGen) scope = addChildScope(scope, ScopeKind.Block);
-
-      // A function behaves as a lexical binding, except in a script scope, or in any function scope.
-      type =
-        origin & BindingOrigin.TopLevel && ((context & Context.InGlobal) === 0 || (context & Context.Module) === 0)
-          ? BindingKind.Variable
-          : BindingKind.FunctionLexical;
-
+    if (scope) {
       if (type & BindingKind.Variable) {
         addVarName(parser, context, scope as ScopeState, parser.tokenValue, type);
       } else {
         addBlockName(parser, context, scope, parser.tokenValue, type, origin);
       }
 
-      innerscope = addChildScope(innerscope, ScopeKind.FuncRoot);
+      functionScope = addChildScope(functionScope, ScopeKind.FunctionRoot);
 
       if (flags) {
         if (flags & HoistedClassFlags.Hoisted) {
@@ -4508,24 +4498,24 @@ export function parseFunctionDeclaration(
     Context.AllowNewTarget |
     ((isAsync * 2 + isGenerator) << 21);
 
-  if (scope) innerscope = addChildScope(innerscope, ScopeKind.FunctionParams);
+  if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
 
   const params = parseFormalParametersOrFormalList(
     parser,
     context | Context.InArgumentList,
-    innerscope,
+    functionScope,
     0,
     BindingKind.ArgumentList
   );
 
   const body = parseFunctionBody(
     parser,
-    (context | 0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
-      (0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration),
-    innerscope ? addChildScope(innerscope, ScopeKind.FuncBody) : innerscope,
-    BindingOrigin.Declaration,
+    (context | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
+      (Context.InGlobal | Context.InSwitch | Context.InIteration),
+    scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
+    Origin.Declaration,
     firstRestricted,
-    innerscope ? (innerscope as any).scopeError : void 0
+    scope ? (functionScope as ScopeState).scopeError : void 0
   );
 
   return finishNode(parser, context, start, line, column, {
@@ -4580,10 +4570,10 @@ export function parseFunctionExpression(
       0
     );
 
-    if (scope) scope = addChildScope(scope, ScopeKind.FuncRoot);
+    if (scope) scope = addChildScope(scope, ScopeKind.FunctionRoot);
 
     firstRestricted = parser.token;
-    id = parseIdentifier(parser, context, 0);
+    id = parseIdentifier(parser, context, /* isPattern */ 0);
   }
 
   context =
@@ -4604,13 +4594,13 @@ export function parseFunctionExpression(
   const body = parseFunctionBody(
     parser,
     context & ~(0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InClass),
-    scope ? addChildScope(scope, ScopeKind.FuncBody) : scope,
+    scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
     0,
     firstRestricted,
     void 0
   );
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',
@@ -4663,8 +4653,8 @@ function parseArrayLiteral(
     void 0,
     skipInitializer,
     inGroup,
-    BindingKind.EmptyBinding,
-    BindingOrigin.None,
+    BindingKind.Empty,
+    Origin.None,
     start,
     line,
     column
@@ -4674,7 +4664,7 @@ function parseArrayLiteral(
     report(parser, Errors.DuplicateProto);
   }
 
-  if (parser.destructible & DestructuringKind.MustDestruct) {
+  if (parser.destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
 
@@ -4689,14 +4679,15 @@ function parseArrayLiteral(
  * @param skipInitializer
  * @param BindingKind
  */
+
 export function parseArrayExpressionOrPattern(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
-  type: BindingKind,
-  origin: BindingOrigin,
+  kind: BindingKind,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -4757,13 +4748,13 @@ export function parseArrayExpressionOrPattern(
       const { token, tokenPos, linePos, colPos, tokenValue } = parser;
 
       if (token & Token.IsIdentifier) {
-        left = parsePrimaryExpressionExtended(parser, context, type, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
+        left = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
 
         if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
-          if (parser.assignable & AssignmentKind.NotAssignable) {
+          if (parser.assignable & AssignmentKind.CannotAssign) {
             reportMessageAt(parser.index, parser.line, parser.index - 3, Errors.CantAssignTo);
           } else if (scope) {
-            addVarOrBlock(parser, context, scope, tokenValue, type, origin);
+            addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
           }
           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
 
@@ -4774,16 +4765,17 @@ export function parseArrayExpressionOrPattern(
             right
           });
         } else if (parser.token === Token.Comma || parser.token === Token.RightBracket) {
-          if (parser.assignable & AssignmentKind.NotAssignable) {
+          if (parser.assignable & AssignmentKind.CannotAssign) {
             destructible |= DestructuringKind.CannotDestruct;
           } else if (scope) {
-            addVarOrBlock(parser, context, scope, tokenValue, type, origin);
+            addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
           }
         } else {
+          //if (type) destructible |= DestructuringKind.CannotDestruct;
           destructible |=
-            type & BindingKind.ArgumentList
-              ? DestructuringKind.AssignableDestruct
-              : (type & BindingKind.EmptyBinding) === 0
+            kind & BindingKind.ArgumentList
+              ? DestructuringKind.Assignable
+              : (kind & BindingKind.Empty) < 1
               ? DestructuringKind.CannotDestruct
               : 0;
 
@@ -4791,13 +4783,12 @@ export function parseArrayExpressionOrPattern(
 
           if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
             if (parser.token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
-
             left = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, left);
           } else if (parser.token !== Token.Assign) {
             destructible |=
-              parser.assignable & AssignmentKind.NotAssignable
+              parser.assignable & AssignmentKind.CannotAssign
                 ? DestructuringKind.CannotDestruct
-                : DestructuringKind.AssignableDestruct;
+                : DestructuringKind.Assignable;
           }
         }
 
@@ -4810,14 +4801,14 @@ export function parseArrayExpressionOrPattern(
       } else if (token & Token.IsPatternStart) {
         left =
           parser.token === Token.LeftBrace
-            ? parseObjectLiteralOrPattern(parser, context, scope, 0, inGroup, type, origin, tokenPos, linePos, colPos)
+            ? parseObjectLiteralOrPattern(parser, context, scope, 0, inGroup, kind, origin, tokenPos, linePos, colPos)
             : parseArrayExpressionOrPattern(
                 parser,
                 context,
                 scope,
                 0,
                 inGroup,
-                type,
+                kind,
                 origin,
                 tokenPos,
                 linePos,
@@ -4828,26 +4819,26 @@ export function parseArrayExpressionOrPattern(
 
         parser.assignable =
           parser.destructible & DestructuringKind.CannotDestruct
-            ? AssignmentKind.NotAssignable
+            ? AssignmentKind.CannotAssign
             : AssignmentKind.Assignable;
 
         if (parser.token === Token.Comma || parser.token === Token.RightBracket) {
-          if (parser.assignable & AssignmentKind.NotAssignable) {
+          if (parser.assignable & AssignmentKind.CannotAssign) {
             destructible |= DestructuringKind.CannotDestruct;
           }
-        } else if (parser.destructible & DestructuringKind.MustDestruct) {
+        } else if (parser.destructible & DestructuringKind.HasToDestruct) {
           report(parser, Errors.InvalidDestructuringTarget);
         } else {
           left = parseMemberOrUpdateExpression(parser, context, left, inGroup, tokenPos, linePos, colPos);
-          destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.CannotDestruct : 0;
+          destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
           if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
             left = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, left);
           } else if (parser.token !== Token.Assign) {
             destructible |=
-              parser.assignable & AssignmentKind.NotAssignable
+              parser.assignable & AssignmentKind.CannotAssign
                 ? DestructuringKind.CannotDestruct
-                : DestructuringKind.AssignableDestruct;
+                : DestructuringKind.Assignable;
           }
         }
       } else if (token === Token.Ellipsis) {
@@ -4856,7 +4847,7 @@ export function parseArrayExpressionOrPattern(
           context,
           scope,
           Token.RightBracket,
-          type,
+          kind,
           origin,
           0,
           inGroup,
@@ -4872,17 +4863,17 @@ export function parseArrayExpressionOrPattern(
 
         if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
           left = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, left);
-          if ((type & (BindingKind.EmptyBinding | BindingKind.ArgumentList)) === 0 && token === Token.LeftParen)
+          if ((kind & (BindingKind.Empty | BindingKind.ArgumentList)) < 1 && token === Token.LeftParen)
             destructible |= DestructuringKind.CannotDestruct;
-        } else if (parser.assignable & AssignmentKind.NotAssignable) {
+        } else if (parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
         } else if (
           token === Token.LeftParen &&
           parser.assignable & AssignmentKind.Assignable &&
-          type & (BindingKind.EmptyBinding | BindingKind.ArgumentList)
+          kind & (BindingKind.Empty | BindingKind.ArgumentList)
         ) {
-          destructible |= DestructuringKind.AssignableDestruct;
-        } else if (token === Token.LeftParen || parser.assignable & AssignmentKind.NotAssignable) {
+          destructible |= DestructuringKind.Assignable;
+        } else if (token === Token.LeftParen || parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
         }
       }
@@ -4963,8 +4954,8 @@ function parseArrayOrObjectAssignmentPattern(
   );
 
   parser.destructible =
-    ((destructible | DestructuringKind.SeenProto | DestructuringKind.MustDestruct) ^
-      (DestructuringKind.MustDestruct | DestructuringKind.SeenProto)) |
+    ((destructible | DestructuringKind.SeenProto | DestructuringKind.HasToDestruct) ^
+      (DestructuringKind.HasToDestruct | DestructuringKind.SeenProto)) |
     (parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0) |
     (parser.destructible & DestructuringKind.Yield ? DestructuringKind.Yield : 0);
 
@@ -4995,8 +4986,8 @@ function parseSpreadElement(
   context: Context,
   scope: ScopeState | undefined,
   closingToken: Token,
-  type: BindingKind,
-  origin: BindingOrigin,
+  kind: BindingKind,
+  origin: Origin,
   isAsync: 0 | 1,
   inGroup: 0 | 1,
   start: number,
@@ -5015,14 +5006,14 @@ function parseSpreadElement(
 
     const tokenValue = parser.tokenValue;
 
-    argument = parsePrimaryExpressionExtended(parser, context, type, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
+    argument = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
 
     const { token } = parser;
 
     argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
 
     if (parser.token !== Token.Comma && parser.token !== closingToken) {
-      if (parser.assignable & AssignmentKind.NotAssignable && parser.token === Token.Assign)
+      if (parser.assignable & AssignmentKind.CannotAssign && parser.token === Token.Assign)
         report(parser, Errors.InvalidDestructuringTarget);
 
       destructible |= DestructuringKind.CannotDestruct;
@@ -5030,19 +5021,18 @@ function parseSpreadElement(
       argument = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, argument);
     }
 
-    if (parser.assignable & AssignmentKind.NotAssignable) {
-      // `[...a+b]`
+    if (parser.assignable & AssignmentKind.CannotAssign) {
       destructible |= DestructuringKind.CannotDestruct;
     } else if (token === closingToken || token === Token.Comma) {
       if (scope) {
-        addVarName(parser, context, scope, tokenValue, type);
-        if (origin & BindingOrigin.Export) {
+        addVarName(parser, context, scope, tokenValue, kind);
+        if (origin & Origin.Export) {
           updateExportsList(parser, tokenValue);
           addBindingToExports(parser, tokenValue);
         }
       }
     } else {
-      destructible |= DestructuringKind.AssignableDestruct;
+      destructible |= DestructuringKind.Assignable;
     }
 
     destructible |= parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0;
@@ -5051,17 +5041,17 @@ function parseSpreadElement(
   } else if (parser.token & Token.IsPatternStart) {
     argument =
       parser.token === Token.LeftBrace
-        ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, type, origin, tokenPos, linePos, colPos)
-        : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, type, origin, tokenPos, linePos, colPos);
+        ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos)
+        : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos);
 
     const { token } = parser;
 
     if (token !== Token.Assign && token !== closingToken && token !== Token.Comma) {
-      if (parser.destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidDestructuringTarget);
+      if (parser.destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidDestructuringTarget);
 
       argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
 
-      destructible |= parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.CannotDestruct : 0;
+      destructible |= parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
       const { token } = parser;
 
@@ -5071,9 +5061,9 @@ function parseSpreadElement(
         if (token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
       } else if (token !== Token.Assign) {
         destructible |=
-          parser.assignable & AssignmentKind.NotAssignable
+          parser.assignable & AssignmentKind.CannotAssign
             ? DestructuringKind.CannotDestruct
-            : DestructuringKind.AssignableDestruct;
+            : DestructuringKind.Assignable;
       }
     } else {
       destructible |=
@@ -5082,14 +5072,14 @@ function parseSpreadElement(
           : parser.destructible;
     }
   } else {
-    destructible |= DestructuringKind.AssignableDestruct;
+    destructible |= DestructuringKind.Assignable;
 
     argument = parseLeftHandSideExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
 
     const { token, tokenPos } = parser;
 
     if (token === Token.Assign && token !== closingToken && token !== Token.Comma) {
-      if (parser.assignable & AssignmentKind.NotAssignable) report(parser, Errors.CantAssignToInit);
+      if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignToInit);
 
       argument = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, argument);
 
@@ -5102,9 +5092,7 @@ function parseSpreadElement(
       }
 
       destructible |=
-        parser.assignable & AssignmentKind.Assignable
-          ? DestructuringKind.AssignableDestruct
-          : DestructuringKind.CannotDestruct;
+        parser.assignable & AssignmentKind.Assignable ? DestructuringKind.Assignable : DestructuringKind.CannotDestruct;
     }
 
     parser.destructible = destructible;
@@ -5118,8 +5106,8 @@ function parseSpreadElement(
   }
 
   if (parser.token !== closingToken) {
-    if (type & BindingKind.ArgumentList)
-      destructible |= isAsync ? DestructuringKind.CannotDestruct : DestructuringKind.AssignableDestruct;
+    if (kind & BindingKind.ArgumentList)
+      destructible |= isAsync ? DestructuringKind.CannotDestruct : DestructuringKind.Assignable;
 
     if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
       if (destructible & DestructuringKind.CannotDestruct) report(parser, Errors.CantAssignTo);
@@ -5136,9 +5124,10 @@ function parseSpreadElement(
       });
 
       destructible = DestructuringKind.CannotDestruct;
+    } else {
+      // Note the difference between '|=' and '=' above
+      destructible |= DestructuringKind.CannotDestruct;
     }
-
-    destructible |= DestructuringKind.CannotDestruct;
   }
 
   parser.destructible = destructible;
@@ -5170,7 +5159,7 @@ export function parseMethodDefinition(
   column: number
 ): ESTree.FunctionExpression {
   const modifierFlags =
-    (kind & PropertyKind.Constructor) === 0 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
+    (kind & PropertyKind.Constructor) < 1 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
 
   context =
     ((context | modifierFlags) ^ modifierFlags) |
@@ -5188,16 +5177,9 @@ export function parseMethodDefinition(
     inGroup
   );
 
-  if (scope) scope = addChildScope(scope, ScopeKind.FuncBody);
+  if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-  const body = parseFunctionBody(
-    parser,
-    context & ~(0x8001000 | Context.InGlobal),
-    scope,
-    BindingOrigin.None,
-    void 0,
-    void 0
-  );
+  const body = parseFunctionBody(parser, context & ~(0x8001000 | Context.InGlobal), scope, Origin.None, void 0, void 0);
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',
@@ -5271,8 +5253,8 @@ function parseObjectLiteral(
     void 0,
     skipInitializer,
     inGroup,
-    BindingKind.EmptyBinding,
-    BindingOrigin.None,
+    BindingKind.Empty,
+    Origin.None,
     start,
     line,
     column
@@ -5282,7 +5264,7 @@ function parseObjectLiteral(
     report(parser, Errors.DuplicateProto);
   }
 
-  if (parser.destructible & DestructuringKind.MustDestruct) {
+  if (parser.destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
 
@@ -5303,8 +5285,8 @@ export function parseObjectLiteralOrPattern(
   scope: ScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
-  type: BindingKind,
-  origin: BindingOrigin,
+  kind: BindingKind,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -5368,7 +5350,7 @@ export function parseObjectLiteralOrPattern(
           context,
           scope,
           Token.RightBrace,
-          type,
+          kind,
           origin,
           0,
           inGroup,
@@ -5391,13 +5373,13 @@ export function parseObjectLiteralOrPattern(
           if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
             if (context & Context.Strict) destructible |= DestructuringKind.CannotDestruct;
           } else {
-            validateBindingIdentifier(parser, context, type, token, 0);
+            validateBindingIdentifier(parser, context, kind, token, 0);
           }
 
-          if (scope) addVarOrBlock(parser, context, scope, tokenValue, type, origin);
+          if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
 
           if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
-            destructible |= DestructuringKind.MustDestruct;
+            destructible |= DestructuringKind.HasToDestruct;
 
             const right = parseExpression(
               parser,
@@ -5441,7 +5423,7 @@ export function parseObjectLiteralOrPattern(
             value = parsePrimaryExpressionExtended(
               parser,
               context,
-              type,
+              kind,
               0,
               1,
               0,
@@ -5466,24 +5448,24 @@ export function parseObjectLiteralOrPattern(
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
                 destructible |= parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0;
-                if (parser.assignable & AssignmentKind.NotAssignable) {
+                if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
+                  addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
                 }
               } else {
                 destructible |=
                   parser.assignable & AssignmentKind.Assignable
-                    ? DestructuringKind.AssignableDestruct
+                    ? DestructuringKind.Assignable
                     : DestructuringKind.CannotDestruct;
               }
             } else if (parser.token === Token.Assign) {
-              if (parser.assignable & AssignmentKind.NotAssignable) {
+              if (parser.assignable & AssignmentKind.CannotAssign) {
                 destructible |= DestructuringKind.CannotDestruct;
               } else if (token !== Token.Assign) {
-                destructible |= DestructuringKind.AssignableDestruct;
+                destructible |= DestructuringKind.Assignable;
               } else if (scope) {
-                addVarOrBlock(parser, context, scope, valueAfterColon, type, origin);
+                addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
               }
               value = parseAssignmentExpression(
                 parser,
@@ -5515,7 +5497,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     idxAfterColon,
                     lineAfterColon,
@@ -5527,7 +5509,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     idxAfterColon,
                     lineAfterColon,
@@ -5537,13 +5519,11 @@ export function parseObjectLiteralOrPattern(
             destructible = parser.destructible;
 
             parser.assignable =
-              destructible & DestructuringKind.CannotDestruct
-                ? AssignmentKind.NotAssignable
-                : AssignmentKind.Assignable;
+              destructible & DestructuringKind.CannotDestruct ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.CannotDestruct;
-            } else if (parser.destructible & DestructuringKind.MustDestruct) {
+              if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
+            } else if (parser.destructible & DestructuringKind.HasToDestruct) {
               report(parser, Errors.InvalidDestructuringTarget);
             } else {
               value = parseMemberOrUpdateExpression(
@@ -5556,7 +5536,7 @@ export function parseObjectLiteralOrPattern(
                 columnAfterColon
               );
 
-              destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.CannotDestruct : 0;
+              destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
               const { token } = parser;
 
@@ -5574,9 +5554,9 @@ export function parseObjectLiteralOrPattern(
                 if (token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
               } else if (token !== Token.Assign) {
                 destructible |=
-                  parser.assignable & AssignmentKind.NotAssignable
+                  parser.assignable & AssignmentKind.CannotAssign
                     ? DestructuringKind.CannotDestruct
-                    : DestructuringKind.AssignableDestruct;
+                    : DestructuringKind.Assignable;
               }
             }
           } else {
@@ -5592,11 +5572,11 @@ export function parseObjectLiteralOrPattern(
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
-                ? DestructuringKind.AssignableDestruct
+                ? DestructuringKind.Assignable
                 : DestructuringKind.CannotDestruct;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.CannotDestruct;
+              if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
             } else {
               value = parseMemberOrUpdateExpression(
                 parser,
@@ -5608,7 +5588,7 @@ export function parseObjectLiteralOrPattern(
                 columnAfterColon
               );
 
-              destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.CannotDestruct : 0;
+              destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
               const { token } = parser;
 
@@ -5757,7 +5737,7 @@ export function parseObjectLiteralOrPattern(
             value = parsePrimaryExpressionExtended(
               parser,
               context,
-              type,
+              kind,
               0,
               1,
               0,
@@ -5766,8 +5746,7 @@ export function parseObjectLiteralOrPattern(
               lineAfterColon,
               columnAfterColon
             );
-            // FIX ME
-            const { token, tokenValue: tv } = parser;
+            const { token, tokenValue: valueAfterColon } = parser;
 
             value = parseMemberOrUpdateExpression(
               parser,
@@ -5781,19 +5760,19 @@ export function parseObjectLiteralOrPattern(
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
-                if (parser.assignable & AssignmentKind.NotAssignable) {
+                if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope) {
-                  addVarOrBlock(parser, context, scope, tv, type, origin);
+                  addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
                 }
               } else {
                 destructible |=
                   parser.assignable & AssignmentKind.Assignable
-                    ? DestructuringKind.AssignableDestruct
+                    ? DestructuringKind.Assignable
                     : DestructuringKind.CannotDestruct;
               }
             } else if (parser.token === Token.Assign) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.CannotDestruct;
+              if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
               value = parseAssignmentExpression(
                 parser,
                 context & ~Context.DisallowIn,
@@ -5824,7 +5803,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     idxAfterColon,
                     lineAfterColon,
@@ -5836,7 +5815,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     idxAfterColon,
                     lineAfterColon,
@@ -5846,15 +5825,13 @@ export function parseObjectLiteralOrPattern(
             destructible = parser.destructible;
 
             parser.assignable =
-              destructible & DestructuringKind.CannotDestruct
-                ? AssignmentKind.NotAssignable
-                : AssignmentKind.Assignable;
+              destructible & DestructuringKind.CannotDestruct ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) {
+              if (parser.assignable & AssignmentKind.CannotAssign) {
                 destructible |= DestructuringKind.CannotDestruct;
               }
-            } else if (parser.destructible & DestructuringKind.MustDestruct) {
+            } else if (parser.destructible & DestructuringKind.HasToDestruct) {
               report(parser, Errors.InvalidDestructuringTarget);
             } else {
               value = parseMemberOrUpdateExpression(
@@ -5866,7 +5843,7 @@ export function parseObjectLiteralOrPattern(
                 lineAfterColon,
                 columnAfterColon
               );
-              destructible = parser.assignable & AssignmentKind.NotAssignable ? DestructuringKind.CannotDestruct : 0;
+              destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
               if (parser.token !== Token.Comma && parser.token !== Token.RightBrace) {
                 value = parseAssignmentExpression(
@@ -5880,9 +5857,9 @@ export function parseObjectLiteralOrPattern(
                 );
               } else if (parser.token !== Token.Assign) {
                 destructible |=
-                  parser.assignable & AssignmentKind.NotAssignable
+                  parser.assignable & AssignmentKind.CannotAssign
                     ? DestructuringKind.CannotDestruct
-                    : DestructuringKind.AssignableDestruct;
+                    : DestructuringKind.Assignable;
               }
             }
           } else {
@@ -5890,11 +5867,11 @@ export function parseObjectLiteralOrPattern(
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
-                ? DestructuringKind.AssignableDestruct
+                ? DestructuringKind.Assignable
                 : DestructuringKind.CannotDestruct;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) {
+              if (parser.assignable & AssignmentKind.CannotAssign) {
                 destructible |= DestructuringKind.CannotDestruct;
               }
             } else {
@@ -5954,7 +5931,7 @@ export function parseObjectLiteralOrPattern(
           const { tokenPos, linePos, colPos, tokenValue, token: tokenAfterColon } = parser;
 
           if (parser.token & Token.IsIdentifier) {
-            value = parsePrimaryExpressionExtended(parser, context, type, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
+            value = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
 
             const { token } = parser;
 
@@ -5962,24 +5939,24 @@ export function parseObjectLiteralOrPattern(
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
-                if (parser.assignable & AssignmentKind.NotAssignable) {
+                if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
                 } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarOrBlock(parser, context, scope, tokenValue, type, origin);
+                  addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
                 }
               } else {
                 destructible |=
                   parser.assignable & AssignmentKind.Assignable
-                    ? DestructuringKind.AssignableDestruct
+                    ? DestructuringKind.Assignable
                     : DestructuringKind.CannotDestruct;
               }
             } else if (parser.token === Token.Assign) {
               destructible |=
-                parser.assignable & AssignmentKind.NotAssignable
+                parser.assignable & AssignmentKind.CannotAssign
                   ? DestructuringKind.CannotDestruct
                   : token === Token.Assign
                   ? 0
-                  : DestructuringKind.AssignableDestruct;
+                  : DestructuringKind.Assignable;
               value = parseAssignmentExpression(
                 parser,
                 (context | Context.DisallowIn) ^ Context.DisallowIn,
@@ -6010,7 +5987,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     tokenPos,
                     linePos,
@@ -6022,7 +5999,7 @@ export function parseObjectLiteralOrPattern(
                     scope,
                     0,
                     inGroup,
-                    type,
+                    kind,
                     origin,
                     tokenPos,
                     linePos,
@@ -6032,19 +6009,17 @@ export function parseObjectLiteralOrPattern(
             destructible = parser.destructible;
 
             parser.assignable =
-              destructible & DestructuringKind.CannotDestruct
-                ? AssignmentKind.NotAssignable
-                : AssignmentKind.Assignable;
+              destructible & DestructuringKind.CannotDestruct ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.CannotDestruct;
-            } else if (destructible & DestructuringKind.MustDestruct) {
+              if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
+            } else if (destructible & DestructuringKind.HasToDestruct) {
               report(parser, Errors.InvalidShorthandPropInit);
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
 
               destructible =
-                parser.assignable & AssignmentKind.NotAssignable ? destructible | DestructuringKind.CannotDestruct : 0;
+                parser.assignable & AssignmentKind.CannotAssign ? destructible | DestructuringKind.CannotDestruct : 0;
 
               const { token } = parser;
 
@@ -6062,9 +6037,9 @@ export function parseObjectLiteralOrPattern(
                 if (token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
               } else if (token !== Token.Assign) {
                 destructible |=
-                  parser.assignable & AssignmentKind.NotAssignable
+                  parser.assignable & AssignmentKind.CannotAssign
                     ? DestructuringKind.CannotDestruct
-                    : DestructuringKind.AssignableDestruct;
+                    : DestructuringKind.Assignable;
               }
             }
           } else {
@@ -6072,11 +6047,11 @@ export function parseObjectLiteralOrPattern(
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
-                ? DestructuringKind.AssignableDestruct
+                ? DestructuringKind.Assignable
                 : DestructuringKind.CannotDestruct;
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
-              if (parser.assignable & AssignmentKind.NotAssignable) destructible |= DestructuringKind.CannotDestruct;
+              if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
 
@@ -6255,18 +6230,18 @@ export function parseMethodFormals(
     const { tokenPos, tokenValue, linePos, colPos } = parser;
     if (parser.token & Token.IsIdentifier) {
       if (
-        (context & Context.Strict) === 0 &&
+        (context & Context.Strict) < 1 &&
         ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
           (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
       ) {
-        parser.flags |= Flags.StrictEvalArguments;
+        parser.flags |= Flags.SimpleParameterList;
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
         if (type & BindingKind.Variable) {
           addVarName(parser, context, scope, tokenValue, BindingKind.ArgumentList);
         } else {
-          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
         }
       }
       left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
@@ -6279,7 +6254,7 @@ export function parseMethodFormals(
           1,
           inGroup,
           type,
-          BindingOrigin.None,
+          Origin.None,
           tokenPos,
           linePos,
           colPos
@@ -6292,7 +6267,7 @@ export function parseMethodFormals(
           1,
           inGroup,
           type,
-          BindingOrigin.None,
+          Origin.None,
           tokenPos,
           linePos,
           colPos
@@ -6304,7 +6279,7 @@ export function parseMethodFormals(
           scope,
           Token.RightParen,
           type,
-          BindingOrigin.None,
+          Origin.None,
           0,
           inGroup,
           tokenPos,
@@ -6319,7 +6294,7 @@ export function parseMethodFormals(
 
       if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidBindingDestruct);
 
-      if (parser.destructible & DestructuringKind.AssignableDestruct) report(parser, Errors.InvalidBindingDestruct);
+      if (parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingDestruct);
     }
 
     if (parser.token === Token.Assign) {
@@ -6402,7 +6377,7 @@ export function parseParenthesizedExpression(
   context: Context,
   assignable: 0 | 1,
   kind: BindingKind,
-  origin: BindingOrigin,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -6437,24 +6412,20 @@ export function parseParenthesizedExpression(
     const { token, tokenPos, linePos, colPos } = parser;
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
-      if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+      if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
 
       expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
 
       if (parser.token === Token.RightParen || parser.token === Token.Comma) {
-        if (parser.assignable & AssignmentKind.NotAssignable) {
+        if (parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
-        } else if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-          parser.flags |= Flags.StrictEvalArguments;
+        } else if (
+          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
+          (token & Token.FutureReserved) === Token.FutureReserved
+        ) {
+          isComplex = 1;
         }
-
-        parser.flags |=
-          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-            ? Flags.StrictEvalArguments
-            : (token & Token.FutureReserved) === Token.FutureReserved
-            ? Flags.HasStrictReserved
-            : 0;
       } else {
         if (parser.token === Token.Assign) {
           isComplex = 1;
@@ -6478,10 +6449,10 @@ export function parseParenthesizedExpression(
 
       isComplex = 1;
 
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
 
       if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
-        if (destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidPatternTail);
+        if (destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidPatternTail);
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
 
@@ -6513,7 +6484,7 @@ export function parseParenthesizedExpression(
       if (isSequence && (parser.token === Token.RightParen || parser.token === Token.Comma)) {
         expressions.push(expr);
       }
-      destructible |= DestructuringKind.MustDestruct;
+      destructible |= DestructuringKind.HasToDestruct;
       break;
     } else {
       destructible |= DestructuringKind.CannotDestruct;
@@ -6536,7 +6507,7 @@ export function parseParenthesizedExpression(
           expressions.push(parseExpression(parser, context, 1, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
         }
 
-        parser.assignable = AssignmentKind.NotAssignable;
+        parser.assignable = AssignmentKind.CannotAssign;
 
         expr = finishNode(parser, context, iStart, lStart, cStart, {
           type: 'SequenceExpression',
@@ -6563,13 +6534,13 @@ export function parseParenthesizedExpression(
     }
 
     if (parser.token === Token.RightParen) {
-      destructible |= DestructuringKind.MustDestruct;
+      destructible |= DestructuringKind.HasToDestruct;
       break;
     }
   }
 
   if (isSequence) {
-    parser.assignable = AssignmentKind.NotAssignable;
+    parser.assignable = AssignmentKind.CannotAssign;
 
     expr = finishNode(parser, context, iStart, lStart, cStart, {
       type: 'SequenceExpression',
@@ -6579,7 +6550,7 @@ export function parseParenthesizedExpression(
 
   consume(parser, context, Token.RightParen);
 
-  if (destructible & DestructuringKind.CannotDestruct && destructible & DestructuringKind.MustDestruct)
+  if (destructible & DestructuringKind.CannotDestruct && destructible & DestructuringKind.HasToDestruct)
     report(parser, Errors.CantAssignToValidRHS);
 
   destructible |=
@@ -6593,7 +6564,7 @@ export function parseParenthesizedExpression(
     if (isComplex) parser.flags |= Flags.SimpleParameterList;
     if (!assignable) report(parser, Errors.IllegalArrowFunctionParams);
     if (destructible & DestructuringKind.CannotDestruct) report(parser, Errors.IllegalArrowFunctionParams);
-    if (destructible & DestructuringKind.AssignableDestruct) report(parser, Errors.InvalidArrowDestructLHS);
+    if (destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidArrowDestructLHS);
     if (context & (Context.InAwaitContext | Context.Module) && destructible & DestructuringKind.Await)
       report(parser, Errors.AwaitInParameter);
     if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield) {
@@ -6610,7 +6581,7 @@ export function parseParenthesizedExpression(
       line,
       column
     );
-  } else if (destructible & DestructuringKind.MustDestruct) {
+  } else if (destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.UncompleteArrow);
   }
 
@@ -6648,7 +6619,7 @@ export function parseIdentifierOrArrow(
   if (parser.token === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowScope(parser, context, tokenValue);
+    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
@@ -6718,14 +6689,14 @@ export function parseArrowFunctionExpression(
     // Single-expression body
     body = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
   } else {
-    if (scope) scope = addChildScope(scope, ScopeKind.FuncBody);
+    if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
     body = parseFunctionBody(
       parser,
       (context | 0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass) ^
         (0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass),
       scope,
-      BindingOrigin.Arrow,
+      Origin.Arrow,
       void 0,
       void 0
     );
@@ -6740,12 +6711,12 @@ export function parseArrowFunctionExpression(
         report(parser, Errors.InvalidInvokedBlockBodyArrow);
       default: // ignore
     }
-    if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) === 0)
+    if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) < 1)
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
     if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp) report(parser, Errors.InvalidArrowPostfix);
   }
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'ArrowFunctionExpression',
@@ -6767,7 +6738,7 @@ export function parseFormalParametersOrFormalList(
   context: Context,
   scope: ScopeState | undefined,
   inGroup: 0 | 1,
-  type: BindingKind
+  kind: BindingKind
 ): any[] {
   /**
    * FormalParameter :
@@ -6806,27 +6777,25 @@ export function parseFormalParametersOrFormalList(
     let left: any;
     const { tokenPos, tokenValue, linePos, colPos } = parser;
     if (parser.token & Token.IsIdentifier) {
-      if ((context & Context.Strict) === 0) {
-        if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-          parser.flags |= Flags.StrictEvalArguments;
-        }
-        if ((parser.token & Token.FutureReserved) === Token.FutureReserved) {
-          parser.flags |= Flags.HasStrictReserved;
-        }
+      if (
+        (context & Context.Strict) < 1 &&
+        ((parser.token & Token.FutureReserved) === Token.FutureReserved ||
+          (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
+      ) {
+        isComplex = 1;
       }
-
       if (scope) {
         // Strict-mode disallows duplicate args. We may not know whether we are
         // in strict mode or not (since the function body hasn't been parsed).
         // In such cases the potential error will be saved on the parser object
         // and thrown later if there was any duplicates.
-        if (type & BindingKind.Variable) {
+        if (kind & BindingKind.Variable) {
           addVarName(parser, context, scope, tokenValue, BindingKind.ArgumentList);
         } else {
-          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
         }
       }
-      left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
+      left = parseAndClassifyIdentifier(parser, context, kind, tokenPos, linePos, colPos);
     } else {
       if (parser.token === Token.LeftBrace) {
         left = parseObjectLiteralOrPattern(
@@ -6835,8 +6804,8 @@ export function parseFormalParametersOrFormalList(
           scope,
           1,
           inGroup,
-          type,
-          BindingOrigin.None,
+          kind,
+          Origin.None,
           tokenPos,
           linePos,
           colPos
@@ -6848,8 +6817,8 @@ export function parseFormalParametersOrFormalList(
           scope,
           1,
           inGroup,
-          type,
-          BindingOrigin.None,
+          kind,
+          Origin.None,
           tokenPos,
           linePos,
           colPos
@@ -6860,8 +6829,8 @@ export function parseFormalParametersOrFormalList(
           context,
           scope,
           Token.RightParen,
-          type,
-          BindingOrigin.None,
+          kind,
+          Origin.None,
           0,
           inGroup,
           tokenPos,
@@ -6878,7 +6847,7 @@ export function parseFormalParametersOrFormalList(
 
       if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidBindingDestruct);
 
-      if (parser.destructible & DestructuringKind.AssignableDestruct) report(parser, Errors.InvalidBindingDestruct);
+      if (parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingDestruct);
     }
 
     if (parser.token === Token.Assign) {
@@ -6973,7 +6942,7 @@ export function parseMembeExpressionNoCall(
 
       const { tokenPos, linePos, colPos } = parser;
 
-      let property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
+      const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
 
       consume(parser, context, Token.RightBracket);
 
@@ -6995,7 +6964,7 @@ export function parseMembeExpressionNoCall(
       );
       /* Template */
     } else if (token === Token.TemplateContinuation || token === Token.TemplateTail) {
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
 
       return parseMembeExpressionNoCall(
         parser,
@@ -7057,38 +7026,27 @@ export function parseNewExpression(
 
   if (consumeOpt(parser, context, Token.Period)) {
     if (context & Context.AllowNewTarget && parser.token === Token.Target) {
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
       return parseMetaProperty(parser, context, id, start, line, column);
     }
 
     report(parser, Errors.InvalidNewTarget);
   }
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   // NewExpression without arguments.
   const callee = parseMembeExpressionNoCall(
     parser,
     context,
-    parsePrimaryExpressionExtended(
-      parser,
-      context,
-      BindingKind.EmptyBinding,
-      1,
-      0,
-      0,
-      inGroup,
-      tokenPos,
-      linePos,
-      colPos
-    ),
+    parsePrimaryExpressionExtended(parser, context, BindingKind.Empty, 1, 0, 0, inGroup, tokenPos, linePos, colPos),
     inGroup,
     tokenPos,
     linePos,
     colPos
   );
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'NewExpression',
@@ -7143,19 +7101,19 @@ export function parseAsyncExpression(
 ): ESTree.Expression {
   const { flags } = parser;
   let scope: ScopeState | undefined = void 0;
-  if ((flags & Flags.NewLine) === 0) {
+  if ((flags & Flags.NewLine) < 1) {
     // async function ...
     if (parser.token === Token.FunctionKeyword)
       return parseFunctionExpression(parser, context, /* isAsync */ 1, inGroup, start, line, column);
 
     // async Identifier => ...
     if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-      if (parser.assignable & AssignmentKind.NotAssignable) report(parser, Errors.InvalidAsyncParamList);
+      if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.InvalidAsyncParamList);
       if (parser.token === Token.AwaitKeyword) report(parser, Errors.AwaitInParameter);
 
       if (context & Context.OptionsLexical) {
-        scope = addChildScope(createScope(), ScopeKind.FuncBody);
-        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+        scope = addChildScope(createScope(), ScopeKind.FunctionBody);
+        addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
       }
 
       const param = [parseIdentifier(parser, context, 0)];
@@ -7173,7 +7131,7 @@ export function parseAsyncExpression(
       expr,
       assignable,
       BindingKind.ArgumentList,
-      BindingOrigin.None,
+      Origin.None,
       flags,
       start,
       line,
@@ -7186,8 +7144,8 @@ export function parseAsyncExpression(
     if (inNewExpression) report(parser, Errors.InvalidAsyncArrow);
 
     if (context & Context.OptionsLexical) {
-      scope = addChildScope(createScope(), ScopeKind.FuncBody);
-      addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, BindingOrigin.Other);
+      scope = addChildScope(createScope(), ScopeKind.FunctionBody);
+      addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
     }
 
     return parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
@@ -7219,7 +7177,7 @@ export function parseAsyncArrowOrCallExpression(
   callee: ESTree.Identifier | void,
   assignable: 0 | 1,
   kind: BindingKind,
-  origin: BindingOrigin,
+  origin: Origin,
   flags: Flags,
   start: number,
   line: number,
@@ -7256,22 +7214,20 @@ export function parseAsyncArrowOrCallExpression(
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
       if (scope) {
-        addBlockName(parser, context, scope, parser.tokenValue, kind, BindingOrigin.Other);
+        addBlockName(parser, context, scope, parser.tokenValue, kind, Origin.None);
       }
       expr = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, 1, tokenPos, linePos, colPos);
 
       if (parser.token === Token.RightParen || parser.token === Token.Comma) {
-        if (parser.assignable & AssignmentKind.NotAssignable) {
+        if (parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
           isComplex = 1;
+        } else if (
+          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments ||
+          (token & Token.FutureReserved) === Token.FutureReserved
+        ) {
+          isComplex = 1;
         }
-
-        parser.flags |=
-          (token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-            ? Flags.StrictEvalArguments
-            : (token & Token.FutureReserved) === Token.FutureReserved
-            ? Flags.HasStrictReserved
-            : 0;
       } else {
         if (parser.token === Token.Assign) {
           isComplex = 1;
@@ -7295,10 +7251,10 @@ export function parseAsyncArrowOrCallExpression(
 
       isComplex = 1;
 
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
 
       if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
-        if (destructible & DestructuringKind.MustDestruct) report(parser, Errors.InvalidPatternTail);
+        if (destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidPatternTail);
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
 
@@ -7343,7 +7299,7 @@ export function parseAsyncArrowOrCallExpression(
 
       parser.destructible = destructible | DestructuringKind.CannotDestruct;
 
-      parser.assignable = AssignmentKind.NotAssignable;
+      parser.assignable = AssignmentKind.CannotAssign;
 
       return finishNode(parser, context, start, line, column, {
         type: 'CallExpression',
@@ -7370,18 +7326,18 @@ export function parseAsyncArrowOrCallExpression(
     if (isComplex) parser.flags |= Flags.SimpleParameterList;
     if (!assignable) report(parser, Errors.IllegalArrowFunctionParams);
     if (destructible & DestructuringKind.CannotDestruct) report(parser, Errors.CantAssignToAsyncArrow);
-    if (destructible & DestructuringKind.AssignableDestruct) report(parser, Errors.InvalidArrowDestructLHS);
+    if (destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidArrowDestructLHS);
     if (parser.flags & Flags.NewLine || flags & Flags.NewLine) report(parser, Errors.InvalidLineBreak);
     if (destructible & DestructuringKind.Await) report(parser, Errors.AwaitInParameter);
     if (context & (Context.Strict | Context.InYieldContext) && destructible & DestructuringKind.Yield)
       report(parser, Errors.YieldInParameter);
 
     return parseArrowFunctionExpression(parser, context, scope, params, /* isAsync */ 1, start, line, column);
-  } else if (destructible & DestructuringKind.MustDestruct) {
+  } else if (destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(parser, context, start, line, column, {
     type: 'CallExpression',
@@ -7414,7 +7370,7 @@ export function parseRegExpLiteral(
 ): ESTree.Literal {
   const { tokenRaw, tokenRegExp, tokenValue } = parser;
   nextToken(parser, context);
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
   return context & Context.OptionsRaw
     ? finishNode(parser, context, start, line, column, {
         type: 'Literal',
@@ -7478,7 +7434,7 @@ export function parseClassDeclaration(
     if (scope) {
       // A named class creates a new lexical scope with a const binding of the
       // class name for the "inner name".
-      addBlockName(parser, context, scope, tokenValue, BindingKind.Class, BindingOrigin.Other);
+      addBlockName(parser, context, scope, tokenValue, BindingKind.Class, Origin.None);
 
       if (flags) {
         if (flags & HoistedClassFlags.Hoisted) {
@@ -7491,22 +7447,19 @@ export function parseClassDeclaration(
 
     id = parseIdentifier(parser, context, 0);
   } else {
-    if (flags & HoistedClassFlags.Hoisted) {
-      addBindingToExports(parser, '');
-    } else {
-      // Only under the "export default" context, class declaration does not require the class name.
-      //
-      //     ExportDeclaration:
-      //         ...
-      //         export default ClassDeclaration[~Yield, +Default]
-      //         ...
-      //
-      //     ClassDeclaration[Yield, Default]:
-      //         ...
-      //         [+Default] class ClassTail[?Yield]
-      //
-      report(parser, Errors.DeclNoName, 'Class');
-    }
+    // Only under the "export default" context, class declaration does not require the class name.
+    //
+    //     ExportDeclaration:
+    //         ...
+    //         export default ClassDeclaration[~Yield, +Default]
+    //         ...
+    //
+    //     ClassDeclaration[Yield, Default]:
+    //         ...
+    //         [+Default] class ClassTail[?Yield]
+    //
+    if ((flags & HoistedClassFlags.Hoisted) < 1) report(parser, Errors.DeclNoName, 'Class');
+    if (scope) addBindingToExports(parser, '');
   }
   let inheritedContext = context;
 
@@ -7517,15 +7470,7 @@ export function parseClassDeclaration(
     inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
   }
 
-  const body = parseClassBody(
-    parser,
-    inheritedContext,
-    context,
-    scope,
-    BindingKind.EmptyBinding,
-    BindingOrigin.Declaration,
-    0
-  );
+  const body = parseClassBody(parser, inheritedContext, context, scope, BindingKind.Empty, Origin.Declaration, 0);
 
   return finishNode(
     parser,
@@ -7606,17 +7551,9 @@ export function parseClassExpression(
     inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
   }
 
-  const body = parseClassBody(
-    parser,
-    inheritedContext,
-    context,
-    void 0,
-    BindingKind.EmptyBinding,
-    BindingOrigin.None,
-    inGroup
-  );
+  const body = parseClassBody(parser, inheritedContext, context, void 0, BindingKind.Empty, Origin.None, inGroup);
 
-  parser.assignable = AssignmentKind.NotAssignable;
+  parser.assignable = AssignmentKind.CannotAssign;
 
   return finishNode(
     parser,
@@ -7674,18 +7611,7 @@ export function parseDecoratorList(
 ): ESTree.Decorator {
   nextToken(parser, context | Context.AllowRegExp);
 
-  let expression = parsePrimaryExpressionExtended(
-    parser,
-    context,
-    BindingKind.EmptyBinding,
-    0,
-    1,
-    0,
-    0,
-    start,
-    line,
-    column
-  );
+  let expression = parsePrimaryExpressionExtended(parser, context, BindingKind.Empty, 0, 1, 0, 0, start, line, column);
 
   expression = parseMemberOrUpdateExpression(parser, context, expression, 0, start, line, column);
 
@@ -7710,8 +7636,8 @@ export function parseClassBody(
   context: Context,
   inheritedContext: Context,
   scope: ScopeState | undefined,
-  type: BindingKind,
-  origin: BindingOrigin,
+  kind: BindingKind,
+  origin: Origin,
   inGroup: 0 | 1
 ): ESTree.ClassBody {
   /**
@@ -7725,9 +7651,8 @@ export function parseClassBody(
    *
    * MethodDefinition :
    *   ClassElementName ( FormalParameterList ) { FunctionBody }
-   *   * ClassElementName ( FormalParameterList ) { FunctionBody }
-   *   get ClassElementName ( ) { FunctionBody }
-   *   set ClassElementName ( PropertySetParameterList ) { FunctionBody }
+   *    get ClassElementName ( ) { FunctionBody }
+   *    set ClassElementName ( PropertySetParameterList ) { FunctionBody }
    *
    * ClassElementName :
    *   PropertyName
@@ -7766,9 +7691,8 @@ export function parseClassBody(
    * AsyncGeneratorMethod :
    *  async [no LineTerminator here]* ClassElementName ( UniqueFormalParameters ) { AsyncGeneratorBody }
    */
-  const startt = parser.tokenPos;
-  const linee = parser.linePos;
-  const columnn = parser.colPos;
+
+  const { tokenPos, linePos, colPos } = parser;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
@@ -7777,67 +7701,44 @@ export function parseClassBody(
   const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
   let decorators: ESTree.Decorator[] = [];
 
-  if (context & Context.OptionsNext) {
-    while (parser.token !== Token.RightBrace) {
-      let length = 0;
+  while (parser.token !== Token.RightBrace) {
+    let length = 0;
 
-      // See: https://github.com/tc39/proposal-decorators
+    // See: https://github.com/tc39/proposal-decorators
 
-      decorators = parseDecorators(parser, context);
+    decorators = parseDecorators(parser, context);
 
-      length = decorators.length;
+    length = decorators.length;
 
-      if (length > 0 && parser.tokenValue === 'constructor') {
-        report(parser, Errors.GeneratorConstructor);
-      }
-
-      if (parser.token === Token.RightBrace) report(parser, Errors.TrailingDecorators);
-
-      if (consumeOpt(parser, context, Token.Semicolon)) {
-        if (length > 0) report(parser, Errors.InvalidDecoratorSemicolon);
-        continue;
-      }
-      body.push(
-        parseClassElementList(
-          parser,
-          context,
-          scope,
-          inheritedContext,
-          type,
-          decorators,
-          0,
-          inGroup,
-          parser.tokenPos,
-          parser.linePos,
-          parser.colPos
-        )
-      );
+    if (length > 0 && parser.tokenValue === 'constructor') {
+      report(parser, Errors.GeneratorConstructor);
     }
-  } else {
-    while (parser.token !== Token.RightBrace) {
-      if (consumeOpt(parser, context, Token.Semicolon)) {
-        continue;
-      }
-      body.push(
-        parseClassElementList(
-          parser,
-          context,
-          scope,
-          inheritedContext,
-          type,
-          decorators,
-          0,
-          inGroup,
-          parser.tokenPos,
-          parser.linePos,
-          parser.colPos
-        )
-      );
+
+    if (parser.token === Token.RightBrace) report(parser, Errors.TrailingDecorators);
+
+    if (consumeOpt(parser, context, Token.Semicolon)) {
+      if (length > 0) report(parser, Errors.InvalidDecoratorSemicolon);
+      continue;
     }
+    body.push(
+      parseClassElementList(
+        parser,
+        context,
+        scope,
+        inheritedContext,
+        kind,
+        decorators,
+        0,
+        inGroup,
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      )
+    );
   }
-  consume(parser, origin & BindingOrigin.Declaration ? context | Context.AllowRegExp : context, Token.RightBrace);
+  consume(parser, origin & Origin.Declaration ? context | Context.AllowRegExp : context, Token.RightBrace);
 
-  return finishNode(parser, context, startt, linee, columnn, {
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'ClassBody',
     body
   });
@@ -8093,7 +7994,7 @@ export function parseFieldDefinition(
     value = parsePrimaryExpressionExtended(
       parser,
       context | Context.InClass,
-      BindingKind.EmptyBinding,
+      BindingKind.Empty,
       0,
       1,
       0,
@@ -8149,7 +8050,7 @@ export function parseBindingPattern(
   context: Context,
   scope: ScopeState | undefined,
   type: BindingKind,
-  origin: BindingOrigin,
+  origin: Origin,
   start: number,
   line: number,
   column: number
@@ -8177,7 +8078,7 @@ export function parseBindingPattern(
 
   if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidBindingDestruct);
 
-  if (parser.destructible & DestructuringKind.AssignableDestruct) report(parser, Errors.InvalidBindingDestruct);
+  if (parser.destructible & DestructuringKind.Assignable) report(parser, Errors.InvalidBindingDestruct);
 
   return left;
 }
