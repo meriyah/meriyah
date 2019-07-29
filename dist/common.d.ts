@@ -53,7 +53,7 @@ export declare const enum PropertyKind {
 export declare const enum BindingKind {
     None = 0,
     ArgumentList = 1,
-    EmptyBinding = 2,
+    Empty = 2,
     Variable = 4,
     Let = 8,
     Const = 16,
@@ -66,27 +66,26 @@ export declare const enum BindingKind {
     LexicalOrFunction = 68,
     LexicalBinding = 248
 }
-export declare const enum BindingOrigin {
+export declare const enum Origin {
     None = 0,
-    Declaration = 1,
-    Arrow = 2,
-    ForStatement = 4,
-    Statement = 8,
-    Export = 16,
-    Other = 32,
-    BlockStatement = 128,
-    TopLevel = 256
+    Statement = 1,
+    BlockStatement = 2,
+    TopLevel = 4,
+    Declaration = 8,
+    Arrow = 16,
+    ForStatement = 32,
+    Export = 64
 }
 export declare const enum AssignmentKind {
     None = 0,
     Assignable = 1,
-    NotAssignable = 2
+    CannotAssign = 2
 }
 export declare const enum DestructuringKind {
     None = 0,
-    MustDestruct = 8,
+    HasToDestruct = 8,
     CannotDestruct = 16,
-    AssignableDestruct = 32,
+    Assignable = 32,
     SeenProto = 64,
     Await = 128,
     Yield = 256
@@ -112,23 +111,18 @@ export declare const enum HoistedFunctionFlags {
 }
 export declare const enum ScopeKind {
     None = 0,
-    For = 1,
+    ForStatement = 1,
     Block = 2,
-    Catch = 4,
-    Switch = 8,
+    CatchStatement = 4,
+    SwitchStatement = 8,
     ArgList = 16,
-    Try = 32,
-    CatchHead = 64,
-    CatchBody = 128,
-    Finally = 256,
-    FuncBody = 512,
-    FuncRoot = 1024,
-    ArrowParams = 2048,
-    FakeBlock = 4096,
-    Global = 8192,
-    CatchIdentifier = 16384,
-    ForHeader = 32768,
-    FunctionParams = 65536
+    TryStatement = 32,
+    CatchBlock = 64,
+    FunctionBody = 128,
+    FunctionRoot = 256,
+    FunctionParams = 512,
+    ArrowParams = 1024,
+    CatchIdentifier = 2048
 }
 export declare type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
 export interface ScopeState {
@@ -176,19 +170,19 @@ export declare function optionalBit(parser: ParserState, context: Context, t: To
 export declare function consumeOpt(parser: ParserState, context: Context, t: Token): boolean;
 export declare function consume(parser: ParserState, context: Context, t: Token): void;
 export declare function reinterpretToPattern(state: ParserState, node: any): void;
-export declare function validateBindingIdentifier(parser: ParserState, context: Context, type: BindingKind, t: Token, skipEvalArgCheck: 0 | 1): void;
+export declare function validateBindingIdentifier(parser: ParserState, context: Context, kind: BindingKind, t: Token, skipEvalArgCheck: 0 | 1): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
 export declare function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void;
 export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, line: number, column: number, node: T): T;
-export declare function createArrowScope(parser: ParserState, context: Context, value: string): ScopeState;
+export declare function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState;
 export declare function recordScopeError(parser: ParserState, type: Errors): ScopeError;
 export declare function createScope(): ScopeState;
-export declare function addChildScope(parent: any, type: ScopeKind): ScopeState;
-export declare function addVarOrBlock(parser: ParserState, context: Context, scope: ScopeState, name: string, type: BindingKind, origin: BindingOrigin): void;
-export declare function addVarName(parser: ParserState, context: Context, scope: ScopeState, name: string, type: BindingKind): void;
-export declare function addBlockName(parser: ParserState, context: Context, scope: any, name: string, type: BindingKind, origin: BindingOrigin): void;
+export declare function addChildScope(parent: ScopeState | undefined, type: ScopeKind): ScopeState;
+export declare function addVarOrBlock(parser: ParserState, context: Context, scope: ScopeState, name: string, kind: BindingKind, origin: Origin): void;
+export declare function addBlockName(parser: ParserState, context: Context, scope: any, name: string, kind: BindingKind, origin: Origin): void;
+export declare function addVarName(parser: ParserState, context: Context, scope: ScopeState, name: string, kind: BindingKind): void;
 export declare function updateExportsList(parser: ParserState, name: string): void;
 export declare function addBindingToExports(parser: ParserState, name: string): void;
 export declare function pushComment(context: Context, array: any[]): any;
