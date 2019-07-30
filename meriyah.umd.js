@@ -354,7 +354,7 @@
       throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
   }
   function reportScopeError(scope) {
-      throw new ParseError(scope.index, scope.line, scope.column, scope.type);
+      throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
   }
   function reportMessageAt(index, line, column, type, ...params) {
       throw new ParseError(index, line, column, type, ...params);
@@ -1900,10 +1900,11 @@
       addBlockName(parser, context, scope, value, 1, 0);
       return scope;
   }
-  function recordScopeError(parser, type) {
+  function recordScopeError(parser, type, ...params) {
       const { index, line, column } = parser;
       return {
           type,
+          params,
           index,
           line,
           column
@@ -1938,7 +1939,7 @@
       const value = scope['#' + name];
       if (value && (value & 2) === 0) {
           if (kind & 1) {
-              scope.scopeError = recordScopeError(parser, 0);
+              scope.scopeError = recordScopeError(parser, 148, name);
           }
           else if (context & 256 &&
               value & 64 &&
@@ -1953,7 +1954,7 @@
       }
       if (scope.type & 1024 && value && (value & 2) === 0) {
           if (kind & 1) {
-              scope.scopeError = recordScopeError(parser, 0);
+              scope.scopeError = recordScopeError(parser, 148, name);
           }
       }
       if (scope.type & 64) {
@@ -1977,7 +1978,7 @@
           }
           if (currentScope === scope) {
               if (value & 1 && kind & 1) {
-                  currentScope.scopeError = recordScopeError(parser, 0);
+                  currentScope.scopeError = recordScopeError(parser, 148, name);
               }
           }
           if (value & (512 | 256)) {
@@ -2687,6 +2688,7 @@
       let init = null;
       const id = parseBindingPattern(parser, context, scope, kind, origin, tokenPos, linePos, colPos);
       if (parser.token === 1077936157) {
+          parser.assignable = 1;
           nextToken(parser, context | 32768);
           init = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
           if (origin & 32 || (token & 2097152) < 1) {
@@ -4017,12 +4019,12 @@
       nextToken(parser, context | 32768);
       let argument = null;
       let destructible = 0;
-      const { tokenPos, linePos, colPos } = parser;
-      if (parser.token & (4096 | 143360)) {
+      let { token, tokenPos, linePos, colPos } = parser;
+      if (token & (4096 | 143360)) {
           parser.assignable = 1;
           const tokenValue = parser.tokenValue;
           argument = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
-          const { token } = parser;
+          token = parser.token;
           argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
           if (parser.token !== 1073741842 && parser.token !== closingToken) {
               if (parser.assignable & 2 && parser.token === 1077936157)
@@ -4047,22 +4049,22 @@
           }
           destructible |= parser.destructible & 128 ? 128 : 0;
       }
-      else if (parser.token === closingToken) {
+      else if (token === closingToken) {
           report(parser, 39);
       }
-      else if (parser.token & 2097152) {
+      else if (token & 2097152) {
           argument =
               parser.token === 2162700
                   ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos)
                   : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos);
-          const { token } = parser;
+          token = parser.token;
           if (token !== 1077936157 && token !== closingToken && token !== 1073741842) {
               if (parser.destructible & 8)
                   report(parser, 71);
               argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
               destructible |= parser.assignable & 2 ? 16 : 0;
-              const { token } = parser;
-              if (parser.token !== 1073741842 && parser.token !== closingToken) {
+              token = parser.token;
+              if (token !== 1073741842 && token !== closingToken) {
                   argument = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, argument);
                   if (token !== 1077936157)
                       destructible |= 16;
@@ -5903,7 +5905,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.4.8';
+  const version = '1.4.9';
 
   exports.ESTree = estree;
   exports.parse = parse;
