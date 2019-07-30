@@ -31,7 +31,8 @@ export declare const enum Context {
     AllowNewTarget = 67108864,
     DisallowIn = 134217728,
     OptionsIdentifierPattern = 268435456,
-    OptionsSpecDeviation = 536870912
+    OptionsSpecDeviation = 536870912,
+    OptionsV8 = 1073741824
 }
 export declare const enum PropertyKind {
     None = 0,
@@ -132,6 +133,7 @@ export interface ScopeState {
 }
 export interface ScopeError {
     type: Errors;
+    params: string[];
     index: number;
     line: number;
     column: number;
@@ -177,7 +179,7 @@ export declare function isValidLabel(parser: ParserState, labels: any, name: str
 export declare function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void;
 export declare function finishNode<T extends Node>(parser: ParserState, context: Context, start: number, line: number, column: number, node: T): T;
 export declare function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState;
-export declare function recordScopeError(parser: ParserState, type: Errors): ScopeError;
+export declare function recordScopeError(parser: ParserState, type: Errors, ...params: string[]): ScopeError;
 export declare function createScope(): ScopeState;
 export declare function addChildScope(parent: ScopeState | undefined, type: ScopeKind): ScopeState;
 export declare function addVarOrBlock(parser: ParserState, context: Context, scope: ScopeState, name: string, kind: BindingKind, origin: Origin): void;

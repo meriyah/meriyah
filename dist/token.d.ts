@@ -30,7 +30,7 @@ export declare const enum Token {
     TrueKeyword = 86022,
     NullKeyword = 86023,
     TemplateContinuation = 67174408,
-    TemplateTail = 67174409,
+    TemplateSpan = 67174409,
     Arrow = 10,
     LeftParen = 67174411,
     LeftBrace = 2162700,
