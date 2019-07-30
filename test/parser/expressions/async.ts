@@ -706,6 +706,79 @@ describe('Expressions - Async', () => {
       }
     ],
     [
+      `async function test(){
+        const someVar = null;
+        const done = async foo => {}
+      }`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'VariableDeclaration',
+                  kind: 'const',
+                  declarations: [
+                    {
+                      type: 'VariableDeclarator',
+                      init: {
+                        type: 'Literal',
+                        value: null
+                      },
+                      id: {
+                        type: 'Identifier',
+                        name: 'someVar'
+                      }
+                    }
+                  ]
+                },
+                {
+                  type: 'VariableDeclaration',
+                  kind: 'const',
+                  declarations: [
+                    {
+                      type: 'VariableDeclarator',
+                      init: {
+                        type: 'ArrowFunctionExpression',
+                        body: {
+                          type: 'BlockStatement',
+                          body: []
+                        },
+                        params: [
+                          {
+                            type: 'Identifier',
+                            name: 'foo'
+                          }
+                        ],
+                        async: true,
+                        expression: false
+                      },
+                      id: {
+                        type: 'Identifier',
+                        name: 'done'
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            async: true,
+            generator: false,
+            id: {
+              type: 'Identifier',
+              name: 'test'
+            }
+          }
+        ]
+      }
+    ],
+    [
       'foo(async(), x)',
       Context.OptionsRanges,
       {
