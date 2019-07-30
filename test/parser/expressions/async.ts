@@ -708,6 +708,125 @@ describe('Expressions - Async', () => {
     [
       `async function test(){
         const someVar = null;
+        async foo => {}
+      }`,
+      Context.None,
+      {
+        body: [
+          {
+            async: true,
+            body: {
+              body: [
+                {
+                  declarations: [
+                    {
+                      id: {
+                        name: 'someVar',
+                        type: 'Identifier'
+                      },
+                      init: {
+                        type: 'Literal',
+                        value: null
+                      },
+                      type: 'VariableDeclarator'
+                    }
+                  ],
+                  kind: 'const',
+                  type: 'VariableDeclaration'
+                },
+                {
+                  expression: {
+                    async: true,
+                    body: {
+                      body: [],
+                      type: 'BlockStatement'
+                    },
+                    expression: false,
+                    params: [
+                      {
+                        name: 'foo',
+                        type: 'Identifier'
+                      }
+                    ],
+                    type: 'ArrowFunctionExpression'
+                  },
+                  type: 'ExpressionStatement'
+                }
+              ],
+              type: 'BlockStatement'
+            },
+            generator: false,
+            id: {
+              name: 'test',
+              type: 'Identifier'
+            },
+            params: [],
+            type: 'FunctionDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `const someVar = null;
+          const done = async foo => {}`,
+      Context.None,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'someVar',
+                  type: 'Identifier'
+                },
+                init: {
+                  type: 'Literal',
+                  value: null
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'const',
+            type: 'VariableDeclaration'
+          },
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'done',
+                  type: 'Identifier'
+                },
+                init: {
+                  async: true,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [
+                    {
+                      name: 'foo',
+                      type: 'Identifier'
+                    }
+                  ],
+                  type: 'ArrowFunctionExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'const',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `async function test(){
+        const someVar = null;
         const done = async foo => {}
       }`,
       Context.None,

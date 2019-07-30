@@ -444,6 +444,8 @@ export function parseStatementListItem(
   // LexicalDeclaration[In, Yield] :
   //   LetOrConst BindingList[?In, ?Yield] ;
 
+  parser.assignable = AssignmentKind.Assignable;
+
   switch (parser.token) {
     //   HoistableDeclaration[?Yield, ~Default]
     case Token.FunctionKeyword:
@@ -2098,7 +2100,6 @@ function parseVariableDeclaration(
   const id = parseBindingPattern(parser, context, scope, kind, origin, tokenPos, linePos, colPos);
 
   if (parser.token === Token.Assign) {
-    parser.assignable = AssignmentKind.Assignable;
     nextToken(parser, context | Context.AllowRegExp);
     init = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
     if (origin & Origin.ForStatement || (token & Token.IsPatternStart) < 1) {
