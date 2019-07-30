@@ -53,7 +53,7 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
     advanceChar(parser);
   }
   if (parser.onComment)
-    parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), parser, parser.index);
+    parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
   return state;
 }
 

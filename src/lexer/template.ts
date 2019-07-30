@@ -61,7 +61,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
   parser.tokenValue = ret;
   if (tail) {
     parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
-    return Token.TemplateTail;
+    return Token.TemplateSpan;
   } else {
     parser.tokenRaw = parser.source.slice(start + 1, parser.index - 2);
     return Token.TemplateContinuation;

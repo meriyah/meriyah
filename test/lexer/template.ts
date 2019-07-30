@@ -7,33 +7,33 @@ import { scanSingleToken } from '../../src/lexer/scan';
 describe('Lexer - Template', () => {
   describe('Lexer - Template Tail', () => {
     const tokens: [Context, Token, string, string][] = [
-      [Context.None, Token.TemplateTail, '``', ''],
-      [Context.None, Token.TemplateTail, '`a`', 'a'],
-      [Context.None, Token.TemplateTail, '`foo `', 'foo '],
-      [Context.None, Token.TemplateTail, '`foo `', 'foo '],
-      [Context.None, Token.TemplateTail, '`f1o2o`', 'f1o2o'],
-      [Context.None, Token.TemplateTail, '`دیوانه`', 'دیوانه'],
-      [Context.None, Token.TemplateTail, '`a℮`', 'a℮'],
-      [Context.None, Token.TemplateTail, '`℘`', '℘'],
-      [Context.None, Token.TemplateTail, '`a᧚`', 'a᧚'],
-      [Context.None, Token.TemplateTail, '`foo\\tbar`', 'foo\tbar'],
-      // [Context.None, Token.TemplateTail, '`\\x55a`', 'U'],
-      [Context.None, Token.TemplateTail, '`a\\nb`', 'a\nb'],
-      [Context.None, Token.TemplateTail, '`;`', ';'],
-      [Context.None, Token.TemplateTail, '``', ''],
-      [Context.None, Token.TemplateTail, '`123`', '123'],
-      [Context.None, Token.TemplateTail, '`true`', 'true'],
-      [Context.None, Token.TemplateTail, '`\n\r`', '\n\r'],
-      [Context.None, Token.TemplateTail, '`\r\n`', '\r\n'],
-      [Context.None, Token.TemplateTail, '`$$$a}`', '$$$a}'],
+      [Context.None, Token.TemplateSpan, '``', ''],
+      [Context.None, Token.TemplateSpan, '`a`', 'a'],
+      [Context.None, Token.TemplateSpan, '`foo `', 'foo '],
+      [Context.None, Token.TemplateSpan, '`foo `', 'foo '],
+      [Context.None, Token.TemplateSpan, '`f1o2o`', 'f1o2o'],
+      [Context.None, Token.TemplateSpan, '`دیوانه`', 'دیوانه'],
+      [Context.None, Token.TemplateSpan, '`a℮`', 'a℮'],
+      [Context.None, Token.TemplateSpan, '`℘`', '℘'],
+      [Context.None, Token.TemplateSpan, '`a᧚`', 'a᧚'],
+      [Context.None, Token.TemplateSpan, '`foo\\tbar`', 'foo\tbar'],
+      // [Context.None, Token.TemplateSpan, '`\\x55a`', 'U'],
+      [Context.None, Token.TemplateSpan, '`a\\nb`', 'a\nb'],
+      [Context.None, Token.TemplateSpan, '`;`', ';'],
+      [Context.None, Token.TemplateSpan, '``', ''],
+      [Context.None, Token.TemplateSpan, '`123`', '123'],
+      [Context.None, Token.TemplateSpan, '`true`', 'true'],
+      [Context.None, Token.TemplateSpan, '`\n\r`', '\n\r'],
+      [Context.None, Token.TemplateSpan, '`\r\n`', '\r\n'],
+      [Context.None, Token.TemplateSpan, '`$$$a}`', '$$$a}'],
 
       // Russian letters
-      [Context.None, Token.TemplateTail, '`\\б`', 'б']
+      [Context.None, Token.TemplateSpan, '`\\б`', 'б']
 
       // Unicode escape sequence - classic
 
-      //    [Context.None, Token.TemplateTail, '`\\u1000`', 'က'],
-      //[Context.None, Token.TemplateTail, '`\\u0041`', 'A'],
+      //    [Context.None, Token.TemplateSpan, '`\\u1000`', 'က'],
+      //[Context.None, Token.TemplateSpan, '`\\u0041`', 'A'],
     ];
 
     for (const [ctx, token, op, value] of tokens) {
@@ -107,34 +107,34 @@ describe('Lexer - Template', () => {
 
   describe('Lexer - Tagged Template', () => {
     const tokens: [Context, Token, string, string | void][] = [
-      //[Context.TaggedTemplate, Token.TemplateTail, '`\\u{70bc`', undefined],
+      //[Context.TaggedTemplate, Token.TemplateSpan, '`\\u{70bc`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, "`'${", "'"],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`"${', '"'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\`${', '`'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\`${', '`'],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\r`', '\r'],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\r`', '\r'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\f${', '\f'],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\f`', '\f'],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\f`', '\f'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\v${', '\v'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\n${', '\n'],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\n`', '\n'],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\n`', '\n'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\b${', '\b'],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\t`', '\t'],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\t`', '\t'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\u{11ffff}`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{11ffff}`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{110000}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\u{g0g}`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0g}`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{0g}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\u{g0}`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0}`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{g}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\u{g}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\u{g}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\x0g`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\x0g`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\x0g${', undefined],
-      [Context.TaggedTemplate, Token.TemplateTail, '`\\xg0`', undefined]
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', undefined]
     ];
 
     for (const [ctx, token, op, value] of tokens) {

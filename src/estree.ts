@@ -84,6 +84,7 @@ export type Node =
   | ImportDefaultSpecifier
   | ImportNamespaceSpecifier
   | ImportSpecifier
+  | JSXNamespacedName
   | JSXAttribute
   | JSXClosingElement
   | JSXClosingFragment
@@ -176,7 +177,7 @@ export type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | I
 export type IterationStatement = DoWhileStatement | ForInStatement | ForOfStatement | ForStatement | WhileStatement;
 export type JSXChild = JSXElement | JSXExpression | JSXFragment | JSXText;
 export type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionContainer;
-export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression;
+export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression | JSXNamespacedName;
 export type LeftHandSideExpression =
   | CallExpression
   | ImportExpression
@@ -523,10 +524,25 @@ export interface ImportSpecifier extends _Node {
   imported: Identifier;
 }
 
+export interface JSXNamespacedName extends _Node {
+  type: 'JSXNamespacedName';
+  namespace: JSXIdentifier | JSXMemberExpression;
+  name: JSXIdentifier;
+}
+
+export type JSXAttributeValue =
+  | JSXIdentifier
+  | Literal
+  | JSXElement
+  | JSXFragment
+  | JSXExpressionContainer
+  | JSXSpreadChild
+  | null;
+
 export interface JSXAttribute extends _Node {
   type: 'JSXAttribute';
-  name: JSXIdentifier;
-  value: Literal | JSXExpression | null;
+  name: JSXNamespacedName | JSXIdentifier;
+  value: JSXAttributeValue;
 }
 
 export interface JSXClosingElement extends _Node {
@@ -576,7 +592,7 @@ export interface JSXOpeningElement extends _Node {
   type: 'JSXOpeningElement';
   selfClosing: boolean;
   name: JSXTagNameExpression;
-  attributes: JSXAttribute[];
+  attributes: (JSXAttribute | JSXSpreadAttribute)[];
 }
 
 export interface JSXOpeningFragment extends _Node {
@@ -690,9 +706,11 @@ export interface SequenceExpression extends _Node {
   expressions: Expression[];
 }
 
+export type SpreadArgument = BindingName | Expression | PropertyName | SpreadElement;
+
 export interface SpreadElement extends _Node {
   type: 'SpreadElement';
-  argument: BindingName | Expression | PropertyName;
+  argument: SpreadArgument;
 }
 
 export interface Super extends _Node {
@@ -738,7 +756,7 @@ export interface ThisExpression extends _Node {
 
 export interface ThrowStatement extends _Node {
   type: 'ThrowStatement';
-  argument: Statement | null;
+  argument: Expression;
 }
 
 export interface TryStatement extends _Node {

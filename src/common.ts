@@ -36,7 +36,8 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
-  OptionsSpecDeviation = 1 << 29
+  OptionsSpecDeviation = 1 << 29,
+  OptionsV8 = 1 << 30,
 }
 
 /**
@@ -181,6 +182,7 @@ export interface ScopeState {
 /** Scope error interface */
 export interface ScopeError {
   type: Errors;
+  params: string[];
   index: number;
   line: number;
   column: number;
@@ -526,10 +528,11 @@ export function createArrowHeadParsingScope(parser: ParserState, context: Contex
  * @param parser Parser state
  * @param type Errors type
  */
-export function recordScopeError(parser: ParserState, type: Errors): ScopeError {
+export function recordScopeError(parser: ParserState, type: Errors, ...params: string[]): ScopeError {
   const { index, line, column } = parser;
   return {
     type,
+    params,
     index,
     line,
     column
@@ -611,7 +614,7 @@ export function addBlockName(
 
   if (value && (value & BindingKind.Empty) === 0) {
     if (kind & BindingKind.ArgumentList) {
-      scope.scopeError = recordScopeError(parser, Errors.Unexpected);
+      scope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
     } else if (
       context & Context.OptionsWebCompat &&
       value & BindingKind.FunctionLexical &&
@@ -631,7 +634,7 @@ export function addBlockName(
 
   if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
     if (kind & BindingKind.ArgumentList) {
-      scope.scopeError = recordScopeError(parser, Errors.Unexpected);
+      scope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
     }
   }
 
@@ -677,7 +680,7 @@ export function addVarName(
     }
     if (currentScope === scope) {
       if (value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
-        currentScope.scopeError = recordScopeError(parser, Errors.Unexpected);
+        currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
     if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
