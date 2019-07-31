@@ -444,6 +444,8 @@ export function parseStatementListItem(
   // LexicalDeclaration[In, Yield] :
   //   LetOrConst BindingList[?In, ?Yield] ;
 
+  parser.assignable = AssignmentKind.Assignable;
+
   switch (parser.token) {
     //   HoistableDeclaration[?Yield, ~Default]
     case Token.FunctionKeyword:
@@ -4497,6 +4499,8 @@ export function parseFunctionDeclaration(
     if ((flags & HoistedClassFlags.Hoisted) < 1) report(parser, Errors.DeclNoName, 'Function');
     if (scope) addBindingToExports(parser, '');
   } else {
+    // In ES6, a function behaves as a lexical binding, except in
+    // a script scope, or the initial scope of eval or another function.
     const type =
       origin & Origin.TopLevel && ((context & Context.InGlobal) < 1 || (context & Context.Module) < 1)
         ? BindingKind.Variable
@@ -5036,19 +5040,19 @@ function parseSpreadElement(
 ): ESTree.SpreadElement {
   nextToken(parser, context | Context.AllowRegExp); // skip '...'
 
-  let argument: ESTree.BindingName | ESTree.Expression | ESTree.PropertyName | null = null;
-  let destructible: AssignmentKind | DestructuringKind = 0;
+  let argument: ESTree.Expression | null = null;
+  let destructible: AssignmentKind | DestructuringKind = DestructuringKind.None;
 
-  const { tokenPos, linePos, colPos } = parser;
+  let { token, tokenPos, linePos, colPos } = parser;
 
-  if (parser.token & (Token.Keyword | Token.IsIdentifier)) {
+  if (token & (Token.Keyword | Token.IsIdentifier)) {
     parser.assignable = AssignmentKind.Assignable;
 
     const tokenValue = parser.tokenValue;
 
     argument = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
 
-    const { token } = parser;
+    token = parser.token;
 
     argument = parseMemberOrUpdateExpression(
       parser,
@@ -5092,15 +5096,15 @@ function parseSpreadElement(
     }
 
     destructible |= parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0;
-  } else if (parser.token === closingToken) {
+  } else if (token === closingToken) {
     report(parser, Errors.RestMissingArg);
-  } else if (parser.token & Token.IsPatternStart) {
+  } else if (token & Token.IsPatternStart) {
     argument =
       parser.token === Token.LeftBrace
         ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos)
         : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos);
 
-    const { token } = parser;
+    token = parser.token;
 
     if (token !== Token.Assign && token !== closingToken && token !== Token.Comma) {
       if (parser.destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidDestructuringTarget);
@@ -5109,9 +5113,9 @@ function parseSpreadElement(
 
       destructible |= parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
-      const { token } = parser;
+      token = parser.token;
 
-      if (parser.token !== Token.Comma && parser.token !== closingToken) {
+      if (token !== Token.Comma && token !== closingToken) {
         argument = parseAssignmentExpression(
           parser,
           context,
