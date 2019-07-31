@@ -298,91 +298,6 @@ describe('Miscellaneous - Pass', () => {
     `let [weli, [...[]], [, , ...[]], , {a}, ...[]] = (eval), kqwys = ((((((-2e308)))).if)(...((this)), ...((r)), ((of => {
     }))));`,
     'const a = (((({})))`æhq` / (b))',
-    `const foo = this;
-    function a(b, c, d, e, f) {
-      "use strict";
-      for (; null;) switch (new.target) {
-        case false:
-          /(?=9*?)/y;
-        case new.target:
-          debugger;
-          try {} finally {}
-          for (arguments.t in l = true) return;
-          throw () => {
-            "94";
-          };
-      }
-      switch (++ecvhomri) {
-        case eyruiqi ++:
-          {
-            break;
-          }
-          for ([] in s *= {}) try {} catch (m) {}
-          for ((() => {}).void of 2e308) for (let b = 2e308; 2e308; () => m ^= this) try {} catch (f) {}
-        case new.target:
-          while (class {
-            [new.target]() {}
-            static get [new.target]() {
-              "use strict";
-            }
-            static set [/(?=(?:()))/imu] (t = /(?:)/giuy) {}
-          }) try {} catch (b) {}
-          debugger;
-          ;
-          debugger;
-        case xxx:
-          do while (2e308.s) if (false) return; else break; while ([, ]);
-          return true;
-          do if (new.target) break
-     while ([](o));
-          switch (class {}) {
-            case null[null]:
-              debugger;
-              var i = this;
-            default:
-              true;
-              {}
-          }
-        default:
-          class fooClass extends null[-3.9701885463648657e220] {}
-        case (y = new.target)["i=É"] ^= "ø"()[(y, x, p, h) => {
-          "l";
-          "use strict";
-          "abc";
-          "use strict";
-        }]:
-          debugger;
-          for (; -function f() {}; ([], x = null, y, []) => jdiri) "4";
-      }
-      try {
-        for (const s of null ^ eval) debugger;
-        delete new true;
-        if (class extends null {
-          static get [/^/imuy]() {}
-          static [""]() {
-            "use strict";
-          }
-          static set [2e308] (j) {
-            "use strict";
-          }
-          get [new.target]() {}
-          set [null] (w = null) {}
-        }) switch (6782) {
-          case arguments:
-        }
-      } finally {
-        function* gmmcwctn([] = new.target, {ITå: d, h6ñæ: y}, b, t = r = /(\B;\u8ACf\u0361)/imy, {[/(?![^*-+-])/iu]: m}, ...foo) {
-          let m = arguments;
-          while (this()) new.target
-        }
-        oqnoy: if (true) debugger; else arguments: while (false) continue arguments
-        uqpvlflscdnwq: for (const x in "") try {} catch (l) {}
-        ;
-      }
-      if ("string") throw a ++
-     else ;
-      do a: for (let u in new (true())(2e308, "¹Ö" != false, ...new.target, new this, [])) try {} finally {} while ([...[] = /[-]/u, ...[, null, f = g, , ], , um]);
-    }`,
     '({} = (x), of, a) => (a)',
     `(class {
       [null](t, a) {
@@ -1086,6 +1001,1304 @@ describe('Miscellaneous - Pass', () => {
     'let o = {a: 1, b: 2, ...d = {e: 2}, c: 3};',
     'let p = true; let o = {a: 1, b: 2, ...d = p ? {e: 2} : {f: 4}, c: 3};',
     'let o = {a: 1, b: 2, ...(a) => 3, c: 3};',
+    `async function* asyncGeneratorForNestedResumeNext() {
+      it.next().then(logIterResult, logError);
+      it.next().then(logIterResult, logError);
+      yield "rootbeer";
+      yield await Resolver("float");
+    }`,
+    `let asyncGeneratorExprForNestedResumeNext = async function*() {
+      it.next().then(logIterResult, logError);
+      it.next().then(logIterResult, logError);
+      yield "first";
+      yield await Resolver("second");
+    };`,
+    `assertEquals([
+      { value: "remember", done: false },
+      { value: "the cant!", done: false },
+      { value: undefined, done: true }
+    ], log);`,
+    `async function* asyncGeneratorForNestedResumeThrow() {
+      try {
+        it.throw(await Rejecter("...")).then(logIterResult, logError);
+      } catch (e) {
+        it.throw("throw2").then(logIterResult, logError);
+        it.next().then(logIterResult, logError);
+        throw "throw1";
+      }
+      AbortUnreachable();
+    }`,
+    `it = (async function*() {
+      yield await Rejecter("OOPS2");
+      throw "(unreachable)";
+    })();`,
+    `async function* asyncGeneratorForThrowAfterAwait() {
+      await 1;
+      throw new MyError("BOOM6");
+      throw "(unreachable)";
+    }`,
+    `it = ({
+      async* method() {
+        try {
+          throw new MyError("BOOM3");
+        } catch (e) {
+          return "caught3";
+        }
+        throw "(unreachable)";
+      }
+    }).method();`,
+    `async function* asyncGeneratorYieldStar1() {
+      yield* {
+        get [Symbol.asyncIterator]() {
+          log.push({ name: "get @@asyncIterator" });
+          return (...args) => {
+            log.push({ name: "call @@asyncIterator", args });
+            return this;
+          };
+        },
+        get [Symbol.iterator]() {
+          log.push({ name: "get @@iterator" });
+          return (...args) => {
+            log.push({ name: "call @@iterator", args });
+            return this;
+          }
+        },
+        get next() {
+          log.push({ name: "get next" });
+          return (...args) => {
+            log.push({ name: "call next", args });
+            return {
+              get then() {
+                log.push({ name: "get then" });
+                return null;
+              },
+              get value() {
+                log.push({ name: "get value" });
+                throw (exception = new MyError("AbruptValue!"));
+              },
+              get done() {
+                log.push({ name: "get done" });
+                return false;
+              }
+            };
+          }
+        },
+        get return() {
+          log.push({ name: "get return" });
+          return (...args) => {
+            log.push({ name: "call return", args });
+            return { value: args[0], done: true };
+          }
+        },
+        get throw() {
+          log.push({ name: "get throw" });
+          return (...args) => {
+            log.push({ name: "call throw", args });
+            throw args[0];
+          };
+        },
+      };
+    }`,
+    `function dumpAsyncChainLength(message) {
+      let stackTrace = message.params.asyncStackTrace || message.params.stackTrace.parent;
+      let asyncChainCount = 0;
+      while (stackTrace) {
+        ++asyncChainCount;
+        stackTrace = stackTrace.parent;
+      }
+    }`,
+    `(function () {
+      const actual = [];
+      const expected = [ 'await', 1, 'await', 2 ];
+      const iterations = 2;
+
+      async function pushAwait() {
+        actual.push('await');
+      }
+
+      async function* callAsync() {
+        for (let i = 0; i < iterations; i++) {
+          await pushAwait();
+        }
+        return 0;
+      }
+
+      function checkAssertions() {
+        assertArrayEquals(expected, actual,
+          'Async/await and promises should be interleaved when using async generators.');
+      }
+
+      assertPromiseResult((async() => {
+        callAsync().next();
+
+        return new Promise(function (resolve) {
+          actual.push(1);
+          resolve();
+        }).then(function () {
+          actual.push(2);
+        }).then(checkAssertions);
+      })());
+    })();`,
+    `// test yielding from async generators
+    (function () {
+      const actual = [];
+      const expected = [
+        'Promise: 6',
+        'Promise: 5',
+        'Await: 3',
+        'Promise: 4',
+        'Promise: 3',
+        'Await: 2',
+        'Promise: 2',
+        'Promise: 1',
+        'Await: 1',
+        'Promise: 0'
+      ];
+      const iterations = 3;
+
+      async function* naturalNumbers(start) {
+        let current = start;
+        while (current > 0) {
+          yield Promise.resolve(current--);
+        }
+      }
+
+      async function trigger() {
+        for await (const num of naturalNumbers(iterations)) {
+          actual.push('Await: ' + num);
+        }
+      }
+
+      async function checkAssertions() {
+        assertArrayEquals(expected, actual,
+          'Async/await and promises should be interleaved when yielding.');
+      }
+
+      async function countdown(counter) {
+        actual.push('Promise: ' + counter);
+        if (counter > 0) {
+          return Promise.resolve(counter - 1).then(countdown);
+        } else {
+          await checkAssertions();
+        }
+      }
+
+      assertPromiseResult((async() => {
+        trigger();
+
+        return countdown(iterations * 2);
+      })());
+    })();`,
+    ` function afterAsyncTaskScheduled(next) {
+      enableOnPause = 2;
+      Protocol.Runtime.evaluate({ expression: 'test()//# sourceURL=expr1.js',
+          awaitPromise: true })
+        .then(() => Protocol.Debugger.setAsyncCallStackDepth({ maxDepth: 0 }))
+        .then(next);
+    }
+
+    function afterAsyncTaskStarted(next) {
+      enableOnPause = 3;
+      Protocol.Runtime.evaluate({ expression: 'test()//# sourceURL=expr1.js',
+          awaitPromise: true })
+        .then(() => Protocol.Debugger.setAsyncCallStackDepth({ maxDepth: 0 }))
+        .then(next);
+    }`,
+    `async function SyncTestFail() {
+      print('sync module compile (fail)...');
+      DisallowCodegenFromStrings(true);
+      DisallowWasmCodegen(false);
+      try {
+        let module = new WebAssembly.Module(buffer);
+        assertUnreachable();
+      } catch (e) {
+        print("  " + e);
+        assertInstanceof(e, WebAssembly.CompileError);
+      }
+    }`,
+    `async function AsyncTestWithInstantiateFail() {
+      print('async module instantiate (fail)...');
+      DisallowCodegenFromStrings(true);
+      DisallowWasmCodegen(false);
+      try {
+        let m = await WebAssembly.instantiate(buffer);
+        assertUnreachable();
+      } catch (e) {
+        print("  " + e);
+        assertInstanceof(e, WebAssembly.CompileError);
+      }
+    }`,
+    `async function RunAll() {
+      await SyncTestOk();
+      await SyncTestFail();
+      await AsyncTestOk();
+      await AsyncTestWithInstantiateOk();
+      await AsyncTestFail();
+      await AsyncTestWithInstantiateFail();
+      await StreamingTestOk();
+      await StreamingTestFail();
+
+      disallow_codegen = false;
+      for (count = 0; count < 2; ++count) {
+        SyncTestWasmFail(disallow_codegen);
+        AsyncTestWasmFail(disallow_codegen);
+        AsyncTestWasmWithInstantiateFail(disallow_codegen);
+        StreamingTestWasmFail(disallow_codegen)
+        disallow_codegen = true;
+      }
+    }`,
+    `async function test(name, func, args, handler, continuation) {
+      var handler_called = false;
+      var exception = null;
+
+      function listener(event, exec_state, event_data, data) {
+        try {
+          if (event == Debug.DebugEvent.Break) {
+            handler_called = true;
+            handler(exec_state);
+          }
+        } catch (e) {
+          exception = e;
+        }
+      }
+
+      Debug.setListener(listener);
+
+      var result;
+      if (typeof func === "object")
+        result = await func.method.apply(func, args);
+      else
+        result = await func.apply(null, args);
+
+      if (typeof continuation === "function") {
+        await continuation(result);
+      }
+
+      if (exception) {
+        print(exception.stack);
+        quit(1);
+      }
+
+      Debug.setListener(null);
+    }`,
+    `async function runTests() {
+
+      // Simple
+      await test(
+          "(AsyncFunctionExpression) Local 1",
+          async function() { debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 1 --- resume normal",
+          async function() { let z = await 2; debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({z: 2}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 1 --- resume throw",
+          async function() { let q = await 1;
+                             try { let z = await thrower(); }
+                             catch (e) { debugger; } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e: 'Exception'}, 0, exec_state);
+            CheckScopeContent({q: 1}, 1, exec_state);
+
+          });
+
+      // Simple With Parameter
+      await test(
+          "(AsyncFunctionExpression) Local 2",
+          async function(a) { debugger; }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ a: 1 }, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 2 --- resume normal",
+          async function(a) { let z = await 2; debugger; }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ a: 1, z: 2 }, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 2 --- resume throw",
+          async function(a) { let z = await 2;
+                              try { await thrower(); } catch (e) { debugger; } }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ e: 'Exception' }, 0, exec_state);
+            CheckScopeContent({ a: 1, z: 2 }, 1, exec_state);
+          });
+
+      // Simple With Parameter and Variable
+      await test(
+          "(AsyncFunctionExpression) Local 3",
+          async function(a) { var b = 2; debugger; }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ a: 1, b: 2 }, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 3 --- resume normal",
+          async function(a) { let y = await 3; var b = 2; let z = await 4;
+                              debugger; }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ a: 1, b: 2, y: 3, z: 4 }, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 3 --- resume throw",
+          async function(a) { let y = await 3;
+                              try { var b = 2; let z = await thrower(); }
+                              catch (e) { debugger; } }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ e: 'Exception' }, 0, exec_state);
+            CheckScopeContent({ a: 1, b: 2, y: 3 }, 1, exec_state);
+          });
+
+      // Local scope with parameters and local variables.
+      await test(
+          "(AsyncFunctionExpression) Local 4",
+          async function(a, b) { var x = 3; var y = 4; debugger; }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1,b:2,x:3,y:4}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 4 --- resume normal",
+          async function(a, b) { let q = await 5; var x = 3; var y = 4;
+                                 let r = await 6; debugger; }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1,b:2,x:3,y:4, q: 5, r: 6}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 4 --- resume throw",
+          async function(a, b) { let q = await 5; var x = 3; var y = 4;
+                                 try { let r = await thrower(); }
+                                 catch (e) { debugger; } }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e: 'Exception'}, 0, exec_state);
+            CheckScopeContent({a:1,b:2,x:3,y:4, q: 5}, 1, exec_state);
+          });
+
+      // Empty local scope with use of eval.
+      await test(
+          "(AsyncFunctionExpression) Local 5",
+          async function() { eval(""); debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 5 --- resume normal",
+          async function() { let x = await 1; eval(""); let y = await 2;
+                             debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ x: 1, y: 2 }, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 5 --- resume throw",
+          async function() { let x = await 1; eval("");
+                             try { let y = await thrower(); }
+                             catch (e) { debugger; } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ e: 'Exception' }, 0, exec_state);
+            CheckScopeContent({ x: 1 }, 1, exec_state);
+          });
+
+      // Local introducing local variable using eval.
+      await test(
+          "(AsyncFunctionExpression) Local 6",
+          async function() { eval("var i = 5"); debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({i:5}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 6 --- resume normal",
+          async function() { let x = await 1; eval("var i = 5"); let y = await 2;
+                             debugger; }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({i:5, x: 1, y: 2}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 6 --- resume throw",
+          async function() { let x = await 1; eval("var i = 5");
+                             try { let y = await thrower(); }
+                             catch (e) { debugger; } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e: 'Exception' }, 0, exec_state);
+            CheckScopeContent({i:5, x: 1}, 1, exec_state);
+          });
+
+      // Local scope with parameters, local variables and local variable introduced
+      // using eval.
+      await test(
+          "(AsyncFunctionExpression) Local 7",
+          async function(a, b) { var x = 3; var y = 4;
+                                 eval("var i = 5;"); eval("var j = 6");
+                                 debugger; }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1,b:2,x:3,y:4,i:5,j:6}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 7 --- resume normal",
+          async function(a, b) { let z = await 7; var x = 3; var y = 4;
+                                 eval("var i = 5;"); eval("var j = 6");
+                                 let q = await 8;
+                                 debugger; }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1,b:2,x:3,y:4,i:5,j:6, z:7, q:8}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Local 7 --- resume throw",
+          async function(a, b) { let z = await 7; var x = 3; var y = 4;
+                                 eval("var i = 5;"); eval("var j = 6");
+                                 try { let q = await thrower(); }
+                                 catch (e) { debugger; } }, [1, 2],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e: 'Exception'}, 0, exec_state);
+            //CheckScopeContent({a:1,b:2,x:3,y:4,i:5,j:6, z:7}, 1, exec_state);
+          });
+
+      // Nested empty with blocks.
+      await test(
+          "(AsyncFunctionExpression) With",
+          async function() { with ({}) { with ({}) { debugger; } } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.With,
+                             debug.ScopeType.With,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({}, 0, exec_state);
+            CheckScopeContent({}, 1, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) With --- resume normal",
+          async function() { let x = await 1; with ({}) { with ({}) {
+                             let y = await 2; debugger; } } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Block,
+                             debug.ScopeType.With,
+                             debug.ScopeType.With,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({y:2}, 0, exec_state);
+            CheckScopeContent({}, 1, exec_state);
+            CheckScopeContent({}, 2, exec_state);
+            CheckScopeContent({x:1}, 3, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) With --- resume throw",
+          async function() { let x = await 1; with ({}) { with ({}) {
+                             try { let y = await thrower(); }
+                             catch (e) { debugger; } } } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.With,
+                             debug.ScopeType.With,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({ e: 'Exception'}, 0, exec_state);
+            CheckScopeContent({}, 1, exec_state);
+            CheckScopeContent({}, 2, exec_state);
+            CheckScopeContent({x:1}, 3, exec_state);
+          });
+
+      // Simple closure formed by returning an inner function referering the outer
+      // functions arguments.
+      await test(
+          "(AsyncFunctionExpression) Closure 1",
+          async function(a) { return function() { debugger; return a; } }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1}, 1, exec_state);
+          },
+          result => result());
+
+      await test(
+          "(AsyncFunctionExpression) Closure 1 --- resume normal",
+          async function(a) { let x = await 2;
+                              return function() { debugger; return a; } }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({a:1}, 1, exec_state);
+          },
+          result => result());
+
+      await test(
+          "(AsyncFunctionExpression) Closure 1 --- resume throw",
+          async function(a) { let x = await 2;
+                              return async function() {
+                                  try { await thrower(); }
+                                  catch (e) { debugger; } return a; }; }, [1],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e: 'Exception'}, 0, exec_state);
+            CheckScopeContent({a:1}, 2, exec_state);
+          },
+          result => result());
+
+      await test(
+          "(AsyncFunctionExpression) Catch block 1",
+          async function() { try { throw 'Exception'; } catch (e) { debugger; } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e:'Exception'}, 0, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Catch block 1 --- resume normal",
+          async function() {
+            let x = await 1;
+            try { throw 'Exception'; } catch (e) { let y = await 2; debugger; } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Block,
+                             debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({y: 2}, 0, exec_state);
+            CheckScopeContent({e:'Exception'}, 1, exec_state);
+            CheckScopeContent({x: 1}, 2, exec_state);
+          });
+
+      await test(
+          "(AsyncFunctionExpression) Catch block 1 --- resume throw",
+          async function() {
+            let x = await 1;
+            try { throw 'Exception!'; } catch (e) {
+              try { let y = await thrower(); } catch (e) { debugger; } } }, [],
+          exec_state => {
+            CheckScopeChain([debug.ScopeType.Catch,
+                             debug.ScopeType.Catch,
+                             debug.ScopeType.Local,
+                             debug.ScopeType.Closure,
+                             debug.ScopeType.Script,
+                             debug.ScopeType.Global], exec_state);
+            CheckScopeContent({e:'Exception'}, 0, exec_state);
+            CheckScopeContent({e:'Exception!'}, 1, exec_state);
+            CheckScopeContent({x: 1}, 2, exec_state);
+          });
+      }`,
+    `function CheckFastAllScopes(scopes, exec_state) {
+      var fast_all_scopes = exec_state.frame().allScopes(true);
+      var length = fast_all_scopes.length;
+      assertTrue(scopes.length >= length);
+      for (var i = 0; i < scopes.length && i < length; i++) {
+        var scope = fast_all_scopes[length - i - 1];
+        assertEquals(scopes[scopes.length - i - 1], scope.scopeType());
+      }
+    }`,
+    `async function asyncFact(n) {
+      if (n == 0) return 1;
+      let r = n * await asyncFact(n - 1);
+      console.log(r);
+      return r;
+    }`,
+    `var a,b,c,d,e,f,g,h,i,j,x;
+
+    function Setup() {
+      x = Promise.resolve();
+
+      j = async function j() { return x; };
+      i = async function i() {
+        await j();
+        await j();
+        await j();
+        await j();
+        await j();
+        await j();
+        await j();
+        await j();
+        await j();
+        return j();
+      };
+      h = async function h() { return i(); };
+      g = async function g() { return h(); };
+      f = async function f() { return g(); };
+      e = async function e() { return f(); };
+      d = async function d() { return e(); };
+      c = async function c() { return d(); };
+      b = async function b() { return c(); };
+      a = async function a() { return b(); };
+
+      PerformMicrotaskCheckpoint();
+    }
+    `,
+    ` async function* gen() {
+      return promise;
+      test.unreachable();
+    }`,
+    `async function* gen() {
+      try {
+        return awaitedThenable;
+      } finally {
+        finallyEvaluated = true;
+      }
+    }`,
+    ` let reject;
+    let awaitedThenable = { then(resolveFn, rejectFn) { reject = rejectFn; } };
+    async function* gen() {
+      try {
+        yield awaitedThenable;
+      } catch (e) {
+        test.equals("rejection", e);
+        return e;
+      }
+    }`,
+    `async function asyncFoo() {
+      await Promise.resolve().then(v => v * 2);
+      return42();
+      await asyncBoo();
+    }
+    `,
+    `
+    function returnTrue() {
+      return true;
+    }
+
+    function testIf() {
+      var a;
+      if (true) a = true;
+      if (!a) {
+        a = true;
+      } else {
+        a = false;
+      }
+      if (returnTrue()) {
+        a = false;
+      } else {
+        a = true;
+      }
+    }
+    `,
+    `function testNested() {
+      function nested1() {
+        function nested2() {
+          function nested3() {
+          }
+          nested3();
+          return;
+        }
+        return nested2();
+      }
+      nested1();
+    }
+
+    function return42() {
+      return 42;
+    }
+
+    function returnCall() {
+      return return42();
+    }
+
+    function testCallAtReturn() {
+      return returnCall();
+    }
+
+    function returnObject() {
+      return ({ foo: () => 42 });
+    }
+
+    function testWith() {
+      with (returnObject()) {
+        foo();
+      }
+      with({}) {
+        return;
+      }
+    }
+
+    function testForLoop() {
+      for (var i = 0; i < 1; ++i) {}
+      for (var i = 0; i < 1; ++i) i;
+      for (var i = 0; i < 0; ++i) {}
+    }
+
+    function testForOfLoop() {
+      for (var k of []) {}
+      for (var k of [1]) k;
+      var a = [];
+      for (var k of a) {}
+    }
+
+    function testForInLoop() {
+      var o = {};
+      for (var k in o) {}
+      for (var k in o) k;
+      for (var k in { a:1 }) {}
+      for (var k in { a:1 }) k;
+    }
+
+    function testSimpleExpressions() {
+      1 + 2 + 3;
+      var a = 1;
+      ++a;
+      a--;
+    }`,
+    `function testChainedCalls() {
+      obj.foo().boo()();
+    }
+
+    function testChainedWithNative() {
+      Array.from([1]).concat([2]).map(v => v * 2);
+    }
+
+    function testPromiseThen() {
+      return Promise.resolve().then(v => v * 2).then(v => v * 2);
+    }
+
+    function testSwitch() {
+      for (var i = 0; i < 3; ++i) {
+        switch(i) {
+          case 0: continue;
+          case 1: return42(); break;
+          default: return;
+        }
+      }
+    }
+
+    function* idMaker() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+
+    function testGenerator() {
+      var gen = idMaker();
+      return42();
+      gen.next().value;
+      debugger;
+      gen.next().value;
+      return42();
+      gen.next().value;
+      return42();
+      gen.next().value;
+    }
+
+    function throwException() {
+      throw new Error();
+    }
+
+    function testCaughtException() {
+      try {
+        throwException()
+      } catch (e) {
+        return;
+      }
+    }
+
+    function testClasses() {
+      class Cat {
+        constructor(name) {
+          this.name = name;
+        }
+
+        speak() {
+        }
+      }
+      class Lion extends Cat {
+        constructor(name) {
+          super(name);
+        }
+
+        speak() {
+          super.speak();
+        }
+      }
+      new Lion().speak();
+    }
+
+    async function asyncFoo() {
+      await Promise.resolve().then(v => v * 2);
+      return42();
+      await asyncBoo();
+    }
+
+    async function asyncBoo() {
+      await Promise.resolve();
+    }
+
+    async function testAsyncAwait() {
+      await asyncFoo();
+      await awaitBoo();
+    }`,
+    `async function testPromiseAsyncWithCode() {
+      var nextTest;
+      var testPromise = new Promise(resolve => nextTest = resolve);
+      async function main() {
+        async function foo() {
+          var resolveNested;
+          var p = new Promise(resolve => resolveNested = resolve);
+          setTimeout(resolveNested, 0);
+          await p;
+        }
+        setTimeout(returnCall, 0);
+        await foo();
+        await foo();
+        nextTest();
+      }
+      main();
+      return testPromise;
+    }
+
+    function returnFunction() {
+      return returnObject;
+    }
+
+    async function testPromiseComplex() {
+      var nextTest;
+      var testPromise = new Promise(resolve => nextTest = resolve);
+      async function main() {
+        async function foo() {
+          await Promise.resolve();
+          return 42;
+        }
+        var x = 1;
+        var y = 2;
+        returnFunction(emptyFunction(), x++, --y, x => 2 * x, returnCall())().a = await foo((a => 2 *a)(5));
+        nextTest();
+      }
+      main();
+      return testPromise;
+    }
+
+    function twiceDefined() {
+      return a + b;
+    }
+
+    function twiceDefined() {
+      return a + b;
+    }`,
+    `var log = [];
+    class FakePromise extends Promise {
+      constructor(executor) {
+        var stack = getStack(new Error("Getting Callstack"));
+        if (stack.length) {
+          var first = -1;
+          for (var i = 0; i < stack.length; ++i) {
+            if (stack[i][0] === '@') {
+              first = i;
+              break;
+            }
+          }
+          while (first > 0) stack.shift(), --first;
+          if (stack.length) {
+            log.push("@@Species: [" + stack.join(" > ") + "]");
+          }
+        }
+        return new Promise(executor);
+      }
+    };`,
+    `async function asyncFn() { return await "foo"; }`,
+    `function f() { x = 1; try { g(); } catch(x) { x = 2; } };
+    function g() { h(); };
+    function h() { x = 1; throw 1; };`,
+    `function listener(event, exec_state, event_data, data) {
+      if (event != Debug.DebugEvent.Break) return;
+      try {
+        break_count++;
+        var line = exec_state.frame(0).sourceLineText();
+        print(line);
+      } catch (e) {
+        exception = e;
+      }
+    }
+
+
+    async function g() {
+      setbreaks();
+      throw 1;  // B1
+    }
+
+    async function f() {
+      try {
+        await g();
+      } catch (e) {}
+      return 2;  // B2
+    }`,
+    `const AsyncFunction = async function(){}.constructor;
+    class MyAsync extends AsyncFunction {}
+    var af = new MyAsync();
+    gc();`,
+    `
+    {
+      async function foo() {}
+      assertEquals('function', typeof foo);
+    }
+    assertEquals('undefined', typeof foo);
+
+    // No hoisting within a function scope
+    (function() {
+      { async function bar() {} }
+      assertEquals('undefined', typeof bar);
+    })();
+
+    // Lexical shadowing allowed, no hoisting
+    (function() {
+      var y;
+      async function x() { y = 1; }
+      { async function x() { y = 2; } }
+      x();
+      assertEquals(1, y);
+    })();`,
+    ` var b = obj1.a;
+    (async function asyncF() {
+      let r = await Promise.resolve(42);
+      return r;
+    })();`,
+    `async_hooks.createHook({
+      after() { throw new Error(); }
+    }).enable();
+
+    (async function() {
+      await 1;
+      await 1;
+    })();`,
+    `function testFunction() {
+      async function f1() {
+        for (let x = 0; x < 1; ++x) await x;
+        return await Promise.resolve(2);
+      }
+      async function f2() {
+        let r = await f1() + await f1();
+        await f1();
+        await f1().then(x => x * 2);
+        await [1].map(x => Promise.resolve(x))[0];
+        await Promise.resolve().then(x => x * 2);
+        let p = Promise.resolve(42);
+        await p;
+        return r;
+      }
+      return f2();
+    }`,
+    `async function testStepInto() {
+      Protocol.Debugger.pause();
+      let fin = Protocol.Runtime.evaluate({
+        expression: 'testFunction()//# sourceURL=expr.js', awaitPromise: true}).then(() => false);
+      let result;
+      while (result = await Promise.race([fin, Protocol.Debugger.oncePaused()])) {
+        let {params:{callFrames}} = result;
+        session.logCallFrames(callFrames);
+        session.logSourceLocation(callFrames[0].location);
+        Protocol.Debugger.stepInto();
+      }
+      Protocol.Runtime.evaluate({expression: '42'});
+      await Protocol.Debugger.oncePaused();
+      await Protocol.Debugger.resume();
+    }
+
+    async function testStepOver() {
+      Protocol.Debugger.pause();
+      let fin = Protocol.Runtime.evaluate({
+        expression: 'testFunction()//# sourceURL=expr.js', awaitPromise: true}).then(() => false);
+      Protocol.Debugger.stepInto();
+      await Protocol.Debugger.oncePaused();
+      Protocol.Debugger.stepInto();
+      await Protocol.Debugger.oncePaused();
+
+      let result;
+      while (result = await Promise.race([fin, Protocol.Debugger.oncePaused()])) {
+        let {params:{callFrames}} = result;
+        session.logCallFrames(callFrames);
+        session.logSourceLocation(callFrames[0].location);
+        Protocol.Debugger.stepOver();
+      }
+      Protocol.Runtime.evaluate({expression: '42'});
+      await Protocol.Debugger.oncePaused();
+      await Protocol.Debugger.resume();
+    }`,
+    ` (async () => Promise.resolve(1))().then(
+      v => {
+        onFulfilledValue = v;
+  setTimeout(_ => assertEquals(1, onFulfilledValue));
+})();`,
+    `async function testBasic() {
+      const {contextGroup, sessions: [session1, session2]} = setupSessions(2);
+      await session2.Protocol.Runtime.evaluate({expression: 1});
+    }`,
+    `function boo() {
+      debugger;
+      var x = 1;
+      return x + 2;
+      }`,
+    `it = ({
+      async* method() {
+        yield "A";
+        yield await Resolver("B");
+        yield await "C";
+        yield Resolver("CC");
+        return "D";
+        throw "(unreachable)";
+      }
+    }).method();`,
+    `{
+      function f1() {
+        var x, y;
+        with ({get await() { return [42] }}) {
+          x = await
+          y = 1
+        };
+        return y;
+      }
+    }`,
+    `async function f2() {
+      var x;
+      with ({get await() { return [42] }}) {
+        x = await
+        [0];
+      };
+      return x;
+    }`,
+    `let {session, contextGroup, Protocol} =
+    InspectorTest.start('Checks that we can update return value on pause');
+
+InspectorTest.runAsyncTestSuite([
+  async function testError() {
+    Protocol.Debugger.enable();
+    let evaluation = Protocol.Runtime.evaluate({
+      expression: 'function foo() { debugger; } foo()',
+      returnByValue: true
+    });
+    let {params:{callFrames}} = await Protocol.Debugger.oncePaused();
+    InspectorTest.log('Set return value not at return position');
+    let result = await Protocol.Debugger.setReturnValue({
+      newValue: { value: 42 },
+    });
+    InspectorTest.logMessage(result);
+    await Protocol.Debugger.disable();
+  },
+
+  async function testUndefined() {
+    Protocol.Debugger.enable();
+    let evaluation = Protocol.Runtime.evaluate({
+      expression: 'function foo() { debugger; } foo()',
+      returnByValue: true
+    });
+    InspectorTest.log('Break at return position..');
+    await Protocol.Debugger.oncePaused();
+    Protocol.Debugger.stepInto();
+    let {params:{callFrames}} = await Protocol.Debugger.oncePaused();
+    InspectorTest.log('Update return value to 42..');
+    Protocol.Debugger.setReturnValue({
+      newValue: { value: 42 },
+    });
+    Protocol.Debugger.resume();
+    let {result} = await evaluation;
+    InspectorTest.log('Dump actual return value');
+    InspectorTest.logMessage(result);
+    await Protocol.Debugger.disable();
+  },
+
+  async function testArrow() {
+    Protocol.Debugger.enable();
+    Protocol.Debugger.pause();
+    let evaluation = Protocol.Runtime.evaluate({
+      expression: '(() => 42)()',
+      returnByValue: true
+    });
+    InspectorTest.log('Break at return position..');
+    await Protocol.Debugger.oncePaused();
+    Protocol.Debugger.stepInto();
+    await Protocol.Debugger.oncePaused();
+    Protocol.Debugger.stepInto();
+    let {params:{callFrames}} = await Protocol.Debugger.oncePaused();
+    InspectorTest.log('Update return value to 239..');
+    Protocol.Debugger.setReturnValue({
+      newValue: { value: 239 },
+    });
+    Protocol.Debugger.resume();
+    let {result} = await evaluation;
+    InspectorTest.log('Dump actual return value');
+    InspectorTest.logMessage(result);
+    await Protocol.Debugger.disable();
+  }
+]);`,
+    `function foo() {
+      return () => {
+        let a = this;
+        (function() {
+          let f = () => { debugger; };
+          f();
+        }).call('a');
+        return a;
+      };
+    }
+    function boo() {
+      foo.call(1)();
+    }`,
+    `// AsyncGenerator functions syntactically allow AwaitExpressions
+    assertEquals(1, async function*(a) { await 1; }.length);
+    assertEquals(2, async function*(a, b) { await 1; }.length);
+    assertEquals(1, async function*(a, b = 2) { await 1; }.length);
+    assertEquals(2, async function*(a, b, ...c) { await 1; }.length);
+
+    assertEquals(1, ({ async* f(a) { await 1; } }).f.length);
+    assertEquals(2, ({ async* f(a, b) { await 1; } }).f.length);
+    assertEquals(1, ({ async* f(a, b = 2) { await 1; } }).f.length);
+    assertEquals(2, ({ async* f(a, b, ...c) { await 1; } }).f.length);
+
+    assertEquals(1, AsyncGeneratorFunction("a", "await 1").length);
+    assertEquals(2, AsyncGeneratorFunction("a", "b", "await 1").length);
+    assertEquals(1, AsyncGeneratorFunction("a", "b = 2", "await 1").length);
+    assertEquals(2, AsyncGeneratorFunction("a", "b", "...c", "await 1").length);
+
+    assertEquals(1, (new AsyncGeneratorFunction("a", "await 1")).length);
+    assertEquals(2, (new AsyncGeneratorFunction("a", "b", "await 1")).length);
+    assertEquals(1, (new AsyncGeneratorFunction("a", "b = 2", "await 1")).length);
+    assertEquals(2,
+                 (new AsyncGeneratorFunction("a", "b", "...c", "await 1")).length);
+
+    // ----------------------------------------------------------------------------
+    // AsyncGenerator functions syntactically allow YieldExpressions
+    assertEquals(1, async function*(a) { yield 1; }.length);
+    assertEquals(2, async function*(a, b) { yield 1; }.length);
+    assertEquals(1, async function*(a, b = 2) { yield 1; }.length);
+    assertEquals(2, async function*(a, b, ...c) { yield 1; }.length);
+
+    assertEquals(1, ({ async* f(a) { yield 1; } }).f.length);
+    assertEquals(2, ({ async* f(a, b) { yield 1; } }).f.length);
+    assertEquals(1, ({ async* f(a, b = 2) { yield 1; } }).f.length);
+    assertEquals(2, ({ async* f(a, b, ...c) { yield 1; } }).f.length);
+
+    assertEquals(1, AsyncGeneratorFunction("a", "yield 1").length);
+    assertEquals(2, AsyncGeneratorFunction("a", "b", "yield 1").length);
+    assertEquals(1, AsyncGeneratorFunction("a", "b = 2", "yield 1").length);
+    assertEquals(2, AsyncGeneratorFunction("a", "b", "...c", "yield 1").length);
+
+    assertEquals(1, (new AsyncGeneratorFunction("a", "yield 1")).length);
+    assertEquals(2, (new AsyncGeneratorFunction("a", "b", "yield 1")).length);
+    assertEquals(1, (new AsyncGeneratorFunction("a", "b = 2", "yield 1")).length);
+    assertEquals(2,
+                 (new AsyncGeneratorFunction("a", "b", "...c", "yield 1")).length);
+    `,
     'function * foo() { return {a: 1, b: 2, ...yield, c: 3}; }',
     'function foo(...a) { }',
     'function foo(a, ...b) { }',
@@ -10085,6 +11298,12 @@ var func4 = function(){
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
       });
     });
   }
