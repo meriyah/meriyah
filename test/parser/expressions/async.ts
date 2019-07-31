@@ -375,6 +375,267 @@ describe('Expressions - Async', () => {
       }
     ],
     [
+      `const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        },
+        baz: async event => {
+        }
+      }
+
+      const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
+      }
+      `,
+      Context.None,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                init: {
+                  properties: [
+                    {
+                      computed: false,
+                      key: {
+                        name: 'foo',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: false,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    },
+                    {
+                      computed: false,
+                      key: {
+                        name: 'bar',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: true,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [
+                          {
+                            name: 'event',
+                            type: 'Identifier'
+                          }
+                        ],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    },
+                    {
+                      computed: false,
+                      key: {
+                        name: 'baz',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: true,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [
+                          {
+                            name: 'event',
+                            type: 'Identifier'
+                          }
+                        ],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    }
+                  ],
+                  type: 'ObjectExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'const',
+            type: 'VariableDeclaration'
+          },
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                init: {
+                  properties: [
+                    {
+                      computed: false,
+                      key: {
+                        name: 'foo',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: false,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    },
+                    {
+                      computed: false,
+                      key: {
+                        name: 'bar',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: true,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [
+                          {
+                            name: 'event',
+                            type: 'Identifier'
+                          }
+                        ],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    }
+                  ],
+                  type: 'ObjectExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'const',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
+      }`,
+      Context.None,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'a',
+                  type: 'Identifier'
+                },
+                init: {
+                  properties: [
+                    {
+                      computed: false,
+                      key: {
+                        name: 'foo',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: false,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    },
+                    {
+                      computed: false,
+                      key: {
+                        name: 'bar',
+                        type: 'Identifier'
+                      },
+                      kind: 'init',
+                      method: false,
+                      shorthand: false,
+                      type: 'Property',
+                      value: {
+                        async: true,
+                        body: {
+                          body: [],
+                          type: 'BlockStatement'
+                        },
+                        expression: false,
+                        params: [
+                          {
+                            name: 'event',
+                            type: 'Identifier'
+                          }
+                        ],
+                        type: 'ArrowFunctionExpression'
+                      }
+                    }
+                  ],
+                  type: 'ObjectExpression'
+                },
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'const',
+            type: 'VariableDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
       'function f() {for (let in {}) {}}',
       Context.None,
       {

@@ -604,7 +604,73 @@ describe('Expressions - Async arrow', () => {
     'f(a, async b => await b)',
     'async (x, y) => { x * y }',
     'async (x, y) => y',
-    'async a => { await a }',
+    `async function test(){
+      const someVar = null;
+      const done = async foo => {}
+    }`,
+    `const a = {
+      foo: () => {
+      },
+      bar: async event => {
+      }
+    }
+    async function test(a = {
+      foo: () => {
+      },
+      bar: async event => {
+      }
+    }) {
+      const someVar = null;
+      const done = async foo => {
+        const a = {
+          foo: () => {
+          },
+          bar: async event => {
+          }
+        }
+      }
+      async function test(){
+        const someVar = null;
+        const done = async foo => {}
+        const finished = async foo => {}
+      }
+    }`,
+    `async function test() {
+      const someVar = null;
+      const done = async foo => {}
+      async function test(){
+        const someVar = null;
+        const done = async foo => {}
+        const finished = async foo => {}
+      }
+    }`,
+    `async function test(){
+      const someVar = null;
+      x = 123 / 1 - 3;
+      const done = async foo => {
+        x = 123 / 1 - 3;
+        nchanged = null;
+        async (foo) => {}
+      }
+      async function test(){
+        const someVar = null;
+        const done = async foo => {
+          nchanged = null;
+          const finished = async foo => {}
+        }
+        const finished = async foo => {}
+      }
+    }`,
+    `const done = async foo => {}
+    const someVar = null;
+     const done = async foo => {}`,
+    `someVar = null;
+     someVar = 123;
+     someVar = 'nchanged';
+      async foo => {}`,
+    `const done = async foo => { const done = async foo => { const done = async foo => {}} }`,
+    `x in nchanged;
+        const done = async foo => {}`,
     'async (y) => y',
     'async (x, ...y) => x',
     'async (x,y,) => x',
