@@ -18,6 +18,65 @@ describe('Statements  Switch', () => {
 
   pass('Statements  Switch (pass)', [
     [
+      `switch (X) {
+        case k:
+          foo: bar: function f(){}
+      }`,
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'SwitchStatement',
+            discriminant: {
+              type: 'Identifier',
+              name: 'X'
+            },
+            cases: [
+              {
+                type: 'SwitchCase',
+                test: {
+                  type: 'Identifier',
+                  name: 'k'
+                },
+                consequent: [
+                  {
+                    type: 'LabeledStatement',
+                    label: {
+                      type: 'Identifier',
+                      name: 'foo'
+                    },
+                    body: {
+                      type: 'LabeledStatement',
+                      label: {
+                        type: 'Identifier',
+                        name: 'bar'
+                      },
+                      body: {
+                        type: 'FunctionDeclaration',
+                        params: [],
+                        body: {
+                          type: 'BlockStatement',
+                          body: []
+                        },
+                        async: false,
+                        generator: false,
+                        id: {
+                          type: 'Identifier',
+                          name: 'f'
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
       `for (let i = 0; i < 1; ++i) {
         switch (a) {
           case 2:

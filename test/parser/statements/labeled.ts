@@ -619,6 +619,89 @@ describe('Statements - Labeled', () => {
       }
     ],
     [
+      'foo: bar: function f(){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'LabeledStatement',
+            label: {
+              type: 'Identifier',
+              name: 'foo'
+            },
+            body: {
+              type: 'LabeledStatement',
+              label: {
+                type: 'Identifier',
+                name: 'bar'
+              },
+              body: {
+                type: 'FunctionDeclaration',
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: []
+                },
+                async: false,
+                generator: false,
+                id: {
+                  type: 'Identifier',
+                  name: 'f'
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo: bar: third: function f(){}',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'LabeledStatement',
+            label: {
+              type: 'Identifier',
+              name: 'foo'
+            },
+            body: {
+              type: 'LabeledStatement',
+              label: {
+                type: 'Identifier',
+                name: 'bar'
+              },
+              body: {
+                type: 'LabeledStatement',
+                label: {
+                  type: 'Identifier',
+                  name: 'third'
+                },
+                body: {
+                  type: 'FunctionDeclaration',
+                  params: [],
+                  body: {
+                    type: 'BlockStatement',
+                    body: []
+                  },
+                  async: false,
+                  generator: false,
+                  id: {
+                    type: 'Identifier',
+                    name: 'f'
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       'L: let\nx',
       Context.None,
       {
