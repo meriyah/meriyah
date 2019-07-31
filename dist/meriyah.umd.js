@@ -2166,6 +2166,7 @@
       }
   }
   function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
+      parser.assignable = 1;
       switch (parser.token) {
           case 86103:
               return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 0, start, line, column);
@@ -4018,12 +4019,12 @@
       nextToken(parser, context | 32768);
       let argument = null;
       let destructible = 0;
-      const { tokenPos, linePos, colPos } = parser;
-      if (parser.token & (4096 | 143360)) {
+      let { token, tokenPos, linePos, colPos } = parser;
+      if (token & (4096 | 143360)) {
           parser.assignable = 1;
           const tokenValue = parser.tokenValue;
           argument = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
-          const { token } = parser;
+          token = parser.token;
           argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
           if (parser.token !== 1073741842 && parser.token !== closingToken) {
               if (parser.assignable & 2 && parser.token === 1077936157)
@@ -4048,22 +4049,22 @@
           }
           destructible |= parser.destructible & 128 ? 128 : 0;
       }
-      else if (parser.token === closingToken) {
+      else if (token === closingToken) {
           report(parser, 39);
       }
-      else if (parser.token & 2097152) {
+      else if (token & 2097152) {
           argument =
               parser.token === 2162700
                   ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos)
                   : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, kind, origin, tokenPos, linePos, colPos);
-          const { token } = parser;
+          token = parser.token;
           if (token !== 1077936157 && token !== closingToken && token !== 1073741842) {
               if (parser.destructible & 8)
                   report(parser, 71);
               argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
               destructible |= parser.assignable & 2 ? 16 : 0;
-              const { token } = parser;
-              if (parser.token !== 1073741842 && parser.token !== closingToken) {
+              token = parser.token;
+              if (token !== 1073741842 && token !== closingToken) {
                   argument = parseAssignmentExpression(parser, context, inGroup, tokenPos, linePos, colPos, argument);
                   if (token !== 1077936157)
                       destructible |= 16;
@@ -5904,7 +5905,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.4.8';
+  const version = '1.4.10';
 
   exports.ESTree = estree;
   exports.parse = parse;
