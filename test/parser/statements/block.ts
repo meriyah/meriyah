@@ -62,6 +62,49 @@ describe('Expressions - Block', () => {
       }
     ],
     [
+      '{ foo: bar: function f(){} }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'BlockStatement',
+            body: [
+              {
+                type: 'LabeledStatement',
+                label: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                body: {
+                  type: 'LabeledStatement',
+                  label: {
+                    type: 'Identifier',
+                    name: 'bar'
+                  },
+                  body: {
+                    type: 'FunctionDeclaration',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    async: false,
+                    generator: false,
+                    id: {
+                      type: 'Identifier',
+                      name: 'f'
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
       '{ let [] = y }',
       Context.OptionsRanges,
       {

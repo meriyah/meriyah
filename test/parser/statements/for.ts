@@ -531,6 +531,8 @@ describe('Statements - For', () => {
     ['for (var [foo, bar=b] = arr);', Context.None],
     ['for (var [foo=a, bar=b] = arr);', Context.None],
     ['for (var [foo]);', Context.None],
+    ['for (x of y) foo: bar: function f(){}', Context.None],
+    ['for (x of y) foo: function f(){}', Context.None],
     ['for (var [foo = x]);', Context.None],
     ['for (var [foo], bar);', Context.None],
     ['for (var foo, [bar]);', Context.None],

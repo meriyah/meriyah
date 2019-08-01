@@ -9,6 +9,7 @@ describe('Statements - None', () => {
     ['if(!(1))', Context.None],
     ['if(!(true))', Context.None],
     ['if(!("A"))', Context.None],
+    ['if (x); else foo: bar: function f(){}', Context.None],
     ['if (false) ; else function* g() {  }', Context.None],
     ['if (true) let x; else let y;', Context.None],
     ['if (false) ; else class C {}', Context.None],

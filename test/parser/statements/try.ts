@@ -191,6 +191,71 @@ describe('Statements - Try', () => {
       }
     ],
     [
+      'try { } catch (e) { foo: bar: third: function f(){} }',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'TryStatement',
+            block: {
+              type: 'BlockStatement',
+              body: []
+            },
+            handler: {
+              type: 'CatchClause',
+              param: {
+                type: 'Identifier',
+                name: 'e'
+              },
+              body: {
+                type: 'BlockStatement',
+                body: [
+                  {
+                    type: 'LabeledStatement',
+                    label: {
+                      type: 'Identifier',
+                      name: 'foo'
+                    },
+                    body: {
+                      type: 'LabeledStatement',
+                      label: {
+                        type: 'Identifier',
+                        name: 'bar'
+                      },
+                      body: {
+                        type: 'LabeledStatement',
+                        label: {
+                          type: 'Identifier',
+                          name: 'third'
+                        },
+                        body: {
+                          type: 'FunctionDeclaration',
+                          params: [],
+                          body: {
+                            type: 'BlockStatement',
+                            body: []
+                          },
+                          async: false,
+                          generator: false,
+                          id: {
+                            type: 'Identifier',
+                            name: 'f'
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            finalizer: null
+          }
+        ]
+      }
+    ],
+    [
       'try {} catch({e}){}',
       Context.OptionsWebCompat,
       {

@@ -604,11 +604,106 @@ describe('Expressions - Async arrow', () => {
     'f(a, async b => await b)',
     'async (x, y) => { x * y }',
     'async (x, y) => y',
-    'async a => { await a }',
+    `async function test(){
+      const someVar = null;
+      const done = async foo => {}
+    }`,
+    `const a = {
+      foo: () => {
+      },
+      bar: async event => {
+      }
+    }
+    async function test(a = {
+      foo: () => {
+      },
+      bar: async event => {
+      }
+    }) {
+      const someVar = null;
+      const done1 = async foo => {
+        const a = {
+          foo: () => {
+          },
+          bar: async event => {
+          }
+        }
+      }
+      async function test(){
+        const someVar = null;
+        const done2 = async foo => {}
+        const finished = async foo => {}
+      }
+    }`,
+    `async function test() {
+      const someVar = null;
+      const done1 = async foo => {}
+      async function test(){
+        const someVar = null;
+        const done2 = async foo => {}
+        const finished = async foo => {}
+      }
+    }`,
+    `async function test(){
+      const someVar = null;
+      x = 123 / 1 - 3;
+      const done1 = async foo => {
+        x = 123 / 1 - 3;
+        nchanged = null;
+        async (foo) => {}
+      }
+      async function test(){
+        const someVar = null;
+        const done = async foo => {
+          nchanged = null;
+          const finished = async foo => {}
+        }
+        const finished = async foo => {}
+      }
+    }`,
+    `const done1 = async foo => {}
+    const someVar = null;
+     const done2 = async foo => {}`,
+    `someVar = null;
+     someVar = 123;
+     someVar = 'nchanged';
+      async foo => {}`,
+    `const done3 = async foo => { const done = async foo => { const done5 = async foo => {}} }`,
+    `x in nchanged;
+        const done4 = async foo => {}`,
     'async (y) => y',
     'async (x, ...y) => x',
     'async (x,y,) => x',
     'async ({a = b}) => a',
+    '(async ({a = b}) => a)',
+    'async ({a = b}) => a(async ({a = b}) => a)',
+    'async ({a = b / 2}) => a',
+    'async() => { try {} finally { return "promise-finally-return (func-expr)";  } }',
+    'async() => { try { return new Promise(function() {}); } finally { return "promise-finally-return (arrow)"; } }',
+    'async() => { try { return "early-return (arrow)"; } finally { return await resolveLater("await-finally-return (arrow)"); }}',
+    'async ({a = (({b = {a = c} = { a: 0x1234 }}) => 1)({})}, c) => 1;',
+    'async ({a = (async ({b = {a = c} = { a: 0x1234 }}) => 1)({})}, c) => a;',
+    '(async() => {}).prototype',
+    '(async() => {}).hasOwnProperty("prototype")',
+    'async function x(a) { await 1; }',
+    'async function x(a, b, ...c) { await 1; }',
+    '(async(a) => await 1).length',
+    '(async(a, b, ...c) => await 1).length',
+    '(async(a, b = 2) => await 1).length',
+    '({ async f(a, b, ...c) { await 1; } }).f.length',
+    '({ async f(a, b = 2) { await 1; } }).f.length',
+    '({ async f(a) { await 1; } }).f.length',
+    '(new AsyncFunction("a", "await 1")).length',
+    '(new AsyncFunction("a", "b = 2", "await 1")).length',
+    '(new AsyncFunction("a", "b = 2", "await 1", async)).length',
+    '(async x => { return x }).toString()',
+    '() => ({ async f() { return "test4"; } }).f()',
+    '() => ({ async f() { return "test4"; } }).f()',
+    'async a => a',
+    'async a => a',
+    'async a => a',
+    'async a => a',
+
     'async a => a',
     'async function foo(a = async () => await b) {}',
     '({async: 1})',
@@ -747,6 +842,18 @@ describe('Expressions - Async arrow', () => {
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
+        parseSource(`${arg};`, undefined, Context.OptionsLexical);
+      });
+    });
+
+    it(`${arg};`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg};`, undefined, Context.OptionsLexical | Context.OptionsWebCompat);
+      });
+    });
+
+    it(`${arg};`, () => {
+      t.doesNotThrow(() => {
         parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
       });
     });
@@ -838,70 +945,6 @@ describe('Expressions - Async arrow', () => {
         end: 42
       }
     ],
-    /*[
-      'async(a = (await) => {}) => {};',
-      Context.Strict | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: [],
-                start: 28,
-                end: 30
-              },
-              params: [
-                {
-                  type: 'AssignmentPattern',
-                  left: {
-                    type: 'Identifier',
-                    name: 'a',
-                    start: 6,
-                    end: 7
-                  },
-                  right: {
-                    type: 'ArrowFunctionExpression',
-                    body: {
-                      type: 'BlockStatement',
-                      body: [],
-                      start: 21,
-                      end: 23
-                    },
-                    params: [
-                      {
-                        type: 'Identifier',
-                        name: 'await',
-                        start: 11,
-                        end: 16
-                      }
-                    ],
-                    async: false,
-                    expression: false,
-                    start: 10,
-                    end: 23
-                  },
-                  start: 6,
-                  end: 23
-                }
-              ],
-              async: true,
-              expression: false,
-              start: 0,
-              end: 30
-            },
-            start: 0,
-            end: 31
-          }
-        ],
-        start: 0,
-        end: 31
-      }
-    ], */
     [
       `async (() => 1)(), 1`,
       Context.OptionsRanges,
