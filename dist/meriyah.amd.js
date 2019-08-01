@@ -2162,7 +2162,6 @@ define(['exports'], function (exports) { 'use strict';
       }
   }
   function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
-      parser.assignable = 1;
       switch (parser.token) {
           case 86103:
               return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 0, start, line, column);
@@ -2327,22 +2326,7 @@ define(['exports'], function (exports) { 'use strict';
               return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 1, start, line, column);
           }
           if ((parser.token & 143360) === 143360) {
-              if (parser.assignable & 2)
-                  report(parser, 47);
-              if (parser.token === 209005)
-                  report(parser, 29);
-              if (context & (1024 | 2097152) && parser.token === 241770) {
-                  report(parser, 30);
-              }
-              if ((parser.token & 537079808) === 537079808) {
-                  parser.flags |= 128;
-              }
-              if (scope) {
-                  scope = addChildScope(createScope(), 128);
-                  addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
-              }
-              const param = [parseIdentifier(parser, context, 0)];
-              expr = parseArrowFunctionExpression(parser, context, scope, param, 1, start, line, column);
+              expr = parseAsyncArrowAfterIdent(parser, context, scope, 1, start, line, column);
               if (parser.token === 1073741842)
                   expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
               return parseExpressionStatement(parser, context, expr, start, line, column);
@@ -2353,7 +2337,8 @@ define(['exports'], function (exports) { 'use strict';
       }
       else {
           if (parser.token === 10) {
-              if (scope) {
+              let scope = void 0;
+              if (context & 64) {
                   scope = addChildScope(createScope(), 128);
                   addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
               }
@@ -3478,15 +3463,28 @@ define(['exports'], function (exports) { 'use strict';
           report(parser, 134);
       }
       if ((token & 143360) === 143360) {
-          const tokenValue = parser.tokenValue;
+          const { tokenValue } = parser;
           const expr = parseIdentifier(parser, context | 65536, identifierPattern);
           if (token === 143468) {
-              return parseAsyncExpression(parser, context, expr, inNewExpression, allowAssign, inGroup, start, line, column);
+              const { flags } = parser;
+              if ((flags & 1) < 1) {
+                  if (parser.token === 86103) {
+                      return parseFunctionExpression(parser, context, 1, inGroup, start, line, column);
+                  }
+                  if ((parser.token & 143360) === 143360) {
+                      return parseAsyncArrowAfterIdent(parser, context, void 0, allowAssign, start, line, column);
+                  }
+              }
+              if (!inNewExpression && parser.token === 67174411) {
+                  return parseAsyncArrowOrCallExpression(parser, context, expr, allowAssign, 1, 0, flags, start, line, column);
+              }
           }
           if (token === 143478)
               report(parser, 96);
           const IsEvalOrArguments = (token & 537079808) === 537079808;
           if (parser.token === 10) {
+              if (inNewExpression)
+                  report(parser, 51);
               parser.flags = (parser.flags | 128) ^ 128;
               if (IsEvalOrArguments) {
                   if (context & 1024)
@@ -5097,39 +5095,23 @@ define(['exports'], function (exports) { 'use strict';
           property
       });
   }
-  function parseAsyncExpression(parser, context, expr, inNewExpression, assignable, inGroup, start, line, column) {
-      const { flags } = parser;
-      let scope = void 0;
-      if ((flags & 1) < 1) {
-          if (parser.token === 86103)
-              return parseFunctionExpression(parser, context, 1, inGroup, start, line, column);
-          if ((parser.token & 143360) === 143360) {
-              if (parser.assignable & 2)
-                  report(parser, 47);
-              if (parser.token === 209005)
-                  report(parser, 29);
-              if (context & 64) {
-                  scope = addChildScope(createScope(), 128);
-                  addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
-              }
-              const param = [parseIdentifier(parser, context, 0)];
-              return parseArrowFunctionExpression(parser, context, scope, param, 1, start, line, column);
-          }
+  function parseAsyncArrowAfterIdent(parser, context, scope, assignable, start, line, column) {
+      if (!assignable)
+          report(parser, 47);
+      if (parser.token === 209005)
+          report(parser, 29);
+      if (context & (1024 | 2097152) && parser.token === 241770) {
+          report(parser, 30);
       }
-      if (!inNewExpression && parser.token === 67174411) {
-          return parseAsyncArrowOrCallExpression(parser, (context | 134217728) ^ 134217728, expr, assignable, 1, 0, flags, start, line, column);
+      if ((parser.token & 537079808) === 537079808) {
+          parser.flags |= 128;
       }
-      if (parser.token === 10) {
-          if (inNewExpression)
-              report(parser, 51);
-          if (context & 64) {
-              scope = addChildScope(createScope(), 128);
-              addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
-          }
-          return parseArrowFunctionExpression(parser, context, scope, [expr], 0, start, line, column);
+      if (context & 64) {
+          scope = addChildScope(createScope(), 128);
+          addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
       }
-      parser.assignable = 1;
-      return expr;
+      const param = [parseIdentifier(parser, context, 0)];
+      return parseArrowFunctionExpression(parser, context, scope, param, 1, start, line, column);
   }
   function parseAsyncArrowOrCallExpression(parser, context, callee, assignable, kind, origin, flags, start, line, column) {
       nextToken(parser, context | 32768);
@@ -5901,7 +5883,7 @@ define(['exports'], function (exports) { 'use strict';
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.4.10';
+  const version = '1.5.0';
 
   exports.ESTree = estree;
   exports.parse = parse;

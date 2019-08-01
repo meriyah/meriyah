@@ -93,7 +93,6 @@ export declare function parseFormalParametersOrFormalList(parser: ParserState, c
 export declare function parseMembeExpressionNoCall(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, start: number, line: number, column: number): any;
 export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number, line: number, column: number): ESTree.MetaProperty;
-export declare function parseAsyncExpression(parser: ParserState, context: Context, expr: ESTree.Identifier, inNewExpression: 0 | 1, assignable: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
 export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, assignable: 0 | 1, kind: BindingKind, origin: Origin, flags: Flags, start: number, line: number, column: number): ESTree.CallExpression | ESTree.ArrowFunctionExpression;
 export declare function parseRegExpLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
 export declare function parseClassDeclaration(parser: ParserState, context: Context, scope: ScopeState | undefined, flags: HoistedClassFlags, start: number, line: number, column: number): ESTree.ClassDeclaration;
