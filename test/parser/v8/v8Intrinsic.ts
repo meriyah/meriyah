@@ -12,6 +12,351 @@ describe('V8 - Intrinsic', () => {
 
   pass('V8 - Intrinsic (pass)', [
     [
+      `(function() {
+        async function one(p) {
+          return await p.then(two);
+        }
+
+        function two() {
+          throw new Error();
+        }
+
+        async function test(f) {
+          try {
+            await f(Promise.resolve());
+            assertUnreachable();
+          } catch (e) {
+
+          }
+        }
+
+        assertPromiseResult((async () => {
+          await test(one);
+          await test(one);
+          %OptimizeFunctionOnNextCall(two);
+          await test(one);
+          %OptimizeFunctionOnNextCall(one);
+          await test(one);
+        })());
+      })();`,
+      Context.OptionsV8,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'FunctionExpression',
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
+                    {
+                      type: 'FunctionDeclaration',
+                      params: [
+                        {
+                          type: 'Identifier',
+                          name: 'p'
+                        }
+                      ],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [
+                          {
+                            type: 'ReturnStatement',
+                            argument: {
+                              type: 'AwaitExpression',
+                              argument: {
+                                type: 'CallExpression',
+                                callee: {
+                                  type: 'MemberExpression',
+                                  object: {
+                                    type: 'Identifier',
+                                    name: 'p'
+                                  },
+                                  computed: false,
+                                  property: {
+                                    type: 'Identifier',
+                                    name: 'then'
+                                  }
+                                },
+                                arguments: [
+                                  {
+                                    type: 'Identifier',
+                                    name: 'two'
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      async: true,
+                      generator: false,
+                      id: {
+                        type: 'Identifier',
+                        name: 'one'
+                      }
+                    },
+                    {
+                      type: 'FunctionDeclaration',
+                      params: [],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [
+                          {
+                            type: 'ThrowStatement',
+                            argument: {
+                              type: 'NewExpression',
+                              callee: {
+                                type: 'Identifier',
+                                name: 'Error'
+                              },
+                              arguments: []
+                            }
+                          }
+                        ]
+                      },
+                      async: false,
+                      generator: false,
+                      id: {
+                        type: 'Identifier',
+                        name: 'two'
+                      }
+                    },
+                    {
+                      type: 'FunctionDeclaration',
+                      params: [
+                        {
+                          type: 'Identifier',
+                          name: 'f'
+                        }
+                      ],
+                      body: {
+                        type: 'BlockStatement',
+                        body: [
+                          {
+                            type: 'TryStatement',
+                            block: {
+                              type: 'BlockStatement',
+                              body: [
+                                {
+                                  type: 'ExpressionStatement',
+                                  expression: {
+                                    type: 'AwaitExpression',
+                                    argument: {
+                                      type: 'CallExpression',
+                                      callee: {
+                                        type: 'Identifier',
+                                        name: 'f'
+                                      },
+                                      arguments: [
+                                        {
+                                          type: 'CallExpression',
+                                          callee: {
+                                            type: 'MemberExpression',
+                                            object: {
+                                              type: 'Identifier',
+                                              name: 'Promise'
+                                            },
+                                            computed: false,
+                                            property: {
+                                              type: 'Identifier',
+                                              name: 'resolve'
+                                            }
+                                          },
+                                          arguments: []
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  type: 'ExpressionStatement',
+                                  expression: {
+                                    type: 'CallExpression',
+                                    callee: {
+                                      type: 'Identifier',
+                                      name: 'assertUnreachable'
+                                    },
+                                    arguments: []
+                                  }
+                                }
+                              ]
+                            },
+                            handler: {
+                              type: 'CatchClause',
+                              param: {
+                                type: 'Identifier',
+                                name: 'e'
+                              },
+                              body: {
+                                type: 'BlockStatement',
+                                body: []
+                              }
+                            },
+                            finalizer: null
+                          }
+                        ]
+                      },
+                      async: true,
+                      generator: false,
+                      id: {
+                        type: 'Identifier',
+                        name: 'test'
+                      }
+                    },
+                    {
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'assertPromiseResult'
+                        },
+                        arguments: [
+                          {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'ArrowFunctionExpression',
+                              body: {
+                                type: 'BlockStatement',
+                                body: [
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'AwaitExpression',
+                                      argument: {
+                                        type: 'CallExpression',
+                                        callee: {
+                                          type: 'Identifier',
+                                          name: 'test'
+                                        },
+                                        arguments: [
+                                          {
+                                            type: 'Identifier',
+                                            name: 'one'
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'AwaitExpression',
+                                      argument: {
+                                        type: 'CallExpression',
+                                        callee: {
+                                          type: 'Identifier',
+                                          name: 'test'
+                                        },
+                                        arguments: [
+                                          {
+                                            type: 'Identifier',
+                                            name: 'one'
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'CallExpression',
+                                      callee: {
+                                        type: 'V8IntrinsicIdentifier',
+                                        name: 'OptimizeFunctionOnNextCall'
+                                      },
+                                      arguments: [
+                                        {
+                                          type: 'Identifier',
+                                          name: 'two'
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'AwaitExpression',
+                                      argument: {
+                                        type: 'CallExpression',
+                                        callee: {
+                                          type: 'Identifier',
+                                          name: 'test'
+                                        },
+                                        arguments: [
+                                          {
+                                            type: 'Identifier',
+                                            name: 'one'
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'CallExpression',
+                                      callee: {
+                                        type: 'V8IntrinsicIdentifier',
+                                        name: 'OptimizeFunctionOnNextCall'
+                                      },
+                                      arguments: [
+                                        {
+                                          type: 'Identifier',
+                                          name: 'one'
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                      type: 'AwaitExpression',
+                                      argument: {
+                                        type: 'CallExpression',
+                                        callee: {
+                                          type: 'Identifier',
+                                          name: 'test'
+                                        },
+                                        arguments: [
+                                          {
+                                            type: 'Identifier',
+                                            name: 'one'
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              params: [],
+                              async: true,
+                              expression: false
+                            },
+                            arguments: []
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                async: false,
+                generator: false,
+                id: null
+              },
+              arguments: []
+            }
+          }
+        ]
+      }
+    ],
+    [
       `foo%bar()`,
       Context.OptionsV8 | Context.OptionsRanges,
       {

@@ -14920,12 +14920,48 @@ let kTrapMsgs = [
       const module = new x.y(buf);
       test(module);
     }`,
+    '.24e9',
+    '0B00',
+    '0x0',
+    '20',
+    '.24E40',
+    '0O034 in x',
+    '.24+e0 in x',
+    '{0}',
+    '{01234567}',
+    '{0B0}',
+    '{0O034}',
+    '{0X456}',
+    '{0Xf}',
+    '{0o465}',
+    '{0xe}',
+    '{23.e2}',
+    '{5}',
+    '{.24e1}',
+    '{.24e83}',
+    '23.E+1',
+    '3.42+1',
+    '0B0;',
+    '0X456;',
+    '8;',
+    '3.42E9',
     `Async                          = 0x10000`,
     `a = 1 << 12`,
     `HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
     HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
     HASH_NAME(await, 0x0084FF56, 0x0084FF56)
-    HASH_NAME(boolean, 0x96F94400, 0x96F94400)`
+    HASH_NAME(boolean, 0x96F94400, 0x96F94400)`,
+    `var gen = async function *g() {
+      callCount += 1;
+      yield {
+           ...yield yield,
+           ...(function(arg) {
+              var yield = arg;
+              return {...yield};
+           }(yield)),
+           ...yield,
+        }
+    };`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

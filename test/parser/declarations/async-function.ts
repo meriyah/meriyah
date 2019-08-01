@@ -377,6 +377,10 @@ describe('Declarations - Async Function', () => {
   }
 
   fail('Declarations - Async Function (fail)', [
+    ['async function f() { delete await; }', Context.None],
+    ['delete await;', Context.Strict | Context.Module],
+    ['async function foo (foo = super()) { let bar; }', Context.None],
+    ['async function foo (foo = super()) { let bar; }', Context.None],
     ['async function foo (foo = super()) { let bar; }', Context.None],
     ['\\u0061sync function f(){}', Context.None],
     ['abc: async function a() {}', Context.None],

@@ -13,6 +13,12 @@ describe('Expressions - Unary', () => {
     'delete ((x) => x).foo',
     'delete new Number(8)',
     'delete a[2]',
+    'delete await;',
+    'delete false;',
+    'delete null;',
+    'delete this;',
+    'delete true;',
+    'delete yield;',
     'delete o[Math.pow(2,30)]'
   ]) {
     it(`${arg}`, () => {
@@ -46,6 +52,8 @@ describe('Expressions - Unary', () => {
     ['(((x)))\n++;', Context.None],
     ['(x)\n++;', Context.None],
     ['if (a) a\n++;', Context.None],
+    ['function *f() { delete yield; }', Context.None],
+    ['class X extends Y { constructor() { delete super; } }', Context.None],
     ['function f(){ return a\n++; }', Context.None],
     ['if (a\n++b);', Context.None],
     ['if (a\n++\nb);', Context.None],

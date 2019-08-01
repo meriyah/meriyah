@@ -317,4 +317,8 @@ describe('src/lexer/scan', () => {
   fail('fails on .3e-1n', '.3e-1n', Context.None);
   fail('fails on .3e-1n', '.3e-n', Context.None);
   fail('fails on .0000000001n', '.0000000001n', Context.None);
+
+  fail('fails on 0xabcinstanceof x', '0xabcinstanceof x', Context.None);
+  fail('fails on .0000000001n', '.0000000001n', Context.None);
+  fail('fails on .0000000001n', '.0000000001n', Context.None);
 });
