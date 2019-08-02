@@ -170,7 +170,8 @@ export const enum Errors {
   FinallyWithoutTry,
   UnCorrespondingFragmentTag,
   InvalidCoalescing,
-  InvalidChaining
+  InvalidChaining,
+  InvalidTaggedTemplateChain
 }
 
 /*@internal*/
@@ -354,7 +355,8 @@ export const errorMessages: {
   [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment',
   [Errors.InvalidCoalescing]:
     'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
-  [Errors.InvalidChaining]: 'Constructors in/after an Optional Chain are not allowed'
+  [Errors.InvalidChaining]: 'Constructors in/after an Optional Chain are not allowed',
+  [Errors.InvalidTaggedTemplateChain]: 'Tagged Template Literals are not allowed in optionalChain'
 };
 
 export class ParseError extends SyntaxError {

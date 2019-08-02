@@ -3699,28 +3699,6 @@ export function parseMemberOrUpdateExpression(
         break;
       }
 
-      case Token.OptionalChaining: {
-        nextToken(parser, context); // skips: '?.'
-
-        if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
-          expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, 1);
-        } else {
-          parser.assignable = AssignmentKind.Assignable;
-
-          const property = parsePropertyOrPrivatePropertyName(parser, context);
-
-          expr = finishNode(parser, context, start, line, column, {
-            type: 'OptionalMemberExpression',
-            object: expr,
-            computed: false,
-            optional: true,
-            property
-          } as any);
-        }
-
-        break;
-      }
-
       /* Call */
       case Token.LeftParen: {
         const args = parseArguments(parser, context, inGroup);
@@ -3749,10 +3727,32 @@ export function parseMemberOrUpdateExpression(
         break;
       }
 
+      /* Optional chaining */
+      case Token.QuestionMarkPeriod: {
+        nextToken(parser, context); // skips: '?.'
+
+        if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
+          expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, 1);
+        } else {
+          const property = parseIdentifier(parser, context, 0);
+          if (parser.token === Token.TemplateSpan) report(parser, Errors.InvalidTaggedTemplateChain);
+          expr = finishNode(parser, context, start, line, column, {
+            type: 'OptionalMemberExpression',
+            object: expr,
+            computed: false,
+            optional: true,
+            property
+          } as any);
+        }
+
+        parser.assignable = AssignmentKind.CannotAssign;
+
+        break;
+      }
+
       /* Template */
       default: {
         parser.assignable = AssignmentKind.CannotAssign;
-
         expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
           type: 'TaggedTemplateExpression',
           tag: expr,
@@ -7204,7 +7204,7 @@ export function parseNewExpression(
     colPos
   );
 
-  if (parser.token === Token.OptionalChaining) report(parser, Errors.InvalidChaining);
+  if (parser.token === Token.QuestionMarkPeriod) report(parser, Errors.InvalidChaining);
 
   // NewExpression without arguments.
   const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
