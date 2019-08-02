@@ -7191,16 +7191,23 @@ export function parseNewExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  // NewExpression without arguments.
-  const callee = parseMembeExpressionNoCall(
+  const expr = parsePrimaryExpressionExtended(
     parser,
     context,
-    parsePrimaryExpressionExtended(parser, context, BindingKind.Empty, 1, 0, 0, inGroup, tokenPos, linePos, colPos),
+    BindingKind.Empty,
+    1,
+    0,
+    0,
     inGroup,
     tokenPos,
     linePos,
     colPos
   );
+
+  if (parser.token === Token.OptionalChaining) report(parser, Errors.InvalidChaining);
+
+  // NewExpression without arguments.
+  const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
 
   parser.assignable = AssignmentKind.CannotAssign;
 

@@ -169,7 +169,8 @@ export const enum Errors {
   CatchWithoutTry,
   FinallyWithoutTry,
   UnCorrespondingFragmentTag,
-  InvalidCoalescing
+  InvalidCoalescing,
+  InvalidChaining
 }
 
 /*@internal*/
@@ -352,7 +353,8 @@ export const errorMessages: {
   [Errors.FinallyWithoutTry]: 'Finally without try',
   [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment',
   [Errors.InvalidCoalescing]:
-    'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses'
+    'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
+  [Errors.InvalidChaining]: 'Constructors in/after an Optional Chain are not allowed'
 };
 
 export class ParseError extends SyntaxError {
