@@ -171,7 +171,7 @@ export const enum Errors {
   UnCorrespondingFragmentTag,
   InvalidCoalescing,
   InvalidChaining,
-  InvalidTaggedTemplateChain
+  OptionalChainingNoTemplate
 }
 
 /*@internal*/
@@ -356,7 +356,7 @@ export const errorMessages: {
   [Errors.InvalidCoalescing]:
     'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
   [Errors.InvalidChaining]: 'Constructors in/after an Optional Chain are not allowed',
-  [Errors.InvalidTaggedTemplateChain]: 'Tagged Template Literals are not allowed in optionalChain'
+  [Errors.OptionalChainingNoTemplate]: 'Tagged Template Literals are not allowed in optionalChain'
 };
 
 export class ParseError extends SyntaxError {

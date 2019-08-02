@@ -54,7 +54,7 @@ export type Node =
   | BlockStatement
   | BreakStatement
   | CallExpression
-  | OptionalCallExpression
+  | OptionalChain
   | ImportExpression
   | CatchClause
   | ClassBody
@@ -106,7 +106,6 @@ export type Node =
   | LogicalExpression
   | CoalesceExpression
   | MemberExpression
-  | OptionalMemberExpression
   | MetaProperty
   | MethodDefinition
   | NewExpression
@@ -185,14 +184,13 @@ export type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionC
 export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression | JSXNamespacedName;
 export type LeftHandSideExpression =
   | CallExpression
-  | OptionalCallExpression
+  | OptionalChain
   | ImportExpression
   | ClassExpression
   | ClassDeclaration
   | FunctionExpression
   | LiteralExpression
   | MemberExpression
-  | OptionalMemberExpression
   | PrimaryExpression
   | TaggedTemplateExpression;
 export type LiteralExpression = BigIntLiteral | Literal | TemplateLiteral;
@@ -358,17 +356,15 @@ export interface ImportExpression extends _Node {
   source: Expression;
 }
 
+export interface OptionalChain extends _Node {
+  type: 'OptionalChain';
+  expression: MemberExpression | CallExpression | Identifier | OptionalChain;
+}
+
 export interface CallExpression extends _Node {
   type: 'CallExpression';
   callee: any; //Expression | Super;
   arguments: (Expression | SpreadElement)[];
-}
-
-export interface OptionalCallExpression extends _Node {
-  type: 'OptionalCallExpression';
-  callee: any; //Expression | Super;
-  arguments: (Expression | SpreadElement)[];
-  optional: boolean;
 }
 
 export interface CatchClause extends _Node {
@@ -661,22 +657,7 @@ export interface MemberExpression extends _Node {
   computed?: boolean;
 }
 
-export interface OptionalMemberExpression extends _Node {
-  type: 'OptionalMemberExpression';
-  object: Expression | Super;
-  property: Expression | PrivateName;
-  optional: boolean;
-  computed?: boolean;
-}
-
-export type Pattern =
-  | Identifier
-  | ObjectPattern
-  | ArrayPattern
-  | RestElement
-  | AssignmentPattern
-  | OptionalMemberExpression
-  | MemberExpression;
+export type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
 
 export interface MetaProperty extends _Node {
   type: 'MetaProperty';

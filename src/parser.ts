@@ -3622,7 +3622,8 @@ export function parseMemberOrUpdateExpression(
   start: number,
   line: number,
   column: number,
-  chained: 0 | 1 = 0
+  isOptional?: 0 | 1,
+  optionalChaining?: 0 | 1
 ): any {
   // Update + Member expression
   if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) < 1) {
@@ -3648,6 +3649,8 @@ export function parseMemberOrUpdateExpression(
     switch (parser.token) {
       /* Property */
       case Token.Period: {
+        if (isOptional) report(parser, Errors.Unexpected);
+
         nextToken(parser, context);
 
         parser.assignable = AssignmentKind.Assignable;
@@ -3670,23 +3673,20 @@ export function parseMemberOrUpdateExpression(
         const { tokenPos, linePos, colPos } = parser;
 
         const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
-
         consume(parser, context, Token.RightBracket);
-
         parser.assignable = AssignmentKind.Assignable;
-
         expr = finishNode(
           parser,
           context,
           start,
           line,
           column,
-          chained
+          context & Context.OptionsNext
             ? {
-                type: 'OptionalMemberExpression',
+                type: 'MemberExpression',
                 object: expr,
                 computed: true,
-                optional: chained === 1,
+                optional: isOptional === 1,
                 property
               }
             : {
@@ -3696,26 +3696,25 @@ export function parseMemberOrUpdateExpression(
                 property
               }
         );
+        isOptional = 0;
         break;
       }
 
       /* Call */
       case Token.LeftParen: {
         const args = parseArguments(parser, context, inGroup);
-
         parser.assignable = AssignmentKind.CannotAssign;
-
         expr = finishNode(
           parser,
           context,
           start,
           line,
           column,
-          chained
+          context & Context.OptionsNext
             ? {
-                type: 'OptionalCallExpression',
+                type: 'CallExpression',
                 callee: expr,
-                optional: chained === 1,
+                optional: isOptional === 1,
                 arguments: args
               }
             : {
@@ -3724,35 +3723,26 @@ export function parseMemberOrUpdateExpression(
                 arguments: args
               }
         );
+        isOptional = 0;
         break;
       }
 
       /* Optional chaining */
       case Token.QuestionMarkPeriod: {
+        if (isOptional) report(parser, Errors.Unexpected);
         nextToken(parser, context); // skips: '?.'
-
-        if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
-          expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, 1);
-        } else {
-          const property = parseIdentifier(parser, context, 0);
-          if (parser.token === Token.TemplateSpan) report(parser, Errors.InvalidTaggedTemplateChain);
-          expr = finishNode(parser, context, start, line, column, {
-            type: 'OptionalMemberExpression',
-            object: expr,
-            computed: false,
-            optional: true,
-            property
-          } as any);
-        }
-
+        isOptional = 1;
+        optionalChaining = 1;
         parser.assignable = AssignmentKind.CannotAssign;
-
         break;
       }
 
       /* Template */
       default: {
+        if (optionalChaining) report(parser, Errors.OptionalChainingNoTemplate);
+
         parser.assignable = AssignmentKind.CannotAssign;
+
         expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
           type: 'TaggedTemplateExpression',
           tag: expr,
@@ -3764,9 +3754,37 @@ export function parseMemberOrUpdateExpression(
       }
     }
 
-    return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+    if (context & Context.OptionsNext && isOptional && parser.token & Token.IsIdentifier) {
+      parser.assignable = AssignmentKind.CannotAssign;
+      const property = parsePropertyOrPrivatePropertyName(parser, context);
+      expr = finishNode(parser, context, start, line, column, {
+        type: 'MemberExpression',
+        optional: true,
+        object: expr,
+        computed: false,
+        property
+      });
+      isOptional = 0;
+    }
+
+    return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, isOptional, optionalChaining);
   }
-  return expr;
+
+  return optionalChaining ? parserOptionalChain(parser, context, expr, start, line, column) : expr;
+}
+
+function parserOptionalChain(
+  parser: ParserState,
+  context: Context,
+  expr: ESTree.Expression,
+  start: number,
+  line: number,
+  column: number
+): ESTree.OptionalChain {
+  return finishNode(parser, context, start, line, column, {
+    type: 'OptionalChain',
+    expression: expr
+  } as any);
 }
 
 /**

@@ -398,6 +398,7 @@ describe('Next - Public fields', () => {
                           decorators: [],
                           key: {
                             type: 'CallExpression',
+                            optional: false,
                             callee: {
                               type: 'Identifier',
                               name: 'k',
@@ -631,6 +632,7 @@ describe('Next - Public fields', () => {
                                   end: 52
                                 },
                                 computed: true,
+                                optional: false,
                                 property: {
                                   type: 'Literal',
                                   value: 0,
@@ -875,6 +877,7 @@ describe('Next - Public fields', () => {
                                   start: 61,
                                   end: 70
                                 },
+                                optional: false,
                                 computed: true,
                                 property: {
                                   type: 'Literal',
@@ -961,6 +964,7 @@ describe('Next - Public fields', () => {
                                         end: 194
                                       },
                                       computed: true,
+                                      optional: false,
                                       property: {
                                         type: 'Literal',
                                         value: 0,
@@ -1035,6 +1039,7 @@ describe('Next - Public fields', () => {
                     type: 'VariableDeclarator',
                     init: {
                       type: 'CallExpression',
+                      optional: false,
                       callee: {
                         type: 'MemberExpression',
                         object: {
@@ -1107,6 +1112,7 @@ describe('Next - Public fields', () => {
                       name: 'eval',
                       type: 'Identifier'
                     },
+                    optional: false,
                     type: 'CallExpression'
                   }
                 }
