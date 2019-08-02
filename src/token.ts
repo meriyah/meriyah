@@ -26,6 +26,7 @@ export const enum Token {
   VarDecl              = 1 << 28,
   IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsClassField         = 1 << 30,
+  IsCoalesc            = 1 << 31,
 
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
@@ -186,7 +187,7 @@ export const enum Token {
   JSXText   = 137,
 
   // Stage #3 proposals
-  Coalesce = 123 | IsBinaryOp | 1 << PrecStart, // ??
+  Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
 }
 
 export const KeywordDescTable = [

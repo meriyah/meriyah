@@ -3264,59 +3264,35 @@ export function parseBinaryExpression(
   while (parser.token & Token.IsBinaryOp) {
     t = parser.token;
     prec = t & Token.Precedence;
-    // 0 precedence will terminate binary expression parsing
-    if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
-    nextToken(parser, context | Context.AllowRegExp);
 
-    // Mixing ?? with || or && is currently specified as an early error.
-    // Since ?? is the lowest-precedence binary operator, it suffices to check whether these ever coexist in the operator stack.
     if (
-      (context & Context.OptionsNext && (t & Token.IsLogical && operator === Token.Coalesce)) ||
-      (operator & Token.IsLogical && t === Token.Coalesce)
+      (context & Context.OptionsNext && (t & Token.IsLogical && operator & Token.IsCoalesc)) ||
+      (operator & Token.IsLogical && t & Token.IsCoalesc)
     ) {
       report(parser, Errors.InvalidCoalescing);
     }
 
-    left = finishNode(
-      parser,
-      context,
-      start,
-      line,
-      column,
-      context & Context.OptionsNext && t === Token.Coalesce
-        ? {
-            type: 'CoalesceExpression',
-            left,
-            right: parseBinaryExpression(
-              parser,
-              context,
-              inGroup,
-              parser.tokenPos,
-              parser.linePos,
-              parser.colPos,
-              prec,
-              t,
-              parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
-            ),
-            operator: KeywordDescTable[t & Token.Type]
-          }
-        : ({
-            type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
-            left,
-            right: parseBinaryExpression(
-              parser,
-              context,
-              inGroup,
-              parser.tokenPos,
-              parser.linePos,
-              parser.colPos,
-              prec,
-              t,
-              parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
-            ),
-            operator: KeywordDescTable[t & Token.Type]
-          } as any)
-    );
+    // 0 precedence will terminate binary expression parsing
+
+    if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
+    nextToken(parser, context | Context.AllowRegExp);
+
+    left = finishNode(parser, context, start, line, column, {
+      type: t & Token.IsLogical ? 'LogicalExpression' : t & Token.IsCoalesc ? 'CoalesceExpression' : 'BinaryExpression',
+      left,
+      right: parseBinaryExpression(
+        parser,
+        context,
+        inGroup,
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos,
+        prec,
+        t,
+        parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
+      ),
+      operator: KeywordDescTable[t & Token.Type]
+    } as any);
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);
