@@ -29,6 +29,7 @@ export type ArgumentExpression =
   | SpreadElement
   | BinaryExpression
   | LogicalExpression
+  | CoalesceExpression
   | SequenceExpression;
 
 export type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
@@ -53,6 +54,7 @@ export type Node =
   | BlockStatement
   | BreakStatement
   | CallExpression
+  | OptionalCallExpression
   | ImportExpression
   | CatchClause
   | ClassBody
@@ -102,7 +104,9 @@ export type Node =
   | LabeledStatement
   | Literal
   | LogicalExpression
+  | CoalesceExpression
   | MemberExpression
+  | OptionalMemberExpression
   | MetaProperty
   | MethodDefinition
   | NewExpression
@@ -163,6 +167,7 @@ export type Expression =
   | JSXOpeningFragment
   | JSXSpreadChild
   | LogicalExpression
+  | CoalesceExpression
   | NewExpression
   | RestElement
   | SequenceExpression
@@ -180,12 +185,14 @@ export type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionC
 export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression | JSXNamespacedName;
 export type LeftHandSideExpression =
   | CallExpression
+  | OptionalCallExpression
   | ImportExpression
   | ClassExpression
   | ClassDeclaration
   | FunctionExpression
   | LiteralExpression
   | MemberExpression
+  | OptionalMemberExpression
   | PrimaryExpression
   | TaggedTemplateExpression;
 export type LiteralExpression = BigIntLiteral | Literal | TemplateLiteral;
@@ -355,6 +362,13 @@ export interface CallExpression extends _Node {
   type: 'CallExpression';
   callee: any; //Expression | Super;
   arguments: (Expression | SpreadElement)[];
+}
+
+export interface OptionalCallExpression extends _Node {
+  type: 'OptionalCallExpression';
+  callee: any; //Expression | Super;
+  arguments: (Expression | SpreadElement)[];
+  optional: boolean;
 }
 
 export interface CatchClause extends _Node {
@@ -627,6 +641,12 @@ export interface Literal extends _Node {
   raw?: string;
 }
 
+export interface CoalesceExpression extends _Node {
+  type: 'CoalesceExpression';
+  operator: string;
+  left: Expression;
+  right: Expression;
+}
 export interface LogicalExpression extends _Node {
   type: 'LogicalExpression';
   operator: string;
@@ -641,7 +661,22 @@ export interface MemberExpression extends _Node {
   computed?: boolean;
 }
 
-export type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
+export interface OptionalMemberExpression extends _Node {
+  type: 'OptionalMemberExpression';
+  object: Expression | Super;
+  property: Expression | PrivateName;
+  optional: boolean;
+  computed?: boolean;
+}
+
+export type Pattern =
+  | Identifier
+  | ObjectPattern
+  | ArrayPattern
+  | RestElement
+  | AssignmentPattern
+  | OptionalMemberExpression
+  | MemberExpression;
 
 export interface MetaProperty extends _Node {
   type: 'MetaProperty';

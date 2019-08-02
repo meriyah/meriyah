@@ -3289,7 +3289,7 @@ export function parseBinaryExpression(
         parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
       ),
       operator: KeywordDescTable[t & Token.Type]
-    } as any);
+    });
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);
@@ -3686,15 +3686,15 @@ export function parseMemberOrUpdateExpression(
                 type: 'OptionalMemberExpression',
                 object: expr,
                 computed: true,
-                optional: true,
+                optional: chained === 1,
                 property
               }
-            : ({
+            : {
                 type: 'MemberExpression',
                 object: expr,
                 computed: true,
                 property
-              } as any)
+              }
         );
         break;
       }
@@ -3715,14 +3715,14 @@ export function parseMemberOrUpdateExpression(
             ? {
                 type: 'OptionalCallExpression',
                 callee: expr,
-                optional: true,
+                optional: chained === 1,
                 arguments: args
               }
-            : ({
+            : {
                 type: 'CallExpression',
                 callee: expr,
                 arguments: args
-              } as any)
+              }
         );
         break;
       }

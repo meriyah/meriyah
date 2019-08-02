@@ -10,6 +10,7 @@ describe('Next - Optional chaining', () => {
     'func?.(...args)',
     'a?.[x]',
     'a?.()',
+    'x?.1:y',
     'a?.[++x]',
     'a?.b.c(++x).d',
     'a?.b[3].c?.(x).d',
@@ -79,6 +80,8 @@ describe('Next - Optional chaining', () => {
     'let xn = x?.normalize("NFC")',
     'a?.b === undefined',
     'null?.foo === null',
+    'var v = a?.b?.c?.d',
+    'var v = (((a?.b)?.c)?.d)',
     'a?.b?.c?.d === undefined',
     'o3?.a === o4?.a === undefined',
     'o3?.a?.b === o4?.a?.b === undefined',
@@ -86,6 +89,8 @@ describe('Next - Optional chaining', () => {
     'x in (o3?.a)',
     'obj.func?.[arg].property;',
     'obj.func?.[arg.property];',
+    'a?.b.c.e?.f.g?.h.t.c?.d()?.e;',
+    'a?.d().f?.b',
     'obj.func?.[arg];',
     'a?.trim()?.indexOf("hello")',
     'foo?.x?.y?.z?()=>{foo}:bar;',
@@ -93,9 +98,15 @@ describe('Next - Optional chaining', () => {
      if (a?.b()?.c) {}
      if (a?.b?.()?.c) {}`,
     'new new class {}().constructor();',
+    'System.global.navigator?.toString()',
+    '(a?.b).c',
     `a?.b(...args);`,
     `a?.b(...args).c;`,
-    `a?.b(...args).c(...args);`
+    '({ x: 1 }).x?.y.z;',
+    `a?.b(...args).c(...args);`,
+    'let a = b?.c;',
+    'o.x?[y]+z:t',
+    'var a = b.c("string")?.d.e || 0;'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -110,6 +121,29 @@ describe('Next - Optional chaining', () => {
   }
 
   fail('Expressions - Optional chaining (fail)', [
+    ['a.?2.3', Context.OptionsNext],
+    ['a.?.2', Context.OptionsNext],
+    ['a.?2.n', Context.OptionsNext],
+    ['a.?2.3', Context.OptionsNext],
+    ['a.?2.?n', Context.OptionsNext],
+    ['a.? (?) [?]', Context.OptionsNext],
+    ['a.?2.3', Context.OptionsNext],
+    ['obj?.[expr] func?.(...args) new C?.(...args)', Context.OptionsNext],
+    ['o.x?[y]+z', Context.OptionsNext],
+    ['obj:?.prop', Context.OptionsNext],
+    ['obj:?[expr]', Context.OptionsNext],
+    ['func:?(...args)', Context.OptionsNext],
+    ['a === null: a?.b.c === undefined', Context.OptionsNext],
+    ['a === null: a?.b.c === undefined', Context.OptionsNext],
+    ['?.a?.b?.c', Context.OptionsNext],
+    ['?.(a.b.c)', Context.OptionsNext],
+    ['?. ?[] ?() ?:', Context.OptionsNext],
+    ['var b = condition ? a?.x.?y : a?.y?.z;', Context.OptionsNext],
+    ['a.?[b.c].d', Context.OptionsNext],
+    ['a[?b[c]]', Context.OptionsNext],
+    ['delete ?a.b.c', Context.OptionsNext],
+    ['delete ?a.b.c', Context.None],
+    ['a?.b => (a == null ? a : a.b)', Context.OptionsNext],
     ['foo?.x?.y?.z?()=>foo;', Context.OptionsNext],
     ['const a = { b(){ return super?.c; } }', Context.OptionsNext],
     ['class A{ b(){ return super?.b; } }', Context.OptionsWebCompat],
@@ -122,6 +156,10 @@ describe('Next - Optional chaining', () => {
     ['a?.{a} = c', Context.OptionsNext | Context.OptionsWebCompat],
     ['a?.(a) = c', Context.OptionsNext | Context.OptionsWebCompat],
     ['o3?.a in ()', Context.OptionsNext | Context.OptionsWebCompat],
+    [
+      'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)',
+      Context.OptionsNext | Context.OptionsWebCompat
+    ],
     ['class C {} class D extends C { foo() { return super?.bar; } }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { foo() { return super?.["bar"]; }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { constructor() { super?.(); } }', Context.OptionsNext | Context.OptionsWebCompat],

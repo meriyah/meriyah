@@ -15,6 +15,9 @@ describe('Next - Null Coalescing', () => {
     `0 ?? 3`,
     '(a || b)',
     '1 ?? 3',
+    'var result = obj??key;',
+    'arr??[idx]',
+    'func??(arg)',
     `({} ?? 3) instanceof Object`,
     `([] ?? 3) instanceof Array`,
     `(['hi'] ?? 3)[0]`,
@@ -54,6 +57,8 @@ describe('Next - Null Coalescing', () => {
 
   fail('Expressions - Null Coalescing (fail)', [
     ['c && d ?? e', Context.OptionsNext],
+    ['obj.??(defObj)', Context.OptionsNext],
+    ['a.??(nil).b.c.d.??(null)', Context.OptionsNext],
     ['c && d ?? e', Context.OptionsWebCompat],
     ['0 && 1 ?? 2', Context.OptionsNext | Context.Module | Context.Strict],
     ['0 && 1 ?? 2', Context.OptionsNext | Context.OptionsWebCompat],
