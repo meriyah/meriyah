@@ -3136,18 +3136,19 @@ export function parseAssignmentExpression(
    *   YieldExpression
    *   LeftHandSideExpression AssignmentOperator AssignmentExpression
    */
-  if ((parser.token & Token.IsAssignOp) > 0) {
+
+  const { token } = parser;
+
+  if ((token & Token.IsAssignOp) > 0) {
     if (parser.assignable & AssignmentKind.CannotAssign) {
       report(parser, Errors.CantAssignTo);
     }
     if (
-      (parser.token === Token.Assign && (left.type as string) === 'ArrayExpression') ||
+      (token === Token.Assign && (left.type as string) === 'ArrayExpression') ||
       (left.type as string) === 'ObjectExpression'
     ) {
       reinterpretToPattern(parser, left);
     }
-
-    const assignToken = parser.token;
 
     nextToken(parser, context | Context.AllowRegExp);
 
@@ -3156,7 +3157,7 @@ export function parseAssignmentExpression(
     left = finishNode(parser, context, start, line, column, {
       type: 'AssignmentExpression',
       left,
-      operator: KeywordDescTable[assignToken & Token.Type],
+      operator: KeywordDescTable[token & Token.Type],
       right
     });
 
@@ -3170,9 +3171,9 @@ export function parseAssignmentExpression(
    * https://tc39.github.io/ecma262/#sec-multiplicative-operators
    *
    */
-  if ((parser.token & Token.IsBinaryOp) > 0) {
+  if ((token & Token.IsBinaryOp) > 0) {
     // We start using the binary expression parser for prec >= 4 only!
-    left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, left);
+    left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left);
   }
 
   /**
@@ -3251,6 +3252,7 @@ export function parseBinaryExpression(
   line: number,
   column: number,
   minPrec: number,
+  operator: Token,
   left: ESTree.ArgumentExpression | ESTree.Expression
 ): ESTree.ArgumentExpression | ESTree.Expression {
   const bit = -((context & Context.DisallowIn) > 0) & Token.InKeyword;
@@ -3265,22 +3267,56 @@ export function parseBinaryExpression(
     // 0 precedence will terminate binary expression parsing
     if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
     nextToken(parser, context | Context.AllowRegExp);
-    /*eslint-disable*/
-    left = finishNode(parser, context, start, line, column, {
-      type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
-      left,
-      right: parseBinaryExpression(
-        parser,
-        context,
-        inGroup,
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos,
-        prec,
-        parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
-      ),
-      operator: KeywordDescTable[t & Token.Type]
-    });
+
+    // Mixing ?? with || or && is currently specified as an early error.
+    // Since ?? is the lowest-precedence binary operator, it suffices to check whether these ever coexist in the operator stack.
+    if (
+      (context & Context.OptionsNext && (t & Token.IsLogical && operator === Token.Coalesce)) ||
+      (operator & Token.IsLogical && t === Token.Coalesce)
+    ) {
+      report(parser, Errors.InvalidCoalescing);
+    }
+
+    left = finishNode(
+      parser,
+      context,
+      start,
+      line,
+      column,
+      context & Context.OptionsNext && t === Token.Coalesce
+        ? {
+            type: 'CoalesceExpression',
+            left,
+            right: parseBinaryExpression(
+              parser,
+              context,
+              inGroup,
+              parser.tokenPos,
+              parser.linePos,
+              parser.colPos,
+              prec,
+              t,
+              parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
+            ),
+            operator: KeywordDescTable[t & Token.Type]
+          }
+        : ({
+            type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
+            left,
+            right: parseBinaryExpression(
+              parser,
+              context,
+              inGroup,
+              parser.tokenPos,
+              parser.linePos,
+              parser.colPos,
+              prec,
+              t,
+              parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
+            ),
+            operator: KeywordDescTable[t & Token.Type]
+          } as any)
+    );
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);

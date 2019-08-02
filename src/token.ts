@@ -87,30 +87,30 @@ export const enum Token {
   VoidKeyword        = 44 | IsUnaryOp | Reserved,
   Negate             = 45 | IsUnaryOp, // !
   Complement         = 46 | IsUnaryOp, // ~
-  Add                = 47 | IsUnaryOp | IsBinaryOp | 9 << PrecStart, // +
-  Subtract           = 48 | IsUnaryOp | IsBinaryOp | 9 << PrecStart, // -
-  InKeyword          = 49 | IsBinaryOp | 7 << PrecStart | Reserved | IsInOrOf,
-  InstanceofKeyword  = 50 | IsBinaryOp | 7 << PrecStart | Reserved,
-  Multiply           = 51 | IsBinaryOp | 10 << PrecStart, // *
-  Modulo             = 52 | IsBinaryOp | 10 << PrecStart, // %
-  Divide             = 53 | IsBinaryOp | IsExpressionStart | 10 << PrecStart, // /
-  Exponentiate       = 54 | IsBinaryOp | 11 << PrecStart, // **
-  LogicalAnd         = 55 | IsBinaryOp | IsLogical | 2 << PrecStart, // &&
-  LogicalOr          = 56 | IsBinaryOp | IsLogical | 1 << PrecStart, // ||
-  StrictEqual        = 57 | IsBinaryOp | 6 << PrecStart, // ===
-  StrictNotEqual     = 58 | IsBinaryOp | 6 << PrecStart, // !==
-  LooseEqual         = 59 | IsBinaryOp | 6 << PrecStart, // ==
-  LooseNotEqual      = 60 | IsBinaryOp | 6 << PrecStart, // !=
+  Add                = 47 | IsUnaryOp | IsBinaryOp | 10 << PrecStart, // +
+  Subtract           = 48 | IsUnaryOp | IsBinaryOp | 10 << PrecStart, // -
+  InKeyword          = 49 | IsBinaryOp | 8 << PrecStart | Reserved | IsInOrOf,
+  InstanceofKeyword  = 50 | IsBinaryOp | 8 << PrecStart | Reserved,
+  Multiply           = 51 | IsBinaryOp | 11 << PrecStart, // *
+  Modulo             = 52 | IsBinaryOp | 11 << PrecStart, // %
+  Divide             = 53 | IsBinaryOp | IsExpressionStart | 11 << PrecStart, // /
+  Exponentiate       = 54 | IsBinaryOp | 12 << PrecStart, // **
+  LogicalAnd         = 55 | IsBinaryOp | IsLogical | 3 << PrecStart, // &&
+  LogicalOr          = 56 | IsBinaryOp | IsLogical | 2 << PrecStart, // ||
+  StrictEqual        = 57 | IsBinaryOp | 7 << PrecStart, // ===
+  StrictNotEqual     = 58 | IsBinaryOp | 7 << PrecStart, // !==
+  LooseEqual         = 59 | IsBinaryOp | 7 << PrecStart, // ==
+  LooseNotEqual      = 60 | IsBinaryOp | 7 << PrecStart, // !=
   LessThanOrEqual    = 61 | IsBinaryOp | 7 << PrecStart, // <=
   GreaterThanOrEqual = 62 | IsBinaryOp | 7 << PrecStart, // >=
-  LessThan           = 63 | IsBinaryOp | IsExpressionStart | 7 << PrecStart, // <
-  GreaterThan        = 64 | IsBinaryOp | 7 << PrecStart, // >
-  ShiftLeft          = 65 | IsBinaryOp | 8 << PrecStart, // <<
-  ShiftRight         = 66 | IsBinaryOp | 8 << PrecStart, // >>
-  LogicalShiftRight  = 67 | IsBinaryOp | 8 << PrecStart, // >>>
-  BitwiseAnd         = 68 | IsBinaryOp | 5 << PrecStart, // &
-  BitwiseOr          = 69 | IsBinaryOp | 3 << PrecStart, // |
-  BitwiseXor         = 70 | IsBinaryOp | 4 << PrecStart, // ^
+  LessThan           = 63 | IsBinaryOp | IsExpressionStart | 8 << PrecStart, // <
+  GreaterThan        = 64 | IsBinaryOp | 8 << PrecStart, // >
+  ShiftLeft          = 65 | IsBinaryOp | 9 << PrecStart, // <<
+  ShiftRight         = 66 | IsBinaryOp | 9 << PrecStart, // >>
+  LogicalShiftRight  = 67 | IsBinaryOp | 9 << PrecStart, // >>>
+  BitwiseAnd         = 68 | IsBinaryOp | 6 << PrecStart, // &
+  BitwiseOr          = 69 | IsBinaryOp | 4 << PrecStart, // |
+  BitwiseXor         = 70 | IsBinaryOp | 5 << PrecStart, // ^
 
   /* Variable declaration kinds */
   VarKeyword   = 71 | IsExpressionStart | Reserved | VarDecl,
@@ -184,6 +184,9 @@ export const enum Token {
   LineFeed  = 135,
   EscapedIdentifier   = 136,
   JSXText   = 137,
+
+  // Stage #3 proposals
+  Coalesce = 123 | IsBinaryOp | 1 << PrecStart, // ??
 }
 
 export const KeywordDescTable = [
@@ -227,7 +230,7 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
+  'BigIntLiteral', '??', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference
