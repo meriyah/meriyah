@@ -215,14 +215,19 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           advanceChar(parser);
           return token;
 
-        case Token.QuestionMark:
-          advanceChar(parser);
+        case Token.QuestionMark: {
+          let ch = advanceChar(parser);
           if ((context & Context.OptionsNext) < 1) return token;
-          if (parser.currentChar === Chars.QuestionMark) {
+          if (ch === Chars.QuestionMark) {
             advanceChar(parser);
             return Token.Coalesce;
           }
+          if (ch === Chars.Period) {
+            advanceChar(parser);
+            return Token.OptionalChaining;
+          }
           return token;
+        }
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:

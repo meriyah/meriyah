@@ -187,7 +187,9 @@ export const enum Token {
   JSXText   = 137,
 
   // Stage #3 proposals
-  Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
+  Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??,
+  OptionalChaining = 124, // ?.,
+
 }
 
 export const KeywordDescTable = [
