@@ -7,9 +7,13 @@ describe('Next - Null Coalescing', () => {
   for (const arg of [
     'undefined ?? 3',
     'null ?? 3',
+    '(a ?? b) && c',
+    'a && (b ?? c)',
+    '(a ?? b) || c',
     'true ?? 3',
     'false ?? 3',
     `0 ?? 3`,
+    '(a || b)',
     '1 ?? 3',
     `({} ?? 3) instanceof Object`,
     `([] ?? 3) instanceof Array`,
@@ -31,7 +35,10 @@ describe('Next - Null Coalescing', () => {
     `(0 ?? 1) || 2`,
     `(0 ?? 1) && 2`,
     `0 ?? (1 && 2)`,
-    `0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2`
+    'null ?? "hello"',
+    `0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2`,
+    'a.b ?? c.d ?? e ()',
+    'a.b??c.d??e ()'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -52,6 +59,10 @@ describe('Next - Null Coalescing', () => {
     ['0 && 1 ?? 2', Context.OptionsNext | Context.OptionsWebCompat],
     ['0 ?? 1 || 2', Context.OptionsNext | Context.Module | Context.Strict],
     ['0 ?? 1 && 2', Context.OptionsNext | Context.Module | Context.Strict],
+    ['a ?? b || c', Context.OptionsNext | Context.Module | Context.Strict],
+    ['a || b ?? c', Context.OptionsNext | Context.Module | Context.Strict],
+    ['0 ?? 1 && 2', Context.OptionsNext | Context.Module | Context.Strict],
+
     [
       '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
       Context.OptionsNext

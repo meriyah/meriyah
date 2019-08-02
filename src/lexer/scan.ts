@@ -216,7 +216,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return token;
 
         case Token.QuestionMark: {
-          let ch = advanceChar(parser);
+          const ch = advanceChar(parser);
           if ((context & Context.OptionsNext) < 1) return token;
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);

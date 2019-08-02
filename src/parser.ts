@@ -6350,7 +6350,7 @@ export function parseMethodFormals(
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
+        addVarOrBlock(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
     } else {
@@ -6897,7 +6897,7 @@ export function parseFormalParametersOrFormalList(
         // in strict mode or not (since the function body hasn't been parsed).
         // In such cases the potential error will be saved on the parser object
         // and thrown later if there was any duplicates.
-        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
+        addVarOrBlock(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, kind, tokenPos, linePos, colPos);
     } else {
