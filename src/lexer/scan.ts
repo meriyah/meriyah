@@ -226,7 +226,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             // Check that it's not followed by any numbers
             if (index < parser.end) {
               ch = parser.source.charCodeAt(index);
-              if ((CharTypes[ch] & CharFlags.Decimal) === 0) {
+              if ((CharTypes[ch] & CharFlags.Decimal) < 1) {
                 advanceChar(parser);
                 return Token.OptionalChaining;
               }
@@ -261,7 +261,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               }
               return Token.LessThan;
             } else if (ch === Chars.Slash) {
-              if (!(context & Context.OptionsJSX)) return Token.LessThan;
+              if ((context & Context.OptionsJSX) < 1) return Token.LessThan;
               const index = parser.index + 1;
 
               // Check that it's not a comment start.
@@ -274,6 +274,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
           }
           return Token.LessThan;
+
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
           advanceChar(parser);
