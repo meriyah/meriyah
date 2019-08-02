@@ -96,7 +96,8 @@ describe('Next - ImportCall', () => {
     ['import("") <<= 2', Context.None],
     ['import("") >>= 2', Context.None],
     ['import("") >>>= 2', Context.None],
-    ['import("") **= 2', Context.None]
+    ['import("") **= 2', Context.None],
+    ['new import(x);', Context.None]
   ]);
 
   for (const arg of [
@@ -116,6 +117,7 @@ describe('Next - ImportCall', () => {
     'import(delete obj.prop);',
     'import(void 0);',
     'import(typeof {});',
+    'import(a + b);',
     'import(+void 0);',
     'import(-void 0);',
     'import(!void 0);',
@@ -133,8 +135,13 @@ describe('Next - ImportCall', () => {
     `import('./module.js')`,
     'import(import(x))',
     'x = import(x)',
+    'foo(import("foo").den());',
+    'import(/foo/)',
     'var x = import(x)',
     'let x = import(x)',
+    'new (import(x));',
+    'new (import(x));',
+    'foo(import("foo").den());',
     'for(x of import(x)) {}',
     'import(x).then()'
   ]) {

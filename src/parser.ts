@@ -4098,7 +4098,7 @@ export function parseImportExpression(
   line: number,
   column: number
 ): ESTree.ImportExpression {
-  consume(parser, context, Token.LeftParen);
+  consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
   if (parser.token === Token.Ellipsis) report(parser, Errors.InvalidSpreadInImport);
 
@@ -5110,7 +5110,6 @@ function parseSpreadElement(
         addVarName(parser, context, scope, tokenValue, kind);
         if (origin & Origin.Export) {
           updateExportsList(parser, tokenValue);
-          addBindingToExports(parser, tokenValue);
         }
       }
     } else {
@@ -5937,9 +5936,7 @@ export function parseObjectLiteralOrPattern(
               if (parser.assignable & AssignmentKind.CannotAssign) {
                 destructible |= DestructuringKind.CannotDestruct;
               }
-            } else if (parser.destructible & DestructuringKind.HasToDestruct) {
-              report(parser, Errors.InvalidDestructuringTarget);
-            } else {
+            } else if ((parser.destructible & DestructuringKind.HasToDestruct) !== DestructuringKind.HasToDestruct) {
               value = parseMemberOrUpdateExpression(
                 parser,
                 context,
@@ -6344,11 +6341,7 @@ export function parseMethodFormals(
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-        if (type & BindingKind.Variable) {
-          addVarName(parser, context, scope, tokenValue, BindingKind.ArgumentList);
-        } else {
-          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
-        }
+        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
     } else {
@@ -6895,11 +6888,7 @@ export function parseFormalParametersOrFormalList(
         // in strict mode or not (since the function body hasn't been parsed).
         // In such cases the potential error will be saved on the parser object
         // and thrown later if there was any duplicates.
-        if (kind & BindingKind.Variable) {
-          addVarName(parser, context, scope, tokenValue, BindingKind.ArgumentList);
-        } else {
-          addBlockName(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
-        }
+        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, kind, tokenPos, linePos, colPos);
     } else {
@@ -8356,10 +8345,6 @@ export function parseJSXClosingFragment(
   column: number
 ): ESTree.JSXClosingFragment {
   consume(parser, context, Token.JSXClose);
-
-  if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-    report(parser, Errors.UnCorrespondingFragmentTag);
-  }
 
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
