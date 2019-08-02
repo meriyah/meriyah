@@ -3265,10 +3265,7 @@ export function parseBinaryExpression(
     t = parser.token;
     prec = t & Token.Precedence;
 
-    if (
-      (context & Context.OptionsNext && (t & Token.IsLogical && operator & Token.IsCoalesc)) ||
-      (operator & Token.IsLogical && t & Token.IsCoalesc)
-    ) {
+    if ((t & Token.IsLogical && operator & Token.IsCoalesc) || (operator & Token.IsLogical && t & Token.IsCoalesc)) {
       report(parser, Errors.InvalidCoalescing);
     }
 
