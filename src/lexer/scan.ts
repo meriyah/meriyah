@@ -206,7 +206,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.RightBrace:
         case Token.LeftBracket:
         case Token.RightBracket:
-        case Token.QuestionMark:
         case Token.Colon:
         case Token.Semicolon:
         case Token.Comma:
@@ -215,6 +214,20 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.Illegal:
           advanceChar(parser);
           return token;
+
+        case Token.QuestionMark: {
+          let ch = advanceChar(parser);
+          if ((context & Context.OptionsNext) < 1) return token;
+          if (ch === Chars.QuestionMark) {
+            advanceChar(parser);
+            return Token.Coalesce;
+          }
+          if (ch === Chars.Period) {
+            advanceChar(parser);
+            return Token.OptionalChaining;
+          }
+          return token;
+        }
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:

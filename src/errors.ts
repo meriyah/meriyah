@@ -168,7 +168,8 @@ export const enum Errors {
   UnclosedSpreadElement,
   CatchWithoutTry,
   FinallyWithoutTry,
-  UnCorrespondingFragmentTag
+  UnCorrespondingFragmentTag,
+  InvalidCoalescing
 }
 
 /*@internal*/
@@ -349,7 +350,9 @@ export const errorMessages: {
   [Errors.UnclosedSpreadElement]: 'Encountered invalid input after spread/rest argument',
   [Errors.CatchWithoutTry]: 'Catch without try',
   [Errors.FinallyWithoutTry]: 'Finally without try',
-  [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment'
+  [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment',
+  [Errors.InvalidCoalescing]:
+    'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses'
 };
 
 export class ParseError extends SyntaxError {
