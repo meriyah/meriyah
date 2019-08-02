@@ -216,17 +216,24 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return token;
 
         case Token.QuestionMark: {
-          const ch = advanceChar(parser);
-          if ((context & Context.OptionsNext) < 1) return token;
+          let ch = advanceChar(parser);
+          if ((context & Context.OptionsNext) < 1) return Token.QuestionMark;
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);
             return Token.Coalesce;
+          } else if (ch === Chars.Period) {
+            const index = parser.index + 1;
+            // Check that it's not followed by any numbers
+            if (index < parser.end) {
+              ch = parser.source.charCodeAt(index);
+              if ((CharTypes[ch] & CharFlags.Decimal) === 0) {
+                advanceChar(parser);
+                return Token.OptionalChaining;
+              }
+            }
           }
-          if (ch === Chars.Period) {
-            advanceChar(parser);
-            return Token.OptionalChaining;
-          }
-          return token;
+
+          return Token.QuestionMark;
         }
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`

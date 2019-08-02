@@ -10,6 +10,90 @@ describe('Expressions - Conditional', () => {
 
   pass('Expressions - Conditional (pass)', [
     [
+      'foo?.3:0',
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              consequent: {
+                type: 'Literal',
+                value: 0.3
+              },
+              alternate: {
+                type: 'Literal',
+                value: 0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo?.3:0',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              consequent: {
+                type: 'Literal',
+                value: 0.3
+              },
+              alternate: {
+                type: 'Literal',
+                value: 0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo ? .3 : 0',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              consequent: {
+                type: 'Literal',
+                value: 0.3
+              },
+              alternate: {
+                type: 'Literal',
+                value: 0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       'a ? b : c = d',
       Context.None,
       {

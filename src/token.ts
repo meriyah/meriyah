@@ -188,7 +188,7 @@ export const enum Token {
 
   // Stage #3 proposals
   Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??,
-  OptionalChaining = 124, // ?.,
+  OptionalChaining = 125, // ?.,
 
 }
 
@@ -233,7 +233,7 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', '??', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
+  'BigIntLiteral', '??', 'WhiteSpace', '?.', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference
