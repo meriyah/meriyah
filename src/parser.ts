@@ -3621,7 +3621,8 @@ export function parseMemberOrUpdateExpression(
   inGroup: 0 | 1,
   start: number,
   line: number,
-  column: number
+  column: number,
+  chained: 0 | 1 = 0
 ): any {
   // Update + Member expression
   if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) < 1) {
@@ -3674,12 +3675,49 @@ export function parseMemberOrUpdateExpression(
 
         parser.assignable = AssignmentKind.Assignable;
 
-        expr = finishNode(parser, context, start, line, column, {
-          type: 'MemberExpression',
-          object: expr,
-          computed: true,
-          property
-        });
+        expr = finishNode(
+          parser,
+          context,
+          start,
+          line,
+          column,
+          chained
+            ? {
+                type: 'OptionalMemberExpression',
+                object: expr,
+                computed: true,
+                optional: true,
+                property
+              }
+            : ({
+                type: 'MemberExpression',
+                object: expr,
+                computed: true,
+                property
+              } as any)
+        );
+        break;
+      }
+
+      case Token.OptionalChaining: {
+        nextToken(parser, context); // skips: '?.'
+
+        if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
+          expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, 1);
+        } else {
+          parser.assignable = AssignmentKind.Assignable;
+
+          const property = parsePropertyOrPrivatePropertyName(parser, context);
+
+          expr = finishNode(parser, context, start, line, column, {
+            type: 'OptionalMemberExpression',
+            object: expr,
+            computed: false,
+            optional: true,
+            property
+          } as any);
+        }
+
         break;
       }
 
@@ -3689,11 +3727,25 @@ export function parseMemberOrUpdateExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = finishNode(parser, context, start, line, column, {
-          type: 'CallExpression',
-          callee: expr,
-          arguments: args
-        });
+        expr = finishNode(
+          parser,
+          context,
+          start,
+          line,
+          column,
+          chained
+            ? {
+                type: 'OptionalCallExpression',
+                callee: expr,
+                optional: true,
+                arguments: args
+              }
+            : ({
+                type: 'CallExpression',
+                callee: expr,
+                arguments: args
+              } as any)
+        );
         break;
       }
 
