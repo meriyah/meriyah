@@ -3548,6 +3548,8 @@ export function parseSuperExpression(
   nextToken(parser, context);
 
   switch (parser.token) {
+    case Token.QuestionMarkPeriod:
+      report(parser, Errors.OptionalChainingNoSuper);
     case Token.LeftParen: {
       // The super property has to be within a class constructor
       if ((context & Context.SuperCall) < 1) report(parser, Errors.SuperNoConstructor);
@@ -3643,7 +3645,7 @@ export function parseMemberOrUpdateExpression(
     });
   }
 
-  if (parser.token & Token.IsMemberOrCallExpression) {
+  if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression || isOptional) {
     context = context & ~Context.DisallowIn;
 
     switch (parser.token) {
@@ -3739,6 +3741,19 @@ export function parseMemberOrUpdateExpression(
 
       /* Template */
       default: {
+        if (context & Context.OptionsNext && isOptional && parser.token & Token.IsIdentifier) {
+          parser.assignable = AssignmentKind.CannotAssign;
+          const property = parsePropertyOrPrivatePropertyName(parser, context);
+          expr = finishNode(parser, context, start, line, column, {
+            type: 'MemberExpression',
+            optional: true,
+            object: expr,
+            computed: false,
+            property
+          });
+          isOptional = 0;
+          break;
+        }
         if (optionalChaining) report(parser, Errors.OptionalChainingNoTemplate);
 
         parser.assignable = AssignmentKind.CannotAssign;
@@ -3752,19 +3767,6 @@ export function parseMemberOrUpdateExpression(
               : parseTemplateLiteral(parser, context, start, line, column)
         });
       }
-    }
-
-    if (context & Context.OptionsNext && isOptional && parser.token & Token.IsIdentifier) {
-      parser.assignable = AssignmentKind.CannotAssign;
-      const property = parsePropertyOrPrivatePropertyName(parser, context);
-      expr = finishNode(parser, context, start, line, column, {
-        type: 'MemberExpression',
-        optional: true,
-        object: expr,
-        computed: false,
-        property
-      });
-      isOptional = 0;
     }
 
     return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, isOptional, optionalChaining);
@@ -7222,7 +7224,7 @@ export function parseNewExpression(
     colPos
   );
 
-  if (parser.token === Token.QuestionMarkPeriod) report(parser, Errors.InvalidChaining);
+  if (parser.token === Token.QuestionMarkPeriod) report(parser, Errors.OptionalChainingNoNew);
 
   // NewExpression without arguments.
   const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
