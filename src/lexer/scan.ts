@@ -206,7 +206,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.RightBrace:
         case Token.LeftBracket:
         case Token.RightBracket:
-        case Token.QuestionMark:
         case Token.Colon:
         case Token.Semicolon:
         case Token.Comma:
@@ -215,6 +214,27 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         case Token.Illegal:
           advanceChar(parser);
           return token;
+
+        case Token.QuestionMark: {
+          let ch = advanceChar(parser);
+          if ((context & Context.OptionsNext) < 1) return Token.QuestionMark;
+          if (ch === Chars.QuestionMark) {
+            advanceChar(parser);
+            return Token.Coalesce;
+          } else if (ch === Chars.Period) {
+            const index = parser.index + 1;
+            // Check that it's not followed by any numbers
+            if (index < parser.end) {
+              ch = parser.source.charCodeAt(index);
+              if ((CharTypes[ch] & CharFlags.Decimal) < 1) {
+                advanceChar(parser);
+                return Token.OptionalChaining;
+              }
+            }
+          }
+
+          return Token.QuestionMark;
+        }
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
@@ -241,7 +261,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               }
               return Token.LessThan;
             } else if (ch === Chars.Slash) {
-              if (!(context & Context.OptionsJSX)) return Token.LessThan;
+              if ((context & Context.OptionsJSX) < 1) return Token.LessThan;
               const index = parser.index + 1;
 
               // Check that it's not a comment start.
@@ -254,6 +274,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
           }
           return Token.LessThan;
+
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
           advanceChar(parser);

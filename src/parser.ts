@@ -3136,18 +3136,19 @@ export function parseAssignmentExpression(
    *   YieldExpression
    *   LeftHandSideExpression AssignmentOperator AssignmentExpression
    */
-  if ((parser.token & Token.IsAssignOp) > 0) {
+
+  const { token } = parser;
+
+  if ((token & Token.IsAssignOp) > 0) {
     if (parser.assignable & AssignmentKind.CannotAssign) {
       report(parser, Errors.CantAssignTo);
     }
     if (
-      (parser.token === Token.Assign && (left.type as string) === 'ArrayExpression') ||
+      (token === Token.Assign && (left.type as string) === 'ArrayExpression') ||
       (left.type as string) === 'ObjectExpression'
     ) {
       reinterpretToPattern(parser, left);
     }
-
-    const assignToken = parser.token;
 
     nextToken(parser, context | Context.AllowRegExp);
 
@@ -3156,7 +3157,7 @@ export function parseAssignmentExpression(
     left = finishNode(parser, context, start, line, column, {
       type: 'AssignmentExpression',
       left,
-      operator: KeywordDescTable[assignToken & Token.Type],
+      operator: KeywordDescTable[token & Token.Type],
       right
     });
 
@@ -3170,9 +3171,9 @@ export function parseAssignmentExpression(
    * https://tc39.github.io/ecma262/#sec-multiplicative-operators
    *
    */
-  if ((parser.token & Token.IsBinaryOp) > 0) {
+  if ((token & Token.IsBinaryOp) > 0) {
     // We start using the binary expression parser for prec >= 4 only!
-    left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, left);
+    left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left);
   }
 
   /**
@@ -3251,6 +3252,7 @@ export function parseBinaryExpression(
   line: number,
   column: number,
   minPrec: number,
+  operator: Token,
   left: ESTree.ArgumentExpression | ESTree.Expression
 ): ESTree.ArgumentExpression | ESTree.Expression {
   const bit = -((context & Context.DisallowIn) > 0) & Token.InKeyword;
@@ -3262,12 +3264,18 @@ export function parseBinaryExpression(
   while (parser.token & Token.IsBinaryOp) {
     t = parser.token;
     prec = t & Token.Precedence;
+
+    if ((t & Token.IsLogical && operator & Token.IsCoalesc) || (operator & Token.IsLogical && t & Token.IsCoalesc)) {
+      report(parser, Errors.InvalidCoalescing);
+    }
+
     // 0 precedence will terminate binary expression parsing
+
     if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
     nextToken(parser, context | Context.AllowRegExp);
-    /*eslint-disable*/
+
     left = finishNode(parser, context, start, line, column, {
-      type: t & Token.IsLogical ? 'LogicalExpression' : 'BinaryExpression',
+      type: t & Token.IsLogical ? 'LogicalExpression' : t & Token.IsCoalesc ? 'CoalesceExpression' : 'BinaryExpression',
       left,
       right: parseBinaryExpression(
         parser,
@@ -3277,10 +3285,11 @@ export function parseBinaryExpression(
         parser.linePos,
         parser.colPos,
         prec,
+        t,
         parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
       ),
       operator: KeywordDescTable[t & Token.Type]
-    });
+    } as any);
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);
@@ -6341,7 +6350,7 @@ export function parseMethodFormals(
       }
 
       if (scope && (parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
-        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
+        addVarOrBlock(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
     } else {
@@ -6888,7 +6897,7 @@ export function parseFormalParametersOrFormalList(
         // in strict mode or not (since the function body hasn't been parsed).
         // In such cases the potential error will be saved on the parser object
         // and thrown later if there was any duplicates.
-        addVarOrBlock(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
+        addVarOrBlock(parser, context, scope, tokenValue, BindingKind.ArgumentList, Origin.None);
       }
       left = parseAndClassifyIdentifier(parser, context, kind, tokenPos, linePos, colPos);
     } else {
