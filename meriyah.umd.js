@@ -339,7 +339,10 @@
       [164]: 'Catch without try',
       [165]: 'Finally without try',
       [166]: 'Expected corresponding closing tag for JSX fragment',
-      [167]: 'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses'
+      [167]: 'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
+      [168]: 'Invalid tagged template on optional chain',
+      [169]: 'Invalid optional chain from super property',
+      [170]: 'Invalid optional chain from new expression'
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -525,20 +528,6 @@
                   case 129:
                       advanceChar(parser);
                       return token;
-                  case 22: {
-                      const ch = advanceChar(parser);
-                      if ((context & 1) < 1)
-                          return token;
-                      if (ch === 63) {
-                          advanceChar(parser);
-                          return -2139029125;
-                      }
-                      if (ch === 46) {
-                          advanceChar(parser);
-                          return 124;
-                      }
-                      return token;
-                  }
                   case 8456255:
                       let ch = advanceChar(parser);
                       if (parser.index < parser.end) {
@@ -564,7 +553,7 @@
                               return 8456255;
                           }
                           else if (ch === 47) {
-                              if (!(context & 16))
+                              if ((context & 16) < 1)
                                   return 8456255;
                               const index = parser.index + 1;
                               if (index < parser.end) {
@@ -760,6 +749,26 @@
                           }
                       }
                       return 67108877;
+                  case 22: {
+                      let ch = advanceChar(parser);
+                      if ((context & 1) < 1)
+                          return 22;
+                      if (ch === 63) {
+                          advanceChar(parser);
+                          return -2139029125;
+                      }
+                      else if (ch === 46) {
+                          const index = parser.index + 1;
+                          if (index < parser.end) {
+                              ch = parser.source.charCodeAt(index);
+                              if ((CharTypes[ch] & 16) < 1) {
+                                  advanceChar(parser);
+                                  return 67108989;
+                              }
+                          }
+                      }
+                      return 22;
+                  }
                   case 4096:
                       return scanIdentifier(parser, context, 1);
                   case 208897:
@@ -933,7 +942,7 @@
       'implements', 'interface', 'package', 'private', 'protected', 'public', 'static', 'yield',
       'as', 'async', 'await', 'constructor', 'get', 'set', 'from', 'of',
       'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
-      'BigIntLiteral', '??', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
+      'BigIntLiteral', '??', 'WhiteSpace', '?.', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
   ];
   const descKeywordTable = Object.create(null, {
       this: { value: 86110 },
@@ -3330,6 +3339,8 @@
   function parseSuperExpression(parser, context, start, line, column) {
       nextToken(parser, context);
       switch (parser.token) {
+          case 67108989:
+              report(parser, 169);
           case 67174411: {
               if ((context & 524288) < 1)
                   report(parser, 26);
@@ -3356,7 +3367,7 @@
       const expression = parsePrimaryExpressionExtended(parser, context, 2, 0, allowAssign, 0, inGroup, start, line, column);
       return parseMemberOrUpdateExpression(parser, context, expression, inGroup, start, line, column);
   }
-  function parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, line, column) {
+  function parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, line, column, isOptional, optionalChaining) {
       if ((parser.token & 33619968) === 33619968 && (parser.flags & 1) < 1) {
           if (parser.assignable & 2)
               report(parser, 55);
@@ -3370,10 +3381,12 @@
               prefix: false
           });
       }
-      if (parser.token & 67108864) {
+      if ((parser.token & 67108864) === 67108864 || isOptional) {
           context = context & ~134217728;
           switch (parser.token) {
               case 67108877: {
+                  if (isOptional)
+                      report(parser, 0);
                   nextToken(parser, context);
                   parser.assignable = 1;
                   const property = parsePropertyOrPrivatePropertyName(parser, context);
@@ -3391,25 +3404,66 @@
                   const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
                   consume(parser, context, 20);
                   parser.assignable = 1;
-                  expr = finishNode(parser, context, start, line, column, {
-                      type: 'MemberExpression',
-                      object: expr,
-                      computed: true,
-                      property
-                  });
+                  expr = finishNode(parser, context, start, line, column, context & 1
+                      ? {
+                          type: 'MemberExpression',
+                          object: expr,
+                          computed: true,
+                          optional: isOptional === 1,
+                          property
+                      }
+                      : {
+                          type: 'MemberExpression',
+                          object: expr,
+                          computed: true,
+                          property
+                      });
+                  isOptional = 0;
                   break;
               }
               case 67174411: {
                   const args = parseArguments(parser, context, inGroup);
                   parser.assignable = 2;
-                  expr = finishNode(parser, context, start, line, column, {
-                      type: 'CallExpression',
-                      callee: expr,
-                      arguments: args
-                  });
+                  expr = finishNode(parser, context, start, line, column, context & 1
+                      ? {
+                          type: 'CallExpression',
+                          callee: expr,
+                          optional: isOptional === 1,
+                          arguments: args
+                      }
+                      : {
+                          type: 'CallExpression',
+                          callee: expr,
+                          arguments: args
+                      });
+                  isOptional = 0;
+                  break;
+              }
+              case 67108989: {
+                  if (isOptional)
+                      report(parser, 0);
+                  nextToken(parser, context);
+                  isOptional = 1;
+                  optionalChaining = 1;
+                  parser.assignable = 2;
                   break;
               }
               default: {
+                  if (context & 1 && isOptional && parser.token & 143360) {
+                      parser.assignable = 2;
+                      const property = parsePropertyOrPrivatePropertyName(parser, context);
+                      expr = finishNode(parser, context, start, line, column, {
+                          type: 'MemberExpression',
+                          optional: true,
+                          object: expr,
+                          computed: false,
+                          property
+                      });
+                      isOptional = 0;
+                      break;
+                  }
+                  if (optionalChaining)
+                      report(parser, 168);
                   parser.assignable = 2;
                   expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
                       type: 'TaggedTemplateExpression',
@@ -3420,9 +3474,15 @@
                   });
               }
           }
-          return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+          return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column, isOptional, optionalChaining);
       }
-      return expr;
+      return optionalChaining ? parserOptionalChain(parser, context, expr, start, line, column) : expr;
+  }
+  function parserOptionalChain(parser, context, expr, start, line, column) {
+      return finishNode(parser, context, start, line, column, {
+          type: 'OptionalChain',
+          expression: expr
+      });
   }
   function parsePropertyOrPrivatePropertyName(parser, context) {
       if ((parser.token & (143360 | 4096)) < 1 && parser.token !== 131) {
@@ -5086,7 +5146,10 @@
           report(parser, 95);
       }
       parser.assignable = 2;
-      const callee = parseMembeExpressionNoCall(parser, context, parsePrimaryExpressionExtended(parser, context, 2, 1, 0, 0, inGroup, tokenPos, linePos, colPos), inGroup, tokenPos, linePos, colPos);
+      const expr = parsePrimaryExpressionExtended(parser, context, 2, 1, 0, 0, inGroup, tokenPos, linePos, colPos);
+      if (parser.token === 67108989)
+          report(parser, 170);
+      const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
       parser.assignable = 2;
       return finishNode(parser, context, start, line, column, {
           type: 'NewExpression',
