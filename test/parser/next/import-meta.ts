@@ -361,7 +361,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `import.meta[0]`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -370,6 +370,7 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'MemberExpression',
+              optional: false,
               object: {
                 meta: {
                   type: 'Identifier',
@@ -429,7 +430,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `import.meta()`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -438,6 +439,7 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'CallExpression',
+              optional: false,
               callee: {
                 meta: {
                   type: 'Identifier',
@@ -600,7 +602,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `import.meta.resolve('something')`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -609,6 +611,7 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'CallExpression',
+              optional: false,
               callee: {
                 type: 'MemberExpression',
                 object: {

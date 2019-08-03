@@ -2412,24 +2412,6 @@ function parseImportDeclaration(
 
   let source: ESTree.Literal | null = null;
 
-  // This is `import("...")` call or `import.meta` meta property case.
-  //
-  // See: https://tc39.github.io/proposal-dynamic-import/#sec-modules
-  if (parser.token === Token.LeftParen) return parseImportCallDeclaration(parser, context, start, line, column);
-  if (parser.token === Token.Period) {
-    return parseImportMetaDeclaration(
-      parser,
-      context,
-      finishNode(parser, context, start, line, column, {
-        type: 'Identifier',
-        name: 'import'
-      }),
-      start,
-      line,
-      column
-    );
-  }
-
   const { tokenPos, linePos, colPos } = parser;
 
   const specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
@@ -2465,11 +2447,34 @@ function parseImportDeclaration(
             report(parser, Errors.InvalidDefaultImport);
         }
       }
-    } else if (parser.token === Token.Multiply) {
-      parseImportNamespaceSpecifier(parser, context, scope, specifiers);
-    } else if (parser.token === Token.LeftBrace) {
-      parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
-    } else report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+    } else {
+      switch (parser.token) {
+        case Token.Multiply:
+          parseImportNamespaceSpecifier(parser, context, scope, specifiers);
+          break;
+        case Token.LeftBrace:
+          parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
+          break;
+        case Token.LeftParen:
+          return parseImportCallDeclaration(parser, context, start, line, column);
+        case Token.Period:
+          if (context & Context.OptionsNext && parser.token === Token.Period) {
+            return parseImportMetaDeclaration(
+              parser,
+              context,
+              finishNode(parser, context, start, line, column, {
+                type: 'Identifier',
+                name: 'import'
+              }),
+              start,
+              line,
+              column
+            );
+          }
+        default:
+          report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+      }
+    }
 
     source = parseModuleSpecifier(parser, context);
   }
@@ -4145,7 +4150,7 @@ export function parsePrimaryExpressionExtended(
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context, start, line, column);
     case Token.ImportKeyword:
-      return parseImportCallExpression(parser, context, inNewExpression, inGroup, start, line, column);
+      return parseImportCallOrMetaExpression(parser, context, inNewExpression, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
         return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
@@ -4220,7 +4225,7 @@ export function v8IntrinsicIdentifier(parser: ParserState, context: Context): ES
  * @param line
  * @param column
  */
-function parseImportCallExpression(
+function parseImportCallOrMetaExpression(
   parser: ParserState,
   context: Context,
   inNewExpression: 0 | 1,
@@ -4232,19 +4237,21 @@ function parseImportCallExpression(
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
-  const x = parseIdentifier(parser, context, 0);
+  const expr = parseIdentifier(parser, context, 0);
 
-  if (parser.token === Token.Period) return parseImportMeta(parser, context, x, start, line, column);
+  if (parser.token !== Token.Period) {
+    if (inNewExpression) report(parser, Errors.InvalidImportNew);
 
-  if (inNewExpression) report(parser, Errors.InvalidImportNew);
+    let expr = parseImportExpression(parser, context, inGroup, start, line, column);
 
-  let expr = parseImportExpression(parser, context, inGroup, start, line, column);
+    expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
 
-  expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
+    parser.assignable = AssignmentKind.CannotAssign;
 
-  parser.assignable = AssignmentKind.CannotAssign;
+    return expr;
+  }
 
-  return expr;
+  return parseImportMeta(parser, context, expr, start, line, column);
 }
 
 /**
