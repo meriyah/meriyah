@@ -332,7 +332,8 @@ const errorMessages = {
     [163]: 'Encountered invalid input after spread/rest argument',
     [164]: 'Catch without try',
     [165]: 'Finally without try',
-    [166]: 'Expected corresponding closing tag for JSX fragment'
+    [166]: 'Expected corresponding closing tag for JSX fragment',
+    [167]: 'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses'
 };
 class ParseError extends SyntaxError {
     constructor(startindex, line, column, type, ...params) {
@@ -395,17 +396,17 @@ const TokenLookup = [
     134283267,
     131,
     208897,
-    8456756,
-    8455492,
+    8457012,
+    8455748,
     134283267,
     67174411,
     16,
-    8456755,
-    25233711,
+    8457011,
+    25233967,
     1073741842,
-    25233712,
+    25233968,
     67108877,
-    8456757,
+    8457013,
     134283266,
     134283266,
     134283266,
@@ -418,9 +419,9 @@ const TokenLookup = [
     134283266,
     21,
     1074790417,
-    8455999,
+    8456255,
     1077936157,
-    8456000,
+    8456256,
     22,
     133,
     208897,
@@ -452,7 +453,7 @@ const TokenLookup = [
     69271571,
     136,
     20,
-    8455238,
+    8455494,
     208897,
     132,
     4096,
@@ -482,7 +483,7 @@ const TokenLookup = [
     4096,
     4096,
     2162700,
-    8454981,
+    8455237,
     1074790415,
     16842798,
     129
@@ -510,7 +511,6 @@ function scanSingleToken(parser, context, state) {
                 case 1074790415:
                 case 69271571:
                 case 20:
-                case 22:
                 case 21:
                 case 1074790417:
                 case 1073741842:
@@ -519,7 +519,27 @@ function scanSingleToken(parser, context, state) {
                 case 129:
                     advanceChar(parser);
                     return token;
-                case 8455999:
+                case 22: {
+                    let ch = advanceChar(parser);
+                    if ((context & 1) < 1)
+                        return 22;
+                    if (ch === 63) {
+                        advanceChar(parser);
+                        return -2139029125;
+                    }
+                    else if (ch === 46) {
+                        const index = parser.index + 1;
+                        if (index < parser.end) {
+                            ch = parser.source.charCodeAt(index);
+                            if ((CharTypes[ch] & 16) < 1) {
+                                advanceChar(parser);
+                                return 125;
+                            }
+                        }
+                    }
+                    return 22;
+                }
+                case 8456255:
                     let ch = advanceChar(parser);
                     if (parser.index < parser.end) {
                         if (ch === 60) {
@@ -528,7 +548,7 @@ function scanSingleToken(parser, context, state) {
                                 return 4194334;
                             }
                             else {
-                                return 8456257;
+                                return 8456513;
                             }
                         }
                         else if (ch === 61) {
@@ -541,11 +561,11 @@ function scanSingleToken(parser, context, state) {
                                 state = skipSingleHTMLComment(parser, state, context, 2);
                                 continue;
                             }
-                            return 8455999;
+                            return 8456255;
                         }
                         else if (ch === 47) {
-                            if (!(context & 16))
-                                return 8455999;
+                            if ((context & 16) < 1)
+                                return 8456255;
                             const index = parser.index + 1;
                             if (index < parser.end) {
                                 ch = parser.source.charCodeAt(index);
@@ -556,7 +576,7 @@ function scanSingleToken(parser, context, state) {
                             return 25;
                         }
                     }
-                    return 8455999;
+                    return 8456255;
                 case 1077936157: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
@@ -565,10 +585,10 @@ function scanSingleToken(parser, context, state) {
                     if (ch === 61) {
                         if (advanceChar(parser) === 61) {
                             advanceChar(parser);
-                            return 8455737;
+                            return 8455993;
                         }
                         else {
-                            return 8455739;
+                            return 8455995;
                         }
                     }
                     else if (ch === 62) {
@@ -582,37 +602,37 @@ function scanSingleToken(parser, context, state) {
                         return 16842797;
                     }
                     if (advanceChar(parser) !== 61) {
-                        return 8455740;
+                        return 8455996;
                     }
                     advanceChar(parser);
-                    return 8455738;
-                case 8456756:
+                    return 8455994;
+                case 8457012:
                     if (advanceChar(parser) !== 61)
-                        return 8456756;
+                        return 8457012;
                     advanceChar(parser);
                     return 4194342;
-                case 8456755: {
+                case 8457011: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
-                        return 8456755;
+                        return 8457011;
                     const ch = parser.currentChar;
                     if (ch === 61) {
                         advanceChar(parser);
                         return 4194340;
                     }
                     if (ch !== 42)
-                        return 8456755;
+                        return 8457011;
                     if (advanceChar(parser) !== 61)
-                        return 8457014;
+                        return 8457270;
                     advanceChar(parser);
                     return 4194337;
                 }
-                case 8455238:
+                case 8455494:
                     if (advanceChar(parser) !== 61)
-                        return 8455238;
+                        return 8455494;
                     advanceChar(parser);
                     return 4194343;
-                case 25233711: {
+                case 25233967: {
                     advanceChar(parser);
                     const ch = parser.currentChar;
                     if (ch === 43) {
@@ -623,12 +643,12 @@ function scanSingleToken(parser, context, state) {
                         advanceChar(parser);
                         return 4194338;
                     }
-                    return 25233711;
+                    return 25233967;
                 }
-                case 25233712: {
+                case 25233968: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
-                        return 25233712;
+                        return 25233968;
                     const ch = parser.currentChar;
                     if (ch === 45) {
                         advanceChar(parser);
@@ -644,9 +664,9 @@ function scanSingleToken(parser, context, state) {
                         advanceChar(parser);
                         return 4194339;
                     }
-                    return 25233712;
+                    return 25233968;
                 }
-                case 8456757: {
+                case 8457013: {
                     advanceChar(parser);
                     if (parser.index < parser.end) {
                         const ch = parser.currentChar;
@@ -668,34 +688,34 @@ function scanSingleToken(parser, context, state) {
                             return 4259877;
                         }
                     }
-                    return 8456757;
+                    return 8457013;
                 }
-                case 8454981: {
+                case 8455237: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
-                        return 8454981;
+                        return 8455237;
                     const ch = parser.currentChar;
                     if (ch === 124) {
                         advanceChar(parser);
-                        return 8978744;
+                        return 8979000;
                     }
                     else if (ch === 61) {
                         advanceChar(parser);
                         return 4194344;
                     }
-                    return 8454981;
+                    return 8455237;
                 }
-                case 8456000: {
+                case 8456256: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
-                        return 8456000;
+                        return 8456256;
                     const ch = parser.currentChar;
                     if (ch === 61) {
                         advanceChar(parser);
                         return 8455998;
                     }
                     if (ch !== 62)
-                        return 8456000;
+                        return 8456256;
                     advanceChar(parser);
                     if (parser.index < parser.end) {
                         const ch = parser.currentChar;
@@ -705,7 +725,7 @@ function scanSingleToken(parser, context, state) {
                                 return 4194336;
                             }
                             else {
-                                return 8456259;
+                                return 8456515;
                             }
                         }
                         else if (ch === 61) {
@@ -713,22 +733,22 @@ function scanSingleToken(parser, context, state) {
                             return 4194335;
                         }
                     }
-                    return 8456258;
+                    return 8456514;
                 }
-                case 8455492: {
+                case 8455748: {
                     advanceChar(parser);
                     if (parser.index >= parser.end)
-                        return 8455492;
+                        return 8455748;
                     const ch = parser.currentChar;
                     if (ch === 38) {
                         advanceChar(parser);
-                        return 8978999;
+                        return 8979255;
                     }
                     if (ch === 61) {
                         advanceChar(parser);
                         return 4194345;
                     }
-                    return 8455492;
+                    return 8455748;
                 }
                 case 67108877:
                     if ((CharTypes[advanceChar(parser)] & 16) !== 0)
@@ -913,7 +933,7 @@ const KeywordDescTable = [
     'implements', 'interface', 'package', 'private', 'protected', 'public', 'static', 'yield',
     'as', 'async', 'await', 'constructor', 'get', 'set', 'from', 'of',
     'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
-    'BigIntLiteral', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
+    'BigIntLiteral', '??', 'WhiteSpace', '?.', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
 ];
 const descKeywordTable = Object.create(null, {
     this: { value: 86110 },
@@ -924,7 +944,7 @@ const descKeywordTable = Object.create(null, {
     else: { value: 20562 },
     for: { value: 20566 },
     new: { value: 86106 },
-    in: { value: 8738609 },
+    in: { value: 8738865 },
     typeof: { value: 16863274 },
     while: { value: 20577 },
     case: { value: 20555 },
@@ -936,7 +956,7 @@ const descKeywordTable = Object.create(null, {
     switch: { value: 86109 },
     continue: { value: 20558 },
     default: { value: 20560 },
-    instanceof: { value: 8476466 },
+    instanceof: { value: 8476722 },
     do: { value: 20561 },
     void: { value: 16863276 },
     finally: { value: 20565 },
@@ -1689,13 +1709,13 @@ function scanJSXToken(parser) {
         return (parser.token = 1048576);
     const token = TokenLookup[parser.source.charCodeAt(parser.index)];
     switch (token) {
-        case 8455999: {
+        case 8456255: {
             advanceChar(parser);
             if (parser.currentChar === 47) {
                 advanceChar(parser);
                 return (parser.token = 25);
             }
-            return (parser.token = 8455999);
+            return (parser.token = 8456255);
         }
         case 2162700: {
             advanceChar(parser);
@@ -2672,7 +2692,7 @@ function parseVariableDeclaration(parser, context, scope, kind, origin) {
         init = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
         if (origin & 32 || (token & 2097152) < 1) {
             if (parser.token === 274546 ||
-                (parser.token === 8738609 &&
+                (parser.token === 8738865 &&
                     (token & 2097152 ||
                         (kind & 4) < 1 ||
                         (context & 256) < 1 ||
@@ -2708,7 +2728,7 @@ function parseForStatement(parser, context, scope, labels, start, line, column) 
         if (token === 268677192) {
             init = parseIdentifier(parser, context, 0);
             if (parser.token & (143360 | 2097152)) {
-                if (parser.token === 8738609) {
+                if (parser.token === 8738865) {
                     if (context & 1024)
                         report(parser, 67);
                 }
@@ -2849,7 +2869,7 @@ function parseImportDeclaration(parser, context, scope, start, line, column) {
             }));
             if (consumeOpt(parser, context, 1073741842)) {
                 switch (parser.token) {
-                    case 8456755:
+                    case 8457011:
                         parseImportNamespaceSpecifier(parser, context, scope, specifiers);
                         break;
                     case 2162700:
@@ -2860,7 +2880,7 @@ function parseImportDeclaration(parser, context, scope, start, line, column) {
                 }
             }
         }
-        else if (parser.token === 8456755) {
+        else if (parser.token === 8457011) {
             parseImportNamespaceSpecifier(parser, context, scope, specifiers);
         }
         else if (parser.token === 2162700) {
@@ -2990,7 +3010,7 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
         });
     }
     switch (parser.token) {
-        case 8456755: {
+        case 8457011: {
             let ecma262PR = 0;
             nextToken(parser, context);
             if (context & 1 && consumeOpt(parser, context, 12395)) {
@@ -3127,28 +3147,28 @@ function parseExpressions(parser, context, inGroup, assignable, start, line, col
         : expr;
 }
 function parseAssignmentExpression(parser, context, inGroup, start, line, column, left) {
-    if ((parser.token & 4194304) > 0) {
+    const { token } = parser;
+    if ((token & 4194304) > 0) {
         if (parser.assignable & 2) {
             report(parser, 24);
         }
-        if ((parser.token === 1077936157 && left.type === 'ArrayExpression') ||
+        if ((token === 1077936157 && left.type === 'ArrayExpression') ||
             left.type === 'ObjectExpression') {
             reinterpretToPattern(parser, left);
         }
-        const assignToken = parser.token;
         nextToken(parser, context | 32768);
         const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
         left = finishNode(parser, context, start, line, column, {
             type: 'AssignmentExpression',
             left,
-            operator: KeywordDescTable[assignToken & 255],
+            operator: KeywordDescTable[token & 255],
             right
         });
         parser.assignable = 2;
         return left;
     }
-    if ((parser.token & 8454144) > 0) {
-        left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, left);
+    if ((token & 8454144) > 0) {
+        left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left);
     }
     if (consumeOpt(parser, context | 32768, 22)) {
         left = parseConditionalExpression(parser, context, left, start, line, column);
@@ -3168,21 +3188,24 @@ function parseConditionalExpression(parser, context, test, start, line, column) 
         alternate
     });
 }
-function parseBinaryExpression(parser, context, inGroup, start, line, column, minPrec, left) {
-    const bit = -((context & 134217728) > 0) & 8738609;
+function parseBinaryExpression(parser, context, inGroup, start, line, column, minPrec, operator, left) {
+    const bit = -((context & 134217728) > 0) & 8738865;
     let t;
     let prec;
     parser.assignable = 2;
     while (parser.token & 8454144) {
         t = parser.token;
         prec = t & 3840;
-        if (prec + ((t === 8457014) << 8) - ((bit === t) << 12) <= minPrec)
+        if ((t & 524288 && operator & -2147483648) || (operator & 524288 && t & -2147483648)) {
+            report(parser, 167);
+        }
+        if (prec + ((t === 8457270) << 8) - ((bit === t) << 12) <= minPrec)
             break;
         nextToken(parser, context | 32768);
         left = finishNode(parser, context, start, line, column, {
-            type: t & 524288 ? 'LogicalExpression' : 'BinaryExpression',
+            type: t & 524288 ? 'LogicalExpression' : t & -2147483648 ? 'CoalesceExpression' : 'BinaryExpression',
             left,
-            right: parseBinaryExpression(parser, context, inGroup, parser.tokenPos, parser.linePos, parser.colPos, prec, parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)),
+            right: parseBinaryExpression(parser, context, inGroup, parser.tokenPos, parser.linePos, parser.colPos, prec, t, parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)),
             operator: KeywordDescTable[t & 255]
         });
     }
@@ -3194,7 +3217,7 @@ function parseUnaryExpression(parser, context, start, line, column, inGroup) {
     const unaryOperator = parser.token;
     nextToken(parser, context | 32768);
     const arg = parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
-    if (parser.token === 8457014)
+    if (parser.token === 8457270)
         report(parser, 31);
     if (context & 1024 && unaryOperator === 16863275) {
         if (arg.type === 'Identifier') {
@@ -3222,7 +3245,7 @@ function parseYieldExpressionOrIdentifier(parser, context, start, line, column) 
         let argument = null;
         let delegate = false;
         if ((parser.flags & 1) < 1) {
-            delegate = consumeOpt(parser, context | 32768, 8456755);
+            delegate = consumeOpt(parser, context | 32768, 8457011);
             if (parser.token & 65536 || delegate) {
                 argument = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
             }
@@ -3541,10 +3564,10 @@ function parsePrimaryExpressionExtended(parser, context, kind, inNewExpression, 
             return parseBigIntLiteral(parser, context, start, line, column);
         case 86105:
             return parseImportCallExpression(parser, context, inNewExpression, inGroup, start, line, column);
-        case 8455999:
+        case 8456255:
             if (context & 16)
                 return parseJSXRootElementOrFragment(parser, context, 1, start, line, column);
-        case 8456756:
+        case 8457012:
             if (context & 1073741824)
                 return parseV8Intrinsic(parser, context, start, line, column);
         default:
@@ -3750,7 +3773,7 @@ function parseThisExpression(parser, context, start, line, column) {
 }
 function parseFunctionDeclaration(parser, context, scope, origin, allowGen, flags, isAsync, start, line, column) {
     nextToken(parser, context | 32768);
-    const isGenerator = allowGen ? optionalBit(parser, context, 8456755) : 0;
+    const isGenerator = allowGen ? optionalBit(parser, context, 8457011) : 0;
     let id = null;
     let firstRestricted;
     let functionScope = scope ? createScope() : void 0;
@@ -3805,7 +3828,7 @@ function parseFunctionDeclaration(parser, context, scope, origin, allowGen, flag
 }
 function parseFunctionExpression(parser, context, isAsync, inGroup, start, line, column) {
     nextToken(parser, context | 32768);
-    const isGenerator = optionalBit(parser, context, 8456755);
+    const isGenerator = optionalBit(parser, context, 8457011);
     const generatorAndAsyncFlags = (isAsync * 2 + isGenerator) << 21;
     let id = null;
     let firstRestricted;
@@ -4342,7 +4365,7 @@ function parseObjectLiteralOrPattern(parser, context, scope, skipInitializer, in
                     state |= 1;
                     value = parseMethodDefinition(parser, context, state, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
                 }
-                else if (parser.token === 8456755) {
+                else if (parser.token === 8457011) {
                     destructible |= 16;
                     if (token === 143478)
                         report(parser, 22);
@@ -4588,8 +4611,8 @@ function parseObjectLiteralOrPattern(parser, context, scope, skipInitializer, in
                     report(parser, 42);
                 }
             }
-            else if (token === 8456755) {
-                consume(parser, context | 32768, 8456755);
+            else if (token === 8457011) {
+                consume(parser, context | 32768, 8457011);
                 state |= 8;
                 if (parser.token & 143360) {
                     const { token, line, index } = parser;
@@ -4684,7 +4707,7 @@ function parseMethodFormals(parser, context, scope, kind, type, inGroup) {
                 parser.flags |= 128;
             }
             if (scope && (parser.token & 143360) === 143360) {
-                addVarOrBlock(parser, context, scope, parser.tokenValue, 1, 0);
+                addVarOrBlock(parser, context, scope, tokenValue, 1, 0);
             }
             left = parseAndClassifyIdentifier(parser, context, type, tokenPos, linePos, colPos);
         }
@@ -4965,7 +4988,7 @@ function parseFormalParametersOrFormalList(parser, context, scope, inGroup, kind
                 isComplex = 1;
             }
             if (scope) {
-                addVarOrBlock(parser, context, scope, parser.tokenValue, 1, 0);
+                addVarOrBlock(parser, context, scope, tokenValue, 1, 0);
             }
             left = parseAndClassifyIdentifier(parser, context, kind, tokenPos, linePos, colPos);
         }
@@ -5401,7 +5424,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
                     if (context & 1 && (parser.token & 1073741824) === 1073741824) {
                         return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
                     }
-                    kind |= 16 | (optionalBit(parser, context, 8456755) ? 8 : 0);
+                    kind |= 16 | (optionalBit(parser, context, 8457011) ? 8 : 0);
                 }
                 break;
             case 12399:
@@ -5430,7 +5453,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
     else if ((token & 134217728) === 134217728) {
         key = parseLiteral(parser, context);
     }
-    else if (token === 8456755) {
+    else if (token === 8457011) {
         kind |= 8;
         nextToken(parser, context);
     }
@@ -5615,7 +5638,7 @@ function parseAndClassifyIdentifier(parser, context, type, start, line, column) 
 }
 function parseJSXRootElementOrFragment(parser, context, inJSXChild, start, line, column) {
     nextToken(parser, context);
-    if (parser.token === 8456000) {
+    if (parser.token === 8456256) {
         return finishNode(parser, context, start, line, column, {
             type: 'JSXFragment',
             openingFragment: parseOpeningFragment(parser, context, start, line, column),
@@ -5650,7 +5673,7 @@ function parseJSXClosingElement(parser, context, inJSXChild, start, line, column
     consume(parser, context, 25);
     const name = parseJSXElementName(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
     if (inJSXChild) {
-        consume(parser, context, 8456000);
+        consume(parser, context, 8456256);
     }
     else {
         parser.token = scanJSXToken(parser);
@@ -5663,10 +5686,10 @@ function parseJSXClosingElement(parser, context, inJSXChild, start, line, column
 function parseJSXClosingFragment(parser, context, inJSXChild, start, line, column) {
     consume(parser, context, 25);
     if (inJSXChild) {
-        consume(parser, context, 8456000);
+        consume(parser, context, 8456256);
     }
     else {
-        consume(parser, context, 8456000);
+        consume(parser, context, 8456256);
     }
     return finishNode(parser, context, start, line, column, {
         type: 'JSXClosingFragment'
@@ -5688,7 +5711,7 @@ function parseJSXChild(parser, context, start, line, column) {
         return parseJSXText(parser, context, start, line, column);
     if (parser.token === 2162700)
         return parseJSXExpressionContainer(parser, context, 0, 0, start, line, column);
-    if (parser.token === 8455999)
+    if (parser.token === 8456255)
         return parseJSXRootElementOrFragment(parser, context, 0, start, line, column);
     report(parser, 0);
 }
@@ -5704,14 +5727,14 @@ function parseJSXOpeningFragmentOrSelfCloseElement(parser, context, inJSXChild, 
         report(parser, 0);
     const tagName = parseJSXElementName(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
     const attributes = parseJSXAttributes(parser, context);
-    const selfClosing = parser.token === 8456757;
-    if (parser.token === 8456000) {
+    const selfClosing = parser.token === 8457013;
+    if (parser.token === 8456256) {
         scanJSXToken(parser);
     }
     else {
-        consume(parser, context, 8456757);
+        consume(parser, context, 8457013);
         if (inJSXChild) {
-            consume(parser, context, 8456000);
+            consume(parser, context, 8456256);
         }
         else {
             scanJSXToken(parser);
@@ -5745,7 +5768,7 @@ function parseJSXMemberExpression(parser, context, object, start, line, column) 
 }
 function parseJSXAttributes(parser, context) {
     const attributes = [];
-    while (parser.token !== 8456757 && parser.token !== 8456000) {
+    while (parser.token !== 8457013 && parser.token !== 8456256) {
         attributes.push(parseJsxAttribute(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
     }
     return attributes;
@@ -5776,7 +5799,7 @@ function parseJsxAttribute(parser, context, start, line, column) {
             case 134283267:
                 value = parseLiteral(parser, context);
                 break;
-            case 8455999:
+            case 8456255:
                 value = parseJSXRootElementOrFragment(parser, context, 1, tokenPos, linePos, colPos);
                 break;
             case 2162700:
@@ -5864,6 +5887,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.5.0';
+const version = '1.5.1';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
