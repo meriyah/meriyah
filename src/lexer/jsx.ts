@@ -91,11 +91,11 @@ export function scanJSXIdentifier(parser: ParserState): Token {
   if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
     let char = parser.currentChar;
-    while ((CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) !== 0) {
+    while (CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) {
       char = advanceChar(parser);
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }
 
-  return parser.token;
+  return (parser.token = Token.Identifier);
 }
