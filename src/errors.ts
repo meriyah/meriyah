@@ -172,7 +172,8 @@ export const enum Errors {
   InvalidCoalescing,
   OptionalChainingNoTemplate,
   OptionalChainingNoSuper,
-  OptionalChainingNoNew
+  OptionalChainingNoNew,
+  ImportMetaOutsideModule
 }
 
 /*@internal*/
@@ -358,7 +359,8 @@ export const errorMessages: {
     'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
   [Errors.OptionalChainingNoTemplate]: 'Invalid tagged template on optional chain',
   [Errors.OptionalChainingNoSuper]: 'Invalid optional chain from super property',
-  [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression'
+  [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression',
+  [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module'
 };
 
 export class ParseError extends SyntaxError {

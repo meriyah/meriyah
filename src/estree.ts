@@ -159,6 +159,7 @@ export type Expression =
   | AssignmentExpression
   | BinaryExpression
   | ConditionalExpression
+  | MetaProperty
   | JSXClosingElement
   | JSXClosingFragment
   | JSXExpressionContainer

@@ -2448,6 +2448,7 @@ function parseImportDeclaration(
         }
       }
     } else {
+      // Parse NameSpaceImport or NamedImports if present
       switch (parser.token) {
         case Token.Multiply:
           parseImportNamespaceSpecifier(parser, context, scope, specifiers);
@@ -2631,7 +2632,7 @@ export function parseImportMetaDeclaration(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  let expr = parseImportMeta(parser, context, meta, start, line, column);
+  let expr: ESTree.Expression = parseImportMetaExpression(parser, context, meta, start, line, column);
 
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -2662,7 +2663,7 @@ export function parseImportMetaDeclaration(
    *   2. LeftHandSideExpression = AssignmentExpression
    */
 
-  expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
+  expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.Expression);
 
   /**
    * ExpressionStatement[Yield, Await]:
@@ -4233,7 +4234,7 @@ function parseImportCallOrMetaExpression(
   start: number,
   line: number,
   column: number
-): ESTree.ImportExpression {
+): ESTree.ImportExpression | ESTree.MetaProperty {
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
@@ -4244,34 +4245,35 @@ function parseImportCallOrMetaExpression(
 
     let expr = parseImportExpression(parser, context, inGroup, start, line, column);
 
-    expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
-
     parser.assignable = AssignmentKind.CannotAssign;
 
-    return expr;
+    return parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
   }
 
-  return parseImportMeta(parser, context, expr, start, line, column);
+  return parseImportMetaExpression(parser, context, expr, start, line, column);
 }
 
 /**
- * Parses Import expression
+ * Parses import meta expression
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param inGroup
+ * @param meta ESTree AST node
  * @param start
+ * @param line
+ * @param column
  */
 
-export function parseImportMeta(
+export function parseImportMetaExpression(
   parser: ParserState,
   context: Context,
   meta: ESTree.Identifier,
   start: number,
   line: number,
   column: number
-): any {
-  if ((context & Context.Module) === 0) report(parser, Errors.Unexpected);
+): ESTree.MetaProperty {
+  if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
+
   nextToken(parser, context); // skips: '.'
 
   if (parser.tokenValue !== 'meta') report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
@@ -4284,6 +4286,17 @@ export function parseImportMeta(
     property: parseIdentifier(parser, context, 0)
   });
 }
+
+/**
+ * Parses import expression
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inGroup
+ * @param start
+ * @param line
+ * @param column
+ */
 
 export function parseImportExpression(
   parser: ParserState,
