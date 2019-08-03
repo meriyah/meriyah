@@ -475,10 +475,12 @@ export function parseStatementListItem(
       report(parser, Errors.InvalidImportExportSloppy, 'export');
     // ImportDeclaration
     case Token.ImportKeyword:
-      nextToken(parser, context);
+      const expr = parseIdentifier(parser, context, 0);
       switch (parser.token) {
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
+        case Token.Period:
+          return parseImportMetaDeclaration(parser, context, expr, start, line, column);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -2414,6 +2416,19 @@ function parseImportDeclaration(
   //
   // See: https://tc39.github.io/proposal-dynamic-import/#sec-modules
   if (parser.token === Token.LeftParen) return parseImportCallDeclaration(parser, context, start, line, column);
+  if (parser.token === Token.Period) {
+    return parseImportMetaDeclaration(
+      parser,
+      context,
+      finishNode(parser, context, start, line, column, {
+        type: 'Identifier',
+        name: 'import'
+      }),
+      start,
+      line,
+      column
+    );
+  }
 
   const { tokenPos, linePos, colPos } = parser;
 
@@ -2591,6 +2606,64 @@ function parseImportSpecifierOrNamedImports(
   consume(parser, context, Token.RightBrace);
 
   return specifiers;
+}
+
+/**
+ * Parse import meta declaration
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param meta  ESTree AST node
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseImportMetaDeclaration(
+  parser: ParserState,
+  context: Context,
+  meta: ESTree.Identifier,
+  start: number,
+  line: number,
+  column: number
+): ESTree.ExpressionStatement {
+  let expr = parseImportMeta(parser, context, meta, start, line, column);
+
+  /** MemberExpression :
+   *   1. PrimaryExpression
+   *   2. MemberExpression [ AssignmentExpression ]
+   *   3. MemberExpression . IdentifierName
+   *   4. MemberExpression TemplateLiteral
+   *
+   * CallExpression :
+   *   1. MemberExpression Arguments
+   *   2. CallExpression ImportCall
+   *   3. CallExpression Arguments
+   *   4. CallExpression [ AssignmentExpression ]
+   *   5. CallExpression . IdentifierName
+   *   6. CallExpression TemplateLiteral
+   *
+   *  UpdateExpression ::
+   *   ('++' | '--')? LeftHandSideExpression
+   *
+   */
+  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
+
+  /** parseAssignmentExpression
+   *
+   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
+   *
+   * AssignmentExpression :
+   *   1. ConditionalExpression
+   *   2. LeftHandSideExpression = AssignmentExpression
+   */
+
+  expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.ArgumentExpression);
+
+  /**
+   * ExpressionStatement[Yield, Await]:
+   *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
+   */
+  return parseExpressionStatement(parser, context, expr, start, line, column);
 }
 
 /**
@@ -4159,9 +4232,11 @@ function parseImportCallExpression(
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
-  if (inNewExpression) report(parser, Errors.InvalidImportNew);
+  const x = parseIdentifier(parser, context, 0);
 
-  nextToken(parser, context);
+  if (parser.token === Token.Period) return parseImportMeta(parser, context, x, start, line, column);
+
+  if (inNewExpression) report(parser, Errors.InvalidImportNew);
 
   let expr = parseImportExpression(parser, context, inGroup, start, line, column);
 
@@ -4180,6 +4255,29 @@ function parseImportCallExpression(
  * @param inGroup
  * @param start
  */
+
+export function parseImportMeta(
+  parser: ParserState,
+  context: Context,
+  meta: ESTree.Identifier,
+  start: number,
+  line: number,
+  column: number
+): any {
+  if ((context & Context.Module) === 0) report(parser, Errors.Unexpected);
+  nextToken(parser, context); // skips: '.'
+
+  if (parser.tokenValue !== 'meta') report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'MetaProperty',
+    meta,
+    property: parseIdentifier(parser, context, 0)
+  });
+}
+
 export function parseImportExpression(
   parser: ParserState,
   context: Context,
