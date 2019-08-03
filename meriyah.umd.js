@@ -1745,7 +1745,7 @@
           }
           parser.tokenValue += parser.source.slice(index, parser.index);
       }
-      return parser.token = 208897;
+      return (parser.token = 208897);
   }
 
   function matchOrInsertSemicolon(parser, context, specDeviation) {
@@ -2202,10 +2202,12 @@
           case 20563:
               report(parser, 106, 'export');
           case 86105:
-              nextToken(parser, context);
+              const expr = parseIdentifier(parser, context, 0);
               switch (parser.token) {
                   case 67174411:
                       return parseImportCallDeclaration(parser, context, start, line, column);
+                  case 67108877:
+                      return parseImportMetaDeclaration(parser, context, expr, start, line, column);
                   default:
                       report(parser, 106, 'import');
               }
@@ -2861,6 +2863,12 @@
       let source = null;
       if (parser.token === 67174411)
           return parseImportCallDeclaration(parser, context, start, line, column);
+      if (parser.token === 67108877) {
+          return parseImportMetaDeclaration(parser, context, finishNode(parser, context, start, line, column, {
+              type: 'Identifier',
+              name: 'import'
+          }), start, line, column);
+      }
       const { tokenPos, linePos, colPos } = parser;
       const specifiers = [];
       if (parser.token === 134283267) {
@@ -2962,6 +2970,12 @@
       }
       consume(parser, context, 1074790415);
       return specifiers;
+  }
+  function parseImportMetaDeclaration(parser, context, meta, start, line, column) {
+      let expr = parseImportMeta(parser, context, meta, start, line, column);
+      expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
+      expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr);
+      return parseExpressionStatement(parser, context, expr, start, line, column);
   }
   function parseImportCallDeclaration(parser, context, start, line, column) {
       let expr = parseImportExpression(parser, context, 0, start, line, column);
@@ -3473,10 +3487,11 @@
           }
           return parseMemberOrUpdateExpression(parser, context, expr, 0, isOptional, optionalChaining, start, line, column);
       }
-      return optionalChaining ? parserOptionalChain(parser, context, expr, start, line, column) : expr;
+      return optionalChaining ? parserOptionalChain(parser, context, expr) : expr;
   }
-  function parserOptionalChain(parser, context, expr, start, line, column) {
-      return finishNode(parser, context, start, line, column, {
+  function parserOptionalChain(parser, context, expr) {
+      const { tokenPos, linePos, colPos } = parser;
+      return finishNode(parser, context, tokenPos, linePos, colPos, {
           type: 'OptionalChain',
           expression: expr
       });
@@ -3654,13 +3669,28 @@
       });
   }
   function parseImportCallExpression(parser, context, inNewExpression, inGroup, start, line, column) {
+      const x = parseIdentifier(parser, context, 0);
+      if (parser.token === 67108877)
+          return parseImportMeta(parser, context, x, start, line, column);
       if (inNewExpression)
           report(parser, 145);
-      nextToken(parser, context);
       let expr = parseImportExpression(parser, context, inGroup, start, line, column);
       expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
       parser.assignable = 2;
       return expr;
+  }
+  function parseImportMeta(parser, context, meta, start, line, column) {
+      if ((context & 2048) === 0)
+          report(parser, 0);
+      nextToken(parser, context);
+      if (parser.tokenValue !== 'meta')
+          report(parser, 28, KeywordDescTable[parser.token & 255]);
+      parser.assignable = 2;
+      return finishNode(parser, context, start, line, column, {
+          type: 'MetaProperty',
+          meta,
+          property: parseIdentifier(parser, context, 0)
+      });
   }
   function parseImportExpression(parser, context, inGroup, start, line, column) {
       consume(parser, context | 32768, 67174411);
