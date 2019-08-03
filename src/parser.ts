@@ -475,12 +475,12 @@ export function parseStatementListItem(
       report(parser, Errors.InvalidImportExportSloppy, 'export');
     // ImportDeclaration
     case Token.ImportKeyword:
-      const expr = parseIdentifier(parser, context, 0);
+      nextToken(parser, context);
       switch (parser.token) {
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
         case Token.Period:
-          return parseImportMetaDeclaration(parser, context, expr, start, line, column);
+          return parseImportMetaDeclaration(parser, context, start, line, column);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -736,11 +736,7 @@ export function parseExpressionOrLabelledStatement(
 
   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 
-  /** parseAssignmentExpression
-   *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
-   * AssignmentExpression :
+  /** AssignmentExpression :
    *   1. ConditionalExpression
    *   2. LeftHandSideExpression = AssignmentExpression
    *
@@ -1115,11 +1111,8 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
    */
   if (parser.token === Token.Comma) expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
 
-  /** parseAssignmentExpression
+  /** AssignmentExpression :
    *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
-   * AssignmentExpression :
    *   1. ConditionalExpression
    *   2. LeftHandSideExpression = AssignmentExpression
    *
@@ -2459,18 +2452,8 @@ function parseImportDeclaration(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
         case Token.Period:
-          if (context & Context.OptionsNext && parser.token === Token.Period) {
-            return parseImportMetaDeclaration(
-              parser,
-              context,
-              finishNode(parser, context, start, line, column, {
-                type: 'Identifier',
-                name: 'import'
-              }),
-              start,
-              line,
-              column
-            );
+          if (context & Context.OptionsNext) {
+            return parseImportMetaDeclaration(parser, context, start, line, column);
           }
         default:
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
@@ -2627,12 +2610,21 @@ function parseImportSpecifierOrNamedImports(
 export function parseImportMetaDeclaration(
   parser: ParserState,
   context: Context,
-  meta: ESTree.Identifier,
   start: number,
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  let expr: ESTree.Expression = parseImportMetaExpression(parser, context, meta, start, line, column);
+  let expr: ESTree.Expression = parseImportMetaExpression(
+    parser,
+    context,
+    finishNode(parser, context, start, line, column, {
+      type: 'Identifier',
+      name: 'import'
+    }),
+    start,
+    line,
+    column
+  );
 
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -2654,11 +2646,7 @@ export function parseImportMetaDeclaration(
    */
   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 
-  /** parseAssignmentExpression
-   *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
-   * AssignmentExpression :
+  /** AssignmentExpression :
    *   1. ConditionalExpression
    *   2. LeftHandSideExpression = AssignmentExpression
    */
