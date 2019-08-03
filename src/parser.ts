@@ -3677,8 +3677,8 @@ export function parseMemberOrUpdateExpression(
         nextToken(parser, context | Context.AllowRegExp);
 
         const { tokenPos, linePos, colPos } = parser;
-
         const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
+
         consume(parser, context, Token.RightBracket);
 
         parser.assignable = isOptional ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
@@ -3780,18 +3780,19 @@ export function parseMemberOrUpdateExpression(
     return parseMemberOrUpdateExpression(parser, context, expr, 0, isOptional, optionalChaining, start, line, column);
   }
 
-  return optionalChaining ? parserOptionalChain(parser, context, expr, start, line, column) : expr;
+  return optionalChaining ? parserOptionalChain(parser, context, expr) : expr;
 }
 
-function parserOptionalChain(
-  parser: ParserState,
-  context: Context,
-  expr: ESTree.Expression,
-  start: number,
-  line: number,
-  column: number
-): ESTree.OptionalChain {
-  return finishNode(parser, context, start, line, column, {
+/**
+ * Parses optional chain
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param expr  ESTree AST node
+ */
+function parserOptionalChain(parser: ParserState, context: Context, expr: ESTree.Expression): ESTree.OptionalChain {
+  const { tokenPos, linePos, colPos } = parser;
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'OptionalChain',
     expression: expr
   } as any);
@@ -8552,6 +8553,7 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const tagName = parseJSXElementName(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
   const attributes = parseJSXAttributes(parser, context);
   const selfClosing = parser.token === Token.Divide;
+
   if (parser.token === Token.GreaterThan) {
     scanJSXToken(parser);
   } else {

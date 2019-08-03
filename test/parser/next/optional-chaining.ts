@@ -44,6 +44,20 @@ describe('Next - Optional chaining', () => {
     '0?.valueOf()',
     '[]?.length',
     'undefined?.["valueOf"]()',
+    'const a = b.map(p => p.d?.e?.f);',
+    'const a = b.map(p => p.c?.d?.e ?? "(string)");',
+    'f?.(arg0, arg1)',
+    'true?.(123)',
+    `function isInvoked(obj) {
+      let invoked = false;
+      obj?.a.b.m(invoked = true);
+      return invoked;
+    }`,
+    'a.b?.c?.d',
+    'obj ? ["a", "b", "c"].map(x => x+x) : []',
+    'const a = b?.c?.[d]?.e;',
+    'const a = b?.c();',
+    'const { a, b } = c.d?.e;',
     '1?.["valueOf"]()',
     '() => 0?.()',
     '() => 1?.()',
@@ -125,6 +139,7 @@ describe('Next - Optional chaining', () => {
   }
 
   fail('Expressions - Optional chaining (fail)', [
+    ['x?.[y] = foo', Context.OptionsNext],
     ['0, [{ set y(val) {}}?.y] = [23];', Context.OptionsNext],
     ['0, { x: y?.z = 42 } = { x: 23 };', Context.OptionsNext],
     ['0, { x: y?.z = 42 } = { x: 23 };', Context.OptionsNext | Context.OptionsWebCompat],
@@ -198,7 +213,7 @@ describe('Next - Optional chaining', () => {
     ['const o = { C: class {} }; new o?.C();', Context.OptionsNext | Context.OptionsWebCompat],
     ['const o = { C: class {} }; new o?.["C"]();', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} new C?.();', Context.OptionsNext | Context.OptionsWebCompat],
-    ['function tag() {} tag?', Context.OptionsNext | Context.OptionsWebCompat],
+    ['function tag() {} tag?.``', Context.OptionsNext | Context.OptionsWebCompat],
     ['const o = { tag() {} }; o?.tag``', Context.OptionsNext | Context.OptionsWebCompat],
     ['import?.("foo")', Context.OptionsNext | Context.OptionsWebCompat],
     ['new new class {}()?.constructor?.();', Context.OptionsNext | Context.OptionsWebCompat],
@@ -207,6 +222,66 @@ describe('Next - Optional chaining', () => {
   ]);
 
   pass('Next - Optional chaining (pass)', [
+    [
+      `(a?.b).c();`,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            end: 11,
+            expression: {
+              arguments: [],
+              callee: {
+                computed: false,
+                end: 8,
+                object: {
+                  end: 5,
+                  expression: {
+                    computed: false,
+                    end: 5,
+                    object: {
+                      end: 2,
+                      name: 'a',
+                      start: 1,
+                      type: 'Identifier'
+                    },
+                    optional: true,
+                    property: {
+                      end: 5,
+                      name: 'b',
+                      start: 4,
+                      type: 'Identifier'
+                    },
+                    start: 1,
+                    type: 'MemberExpression'
+                  },
+                  start: 5,
+                  type: 'OptionalChain'
+                },
+                property: {
+                  end: 8,
+                  name: 'c',
+                  start: 7,
+                  type: 'Identifier'
+                },
+                start: 0,
+                type: 'MemberExpression'
+              },
+              end: 10,
+              optional: false,
+              start: 0,
+              type: 'CallExpression'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 11,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
     [
       `a?.(...args);`,
       Context.OptionsNext,
