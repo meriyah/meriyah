@@ -4226,19 +4226,19 @@ function parseImportCallOrMetaExpression(
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
-  const expr = parseIdentifier(parser, context, 0);
+  let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context, 0);
 
-  if (parser.token !== Token.Period) {
-    if (inNewExpression) report(parser, Errors.InvalidImportNew);
-
-    let expr = parseImportExpression(parser, context, inGroup, start, line, column);
-
-    parser.assignable = AssignmentKind.CannotAssign;
-
-    return parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
+  if (context & Context.OptionsNext && parser.token === Token.Period) {
+    return parseImportMetaExpression(parser, context, expr, start, line, column);
   }
 
-  return parseImportMetaExpression(parser, context, expr, start, line, column);
+  if (inNewExpression) report(parser, Errors.InvalidImportNew);
+
+  expr = parseImportExpression(parser, context, inGroup, start, line, column);
+
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
 }
 
 /**

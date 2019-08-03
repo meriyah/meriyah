@@ -188,7 +188,7 @@ describe('Next - Import Meta', () => {
   pass('Next - Import Meta (pass)', [
     [
       `({m() { import.meta.url}})`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -251,7 +251,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `if (1) { import.meta }`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -288,7 +288,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `var f = function() {import.meta.couldBeMutable = true}`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -386,7 +386,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `do { import.meta } while (0)`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -451,7 +451,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `t = [...import.meta]`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -491,7 +491,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `"use strict"; ({m() { while (0) { import.meta } }})`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -565,7 +565,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `delete import.meta`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -636,7 +636,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `const size = import.meta.scriptElement.dataset.size || 300;`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -702,7 +702,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `x = import.meta`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -734,7 +734,7 @@ describe('Next - Import Meta', () => {
     ],
     [
       `() => { import.meta }`,
-      Context.Module,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',

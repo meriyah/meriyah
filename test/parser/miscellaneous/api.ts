@@ -9,8 +9,11 @@ describe('Expressions - API', () => {
         globalReturn: true,
         ranges: true,
         webcompat: true,
+        specDeviation: true,
         module: true,
         preserveParens: true,
+        jsx: true,
+        identifierPattern: true,
         lexical: true,
         source: 'bullshit'
       }),
@@ -33,6 +36,7 @@ describe('Expressions - API', () => {
               },
               name: 'foo',
               start: 0,
+              pattern: false,
               type: 'Identifier'
             },
             loc: {

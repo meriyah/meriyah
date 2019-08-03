@@ -108,7 +108,7 @@ describe('Expressions - Group', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsPreserveParens);
       });
     });
 
