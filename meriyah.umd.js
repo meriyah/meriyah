@@ -1718,13 +1718,13 @@
           return (parser.token = 1048576);
       const token = TokenLookup[parser.source.charCodeAt(parser.index)];
       switch (token) {
-          case 8455999: {
+          case 8456255: {
               advanceChar(parser);
               if (parser.currentChar === 47) {
                   advanceChar(parser);
                   return (parser.token = 25);
               }
-              return (parser.token = 8455999);
+              return (parser.token = 8456255);
           }
           case 2162700: {
               advanceChar(parser);
@@ -1740,12 +1740,12 @@
       if ((parser.token & 143360) === 143360) {
           const { index } = parser;
           let char = parser.currentChar;
-          while ((CharTypes[char] & (32768 | 2)) !== 0) {
+          while (CharTypes[char] & (32768 | 2)) {
               char = advanceChar(parser);
           }
           parser.tokenValue += parser.source.slice(index, parser.index);
       }
-      return parser.token;
+      return parser.token = 208897;
   }
 
   function matchOrInsertSemicolon(parser, context, specDeviation) {
