@@ -197,7 +197,12 @@ describe('Expressions - Call', () => {
     'foo({})',
     'foo([])',
     'foo(1, ...[2], 3)',
-    'foo(...a);'
+    'foo(...a);',
+    `foo();
+     foo("foo");
+     foo("foo", "bar");
+     foo(bar());
+     foo(bar("test"));`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

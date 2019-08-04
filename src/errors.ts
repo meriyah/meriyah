@@ -169,7 +169,11 @@ export const enum Errors {
   CatchWithoutTry,
   FinallyWithoutTry,
   UnCorrespondingFragmentTag,
-  InvalidCoalescing
+  InvalidCoalescing,
+  OptionalChainingNoTemplate,
+  OptionalChainingNoSuper,
+  OptionalChainingNoNew,
+  ImportMetaOutsideModule
 }
 
 /*@internal*/
@@ -352,7 +356,11 @@ export const errorMessages: {
   [Errors.FinallyWithoutTry]: 'Finally without try',
   [Errors.UnCorrespondingFragmentTag]: 'Expected corresponding closing tag for JSX fragment',
   [Errors.InvalidCoalescing]:
-    'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses'
+    'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
+  [Errors.OptionalChainingNoTemplate]: 'Invalid tagged template on optional chain',
+  [Errors.OptionalChainingNoSuper]: 'Invalid optional chain from super property',
+  [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression',
+  [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module'
 };
 
 export class ParseError extends SyntaxError {

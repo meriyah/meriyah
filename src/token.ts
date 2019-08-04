@@ -188,7 +188,7 @@ export const enum Token {
 
   // Stage #3 proposals
   Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??,
-  OptionalChaining = 125, // ?.,
+  QuestionMarkPeriod = 125 | IsMemberOrCallExpression, // ?.,
 
 }
 

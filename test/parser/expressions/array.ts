@@ -363,6 +363,11 @@ describe('Expressions - Array', () => {
     '[(x), await] = x;',
     '[(x), async] = await;',
     '[(x), y] = x;',
+    '[a, b, c];',
+    '[[], [b, c], []];',
+    '[a,, b,];',
+    '[a,,,, b];',
+    '[a, b,, c];',
     '[(a), ] = x;',
     '([(x), y] = x);'
   ]) {
