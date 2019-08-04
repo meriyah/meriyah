@@ -1731,12 +1731,12 @@ function scanJSXIdentifier(parser) {
     if ((parser.token & 143360) === 143360) {
         const { index } = parser;
         let char = parser.currentChar;
-        while ((CharTypes[char] & (32768 | 2)) !== 0) {
+        while (CharTypes[char] & (32768 | 2)) {
             char = advanceChar(parser);
         }
         parser.tokenValue += parser.source.slice(index, parser.index);
     }
-    return parser.token;
+    return (parser.token = 208897);
 }
 
 function matchOrInsertSemicolon(parser, context, specDeviation) {
@@ -5887,6 +5887,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.5.1';
+const version = '1.5.2';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
