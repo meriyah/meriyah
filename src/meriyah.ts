@@ -23,8 +23,5 @@ export function parse(source: string, options?: Options): ESTree.Program {
   return parseSource(source, options, Context.None);
 }
 
-// Exported to public
-export { ESTree, Options };
-
 // Export current version
-export const version = '1.5.2';
+export const version = '1.6.0';

@@ -13,6 +13,10 @@ describe('Next - Nullish Coalescing', () => {
     '(a ?? b) || c',
     'true ?? 3',
     'false ?? 3',
+    'async ?? 3',
+    'yield ?? 3',
+    'package ?? 3',
+    'private ?? 3',
     `0 ?? 3`,
     '(a || b)',
     '1 | null ?? 3',
@@ -45,9 +49,16 @@ describe('Next - Nullish Coalescing', () => {
     a ?? (b || c);`,
     'var result = obj??key;',
     'arr??[idx]',
+    'async??[idx]',
     'func??(arg)',
     `({} ?? 3) instanceof Object`,
     `([] ?? 3) instanceof Array`,
+    `async([] ?? 3) instanceof Array`,
+    `foo(async bar =>x, "string", async ?? b)`,
+    `foo(async,"string", async()=>x ?? b)`,
+    `async(async,"string", async()=>x ?? b)`,
+    `async(async,"string", async()=>yield ?? b)`,
+    `yield(async,"string", async()=>x ?? b)`,
     `(['hi'] ?? 3)[0]`,
     `(makeMasquerader() ?? 3) == null`,
     '1 | null ?? 3',
@@ -69,16 +80,17 @@ describe('Next - Nullish Coalescing', () => {
     'null ?? "hello"',
     `0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2`,
     'a.b ?? c.d ?? e ()',
+    'async.await??c.d??async ()',
     'a.b??c.d??e ()'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsLexical);
       });
     });
   }

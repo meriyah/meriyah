@@ -7479,11 +7479,25 @@ export function parseAsyncArrowOrCallExpression(
       return parseArrowFunctionExpression(parser, context, scope, [], /* isAsync */ 1, start, line, column);
     }
 
-    return finishNode(parser, context, start, line, column, {
-      type: 'CallExpression',
-      callee,
-      arguments: []
-    });
+    return finishNode(
+      parser,
+      context,
+      start,
+      line,
+      column,
+      context & Context.OptionsNext
+        ? {
+            type: 'CallExpression',
+            callee,
+            arguments: [],
+            optional: false
+          }
+        : {
+            type: 'CallExpression',
+            callee,
+            arguments: []
+          }
+    );
   }
 
   let destructible: AssignmentKind | DestructuringKind = 0;
@@ -7586,11 +7600,25 @@ export function parseAsyncArrowOrCallExpression(
 
       parser.assignable = AssignmentKind.CannotAssign;
 
-      return finishNode(parser, context, start, line, column, {
-        type: 'CallExpression',
-        callee,
-        arguments: params
-      });
+      return finishNode(
+        parser,
+        context,
+        start,
+        line,
+        column,
+        context & Context.OptionsNext
+          ? {
+              type: 'CallExpression',
+              callee,
+              optional: false,
+              arguments: params
+            }
+          : {
+              type: 'CallExpression',
+              callee,
+              arguments: params
+            }
+      );
     }
 
     params.push(expr);
@@ -7624,11 +7652,25 @@ export function parseAsyncArrowOrCallExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return finishNode(parser, context, start, line, column, {
-    type: 'CallExpression',
-    callee,
-    arguments: params
-  });
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsNext
+      ? {
+          type: 'CallExpression',
+          callee,
+          optional: false,
+          arguments: params
+        }
+      : {
+          type: 'CallExpression',
+          callee,
+          arguments: params
+        }
+  );
 }
 
 /**

@@ -160,8 +160,27 @@ describe('Next - Optional chaining', () => {
     `if (a?.b?.c === 'foobar') {}
      if (a?.b()?.c) {}
      if (a?.b?.()?.c) {}`,
+    'yield?.(yield())',
+    'yield?.(yield())',
+    'async?.(package())',
+    'async?.(async())',
+    'async?.(async?.a, async?.a)',
+    'async?.(async?.a, async?.(x))',
+    'async?.(async?.(), async?.[x])',
+    'async?.(async?.a, async?.a)',
+    'async?.("string", async?.a, async?.a)',
+    'async?.(123, async?.a, async?.a)',
+    'async?.(async?.a, "string", a=>x?.z)',
+    'async?.("string", async=>x?.z, x=>async?.z)',
+    'async?.(async=>x?.z, "string", async(yield)=>x?.z)',
+    'async?.(async=>x?.z, "string", async(x)=>x?.z)',
+    'async?.(async(x)=>x?.z, "string", async(x)=>x?.z)',
+    'async?.(async()=>x?.await)',
+    'new async(async()=>x?.await)',
+    'new yield(async()=>x?.await)',
     'new new class {}().constructor();',
     'System.global.navigator?.toString()',
+    '(a?.b).async?.[await??async]',
     '(a?.b).c',
     `a?.b(...args);`,
     `a?.b(...args).c;`,
@@ -174,7 +193,7 @@ describe('Next - Optional chaining', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
       });
     });
     it(`${arg}`, () => {
@@ -187,6 +206,7 @@ describe('Next - Optional chaining', () => {
   fail('Expressions - Optional chaining (fail)', [
     ['a = { x = flag?.[] = true } = value;', Context.OptionsNext],
     ['({x: [y]?.a = 0} = 1)', Context.OptionsNext],
+    ['async(x?.x)=>x?.z', Context.OptionsNext],
     ['[a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.OptionsNext],
     ['([a, b] = f?.x(() => { [a, b?.c] = [d.e, (f.g) = h]; }));', Context.OptionsNext],
     ['[a, ...b?.a] = [1, 2, ...c];', Context.OptionsNext],
@@ -226,6 +246,11 @@ describe('Next - Optional chaining', () => {
     ['0, [x?.y = 42] = [23];', Context.OptionsNext],
     ['0, { x: { set y(val) {}}?.y} = {x: 42};', Context.OptionsNext],
     ['0, [{ set y(val) {}}?.y] = [23];', Context.OptionsNext],
+    ['async?.(async?.(), async?.[])', Context.OptionsNext],
+    ['yield?.await = foo', Context.OptionsNext],
+    ['async?.await = foo', Context.OptionsNext],
+    ['async?.[x] = foo', Context.OptionsNext],
+    ['async?.() = foo', Context.OptionsNext],
     ['a.?2.3', Context.OptionsNext],
     ['a.?.2', Context.OptionsNext],
     ['a.?2.n', Context.OptionsNext],
@@ -346,6 +371,41 @@ describe('Next - Optional chaining', () => {
         end: 11,
         sourceType: 'script',
         start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      `async?.(async());`,
+      Context.OptionsNext,
+      {
+        body: [
+          {
+            expression: {
+              expression: {
+                arguments: [
+                  {
+                    arguments: [],
+                    callee: {
+                      name: 'async',
+                      type: 'Identifier'
+                    },
+                    optional: false,
+                    type: 'CallExpression'
+                  }
+                ],
+                callee: {
+                  name: 'async',
+                  type: 'Identifier'
+                },
+                optional: true,
+                type: 'CallExpression'
+              },
+              type: 'OptionalChain'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
         type: 'Program'
       }
     ],
