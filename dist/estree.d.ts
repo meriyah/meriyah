@@ -14,7 +14,7 @@ export interface Position {
 }
 export declare type Labels = any;
 export declare type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
-export declare type ArgumentExpression = ArrayExpression | AssignmentExpression | ConditionalExpression | Literal | SpreadElement | BinaryExpression | LogicalExpression | SequenceExpression;
+export declare type ArgumentExpression = ArrayExpression | AssignmentExpression | ConditionalExpression | Literal | SpreadElement | BinaryExpression | LogicalExpression | CoalesceExpression | SequenceExpression;
 export declare type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
 export interface Comment {
     type: CommentType;
@@ -23,21 +23,21 @@ export interface Comment {
     end?: number;
     loc?: SourceLocation | null;
 }
-export declare type Node = ArrayExpression | ArrayPattern | ArrowFunctionExpression | AssignmentExpression | AssignmentPattern | AwaitExpression | BigIntLiteral | BinaryExpression | BlockStatement | BreakStatement | CallExpression | ImportExpression | CatchClause | ClassBody | ClassDeclaration | ClassExpression | ClassProperty | ConditionalExpression | ContinueStatement | DebuggerStatement | Decorator | DoWhileStatement | EmptyStatement | ExportAllDeclaration | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportNamedDeclaration | ExportSpecifier | ExpressionStatement | FieldDefinition | ForInStatement | ForOfStatement | ForStatement | FunctionDeclaration | FunctionExpression | Identifier | IfStatement | Import | ImportDeclaration | ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier | JSXNamespacedName | JSXAttribute | JSXClosingElement | JSXClosingFragment | JSXElement | JSXEmptyExpression | JSXExpressionContainer | JSXFragment | JSXIdentifier | JSXOpeningElement | JSXOpeningFragment | JSXSpreadAttribute | JSXSpreadChild | JSXMemberExpression | JSXText | LabeledStatement | Literal | LogicalExpression | MemberExpression | MetaProperty | MethodDefinition | NewExpression | ObjectExpression | ObjectPattern | ParenthesizedExpression | PrivateName | Program | Property | RestElement | ReturnStatement | SequenceExpression | SpreadElement | Super | SwitchCase | SwitchStatement | TaggedTemplateExpression | TemplateElement | TemplateLiteral | ThisExpression | ThrowStatement | TryStatement | UpdateExpression | UnaryExpression | VariableDeclaration | VariableDeclarator | WhileStatement | WithStatement | YieldExpression;
+export declare type Node = ArrayExpression | ArrayPattern | ArrowFunctionExpression | AssignmentExpression | AssignmentPattern | AwaitExpression | BigIntLiteral | BinaryExpression | BlockStatement | BreakStatement | CallExpression | OptionalChain | ImportExpression | CatchClause | ClassBody | ClassDeclaration | ClassExpression | ClassProperty | ConditionalExpression | ContinueStatement | DebuggerStatement | Decorator | DoWhileStatement | EmptyStatement | ExportAllDeclaration | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportNamedDeclaration | ExportSpecifier | ExpressionStatement | FieldDefinition | ForInStatement | ForOfStatement | ForStatement | FunctionDeclaration | FunctionExpression | Identifier | IfStatement | Import | ImportDeclaration | ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier | JSXNamespacedName | JSXAttribute | JSXClosingElement | JSXClosingFragment | JSXElement | JSXEmptyExpression | JSXExpressionContainer | JSXFragment | JSXIdentifier | JSXOpeningElement | JSXOpeningFragment | JSXSpreadAttribute | JSXSpreadChild | JSXMemberExpression | JSXText | LabeledStatement | Literal | LogicalExpression | CoalesceExpression | MemberExpression | MetaProperty | MethodDefinition | NewExpression | ObjectExpression | ObjectPattern | ParenthesizedExpression | PrivateName | Program | Property | RestElement | ReturnStatement | SequenceExpression | SpreadElement | Super | SwitchCase | SwitchStatement | TaggedTemplateExpression | TemplateElement | TemplateLiteral | ThisExpression | ThrowStatement | TryStatement | UpdateExpression | UnaryExpression | VariableDeclaration | VariableDeclarator | WhileStatement | WithStatement | YieldExpression;
 export declare type BindingPattern = ArrayPattern | ObjectPattern | ArrayExpression | AssignmentExpression | ObjectExpression | Identifier;
 export declare type BindingName = BindingPattern | Identifier;
 export declare type ClassElement = ClassProperty | FunctionExpression | MethodDefinition;
 export declare type DeclarationStatement = ClassDeclaration | ClassExpression | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportAllDeclaration | ExportNamedDeclaration | FunctionDeclaration;
 export declare type EntityName = Identifier;
 export declare type ExportDeclaration = ClassDeclaration | ClassExpression | FunctionDeclaration | VariableDeclaration;
-export declare type Expression = ArrowFunctionExpression | AssignmentExpression | BinaryExpression | ConditionalExpression | JSXClosingElement | JSXClosingFragment | JSXExpressionContainer | JSXOpeningElement | JSXOpeningFragment | JSXSpreadChild | LogicalExpression | NewExpression | RestElement | SequenceExpression | SpreadElement | AwaitExpression | LeftHandSideExpression | UnaryExpression | UpdateExpression | YieldExpression;
+export declare type Expression = ArrowFunctionExpression | AssignmentExpression | BinaryExpression | ConditionalExpression | MetaProperty | JSXClosingElement | JSXClosingFragment | JSXExpressionContainer | JSXOpeningElement | JSXOpeningFragment | JSXSpreadChild | LogicalExpression | CoalesceExpression | NewExpression | RestElement | SequenceExpression | SpreadElement | AwaitExpression | LeftHandSideExpression | UnaryExpression | UpdateExpression | YieldExpression;
 export declare type ForInitialiser = Expression | VariableDeclaration;
 export declare type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier;
 export declare type IterationStatement = DoWhileStatement | ForInStatement | ForOfStatement | ForStatement | WhileStatement;
 export declare type JSXChild = JSXElement | JSXExpression | JSXFragment | JSXText;
 export declare type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionContainer;
 export declare type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression | JSXNamespacedName;
-export declare type LeftHandSideExpression = CallExpression | ImportExpression | ClassExpression | ClassDeclaration | FunctionExpression | LiteralExpression | MemberExpression | PrimaryExpression | TaggedTemplateExpression;
+export declare type LeftHandSideExpression = CallExpression | OptionalChain | ImportExpression | ClassExpression | ClassDeclaration | FunctionExpression | LiteralExpression | MemberExpression | PrimaryExpression | TaggedTemplateExpression;
 export declare type LiteralExpression = BigIntLiteral | Literal | TemplateLiteral;
 export declare type ObjectLiteralElementLike = MethodDefinition | Property | RestElement | SpreadElement;
 export declare type Parameter = AssignmentPattern | RestElement | ArrayPattern | ObjectPattern | Identifier;
@@ -127,10 +127,15 @@ export interface ImportExpression extends _Node {
     type: 'ImportExpression';
     source: Expression;
 }
+export interface OptionalChain extends _Node {
+    type: 'OptionalChain';
+    expression: MemberExpression | CallExpression | Identifier | OptionalChain;
+}
 export interface CallExpression extends _Node {
     type: 'CallExpression';
     callee: any;
     arguments: (Expression | SpreadElement)[];
+    optional?: boolean;
 }
 export interface CatchClause extends _Node {
     type: 'CatchClause';
@@ -349,6 +354,12 @@ export interface Literal extends _Node {
     value: boolean | number | string | null;
     raw?: string;
 }
+export interface CoalesceExpression extends _Node {
+    type: 'CoalesceExpression';
+    operator: string;
+    left: Expression;
+    right: Expression;
+}
 export interface LogicalExpression extends _Node {
     type: 'LogicalExpression';
     operator: string;
@@ -360,6 +371,7 @@ export interface MemberExpression extends _Node {
     object: Expression | Super;
     property: Expression | PrivateName;
     computed?: boolean;
+    optional?: boolean;
 }
 export declare type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
 export interface MetaProperty extends _Node {

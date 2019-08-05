@@ -156,7 +156,7 @@ export declare const enum Token {
     EscapedIdentifier = 136,
     JSXText = 137,
     Coalesce = -2139029125,
-    OptionalChaining = 125
+    QuestionMarkPeriod = 67108989
 }
 export declare const KeywordDescTable: string[];
 export declare const descKeywordTable: {

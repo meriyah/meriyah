@@ -52,6 +52,7 @@ export declare function parseLetIdentOrVarDeclarationStatement(parser: ParserSta
 export declare function parseVariableStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, start: number, line: number, column: number): ESTree.VariableDeclaration;
 export declare function parseVariableDeclarationList(parser: ParserState, context: Context, scope: ScopeState | undefined, kind: BindingKind, origin: Origin): ESTree.VariableDeclarator[];
 export declare function parseForStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement;
+export declare function parseImportMetaDeclaration(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.ExpressionStatement;
 export declare function parseExpression(parser: ParserState, context: Context, allowAssign: 0 | 1, identifierPattern: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
 export declare function parseSequenceExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number, expr: ESTree.AssignmentExpression | ESTree.Expression): ESTree.SequenceExpression;
 export declare function parseExpressions(parser: ParserState, context: Context, inGroup: 0 | 1, assignable: 0 | 1, start: number, line: number, column: number): ESTree.SequenceExpression | ESTree.Expression;
@@ -64,10 +65,11 @@ export declare function parseAwaitExpressionOrIdentifier(parser: ParserState, co
 export declare function parseFunctionBody(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, firstRestricted: Token | undefined, scopeError: any): ESTree.BlockStatement;
 export declare function parseSuperExpression(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Super;
 export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, allowAssign: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
-export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, start: number, line: number, column: number): any;
+export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, isOptional: 0 | 1, optionalChaining: 0 | 1, start: number, line: number, column: number): any;
 export declare function parsePrimaryExpressionExtended(parser: ParserState, context: Context, kind: BindingKind, inNewExpression: 0 | 1, allowAssign: 0 | 1, identifierPattern: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): any;
 export declare function parseV8Intrinsic(parser: ParserState, context: Context, start: number, line: number, column: number): any;
 export declare function v8IntrinsicIdentifier(parser: ParserState, context: Context): ESTree.Identifier;
+export declare function parseImportMetaExpression(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number, line: number, column: number): ESTree.MetaProperty;
 export declare function parseImportExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.ImportExpression;
 export declare function parseBigIntLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.BigIntLiteral;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.TemplateLiteral;
