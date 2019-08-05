@@ -10,11 +10,40 @@ describe('Miscellaneous - Failure', () => {
     '(eval) => {"use strict";}',
     '(foo, eval) => {"use strict";}',
     '(package) => {"use strict";}',
+    'a: let {}',
+    'a = let {}',
+    `a = let
+    []`,
     '(break) => {"use strict";}',
     '(break) => {}',
     ` for await (a of b) let
     [] = y`,
     'for (a of b) let [x] = y',
+    'x/{c:/ /=>',
+    '+{f(){}==',
+    '0xabcinstanceof x',
+    '3in x',
+    '01234567in y',
+    '02in y',
+    '08in y',
+    '0B0in y',
+    '0O034in y',
+    '0Xin y',
+    '0Xain y',
+    '0bin y',
+    '0oin y',
+    '0o465in y',
+    '0xFin y',
+    '134in y',
+    '.24-e7in y',
+    '.24ein y',
+    '0Binstanceof x',
+    '0O034instanceof x',
+    '0o465instanceof x',
+    '3instanceof x',
+    '.24einstanceof x',
+    '{0O}',
+    '23.e in x',
     'with (a) let [x] = y',
     'async let [] = y',
     'for (a in b) let x',
@@ -2110,6 +2139,16 @@ describe('Miscellaneous - Failure', () => {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.Strict | Context.Module);
       });
     });
     it(`${arg}`, () => {

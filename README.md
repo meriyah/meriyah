@@ -24,7 +24,7 @@
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
 * Reduced memory usage
-* Very well tested (~85 000 unit tests with full code coverage)
+* Very well tested (~97 000 unit tests with full code coverage)
 * Lightweight - ~86 KB minified
 
 ## ESNext features
@@ -32,8 +32,10 @@
 * [Decorators](https://github.com/tc39/proposal-decorators)
 * [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
 * [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
+* [import.meta](https://github.com/tc39/proposal-import-meta)
 * [Nullish coalescing Operator](https://github.com/tc39/proposal-nullish-coalescing)
 * [Numeric separators](https://github.com/tc39/proposal-numeric-separator)
+* [Optional Chaining](https://github.com/tc39/proposal-optional-chaining)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
 * [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 

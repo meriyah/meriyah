@@ -1,8 +1,34 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
-
+import * as t from 'assert';
+import { parseSource } from '../../../src/parser';
 describe('Expressions - Member', () => {
-  fail('Expressions - Group (fail)', [['abc.123', Context.None], ['abc.£', Context.None]]);
+  fail('Expressions - Member (fail)', [['abc.123', Context.None], ['abc.£', Context.None]]);
+
+  for (const arg of [
+    'let f = () => { import("foo"); };',
+    'foo["bar"];',
+    'foo.bar;',
+    'foo.bar.foo;',
+    'foo.bar["foo"];',
+    'foo["foo"]["bar"];',
+    'foo[test()][bar()];',
+    '0..toString();',
+    '0.5.toString();',
+    '1.0.toString();',
+    '1.000.toString();'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, void 0, Context.OptionsNext | Context.Module | Context.Strict);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, void 0, Context.OptionsNext);
+      });
+    });
+  }
 
   pass('Expressions - Member (pass)', [
     [

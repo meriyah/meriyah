@@ -460,6 +460,7 @@ describe('Next - Private methods', () => {
                       start: 19,
                       end: 20
                     },
+                    optional: false,
                     computed: true,
                     property: {
                       type: 'Identifier',
@@ -2807,6 +2808,7 @@ describe('Next - Private methods', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'CallExpression',
+                            optional: false,
                             callee: {
                               type: 'MemberExpression',
                               object: {
@@ -3004,6 +3006,7 @@ describe('Next - Private methods', () => {
                               },
                               type: 'MemberExpression'
                             },
+                            optional: false,
                             type: 'CallExpression'
                           },
                           type: 'ReturnStatement'
@@ -3069,6 +3072,7 @@ describe('Next - Private methods', () => {
                               },
                               type: 'MemberExpression'
                             },
+                            optional: false,
                             type: 'CallExpression'
                           },
                           type: 'ReturnStatement'
@@ -3225,6 +3229,7 @@ describe('Next - Private methods', () => {
                       },
                       type: 'MemberExpression'
                     },
+                    optional: false,
                     type: 'CallExpression'
                   }
                 },
@@ -3997,6 +4002,7 @@ describe('Next - Private methods', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'CallExpression',
+                            optional: false,
                             callee: {
                               type: 'Identifier',
                               name: 'ohNo'
@@ -4036,6 +4042,7 @@ describe('Next - Private methods', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'CallExpression',
+                            optional: false,
                             callee: {
                               type: 'Identifier',
                               name: 'makeEvil'
@@ -4211,6 +4218,7 @@ describe('Next - Private methods', () => {
                                     },
                                     type: 'MemberExpression'
                                   },
+                                  optional: false,
                                   type: 'CallExpression'
                                 },
                                 type: 'ReturnStatement'
@@ -4257,6 +4265,7 @@ describe('Next - Private methods', () => {
                                     },
                                     type: 'MemberExpression'
                                   },
+                                  optional: false,
                                   type: 'CallExpression'
                                 },
                                 type: 'ReturnStatement'

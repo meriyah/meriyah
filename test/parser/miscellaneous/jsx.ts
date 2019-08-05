@@ -1,7 +1,36 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
+import * as t from 'assert';
+import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - JSX', () => {
+  for (const arg of [
+    '<Component {...x}></Component>;',
+    '<Component.Test />;',
+    '<div>{...this.props.children}</div>;',
+    '<Component:Test />;',
+    '<Component.Test />;',
+    `<></>;
+
+    <
+    >
+      text
+    </>;`,
+    '<div>{this.props.children}</div>;',
+    '<a>{}</a>;'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsJSX);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsJSX);
+      });
+    });
+  }
+
   fail('Miscellaneous - JSX (fail)', [
     ['<', Context.None],
     ['>', Context.None],

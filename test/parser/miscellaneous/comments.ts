@@ -1,9 +1,48 @@
 import { Context } from '../../../src/common';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
-import { pass } from '../../test-utils';
+import { pass, fail } from '../../test-utils';
 
 describe('Miscellaneous - Comments', () => {
+  fail('Miscellaneous - Comments (fail)', [
+    ['a /* */ b;', Context.None],
+    [';-->', Context.None],
+    [
+      `// var /*
+    x*/`,
+      Context.None
+    ],
+    [`<!-`, Context.None],
+    [`</`, Context.None],
+    [`</`, Context.OptionsJSX],
+    [`</*`, Context.OptionsJSX],
+    //[`<// single`, Context.OptionsJSX],
+    [`</*`, Context.None],
+    [`</*`, Context.OptionsJSX],
+    [`<!-`, Context.OptionsJSX],
+    [`</`, Context.None],
+    [`<*`, Context.None],
+    [`<!-`, Context.None],
+    [`<!`, Context.None],
+    [
+      `/* x */
+    = 1;
+    */`,
+      Context.None
+    ],
+    [
+      `/*
+    */ the comment should not include these characters, regardless of AnnexB extensions -->`,
+      Context.None
+    ],
+    [`/*FOO/`, Context.None],
+    [`<!-- HTML comment`, Context.Strict | Context.Module],
+    ['x/* precomment */ --> is eol-comment\nvar y = 37;\n', Context.None],
+    ['var x = a; --> is eol-comment\nvar y = b;\n', Context.None],
+    [`</`, Context.None],
+    [`</`, Context.None]
+  ]);
+
   for (const arg of [
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
@@ -38,6 +77,8 @@ describe('Miscellaneous - Comments', () => {
   for (const arg of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
     `<!-- test --->`,
+    `a /*
+    */ b;`,
     '<!-- console.log("foo") -->',
     '//\\u00A0 single line \\u00A0 comment \\u00A0',
     '// foo',

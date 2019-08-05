@@ -479,6 +479,8 @@ export function parseStatementListItem(
       switch (parser.token) {
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
+        case Token.Period:
+          return parseImportMetaDeclaration(parser, context, start, line, column);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -732,13 +734,9 @@ export function parseExpressionOrLabelledStatement(
    *
    */
 
-  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 
-  /** parseAssignmentExpression
-   *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
-   * AssignmentExpression :
+  /** AssignmentExpression :
    *   1. ConditionalExpression
    *   2. LeftHandSideExpression = AssignmentExpression
    *
@@ -1102,7 +1100,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
    *   ('++' | '--')? LeftHandSideExpression
    */
 
-  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
   /** Sequence expression
    *
    * Note: The comma operator leads to a sequence expression which is not equivalent
@@ -1113,11 +1111,8 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
    */
   if (parser.token === Token.Comma) expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
 
-  /** parseAssignmentExpression
+  /** AssignmentExpression :
    *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
-   * AssignmentExpression :
    *   1. ConditionalExpression
    *   2. LeftHandSideExpression = AssignmentExpression
    *
@@ -1161,7 +1156,7 @@ export function parseDirective(
   if (token !== Token.Semicolon) {
     parser.assignable = AssignmentKind.CannotAssign;
 
-    expression = parseMemberOrUpdateExpression(parser, context, expression, 0, start, line, column);
+    expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, 0, start, line, column);
 
     if (parser.token !== Token.Semicolon) {
       expression = parseAssignmentExpression(parser, context, 0, start, line, column, expression);
@@ -1925,7 +1920,7 @@ export function parseLetIdentOrVarDeclarationStatement(
      *   (NewExpression | MemberExpression) ...
      */
 
-    expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+    expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 
     /**
      * AssignmentExpression :
@@ -2192,7 +2187,7 @@ export function parseForStatement(
       } else {
         isVarDecl = 0;
         parser.assignable = AssignmentKind.Assignable;
-        init = parseMemberOrUpdateExpression(parser, context, init, 0, tokenPos, linePos, colPos);
+        init = parseMemberOrUpdateExpression(parser, context, init, 0, 0, 0, tokenPos, linePos, colPos);
 
         // `for of` only allows LeftHandSideExpressions which do not start with `let`, and no other production matches
         if (parser.token === Token.OfKeyword) report(parser, Errors.ForOfLet);
@@ -2276,6 +2271,8 @@ export function parseForStatement(
       parser,
       context | Context.DisallowIn,
       init as ESTree.Expression,
+      0,
+      0,
       0,
       parser.tokenPos,
       parser.linePos,
@@ -2408,11 +2405,6 @@ function parseImportDeclaration(
 
   let source: ESTree.Literal | null = null;
 
-  // This is `import("...")` call or `import.meta` meta property case.
-  //
-  // See: https://tc39.github.io/proposal-dynamic-import/#sec-modules
-  if (parser.token === Token.LeftParen) return parseImportCallDeclaration(parser, context, start, line, column);
-
   const { tokenPos, linePos, colPos } = parser;
 
   const specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
@@ -2448,11 +2440,25 @@ function parseImportDeclaration(
             report(parser, Errors.InvalidDefaultImport);
         }
       }
-    } else if (parser.token === Token.Multiply) {
-      parseImportNamespaceSpecifier(parser, context, scope, specifiers);
-    } else if (parser.token === Token.LeftBrace) {
-      parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
-    } else report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+    } else {
+      // Parse NameSpaceImport or NamedImports if present
+      switch (parser.token) {
+        case Token.Multiply:
+          parseImportNamespaceSpecifier(parser, context, scope, specifiers);
+          break;
+        case Token.LeftBrace:
+          parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
+          break;
+        case Token.LeftParen:
+          return parseImportCallDeclaration(parser, context, start, line, column);
+        case Token.Period:
+          if (context & Context.OptionsNext) {
+            return parseImportMetaDeclaration(parser, context, start, line, column);
+          }
+        default:
+          report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+      }
+    }
 
     source = parseModuleSpecifier(parser, context);
   }
@@ -2592,6 +2598,69 @@ function parseImportSpecifierOrNamedImports(
 }
 
 /**
+ * Parse import meta declaration
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param meta  ESTree AST node
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseImportMetaDeclaration(
+  parser: ParserState,
+  context: Context,
+  start: number,
+  line: number,
+  column: number
+): ESTree.ExpressionStatement {
+  let expr: ESTree.Expression = parseImportMetaExpression(
+    parser,
+    context,
+    finishNode(parser, context, start, line, column, {
+      type: 'Identifier',
+      name: 'import'
+    }),
+    start,
+    line,
+    column
+  );
+
+  /** MemberExpression :
+   *   1. PrimaryExpression
+   *   2. MemberExpression [ AssignmentExpression ]
+   *   3. MemberExpression . IdentifierName
+   *   4. MemberExpression TemplateLiteral
+   *
+   * CallExpression :
+   *   1. MemberExpression Arguments
+   *   2. CallExpression ImportCall
+   *   3. CallExpression Arguments
+   *   4. CallExpression [ AssignmentExpression ]
+   *   5. CallExpression . IdentifierName
+   *   6. CallExpression TemplateLiteral
+   *
+   *  UpdateExpression ::
+   *   ('++' | '--')? LeftHandSideExpression
+   *
+   */
+  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
+
+  /** AssignmentExpression :
+   *   1. ConditionalExpression
+   *   2. LeftHandSideExpression = AssignmentExpression
+   */
+
+  expr = parseAssignmentExpression(parser, context, 0, start, line, column, expr as ESTree.Expression);
+
+  /**
+   * ExpressionStatement[Yield, Await]:
+   *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
+   */
+  return parseExpressionStatement(parser, context, expr, start, line, column);
+}
+
+/**
  * Parse dynamic import declaration
  *
  * @see [Link](https://github.com/tc39/proposal-dynamic-import)
@@ -2627,7 +2696,7 @@ function parseImportCallDeclaration(
    *   ('++' | '--')? LeftHandSideExpression
    *
    */
-  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+  expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 
   /**
    * ExpressionStatement[Yield, Await]:
@@ -2746,6 +2815,8 @@ function parseExportDeclaration(
                 parser,
                 context,
                 declaration as any,
+                0,
+                0,
                 0,
                 tokenPos,
                 linePos,
@@ -3053,7 +3124,7 @@ export function parseExpression(
     column
   );
 
-  expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, line, column);
+  expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
 
   return parseAssignmentExpression(parser, context, inGroup, start, line, column, expr);
 }
@@ -3289,7 +3360,7 @@ export function parseBinaryExpression(
         parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos)
       ),
       operator: KeywordDescTable[t & Token.Type]
-    } as any);
+    });
   }
 
   if (parser.token === Token.Assign) report(parser, Errors.CantAssignTo);
@@ -3548,6 +3619,8 @@ export function parseSuperExpression(
   nextToken(parser, context);
 
   switch (parser.token) {
+    case Token.QuestionMarkPeriod:
+      report(parser, Errors.OptionalChainingNoSuper);
     case Token.LeftParen: {
       // The super property has to be within a class constructor
       if ((context & Context.SuperCall) < 1) report(parser, Errors.SuperNoConstructor);
@@ -3603,7 +3676,7 @@ export function parseLeftHandSideExpression(
     column
   );
 
-  return parseMemberOrUpdateExpression(parser, context, expression, inGroup, start, line, column);
+  return parseMemberOrUpdateExpression(parser, context, expression, inGroup, 0, 0, start, line, column);
 }
 
 /**
@@ -3619,6 +3692,8 @@ export function parseMemberOrUpdateExpression(
   context: Context,
   expr: ESTree.Expression,
   inGroup: 0 | 1,
+  isOptional: 0 | 1,
+  optionalChaining: 0 | 1,
   start: number,
   line: number,
   column: number
@@ -3641,12 +3716,14 @@ export function parseMemberOrUpdateExpression(
     });
   }
 
-  if (parser.token & Token.IsMemberOrCallExpression) {
-    context = context & ~Context.DisallowIn;
+  if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression || isOptional) {
+    context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
     switch (parser.token) {
       /* Property */
       case Token.Period: {
+        if (isOptional) report(parser, Errors.Unexpected);
+
         nextToken(parser, context);
 
         parser.assignable = AssignmentKind.Assignable;
@@ -3667,19 +3744,34 @@ export function parseMemberOrUpdateExpression(
         nextToken(parser, context | Context.AllowRegExp);
 
         const { tokenPos, linePos, colPos } = parser;
-
         const property = parseExpressions(parser, context, inGroup, 1, tokenPos, linePos, colPos);
 
         consume(parser, context, Token.RightBracket);
 
-        parser.assignable = AssignmentKind.Assignable;
+        parser.assignable = isOptional ? AssignmentKind.CannotAssign : AssignmentKind.Assignable;
 
-        expr = finishNode(parser, context, start, line, column, {
-          type: 'MemberExpression',
-          object: expr,
-          computed: true,
-          property
-        });
+        expr = finishNode(
+          parser,
+          context,
+          start,
+          line,
+          column,
+          context & Context.OptionsNext
+            ? {
+                type: 'MemberExpression',
+                object: expr,
+                computed: true,
+                optional: isOptional === 1,
+                property
+              }
+            : {
+                type: 'MemberExpression',
+                object: expr,
+                computed: true,
+                property
+              }
+        );
+        isOptional = 0;
         break;
       }
 
@@ -3689,16 +3781,57 @@ export function parseMemberOrUpdateExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = finishNode(parser, context, start, line, column, {
-          type: 'CallExpression',
-          callee: expr,
-          arguments: args
-        });
+        expr = finishNode(
+          parser,
+          context,
+          start,
+          line,
+          column,
+          context & Context.OptionsNext
+            ? {
+                type: 'CallExpression',
+                callee: expr,
+                optional: isOptional === 1,
+                arguments: args
+              }
+            : {
+                type: 'CallExpression',
+                callee: expr,
+                arguments: args
+              }
+        );
+        isOptional = 0;
         break;
       }
 
-      /* Template */
-      default: {
+      /* Optional chaining */
+      case Token.QuestionMarkPeriod: {
+        if (isOptional) report(parser, Errors.Unexpected);
+        nextToken(parser, context); // skips: '?.'
+        isOptional = 1;
+        optionalChaining = 1;
+        parser.assignable = AssignmentKind.CannotAssign;
+
+        /* Optional Property */
+        if (parser.token & Token.IsIdentifier) {
+          const property = parsePropertyOrPrivatePropertyName(parser, context);
+          expr = finishNode(parser, context, start, line, column, {
+            type: 'MemberExpression',
+            object: expr,
+            computed: false,
+            optional: true,
+            property
+          });
+          isOptional = 0;
+        }
+
+        break;
+      }
+
+      default:
+        /* Tagged Template */
+        if (optionalChaining) report(parser, Errors.OptionalChainingNoTemplate);
+
         parser.assignable = AssignmentKind.CannotAssign;
 
         expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
@@ -3709,12 +3842,27 @@ export function parseMemberOrUpdateExpression(
               ? parseTemplate(parser, context | Context.TaggedTemplate, start, line, column)
               : parseTemplateLiteral(parser, context, start, line, column)
         });
-      }
     }
 
-    return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+    return parseMemberOrUpdateExpression(parser, context, expr, 0, isOptional, optionalChaining, start, line, column);
   }
-  return expr;
+
+  return optionalChaining ? parserOptionalChain(parser, context, expr) : expr;
+}
+
+/**
+ * Parses optional chain
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param expr  ESTree AST node
+ */
+function parserOptionalChain(parser: ParserState, context: Context, expr: ESTree.Expression): ESTree.OptionalChain {
+  const { tokenPos, linePos, colPos } = parser;
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
+    type: 'OptionalChain',
+    expression: expr
+  } as any);
 }
 
 /**
@@ -3991,7 +4139,7 @@ export function parsePrimaryExpressionExtended(
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context, start, line, column);
     case Token.ImportKeyword:
-      return parseImportCallExpression(parser, context, inNewExpression, inGroup, start, line, column);
+      return parseImportCallOrMetaExpression(parser, context, inNewExpression, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
         return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
@@ -4038,7 +4186,7 @@ export function parseV8Intrinsic(
 
   if (parser.token !== Token.LeftParen) report(parser, Errors.Unexpected);
 
-  return parseMemberOrUpdateExpression(parser, context, expr, 0, start, line, column);
+  return parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
 }
 
 /**
@@ -4066,7 +4214,7 @@ export function v8IntrinsicIdentifier(parser: ParserState, context: Context): ES
  * @param line
  * @param column
  */
-function parseImportCallExpression(
+function parseImportCallOrMetaExpression(
   parser: ParserState,
   context: Context,
   inNewExpression: 0 | 1,
@@ -4074,31 +4222,70 @@ function parseImportCallExpression(
   start: number,
   line: number,
   column: number
-): ESTree.ImportExpression {
+): ESTree.ImportExpression | ESTree.MetaProperty {
   // ImportCall[Yield, Await]:
   //  import(AssignmentExpression[+In, ?Yield, ?Await])
 
+  let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context, 0);
+
+  if (context & Context.OptionsNext && parser.token === Token.Period) {
+    return parseImportMetaExpression(parser, context, expr, start, line, column);
+  }
+
   if (inNewExpression) report(parser, Errors.InvalidImportNew);
 
-  nextToken(parser, context);
-
-  let expr = parseImportExpression(parser, context, inGroup, start, line, column);
-
-  expr = parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, line, column);
+  expr = parseImportExpression(parser, context, inGroup, start, line, column);
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return expr;
+  return parseMemberOrUpdateExpression(parser, context, expr, inGroup, 0, 0, start, line, column);
 }
 
 /**
- * Parses Import expression
+ * Parses import meta expression
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param meta ESTree AST node
+ * @param start
+ * @param line
+ * @param column
+ */
+
+export function parseImportMetaExpression(
+  parser: ParserState,
+  context: Context,
+  meta: ESTree.Identifier,
+  start: number,
+  line: number,
+  column: number
+): ESTree.MetaProperty {
+  if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
+
+  nextToken(parser, context); // skips: '.'
+
+  if (parser.tokenValue !== 'meta') report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'MetaProperty',
+    meta,
+    property: parseIdentifier(parser, context, 0)
+  });
+}
+
+/**
+ * Parses import expression
  *
  * @param parser  Parser object
  * @param context Context masks
  * @param inGroup
  * @param start
+ * @param line
+ * @param column
  */
+
 export function parseImportExpression(
   parser: ParserState,
   context: Context,
@@ -4812,7 +4999,7 @@ export function parseArrayExpressionOrPattern(
   const elements: (ESTree.Identifier | ESTree.AssignmentExpression | null)[] = [];
   let destructible: AssignmentKind | DestructuringKind = 0;
 
-  context = context & ~Context.DisallowIn;
+  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   while (parser.token !== Token.RightBracket) {
     if (consumeOpt(parser, context | Context.AllowRegExp, Token.Comma)) {
@@ -4854,7 +5041,7 @@ export function parseArrayExpressionOrPattern(
               ? DestructuringKind.CannotDestruct
               : 0;
 
-          left = parseMemberOrUpdateExpression(parser, context, left, inGroup, tokenPos, linePos, colPos);
+          left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, 0, tokenPos, linePos, colPos);
 
           if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
             if (parser.token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
@@ -4904,7 +5091,7 @@ export function parseArrayExpressionOrPattern(
         } else if (parser.destructible & DestructuringKind.HasToDestruct) {
           report(parser, Errors.InvalidDestructuringTarget);
         } else {
-          left = parseMemberOrUpdateExpression(parser, context, left, inGroup, tokenPos, linePos, colPos);
+          left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, 0, tokenPos, linePos, colPos);
           destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
           if (parser.token !== Token.Comma && parser.token !== Token.RightBracket) {
@@ -5090,6 +5277,8 @@ function parseSpreadElement(
       context,
       argument as ESTree.Expression,
       inGroup,
+      0,
+      0,
       tokenPos,
       linePos,
       colPos
@@ -5139,7 +5328,7 @@ function parseSpreadElement(
     if (token !== Token.Assign && token !== closingToken && token !== Token.Comma) {
       if (parser.destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidDestructuringTarget);
 
-      argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, tokenPos, linePos, colPos);
+      argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, 0, 0, tokenPos, linePos, colPos);
 
       destructible |= parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
@@ -5554,6 +5743,8 @@ export function parseObjectLiteralOrPattern(
               context,
               value,
               inGroup,
+              0,
+              0,
               idxAfterColon,
               lineAfterColon,
               columnAfterColon
@@ -5645,6 +5836,8 @@ export function parseObjectLiteralOrPattern(
                 context,
                 value,
                 inGroup,
+                0,
+                0,
                 idxAfterColon,
                 lineAfterColon,
                 columnAfterColon
@@ -5697,6 +5890,8 @@ export function parseObjectLiteralOrPattern(
                 context,
                 value,
                 inGroup,
+                0,
+                0,
                 idxAfterColon,
                 lineAfterColon,
                 columnAfterColon
@@ -5867,6 +6062,8 @@ export function parseObjectLiteralOrPattern(
               context,
               value,
               inGroup,
+              0,
+              0,
               idxAfterColon,
               lineAfterColon,
               columnAfterColon
@@ -5951,6 +6148,8 @@ export function parseObjectLiteralOrPattern(
                 context,
                 value,
                 inGroup,
+                0,
+                0,
                 idxAfterColon,
                 lineAfterColon,
                 columnAfterColon
@@ -5992,6 +6191,8 @@ export function parseObjectLiteralOrPattern(
                 context,
                 value,
                 inGroup,
+                0,
+                0,
                 idxAfterColon,
                 lineAfterColon,
                 columnAfterColon
@@ -6047,7 +6248,7 @@ export function parseObjectLiteralOrPattern(
 
             const { token } = parser;
 
-            value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
+            value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, 0, tokenPos, linePos, colPos);
 
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
@@ -6128,7 +6329,7 @@ export function parseObjectLiteralOrPattern(
             } else if (destructible & DestructuringKind.HasToDestruct) {
               report(parser, Errors.InvalidShorthandPropInit);
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
+              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, 0, tokenPos, linePos, colPos);
 
               destructible =
                 parser.assignable & AssignmentKind.CannotAssign ? destructible | DestructuringKind.CannotDestruct : 0;
@@ -6165,7 +6366,7 @@ export function parseObjectLiteralOrPattern(
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
+              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, 0, tokenPos, linePos, colPos);
 
               destructible = parser.assignable & AssignmentKind.Assignable ? 0 : DestructuringKind.CannotDestruct;
 
@@ -6541,7 +6742,7 @@ export function parseParenthesizedExpression(
           destructible |= DestructuringKind.CannotDestruct;
         }
 
-        expr = parseMemberOrUpdateExpression(parser, context, expr, 1, tokenPos, linePos, colPos);
+        expr = parseMemberOrUpdateExpression(parser, context, expr, /* inGroup */ 1, 0, 0, tokenPos, linePos, colPos);
 
         if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 1, tokenPos, linePos, colPos, expr);
@@ -6562,7 +6763,7 @@ export function parseParenthesizedExpression(
       if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
         if (destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidPatternTail);
 
-        expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
+        expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, tokenPos, linePos, colPos);
 
         destructible |= DestructuringKind.CannotDestruct;
 
@@ -7016,7 +7217,7 @@ export function parseMembeExpressionNoCall(
   const { token } = parser;
 
   if (token & Token.IsMemberOrCallExpression) {
-    context = context & ~Context.DisallowIn;
+    context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
     /* Property */
     if (token === Token.Period) {
@@ -7139,16 +7340,23 @@ export function parseNewExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  // NewExpression without arguments.
-  const callee = parseMembeExpressionNoCall(
+  const expr = parsePrimaryExpressionExtended(
     parser,
     context,
-    parsePrimaryExpressionExtended(parser, context, BindingKind.Empty, 1, 0, 0, inGroup, tokenPos, linePos, colPos),
+    BindingKind.Empty,
+    1,
+    0,
+    0,
     inGroup,
     tokenPos,
     linePos,
     colPos
   );
+
+  if (parser.token === Token.QuestionMarkPeriod) report(parser, Errors.OptionalChainingNoNew);
+
+  // NewExpression without arguments.
+  const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
 
   parser.assignable = AssignmentKind.CannotAssign;
 
@@ -7312,7 +7520,7 @@ export function parseAsyncArrowOrCallExpression(
           destructible |= DestructuringKind.CannotDestruct;
         }
 
-        expr = parseMemberOrUpdateExpression(parser, context, expr, 1, tokenPos, linePos, colPos);
+        expr = parseMemberOrUpdateExpression(parser, context, expr, 1, 0, 0, tokenPos, linePos, colPos);
 
         if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
           expr = parseAssignmentExpression(parser, context, 1, tokenPos, linePos, colPos, expr);
@@ -7333,7 +7541,7 @@ export function parseAsyncArrowOrCallExpression(
       if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
         if (destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidPatternTail);
 
-        expr = parseMemberOrUpdateExpression(parser, context, expr, 0, tokenPos, linePos, colPos);
+        expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, tokenPos, linePos, colPos);
 
         destructible |= DestructuringKind.CannotDestruct;
 
@@ -7690,7 +7898,7 @@ export function parseDecoratorList(
 
   let expression = parsePrimaryExpressionExtended(parser, context, BindingKind.Empty, 0, 1, 0, 0, start, line, column);
 
-  expression = parseMemberOrUpdateExpression(parser, context, expression, 0, start, line, column);
+  expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, 0, start, line, column);
 
   return finishNode(parser, context, start, line, column, {
     type: 'Decorator',
@@ -8085,6 +8293,8 @@ export function parseFieldDefinition(
         context | Context.InClass,
         value as ESTree.Expression,
         0,
+        0,
+        0,
         tokenPos,
         linePos,
         colPos
@@ -8449,6 +8659,7 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const tagName = parseJSXElementName(parser, context, parser.tokenPos, parser.linePos, parser.colPos);
   const attributes = parseJSXAttributes(parser, context);
   const selfClosing = parser.token === Token.Divide;
+
   if (parser.token === Token.GreaterThan) {
     scanJSXToken(parser);
   } else {

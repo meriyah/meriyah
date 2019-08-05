@@ -520,6 +520,7 @@ describe('Next - Decorators', () => {
                   name: 'pushElement',
                   type: 'Identifier'
                 },
+                optional: false,
                 type: 'CallExpression'
               },
               type: 'Decorator'
@@ -846,6 +847,7 @@ describe('Next - Decorators', () => {
                     name: 'deco2',
                     type: 'Identifier'
                   },
+                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -866,6 +868,7 @@ describe('Next - Decorators', () => {
                     name: 'deco3',
                     type: 'Identifier'
                   },
+                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -913,6 +916,7 @@ describe('Next - Decorators', () => {
                     name: 'deco4',
                     type: 'Identifier'
                   },
+                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -954,6 +958,7 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'CallExpression',
+                  optional: false,
                   callee: {
                     type: 'Identifier',
                     name: 'foo'
@@ -967,130 +972,6 @@ describe('Next - Decorators', () => {
                 }
               }
             ]
-          }
-        ]
-      }
-    ],
-    [
-      `@(foo().bar)
-  class Foo {
-    @(member[expression]) method() {}
-    @(foo + bar) method2() {}
-  }`,
-      Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'Foo'
-            },
-            superClass: null,
-            decorators: [
-              {
-                type: 'Decorator',
-                expression: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'CallExpression',
-                    callee: {
-                      type: 'Identifier',
-                      name: 'foo'
-                    },
-                    arguments: []
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: 'bar'
-                  }
-                }
-              }
-            ],
-            body: {
-              type: 'ClassBody',
-              body: [
-                {
-                  type: 'MethodDefinition',
-                  kind: 'method',
-                  static: false,
-                  computed: false,
-                  key: {
-                    type: 'Identifier',
-                    name: 'method'
-                  },
-                  decorators: [
-                    {
-                      type: 'Decorator',
-                      expression: {
-                        type: 'MemberExpression',
-                        object: {
-                          type: 'Identifier',
-                          name: 'member'
-                        },
-                        computed: true,
-                        property: {
-                          type: 'Identifier',
-                          name: 'expression'
-                        }
-                      }
-                    }
-                  ],
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
-                  }
-                },
-                {
-                  type: 'MethodDefinition',
-                  kind: 'method',
-                  static: false,
-                  computed: false,
-                  key: {
-                    type: 'Identifier',
-                    name: 'method2'
-                  },
-                  decorators: [
-                    {
-                      type: 'Decorator',
-                      expression: {
-                        type: 'BinaryExpression',
-                        left: {
-                          type: 'Identifier',
-                          name: 'foo'
-                        },
-                        right: {
-                          type: 'Identifier',
-                          name: 'bar'
-                        },
-                        operator: '+'
-                      }
-                    }
-                  ],
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
           }
         ]
       }
@@ -1600,6 +1481,7 @@ describe('Next - Decorators', () => {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'CallExpression',
+                            optional: false,
                             callee: {
                               type: 'MemberExpression',
                               object: {
@@ -1843,6 +1725,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
+                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -1874,6 +1757,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
+                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -1890,6 +1774,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
+                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -2110,6 +1995,7 @@ describe('Next - Decorators', () => {
                     name: 'foo',
                     type: 'Identifier'
                   },
+                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -2125,73 +2011,6 @@ describe('Next - Decorators', () => {
         ],
         sourceType: 'script',
         type: 'Program'
-      }
-    ],
-    [
-      `class Foo {
-        @bar [bizz]
-        abc() {
-
-        }
-      }`,
-      Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'Foo'
-            },
-            superClass: null,
-            body: {
-              type: 'ClassBody',
-              body: [
-                {
-                  type: 'MethodDefinition',
-                  kind: 'method',
-                  static: false,
-                  computed: false,
-                  key: {
-                    type: 'Identifier',
-                    name: 'abc'
-                  },
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: []
-                    },
-                    async: false,
-                    generator: false,
-                    id: null
-                  },
-                  decorators: [
-                    {
-                      type: 'Decorator',
-                      expression: {
-                        type: 'MemberExpression',
-                        object: {
-                          type: 'Identifier',
-                          name: 'bar'
-                        },
-                        computed: true,
-                        property: {
-                          type: 'Identifier',
-                          name: 'bizz'
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            decorators: []
-          }
-        ]
       }
     ],
     [
@@ -2278,6 +2097,7 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'CallExpression',
+                  optional: false,
                   callee: {
                     type: 'Identifier',
                     name: 'outer'
@@ -2368,6 +2188,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
+                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'outer'

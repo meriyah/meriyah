@@ -3,8 +3,9 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Next - Null Coalescing', () => {
+describe('Next - Nullish Coalescing', () => {
   for (const arg of [
+    'var foo = object.foo ?? "default";',
     'undefined ?? 3',
     'null ?? 3',
     '(a ?? b) && c',
@@ -14,7 +15,37 @@ describe('Next - Null Coalescing', () => {
     'false ?? 3',
     `0 ?? 3`,
     '(a || b)',
+    '1 | null ?? 3',
+    '1 ^ null ?? 3',
+    '1 & null ?? 3',
+    '3 == null ?? 3',
+    '3 != null ?? 3',
+    '3 === null ?? 3',
+    '3 !== null ?? 3',
+    'x.y = z.y ?? "string";',
+    'a.b ?? -1;',
+    '1 < null ?? 3',
+    '1 > null ?? 3',
+    '1 <= null ?? 3',
+    '1 >= null ?? 3',
+    '1 << null ?? 3',
+    '1 >> null ?? 3',
+    '1 >>> null ?? 3',
+    '1 + null ?? 3',
+    '1 - null ?? 3',
+    '1 * null ?? 3',
+    '1 / null ?? 3',
+    'isNaN(1 % null ?? 3)',
+    '1 ** null ?? 3',
     '1 ?? 3',
+    `foo ||bar;
+    (x => x)|| bar;
+    (function a(x){return x;})|| 2;
+    0||(function(){return alpha;});
+    a ?? (b || c);`,
+    'var result = obj??key;',
+    'arr??[idx]',
+    'func??(arg)',
     `({} ?? 3) instanceof Object`,
     `([] ?? 3) instanceof Array`,
     `(['hi'] ?? 3)[0]`,
@@ -52,8 +83,15 @@ describe('Next - Null Coalescing', () => {
     });
   }
 
-  fail('Expressions - Null Coalescing (fail)', [
+  fail('Expressions - Nullish Coalescing (fail)', [
     ['c && d ?? e', Context.OptionsNext],
+    ['a??x = true?.(123)', Context.OptionsNext],
+    ['a??x = (true?.(123))', Context.OptionsNext],
+    ['({a:let??foo} = 0);', Context.OptionsNext],
+    ['obj.??(defObj)', Context.OptionsNext],
+    ['[a ?? b, c] = f(() => {  }); ', Context.OptionsNext],
+    ['[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.OptionsNext],
+    ['a.??(nil).b.c.d.??(null)', Context.OptionsNext],
     ['c && d ?? e', Context.OptionsWebCompat],
     ['0 && 1 ?? 2', Context.OptionsNext | Context.Module | Context.Strict],
     ['0 && 1 ?? 2', Context.OptionsNext | Context.OptionsWebCompat],
