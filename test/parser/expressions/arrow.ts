@@ -1139,6 +1139,63 @@ describe('Expressions - Arrow', () => {
 
   pass('Expressions - Arrow (pass)', [
     [
+      'async let => {}',
+      Context.OptionsLexical,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: []
+              },
+              params: [
+                {
+                  type: 'Identifier',
+                  name: 'let'
+                }
+              ],
+              async: true,
+              expression: false
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'let => {}',
+      Context.OptionsLexical,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              body: {
+                type: 'BlockStatement',
+                body: []
+              },
+              params: [
+                {
+                  type: 'Identifier',
+                  name: 'let'
+                }
+              ],
+              async: false,
+              expression: false
+            }
+          }
+        ]
+      }
+    ],
+
+    [
       'f = ([[,] = g()]) => {}',
       Context.None,
       {

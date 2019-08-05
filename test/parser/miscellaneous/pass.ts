@@ -6,9 +6,13 @@ import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Pass', () => {
   for (const arg of [
+    'a([1 || 1].a = 1)',
+    'x ([1 || 1].a = 1)',
+    'x({a: 1 || 1}.a = 1)',
     'for(`${x in y}`;;);',
     `({} + 1);`,
     `async ({} + 1);`,
+    `async ({} ? [] : 1);`,
     `[({a: 1}.c)] = [];`,
     'do ; while(0); i++',
     'do if (a) x; else y; while(z)',

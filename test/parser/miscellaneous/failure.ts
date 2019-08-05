@@ -22,6 +22,7 @@ describe('Miscellaneous - Failure', () => {
     'x/{c:/ /=>',
     '+{f(){}==',
     '0xabcinstanceof x',
+    'let foo = async (a = function() { }) => { "use strict"; a(); }',
     '3in x',
     '01234567in y',
     '02in y',

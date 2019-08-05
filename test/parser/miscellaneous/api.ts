@@ -11,6 +11,7 @@ describe('Expressions - API', () => {
         webcompat: true,
         specDeviation: true,
         module: true,
+        v8: true,
         preserveParens: true,
         jsx: true,
         identifierPattern: true,

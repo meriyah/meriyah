@@ -198,6 +198,11 @@ describe('Expressions - Call', () => {
     'foo([])',
     'foo(1, ...[2], 3)',
     'foo(...a);',
+    '(async(...a, ...b))',
+    '(async(a, ...b))',
+    '(async(a, ...b = y))',
+    '(async(...b = y, d))',
+    '(async(...b = y, ...d))',
     `foo();
      foo("foo");
      foo("foo", "bar");
@@ -239,7 +244,11 @@ describe('Expressions - Call', () => {
     ['yield({a=1}. {b=2}, {c=3} = {}))', Context.None],
     ['yield({c=3} = {})', Context.Strict],
     ['yield({a})', Context.Strict],
+    ['(async((a), ...(b) = xxx))', Context.None],
+    ['(async((a), ...[b] = xxx))', Context.None],
     ['foo(,)', Context.None],
+    //['(async(a, ...(b)))', Context.None],
+    ['(async((a), ...(b)))', Context.None],
     ['foo(a,b,,)', Context.None],
     ['foo()["bar"', Context.None],
     ['foo().bar.', Context.None],
