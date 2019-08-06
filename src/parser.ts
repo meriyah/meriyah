@@ -3839,7 +3839,7 @@ export function parseMemberOrUpdateExpression(
     return parseMemberOrUpdateExpression(parser, context, expr, 0, isOptional, optionalChaining, start, line, column);
   }
 
-  return optionalChaining ? parserOptionalChain(parser, context, expr) : expr;
+  return optionalChaining ? parseOptionalExpression(parser, context, expr) : expr;
 }
 
 /**
@@ -3849,10 +3849,15 @@ export function parseMemberOrUpdateExpression(
  * @param context Context masks
  * @param expr  ESTree AST node
  */
-function parserOptionalChain(parser: ParserState, context: Context, expr: ESTree.Expression): ESTree.OptionalChain {
+export function parseOptionalExpression(
+  parser: ParserState,
+  context: Context,
+  expr: ESTree.Expression
+): ESTree.OptionalChain {
+  // OptionalExpression[?Yield, ?Await]
   const { tokenPos, linePos, colPos } = parser;
   return finishNode(parser, context, tokenPos, linePos, colPos, {
-    type: 'OptionalChain',
+    type: 'OptionalExpression',
     expression: expr
   } as any);
 }
@@ -3863,7 +3868,7 @@ function parserOptionalChain(parser: ParserState, context: Context, expr: ESTree
  * @param parser  Parser object
  * @param context Context masks
  */
-function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Context): any {
+export function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Context): any {
   if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1 && parser.token !== Token.PrivateField) {
     report(parser, Errors.InvalidDotProperty);
   }
