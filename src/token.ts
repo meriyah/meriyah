@@ -2,8 +2,8 @@ export const enum Token {
   Type = 0xFF,
 
   /* Precedence for binary operators (always positive) */
-  PrecStart = 8,
-  Precedence = 15 << PrecStart, // 8-11
+  PrecStart               = 8,
+  Precedence              = 15 << PrecStart, // 8-11
 
   /* Attribute names */
   Keyword                 = 1 << 12,
@@ -170,28 +170,29 @@ export const enum Token {
   Eval               = 116 | IsEvalOrArguments,
   Arguments          = 117 | IsEvalOrArguments,
 
-  EscapedReserved  = 118 | IsIdentifier,
-  EscapedFutureReserved   = 119 | IsIdentifier,
-  ReservedIfStrict  = 120 | IsIdentifier,
+  EscapedReserved       = 118 | IsIdentifier,
+  EscapedFutureReserved = 119 | IsIdentifier,
+  ReservedIfStrict      = 120 | IsIdentifier,
 
-  PrivateName  = 121,
-  BigIntLiteral  = 122,
   // Stage #3 proposals
-  Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??,
-  QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.,
-  // Misc
-  WhiteSpace           = 125,
-  Illegal  = 126,
-  CarriageReturn  = 127,
-  PrivateField  = 128,
-  Template = 129,
-  Decorator = 130,
-  Target = 131 | IsIdentifier,
-  LineFeed  = 132,
-  EscapedIdentifier   = 133,
-  JSXText   = 134,
+  PrivateName        = 121,
+  BigIntLiteral      = 122,
+  Coalesce           = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
+  QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.
 
+  // Others
+  WhiteSpace        = 125,
+  Illegal           = 126,
+  CarriageReturn    = 127,
+  PrivateField      = 128,
+  Template          = 129,
+  Decorator         = 130,
+  Target            = 131 | IsIdentifier,
+  LineFeed          = 132,
+  EscapedIdentifier = 133,
 
+  // JSX
+  JSXText           = 134,
 }
 
 export const KeywordDescTable = [
@@ -235,7 +236,9 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText'
+  'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField',
+
+  'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference

@@ -11,9 +11,9 @@ describe('Expressions - API', () => {
         webcompat: true,
         specDeviation: true,
         module: true,
-        v8: true,
         preserveParens: true,
         jsx: true,
+        v8: true,
         identifierPattern: true,
         lexical: true,
         source: 'bullshit'
@@ -246,6 +246,482 @@ describe('Expressions - API', () => {
               type: 'Literal',
               raw: '"abc"',
               value: 'abc'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    );
+  });
+
+  it('should parse binary expr correctly', () => {
+    t.deepEqual(
+      parseModule('a ?? (x || dd && aa) / y - foo', {
+        directives: true,
+        next: true,
+        ranges: true,
+        loc: true
+      }) as any,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CoalesceExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a',
+                start: 0,
+                end: 1,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                }
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'BinaryExpression',
+                  left: {
+                    type: 'LogicalExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 6,
+                      end: 7,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 6
+                        },
+                        end: {
+                          line: 1,
+                          column: 7
+                        }
+                      }
+                    },
+                    right: {
+                      type: 'LogicalExpression',
+                      left: {
+                        type: 'Identifier',
+                        name: 'dd',
+                        start: 11,
+                        end: 13,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 11
+                          },
+                          end: {
+                            line: 1,
+                            column: 13
+                          }
+                        }
+                      },
+                      right: {
+                        type: 'Identifier',
+                        name: 'aa',
+                        start: 17,
+                        end: 19,
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 17
+                          },
+                          end: {
+                            line: 1,
+                            column: 19
+                          }
+                        }
+                      },
+                      operator: '&&',
+                      start: 11,
+                      end: 19,
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 11
+                        },
+                        end: {
+                          line: 1,
+                          column: 19
+                        }
+                      }
+                    },
+                    operator: '||',
+                    start: 6,
+                    end: 19,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 6
+                      },
+                      end: {
+                        line: 1,
+                        column: 19
+                      }
+                    }
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'y',
+                    start: 23,
+                    end: 24,
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 23
+                      },
+                      end: {
+                        line: 1,
+                        column: 24
+                      }
+                    }
+                  },
+                  operator: '/',
+                  start: 5,
+                  end: 24,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 24
+                    }
+                  }
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'foo',
+                  start: 27,
+                  end: 30,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 27
+                    },
+                    end: {
+                      line: 1,
+                      column: 30
+                    }
+                  }
+                },
+                operator: '-',
+                start: 5,
+                end: 30,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 5
+                  },
+                  end: {
+                    line: 1,
+                    column: 30
+                  }
+                }
+              },
+              operator: '??',
+              start: 0,
+              end: 30,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 30
+                }
+              }
+            },
+            start: 0,
+            end: 30,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 30
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 30,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 30
+          }
+        }
+      }
+    );
+  });
+
+  it('should parse ESNext correctly', () => {
+    t.deepEqual(
+      parseModule('a?.[x]', {
+        directives: true,
+        next: true
+      }) as any,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'OptionalExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                computed: true,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'x'
+                }
+              }
+            }
+          }
+        ]
+      }
+    );
+  });
+
+  it('should parse ESNext correctly with locations', () => {
+    t.deepEqual(
+      parseModule('a?.[x]', {
+        directives: true,
+        loc: true,
+        ranges: true,
+        next: true
+      }) as any,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'OptionalExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 0,
+                  end: 1,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 0
+                    },
+                    end: {
+                      line: 1,
+                      column: 1
+                    }
+                  }
+                },
+                computed: true,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'x',
+                  start: 4,
+                  end: 5,
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 4
+                    },
+                    end: {
+                      line: 1,
+                      column: 5
+                    }
+                  }
+                },
+                start: 0,
+                end: 6,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 6
+                  }
+                }
+              },
+              start: 5,
+              end: 6,
+              loc: {
+                start: {
+                  line: 1,
+                  column: 5
+                },
+                end: {
+                  line: 1,
+                  column: 6
+                }
+              }
+            },
+            start: 0,
+            end: 6,
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 6
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 6,
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 6
+          }
+        }
+      }
+    );
+  });
+
+  it('should parse precedence values correctly', () => {
+    t.deepEqual(
+      parseModule('x || y || z && a ** x ? b ? c : d : e', {
+        jsx: true,
+        next: true
+      }) as any,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'LogicalExpression',
+                left: {
+                  type: 'LogicalExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'x'
+                  },
+                  right: {
+                    type: 'Identifier',
+                    name: 'y'
+                  },
+                  operator: '||'
+                },
+                right: {
+                  type: 'LogicalExpression',
+                  left: {
+                    type: 'Identifier',
+                    name: 'z'
+                  },
+                  right: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'a'
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'x'
+                    },
+                    operator: '**'
+                  },
+                  operator: '&&'
+                },
+                operator: '||'
+              },
+              consequent: {
+                type: 'ConditionalExpression',
+                test: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                consequent: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                alternate: {
+                  type: 'Identifier',
+                  name: 'd'
+                }
+              },
+              alternate: {
+                type: 'Identifier',
+                name: 'e'
+              }
+            }
+          }
+        ]
+      }
+    );
+  });
+
+  it('should parse JSX', () => {
+    t.deepEqual(
+      parseModule('<ul></ul>', {
+        jsx: true,
+        next: true
+      }) as any,
+      {
+        body: [
+          {
+            expression: {
+              children: [],
+              closingElement: {
+                name: {
+                  name: 'ul',
+                  type: 'JSXIdentifier'
+                },
+                type: 'JSXClosingElement'
+              },
+              openingElement: {
+                attributes: [],
+                name: {
+                  name: 'ul',
+                  type: 'JSXIdentifier'
+                },
+                selfClosing: false,
+                type: 'JSXOpeningElement'
+              },
+              type: 'JSXElement'
             },
             type: 'ExpressionStatement'
           }
