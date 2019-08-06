@@ -2148,7 +2148,8 @@ export function parseForStatement(
   let update: ESTree.Expression | null = null;
   let destructible: AssignmentKind | DestructuringKind = 0;
   let init = null;
-  let isVarDecl: number = parser.token & Token.VarDecl;
+  let isVarDecl =
+    parser.token === Token.VarKeyword || parser.token === Token.LetKeyword || parser.token === Token.ConstKeyword;
   let right;
 
   const { token, tokenPos, linePos, colPos } = parser;
@@ -2177,7 +2178,7 @@ export function parseForStatement(
       } else if (context & Context.Strict) {
         report(parser, Errors.DisallowedLetInStrict);
       } else {
-        isVarDecl = 0;
+        isVarDecl = false;
         parser.assignable = AssignmentKind.Assignable;
         init = parseMemberOrUpdateExpression(parser, context, init, 0, 0, 0, tokenPos, linePos, colPos);
 
@@ -3189,15 +3190,14 @@ export function parseAssignmentExpression(
   column: number,
   left: ESTree.ArgumentExpression | ESTree.Expression
 ): ESTree.ArgumentExpression | ESTree.Expression {
-  /** AssignmentExpression
-   *
-   * https://tc39.github.io/ecma262/#prod-AssignmentExpression
-   *
+  /**
    * AssignmentExpression ::
    *   ConditionalExpression
    *   ArrowFunction
+   *   AsyncArrowFunction
    *   YieldExpression
    *   LeftHandSideExpression AssignmentOperator AssignmentExpression
+   *
    */
 
   const { token } = parser;
@@ -3854,7 +3854,10 @@ export function parseOptionalExpression(
   context: Context,
   expr: ESTree.Expression
 ): ESTree.OptionalChain {
-  // OptionalExpression[?Yield, ?Await]
+  // OptionalExpression ::
+  //  MemberExpression
+  //  CallExpression
+  //  OptionalExpression[
   const { tokenPos, linePos, colPos } = parser;
   return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'OptionalExpression',
