@@ -107,6 +107,8 @@ describe('Expressions - Object', () => {
     '{ ...null}',
     '{ ...undefined}',
     '{ ...1 in {}}',
+    '{ ...1 in {} ? a : []}',
+    '{ ...1 ? {} : []}',
     '{ ...[]}',
     '{ ...async function() { }}',
     '{ ...async () => { }}',

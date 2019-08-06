@@ -6,9 +6,23 @@ import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Pass', () => {
   for (const arg of [
+    '([...[][void (this)] += (3287)])',
+    '(false in (((5973))) ** (q), false.if --, function () {})',
+    '(([(2e308.typeof += eval), ...(false), (.88), , ]))',
+    `[ [].x = y]`,
+    'for (var [] in {b, y, [.4]: h -= 2e308}) for (; ((this() ? 2e308.m ++ : eval[/B^B=/gim])); (() => class {})(null, ...arguments, ...true, ..."9Â]CÕ")) try {} finally {}',
+    'a([1 || 1].a = 1)',
+    'x ([1 || 1].a = 1)',
+    'x({a: 1 || 1}.a = 1)',
     'for(`${x in y}`;;);',
     `({} + 1);`,
     `async ({} + 1);`,
+    `async ({} ? [] : 1);`,
+    '({1: ({}) / (1)});',
+    '({1: ({}) ? (1) : [1]});',
+    '({1: (x / y - z)});',
+    '({1: (x = x) });',
+    `[({a: 1}.c)] = [];`,
     `[({a: 1}.c)] = [];`,
     'do ; while(0); i++',
     'do if (a) x; else y; while(z)',

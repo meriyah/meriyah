@@ -27,7 +27,7 @@ export const enum Errors {
   InvalidEscapeIdentifier,
   ExpectedToken,
   CantAssignTo,
-  CantAssignToAsyncArrow,
+  InvalidLHSAsyncArrow,
   SuperNoConstructor,
   InvalidSuperProperty,
   UnexpectedToken,
@@ -207,7 +207,7 @@ export const errorMessages: {
   [Errors.InvalidEscapeIdentifier]: 'Only unicode escapes are legal in identifier names',
   [Errors.ExpectedToken]: "Expected '%0'",
   [Errors.CantAssignTo]: 'Invalid left-hand side in assignment',
-  [Errors.CantAssignToAsyncArrow]: 'Invalid left-hand side in async arrow',
+  [Errors.InvalidLHSAsyncArrow]: 'Invalid left-hand side in async arrow',
   [Errors.SuperNoConstructor]:
     'Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass',
   [Errors.InvalidSuperProperty]: 'Member access on super must be in a method',
