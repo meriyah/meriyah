@@ -3388,15 +3388,7 @@ export function parseUnaryExpression(
    */
   const unaryOperator = parser.token;
   nextToken(parser, context | Context.AllowRegExp);
-  const arg = parseLeftHandSideExpression(
-    parser,
-    context,
-    /* assignable*/ 0,
-    inGroup,
-    parser.tokenPos,
-    parser.linePos,
-    parser.colPos
-  );
+  const arg = parseLeftHandSideExpression(parser, context, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
   if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
@@ -3418,51 +3410,46 @@ export function parseUnaryExpression(
 }
 
 /**
- * Parse yield expression or 'yield' identifier
+ * Parse yield expression
  *
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseYieldExpressionOrIdentifier(
+export function parseYieldExpression(
   parser: ParserState,
   context: Context,
   start: number,
   line: number,
   column: number
-): ESTree.IdentifierOrExpression | ESTree.YieldExpression {
-  if (context & Context.InYieldContext) {
-    // YieldExpression[In] :
-    //     yield
-    //     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
-    //     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
+): ESTree.YieldExpression {
+  // YieldExpression[In] :
+  //     yield
+  //     yield [no LineTerminator here] AssignmentExpression[?In, Yield]
+  //     yield [no LineTerminator here] * AssignmentExpression[?In, Yield]
 
-    nextToken(parser, context | Context.AllowRegExp);
+  nextToken(parser, context | Context.AllowRegExp);
 
-    if (context & Context.InArgumentList) report(parser, Errors.YieldInParameter);
+  if (context & Context.InArgumentList) report(parser, Errors.YieldInParameter);
 
-    if (parser.token === Token.QuestionMark) report(parser, Errors.InvalidTernaryYield);
+  if (parser.token === Token.QuestionMark) report(parser, Errors.InvalidTernaryYield);
 
-    let argument: ESTree.Expression | null = null;
-    let delegate = false; // yield*
+  let argument: ESTree.Expression | null = null;
+  let delegate = false; // yield*
 
-    if ((parser.flags & Flags.NewLine) < 1) {
-      delegate = consumeOpt(parser, context | Context.AllowRegExp, Token.Multiply);
-      if (parser.token & Token.IsExpressionStart || delegate) {
-        argument = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-      }
+  if ((parser.flags & Flags.NewLine) < 1) {
+    delegate = consumeOpt(parser, context | Context.AllowRegExp, Token.Multiply);
+    if (parser.token & Token.IsExpressionStart || delegate) {
+      argument = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
     }
-
-    parser.assignable = AssignmentKind.CannotAssign;
-
-    return finishNode(parser, context, start, line, column, {
-      type: 'YieldExpression',
-      argument,
-      delegate
-    });
   }
 
-  if (context & Context.Strict) report(parser, Errors.AwaitOrYieldIdentInModule, 'Yield');
-  return parseIdentifierOrArrow(parser, context, start, line, column);
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'YieldExpression',
+    argument,
+    delegate
+  });
 }
 
 /**
@@ -3472,7 +3459,7 @@ export function parseYieldExpressionOrIdentifier(
  * @param context Context masks
  * @param inNewExpression
  */
-export function parseAwaitExpressionOrIdentifier(
+export function parseAwaitExpression(
   parser: ParserState,
   context: Context,
   inNewExpression: 0 | 1,
@@ -3480,30 +3467,22 @@ export function parseAwaitExpressionOrIdentifier(
   line: number,
   column: number
 ): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
-  if (context & Context.InAwaitContext) {
-    if (inNewExpression) report(parser, Errors.InvalidAwaitIdent);
+  if (inNewExpression) report(parser, Errors.InvalidAwaitIdent);
 
-    if (context & Context.InArgumentList) {
-      reportMessageAt(parser.index, parser.line, parser.index, Errors.AwaitInParameter);
-    }
-
-    nextToken(parser, context | Context.AllowRegExp);
-
-    const argument = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-
-    parser.assignable = AssignmentKind.CannotAssign;
-
-    return finishNode(parser, context, start, line, column, {
-      type: 'AwaitExpression',
-      argument
-    });
+  if (context & Context.InArgumentList) {
+    reportMessageAt(parser.index, parser.line, parser.index, Errors.AwaitInParameter);
   }
 
-  if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
+  nextToken(parser, context | Context.AllowRegExp);
 
-  const expr = parseIdentifierOrArrow(parser, context, start, line, column);
+  const argument = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
 
-  return expr;
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'AwaitExpression',
+    argument
+  });
 }
 
 /**
@@ -3511,8 +3490,10 @@ export function parseAwaitExpressionOrIdentifier(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param scope Scope object | null
  * @param origin Binding origin
  * @param firstRestricted
+ * @param scopeError
  */
 export function parseFunctionBody(
   parser: ParserState,
@@ -3882,6 +3863,54 @@ export function parsePropertyOrPrivatePropertyName(parser: ParserState, context:
 }
 
 /**
+ * Parse update expression
+ *
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inNewExpression
+ * @param start
+ * @param line
+ * @param column
+ */
+export function parseUpdateExpression(
+  parser: ParserState,
+  context: Context,
+  inNewExpression: 0 | 1,
+  start: number,
+  line: number,
+  column: number
+): ESTree.UpdateExpression {
+  //  UpdateExpression ::
+  //   LeftHandSideExpression ('++' | '--')?
+
+  if (inNewExpression) report(parser, Errors.InvalidIncDecNew);
+
+  const { token } = parser;
+
+  nextToken(parser, context | Context.AllowRegExp);
+
+  const arg = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
+
+  if (parser.assignable & AssignmentKind.CannotAssign) {
+    report(
+      parser,
+      (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
+        ? Errors.NotAssignableLetArgs
+        : Errors.InvalidIncDecTarget
+    );
+  }
+
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'UpdateExpression',
+    argument: arg,
+    operator: KeywordDescTable[token & Token.Type] as ESTree.UpdateOperator,
+    prefix: true
+  });
+}
+
+/**
  * Parses expressions such as a literal expression
  * and update expression.
  *
@@ -3889,7 +3918,12 @@ export function parsePropertyOrPrivatePropertyName(parser: ParserState, context:
  * @param context Context masks
  * @param type Binding kind
  * @param inNewExpression
- * @param assignable
+ * @param allowAssign
+ * @param identifierPattern
+ * @param inGroup
+ * @param start
+ * @param line
+ * @param column
  */
 
 export function parsePrimaryExpressionExtended(
@@ -3957,31 +3991,7 @@ export function parsePrimaryExpressionExtended(
    */
 
   if ((token & Token.IsUpdateOp) === Token.IsUpdateOp) {
-    if (inNewExpression) report(parser, Errors.InvalidIncDecNew);
-
-    const { token } = parser;
-
-    nextToken(parser, context | Context.AllowRegExp);
-
-    const arg = parseLeftHandSideExpression(parser, context, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-
-    if (parser.assignable & AssignmentKind.CannotAssign) {
-      report(
-        parser,
-        (parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments
-          ? Errors.NotAssignableLetArgs
-          : Errors.InvalidIncDecTarget
-      );
-    }
-
-    parser.assignable = AssignmentKind.CannotAssign;
-
-    return finishNode(parser, context, start, line, column, {
-      type: 'UpdateExpression',
-      argument: arg,
-      operator: KeywordDescTable[token & Token.Type] as ESTree.UpdateOperator,
-      prefix: true
-    });
+    return parseUpdateExpression(parser, context, inNewExpression, start, line, column);
   }
 
   /**
@@ -3990,7 +4000,12 @@ export function parsePrimaryExpressionExtended(
    */
   if (token === Token.AwaitKeyword) {
     if (inGroup) parser.destructible |= DestructuringKind.Await;
-    return parseAwaitExpressionOrIdentifier(parser, context, inNewExpression, start, line, column);
+    if (context & Context.InAwaitContext) {
+      return parseAwaitExpression(parser, context, inNewExpression, start, line, column);
+    }
+    if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
+
+    return parseIdentifierOrArrow(parser, context, start, line, column);
   }
 
   /**
@@ -4003,12 +4018,14 @@ export function parsePrimaryExpressionExtended(
   if (token === Token.YieldKeyword) {
     if (inGroup) parser.destructible |= DestructuringKind.Yield;
 
-    if (allowAssign) return parseYieldExpressionOrIdentifier(parser, context, start, line, column);
+    if (context & Context.InYieldContext) {
+      if (allowAssign) return parseYieldExpression(parser, context, start, line, column);
+      report(parser, Errors.CantAssignTo);
+    }
 
-    if (context & ((context & Context.InYieldContext) | Context.Strict))
-      report(parser, Errors.DisallowedInContext, 'yield');
+    if (context & Context.Strict) report(parser, Errors.DisallowedInContext, 'yield');
 
-    return parseIdentifier(parser, context, 0);
+    return parseIdentifierOrArrow(parser, context, start, line, column);
   }
 
   /**
@@ -4022,12 +4039,12 @@ export function parsePrimaryExpressionExtended(
     if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetBoundName);
   }
 
-  if (context & Context.InClass && parser.token === Token.Arguments) {
-    report(parser, Errors.InvalidClassFieldArgEval);
-  }
-
   if ((token & Token.IsIdentifier) === Token.IsIdentifier) {
     const { tokenValue } = parser;
+
+    if (context & Context.InClass && parser.token === Token.Arguments) {
+      report(parser, Errors.InvalidClassFieldArgEval);
+    }
 
     const expr = parseIdentifier(parser, context | Context.TaggedTemplate, identifierPattern);
 
