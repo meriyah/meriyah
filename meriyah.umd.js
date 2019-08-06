@@ -369,42 +369,42 @@
   }
 
   const TokenLookup = [
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      124,
-      135,
-      124,
-      124,
-      130,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      129,
-      124,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      125,
+      132,
+      125,
+      125,
+      127,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      126,
+      125,
       16842797,
       134283267,
-      131,
+      128,
       208897,
       8457012,
       8455748,
@@ -433,7 +433,7 @@
       1077936157,
       8456256,
       22,
-      133,
+      130,
       208897,
       208897,
       208897,
@@ -461,11 +461,11 @@
       208897,
       208897,
       69271571,
-      136,
+      133,
       20,
       8455494,
       208897,
-      132,
+      129,
       4096,
       4096,
       4096,
@@ -496,7 +496,7 @@
       8455237,
       1074790415,
       16842798,
-      129
+      126
   ];
   function nextToken(parser, context) {
       parser.flags = (parser.flags | 1) ^ 1;
@@ -525,8 +525,8 @@
                   case 1074790417:
                   case 1073741842:
                   case 16842798:
-                  case 133:
-                  case 129:
+                  case 130:
+                  case 126:
                       advanceChar(parser);
                       return token;
                   case 8456255:
@@ -756,7 +756,7 @@
                           return 22;
                       if (ch === 63) {
                           advanceChar(parser);
-                          return -2139029125;
+                          return 276889979;
                       }
                       else if (ch === 46) {
                           const index = parser.index + 1;
@@ -764,7 +764,7 @@
                               ch = parser.source.charCodeAt(index);
                               if ((CharTypes[ch] & 16) < 1) {
                                   advanceChar(parser);
-                                  return 67108989;
+                                  return 67108988;
                               }
                           }
                       }
@@ -778,20 +778,20 @@
                       return scanNumber(parser, context, 16);
                   case 134283267:
                       return scanString(parser, context, char);
-                  case 132:
+                  case 129:
                       return scanTemplate(parser, context);
-                  case 136:
+                  case 133:
                       return scanUnicodeIdentifier(parser, context);
-                  case 131:
+                  case 128:
                       return scanPrivateName(parser);
-                  case 124:
+                  case 125:
                       advanceChar(parser);
                       break;
-                  case 130:
+                  case 127:
                       state |= 1 | 4;
                       scanNewLine(parser);
                       break;
-                  case 135:
+                  case 132:
                       consumeLineFeed(parser, (state & 4) !== 0);
                       state = (state | 4 | 1) ^ 4;
                       break;
@@ -943,8 +943,7 @@
       'implements', 'interface', 'package', 'private', 'protected', 'public', 'static', 'yield',
       'as', 'async', 'await', 'constructor', 'get', 'set', 'from', 'of',
       'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
-      'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'CarriageReturn', 'PrivateField', 'Template',
-      '@', 'target', 'LineFeed', 'EscapedIdentifier', 'JSXText'
+      'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
   ];
   const descKeywordTable = Object.create(null, {
       this: { value: 86110 },
@@ -2734,7 +2733,7 @@
       let update = null;
       let destructible = 0;
       let init = null;
-      let isVarDecl = parser.token === 86087 || parser.token === 241736 || parser.token === 86089;
+      let isVarDecl = (parser.token === 86087 || parser.token === 241736 || parser.token === 86089);
       let right;
       const { token, tokenPos, linePos, colPos } = parser;
       if (isVarDecl) {
