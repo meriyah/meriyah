@@ -381,6 +381,7 @@ export interface ClassBody extends _Node {
 }
 
 export interface FieldDefinition extends _Node {
+  type: 'FieldDefinition';
   key: PrivateName | Expression;
   value: any;
   decorators?: Decorator[] | null;
