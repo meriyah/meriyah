@@ -59,27 +59,32 @@ export function scanJSXToken(parser: ParserState): Token {
   const token = TokenLookup[parser.source.charCodeAt(parser.index)];
 
   switch (token) {
+    // '<'
     case Token.LessThan: {
       advanceChar(parser);
       if (parser.currentChar === Chars.Slash) {
         advanceChar(parser);
-        return (parser.token = Token.JSXClose);
+        parser.token = Token.JSXClose;
+      } else {
+        parser.token = Token.LessThan;
       }
 
-      return (parser.token = Token.LessThan);
+      break;
     }
+    // '{'
     case Token.LeftBrace: {
       advanceChar(parser);
-      return (parser.token = Token.LeftBrace);
+      parser.token = Token.LeftBrace;
+      break;
     }
-    default: // ignore
+    default:
+      while (parser.index < parser.end && (CharTypes[advanceChar(parser)] & CharFlags.JSXToken) === 0) {}
+
+      parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
+      parser.token = Token.JSXText;
   }
 
-  while (parser.index < parser.end && (CharTypes[advanceChar(parser)] & CharFlags.JSXToken) === 0) {}
-
-  parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
-
-  return (parser.token = Token.JSXText);
+  return parser.token;
 }
 
 /**
@@ -96,6 +101,6 @@ export function scanJSXIdentifier(parser: ParserState): Token {
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }
-
-  return (parser.token = Token.Identifier);
+  parser.token = Token.Identifier;
+  return parser.token;
 }

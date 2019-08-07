@@ -2,31 +2,32 @@ export const enum Token {
   Type = 0xFF,
 
   /* Precedence for binary operators (always positive) */
-  PrecStart = 8,
-  Precedence = 15 << PrecStart, // 8-11
+  PrecStart               = 8,
+  Precedence              = 15 << PrecStart, // 8-11
 
   /* Attribute names */
-  Keyword        = 1 << 12,
-  Contextual     = 1 << 13 | Keyword,
-  Reserved       = 1 << 14 | Keyword,
-  FutureReserved = 1 << 15 | Keyword,
+  Keyword                 = 1 << 12,
+  Contextual              = 1 << 13 | Keyword,
+  Reserved                = 1 << 14 | Keyword,
+  FutureReserved          = 1 << 15 | Keyword,
 
-  IsExpressionStart   = 1 << 16,
-  IsIdentifier        = 1 << 17 | Contextual,
-  IsInOrOf            = 1 << 18, // 'in' or 'of'
-  IsLogical           = 1 << 19,
-  IsAutoSemicolon     = 1 << 20,
-  IsPatternStart      = 1 << 21, // Start of pattern, '[' or '{'
-  IsAssignOp           = 1 << 22,
-  IsBinaryOp           = 1 << 23 | IsExpressionStart,
-  IsUnaryOp            = 1 << 24 | IsExpressionStart,
-  IsUpdateOp           = 1 << 25 | IsExpressionStart,
+  IsExpressionStart        = 1 << 16,
+  IsIdentifier             = 1 << 17 | Contextual,
+  IsInOrOf                 = 1 << 18, // 'in' or 'of'
+  IsLogical                = 1 << 19,
+  IsAutoSemicolon          = 1 << 20,
+  IsPatternStart           = 1 << 21, // Start of pattern, '[' or '{'
+  IsAssignOp               = 1 << 22,
+  IsBinaryOp               = 1 << 23 | IsExpressionStart,
+  IsUnaryOp                = 1 << 24 | IsExpressionStart,
+  IsUpdateOp               = 1 << 25 | IsExpressionStart,
   IsMemberOrCallExpression = 1 << 26,
-  IsStringOrNumber     = 1 << 27,
-  VarDecl              = 1 << 28,
-  IsEvalOrArguments    = 1 << 29 | IsExpressionStart | IsIdentifier,
-  IsClassField         = 1 << 30,
-  IsCoalesc            = 1 << 31,
+  IsStringOrNumber         = 1 << 27,
+  IsCoalesc                = 1 << 28,
+  IsEvalOrArguments        = 1 << 29 | IsExpressionStart | IsIdentifier,
+  IsClassField             = 1 << 30,
+
+  // Note: 1 << 31... turns to negative
 
   /* Node types */
   EOF = 0 | IsAutoSemicolon,
@@ -114,9 +115,9 @@ export const enum Token {
   BitwiseXor         = 70 | IsBinaryOp | 5 << PrecStart, // ^
 
   /* Variable declaration kinds */
-  VarKeyword   = 71 | IsExpressionStart | Reserved | VarDecl,
-  LetKeyword   = 72 | IsExpressionStart | FutureReserved | VarDecl | IsIdentifier,
-  ConstKeyword = 73 | IsExpressionStart | Reserved | VarDecl,
+  VarKeyword   = 71 | IsExpressionStart | Reserved,
+  LetKeyword   = 72 | IsExpressionStart | FutureReserved | IsIdentifier,
+  ConstKeyword = 73 | IsExpressionStart | Reserved,
 
   /* Other reserved words */
   BreakKeyword    = 74 | Reserved,
@@ -169,27 +170,29 @@ export const enum Token {
   Eval               = 116 | IsEvalOrArguments,
   Arguments          = 117 | IsEvalOrArguments,
 
-  EscapedReserved  = 118 | IsIdentifier,
-  EscapedFutureReserved   = 119 | IsIdentifier,
-  ReservedIfStrict  = 120 | IsIdentifier,
-
-  PrivateName  = 121,
-  BigIntLiteral  = 122,
-  WhiteSpace           = 124,
-  Illegal  = 129,
-  CarriageReturn  = 130,
-  PrivateField  = 131,
-  Template = 132,
-  Decorator = 133,
-  Target = 134 | IsIdentifier,
-  LineFeed  = 135,
-  EscapedIdentifier   = 136,
-  JSXText   = 137,
+  EscapedReserved       = 118 | IsIdentifier,
+  EscapedFutureReserved = 119 | IsIdentifier,
+  ReservedIfStrict      = 120 | IsIdentifier,
 
   // Stage #3 proposals
-  Coalesce = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??,
-  QuestionMarkPeriod = 125 | IsMemberOrCallExpression, // ?.,
+  PrivateName        = 121,
+  BigIntLiteral      = 122,
+  Coalesce           = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
+  QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.
 
+  // Others
+  WhiteSpace        = 125,
+  Illegal           = 126,
+  CarriageReturn    = 127,
+  PrivateField      = 128,
+  Template          = 129,
+  Decorator         = 130,
+  Target            = 131 | IsIdentifier,
+  LineFeed          = 132,
+  EscapedIdentifier = 133,
+
+  // JSX
+  JSXText           = 134,
 }
 
 export const KeywordDescTable = [
@@ -233,7 +236,9 @@ export const KeywordDescTable = [
   /* Others */
   'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
 
-  'BigIntLiteral', '??', 'WhiteSpace', '?.', 'Illegal', 'LineTerminator', 'PrivateField', 'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText', 'JSXText'
+  'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField',
+
+  'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference

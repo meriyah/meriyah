@@ -181,9 +181,31 @@ describe('Next - Optional chaining', () => {
     'new new class {}().constructor();',
     'System.global.navigator?.toString()',
     '(a?.b).async?.[await??async]',
+    '"hello"?.a',
+    'null?.a',
+    '[1, 2]?.[1]',
+    '(function a () {}?.name)',
+    '(class Foo {}?.name)',
+    '(function * a () {}?.name)',
+    '(async function a () {}?.name)',
+    '(async function * a () {}?.name)',
+    '/[a-z]/?.test("a")',
+    '`hello`?.[0]',
+    '({a: 33}, null)?.a',
+    '({a: 33})?.a',
+    '(undefined, {a: 33})?.a',
+    'arr?.[i + 1]',
+    'arr[0]?.a',
+    'arr[1]?.a',
+    'obj?.c(10)',
+    'obj?.d();',
     '(a?.b).c',
     `a?.b(...args);`,
+    '(obj?.a)?.b',
+    '(fn()?.a)?.b',
     `a?.b(...args).c;`,
+    'const value = true ?.30 : false;',
+    'undf?.b',
     '({ x: 1 }).x?.y.z;',
     `a?.b(...args).c(...args);`,
     'let a = b?.c;',
@@ -205,6 +227,7 @@ describe('Next - Optional chaining', () => {
 
   fail('Expressions - Optional chaining (fail)', [
     ['a = { x = flag?.[] = true } = value;', Context.OptionsNext],
+    ['a?.fn`hello`;', Context.OptionsNext],
     ['({x: [y]?.a = 0} = 1)', Context.OptionsNext],
     ['async(x?.x)=>x?.z', Context.OptionsNext],
     ['[a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.OptionsNext],
@@ -259,6 +282,7 @@ describe('Next - Optional chaining', () => {
     ['obj?.a = 33;', Context.OptionsNext],
     ['a.? (?) [?]', Context.OptionsNext],
     ['a.?2.3', Context.OptionsNext],
+    ['{a: 44}?.a', Context.OptionsNext],
     ['let obj = {x:x?.1}; [...obj["x"]] = [10];', Context.OptionsNext],
     ['let [...[...[...x?.a]]] = [x?.[[]]];', Context.OptionsNext],
     ['let [...[...[...x?.a]]] = [[[]]];', Context.OptionsNext],
@@ -348,7 +372,7 @@ describe('Next - Optional chaining', () => {
                     type: 'MemberExpression'
                   },
                   start: 5,
-                  type: 'OptionalChain'
+                  type: 'OptionalExpression'
                 },
                 property: {
                   end: 8,
@@ -400,7 +424,7 @@ describe('Next - Optional chaining', () => {
                 optional: true,
                 type: 'CallExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -433,7 +457,7 @@ describe('Next - Optional chaining', () => {
                 optional: true,
                 type: 'CallExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -483,7 +507,7 @@ describe('Next - Optional chaining', () => {
                               },
                               type: 'MemberExpression'
                             },
-                            type: 'OptionalChain'
+                            type: 'OptionalExpression'
                           },
                           type: 'ExpressionStatement'
                         }
@@ -540,7 +564,7 @@ describe('Next - Optional chaining', () => {
                 optional: true,
                 type: 'CallExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -565,7 +589,7 @@ describe('Next - Optional chaining', () => {
                 optional: true,
                 type: 'CallExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -602,7 +626,7 @@ describe('Next - Optional chaining', () => {
                 },
                 type: 'MemberExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -631,7 +655,7 @@ describe('Next - Optional chaining', () => {
                 },
                 type: 'MemberExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -691,7 +715,7 @@ describe('Next - Optional chaining', () => {
                 },
                 type: 'MemberExpression'
               },
-              type: 'OptionalChain'
+              type: 'OptionalExpression'
             },
             type: 'ExpressionStatement'
           }
