@@ -3193,7 +3193,6 @@ export function parseAssignmentExpression(
    *   AsyncArrowFunction
    *   YieldExpression
    *   LeftHandSideExpression AssignmentOperator AssignmentExpression
-   *
    */
 
   const { token } = parser;
@@ -4201,10 +4200,7 @@ export function parsePrimaryExpressionExtended(
     case Token.Modulo:
       if (context & Context.OptionsV8) return parseV8Intrinsic(parser, context, start, line, column);
     default:
-      if (isValidIdentifier(context, parser.token)) {
-        return parseIdentifierOrArrow(parser, context, start, line, column);
-      }
-
+      if (isValidIdentifier(context, parser.token)) return parseIdentifierOrArrow(parser, context, start, line, column);
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 }
