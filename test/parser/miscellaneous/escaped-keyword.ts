@@ -51,7 +51,6 @@ describe('Miscellaneous - Escaped keywords', () => {
     'aw\\u0061it: 1;',
     'function *a(){({yi\\u0065ld: 0})}',
     '\\u0061sync',
-    // '({i\\u0066: 0})',
     'l\\u0065t\na',
     'l\\u0065t',
     `function a() {
@@ -73,15 +72,16 @@ describe('Miscellaneous - Escaped keywords', () => {
       });
     });
   }
-
+  //
   fail('Miscellaneous - Escaped identifiers (failures)', [
-    //['({ \\u0061sync* m(){}});', Context.None],
+    ['const [l\\u0065t] = 1', Context.None],
+    ['(function() {for (let l\\u0065t in {}) {}})()', Context.None],
     ['cl\\u0061ss Foo {}', Context.None],
+    ['export function br\\u0065ak() {}', Context.Strict | Context.Module],
     ['class aw\\u0061it {}', Context.Strict | Context.Module],
     ['class l\\u0065t {}', Context.Strict],
     ['class st\\u0061tic {}', Context.Strict],
     ['class st\\u0061tic {}', Context.None],
-    //    ['le\\u0074 x = 5', Context.None],
     ['class yi\\u0065ld {}', Context.Strict],
     ['aw\\u0061it: 1;', Context.Strict | Context.Module],
     ['a(1,2\\u0063onst foo = 1;', Context.None],
@@ -117,7 +117,6 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['({\\u0073et set(){}})', Context.None],
     ['var v\\u0061r = 2000000;', Context.None],
     ['var v\\u{0061}r = 2000000', Context.None],
-    // ['String.raw`var {v\\u0061r} = obj`', Context.None],
     ['try { } catch(v\\u{0061}r) { }', Context.None],
     ['var obj = { async method() { void \\u0061wait; } };', Context.Strict],
     ['class C { async *gen() { void \\u0061wait; }}', Context.None],
@@ -233,6 +232,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['class aw\\u0061it {}', Context.Strict | Context.Module],
     ['var gen = async function *() { var yi\\u0065ld; };', Context.None],
     ['var obj = { *method() { void yi\\u0065ld; } };', Context.None],
-    ['var gen = function *g() { yi\\u0065ld: ; };', Context.None]
+    ['var gen = function *g() { yi\\u0065ld: ; };', Context.None],
+    ['({ \\u0061sync* m(){}});', Context.None]
   ]);
 });

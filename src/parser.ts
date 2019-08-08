@@ -5887,7 +5887,7 @@ export function parseObjectLiteralOrPattern(
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.CannotDestruct;
 
-          if (token === Token.GetKeyword || token === Token.SetKeyword) {
+          if (token === Token.GetKeyword || token === Token.SetKeyword || token === Token.AnyIdentifier) {
             report(parser, Errors.InvalidGeneratorGetter);
           }
           nextToken(parser, context);

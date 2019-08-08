@@ -172,7 +172,7 @@ export const enum Token {
 
   EscapedReserved       = 118,
   EscapedFutureReserved = 119,
-  ReservedIfStrict      = 120 | IsIdentifier,
+  AnyIdentifier      = 120 | IsIdentifier,
 
   // Stage #3 proposals
   PrivateName        = 121,
