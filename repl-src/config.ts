@@ -21,7 +21,6 @@ export const LEFT_MENU_CONFIG = [
       { title: "Preserve parens", value: "preserveParens", selected: false },
       { title: "Raw property", value: "raw", selected: false },
       { title: "Strict mode", value: "impliedStrict", selected: false },
-      { title: "V8", value: "v8", selected: false },
       { title: "Web compability", value: "webcompat", selected: true }
     ]
   },
