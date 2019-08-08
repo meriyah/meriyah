@@ -13,7 +13,6 @@ describe('Expressions - API', () => {
         module: true,
         preserveParens: true,
         jsx: true,
-        v8: true,
         identifierPattern: true,
         lexical: true,
         source: 'bullshit'

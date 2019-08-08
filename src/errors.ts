@@ -181,7 +181,7 @@ export const errorMessages: {
   [key: string]: string;
 } = {
   [Errors.Unexpected]: 'Unexpected token',
-  [Errors.UnexpectedToken]: "Unexpected token '%0'",
+  [Errors.UnexpectedToken]: "Unexpected token: '%0'",
   [Errors.StrictOctalEscape]: 'Octal escape sequences are not allowed in strict mode',
   [Errors.TemplateOctalLiteral]: 'Octal escape sequences are not allowed in template strings',
   [Errors.InvalidPrivateName]: 'Unexpected token `#`',
@@ -287,8 +287,8 @@ export const errorMessages: {
   [Errors.IllegalReturn]: 'Illegal return statement',
   [Errors.InvalidForLHSBinding]: 'The for-header left hand side binding declaration is not destructible',
   [Errors.InvalidNewTarget]: 'new.target only allowed within functions',
-  [Errors.InvalidEscapedKeyword]: 'Keywords must be written literally, without embedded escapes',
-  [Errors.MissingPrivateName]: "''#' not followed by identifier",
+  [Errors.InvalidEscapedKeyword]: 'Kasdfafdsadfsy, without embedded escapes',
+  [Errors.MissingPrivateName]: "'#' not followed by identifier",
   [Errors.InvalidStrictStatic]: '`Static` is a reserved word in strict mode',
   [Errors.FutureReservedWordInStrictModeNotId]:
     'The use of a future reserved word for an identifier is invalid. The identifier name is reserved in strict mode',

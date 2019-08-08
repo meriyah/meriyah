@@ -200,8 +200,6 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-  // Enabled V8 features
-  v8?: boolean;
   // Allowes comment extraction. Accepts either a a callback function or an array
   onComment?: OnComment;
 }
@@ -225,7 +223,6 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
-    if (options.v8) context |= Context.OptionsV8;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
     if (options.specDeviation) context |= Context.OptionsSpecDeviation;
     if (options.source) sourceFile = options.source;
@@ -300,7 +297,7 @@ export function parseStatementList(
   // StatementList ::
   //   (StatementListItem)* <end_token>
 
-  nextToken(parser, context | Context.AllowRegExp);
+  nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
   const statements: ESTree.Statement[] = [];
 
@@ -1845,6 +1842,7 @@ export function parseLetIdentOrVarDeclarationStatement(
     /* VariableDeclarations ::
      *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
+
     const declarations = parseVariableDeclarationList(parser, context, scope, BindingKind.Let, Origin.None);
 
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -3422,7 +3420,7 @@ export function parseAsyncExpression(
   column: number
 ): any {
   const { token } = parser;
-  const expr = parseIdentifier(parser, context | Context.TaggedTemplate, identifierPattern);
+  const expr = parseIdentifier(parser, context, identifierPattern);
   const { flags } = parser;
 
   if ((flags & Flags.NewLine) < 1) {
@@ -4120,8 +4118,6 @@ export function parsePrimaryExpressionExtended(
 
     // Only a "simple validation" is done here to forbid escaped keywords and 'let' edge cases
 
-    if ((token & Token.EscapedReserved) === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
-
     if (token === Token.LetKeyword) {
       if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
       if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
@@ -4197,56 +4193,10 @@ export function parsePrimaryExpressionExtended(
     case Token.LessThan:
       if (context & Context.OptionsJSX)
         return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
-    case Token.Modulo:
-      if (context & Context.OptionsV8) return parseV8Intrinsic(parser, context, start, line, column);
     default:
       if (isValidIdentifier(context, parser.token)) return parseIdentifierOrArrow(parser, context, start, line, column);
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
-}
-
-/**
- * Parses V8 intrinsic
- *
- * @param parser  Parser object
- * @param context Context masks
- * @param inGroup
- * @param start
- * @param line
- * @param column
- */
-export function parseV8Intrinsic(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number
-): any {
-  // CallRuntime ::
-  //   '%' Identifier Arguments
-
-  nextToken(parser, context); // skips: '%'
-
-  const expr = v8IntrinsicIdentifier(parser, context);
-
-  if (parser.token !== Token.LeftParen) report(parser, Errors.Unexpected);
-
-  return parseMemberOrUpdateExpression(parser, context, expr, 0, 0, 0, start, line, column);
-}
-
-/**
- * Parses V8 intrinsic identifier
- *
- * @param parser  Parser object
- * @param context Context masks
- */
-export function v8IntrinsicIdentifier(parser: ParserState, context: Context): ESTree.Identifier {
-  const { tokenValue, tokenPos, linePos, colPos } = parser;
-  nextToken(parser, context);
-  return finishNode(parser, context, tokenPos, linePos, colPos, {
-    type: 'V8IntrinsicIdentifier',
-    name: tokenValue
-  } as any);
 }
 
 /**
@@ -4804,7 +4754,8 @@ export function parseFunctionDeclaration(
   context =
     ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
     Context.AllowNewTarget |
-    ((isAsync * 2 + isGenerator) << 21);
+    ((isAsync * 2 + isGenerator) << 21) |
+    (isGenerator ? 0 : Context.AllowEscapedKeyword);
 
   if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
 
@@ -4887,7 +4838,8 @@ export function parseFunctionExpression(
   context =
     ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
     Context.AllowNewTarget |
-    generatorAndAsyncFlags;
+    generatorAndAsyncFlags |
+    (isGenerator ? 0 : Context.AllowEscapedKeyword);
 
   if (scope) scope = addChildScope(scope, ScopeKind.FunctionParams);
 
@@ -5676,7 +5628,7 @@ export function parseObjectLiteralOrPattern(
    *   MethodDefinition
    */
 
-  nextToken(parser, context);
+  nextToken(parser, context | Context.AllowEscapedKeyword);
 
   const properties: (ESTree.Property | ESTree.SpreadElement)[] = [];
   let destructible: DestructuringKind | AssignmentKind = 0;
@@ -5708,7 +5660,7 @@ export function parseObjectLiteralOrPattern(
       let key: ESTree.Expression | null = null;
       let value;
 
-      if (parser.token & (Token.IsIdentifier | (parser.token & Token.Keyword))) {
+      if (parser.token & (Token.IsIdentifier | Token.Keyword)) {
         key = parseIdentifier(parser, context, 0);
 
         if (parser.token === Token.Comma || parser.token === Token.RightBrace || parser.token === Token.Assign) {
@@ -5904,8 +5856,6 @@ export function parseObjectLiteralOrPattern(
           }
           key = parseIdentifier(parser, context, 0);
 
-          if (token === Token.EscapedReserved) report(parser, Errors.UnexpectedStrictReserved);
-
           state |=
             token === Token.GetKeyword
               ? PropertyKind.Getter
@@ -5936,7 +5886,7 @@ export function parseObjectLiteralOrPattern(
           );
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.CannotDestruct;
-          if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapeIdentifier);
+
           if (token === Token.GetKeyword || token === Token.SetKeyword) {
             report(parser, Errors.InvalidGeneratorGetter);
           }
@@ -6539,7 +6489,7 @@ export function parseParenthesizedExpression(
 ): any {
   parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
-  nextToken(parser, context | Context.AllowRegExp);
+  nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
   const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
@@ -7647,15 +7597,13 @@ export function parseClassDeclaration(
   //   DecoratorList[?Yield, ?Await]optclassBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
   //   DecoratorList[?Yield, ?Await]optclassClassTail[?Yield, ?Await]
   //
-
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
-
-  let id: ESTree.Expression | null = null;
-  let superClass: ESTree.Expression | null = null;
 
   const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
 
   nextToken(parser, context);
+  let id: ESTree.Expression | null = null;
+  let superClass: ESTree.Expression | null = null;
 
   const { tokenValue } = parser;
 
@@ -8080,8 +8028,12 @@ function parseClassElementList(
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
     context = context | Context.InClass;
+  } else if (token === Token.EscapedFutureReserved) {
+    key = parseIdentifier(parser, context, 0);
+    if (parser.token !== Token.LeftParen)
+      report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   } else {
-    report(parser, Errors.Unexpected);
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 
   if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {
@@ -8092,6 +8044,8 @@ function parseClassElementList(
     } else if (parser.token === Token.LeftBracket) {
       kind |= PropertyKind.Computed;
       key = parseComputedPropertyName(parser, context, /* inGroup */ 0);
+    } else if (parser.token === Token.EscapedFutureReserved) {
+      key = parseIdentifier(parser, context, 0);
     } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
       key = parsePrivateName(parser, context, tokenPos, linePos, colPos);
@@ -8346,8 +8300,6 @@ function parseAndClassifyIdentifier(
       report(parser, Errors.StrictEvalArguments);
     } else if ((token & Token.FutureReserved) === Token.FutureReserved) {
       report(parser, Errors.FutureReservedWordInStrictModeNotId);
-    } else if (token === Token.EscapedFutureReserved) {
-      report(parser, Errors.InvalidEscapedKeyword);
     }
   }
 
@@ -8364,11 +8316,9 @@ function parseAndClassifyIdentifier(
   if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
     report(parser, Errors.AwaitOutsideAsync);
   }
-  if (token === Token.EscapedReserved) {
-    report(parser, Errors.InvalidEscapedKeyword);
-  }
 
   nextToken(parser, context);
+
   return finishNode(parser, context, start, line, column, {
     type: 'Identifier',
     name: tokenValue

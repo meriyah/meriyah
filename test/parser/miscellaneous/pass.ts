@@ -478,7 +478,6 @@ describe('Miscellaneous - Pass', () => {
     'function f() { for ( a ; ; ) { break } }',
     'for ( ; ; ) { break }',
     'for (a,b in c ;;) break',
-    'class aw\\u0061it {}',
     '{ a[5],6; {} ++b-new (-5)() } c().l++',
     'function f() { { a[5],6; {} ++b-new (-5)() } c().l++ }',
     '{ l1: l2: l3: { this } a = 32 ; { i++ ; { { { } } ++i } } }',
@@ -682,6 +681,51 @@ describe('Miscellaneous - Pass', () => {
     };
     b();
     {}`,
+    'for (const [{a, ...b}] of []) {}',
+    'for ([{a, ...b}] of []) {}',
+    'async function a() {for await ([{a, ...b}] of []) {}}',
+    'for ([{a}] in {}) {}',
+    'for ([{a}] of []) {}',
+    'async function a() { for await ([{a}] of []) {}}',
+    'for ([a, ...b] in {}) {}',
+    `for ([{
+      a
+    }] in {}) {}
+
+    for ([{
+      a
+    }] of []) {}
+
+    async function a() {
+      for await ([{
+        a
+      }] of []) {}
+    }
+
+    for ([a, ...b] in {}) {}
+
+    for ([a, ...b] of []) {}
+
+    async function a() {
+      for await ([a, ...b] of []) {}
+    }`,
+    `const [a, [{b, ...c}], {d, ...e}, [{ f, ...g}, {h: [i, {j, ...k}] }]] = x;`,
+    `function outer() {
+      var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {
+        return x;
+      };
+      return function () {
+        var x = "inside";
+        return a();
+      }();
+    }`,
+    `let x = "outside";
+    function outer(a = () => x) {
+      let x = "inside";
+      return a();
+    }`,
+    'for ([a, ...b] of []) {}',
+    'async function a() { for await ([a, ...b] of []) {}}',
     'for (var {a, b} in c);',
     'a(() => {})',
     'function a({b} = {b: 1}) {}',
@@ -689,6 +733,12 @@ describe('Miscellaneous - Pass', () => {
     var a = {
         '0': 'b'
     };`,
+    '[{ get y() { }, set y(val) { setValue = val; } }.y]',
+    'result = { x: { get y() {},set y(val) { setValue = val; } }.y} = vals;',
+    'for ([{ get y() {},set y(val) {setValue = val; } }.y = 42] of [[undefined]]) {}',
+    '[{ get y() { }, set y(val) { setValue = val; } }.y]',
+    '[{ get y() { }, set y(val) { setValue = val; } }.y]',
+    '[{ get y() { }, set y(val) { setValue = val; } }.y]',
     `let a = (x => (x, x * 2), 3);
   let b = ((x, y) => (x, x * y), 1);
   let c = (x => x * x)(2);

@@ -37,7 +37,7 @@ export const enum Context {
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
   OptionsSpecDeviation = 1 << 29,
-  OptionsV8 = 1 << 30,
+  AllowEscapedKeyword = 1 << 30,
 }
 
 /**
@@ -345,9 +345,9 @@ export function validateBindingIdentifier(
   t: Token,
   skipEvalArgCheck: 0 | 1
 ): void {
-  if ((t & Token.Keyword) !== Token.Keyword) return;
 
   if (context & Context.Strict) {
+
     if (t === Token.StaticKeyword) {
       report(parser, Errors.InvalidStrictStatic);
     }
@@ -360,9 +360,9 @@ export function validateBindingIdentifier(
       report(parser, Errors.StrictEvalArguments);
     }
 
-    if (t === Token.EscapedFutureReserved) {
+     if (t === Token.EscapedFutureReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
-    }
+     }
   }
 
   if ((t & Token.Reserved) === Token.Reserved) {
