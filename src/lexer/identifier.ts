@@ -72,17 +72,33 @@ export function scanIdentifierSlowCase(
 
   if (isValidAsKeyword && (length >= 2 && length <= 11)) {
     const token: Token | undefined = descKeywordTable[parser.tokenValue];
+    if (token === void 0) return Token.Identifier;
+    if (!hasEscape) return token;
 
-    return token === void 0
-      ? Token.Identifier
-      : token === Token.YieldKeyword || !hasEscape
-      ? token
-      : context & Context.Strict && (token === Token.LetKeyword || token === Token.StaticKeyword)
-      ? Token.EscapedFutureReserved
-      : (token & Token.FutureReserved) === Token.FutureReserved
-      ? context & Context.Strict
+    if (context & Context.Strict) {
+      return token === Token.AwaitKeyword && (context & (Context.Module | Context.InAwaitContext)) === 0
+        ? token
+        : token === Token.StaticKeyword
         ? Token.EscapedFutureReserved
-        : token
+        : (token & Token.FutureReserved) === Token.FutureReserved
+        ? Token.EscapedFutureReserved
+        : Token.EscapedReserved;
+    }
+
+    if (token === Token.YieldKeyword) {
+      return context & Context.AllowEscapedKeyword
+        ? Token.AnyIdentifier
+        : context & Context.InYieldContext
+        ? Token.EscapedReserved
+        : token;
+    }
+
+    return token === Token.AsyncKeyword && context & Context.AllowEscapedKeyword
+      ? Token.AnyIdentifier
+      : (token & Token.FutureReserved) === Token.FutureReserved
+      ? token
+      : token === Token.AwaitKeyword && (context & Context.InAwaitContext) === 0
+      ? token
       : Token.EscapedReserved;
   }
   return Token.Identifier;

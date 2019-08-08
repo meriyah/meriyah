@@ -19,6 +19,8 @@ describe('Miscellaneous - Failure', () => {
     ` for await (a of b) let
     [] = y`,
     'for (a of b) let [x] = y',
+    '({1: ({}) += (1)});',
+    '({1: ({}) = (1)});',
     'x/{c:/ /=>',
     '+{f(){}==',
     '0xabcinstanceof x',
@@ -1078,9 +1080,6 @@ describe('Miscellaneous - Failure', () => {
     '[...b,] = []',
     'switch (x) { something }',
     'function *f(){ return 5 + yield x; }',
-    '({ \\u0061sync x() { await x } })',
-    'for (x \\u006ff y) {}',
-    'class X { st\\u0061tic y() {} }',
     '(x=1)=2',
     `function *f(){ return function(x = yield y){}; }`,
     'yield (await foo)',

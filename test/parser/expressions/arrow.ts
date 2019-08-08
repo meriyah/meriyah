@@ -519,6 +519,8 @@ describe('Expressions - Arrow', () => {
   }
 
   fail('Expressions - Array (fail)', [
+    ['"use strict"; let => {}', Context.OptionsLexical],
+    ['let => {}', Context.Strict | Context.Module],
     ['function *a() { yield => foo }', Context.None],
     ['yield x => zoo', Context.None],
     ['foo bar => zoo', Context.None],
