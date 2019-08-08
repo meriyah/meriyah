@@ -273,7 +273,7 @@
       [93]: 'Illegal return statement',
       [94]: 'The for-header left hand side binding declaration is not destructible',
       [95]: 'new.target only allowed within functions',
-      [96]: 'Kasdfafdsadfsy, without embedded escapes',
+      [96]: "'Unexpected token: 'Escaped keyword'",
       [97]: "'#' not followed by identifier",
       [98]: '`Static` is a reserved word in strict mode',
       [100]: 'The use of a future reserved word for an identifier is invalid. The identifier name is reserved in strict mode',
