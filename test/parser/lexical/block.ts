@@ -16,6 +16,7 @@ describe('Lexical - Block', () => {
     ['var x; let x;', Context.OptionsLexical],
     ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
     ['{ { var f; } function* f() {}; }', Context.OptionsLexical],
+
     ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
     ['{ async function f() {} class f {} }', Context.OptionsLexical],
     ['{ async function f() {} function f() {} }', Context.OptionsLexical],
@@ -122,6 +123,7 @@ describe('Lexical - Block', () => {
     ['{ function *foo() {}; function *foo() {}; }', Context.OptionsLexical],
     ['{ function *foo() {}; function *bar() {}; function *foo() {}; }', Context.OptionsLexical],
     ['{ function* f() {} function* f() {} }', Context.OptionsLexical],
+    ['{ function* f() {} function* f() {} }', Context.OptionsLexical | Context.Strict],
     ['{ function* f() {} let f; }', Context.OptionsLexical],
     ['{ function* f() {} var f; }', Context.OptionsLexical],
     ['{ function f(){} function f(){} }', Context.OptionsLexical],
@@ -238,6 +240,8 @@ describe('Lexical - Block', () => {
     'function f() {}  var f;',
     '{ function a(){} function a(){} }',
     '{ var a; { let a; } }',
+    '{ async function* f() {} function f() {} }',
+    '{ function* f() {} async function f() {} }',
     `{
       let result;
       let x = 1;

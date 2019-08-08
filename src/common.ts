@@ -348,15 +348,49 @@ export function validateBindingIdentifier(
 
   if (context & Context.Strict) {
 
-    if (t === Token.StaticKeyword) {
-      report(parser, Errors.InvalidStrictStatic);
-    }
-
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
-      report(parser, Errors.FutureReservedWordInStrictModeNotId);
+      report(parser, Errors.UnexpectedStrictReserved);
     }
 
     if (!skipEvalArgCheck && (t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+      report(parser, Errors.StrictEvalArguments);
+    }
+  }
+
+  if ((t & Token.Reserved) === Token.Reserved) {
+    report(parser, Errors.KeywordNotId);
+  }
+
+  // The BoundNames of LexicalDeclaration and ForDeclaration must not
+  // contain 'let'. (CatchParameter is the only lexical binding form
+  // without this restriction.)
+  if (kind & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
+    report(parser, Errors.InvalidLetConstBinding);
+  }
+
+  if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
+    report(parser, Errors.AwaitOutsideAsync);
+  }
+
+  if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
+    report(parser, Errors.DisallowedInContext, 'yield');
+  }
+}
+
+export function validateFunctionName(
+  parser: ParserState,
+  context: Context,
+  _kind: BindingKind,
+  t: Token
+): void {
+
+  if (context & Context.Strict) {
+
+    if ((t & Token.FutureReserved) === Token.FutureReserved) {
+      report(parser, Errors.UnexpectedStrictReserved);
+    }
+
+    if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);
     }
 
@@ -371,13 +405,6 @@ export function validateBindingIdentifier(
 
   if ((t & Token.Reserved) === Token.Reserved) {
     report(parser, Errors.KeywordNotId);
-  }
-
-  // The BoundNames of LexicalDeclaration and ForDeclaration must not
-  // contain 'let'. (CatchParameter is the only lexical binding form
-  // without this restriction.)
-  if (kind & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
-    report(parser, Errors.InvalidLetConstBinding);
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
