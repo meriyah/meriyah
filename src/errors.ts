@@ -213,6 +213,7 @@ export const errorMessages: {
   [Errors.InvalidSuperProperty]: 'Member access on super must be in a method',
   [Errors.AwaitInParameter]: 'Await expression not allowed in formal parameter',
   [Errors.YieldInParameter]: 'Yield expression not allowed in formal parameter',
+  [Errors.InvalidEscapedKeyword]: 'Keywords must be written literally, without embedded escapes',
   [Errors.InvalidExponentationLHS]:
     'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
   [Errors.AsyncFunctionInSingleStatementContext]:

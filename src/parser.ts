@@ -1068,7 +1068,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
     );
   } else {
     if (parser.token === Token.Arrow) {
-      classifyIdentifier(parser, context, token, /* isArrow */ 1, /* shouldBanEscaped */ 1);
+      classifyIdentifier(parser, context, token, /* isArrow */ 1);
       expr = parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, 0, 1, 0, start, line, column);
     }
 
@@ -3452,7 +3452,7 @@ export function parseAsyncExpression(
   }
 
   if (parser.token === Token.Arrow) {
-    classifyIdentifier(parser, context, token, /* isArrow */ 1, /* shouldBanEscaped */ 1);
+    classifyIdentifier(parser, context, token, /* isArrow */ 1);
     if (inNewExpression) report(parser, Errors.InvalidAsyncArrow);
     return parseArrowFromIdentifier(
       parser,
@@ -4099,7 +4099,7 @@ export function parsePrimaryExpressionExtended(
     const expr = parseIdentifier(parser, context | Context.TaggedTemplate, identifierPattern);
 
     if (parser.token === Token.Arrow) {
-      classifyIdentifier(parser, context, token, /* isArrow */ 1, /* shouldBanEscaped */ 1);
+      classifyIdentifier(parser, context, token, /* isArrow */ 1);
       return parseArrowFromIdentifier(
         parser,
         context,
