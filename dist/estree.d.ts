@@ -147,6 +147,7 @@ export interface ClassBody extends _Node {
     body: (ClassElement | FieldDefinition)[];
 }
 export interface FieldDefinition extends _Node {
+    type: 'FieldDefinition';
     key: PrivateName | Expression;
     value: any;
     decorators?: Decorator[] | null;
