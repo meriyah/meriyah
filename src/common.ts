@@ -745,3 +745,36 @@ export function pushComment(context: Context, array: any[]): any {
     array.push(comment);
   };
 }
+
+export function isValidIdentifier(context: Context, t: Token): boolean {
+  if (context & (Context.Strict | Context.InYieldContext)) {
+    // Module code is also "strict mode code"
+    if (context & Context.Module && t === Token.AwaitKeyword) return false;
+    if (context & Context.InYieldContext && t === Token.YieldKeyword) return false;
+    return (t & Token.IsIdentifier) === Token.IsIdentifier || (t & Token.Contextual) === Token.Contextual;
+  }
+
+  return (
+    (t & Token.IsIdentifier) === Token.IsIdentifier ||
+    (t & Token.Contextual) === Token.Contextual ||
+    (t & Token.FutureReserved) === Token.FutureReserved
+  );
+}
+
+export function classifyIdentifier(
+  parser: ParserState,
+  context: Context,
+  t: Token,
+  isArrow: 0 | 1,
+  shouldBanEscaped: 0 | 1
+): any {
+  if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+    if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
+    if (isArrow) parser.flags |= Flags.StrictEvalArguments;
+  }
+
+  if (shouldBanEscaped && (t & Token.EscapedReserved) === Token.EscapedReserved) {
+    report(parser, Errors.InvalidEscapedKeyword);
+  }
+  if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
+}
