@@ -5628,7 +5628,7 @@ export function parseObjectLiteralOrPattern(
    *   MethodDefinition
    */
 
-  nextToken(parser, context | Context.AllowEscapedKeyword);
+  nextToken(parser, context);
 
   const properties: (ESTree.Property | ESTree.SpreadElement)[] = [];
   let destructible: DestructuringKind | AssignmentKind = 0;
@@ -6548,8 +6548,30 @@ export function parseParenthesizedExpression(
     } else if ((token & Token.IsPatternStart) === Token.IsPatternStart) {
       expr =
         token === Token.LeftBrace
-          ? parseObjectLiteralOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos)
-          : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, kind, origin, tokenPos, linePos, colPos);
+          ? parseObjectLiteralOrPattern(
+              parser,
+              context | Context.AllowEscapedKeyword,
+              scope,
+              0,
+              1,
+              kind,
+              origin,
+              tokenPos,
+              linePos,
+              colPos
+            )
+          : parseArrayExpressionOrPattern(
+              parser,
+              context | Context.AllowEscapedKeyword,
+              scope,
+              0,
+              1,
+              kind,
+              origin,
+              tokenPos,
+              linePos,
+              colPos
+            );
 
       destructible |= parser.destructible;
 

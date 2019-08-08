@@ -51,6 +51,9 @@ describe('Miscellaneous - Escaped keywords', () => {
     'aw\\u0061it: 1;',
     'function *a(){({yi\\u0065ld: 0})}',
     '\\u0061sync',
+    // '({i\\u0066: 0})',
+    'l\\u0065t\na',
+    'l\\u0065t',
     `function a() {
       \\u0061sync
       p => {}
@@ -181,7 +184,6 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['var gen = async function *g() { yi\\u0065ld: ; };', Context.None],
     ['function *gen() { yi\\u0065ld: ; }', Context.None],
     ['(function *gen() { yi\\u0065ld: ; })', Context.None],
-
     ['i\\u0066 (0)', Context.None],
     ['var i\\u0066', Context.None],
     ['export {a \\u0061s b} from "";', Context.Strict | Context.Module],
@@ -189,7 +191,6 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['for (a o\\u0066 b);', Context.None],
     ['class a { st\\u0061tic m(){} }', Context.None],
     ['var \\u{64}\\u{6f} = 123;', Context.None],
-    ['(async function() { aw\\u0061it x })', Context.None],
     ['(\\u0061sync function() { await x })', Context.None],
     ['(\\u0061sync () => { await x })', Context.None],
     ['\\u0061sync x => { await x }', Context.None],
@@ -200,7 +201,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['({ \\u0061sync x() { await x } })', Context.None],
     ['for (x \\u006ff y) {}', Context.None],
     ['(async function() { aw\\u0061it x })', Context.None],
-    // ['(function*() { var y\\u0069eld = 1; })()', Context.None],
+    ['(function*() { var y\\u0069eld = 1; })()', Context.None],
     ['(function*() { y\\u0069eld 1; })()', Context.None],
     ['w\\u0069th (this.scope) { }', Context.None],
     ['wh\\u0069le (true) { }', Context.None],
@@ -230,9 +231,8 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['var C = class aw\\u0061it {};', Context.Strict | Context.Module],
     ['var C = class aw\\u0061it {};', Context.Strict | Context.Module],
     ['class aw\\u0061it {}', Context.Strict | Context.Module],
-
     ['var gen = async function *() { var yi\\u0065ld; };', Context.None],
-    ['var obj = { *method() { void yi\\u0065ld; } };', Context.None]
-    //    ['var gen = function *g() { yi\\u0065ld: ; };', Context.None],
+    ['var obj = { *method() { void yi\\u0065ld; } };', Context.None],
+    ['var gen = function *g() { yi\\u0065ld: ; };', Context.None]
   ]);
 });

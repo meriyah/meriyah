@@ -74,11 +74,11 @@ export function scanIdentifierSlowCase(
     const token: Token | undefined = descKeywordTable[parser.tokenValue];
     if (token === void 0) return Token.Identifier;
     if (!hasEscape) return token;
-    if (context & Context.Strict) {
-      if (token === Token.AwaitKeyword)
-        return context & (Context.Module | Context.InAwaitContext) ? Token.EscapedReserved : token;
 
-      return token === Token.StaticKeyword
+    if (context & Context.Strict) {
+      return token === Token.AwaitKeyword && (context & (Context.Module | Context.InAwaitContext)) === 0
+        ? token
+        : token === Token.StaticKeyword
         ? Token.EscapedFutureReserved
         : (token & Token.FutureReserved) === Token.FutureReserved
         ? Token.EscapedFutureReserved
@@ -86,21 +86,20 @@ export function scanIdentifierSlowCase(
     }
 
     if (token === Token.YieldKeyword) {
-      if (context & Context.AllowEscapedKeyword) return Token.ReservedIfStrict;
-
-      return context & Context.InYieldContext ? Token.EscapedReserved : token;
-    }
-    if (token === Token.AwaitKeyword) return context & Context.InAwaitContext ? Token.EscapedReserved : token;
-    if (token === Token.AsyncKeyword) {
-      if (context & Context.AllowEscapedKeyword) return Token.Identifier;
+      return context & Context.AllowEscapedKeyword
+        ? Token.ReservedIfStrict
+        : context & Context.InYieldContext
+        ? Token.EscapedReserved
+        : token;
     }
 
-    if ((token & Token.FutureReserved) === Token.FutureReserved) {
-      if (context & Context.Strict) return Token.EscapedFutureReserved;
-      return token;
-    }
-
-    return Token.EscapedReserved;
+    return token === Token.AsyncKeyword && context & Context.AllowEscapedKeyword
+      ? Token.Identifier
+      : (token & Token.FutureReserved) === Token.FutureReserved
+      ? token
+      : token === Token.AwaitKeyword && (context & Context.InAwaitContext) === 0
+      ? token
+      : Token.EscapedReserved;
   }
   return Token.Identifier;
 }
