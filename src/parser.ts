@@ -4678,18 +4678,18 @@ export function parseFunctionDeclaration(
   } else {
     // In ES6, a function behaves as a lexical binding, except in
     // a script scope, or the initial scope of eval or another function.
-    const type =
+    const kind =
       origin & Origin.TopLevel && ((context & Context.InGlobal) < 1 || (context & Context.Module) < 1)
         ? BindingKind.Variable
         : BindingKind.FunctionLexical;
 
-    validateFunctionName(parser, context | ((context & 0b0000000000000000000_1100_00000000) << 11), type, parser.token);
+    validateFunctionName(parser, context | ((context & 0b0000000000000000000_1100_00000000) << 11), parser.token);
 
     if (scope) {
-      if (type & BindingKind.Variable) {
-        addVarName(parser, context, scope as ScopeState, parser.tokenValue, type);
+      if (kind & BindingKind.Variable) {
+        addVarName(parser, context, scope as ScopeState, parser.tokenValue, kind);
       } else {
-        addBlockName(parser, context, scope, parser.tokenValue, type, origin);
+        addBlockName(parser, context, scope, parser.tokenValue, kind, origin);
       }
 
       functionScope = addChildScope(functionScope, ScopeKind.FunctionRoot);
@@ -4778,12 +4778,7 @@ export function parseFunctionExpression(
   let scope = context & Context.OptionsLexical ? createScope() : void 0;
 
   if ((parser.token & (Token.IsIdentifier | Token.Keyword | Token.FutureReserved)) > 0) {
-    validateFunctionName(
-      parser,
-      ((context | 0x1ec0000) ^ 0x1ec0000) | generatorAndAsyncFlags,
-      BindingKind.Variable,
-      parser.token
-    );
+    validateFunctionName(parser, ((context | 0x1ec0000) ^ 0x1ec0000) | generatorAndAsyncFlags, parser.token);
 
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionRoot);
 

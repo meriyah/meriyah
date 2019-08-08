@@ -380,7 +380,6 @@ export function validateBindingIdentifier(
 export function validateFunctionName(
   parser: ParserState,
   context: Context,
-  _kind: BindingKind,
   t: Token
 ): void {
 
