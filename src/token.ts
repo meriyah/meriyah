@@ -170,9 +170,9 @@ export const enum Token {
   Eval               = 116 | IsEvalOrArguments,
   Arguments          = 117 | IsEvalOrArguments,
 
-  EscapedReserved       = 118 | IsIdentifier,
-  EscapedFutureReserved = 119 | IsIdentifier,
-  ReservedIfStrict      = 120 | IsIdentifier,
+  EscapedReserved       = 118,
+  EscapedFutureReserved = 119,
+  AnyIdentifier      = 120 | IsIdentifier,
 
   // Stage #3 proposals
   PrivateName        = 121,
@@ -234,7 +234,7 @@ export const KeywordDescTable = [
   'as', 'async', 'await', 'constructor', 'get', 'set', 'from', 'of',
 
   /* Others */
-  'enum', 'eval', 'arguments', 'escaped reserved', 'escaped future reserved', 'reserved if strict', '#',
+  'enum', 'eval', 'arguments', 'escaped keyword', 'escaped future reserved keyword', 'reserved if strict', '#',
 
   'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField',
 

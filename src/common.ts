@@ -37,7 +37,7 @@ export const enum Context {
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
   OptionsSpecDeviation = 1 << 29,
-  OptionsV8 = 1 << 30,
+  AllowEscapedKeyword = 1 << 30,
 }
 
 /**
@@ -345,23 +345,15 @@ export function validateBindingIdentifier(
   t: Token,
   skipEvalArgCheck: 0 | 1
 ): void {
-  if ((t & Token.Keyword) !== Token.Keyword) return;
 
   if (context & Context.Strict) {
-    if (t === Token.StaticKeyword) {
-      report(parser, Errors.InvalidStrictStatic);
-    }
 
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
-      report(parser, Errors.FutureReservedWordInStrictModeNotId);
+      report(parser, Errors.UnexpectedStrictReserved);
     }
 
     if (!skipEvalArgCheck && (t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);
-    }
-
-    if (t === Token.EscapedFutureReserved) {
-      report(parser, Errors.InvalidEscapedKeyword);
     }
   }
 
@@ -383,9 +375,43 @@ export function validateBindingIdentifier(
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
     report(parser, Errors.DisallowedInContext, 'yield');
   }
+}
 
-  if (t === Token.EscapedReserved) {
-    report(parser, Errors.InvalidEscapedKeyword);
+export function validateFunctionName(
+  parser: ParserState,
+  context: Context,
+  t: Token
+): void {
+
+  if (context & Context.Strict) {
+
+    if ((t & Token.FutureReserved) === Token.FutureReserved) {
+      report(parser, Errors.UnexpectedStrictReserved);
+    }
+
+    if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
+      report(parser, Errors.StrictEvalArguments);
+    }
+
+     if (t === Token.EscapedFutureReserved) {
+      report(parser, Errors.InvalidEscapedKeyword);
+     }
+
+     if (t === Token.EscapedReserved) {
+      report(parser, Errors.InvalidEscapedKeyword);
+     }
+  }
+
+  if ((t & Token.Reserved) === Token.Reserved) {
+    report(parser, Errors.KeywordNotId);
+  }
+
+  if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
+    report(parser, Errors.AwaitOutsideAsync);
+  }
+
+  if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
+    report(parser, Errors.DisallowedInContext, 'yield');
   }
 }
 
@@ -765,16 +791,12 @@ export function classifyIdentifier(
   parser: ParserState,
   context: Context,
   t: Token,
-  isArrow: 0 | 1,
-  shouldBanEscaped: 0 | 1
+  isArrow: 0 | 1
 ): any {
   if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
     if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
     if (isArrow) parser.flags |= Flags.StrictEvalArguments;
   }
 
-  if (shouldBanEscaped && (t & Token.EscapedReserved) === Token.EscapedReserved) {
-    report(parser, Errors.InvalidEscapedKeyword);
-  }
   if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
 }

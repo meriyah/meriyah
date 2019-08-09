@@ -52,7 +52,6 @@ describe('Expressions - Object', () => {
     'if (false) {} else if (true) { ({x=1}) }',
     "switch ('c') { case 'c': ({x=1}); }",
     'for ({x=1}; 1;) {1}',
-    '({ \\u0061sync* m(){}});',
     'for ({x={y=2}}; 1;) {1}',
     'for (var x = 0; x < 2; x++) { ({x=1, y=2}) }',
     'for (let x=1;{x=1};){}',

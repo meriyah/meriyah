@@ -13,7 +13,6 @@ describe('Lexical - AnnexB', () => {
     ['let x; var x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
     ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext]
   ]);
 
