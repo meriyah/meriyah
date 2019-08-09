@@ -32,7 +32,7 @@ export declare const enum Context {
     DisallowIn = 134217728,
     OptionsIdentifierPattern = 268435456,
     OptionsSpecDeviation = 536870912,
-    OptionsV8 = 1073741824
+    AllowEscapedKeyword = 1073741824
 }
 export declare const enum PropertyKind {
     None = 0,
@@ -173,6 +173,7 @@ export declare function consumeOpt(parser: ParserState, context: Context, t: Tok
 export declare function consume(parser: ParserState, context: Context, t: Token): void;
 export declare function reinterpretToPattern(state: ParserState, node: any): void;
 export declare function validateBindingIdentifier(parser: ParserState, context: Context, kind: BindingKind, t: Token, skipEvalArgCheck: 0 | 1): void;
+export declare function validateFunctionName(parser: ParserState, context: Context, t: Token): void;
 export declare function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean;
 export declare function isPropertyWithPrivateFieldKey(expr: any): boolean;
 export declare function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1;
@@ -189,5 +190,5 @@ export declare function updateExportsList(parser: ParserState, name: string): vo
 export declare function addBindingToExports(parser: ParserState, name: string): void;
 export declare function pushComment(context: Context, array: any[]): any;
 export declare function isValidIdentifier(context: Context, t: Token): boolean;
-export declare function classifyIdentifier(parser: ParserState, context: Context, t: Token, isArrow: 0 | 1, shouldBanEscaped: 0 | 1): any;
+export declare function classifyIdentifier(parser: ParserState, context: Context, t: Token, isArrow: 0 | 1): any;
 //# sourceMappingURL=common.d.ts.map
