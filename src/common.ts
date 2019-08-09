@@ -393,11 +393,11 @@ export function validateFunctionName(
       report(parser, Errors.StrictEvalArguments);
     }
 
-     if (t === Token.EscapedFutureReserved) {
+    if (t === Token.EscapedFutureReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
      }
 
-     if (t === Token.EscapedReserved) {
+    if (t === Token.EscapedReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
      }
   }
@@ -613,8 +613,7 @@ export function addVarOrBlock(
     addBlockName(parser, context, scope, name, kind, origin);
   }
   if (origin & Origin.Export) {
-    updateExportsList(parser, name);
-    addBindingToExports(parser, name);
+    declareUnboundVariable(parser, name);
   }
 }
 
@@ -734,7 +733,7 @@ export function addVarName(
  * @param parser Parser object
  * @param name Exported name
  */
-export function updateExportsList(parser: ParserState, name: string): void {
+export function declareUnboundVariable(parser: ParserState, name: string): void {
   if (parser.exportedNames !== void 0 && name !== '') {
     if (parser.exportedNames['#' + name]) {
       report(parser, Errors.DuplicateExportBinding, name);

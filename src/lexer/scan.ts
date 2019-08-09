@@ -503,7 +503,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // Look for a decimal number.
         case Token.NumericLiteral:
-          return scanNumber(parser, context, NumberKind.Decimal);
+          return scanNumber(parser, context, NumberKind.Decimal | NumberKind.ValidBigIntKind);
 
         // Look for a string literal
         case Token.StringLiteral:

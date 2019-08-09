@@ -3,7 +3,9 @@ import { fail } from '../../test-utils';
 
 describe('Next - Numeric separators', () => {
   fail('Next - Numeric separators (fail)', [
+    ['0_', Context.OptionsNext],
     ['1_0_0_0_', Context.OptionsNext],
+    ['09_0;', Context.OptionsNext],
     ['1e_1', Context.OptionsNext],
     ['1e+_1', Context.OptionsNext],
     ['1_e+1', Context.OptionsNext],
