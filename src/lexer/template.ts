@@ -31,20 +31,20 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
           ret = undefined;
           char = scanBadTemplate(parser, char);
-          if (char < 0) {
-            tail = 0;
-          }
+          if (char < 0) tail = 0;
           break;
         } else {
           handleStringError(parser, code as Escape, /* isTemplate */ 1);
         }
       }
     } else {
-      if (char === Chars.CarriageReturn) {
-        if (parser.index < parser.end && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
-          ret += fromCodePoint(char);
-          parser.currentChar = parser.source.charCodeAt(++parser.index);
-        }
+      if (
+        parser.index < parser.end &&
+        char === Chars.CarriageReturn &&
+        parser.source.charCodeAt(parser.index) === Chars.LineFeed
+      ) {
+        ret += fromCodePoint(char);
+        parser.currentChar = parser.source.charCodeAt(++parser.index);
       }
 
       if (((char & 83) < 3 && char === Chars.LineFeed) || (char ^ Chars.LineSeparator) <= 1) {
