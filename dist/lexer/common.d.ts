@@ -10,10 +10,10 @@ export declare const enum NumberKind {
     Octal = 4,
     Hex = 8,
     Decimal = 16,
-    DecimalWithLeadingZero = 32,
+    NonOctalDecimal = 32,
     Float = 64,
-    DecimalNumberKind = 48,
-    ValidBigIntKind = 62
+    ValidBigIntKind = 128,
+    DecimalNumberKind = 48
 }
 export declare function advanceChar(parser: ParserState): number;
 export declare function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 1;

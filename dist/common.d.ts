@@ -186,7 +186,7 @@ export declare function addChildScope(parent: ScopeState | undefined, type: Scop
 export declare function addVarOrBlock(parser: ParserState, context: Context, scope: ScopeState, name: string, kind: BindingKind, origin: Origin): void;
 export declare function addBlockName(parser: ParserState, context: Context, scope: any, name: string, kind: BindingKind, origin: Origin): void;
 export declare function addVarName(parser: ParserState, context: Context, scope: ScopeState, name: string, kind: BindingKind): void;
-export declare function updateExportsList(parser: ParserState, name: string): void;
+export declare function declareUnboundVariable(parser: ParserState, name: string): void;
 export declare function addBindingToExports(parser: ParserState, name: string): void;
 export declare function pushComment(context: Context, array: any[]): any;
 export declare function isValidIdentifier(context: Context, t: Token): boolean;
