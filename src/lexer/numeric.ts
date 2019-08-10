@@ -33,7 +33,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
 
       // Hex
       if ((char | 32) === Chars.LowerX) {
-        kind = NumberKind.Hex;
+        kind = NumberKind.Hex | NumberKind.ValidBigIntKind;
         char = advanceChar(parser); // skips 'X', 'x'
         while (CharTypes[char] & (CharFlags.Hex | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -53,7 +53,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         }
         // Octal
       } else if ((char | 32) === Chars.LowerO) {
-        kind = NumberKind.Octal;
+        kind = NumberKind.Octal | NumberKind.ValidBigIntKind;
         char = advanceChar(parser); // skips 'X', 'x'
         while (CharTypes[char] & (CharFlags.Octal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -73,7 +73,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
         }
       } else if ((char | 32) === Chars.LowerB) {
-        kind = NumberKind.Binary;
+        kind = NumberKind.Binary | NumberKind.ValidBigIntKind;
         char = advanceChar(parser); // skips 'B', 'b'
         while (CharTypes[char] & (CharFlags.Binary | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
@@ -98,7 +98,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         kind = NumberKind.ImplicitOctal;
         while (CharTypes[char] & CharFlags.Decimal) {
           if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
-            kind = NumberKind.DecimalWithLeadingZero;
+            kind = NumberKind.NonOctalDecimal;
             atStart = 0;
             break;
           }
@@ -107,8 +107,8 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         }
       } else if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
-        else parser.flags = Flags.Octals;
-        kind = NumberKind.DecimalWithLeadingZero;
+        parser.flags |= Flags.Octals;
+        kind = NumberKind.NonOctalDecimal;
       } else if (char === Chars.Underscore) {
         report(parser, Errors.Unexpected);
       }
@@ -120,7 +120,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         while (digit >= 0 && CharTypes[char] & (CharFlags.Decimal | CharFlags.Underscore)) {
           if (char === Chars.Underscore) {
             char = advanceChar(parser);
-            if (char === Chars.Underscore) {
+            if (char === Chars.Underscore || kind & NumberKind.NonOctalDecimal) {
               reportScannerError(
                 parser.index,
                 parser.line,
@@ -210,7 +210,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
   parser.tokenValue =
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
       ? value
-      : kind & NumberKind.DecimalWithLeadingZero
+      : kind & NumberKind.NonOctalDecimal
       ? parseFloat(parser.source.substring(parser.tokenPos, parser.index))
       : +value;
 

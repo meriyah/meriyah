@@ -15,10 +15,10 @@ export const enum NumberKind {
   Octal = 1 << 2,
   Hex = 1 << 3,
   Decimal = 1 << 4,
-  DecimalWithLeadingZero = 1 << 5,
+  NonOctalDecimal = 1 << 5,
   Float = 1 << 6,
-  DecimalNumberKind = Decimal | DecimalWithLeadingZero,
-  ValidBigIntKind = Binary | Decimal | Hex | Octal | DecimalWithLeadingZero
+  ValidBigIntKind = 1 << 7,
+  DecimalNumberKind = Decimal | NonOctalDecimal
 }
 
 /**

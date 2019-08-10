@@ -188,11 +188,12 @@ export const enum Token {
   Template          = 129,
   Decorator         = 130,
   Target            = 131 | IsIdentifier,
-  LineFeed          = 132,
-  EscapedIdentifier = 133,
+  Meta              = 132 | IsIdentifier,
+  LineFeed          = 133,
+  EscapedIdentifier = 134,
 
   // JSX
-  JSXText           = 134,
+  JSXText           = 135,
 }
 
 export const KeywordDescTable = [
@@ -238,7 +239,7 @@ export const KeywordDescTable = [
 
   'BigIntLiteral', '??', '?.', 'WhiteSpace', 'Illegal', 'LineTerminator', 'PrivateField',
 
-  'Template', '@', 'target', 'LineFeed', 'Escaped', 'JSXText'
+  'Template', '@', 'target', 'meta', 'LineFeed', 'Escaped', 'JSXText'
 ];
 
 // Normal object is much faster than Object.create(null), even with typeof check to avoid Object.prototype interference
@@ -299,4 +300,5 @@ export const descKeywordTable: { [key: string]: Token } = Object.create(null, {
   as: { value: Token.AsKeyword },
   arguments: { value: Token.Arguments },
   target: { value: Token.Target },
+  meta: { value: Token.Meta },
 });

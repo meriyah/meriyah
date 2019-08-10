@@ -251,6 +251,10 @@ describe('Module - Export', () => {
     ["export * as let from 'bar'", Context.Strict | Context.Module],
     ["export * as static from 'bar'", Context.Strict | Context.Module],
     ["export * as yield from 'bar'", Context.Strict | Context.Module],
+    [
+      'var x; export { x as z }; export * as z from "string";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
     ['export {', Context.Strict | Context.Module],
     ['export *;', Context.Strict | Context.Module],
     ['export * as;', Context.Strict | Context.Module],
@@ -341,6 +345,7 @@ describe('Module - Export', () => {
     ['var a,b; export {a}; export {a, b};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export {b as a}; export {a};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export {a}; export {b as a};', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export { x as y };', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export function f(){}; function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export function f(){}; async function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export function f(){}; class f{};', Context.Strict | Context.Module | Context.OptionsLexical],
@@ -729,6 +734,14 @@ describe('Module - Export', () => {
       //-
       };
       export/**/{/**/};`,
+    `import {} from 'a';
+      import 'b';
+      import * as ns1 from 'c';
+      import dflt1 from 'd';
+      export {} from 'e';
+      import dflt2, {} from 'f';
+      export * from 'g';
+      import dflt3, * as ns2 from 'h';`,
     'var a; export { a as b };',
     'export default 1',
     'export default () => {}'
@@ -770,11 +783,10 @@ describe('Module - Export', () => {
     'export * from "foo";',
     'export {default} from "foo";',
     'export {foo as bar} from "foo";',
-    'export function *foo () {}'
-    //"export {thing}; import thing from 'a.js';",
-    //"export {thing}; import {thing} from 'a.js';",
-    //"export {thing}; import * as thing from 'a.js';",
-    //'export { x as y };',
+    'export function *foo () {}',
+    "export {thing}; import thing from 'a.js';",
+    "export {thing}; import {thing} from 'a.js';",
+    "export {thing}; import * as thing from 'a.js';"
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
