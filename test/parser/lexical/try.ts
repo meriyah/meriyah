@@ -3,7 +3,7 @@ import { fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Miscellaneous - Try', () => {
+describe('Lexical - Try', () => {
   for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.doesNotThrow(() => {
@@ -68,8 +68,9 @@ describe('Miscellaneous - Try', () => {
     });
   }
 
-  fail('Statements - Try (fail)', [
+  fail('Lexical - Try (fail)', [
     ['try {} catch (arguments) { }', Context.OptionsLexical | Context.Strict],
+    ['try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}', Context.OptionsLexical | Context.Strict],
     ['try {} catch (arguments) { }', Context.Strict],
     ['try {} catch (e) { for (var e in y) {} }', Context.OptionsLexical],
     ['try {} catch (e) { for (var e;;) {} }', Context.OptionsLexical],
@@ -261,6 +262,7 @@ describe('Miscellaneous - Try', () => {
     'try { } catch (e) { function f(){} function f(){} }',
     'try {} catch (foo) { var foo; }',
     'try {} catch (e) { for (var e of y) {} }',
+    'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}',
     'try { } catch (e) { function *f(){} function *f(){} }'
   ]) {
     it(`${arg}`, () => {

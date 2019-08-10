@@ -170,7 +170,10 @@ describe('Expressions - Object', () => {
     '{[d]: {}[d] += a}',
     '{"d": {}[d] += a}',
     '{"d": {}[x ? y : z] += a}',
-    '{d: {}[x ? y : z] += a}'
+    '{d: {}[x ? y : z] += a}',
+    '{ b: c.d === e ? f : g }',
+    '{ "b": c.d === e ? f : g }',
+    '{ [b]: c.d === e ? f : g }'
   ]) {
     it(`'use strict'; x = ${arg}`, () => {
       t.doesNotThrow(() => {

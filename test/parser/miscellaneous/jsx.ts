@@ -8,6 +8,7 @@ describe('Miscellaneous - JSX', () => {
     '<Component {...x}></Component>;',
     '<Component.Test />;',
     '<div>{...this.props.children}</div>;',
+    '{foo && <Something foo={foo} /> }',
     '<Component:Test />;',
     '<Component.Test />;',
     `<></>;

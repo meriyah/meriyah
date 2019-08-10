@@ -5340,7 +5340,8 @@ function parseSpreadOrRestElement(
       } else {
         if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
           argument = parseBinaryExpression(parser, context, 1, tokenPos, linePos, colPos, 4, token, argument as any);
-        } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+        }
+        if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
           argument = parseConditionalExpression(parser, context, argument as any, tokenPos, linePos, colPos);
         }
         destructible |=
@@ -5757,7 +5758,8 @@ export function parseObjectLiteralOrPattern(
               destructible |= DestructuringKind.CannotDestruct;
               if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
                 value = parseBinaryExpression(parser, context, 1, tokenPos, linePos, colPos, 4, token, value);
-              } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+              }
+              if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
                 value = parseConditionalExpression(parser, context, value, tokenPos, linePos, colPos);
               }
             }
@@ -5819,7 +5821,8 @@ export function parseObjectLiteralOrPattern(
               } else {
                 if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
                   value = parseBinaryExpression(parser, context, 1, tokenPos, linePos, colPos, 4, token, value);
-                } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+                }
+                if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
                   value = parseConditionalExpression(parser, context, value, tokenPos, linePos, colPos);
                 }
                 destructible |=
@@ -5920,12 +5923,17 @@ export function parseObjectLiteralOrPattern(
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.CannotDestruct;
 
-          if (token === Token.GetKeyword || token === Token.SetKeyword || token === Token.AnyIdentifier) {
+          if (token === Token.GetKeyword || token === Token.SetKeyword) {
             report(parser, Errors.InvalidGeneratorGetter);
+          } else if (token === Token.AnyIdentifier) {
+            report(parser, Errors.InvalidEscapedKeyword);
           }
+
           nextToken(parser, context);
+
           state |=
             PropertyKind.Generator | PropertyKind.Method | (token === Token.AsyncKeyword ? PropertyKind.Async : 0);
+
           if (parser.token & Token.IsIdentifier) {
             key = parseIdentifier(parser, context, 0);
           } else if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
@@ -5984,6 +5992,7 @@ export function parseObjectLiteralOrPattern(
 
           if (parser.token & Token.IsIdentifier) {
             value = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
+
             const { token, tokenValue: valueAfterColon } = parser;
 
             value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, 0, tokenPos, linePos, colPos);
@@ -6065,7 +6074,8 @@ export function parseObjectLiteralOrPattern(
               } else {
                 if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
                   value = parseBinaryExpression(parser, context, 1, tokenPos, linePos, colPos, 4, token, value);
-                } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+                }
+                if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
                   value = parseConditionalExpression(parser, context, value, tokenPos, linePos, colPos);
                 }
                 destructible |=
@@ -6225,7 +6235,8 @@ export function parseObjectLiteralOrPattern(
               } else {
                 if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
                   value = parseBinaryExpression(parser, context, 1, tokenPos, linePos, colPos, 4, token, value);
-                } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+                }
+                if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
                   value = parseConditionalExpression(parser, context, value, tokenPos, linePos, colPos);
                 }
                 destructible |=
@@ -7563,7 +7574,8 @@ export function parseAsyncArrowOrCallExpression(
 
         if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp) {
           expr = parseBinaryExpression(parser, context, 1, start, line, column, 4, token, expr as ESTree.Expression);
-        } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
+        }
+        if (consumeOpt(parser, context | Context.AllowRegExp, Token.QuestionMark)) {
           expr = parseConditionalExpression(parser, context, expr as ESTree.Expression, start, line, column);
         }
       }

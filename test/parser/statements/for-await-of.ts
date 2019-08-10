@@ -14,7 +14,10 @@ describe('Statements - For await of', () => {
     { start: 'var a1 = async () => { {   ', finish: ' } }' },
     { start: 'var a1 = async () => { if (true) {   ', finish: ' } }' },
     { start: 'var a1 = async () => { if (true) ', finish: ' }' },
-    { start: 'var a1 = async () => { if (true) foo(); else { ', finish: ' } }' },
+    {
+      start: 'var a1 = async () => { if (true) foo(); else { ',
+      finish: ' } }'
+    },
     { start: 'var a1 = async () => { while (true) { ', finish: ' } }' },
     { start: 'var a1 = async () => { for(;;) { ', finish: ' } }' },
     { start: "var a1 = async () => { switch(e) { case '1' :  ", finish: ' } }' }
