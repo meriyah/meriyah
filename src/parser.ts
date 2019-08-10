@@ -3185,7 +3185,14 @@ export function parseExpressions(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param left ESTree AST node
+ * @param inGroup
+ * @param isPattern
+ * @param start
+ * @param line
+ * @param column
+ * @param left
+ *
+ * * @param left ESTree AST node
  */
 export function parseAssignmentExpression(
   parser: ParserState,
@@ -3209,9 +3216,7 @@ export function parseAssignmentExpression(
   const { token } = parser;
 
   if ((token & Token.IsAssignOp) > 0) {
-    if (parser.assignable & AssignmentKind.CannotAssign) {
-      report(parser, Errors.CantAssignTo);
-    }
+    if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
     if (
       (!isPattern && (token === Token.Assign && ((left as ESTree.Expression).type as string) === 'ArrayExpression')) ||
       ((left as ESTree.Expression).type as string) === 'ObjectExpression'
@@ -3271,9 +3276,61 @@ export function parseAssignmentExpression(
 }
 
 /**
- * Parse conditional expression
+ * Parse assignment expression or assignment pattern
  *
- * Precedence: 3
+ * @param parser  Parser object
+ * @param context Context masks
+ * @param inGroup
+ * @param isPattern
+ * @param start
+ * @param line
+ * @param column
+ * @param left
+ */
+
+export function parseAssignmentExpressionOrPattern(
+  parser: ParserState,
+  context: Context,
+  inGroup: 0 | 1,
+  isPattern: 0 | 1,
+  start: number,
+  line: number,
+  column: number,
+  left: any
+): any {
+  const { token } = parser;
+
+  nextToken(parser, context | Context.AllowRegExp);
+
+  const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+
+  left = finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    isPattern
+      ? {
+          type: 'AssignmentPattern',
+          left,
+          right
+        }
+      : ({
+          type: 'AssignmentExpression',
+          left,
+          operator: KeywordDescTable[token & Token.Type],
+          right
+        } as any)
+  );
+
+  parser.assignable = AssignmentKind.CannotAssign;
+
+  return left as ESTree.Expression;
+}
+
+/**
+ * Parse conditional expression
  *
  * @param parser  Parser object
  * @param context Context masks
@@ -5808,7 +5865,7 @@ export function parseObjectLiteralOrPattern(
               destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
               if ((parser.token & Token.IsAssignOp) === Token.IsAssignOp) {
-                value = parseAssignmentExpression(
+                value = parseAssignmentExpressionOrPattern(
                   parser,
                   context,
                   inGroup,
@@ -6061,7 +6118,7 @@ export function parseObjectLiteralOrPattern(
               destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
               if ((parser.token & Token.IsAssignOp) === Token.IsAssignOp) {
-                value = parseAssignmentExpression(
+                value = parseAssignmentExpressionOrPattern(
                   parser,
                   context,
                   inGroup,
@@ -6157,7 +6214,16 @@ export function parseObjectLiteralOrPattern(
                   : token === Token.Assign
                   ? 0
                   : DestructuringKind.Assignable;
-              value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, value);
+              value = parseAssignmentExpressionOrPattern(
+                parser,
+                context,
+                inGroup,
+                isPattern,
+                tokenPos,
+                linePos,
+                colPos,
+                value
+              );
             } else if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
                 if (parser.assignable & AssignmentKind.CannotAssign) {
@@ -6222,7 +6288,7 @@ export function parseObjectLiteralOrPattern(
 
               if ((parser.token & Token.IsAssignOp) === Token.IsAssignOp) {
                 if (parser.token !== Token.Assign) destructible |= DestructuringKind.CannotDestruct;
-                value = parseAssignmentExpression(
+                value = parseAssignmentExpressionOrPattern(
                   parser,
                   context,
                   inGroup,
