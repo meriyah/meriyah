@@ -18,6 +18,12 @@ describe('Module - General', () => {
     ['var f; function f() {}', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export default const x = null;', Context.Strict | Context.Module],
     ['test262: import v from "foo";', Context.Strict | Context.Module],
-    ['(class { *method() { export default null; } });', Context.Strict | Context.Module]
+    ['(class { *method() { export default null; } });', Context.Strict | Context.Module],
+    ['if (false) return;', Context.Strict | Context.Module],
+    ['if (false) {} else return;', Context.Strict | Context.Module],
+    ['do return while(false);', Context.Strict | Context.Module],
+    ['function foo() { }; export foo;', Context.Strict | Context.Module],
+    ['function foo() { export default function() { } }', Context.Strict | Context.Module],
+    ['if (false) {} else export default null;', Context.Strict | Context.Module]
   ]);
 });

@@ -432,6 +432,20 @@ describe('Module - Export', () => {
     ['var a; export {a, a}', Context.Strict | Context.Module | Context.OptionsLexical],
     ['class C { method() { export default null; } }', Context.Strict | Context.Module | Context.OptionsLexical],
     ['{ export default null; }', Context.Strict | Context.Module | Context.OptionsLexical],
+
+    ['export const const1;', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['function foo() { }; export foo;', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export function* () { }', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export class { }', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['function foo() { }; export [ foo ];', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['function foo() { export default function() { } }', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export default 1, 2, 3;', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export 12;', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export "string_constant";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export ', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['function foo() { }; export { foo as 100 };', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export {foo}', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export {Array}', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       `export function f() {}
     export function *f() {}`,

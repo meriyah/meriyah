@@ -6,6 +6,7 @@ import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Pass', () => {
   for (const arg of [
+    'for (new /^\\B\\y\\x2F\\xEe/g(("y".z), eval in ({}));; (class x {}))  {}',
     '([...[][void (this)] += (3287)])',
     '(false in (((5973))) ** (q), false.if --, function () {})',
     '(([(2e308.typeof += eval), ...(false), (.88), , ]))',
@@ -15025,7 +15026,17 @@ let kTrapMsgs = [
            }(yield)),
            ...yield,
         }
-    };`
+    };`,
+    `for (vqqhhkflvdijrns in ((x) ? (class extends ((((void (((function* k() {
+    }) << ((((++k)))))))))) {
+      [arguments](dl, w, i, p, l) {
+        "use strict";
+      }
+    }) : ((this)))) for (; ((this)); ((class jtpexjm extends class {}(((false) / true), ...(9.584997788965455e152), n ++) {
+      static get [(2e308)]() {
+      }
+
+    })[((true))])) continue;`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

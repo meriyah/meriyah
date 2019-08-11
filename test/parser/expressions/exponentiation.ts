@@ -17,6 +17,7 @@ describe('Expressions - Exponentiation', () => {
     '-x ** 10',
     '!1 ** 2',
     'void 1 ** 2;',
+    'typeof 1 ** 2;',
     'typeof O.p ** 10',
     'typeof x ** 10',
     'void ** 10',
@@ -38,10 +39,10 @@ describe('Expressions - Exponentiation', () => {
     '{ x } **= { x: 2 }',
     '{ x: x **= 2 ] = { x: 2 }'
   ]) {
-    it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
+    it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.throws(() => {
         parseSource(
-          `var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
+          `let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
           undefined,
           Context.OptionsNext | Context.Module
         );
@@ -62,6 +63,10 @@ describe('Expressions - Exponentiation', () => {
   }
 
   fail('Expressions - Exponentiation (fail)', [
+    ['+1 ** 2;', Context.None],
+    ['-3 ** 2;', Context.None],
+    ['!1 ** 2;', Context.None],
+    ['delete o.p ** 2;', Context.None],
     ['~3 ** 2;', Context.None],
     ['(a * +a ** a ** 3)', Context.None],
     ['typeof 3 ** 2;', Context.None],
@@ -97,9 +102,19 @@ describe('Expressions - Exponentiation', () => {
     '(void 0) ** 10',
     '(void O.p) ** 10',
     '(void x) ** 10',
+    '2 ** ++exponent, 8',
+    '2 ** -1 * 2, 1',
+    '2 ** (3 ** 2)',
+    '2 ** 3 ** 2, 512',
+    '16 / 2 ** 2, 4',
     '++O.p ** 10',
     '++x ** 10',
     '--O.p ** 10',
+    '--base ** 2',
+    '2 ** !s',
+    '2 ** +n',
+    '!(3 ** 2)',
+    '-(3 ** 2)',
     '--x ** 10',
     'O.p++ ** 10',
     'x++ ** 10',
@@ -130,6 +145,60 @@ describe('Expressions - Exponentiation', () => {
   }
 
   pass('Expressions - Exponentiation (pass)', [
+    [
+      '(base **= 3) === -27',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'AssignmentExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'base',
+                  start: 1,
+                  end: 5
+                },
+                operator: '**=',
+                right: {
+                  type: 'Literal',
+                  value: 3,
+                  start: 10,
+                  end: 11
+                },
+                start: 1,
+                end: 11
+              },
+              right: {
+                type: 'UnaryExpression',
+                operator: '-',
+                argument: {
+                  type: 'Literal',
+                  value: 27,
+                  start: 18,
+                  end: 20
+                },
+                prefix: true,
+                start: 17,
+                end: 20
+              },
+              operator: '===',
+              start: 0,
+              end: 20
+            },
+            start: 0,
+            end: 20
+          }
+        ],
+        start: 0,
+        end: 20
+      }
+    ],
     [
       '2 ** 4',
       Context.OptionsRanges,
