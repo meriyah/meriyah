@@ -17,7 +17,7 @@ export interface Position {
   column: number;
 }
 
-export type Labels = any; // Fix!
+export type Labels = any;
 
 export type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 
@@ -60,7 +60,6 @@ export type Node =
   | ClassBody
   | ClassDeclaration
   | ClassExpression
-  | ClassProperty
   | ConditionalExpression
   | ContinueStatement
   | DebuggerStatement
@@ -135,15 +134,8 @@ export type Node =
   | WhileStatement
   | WithStatement
   | YieldExpression;
-export type BindingPattern =
-  | ArrayPattern
-  | ObjectPattern
-  | ArrayExpression
-  | AssignmentExpression
-  | ObjectExpression
-  | Identifier;
-export type BindingName = BindingPattern | Identifier;
-export type ClassElement = ClassProperty | FunctionExpression | MethodDefinition;
+export type BindingPattern = ArrayPattern | ObjectPattern | Identifier;
+export type ClassElement = FunctionExpression | MethodDefinition;
 export type DeclarationStatement =
   | ClassDeclaration
   | ClassExpression
@@ -268,14 +260,6 @@ interface ClassDeclarationBase extends _Node {
   decorators?: Decorator[];
 }
 
-interface ClassPropertyBase extends _Node {
-  key: Expression;
-  value: Expression;
-  computed: boolean;
-  static: boolean;
-  decorators?: Decorator[];
-}
-
 interface FunctionDeclarationBase extends _Node {
   id: Identifier | null;
   generator: boolean;
@@ -320,7 +304,7 @@ export interface AssignmentExpression extends _Node {
 
 export interface AssignmentPattern extends _Node {
   type: 'AssignmentPattern';
-  left: BindingName;
+  left: BindingPattern | Identifier;
   right?: Expression;
 }
 
@@ -372,7 +356,7 @@ export interface CallExpression extends _Node {
 
 export interface CatchClause extends _Node {
   type: 'CatchClause';
-  param: BindingName | null;
+  param: BindingPattern | Identifier | null;
   body: BlockStatement;
 }
 
@@ -399,10 +383,6 @@ export interface ClassDeclaration extends ClassDeclarationBase {
 
 export interface ClassExpression extends ClassDeclarationBase {
   type: 'ClassExpression';
-}
-
-export interface ClassProperty extends ClassPropertyBase {
-  type: 'ClassProperty';
 }
 
 export interface ConditionalExpression extends _Node {
@@ -704,7 +684,7 @@ export interface ParenthesizedExpression extends _Node {
 export interface Property extends _Node {
   type: 'Property';
   key: Expression;
-  value: Expression | AssignmentPattern | BindingName;
+  value: Expression | AssignmentPattern | BindingPattern | Identifier;
   computed: boolean;
   method: boolean;
   shorthand: boolean;
@@ -713,7 +693,7 @@ export interface Property extends _Node {
 
 export interface RestElement extends _Node {
   type: 'RestElement';
-  argument: BindingName | Expression | PropertyName;
+  argument: BindingPattern | Identifier | Expression | PropertyName;
   value?: AssignmentPattern;
 }
 
@@ -727,7 +707,7 @@ export interface SequenceExpression extends _Node {
   expressions: Expression[];
 }
 
-export type SpreadArgument = BindingName | Expression | PropertyName | SpreadElement;
+export type SpreadArgument = BindingPattern | Identifier | Expression | PropertyName | SpreadElement;
 
 export interface SpreadElement extends _Node {
   type: 'SpreadElement';
@@ -812,7 +792,7 @@ export interface VariableDeclaration extends _Node {
 
 export interface VariableDeclarator extends _Node {
   type: 'VariableDeclarator';
-  id: Expression | BindingName;
+  id: Expression | BindingPattern | Identifier;
   init: Expression | null;
   definite?: boolean;
 }
