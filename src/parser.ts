@@ -2940,6 +2940,9 @@ function parseExportDeclaration(
 
         if (parser.token === Token.AsKeyword) {
           nextToken(parser, context);
+          if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
+            report(parser, Errors.InvalidKeywordAsAlias);
+          }
           if (scope) {
             tmpExportedNames.push(parser.tokenValue);
             tmpExportedBindings.push(tokenValue);
@@ -3703,6 +3706,8 @@ export function parseFunctionBody(
   parser.flags =
     (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals) ^
     (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals);
+
+  parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
   while (parser.token !== Token.RightBrace) {
     body.push(parseStatementListItem(
@@ -7281,8 +7286,6 @@ export function parseMembeExpressionNoCall(
   const { token } = parser;
 
   if (token & Token.IsMemberOrCallExpression) {
-    context = (context | Context.DisallowIn) ^ Context.DisallowIn;
-
     /* Property */
     if (token === Token.Period) {
       nextToken(parser, context);
@@ -7420,6 +7423,8 @@ export function parseNewExpression(
     linePos,
     colPos
   );
+
+  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   if (parser.token === Token.QuestionMarkPeriod) report(parser, Errors.OptionalChainingNoNew);
 

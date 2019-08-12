@@ -1,6 +1,6 @@
 <h1 align="center">Meriyah</h1>
 
-<p align="center"> 100% compliant, self-hosted javascript parser with high focus on both performance and stability</p>
+<p align="center"> 100% compliant, self-hosted javascript parser with high focus on both performance and stability. Stable and already used in production.</p>
 
 <p align="center">
     <a href="https://www.npmjs.com/package/meriyah"><img src="https://img.shields.io/npm/v/meriyah.svg?style=flat-square" alt="Meriyah NPM"/></a>
@@ -22,9 +22,9 @@
 * Optionally track syntactic node locations
 * Emits an ESTree-compatible abstract syntax tree.
 * No backtracking
-* Reduced memory usage
-* Very well tested (~97 000 unit tests with full code coverage)
-* Lightweight - ~86 KB minified
+* Low memory usage
+* Very well tested (~99 000 unit tests with full code coverage)
+* Lightweight - ~90 KB minified
 
 ## ESNext features
 

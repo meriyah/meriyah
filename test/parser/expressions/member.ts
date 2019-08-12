@@ -3,7 +3,12 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 describe('Expressions - Member', () => {
-  fail('Expressions - Member (fail)', [['abc.123', Context.None], ['abc.£', Context.None]]);
+  fail('Expressions - Member (fail)', [
+    ['abc.123', Context.None],
+    ['a.[b].c().d.toString()', Context.None],
+    ['abc.£', Context.None],
+    ['abc???.£', Context.None]
+  ]);
 
   for (const arg of [
     'let f = () => { import("foo"); };',

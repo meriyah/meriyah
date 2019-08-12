@@ -352,6 +352,46 @@ describe('Expressions - Async', () => {
       }
     ],
     [
+      'true ? async.waterfall() : null;',
+      Context.Module | Context.Strict,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ConditionalExpression',
+              test: {
+                type: 'Literal',
+                value: true
+              },
+              consequent: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'async'
+                  },
+                  computed: false,
+                  property: {
+                    type: 'Identifier',
+                    name: 'waterfall'
+                  }
+                },
+                arguments: []
+              },
+              alternate: {
+                type: 'Literal',
+                value: null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
       'async r => result = [...{ x = await x }] = y;',
       Context.None,
       {
