@@ -3120,6 +3120,9 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
                 let exported;
                 if (parser.token === 12395) {
                     nextToken(parser, context);
+                    if ((parser.token & 134217728) === 134217728) {
+                        report(parser, 103);
+                    }
                     if (scope) {
                         tmpExportedNames.push(parser.tokenValue);
                         tmpExportedBindings.push(tokenValue);
@@ -3449,6 +3452,7 @@ function parseFunctionBody(parser, context, scope, origin, firstRestricted, scop
     parser.flags =
         (parser.flags | 512 | 256 | 64) ^
             (512 | 256 | 64);
+    parser.destructible = (parser.destructible | 256) ^ 256;
     while (parser.token !== 1074790415) {
         body.push(parseStatementListItem(parser, context, scope, 4, {}, parser.tokenPos, parser.linePos, parser.colPos));
     }
@@ -5213,7 +5217,6 @@ function parseFormalParametersOrFormalList(parser, context, scope, inGroup, kind
 function parseMembeExpressionNoCall(parser, context, expr, inGroup, start, line, column) {
     const { token } = parser;
     if (token & 67108864) {
-        context = (context | 134217728) ^ 134217728;
         if (token === 67108877) {
             nextToken(parser, context);
             parser.assignable = 1;
@@ -5266,6 +5269,7 @@ function parseNewExpression(parser, context, inGroup, start, line, column) {
         report(parser, 62, KeywordDescTable[parser.token & 255]);
     }
     const expr = parsePrimaryExpressionExtended(parser, context, 2, 1, 0, 0, inGroup, tokenPos, linePos, colPos);
+    context = (context | 134217728) ^ 134217728;
     if (parser.token === 67108988)
         report(parser, 162);
     const callee = parseMembeExpressionNoCall(parser, context, expr, inGroup, tokenPos, linePos, colPos);
