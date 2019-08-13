@@ -9,6 +9,8 @@ describe('Miscellaneous - Escaped keywords', () => {
     'var impl\\u0065ments = 1;',
     'var { impl\\u0065ments  } = {};',
     '(\\u0069nterface = 1);',
+    '({ def\\u0061ult: 0 })',
+    '({ def\\u{61}ult: 0 })',
     'var int\\u0065rface = 1;',
     'var { int\\u0065rface  } = {};',
     '(p\\u0061ckage = 1);',
