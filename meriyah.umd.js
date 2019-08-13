@@ -1053,7 +1053,7 @@
                           : 118;
           }
           if (context & 1073741824 &&
-              !(context & 8192) &&
+              (context & 8192) === 0 &&
               (token & 20480) === 20480)
               return token;
           if (token === 241770) {
@@ -3520,10 +3520,10 @@
           return parseUpdateExpression(parser, context, expr, start, line, column);
       }
       if ((parser.token & 67108864) === 67108864) {
-          context = (context | 134217728) ^ 134217728;
+          context = (context | 134217728 | 8192) ^ (134217728 | 8192);
           switch (parser.token) {
               case 67108877: {
-                  nextToken(parser, context);
+                  nextToken(parser, context | 1073741824);
                   parser.assignable = 1;
                   const property = parsePropertyOrPrivatePropertyName(parser, context);
                   expr = finishNode(parser, context, start, line, column, {
@@ -5265,7 +5265,7 @@
       const { token } = parser;
       if (token & 67108864) {
           if (token === 67108877) {
-              nextToken(parser, context);
+              nextToken(parser, context | 1073741824);
               parser.assignable = 1;
               const property = parsePropertyOrPrivatePropertyName(parser, context);
               return parseMembeExpressionNoCall(parser, context, finishNode(parser, context, start, line, column, {
@@ -6110,7 +6110,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.6.7';
+  const version = '1.6.8';
 
   exports.ESTree = estree;
   exports.parse = parse;
