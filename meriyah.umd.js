@@ -1052,6 +1052,10 @@
                           ? 119
                           : 118;
           }
+          if (context & 1073741824 &&
+              !(context & 8192) &&
+              (token & 20480) === 20480)
+              return token;
           if (token === 241770) {
               return context & 1073741824
                   ? 143480
@@ -4972,7 +4976,7 @@
       parser.flags = (parser.flags | 128) ^ 128;
       nextToken(parser, context | 32768 | 1073741824);
       const scope = context & 64 ? addChildScope(createScope(), 1024) : void 0;
-      context = (context | 134217728) ^ 134217728;
+      context = (context | 134217728 | 8192) ^ (8192 | 134217728);
       if (consumeOpt(parser, context, 16)) {
           return parseParenthesizedArrow(parser, context, scope, [], canAssign, 0, start, line, column);
       }
@@ -6106,7 +6110,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.6.6';
+  const version = '1.6.7';
 
   exports.ESTree = estree;
   exports.parse = parse;
