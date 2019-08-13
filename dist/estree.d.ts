@@ -23,10 +23,9 @@ export interface Comment {
     end?: number;
     loc?: SourceLocation | null;
 }
-export declare type Node = ArrayExpression | ArrayPattern | ArrowFunctionExpression | AssignmentExpression | AssignmentPattern | AwaitExpression | BigIntLiteral | BinaryExpression | BlockStatement | BreakStatement | CallExpression | OptionalExpression | ImportExpression | CatchClause | ClassBody | ClassDeclaration | ClassExpression | ClassProperty | ConditionalExpression | ContinueStatement | DebuggerStatement | Decorator | DoWhileStatement | EmptyStatement | ExportAllDeclaration | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportNamedDeclaration | ExportSpecifier | ExpressionStatement | FieldDefinition | ForInStatement | ForOfStatement | ForStatement | FunctionDeclaration | FunctionExpression | Identifier | IfStatement | Import | ImportDeclaration | ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier | JSXNamespacedName | JSXAttribute | JSXClosingElement | JSXClosingFragment | JSXElement | JSXEmptyExpression | JSXExpressionContainer | JSXFragment | JSXIdentifier | JSXOpeningElement | JSXOpeningFragment | JSXSpreadAttribute | JSXSpreadChild | JSXMemberExpression | JSXText | LabeledStatement | Literal | LogicalExpression | CoalesceExpression | MemberExpression | MetaProperty | MethodDefinition | NewExpression | ObjectExpression | ObjectPattern | ParenthesizedExpression | PrivateName | Program | Property | RestElement | ReturnStatement | SequenceExpression | SpreadElement | Super | SwitchCase | SwitchStatement | TaggedTemplateExpression | TemplateElement | TemplateLiteral | ThisExpression | ThrowStatement | TryStatement | UpdateExpression | UnaryExpression | VariableDeclaration | VariableDeclarator | WhileStatement | WithStatement | YieldExpression;
-export declare type BindingPattern = ArrayPattern | ObjectPattern | ArrayExpression | AssignmentExpression | ObjectExpression | Identifier;
-export declare type BindingName = BindingPattern | Identifier;
-export declare type ClassElement = ClassProperty | FunctionExpression | MethodDefinition;
+export declare type Node = ArrayExpression | ArrayPattern | ArrowFunctionExpression | AssignmentExpression | AssignmentPattern | AwaitExpression | BigIntLiteral | BinaryExpression | BlockStatement | BreakStatement | CallExpression | OptionalExpression | ImportExpression | CatchClause | ClassBody | ClassDeclaration | ClassExpression | ConditionalExpression | ContinueStatement | DebuggerStatement | Decorator | DoWhileStatement | EmptyStatement | ExportAllDeclaration | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportNamedDeclaration | ExportSpecifier | ExpressionStatement | FieldDefinition | ForInStatement | ForOfStatement | ForStatement | FunctionDeclaration | FunctionExpression | Identifier | IfStatement | Import | ImportDeclaration | ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier | JSXNamespacedName | JSXAttribute | JSXClosingElement | JSXClosingFragment | JSXElement | JSXEmptyExpression | JSXExpressionContainer | JSXFragment | JSXIdentifier | JSXOpeningElement | JSXOpeningFragment | JSXSpreadAttribute | JSXSpreadChild | JSXMemberExpression | JSXText | LabeledStatement | Literal | LogicalExpression | CoalesceExpression | MemberExpression | MetaProperty | MethodDefinition | NewExpression | ObjectExpression | ObjectPattern | ParenthesizedExpression | PrivateName | Program | Property | RestElement | ReturnStatement | SequenceExpression | SpreadElement | Super | SwitchCase | SwitchStatement | TaggedTemplateExpression | TemplateElement | TemplateLiteral | ThisExpression | ThrowStatement | TryStatement | UpdateExpression | UnaryExpression | VariableDeclaration | VariableDeclarator | WhileStatement | WithStatement | YieldExpression;
+export declare type BindingPattern = ArrayPattern | ObjectPattern | Identifier;
+export declare type ClassElement = FunctionExpression | MethodDefinition;
 export declare type DeclarationStatement = ClassDeclaration | ClassExpression | ExportDefaultDeclaration | ExportNamespaceSpecifier | ExportAllDeclaration | ExportNamedDeclaration | FunctionDeclaration;
 export declare type EntityName = Identifier;
 export declare type ExportDeclaration = ClassDeclaration | ClassExpression | FunctionDeclaration | VariableDeclaration;
@@ -49,13 +48,6 @@ interface ClassDeclarationBase extends _Node {
     id: Identifier | null;
     body: ClassBody;
     superClass: Expression | null;
-    decorators?: Decorator[];
-}
-interface ClassPropertyBase extends _Node {
-    key: Expression;
-    value: Expression;
-    computed: boolean;
-    static: boolean;
     decorators?: Decorator[];
 }
 interface FunctionDeclarationBase extends _Node {
@@ -96,7 +88,7 @@ export interface AssignmentExpression extends _Node {
 }
 export interface AssignmentPattern extends _Node {
     type: 'AssignmentPattern';
-    left: BindingName;
+    left: BindingPattern | Identifier;
     right?: Expression;
 }
 export interface AwaitExpression extends _Node {
@@ -139,7 +131,7 @@ export interface CallExpression extends _Node {
 }
 export interface CatchClause extends _Node {
     type: 'CatchClause';
-    param: BindingName | null;
+    param: BindingPattern | Identifier | null;
     body: BlockStatement;
 }
 export interface ClassBody extends _Node {
@@ -163,9 +155,6 @@ export interface ClassDeclaration extends ClassDeclarationBase {
 }
 export interface ClassExpression extends ClassDeclarationBase {
     type: 'ClassExpression';
-}
-export interface ClassProperty extends ClassPropertyBase {
-    type: 'ClassProperty';
 }
 export interface ConditionalExpression extends _Node {
     type: 'ConditionalExpression';
@@ -408,7 +397,7 @@ export interface ParenthesizedExpression extends _Node {
 export interface Property extends _Node {
     type: 'Property';
     key: Expression;
-    value: Expression | AssignmentPattern | BindingName;
+    value: Expression | AssignmentPattern | BindingPattern | Identifier;
     computed: boolean;
     method: boolean;
     shorthand: boolean;
@@ -416,7 +405,7 @@ export interface Property extends _Node {
 }
 export interface RestElement extends _Node {
     type: 'RestElement';
-    argument: BindingName | Expression | PropertyName;
+    argument: BindingPattern | Identifier | Expression | PropertyName;
     value?: AssignmentPattern;
 }
 export interface ReturnStatement extends _Node {
@@ -427,7 +416,7 @@ export interface SequenceExpression extends _Node {
     type: 'SequenceExpression';
     expressions: Expression[];
 }
-export declare type SpreadArgument = BindingName | Expression | PropertyName | SpreadElement;
+export declare type SpreadArgument = BindingPattern | Identifier | Expression | PropertyName | SpreadElement;
 export interface SpreadElement extends _Node {
     type: 'SpreadElement';
     argument: SpreadArgument;
@@ -497,7 +486,7 @@ export interface VariableDeclaration extends _Node {
 }
 export interface VariableDeclarator extends _Node {
     type: 'VariableDeclarator';
-    id: Expression | BindingName;
+    id: Expression | BindingPattern | Identifier;
     init: Expression | null;
     definite?: boolean;
 }
