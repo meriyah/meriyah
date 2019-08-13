@@ -520,7 +520,6 @@ describe('Next - Decorators', () => {
                   name: 'pushElement',
                   type: 'Identifier'
                 },
-                optional: false,
                 type: 'CallExpression'
               },
               type: 'Decorator'
@@ -847,7 +846,6 @@ describe('Next - Decorators', () => {
                     name: 'deco2',
                     type: 'Identifier'
                   },
-                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -868,7 +866,6 @@ describe('Next - Decorators', () => {
                     name: 'deco3',
                     type: 'Identifier'
                   },
-                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -916,7 +913,6 @@ describe('Next - Decorators', () => {
                     name: 'deco4',
                     type: 'Identifier'
                   },
-                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -958,7 +954,6 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'CallExpression',
-                  optional: false,
                   callee: {
                     type: 'Identifier',
                     name: 'foo'
@@ -1481,7 +1476,6 @@ describe('Next - Decorators', () => {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'CallExpression',
-                            optional: false,
                             callee: {
                               type: 'MemberExpression',
                               object: {
@@ -1725,7 +1719,6 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
-                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -1757,7 +1750,6 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
-                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -1774,7 +1766,6 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
-                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'writable'
@@ -1995,7 +1986,6 @@ describe('Next - Decorators', () => {
                     name: 'foo',
                     type: 'Identifier'
                   },
-                  optional: false,
                   type: 'CallExpression'
                 },
                 type: 'Decorator'
@@ -2097,7 +2087,6 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'CallExpression',
-                  optional: false,
                   callee: {
                     type: 'Identifier',
                     name: 'outer'
@@ -2188,7 +2177,6 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'CallExpression',
-                        optional: false,
                         callee: {
                           type: 'Identifier',
                           name: 'outer'

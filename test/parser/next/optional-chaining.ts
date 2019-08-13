@@ -96,9 +96,7 @@ describe('Next - Optional chaining', () => {
     'delete undefined?.()',
     'delete null?.()',
     'x?.([...[function f() {}.prop]] = [])',
-    '[...[x?.this[0], ...x?.this[1]]] = []',
     'x?.({ a: obj.a } = {})',
-    "({ a: x?.obj['a'] } = {})",
     'value = { x: 4 };',
     'for (let [a = b?.a] of [0, c = 0]);',
     '({x: y = z = 0} = 1)?.(a??b)',
@@ -343,6 +341,8 @@ describe('Next - Optional chaining', () => {
       'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)',
       Context.OptionsNext | Context.OptionsWebCompat
     ],
+    ["({ a: x?.obj['a'] } = {})", Context.OptionsNext | Context.OptionsWebCompat],
+    ['[...[x?.this[0], ...x?.this[1]]] = []', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { foo() { return super?.bar; } }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { foo() { return super?.["bar"]; }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { constructor() { super?.(); } }', Context.OptionsNext | Context.OptionsWebCompat],
@@ -359,388 +359,43 @@ describe('Next - Optional chaining', () => {
 
   pass('Next - Optional chaining (pass)', [
     [
-      `(a?.b).c();`,
+      `a?.b`,
       Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
       {
         body: [
           {
-            end: 11,
+            end: 4,
             expression: {
-              arguments: [],
-              callee: {
+              chain: {
+                base: null,
                 computed: false,
-                end: 8,
-                object: {
-                  end: 5,
-                  expression: {
-                    computed: false,
-                    end: 5,
-                    object: {
-                      end: 2,
-                      name: 'a',
-                      start: 1,
-                      type: 'Identifier'
-                    },
-                    optional: true,
-                    property: {
-                      end: 5,
-                      name: 'b',
-                      start: 4,
-                      type: 'Identifier'
-                    },
-                    start: 1,
-                    type: 'MemberExpression'
-                  },
-                  start: 5,
-                  type: 'OptionalExpression'
-                },
+                end: 4,
                 property: {
-                  end: 8,
-                  name: 'c',
-                  start: 7,
+                  end: 4,
+                  name: 'b',
+                  start: 3,
                   type: 'Identifier'
                 },
                 start: 0,
-                type: 'MemberExpression'
+                type: 'OptionalChain'
               },
-              end: 10,
-              optional: false,
+              end: 4,
+              object: {
+                end: 1,
+                name: 'a',
+                start: 0,
+                type: 'Identifier'
+              },
               start: 0,
-              type: 'CallExpression'
+              type: 'OptionalExpression'
             },
             start: 0,
             type: 'ExpressionStatement'
           }
         ],
-        end: 11,
+        end: 4,
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
-    ],
-    [
-      `async?.(async());`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                arguments: [
-                  {
-                    arguments: [],
-                    callee: {
-                      name: 'async',
-                      type: 'Identifier'
-                    },
-                    optional: false,
-                    type: 'CallExpression'
-                  }
-                ],
-                callee: {
-                  name: 'async',
-                  type: 'Identifier'
-                },
-                optional: true,
-                type: 'CallExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `a?.(...args);`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                arguments: [
-                  {
-                    argument: {
-                      name: 'args',
-                      type: 'Identifier'
-                    },
-                    type: 'SpreadElement'
-                  }
-                ],
-                callee: {
-                  name: 'a',
-                  type: 'Identifier'
-                },
-                optional: true,
-                type: 'CallExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `class A extends B { constructor(){ super()?.b; } }`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            body: {
-              body: [
-                {
-                  computed: false,
-                  decorators: [],
-                  key: {
-                    name: 'constructor',
-                    type: 'Identifier'
-                  },
-                  kind: 'constructor',
-                  static: false,
-                  type: 'MethodDefinition',
-                  value: {
-                    async: false,
-                    body: {
-                      body: [
-                        {
-                          expression: {
-                            expression: {
-                              computed: false,
-                              object: {
-                                arguments: [],
-                                callee: {
-                                  type: 'Super'
-                                },
-                                optional: false,
-                                type: 'CallExpression'
-                              },
-                              optional: true,
-                              property: {
-                                name: 'b',
-                                type: 'Identifier'
-                              },
-                              type: 'MemberExpression'
-                            },
-                            type: 'OptionalExpression'
-                          },
-                          type: 'ExpressionStatement'
-                        }
-                      ],
-                      type: 'BlockStatement'
-                    },
-                    generator: false,
-                    id: null,
-                    params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
-              ],
-              type: 'ClassBody'
-            },
-            decorators: [],
-            id: {
-              name: 'A',
-              type: 'Identifier'
-            },
-            superClass: {
-              name: 'B',
-              type: 'Identifier'
-            },
-            type: 'ClassDeclaration'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `a?.func?.()`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                arguments: [],
-                callee: {
-                  computed: false,
-                  object: {
-                    name: 'a',
-                    type: 'Identifier'
-                  },
-                  optional: true,
-                  property: {
-                    name: 'func',
-                    type: 'Identifier'
-                  },
-                  type: 'MemberExpression'
-                },
-                optional: true,
-                type: 'CallExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `func?.()`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                arguments: [],
-                callee: {
-                  name: 'func',
-                  type: 'Identifier'
-                },
-                optional: true,
-                type: 'CallExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `obj.a?.[true]`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                computed: true,
-                object: {
-                  computed: false,
-                  object: {
-                    name: 'obj',
-                    type: 'Identifier'
-                  },
-                  property: {
-                    name: 'a',
-                    type: 'Identifier'
-                  },
-                  type: 'MemberExpression'
-                },
-                optional: true,
-                property: {
-                  type: 'Literal',
-                  value: true
-                },
-                type: 'MemberExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `foo?.bar`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                computed: false,
-                object: {
-                  name: 'foo',
-                  type: 'Identifier'
-                },
-                optional: true,
-                property: {
-                  name: 'bar',
-                  type: 'Identifier'
-                },
-                type: 'MemberExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      `a?.b.c(++x).d`,
-      Context.OptionsNext,
-      {
-        body: [
-          {
-            expression: {
-              expression: {
-                computed: false,
-                object: {
-                  arguments: [
-                    {
-                      argument: {
-                        name: 'x',
-                        type: 'Identifier'
-                      },
-                      operator: '++',
-                      prefix: true,
-                      type: 'UpdateExpression'
-                    }
-                  ],
-                  callee: {
-                    computed: false,
-                    object: {
-                      computed: false,
-                      object: {
-                        name: 'a',
-                        type: 'Identifier'
-                      },
-                      optional: true,
-                      property: {
-                        name: 'b',
-                        type: 'Identifier'
-                      },
-                      type: 'MemberExpression'
-                    },
-                    property: {
-                      name: 'c',
-                      type: 'Identifier'
-                    },
-                    type: 'MemberExpression'
-                  },
-                  optional: false,
-                  type: 'CallExpression'
-                },
-                property: {
-                  name: 'd',
-                  type: 'Identifier'
-                },
-                type: 'MemberExpression'
-              },
-              type: 'OptionalExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
         type: 'Program'
       }
     ]

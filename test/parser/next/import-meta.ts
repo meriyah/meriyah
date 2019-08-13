@@ -362,7 +362,6 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'MemberExpression',
-              optional: false,
               object: {
                 meta: {
                   type: 'Identifier',
@@ -431,7 +430,6 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'CallExpression',
-              optional: false,
               callee: {
                 meta: {
                   type: 'Identifier',
@@ -603,7 +601,6 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'CallExpression',
-              optional: false,
               callee: {
                 type: 'MemberExpression',
                 object: {
