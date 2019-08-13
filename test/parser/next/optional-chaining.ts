@@ -47,6 +47,20 @@ describe('Next - Optional chaining', () => {
     '0?.()',
     '({})?.()',
     '[]?.()',
+    `class A {
+      a () {}
+    }
+    class B extends A {
+      dot () {
+        return super.a?.name;
+      }
+      expr () {
+        return super['a'].name;
+      }
+      undf () {
+        return super.b?.c;
+      }
+    }`,
     '({})?.a["b"]',
     'delete null?.foo',
     '({})?.constructor',

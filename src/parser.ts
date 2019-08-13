@@ -1722,7 +1722,7 @@ export function parseCatchBlock(
   line: number,
   column: number
 ): ESTree.CatchClause {
-  let param: ESTree.BindingName | null = null;
+  let param: ESTree.BindingPattern | ESTree.Identifier | null = null;
   let additionalScope: ScopeState | undefined = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
@@ -2067,7 +2067,7 @@ function parseVariableDeclaration(
 
   const { token, tokenPos, linePos, colPos } = parser;
 
-  let init: ESTree.Expression | ESTree.BindingName | null = null;
+  let init: ESTree.Expression | ESTree.BindingPattern | ESTree.Identifier | null = null;
 
   const id = parseBindingPattern(parser, context, scope, kind, origin, tokenPos, linePos, colPos);
 
@@ -3378,8 +3378,6 @@ export function parseConditionalExpression(
 /**
  * Parses binary and unary expressions recursively
  * based on the precedence of the operators encountered.
- *
- * Precedence: 4
  *
  * @param parser  Parser object
  * @param context Context masks
@@ -6513,7 +6511,7 @@ export function parseMethodFormals(
   let isSimpleParameterList: 0 | 1 = 0;
 
   while (parser.token !== Token.Comma) {
-    let left: ESTree.BindingName | ESTree.SpreadElement | ESTree.RestElement | ESTree.AssignmentPattern | null = null;
+    let left = null;
     const { tokenPos, linePos, colPos } = parser;
 
     if (parser.token & Token.IsIdentifier) {
@@ -6598,7 +6596,7 @@ export function parseMethodFormals(
 
       left = finishNode(parser, context, tokenPos, linePos, colPos, {
         type: 'AssignmentPattern',
-        left: left as ESTree.BindingName,
+        left: left as ESTree.BindingPattern | ESTree.Identifier,
         right
       });
     }
@@ -8474,7 +8472,7 @@ export function parseBindingPattern(
   if ((parser.token & Token.IsPatternStart) !== Token.IsPatternStart)
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
 
-  const left =
+  const left: any =
     parser.token === Token.LeftBracket
       ? parseArrayExpressionOrPattern(parser, context, scope, 1, 0, 1, type, origin, start, line, column)
       : parseObjectLiteralOrPattern(parser, context, scope, 1, 0, 1, type, origin, start, line, column);
