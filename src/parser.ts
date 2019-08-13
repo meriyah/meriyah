@@ -3871,12 +3871,12 @@ export function parseMemberOrUpdateExpression(
   }
 
   if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
-    context = (context | Context.DisallowIn) ^ Context.DisallowIn;
+    context = (context | Context.DisallowIn | Context.InGlobal) ^ (Context.DisallowIn | Context.InGlobal);
 
     switch (parser.token) {
       /* Property */
       case Token.Period: {
-        nextToken(parser, context);
+        nextToken(parser, context | Context.AllowEscapedKeyword);
 
         parser.assignable = AssignmentKind.Assignable;
 
@@ -7309,7 +7309,7 @@ export function parseMembeExpressionNoCall(
   if (token & Token.IsMemberOrCallExpression) {
     /* Property */
     if (token === Token.Period) {
-      nextToken(parser, context);
+      nextToken(parser, context | Context.AllowEscapedKeyword);
 
       parser.assignable = AssignmentKind.Assignable;
 
