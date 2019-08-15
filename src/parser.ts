@@ -5753,7 +5753,7 @@ export function parseObjectLiteralOrPattern(
       let state = PropertyKind.None;
       let key: ESTree.Expression | null = null;
       let value;
-
+      let t = parser.token;
       if (parser.token & (Token.IsIdentifier | Token.Keyword) || parser.token === Token.EscapedReserved) {
         key = parseIdentifier(parser, context, 0);
 
@@ -5808,6 +5808,8 @@ export function parseObjectLiteralOrPattern(
           if (parser.token & Token.IsIdentifier) {
             const tokenAfterColon = parser.token;
             const valueAfterColon = parser.tokenValue;
+            // A reserved word is an IdentifierName that cannot be used as an Identifier
+            destructible |= t === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0;
 
             value = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
 
