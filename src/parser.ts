@@ -5753,7 +5753,7 @@ export function parseObjectLiteralOrPattern(
       let state = PropertyKind.None;
       let key: ESTree.Expression | null = null;
       let value;
-      let t = parser.token;
+      const t = parser.token;
       if (parser.token & (Token.IsIdentifier | Token.Keyword) || parser.token === Token.EscapedReserved) {
         key = parseIdentifier(parser, context, 0);
 
