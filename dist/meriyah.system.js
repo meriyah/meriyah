@@ -4401,7 +4401,7 @@ System.register('meriyah', [], function (exports) {
                   let state = 0;
                   let key = null;
                   let value;
-                  if (parser.token & (143360 | 4096)) {
+                  if (parser.token & (143360 | 4096) || parser.token === 118) {
                       key = parseIdentifier(parser, context, 0);
                       if (parser.token === 1073741842 || parser.token === 1074790415 || parser.token === 1077936157) {
                           state |= 4;
@@ -4429,7 +4429,9 @@ System.register('meriyah', [], function (exports) {
                               });
                           }
                           else {
-                              destructible |= token === 209005 ? 128 : 0;
+                              destructible |=
+                                  (token === 209005 ? 128 : 0) |
+                                      (token === 118 ? 16 : 0);
                               value = key;
                           }
                       }
@@ -4554,6 +4556,8 @@ System.register('meriyah', [], function (exports) {
                       }
                       else if (parser.token & (143360 | 4096)) {
                           destructible |= 16;
+                          if (token === 118)
+                              report(parser, 92);
                           if (token === 143468) {
                               if (parser.flags & 1)
                                   report(parser, 128);
@@ -6116,7 +6120,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.6.8');
+      const version = exports('version', '1.6.9');
 
     }
   };
