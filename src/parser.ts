@@ -5754,7 +5754,7 @@ export function parseObjectLiteralOrPattern(
       let key: ESTree.Expression | null = null;
       let value;
 
-      if (parser.token & (Token.IsIdentifier | Token.Keyword)) {
+      if (parser.token & (Token.IsIdentifier | Token.Keyword) || parser.token === Token.EscapedReserved) {
         key = parseIdentifier(parser, context, 0);
 
         if (parser.token === Token.Comma || parser.token === Token.RightBrace || parser.token === Token.Assign) {
@@ -5795,8 +5795,9 @@ export function parseObjectLiteralOrPattern(
               right
             });
           } else {
-            destructible |= token === Token.AwaitKeyword ? DestructuringKind.Await : 0;
-
+            destructible |=
+              (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
+              (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
             value = key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
@@ -5947,6 +5948,7 @@ export function parseObjectLiteralOrPattern(
         } else if (parser.token === Token.LeftBracket) {
           destructible |= DestructuringKind.CannotDestruct;
           if (token === Token.AsyncKeyword) state |= PropertyKind.Async;
+
           state |=
             (token === Token.GetKeyword
               ? PropertyKind.Getter
@@ -5968,7 +5970,7 @@ export function parseObjectLiteralOrPattern(
           );
         } else if (parser.token & (Token.IsIdentifier | Token.Keyword)) {
           destructible |= DestructuringKind.CannotDestruct;
-
+          if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
           if (token === Token.AsyncKeyword) {
             if (parser.flags & Flags.NewLine) report(parser, Errors.AsyncRestrictedProd);
             state |= PropertyKind.Async;
