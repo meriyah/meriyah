@@ -4401,6 +4401,7 @@ System.register('meriyah', [], function (exports) {
                   let state = 0;
                   let key = null;
                   let value;
+                  const t = parser.token;
                   if (parser.token & (143360 | 4096) || parser.token === 118) {
                       key = parseIdentifier(parser, context, 0);
                       if (parser.token === 1073741842 || parser.token === 1074790415 || parser.token === 1077936157) {
@@ -4442,6 +4443,7 @@ System.register('meriyah', [], function (exports) {
                           if (parser.token & 143360) {
                               const tokenAfterColon = parser.token;
                               const valueAfterColon = parser.tokenValue;
+                              destructible |= t === 118 ? 16 : 0;
                               value = parsePrimaryExpressionExtended(parser, context, kind, 0, 1, 0, inGroup, tokenPos, linePos, colPos);
                               const { token } = parser;
                               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, tokenPos, linePos, colPos);
@@ -6120,7 +6122,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.6.9');
+      const version = exports('version', '1.6.10');
 
     }
   };
