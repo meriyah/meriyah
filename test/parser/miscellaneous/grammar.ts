@@ -1915,6 +1915,7 @@ describe('Miscellaneous - Cover grammar', () => {
 
   // Failures
   for (const arg of [
+    'for(let()of t)x',
     '([a.b]) => 0',
     'function foo() {for (let {x} = {} of []) {}; }; foo();',
     '({set a([a.b]){}})',
