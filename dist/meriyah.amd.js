@@ -3603,7 +3603,9 @@ define(['exports'], function (exports) { 'use strict';
           });
       }
       else {
-          const property = parsePropertyOrPrivatePropertyName(parser, context);
+          if ((parser.token & (143360 | 4096)) < 1)
+              report(parser, 154);
+          const property = parseIdentifier(parser, context, 0);
           parser.assignable = 2;
           base = finishNode(parser, context, start, line, column, {
               type: 'OptionalChain',
@@ -3616,7 +3618,9 @@ define(['exports'], function (exports) { 'use strict';
           if (parser.token === 67108877) {
               nextToken(parser, context);
               parser.assignable = 1;
-              const property = parsePropertyOrPrivatePropertyName(parser, context);
+              if ((parser.token & (143360 | 4096)) < 1)
+                  report(parser, 154);
+              const property = parseIdentifier(parser, context, 0);
               base = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
                   type: 'OptionalChain',
                   base,
