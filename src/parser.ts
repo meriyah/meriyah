@@ -3933,7 +3933,7 @@ export function parseMemberOrUpdateExpression(
           type: 'OptionalExpression',
           object: expr,
           chain: parseOptionalChain(parser, context, start, line, column)
-        } as any);
+        });
         break;
       }
 
@@ -3975,7 +3975,7 @@ export function parseOptionalChain(
   //  MemberExpression
   //  CallExpression
   //  OptionalExpression[
-  let base: any = null;
+  let base: ESTree.OptionalChain | ESTree.MemberExpression | null = null;
   if (parser.token === Token.LeftBracket) {
     nextToken(parser, context | Context.AllowRegExp);
     const { tokenPos, linePos, colPos } = parser;
@@ -3987,7 +3987,7 @@ export function parseOptionalChain(
       base: null,
       computed: true,
       property
-    } as any);
+    });
   } else if (parser.token === Token.LeftParen) {
     const args = parseArguments(parser, context, 0);
 
@@ -3997,32 +3997,31 @@ export function parseOptionalChain(
       type: 'OptionalChain',
       base: null,
       arguments: args
-    } as any);
+    });
   } else {
-    const property = parsePropertyOrPrivatePropertyName(parser, context);
+    if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1) report(parser, Errors.InvalidDotProperty);
+    const property = parseIdentifier(parser, context, 0);
     parser.assignable = AssignmentKind.CannotAssign;
     base = finishNode(parser, context, start, line, column, {
       type: 'OptionalChain',
       base: null,
       computed: false,
       property
-    } as any);
+    });
   }
 
   while ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
     if (parser.token === Token.Period) {
       nextToken(parser, context);
-
       parser.assignable = AssignmentKind.Assignable;
-
-      const property = parsePropertyOrPrivatePropertyName(parser, context);
-
+      if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1) report(parser, Errors.InvalidDotProperty);
+      const property = parseIdentifier(parser, context, 0);
       base = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
         type: 'OptionalChain',
         base,
         computed: false,
         property
-      } as any);
+      });
     } else if (parser.token === Token.LeftBracket) {
       nextToken(parser, context | Context.AllowRegExp);
       const { tokenPos, linePos, colPos } = parser;
@@ -4034,7 +4033,7 @@ export function parseOptionalChain(
         base,
         computed: true,
         property
-      } as any);
+      });
     } else if (parser.token === Token.LeftParen) {
       const args = parseArguments(parser, context, 0);
 
@@ -4044,7 +4043,7 @@ export function parseOptionalChain(
         type: 'OptionalChain',
         base,
         arguments: args
-      } as any);
+      });
     } else if (parser.token === Token.TemplateContinuation || parser.token === Token.TemplateSpan) {
       report(parser, Errors.OptionalChainingNoTemplate);
     } else {
