@@ -532,7 +532,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         case Token.LineFeed:
           consumeLineFeed(parser, state);
-          state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
+          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
           break;
 
         default:
@@ -540,7 +540,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
       }
     } else {
       if ((char ^ Chars.LineSeparator) <= 1) {
-        state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
+        state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
         scanNewLine(parser);
         continue;
       }

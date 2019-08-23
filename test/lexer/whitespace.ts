@@ -372,7 +372,7 @@ describe('Lexer - Whitespace', () => {
     value: '',
     index: 33,
     line: 3,
-    column: 17
+    column: 5
   });
 
   pass('skips vertical tab in a string', {

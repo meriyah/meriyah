@@ -2,7 +2,112 @@ import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 
 describe('Miscellaneous - CRLF', () => {
-  pass('Miscellaneous  Literal (pass)', [
+  pass('Miscellaneous - CRLF (pass)', [
+    [
+      `
+      // Single line comment
+      // Single line comment
+      function handleAutocomplete() {}`,
+      Context.OptionsRanges | Context.OptionsLoc,
+      {
+        body: [
+          {
+            async: false,
+            body: {
+              body: [],
+              end: 97,
+              loc: {
+                end: {
+                  column: 38,
+                  line: 4
+                },
+                start: {
+                  column: 36,
+                  line: 4
+                }
+              },
+              start: 95,
+              type: 'BlockStatement'
+            },
+            end: 97,
+            generator: false,
+            id: {
+              end: 92,
+              loc: {
+                end: {
+                  column: 33,
+                  line: 4
+                },
+                start: {
+                  column: 15,
+                  line: 4
+                }
+              },
+              name: 'handleAutocomplete',
+              start: 74,
+              type: 'Identifier'
+            },
+            loc: {
+              end: {
+                column: 38,
+                line: 4
+              },
+              start: {
+                column: 6,
+                line: 4
+              }
+            },
+            params: [],
+            start: 65,
+            type: 'FunctionDeclaration'
+          }
+        ],
+        end: 97,
+        loc: {
+          end: {
+            column: 38,
+            line: 4
+          },
+          start: {
+            column: 0,
+            line: 1
+          }
+        },
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      `// Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment
+    // Single line comment`,
+      Context.OptionsRanges | Context.OptionsLoc,
+      {
+        body: [],
+        end: 265,
+        loc: {
+          end: {
+            column: 26,
+            line: 10
+          },
+          start: {
+            column: 0,
+            line: 1
+          }
+        },
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
     [
       '\nx =\n\r\n\r this\r\r\n\n\n\r',
       Context.OptionsRanges | Context.OptionsLoc,
