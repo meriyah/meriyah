@@ -84,7 +84,7 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
       state |= LexerState.NewLine | LexerState.LastIsCR;
       scanNewLine(parser);
     } else if (parser.currentChar === Chars.LineFeed) {
-      consumeLineFeed(parser, (state & LexerState.LastIsCR) !== 0);
+      consumeLineFeed(parser, state);
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
     } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
       state = (state | LexerState.LastIsCR | LexerState.NewLine) ^ LexerState.LastIsCR;
