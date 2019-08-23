@@ -4242,7 +4242,7 @@ export function parsePrimaryExpressionExtended(
     case Token.NullKeyword:
       return parseNullOrTrueOrFalseLiteral(parser, context, start, line, column);
     case Token.ThisKeyword:
-      return parseThisExpression(parser, context, start, line, column);
+      return parseThisExpression(parser, context);
     case Token.RegularExpression:
       return parseRegExpLiteral(parser, context, start, line, column);
     case Token.Decorator:
@@ -4692,16 +4692,11 @@ export function parseNullOrTrueOrFalseLiteral(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseThisExpression(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number
-): ESTree.ThisExpression {
+export function parseThisExpression(parser: ParserState, context: Context): ESTree.ThisExpression {
+  const { tokenPos, linePos, colPos } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'ThisExpression'
   });
 }
