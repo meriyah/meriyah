@@ -4,5 +4,5 @@ export declare function parseScript(source: string, options?: Options): ESTree.P
 export declare function parseModule(source: string, options?: Options): ESTree.Program;
 export declare function parse(source: string, options?: Options): ESTree.Program;
 export { Options, ESTree };
-export declare const version = "1.6.10";
+export declare const version = "1.6.11";
 //# sourceMappingURL=meriyah.d.ts.map

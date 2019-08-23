@@ -82,7 +82,7 @@ export declare function parseArguments(parser: ParserState, context: Context, in
 export declare function parseIdentifier(parser: ParserState, context: Context, isPattern: 0 | 1): ESTree.Identifier;
 export declare function parseLiteral(parser: ParserState, context: Context): ESTree.Literal;
 export declare function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
-export declare function parseThisExpression(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.ThisExpression;
+export declare function parseThisExpression(parser: ParserState, context: Context): ESTree.ThisExpression;
 export declare function parseFunctionDeclaration(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, allowGen: 0 | 1, flags: HoistedFunctionFlags, isAsync: 0 | 1, start: number, line: number, column: number): ESTree.FunctionDeclaration;
 export declare function parseFunctionExpression(parser: ParserState, context: Context, isAsync: 0 | 1, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.FunctionExpression;
 export declare function parseArrayExpressionOrPattern(parser: ParserState, context: Context, scope: ScopeState | undefined, skipInitializer: 0 | 1, inGroup: 0 | 1, isPattern: 0 | 1, kind: BindingKind, origin: Origin, start: number, line: number, column: number): ESTree.ArrayExpression | ESTree.ArrayPattern | ESTree.AssignmentExpression;

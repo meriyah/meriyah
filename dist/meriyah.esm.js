@@ -3741,7 +3741,7 @@ function parsePrimaryExpressionExtended(parser, context, kind, inNew, canAssign,
         case 86023:
             return parseNullOrTrueOrFalseLiteral(parser, context, start, line, column);
         case 86110:
-            return parseThisExpression(parser, context, start, line, column);
+            return parseThisExpression(parser, context);
         case 65540:
             return parseRegExpLiteral(parser, context, start, line, column);
         case 130:
@@ -3943,10 +3943,11 @@ function parseNullOrTrueOrFalseLiteral(parser, context, start, line, column) {
             value
         });
 }
-function parseThisExpression(parser, context, start, line, column) {
+function parseThisExpression(parser, context) {
+    const { tokenPos, linePos, colPos } = parser;
     nextToken(parser, context);
     parser.assignable = 2;
-    return finishNode(parser, context, start, line, column, {
+    return finishNode(parser, context, tokenPos, linePos, colPos, {
         type: 'ThisExpression'
     });
 }
@@ -6114,6 +6115,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.6.10';
+const version = '1.6.11';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
