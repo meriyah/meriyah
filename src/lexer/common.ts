@@ -54,10 +54,10 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
 /**
  * Use to consume a line feed instead of `scanNewLine`.
  */
-export function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void {
+export function consumeLineFeed(parser: ParserState, state: LexerState): void {
   parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.flags |= Flags.NewLine;
-  if (!lastIsCR) {
+  if ((state & LexerState.LastIsCR) === 0) {
     parser.column = 0;
     parser.line++;
   }
