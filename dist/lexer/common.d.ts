@@ -17,7 +17,7 @@ export declare const enum NumberKind {
 }
 export declare function advanceChar(parser: ParserState): number;
 export declare function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 1;
-export declare function consumeLineFeed(parser: ParserState, lastIsCR: boolean): void;
+export declare function consumeLineFeed(parser: ParserState, state: LexerState): void;
 export declare function scanNewLine(parser: ParserState): void;
 export declare function isExoticECMAScriptWhitespace(code: number): boolean;
 export declare function fromCodePoint(codePoint: number): string;

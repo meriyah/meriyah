@@ -779,15 +779,15 @@ function scanSingleToken(parser, context, state) {
                     scanNewLine(parser);
                     break;
                 case 133:
-                    consumeLineFeed(parser, (state & 4) !== 0);
-                    state = (state | 4 | 1) ^ 4;
+                    consumeLineFeed(parser, state);
+                    state = (state & ~4) | 1;
                     break;
                 default:
             }
         }
         else {
             if ((char ^ 8232) <= 1) {
-                state = (state | 4 | 1) ^ 4;
+                state = (state & ~4) | 1;
                 scanNewLine(parser);
                 continue;
             }
@@ -819,21 +819,27 @@ function skipSingleHTMLComment(parser, state, context, type) {
 function skipSingleLineComment(parser, state, type) {
     const { index } = parser;
     while (parser.index < parser.end) {
-        if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
-            state = (state | 4 | 1) ^ 4;
+        if (CharTypes[parser.currentChar] & 8) {
             scanNewLine(parser);
-            return state;
+            if (parser.index < parser.end && parser.currentChar === 10)
+                parser.currentChar = parser.source.charCodeAt(++parser.index);
+            return state | 1;
+        }
+        else if ((parser.currentChar ^ 8232) <= 1) {
+            scanNewLine(parser);
+            return state | 1;
         }
         advanceChar(parser);
     }
     if (parser.onComment)
         parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
-    return state;
+    return state | 1;
 }
 function skipMultiLineComment(parser, state) {
     const { index } = parser;
     while (parser.index < parser.end) {
         while (parser.currentChar === 42) {
+            state &= ~4;
             if (advanceChar(parser) === 47) {
                 advanceChar(parser);
                 if (parser.onComment)
@@ -846,14 +852,15 @@ function skipMultiLineComment(parser, state) {
             scanNewLine(parser);
         }
         else if (parser.currentChar === 10) {
-            consumeLineFeed(parser, (state & 4) !== 0);
-            state = (state | 4 | 1) ^ 4;
+            consumeLineFeed(parser, state);
+            state = (state & ~4) | 1;
         }
         else if ((parser.currentChar ^ 8232) <= 1) {
-            state = (state | 4 | 1) ^ 4;
+            state = (state & ~4) | 1;
             scanNewLine(parser);
         }
         else {
+            state &= ~4;
             advanceChar(parser);
         }
     }
@@ -878,10 +885,10 @@ function consumeMultiUnitCodePoint(parser, hi) {
     parser.column++;
     return 1;
 }
-function consumeLineFeed(parser, lastIsCR) {
+function consumeLineFeed(parser, state) {
     parser.currentChar = parser.source.charCodeAt(++parser.index);
     parser.flags |= 1;
-    if (!lastIsCR) {
+    if ((state & 4) === 0) {
         parser.column = 0;
         parser.line++;
     }
@@ -6115,6 +6122,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.6.11';
+const version = '1.6.13';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
