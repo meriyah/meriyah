@@ -152,7 +152,7 @@ export function scanUnicodeEscape(parser: ParserState): number {
     }
 
     // At least 4 characters have to be read
-    if (codePoint < 1 || (parser.currentChar as number) !== Chars.RightBrace) {
+    if ((parser.currentChar as number) !== Chars.RightBrace) {
       reportScannerError(begin, parser.line, parser.index - 1, Errors.InvalidHexEscapeSequence);
     }
     advanceChar(parser); // consumes '}'
