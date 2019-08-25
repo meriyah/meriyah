@@ -526,15 +526,13 @@ define(['exports'], function (exports) { 'use strict';
                                   advanceChar(parser);
                                   return 4194334;
                               }
-                              else {
-                                  return 8456513;
-                              }
+                              return 8456513;
                           }
                           else if (ch === 61) {
                               advanceChar(parser);
                               return 8455997;
                           }
-                          else if (ch === 33) {
+                          if (ch === 33) {
                               if (parser.source.charCodeAt(parser.index + 2) === 45 &&
                                   parser.source.charCodeAt(parser.index + 1) === 45) {
                                   state = skipSingleHTMLComment(parser, state, context, 2);
@@ -542,7 +540,7 @@ define(['exports'], function (exports) { 'use strict';
                               }
                               return 8456255;
                           }
-                          else if (ch === 47) {
+                          if (ch === 47) {
                               if ((context & 16) < 1)
                                   return 8456255;
                               const index = parser.index + 1;
@@ -566,11 +564,9 @@ define(['exports'], function (exports) { 'use strict';
                               advanceChar(parser);
                               return 8455993;
                           }
-                          else {
-                              return 8455995;
-                          }
+                          return 8455995;
                       }
-                      else if (ch === 62) {
+                      if (ch === 62) {
                           advanceChar(parser);
                           return 10;
                       }
@@ -654,15 +650,15 @@ define(['exports'], function (exports) { 'use strict';
                               state = skipSingleLineComment(parser, state, 0);
                               continue;
                           }
-                          else if (ch === 42) {
+                          if (ch === 42) {
                               advanceChar(parser);
                               state = skipMultiLineComment(parser, state);
                               continue;
                           }
-                          else if (context & 32768) {
+                          if (context & 32768) {
                               return scanRegularExpression(parser, context);
                           }
-                          else if (ch === 61) {
+                          if (ch === 61) {
                               advanceChar(parser);
                               return 4259877;
                           }
@@ -678,7 +674,7 @@ define(['exports'], function (exports) { 'use strict';
                           advanceChar(parser);
                           return 8979000;
                       }
-                      else if (ch === 61) {
+                      if (ch === 61) {
                           advanceChar(parser);
                           return 4194344;
                       }
@@ -703,11 +699,9 @@ define(['exports'], function (exports) { 'use strict';
                                   advanceChar(parser);
                                   return 4194336;
                               }
-                              else {
-                                  return 8456515;
-                              }
+                              return 8456515;
                           }
-                          else if (ch === 61) {
+                          if (ch === 61) {
                               advanceChar(parser);
                               return 4194335;
                           }
@@ -747,7 +741,7 @@ define(['exports'], function (exports) { 'use strict';
                           advanceChar(parser);
                           return 276889979;
                       }
-                      else if (ch === 46) {
+                      if (ch === 46) {
                           const index = parser.index + 1;
                           if (index < parser.end) {
                               ch = parser.source.charCodeAt(index);
