@@ -223,13 +223,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               if (parser.index < parser.end && advanceChar(parser) === Chars.EqualSign) {
                 advanceChar(parser);
                 return Token.ShiftLeftAssign;
-              } else {
-                return Token.ShiftLeft;
               }
+              return Token.ShiftLeft;
             } else if (ch === Chars.EqualSign) {
               advanceChar(parser);
               return Token.LessThanOrEqual;
-            } else if (ch === Chars.Exclamation) {
+            }
+            if (ch === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
               if (
                 parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen &&
@@ -239,7 +239,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 continue;
               }
               return Token.LessThan;
-            } else if (ch === Chars.Slash) {
+            }
+            if (ch === Chars.Slash) {
               if ((context & Context.OptionsJSX) < 1) return Token.LessThan;
               const index = parser.index + 1;
 
@@ -264,10 +265,10 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             if (advanceChar(parser) === Chars.EqualSign) {
               advanceChar(parser);
               return Token.StrictEqual;
-            } else {
-              return Token.LooseEqual;
             }
-          } else if (ch === Chars.GreaterThan) {
+            return Token.LooseEqual;
+          }
+          if (ch === Chars.GreaterThan) {
             advanceChar(parser);
             return Token.Arrow;
           }
@@ -373,13 +374,16 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               advanceChar(parser);
               state = skipSingleLineComment(parser, state, CommentType.Single);
               continue;
-            } else if (ch === Chars.Asterisk) {
+            }
+            if (ch === Chars.Asterisk) {
               advanceChar(parser);
               state = skipMultiLineComment(parser, state) as LexerState;
               continue;
-            } else if (context & Context.AllowRegExp) {
+            }
+            if (context & Context.AllowRegExp) {
               return scanRegularExpression(parser, context);
-            } else if (ch === Chars.EqualSign) {
+            }
+            if (ch === Chars.EqualSign) {
               advanceChar(parser);
               return Token.DivideAssign;
             }
@@ -397,7 +401,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           if (ch === Chars.VerticalBar) {
             advanceChar(parser);
             return Token.LogicalOr;
-          } else if (ch === Chars.EqualSign) {
+          }
+          if (ch === Chars.EqualSign) {
             advanceChar(parser);
             return Token.BitwiseOrAssign;
           }
@@ -429,10 +434,10 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               if (advanceChar(parser) === Chars.EqualSign) {
                 advanceChar(parser);
                 return Token.LogicalShiftRightAssign;
-              } else {
-                return Token.LogicalShiftRight;
               }
-            } else if (ch === Chars.EqualSign) {
+              return Token.LogicalShiftRight;
+            }
+            if (ch === Chars.EqualSign) {
               advanceChar(parser);
               return Token.ShiftRightAssign;
             }
@@ -478,7 +483,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);
             return Token.Coalesce;
-          } else if (ch === Chars.Period) {
+          }
+          if (ch === Chars.Period) {
             const index = parser.index + 1;
             // Check that it's not followed by any numbers
             if (index < parser.end) {
