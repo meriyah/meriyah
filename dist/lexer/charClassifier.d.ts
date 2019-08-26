@@ -18,6 +18,8 @@ export declare const enum CharFlags {
     Hyphen = 32768
 }
 export declare const CharTypes: number[];
+export declare const isIdStart: number[];
+export declare const isIdPart: number[];
 export declare function isIdentifierStart(code: number): number;
 export declare function isIdentifierPart(code: number): any;
 //# sourceMappingURL=charClassifier.d.ts.map

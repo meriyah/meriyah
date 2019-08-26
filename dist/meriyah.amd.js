@@ -157,14 +157,274 @@ define(['exports'], function (exports) { 'use strict';
       0,
       0
   ];
+  const isIdStart = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+  ];
+  const isIdPart = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+  ];
   function isIdentifierStart(code) {
       return code <= 0x7F
-          ? CharTypes[code] & 1
+          ? isIdStart[code]
           : (unicodeLookup[(code >>> 5) + 34816] >>> code) & 31 & 1;
   }
   function isIdentifierPart(code) {
       return code <= 0x7F
-          ? CharTypes[code] & 2
+          ? isIdPart[code]
           : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1 || (code === 8204 || code === 8205);
   }
 
@@ -997,7 +1257,7 @@ define(['exports'], function (exports) { 'use strict';
   });
 
   function scanIdentifier(parser, context, isValidAsKeyword) {
-      while ((CharTypes[advanceChar(parser)] & 2) !== 0) { }
+      while (isIdPart[advanceChar(parser)]) { }
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
       return parser.currentChar !== 92 && parser.currentChar < 0x7e
           ? descKeywordTable[parser.tokenValue] || 208897
@@ -1092,7 +1352,7 @@ define(['exports'], function (exports) { 'use strict';
               if (codePoint > 1114111)
                   reportScannerError(begin, parser.line, parser.index + 1, 101);
           }
-          if (codePoint < 1 || parser.currentChar !== 125) {
+          if (parser.currentChar !== 125) {
               reportScannerError(begin, parser.line, parser.index - 1, 6);
           }
           advanceChar(parser);
@@ -1355,7 +1615,7 @@ define(['exports'], function (exports) { 'use strict';
                       char = advanceChar(parser);
                   }
                   if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 19 : 147);
+                      report(parser, digits < 1 ? 0 : 147);
                   }
               }
               else if ((char | 32) === 98) {
@@ -1376,7 +1636,7 @@ define(['exports'], function (exports) { 'use strict';
                       char = advanceChar(parser);
                   }
                   if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 19 : 147);
+                      report(parser, digits < 1 ? 0 : 147);
                   }
               }
               else if (CharTypes[char] & 32) {
@@ -6118,7 +6378,7 @@ define(['exports'], function (exports) { 'use strict';
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.6.13';
+  const version = '1.6.14';
 
   exports.ESTree = estree;
   exports.parse = parse;
