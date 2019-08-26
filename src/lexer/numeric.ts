@@ -70,7 +70,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           char = advanceChar(parser);
         }
         if (digits < 1 || !allowSeparator) {
-          report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
+          report(parser, digits < 1 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
         }
       } else if ((char | 32) === Chars.LowerB) {
         kind = NumberKind.Binary | NumberKind.ValidBigIntKind;
@@ -90,7 +90,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           char = advanceChar(parser);
         }
         if (digits < 1 || !allowSeparator) {
-          report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
+          report(parser, digits < 1 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
         }
       } else if (CharTypes[char] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code

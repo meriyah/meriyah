@@ -244,7 +244,6 @@ describe('Lexer - Numberic literals', () => {
   fail('fails on 0b2', '0b2', Context.None);
   fail('fails on 00b0', '00b0', Context.None);
   fail('fails on 0b', '0b', Context.None);
-  fail('fails on 0\\u00620', '0\\u00620', Context.None);
   fail('fails on 00', '00', Context.Strict);
   fail('fails on 000', '000', Context.Strict);
   fail('fails on 005', '005', Context.Strict);
