@@ -13,7 +13,7 @@
 
 <br>
 
-[Demo](https://meriyah.github.io/meriyah)
+## [Demo](https://meriyah.github.io/meriyah)
 
 ## Features
 
