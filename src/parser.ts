@@ -8395,8 +8395,10 @@ export function parseFieldDefinition(
         linePos,
         colPos
       );
-      if ((parser.token & Token.IsClassField) !== Token.IsClassField) {
-        value = parseAssignmentExpression(parser, context | Context.InClass, 0, 0, tokenPos, linePos, colPos, value);
+
+      value = parseAssignmentExpression(parser, context | Context.InClass, 0, 0, tokenPos, linePos, colPos, value);
+      if (parser.token === Token.Comma) {
+        value = parseSequenceExpression(parser, context, 0, start, line, column, value as any);
       }
     }
   }

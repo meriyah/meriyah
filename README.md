@@ -13,6 +13,8 @@
 
 <br>
 
+## [Demo](https://meriyah.github.io/meriyah)
+
 ## Features
 
 * Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
