@@ -6066,8 +6066,9 @@ function parseFieldDefinition(parser, context, key, state, decorators, start, li
         value = parsePrimaryExpressionExtended(parser, context | 16384, 2, 0, 1, 0, 0, tokenPos, linePos, colPos);
         if ((parser.token & 1073741824) !== 1073741824) {
             value = parseMemberOrUpdateExpression(parser, context | 16384, value, 0, tokenPos, linePos, colPos);
-            if ((parser.token & 1073741824) !== 1073741824) {
-                value = parseAssignmentExpression(parser, context | 16384, 0, 0, tokenPos, linePos, colPos, value);
+            value = parseAssignmentExpression(parser, context | 16384, 0, 0, tokenPos, linePos, colPos, value);
+            if (parser.token === 1073741842) {
+                value = parseSequenceExpression(parser, context, 0, start, line, column, value);
             }
         }
     }
@@ -6376,6 +6377,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.6.14';
+const version = '1.6.15';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
