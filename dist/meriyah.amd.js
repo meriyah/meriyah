@@ -3487,7 +3487,7 @@ define(['exports'], function (exports) { 'use strict';
   }
   function parseAssignmentExpression(parser, context, inGroup, isPattern, start, line, column, left) {
       const { token } = parser;
-      if ((token & 4194304) > 0) {
+      if ((token & 4194304) === 4194304) {
           if (parser.assignable & 2)
               report(parser, 24);
           if ((!isPattern && (token === 1077936157 && left.type === 'ArrayExpression')) ||
@@ -3496,7 +3496,8 @@ define(['exports'], function (exports) { 'use strict';
           }
           nextToken(parser, context | 32768);
           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
-          left = finishNode(parser, context, start, line, column, isPattern
+          parser.assignable = 2;
+          return finishNode(parser, context, start, line, column, isPattern
               ? {
                   type: 'AssignmentPattern',
                   left,
@@ -3508,10 +3509,8 @@ define(['exports'], function (exports) { 'use strict';
                   operator: KeywordDescTable[token & 255],
                   right
               });
-          parser.assignable = 2;
-          return left;
       }
-      if ((token & 8454144) > 0) {
+      if ((token & 8454144) === 8454144) {
           left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left);
       }
       if (consumeOpt(parser, context | 32768, 22)) {
