@@ -161,14 +161,274 @@
       0,
       0
   ];
+  const isIdStart = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+  ];
+  const isIdPart = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+  ];
   function isIdentifierStart(code) {
       return code <= 0x7F
-          ? CharTypes[code] & 1
+          ? isIdStart[code]
           : (unicodeLookup[(code >>> 5) + 34816] >>> code) & 31 & 1;
   }
   function isIdentifierPart(code) {
       return code <= 0x7F
-          ? CharTypes[code] & 2
+          ? isIdPart[code]
           : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1 || (code === 8204 || code === 8205);
   }
 
@@ -530,15 +790,13 @@
                                   advanceChar(parser);
                                   return 4194334;
                               }
-                              else {
-                                  return 8456513;
-                              }
+                              return 8456513;
                           }
                           else if (ch === 61) {
                               advanceChar(parser);
                               return 8455997;
                           }
-                          else if (ch === 33) {
+                          if (ch === 33) {
                               if (parser.source.charCodeAt(parser.index + 2) === 45 &&
                                   parser.source.charCodeAt(parser.index + 1) === 45) {
                                   state = skipSingleHTMLComment(parser, state, context, 2);
@@ -546,7 +804,7 @@
                               }
                               return 8456255;
                           }
-                          else if (ch === 47) {
+                          if (ch === 47) {
                               if ((context & 16) < 1)
                                   return 8456255;
                               const index = parser.index + 1;
@@ -570,11 +828,9 @@
                               advanceChar(parser);
                               return 8455993;
                           }
-                          else {
-                              return 8455995;
-                          }
+                          return 8455995;
                       }
-                      else if (ch === 62) {
+                      if (ch === 62) {
                           advanceChar(parser);
                           return 10;
                       }
@@ -658,15 +914,15 @@
                               state = skipSingleLineComment(parser, state, 0);
                               continue;
                           }
-                          else if (ch === 42) {
+                          if (ch === 42) {
                               advanceChar(parser);
                               state = skipMultiLineComment(parser, state);
                               continue;
                           }
-                          else if (context & 32768) {
+                          if (context & 32768) {
                               return scanRegularExpression(parser, context);
                           }
-                          else if (ch === 61) {
+                          if (ch === 61) {
                               advanceChar(parser);
                               return 4259877;
                           }
@@ -682,7 +938,7 @@
                           advanceChar(parser);
                           return 8979000;
                       }
-                      else if (ch === 61) {
+                      if (ch === 61) {
                           advanceChar(parser);
                           return 4194344;
                       }
@@ -707,11 +963,9 @@
                                   advanceChar(parser);
                                   return 4194336;
                               }
-                              else {
-                                  return 8456515;
-                              }
+                              return 8456515;
                           }
-                          else if (ch === 61) {
+                          if (ch === 61) {
                               advanceChar(parser);
                               return 4194335;
                           }
@@ -751,7 +1005,7 @@
                           advanceChar(parser);
                           return 276889979;
                       }
-                      else if (ch === 46) {
+                      if (ch === 46) {
                           const index = parser.index + 1;
                           if (index < parser.end) {
                               ch = parser.source.charCodeAt(index);
@@ -785,15 +1039,15 @@
                       scanNewLine(parser);
                       break;
                   case 133:
-                      consumeLineFeed(parser, (state & 4) !== 0);
-                      state = (state | 4 | 1) ^ 4;
+                      consumeLineFeed(parser, state);
+                      state = (state & ~4) | 1;
                       break;
                   default:
               }
           }
           else {
               if ((char ^ 8232) <= 1) {
-                  state = (state | 4 | 1) ^ 4;
+                  state = (state & ~4) | 1;
                   scanNewLine(parser);
                   continue;
               }
@@ -825,21 +1079,27 @@
   function skipSingleLineComment(parser, state, type) {
       const { index } = parser;
       while (parser.index < parser.end) {
-          if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
-              state = (state | 4 | 1) ^ 4;
+          if (CharTypes[parser.currentChar] & 8) {
               scanNewLine(parser);
-              return state;
+              if (parser.index < parser.end && parser.currentChar === 10)
+                  parser.currentChar = parser.source.charCodeAt(++parser.index);
+              return state | 1;
+          }
+          else if ((parser.currentChar ^ 8232) <= 1) {
+              scanNewLine(parser);
+              return state | 1;
           }
           advanceChar(parser);
       }
       if (parser.onComment)
           parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
-      return state;
+      return state | 1;
   }
   function skipMultiLineComment(parser, state) {
       const { index } = parser;
       while (parser.index < parser.end) {
           while (parser.currentChar === 42) {
+              state &= ~4;
               if (advanceChar(parser) === 47) {
                   advanceChar(parser);
                   if (parser.onComment)
@@ -852,14 +1112,15 @@
               scanNewLine(parser);
           }
           else if (parser.currentChar === 10) {
-              consumeLineFeed(parser, (state & 4) !== 0);
-              state = (state | 4 | 1) ^ 4;
+              consumeLineFeed(parser, state);
+              state = (state & ~4) | 1;
           }
           else if ((parser.currentChar ^ 8232) <= 1) {
-              state = (state | 4 | 1) ^ 4;
+              state = (state & ~4) | 1;
               scanNewLine(parser);
           }
           else {
+              state &= ~4;
               advanceChar(parser);
           }
       }
@@ -884,10 +1145,10 @@
       parser.column++;
       return 1;
   }
-  function consumeLineFeed(parser, lastIsCR) {
+  function consumeLineFeed(parser, state) {
       parser.currentChar = parser.source.charCodeAt(++parser.index);
       parser.flags |= 1;
-      if (!lastIsCR) {
+      if ((state & 4) === 0) {
           parser.column = 0;
           parser.line++;
       }
@@ -1000,7 +1261,7 @@
   });
 
   function scanIdentifier(parser, context, isValidAsKeyword) {
-      while ((CharTypes[advanceChar(parser)] & 2) !== 0) { }
+      while (isIdPart[advanceChar(parser)]) { }
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
       return parser.currentChar !== 92 && parser.currentChar < 0x7e
           ? descKeywordTable[parser.tokenValue] || 208897
@@ -1095,7 +1356,7 @@
               if (codePoint > 1114111)
                   reportScannerError(begin, parser.line, parser.index + 1, 101);
           }
-          if (codePoint < 1 || parser.currentChar !== 125) {
+          if (parser.currentChar !== 125) {
               reportScannerError(begin, parser.line, parser.index - 1, 6);
           }
           advanceChar(parser);
@@ -1358,7 +1619,7 @@
                       char = advanceChar(parser);
                   }
                   if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 19 : 147);
+                      report(parser, digits < 1 ? 0 : 147);
                   }
               }
               else if ((char | 32) === 98) {
@@ -1379,7 +1640,7 @@
                       char = advanceChar(parser);
                   }
                   if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 19 : 147);
+                      report(parser, digits < 1 ? 0 : 147);
                   }
               }
               else if (CharTypes[char] & 32) {
@@ -3230,7 +3491,7 @@
   }
   function parseAssignmentExpression(parser, context, inGroup, isPattern, start, line, column, left) {
       const { token } = parser;
-      if ((token & 4194304) > 0) {
+      if ((token & 4194304) === 4194304) {
           if (parser.assignable & 2)
               report(parser, 24);
           if ((!isPattern && (token === 1077936157 && left.type === 'ArrayExpression')) ||
@@ -3239,7 +3500,8 @@
           }
           nextToken(parser, context | 32768);
           const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
-          left = finishNode(parser, context, start, line, column, isPattern
+          parser.assignable = 2;
+          return finishNode(parser, context, start, line, column, isPattern
               ? {
                   type: 'AssignmentPattern',
                   left,
@@ -3251,10 +3513,8 @@
                   operator: KeywordDescTable[token & 255],
                   right
               });
-          parser.assignable = 2;
-          return left;
       }
-      if ((token & 8454144) > 0) {
+      if ((token & 8454144) === 8454144) {
           left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left);
       }
       if (consumeOpt(parser, context | 32768, 22)) {
@@ -3607,7 +3867,9 @@
           });
       }
       else {
-          const property = parsePropertyOrPrivatePropertyName(parser, context);
+          if ((parser.token & (143360 | 4096)) < 1)
+              report(parser, 154);
+          const property = parseIdentifier(parser, context, 0);
           parser.assignable = 2;
           base = finishNode(parser, context, start, line, column, {
               type: 'OptionalChain',
@@ -3620,7 +3882,9 @@
           if (parser.token === 67108877) {
               nextToken(parser, context);
               parser.assignable = 1;
-              const property = parsePropertyOrPrivatePropertyName(parser, context);
+              if ((parser.token & (143360 | 4096)) < 1)
+                  report(parser, 154);
+              const property = parseIdentifier(parser, context, 0);
               base = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
                   type: 'OptionalChain',
                   base,
@@ -3743,7 +4007,7 @@
           case 86023:
               return parseNullOrTrueOrFalseLiteral(parser, context, start, line, column);
           case 86110:
-              return parseThisExpression(parser, context, start, line, column);
+              return parseThisExpression(parser, context);
           case 65540:
               return parseRegExpLiteral(parser, context, start, line, column);
           case 130:
@@ -3945,10 +4209,11 @@
               value
           });
   }
-  function parseThisExpression(parser, context, start, line, column) {
+  function parseThisExpression(parser, context) {
+      const { tokenPos, linePos, colPos } = parser;
       nextToken(parser, context);
       parser.assignable = 2;
-      return finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, tokenPos, linePos, colPos, {
           type: 'ThisExpression'
       });
   }
@@ -4396,7 +4661,7 @@
               let state = 0;
               let key = null;
               let value;
-              let t = parser.token;
+              const t = parser.token;
               if (parser.token & (143360 | 4096) || parser.token === 118) {
                   key = parseIdentifier(parser, context, 0);
                   if (parser.token === 1073741842 || parser.token === 1074790415 || parser.token === 1077936157) {
@@ -5806,8 +6071,9 @@
           value = parsePrimaryExpressionExtended(parser, context | 16384, 2, 0, 1, 0, 0, tokenPos, linePos, colPos);
           if ((parser.token & 1073741824) !== 1073741824) {
               value = parseMemberOrUpdateExpression(parser, context | 16384, value, 0, tokenPos, linePos, colPos);
-              if ((parser.token & 1073741824) !== 1073741824) {
-                  value = parseAssignmentExpression(parser, context | 16384, 0, 0, tokenPos, linePos, colPos, value);
+              value = parseAssignmentExpression(parser, context | 16384, 0, 0, tokenPos, linePos, colPos, value);
+              if (parser.token === 1073741842) {
+                  value = parseSequenceExpression(parser, context, 0, start, line, column, value);
               }
           }
       }
@@ -6116,7 +6382,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.6.10';
+  const version = '1.6.15';
 
   exports.ESTree = estree;
   exports.parse = parse;
