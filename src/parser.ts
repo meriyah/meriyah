@@ -3216,7 +3216,7 @@ export function parseAssignmentExpression(
 
   const { token } = parser;
 
-  if ((token & Token.IsAssignOp) > 0) {
+  if ((token & Token.IsAssignOp) === Token.IsAssignOp) {
     if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
     if (
       (!isPattern && (token === Token.Assign && ((left as ESTree.Expression).type as string) === 'ArrayExpression')) ||
@@ -3229,7 +3229,9 @@ export function parseAssignmentExpression(
 
     const right = parseExpression(parser, context, 1, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
 
-    left = finishNode(
+    parser.assignable = AssignmentKind.CannotAssign;
+
+    return finishNode(
       parser,
       context,
       start,
@@ -3248,10 +3250,6 @@ export function parseAssignmentExpression(
             right
           } as any)
     );
-
-    parser.assignable = AssignmentKind.CannotAssign;
-
-    return left as ESTree.Expression;
   }
 
   /** Binary expression
@@ -3259,7 +3257,7 @@ export function parseAssignmentExpression(
    * https://tc39.github.io/ecma262/#sec-multiplicative-operators
    *
    */
-  if ((token & Token.IsBinaryOp) > 0) {
+  if ((token & Token.IsBinaryOp) === Token.IsBinaryOp) {
     // We start using the binary expression parser for prec >= 4 only!
     left = parseBinaryExpression(parser, context, inGroup, start, line, column, 4, token, left as ESTree.Expression);
   }
