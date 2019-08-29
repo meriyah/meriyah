@@ -1764,13 +1764,13 @@ var meriyah = (function (exports) {
 
   function scanTemplate(parser, context) {
       const { index: start } = parser;
-      let tail = 1;
+      let token = 67174409;
       let ret = '';
       let char = advanceChar(parser);
       while (char !== 96) {
           if (char === 36 && parser.source.charCodeAt(parser.index + 1) === 123) {
               advanceChar(parser);
-              tail = 0;
+              token = 67174408;
               break;
           }
           else if ((char & 8) === 8 && char === 92) {
@@ -1787,7 +1787,7 @@ var meriyah = (function (exports) {
                       ret = undefined;
                       char = scanBadTemplate(parser, char);
                       if (char < 0)
-                          tail = 0;
+                          token = 67174408;
                       break;
                   }
                   else {
@@ -1814,14 +1814,8 @@ var meriyah = (function (exports) {
       }
       advanceChar(parser);
       parser.tokenValue = ret;
-      if (tail) {
-          parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
-          return 67174409;
-      }
-      else {
-          parser.tokenRaw = parser.source.slice(start + 1, parser.index - 2);
-          return 67174408;
-      }
+      parser.tokenRaw = parser.source.slice(start + 1, parser.index - (token === 67174409 ? 1 : 2));
+      return token;
   }
   function scanBadTemplate(parser, ch) {
       while (ch !== 96) {
