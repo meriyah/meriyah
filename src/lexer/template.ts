@@ -10,7 +10,7 @@ import { report, Errors } from '../errors';
  */
 export function scanTemplate(parser: ParserState, context: Context): Token {
   const { index: start } = parser;
-  let tail = 1;
+  let token: Token = Token.TemplateSpan;
   let ret: string | void = '';
 
   let char = advanceChar(parser);
@@ -18,7 +18,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
   while (char !== Chars.Backtick) {
     if (char === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
       advanceChar(parser); // Skip: '}'
-      tail = 0;
+      token = Token.TemplateContinuation;
       break;
     } else if ((char & 8) === 8 && char === Chars.Backslash) {
       char = advanceChar(parser);
@@ -31,7 +31,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
           ret = undefined;
           char = scanBadTemplate(parser, char);
-          if (char < 0) tail = 0;
+          if (char < 0) token = Token.TemplateContinuation;
           break;
         } else {
           handleStringError(parser, code as Escape, /* isTemplate */ 1);
@@ -59,20 +59,20 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
 
   advanceChar(parser); // Consume the quote or opening brace
   parser.tokenValue = ret;
-  if (tail) {
-    parser.tokenRaw = parser.source.slice(start + 1, parser.index - 1);
-    return Token.TemplateSpan;
-  } else {
-    parser.tokenRaw = parser.source.slice(start + 1, parser.index - 2);
-    return Token.TemplateContinuation;
-  }
+
+  parser.tokenRaw = parser.source.slice(start + 1, parser.index - (token === Token.TemplateSpan ? 1 : 2));
+
+  return token;
 }
 
-// Fallback for looser template segment validation (no actual parsing).
-// It returns `ch` as negative iff the segment ends with `${`
+/**
+ * Scans looser template segment
+ *
+ * @param parser Parser state
+ * @param ch Code point
+ */
 function scanBadTemplate(parser: ParserState, ch: number): number {
   while (ch !== Chars.Backtick) {
-    // Break after a literal `${` (thus the dedicated code path).
     switch (ch) {
       case Chars.Dollar: {
         const index = parser.index + 1;
