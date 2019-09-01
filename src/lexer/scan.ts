@@ -2,7 +2,7 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context, Flags } from '../common';
 import { report, Errors } from '../errors';
-import { isIDStart } from '../unicode';
+import { unicodeLookup } from '../unicode';
 import {
   advanceChar,
   skipSingleLineComment,
@@ -10,7 +10,6 @@ import {
   skipSingleHTMLComment,
   CommentType,
   LexerState,
-  consumeMultiUnitCodePoint,
   isExoticECMAScriptWhitespace,
   scanRegularExpression,
   scanTemplate,
@@ -193,7 +192,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
     parser.colPos = parser.column;
     parser.linePos = parser.line;
 
-    const char = parser.currentChar;
+    let char = parser.currentChar;
 
     if (char <= 0x7e) {
       const token = TokenLookup[char];
@@ -554,7 +553,18 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         continue;
       }
 
-      if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
+      if ((char & 0xfc00) === 0xd800 || ((unicodeLookup[(char >>> 5) + 34816] >>> char) & 31 & 1) !== 0) {
+        if ((char & 0xfc00) === 0xdc00) {
+          char = ((char & 0x3ff) << 10) | (char & 0x3ff) | 0x10000;
+          if (((unicodeLookup[(char >>> 5) + 0] >>> char) & 31 & 1) === 0) {
+            report(parser, Errors.IllegalCaracter, fromCodePoint(char));
+          }
+          parser.index++;
+          parser.currentChar = char;
+        }
+
+        parser.column++;
+
         parser.tokenValue = '';
         return scanIdentifierSlowCase(parser, context, /* hasEscape */ 0, /* canBeKeyword */ 0);
       }
