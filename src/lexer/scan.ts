@@ -1,4 +1,3 @@
-import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context, Flags } from '../common';
@@ -466,11 +465,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         }
         // `.`, `...`, `.123` (numeric literal)
         case Token.Period:
-          if ((CharTypes[advanceChar(parser)] & CharFlags.Decimal) !== 0)
+          const next = advanceChar(parser);
+          if (next >= Chars.Zero && next <= Chars.Nine)
             return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
-          if (parser.currentChar === Chars.Period) {
-            if (advanceChar(parser) === Chars.Period) {
-              advanceChar(parser);
+          if (next === Chars.Period) {
+            const index = parser.index + 1;
+            if (index < parser.source.length && parser.source.charCodeAt(index) === Chars.Period) {
+              parser.column += 2;
+              parser.currentChar = parser.source.charCodeAt((parser.index += 2));
               return Token.Ellipsis;
             }
           }
@@ -484,12 +486,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             advanceChar(parser);
             return Token.Coalesce;
           }
+
           if (ch === Chars.Period) {
             const index = parser.index + 1;
             // Check that it's not followed by any numbers
             if (index < parser.end) {
               ch = parser.source.charCodeAt(index);
-              if ((CharTypes[ch] & CharFlags.Decimal) < 1) {
+              if (!(ch >= Chars.Zero && ch <= Chars.Nine)) {
                 advanceChar(parser);
                 return Token.QuestionMarkPeriod;
               }
