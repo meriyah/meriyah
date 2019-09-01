@@ -9,6 +9,195 @@ System.register('meriyah', [], function (exports) {
         parseScript: parseScript
       });
 
+      const errorMessages = {
+          [0]: 'Unexpected token',
+          [28]: "Unexpected token: '%0'",
+          [1]: 'Octal escape sequences are not allowed in strict mode',
+          [2]: 'Octal escape sequences are not allowed in template strings',
+          [3]: 'Unexpected token `#`',
+          [4]: 'Illegal Unicode escape sequence',
+          [5]: 'Invalid code point %0',
+          [6]: 'Invalid hexadecimal escape sequence',
+          [8]: 'Octal literals are not allowed in strict mode',
+          [7]: 'Decimal integer literals with a leading zero are forbidden in strict mode',
+          [9]: 'Expected number in radix %0',
+          [145]: 'Invalid left-hand side assignment to a destructible right-hand side',
+          [10]: 'Non-number found after exponent indicator',
+          [11]: 'Invalid BigIntLiteral',
+          [12]: 'No identifiers allowed directly after numeric literal',
+          [13]: 'Escapes \\8 or \\9 are not syntactically valid escapes',
+          [14]: 'Unterminated string literal',
+          [15]: 'Unterminated template literal',
+          [16]: 'Multiline comment was not closed properly',
+          [17]: 'The identifier contained dynamic unicode escape that was not closed',
+          [18]: "Illegal character '%0'",
+          [19]: 'Missing hexadecimal digits',
+          [20]: 'Invalid implicit octal',
+          [21]: 'Invalid line break in string literal',
+          [22]: 'Only unicode escapes are legal in identifier names',
+          [23]: "Expected '%0'",
+          [24]: 'Invalid left-hand side in assignment',
+          [25]: 'Invalid left-hand side in async arrow',
+          [26]: 'Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass',
+          [27]: 'Member access on super must be in a method',
+          [29]: 'Await expression not allowed in formal parameter',
+          [30]: 'Yield expression not allowed in formal parameter',
+          [92]: "Unexpected token: 'escaped keyword'",
+          [31]: 'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
+          [119]: 'Async functions can only be declared at the top level or inside a block',
+          [32]: 'Unterminated regular expression',
+          [33]: 'Unexpected regular expression flag',
+          [34]: "Duplicate regular expression flag '%0'",
+          [35]: '%0 functions must have exactly %1 argument%2',
+          [36]: 'Setter function argument must not be a rest parameter',
+          [37]: '%0 declaration must have a name in this context',
+          [38]: 'Function name may not contain any reserved words or be eval or arguments in strict mode',
+          [39]: 'The rest operator is missing an argument',
+          [40]: 'A getter cannot be a generator',
+          [41]: 'A computed property name must be followed by a colon or paren',
+          [130]: 'Object literal keys that are strings or numbers must be a method or have a colon',
+          [43]: 'Found `* async x(){}` but this should be `async * x(){}`',
+          [42]: 'Getters and setters can not be generators',
+          [44]: "'%0' can not be generator method",
+          [45]: "No line break is allowed after '=>'",
+          [46]: 'The left-hand side of the arrow can only be destructed through assignment',
+          [47]: 'The binding declaration is not destructible',
+          [48]: 'Async arrow can not be followed by new expression',
+          [49]: "Classes may not have a static property named 'prototype'",
+          [50]: 'Class constructor may not be a %0',
+          [51]: 'Duplicate constructor method in class',
+          [52]: 'Invalid increment/decrement operand',
+          [53]: 'Invalid use of `new` keyword on an increment/decrement expression',
+          [54]: '`=>` is an invalid assignment target',
+          [55]: 'Rest element may not have a trailing comma',
+          [56]: 'Missing initializer in %0 declaration',
+          [57]: "'for-%0' loop head declarations can not have an initializer",
+          [58]: 'Invalid left-hand side in for-%0 loop: Must have a single binding',
+          [59]: 'Invalid shorthand property initializer',
+          [60]: 'Property name __proto__ appears more than once in object literal',
+          [61]: 'Let is disallowed as a lexically bound name',
+          [62]: "Invalid use of '%0' inside new expression",
+          [63]: "Illegal 'use strict' directive in function with non-simple parameter list",
+          [64]: 'Identifier "let" disallowed as left-hand side expression in strict mode',
+          [65]: 'Illegal continue statement',
+          [66]: 'Illegal break statement',
+          [67]: 'Cannot have `let[...]` as a var name in strict mode',
+          [68]: 'Invalid destructuring assignment target',
+          [69]: 'Rest parameter may not have a default initializer',
+          [70]: 'The rest argument must the be last parameter',
+          [71]: 'Invalid rest argument',
+          [73]: 'In strict mode code, functions can only be declared at top level or inside a block',
+          [74]: 'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
+          [75]: 'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
+          [76]: "Class declaration can't appear in single-statement context",
+          [77]: 'Invalid left-hand side in for-%0',
+          [78]: 'Invalid assignment in for-%0',
+          [79]: 'for await (... of ...) is only valid in async functions and async generators',
+          [80]: 'The first token after the template expression should be a continuation of the template',
+          [82]: '`let` declaration not allowed here and `let` cannot be a regular var name in strict mode',
+          [81]: '`let \n [` is a restricted production at the start of a statement',
+          [83]: 'Catch clause requires exactly one parameter, not more (and no trailing comma)',
+          [84]: 'Catch clause parameter does not support default values',
+          [85]: 'Missing catch or finally after try',
+          [86]: 'More than one default clause in switch statement',
+          [87]: 'Illegal newline after throw',
+          [88]: 'Strict mode code may not include a with statement',
+          [89]: 'Illegal return statement',
+          [90]: 'The left hand side of the for-header binding declaration is not destructible',
+          [91]: 'new.target only allowed within functions',
+          [92]: "'Unexpected token: 'escaped keyword'",
+          [93]: "'#' not followed by identifier",
+          [99]: 'Invalid keyword',
+          [98]: "Can not use 'let' as a class name",
+          [97]: "'A lexical declaration can't define a 'let' binding",
+          [96]: 'Can not use `let` as variable name in strict mode',
+          [94]: "'%0' may not be used as an identifier in this context",
+          [95]: 'Await is only valid in async functions',
+          [100]: 'The %0 keyword can only be used with the module goal',
+          [101]: 'Unicode codepoint must not be greater than 0x10FFFF',
+          [102]: '%0 source must be string',
+          [103]: 'Only a identifier can be used to indicate alias',
+          [104]: "Only '*' or '{...}' can be imported after default",
+          [105]: 'Trailing decorator may be followed by method',
+          [106]: "Decorators can't be used with a constructor",
+          [107]: "'%0' may not be used as an identifier in this context",
+          [108]: 'HTML comments are only allowed with web compability (Annex B)',
+          [109]: "The identifier 'let' must not be in expression position in strict mode",
+          [110]: 'Cannot assign to `eval` and `arguments` in strict mode',
+          [111]: "The left-hand side of a for-of loop may not start with 'let'",
+          [112]: 'Block body arrows can not be immediately invoked without a group',
+          [113]: 'Block body arrows can not be immediately accessed without a group',
+          [114]: 'Unexpected strict mode reserved word',
+          [115]: 'Unexpected eval or arguments in strict mode',
+          [116]: 'Decorators must not be followed by a semicolon',
+          [117]: 'Calling delete on expression not allowed in strict mode',
+          [118]: 'Pattern can not have a tail',
+          [120]: 'Can not have a `yield` expression on the left side of a ternary',
+          [121]: 'An arrow function can not have a postfix update operator',
+          [122]: 'Invalid object literal key character after generator star',
+          [123]: 'Private fields can not be deleted',
+          [125]: 'Classes may not have a field called constructor',
+          [124]: 'Classes may not have a private element named constructor',
+          [126]: 'A class field initializer may not contain arguments',
+          [127]: 'Generators can only be declared at the top level or inside a block',
+          [128]: 'Async methods are a restricted production and cannot have a newline following it',
+          [129]: 'Unexpected character after object literal property name',
+          [131]: 'Invalid key token',
+          [132]: "Label '%0' has already been declared",
+          [133]: 'continue statement must be nested within an iteration statement',
+          [134]: "Undefined label '%0'",
+          [135]: 'Trailing comma is disallowed inside import(...) arguments',
+          [136]: 'import() requires exactly one argument',
+          [137]: 'Cannot use new with import(...)',
+          [138]: '... is not allowed in import()',
+          [139]: "Expected '=>'",
+          [140]: "Duplicate binding '%0'",
+          [141]: "Cannot export a duplicate name '%0'",
+          [144]: 'Duplicate %0 for-binding',
+          [142]: "Exported binding '%0' needs to refer to a top-level declared variable",
+          [143]: 'Unexpected private field',
+          [147]: 'Numeric separators are not allowed at the end of numeric literals',
+          [146]: 'Only one underscore is allowed as numeric separator',
+          [148]: 'JSX value should be either an expression or a quoted JSX text',
+          [149]: 'Expected corresponding JSX closing tag for %0',
+          [150]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
+          [151]: "JSX attributes must only be assigned a non-empty 'expression'",
+          [152]: "'%0' has already been declared",
+          [153]: "'%0' shadowed a catch clause binding",
+          [154]: 'Dot property must be an identifier',
+          [155]: 'Encountered invalid input after spread/rest argument',
+          [156]: 'Catch without try',
+          [157]: 'Finally without try',
+          [158]: 'Expected corresponding closing tag for JSX fragment',
+          [159]: 'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
+          [160]: 'Invalid tagged template on optional chain',
+          [161]: 'Invalid optional chain from super property',
+          [162]: 'Invalid optional chain from new expression',
+          [163]: 'Cannot use "import.meta" outside a module'
+      };
+      class ParseError extends SyntaxError {
+          constructor(startindex, line, column, type, ...params) {
+              const message = '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_, i) => params[i]);
+              super(`${message}`);
+              this.index = startindex;
+              this.line = line;
+              this.column = column;
+              this.description = message;
+          }
+      }
+      function report(parser, type, ...params) {
+          throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
+      }
+      function reportScopeError(scope) {
+          throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
+      }
+      function reportMessageAt(index, line, column, type, ...params) {
+          throw new ParseError(index, line, column, type, ...params);
+      }
+      function reportScannerError(index, line, column, type) {
+          throw new ParseError(index, line, column, type);
+      }
+
       function isIDStart(code) {
           return (unicodeLookup[(code >>> 5) + 34816] >>> code & 31 & 1) !== 0;
       }
@@ -35,6 +224,567 @@ System.register('meriyah', [], function (exports) {
           }
           return result;
       })([-1, 2, 27, 2, 28, 2, 5, -1, 0, 77595648, 3, 46, 2, 3, 0, 14, 2, 57, 2, 58, 3, 0, 3, 0, 3168796671, 0, 4294956992, 2, 1, 2, 0, 2, 59, 3, 0, 4, 0, 4294966523, 3, 0, 4, 2, 16, 2, 60, 2, 0, 0, 4294836735, 0, 3221225471, 0, 4294901942, 2, 61, 0, 134152192, 3, 0, 2, 0, 4294951935, 3, 0, 2, 0, 2683305983, 0, 2684354047, 2, 17, 2, 0, 0, 4294961151, 3, 0, 2, 2, 20, 2, 0, 0, 608174079, 2, 0, 2, 128, 2, 6, 2, 62, -1, 2, 64, 2, 25, 2, 1, 3, 0, 3, 0, 4294901711, 2, 41, 0, 4089839103, 0, 2961209759, 0, 1342439375, 0, 4294543342, 0, 3547201023, 0, 1577204103, 0, 4194240, 0, 4294688750, 2, 2, 0, 80831, 0, 4261478351, 0, 4294549486, 2, 2, 0, 2965387679, 0, 196559, 0, 3594373100, 0, 3288319768, 0, 8469959, 2, 192, 0, 4294828031, 0, 3825204735, 0, 123747807, 0, 65487, 2, 3, 0, 4092591615, 0, 1080049119, 0, 458703, 2, 3, 2, 0, 0, 2163244511, 0, 4227923919, 0, 4236247020, 2, 69, 0, 4284449919, 0, 851904, 2, 4, 2, 11, 0, 67076095, -1, 2, 70, 0, 1073741743, 0, 4093591391, -1, 0, 50331649, 0, 3265266687, 2, 35, 0, 4294844415, 0, 4278190047, 2, 22, 2, 126, -1, 3, 0, 2, 2, 32, 2, 0, 2, 9, 2, 0, 2, 14, 2, 15, 3, 0, 10, 2, 72, 2, 0, 2, 73, 2, 74, 2, 75, 2, 0, 2, 76, 2, 0, 2, 10, 0, 261632, 2, 19, 3, 0, 2, 2, 12, 2, 4, 3, 0, 18, 2, 77, 2, 5, 3, 0, 2, 2, 78, 0, 2088959, 2, 30, 2, 8, 0, 909311, 3, 0, 2, 0, 814743551, 2, 43, 0, 67057664, 3, 0, 2, 2, 42, 2, 0, 2, 31, 2, 0, 2, 18, 2, 7, 0, 268374015, 2, 29, 2, 51, 2, 0, 2, 79, 0, 134153215, -1, 2, 6, 2, 0, 2, 7, 0, 2684354559, 0, 67044351, 0, 1073676416, -2, 3, 0, 2, 2, 44, 0, 1046528, 3, 0, 3, 2, 8, 2, 0, 2, 52, 0, 4294960127, 2, 9, 2, 40, 2, 10, 0, 4294377472, 2, 11, 3, 0, 7, 0, 4227858431, 3, 0, 8, 2, 12, 2, 0, 2, 81, 2, 9, 2, 0, 2, 82, 2, 83, 2, 84, -1, 2, 122, 0, 1048577, 2, 85, 2, 13, -1, 2, 13, 0, 131042, 2, 86, 2, 87, 2, 88, 2, 0, 2, 36, -83, 2, 0, 2, 54, 2, 7, 3, 0, 4, 0, 1046559, 2, 0, 2, 14, 2, 0, 0, 2147516671, 2, 23, 3, 89, 2, 2, 0, -16, 2, 90, 0, 524222462, 2, 4, 2, 0, 0, 4269801471, 2, 4, 2, 0, 2, 15, 2, 80, 2, 16, 3, 0, 2, 2, 49, 2, 11, -1, 2, 17, -16, 3, 0, 205, 2, 18, -2, 3, 0, 655, 2, 19, 3, 0, 36, 2, 71, -1, 2, 17, 2, 9, 3, 0, 8, 2, 92, 2, 119, 2, 0, 0, 3220242431, 3, 0, 3, 2, 20, 2, 21, 2, 93, 3, 0, 2, 2, 94, 2, 0, 2, 95, 2, 21, 2, 0, 2, 26, 2, 0, 2, 8, 3, 0, 2, 0, 67043391, 0, 3909091327, 2, 0, 2, 24, 2, 8, 2, 22, 3, 0, 2, 0, 67076097, 2, 7, 2, 0, 2, 23, 0, 67059711, 0, 4236247039, 3, 0, 2, 0, 939524103, 0, 8191999, 2, 98, 2, 99, 2, 15, 2, 33, 3, 0, 3, 0, 67057663, 3, 0, 349, 2, 100, 2, 101, 2, 6, -264, 3, 0, 11, 2, 24, 3, 0, 2, 2, 34, -1, 0, 3774349439, 2, 102, 2, 103, 3, 0, 2, 2, 20, 2, 25, 3, 0, 10, 2, 9, 2, 17, 2, 0, 2, 47, 2, 0, 2, 26, 2, 104, 2, 19, 0, 1638399, 2, 172, 2, 105, 3, 0, 3, 2, 22, 2, 27, 2, 28, 2, 5, 2, 29, 2, 0, 2, 7, 2, 106, -1, 2, 107, 2, 108, 2, 109, -1, 3, 0, 3, 2, 11, -2, 2, 0, 2, 30, -3, 2, 150, -4, 2, 22, 2, 0, 2, 38, 0, 1, 2, 0, 2, 63, 2, 31, 2, 11, 2, 9, 2, 0, 2, 110, -1, 3, 0, 4, 2, 9, 2, 32, 2, 111, 2, 6, 2, 0, 2, 33, 2, 0, 2, 50, -4, 3, 0, 9, 2, 23, 2, 18, 2, 26, -4, 2, 112, 2, 113, 2, 18, 2, 23, 2, 7, -2, 2, 114, 2, 18, 2, 34, -2, 2, 0, 2, 115, -2, 0, 4277137519, 0, 2269118463, -1, 3, 22, 2, -1, 2, 35, 2, 39, 2, 0, 3, 18, 2, 2, 37, 2, 20, -3, 3, 0, 2, 2, 36, -1, 2, 0, 2, 37, 2, 0, 2, 37, 2, 0, 2, 48, -14, 2, 22, 2, 45, 2, 38, -4, 2, 23, 3, 0, 2, 2, 39, 0, 2147549120, 2, 0, 2, 11, 2, 17, 2, 134, 2, 0, 2, 53, 0, 4294901872, 0, 5242879, 3, 0, 2, 0, 402595359, -1, 2, 118, 0, 1090519039, -2, 2, 120, 2, 40, 2, 0, 0, 67045375, 2, 41, 0, 4226678271, 0, 3766565279, 0, 2039759, -4, 3, 0, 2, 0, 3288270847, -1, 3, 0, 2, 0, 67043519, -5, 2, 0, 0, 4282384383, 0, 1056964609, -1, 3, 0, 2, 0, 67043345, -1, 2, 0, 2, 42, 2, 43, -1, 2, 10, 2, 44, -6, 2, 0, 2, 11, -3, 3, 0, 2, 0, 2147484671, -5, 2, 123, 0, 4244635647, 0, 27, 2, 0, 2, 7, 2, 45, 2, 0, 2, 65, -1, 2, 0, 2, 42, -8, 2, 55, 2, 46, 0, 67043329, 2, 124, 2, 47, 0, 8388351, -2, 2, 125, 0, 3028287487, 2, 48, 2, 127, 0, 33259519, 2, 43, -9, 2, 23, -8, 3, 0, 28, 2, 34, -3, 3, 0, 3, 2, 49, 3, 0, 6, 2, 50, -85, 3, 0, 33, 2, 49, -126, 3, 0, 18, 2, 39, -269, 3, 0, 17, 2, 42, 2, 7, 2, 43, -2, 2, 17, 2, 51, 2, 0, 2, 23, 0, 67043343, 2, 129, 2, 19, -21, 3, 0, 2, -4, 3, 0, 2, 0, 4294936575, 2, 0, 0, 4294934783, -2, 2, 130, 3, 0, 191, 2, 52, 3, 0, 23, 2, 37, -296, 3, 0, 8, 2, 7, -1, 2, 131, 2, 132, 3, 0, 11, 2, 6, -72, 3, 0, 3, 2, 133, 0, 1677656575, -166, 0, 4161266656, 0, 4071, 0, 15360, -4, 0, 28, -13, 3, 0, 2, 2, 53, 2, 0, 2, 135, 2, 136, 2, 56, 2, 0, 2, 137, 2, 138, 2, 139, 3, 0, 10, 2, 140, 2, 141, 2, 15, 3, 53, 2, 3, 54, 2, 3, 55, 2, 0, 4294954999, 2, 0, -16, 2, 0, 2, 91, 2, 0, 0, 2105343, 0, 4160749584, 0, 65534, -42, 0, 4194303871, 0, 2011, -6, 2, 0, 0, 1073684479, 0, 17407, -11, 2, 0, 2, 34, -40, 3, 0, 6, 0, 8323103, -1, 3, 0, 2, 2, 44, -37, 2, 56, 2, 144, 2, 145, 2, 146, 2, 147, 2, 148, -138, 3, 0, 1334, 2, 23, -1, 3, 0, 129, 2, 30, 3, 0, 6, 2, 9, 3, 0, 180, 2, 149, 3, 0, 233, 0, 1, -96, 3, 0, 16, 2, 9, -22583, 3, 0, 7, 2, 19, -6130, 3, 5, 2, -1, 0, 69207040, 3, 46, 2, 3, 0, 14, 2, 57, 2, 58, -3, 0, 3168731136, 0, 4294956864, 2, 1, 2, 0, 2, 59, 3, 0, 4, 0, 4294966275, 3, 0, 4, 2, 16, 2, 60, 2, 0, 2, 36, -1, 2, 17, 2, 61, -1, 2, 0, 2, 62, 0, 4294885376, 3, 0, 2, 0, 3145727, 0, 2617294944, 0, 4294770688, 2, 19, 2, 63, 3, 0, 2, 0, 131135, 2, 96, 0, 70256639, 0, 71303167, 0, 272, 2, 42, 2, 62, -1, 2, 64, -2, 2, 97, 2, 65, 0, 4278255616, 0, 4294836227, 0, 4294549473, 0, 600178175, 0, 2952806400, 0, 268632067, 0, 4294543328, 0, 57540095, 0, 1577058304, 0, 1835008, 0, 4294688736, 2, 66, 2, 67, 0, 33554435, 2, 121, 2, 66, 2, 151, 0, 131075, 0, 3594373096, 0, 67094296, 2, 67, -1, 2, 68, 0, 603979263, 2, 160, 0, 3, 0, 4294828001, 0, 602930687, 2, 181, 0, 393219, 2, 68, 0, 671088639, 0, 2154840064, 0, 4227858435, 0, 4236247008, 2, 69, 2, 39, -1, 2, 4, 0, 917503, 2, 39, -1, 2, 70, 0, 537788335, 0, 4026531935, -1, 0, 1, -1, 2, 35, 2, 71, 0, 7936, -3, 2, 0, 0, 2147485695, 0, 1010761728, 0, 4292984930, 0, 16387, 2, 0, 2, 14, 2, 15, 3, 0, 10, 2, 72, 2, 0, 2, 73, 2, 74, 2, 75, 2, 0, 2, 76, 2, 0, 2, 11, -1, 2, 19, 3, 0, 2, 2, 12, 2, 4, 3, 0, 18, 2, 77, 2, 5, 3, 0, 2, 2, 78, 0, 253951, 3, 20, 2, 0, 122879, 2, 0, 2, 8, 0, 276824064, -2, 3, 0, 2, 2, 42, 2, 0, 0, 4294903295, 2, 0, 2, 18, 2, 7, -1, 2, 17, 2, 51, 2, 0, 2, 79, 2, 43, -1, 2, 23, 2, 0, 2, 30, -2, 0, 128, -2, 2, 80, 2, 8, 0, 4064, -1, 2, 117, 0, 4227907585, 2, 0, 2, 116, 2, 0, 2, 50, 0, 4227915776, 2, 9, 2, 40, 2, 10, -1, 0, 74440192, 3, 0, 6, -2, 3, 0, 8, 2, 12, 2, 0, 2, 81, 2, 9, 2, 0, 2, 82, 2, 83, 2, 84, -3, 2, 85, 2, 13, -3, 2, 86, 2, 87, 2, 88, 2, 0, 2, 36, -83, 2, 0, 2, 54, 2, 7, 3, 0, 4, 0, 817183, 2, 0, 2, 14, 2, 0, 0, 33023, 2, 23, 3, 89, 2, -17, 2, 90, 0, 524157950, 2, 4, 2, 0, 2, 91, 2, 4, 2, 0, 2, 15, 2, 80, 2, 16, 3, 0, 2, 2, 49, 2, 11, -1, 2, 17, -16, 3, 0, 205, 2, 18, -2, 3, 0, 655, 2, 19, 3, 0, 36, 2, 71, -1, 2, 17, 2, 9, 3, 0, 8, 2, 92, 0, 3072, 2, 0, 0, 2147516415, 2, 9, 3, 0, 2, 2, 19, 2, 21, 2, 93, 3, 0, 2, 2, 94, 2, 0, 2, 95, 2, 21, 0, 4294965179, 0, 7, 2, 0, 2, 8, 2, 93, 2, 8, -1, 0, 1761345536, 2, 96, 0, 4294901823, 2, 39, 2, 22, 2, 97, 2, 37, 2, 165, 0, 2080440287, 2, 0, 2, 36, 2, 142, 0, 3296722943, 2, 0, 0, 1046675455, 0, 939524101, 0, 1837055, 2, 98, 2, 99, 2, 15, 2, 33, 3, 0, 3, 0, 7, 3, 0, 349, 2, 100, 2, 101, 2, 6, -264, 3, 0, 11, 2, 24, 3, 0, 2, 2, 34, -1, 0, 2700607615, 2, 102, 2, 103, 3, 0, 2, 2, 20, 2, 25, 3, 0, 10, 2, 9, 2, 17, 2, 0, 2, 47, 2, 0, 2, 26, 2, 104, -3, 2, 105, 3, 0, 3, 2, 22, -1, 3, 5, 2, 2, 29, 2, 0, 2, 7, 2, 106, -1, 2, 107, 2, 108, 2, 109, -1, 3, 0, 3, 2, 11, -2, 2, 0, 2, 30, -8, 2, 22, 2, 0, 2, 38, -1, 2, 0, 2, 63, 2, 31, 2, 18, 2, 9, 2, 0, 2, 110, -1, 3, 0, 4, 2, 9, 2, 17, 2, 111, 2, 6, 2, 0, 2, 33, 2, 0, 2, 50, -4, 3, 0, 9, 2, 23, 2, 18, 2, 26, -4, 2, 112, 2, 113, 2, 18, 2, 23, 2, 7, -2, 2, 114, 2, 18, 2, 34, -2, 2, 0, 2, 115, -2, 0, 4277075969, 2, 18, -1, 3, 22, 2, -1, 2, 35, 2, 143, 2, 0, 3, 18, 2, 2, 37, 2, 20, -3, 3, 0, 2, 2, 36, -1, 2, 0, 2, 37, 2, 0, 2, 37, 2, 0, 2, 50, -14, 2, 22, 2, 45, 2, 116, -4, 2, 23, 2, 117, 2, 52, -2, 2, 117, 2, 19, 2, 17, 2, 36, 2, 117, 2, 39, 0, 4294901776, 0, 4718591, 2, 117, 2, 37, 0, 335544350, -1, 2, 118, 2, 119, -2, 2, 120, 2, 40, 2, 7, -1, 2, 121, 2, 66, 0, 3758161920, 0, 3, -4, 2, 0, 2, 30, 0, 2147485568, -1, 2, 0, 2, 19, 0, 176, -5, 2, 0, 2, 49, 2, 183, -1, 2, 0, 2, 19, 2, 195, -1, 2, 0, 0, 16779263, -2, 2, 11, -7, 2, 0, 2, 119, -3, 3, 0, 2, 2, 122, -5, 2, 123, 2, 38, 0, 10, 0, 4294965249, 0, 67633151, 0, 4026597376, 2, 0, 0, 536871935, -1, 2, 0, 2, 42, -8, 2, 55, 2, 49, 0, 1, 2, 124, 2, 19, -3, 2, 125, 2, 38, 2, 126, 2, 127, 0, 16778239, -10, 2, 37, -8, 3, 0, 28, 2, 34, -3, 3, 0, 3, 2, 49, 3, 0, 6, 2, 50, -85, 3, 0, 33, 2, 49, -126, 3, 0, 18, 2, 39, -269, 3, 0, 17, 2, 42, 2, 7, -3, 2, 17, 2, 128, 2, 0, 2, 19, 2, 50, 2, 129, 2, 19, -21, 3, 0, 2, -4, 3, 0, 2, 0, 67583, -1, 2, 25, -2, 2, 130, 3, 0, 191, 2, 52, 3, 0, 23, 2, 37, -296, 3, 0, 8, 2, 7, -1, 2, 131, 2, 132, 3, 0, 11, 2, 6, -72, 3, 0, 3, 2, 133, 2, 134, -187, 3, 0, 2, 2, 53, 2, 0, 2, 135, 2, 136, 2, 56, 2, 0, 2, 137, 2, 138, 2, 139, 3, 0, 10, 2, 140, 2, 141, 2, 15, 3, 53, 2, 3, 54, 2, 3, 55, 2, 2, 142, -73, 2, 0, 0, 1065361407, 0, 16384, -11, 2, 0, 2, 119, -40, 3, 0, 6, 2, 143, -1, 3, 0, 2, 0, 2063, -37, 2, 56, 2, 144, 2, 145, 2, 146, 2, 147, 2, 148, -138, 3, 0, 1334, 2, 23, -1, 3, 0, 129, 2, 30, 3, 0, 6, 2, 9, 3, 0, 180, 2, 149, 3, 0, 233, 0, 1, -96, 3, 0, 16, 2, 9, -28719, 2, 0, 0, 1, -1, 2, 122, 2, 0, 0, 8193, -21, 2, 191, 0, 10255, 0, 4, -11, 2, 67, 2, 170, -1, 0, 71680, -1, 2, 161, 0, 4292900864, 0, 805306431, -5, 2, 150, -1, 2, 177, -1, 2, 200, -2, 2, 124, -1, 2, 154, -1, 2, 157, 2, 151, 2, 164, 2, 0, 0, 3223322624, 2, 37, 0, 4, -4, 2, 189, 0, 205128192, 0, 1333757536, 0, 2147483696, 0, 423953, 0, 747766272, 0, 2717763192, 0, 4286578751, 0, 278545, 2, 152, 0, 4294886464, 0, 33292336, 0, 417809, 2, 152, 0, 1329579616, 0, 4278190128, 0, 700594195, 0, 1006647527, 0, 4286497336, 0, 4160749631, 2, 153, 0, 469762560, 0, 4171219488, 0, 8323120, 2, 153, 0, 202375680, 0, 3214918176, 0, 4294508592, 0, 139280, -1, 0, 983584, 0, 48, 0, 58720275, 0, 3489923072, 0, 10517376, 0, 4293066815, 0, 1, 0, 2013265920, 2, 176, 2, 0, 0, 2089, 0, 3221225552, 0, 201375904, 2, 0, -2, 0, 256, 0, 122880, 0, 16777216, 2, 150, 0, 4160757760, 2, 0, -6, 2, 166, -11, 0, 3263218176, -1, 0, 49664, 0, 2160197632, 0, 8388802, -1, 0, 12713984, -1, 2, 154, 2, 159, 2, 178, -2, 2, 162, -20, 0, 3758096385, -2, 2, 155, 0, 4292878336, 2, 21, 2, 168, 0, 4294057984, -2, 2, 163, 2, 156, 2, 174, -2, 2, 155, -1, 2, 180, -1, 2, 169, 2, 122, 0, 4026593280, 0, 14, 0, 4292919296, -1, 2, 158, 0, 939588608, -1, 0, 805306368, -1, 2, 122, 0, 1610612736, 2, 156, 2, 157, 3, 0, 2, -2, 2, 158, 2, 159, -3, 0, 267386880, -1, 2, 160, 0, 7168, -1, 0, 65024, 2, 154, 2, 161, 2, 171, -7, 2, 167, -8, 2, 162, -1, 0, 1426112704, 2, 163, -1, 2, 186, 0, 271581216, 0, 2149777408, 2, 19, 2, 161, 2, 122, 0, 851967, 0, 3758129152, -1, 2, 19, 2, 179, -4, 2, 158, -20, 2, 193, 2, 164, -56, 0, 3145728, 2, 185, -4, 2, 165, 2, 122, -4, 0, 32505856, -1, 2, 166, -1, 0, 2147385088, 2, 21, 1, 2155905152, 2, -3, 2, 17, 2, 0, 2, 167, -2, 2, 168, -6, 2, 169, 0, 4026597375, 0, 1, -1, 0, 1, -1, 2, 170, -3, 2, 143, 2, 67, -2, 2, 165, 2, 171, -1, 2, 175, 2, 122, -6, 2, 122, -213, 2, 169, -657, 2, 17, -36, 2, 172, -1, 2, 187, -10, 2, 198, -5, 2, 173, -6, 0, 4294967171, 2, 23, -1, 0, 4227919872, -1, 2, 173, -2, 0, 4227874752, -3, 0, 2146435072, 2, 159, -2, 0, 1006649344, 2, 122, -1, 2, 21, 0, 201375744, -3, 0, 134217720, 2, 21, 0, 4286677377, 0, 32896, -1, 2, 161, -3, 2, 174, -349, 2, 175, 0, 1920, 2, 176, 3, 0, 264, -11, 2, 177, -2, 2, 178, 2, 0, 0, 520617856, 0, 2692743168, 0, 36, -3, 0, 524284, -11, 2, 19, -1, 2, 184, -1, 2, 182, 0, 3221291007, 2, 178, -1, 0, 524288, 0, 2158720, -3, 2, 159, 0, 1, -4, 2, 122, 0, 3808625411, 0, 3489628288, 2, 199, 0, 1207959680, 0, 3221274624, 2, 0, -3, 2, 171, 0, 120, 0, 7340032, -2, 0, 4026564608, 2, 4, 2, 19, 2, 163, 3, 0, 4, 2, 159, -1, 2, 179, 2, 176, -1, 0, 8176, 2, 180, 2, 171, 2, 181, -1, 0, 4290773232, 2, 0, -4, 2, 163, 2, 188, 0, 15728640, 2, 176, -1, 2, 161, -1, 0, 4294934512, 3, 0, 4, -9, 2, 21, 2, 169, 2, 182, 3, 0, 4, 0, 704, 0, 1849688064, 0, 4194304, -1, 2, 122, 0, 4294901887, 2, 0, 0, 130547712, 0, 1879048192, 2, 197, 3, 0, 2, -1, 2, 183, 2, 184, -1, 0, 17829776, 0, 2025848832, 0, 4261477888, -2, 2, 0, -1, 0, 4286580608, -1, 0, 29360128, 2, 185, 0, 16252928, 0, 3791388672, 2, 40, 3, 0, 2, -2, 2, 194, 2, 0, -1, 2, 25, -1, 0, 66584576, -1, 2, 190, 3, 0, 9, 2, 122, 3, 0, 4, -1, 2, 161, 2, 178, 3, 0, 4, 2, 21, -2, 0, 245760, 0, 2147418112, -1, 2, 150, 2, 202, 0, 4227923456, -1, 2, 186, 2, 187, 2, 21, -2, 2, 177, 0, 4292870145, 0, 262144, 2, 122, 3, 0, 2, 0, 1073758848, 2, 188, -1, 0, 4227921920, 2, 189, 0, 68289024, 0, 528402016, 0, 4292927536, 3, 0, 4, -2, 0, 335544320, 2, 0, -2, 2, 190, 3, 0, 5, -1, 2, 185, 2, 163, 2, 0, -2, 0, 4227923936, 2, 63, -1, 2, 155, 2, 96, 2, 0, 2, 154, 2, 158, 3, 0, 6, -1, 2, 176, 3, 0, 3, -2, 0, 2146959360, 3, 0, 5, 0, 768, 2, 191, 2, 80, -2, 2, 161, -2, 2, 117, -1, 2, 155, 3, 0, 8, 0, 512, 0, 8388608, 2, 192, 2, 172, 2, 184, 0, 4286578944, 3, 0, 2, 0, 1152, 0, 1266679808, 2, 190, 0, 576, 0, 4261707776, 2, 96, 3, 0, 9, 2, 155, 3, 0, 6, -1, 0, 2147221504, -28, 2, 178, 3, 0, 3, -3, 0, 4292902912, -6, 2, 97, 3, 0, 85, -33, 0, 4294934528, 3, 0, 126, -18, 2, 193, 3, 0, 269, -17, 2, 155, 2, 122, 2, 196, 3, 0, 2, 2, 19, 0, 4290822144, -2, 0, 67174336, 0, 520093700, 2, 17, 3, 0, 21, -2, 2, 171, 3, 0, 3, -2, 0, 30720, -1, 0, 32512, 3, 0, 2, 2, 97, -191, 2, 173, -23, 2, 25, 3, 0, 296, -8, 2, 122, 2, 0, 0, 4294508543, 0, 65295, -11, 2, 176, 3, 0, 72, -3, 0, 3758159872, 0, 201391616, 3, 0, 155, -7, 2, 169, -1, 0, 384, -1, 0, 133693440, -3, 2, 194, -2, 2, 29, 3, 0, 4, 2, 168, -2, 2, 21, 2, 155, 3, 0, 4, -2, 2, 186, -1, 2, 150, 0, 335552923, 2, 195, -1, 0, 538974272, 0, 2214592512, 0, 132000, -10, 0, 192, -8, 0, 12288, -21, 0, 134213632, 0, 4294901761, 3, 0, 42, 0, 100663424, 0, 4294965284, 3, 0, 6, -1, 0, 3221282816, 2, 196, 3, 0, 11, -1, 2, 197, 3, 0, 40, -6, 0, 4286578784, 2, 0, -2, 0, 1006694400, 3, 0, 24, 2, 38, -1, 2, 201, 3, 0, 2, 0, 1, 2, 163, 3, 0, 6, 2, 195, 0, 4110942569, 0, 1432950139, 0, 2701658217, 0, 4026532864, 0, 4026532881, 2, 0, 2, 47, 3, 0, 8, -1, 2, 158, -2, 2, 168, 0, 98304, 0, 65537, 2, 169, 2, 172, -2, 2, 172, -1, 2, 63, 2, 0, 2, 116, 0, 65528, 2, 176, 0, 4294770176, 2, 29, 3, 0, 4, -30, 2, 169, 0, 4160806912, -3, 2, 168, -2, 2, 155, 2, 198, 2, 158, -1, 2, 190, -1, 2, 161, 0, 4294950912, 3, 0, 2, 2, 199, -2, 0, 58982400, -1, 0, 14360, 2, 200, -3, 2, 168, 0, 4176527360, 0, 4290838520, 3, 0, 43, -1334, 2, 21, 2, 0, -129, 2, 201, -6, 2, 163, -180, 2, 202, -233, 2, 4, 3, 0, 96, -16, 2, 163, 3, 0, 22583, -7, 2, 17, 3, 0, 6128], [4294967295, 4294967291, 4092460543, 4294828015, 4294967294, 134217726, 268435455, 2147483647, 1048575, 1073741823, 3892314111, 134217727, 1061158911, 536805376, 4294910143, 4160749567, 4294901759, 4294901760, 4194303, 65535, 262143, 4286578688, 536870911, 8388607, 4294918143, 4294443008, 255, 67043328, 2281701374, 4294967232, 2097151, 4294903807, 4294902783, 4294902015, 67108863, 4294967039, 511, 524287, 131071, 127, 4294902271, 4294549487, 33554431, 1023, 67047423, 4294901888, 4286578687, 4294770687, 67043583, 32767, 15, 2047999, 16777215, 4292870143, 4294934527, 4294966783, 4294967279, 262083, 20511, 4290772991, 41943039, 493567, 2047, 4294959104, 1071644671, 603979775, 602799615, 65536, 4294828000, 805044223, 4294965206, 8191, 1031749119, 4294917631, 2134769663, 4286578493, 4282253311, 4294942719, 33540095, 4294905855, 4294967264, 2868854591, 1608515583, 265232348, 534519807, 2147614720, 1060109444, 4093640016, 17376, 2139062143, 224, 4169138175, 4294909951, 4294967292, 4294965759, 124, 4294966272, 4294967280, 8289918, 4294934399, 4294901775, 4294965375, 1602223615, 4294967259, 268369920, 4292804608, 486341884, 4294963199, 3087007615, 1073692671, 4128527, 4279238655, 4294966591, 2445279231, 3670015, 3238002687, 63, 4294967288, 4294705151, 4095, 3221208447, 4294549472, 2147483648, 4294966527, 4294705152, 4294966143, 64, 4294966719, 16383, 3774873592, 11, 458752, 4294902000, 536807423, 67043839, 3758096383, 3959414372, 3755993023, 2080374783, 4294835295, 4294967103, 4160749565, 4087, 31, 184024726, 2862017156, 1593309078, 268434431, 268434414, 4294901763, 536870912, 2952790016, 202506752, 139264, 402653184, 4261412864, 4227922944, 2147532800, 61440, 3758096384, 117440512, 65280, 3233808384, 3221225472, 4294965248, 32768, 57152, 67108864, 4293918720, 4290772992, 25165824, 4160749568, 57344, 4278190080, 4227907584, 65520, 4026531840, 49152, 4227858432, 4294836224, 63488, 1073741824, 4294967040, 251658240, 196608, 12582912, 2097152, 65408, 64512, 417808, 4227923712, 50331648, 65472, 4294967168, 4294966784, 16, 4294917120, 2080374784, 4294963200, 4096, 6144, 4292870144, 65532]);
+
+      const TokenLookup = [
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          125,
+          133,
+          125,
+          125,
+          127,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          126,
+          125,
+          16842797,
+          134283267,
+          128,
+          208897,
+          8457012,
+          8455748,
+          134283267,
+          67174411,
+          16,
+          8457011,
+          25233967,
+          1073741842,
+          25233968,
+          67108877,
+          8457013,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          134283266,
+          21,
+          1074790417,
+          8456255,
+          1077936157,
+          8456256,
+          22,
+          130,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          208897,
+          69271571,
+          134,
+          20,
+          8455494,
+          208897,
+          129,
+          4096,
+          4096,
+          4096,
+          4096,
+          4096,
+          4096,
+          4096,
+          208897,
+          4096,
+          208897,
+          208897,
+          4096,
+          208897,
+          4096,
+          208897,
+          4096,
+          208897,
+          4096,
+          4096,
+          4096,
+          208897,
+          4096,
+          4096,
+          208897,
+          4096,
+          4096,
+          2162700,
+          8455237,
+          1074790415,
+          16842798,
+          126
+      ];
+      function nextToken(parser, context) {
+          parser.flags = (parser.flags | 1) ^ 1;
+          parser.startPos = parser.index;
+          parser.startColumn = parser.column;
+          parser.startLine = parser.line;
+          parser.token = scanSingleToken(parser, context, 0);
+      }
+      function scanSingleToken(parser, context, state) {
+          const isStartOfLine = parser.index === 0;
+          while (parser.index < parser.end) {
+              parser.tokenPos = parser.index;
+              parser.colPos = parser.column;
+              parser.linePos = parser.line;
+              const char = parser.currentChar;
+              if (char <= 0x7e) {
+                  const token = TokenLookup[char];
+                  switch (token) {
+                      case 67174411:
+                      case 16:
+                      case 2162700:
+                      case 1074790415:
+                      case 69271571:
+                      case 20:
+                      case 21:
+                      case 1074790417:
+                      case 1073741842:
+                      case 16842798:
+                      case 130:
+                      case 126:
+                          advanceChar(parser);
+                          return token;
+                      case 8456255:
+                          let ch = advanceChar(parser);
+                          if (parser.index < parser.end) {
+                              if (ch === 60) {
+                                  if (parser.index < parser.end && advanceChar(parser) === 61) {
+                                      advanceChar(parser);
+                                      return 4194334;
+                                  }
+                                  return 8456513;
+                              }
+                              else if (ch === 61) {
+                                  advanceChar(parser);
+                                  return 8455997;
+                              }
+                              if (ch === 33) {
+                                  if (parser.source.charCodeAt(parser.index + 2) === 45 &&
+                                      parser.source.charCodeAt(parser.index + 1) === 45) {
+                                      state = skipSingleHTMLComment(parser, state, context, 2);
+                                      continue;
+                                  }
+                                  return 8456255;
+                              }
+                              if (ch === 47) {
+                                  if ((context & 16) < 1)
+                                      return 8456255;
+                                  const index = parser.index + 1;
+                                  if (index < parser.end) {
+                                      ch = parser.source.charCodeAt(index);
+                                      if (ch === 42 || ch === 47)
+                                          break;
+                                  }
+                                  advanceChar(parser);
+                                  return 25;
+                              }
+                          }
+                          return 8456255;
+                      case 1077936157: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 1077936157;
+                          const ch = parser.currentChar;
+                          if (ch === 61) {
+                              if (advanceChar(parser) === 61) {
+                                  advanceChar(parser);
+                                  return 8455993;
+                              }
+                              return 8455995;
+                          }
+                          if (ch === 62) {
+                              advanceChar(parser);
+                              return 10;
+                          }
+                          return 1077936157;
+                      }
+                      case 16842797:
+                          if (advanceChar(parser) !== 61) {
+                              return 16842797;
+                          }
+                          if (advanceChar(parser) !== 61) {
+                              return 8455996;
+                          }
+                          advanceChar(parser);
+                          return 8455994;
+                      case 8457012:
+                          if (advanceChar(parser) !== 61)
+                              return 8457012;
+                          advanceChar(parser);
+                          return 4194342;
+                      case 8457011: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 8457011;
+                          const ch = parser.currentChar;
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 4194340;
+                          }
+                          if (ch !== 42)
+                              return 8457011;
+                          if (advanceChar(parser) !== 61)
+                              return 8457270;
+                          advanceChar(parser);
+                          return 4194337;
+                      }
+                      case 8455494:
+                          if (advanceChar(parser) !== 61)
+                              return 8455494;
+                          advanceChar(parser);
+                          return 4194343;
+                      case 25233967: {
+                          advanceChar(parser);
+                          const ch = parser.currentChar;
+                          if (ch === 43) {
+                              advanceChar(parser);
+                              return 33619995;
+                          }
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 4194338;
+                          }
+                          return 25233967;
+                      }
+                      case 25233968: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 25233968;
+                          const ch = parser.currentChar;
+                          if (ch === 45) {
+                              advanceChar(parser);
+                              if ((state & 1 || isStartOfLine) && parser.currentChar === 62) {
+                                  if ((context & 256) === 0)
+                                      report(parser, 108);
+                                  state = skipSingleHTMLComment(parser, state, context, 3);
+                                  continue;
+                              }
+                              return 33619996;
+                          }
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 4194339;
+                          }
+                          return 25233968;
+                      }
+                      case 8457013: {
+                          advanceChar(parser);
+                          if (parser.index < parser.end) {
+                              const ch = parser.currentChar;
+                              if (ch === 47) {
+                                  advanceChar(parser);
+                                  state = skipSingleLineComment(parser, state, 0);
+                                  continue;
+                              }
+                              if (ch === 42) {
+                                  advanceChar(parser);
+                                  state = skipMultiLineComment(parser, state);
+                                  continue;
+                              }
+                              if (context & 32768) {
+                                  return scanRegularExpression(parser, context);
+                              }
+                              if (ch === 61) {
+                                  advanceChar(parser);
+                                  return 4259877;
+                              }
+                          }
+                          return 8457013;
+                      }
+                      case 8455237: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 8455237;
+                          const ch = parser.currentChar;
+                          if (ch === 124) {
+                              advanceChar(parser);
+                              return 8979000;
+                          }
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 4194344;
+                          }
+                          return 8455237;
+                      }
+                      case 8456256: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 8456256;
+                          const ch = parser.currentChar;
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 8455998;
+                          }
+                          if (ch !== 62)
+                              return 8456256;
+                          advanceChar(parser);
+                          if (parser.index < parser.end) {
+                              const ch = parser.currentChar;
+                              if (ch === 62) {
+                                  if (advanceChar(parser) === 61) {
+                                      advanceChar(parser);
+                                      return 4194336;
+                                  }
+                                  return 8456515;
+                              }
+                              if (ch === 61) {
+                                  advanceChar(parser);
+                                  return 4194335;
+                              }
+                          }
+                          return 8456514;
+                      }
+                      case 8455748: {
+                          advanceChar(parser);
+                          if (parser.index >= parser.end)
+                              return 8455748;
+                          const ch = parser.currentChar;
+                          if (ch === 38) {
+                              advanceChar(parser);
+                              return 8979255;
+                          }
+                          if (ch === 61) {
+                              advanceChar(parser);
+                              return 4194345;
+                          }
+                          return 8455748;
+                      }
+                      case 67108877:
+                          const next = advanceChar(parser);
+                          if (next >= 48 && next <= 57)
+                              return scanNumber(parser, context, 64 | 16);
+                          if (next === 46) {
+                              const index = parser.index + 1;
+                              if (index < parser.source.length && parser.source.charCodeAt(index) === 46) {
+                                  parser.column += 2;
+                                  parser.currentChar = parser.source.charCodeAt((parser.index += 2));
+                                  return 14;
+                              }
+                          }
+                          return 67108877;
+                      case 22: {
+                          let ch = advanceChar(parser);
+                          if ((context & 1) < 1)
+                              return 22;
+                          if (ch === 63) {
+                              advanceChar(parser);
+                              return 276889979;
+                          }
+                          if (ch === 46) {
+                              const index = parser.index + 1;
+                              if (index < parser.end) {
+                                  ch = parser.source.charCodeAt(index);
+                                  if (!(ch >= 48 && ch <= 57)) {
+                                      advanceChar(parser);
+                                      return 67108988;
+                                  }
+                              }
+                          }
+                          return 22;
+                      }
+                      case 4096:
+                          return scanIdentifier(parser, context, 1);
+                      case 208897:
+                          return scanIdentifier(parser, context, 0);
+                      case 134283266:
+                          return scanNumber(parser, context, 16 | 128);
+                      case 134283267:
+                          return scanString(parser, context, char);
+                      case 129:
+                          return scanTemplate(parser, context);
+                      case 134:
+                          return scanUnicodeIdentifier(parser, context);
+                      case 128:
+                          return scanPrivateName(parser);
+                      case 125:
+                          advanceChar(parser);
+                          break;
+                      case 127:
+                          state |= 1 | 4;
+                          scanNewLine(parser);
+                          break;
+                      case 133:
+                          consumeLineFeed(parser, state);
+                          state = (state & ~4) | 1;
+                          break;
+                      default:
+                  }
+              }
+              else {
+                  if ((char ^ 8232) <= 1) {
+                      state = (state & ~4) | 1;
+                      scanNewLine(parser);
+                      continue;
+                  }
+                  if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
+                      parser.tokenValue = '';
+                      return scanIdentifierSlowCase(parser, context, 0, 0);
+                  }
+                  if (isExoticECMAScriptWhitespace(char)) {
+                      advanceChar(parser);
+                      continue;
+                  }
+                  report(parser, 18, fromCodePoint(char));
+              }
+          }
+          return 1048576;
+      }
+
+      const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
+      function skipHashBang(parser) {
+          if (parser.currentChar === 35 && parser.source.charCodeAt(parser.index + 1) === 33) {
+              skipSingleLineComment(parser, 0, 4);
+          }
+      }
+      function skipSingleHTMLComment(parser, state, context, type) {
+          if (context & 2048)
+              report(parser, 0);
+          return skipSingleLineComment(parser, state, type);
+      }
+      function skipSingleLineComment(parser, state, type) {
+          const { index } = parser;
+          while (parser.index < parser.end) {
+              if (CharTypes[parser.currentChar] & 8) {
+                  scanNewLine(parser);
+                  if (parser.index < parser.end && parser.currentChar === 10)
+                      parser.currentChar = parser.source.charCodeAt(++parser.index);
+                  return state | 1;
+              }
+              else if ((parser.currentChar ^ 8232) <= 1) {
+                  scanNewLine(parser);
+                  return state | 1;
+              }
+              advanceChar(parser);
+          }
+          if (parser.onComment)
+              parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
+          return state | 1;
+      }
+      function skipMultiLineComment(parser, state) {
+          const { index } = parser;
+          while (parser.index < parser.end) {
+              while (parser.currentChar === 42) {
+                  state &= ~4;
+                  if (advanceChar(parser) === 47) {
+                      advanceChar(parser);
+                      if (parser.onComment)
+                          parser.onComment(CommentTypes[1 & 0xff], parser.source.slice(index, parser.index - 2), index, parser.index);
+                      return state;
+                  }
+              }
+              if (parser.currentChar === 13) {
+                  state |= 1 | 4;
+                  scanNewLine(parser);
+              }
+              else if (parser.currentChar === 10) {
+                  consumeLineFeed(parser, state);
+                  state = (state & ~4) | 1;
+              }
+              else if ((parser.currentChar ^ 8232) <= 1) {
+                  state = (state & ~4) | 1;
+                  scanNewLine(parser);
+              }
+              else {
+                  state &= ~4;
+                  advanceChar(parser);
+              }
+          }
+          report(parser, 16);
+      }
+
+      function advanceChar(parser) {
+          parser.column++;
+          return (parser.currentChar = parser.source.charCodeAt(++parser.index));
+      }
+      function consumeMultiUnitCodePoint(parser, hi) {
+          if ((hi & 0xfc00) !== 55296)
+              return 0;
+          const lo = parser.source.charCodeAt(parser.index + 1);
+          if ((lo & 0xfc00) !== 0xdc00)
+              return 0;
+          hi = parser.currentChar = 65536 + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
+          if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
+              report(parser, 18, fromCodePoint(hi));
+          }
+          parser.index++;
+          parser.column++;
+          return 1;
+      }
+      function consumeLineFeed(parser, state) {
+          parser.currentChar = parser.source.charCodeAt(++parser.index);
+          parser.flags |= 1;
+          if ((state & 4) === 0) {
+              parser.column = 0;
+              parser.line++;
+          }
+      }
+      function scanNewLine(parser) {
+          parser.flags |= 1;
+          parser.currentChar = parser.source.charCodeAt(++parser.index);
+          parser.column = 0;
+          parser.line++;
+      }
+      function isExoticECMAScriptWhitespace(code) {
+          return (code === 160 ||
+              code === 65279 ||
+              code === 133 ||
+              code === 5760 ||
+              (code >= 8192 && code <= 8203) ||
+              code === 8239 ||
+              code === 8287 ||
+              code === 12288 ||
+              code === 65519);
+      }
+      function fromCodePoint(codePoint) {
+          return codePoint <= 65535
+              ? String.fromCharCode(codePoint)
+              : String.fromCharCode(codePoint >>> 10) + String.fromCharCode(codePoint & 0x3ff);
+      }
+      function toHex(code) {
+          return code < 65 ? code - 48 : (code - 65 + 10) & 0xf;
+      }
 
       const CharTypes = [
           0,
@@ -435,753 +1185,6 @@ System.register('meriyah', [], function (exports) {
           return code <= 0x7F
               ? isIdPart[code]
               : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1 || (code === 8204 || code === 8205);
-      }
-
-      const errorMessages = {
-          [0]: 'Unexpected token',
-          [28]: "Unexpected token: '%0'",
-          [1]: 'Octal escape sequences are not allowed in strict mode',
-          [2]: 'Octal escape sequences are not allowed in template strings',
-          [3]: 'Unexpected token `#`',
-          [4]: 'Illegal Unicode escape sequence',
-          [5]: 'Invalid code point %0',
-          [6]: 'Invalid hexadecimal escape sequence',
-          [8]: 'Octal literals are not allowed in strict mode',
-          [7]: 'Decimal integer literals with a leading zero are forbidden in strict mode',
-          [9]: 'Expected number in radix %0',
-          [145]: 'Invalid left-hand side assignment to a destructible right-hand side',
-          [10]: 'Non-number found after exponent indicator',
-          [11]: 'Invalid BigIntLiteral',
-          [12]: 'No identifiers allowed directly after numeric literal',
-          [13]: 'Escapes \\8 or \\9 are not syntactically valid escapes',
-          [14]: 'Unterminated string literal',
-          [15]: 'Unterminated template literal',
-          [16]: 'Multiline comment was not closed properly',
-          [17]: 'The identifier contained dynamic unicode escape that was not closed',
-          [18]: "Illegal character '%0'",
-          [19]: 'Missing hexadecimal digits',
-          [20]: 'Invalid implicit octal',
-          [21]: 'Invalid line break in string literal',
-          [22]: 'Only unicode escapes are legal in identifier names',
-          [23]: "Expected '%0'",
-          [24]: 'Invalid left-hand side in assignment',
-          [25]: 'Invalid left-hand side in async arrow',
-          [26]: 'Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass',
-          [27]: 'Member access on super must be in a method',
-          [29]: 'Await expression not allowed in formal parameter',
-          [30]: 'Yield expression not allowed in formal parameter',
-          [92]: "Unexpected token: 'escaped keyword'",
-          [31]: 'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
-          [119]: 'Async functions can only be declared at the top level or inside a block',
-          [32]: 'Unterminated regular expression',
-          [33]: 'Unexpected regular expression flag',
-          [34]: "Duplicate regular expression flag '%0'",
-          [35]: '%0 functions must have exactly %1 argument%2',
-          [36]: 'Setter function argument must not be a rest parameter',
-          [37]: '%0 declaration must have a name in this context',
-          [38]: 'Function name may not contain any reserved words or be eval or arguments in strict mode',
-          [39]: 'The rest operator is missing an argument',
-          [40]: 'A getter cannot be a generator',
-          [41]: 'A computed property name must be followed by a colon or paren',
-          [130]: 'Object literal keys that are strings or numbers must be a method or have a colon',
-          [43]: 'Found `* async x(){}` but this should be `async * x(){}`',
-          [42]: 'Getters and setters can not be generators',
-          [44]: "'%0' can not be generator method",
-          [45]: "No line break is allowed after '=>'",
-          [46]: 'The left-hand side of the arrow can only be destructed through assignment',
-          [47]: 'The binding declaration is not destructible',
-          [48]: 'Async arrow can not be followed by new expression',
-          [49]: "Classes may not have a static property named 'prototype'",
-          [50]: 'Class constructor may not be a %0',
-          [51]: 'Duplicate constructor method in class',
-          [52]: 'Invalid increment/decrement operand',
-          [53]: 'Invalid use of `new` keyword on an increment/decrement expression',
-          [54]: '`=>` is an invalid assignment target',
-          [55]: 'Rest element may not have a trailing comma',
-          [56]: 'Missing initializer in %0 declaration',
-          [57]: "'for-%0' loop head declarations can not have an initializer",
-          [58]: 'Invalid left-hand side in for-%0 loop: Must have a single binding',
-          [59]: 'Invalid shorthand property initializer',
-          [60]: 'Property name __proto__ appears more than once in object literal',
-          [61]: 'Let is disallowed as a lexically bound name',
-          [62]: "Invalid use of '%0' inside new expression",
-          [63]: "Illegal 'use strict' directive in function with non-simple parameter list",
-          [64]: 'Identifier "let" disallowed as left-hand side expression in strict mode',
-          [65]: 'Illegal continue statement',
-          [66]: 'Illegal break statement',
-          [67]: 'Cannot have `let[...]` as a var name in strict mode',
-          [68]: 'Invalid destructuring assignment target',
-          [69]: 'Rest parameter may not have a default initializer',
-          [70]: 'The rest argument must the be last parameter',
-          [71]: 'Invalid rest argument',
-          [73]: 'In strict mode code, functions can only be declared at top level or inside a block',
-          [74]: 'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
-          [75]: 'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
-          [76]: "Class declaration can't appear in single-statement context",
-          [77]: 'Invalid left-hand side in for-%0',
-          [78]: 'Invalid assignment in for-%0',
-          [79]: 'for await (... of ...) is only valid in async functions and async generators',
-          [80]: 'The first token after the template expression should be a continuation of the template',
-          [82]: '`let` declaration not allowed here and `let` cannot be a regular var name in strict mode',
-          [81]: '`let \n [` is a restricted production at the start of a statement',
-          [83]: 'Catch clause requires exactly one parameter, not more (and no trailing comma)',
-          [84]: 'Catch clause parameter does not support default values',
-          [85]: 'Missing catch or finally after try',
-          [86]: 'More than one default clause in switch statement',
-          [87]: 'Illegal newline after throw',
-          [88]: 'Strict mode code may not include a with statement',
-          [89]: 'Illegal return statement',
-          [90]: 'The left hand side of the for-header binding declaration is not destructible',
-          [91]: 'new.target only allowed within functions',
-          [92]: "'Unexpected token: 'escaped keyword'",
-          [93]: "'#' not followed by identifier",
-          [99]: 'Invalid keyword',
-          [98]: "Can not use 'let' as a class name",
-          [97]: "'A lexical declaration can't define a 'let' binding",
-          [96]: 'Can not use `let` as variable name in strict mode',
-          [94]: "'%0' may not be used as an identifier in this context",
-          [95]: 'Await is only valid in async functions',
-          [100]: 'The %0 keyword can only be used with the module goal',
-          [101]: 'Unicode codepoint must not be greater than 0x10FFFF',
-          [102]: '%0 source must be string',
-          [103]: 'Only a identifier can be used to indicate alias',
-          [104]: "Only '*' or '{...}' can be imported after default",
-          [105]: 'Trailing decorator may be followed by method',
-          [106]: "Decorators can't be used with a constructor",
-          [107]: "'%0' may not be used as an identifier in this context",
-          [108]: 'HTML comments are only allowed with web compability (Annex B)',
-          [109]: "The identifier 'let' must not be in expression position in strict mode",
-          [110]: 'Cannot assign to `eval` and `arguments` in strict mode',
-          [111]: "The left-hand side of a for-of loop may not start with 'let'",
-          [112]: 'Block body arrows can not be immediately invoked without a group',
-          [113]: 'Block body arrows can not be immediately accessed without a group',
-          [114]: 'Unexpected strict mode reserved word',
-          [115]: 'Unexpected eval or arguments in strict mode',
-          [116]: 'Decorators must not be followed by a semicolon',
-          [117]: 'Calling delete on expression not allowed in strict mode',
-          [118]: 'Pattern can not have a tail',
-          [120]: 'Can not have a `yield` expression on the left side of a ternary',
-          [121]: 'An arrow function can not have a postfix update operator',
-          [122]: 'Invalid object literal key character after generator star',
-          [123]: 'Private fields can not be deleted',
-          [125]: 'Classes may not have a field called constructor',
-          [124]: 'Classes may not have a private element named constructor',
-          [126]: 'A class field initializer may not contain arguments',
-          [127]: 'Generators can only be declared at the top level or inside a block',
-          [128]: 'Async methods are a restricted production and cannot have a newline following it',
-          [129]: 'Unexpected character after object literal property name',
-          [131]: 'Invalid key token',
-          [132]: "Label '%0' has already been declared",
-          [133]: 'continue statement must be nested within an iteration statement',
-          [134]: "Undefined label '%0'",
-          [135]: 'Trailing comma is disallowed inside import(...) arguments',
-          [136]: 'import() requires exactly one argument',
-          [137]: 'Cannot use new with import(...)',
-          [138]: '... is not allowed in import()',
-          [139]: "Expected '=>'",
-          [140]: "Duplicate binding '%0'",
-          [141]: "Cannot export a duplicate name '%0'",
-          [144]: 'Duplicate %0 for-binding',
-          [142]: "Exported binding '%0' needs to refer to a top-level declared variable",
-          [143]: 'Unexpected private field',
-          [147]: 'Numeric separators are not allowed at the end of numeric literals',
-          [146]: 'Only one underscore is allowed as numeric separator',
-          [148]: 'JSX value should be either an expression or a quoted JSX text',
-          [149]: 'Expected corresponding JSX closing tag for %0',
-          [150]: 'Adjacent JSX elements must be wrapped in an enclosing tag',
-          [151]: "JSX attributes must only be assigned a non-empty 'expression'",
-          [152]: "'%0' has already been declared",
-          [153]: "'%0' shadowed a catch clause binding",
-          [154]: 'Dot property must be an identifier',
-          [155]: 'Encountered invalid input after spread/rest argument',
-          [156]: 'Catch without try',
-          [157]: 'Finally without try',
-          [158]: 'Expected corresponding closing tag for JSX fragment',
-          [159]: 'Coalescing and logical operators used together in the same expression must be disambiguated with parentheses',
-          [160]: 'Invalid tagged template on optional chain',
-          [161]: 'Invalid optional chain from super property',
-          [162]: 'Invalid optional chain from new expression',
-          [163]: 'Cannot use "import.meta" outside a module'
-      };
-      class ParseError extends SyntaxError {
-          constructor(startindex, line, column, type, ...params) {
-              const message = '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_, i) => params[i]);
-              super(`${message}`);
-              this.index = startindex;
-              this.line = line;
-              this.column = column;
-              this.description = message;
-          }
-      }
-      function report(parser, type, ...params) {
-          throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
-      }
-      function reportScopeError(scope) {
-          throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
-      }
-      function reportMessageAt(index, line, column, type, ...params) {
-          throw new ParseError(index, line, column, type, ...params);
-      }
-      function reportScannerError(index, line, column, type) {
-          throw new ParseError(index, line, column, type);
-      }
-
-      const TokenLookup = [
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          125,
-          133,
-          125,
-          125,
-          127,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          126,
-          125,
-          16842797,
-          134283267,
-          128,
-          208897,
-          8457012,
-          8455748,
-          134283267,
-          67174411,
-          16,
-          8457011,
-          25233967,
-          1073741842,
-          25233968,
-          67108877,
-          8457013,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          134283266,
-          21,
-          1074790417,
-          8456255,
-          1077936157,
-          8456256,
-          22,
-          130,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          208897,
-          69271571,
-          134,
-          20,
-          8455494,
-          208897,
-          129,
-          4096,
-          4096,
-          4096,
-          4096,
-          4096,
-          4096,
-          4096,
-          208897,
-          4096,
-          208897,
-          208897,
-          4096,
-          208897,
-          4096,
-          208897,
-          4096,
-          208897,
-          4096,
-          4096,
-          4096,
-          208897,
-          4096,
-          4096,
-          208897,
-          4096,
-          4096,
-          2162700,
-          8455237,
-          1074790415,
-          16842798,
-          126
-      ];
-      function nextToken(parser, context) {
-          parser.flags = (parser.flags | 1) ^ 1;
-          parser.startPos = parser.index;
-          parser.startColumn = parser.column;
-          parser.startLine = parser.line;
-          parser.token = scanSingleToken(parser, context, 0);
-      }
-      function scanSingleToken(parser, context, state) {
-          const isStartOfLine = parser.index === 0;
-          while (parser.index < parser.end) {
-              parser.tokenPos = parser.index;
-              parser.colPos = parser.column;
-              parser.linePos = parser.line;
-              const char = parser.currentChar;
-              if (char <= 0x7e) {
-                  const token = TokenLookup[char];
-                  switch (token) {
-                      case 67174411:
-                      case 16:
-                      case 2162700:
-                      case 1074790415:
-                      case 69271571:
-                      case 20:
-                      case 21:
-                      case 1074790417:
-                      case 1073741842:
-                      case 16842798:
-                      case 130:
-                      case 126:
-                          advanceChar(parser);
-                          return token;
-                      case 8456255:
-                          let ch = advanceChar(parser);
-                          if (parser.index < parser.end) {
-                              if (ch === 60) {
-                                  if (parser.index < parser.end && advanceChar(parser) === 61) {
-                                      advanceChar(parser);
-                                      return 4194334;
-                                  }
-                                  return 8456513;
-                              }
-                              else if (ch === 61) {
-                                  advanceChar(parser);
-                                  return 8455997;
-                              }
-                              if (ch === 33) {
-                                  if (parser.source.charCodeAt(parser.index + 2) === 45 &&
-                                      parser.source.charCodeAt(parser.index + 1) === 45) {
-                                      state = skipSingleHTMLComment(parser, state, context, 2);
-                                      continue;
-                                  }
-                                  return 8456255;
-                              }
-                              if (ch === 47) {
-                                  if ((context & 16) < 1)
-                                      return 8456255;
-                                  const index = parser.index + 1;
-                                  if (index < parser.end) {
-                                      ch = parser.source.charCodeAt(index);
-                                      if (ch === 42 || ch === 47)
-                                          break;
-                                  }
-                                  advanceChar(parser);
-                                  return 25;
-                              }
-                          }
-                          return 8456255;
-                      case 1077936157: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 1077936157;
-                          const ch = parser.currentChar;
-                          if (ch === 61) {
-                              if (advanceChar(parser) === 61) {
-                                  advanceChar(parser);
-                                  return 8455993;
-                              }
-                              return 8455995;
-                          }
-                          if (ch === 62) {
-                              advanceChar(parser);
-                              return 10;
-                          }
-                          return 1077936157;
-                      }
-                      case 16842797:
-                          if (advanceChar(parser) !== 61) {
-                              return 16842797;
-                          }
-                          if (advanceChar(parser) !== 61) {
-                              return 8455996;
-                          }
-                          advanceChar(parser);
-                          return 8455994;
-                      case 8457012:
-                          if (advanceChar(parser) !== 61)
-                              return 8457012;
-                          advanceChar(parser);
-                          return 4194342;
-                      case 8457011: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 8457011;
-                          const ch = parser.currentChar;
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 4194340;
-                          }
-                          if (ch !== 42)
-                              return 8457011;
-                          if (advanceChar(parser) !== 61)
-                              return 8457270;
-                          advanceChar(parser);
-                          return 4194337;
-                      }
-                      case 8455494:
-                          if (advanceChar(parser) !== 61)
-                              return 8455494;
-                          advanceChar(parser);
-                          return 4194343;
-                      case 25233967: {
-                          advanceChar(parser);
-                          const ch = parser.currentChar;
-                          if (ch === 43) {
-                              advanceChar(parser);
-                              return 33619995;
-                          }
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 4194338;
-                          }
-                          return 25233967;
-                      }
-                      case 25233968: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 25233968;
-                          const ch = parser.currentChar;
-                          if (ch === 45) {
-                              advanceChar(parser);
-                              if ((state & 1 || isStartOfLine) && parser.currentChar === 62) {
-                                  if ((context & 256) === 0)
-                                      report(parser, 108);
-                                  state = skipSingleHTMLComment(parser, state, context, 3);
-                                  continue;
-                              }
-                              return 33619996;
-                          }
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 4194339;
-                          }
-                          return 25233968;
-                      }
-                      case 8457013: {
-                          advanceChar(parser);
-                          if (parser.index < parser.end) {
-                              const ch = parser.currentChar;
-                              if (ch === 47) {
-                                  advanceChar(parser);
-                                  state = skipSingleLineComment(parser, state, 0);
-                                  continue;
-                              }
-                              if (ch === 42) {
-                                  advanceChar(parser);
-                                  state = skipMultiLineComment(parser, state);
-                                  continue;
-                              }
-                              if (context & 32768) {
-                                  return scanRegularExpression(parser, context);
-                              }
-                              if (ch === 61) {
-                                  advanceChar(parser);
-                                  return 4259877;
-                              }
-                          }
-                          return 8457013;
-                      }
-                      case 8455237: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 8455237;
-                          const ch = parser.currentChar;
-                          if (ch === 124) {
-                              advanceChar(parser);
-                              return 8979000;
-                          }
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 4194344;
-                          }
-                          return 8455237;
-                      }
-                      case 8456256: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 8456256;
-                          const ch = parser.currentChar;
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 8455998;
-                          }
-                          if (ch !== 62)
-                              return 8456256;
-                          advanceChar(parser);
-                          if (parser.index < parser.end) {
-                              const ch = parser.currentChar;
-                              if (ch === 62) {
-                                  if (advanceChar(parser) === 61) {
-                                      advanceChar(parser);
-                                      return 4194336;
-                                  }
-                                  return 8456515;
-                              }
-                              if (ch === 61) {
-                                  advanceChar(parser);
-                                  return 4194335;
-                              }
-                          }
-                          return 8456514;
-                      }
-                      case 8455748: {
-                          advanceChar(parser);
-                          if (parser.index >= parser.end)
-                              return 8455748;
-                          const ch = parser.currentChar;
-                          if (ch === 38) {
-                              advanceChar(parser);
-                              return 8979255;
-                          }
-                          if (ch === 61) {
-                              advanceChar(parser);
-                              return 4194345;
-                          }
-                          return 8455748;
-                      }
-                      case 67108877:
-                          if ((CharTypes[advanceChar(parser)] & 16) !== 0)
-                              return scanNumber(parser, context, 64 | 16);
-                          if (parser.currentChar === 46) {
-                              if (advanceChar(parser) === 46) {
-                                  advanceChar(parser);
-                                  return 14;
-                              }
-                          }
-                          return 67108877;
-                      case 22: {
-                          let ch = advanceChar(parser);
-                          if ((context & 1) < 1)
-                              return 22;
-                          if (ch === 63) {
-                              advanceChar(parser);
-                              return 276889979;
-                          }
-                          if (ch === 46) {
-                              const index = parser.index + 1;
-                              if (index < parser.end) {
-                                  ch = parser.source.charCodeAt(index);
-                                  if ((CharTypes[ch] & 16) < 1) {
-                                      advanceChar(parser);
-                                      return 67108988;
-                                  }
-                              }
-                          }
-                          return 22;
-                      }
-                      case 4096:
-                          return scanIdentifier(parser, context, 1);
-                      case 208897:
-                          return scanIdentifier(parser, context, 0);
-                      case 134283266:
-                          return scanNumber(parser, context, 16 | 128);
-                      case 134283267:
-                          return scanString(parser, context, char);
-                      case 129:
-                          return scanTemplate(parser, context);
-                      case 134:
-                          return scanUnicodeIdentifier(parser, context);
-                      case 128:
-                          return scanPrivateName(parser);
-                      case 125:
-                          advanceChar(parser);
-                          break;
-                      case 127:
-                          state |= 1 | 4;
-                          scanNewLine(parser);
-                          break;
-                      case 133:
-                          consumeLineFeed(parser, state);
-                          state = (state & ~4) | 1;
-                          break;
-                      default:
-                  }
-              }
-              else {
-                  if ((char ^ 8232) <= 1) {
-                      state = (state & ~4) | 1;
-                      scanNewLine(parser);
-                      continue;
-                  }
-                  if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
-                      parser.tokenValue = '';
-                      return scanIdentifierSlowCase(parser, context, 0, 0);
-                  }
-                  if (isExoticECMAScriptWhitespace(char)) {
-                      advanceChar(parser);
-                      continue;
-                  }
-                  report(parser, 18, fromCodePoint(char));
-              }
-          }
-          return 1048576;
-      }
-
-      const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
-      function skipHashBang(parser) {
-          if (parser.currentChar === 35 && parser.source.charCodeAt(parser.index + 1) === 33) {
-              skipSingleLineComment(parser, 0, 4);
-          }
-      }
-      function skipSingleHTMLComment(parser, state, context, type) {
-          if (context & 2048)
-              report(parser, 0);
-          return skipSingleLineComment(parser, state, type);
-      }
-      function skipSingleLineComment(parser, state, type) {
-          const { index } = parser;
-          while (parser.index < parser.end) {
-              if (CharTypes[parser.currentChar] & 8) {
-                  scanNewLine(parser);
-                  if (parser.index < parser.end && parser.currentChar === 10)
-                      parser.currentChar = parser.source.charCodeAt(++parser.index);
-                  return state | 1;
-              }
-              else if ((parser.currentChar ^ 8232) <= 1) {
-                  scanNewLine(parser);
-                  return state | 1;
-              }
-              advanceChar(parser);
-          }
-          if (parser.onComment)
-              parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
-          return state | 1;
-      }
-      function skipMultiLineComment(parser, state) {
-          const { index } = parser;
-          while (parser.index < parser.end) {
-              while (parser.currentChar === 42) {
-                  state &= ~4;
-                  if (advanceChar(parser) === 47) {
-                      advanceChar(parser);
-                      if (parser.onComment)
-                          parser.onComment(CommentTypes[1 & 0xff], parser.source.slice(index, parser.index - 2), index, parser.index);
-                      return state;
-                  }
-              }
-              if (parser.currentChar === 13) {
-                  state |= 1 | 4;
-                  scanNewLine(parser);
-              }
-              else if (parser.currentChar === 10) {
-                  consumeLineFeed(parser, state);
-                  state = (state & ~4) | 1;
-              }
-              else if ((parser.currentChar ^ 8232) <= 1) {
-                  state = (state & ~4) | 1;
-                  scanNewLine(parser);
-              }
-              else {
-                  state &= ~4;
-                  advanceChar(parser);
-              }
-          }
-          report(parser, 16);
-      }
-
-      function advanceChar(parser) {
-          parser.column++;
-          return (parser.currentChar = parser.source.charCodeAt(++parser.index));
-      }
-      function consumeMultiUnitCodePoint(parser, hi) {
-          if ((hi & 0xfc00) !== 55296)
-              return 0;
-          const lo = parser.source.charCodeAt(parser.index + 1);
-          if ((lo & 0xfc00) !== 0xdc00)
-              return 0;
-          hi = parser.currentChar = 65536 + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
-          if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
-              report(parser, 18, fromCodePoint(hi));
-          }
-          parser.index++;
-          parser.column++;
-          return 1;
-      }
-      function consumeLineFeed(parser, state) {
-          parser.currentChar = parser.source.charCodeAt(++parser.index);
-          parser.flags |= 1;
-          if ((state & 4) === 0) {
-              parser.column = 0;
-              parser.line++;
-          }
-      }
-      function scanNewLine(parser) {
-          parser.flags |= 1;
-          parser.currentChar = parser.source.charCodeAt(++parser.index);
-          parser.column = 0;
-          parser.line++;
-      }
-      function isExoticECMAScriptWhitespace(code) {
-          return (code === 160 ||
-              code === 65279 ||
-              code === 133 ||
-              code === 5760 ||
-              (code >= 8192 && code <= 8203) ||
-              code === 8239 ||
-              code === 8287 ||
-              code === 12288 ||
-              code === 65519);
-      }
-      function fromCodePoint(codePoint) {
-          return codePoint <= 65535
-              ? String.fromCharCode(codePoint)
-              : String.fromCharCode(codePoint >>> 10) + String.fromCharCode(codePoint & 0x3ff);
-      }
-      function toHex(code) {
-          return code < 65 ? code - 48 : (code - 65 + 10) & 0xf;
       }
 
       const KeywordDescTable = [
@@ -6382,7 +6385,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.6.15');
+      const version = exports('version', '1.6.16');
 
     }
   };
