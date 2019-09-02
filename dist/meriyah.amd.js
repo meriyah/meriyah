@@ -189,9 +189,6 @@ define(['exports'], function (exports) { 'use strict';
       throw new ParseError(index, line, column, type);
   }
 
-  function isIDStart(code) {
-      return (unicodeLookup[(code >>> 5) + 34816] >>> code & 31 & 1) !== 0;
-  }
   const unicodeLookup = ((compressed, lookup) => {
       const result = new Uint32Array(104448);
       let index = 0;
@@ -359,7 +356,7 @@ define(['exports'], function (exports) { 'use strict';
           parser.tokenPos = parser.index;
           parser.colPos = parser.column;
           parser.linePos = parser.line;
-          const char = parser.currentChar;
+          let char = parser.currentChar;
           if (char <= 0x7e) {
               const token = TokenLookup[char];
               switch (token) {
@@ -649,7 +646,16 @@ define(['exports'], function (exports) { 'use strict';
                   scanNewLine(parser);
                   continue;
               }
-              if (isIDStart(char) || consumeMultiUnitCodePoint(parser, char)) {
+              if ((char & 0xfc00) === 0xd800 || ((unicodeLookup[(char >>> 5) + 34816] >>> char) & 31 & 1) !== 0) {
+                  if ((char & 0xfc00) === 0xdc00) {
+                      char = ((char & 0x3ff) << 10) | (char & 0x3ff) | 0x10000;
+                      if (((unicodeLookup[(char >>> 5) + 0] >>> char) & 31 & 1) === 0) {
+                          report(parser, 18, fromCodePoint(char));
+                      }
+                      parser.index++;
+                      parser.currentChar = char;
+                  }
+                  parser.column++;
                   parser.tokenValue = '';
                   return scanIdentifierSlowCase(parser, context, 0, 0);
               }
