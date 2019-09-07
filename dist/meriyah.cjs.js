@@ -176,6 +176,10 @@ class ParseError extends SyntaxError {
         this.line = line;
         this.column = column;
         this.description = message;
+        this.loc = {
+            line,
+            column
+        };
     }
 }
 function report(parser, type, ...params) {
@@ -6383,7 +6387,7 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.6.16';
+const version = '1.6.17';
 
 exports.ESTree = estree;
 exports.parse = parse;

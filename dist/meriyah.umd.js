@@ -178,6 +178,10 @@
           this.line = line;
           this.column = column;
           this.description = message;
+          this.loc = {
+              line,
+              column
+          };
       }
   }
   function report(parser, type, ...params) {
@@ -6385,7 +6389,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.6.16';
+  const version = '1.6.17';
 
   exports.ESTree = estree;
   exports.parse = parse;

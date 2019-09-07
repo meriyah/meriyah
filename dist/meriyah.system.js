@@ -183,6 +183,10 @@ System.register('meriyah', [], function (exports) {
               this.line = line;
               this.column = column;
               this.description = message;
+              this.loc = {
+                  line,
+                  column
+              };
           }
       }
       function report(parser, type, ...params) {
@@ -6391,7 +6395,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.6.16');
+      const version = exports('version', '1.6.17');
 
     }
   };

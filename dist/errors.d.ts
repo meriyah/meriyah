@@ -1,5 +1,9 @@
 import { ParserState } from './common';
 export declare class ParseError extends SyntaxError {
+    loc: {
+        line: ParseError['line'];
+        column: ParseError['column'];
+    };
     index: number;
     line: number;
     column: number;
