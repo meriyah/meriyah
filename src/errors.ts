@@ -348,6 +348,10 @@ export const errorMessages: {
 };
 
 export class ParseError extends SyntaxError {
+  public loc: {
+    line: ParseError['line'];
+    column: ParseError['column'];
+  };
   public index: number;
   public line: number;
   public column: number;
@@ -361,9 +365,13 @@ export class ParseError extends SyntaxError {
     this.line = line;
     this.column = column;
     this.description = message;
+    /* Acorn compat */
+    this.loc = {
+      line,
+      column
+    } as any;
   }
 }
-
 /**
  * Throws an error
  *
