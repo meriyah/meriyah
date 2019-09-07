@@ -18,6 +18,17 @@ map-3: &filter_ignore_dev
       ignore:
         - dev
 
+test: &test
+  parameters:
+    coverage:
+      type: boolean
+      default: true
+  steps:
+    - checkout
+    - run: node --version
+    - run: npm ci
+    - run: npm run test
+
 executors:
 
   docker-circleci:
@@ -52,16 +63,17 @@ jobs:
       - run: npm ci
       - run: npm run bundle
 
-  test:
-    executor: docker-circleci
-    parameters:
-      coverage:
-        type: boolean
-        default: true
-    steps:
-      - checkout
-      - run: npm ci
-      - run: npm run test
+  test-10:
+    <<: *test
+    executor:
+      name: docker-circleci
+      node: "10.12"
+
+  test-12:
+    <<: *test
+    executor:
+      name: docker-circleci
+      node: "12.9"
 
   publish_dev:
     executor: docker-circleci
@@ -132,7 +144,9 @@ workflows:
           <<: *filter_ignore_dev
       - bundle:
           <<: *filter_ignore_dev
-      - test:
+      - test-10:
+          <<: *filter_ignore_dev
+      - test-12:
           <<: *filter_ignore_dev
 
   publish_nightly:
@@ -149,10 +163,12 @@ workflows:
       - build
       - lint
       - bundle
-      - test
+      - test-10
+      - test-12
       - merge_and_dist:
           requires:
             - build
             - lint
             - bundle
-            - test
+            - test-10
+            - test-12
