@@ -27,6 +27,13 @@ module.exports = {
         '@typescript-eslint/class-name-casing': 0,
         '@typescript-eslint/camelcase': 0
       }
+    },
+    {
+      files: ['scripts/*.js'],
+      rules:
+        {
+          "node/no-unsupported-features/es-syntax": ["error", {"version": "10.0", "ignores": []}]
+        }
     }
   ]
 };
