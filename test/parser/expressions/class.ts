@@ -562,6 +562,21 @@ describe('Expressions - Class', () => {
     ['function () { class A extends {}      { } }', Context.None],
     ['function () { class A extends undefined { } }', Context.None],
     ['super[1];', Context.None],
+    ['class x{[x](a=await y){}}', Context.None],
+    ['class C extends --x {}', Context.None],
+    ['class C extends a !== b {}', Context.None],
+    ['class C extends a *= b {}', Context.None],
+    ['class C extends a => b {}', Context.None],
+    ['class C extends a => {} {}', Context.None],
+    ['class C extends async a => b {}', Context.None],
+    ['class C extends delete x {}', Context.None],
+    ['class C extends x,y {}', Context.None],
+    ['class C extends s ** y {}', Context.None],
+    ['class C extends super() {}', Context.None],
+    ['class C extends super.foo {}', Context.None],
+    ['class C extends typeof x {}', Context.None],
+    ['class C extends void x {}', Context.None],
+    ['class C extends [...x=y] = b {}', Context.None],
     ['class x { foo(x=new (yield)()){} }', Context.None],
     ['class x { foo(x=yield y){} }', Context.None],
     ['class x { foo(x=yield){} }', Context.None],
@@ -1986,6 +2001,168 @@ describe('Expressions - Class', () => {
             body: {
               type: 'ClassBody',
               body: []
+            }
+          }
+        ]
+      }
+    ],
+
+    [
+      'class x{[x](a=await){}}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    name: 'x'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'await'
+                        }
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'class x{[x](a=await){}}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    name: 'x'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'AssignmentPattern',
+                        left: {
+                          type: 'Identifier',
+                          name: 'a'
+                        },
+                        right: {
+                          type: 'Identifier',
+                          name: 'await'
+                        }
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'class x{[x](await){}}',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'x'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: false,
+                  computed: true,
+                  key: {
+                    type: 'Identifier',
+                    name: 'x'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [
+                      {
+                        type: 'Identifier',
+                        name: 'await'
+                      }
+                    ],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
             }
           }
         ]

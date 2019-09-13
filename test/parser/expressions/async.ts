@@ -136,6 +136,36 @@ describe('Expressions - Async', () => {
   ]);
   pass('Expressions - Async (pass)', [
     [
+      'async(), x',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'async'
+                  },
+                  arguments: []
+                },
+                {
+                  type: 'Identifier',
+                  name: 'x'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
       'async/x',
       Context.OptionsRanges,
       {
