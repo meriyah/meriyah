@@ -1,4 +1,4 @@
-import { advanceChar, CharTypes, CharFlags, LexerState, consumeLineBreak, consumeLineFeed } from './';
+import { advanceChar, CharTypes, LexerState, consumeLineBreak } from './';
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { report, Errors } from '../errors';

@@ -29,8 +29,8 @@ export const enum NumberKind {
 export function advanceChar(parser: ParserState): number {
   parser.column++;
   if (parser.index < parser.end) {
-    let cur = parser.currentChar,
-      nxt = parser.source.charCodeAt(parser.index + 1);
+    const cur = parser.currentChar;
+    const nxt = parser.source.charCodeAt(parser.index + 1);
     if (
       (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
       (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
