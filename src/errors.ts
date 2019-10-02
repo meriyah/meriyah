@@ -382,11 +382,11 @@ export class ParseError extends SyntaxError {
  * @returns {never}
  */
 export function report(parser: ParserState, type: Errors, ...params: string[]): never {
-  throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
+  throw new ParseError(parser.index, parser.linePos, parser.colPos, type, ...params);
 }
 
 export function reportScopeError(scope: any): never {
-  throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
+  throw new ParseError(scope.index, scope.linePos, scope.colPos, scope.type, scope.params);
 }
 
 /**

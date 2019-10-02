@@ -28,6 +28,19 @@ export const enum NumberKind {
  */
 export function advanceChar(parser: ParserState): number {
   parser.column++;
+  if (parser.index < parser.end) {
+    let cur = parser.currentChar,
+      nxt = parser.source.charCodeAt(parser.index + 1);
+    if (
+      (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
+      (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
+    ) {
+      parser.currentChar = Chars.LineFeed;
+      parser.index++;
+    } else if (cur === Chars.CarriageReturn) {
+      parser.currentChar = Chars.LineFeed;
+    }
+  }
   return (parser.currentChar = parser.source.charCodeAt(++parser.index));
 }
 
@@ -52,7 +65,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
 }
 
 /**
- * Use to consume a line feed instead of `scanNewLine`.
+ * Use to consume a line feed instead of `consumeLineBreak`.
  */
 export function consumeLineFeed(parser: ParserState, state: LexerState): void {
   parser.currentChar = parser.source.charCodeAt(++parser.index);
@@ -63,11 +76,11 @@ export function consumeLineFeed(parser: ParserState, state: LexerState): void {
   }
 }
 
-export function scanNewLine(parser: ParserState): void {
+export function consumeLineBreak(parser: ParserState): void {
   parser.flags |= Flags.NewLine;
-  parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.column = 0;
   parser.line++;
+  parser.currentChar = parser.source.charCodeAt(++parser.index);
 }
 
 // ECMA-262 11.2 White Space

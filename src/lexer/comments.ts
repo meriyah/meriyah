@@ -1,4 +1,4 @@
-import { advanceChar, CharTypes, CharFlags, LexerState, scanNewLine, consumeLineFeed } from './';
+import { advanceChar, CharTypes, CharFlags, LexerState, consumeLineBreak, consumeLineFeed } from './';
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { report, Errors } from '../errors';
@@ -45,16 +45,12 @@ export function skipSingleHTMLComment(
 export function skipSingleLineComment(parser: ParserState, state: LexerState, type: CommentType): LexerState {
   const { index } = parser;
   while (parser.index < parser.end) {
-    if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
-      scanNewLine(parser);
-      if (parser.index < parser.end && parser.currentChar === Chars.LineFeed)
-        parser.currentChar = parser.source.charCodeAt(++parser.index);
-      return state | LexerState.NewLine;
-    } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
-      scanNewLine(parser);
-      return state | LexerState.NewLine;
+    if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
+      consumeLineBreak(parser);
+      return (state |= LexerState.NewLine);
+    } else {
+      advanceChar(parser);
     }
-    advanceChar(parser);
   }
   if (parser.onComment)
     parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
@@ -84,18 +80,10 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
         return state;
       }
     }
-
-    if (parser.currentChar === Chars.CarriageReturn) {
-      state |= LexerState.NewLine | LexerState.LastIsCR;
-      scanNewLine(parser);
-    } else if (parser.currentChar === Chars.LineFeed) {
-      consumeLineFeed(parser, state);
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-    } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-      scanNewLine(parser);
+    if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
+      consumeLineBreak(parser);
+      state |= LexerState.NewLine;
     } else {
-      state &= ~LexerState.LastIsCR;
       advanceChar(parser);
     }
   }

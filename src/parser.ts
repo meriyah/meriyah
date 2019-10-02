@@ -406,7 +406,16 @@ export function parseModuleItem(
     case Token.Decorator:
       return parseDecorators(parser, context) as ESTree.Decorator[];
     default:
-      return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
+      return parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.TopLevel,
+        { parentLabels: null, iterationLabels: null },
+        start,
+        line,
+        column
+      );
   }
 }
 
@@ -3733,7 +3742,7 @@ export function parseFunctionBody(
       context,
       scope,
       Origin.TopLevel,
-      {},
+      { parentLabels: null, iterationLabels: null },
       parser.tokenPos,
       parser.linePos,
       parser.colPos
