@@ -21,7 +21,6 @@ import {
   scanIdentifierSlowCase,
   scanPrivateName,
   fromCodePoint,
-  //consumeLineFeed,
   consumeLineBreak
 } from './';
 
@@ -538,16 +537,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           consumeLineBreak(parser);
           state |= LexerState.NewLine;
           break;
-
-        // Now we only handle "line breaks", regardless of whether indicated by CR, CRLF, LF, or LFCR.
-        //case Token.CarriageReturn:
-        //  consumeLineBreak(parser);
-        //  state |= LexerState.NewLine;
-        //  break;
-        //case Token.LineFeed:
-        //  consumeLineFeed(parser, state);
-        //  state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-        //  break;
 
         default:
         // unreachable
