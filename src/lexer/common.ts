@@ -6,7 +6,7 @@ import { report, Errors } from '../errors';
 export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
-  LastIsCR = 1 << 2
+  //LastIsCR = 1 << 2 // no longer care about CR's
 }
 
 export const enum NumberKind {
@@ -28,26 +28,42 @@ export const enum NumberKind {
  */
 export function advanceChar(parser: ParserState): number {
   parser.column++;
-  return advanceAndLawrenceDolTheCRLF(parser);
-}
-
-export function advanceAndLawrenceDolTheCRLF(parser: ParserState) {
   parser.currentChar = parser.source.charCodeAt(++parser.index);
-  if (parser.index < parser.end) {
-    const cur = parser.currentChar;
-    const nxt = parser.source.charCodeAt(parser.index + 1);
-    if (
-      (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
-      (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
-    ) {
-      parser.currentChar = Chars.LineFeed;
-      parser.index++;
-    } else if (cur === Chars.CarriageReturn) {
-      parser.currentChar = Chars.LineFeed;
-    }
+
+  if(parser.index < parser.end) {
+      const cur = parser.currentChar;
+      const nxt = parser.source.charCodeAt(parser.index + 1);
+      if((cur == Chars.CarriageReturn && nxt == Chars.LineFeed) || (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)) {
+          parser.currentChar = Chars.LineFeed;
+          parser.index++;
+      } else if(cur == Chars.CarriageReturn) {
+          parser.currentChar = Chars.LineFeed;
+      }
   }
   return parser.currentChar;
 }
+//export function advanceChar(parser: ParserState): number {
+//  parser.column++;
+//  return advanceAndLawrenceDolTheCRLF(parser);
+//}
+//
+//export function advanceAndLawrenceDolTheCRLF(parser: ParserState) {
+//  parser.currentChar = parser.source.charCodeAt(++parser.index);
+//  if (parser.index < parser.end) {
+//    const cur = parser.currentChar;
+//    const nxt = parser.source.charCodeAt(parser.index + 1);
+//    if (
+//      (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
+//      (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
+//    ) {
+//      parser.currentChar = Chars.LineFeed;
+//      parser.index++;
+//    } else if (cur === Chars.CarriageReturn) {
+//      parser.currentChar = Chars.LineFeed;
+//    }
+//  }
+//  return parser.currentChar;
+//}
 
 /**
  * Consumes multi unit code point
@@ -72,21 +88,27 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
 /**
  * Use to consume a line feed instead of `consumeLineBreak`.
  */
-export function consumeLineFeed(parser: ParserState, state: LexerState): void {
-  advanceAndLawrenceDolTheCRLF(parser);
-  parser.flags |= Flags.NewLine;
-  if ((state & LexerState.LastIsCR) === 0) {
-    parser.column = 0;
-    parser.line++;
-  }
-}
-
-export function consumeLineBreak(parser: ParserState): void {
-  parser.flags |= Flags.NewLine;
+export function consumeLineBreak(parser) {
+  parser.flags |= 1;
   parser.column = 0;
   parser.line++;
-  advanceAndLawrenceDolTheCRLF(parser);
+  parser.currentChar = advanceChar(parser); // important to use advanceChar() so CR/LF are handled consistently; also, col was just reset to 0, so correct for advanceChar() to do column++.
 }
+//export function consumeLineFeed(parser: ParserState, state: LexerState): void {
+//  advanceAndLawrenceDolTheCRLF(parser);
+//  parser.flags |= Flags.NewLine;
+//  if ((state & LexerState.LastIsCR) === 0) {
+//    parser.column = 0;
+//    parser.line++;
+//  }
+//}
+//
+//export function consumeLineBreak(parser: ParserState): void {
+//  parser.flags |= Flags.NewLine;
+//  parser.column = 0;
+//  parser.line++;
+//  advanceAndLawrenceDolTheCRLF(parser);
+//}
 
 // ECMA-262 11.2 White Space
 export function isExoticECMAScriptWhitespace(code: number): boolean {
