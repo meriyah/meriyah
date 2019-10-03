@@ -22,7 +22,7 @@ import {
   scanPrivateName,
   fromCodePoint,
   consumeLineFeed,
-  scanNewLine
+  consumeLineBreak
 } from './';
 
 /*
@@ -534,8 +534,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           break;
 
         case Token.CarriageReturn:
-          state |= LexerState.NewLine | LexerState.LastIsCR;
-          scanNewLine(parser);
+          consumeLineBreak(parser);
+          state |= LexerState.NewLine;
           break;
 
         case Token.LineFeed:
@@ -548,8 +548,8 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
       }
     } else {
       if ((char ^ Chars.LineSeparator) <= 1) {
-        state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-        scanNewLine(parser);
+        consumeLineBreak(parser);
+        state |= LexerState.NewLine;
         continue;
       }
 

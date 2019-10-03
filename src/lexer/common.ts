@@ -28,7 +28,25 @@ export const enum NumberKind {
  */
 export function advanceChar(parser: ParserState): number {
   parser.column++;
-  return (parser.currentChar = parser.source.charCodeAt(++parser.index));
+  return advanceAndLawrenceDolTheCRLF(parser);
+}
+
+export function advanceAndLawrenceDolTheCRLF(parser: ParserState) {
+  parser.currentChar = parser.source.charCodeAt(++parser.index);
+  if (parser.index < parser.end) {
+    const cur = parser.currentChar;
+    const nxt = parser.source.charCodeAt(parser.index + 1);
+    if (
+      (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
+      (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
+    ) {
+      parser.currentChar = Chars.LineFeed;
+      parser.index++;
+    } else if (cur === Chars.CarriageReturn) {
+      parser.currentChar = Chars.LineFeed;
+    }
+  }
+  return parser.currentChar;
 }
 
 /**
@@ -52,10 +70,10 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
 }
 
 /**
- * Use to consume a line feed instead of `scanNewLine`.
+ * Use to consume a line feed instead of `consumeLineBreak`.
  */
 export function consumeLineFeed(parser: ParserState, state: LexerState): void {
-  parser.currentChar = parser.source.charCodeAt(++parser.index);
+  advanceAndLawrenceDolTheCRLF(parser);
   parser.flags |= Flags.NewLine;
   if ((state & LexerState.LastIsCR) === 0) {
     parser.column = 0;
@@ -63,11 +81,11 @@ export function consumeLineFeed(parser: ParserState, state: LexerState): void {
   }
 }
 
-export function scanNewLine(parser: ParserState): void {
+export function consumeLineBreak(parser: ParserState): void {
   parser.flags |= Flags.NewLine;
-  parser.currentChar = parser.source.charCodeAt(++parser.index);
   parser.column = 0;
   parser.line++;
+  advanceAndLawrenceDolTheCRLF(parser);
 }
 
 // ECMA-262 11.2 White Space
