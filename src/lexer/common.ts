@@ -6,6 +6,7 @@ import { report, Errors } from '../errors';
 export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
+  LastIsCR = 1 << 2
 }
 
 export const enum NumberKind {
@@ -27,23 +28,25 @@ export const enum NumberKind {
  */
 export function advanceChar(parser: ParserState): number {
   parser.column++;
-  parser.currentChar = parser.source.charCodeAt(++parser.index);
-
-  if(parser.index < parser.end) {
-      const cur = parser.currentChar;
-      const nxt = parser.source.charCodeAt(parser.index + 1);
-      if(isLineBreakPair(cur,nxt)) {
-          parser.currentChar = Chars.LineFeed;
-          parser.index++; // skip the second char of the line-break sequence
-      } else if(cur === Chars.CarriageReturn) {
-          parser.currentChar = Chars.LineFeed; // treat lone CR as if it were LF
-      }
-  }
-  return parser.currentChar;
+  return advanceAndLawrenceDolTheCRLF(parser);
 }
 
-function isLineBreakPair(cur,nxt) {
-    return (cur === Chars.CarriageReturn && nxt === Chars.LineFeed) || (cur === Chars.LineFeed && nxt === Chars.CarriageReturn);
+export function advanceAndLawrenceDolTheCRLF(parser: ParserState) {
+  parser.currentChar = parser.source.charCodeAt(++parser.index);
+  if (parser.index < parser.end) {
+    const cur = parser.currentChar;
+    const nxt = parser.source.charCodeAt(parser.index + 1);
+    if (
+      (cur == Chars.CarriageReturn && nxt == Chars.LineFeed) ||
+      (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)
+    ) {
+      parser.currentChar = Chars.LineFeed;
+      parser.index++;
+    } else if (cur === Chars.CarriageReturn) {
+      parser.currentChar = Chars.LineFeed;
+    }
+  }
+  return parser.currentChar;
 }
 
 /**
@@ -69,11 +72,20 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
 /**
  * Use to consume a line feed instead of `consumeLineBreak`.
  */
+export function consumeLineFeed(parser: ParserState, state: LexerState): void {
+  advanceAndLawrenceDolTheCRLF(parser);
+  parser.flags |= Flags.NewLine;
+  if ((state & LexerState.LastIsCR) === 0) {
+    parser.column = 0;
+    parser.line++;
+  }
+}
+
 export function consumeLineBreak(parser: ParserState): void {
   parser.flags |= Flags.NewLine;
   parser.column = 0;
   parser.line++;
-  parser.currentChar = advanceChar(parser); // important to use advanceChar() so CR/LF are handled consistently; also, col was just reset to 0, so correct for advanceChar() to do column++.
+  advanceAndLawrenceDolTheCRLF(parser);
 }
 
 // ECMA-262 11.2 White Space

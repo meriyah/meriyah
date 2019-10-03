@@ -67,6 +67,7 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
   const { index } = parser;
   while (parser.index < parser.end) {
     while (parser.currentChar === Chars.Asterisk) {
+      state &= ~LexerState.LastIsCR;
       if (advanceChar(parser) === Chars.Slash) {
         advanceChar(parser);
         if (parser.onComment)

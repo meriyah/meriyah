@@ -21,6 +21,7 @@ import {
   scanIdentifierSlowCase,
   scanPrivateName,
   fromCodePoint,
+  consumeLineFeed,
   consumeLineBreak
 } from './';
 
@@ -33,7 +34,8 @@ import {
  * StringLiteral:    34, 39: '"', `'`
  * NumericLiteral:   48, 49..57: '0'..'9'
  * WhiteSpace:       9, 11, 12, 32: '\t', '\v', '\f', ' '
- * LineBreak:        10, 13: '\n', '\r'
+ * LineFeed:         10: '\n'
+ * CarriageReturn:   13: '\r'
  * Template:         96: '`'
  */
 
@@ -48,10 +50,10 @@ export const TokenLookup = [
   /*   7 - Bell               */ Token.Illegal,
   /*   8 - Backspace          */ Token.Illegal,
   /*   9 - Horizontal Tab     */ Token.WhiteSpace,
-  /*  10 - Line Feed          */ Token.LineBreak,
+  /*  10 - Line Feed          */ Token.LineFeed,
   /*  11 - Vertical Tab       */ Token.WhiteSpace,
   /*  12 - Form Feed          */ Token.WhiteSpace,
-  /*  13 - Carriage Return    */ Token.LineBreak,
+  /*  13 - Carriage Return    */ Token.CarriageReturn,
   /*  14 - Shift Out          */ Token.Illegal,
   /*  15 - Shift In           */ Token.Illegal,
   /*  16 - Data Line Escape   */ Token.Illegal,
@@ -531,9 +533,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           advanceChar(parser);
           break;
 
-        case Token.LineBreak:
+        case Token.CarriageReturn:
           consumeLineBreak(parser);
           state |= LexerState.NewLine;
+          break;
+
+        case Token.LineFeed:
+          consumeLineFeed(parser, state);
+          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
           break;
 
         default:
