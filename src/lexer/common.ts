@@ -66,7 +66,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
  * Use to consume a line feed instead of `consumeLineBreak`.
  */
 export function consumeLineBreak(parser) {
-  parser.flags |= 1;
+  parser.flags |= Flags.NewLine;
   parser.column = 0;
   parser.line++;
   parser.currentChar = advanceChar(parser); // important to use advanceChar() so CR/LF are handled consistently; also, col was just reset to 0, so correct for advanceChar() to do column++.
