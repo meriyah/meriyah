@@ -32,10 +32,10 @@ export function advanceChar(parser: ParserState): number {
   if(parser.index < parser.end) {
       const cur = parser.currentChar;
       const nxt = parser.source.charCodeAt(parser.index + 1);
-      if((cur == Chars.CarriageReturn && nxt == Chars.LineFeed) || (cur == Chars.LineFeed && nxt == Chars.CarriageReturn)) {
+      if((cur === Chars.CarriageReturn && nxt === Chars.LineFeed) || (cur === Chars.LineFeed && nxt === Chars.CarriageReturn)) {
           parser.currentChar = Chars.LineFeed;
           parser.index++;
-      } else if(cur == Chars.CarriageReturn) {
+      } else if(cur === Chars.CarriageReturn) {
           parser.currentChar = Chars.LineFeed;
       }
   }
