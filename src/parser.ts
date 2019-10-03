@@ -69,7 +69,7 @@ export function create(source: string, sourceFile: string | void, onComment: OnC
     /**
      * Beginning of current line
      */
-    line: 1,
+    line: 0, // Without initializing to 0 I consistently get the line out by +1; but this surprises me.
 
     /**
      * Beginning of current column
