@@ -190,10 +190,10 @@ System.register('meriyah', [], function (exports) {
           }
       }
       function report(parser, type, ...params) {
-          throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
+          throw new ParseError(parser.index, parser.linePos, parser.colPos, type, ...params);
       }
       function reportScopeError(scope) {
-          throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
+          throw new ParseError(scope.index, scope.linePos, scope.colPos, scope.type, scope.params);
       }
       function reportMessageAt(index, line, column, type, ...params) {
           throw new ParseError(index, line, column, type, ...params);
@@ -643,8 +643,8 @@ System.register('meriyah', [], function (exports) {
                           advanceChar(parser);
                           break;
                       case 127:
-                          state |= 1 | 4;
-                          scanNewLine(parser);
+                          consumeLineBreak(parser);
+                          state |= 1;
                           break;
                       case 133:
                           consumeLineFeed(parser, state);
@@ -655,8 +655,8 @@ System.register('meriyah', [], function (exports) {
               }
               else {
                   if ((char ^ 8232) <= 1) {
-                      state = (state & ~4) | 1;
-                      scanNewLine(parser);
+                      consumeLineBreak(parser);
+                      state |= 1;
                       continue;
                   }
                   if ((char & 0xfc00) === 0xd800 || ((unicodeLookup[(char >>> 5) + 34816] >>> char) & 31 & 1) !== 0) {
@@ -696,17 +696,13 @@ System.register('meriyah', [], function (exports) {
       function skipSingleLineComment(parser, state, type) {
           const { index } = parser;
           while (parser.index < parser.end) {
-              if (CharTypes[parser.currentChar] & 8) {
-                  scanNewLine(parser);
-                  if (parser.index < parser.end && parser.currentChar === 10)
-                      parser.currentChar = parser.source.charCodeAt(++parser.index);
-                  return state | 1;
+              if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
+                  consumeLineBreak(parser);
+                  return (state |= 1);
               }
-              else if ((parser.currentChar ^ 8232) <= 1) {
-                  scanNewLine(parser);
-                  return state | 1;
+              else {
+                  advanceChar(parser);
               }
-              advanceChar(parser);
           }
           if (parser.onComment)
               parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
@@ -724,20 +720,11 @@ System.register('meriyah', [], function (exports) {
                       return state;
                   }
               }
-              if (parser.currentChar === 13) {
-                  state |= 1 | 4;
-                  scanNewLine(parser);
-              }
-              else if (parser.currentChar === 10) {
-                  consumeLineFeed(parser, state);
-                  state = (state & ~4) | 1;
-              }
-              else if ((parser.currentChar ^ 8232) <= 1) {
-                  state = (state & ~4) | 1;
-                  scanNewLine(parser);
+              if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
+                  consumeLineBreak(parser);
+                  state |= 1;
               }
               else {
-                  state &= ~4;
                   advanceChar(parser);
               }
           }
@@ -746,7 +733,23 @@ System.register('meriyah', [], function (exports) {
 
       function advanceChar(parser) {
           parser.column++;
-          return (parser.currentChar = parser.source.charCodeAt(++parser.index));
+          return advanceAndLawrenceDolTheCRLF(parser);
+      }
+      function advanceAndLawrenceDolTheCRLF(parser) {
+          parser.currentChar = parser.source.charCodeAt(++parser.index);
+          if (parser.index < parser.end) {
+              const cur = parser.currentChar;
+              const nxt = parser.source.charCodeAt(parser.index + 1);
+              if ((cur == 13 && nxt == 10) ||
+                  (cur == 10 && nxt == 13)) {
+                  parser.currentChar = 10;
+                  parser.index++;
+              }
+              else if (cur === 13) {
+                  parser.currentChar = 10;
+              }
+          }
+          return parser.currentChar;
       }
       function consumeMultiUnitCodePoint(parser, hi) {
           if ((hi & 0xfc00) !== 55296)
@@ -763,18 +766,18 @@ System.register('meriyah', [], function (exports) {
           return 1;
       }
       function consumeLineFeed(parser, state) {
-          parser.currentChar = parser.source.charCodeAt(++parser.index);
+          advanceAndLawrenceDolTheCRLF(parser);
           parser.flags |= 1;
           if ((state & 4) === 0) {
               parser.column = 0;
               parser.line++;
           }
       }
-      function scanNewLine(parser) {
+      function consumeLineBreak(parser) {
           parser.flags |= 1;
-          parser.currentChar = parser.source.charCodeAt(++parser.index);
           parser.column = 0;
           parser.line++;
+          advanceAndLawrenceDolTheCRLF(parser);
       }
       function isExoticECMAScriptWhitespace(code) {
           return (code === 160 ||
@@ -2511,7 +2514,7 @@ System.register('meriyah', [], function (exports) {
               case 130:
                   return parseDecorators(parser, context);
               default:
-                  return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
+                  return parseStatementListItem(parser, context, scope, 4, { parentLabels: null, iterationLabels: null }, start, line, column);
           }
       }
       function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
@@ -3736,7 +3739,7 @@ System.register('meriyah', [], function (exports) {
                   (512 | 256 | 64);
           parser.destructible = (parser.destructible | 256) ^ 256;
           while (parser.token !== 1074790415) {
-              body.push(parseStatementListItem(parser, context, scope, 4, {}, parser.tokenPos, parser.linePos, parser.colPos));
+              body.push(parseStatementListItem(parser, context, scope, 4, { parentLabels: null, iterationLabels: null }, parser.tokenPos, parser.linePos, parser.colPos));
           }
           consume(parser, origin & (16 | 8) ? context | 32768 : context, 1074790415);
           parser.flags &= ~(128 | 64);
@@ -6390,7 +6393,7 @@ System.register('meriyah', [], function (exports) {
 
 
       var estree = /*#__PURE__*/Object.freeze({
-
+        __proto__: null
       });
       exports('ESTree', estree);
 
@@ -6403,7 +6406,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.7.0');
+      const version = exports('version', '1.8.2');
 
     }
   };
