@@ -32,14 +32,18 @@ export function advanceChar(parser: ParserState): number {
   if(parser.index < parser.end) {
       const cur = parser.currentChar;
       const nxt = parser.source.charCodeAt(parser.index + 1);
-      if((cur === Chars.CarriageReturn && nxt === Chars.LineFeed) || (cur === Chars.LineFeed && nxt === Chars.CarriageReturn)) {
+      if(isLineBreakPair(cur,nxt)) {
           parser.currentChar = Chars.LineFeed;
-          parser.index++;
+          parser.index++; // skip the second char of the line-break sequence
       } else if(cur === Chars.CarriageReturn) {
-          parser.currentChar = Chars.LineFeed;
+          parser.currentChar = Chars.LineFeed; // treat lone CR as if it were LF
       }
   }
   return parser.currentChar;
+}
+
+function isLineBreakPair(cur,nxt) {
+    return (cur === Chars.CarriageReturn && nxt === Chars.LineFeed) || (cur === Chars.LineFeed && nxt === Chars.CarriageReturn);
 }
 
 /**
