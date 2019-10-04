@@ -12,6 +12,7 @@ export {
   isExoticECMAScriptWhitespace,
   fromCodePoint,
   toHex,
+  consumeLineFeed,
   consumeLineBreak,
   LexerState,
   NumberKind
