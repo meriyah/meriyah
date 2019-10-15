@@ -13,7 +13,7 @@ export {
   fromCodePoint,
   toHex,
   consumeLineFeed,
-  consumeLineBreak,
+  scanNewLine,
   LexerState,
   NumberKind
 } from './common';
