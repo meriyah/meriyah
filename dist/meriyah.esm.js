@@ -179,10 +179,10 @@ class ParseError extends SyntaxError {
     }
 }
 function report(parser, type, ...params) {
-    throw new ParseError(parser.index, parser.linePos, parser.colPos, type, ...params);
+    throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
 }
 function reportScopeError(scope) {
-    throw new ParseError(scope.index, scope.linePos, scope.colPos, scope.type, scope.params);
+    throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
 }
 function reportMessageAt(index, line, column, type, ...params) {
     throw new ParseError(index, line, column, type, ...params);
@@ -632,11 +632,12 @@ function scanSingleToken(parser, context, state) {
                     advanceChar(parser);
                     break;
                 case 127:
-                    consumeLineBreak(parser);
-                    state |= 1;
+                    state |= 1 | 4;
+                    scanNewLine(parser);
                     break;
                 case 133:
                     consumeLineFeed(parser, state);
+                    parser.line++;
                     state = (state & ~4) | 1;
                     break;
                 default:
@@ -644,8 +645,8 @@ function scanSingleToken(parser, context, state) {
         }
         else {
             if ((char ^ 8232) <= 1) {
-                consumeLineBreak(parser);
-                state |= 1;
+                state = (state & ~4) | 1;
+                scanNewLine(parser);
                 continue;
             }
             if ((char & 0xfc00) === 0xd800 || ((unicodeLookup[(char >>> 5) + 34816] >>> char) & 31 & 1) !== 0) {
@@ -685,13 +686,18 @@ function skipSingleHTMLComment(parser, state, context, type) {
 function skipSingleLineComment(parser, state, type) {
     const { index } = parser;
     while (parser.index < parser.end) {
-        if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
-            consumeLineBreak(parser);
-            return (state |= 1);
+        if (CharTypes[parser.currentChar] & 8) {
+            scanNewLine(parser);
+            parser.line++;
+            if (parser.index < parser.end && parser.currentChar === 10)
+                parser.currentChar = parser.source.charCodeAt(++parser.index);
+            return state | 1;
         }
-        else {
-            advanceChar(parser);
+        else if ((parser.currentChar ^ 8232) <= 1) {
+            scanNewLine(parser);
+            return state | 1;
         }
+        advanceChar(parser);
     }
     if (parser.onComment)
         parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
@@ -709,11 +715,20 @@ function skipMultiLineComment(parser, state) {
                 return state;
             }
         }
-        if (CharTypes[parser.currentChar] & 8 || (parser.currentChar ^ 8232) <= 1) {
-            consumeLineBreak(parser);
-            state |= 1;
+        if (parser.currentChar === 13) {
+            state |= 1 | 4;
+            scanNewLine(parser);
+        }
+        else if (parser.currentChar === 10) {
+            consumeLineFeed(parser, state);
+            state = (state & ~4) | 1;
+        }
+        else if ((parser.currentChar ^ 8232) <= 1) {
+            state = (state & ~4) | 1;
+            scanNewLine(parser);
         }
         else {
+            state &= ~4;
             advanceChar(parser);
         }
     }
@@ -722,23 +737,7 @@ function skipMultiLineComment(parser, state) {
 
 function advanceChar(parser) {
     parser.column++;
-    return advanceAndLawrenceDolTheCRLF(parser);
-}
-function advanceAndLawrenceDolTheCRLF(parser) {
-    parser.currentChar = parser.source.charCodeAt(++parser.index);
-    if (parser.index < parser.end) {
-        const cur = parser.currentChar;
-        const nxt = parser.source.charCodeAt(parser.index + 1);
-        if ((cur == 13 && nxt == 10) ||
-            (cur == 10 && nxt == 13)) {
-            parser.currentChar = 10;
-            parser.index++;
-        }
-        else if (cur === 13) {
-            parser.currentChar = 10;
-        }
-    }
-    return parser.currentChar;
+    return (parser.currentChar = parser.source.charCodeAt(++parser.index));
 }
 function consumeMultiUnitCodePoint(parser, hi) {
     if ((hi & 0xfc00) !== 55296)
@@ -755,18 +754,18 @@ function consumeMultiUnitCodePoint(parser, hi) {
     return 1;
 }
 function consumeLineFeed(parser, state) {
-    advanceAndLawrenceDolTheCRLF(parser);
+    parser.currentChar = parser.source.charCodeAt(++parser.index);
     parser.flags |= 1;
     if ((state & 4) === 0) {
         parser.column = 0;
         parser.line++;
     }
 }
-function consumeLineBreak(parser) {
+function scanNewLine(parser) {
     parser.flags |= 1;
+    parser.currentChar = parser.source.charCodeAt(++parser.index);
     parser.column = 0;
     parser.line++;
-    advanceAndLawrenceDolTheCRLF(parser);
 }
 function isExoticECMAScriptWhitespace(code) {
     return (code === 160 ||
@@ -2503,7 +2502,7 @@ function parseModuleItem(parser, context, scope, start, line, column) {
         case 130:
             return parseDecorators(parser, context);
         default:
-            return parseStatementListItem(parser, context, scope, 4, { parentLabels: null, iterationLabels: null }, start, line, column);
+            return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
     }
 }
 function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
@@ -2593,8 +2592,6 @@ function parseExpressionOrLabelledStatement(parser, context, scope, origin, labe
             expr = parseIdentifier(parser, context, 0);
             if (context & 1024)
                 report(parser, 82);
-            if (parser.token === 21)
-                return parseLabelledStatement(parser, context, scope, origin, labels, tokenValue, expr, token, allowFuncDecl, start, line, column);
             if (parser.token === 69271571)
                 report(parser, 81);
             break;
@@ -3728,7 +3725,7 @@ function parseFunctionBody(parser, context, scope, origin, firstRestricted, scop
             (512 | 256 | 64);
     parser.destructible = (parser.destructible | 256) ^ 256;
     while (parser.token !== 1074790415) {
-        body.push(parseStatementListItem(parser, context, scope, 4, { parentLabels: null, iterationLabels: null }, parser.tokenPos, parser.linePos, parser.colPos));
+        body.push(parseStatementListItem(parser, context, scope, 4, {}, parser.tokenPos, parser.linePos, parser.colPos));
     }
     consume(parser, origin & (16 | 8) ? context | 32768 : context, 1074790415);
     parser.flags &= ~(128 | 64);
@@ -6394,6 +6391,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.8.2';
+const version = '1.8.3';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
