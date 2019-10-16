@@ -406,16 +406,7 @@ export function parseModuleItem(
     case Token.Decorator:
       return parseDecorators(parser, context) as ESTree.Decorator[];
     default:
-      return parseStatementListItem(
-        parser,
-        context,
-        scope,
-        Origin.TopLevel,
-        { parentLabels: null, iterationLabels: null },
-        start,
-        line,
-        column
-      );
+      return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
 }
 
@@ -662,21 +653,6 @@ export function parseExpressionOrLabelledStatement(
       expr = parseIdentifier(parser, context, 0);
       if (context & Context.Strict) report(parser, Errors.UnexpectedLetStrictReserved);
 
-      if (parser.token === Token.Colon)
-        return parseLabelledStatement(
-          parser,
-          context,
-          scope,
-          origin,
-          labels,
-          tokenValue,
-          expr,
-          token,
-          allowFuncDecl,
-          start,
-          line,
-          column
-        );
       // "let" followed by either "[", "{" or an identifier means a lexical
       // declaration, which should not appear here.
       // However, ASI may insert a line break before an identifier or a brace.
@@ -3742,7 +3718,7 @@ export function parseFunctionBody(
       context,
       scope,
       Origin.TopLevel,
-      { parentLabels: null, iterationLabels: null },
+      {},
       parser.tokenPos,
       parser.linePos,
       parser.colPos

@@ -217,6 +217,36 @@ describe('Miscellaneous - Comments', () => {
 
   pass('Miscellaneous - Comments (pass)', [
     [
+      `// Single line comment
+      // Single line comment
+      // Single line comment
+      // Single line comment
+      /**/
+      /* MLC on one line */
+      /*
+      MLC
+      on
+      multiple
+      lines
+      */`,
+      Context.OptionsNext | Context.OptionsLoc,
+      {
+        type: 'Program',
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 18,
+            column: 8
+          }
+        },
+        body: [],
+        sourceType: 'script'
+      }
+    ],
+    [
       '/**/ --> comment',
       Context.OptionsRanges | Context.OptionsWebCompat,
       {
