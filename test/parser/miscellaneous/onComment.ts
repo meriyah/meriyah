@@ -1,7 +1,7 @@
 import * as t from 'assert';
 import { parseScript } from '../../../src/meriyah';
 
-describe('Expressions - API', () => {
+describe('Miscellaneous - onComment', () => {
   it('should extract single line comment', () => {
     t.deepEqual(
       parseScript('// Single line comment', {

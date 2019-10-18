@@ -22,7 +22,8 @@ import {
   scanPrivateName,
   fromCodePoint,
   consumeLineFeed,
-  scanNewLine
+  scanNewLine,
+  convertTokenType
 } from './';
 
 /*
@@ -182,6 +183,8 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
   parser.token = scanSingleToken(parser, context, LexerState.None);
+  if (parser.onToken && parser.token !== Token.EOF)
+    parser.onToken(convertTokenType(parser.token), parser.startPos, parser.index);
 }
 
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {

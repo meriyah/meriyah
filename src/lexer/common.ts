@@ -1,3 +1,4 @@
+import { Token } from '../token';
 import { Chars } from '../chars';
 import { ParserState, Flags } from '../common';
 import { unicodeLookup } from '../unicode';
@@ -129,4 +130,36 @@ export function fromCodePoint(codePoint: number): string {
  */
 export function toHex(code: number): number {
   return code < Chars.UpperA ? code - Chars.Zero : (code - Chars.UpperA + 10) & 0xf;
+}
+
+/**
+ * Converts a value to a hex value
+ *
+ * @param t Token
+ */
+export function convertTokenType(t: Token): string {
+  switch (t) {
+    case Token.NumericLiteral:
+      return 'NumericLiteral';
+    case Token.StringLiteral:
+      return 'StringLiteral';
+    case Token.RegularExpression:
+      return 'RegularExpressionLiteral';
+    case Token.FalseKeyword:
+    case Token.TrueKeyword:
+      return 'BooleanLiteral';
+    case Token.NullKeyword:
+      return 'NullLiteral';
+    case Token.RegularExpression:
+      return 'RegularExpression';
+    case Token.TemplateContinuation:
+    case Token.TemplateSpan:
+    case Token.Template:
+      return 'TemplateLiteral';
+    default:
+      if ((t & Token.IsIdentifier) === Token.IsIdentifier) return 'Identifier';
+      if ((t & Token.Keyword) === Token.Keyword) return 'Keyword';
+
+      return 'Punctuator';
+  }
 }
