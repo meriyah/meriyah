@@ -1,10 +1,10 @@
 import * as t from 'assert';
 import { parseScript } from '../../../src/meriyah';
-import { Token } from 'token';
+import { Token } from '../../../src/token';
 
 describe('Miscellaneous - onToken', () => {
   it('tokenize braces using array', () => {
-    let tokens: Token[] = [];
+    const tokens: Token[] = [];
     parseScript('{}', {
       onToken: tokens,
       loc: true
