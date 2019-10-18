@@ -15,7 +15,8 @@ export {
   consumeLineFeed,
   scanNewLine,
   LexerState,
-  NumberKind
+  NumberKind,
+  convertTokenType
 } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
 export {

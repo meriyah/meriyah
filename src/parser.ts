@@ -13,7 +13,9 @@ import {
   consume,
   Flags,
   OnComment,
+  OnToken,
   pushComment,
+  pushToken,
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
@@ -49,7 +51,12 @@ import {
  * Create a new parser instance
  */
 
-export function create(source: string, sourceFile: string | void, onComment: OnComment | void): ParserState {
+export function create(
+  source: string,
+  sourceFile: string | void,
+  onComment: OnComment | void,
+  onToken: OnToken | void
+): ParserState {
   return {
     /**
      * The source code to be parsed
@@ -163,7 +170,15 @@ export function create(source: string, sourceFile: string | void, onComment: OnC
      */
     destructible: 0,
 
-    onComment
+    /**
+     * Holds either a function or array used on every comment
+     */
+    onComment,
+
+    /**
+     * Holds either a function or array used on every token
+     */
+    onToken
   };
 }
 
@@ -203,6 +218,8 @@ export interface Options {
   specDeviation?: boolean;
   // Allowes comment extraction. Accepts either a a callback function or an array
   onComment?: OnComment;
+  // Allowes token extraction. Accepts either a a callback function or an array
+  onToken?: OnToken;
 }
 
 /**
@@ -211,6 +228,7 @@ export interface Options {
 export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
   let sourceFile = '';
   let onComment;
+  let onToken;
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
@@ -231,10 +249,14 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.onComment != null) {
       onComment = Array.isArray(options.onComment) ? pushComment(context, options.onComment) : options.onComment;
     }
+    // Accepts either a callback function to be invoked or an array to collect tokens
+    if (options.onToken != null) {
+      onToken = Array.isArray(options.onToken) ? pushToken(context, options.onToken) : options.onToken;
+    }
   }
 
   // Initialize parser state
-  const parser = create(source, sourceFile, onComment);
+  const parser = create(source, sourceFile, onComment, onToken);
 
   // See: https://github.com/tc39/proposal-hashbang
   if (context & Context.OptionsNext) skipHashBang(parser);
