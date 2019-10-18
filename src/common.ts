@@ -173,7 +173,7 @@ export type OnComment = void | Comment[] | ((type: string, value: string, start?
 /**
  * The type of the `onToken` option.
  */
-export type OnToken = void | Token[] | ((token: Token, start?: number, end?: number) => any);
+export type OnToken = void | Token[] | ((token: string, start?: number, end?: number) => any);
 
 /**
  * Lexical scope interface
