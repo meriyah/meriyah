@@ -216,9 +216,9 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-  // Allowes comment extraction. Accepts either a a callback function or an array
+  // Allows comment extraction. Accepts either a a callback function or an array
   onComment?: OnComment;
-  // Allowes token extraction. Accepts either a a callback function or an array
+  // Allows token extraction. Accepts either a a callback function or an array
   onToken?: OnToken;
 }
 
