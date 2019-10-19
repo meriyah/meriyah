@@ -126,6 +126,7 @@ export declare const enum ScopeKind {
     CatchIdentifier = 2048
 }
 export declare type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
+export declare type OnToken = void | Token[] | ((token: string, start?: number, end?: number) => any);
 export interface ScopeState {
     parent: ScopeState | undefined;
     type: ScopeKind;
@@ -153,6 +154,7 @@ export interface ParserState {
     end: number;
     token: Token;
     onComment: any;
+    onToken: any;
     tokenValue: any;
     tokenRaw: string;
     tokenRegExp: void | {
@@ -189,6 +191,7 @@ export declare function addVarName(parser: ParserState, context: Context, scope:
 export declare function declareUnboundVariable(parser: ParserState, name: string): void;
 export declare function addBindingToExports(parser: ParserState, name: string): void;
 export declare function pushComment(context: Context, array: any[]): any;
+export declare function pushToken(context: Context, array: any[]): any;
 export declare function isValidIdentifier(context: Context, t: Token): boolean;
 export declare function classifyIdentifier(parser: ParserState, context: Context, t: Token, isArrow: 0 | 1): any;
 //# sourceMappingURL=common.d.ts.map

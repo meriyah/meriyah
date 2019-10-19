@@ -1,7 +1,7 @@
 import { Token } from './token';
 import * as ESTree from './estree';
-import { Context, ParserState, PropertyKind, Origin, Flags, OnComment, BindingKind, HoistedClassFlags, HoistedFunctionFlags, ScopeState } from './common';
-export declare function create(source: string, sourceFile: string | void, onComment: OnComment | void): ParserState;
+import { Context, ParserState, PropertyKind, Origin, Flags, OnComment, OnToken, BindingKind, HoistedClassFlags, HoistedFunctionFlags, ScopeState } from './common';
+export declare function create(source: string, sourceFile: string | void, onComment: OnComment | void, onToken: OnToken | void): ParserState;
 export interface Options {
     module?: boolean;
     next?: boolean;
@@ -19,6 +19,7 @@ export interface Options {
     jsx?: boolean;
     specDeviation?: boolean;
     onComment?: OnComment;
+    onToken?: OnToken;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState | undefined): ESTree.Statement[];

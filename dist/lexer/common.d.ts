@@ -1,3 +1,4 @@
+import { Token } from '../token';
 import { ParserState } from '../common';
 export declare const enum LexerState {
     None = 0,
@@ -22,4 +23,5 @@ export declare function scanNewLine(parser: ParserState): void;
 export declare function isExoticECMAScriptWhitespace(code: number): boolean;
 export declare function fromCodePoint(codePoint: number): string;
 export declare function toHex(code: number): number;
+export declare function convertTokenType(t: Token): string;
 //# sourceMappingURL=common.d.ts.map

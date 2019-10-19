@@ -351,6 +351,8 @@ function nextToken(parser, context) {
     parser.startColumn = parser.column;
     parser.startLine = parser.line;
     parser.token = scanSingleToken(parser, context, 0);
+    if (parser.onToken && parser.token !== 1048576)
+        parser.onToken(convertTokenType(parser.token), parser.startPos, parser.index);
 }
 function scanSingleToken(parser, context, state) {
     const isStartOfLine = parser.index === 0;
@@ -785,6 +787,33 @@ function fromCodePoint(codePoint) {
 }
 function toHex(code) {
     return code < 65 ? code - 48 : (code - 65 + 10) & 0xf;
+}
+function convertTokenType(t) {
+    switch (t) {
+        case 134283266:
+            return 'NumericLiteral';
+        case 134283267:
+            return 'StringLiteral';
+        case 65540:
+            return 'RegularExpressionLiteral';
+        case 86021:
+        case 86022:
+            return 'BooleanLiteral';
+        case 86023:
+            return 'NullLiteral';
+        case 65540:
+            return 'RegularExpression';
+        case 67174408:
+        case 67174409:
+        case 129:
+            return 'TemplateLiteral';
+        default:
+            if ((t & 143360) === 143360)
+                return 'Identifier';
+            if ((t & 4096) === 4096)
+                return 'Keyword';
+            return 'Punctuator';
+    }
 }
 
 const CharTypes = [
@@ -2338,6 +2367,18 @@ function pushComment(context, array) {
         array.push(comment);
     };
 }
+function pushToken(context, array) {
+    return function (token, start, end) {
+        const tokens = {
+            token
+        };
+        if (context & 4) {
+            tokens.start = start;
+            tokens.end = end;
+        }
+        array.push(tokens);
+    };
+}
 function isValidIdentifier(context, t) {
     if (context & (1024 | 2097152)) {
         if (context & 2048 && t === 209005)
@@ -2361,7 +2402,7 @@ function classifyIdentifier(parser, context, t, isArrow) {
         report(parser, 0);
 }
 
-function create(source, sourceFile, onComment) {
+function create(source, sourceFile, onComment, onToken) {
     return {
         source,
         flags: 0,
@@ -2385,12 +2426,14 @@ function create(source, sourceFile, onComment) {
         exportedBindings: [],
         assignable: 1,
         destructible: 0,
-        onComment
+        onComment,
+        onToken
     };
 }
 function parseSource(source, options, context) {
     let sourceFile = '';
     let onComment;
+    let onToken;
     if (options != null) {
         if (options.module)
             context |= 2048 | 1024;
@@ -2425,8 +2468,11 @@ function parseSource(source, options, context) {
         if (options.onComment != null) {
             onComment = Array.isArray(options.onComment) ? pushComment(context, options.onComment) : options.onComment;
         }
+        if (options.onToken != null) {
+            onToken = Array.isArray(options.onToken) ? pushToken(context, options.onToken) : options.onToken;
+        }
     }
-    const parser = create(source, sourceFile, onComment);
+    const parser = create(source, sourceFile, onComment, onToken);
     if (context & 1)
         skipHashBang(parser);
     const scope = context & 64 ? createScope() : void 0;
