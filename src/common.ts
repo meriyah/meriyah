@@ -171,6 +171,11 @@ export const enum ScopeKind {
 export type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
 
 /**
+ * The type of the `onToken` option.
+ */
+export type OnToken = void | Token[] | ((token: string, start?: number, end?: number) => any);
+
+/**
  * Lexical scope interface
  */
 export interface ScopeState {
@@ -206,6 +211,7 @@ export interface ParserState {
   end: number;
   token: Token;
   onComment: any;
+  onToken: any;
   tokenValue: any;
   tokenRaw: string;
   tokenRegExp: void | {
@@ -768,6 +774,20 @@ export function pushComment(context: Context, array: any[]): any {
       comment.end = end;
     }
     array.push(comment);
+  };
+}
+
+export function pushToken(context: Context, array: any[]): any {
+  return function(token: string, start: number, end: number) {
+    const tokens: any = {
+      token
+    };
+
+    if (context & Context.OptionsLoc) {
+      tokens.start = start;
+      tokens.end = end;
+    }
+    array.push(tokens);
   };
 }
 

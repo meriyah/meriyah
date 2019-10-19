@@ -85,8 +85,11 @@ This is the available options:
   // The flag to enable implied strict mode
   impliedStrict: false;
 
-  // Allowes comment extraction. Accepts either a function or array
+  // Allows comment extraction. Accepts either a function or array
   onComment: []
+
+  // Allows token extraction. Accepts either a function or array
+  onToken: []
 
   // Enable non-standard parenthesized expression node
   preserveParens: false;
