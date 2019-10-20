@@ -143,8 +143,6 @@ export function convertTokenType(t: Token): string {
       return 'NumericLiteral';
     case Token.StringLiteral:
       return 'StringLiteral';
-    case Token.RegularExpression:
-      return 'RegularExpressionLiteral';
     case Token.FalseKeyword:
     case Token.TrueKeyword:
       return 'BooleanLiteral';
