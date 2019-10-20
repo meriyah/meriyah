@@ -1,8 +1,10 @@
+import * as t from 'assert';
 import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
+import { parse } from '../../../src/meriyah';
 
-describe('Miscellaneous - ranges', () => {
-  pass('Miscellaneous - ranges (pass)', [
+describe('Miscellaneous - loc', () => {
+  pass('Miscellaneous - loc (pass)', [
     [
       `[,,x]`,
       Context.OptionsRanges | Context.OptionsLoc,
@@ -1703,4 +1705,18 @@ describe('Miscellaneous - ranges', () => {
       }
     ]
   ]);
+
+  it('Miscellaneous - loc (different line endings)', () => {
+    const sourceLF =
+      '// Single line comment\n// Single line comment\n// Single line comment\n// Single line comment\nfunction handleAutocomplete() {\n   var prp = this.props; // some error here\n\n   for(let xa=0; xa<100; xa++) {;}\n   }';
+    const sourceCRLF = sourceLF.replace(/\n/g, '\r\n');
+    t.deepEqual(
+      parse(sourceLF, {
+        loc: true
+      }),
+      parse(sourceCRLF, {
+        loc: true
+      })
+    );
+  });
 });
