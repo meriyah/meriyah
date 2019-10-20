@@ -4636,6 +4636,7 @@ export function parseArguments(
 export function parseIdentifier(parser: ParserState, context: Context, isPattern: 0 | 1): ESTree.Identifier {
   const { tokenValue, tokenPos, linePos, colPos } = parser;
   nextToken(parser, context);
+
   return finishNode(
     parser,
     context,

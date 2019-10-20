@@ -14,6 +14,7 @@ import { report, reportScannerError, Errors } from '../errors';
 export function scanIdentifier(parser: ParserState, context: Context, isValidAsKeyword: 0 | 1): Token {
   while (isIdPart[advanceChar(parser)]) {}
   parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
+
   return parser.currentChar !== Chars.Backslash && parser.currentChar < 0x7e
     ? descKeywordTable[parser.tokenValue] || Token.Identifier
     : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
