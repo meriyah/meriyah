@@ -46,8 +46,9 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
   const { index } = parser;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
+      const isCR = parser.currentChar === Chars.CarriageReturn;
       scanNewLine(parser);
-      if (parser.index < parser.end && parser.currentChar === Chars.LineFeed)
+      if (isCR && parser.index < parser.end && parser.currentChar === Chars.LineFeed)
         parser.currentChar = parser.source.charCodeAt(++parser.index);
       break;
     } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
