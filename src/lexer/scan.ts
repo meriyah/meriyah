@@ -543,7 +543,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         case Token.LineFeed:
           consumeLineFeed(parser, state);
-          parser.line++;
           state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
           break;
 
