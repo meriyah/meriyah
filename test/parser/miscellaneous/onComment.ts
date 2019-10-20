@@ -3,11 +3,13 @@ import { parseScript } from '../../../src/meriyah';
 
 describe('Miscellaneous - onComment', () => {
   it('should extract single line comment', () => {
+    let onCommentCount = 0;
     t.deepEqual(
       parseScript('// Single line comment', {
         onComment: (type: any, body: any) => {
           t.deepEqual(type, 'SingleLine');
           t.deepEqual(body, ' Single line comment');
+          onCommentCount++;
         }
       }),
       {
@@ -16,14 +18,36 @@ describe('Miscellaneous - onComment', () => {
         type: 'Program'
       }
     );
+    t.equal(onCommentCount, 1);
+  });
+
+  it('should extract single line comment with trailing new line', () => {
+    let onCommentCount = 0;
+    t.deepEqual(
+      parseScript('// Single line comment\n', {
+        onComment: (type: any, body: any) => {
+          t.deepEqual(type, 'SingleLine');
+          t.deepEqual(body, ' Single line comment\n');
+          onCommentCount++;
+        }
+      }),
+      {
+        body: [],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    );
+    t.equal(onCommentCount, 1);
   });
 
   it('should extract multiline line comment', () => {
+    let onCommentCount = 0;
     t.deepEqual(
       parseScript('/* Multi line comment */', {
         onComment: (type: any, body: any) => {
           t.deepEqual(type, 'MultiLine');
           t.deepEqual(body, ' Multi line comment ');
+          onCommentCount++;
         }
       }),
       {
@@ -32,9 +56,11 @@ describe('Miscellaneous - onComment', () => {
         type: 'Program'
       }
     );
+    t.equal(onCommentCount, 1);
   });
 
   it('should extract multiline line comment', () => {
+    let onCommentCount = 0;
     t.deepEqual(
       parseScript('/* Multi line comment */', {
         ranges: true,
@@ -43,6 +69,7 @@ describe('Miscellaneous - onComment', () => {
           t.deepEqual(body, ' Multi line comment ');
           t.deepEqual(start, 2);
           t.deepEqual(end, 24);
+          onCommentCount++;
         }
       }),
       {
@@ -53,6 +80,7 @@ describe('Miscellaneous - onComment', () => {
         type: 'Program'
       }
     );
+    t.equal(onCommentCount, 1);
   });
 
   it('should extract multiline line comment in array', () => {
