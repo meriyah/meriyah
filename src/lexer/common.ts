@@ -133,7 +133,7 @@ export function toHex(code: number): number {
 }
 
 /**
- * Converts a value to a hex value
+ * Converts a token to a string representation
  *
  * @param t Token
  */
