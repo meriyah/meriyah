@@ -133,7 +133,7 @@ export function toHex(code: number): number {
 }
 
 /**
- * Converts a value to a hex value
+ * Converts a token to a string representation
  *
  * @param t Token
  */
@@ -143,8 +143,6 @@ export function convertTokenType(t: Token): string {
       return 'NumericLiteral';
     case Token.StringLiteral:
       return 'StringLiteral';
-    case Token.RegularExpression:
-      return 'RegularExpressionLiteral';
     case Token.FalseKeyword:
     case Token.TrueKeyword:
       return 'BooleanLiteral';

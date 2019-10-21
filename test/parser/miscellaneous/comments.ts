@@ -238,7 +238,7 @@ describe('Miscellaneous - Comments', () => {
             column: 0
           },
           end: {
-            line: 18,
+            line: 12,
             column: 8
           }
         },

@@ -235,6 +235,7 @@ export interface ParserState {
  */
 
 export function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
+
   if (
     (parser.flags & Flags.NewLine) === 0 &&
     (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon &&
