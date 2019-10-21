@@ -643,10 +643,8 @@ function scanSingleToken(parser, context, state) {
                     break;
                 case 133:
                     consumeLineFeed(parser, state);
-                    parser.line++;
                     state = (state & ~4) | 1;
                     break;
-                default:
             }
         }
         else {
@@ -693,15 +691,15 @@ function skipSingleLineComment(parser, state, type) {
     const { index } = parser;
     while (parser.index < parser.end) {
         if (CharTypes[parser.currentChar] & 8) {
+            const isCR = parser.currentChar === 13;
             scanNewLine(parser);
-            parser.line++;
-            if (parser.index < parser.end && parser.currentChar === 10)
+            if (isCR && parser.index < parser.end && parser.currentChar === 10)
                 parser.currentChar = parser.source.charCodeAt(++parser.index);
-            return state | 1;
+            break;
         }
         else if ((parser.currentChar ^ 8232) <= 1) {
             scanNewLine(parser);
-            return state | 1;
+            break;
         }
         advanceChar(parser);
     }
@@ -798,8 +796,6 @@ function convertTokenType(t) {
             return 'NumericLiteral';
         case 134283267:
             return 'StringLiteral';
-        case 65540:
-            return 'RegularExpressionLiteral';
         case 86021:
         case 86022:
             return 'BooleanLiteral';
@@ -1603,7 +1599,6 @@ function handleStringError(state, code, isTemplate) {
             report(state, 6);
         case -5:
             report(state, 101);
-        default:
     }
 }
 
@@ -1879,7 +1874,6 @@ function scanBadTemplate(parser, ch) {
             case 8233:
                 parser.column = -1;
                 parser.line++;
-            default:
         }
         if (parser.index >= parser.end)
             report(parser, 15);
@@ -1925,7 +1919,6 @@ function scanRegularExpression(parser, context) {
                 case 8232:
                 case 8233:
                     report(parser, 32);
-                default:
             }
         }
         if (parser.index >= parser.source.length) {
@@ -2129,7 +2122,6 @@ function reinterpretToPattern(state, node) {
         case 'SpreadElement':
             node.type = 'RestElement';
             reinterpretToPattern(state, node.argument);
-        default:
     }
 }
 function validateBindingIdentifier(parser, context, kind, t, skipEvalArgCheck) {
@@ -2246,7 +2238,6 @@ function isEqualTagName(elementName) {
             return elementName.namespace + ':' + elementName.name;
         case 'JSXMemberExpression':
             return isEqualTagName(elementName.object) + '.' + isEqualTagName(elementName.property);
-        default:
     }
 }
 function createArrowHeadParsingScope(parser, context, value) {
@@ -4014,29 +4005,7 @@ function parsePrimaryExpression(parser, context, kind, inNew, canAssign, isPatte
                 return parseYieldExpression(parser, context, inGroup, canAssign, start, line, column);
             case 143468:
                 return parseAsyncExpression(parser, context, inGroup, isLHS, canAssign, isPattern, inNew, start, line, column);
-            default:
         }
-        const { token, tokenValue } = parser;
-        const expr = parseIdentifier(parser, context | 65536, isPattern);
-        if (parser.token === 10) {
-            if (!isLHS)
-                report(parser, 0);
-            classifyIdentifier(parser, context, token, 1);
-            return parseArrowFromIdentifier(parser, context, tokenValue, expr, inNew, canAssign, 0, start, line, column);
-        }
-        if (context & 16384 && token === 537079925)
-            report(parser, 126);
-        if (token === 241736) {
-            if (context & 1024)
-                report(parser, 109);
-            if (kind & (8 | 16))
-                report(parser, 97);
-        }
-        parser.assignable =
-            context & 1024 && (token & 537079808) === 537079808
-                ? 2
-                : 1;
-        return expr;
     }
     if ((parser.token & 134217728) === 134217728) {
         return parseLiteral(parser, context);
@@ -5510,7 +5479,6 @@ function parseArrowFunctionExpression(parser, context, scope, params, isAsync, s
                 report(parser, 113);
             case 67174411:
                 report(parser, 112);
-            default:
         }
         if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) < 1)
             report(parser, 28, KeywordDescTable[parser.token & 255]);
@@ -5996,7 +5964,6 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
                     kind |= 512;
                 }
                 break;
-            default:
         }
     }
     else if (token === 69271571) {
@@ -6441,7 +6408,7 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.8.3';
+const version = '1.8.6';
 
 exports.ESTree = estree;
 exports.parse = parse;
