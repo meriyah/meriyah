@@ -232,8 +232,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
             if (ch === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
-              if (advanceChar(parser) === Chars.Hyphen && advanceChar(parser) === Chars.Hyphen) {
-                advanceChar(parser);
+              const index = parser.index + 1;
+              if (
+                index + 1 < parser.source.length &&
+                parser.source.charCodeAt(index) === Chars.Hyphen &&
+                parser.source.charCodeAt(index + 1) == Chars.Hyphen
+              ) {
+                parser.column += 3;
+                parser.currentChar = parser.source.charCodeAt((parser.index += 3));
                 state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLOpen);
                 continue;
               }
