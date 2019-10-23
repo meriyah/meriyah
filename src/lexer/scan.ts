@@ -232,10 +232,14 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
             if (ch === Chars.Exclamation) {
               // Treat HTML begin-comment as comment-till-end-of-line.
+              const index = parser.index + 1;
               if (
-                parser.source.charCodeAt(parser.index + 2) === Chars.Hyphen &&
-                parser.source.charCodeAt(parser.index + 1) === Chars.Hyphen
+                index + 1 < parser.source.length &&
+                parser.source.charCodeAt(index) === Chars.Hyphen &&
+                parser.source.charCodeAt(index + 1) == Chars.Hyphen
               ) {
+                parser.column += 3;
+                parser.currentChar = parser.source.charCodeAt((parser.index += 3));
                 state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLOpen);
                 continue;
               }
@@ -351,6 +355,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             advanceChar(parser);
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
               if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
+              advanceChar(parser);
               state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLClose);
               continue;
             }

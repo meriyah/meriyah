@@ -157,4 +157,22 @@ describe('Miscellaneous - onComment', () => {
       }
     ]);
   });
+
+  it('should extract html comments in array', () => {
+    const arr: any[] = [];
+    parseScript('<!--comment #1\n--> comment #2', {
+      onComment: arr,
+      webcompat: true
+    });
+    t.deepEqual(arr, [
+      {
+        type: 'HTMLOpen',
+        value: 'comment #1\n'
+      },
+      {
+        type: 'HTMLClose',
+        value: ' comment #2'
+      }
+    ]);
+  });
 });
