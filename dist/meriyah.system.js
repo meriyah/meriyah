@@ -404,8 +404,12 @@ System.register('meriyah', [], function (exports) {
                                   return 8455997;
                               }
                               if (ch === 33) {
-                                  if (parser.source.charCodeAt(parser.index + 2) === 45 &&
-                                      parser.source.charCodeAt(parser.index + 1) === 45) {
+                                  const index = parser.index + 1;
+                                  if (index + 1 < parser.source.length &&
+                                      parser.source.charCodeAt(index) === 45 &&
+                                      parser.source.charCodeAt(index + 1) == 45) {
+                                      parser.column += 3;
+                                      parser.currentChar = parser.source.charCodeAt((parser.index += 3));
                                       state = skipSingleHTMLComment(parser, state, context, 2);
                                       continue;
                                   }
@@ -501,6 +505,7 @@ System.register('meriyah', [], function (exports) {
                               if ((state & 1 || isStartOfLine) && parser.currentChar === 62) {
                                   if ((context & 256) === 0)
                                       report(parser, 108);
+                                  advanceChar(parser);
                                   state = skipSingleHTMLComment(parser, state, context, 3);
                                   continue;
                               }
