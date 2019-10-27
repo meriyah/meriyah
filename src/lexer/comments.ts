@@ -71,27 +71,41 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
 export function skipMultiLineComment(parser: ParserState, state: LexerState): LexerState | void {
   const { index } = parser;
   while (parser.index < parser.end) {
-    while (parser.currentChar === Chars.Asterisk) {
-      state &= ~LexerState.LastIsCR;
-      if (advanceChar(parser) === Chars.Slash) {
-        advanceChar(parser);
-        if (parser.onComment)
-          parser.onComment(
-            CommentTypes[CommentType.Multi & 0xff],
-            parser.source.slice(index, parser.index - 2),
-            index,
-            parser.index
-          );
-        return state;
+    if (parser.currentChar < 0x2b) {
+      let skippedOneAsterisk = false;
+      while (parser.currentChar === Chars.Asterisk) {
+        if (!skippedOneAsterisk) {
+          state &= ~LexerState.LastIsCR;
+          skippedOneAsterisk = true;
+        }
+        if (advanceChar(parser) === Chars.Slash) {
+          advanceChar(parser);
+          if (parser.onComment)
+            parser.onComment(
+              CommentTypes[CommentType.Multi & 0xff],
+              parser.source.slice(index, parser.index - 2),
+              index,
+              parser.index
+            );
+          return state;
+        }
       }
-    }
 
-    if (parser.currentChar === Chars.CarriageReturn) {
-      state |= LexerState.NewLine | LexerState.LastIsCR;
-      scanNewLine(parser);
-    } else if (parser.currentChar === Chars.LineFeed) {
-      consumeLineFeed(parser, state);
-      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+      if (skippedOneAsterisk) {
+        continue;
+      }
+
+      if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
+        if (parser.currentChar === Chars.CarriageReturn) {
+          state |= LexerState.NewLine | LexerState.LastIsCR;
+          scanNewLine(parser);
+        } else {
+          consumeLineFeed(parser, state);
+          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+        }
+      } else {
+        advanceChar(parser);
+      }
     } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
       state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
       scanNewLine(parser);
