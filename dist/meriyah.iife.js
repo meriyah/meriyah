@@ -714,22 +714,36 @@ var meriyah = (function (exports) {
   function skipMultiLineComment(parser, state) {
       const { index } = parser;
       while (parser.index < parser.end) {
-          while (parser.currentChar === 42) {
-              state &= ~4;
-              if (advanceChar(parser) === 47) {
-                  advanceChar(parser);
-                  if (parser.onComment)
-                      parser.onComment(CommentTypes[1 & 0xff], parser.source.slice(index, parser.index - 2), index, parser.index);
-                  return state;
+          if (parser.currentChar < 0x2b) {
+              let skippedOneAsterisk = false;
+              while (parser.currentChar === 42) {
+                  if (!skippedOneAsterisk) {
+                      state &= ~4;
+                      skippedOneAsterisk = true;
+                  }
+                  if (advanceChar(parser) === 47) {
+                      advanceChar(parser);
+                      if (parser.onComment)
+                          parser.onComment(CommentTypes[1 & 0xff], parser.source.slice(index, parser.index - 2), index, parser.index);
+                      return state;
+                  }
               }
-          }
-          if (parser.currentChar === 13) {
-              state |= 1 | 4;
-              scanNewLine(parser);
-          }
-          else if (parser.currentChar === 10) {
-              consumeLineFeed(parser, state);
-              state = (state & ~4) | 1;
+              if (skippedOneAsterisk) {
+                  continue;
+              }
+              if (CharTypes[parser.currentChar] & 8) {
+                  if (parser.currentChar === 13) {
+                      state |= 1 | 4;
+                      scanNewLine(parser);
+                  }
+                  else {
+                      consumeLineFeed(parser, state);
+                      state = (state & ~4) | 1;
+                  }
+              }
+              else {
+                  advanceChar(parser);
+              }
           }
           else if ((parser.currentChar ^ 8232) <= 1) {
               state = (state & ~4) | 1;
