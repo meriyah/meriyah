@@ -7,8 +7,6 @@
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["esnext"],
-    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noImplicitThis": true,

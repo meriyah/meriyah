@@ -19,26 +19,8 @@
           "request": "launch",
           "name": "Launch mocha tests",
           "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-          "env": {
-            "TS_NODE_PROJECT": "${workspaceRoot}/test/tsconfig.json"
-          },
           "args": [
-            "${workspaceRoot}/test/**/*.ts",
-            "-c",
-            "-R",
-            "progress",
-            "-r",
-            "source-map-support/register",
-            "-r",
-            "ts-node/register",
-            "--recursive",
-            "--globals",
-            "expect",
-            "--timeout",
-            "999999",
-            "--watch",
-            "--watch-extensions",
-            "ts"
+            "${workspaceRoot}/test/**/*.ts"
           ],
           "cwd": "${workspaceRoot}",
           "internalConsoleOptions": "openOnSessionStart"
