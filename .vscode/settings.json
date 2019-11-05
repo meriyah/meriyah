@@ -14,5 +14,6 @@
       "**/build": true,
       "**/.vscode": true
     },
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "deepscan.ignoreConfirmWarning": true
   }

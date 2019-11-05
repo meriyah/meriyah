@@ -2876,15 +2876,10 @@ function parseExportDeclaration(
       //
       // See: https://github.com/tc39/ecma262/pull/1174
 
-      let ecma262PR: 0 | 1 = 0;
-
       nextToken(parser, context); // Skips: '*'
 
-      if (context & Context.OptionsNext && consumeOpt(parser, context, Token.AsKeyword)) {
-        ecma262PR = 1;
-        if (scope) {
-          declareUnboundVariable(parser, parser.tokenValue);
-        }
+      if (consumeOpt(parser, context, Token.AsKeyword)) {
+        if (scope) declareUnboundVariable(parser, parser.tokenValue);
         specifiers.push(
           finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
             type: 'ExportNamespaceSpecifier',
@@ -2901,23 +2896,11 @@ function parseExportDeclaration(
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-      return finishNode(
-        parser,
-        context,
-        start,
-        line,
-        column,
-        ecma262PR
-          ? {
-              type: 'ExportNamedDeclaration',
-              source,
-              specifiers
-            }
-          : ({
-              type: 'ExportAllDeclaration',
-              source
-            } as any)
-      );
+      return finishNode(parser, context, start, line, column, {
+        type: 'ExportNamedDeclaration',
+        source,
+        specifiers
+      } as any);
     }
     case Token.LeftBrace: {
       // ExportClause :

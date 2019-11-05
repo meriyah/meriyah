@@ -26,31 +26,6 @@ describe('Module - Export', () => {
     });
   }
 
-  // Namespace export parsing
-  for (const arg of [
-    "export * as arguments from 'bar'",
-    "export * as await from 'bar'",
-    "export * as default from 'bar'",
-    "export * as enum from 'bar'",
-    "export * as foo from 'bar'",
-    "export * as for from 'bar'",
-    "export * as let from 'bar'",
-    "export * as static from 'bar'",
-    "export * as yield from 'bar'"
-  ]) {
-    it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
-      });
-    });
-
-    it(`${arg}`, () => {
-      t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
-      });
-    });
-  }
-
   // Async await module
   for (const arg of [
     'export default async function() { await 1; }',
@@ -66,25 +41,6 @@ describe('Module - Export', () => {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
-      });
-    });
-  }
-
-  // Namespace export parsing
-  for (const arg of [
-    "export * as arguments from 'bar'",
-    "export * as await from 'bar'",
-    "export * as default from 'bar'",
-    "export * as enum from 'bar'",
-    "export * as foo from 'bar'",
-    "export * as for from 'bar'",
-    "export * as let from 'bar'",
-    "export * as static from 'bar'",
-    "export * as yield from 'bar'"
-  ]) {
-    it(`${arg}`, () => {
-      t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
   }
@@ -117,17 +73,6 @@ describe('Module - Export', () => {
     'export { Q } from;',
     'export { 123 } from;',
     'export { # } from;',
-    "export default from 'module.js';",
-    'export * as z from "c";',
-    "export * as arguments from 'bar'",
-    "export * as await from 'bar'",
-    "export * as default from 'bar'",
-    "export * as enum from 'bar'",
-    "export * as foo from 'bar'",
-    "export * as for from 'bar'",
-    "export * as let from 'bar'",
-    "export * as static from 'bar'",
-    "export * as yield from 'bar'",
     'export {',
     'var a; export { a',
     'var a; export { a,',
@@ -235,22 +180,10 @@ describe('Module - Export', () => {
     ['export async;', Context.Strict | Context.Module],
     ['export async () => y', Context.Strict | Context.Module],
     ['var a; export { a,', Context.Strict | Context.Module],
-    ["export * as class from 'source';", Context.Strict | Context.Module],
     ['class A extends B { foo() { (super).foo } }', Context.OptionsWebCompat],
     ['export class extends C {}', Context.None],
     ['export *;', Context.Strict | Context.Module],
     ['export * as;', Context.Strict | Context.Module],
-    ['export * as foo;', Context.Strict | Context.Module],
-    ['export * as foo from;', Context.Strict | Context.Module],
-    ["export * as foo from ';", Context.Strict | Context.Module],
-    ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
-    ["export * as default from 'bar'", Context.Strict | Context.Module],
-    ["export * as enum from 'bar'", Context.Strict | Context.Module],
-    ["export * as foo from 'bar'", Context.Strict | Context.Module],
-    ["export * as for from 'bar'", Context.Strict | Context.Module],
-    ["export * as let from 'bar'", Context.Strict | Context.Module],
-    ["export * as static from 'bar'", Context.Strict | Context.Module],
-    ["export * as yield from 'bar'", Context.Strict | Context.Module],
     [
       'var x; export { x as z }; export * as z from "string";',
       Context.Strict | Context.Module | Context.OptionsLexical
@@ -284,8 +217,6 @@ describe('Module - Export', () => {
     ['(function() { export default null; });', Context.Strict | Context.Module],
     ['for (x = 0; false;) export default null;', Context.Strict | Context.Module],
     ['do export default null; while (false)', Context.Strict | Context.Module],
-    ["export * as arguments from 'bar'", Context.Strict | Context.Module],
-    ["export * as await from 'bar'", Context.Strict | Context.Module],
     ['export default async x \n() => {}', Context.Strict | Context.Module],
     ['{export default 3}', Context.Strict | Context.Module],
     ['while (1) export default 3', Context.Strict | Context.Module],
@@ -1017,49 +948,27 @@ describe('Module - Export', () => {
       }
     ],
     [
-      'export * from "foo"',
-      Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 19,
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            start: 0,
-            end: 19,
-            source: {
-              type: 'Literal',
-              start: 14,
-              end: 19,
-              value: 'foo'
-            }
-          }
-        ],
-        sourceType: 'module'
-      }
-    ],
-    [
       'export * from "a"',
       Context.Module | Context.Strict | Context.OptionsNext | Context.OptionsRanges,
       {
-        type: 'Program',
-        start: 0,
-        end: 17,
         body: [
           {
-            type: 'ExportAllDeclaration',
-            start: 0,
             end: 17,
             source: {
-              type: 'Literal',
-              start: 14,
               end: 17,
+              start: 14,
+              type: 'Literal',
               value: 'a'
-            }
+            },
+            specifiers: [],
+            start: 0,
+            type: 'ExportNamedDeclaration'
           }
         ],
-        sourceType: 'module'
+        end: 17,
+        sourceType: 'module',
+        start: 0,
+        type: 'Program'
       }
     ],
     [
@@ -2695,23 +2604,6 @@ describe('Module - Export', () => {
       }
     ],
     [
-      'export * from "foo";',
-      Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            source: {
-              type: 'Literal',
-              value: 'foo'
-            }
-          }
-        ]
-      }
-    ],
-    [
       'export default function () {}',
       Context.Strict | Context.Module,
       {
@@ -3481,23 +3373,6 @@ describe('Module - Export', () => {
             }
           }
         ]
-      }
-    ],
-    [
-      'export * from "foo"',
-      Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            source: {
-              type: 'Literal',
-              value: 'foo'
-            }
-          }
-        ],
-        sourceType: 'module'
       }
     ],
     [
