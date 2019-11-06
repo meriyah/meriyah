@@ -3410,13 +3410,10 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
     }
     switch (parser.token) {
         case 8457011: {
-            let ecma262PR = 0;
             nextToken(parser, context);
-            if (context & 1 && consumeOpt(parser, context, 12395)) {
-                ecma262PR = 1;
-                if (scope) {
+            if (consumeOpt(parser, context, 12395)) {
+                if (scope)
                     declareUnboundVariable(parser, parser.tokenValue);
-                }
                 specifiers.push(finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
                     type: 'ExportNamespaceSpecifier',
                     specifier: parseIdentifier(parser, context, 0)
@@ -3427,16 +3424,11 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
                 report(parser, 102, 'Export');
             source = parseLiteral(parser, context);
             matchOrInsertSemicolon(parser, context | 32768);
-            return finishNode(parser, context, start, line, column, ecma262PR
-                ? {
-                    type: 'ExportNamedDeclaration',
-                    source,
-                    specifiers
-                }
-                : {
-                    type: 'ExportAllDeclaration',
-                    source
-                });
+            return finishNode(parser, context, start, line, column, {
+                type: 'ExportNamedDeclaration',
+                source,
+                specifiers
+            });
         }
         case 2162700: {
             nextToken(parser, context);
@@ -6427,7 +6419,7 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.8.6';
+const version = '1.8.7';
 
 exports.ESTree = estree;
 exports.parse = parse;
