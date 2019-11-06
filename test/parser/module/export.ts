@@ -962,7 +962,7 @@ describe('Module - Export', () => {
             },
             specifiers: [],
             start: 0,
-            type: 'ExportNamedDeclaration'
+            type: 'ExportAllDeclaration'
           }
         ],
         end: 17,
