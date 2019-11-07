@@ -960,7 +960,6 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'a'
             },
-            specifiers: [],
             start: 0,
             type: 'ExportAllDeclaration'
           }
