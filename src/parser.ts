@@ -2878,7 +2878,9 @@ function parseExportDeclaration(
 
       nextToken(parser, context); // Skips: '*'
 
-      if (consumeOpt(parser, context, Token.AsKeyword)) {
+      const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
+
+      if (isNamedDeclaration) {
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
         specifiers.push(
           finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
@@ -2896,11 +2898,16 @@ function parseExportDeclaration(
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-      return finishNode(parser, context, start, line, column, {
-        type: 'ExportNamedDeclaration',
-        source,
-        specifiers
-      } as any);
+      return isNamedDeclaration
+        ? finishNode(parser, context, start, line, column, {
+            type: 'ExportNamedDeclaration',
+            source,
+            specifiers
+          } as any)
+        : finishNode(parser, context, start, line, column, {
+            type: 'ExportAllDeclaration',
+            source
+          } as any);
     }
     case Token.LeftBrace: {
       // ExportClause :
