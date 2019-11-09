@@ -21,19 +21,21 @@ export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose',
 export function skipHashBang(parser: ParserState): void {
   // HashbangComment ::
   //   #!  SingleLineCommentChars_opt
-  if (parser.currentChar === Chars.Hash && parser.source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
-    skipSingleLineComment(parser, LexerState.None, CommentType.HashBang);
+  const source = parser.source;
+  if (parser.currentChar === Chars.Hash && source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
+    skipSingleLineComment(parser, source, LexerState.None, CommentType.HashBang);
   }
 }
 
 export function skipSingleHTMLComment(
   parser: ParserState,
+  source: string,
   state: LexerState,
   context: Context,
   type: CommentType
 ): LexerState {
   if (context & Context.Module) report(parser, Errors.Unexpected);
-  return skipSingleLineComment(parser, state, type);
+  return skipSingleLineComment(parser, source, state, type);
 }
 
 /**
@@ -42,14 +44,19 @@ export function skipSingleHTMLComment(
  * @param parser  Parser object
  * @param state  Lexer state
  */
-export function skipSingleLineComment(parser: ParserState, state: LexerState, type: CommentType): LexerState {
+export function skipSingleLineComment(
+  parser: ParserState,
+  source: string,
+  state: LexerState,
+  type: CommentType
+): LexerState {
   const { index } = parser;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;
       scanNewLine(parser);
       if (isCR && parser.index < parser.end && parser.currentChar === Chars.LineFeed)
-        parser.currentChar = parser.source.charCodeAt(++parser.index);
+        parser.currentChar = source.charCodeAt(++parser.index);
       break;
     } else if ((parser.currentChar ^ Chars.LineSeparator) <= 1) {
       scanNewLine(parser);
@@ -58,7 +65,7 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
     advanceChar(parser);
   }
   if (parser.onComment)
-    parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
+    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.index), index, parser.index);
   return state | LexerState.NewLine;
 }
 
@@ -68,7 +75,7 @@ export function skipSingleLineComment(parser: ParserState, state: LexerState, ty
  * @param parser Parser object
  * @param state Lexer state
  */
-export function skipMultiLineComment(parser: ParserState, state: LexerState): LexerState | void {
+export function skipMultiLineComment(parser: ParserState, source: string, state: LexerState): LexerState | void {
   const { index } = parser;
   while (parser.index < parser.end) {
     if (parser.currentChar < 0x2b) {
@@ -83,7 +90,7 @@ export function skipMultiLineComment(parser: ParserState, state: LexerState): Le
           if (parser.onComment)
             parser.onComment(
               CommentTypes[CommentType.Multi & 0xff],
-              parser.source.slice(index, parser.index - 2),
+              source.slice(index, parser.index - 2),
               index,
               parser.index
             );

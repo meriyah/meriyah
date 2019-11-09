@@ -190,6 +190,8 @@ export function nextToken(parser: ParserState, context: Context): void {
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
+  let source = parser.source;
+
   while (parser.index < parser.end) {
     parser.tokenPos = parser.index;
     parser.colPos = parser.column;
@@ -234,13 +236,13 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               // Treat HTML begin-comment as comment-till-end-of-line.
               const index = parser.index + 1;
               if (
-                index + 1 < parser.source.length &&
-                parser.source.charCodeAt(index) === Chars.Hyphen &&
-                parser.source.charCodeAt(index + 1) == Chars.Hyphen
+                index + 1 < parser.end &&
+                source.charCodeAt(index) === Chars.Hyphen &&
+                source.charCodeAt(index + 1) == Chars.Hyphen
               ) {
                 parser.column += 3;
-                parser.currentChar = parser.source.charCodeAt((parser.index += 3));
-                state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLOpen);
+                parser.currentChar = source.charCodeAt((parser.index += 3));
+                state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLOpen);
                 continue;
               }
               return Token.LessThan;
@@ -251,7 +253,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
               // Check that it's not a comment start.
               if (index < parser.end) {
-                ch = parser.source.charCodeAt(index);
+                ch = source.charCodeAt(index);
                 if (ch === Chars.Asterisk || ch === Chars.Slash) break;
               }
               advanceChar(parser);
@@ -356,7 +358,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
               if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
-              state = skipSingleHTMLComment(parser, state, context, CommentType.HTMLClose);
+              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose);
               continue;
             }
 
@@ -378,12 +380,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             const ch = parser.currentChar;
             if (ch === Chars.Slash) {
               advanceChar(parser);
-              state = skipSingleLineComment(parser, state, CommentType.Single);
+              state = skipSingleLineComment(parser, source, state, CommentType.Single);
               continue;
             }
             if (ch === Chars.Asterisk) {
               advanceChar(parser);
-              state = skipMultiLineComment(parser, state) as LexerState;
+              state = skipMultiLineComment(parser, source, state) as LexerState;
               continue;
             }
             if (context & Context.AllowRegExp) {
@@ -477,9 +479,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
           if (next === Chars.Period) {
             const index = parser.index + 1;
-            if (index < parser.source.length && parser.source.charCodeAt(index) === Chars.Period) {
+            if (index < parser.end && source.charCodeAt(index) === Chars.Period) {
               parser.column += 2;
-              parser.currentChar = parser.source.charCodeAt((parser.index += 2));
+              parser.currentChar = source.charCodeAt((parser.index += 2));
               return Token.Ellipsis;
             }
           }
@@ -498,7 +500,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             const index = parser.index + 1;
             // Check that it's not followed by any numbers
             if (index < parser.end) {
-              ch = parser.source.charCodeAt(index);
+              ch = source.charCodeAt(index);
               if (!(ch >= Chars.Zero && ch <= Chars.Nine)) {
                 advanceChar(parser);
                 return Token.QuestionMarkPeriod;
