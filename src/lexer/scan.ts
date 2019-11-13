@@ -190,7 +190,7 @@ export function nextToken(parser: ParserState, context: Context): void {
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
-  let source = parser.source;
+  const source = parser.source;
 
   while (parser.index < parser.end) {
     parser.tokenPos = parser.index;
