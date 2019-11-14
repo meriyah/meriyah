@@ -358,6 +358,7 @@ define(['exports'], function (exports) { 'use strict';
   }
   function scanSingleToken(parser, context, state) {
       const isStartOfLine = parser.index === 0;
+      const source = parser.source;
       while (parser.index < parser.end) {
           parser.tokenPos = parser.index;
           parser.colPos = parser.column;
@@ -396,12 +397,12 @@ define(['exports'], function (exports) { 'use strict';
                           }
                           if (ch === 33) {
                               const index = parser.index + 1;
-                              if (index + 1 < parser.source.length &&
-                                  parser.source.charCodeAt(index) === 45 &&
-                                  parser.source.charCodeAt(index + 1) == 45) {
+                              if (index + 1 < parser.end &&
+                                  source.charCodeAt(index) === 45 &&
+                                  source.charCodeAt(index + 1) == 45) {
                                   parser.column += 3;
-                                  parser.currentChar = parser.source.charCodeAt((parser.index += 3));
-                                  state = skipSingleHTMLComment(parser, state, context, 2);
+                                  parser.currentChar = source.charCodeAt((parser.index += 3));
+                                  state = skipSingleHTMLComment(parser, source, state, context, 2);
                                   continue;
                               }
                               return 8456255;
@@ -411,7 +412,7 @@ define(['exports'], function (exports) { 'use strict';
                                   return 8456255;
                               const index = parser.index + 1;
                               if (index < parser.end) {
-                                  ch = parser.source.charCodeAt(index);
+                                  ch = source.charCodeAt(index);
                                   if (ch === 42 || ch === 47)
                                       break;
                               }
@@ -497,7 +498,7 @@ define(['exports'], function (exports) { 'use strict';
                               if ((context & 256) === 0)
                                   report(parser, 108);
                               advanceChar(parser);
-                              state = skipSingleHTMLComment(parser, state, context, 3);
+                              state = skipSingleHTMLComment(parser, source, state, context, 3);
                               continue;
                           }
                           return 33619996;
@@ -514,12 +515,12 @@ define(['exports'], function (exports) { 'use strict';
                           const ch = parser.currentChar;
                           if (ch === 47) {
                               advanceChar(parser);
-                              state = skipSingleLineComment(parser, state, 0);
+                              state = skipSingleLineComment(parser, source, state, 0);
                               continue;
                           }
                           if (ch === 42) {
                               advanceChar(parser);
-                              state = skipMultiLineComment(parser, state);
+                              state = skipMultiLineComment(parser, source, state);
                               continue;
                           }
                           if (context & 32768) {
@@ -596,9 +597,9 @@ define(['exports'], function (exports) { 'use strict';
                           return scanNumber(parser, context, 64 | 16);
                       if (next === 46) {
                           const index = parser.index + 1;
-                          if (index < parser.source.length && parser.source.charCodeAt(index) === 46) {
+                          if (index < parser.end && source.charCodeAt(index) === 46) {
                               parser.column += 2;
-                              parser.currentChar = parser.source.charCodeAt((parser.index += 2));
+                              parser.currentChar = source.charCodeAt((parser.index += 2));
                               return 14;
                           }
                       }
@@ -614,7 +615,7 @@ define(['exports'], function (exports) { 'use strict';
                       if (ch === 46) {
                           const index = parser.index + 1;
                           if (index < parser.end) {
-                              ch = parser.source.charCodeAt(index);
+                              ch = source.charCodeAt(index);
                               if (!(ch >= 48 && ch <= 57)) {
                                   advanceChar(parser);
                                   return 67108988;
@@ -681,23 +682,24 @@ define(['exports'], function (exports) { 'use strict';
 
   const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
   function skipHashBang(parser) {
-      if (parser.currentChar === 35 && parser.source.charCodeAt(parser.index + 1) === 33) {
-          skipSingleLineComment(parser, 0, 4);
+      const source = parser.source;
+      if (parser.currentChar === 35 && source.charCodeAt(parser.index + 1) === 33) {
+          skipSingleLineComment(parser, source, 0, 4);
       }
   }
-  function skipSingleHTMLComment(parser, state, context, type) {
+  function skipSingleHTMLComment(parser, source, state, context, type) {
       if (context & 2048)
           report(parser, 0);
-      return skipSingleLineComment(parser, state, type);
+      return skipSingleLineComment(parser, source, state, type);
   }
-  function skipSingleLineComment(parser, state, type) {
+  function skipSingleLineComment(parser, source, state, type) {
       const { index } = parser;
       while (parser.index < parser.end) {
           if (CharTypes[parser.currentChar] & 8) {
               const isCR = parser.currentChar === 13;
               scanNewLine(parser);
               if (isCR && parser.index < parser.end && parser.currentChar === 10)
-                  parser.currentChar = parser.source.charCodeAt(++parser.index);
+                  parser.currentChar = source.charCodeAt(++parser.index);
               break;
           }
           else if ((parser.currentChar ^ 8232) <= 1) {
@@ -707,10 +709,10 @@ define(['exports'], function (exports) { 'use strict';
           advanceChar(parser);
       }
       if (parser.onComment)
-          parser.onComment(CommentTypes[type & 0xff], parser.source.slice(index, parser.index), index, parser.index);
+          parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.index), index, parser.index);
       return state | 1;
   }
-  function skipMultiLineComment(parser, state) {
+  function skipMultiLineComment(parser, source, state) {
       const { index } = parser;
       while (parser.index < parser.end) {
           if (parser.currentChar < 0x2b) {
@@ -723,7 +725,7 @@ define(['exports'], function (exports) { 'use strict';
                   if (advanceChar(parser) === 47) {
                       advanceChar(parser);
                       if (parser.onComment)
-                          parser.onComment(CommentTypes[1 & 0xff], parser.source.slice(index, parser.index - 2), index, parser.index);
+                          parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index, parser.index);
                       return state;
                   }
               }
@@ -3240,17 +3242,19 @@ define(['exports'], function (exports) { 'use strict';
       nextToken(parser, context);
       let source = null;
       const { tokenPos, linePos, colPos } = parser;
-      const specifiers = [];
+      let specifiers = [];
       if (parser.token === 134283267) {
           source = parseLiteral(parser, context);
       }
       else {
           if (parser.token & 143360) {
               const local = parseRestrictedIdentifier(parser, context, scope);
-              specifiers.push(finishNode(parser, context, tokenPos, linePos, colPos, {
-                  type: 'ImportDefaultSpecifier',
-                  local
-              }));
+              specifiers = [
+                  finishNode(parser, context, tokenPos, linePos, colPos, {
+                      type: 'ImportDefaultSpecifier',
+                      local
+                  })
+              ];
               if (consumeOpt(parser, context, 1073741842)) {
                   switch (parser.token) {
                       case 8457011:
@@ -3267,7 +3271,7 @@ define(['exports'], function (exports) { 'use strict';
           else {
               switch (parser.token) {
                   case 8457011:
-                      specifiers.push(parseImportNamespaceSpecifier(parser, context, scope));
+                      specifiers = [parseImportNamespaceSpecifier(parser, context, scope)];
                       break;
                   case 2162700:
                       parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
@@ -3358,7 +3362,7 @@ define(['exports'], function (exports) { 'use strict';
   }
   function parseExportDeclaration(parser, context, scope, start, line, column) {
       nextToken(parser, context | 32768);
-      const specifiers = [];
+      let specifiers = [];
       let declaration = null;
       let source = null;
       let key;
@@ -3413,10 +3417,12 @@ define(['exports'], function (exports) { 'use strict';
               if (isNamedDeclaration) {
                   if (scope)
                       declareUnboundVariable(parser, parser.tokenValue);
-                  specifiers.push(finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
-                      type: 'ExportNamespaceSpecifier',
-                      specifier: parseIdentifier(parser, context, 0)
-                  }));
+                  specifiers = [
+                      finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
+                          type: 'ExportNamespaceSpecifier',
+                          specifier: parseIdentifier(parser, context, 0)
+                      })
+                  ];
               }
               consume(parser, context, 12401);
               if (parser.token !== 134283267)
@@ -6423,7 +6429,7 @@ define(['exports'], function (exports) { 'use strict';
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.9.0';
+  const version = '1.9.2';
 
   exports.ESTree = estree;
   exports.parse = parse;
