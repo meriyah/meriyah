@@ -1,6 +1,5 @@
 import { ParserState } from './common';
 
-/*@internal*/
 export const enum Errors {
   Unexpected,
   StrictOctalEscape,
@@ -168,7 +167,6 @@ export const enum Errors {
   ImportMetaOutsideModule
 }
 
-/*@internal*/
 export const errorMessages: {
   [key: string]: string;
 } = {

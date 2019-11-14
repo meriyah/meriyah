@@ -2422,7 +2422,7 @@ function parseImportDeclaration(
 
   const { tokenPos, linePos, colPos } = parser;
 
-  const specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
+  let specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] = [];
 
   // 'import' ModuleSpecifier ';'
   if (parser.token === Token.StringLiteral) {
@@ -2430,12 +2430,12 @@ function parseImportDeclaration(
   } else {
     if (parser.token & Token.IsIdentifier) {
       const local = parseRestrictedIdentifier(parser, context, scope);
-      specifiers.push(
+      specifiers = [
         finishNode(parser, context, tokenPos, linePos, colPos, {
           type: 'ImportDefaultSpecifier',
           local
         })
-      );
+      ];
 
       // NameSpaceImport
       if (consumeOpt(parser, context, Token.Comma)) {
@@ -2456,7 +2456,7 @@ function parseImportDeclaration(
       // Parse NameSpaceImport or NamedImports if present
       switch (parser.token) {
         case Token.Multiply:
-          specifiers.push(parseImportNamespaceSpecifier(parser, context, scope));
+          specifiers = [parseImportNamespaceSpecifier(parser, context, scope)];
           break;
         case Token.LeftBrace:
           parseImportSpecifierOrNamedImports(parser, context, scope, specifiers);
@@ -2737,7 +2737,7 @@ function parseExportDeclaration(
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
 
-  const specifiers: (ESTree.ExportSpecifier | ESTree.ExportNamespaceSpecifier)[] = [];
+  let specifiers: (ESTree.ExportSpecifier | ESTree.ExportNamespaceSpecifier)[] = [];
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
   let source: ESTree.Literal | null = null;
@@ -2882,12 +2882,12 @@ function parseExportDeclaration(
 
       if (isNamedDeclaration) {
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
-        specifiers.push(
+        specifiers = [
           finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
             type: 'ExportNamespaceSpecifier',
             specifier: parseIdentifier(parser, context, 0)
           })
-        );
+        ];
       }
 
       consume(parser, context, Token.FromKeyword);
