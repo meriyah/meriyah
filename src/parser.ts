@@ -5823,14 +5823,14 @@ export function parseObjectLiteralOrPattern(
 
             value = finishNode(parser, context, tokenPos, linePos, colPos, {
               type: 'AssignmentPattern',
-              left: context & Context.OptionsUniqueKeyInPattern ? { ...key } : key,
+              left: context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key,
               right
             });
           } else {
             destructible |=
               (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
-            value = context & Context.OptionsUniqueKeyInPattern ? { ...key } : key;
+            value = context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
           const { tokenPos, linePos, colPos } = parser;
