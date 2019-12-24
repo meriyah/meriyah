@@ -220,6 +220,8 @@ export interface Options {
   onComment?: OnComment;
   // Allows token extraction. Accepts either a a callback function or an array
   onToken?: OnToken;
+  // Creates unique key for in ObjectPattern when key value are same
+  uniqueKeyInPattern?: boolean;
 }
 
 /**
@@ -234,6 +236,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.next) context |= Context.OptionsNext;
     if (options.loc) context |= Context.OptionsLoc;
     if (options.ranges) context |= Context.OptionsRanges;
+    if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
     if (options.lexical) context |= Context.OptionsLexical;
     if (options.webcompat) context |= Context.OptionsWebCompat;
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
@@ -5820,14 +5823,14 @@ export function parseObjectLiteralOrPattern(
 
             value = finishNode(parser, context, tokenPos, linePos, colPos, {
               type: 'AssignmentPattern',
-              left: key,
+              left: context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key,
               right
             });
           } else {
             destructible |=
               (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
-            value = key;
+            value = context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
           const { tokenPos, linePos, colPos } = parser;
