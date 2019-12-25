@@ -20,6 +20,7 @@ export interface Options {
     specDeviation?: boolean;
     onComment?: OnComment;
     onToken?: OnToken;
+    uniqueKeyInPattern?: boolean;
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState | undefined): ESTree.Statement[];

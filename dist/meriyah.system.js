@@ -2466,6 +2466,8 @@ System.register('meriyah', [], function (exports) {
                   context |= 4;
               if (options.ranges)
                   context |= 2;
+              if (options.uniqueKeyInPattern)
+                  context |= -2147483648;
               if (options.lexical)
                   context |= 64;
               if (options.webcompat)
@@ -4743,7 +4745,7 @@ System.register('meriyah', [], function (exports) {
                                           : 0;
                               value = finishNode(parser, context, tokenPos, linePos, colPos, {
                                   type: 'AssignmentPattern',
-                                  left: key,
+                                  left: context & -2147483648 ? Object.assign({}, key) : key,
                                   right
                               });
                           }
@@ -4751,7 +4753,7 @@ System.register('meriyah', [], function (exports) {
                               destructible |=
                                   (token === 209005 ? 128 : 0) |
                                       (token === 118 ? 16 : 0);
-                              value = key;
+                              value = context & -2147483648 ? Object.assign({}, key) : key;
                           }
                       }
                       else if (consumeOpt(parser, context | 32768, 21)) {

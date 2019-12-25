@@ -32,7 +32,8 @@ export declare const enum Context {
     DisallowIn = 134217728,
     OptionsIdentifierPattern = 268435456,
     OptionsSpecDeviation = 536870912,
-    AllowEscapedKeyword = 1073741824
+    AllowEscapedKeyword = 1073741824,
+    OptionsUniqueKeyInPattern = -2147483648
 }
 export declare const enum PropertyKind {
     None = 0,
