@@ -38,6 +38,7 @@ export const enum Context {
   OptionsIdentifierPattern = 1 << 28,
   OptionsSpecDeviation = 1 << 29,
   AllowEscapedKeyword = 1 << 30,
+  OptionsUniqueKeyInPattern = 1 << 31,
 }
 
 /**
