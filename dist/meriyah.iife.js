@@ -5496,13 +5496,19 @@ var meriyah = (function (exports) {
           body = parseFunctionBody(parser, (context | 134221824 | 8192 | 16384) ^
               (134221824 | 8192 | 16384), scope, 16, void 0, void 0);
           switch (parser.token) {
-              case 67108877:
               case 69271571:
+                  if ((parser.flags & 1) < 1) {
+                      report(parser, 112);
+                  }
+                  break;
+              case 67108877:
               case 67174409:
               case 22:
                   report(parser, 113);
               case 67174411:
-                  report(parser, 112);
+                  if ((parser.flags & 1) < 1) {
+                      report(parser, 112);
+                  }
           }
           if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) < 1)
               report(parser, 28, KeywordDescTable[parser.token & 255]);
@@ -6432,7 +6438,7 @@ var meriyah = (function (exports) {
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.9.2';
+  const version = '1.9.5';
 
   exports.ESTree = estree;
   exports.parse = parse;
