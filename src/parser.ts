@@ -7131,13 +7131,19 @@ export function parseArrowFunctionExpression(
     );
 
     switch (parser.token) {
-      case Token.Period:
       case Token.LeftBracket:
+        if ((parser.flags & Flags.NewLine) < 1) {
+          report(parser, Errors.InvalidInvokedBlockBodyArrow);
+        }
+        break;
+      case Token.Period:
       case Token.TemplateSpan:
       case Token.QuestionMark:
         report(parser, Errors.InvalidAccessedBlockBodyArrow);
       case Token.LeftParen:
-        report(parser, Errors.InvalidInvokedBlockBodyArrow);
+        if ((parser.flags & Flags.NewLine) < 1) {
+          report(parser, Errors.InvalidInvokedBlockBodyArrow);
+        }
       default: // ignore
     }
     if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) < 1)
