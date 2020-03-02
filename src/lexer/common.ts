@@ -72,42 +72,19 @@ export function scanNewLine(parser: ParserState): void {
 }
 
 // ECMA-262 11.2 White Space
-export function isExoticECMAScriptWhitespace(code: number): boolean {
-  /**
-   * There are 25 white space characters we need to correctly class.
-   * The lower ASCII range (127) white space have already been classified, so
-   * only needed is to validate against the remaining
-   * 15 Unicode category "Zs" ("Space_Separator") chars.
-   *
-   * - 0x1680
-   * - 0x2000
-   * - 0x2001
-   * - 0x2002
-   * - 0x2003
-   * - 0x2004
-   * - 0x2005
-   * - 0x2006
-   * - 0x2007
-   * - 0x2008
-   * - 0x2009
-   * - 0x200a
-   * - 0x2028 // <LS> LineTerminator (LINE SEPARATOR)
-   * - 0x2029 // <PS> LineTerminator (PARAGRAPH SEPARATOR)
-   * - 0x202f
-   * - 0x205f
-   * - 0x3000
-   * - 0xfeff // <ZWNBSP>
-   */
+// gC=Zs, U+0009, U+000B, U+000C, U+FEFF
+export function isExoticECMAScriptWhitespace(ch: number): boolean {
   return (
-    code === Chars.NonBreakingSpace ||
-    code === Chars.ZeroWidthNoBreakSpace ||
-    code === Chars.NextLine ||
-    code === Chars.Ogham ||
-    (code >= Chars.EnQuad && code <= Chars.ZeroWidthSpace) ||
-    code === Chars.NarrowNoBreakSpace ||
-    code === Chars.MathematicalSpace ||
-    code === Chars.IdeographicSpace ||
-    code === Chars.ByteOrderMark
+    ch === Chars.NonBreakingSpace ||
+    ch === Chars.ZeroWidthNoBreakSpace ||
+    ch === Chars.NextLine ||
+    ch === Chars.Ogham ||
+    (ch >= Chars.EnQuad && ch <= Chars.ZeroWidthSpace) ||
+    ch === Chars.NarrowNoBreakSpace ||
+    ch === Chars.MathematicalSpace ||
+    ch === Chars.IdeographicSpace ||
+    ch === Chars.ThinSpace ||
+    ch === Chars.ByteOrderMark
   );
 }
 
