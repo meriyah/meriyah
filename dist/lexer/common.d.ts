@@ -20,7 +20,7 @@ export declare function advanceChar(parser: ParserState): number;
 export declare function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 1;
 export declare function consumeLineFeed(parser: ParserState, state: LexerState): void;
 export declare function scanNewLine(parser: ParserState): void;
-export declare function isExoticECMAScriptWhitespace(code: number): boolean;
+export declare function isExoticECMAScriptWhitespace(ch: number): boolean;
 export declare function fromCodePoint(codePoint: number): string;
 export declare function toHex(code: number): number;
 export declare function convertTokenType(t: Token): string;

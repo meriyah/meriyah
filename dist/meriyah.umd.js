@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (global = global || self, factory(global.meriyah = {}));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
   const errorMessages = {
       [0]: 'Unexpected token',
@@ -794,16 +794,17 @@
       parser.column = 0;
       parser.line++;
   }
-  function isExoticECMAScriptWhitespace(code) {
-      return (code === 160 ||
-          code === 65279 ||
-          code === 133 ||
-          code === 5760 ||
-          (code >= 8192 && code <= 8203) ||
-          code === 8239 ||
-          code === 8287 ||
-          code === 12288 ||
-          code === 65519);
+  function isExoticECMAScriptWhitespace(ch) {
+      return (ch === 160 ||
+          ch === 65279 ||
+          ch === 133 ||
+          ch === 5760 ||
+          (ch >= 8192 && ch <= 8203) ||
+          ch === 8239 ||
+          ch === 8287 ||
+          ch === 12288 ||
+          ch === 8201 ||
+          ch === 65519);
   }
   function fromCodePoint(codePoint) {
       return codePoint <= 65535
@@ -4033,6 +4034,27 @@
               case 143468:
                   return parseAsyncExpression(parser, context, inGroup, isLHS, canAssign, isPattern, inNew, start, line, column);
           }
+          const { token, tokenValue } = parser;
+          const expr = parseIdentifier(parser, context | 65536, isPattern);
+          if (parser.token === 10) {
+              if (!isLHS)
+                  report(parser, 0);
+              classifyIdentifier(parser, context, token, 1);
+              return parseArrowFromIdentifier(parser, context, tokenValue, expr, inNew, canAssign, 0, start, line, column);
+          }
+          if (context & 16384 && token === 537079925)
+              report(parser, 126);
+          if (token === 241736) {
+              if (context & 1024)
+                  report(parser, 109);
+              if (kind & (8 | 16))
+                  report(parser, 97);
+          }
+          parser.assignable =
+              context & 1024 && (token & 537079808) === 537079808
+                  ? 2
+                  : 1;
+          return expr;
       }
       if ((parser.token & 134217728) === 134217728) {
           return parseLiteral(parser, context);
@@ -6441,7 +6463,7 @@
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.9.5';
+  const version = '1.9.8';
 
   exports.ESTree = estree;
   exports.parse = parse;
@@ -6451,4 +6473,4 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
