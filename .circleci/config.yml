@@ -63,12 +63,6 @@ jobs:
       - run: npm ci
       - run: npm run bundle
 
-  test-6:
-    <<: *test
-    executor:
-      name: docker-circleci
-      node: "6.17.1"
-
   test-8:
     <<: *test
     executor:
@@ -156,8 +150,6 @@ workflows:
           <<: *filter_ignore_dev
       - bundle:
           <<: *filter_ignore_dev
-      - test-6:
-          <<: *filter_ignore_dev
       - test-8:
           <<: *filter_ignore_dev
       - test-10:
@@ -179,7 +171,6 @@ workflows:
       - build
       - lint
       - bundle
-      - test-6
       - test-8
       - test-10
       - test-12
@@ -188,7 +179,6 @@ workflows:
             - build
             - lint
             - bundle
-            - test-6
             - test-8
             - test-10
             - test-12
