@@ -167,7 +167,7 @@ ${opts.eval ? 'return' : 'export'} {${Object.keys(opts.exports)}};
 if (require.main === module) {
   const path = require('path');
   const load = name => {
-    const mod = require.resolve(`unicode-12.0.0/${name}/code-points`);
+    const mod = require.resolve(`unicode-13.0.0/${name}/code-points`);
     const list = require(mod);
     delete require.cache[mod];
     return list;

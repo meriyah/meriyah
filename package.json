@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "1.9.8",
+  "version": "1.9.9",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -67,8 +67,8 @@
     "@typescript-eslint/parser": "^2.4.0",
     "chalk": "^2.4.2",
     "coveralls": "^3.0.6",
-    "cross-env": "^5.2.0",
-    "eslint": "^6.5.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "glob": "^7.1.4",
@@ -78,19 +78,19 @@
     "path": "^0.12.7",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
-    "rollup": "^1.32.0",
+    "rollup": "^2.0.6",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.24.2",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript2": "^0.26.0",
     "source-map-support": "^0.5.13",
     "test262-parser-tests": "0.0.5",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
-    "tslint": "^6.0.0",
+    "tslint": "^6.1.0",
     "tslint-microsoft-contrib": "^6.2.0",
     "typescript": "^3.8.3",
     "unexpected": "^11.8.0",
-    "unicode-12.0.0": "^0.8.0"
+    "unicode-13.0.0": "^0.8.0"
   },
   "husky": {
     "hooks": {
