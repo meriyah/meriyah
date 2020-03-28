@@ -3090,8 +3090,8 @@ function parseVariableDeclaration(parser, context, scope, kind, origin) {
     }
     return finishNode(parser, context, tokenPos, linePos, colPos, {
         type: 'VariableDeclarator',
-        init,
-        id
+        id,
+        init
     });
 }
 function parseForStatement(parser, context, scope, labels, start, line, column) {

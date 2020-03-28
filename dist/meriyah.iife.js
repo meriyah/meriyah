@@ -3093,8 +3093,8 @@ var meriyah = (function (exports) {
       }
       return finishNode(parser, context, tokenPos, linePos, colPos, {
           type: 'VariableDeclarator',
-          init,
-          id
+          id,
+          init
       });
   }
   function parseForStatement(parser, context, scope, labels, start, line, column) {

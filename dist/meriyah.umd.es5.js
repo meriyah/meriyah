@@ -3154,8 +3154,8 @@
         }
         return finishNode(parser, context, tokenPos, linePos, colPos, {
             type: 'VariableDeclarator',
-            init: init,
-            id: id
+            id: id,
+            init: init
         });
     }
     function parseForStatement(parser, context, scope, labels, start, line, column) {
