@@ -6469,7 +6469,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.9.9');
+      const version = exports('version', '1.9.10');
 
     }
   };

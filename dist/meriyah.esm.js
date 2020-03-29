@@ -6457,6 +6457,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.9.9';
+const version = '1.9.10';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
