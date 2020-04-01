@@ -2300,9 +2300,9 @@ export function parseForStatement(
 
       return finishNode(parser, context, start, line, column, {
         type: 'ForOfStatement',
-        body,
         left: init,
         right,
+        body,
         await: forAwait
       });
     }
@@ -2359,10 +2359,10 @@ export function parseForStatement(
 
   return finishNode(parser, context, start, line, column, {
     type: 'ForStatement',
-    body,
     init,
     test,
-    update
+    update,
+    body
   });
 }
 
@@ -3085,9 +3085,9 @@ function parseExportDeclaration(
 
   return finishNode(parser, context, start, line, column, {
     type: 'ExportNamedDeclaration',
-    source,
+    declaration,
     specifiers,
-    declaration
+    source,
   });
 }
 
@@ -4840,11 +4840,11 @@ export function parseFunctionDeclaration(
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionDeclaration',
+    id,
     params,
     body,
     async: isAsync === 1,
     generator: isGenerator === 1,
-    id
   });
 }
 
@@ -4919,11 +4919,11 @@ export function parseFunctionExpression(
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',
+    id,
     params,
     body,
     async: isAsync === 1,
     generator: isGenerator === 1,
-    id
   });
 }
 
@@ -7155,8 +7155,8 @@ export function parseArrowFunctionExpression(
 
   return finishNode(parser, context, start, line, column, {
     type: 'ArrowFunctionExpression',
-    body,
     params,
+    body,
     async: isAsync === 1,
     expression
   });
