@@ -3087,7 +3087,7 @@ function parseExportDeclaration(
     type: 'ExportNamedDeclaration',
     declaration,
     specifiers,
-    source,
+    source
   });
 }
 
@@ -3937,6 +3937,11 @@ export function parseMemberOrUpdateExpression(
 
       /* Call */
       case Token.LeftParen: {
+        if ((parser.flags & Flags.DisallowCall) === Flags.DisallowCall) {
+          parser.flags = (parser.flags | Flags.DisallowCall) ^ Flags.DisallowCall;
+          return expr;
+        }
+
         const args = parseArguments(parser, context, inGroup);
 
         parser.assignable = AssignmentKind.CannotAssign;
@@ -4844,7 +4849,7 @@ export function parseFunctionDeclaration(
     params,
     body,
     async: isAsync === 1,
-    generator: isGenerator === 1,
+    generator: isGenerator === 1
   });
 }
 
@@ -4923,7 +4928,7 @@ export function parseFunctionExpression(
     params,
     body,
     async: isAsync === 1,
-    generator: isGenerator === 1,
+    generator: isGenerator === 1
   });
 }
 
@@ -7144,6 +7149,8 @@ export function parseArrowFunctionExpression(
         if ((parser.flags & Flags.NewLine) < 1) {
           report(parser, Errors.InvalidInvokedBlockBodyArrow);
         }
+        parser.flags |= Flags.DisallowCall;
+        break;
       default: // ignore
     }
     if ((parser.token & Token.IsBinaryOp) === Token.IsBinaryOp && (parser.flags & Flags.NewLine) < 1)
