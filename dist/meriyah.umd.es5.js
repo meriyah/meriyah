@@ -3246,9 +3246,9 @@
                 var body_1 = parseIterationStatementBody(parser, context, scope, labels);
                 return finishNode(parser, context, start, line, column, {
                     type: 'ForOfStatement',
-                    body: body_1,
                     left: init,
                     right: right,
+                    body: body_1,
                     await: forAwait
                 });
             }
@@ -3288,10 +3288,10 @@
         var body = parseIterationStatementBody(parser, context, scope, labels);
         return finishNode(parser, context, start, line, column, {
             type: 'ForStatement',
-            body: body,
             init: init,
             test: test,
-            update: update
+            update: update,
+            body: body
         });
     }
     function parseRestrictedIdentifier(parser, context, scope) {
@@ -3591,9 +3591,9 @@
         }
         return finishNode(parser, context, start, line, column, {
             type: 'ExportNamedDeclaration',
-            source: source,
+            declaration: declaration,
             specifiers: specifiers,
-            declaration: declaration
+            source: source,
         });
     }
     function parseExpression(parser, context, canAssign, isPattern, inGroup, start, line, column) {
@@ -4396,11 +4396,11 @@
             (8192 | 4096 | 131072), scope ? addChildScope(functionScope, 128) : functionScope, 8, firstRestricted, scope ? functionScope.scopeError : void 0);
         return finishNode(parser, context, start, line, column, {
             type: 'FunctionDeclaration',
+            id: id,
             params: params,
             body: body,
             async: isAsync === 1,
             generator: isGenerator === 1,
-            id: id
         });
     }
     function parseFunctionExpression(parser, context, isAsync, inGroup, start, line, column) {
@@ -4429,11 +4429,11 @@
         parser.assignable = 2;
         return finishNode(parser, context, start, line, column, {
             type: 'FunctionExpression',
+            id: id,
             params: params,
             body: body,
             async: isAsync === 1,
             generator: isGenerator === 1,
-            id: id
         });
     }
     function parseArrayLiteral(parser, context, skipInitializer, inGroup, start, line, column) {
@@ -5601,8 +5601,8 @@
         parser.assignable = 2;
         return finishNode(parser, context, start, line, column, {
             type: 'ArrowFunctionExpression',
-            body: body,
             params: params,
+            body: body,
             async: isAsync === 1,
             expression: expression
         });
@@ -6521,7 +6521,7 @@
     function parse(source, options) {
         return parseSource(source, options, 0);
     }
-    var version = '1.9.10';
+    var version = '1.9.11';
 
     exports.ESTree = estree;
     exports.parse = parse;
