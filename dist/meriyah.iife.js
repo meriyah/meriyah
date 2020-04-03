@@ -3532,7 +3532,7 @@ var meriyah = (function (exports) {
           type: 'ExportNamedDeclaration',
           declaration,
           specifiers,
-          source,
+          source
       });
   }
   function parseExpression(parser, context, canAssign, isPattern, inGroup, start, line, column) {
@@ -3880,6 +3880,10 @@ var meriyah = (function (exports) {
                   break;
               }
               case 67174411: {
+                  if ((parser.flags & 1024) === 1024) {
+                      parser.flags = (parser.flags | 1024) ^ 1024;
+                      return expr;
+                  }
                   const args = parseArguments(parser, context, inGroup);
                   parser.assignable = 2;
                   expr = finishNode(parser, context, start, line, column, {
@@ -4339,7 +4343,7 @@ var meriyah = (function (exports) {
           params,
           body,
           async: isAsync === 1,
-          generator: isGenerator === 1,
+          generator: isGenerator === 1
       });
   }
   function parseFunctionExpression(parser, context, isAsync, inGroup, start, line, column) {
@@ -4372,7 +4376,7 @@ var meriyah = (function (exports) {
           params,
           body,
           async: isAsync === 1,
-          generator: isGenerator === 1,
+          generator: isGenerator === 1
       });
   }
   function parseArrayLiteral(parser, context, skipInitializer, inGroup, start, line, column) {
@@ -5531,6 +5535,8 @@ var meriyah = (function (exports) {
                   if ((parser.flags & 1) < 1) {
                       report(parser, 112);
                   }
+                  parser.flags |= 1024;
+                  break;
           }
           if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) < 1)
               report(parser, 28, KeywordDescTable[parser.token & 255]);
@@ -6460,7 +6466,7 @@ var meriyah = (function (exports) {
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '1.9.11';
+  const version = '1.9.12';
 
   exports.ESTree = estree;
   exports.parse = parse;

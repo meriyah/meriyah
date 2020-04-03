@@ -99,7 +99,8 @@ export declare const enum Flags {
     Octals = 64,
     SimpleParameterList = 128,
     HasStrictReserved = 256,
-    StrictEvalArguments = 512
+    StrictEvalArguments = 512,
+    DisallowCall = 1024
 }
 export declare const enum HoistedClassFlags {
     None = 0,

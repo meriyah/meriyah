@@ -3529,7 +3529,7 @@ function parseExportDeclaration(parser, context, scope, start, line, column) {
         type: 'ExportNamedDeclaration',
         declaration,
         specifiers,
-        source,
+        source
     });
 }
 function parseExpression(parser, context, canAssign, isPattern, inGroup, start, line, column) {
@@ -3877,6 +3877,10 @@ function parseMemberOrUpdateExpression(parser, context, expr, inGroup, start, li
                 break;
             }
             case 67174411: {
+                if ((parser.flags & 1024) === 1024) {
+                    parser.flags = (parser.flags | 1024) ^ 1024;
+                    return expr;
+                }
                 const args = parseArguments(parser, context, inGroup);
                 parser.assignable = 2;
                 expr = finishNode(parser, context, start, line, column, {
@@ -4336,7 +4340,7 @@ function parseFunctionDeclaration(parser, context, scope, origin, allowGen, flag
         params,
         body,
         async: isAsync === 1,
-        generator: isGenerator === 1,
+        generator: isGenerator === 1
     });
 }
 function parseFunctionExpression(parser, context, isAsync, inGroup, start, line, column) {
@@ -4369,7 +4373,7 @@ function parseFunctionExpression(parser, context, isAsync, inGroup, start, line,
         params,
         body,
         async: isAsync === 1,
-        generator: isGenerator === 1,
+        generator: isGenerator === 1
     });
 }
 function parseArrayLiteral(parser, context, skipInitializer, inGroup, start, line, column) {
@@ -5528,6 +5532,8 @@ function parseArrowFunctionExpression(parser, context, scope, params, isAsync, s
                 if ((parser.flags & 1) < 1) {
                     report(parser, 112);
                 }
+                parser.flags |= 1024;
+                break;
         }
         if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) < 1)
             report(parser, 28, KeywordDescTable[parser.token & 255]);
@@ -6457,6 +6463,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '1.9.11';
+const version = '1.9.12';
 
 export { estree as ESTree, parse, parseModule, parseScript, version };
