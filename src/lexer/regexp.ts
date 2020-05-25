@@ -135,14 +135,8 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
  */
 function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
   try {
-    RegExp(pattern);
-  } catch (e) {
-    report(parser, Errors.UnterminatedRegExp);
-  }
-
-  try {
     return new RegExp(pattern, flags);
   } catch (e) {
-    return null;
+    report(parser, Errors.UnterminatedRegExp);
   }
 }
