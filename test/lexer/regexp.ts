@@ -102,6 +102,8 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/x\\udabcy/', 'x\\udabcy', ''],
     [Context.AllowRegExp, '/\\udd00\\udd00y/', '\\udd00\\udd00y', ''],
     [Context.AllowRegExp, '/\\ud900\\udd00\\ud900y/', '\\ud900\\udd00\\ud900y', ''],
+    [Context.AllowRegExp, '/[\\ufdd0-\\ufdef]/', '[\\ufdd0-\\ufdef]', ''],
+    [Context.AllowRegExp, '/[\\u{FDD0}-\\u{FDEF}]/u', '[\\u{FDD0}-\\u{FDEF}]', 'u'],
     [Context.AllowRegExp, '/[i]/', '[i]', ''],
     [Context.AllowRegExp, '/[j]/', '[j]', ''],
     [Context.AllowRegExp, '/[s]/', '[s]', ''],

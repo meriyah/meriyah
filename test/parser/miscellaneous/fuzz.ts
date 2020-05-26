@@ -90,7 +90,7 @@ describe('Miscellaneous - Fuzz', () => {
         while ((/^$/gim)) for (;;) break;
         pwogx: ;
         switch (("aøßY")) {
-          case (/(?!(?!)?)/guy):
+          case (/(?!(?!)?)/gy):
           default:
           case (2e308):
         }
