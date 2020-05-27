@@ -25,11 +25,11 @@ describe('Miscellaneous - onToken', () => {
 
   it('tokenize boolean using function', () => {
     let onTokenCount = 0;
-    parseScript('false', {
+    parseScript('// c\nfalse', {
       onToken: function(token: string, start?: number, end?: number) {
         t.deepEqual(token, 'BooleanLiteral');
-        t.deepEqual(start, 0);
-        t.deepEqual(end, 5);
+        t.deepEqual(start, 5);
+        t.deepEqual(end, 10);
         onTokenCount++;
       },
       loc: true
