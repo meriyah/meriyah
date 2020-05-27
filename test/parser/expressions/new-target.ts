@@ -309,15 +309,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 28,
+            range: [0, 28],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -327,25 +330,30 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 28,
+              range: [12, 28],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 26,
+                  range: [14, 26],
                   expression: {
                     type: 'MetaProperty',
                     start: 14,
                     end: 26,
+                    range: [14, 26],
                     meta: {
                       type: 'Identifier',
                       start: 14,
                       end: 17,
+                      range: [14, 17],
                       name: 'new'
                     },
                     property: {
                       type: 'Identifier',
                       start: 20,
                       end: 26,
+                      range: [20, 26],
                       name: 'target'
                     }
                   }
@@ -364,15 +372,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 38,
+        range: [0, 38],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 38,
+            range: [0, 38],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -382,15 +393,18 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 38,
+              range: [12, 38],
               body: [
                 {
                   type: 'ReturnStatement',
                   start: 14,
                   end: 36,
+                  range: [14, 36],
                   argument: {
                     type: 'ArrowFunctionExpression',
                     start: 21,
                     end: 36,
+                    range: [21, 36],
                     expression: true,
                     async: false,
                     params: [
@@ -398,6 +412,7 @@ describe('Expressions - New target', () => {
                         type: 'Identifier',
                         start: 21,
                         end: 22,
+                        range: [21, 22],
                         name: '_'
                       }
                     ],
@@ -405,16 +420,19 @@ describe('Expressions - New target', () => {
                       type: 'MetaProperty',
                       start: 26,
                       end: 36,
+                      range: [26, 36],
                       meta: {
                         type: 'Identifier',
                         start: 26,
                         end: 29,
+                        range: [26, 29],
                         name: 'new'
                       },
                       property: {
                         type: 'Identifier',
                         start: 30,
                         end: 36,
+                        range: [30, 36],
                         name: 'target'
                       }
                     }
@@ -434,15 +452,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 36,
+        range: [0, 36],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 36,
+            range: [0, 36],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -452,15 +473,18 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 36,
+              range: [12, 36],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 34,
+                  range: [14, 34],
                   expression: {
                     type: 'ArrowFunctionExpression',
                     start: 14,
                     end: 34,
+                    range: [14, 34],
                     expression: true,
                     async: false,
                     params: [
@@ -468,6 +492,7 @@ describe('Expressions - New target', () => {
                         type: 'Identifier',
                         start: 14,
                         end: 15,
+                        range: [14, 15],
                         name: '_'
                       }
                     ],
@@ -475,6 +500,7 @@ describe('Expressions - New target', () => {
                       type: 'ArrowFunctionExpression',
                       start: 19,
                       end: 34,
+                      range: [19, 34],
                       expression: true,
                       async: false,
                       params: [
@@ -482,6 +508,7 @@ describe('Expressions - New target', () => {
                           type: 'Identifier',
                           start: 19,
                           end: 20,
+                          range: [19, 20],
                           name: '_'
                         }
                       ],
@@ -489,16 +516,19 @@ describe('Expressions - New target', () => {
                         type: 'MetaProperty',
                         start: 24,
                         end: 34,
+                        range: [24, 34],
                         meta: {
                           type: 'Identifier',
                           start: 24,
                           end: 27,
+                          range: [24, 27],
                           name: 'new'
                         },
                         property: {
                           type: 'Identifier',
                           start: 28,
                           end: 34,
+                          range: [28, 34],
                           name: 'target'
                         }
                       }
@@ -777,15 +807,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 39,
+        range: [0, 39],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 39,
+            range: [0, 39],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'X'
             },
             superClass: null,
@@ -793,11 +826,13 @@ describe('Expressions - New target', () => {
               type: 'ClassBody',
               start: 8,
               end: 39,
+              range: [8, 39],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 38,
+                  range: [10, 38],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -805,12 +840,14 @@ describe('Expressions - New target', () => {
                     type: 'Identifier',
                     start: 10,
                     end: 21,
+                    range: [10, 21],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 38,
+                    range: [21, 38],
                     id: null,
                     generator: false,
                     async: false,
@@ -819,25 +856,30 @@ describe('Expressions - New target', () => {
                       type: 'BlockStatement',
                       start: 24,
                       end: 38,
+                      range: [24, 38],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 26,
                           end: 36,
+                          range: [26, 36],
                           expression: {
                             type: 'MetaProperty',
                             start: 26,
                             end: 36,
+                            range: [26, 36],
                             meta: {
                               type: 'Identifier',
                               start: 26,
                               end: 29,
+                              range: [26, 29],
                               name: 'new'
                             },
                             property: {
                               type: 'Identifier',
                               start: 30,
                               end: 36,
+                              range: [30, 36],
                               name: 'target'
                             }
                           }
@@ -1200,15 +1242,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'A'
             },
             superClass: null,
@@ -1216,11 +1261,13 @@ describe('Expressions - New target', () => {
               type: 'ClassBody',
               start: 8,
               end: 27,
+              range: [8, 27],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 9,
                   end: 26,
+                  range: [9, 26],
                   kind: 'method',
                   static: false,
                   computed: false,
@@ -1228,12 +1275,14 @@ describe('Expressions - New target', () => {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 10,
                     end: 26,
+                    range: [10, 26],
                     id: null,
                     generator: false,
                     async: false,
@@ -1242,26 +1291,31 @@ describe('Expressions - New target', () => {
                         type: 'AssignmentPattern',
                         start: 11,
                         end: 23,
+                        range: [11, 23],
                         left: {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          range: [11, 12],
                           name: 'x'
                         },
                         right: {
                           type: 'MetaProperty',
                           start: 13,
                           end: 23,
+                          range: [13, 23],
                           meta: {
                             type: 'Identifier',
                             start: 13,
                             end: 16,
+                            range: [13, 16],
                             name: 'new'
                           },
                           property: {
                             type: 'Identifier',
                             start: 17,
                             end: 23,
+                            range: [17, 23],
                             name: 'target'
                           }
                         }
@@ -1271,6 +1325,7 @@ describe('Expressions - New target', () => {
                       type: 'BlockStatement',
                       start: 24,
                       end: 26,
+                      range: [24, 26],
                       body: []
                     }
                   }
@@ -1289,15 +1344,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 31,
+        range: [0, 31],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 31,
+            range: [0, 31],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -1307,34 +1365,41 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 31,
+              range: [12, 31],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 29,
+                  range: [14, 29],
                   expression: {
                     type: 'ArrayExpression',
                     start: 14,
                     end: 29,
+                    range: [14, 29],
                     elements: [
                       {
                         type: 'SpreadElement',
                         start: 15,
                         end: 28,
+                        range: [15, 28],
                         argument: {
                           type: 'MetaProperty',
                           start: 18,
                           end: 28,
+                          range: [18, 28],
                           meta: {
                             type: 'Identifier',
                             start: 18,
                             end: 21,
+                            range: [18, 21],
                             name: 'new'
                           },
                           property: {
                             type: 'Identifier',
                             start: 22,
                             end: 28,
+                            range: [22, 28],
                             name: 'target'
                           }
                         }
@@ -1356,15 +1421,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 45,
+        range: [0, 45],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 45,
+            range: [0, 45],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -1374,31 +1442,37 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 45,
+              range: [12, 45],
               body: [
                 {
                   type: 'ClassDeclaration',
                   start: 14,
                   end: 43,
+                  range: [14, 43],
                   id: {
                     type: 'Identifier',
                     start: 20,
                     end: 21,
+                    range: [20, 21],
                     name: 'x'
                   },
                   superClass: {
                     type: 'MetaProperty',
                     start: 30,
                     end: 40,
+                    range: [30, 40],
                     meta: {
                       type: 'Identifier',
                       start: 30,
                       end: 33,
+                      range: [30, 33],
                       name: 'new'
                     },
                     property: {
                       type: 'Identifier',
                       start: 34,
                       end: 40,
+                      range: [34, 40],
                       name: 'target'
                     }
                   },
@@ -1406,6 +1480,7 @@ describe('Expressions - New target', () => {
                     type: 'ClassBody',
                     start: 41,
                     end: 43,
+                    range: [41, 43],
                     body: []
                   }
                 }
@@ -1423,15 +1498,18 @@ describe('Expressions - New target', () => {
         type: 'Program',
         start: 0,
         end: 35,
+        range: [0, 35],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 35,
+            range: [0, 35],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -1441,19 +1519,23 @@ describe('Expressions - New target', () => {
               type: 'BlockStatement',
               start: 12,
               end: 35,
+              range: [12, 35],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 33,
+                  range: [14, 33],
                   expression: {
                     type: 'CallExpression',
                     start: 14,
                     end: 33,
+                    range: [14, 33],
                     callee: {
                       type: 'Identifier',
                       start: 14,
                       end: 15,
+                      range: [14, 15],
                       name: 'x'
                     },
                     arguments: [
@@ -1461,11 +1543,13 @@ describe('Expressions - New target', () => {
                         type: 'ObjectExpression',
                         start: 16,
                         end: 32,
+                        range: [16, 32],
                         properties: [
                           {
                             type: 'Property',
                             start: 17,
                             end: 31,
+                            range: [17, 31],
                             method: false,
                             shorthand: false,
                             computed: true,
@@ -1473,16 +1557,19 @@ describe('Expressions - New target', () => {
                               type: 'MetaProperty',
                               start: 18,
                               end: 28,
+                              range: [18, 28],
                               meta: {
                                 type: 'Identifier',
                                 start: 18,
                                 end: 21,
+                                range: [18, 21],
                                 name: 'new'
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 22,
                                 end: 28,
+                                range: [22, 28],
                                 name: 'target'
                               }
                             },
@@ -1490,6 +1577,7 @@ describe('Expressions - New target', () => {
                               type: 'Identifier',
                               start: 30,
                               end: 31,
+                              range: [30, 31],
                               name: 'y'
                             },
                             kind: 'init'

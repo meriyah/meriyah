@@ -18,7 +18,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'x',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               operator: '=',
               right: {
@@ -29,37 +30,45 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 4,
-                    end: 5
+                    end: 5,
+                    range: [4, 5]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'b',
                     start: 8,
-                    end: 9
+                    end: 9,
+                    range: [8, 9]
                   },
                   operator: '>',
                   start: 4,
-                  end: 9
+                  end: 9,
+                  range: [4, 9]
                 },
                 right: {
                   type: 'Identifier',
                   name: 'c',
                   start: 21,
-                  end: 22
+                  end: 22,
+                  range: [21, 22]
                 },
                 operator: 'instanceof',
                 start: 4,
-                end: 22
+                end: 22,
+                range: [4, 22]
               },
               start: 0,
-              end: 22
+              end: 22,
+              range: [0, 22]
             },
             start: 0,
-            end: 22
+            end: 22,
+            range: [0, 22]
           }
         ],
         start: 0,
-        end: 22
+        end: 22,
+        range: [0, 22]
       }
     ],
     [
@@ -77,7 +86,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -86,7 +96,8 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 5,
-                    end: 6
+                    end: 6,
+                    range: [5, 6]
                   },
                   right: {
                     type: 'BinaryExpression',
@@ -94,32 +105,39 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'b',
                       start: 18,
-                      end: 19
+                      end: 19,
+                      range: [18, 19]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'c',
                       start: 22,
-                      end: 23
+                      end: 23,
+                      range: [22, 23]
                     },
                     operator: '+',
                     start: 18,
-                    end: 23
+                    end: 23,
+                    range: [18, 23]
                   },
                   operator: 'instanceof',
                   start: 5,
-                  end: 23
+                  end: 23,
+                  range: [5, 23]
                 }
               ],
               start: 0,
-              end: 25
+              end: 25,
+              range: [0, 25]
             },
             start: 0,
-            end: 25
+            end: 25,
+            range: [0, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ],
     [
@@ -137,7 +155,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -148,38 +167,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 5,
-                      end: 6
+                      end: 6,
+                      range: [5, 6]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 18,
-                      end: 19
+                      end: 19,
+                      range: [18, 19]
                     },
                     operator: 'instanceof',
                     start: 5,
-                    end: 19
+                    end: 19,
+                    range: [5, 19]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 22,
-                    end: 23
+                    end: 23,
+                    range: [22, 23]
                   },
                   operator: '>',
                   start: 5,
-                  end: 23
+                  end: 23,
+                  range: [5, 23]
                 }
               ],
               start: 0,
-              end: 25
+              end: 25,
+              range: [0, 25]
             },
             start: 0,
-            end: 25
+            end: 25,
+            range: [0, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ],
     [
@@ -197,7 +224,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -208,38 +236,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 5,
-                      end: 6
+                      end: 6,
+                      range: [5, 6]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 9,
-                      end: 10
+                      end: 10,
+                      range: [9, 10]
                     },
                     operator: '+',
                     start: 5,
-                    end: 10
+                    end: 10,
+                    range: [5, 10]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 22,
-                    end: 23
+                    end: 23,
+                    range: [22, 23]
                   },
                   operator: 'instanceof',
                   start: 5,
-                  end: 23
+                  end: 23,
+                  range: [5, 23]
                 }
               ],
               start: 0,
-              end: 25
+              end: 25,
+              range: [0, 25]
             },
             start: 0,
-            end: 25
+            end: 25,
+            range: [0, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ],
     [
@@ -257,7 +293,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -266,7 +303,8 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 5,
-                    end: 6
+                    end: 6,
+                    range: [5, 6]
                   },
                   right: {
                     type: 'BinaryExpression',
@@ -274,32 +312,39 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'b',
                       start: 9,
-                      end: 10
+                      end: 10,
+                      range: [9, 10]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'c',
                       start: 14,
-                      end: 15
+                      end: 15,
+                      range: [14, 15]
                     },
                     operator: '**',
                     start: 9,
-                    end: 15
+                    end: 15,
+                    range: [9, 15]
                   },
                   operator: '+',
                   start: 5,
-                  end: 15
+                  end: 15,
+                  range: [5, 15]
                 }
               ],
               start: 0,
-              end: 17
+              end: 17,
+              range: [0, 17]
             },
             start: 0,
-            end: 17
+            end: 17,
+            range: [0, 17]
           }
         ],
         start: 0,
-        end: 17
+        end: 17,
+        range: [0, 17]
       }
     ],
     [
@@ -317,7 +362,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -328,38 +374,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 5,
-                      end: 6
+                      end: 6,
+                      range: [5, 6]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 9,
-                      end: 10
+                      end: 10,
+                      range: [9, 10]
                     },
                     operator: '/',
                     start: 5,
-                    end: 10
+                    end: 10,
+                    range: [5, 10]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 13,
-                    end: 14
+                    end: 14,
+                    range: [13, 14]
                   },
                   operator: '+',
                   start: 5,
-                  end: 14
+                  end: 14,
+                  range: [5, 14]
                 }
               ],
               start: 0,
-              end: 16
+              end: 16,
+              range: [0, 16]
             },
             start: 0,
-            end: 16
+            end: 16,
+            range: [0, 16]
           }
         ],
         start: 0,
-        end: 16
+        end: 16,
+        range: [0, 16]
       }
     ],
     [
@@ -377,7 +431,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               arguments: [
                 {
@@ -388,38 +443,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 5,
-                      end: 6
+                      end: 6,
+                      range: [5, 6]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 9,
-                      end: 10
+                      end: 10,
+                      range: [9, 10]
                     },
                     operator: '>',
                     start: 5,
-                    end: 10
+                    end: 10,
+                    range: [5, 10]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 22,
-                    end: 23
+                    end: 23,
+                    range: [22, 23]
                   },
                   operator: 'instanceof',
                   start: 5,
-                  end: 23
+                  end: 23,
+                  range: [5, 23]
                 }
               ],
               start: 0,
-              end: 25
+              end: 25,
+              range: [0, 25]
             },
             start: 0,
-            end: 25
+            end: 25,
+            range: [0, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ],
     [
@@ -438,7 +501,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'x',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 {
                   type: 'BinaryExpression',
@@ -446,7 +510,8 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 3,
-                    end: 4
+                    end: 4,
+                    range: [3, 4]
                   },
                   right: {
                     type: 'BinaryExpression',
@@ -454,32 +519,39 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'b',
                       start: 16,
-                      end: 17
+                      end: 17,
+                      range: [16, 17]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'c',
                       start: 20,
-                      end: 21
+                      end: 21,
+                      range: [20, 21]
                     },
                     operator: '+',
                     start: 16,
-                    end: 21
+                    end: 21,
+                    range: [16, 21]
                   },
                   operator: 'instanceof',
                   start: 3,
-                  end: 21
+                  end: 21,
+                  range: [3, 21]
                 }
               ],
               start: 0,
-              end: 21
+              end: 21,
+              range: [0, 21]
             },
             start: 0,
-            end: 21
+            end: 21,
+            range: [0, 21]
           }
         ],
         start: 0,
-        end: 21
+        end: 21,
+        range: [0, 21]
       }
     ],
     [
@@ -498,7 +570,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'x',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 {
                   type: 'BinaryExpression',
@@ -508,38 +581,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 3,
-                      end: 4
+                      end: 4,
+                      range: [3, 4]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 8,
-                      end: 9
+                      end: 9,
+                      range: [8, 9]
                     },
                     operator: '**',
                     start: 3,
-                    end: 9
+                    end: 9,
+                    range: [3, 9]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 12,
-                    end: 13
+                    end: 13,
+                    range: [12, 13]
                   },
                   operator: '+',
                   start: 3,
-                  end: 13
+                  end: 13,
+                  range: [3, 13]
                 }
               ],
               start: 0,
-              end: 13
+              end: 13,
+              range: [0, 13]
             },
             start: 0,
-            end: 13
+            end: 13,
+            range: [0, 13]
           }
         ],
         start: 0,
-        end: 13
+        end: 13,
+        range: [0, 13]
       }
     ],
     [
@@ -558,7 +639,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'x',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 {
                   type: 'BinaryExpression',
@@ -568,38 +650,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 3,
-                      end: 4
+                      end: 4,
+                      range: [3, 4]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 7,
-                      end: 8
+                      end: 8,
+                      range: [7, 8]
                     },
                     operator: '+',
                     start: 3,
-                    end: 8
+                    end: 8,
+                    range: [3, 8]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 20,
-                    end: 21
+                    end: 21,
+                    range: [20, 21]
                   },
                   operator: 'instanceof',
                   start: 3,
-                  end: 21
+                  end: 21,
+                  range: [3, 21]
                 }
               ],
               start: 0,
-              end: 21
+              end: 21,
+              range: [0, 21]
             },
             start: 0,
-            end: 21
+            end: 21,
+            range: [0, 21]
           }
         ],
         start: 0,
-        end: 21
+        end: 21,
+        range: [0, 21]
       }
     ],
     [
@@ -618,7 +708,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'x',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 {
                   type: 'BinaryExpression',
@@ -626,7 +717,8 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 3,
-                    end: 4
+                    end: 4,
+                    range: [3, 4]
                   },
                   right: {
                     type: 'BinaryExpression',
@@ -634,32 +726,39 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'b',
                       start: 7,
-                      end: 8
+                      end: 8,
+                      range: [7, 8]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'c',
                       start: 12,
-                      end: 13
+                      end: 13,
+                      range: [12, 13]
                     },
                     operator: '**',
                     start: 7,
-                    end: 13
+                    end: 13,
+                    range: [7, 13]
                   },
                   operator: '+',
                   start: 3,
-                  end: 13
+                  end: 13,
+                  range: [3, 13]
                 }
               ],
               start: 0,
-              end: 13
+              end: 13,
+              range: [0, 13]
             },
             start: 0,
-            end: 13
+            end: 13,
+            range: [0, 13]
           }
         ],
         start: 0,
-        end: 13
+        end: 13,
+        range: [0, 13]
       }
     ],
     [
@@ -678,7 +777,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'x',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 {
                   type: 'BinaryExpression',
@@ -688,38 +788,46 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'a',
                       start: 3,
-                      end: 4
+                      end: 4,
+                      range: [3, 4]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'b',
                       start: 7,
-                      end: 8
+                      end: 8,
+                      range: [7, 8]
                     },
                     operator: '/',
                     start: 3,
-                    end: 8
+                    end: 8,
+                    range: [3, 8]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 11,
-                    end: 12
+                    end: 12,
+                    range: [11, 12]
                   },
                   operator: '+',
                   start: 3,
-                  end: 12
+                  end: 12,
+                  range: [3, 12]
                 }
               ],
               start: 0,
-              end: 12
+              end: 12,
+              range: [0, 12]
             },
             start: 0,
-            end: 12
+            end: 12,
+            range: [0, 12]
           }
         ],
         start: 0,
-        end: 12
+        end: 12,
+        range: [0, 12]
       }
     ],
     [
@@ -737,7 +845,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               computed: true,
               property: {
@@ -746,7 +855,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'a',
                   start: 5,
-                  end: 6
+                  end: 6,
+                  range: [5, 6]
                 },
                 right: {
                   type: 'BinaryExpression',
@@ -754,31 +864,38 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'b',
                     start: 9,
-                    end: 10
+                    end: 10,
+                    range: [9, 10]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 14,
-                    end: 15
+                    end: 15,
+                    range: [14, 15]
                   },
                   operator: '**',
                   start: 9,
-                  end: 15
+                  end: 15,
+                  range: [9, 15]
                 },
                 operator: '+',
                 start: 5,
-                end: 15
+                end: 15,
+                range: [5, 15]
               },
               start: 0,
-              end: 17
+              end: 17,
+              range: [0, 17]
             },
             start: 0,
-            end: 17
+            end: 17,
+            range: [0, 17]
           }
         ],
         start: 0,
-        end: 17
+        end: 17,
+        range: [0, 17]
       }
     ],
     [
@@ -796,7 +913,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 0,
-                end: 3
+                end: 3,
+                range: [0, 3]
               },
               computed: true,
               property: {
@@ -805,7 +923,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'a',
                   start: 5,
-                  end: 6
+                  end: 6,
+                  range: [5, 6]
                 },
                 right: {
                   type: 'BinaryExpression',
@@ -813,31 +932,38 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'b',
                     start: 9,
-                    end: 10
+                    end: 10,
+                    range: [9, 10]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'c',
                     start: 13,
-                    end: 14
+                    end: 14,
+                    range: [13, 14]
                   },
                   operator: '/',
                   start: 9,
-                  end: 14
+                  end: 14,
+                  range: [9, 14]
                 },
                 operator: '+',
                 start: 5,
-                end: 14
+                end: 14,
+                range: [5, 14]
               },
               start: 0,
-              end: 16
+              end: 16,
+              range: [0, 16]
             },
             start: 0,
-            end: 16
+            end: 16,
+            range: [0, 16]
           }
         ],
         start: 0,
-        end: 16
+        end: 16,
+        range: [0, 16]
       }
     ],
     [
@@ -859,44 +985,53 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 1,
-                    end: 2
+                    end: 2,
+                    range: [1, 2]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'b',
                     start: 5,
-                    end: 6
+                    end: 6,
+                    range: [5, 6]
                   },
                   operator: '*',
                   start: 1,
-                  end: 6
+                  end: 6,
+                  range: [1, 6]
                 },
                 right: {
                   type: 'Identifier',
                   name: 'c',
                   start: 9,
-                  end: 10
+                  end: 10,
+                  range: [9, 10]
                 },
                 operator: '+',
                 start: 1,
-                end: 10
+                end: 10,
+                range: [1, 10]
               },
               right: {
                 type: 'Identifier',
                 name: 'd',
                 start: 14,
-                end: 15
+                end: 15,
+                range: [14, 15]
               },
               operator: '*',
               start: 0,
-              end: 15
+              end: 15,
+              range: [0, 15]
             },
             start: 0,
-            end: 15
+            end: 15,
+            range: [0, 15]
           }
         ],
         start: 0,
-        end: 15
+        end: 15,
+        range: [0, 15]
       }
     ],
     [
@@ -914,7 +1049,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'a',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               operator: '|=',
               right: {
@@ -923,7 +1059,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'b',
                   start: 3,
-                  end: 4
+                  end: 4,
+                  range: [3, 4]
                 },
                 operator: '^=',
                 right: {
@@ -932,7 +1069,8 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'c',
                     start: 6,
-                    end: 7
+                    end: 7,
+                    range: [6, 7]
                   },
                   operator: '&=',
                   right: {
@@ -941,7 +1079,8 @@ describe('Miscellaneous - Precedence', () => {
                       type: 'Identifier',
                       name: 'd',
                       start: 9,
-                      end: 10
+                      end: 10,
+                      range: [9, 10]
                     },
                     operator: '>>>=',
                     right: {
@@ -950,7 +1089,8 @@ describe('Miscellaneous - Precedence', () => {
                         type: 'Identifier',
                         name: 'e',
                         start: 14,
-                        end: 15
+                        end: 15,
+                        range: [14, 15]
                       },
                       operator: '>>=',
                       right: {
@@ -959,7 +1099,8 @@ describe('Miscellaneous - Precedence', () => {
                           type: 'Identifier',
                           name: 'f',
                           start: 18,
-                          end: 19
+                          end: 19,
+                          range: [18, 19]
                         },
                         operator: '<<=',
                         right: {
@@ -968,7 +1109,8 @@ describe('Miscellaneous - Precedence', () => {
                             type: 'Identifier',
                             name: 'g',
                             start: 22,
-                            end: 23
+                            end: 23,
+                            range: [22, 23]
                           },
                           operator: '%=',
                           right: {
@@ -977,7 +1119,8 @@ describe('Miscellaneous - Precedence', () => {
                               type: 'Identifier',
                               name: 'h',
                               start: 25,
-                              end: 26
+                              end: 26,
+                              range: [25, 26]
                             },
                             operator: '/=',
                             right: {
@@ -986,7 +1129,8 @@ describe('Miscellaneous - Precedence', () => {
                                 type: 'Identifier',
                                 name: 'i',
                                 start: 28,
-                                end: 29
+                                end: 29,
+                                range: [28, 29]
                               },
                               operator: '*=',
                               right: {
@@ -995,7 +1139,8 @@ describe('Miscellaneous - Precedence', () => {
                                   type: 'Identifier',
                                   name: 'j',
                                   start: 31,
-                                  end: 32
+                                  end: 32,
+                                  range: [31, 32]
                                 },
                                 operator: '**=',
                                 right: {
@@ -1004,7 +1149,8 @@ describe('Miscellaneous - Precedence', () => {
                                     type: 'Identifier',
                                     name: 'k',
                                     start: 35,
-                                    end: 36
+                                    end: 36,
+                                    range: [35, 36]
                                   },
                                   operator: '-=',
                                   right: {
@@ -1013,7 +1159,8 @@ describe('Miscellaneous - Precedence', () => {
                                       type: 'Identifier',
                                       name: 'l',
                                       start: 38,
-                                      end: 39
+                                      end: 39,
+                                      range: [38, 39]
                                     },
                                     operator: '+=',
                                     right: {
@@ -1022,60 +1169,77 @@ describe('Miscellaneous - Precedence', () => {
                                         type: 'Identifier',
                                         name: 'm',
                                         start: 41,
-                                        end: 42
+                                        end: 42,
+                                        range: [41, 42]
                                       },
                                       operator: '=',
                                       right: {
                                         type: 'Identifier',
                                         name: 'n',
                                         start: 43,
-                                        end: 44
+                                        end: 44,
+                                        range: [43, 44]
                                       },
                                       start: 41,
-                                      end: 44
+                                      end: 44,
+                                      range: [41, 44]
                                     },
                                     start: 38,
-                                    end: 44
+                                    end: 44,
+                                    range: [38, 44]
                                   },
                                   start: 35,
-                                  end: 44
+                                  end: 44,
+                                  range: [35, 44]
                                 },
                                 start: 31,
-                                end: 44
+                                end: 44,
+                                range: [31, 44]
                               },
                               start: 28,
-                              end: 44
+                              end: 44,
+                              range: [28, 44]
                             },
                             start: 25,
-                            end: 44
+                            end: 44,
+                            range: [25, 44]
                           },
                           start: 22,
-                          end: 44
+                          end: 44,
+                          range: [22, 44]
                         },
                         start: 18,
-                        end: 44
+                        end: 44,
+                        range: [18, 44]
                       },
                       start: 14,
-                      end: 44
+                      end: 44,
+                      range: [14, 44]
                     },
                     start: 9,
-                    end: 44
+                    end: 44,
+                    range: [9, 44]
                   },
                   start: 6,
-                  end: 44
+                  end: 44,
+                  range: [6, 44]
                 },
                 start: 3,
-                end: 44
+                end: 44,
+                range: [3, 44]
               },
               start: 0,
-              end: 44
+              end: 44,
+              range: [0, 44]
             },
             start: 0,
-            end: 44
+            end: 44,
+            range: [0, 44]
           }
         ],
         start: 0,
-        end: 44
+        end: 44,
+        range: [0, 44]
       }
     ],
     [
@@ -2261,13 +2425,15 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'a',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               consequent: {
                 type: 'Identifier',
                 name: 'b',
                 start: 4,
-                end: 5
+                end: 5,
+                range: [4, 5]
               },
               alternate: {
                 type: 'ConditionalExpression',
@@ -2275,13 +2441,15 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'c',
                   start: 8,
-                  end: 9
+                  end: 9,
+                  range: [8, 9]
                 },
                 consequent: {
                   type: 'Identifier',
                   name: 'd',
                   start: 12,
-                  end: 13
+                  end: 13,
+                  range: [12, 13]
                 },
                 alternate: {
                   type: 'BinaryExpression',
@@ -2289,30 +2457,37 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'e',
                     start: 16,
-                    end: 17
+                    end: 17,
+                    range: [16, 17]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'x',
                     start: 20,
-                    end: 21
+                    end: 21,
+                    range: [20, 21]
                   },
                   operator: '*',
                   start: 16,
-                  end: 21
+                  end: 21,
+                  range: [16, 21]
                 },
                 start: 8,
-                end: 21
+                end: 21,
+                range: [8, 21]
               },
               start: 0,
-              end: 21
+              end: 21,
+              range: [0, 21]
             },
             start: 0,
-            end: 21
+            end: 21,
+            range: [0, 21]
           }
         ],
         start: 0,
-        end: 21
+        end: 21,
+        range: [0, 21]
       }
     ],
     [
@@ -2330,13 +2505,15 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'a',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               consequent: {
                 type: 'Identifier',
                 name: 'b',
                 start: 4,
-                end: 5
+                end: 5,
+                range: [4, 5]
               },
               alternate: {
                 type: 'ConditionalExpression',
@@ -2344,13 +2521,15 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'c',
                   start: 8,
-                  end: 9
+                  end: 9,
+                  range: [8, 9]
                 },
                 consequent: {
                   type: 'Identifier',
                   name: 'd',
                   start: 12,
-                  end: 13
+                  end: 13,
+                  range: [12, 13]
                 },
                 alternate: {
                   type: 'BinaryExpression',
@@ -2358,30 +2537,37 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'e',
                     start: 16,
-                    end: 17
+                    end: 17,
+                    range: [16, 17]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'x',
                     start: 21,
-                    end: 22
+                    end: 22,
+                    range: [21, 22]
                   },
                   operator: '**',
                   start: 16,
-                  end: 22
+                  end: 22,
+                  range: [16, 22]
                 },
                 start: 8,
-                end: 22
+                end: 22,
+                range: [8, 22]
               },
               start: 0,
-              end: 22
+              end: 22,
+              range: [0, 22]
             },
             start: 0,
-            end: 22
+            end: 22,
+            range: [0, 22]
           }
         ],
         start: 0,
-        end: 22
+        end: 22,
+        range: [0, 22]
       }
     ],
     [
@@ -2440,17 +2626,20 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'a',
                   start: 0,
-                  end: 1
+                  end: 1,
+                  range: [0, 1]
                 },
                 right: {
                   type: 'Identifier',
                   name: 'x',
                   start: 5,
-                  end: 6
+                  end: 6,
+                  range: [5, 6]
                 },
                 operator: '**',
                 start: 0,
-                end: 6
+                end: 6,
+                range: [0, 6]
               },
               consequent: {
                 type: 'ConditionalExpression',
@@ -2458,38 +2647,46 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'b',
                   start: 9,
-                  end: 10
+                  end: 10,
+                  range: [9, 10]
                 },
                 consequent: {
                   type: 'Identifier',
                   name: 'c',
                   start: 13,
-                  end: 14
+                  end: 14,
+                  range: [13, 14]
                 },
                 alternate: {
                   type: 'Identifier',
                   name: 'd',
                   start: 17,
-                  end: 18
+                  end: 18,
+                  range: [17, 18]
                 },
                 start: 9,
-                end: 18
+                end: 18,
+                range: [9, 18]
               },
               alternate: {
                 type: 'Identifier',
                 name: 'e',
                 start: 21,
-                end: 22
+                end: 22,
+                range: [21, 22]
               },
               start: 0,
-              end: 22
+              end: 22,
+              range: [0, 22]
             },
             start: 0,
-            end: 22
+            end: 22,
+            range: [0, 22]
           }
         ],
         start: 0,
-        end: 22
+        end: 22,
+        range: [0, 22]
       }
     ],
     [
@@ -2540,7 +2737,8 @@ describe('Miscellaneous - Precedence', () => {
                 type: 'Identifier',
                 name: 'a',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               consequent: {
                 type: 'ConditionalExpression',
@@ -2548,7 +2746,8 @@ describe('Miscellaneous - Precedence', () => {
                   type: 'Identifier',
                   name: 'b',
                   start: 4,
-                  end: 5
+                  end: 5,
+                  range: [4, 5]
                 },
                 consequent: {
                   type: 'BinaryExpression',
@@ -2556,42 +2755,51 @@ describe('Miscellaneous - Precedence', () => {
                     type: 'Identifier',
                     name: 'c',
                     start: 8,
-                    end: 9
+                    end: 9,
+                    range: [8, 9]
                   },
                   right: {
                     type: 'Identifier',
                     name: 'x',
                     start: 13,
-                    end: 14
+                    end: 14,
+                    range: [13, 14]
                   },
                   operator: '**',
                   start: 8,
-                  end: 14
+                  end: 14,
+                  range: [8, 14]
                 },
                 alternate: {
                   type: 'Identifier',
                   name: 'd',
                   start: 17,
-                  end: 18
+                  end: 18,
+                  range: [17, 18]
                 },
                 start: 4,
-                end: 18
+                end: 18,
+                range: [4, 18]
               },
               alternate: {
                 type: 'Identifier',
                 name: 'e',
                 start: 21,
-                end: 22
+                end: 22,
+                range: [21, 22]
               },
               start: 0,
-              end: 22
+              end: 22,
+              range: [0, 22]
             },
             start: 0,
-            end: 22
+            end: 22,
+            range: [0, 22]
           }
         ],
         start: 0,
-        end: 22
+        end: 22,
+        range: [0, 22]
       }
     ],
     [

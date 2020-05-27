@@ -64,7 +64,7 @@ This is the available options:
   // The flag to enable stage 3 support (ESNext)
   next: false;
 
-  // The flag to enable start and end offsets to each node
+  // The flag to enable start, end offsets and range: [start, end] to each node
   ranges: false;
 
   // Enable web compability

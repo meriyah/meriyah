@@ -507,6 +507,7 @@ export function finishNode<T extends Node>(
   if (context & Context.OptionsRanges) {
     node.start = start;
     node.end = parser.startPos;
+    node.range = [start, parser.startPos];
   }
 
   if (context & Context.OptionsLoc) {
@@ -775,6 +776,7 @@ export function pushComment(context: Context, array: any[]): any {
     if (context & Context.OptionsRanges) {
       comment.start = start;
       comment.end = end;
+      comment.range = [start, end];
     }
     array.push(comment);
   };

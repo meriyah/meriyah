@@ -36,31 +36,38 @@ describe('Expressions - Logical', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 23,
+              range: [0, 23],
               left: {
                 type: 'BinaryExpression',
                 start: 0,
                 end: 17,
+                range: [0, 17],
                 left: {
                   type: 'BinaryExpression',
                   start: 0,
                   end: 11,
+                  range: [0, 11],
                   left: {
                     type: 'BinaryExpression',
                     start: 0,
                     end: 6,
+                    range: [0, 6],
                     left: {
                       type: 'Identifier',
                       start: 0,
                       end: 1,
+                      range: [0, 1],
                       name: 'a'
                     },
                     operator: '==',
@@ -68,6 +75,7 @@ describe('Expressions - Logical', () => {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       name: 'b'
                     }
                   },
@@ -76,6 +84,7 @@ describe('Expressions - Logical', () => {
                     type: 'Identifier',
                     start: 10,
                     end: 11,
+                    range: [10, 11],
                     name: 'c'
                   }
                 },
@@ -84,6 +93,7 @@ describe('Expressions - Logical', () => {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'd'
                 }
               },
@@ -92,6 +102,7 @@ describe('Expressions - Logical', () => {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
+                range: [22, 23],
                 name: 'e'
               }
             }

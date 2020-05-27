@@ -622,15 +622,18 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 41,
+        range: [0, 41],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 41,
+            range: [0, 41],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'C'
             },
             superClass: null,
@@ -638,11 +641,13 @@ describe('Expressions - Super', () => {
               type: 'ClassBody',
               start: 8,
               end: 41,
+              range: [8, 41],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 39,
+                  range: [10, 39],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -650,12 +655,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 10,
                     end: 21,
+                    range: [10, 21],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 39,
+                    range: [21, 39],
                     id: null,
                     generator: false,
                     async: false,
@@ -664,28 +671,34 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 24,
                       end: 39,
+                      range: [24, 39],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 25,
                           end: 37,
+                          range: [25, 37],
                           expression: {
                             type: 'NewExpression',
                             start: 25,
                             end: 36,
+                            range: [25, 36],
                             callee: {
                               type: 'MemberExpression',
                               start: 29,
                               end: 36,
+                              range: [29, 36],
                               object: {
                                 type: 'Super',
                                 start: 29,
-                                end: 34
+                                end: 34,
+                                range: [29, 34]
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 35,
                                 end: 36,
+                                range: [35, 36],
                                 name: 'x'
                               },
                               computed: false
@@ -711,27 +724,32 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 21,
+            range: [0, 21],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 21,
+              range: [18, 21],
               body: []
             }
           }
@@ -746,32 +764,38 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 27,
+              range: [18, 27],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 20,
                   end: 25,
+                  range: [20, 25],
                   kind: 'method',
                   static: false,
                   computed: false,
@@ -779,12 +803,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 21,
+                    range: [20, 21],
                     name: 'f'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 25,
+                    range: [21, 25],
                     id: null,
                     generator: false,
                     async: false,
@@ -793,6 +819,7 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 23,
                       end: 25,
+                      range: [23, 25],
                       body: []
                     }
                   }
@@ -869,15 +896,18 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 38,
+        range: [0, 38],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 38,
+            range: [0, 38],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: null,
@@ -885,11 +915,13 @@ describe('Expressions - Super', () => {
               type: 'ClassBody',
               start: 8,
               end: 38,
+              range: [8, 38],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 37,
+                  range: [10, 37],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -897,12 +929,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 10,
                     end: 21,
+                    range: [10, 21],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 37,
+                    range: [21, 37],
                     id: null,
                     generator: false,
                     async: false,
@@ -911,24 +945,29 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 23,
                       end: 37,
+                      range: [23, 37],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 25,
                           end: 35,
+                          range: [25, 35],
                           expression: {
                             type: 'MemberExpression',
                             start: 25,
                             end: 34,
+                            range: [25, 34],
                             object: {
                               type: 'Super',
                               start: 25,
-                              end: 30
+                              end: 30,
+                              range: [25, 30]
                             },
                             property: {
                               type: 'Identifier',
                               start: 31,
                               end: 34,
+                              range: [31, 34],
                               name: 'foo'
                             },
                             computed: false
@@ -1076,31 +1115,37 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 24,
+        range: [0, 24],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 24,
+            range: [0, 24],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 24,
+              range: [0, 24],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'x'
               },
               right: {
                 type: 'ObjectExpression',
                 start: 2,
                 end: 24,
+                range: [2, 24],
                 properties: [
                   {
                     type: 'Property',
                     start: 4,
                     end: 23,
+                    range: [4, 23],
                     method: true,
                     shorthand: false,
                     computed: false,
@@ -1108,6 +1153,7 @@ describe('Expressions - Super', () => {
                       type: 'Identifier',
                       start: 4,
                       end: 7,
+                      range: [4, 7],
                       name: 'foo'
                     },
                     kind: 'init',
@@ -1115,6 +1161,7 @@ describe('Expressions - Super', () => {
                       type: 'FunctionExpression',
                       start: 7,
                       end: 23,
+                      range: [7, 23],
                       id: null,
                       generator: false,
                       async: false,
@@ -1123,24 +1170,29 @@ describe('Expressions - Super', () => {
                         type: 'BlockStatement',
                         start: 9,
                         end: 23,
+                        range: [9, 23],
                         body: [
                           {
                             type: 'ExpressionStatement',
                             start: 11,
                             end: 21,
+                            range: [11, 21],
                             expression: {
                               type: 'MemberExpression',
                               start: 11,
                               end: 20,
+                              range: [11, 20],
                               object: {
                                 type: 'Super',
                                 start: 11,
-                                end: 16
+                                end: 16,
+                                range: [11, 16]
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 17,
                                 end: 20,
+                                range: [17, 20],
                                 name: 'foo'
                               },
                               computed: false
@@ -1233,15 +1285,18 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 39,
+        range: [0, 39],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 39,
+            range: [0, 39],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: null,
@@ -1249,11 +1304,13 @@ describe('Expressions - Super', () => {
               type: 'ClassBody',
               start: 8,
               end: 39,
+              range: [8, 39],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 38,
+                  range: [10, 38],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -1261,12 +1318,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 10,
                     end: 21,
+                    range: [10, 21],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 38,
+                    range: [21, 38],
                     id: null,
                     generator: false,
                     async: false,
@@ -1275,24 +1334,29 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 23,
                       end: 38,
+                      range: [23, 38],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 25,
                           end: 36,
+                          range: [25, 36],
                           expression: {
                             type: 'MemberExpression',
                             start: 25,
                             end: 35,
+                            range: [25, 35],
                             object: {
                               type: 'Super',
                               start: 25,
-                              end: 30
+                              end: 30,
+                              range: [25, 30]
                             },
                             property: {
                               type: 'Identifier',
                               start: 31,
                               end: 34,
+                              range: [31, 34],
                               name: 'foo'
                             },
                             computed: true
@@ -2071,32 +2135,38 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 64,
+        range: [0, 64],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 64,
+            range: [0, 64],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 64,
+              range: [18, 64],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 20,
                   end: 63,
+                  range: [20, 63],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -2104,12 +2174,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 31,
+                    range: [20, 31],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 31,
                     end: 63,
+                    range: [31, 63],
                     id: null,
                     generator: false,
                     async: false,
@@ -2118,15 +2190,18 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 33,
                       end: 63,
+                      range: [33, 63],
                       body: [
                         {
                           type: 'ReturnStatement',
                           start: 35,
                           end: 61,
+                          range: [35, 61],
                           argument: {
                             type: 'ArrowFunctionExpression',
                             start: 42,
                             end: 60,
+                            range: [42, 60],
                             expression: true,
                             async: false,
                             params: [
@@ -2134,25 +2209,30 @@ describe('Expressions - Super', () => {
                                 type: 'AssignmentPattern',
                                 start: 43,
                                 end: 54,
+                                range: [43, 54],
                                 left: {
                                   type: 'Identifier',
                                   start: 43,
                                   end: 44,
+                                  range: [43, 44],
                                   name: 'a'
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   start: 45,
                                   end: 54,
+                                  range: [45, 54],
                                   object: {
                                     type: 'Super',
                                     start: 45,
-                                    end: 50
+                                    end: 50,
+                                    range: [45, 50]
                                   },
                                   property: {
                                     type: 'Identifier',
                                     start: 51,
                                     end: 54,
+                                    range: [51, 54],
                                     name: 'foo'
                                   },
                                   computed: false
@@ -2163,6 +2243,7 @@ describe('Expressions - Super', () => {
                               type: 'Identifier',
                               start: 59,
                               end: 60,
+                              range: [59, 60],
                               name: 'a'
                             }
                           }
@@ -2185,32 +2266,38 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 67,
+        range: [0, 67],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 67,
+            range: [0, 67],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 67,
+              range: [18, 67],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 20,
                   end: 66,
+                  range: [20, 66],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -2218,12 +2305,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 31,
+                    range: [20, 31],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 31,
                     end: 66,
+                    range: [31, 66],
                     id: null,
                     generator: false,
                     async: false,
@@ -2232,15 +2321,18 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 33,
                       end: 66,
+                      range: [33, 66],
                       body: [
                         {
                           type: 'ReturnStatement',
                           start: 35,
                           end: 64,
+                          range: [35, 64],
                           argument: {
                             type: 'ArrowFunctionExpression',
                             start: 42,
                             end: 63,
+                            range: [42, 63],
                             expression: true,
                             async: false,
                             params: [],
@@ -2248,6 +2340,7 @@ describe('Expressions - Super', () => {
                               type: 'ArrowFunctionExpression',
                               start: 48,
                               end: 63,
+                              range: [48, 63],
                               expression: true,
                               async: false,
                               params: [],
@@ -2255,15 +2348,18 @@ describe('Expressions - Super', () => {
                                 type: 'MemberExpression',
                                 start: 54,
                                 end: 63,
+                                range: [54, 63],
                                 object: {
                                   type: 'Super',
                                   start: 54,
-                                  end: 59
+                                  end: 59,
+                                  range: [54, 59]
                                 },
                                 property: {
                                   type: 'Identifier',
                                   start: 60,
                                   end: 63,
+                                  range: [60, 63],
                                   name: 'foo'
                                 },
                                 computed: false
@@ -2932,32 +3028,38 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 59,
+        range: [0, 59],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 59,
+            range: [0, 59],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 59,
+              range: [18, 59],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 20,
                   end: 57,
+                  range: [20, 57],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -2965,12 +3067,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 31,
+                    range: [20, 31],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 31,
                     end: 57,
+                    range: [31, 57],
                     id: null,
                     generator: false,
                     async: false,
@@ -2979,26 +3083,31 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 34,
                       end: 57,
+                      range: [34, 57],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 36,
                           end: 46,
+                          range: [36, 46],
                           expression: {
                             type: 'CallExpression',
                             start: 36,
                             end: 45,
+                            range: [36, 45],
                             callee: {
                               type: 'Identifier',
                               start: 36,
                               end: 39,
+                              range: [36, 39],
                               name: 'log'
                             },
                             arguments: [
                               {
                                 type: 'ThisExpression',
                                 start: 40,
-                                end: 44
+                                end: 44,
+                                range: [40, 44]
                               }
                             ]
                           }
@@ -3007,14 +3116,17 @@ describe('Expressions - Super', () => {
                           type: 'ExpressionStatement',
                           start: 47,
                           end: 55,
+                          range: [47, 55],
                           expression: {
                             type: 'CallExpression',
                             start: 47,
                             end: 54,
+                            range: [47, 54],
                             callee: {
                               type: 'Super',
                               start: 47,
-                              end: 52
+                              end: 52,
+                              range: [47, 52]
                             },
                             arguments: []
                           }
@@ -3321,32 +3433,38 @@ describe('Expressions - Super', () => {
         type: 'Program',
         start: 0,
         end: 57,
+        range: [0, 57],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 57,
+            range: [0, 57],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'y'
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 57,
+              range: [18, 57],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 20,
                   end: 55,
+                  range: [20, 55],
                   kind: 'constructor',
                   static: false,
                   computed: false,
@@ -3354,12 +3472,14 @@ describe('Expressions - Super', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 31,
+                    range: [20, 31],
                     name: 'constructor'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 31,
                     end: 55,
+                    range: [31, 55],
                     id: null,
                     generator: false,
                     async: false,
@@ -3368,19 +3488,23 @@ describe('Expressions - Super', () => {
                       type: 'BlockStatement',
                       start: 34,
                       end: 55,
+                      range: [34, 55],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 36,
                           end: 44,
+                          range: [36, 44],
                           expression: {
                             type: 'CallExpression',
                             start: 36,
                             end: 43,
+                            range: [36, 43],
                             callee: {
                               type: 'Super',
                               start: 36,
-                              end: 41
+                              end: 41,
+                              range: [36, 41]
                             },
                             arguments: []
                           }
@@ -3389,14 +3513,17 @@ describe('Expressions - Super', () => {
                           type: 'ExpressionStatement',
                           start: 45,
                           end: 53,
+                          range: [45, 53],
                           expression: {
                             type: 'CallExpression',
                             start: 45,
                             end: 52,
+                            range: [45, 52],
                             callee: {
                               type: 'Super',
                               start: 45,
-                              end: 50
+                              end: 50,
+                              range: [45, 50]
                             },
                             arguments: []
                           }

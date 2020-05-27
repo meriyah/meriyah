@@ -101,7 +101,8 @@ describe('Expressions - Member', () => {
                 type: 'Identifier',
                 name: 'x',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               computed: true,
               property: {
@@ -111,27 +112,33 @@ describe('Expressions - Member', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 2,
-                    end: 3
+                    end: 3,
+                    range: [2, 3]
                   },
                   {
                     type: 'Identifier',
                     name: 'b',
                     start: 5,
-                    end: 6
+                    end: 6,
+                    range: [5, 6]
                   }
                 ],
                 start: 2,
-                end: 6
+                end: 6,
+                range: [2, 6]
               },
               start: 0,
-              end: 7
+              end: 7,
+              range: [0, 7]
             },
             start: 0,
-            end: 7
+            end: 7,
+            range: [0, 7]
           }
         ],
         start: 0,
-        end: 7
+        end: 7,
+        range: [0, 7]
       }
     ],
     [
@@ -154,7 +161,8 @@ describe('Expressions - Member', () => {
                       type: 'Literal',
                       value: 2,
                       start: 1,
-                      end: 2
+                      end: 2,
+                      range: [1, 2]
                     },
                     computed: true,
                     property: {
@@ -164,47 +172,57 @@ describe('Expressions - Member', () => {
                           type: 'Identifier',
                           name: 'x',
                           start: 3,
-                          end: 4
+                          end: 4,
+                          range: [3, 4]
                         },
                         {
                           type: 'Identifier',
                           name: 'x',
                           start: 5,
-                          end: 6
+                          end: 6,
+                          range: [5, 6]
                         }
                       ],
                       start: 3,
-                      end: 6
+                      end: 6,
+                      range: [3, 6]
                     },
                     start: 1,
-                    end: 7
+                    end: 7,
+                    range: [1, 7]
                   },
                   {
                     type: 'Identifier',
                     name: 'x',
                     start: 8,
-                    end: 9
+                    end: 9,
+                    range: [8, 9]
                   }
                 ],
                 start: 1,
-                end: 9
+                end: 9,
+                range: [1, 9]
               },
               right: {
                 type: 'Identifier',
                 name: 'x',
                 start: 11,
-                end: 12
+                end: 12,
+                range: [11, 12]
               },
               operator: '>',
               start: 0,
-              end: 12
+              end: 12,
+              range: [0, 12]
             },
             start: 0,
-            end: 12
+            end: 12,
+            range: [0, 12]
           }
         ],
         start: 0,
-        end: 12
+        end: 12,
+        range: [0, 12]
       }
     ],
     [
@@ -239,29 +257,35 @@ describe('Expressions - Member', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'LogicalExpression',
               start: 1,
               end: 15,
+              range: [1, 15],
               left: {
                 type: 'MemberExpression',
                 start: 1,
                 end: 5,
+                range: [1, 5],
                 object: {
                   type: 'Identifier',
                   start: 1,
                   end: 2,
+                  range: [1, 2],
                   name: 'a'
                 },
                 property: {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
+                  range: [3, 4],
                   name: 'b'
                 },
                 computed: true
@@ -271,21 +295,25 @@ describe('Expressions - Member', () => {
                 type: 'AssignmentExpression',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 operator: '=',
                 left: {
                   type: 'MemberExpression',
                   start: 8,
                   end: 12,
+                  range: [8, 12],
                   object: {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
+                    range: [8, 9],
                     name: 'c'
                   },
                   property: {
                     type: 'Identifier',
                     start: 10,
                     end: 11,
+                    range: [10, 11],
                     name: 'd'
                   },
                   computed: true
@@ -294,6 +322,7 @@ describe('Expressions - Member', () => {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'e'
                 }
               }
@@ -359,33 +388,40 @@ describe('Expressions - Member', () => {
         type: 'Program',
         start: 0,
         end: 8,
+        range: [0, 8],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 8,
+            range: [0, 8],
             expression: {
               type: 'MemberExpression',
               start: 0,
               end: 8,
+              range: [0, 8],
               object: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 object: {
                   type: 'MemberExpression',
                   start: 0,
                   end: 3,
+                  range: [0, 3],
                   object: {
                     type: 'Identifier',
                     start: 0,
                     end: 1,
+                    range: [0, 1],
                     name: 'a'
                   },
                   property: {
                     type: 'Identifier',
                     start: 2,
                     end: 3,
+                    range: [2, 3],
                     name: '$'
                   },
                   computed: false
@@ -394,6 +430,7 @@ describe('Expressions - Member', () => {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: '_'
                 },
                 computed: false
@@ -402,6 +439,7 @@ describe('Expressions - Member', () => {
                 type: 'Identifier',
                 start: 6,
                 end: 8,
+                range: [6, 8],
                 name: 'B0'
               },
               computed: false
@@ -443,23 +481,28 @@ describe('Expressions - Member', () => {
         type: 'Program',
         start: 0,
         end: 5,
+        range: [0, 5],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 5,
+            range: [0, 5],
             expression: {
               type: 'MemberExpression',
               start: 0,
               end: 5,
+              range: [0, 5],
               object: {
                 type: 'CallExpression',
                 start: 0,
                 end: 3,
+                range: [0, 3],
                 callee: {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'a'
                 },
                 arguments: []
@@ -468,6 +511,7 @@ describe('Expressions - Member', () => {
                 type: 'Identifier',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 name: 'b'
               },
               computed: false
@@ -551,29 +595,35 @@ describe('Expressions - Member', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'LogicalExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               left: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 object: {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'a'
                 },
                 property: {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
+                  range: [2, 3],
                   name: 'b'
                 },
                 computed: true
@@ -583,21 +633,25 @@ describe('Expressions - Member', () => {
                 type: 'AssignmentExpression',
                 start: 7,
                 end: 13,
+                range: [7, 13],
                 operator: '=',
                 left: {
                   type: 'MemberExpression',
                   start: 7,
                   end: 11,
+                  range: [7, 11],
                   object: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
+                    range: [7, 8],
                     name: 'c'
                   },
                   property: {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'd'
                   },
                   computed: true
@@ -606,6 +660,7 @@ describe('Expressions - Member', () => {
                   type: 'Identifier',
                   start: 12,
                   end: 13,
+                  range: [12, 13],
                   name: 'e'
                 }
               }

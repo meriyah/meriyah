@@ -98,34 +98,41 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 22,
+              range: [0, 22],
               operator: '/=',
               left: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 12,
+                range: [0, 12],
                 object: {
                   type: 'Identifier',
                   start: 0,
                   end: 4,
+                  range: [0, 4],
                   name: 'base'
                 },
                 property: {
                   type: 'CallExpression',
                   start: 5,
                   end: 11,
+                  range: [5, 11],
                   callee: {
                     type: 'Identifier',
                     start: 5,
                     end: 9,
+                    range: [5, 9],
                     name: 'prop'
                   },
                   arguments: []
@@ -136,10 +143,12 @@ describe('Expressions - Compound assignment', () => {
                 type: 'CallExpression',
                 start: 16,
                 end: 22,
+                range: [16, 22],
                 callee: {
                   type: 'Identifier',
                   start: 16,
                   end: 20,
+                  range: [16, 20],
                   name: 'expr'
                 },
                 arguments: []
@@ -157,19 +166,23 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'LogicalExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               left: {
                 type: 'Literal',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 value: null
               },
               operator: '&&',
@@ -177,17 +190,20 @@ describe('Expressions - Compound assignment', () => {
                 type: 'AssignmentExpression',
                 start: 9,
                 end: 18,
+                range: [9, 18],
                 operator: '+=',
                 left: {
                   type: 'Identifier',
                   start: 9,
                   end: 10,
+                  range: [9, 10],
                   name: 'x'
                 },
                 right: {
                   type: 'Literal',
                   start: 14,
                   end: 18,
+                  range: [14, 18],
                   value: null
                 }
               }
@@ -204,37 +220,44 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 2,
+                range: [0, 2],
                 name: 'y1'
               },
               right: {
                 type: 'AssignmentExpression',
                 start: 6,
                 end: 12,
+                range: [6, 12],
                 operator: '%=',
                 left: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'y'
                 },
                 right: {
                   type: 'Literal',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   value: 2
                 }
               }
@@ -284,30 +307,36 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 21,
+            range: [0, 21],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 20,
+              range: [0, 20],
               operator: '^=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'x'
               },
               right: {
                 type: 'NewExpression',
                 start: 5,
                 end: 20,
+                range: [5, 20],
                 callee: {
                   type: 'Identifier',
                   start: 9,
                   end: 15,
+                  range: [9, 15],
                   name: 'String'
                 },
                 arguments: [
@@ -315,6 +344,7 @@ describe('Expressions - Compound assignment', () => {
                     type: 'Literal',
                     start: 16,
                     end: 19,
+                    range: [16, 19],
                     value: '1'
                   }
                 ]
@@ -357,30 +387,36 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '>>=',
               left: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 8,
+                range: [0, 8],
                 object: {
                   type: 'Identifier',
                   start: 0,
                   end: 3,
+                  range: [0, 3],
                   name: 'obj'
                 },
                 property: {
                   type: 'Identifier',
                   start: 4,
                   end: 8,
+                  range: [4, 8],
                   name: 'prop'
                 },
                 computed: false
@@ -389,6 +425,7 @@ describe('Expressions - Compound assignment', () => {
                 type: 'Literal',
                 start: 13,
                 end: 15,
+                range: [13, 15],
                 value: 20
               }
             }
@@ -429,43 +466,51 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 18,
+            range: [0, 18],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 17,
+                range: [4, 17],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'z'
                 },
                 init: {
                   type: 'AssignmentExpression',
                   start: 9,
                   end: 16,
+                  range: [9, 16],
                   operator: '*=',
                   left: {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'x'
                   },
                   right: {
                     type: 'UnaryExpression',
                     start: 14,
                     end: 16,
+                    range: [14, 16],
                     operator: '-',
                     prefix: true,
                     argument: {
                       type: 'Literal',
                       start: 15,
                       end: 16,
+                      range: [15, 16],
                       value: 1
                     }
                   }
@@ -570,27 +615,33 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               callee: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 13,
+                range: [0, 13],
                 object: {
                   type: 'NewExpression',
                   start: 1,
                   end: 8,
+                  range: [1, 8],
                   callee: {
                     type: 'Identifier',
                     start: 5,
                     end: 8,
+                    range: [5, 8],
                     name: 'foo'
                   },
                   arguments: []
@@ -599,6 +650,7 @@ describe('Expressions - Compound assignment', () => {
                   type: 'Identifier',
                   start: 10,
                   end: 13,
+                  range: [10, 13],
                   name: 'bar'
                 },
                 computed: false
@@ -617,33 +669,40 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               callee: {
                 type: 'MemberExpression',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 object: {
                   type: 'MemberExpression',
                   start: 0,
                   end: 3,
+                  range: [0, 3],
                   object: {
                     type: 'Identifier',
                     start: 0,
                     end: 1,
+                    range: [0, 1],
                     name: 'a'
                   },
                   property: {
                     type: 'Identifier',
                     start: 2,
                     end: 3,
+                    range: [2, 3],
                     name: 'b'
                   },
                   computed: false
@@ -652,6 +711,7 @@ describe('Expressions - Compound assignment', () => {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'c'
                 },
                 computed: false
@@ -661,6 +721,7 @@ describe('Expressions - Compound assignment', () => {
                   type: 'Literal',
                   start: 6,
                   end: 10,
+                  range: [6, 10],
                   value: 2020
                 }
               ]
@@ -677,31 +738,38 @@ describe('Expressions - Compound assignment', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'MemberExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               object: {
                 type: 'CallExpression',
                 start: 0,
                 end: 17,
+                range: [0, 17],
                 callee: {
                   type: 'MemberExpression',
                   start: 0,
                   end: 6,
+                  range: [0, 6],
                   object: {
                     type: 'CallExpression',
                     start: 0,
                     end: 4,
+                    range: [0, 4],
                     callee: {
                       type: 'Identifier',
                       start: 0,
                       end: 1,
+                      range: [0, 1],
                       name: 'a'
                     },
                     arguments: [
@@ -709,6 +777,7 @@ describe('Expressions - Compound assignment', () => {
                         type: 'Literal',
                         start: 2,
                         end: 3,
+                        range: [2, 3],
                         value: 0
                       }
                     ]
@@ -717,6 +786,7 @@ describe('Expressions - Compound assignment', () => {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
+                    range: [5, 6],
                     name: 'b'
                   },
                   computed: false
@@ -726,18 +796,21 @@ describe('Expressions - Compound assignment', () => {
                     type: 'Literal',
                     start: 7,
                     end: 9,
+                    range: [7, 9],
                     value: 14
                   },
                   {
                     type: 'Literal',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     value: 3
                   },
                   {
                     type: 'Literal',
                     start: 14,
                     end: 16,
+                    range: [14, 16],
                     value: 77
                   }
                 ]
@@ -746,6 +819,7 @@ describe('Expressions - Compound assignment', () => {
                 type: 'Identifier',
                 start: 18,
                 end: 19,
+                range: [18, 19],
                 name: 'c'
               },
               computed: false
@@ -770,24 +844,29 @@ describe('Expressions - Compound assignment', () => {
                 type: 'Identifier',
                 name: 'x',
                 start: 0,
-                end: 1
+                end: 1,
+                range: [0, 1]
               },
               operator: '>>=',
               right: {
                 type: 'Literal',
                 value: 1,
                 start: 6,
-                end: 7
+                end: 7,
+                range: [6, 7]
               },
               start: 0,
-              end: 7
+              end: 7,
+              range: [0, 7]
             },
             start: 0,
-            end: 8
+            end: 8,
+            range: [0, 8]
           }
         ],
         start: 0,
-        end: 8
+        end: 8,
+        range: [0, 8]
       }
     ],
     [

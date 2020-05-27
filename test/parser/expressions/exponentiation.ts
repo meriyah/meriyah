@@ -162,17 +162,20 @@ describe('Expressions - Exponentiation', () => {
                   type: 'Identifier',
                   name: 'base',
                   start: 1,
-                  end: 5
+                  end: 5,
+                  range: [1, 5]
                 },
                 operator: '**=',
                 right: {
                   type: 'Literal',
                   value: 3,
                   start: 10,
-                  end: 11
+                  end: 11,
+                  range: [10, 11]
                 },
                 start: 1,
-                end: 11
+                end: 11,
+                range: [1, 11]
               },
               right: {
                 type: 'UnaryExpression',
@@ -181,22 +184,27 @@ describe('Expressions - Exponentiation', () => {
                   type: 'Literal',
                   value: 27,
                   start: 18,
-                  end: 20
+                  end: 20,
+                  range: [18, 20]
                 },
                 prefix: true,
                 start: 17,
-                end: 20
+                end: 20,
+                range: [17, 20]
               },
               operator: '===',
               start: 0,
-              end: 20
+              end: 20,
+              range: [0, 20]
             },
             start: 0,
-            end: 20
+            end: 20,
+            range: [0, 20]
           }
         ],
         start: 0,
-        end: 20
+        end: 20,
+        range: [0, 20]
       }
     ],
     [
@@ -206,19 +214,23 @@ describe('Expressions - Exponentiation', () => {
         type: 'Program',
         start: 0,
         end: 6,
+        range: [0, 6],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 6,
+            range: [0, 6],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 6,
+              range: [0, 6],
               left: {
                 type: 'Literal',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 value: 2
               },
               operator: '**',
@@ -226,6 +238,7 @@ describe('Expressions - Exponentiation', () => {
                 type: 'Literal',
                 start: 5,
                 end: 6,
+                range: [5, 6],
                 value: 4
               }
             }
@@ -241,23 +254,28 @@ describe('Expressions - Exponentiation', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 10,
+              range: [0, 10],
               left: {
                 type: 'NewExpression',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 callee: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 arguments: []
@@ -267,6 +285,7 @@ describe('Expressions - Exponentiation', () => {
                 type: 'Literal',
                 start: 9,
                 end: 10,
+                range: [9, 10],
                 value: 2
               }
             }
@@ -498,23 +517,28 @@ describe('Expressions - Exponentiation', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             expression: {
               type: 'BinaryExpression',
               start: 1,
               end: 11,
+              range: [1, 11],
               left: {
                 type: 'NewExpression',
                 start: 1,
                 end: 6,
+                range: [1, 6],
                 callee: {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
+                  range: [5, 6],
                   name: 'x'
                 },
                 arguments: []
@@ -524,6 +548,7 @@ describe('Expressions - Exponentiation', () => {
                 type: 'Literal',
                 start: 10,
                 end: 11,
+                range: [10, 11],
                 value: 2
               }
             }
@@ -564,25 +589,30 @@ describe('Expressions - Exponentiation', () => {
         type: 'Program',
         start: 0,
         end: 10,
+        range: [0, 10],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 10,
+            range: [0, 10],
             expression: {
               type: 'BinaryExpression',
               start: 1,
               end: 9,
+              range: [1, 9],
               left: {
                 type: 'UpdateExpression',
                 start: 1,
                 end: 4,
+                range: [1, 4],
                 operator: '++',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
+                  range: [3, 4],
                   name: 'x'
                 }
               },
@@ -591,6 +621,7 @@ describe('Expressions - Exponentiation', () => {
                 type: 'Identifier',
                 start: 8,
                 end: 9,
+                range: [8, 9],
                 name: 'a'
               }
             }

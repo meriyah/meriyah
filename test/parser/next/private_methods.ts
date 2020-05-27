@@ -375,7 +375,8 @@ describe('Next - Private methods', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -388,13 +389,15 @@ describe('Next - Private methods', () => {
                     type: 'PrivateName',
                     name: 'a',
                     start: 10,
-                    end: 12
+                    end: 12,
+                    range: [10, 12]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 12
+                  end: 12,
+                  range: [10, 12]
                 },
                 {
                   type: 'FieldDefinition',
@@ -403,24 +406,29 @@ describe('Next - Private methods', () => {
                     type: 'PrivateName',
                     name: 'b',
                     start: 14,
-                    end: 16
+                    end: 16,
+                    range: [14, 16]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 14,
-                  end: 16
+                  end: 16,
+                  range: [14, 16]
                 }
               ],
               start: 8,
-              end: 19
+              end: 19,
+              range: [8, 19]
             },
             start: 0,
-            end: 19
+            end: 19,
+            range: [0, 19]
           }
         ],
         start: 0,
-        end: 19
+        end: 19,
+        range: [0, 19]
       }
     ],
     [
@@ -437,7 +445,8 @@ describe('Next - Private methods', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -450,7 +459,8 @@ describe('Next - Private methods', () => {
                     type: 'PrivateName',
                     name: 'yield',
                     start: 10,
-                    end: 16
+                    end: 16,
+                    range: [10, 16]
                   },
                   value: {
                     type: 'MemberExpression',
@@ -458,33 +468,40 @@ describe('Next - Private methods', () => {
                       type: 'Identifier',
                       name: 'b',
                       start: 19,
-                      end: 20
+                      end: 20,
+                      range: [19, 20]
                     },
                     computed: true,
                     property: {
                       type: 'Identifier',
                       name: 'c',
                       start: 21,
-                      end: 22
+                      end: 22,
+                      range: [21, 22]
                     },
                     start: 19,
-                    end: 23
+                    end: 23,
+                    range: [19, 23]
                   },
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 23
+                  end: 23,
+                  range: [10, 23]
                 }
               ],
               start: 8,
-              end: 26
+              end: 26,
+              range: [8, 26]
             },
             start: 0,
-            end: 26
+            end: 26,
+            range: [0, 26]
           }
         ],
         start: 0,
-        end: 26
+        end: 26,
+        range: [0, 26]
       }
     ],
     [
@@ -501,7 +518,8 @@ describe('Next - Private methods', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -514,7 +532,8 @@ describe('Next - Private methods', () => {
                     type: 'PrivateName',
                     name: 'yield',
                     start: 10,
-                    end: 16
+                    end: 16,
+                    range: [10, 16]
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -522,33 +541,40 @@ describe('Next - Private methods', () => {
                       type: 'Identifier',
                       name: 'foo',
                       start: 19,
-                      end: 22
+                      end: 22,
+                      range: [19, 22]
                     },
                     right: {
                       type: 'Identifier',
                       name: 'bar',
                       start: 25,
-                      end: 28
+                      end: 28,
+                      range: [25, 28]
                     },
                     operator: '+',
                     start: 19,
-                    end: 28
+                    end: 28,
+                    range: [19, 28]
                   },
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 28
+                  end: 28,
+                  range: [10, 28]
                 }
               ],
               start: 8,
-              end: 31
+              end: 31,
+              range: [8, 31]
             },
             start: 0,
-            end: 31
+            end: 31,
+            range: [0, 31]
           }
         ],
         start: 0,
-        end: 31
+        end: 31,
+        range: [0, 31]
       }
     ],
     [
@@ -565,7 +591,8 @@ describe('Next - Private methods', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -578,24 +605,29 @@ describe('Next - Private methods', () => {
                     type: 'PrivateName',
                     name: 'yield',
                     start: 10,
-                    end: 16
+                    end: 16,
+                    range: [10, 16]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 16
+                  end: 16,
+                  range: [10, 16]
                 }
               ],
               start: 8,
-              end: 19
+              end: 19,
+              range: [8, 19]
             },
             start: 0,
-            end: 19
+            end: 19,
+            range: [0, 19]
           }
         ],
         start: 0,
-        end: 19
+        end: 19,
+        range: [0, 19]
       }
     ],
     [

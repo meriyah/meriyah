@@ -12,6 +12,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 5,
+        range: [0, 5],
         loc: {
           start: {
             line: 1,
@@ -27,6 +28,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 5,
+            range: [0, 5],
             loc: {
               start: {
                 line: 1,
@@ -41,6 +43,7 @@ describe('Miscellaneous - loc', () => {
               type: 'ArrayExpression',
               start: 0,
               end: 5,
+              range: [0, 5],
               loc: {
                 start: {
                   line: 1,
@@ -58,6 +61,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
+                  range: [3, 4],
                   loc: {
                     start: {
                       line: 1,
@@ -84,6 +88,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 13,
+        range: [0, 13],
         loc: {
           start: {
             line: 1,
@@ -99,6 +104,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             loc: {
               start: {
                 line: 1,
@@ -113,6 +119,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               loc: {
                 start: {
                   line: 1,
@@ -128,6 +135,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 9,
+                range: [0, 9],
                 loc: {
                   start: {
                     line: 1,
@@ -143,6 +151,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'MemberExpression',
                     start: 1,
                     end: 8,
+                    range: [1, 8],
                     loc: {
                       start: {
                         line: 1,
@@ -157,6 +166,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Literal',
                       start: 1,
                       end: 4,
+                      range: [1, 4],
                       loc: {
                         start: {
                           line: 1,
@@ -173,6 +183,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 5,
                       end: 8,
+                      range: [5, 8],
                       loc: {
                         start: {
                           line: 1,
@@ -193,6 +204,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 12,
                 end: 13,
+                range: [12, 13],
                 loc: {
                   start: {
                     line: 1,
@@ -218,6 +230,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         loc: {
           start: {
             line: 1,
@@ -233,6 +246,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             loc: {
               start: {
                 line: 1,
@@ -247,6 +261,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               loc: {
                 start: {
                   line: 1,
@@ -262,6 +277,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -278,6 +294,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'ObjectExpression',
                 start: 2,
                 end: 11,
+                range: [2, 11],
                 loc: {
                   start: {
                     line: 1,
@@ -293,6 +310,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Property',
                     start: 3,
                     end: 10,
+                    range: [3, 10],
                     loc: {
                       start: {
                         line: 1,
@@ -310,6 +328,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Literal',
                       start: 3,
                       end: 6,
+                      range: [3, 6],
                       loc: {
                         start: {
                           line: 1,
@@ -326,6 +345,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'AssignmentExpression',
                       start: 7,
                       end: 10,
+                      range: [7, 10],
                       loc: {
                         start: {
                           line: 1,
@@ -341,6 +361,7 @@ describe('Miscellaneous - loc', () => {
                         type: 'Identifier',
                         start: 7,
                         end: 8,
+                        range: [7, 8],
                         loc: {
                           start: {
                             line: 1,
@@ -357,6 +378,7 @@ describe('Miscellaneous - loc', () => {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
+                        range: [9, 10],
                         loc: {
                           start: {
                             line: 1,
@@ -503,6 +525,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 7,
+        range: [0, 7],
         loc: {
           start: {
             line: 1,
@@ -518,6 +541,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 7,
+            range: [0, 7],
             loc: {
               start: {
                 line: 1,
@@ -532,6 +556,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 7,
+              range: [0, 7],
               loc: {
                 start: {
                   line: 1,
@@ -547,6 +572,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -563,6 +589,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'ObjectExpression',
                 start: 4,
                 end: 7,
+                range: [4, 7],
                 loc: {
                   start: {
                     line: 1,
@@ -578,6 +605,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Property',
                     start: 5,
                     end: 6,
+                    range: [5, 6],
                     loc: {
                       start: {
                         line: 1,
@@ -595,6 +623,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       loc: {
                         start: {
                           line: 1,
@@ -612,6 +641,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       loc: {
                         start: {
                           line: 1,
@@ -640,6 +670,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         loc: {
           start: {
             line: 1,
@@ -655,6 +686,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             loc: {
               start: {
                 line: 1,
@@ -669,6 +701,7 @@ describe('Miscellaneous - loc', () => {
               type: 'SequenceExpression',
               start: 0,
               end: 17,
+              range: [0, 17],
               loc: {
                 start: {
                   line: 1,
@@ -684,6 +717,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'Literal',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   loc: {
                     start: {
                       line: 1,
@@ -700,6 +734,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'AssignmentExpression',
                   start: 3,
                   end: 17,
+                  range: [3, 17],
                   loc: {
                     start: {
                       line: 1,
@@ -715,6 +750,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'ArrayPattern',
                     start: 3,
                     end: 12,
+                    range: [3, 12],
                     loc: {
                       start: {
                         line: 1,
@@ -730,6 +766,7 @@ describe('Miscellaneous - loc', () => {
                         type: 'AssignmentPattern',
                         start: 5,
                         end: 10,
+                        range: [5, 10],
                         loc: {
                           start: {
                             line: 1,
@@ -744,6 +781,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           loc: {
                             start: {
                               line: 1,
@@ -760,6 +798,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 9,
                           end: 10,
+                          range: [9, 10],
                           loc: {
                             start: {
                               line: 1,
@@ -779,6 +818,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'ArrayExpression',
                     start: 15,
                     end: 17,
+                    range: [15, 17],
                     loc: {
                       start: {
                         line: 1,
@@ -806,6 +846,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 7,
+        range: [0, 7],
         loc: {
           start: {
             line: 1,
@@ -821,6 +862,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 7,
+            range: [0, 7],
             loc: {
               start: {
                 line: 1,
@@ -835,6 +877,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 7,
+              range: [0, 7],
               loc: {
                 start: {
                   line: 1,
@@ -850,6 +893,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 2,
+                range: [0, 2],
                 loc: {
                   start: {
                     line: 1,
@@ -866,6 +910,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Literal',
                 start: 5,
                 end: 7,
+                range: [5, 7],
                 loc: {
                   start: {
                     line: 1,
@@ -891,6 +936,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 6,
+        range: [0, 6],
         loc: {
           start: {
             line: 1,
@@ -906,6 +952,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 6,
+            range: [0, 6],
             loc: {
               start: {
                 line: 1,
@@ -920,6 +967,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 6,
+              range: [0, 6],
               loc: {
                 start: {
                   line: 1,
@@ -935,6 +983,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -951,6 +1000,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 5,
                 end: 6,
+                range: [5, 6],
                 loc: {
                   start: {
                     line: 1,
@@ -976,6 +1026,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         loc: {
           start: {
             line: 1,
@@ -991,6 +1042,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             loc: {
               start: {
                 line: 1,
@@ -1005,6 +1057,7 @@ describe('Miscellaneous - loc', () => {
               type: 'BinaryExpression',
               start: 0,
               end: 12,
+              range: [0, 12],
               loc: {
                 start: {
                   line: 1,
@@ -1019,6 +1072,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'SequenceExpression',
                 start: 1,
                 end: 9,
+                range: [1, 9],
                 loc: {
                   start: {
                     line: 1,
@@ -1034,6 +1088,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'MemberExpression',
                     start: 1,
                     end: 7,
+                    range: [1, 7],
                     loc: {
                       start: {
                         line: 1,
@@ -1048,6 +1103,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Literal',
                       start: 1,
                       end: 2,
+                      range: [1, 2],
                       loc: {
                         start: {
                           line: 1,
@@ -1064,6 +1120,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'SequenceExpression',
                       start: 3,
                       end: 6,
+                      range: [3, 6],
                       loc: {
                         start: {
                           line: 1,
@@ -1079,6 +1136,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 3,
                           end: 4,
+                          range: [3, 4],
                           loc: {
                             start: {
                               line: 1,
@@ -1095,6 +1153,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           loc: {
                             start: {
                               line: 1,
@@ -1115,6 +1174,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
+                    range: [8, 9],
                     loc: {
                       start: {
                         line: 1,
@@ -1134,6 +1194,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 loc: {
                   start: {
                     line: 1,
@@ -1159,6 +1220,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         loc: {
           start: {
             line: 1,
@@ -1174,6 +1236,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             loc: {
               start: {
                 line: 1,
@@ -1188,6 +1251,7 @@ describe('Miscellaneous - loc', () => {
               type: 'LogicalExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               loc: {
                 start: {
                   line: 1,
@@ -1202,6 +1266,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'LogicalExpression',
                 start: 0,
                 end: 8,
+                range: [0, 8],
                 loc: {
                   start: {
                     line: 1,
@@ -1216,6 +1281,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   loc: {
                     start: {
                       line: 1,
@@ -1233,6 +1299,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'AssignmentExpression',
                   start: 4,
                   end: 7,
+                  range: [4, 7],
                   loc: {
                     start: {
                       line: 1,
@@ -1248,6 +1315,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Identifier',
                     start: 4,
                     end: 5,
+                    range: [4, 5],
                     loc: {
                       start: {
                         line: 1,
@@ -1264,6 +1332,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Identifier',
                     start: 6,
                     end: 7,
+                    range: [6, 7],
                     loc: {
                       start: {
                         line: 1,
@@ -1283,6 +1352,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'AssignmentExpression',
                 start: 11,
                 end: 14,
+                range: [11, 14],
                 loc: {
                   start: {
                     line: 1,
@@ -1298,6 +1368,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   loc: {
                     start: {
                       line: 1,
@@ -1314,6 +1385,7 @@ describe('Miscellaneous - loc', () => {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   loc: {
                     start: {
                       line: 1,
@@ -1340,6 +1412,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 13,
+        range: [0, 13],
         loc: {
           start: {
             line: 1,
@@ -1355,6 +1428,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             loc: {
               start: {
                 line: 1,
@@ -1369,6 +1443,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               loc: {
                 start: {
                   line: 1,
@@ -1384,6 +1459,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -1400,6 +1476,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'ObjectExpression',
                 start: 4,
                 end: 13,
+                range: [4, 13],
                 loc: {
                   start: {
                     line: 1,
@@ -1415,6 +1492,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'SpreadElement',
                     start: 5,
                     end: 9,
+                    range: [5, 9],
                     loc: {
                       start: {
                         line: 1,
@@ -1429,6 +1507,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 8,
                       end: 9,
+                      range: [8, 9],
                       loc: {
                         start: {
                           line: 1,
@@ -1446,6 +1525,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'Property',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     loc: {
                       start: {
                         line: 1,
@@ -1463,6 +1543,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 11,
                       end: 12,
+                      range: [11, 12],
                       loc: {
                         start: {
                           line: 1,
@@ -1480,6 +1561,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'Identifier',
                       start: 11,
                       end: 12,
+                      range: [11, 12],
                       loc: {
                         start: {
                           line: 1,
@@ -1508,6 +1590,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         loc: {
           start: {
             line: 1,
@@ -1523,6 +1606,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             loc: {
               start: {
                 line: 1,
@@ -1537,6 +1621,7 @@ describe('Miscellaneous - loc', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               loc: {
                 start: {
                   line: 1,
@@ -1552,6 +1637,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -1568,6 +1654,7 @@ describe('Miscellaneous - loc', () => {
                 type: 'ObjectExpression',
                 start: 4,
                 end: 15,
+                range: [4, 15],
                 loc: {
                   start: {
                     line: 1,
@@ -1583,6 +1670,7 @@ describe('Miscellaneous - loc', () => {
                     type: 'SpreadElement',
                     start: 5,
                     end: 14,
+                    range: [5, 14],
                     loc: {
                       start: {
                         line: 1,
@@ -1597,6 +1685,7 @@ describe('Miscellaneous - loc', () => {
                       type: 'ArrayExpression',
                       start: 8,
                       end: 14,
+                      range: [8, 14],
                       loc: {
                         start: {
                           line: 1,
@@ -1612,6 +1701,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 9,
                           end: 10,
+                          range: [9, 10],
                           loc: {
                             start: {
                               line: 1,
@@ -1628,6 +1718,7 @@ describe('Miscellaneous - loc', () => {
                           type: 'Identifier',
                           start: 12,
                           end: 13,
+                          range: [12, 13],
                           loc: {
                             start: {
                               line: 1,
@@ -1658,6 +1749,7 @@ describe('Miscellaneous - loc', () => {
         type: 'Program',
         start: 0,
         end: 3,
+        range: [0, 3],
         loc: {
           start: {
             line: 1,
@@ -1673,6 +1765,7 @@ describe('Miscellaneous - loc', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 3,
+            range: [0, 3],
             loc: {
               start: {
                 line: 1,
@@ -1687,6 +1780,7 @@ describe('Miscellaneous - loc', () => {
               type: 'ArrayExpression',
               start: 0,
               end: 3,
+              range: [0, 3],
               loc: {
                 start: {
                   line: 1,

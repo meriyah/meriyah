@@ -535,6 +535,7 @@ describe('Expressions - Assign', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         loc: {
           start: {
             line: 1,
@@ -550,6 +551,7 @@ describe('Expressions - Assign', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             loc: {
               start: {
                 line: 1,
@@ -564,6 +566,7 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               loc: {
                 start: {
                   line: 1,
@@ -579,6 +582,7 @@ describe('Expressions - Assign', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -595,6 +599,7 @@ describe('Expressions - Assign', () => {
                 type: 'AssignmentExpression',
                 start: 4,
                 end: 13,
+                range: [4, 13],
                 loc: {
                   start: {
                     line: 1,
@@ -610,6 +615,7 @@ describe('Expressions - Assign', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   loc: {
                     start: {
                       line: 1,
@@ -626,6 +632,7 @@ describe('Expressions - Assign', () => {
                   type: 'Identifier',
                   start: 12,
                   end: 13,
+                  range: [12, 13],
                   loc: {
                     start: {
                       line: 1,

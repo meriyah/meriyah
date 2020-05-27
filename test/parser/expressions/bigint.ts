@@ -156,14 +156,17 @@ describe('Expressions - BigInt', () => {
               value: 1,
               bigint: '1n',
               start: 0,
-              end: 2
+              end: 2,
+              range: [0, 2]
             },
             start: 0,
-            end: 2
+            end: 2,
+            range: [0, 2]
           }
         ],
         start: 0,
-        end: 2
+        end: 2,
+        range: [0, 2]
       }
     ],
     [
@@ -182,25 +185,30 @@ describe('Expressions - BigInt', () => {
                 value: 1,
                 bigint: '1n',
                 start: 0,
-                end: 2
+                end: 2,
+                range: [0, 2]
               },
               right: {
                 type: 'BigIntLiteral',
                 value: 2333333,
                 bigint: '2333333n',
                 start: 5,
-                end: 13
+                end: 13,
+                range: [5, 13]
               },
               operator: '+',
               start: 0,
-              end: 13
+              end: 13,
+              range: [0, 13]
             },
             start: 0,
-            end: 13
+            end: 13,
+            range: [0, 13]
           }
         ],
         start: 0,
-        end: 13
+        end: 13,
+        range: [0, 13]
       }
     ]
   ]);

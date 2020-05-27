@@ -1018,31 +1018,37 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 19,
+            range: [0, 19],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 19,
+                range: [4, 19],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'o'
                 },
                 init: {
                   type: 'ObjectExpression',
                   start: 8,
                   end: 19,
+                  range: [8, 19],
                   properties: [
                     {
                       type: 'Property',
                       start: 9,
                       end: 18,
+                      range: [9, 18],
                       method: true,
                       shorthand: false,
                       computed: false,
@@ -1050,6 +1056,7 @@ describe('Expressions - Await', () => {
                         type: 'Identifier',
                         start: 9,
                         end: 14,
+                        range: [9, 14],
                         name: 'await'
                       },
                       kind: 'init',
@@ -1057,6 +1064,7 @@ describe('Expressions - Await', () => {
                         type: 'FunctionExpression',
                         start: 14,
                         end: 18,
+                        range: [14, 18],
                         id: null,
                         generator: false,
                         async: false,
@@ -1065,6 +1073,7 @@ describe('Expressions - Await', () => {
                           type: 'BlockStatement',
                           start: 16,
                           end: 18,
+                          range: [16, 18],
                           body: []
                         }
                       }
@@ -1086,15 +1095,18 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 19,
+            range: [0, 19],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: null,
@@ -1102,11 +1114,13 @@ describe('Expressions - Await', () => {
               type: 'ClassBody',
               start: 8,
               end: 19,
+              range: [8, 19],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 9,
                   end: 18,
+                  range: [9, 18],
                   kind: 'method',
                   static: false,
                   computed: false,
@@ -1114,12 +1128,14 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 9,
                     end: 14,
+                    range: [9, 14],
                     name: 'await'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 14,
                     end: 18,
+                    range: [14, 18],
                     id: null,
                     generator: false,
                     async: false,
@@ -1128,6 +1144,7 @@ describe('Expressions - Await', () => {
                       type: 'BlockStatement',
                       start: 16,
                       end: 18,
+                      range: [16, 18],
                       body: []
                     }
                   }
@@ -1146,15 +1163,18 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 26,
+            range: [0, 26],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'x'
             },
             superClass: null,
@@ -1162,11 +1182,13 @@ describe('Expressions - Await', () => {
               type: 'ClassBody',
               start: 8,
               end: 26,
+              range: [8, 26],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 9,
                   end: 25,
+                  range: [9, 25],
                   kind: 'method',
                   static: false,
                   computed: false,
@@ -1174,12 +1196,14 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 16,
                     end: 21,
+                    range: [16, 21],
                     name: 'await'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 21,
                     end: 25,
+                    range: [21, 25],
                     id: null,
                     generator: true,
                     async: true,
@@ -1188,6 +1212,7 @@ describe('Expressions - Await', () => {
                       type: 'BlockStatement',
                       start: 23,
                       end: 25,
+                      range: [23, 25],
                       body: []
                     }
                   }
@@ -1279,15 +1304,18 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 54,
+        range: [0, 54],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 54,
+            range: [0, 54],
             id: {
               type: 'Identifier',
               start: 15,
               end: 16,
+              range: [15, 16],
               name: 'a'
             },
             generator: false,
@@ -1297,19 +1325,23 @@ describe('Expressions - Await', () => {
               type: 'BlockStatement',
               start: 18,
               end: 54,
+              range: [18, 54],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 24,
                   end: 48,
+                  range: [24, 48],
                   expression: {
                     type: 'CallExpression',
                     start: 24,
                     end: 47,
+                    range: [24, 47],
                     callee: {
                       type: 'Identifier',
                       start: 24,
                       end: 29,
+                      range: [24, 29],
                       name: 'async'
                     },
                     arguments: [
@@ -1317,16 +1349,19 @@ describe('Expressions - Await', () => {
                         type: 'AssignmentExpression',
                         start: 31,
                         end: 46,
+                        range: [31, 46],
                         operator: '=',
                         left: {
                           type: 'ObjectPattern',
                           start: 31,
                           end: 34,
+                          range: [31, 34],
                           properties: [
                             {
                               type: 'Property',
                               start: 32,
                               end: 33,
+                              range: [32, 33],
                               method: false,
                               shorthand: true,
                               computed: false,
@@ -1334,6 +1369,7 @@ describe('Expressions - Await', () => {
                                 type: 'Identifier',
                                 start: 32,
                                 end: 33,
+                                range: [32, 33],
                                 name: 'r'
                               },
                               kind: 'init',
@@ -1341,6 +1377,7 @@ describe('Expressions - Await', () => {
                                 type: 'Identifier',
                                 start: 32,
                                 end: 33,
+                                range: [32, 33],
                                 name: 'r'
                               }
                             }
@@ -1350,10 +1387,12 @@ describe('Expressions - Await', () => {
                           type: 'AwaitExpression',
                           start: 37,
                           end: 46,
+                          range: [37, 46],
                           argument: {
                             type: 'Identifier',
                             start: 43,
                             end: 46,
+                            range: [43, 46],
                             name: 'bar'
                           }
                         }
@@ -1472,6 +1511,7 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         loc: {
           start: {
             line: 1,
@@ -1487,6 +1527,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             loc: {
               start: {
                 line: 1,
@@ -1501,6 +1542,7 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               loc: {
                 start: {
                   line: 1,
@@ -1515,6 +1557,7 @@ describe('Expressions - Await', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 loc: {
                   start: {
                     line: 1,
@@ -1532,6 +1575,7 @@ describe('Expressions - Await', () => {
                   type: 'Identifier',
                   start: 5,
                   end: 10,
+                  range: [5, 10],
                   loc: {
                     start: {
                       line: 1,
@@ -1558,6 +1602,7 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 13,
+        range: [0, 13],
         loc: {
           start: {
             line: 1,
@@ -1573,6 +1618,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             loc: {
               start: {
                 line: 1,
@@ -1587,6 +1633,7 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               loc: {
                 start: {
                   line: 1,
@@ -1601,6 +1648,7 @@ describe('Expressions - Await', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 loc: {
                   start: {
                     line: 1,
@@ -1618,6 +1666,7 @@ describe('Expressions - Await', () => {
                   type: 'CallExpression',
                   start: 5,
                   end: 12,
+                  range: [5, 12],
                   loc: {
                     start: {
                       line: 1,
@@ -1632,6 +1681,7 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 5,
                     end: 10,
+                    range: [5, 10],
                     loc: {
                       start: {
                         line: 1,
@@ -1660,6 +1710,7 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         loc: {
           start: {
             line: 1,
@@ -1675,6 +1726,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             loc: {
               start: {
                 line: 1,
@@ -1689,6 +1741,7 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               loc: {
                 start: {
                   line: 1,
@@ -1703,6 +1756,7 @@ describe('Expressions - Await', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 loc: {
                   start: {
                     line: 1,
@@ -1720,6 +1774,7 @@ describe('Expressions - Await', () => {
                   type: 'MemberExpression',
                   start: 5,
                   end: 13,
+                  range: [5, 13],
                   loc: {
                     start: {
                       line: 1,
@@ -1734,6 +1789,7 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 5,
                     end: 10,
+                    range: [5, 10],
                     loc: {
                       start: {
                         line: 1,
@@ -1750,6 +1806,7 @@ describe('Expressions - Await', () => {
                     type: 'Literal',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     loc: {
                       start: {
                         line: 1,
@@ -1845,6 +1902,7 @@ describe('Expressions - Await', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         loc: {
           start: {
             line: 1,
@@ -1860,6 +1918,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 28,
+            range: [0, 28],
             loc: {
               start: {
                 line: 1,
@@ -1874,6 +1933,7 @@ describe('Expressions - Await', () => {
               type: 'FunctionExpression',
               start: 1,
               end: 27,
+              range: [1, 27],
               loc: {
                 start: {
                   line: 1,
@@ -1888,6 +1948,7 @@ describe('Expressions - Await', () => {
                 type: 'Identifier',
                 start: 10,
                 end: 14,
+                range: [10, 14],
                 loc: {
                   start: {
                     line: 1,
@@ -1907,6 +1968,7 @@ describe('Expressions - Await', () => {
                   type: 'AssignmentPattern',
                   start: 15,
                   end: 24,
+                  range: [15, 24],
                   loc: {
                     start: {
                       line: 1,
@@ -1921,6 +1983,7 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 15,
                     end: 18,
+                    range: [15, 18],
                     loc: {
                       start: {
                         line: 1,
@@ -1937,6 +2000,7 @@ describe('Expressions - Await', () => {
                     type: 'Identifier',
                     start: 19,
                     end: 24,
+                    range: [19, 24],
                     loc: {
                       start: {
                         line: 1,
@@ -1955,6 +2019,7 @@ describe('Expressions - Await', () => {
                 type: 'BlockStatement',
                 start: 25,
                 end: 27,
+                range: [25, 27],
                 loc: {
                   start: {
                     line: 1,

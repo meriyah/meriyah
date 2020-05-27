@@ -895,7 +895,8 @@ describe('Expressions - Async arrow', () => {
                 type: 'BlockStatement',
                 body: [],
                 start: 40,
-                end: 42
+                end: 42,
+                range: [40, 42]
               },
               params: [
                 {
@@ -904,7 +905,8 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     name: 'a',
                     start: 7,
-                    end: 8
+                    end: 8,
+                    range: [7, 8]
                   },
                   right: {
                     type: 'ArrowFunctionExpression',
@@ -919,39 +921,48 @@ describe('Expressions - Async arrow', () => {
                               type: 'Literal',
                               value: 1,
                               start: 31,
-                              end: 32
+                              end: 32,
+                              range: [31, 32]
                             },
                             start: 25,
-                            end: 32
+                            end: 32,
+                            range: [25, 32]
                           },
                           start: 25,
-                          end: 33
+                          end: 33,
+                          range: [25, 33]
                         }
                       ],
                       start: 23,
-                      end: 35
+                      end: 35,
+                      range: [23, 35]
                     },
                     params: [],
                     async: true,
                     expression: false,
                     start: 11,
-                    end: 35
+                    end: 35,
+                    range: [11, 35]
                   },
                   start: 7,
-                  end: 35
+                  end: 35,
+                  range: [7, 35]
                 }
               ],
               async: true,
               expression: false,
               start: 0,
-              end: 42
+              end: 42,
+              range: [0, 42]
             },
             start: 0,
-            end: 42
+            end: 42,
+            range: [0, 42]
           }
         ],
         start: 0,
-        end: 42
+        end: 42,
+        range: [0, 42]
       }
     ],
     [
@@ -961,28 +972,34 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 20,
+        range: [0, 20],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 20,
+            range: [0, 20],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 20,
+              range: [0, 20],
               expressions: [
                 {
                   type: 'CallExpression',
                   start: 0,
                   end: 17,
+                  range: [0, 17],
                   callee: {
                     type: 'CallExpression',
                     start: 0,
                     end: 15,
+                    range: [0, 15],
                     callee: {
                       type: 'Identifier',
                       start: 0,
                       end: 5,
+                      range: [0, 5],
                       name: 'async'
                     },
                     arguments: [
@@ -990,6 +1007,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'ArrowFunctionExpression',
                         start: 7,
                         end: 14,
+                        range: [7, 14],
                         expression: true,
                         async: false,
                         params: [],
@@ -997,6 +1015,7 @@ describe('Expressions - Async arrow', () => {
                           type: 'Literal',
                           start: 13,
                           end: 14,
+                          range: [13, 14],
                           value: 1
                         }
                       }
@@ -1008,6 +1027,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Literal',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   value: 1
                 }
               ]
@@ -1024,6 +1044,7 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 34,
+        range: [0, 34],
         loc: {
           start: {
             line: 1,
@@ -1039,6 +1060,7 @@ describe('Expressions - Async arrow', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 34,
+            range: [0, 34],
             loc: {
               start: {
                 line: 1,
@@ -1053,6 +1075,7 @@ describe('Expressions - Async arrow', () => {
               type: 'ArrowFunctionExpression',
               start: 0,
               end: 34,
+              range: [0, 34],
               loc: {
                 start: {
                   line: 1,
@@ -1070,6 +1093,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   loc: {
                     start: {
                       line: 1,
@@ -1087,6 +1111,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'UnaryExpression',
                 start: 11,
                 end: 34,
+                range: [11, 34],
                 loc: {
                   start: {
                     line: 1,
@@ -1103,6 +1128,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'MemberExpression',
                   start: 19,
                   end: 33,
+                  range: [19, 33],
                   loc: {
                     start: {
                       line: 1,
@@ -1117,6 +1143,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Literal',
                     start: 19,
                     end: 22,
+                    range: [19, 22],
                     loc: {
                       start: {
                         line: 1,
@@ -1133,6 +1160,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'AwaitExpression',
                     start: 24,
                     end: 31,
+                    range: [24, 31],
                     loc: {
                       start: {
                         line: 1,
@@ -1147,6 +1175,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 30,
                       end: 31,
+                      range: [30, 31],
                       loc: {
                         start: {
                           line: 1,
@@ -1180,31 +1209,38 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 108,
+        range: [0, 108],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 108,
+            range: [0, 108],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 108,
+              range: [0, 108],
               callee: {
                 type: 'CallExpression',
                 start: 0,
                 end: 85,
+                range: [0, 85],
                 callee: {
                   type: 'CallExpression',
                   start: 0,
                   end: 62,
+                  range: [0, 62],
                   callee: {
                     type: 'CallExpression',
                     start: 0,
                     end: 39,
+                    range: [0, 39],
                     callee: {
                       type: 'ArrowFunctionExpression',
                       start: 1,
                       end: 15,
+                      range: [1, 15],
                       expression: false,
                       async: true,
                       params: [],
@@ -1212,6 +1248,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'BlockStatement',
                         start: 13,
                         end: 15,
+                        range: [13, 15],
                         body: []
                       }
                     },
@@ -1220,6 +1257,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'ArrowFunctionExpression',
                         start: 24,
                         end: 38,
+                        range: [24, 38],
                         expression: false,
                         async: true,
                         params: [],
@@ -1227,6 +1265,7 @@ describe('Expressions - Async arrow', () => {
                           type: 'BlockStatement',
                           start: 36,
                           end: 38,
+                          range: [36, 38],
                           body: []
                         }
                       }
@@ -1237,6 +1276,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'ArrowFunctionExpression',
                       start: 47,
                       end: 61,
+                      range: [47, 61],
                       expression: false,
                       async: true,
                       params: [],
@@ -1244,6 +1284,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'BlockStatement',
                         start: 59,
                         end: 61,
+                        range: [59, 61],
                         body: []
                       }
                     }
@@ -1254,6 +1295,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'ArrowFunctionExpression',
                     start: 70,
                     end: 84,
+                    range: [70, 84],
                     expression: false,
                     async: true,
                     params: [],
@@ -1261,6 +1303,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'BlockStatement',
                       start: 82,
                       end: 84,
+                      range: [82, 84],
                       body: []
                     }
                   }
@@ -1271,6 +1314,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'ArrowFunctionExpression',
                   start: 93,
                   end: 107,
+                  range: [93, 107],
                   expression: false,
                   async: true,
                   params: [],
@@ -1278,6 +1322,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'BlockStatement',
                     start: 105,
                     end: 107,
+                    range: [105, 107],
                     body: []
                   }
                 }
@@ -1325,19 +1370,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'x'
               },
               operator: '+',
@@ -1345,6 +1394,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'ArrowFunctionExpression',
                 start: 5,
                 end: 17,
+                range: [5, 17],
                 expression: true,
                 async: true,
                 params: [
@@ -1352,6 +1402,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     name: 'y'
                   }
                 ],
@@ -1359,6 +1410,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'x'
                 }
               }
@@ -1375,36 +1427,43 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 69,
+        range: [0, 69],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 69,
+            range: [0, 69],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 69,
+                range: [4, 69],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'f'
                 },
                 init: {
                   type: 'ConditionalExpression',
                   start: 8,
                   end: 69,
+                  range: [8, 69],
                   test: {
                     type: 'Identifier',
                     start: 8,
                     end: 12,
+                    range: [8, 12],
                     name: 'cond'
                   },
                   consequent: {
                     type: 'ArrowFunctionExpression',
                     start: 15,
                     end: 26,
+                    range: [15, 26],
                     expression: false,
                     async: false,
                     params: [
@@ -1412,6 +1471,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 15,
                         end: 16,
+                        range: [15, 16],
                         name: 'x'
                       }
                     ],
@@ -1419,25 +1479,30 @@ describe('Expressions - Async arrow', () => {
                       type: 'BlockStatement',
                       start: 18,
                       end: 26,
+                      range: [18, 26],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 19,
                           end: 24,
+                          range: [19, 24],
                           expression: {
                             type: 'MemberExpression',
                             start: 19,
                             end: 24,
+                            range: [19, 24],
                             object: {
                               type: 'Identifier',
                               start: 19,
                               end: 20,
+                              range: [19, 20],
                               name: 'x'
                             },
                             property: {
                               type: 'Identifier',
                               start: 21,
                               end: 24,
+                              range: [21, 24],
                               name: 'foo'
                             },
                             computed: false
@@ -1450,6 +1515,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'ArrowFunctionExpression',
                     start: 29,
                     end: 69,
+                    range: [29, 69],
                     expression: true,
                     async: false,
                     params: [
@@ -1457,6 +1523,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 29,
                         end: 30,
+                        range: [29, 30],
                         name: 'x'
                       }
                     ],
@@ -1464,30 +1531,37 @@ describe('Expressions - Async arrow', () => {
                       type: 'BinaryExpression',
                       start: 32,
                       end: 69,
+                      range: [32, 69],
                       left: {
                         type: 'BinaryExpression',
                         start: 32,
                         end: 53,
+                        range: [32, 53],
                         left: {
                           type: 'BinaryExpression',
                           start: 32,
                           end: 49,
+                          range: [32, 49],
                           left: {
                             type: 'BinaryExpression',
                             start: 32,
                             end: 45,
+                            range: [32, 45],
                             left: {
                               type: 'BinaryExpression',
                               start: 32,
                               end: 41,
+                              range: [32, 41],
                               left: {
                                 type: 'BinaryExpression',
                                 start: 32,
                                 end: 37,
+                                range: [32, 37],
                                 left: {
                                   type: 'Identifier',
                                   start: 32,
                                   end: 33,
+                                  range: [32, 33],
                                   name: 'x'
                                 },
                                 operator: '+',
@@ -1495,6 +1569,7 @@ describe('Expressions - Async arrow', () => {
                                   type: 'Identifier',
                                   start: 36,
                                   end: 37,
+                                  range: [36, 37],
                                   name: 'x'
                                 }
                               },
@@ -1503,6 +1578,7 @@ describe('Expressions - Async arrow', () => {
                                 type: 'Identifier',
                                 start: 40,
                                 end: 41,
+                                range: [40, 41],
                                 name: 'x'
                               }
                             },
@@ -1511,6 +1587,7 @@ describe('Expressions - Async arrow', () => {
                               type: 'Identifier',
                               start: 44,
                               end: 45,
+                              range: [44, 45],
                               name: 'x'
                             }
                           },
@@ -1519,6 +1596,7 @@ describe('Expressions - Async arrow', () => {
                             type: 'Identifier',
                             start: 48,
                             end: 49,
+                            range: [48, 49],
                             name: 'x'
                           }
                         },
@@ -1527,6 +1605,7 @@ describe('Expressions - Async arrow', () => {
                           type: 'Identifier',
                           start: 52,
                           end: 53,
+                          range: [52, 53],
                           name: 'x'
                         }
                       },
@@ -1535,6 +1614,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'ArrowFunctionExpression',
                         start: 57,
                         end: 68,
+                        range: [57, 68],
                         expression: true,
                         async: true,
                         params: [
@@ -1542,6 +1622,7 @@ describe('Expressions - Async arrow', () => {
                             type: 'Identifier',
                             start: 63,
                             end: 64,
+                            range: [63, 64],
                             name: 'x'
                           }
                         ],
@@ -1549,6 +1630,7 @@ describe('Expressions - Async arrow', () => {
                           type: 'Identifier',
                           start: 67,
                           end: 68,
+                          range: [67, 68],
                           name: 'x'
                         }
                       }
@@ -1570,20 +1652,24 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 17,
+            range: [0, 17],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 17,
+              range: [0, 17],
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
                   start: 1,
                   end: 16,
+                  range: [1, 16],
                   expression: true,
                   async: true,
                   params: [
@@ -1591,12 +1677,14 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
+                      range: [7, 8],
                       name: 'x'
                     },
                     {
                       type: 'Identifier',
                       start: 9,
                       end: 10,
+                      range: [9, 10],
                       name: 'y'
                     }
                   ],
@@ -1604,6 +1692,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 15,
                     end: 16,
+                    range: [15, 16],
                     name: 'z'
                   }
                 }
@@ -1621,20 +1710,24 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
                   start: 1,
                   end: 13,
+                  range: [1, 13],
                   expression: true,
                   async: true,
                   params: [
@@ -1642,6 +1735,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
+                      range: [7, 8],
                       name: 'x'
                     }
                   ],
@@ -1649,6 +1743,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
+                    range: [12, 13],
                     name: 'z'
                   }
                 }
@@ -1666,19 +1761,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 24,
+        range: [0, 24],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 24,
+            range: [0, 24],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 24,
+              range: [0, 24],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'f'
               },
               arguments: [
@@ -1686,12 +1785,14 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
+                  range: [2, 3],
                   name: 'a'
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   start: 5,
                   end: 23,
+                  range: [5, 23],
                   expression: true,
                   async: true,
                   params: [
@@ -1699,6 +1800,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 11,
                       end: 12,
+                      range: [11, 12],
                       name: 'b'
                     }
                   ],
@@ -1706,10 +1808,12 @@ describe('Expressions - Async arrow', () => {
                     type: 'AwaitExpression',
                     start: 16,
                     end: 23,
+                    range: [16, 23],
                     argument: {
                       type: 'Identifier',
                       start: 22,
                       end: 23,
+                      range: [22, 23],
                       name: 'b'
                     }
                   }
@@ -1728,20 +1832,24 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'ObjectExpression',
               start: 1,
               end: 22,
+              range: [1, 22],
               properties: [
                 {
                   type: 'Property',
                   start: 2,
                   end: 21,
+                  range: [2, 21],
                   method: false,
                   shorthand: false,
                   computed: false,
@@ -1749,12 +1857,14 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 2,
                     end: 3,
+                    range: [2, 3],
                     name: 'x'
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
                     start: 5,
                     end: 21,
+                    range: [5, 21],
                     expression: true,
                     async: true,
                     params: [
@@ -1762,12 +1872,14 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 12,
                         end: 13,
+                        range: [12, 13],
                         name: 'y'
                       },
                       {
                         type: 'Identifier',
                         start: 14,
                         end: 15,
+                        range: [14, 15],
                         name: 'w'
                       }
                     ],
@@ -1775,6 +1887,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 20,
                       end: 21,
+                      range: [20, 21],
                       name: 'z'
                     }
                   },
@@ -1794,20 +1907,24 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 30,
+        range: [0, 30],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 30,
+            range: [0, 30],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 30,
+              range: [0, 30],
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
                   start: 0,
                   end: 17,
+                  range: [0, 17],
                   expression: true,
                   async: true,
                   params: [
@@ -1815,12 +1932,14 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
+                      range: [7, 8],
                       name: 'a'
                     },
                     {
                       type: 'Identifier',
                       start: 10,
                       end: 11,
+                      range: [10, 11],
                       name: 'b'
                     }
                   ],
@@ -1828,6 +1947,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Literal',
                     start: 16,
                     end: 17,
+                    range: [16, 17],
                     value: 0
                   }
                 },
@@ -1835,6 +1955,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'ArrowFunctionExpression',
                   start: 19,
                   end: 30,
+                  range: [19, 30],
                   expression: true,
                   async: false,
                   params: [
@@ -1842,12 +1963,14 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 20,
                       end: 21,
+                      range: [20, 21],
                       name: 'c'
                     },
                     {
                       type: 'Identifier',
                       start: 23,
                       end: 24,
+                      range: [23, 24],
                       name: 'd'
                     }
                   ],
@@ -1855,6 +1978,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Literal',
                     start: 29,
                     end: 30,
+                    range: [29, 30],
                     value: 1
                   }
                 }
@@ -1872,15 +1996,18 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 26,
+            range: [0, 26],
             expression: {
               type: 'ArrowFunctionExpression',
               start: 1,
               end: 24,
+              range: [1, 24],
               expression: true,
               async: true,
               params: [
@@ -1888,11 +2015,13 @@ describe('Expressions - Async arrow', () => {
                   type: 'ObjectPattern',
                   start: 7,
                   end: 18,
+                  range: [7, 18],
                   properties: [
                     {
                       type: 'Property',
                       start: 8,
                       end: 17,
+                      range: [8, 17],
                       method: false,
                       shorthand: true,
                       computed: false,
@@ -1900,6 +2029,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         name: 'x'
                       },
                       kind: 'init',
@@ -1907,16 +2037,19 @@ describe('Expressions - Async arrow', () => {
                         type: 'AssignmentPattern',
                         start: 8,
                         end: 17,
+                        range: [8, 17],
                         left: {
                           type: 'Identifier',
                           start: 8,
                           end: 9,
+                          range: [8, 9],
                           name: 'x'
                         },
                         right: {
                           type: 'Identifier',
                           start: 12,
                           end: 17,
+                          range: [12, 17],
                           name: 'yield'
                         }
                       }
@@ -1928,6 +2061,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'Literal',
                 start: 23,
                 end: 24,
+                range: [23, 24],
                 value: 1
               }
             }
@@ -1943,15 +2077,18 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 27,
+            range: [0, 27],
             expression: {
               type: 'ArrowFunctionExpression',
               start: 0,
               end: 27,
+              range: [0, 27],
               expression: true,
               async: true,
               params: [
@@ -1959,21 +2096,25 @@ describe('Expressions - Async arrow', () => {
                   type: 'AssignmentPattern',
                   start: 7,
                   end: 21,
+                  range: [7, 21],
                   left: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
+                    range: [7, 8],
                     name: 'b'
                   },
                   right: {
                     type: 'ObjectExpression',
                     start: 11,
                     end: 21,
+                    range: [11, 21],
                     properties: [
                       {
                         type: 'Property',
                         start: 12,
                         end: 20,
+                        range: [12, 20],
                         method: false,
                         shorthand: false,
                         computed: false,
@@ -1981,12 +2122,14 @@ describe('Expressions - Async arrow', () => {
                           type: 'Identifier',
                           start: 12,
                           end: 17,
+                          range: [12, 17],
                           name: 'await'
                         },
                         value: {
                           type: 'Identifier',
                           start: 19,
                           end: 20,
+                          range: [19, 20],
                           name: 'a'
                         },
                         kind: 'init'
@@ -1999,6 +2142,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'Literal',
                 start: 26,
                 end: 27,
+                range: [26, 27],
                 value: 1
               }
             }
@@ -2054,15 +2198,18 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'ArrowFunctionExpression',
               start: 1,
               end: 22,
+              range: [1, 22],
               expression: false,
               async: true,
               params: [
@@ -2070,16 +2217,19 @@ describe('Expressions - Async arrow', () => {
                   type: 'AssignmentPattern',
                   start: 8,
                   end: 13,
+                  range: [8, 13],
                   left: {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
+                    range: [8, 9],
                     name: 'a'
                   },
                   right: {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
+                    range: [12, 13],
                     name: 'b'
                   }
                 }
@@ -2088,6 +2238,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'BlockStatement',
                 start: 18,
                 end: 22,
+                range: [18, 22],
                 body: []
               }
             }
@@ -2103,19 +2254,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 name: 'async'
               },
               arguments: [
@@ -2123,11 +2278,13 @@ describe('Expressions - Async arrow', () => {
                   type: 'ObjectExpression',
                   start: 7,
                   end: 17,
+                  range: [7, 17],
                   properties: [
                     {
                       type: 'Property',
                       start: 8,
                       end: 16,
+                      range: [8, 16],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -2135,23 +2292,27 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         name: 'a'
                       },
                       value: {
                         type: 'AssignmentExpression',
                         start: 11,
                         end: 16,
+                        range: [11, 16],
                         operator: '=',
                         left: {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          range: [11, 12],
                           name: 'b'
                         },
                         right: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           name: 'c'
                         }
                       },
@@ -2321,19 +2482,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 23,
+              range: [0, 23],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 name: 'async'
               },
               arguments: [
@@ -2341,17 +2506,20 @@ describe('Expressions - Async arrow', () => {
                   type: 'AssignmentExpression',
                   start: 7,
                   end: 22,
+                  range: [7, 22],
                   operator: '=',
                   left: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
+                    range: [7, 8],
                     name: 'a'
                   },
                   right: {
                     type: 'ArrowFunctionExpression',
                     start: 11,
                     end: 22,
+                    range: [11, 22],
                     expression: false,
                     async: false,
                     params: [
@@ -2359,6 +2527,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 11,
                         end: 16,
+                        range: [11, 16],
                         name: 'await'
                       }
                     ],
@@ -2366,6 +2535,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'BlockStatement',
                       start: 20,
                       end: 22,
+                      range: [20, 22],
                       body: []
                     }
                   }
@@ -2384,19 +2554,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'NewExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               callee: {
                 type: 'Identifier',
                 start: 4,
                 end: 9,
+                range: [4, 9],
                 name: 'async'
               },
               arguments: []
@@ -2413,19 +2587,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 name: 'async'
               },
               arguments: [
@@ -2433,6 +2611,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'a'
                 }
               ]
@@ -2528,19 +2707,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'f'
               },
               arguments: [
@@ -2548,6 +2731,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'ArrowFunctionExpression',
                   start: 2,
                   end: 13,
+                  range: [2, 13],
                   expression: true,
                   async: true,
                   params: [],
@@ -2555,6 +2739,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
+                    range: [12, 13],
                     name: 'c'
                   }
                 }
@@ -2572,15 +2757,18 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 27,
+            range: [0, 27],
             expression: {
               type: 'ArrowFunctionExpression',
               start: 0,
               end: 27,
+              range: [0, 27],
               expression: true,
               async: false,
               params: [
@@ -2588,6 +2776,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'a'
                 }
               ],
@@ -2595,6 +2784,7 @@ describe('Expressions - Async arrow', () => {
                 type: 'ArrowFunctionExpression',
                 start: 5,
                 end: 27,
+                range: [5, 27],
                 expression: true,
                 async: false,
                 params: [
@@ -2602,6 +2792,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
+                    range: [5, 6],
                     name: 'a'
                   }
                 ],
@@ -2609,6 +2800,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'ArrowFunctionExpression',
                   start: 10,
                   end: 27,
+                  range: [10, 27],
                   expression: true,
                   async: false,
                   params: [
@@ -2616,6 +2808,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 10,
                       end: 11,
+                      range: [10, 11],
                       name: 'a'
                     }
                   ],
@@ -2623,6 +2816,7 @@ describe('Expressions - Async arrow', () => {
                     type: 'ArrowFunctionExpression',
                     start: 15,
                     end: 27,
+                    range: [15, 27],
                     expression: true,
                     async: true,
                     params: [
@@ -2630,6 +2824,7 @@ describe('Expressions - Async arrow', () => {
                         type: 'Identifier',
                         start: 21,
                         end: 22,
+                        range: [21, 22],
                         name: 'a'
                       }
                     ],
@@ -2637,6 +2832,7 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 26,
                       end: 27,
+                      range: [26, 27],
                       name: 'a'
                     }
                   }
@@ -2655,19 +2851,23 @@ describe('Expressions - Async arrow', () => {
         type: 'Program',
         start: 0,
         end: 37,
+        range: [0, 37],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 37,
+            range: [0, 37],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 37,
+              range: [0, 37],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'f'
               },
               arguments: [
@@ -2675,12 +2875,14 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
+                  range: [2, 3],
                   name: 'a'
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   start: 5,
                   end: 33,
+                  range: [5, 33],
                   expression: true,
                   async: true,
                   params: [
@@ -2688,12 +2890,14 @@ describe('Expressions - Async arrow', () => {
                       type: 'Identifier',
                       start: 12,
                       end: 13,
+                      range: [12, 13],
                       name: 'b'
                     },
                     {
                       type: 'Identifier',
                       start: 15,
                       end: 16,
+                      range: [15, 16],
                       name: 'c'
                     }
                   ],
@@ -2701,21 +2905,25 @@ describe('Expressions - Async arrow', () => {
                     type: 'AwaitExpression',
                     start: 21,
                     end: 33,
+                    range: [21, 33],
                     argument: {
                       type: 'ArrayExpression',
                       start: 27,
                       end: 33,
+                      range: [27, 33],
                       elements: [
                         {
                           type: 'Identifier',
                           start: 28,
                           end: 29,
+                          range: [28, 29],
                           name: 'b'
                         },
                         {
                           type: 'Identifier',
                           start: 31,
                           end: 32,
+                          range: [31, 32],
                           name: 'c'
                         }
                       ]
@@ -2726,6 +2934,7 @@ describe('Expressions - Async arrow', () => {
                   type: 'Identifier',
                   start: 35,
                   end: 36,
+                  range: [35, 36],
                   name: 'd'
                 }
               ]

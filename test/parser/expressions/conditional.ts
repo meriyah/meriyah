@@ -136,36 +136,43 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 13,
+        range: [0, 13],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             expression: {
               type: 'ConditionalExpression',
               start: 0,
               end: 13,
+              range: [0, 13],
               test: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'a'
               },
               consequent: {
                 type: 'AssignmentExpression',
                 start: 4,
                 end: 9,
+                range: [4, 9],
                 operator: '=',
                 left: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'b'
                 },
                 right: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'd'
                 }
               },
@@ -173,6 +180,7 @@ describe('Expressions - Conditional', () => {
                 type: 'Identifier',
                 start: 12,
                 end: 13,
+                range: [12, 13],
                 name: 'c'
               }
             }
@@ -188,42 +196,50 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'x'
               },
               right: {
                 type: 'ConditionalExpression',
                 start: 4,
                 end: 15,
+                range: [4, 15],
                 test: {
                   type: 'Literal',
                   start: 5,
                   end: 6,
+                  range: [5, 6],
                   value: 0
                 },
                 consequent: {
                   type: 'Literal',
                   start: 10,
                   end: 11,
+                  range: [10, 11],
                   value: 1
                 },
                 alternate: {
                   type: 'Literal',
                   start: 14,
                   end: 15,
+                  range: [14, 15],
                   value: 2
                 }
               }
@@ -240,31 +256,37 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'ConditionalExpression',
               start: 1,
               end: 13,
+              range: [1, 13],
               test: {
                 type: 'Identifier',
                 start: 1,
                 end: 2,
+                range: [1, 2],
                 name: 'y'
               },
               consequent: {
                 type: 'Identifier',
                 start: 5,
                 end: 6,
+                range: [5, 6],
                 name: 'y'
               },
               alternate: {
                 type: 'Literal',
                 start: 9,
                 end: 13,
+                range: [9, 13],
                 value: true
               }
             }
@@ -336,28 +358,34 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               expressions: [
                 {
                   type: 'ConditionalExpression',
                   start: 0,
                   end: 16,
+                  range: [0, 16],
                   test: {
                     type: 'CallExpression',
                     start: 0,
                     end: 8,
+                    range: [0, 8],
                     callee: {
                       type: 'Identifier',
                       start: 0,
                       end: 6,
+                      range: [0, 6],
                       name: 'Symbol'
                     },
                     arguments: []
@@ -366,12 +394,14 @@ describe('Expressions - Conditional', () => {
                     type: 'Literal',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     value: 1
                   },
                   alternate: {
                     type: 'Literal',
                     start: 15,
                     end: 16,
+                    range: [15, 16],
                     value: 2
                   }
                 },
@@ -379,6 +409,7 @@ describe('Expressions - Conditional', () => {
                   type: 'Literal',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   value: 1
                 }
               ]
@@ -519,23 +550,28 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'ConditionalExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               test: {
                 type: 'BinaryExpression',
                 start: 0,
                 end: 7,
+                range: [0, 7],
                 left: {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'a'
                 },
                 operator: '===',
@@ -543,6 +579,7 @@ describe('Expressions - Conditional', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'b'
                 }
               },
@@ -550,16 +587,19 @@ describe('Expressions - Conditional', () => {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
+                range: [10, 11],
                 name: 'c'
               },
               alternate: {
                 type: 'BinaryExpression',
                 start: 14,
                 end: 19,
+                range: [14, 19],
                 left: {
                   type: 'Identifier',
                   start: 14,
                   end: 15,
+                  range: [14, 15],
                   name: 'd'
                 },
                 operator: '%',
@@ -567,6 +607,7 @@ describe('Expressions - Conditional', () => {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   name: 'e'
                 }
               }
@@ -691,23 +732,28 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'ConditionalExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               test: {
                 type: 'BinaryExpression',
                 start: 0,
                 end: 7,
+                range: [0, 7],
                 left: {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'a'
                 },
                 operator: '===',
@@ -715,6 +761,7 @@ describe('Expressions - Conditional', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'b'
                 }
               },
@@ -722,16 +769,19 @@ describe('Expressions - Conditional', () => {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
+                range: [10, 11],
                 name: 'c'
               },
               alternate: {
                 type: 'BinaryExpression',
                 start: 14,
                 end: 19,
+                range: [14, 19],
                 left: {
                   type: 'Identifier',
                   start: 14,
                   end: 15,
+                  range: [14, 15],
                   name: 'd'
                 },
                 operator: '%',
@@ -739,6 +789,7 @@ describe('Expressions - Conditional', () => {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   name: 'e'
                 }
               }
@@ -1107,31 +1158,37 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             expression: {
               type: 'ConditionalExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               test: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'a'
               },
               consequent: {
                 type: 'UnaryExpression',
                 start: 4,
                 end: 6,
+                range: [4, 6],
                 operator: '!',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
+                  range: [5, 6],
                   name: 'b'
                 }
               },
@@ -1139,12 +1196,14 @@ describe('Expressions - Conditional', () => {
                 type: 'UnaryExpression',
                 start: 9,
                 end: 11,
+                range: [9, 11],
                 operator: '!',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
+                  range: [10, 11],
                   name: 'c'
                 }
               }

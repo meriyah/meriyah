@@ -121,15 +121,18 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 26,
+            range: [0, 26],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'f'
             },
             generator: true,
@@ -139,19 +142,23 @@ describe('Statements - Labeled', () => {
               type: 'BlockStatement',
               start: 13,
               end: 26,
+              range: [13, 26],
               body: [
                 {
                   type: 'LabeledStatement',
                   start: 15,
                   end: 24,
+                  range: [15, 24],
                   body: {
                     type: 'ExpressionStatement',
                     start: 22,
                     end: 24,
+                    range: [22, 24],
                     expression: {
                       type: 'Identifier',
                       start: 22,
                       end: 23,
+                      range: [22, 23],
                       name: 'x'
                     }
                   },
@@ -159,6 +166,7 @@ describe('Statements - Labeled', () => {
                     type: 'Identifier',
                     start: 15,
                     end: 20,
+                    range: [15, 20],
                     name: 'await'
                   }
                 }
@@ -176,34 +184,41 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 40,
+        range: [0, 40],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 40,
+            range: [0, 40],
             body: {
               type: 'WhileStatement',
               start: 7,
               end: 40,
+              range: [7, 40],
               test: {
                 type: 'Identifier',
                 start: 14,
                 end: 19,
+                range: [14, 19],
                 name: 'await'
               },
               body: {
                 type: 'BlockStatement',
                 start: 21,
                 end: 40,
+                range: [21, 40],
                 body: [
                   {
                     type: 'ContinueStatement',
                     start: 23,
                     end: 38,
+                    range: [23, 38],
                     label: {
                       type: 'Identifier',
                       start: 32,
                       end: 37,
+                      range: [32, 37],
                       name: 'await'
                     }
                   }
@@ -214,6 +229,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 5,
+              range: [0, 5],
               name: 'await'
             }
           }
@@ -264,38 +280,45 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               expressions: [
                 {
                   type: 'Identifier',
                   start: 0,
                   end: 3,
+                  range: [0, 3],
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
                   start: 5,
                   end: 8,
+                  range: [5, 8],
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
                   start: 10,
                   end: 13,
+                  range: [10, 13],
                   name: 'let'
                 },
                 {
                   type: 'Identifier',
                   start: 15,
                   end: 18,
+                  range: [15, 18],
                   name: 'let'
                 }
               ]
@@ -312,19 +335,23 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 8,
+        range: [0, 8],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 8,
+            range: [0, 8],
             body: {
               type: 'ExpressionStatement',
               start: 5,
               end: 8,
+              range: [5, 8],
               expression: {
                 type: 'Identifier',
                 start: 5,
                 end: 8,
+                range: [5, 8],
                 name: 'foo'
               }
             },
@@ -332,6 +359,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 3,
+              range: [0, 3],
               name: 'let'
             }
           }
@@ -346,19 +374,23 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 22,
+        range: [0, 22],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 22,
+            range: [0, 22],
             body: {
               type: 'FunctionDeclaration',
               start: 5,
               end: 22,
+              range: [5, 22],
               id: {
                 type: 'Identifier',
                 start: 14,
                 end: 17,
+                range: [14, 17],
                 name: 'bar'
               },
               generator: false,
@@ -368,6 +400,7 @@ describe('Statements - Labeled', () => {
                 type: 'BlockStatement',
                 start: 20,
                 end: 22,
+                range: [20, 22],
                 body: []
               }
             },
@@ -375,6 +408,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 3,
+              range: [0, 3],
               name: 'foo'
             }
           }
@@ -461,24 +495,29 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             body: {
               type: 'BlockStatement',
               start: 2,
               end: 12,
+              range: [2, 12],
               body: [
                 {
                   type: 'BreakStatement',
                   start: 3,
                   end: 11,
+                  range: [3, 11],
                   label: {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   }
                 }
@@ -488,6 +527,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 1,
+              range: [0, 1],
               name: 'a'
             }
           }
@@ -526,29 +566,35 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 31,
+        range: [0, 31],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 31,
+            range: [0, 31],
             body: {
               type: 'WhileStatement',
               start: 7,
               end: 31,
+              range: [7, 31],
               test: {
                 type: 'Literal',
                 start: 14,
                 end: 18,
+                range: [14, 18],
                 value: true
               },
               body: {
                 type: 'BreakStatement',
                 start: 20,
                 end: 31,
+                range: [20, 31],
                 label: {
                   type: 'Identifier',
                   start: 26,
                   end: 31,
+                  range: [26, 31],
                   name: 'start'
                 }
               }
@@ -557,6 +603,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 5,
+              range: [0, 5],
               name: 'start'
             }
           }
@@ -737,34 +784,41 @@ describe('Statements - Labeled', () => {
         type: 'Program',
         start: 0,
         end: 44,
+        range: [0, 44],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 44,
+            range: [0, 44],
             body: {
               type: 'WhileStatement',
               start: 11,
               end: 44,
+              range: [11, 44],
               test: {
                 type: 'Literal',
                 start: 18,
                 end: 22,
+                range: [18, 22],
                 value: true
               },
               body: {
                 type: 'BlockStatement',
                 start: 24,
                 end: 44,
+                range: [24, 44],
                 body: [
                   {
                     type: 'BreakStatement',
                     start: 26,
                     end: 42,
+                    range: [26, 42],
                     label: {
                       type: 'Identifier',
                       start: 32,
                       end: 41,
+                      range: [32, 41],
                       name: '__proto__'
                     }
                   }
@@ -775,6 +829,7 @@ describe('Statements - Labeled', () => {
               type: 'Identifier',
               start: 0,
               end: 9,
+              range: [0, 9],
               name: '__proto__'
             }
           }

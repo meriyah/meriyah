@@ -497,31 +497,37 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 16,
+              range: [0, 16],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'MemberExpression',
                 start: 8,
                 end: 15,
+                range: [8, 15],
                 object: {
                   type: 'Identifier',
                   start: 9,
                   end: 12,
+                  range: [9, 12],
                   name: 'foo'
                 },
                 property: {
                   type: 'Identifier',
                   start: 14,
                   end: 15,
+                  range: [14, 15],
                   name: 'x'
                 },
                 computed: false
@@ -539,31 +545,37 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 20,
+        range: [0, 20],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 20,
+            range: [0, 20],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 20,
+              range: [0, 20],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'MemberExpression',
                 start: 8,
                 end: 19,
+                range: [8, 19],
                 object: {
                   type: 'Identifier',
                   start: 11,
                   end: 14,
+                  range: [11, 14],
                   name: 'foo'
                 },
                 property: {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   name: 'x'
                 },
                 computed: false
@@ -624,21 +636,25 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 expression: true,
                 async: false,
                 params: [
@@ -646,6 +662,7 @@ describe('Expressions - Unary', () => {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   }
                 ],
@@ -653,6 +670,7 @@ describe('Expressions - Unary', () => {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'b'
                 }
               }
@@ -669,21 +687,25 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 23,
+              range: [0, 23],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
                 start: 8,
                 end: 22,
+                range: [8, 22],
                 expression: true,
                 async: false,
                 params: [
@@ -691,23 +713,27 @@ describe('Expressions - Unary', () => {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   },
                   {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
+                    range: [12, 13],
                     name: 'b'
                   },
                   {
                     type: 'ArrayPattern',
                     start: 15,
                     end: 18,
+                    range: [15, 18],
                     elements: [
                       {
                         type: 'Identifier',
                         start: 16,
                         end: 17,
+                        range: [16, 17],
                         name: 'c'
                       }
                     ]
@@ -717,6 +743,7 @@ describe('Expressions - Unary', () => {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
+                  range: [21, 22],
                   name: 'b'
                 }
               }
@@ -2096,31 +2123,37 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'MemberExpression',
                 start: 7,
                 end: 11,
+                range: [7, 11],
                 object: {
                   type: 'ArrayExpression',
                   start: 7,
                   end: 9,
+                  range: [7, 9],
                   elements: []
                 },
                 property: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
+                  range: [10, 11],
                   name: 'x'
                 },
                 computed: false
@@ -2206,27 +2239,32 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'UnaryExpression',
               start: 0,
               end: 16,
+              range: [0, 16],
               operator: 'delete',
               prefix: true,
               argument: {
                 type: 'UpdateExpression',
                 start: 8,
                 end: 15,
+                range: [8, 15],
                 operator: '++',
                 prefix: false,
                 argument: {
                   type: 'Identifier',
                   start: 9,
                   end: 12,
+                  range: [9, 12],
                   name: 'foo'
                 }
               }
@@ -2303,15 +2341,18 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 44,
+        range: [0, 44],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 44,
+            range: [0, 44],
             expression: {
               type: 'ArrowFunctionExpression',
               start: 0,
               end: 44,
+              range: [0, 44],
               expression: true,
               async: true,
               params: [
@@ -2319,6 +2360,7 @@ describe('Expressions - Unary', () => {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'x'
                 }
               ],
@@ -2326,20 +2368,24 @@ describe('Expressions - Unary', () => {
                 type: 'UnaryExpression',
                 start: 11,
                 end: 44,
+                range: [11, 44],
                 operator: 'delete',
                 prefix: true,
                 argument: {
                   type: 'MemberExpression',
                   start: 18,
                   end: 44,
+                  range: [18, 44],
                   object: {
                     type: 'CallExpression',
                     start: 23,
                     end: 35,
+                    range: [23, 35],
                     callee: {
                       type: 'Identifier',
                       start: 23,
                       end: 26,
+                      range: [23, 26],
                       name: 'foo'
                     },
                     arguments: [
@@ -2347,10 +2393,12 @@ describe('Expressions - Unary', () => {
                         type: 'AwaitExpression',
                         start: 27,
                         end: 34,
+                        range: [27, 34],
                         argument: {
                           type: 'Identifier',
                           start: 33,
                           end: 34,
+                          range: [33, 34],
                           name: 'x'
                         }
                       }
@@ -2360,6 +2408,7 @@ describe('Expressions - Unary', () => {
                     type: 'Identifier',
                     start: 41,
                     end: 44,
+                    range: [41, 44],
                     name: 'bar'
                   },
                   computed: false
@@ -2378,15 +2427,18 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 48,
+        range: [0, 48],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 48,
+            range: [0, 48],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'f'
             },
             generator: true,
@@ -2396,29 +2448,35 @@ describe('Expressions - Unary', () => {
               type: 'BlockStatement',
               start: 13,
               end: 48,
+              range: [13, 48],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 15,
                   end: 46,
+                  range: [15, 46],
                   expression: {
                     type: 'UnaryExpression',
                     start: 15,
                     end: 46,
+                    range: [15, 46],
                     operator: 'delete',
                     prefix: true,
                     argument: {
                       type: 'MemberExpression',
                       start: 22,
                       end: 46,
+                      range: [22, 46],
                       object: {
                         type: 'CallExpression',
                         start: 27,
                         end: 37,
+                        range: [27, 37],
                         callee: {
                           type: 'Identifier',
                           start: 27,
                           end: 30,
+                          range: [27, 30],
                           name: 'foo'
                         },
                         arguments: [
@@ -2426,6 +2484,7 @@ describe('Expressions - Unary', () => {
                             type: 'YieldExpression',
                             start: 31,
                             end: 36,
+                            range: [31, 36],
                             delegate: false,
                             argument: null
                           }
@@ -2435,6 +2494,7 @@ describe('Expressions - Unary', () => {
                         type: 'Identifier',
                         start: 43,
                         end: 46,
+                        range: [43, 46],
                         name: 'bar'
                       },
                       computed: false
@@ -3080,32 +3140,38 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 8,
+        range: [0, 8],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 8,
+            range: [0, 8],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 8,
+              range: [0, 8],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 3,
+                range: [0, 3],
                 name: 'foo'
               },
               right: {
                 type: 'UnaryExpression',
                 start: 6,
                 end: 8,
+                range: [6, 8],
                 operator: '!',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
+                  range: [7, 8],
                   name: 'a'
                 }
               }
@@ -3214,32 +3280,38 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 8,
+        range: [0, 8],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 8,
+            range: [0, 8],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 8,
+              range: [0, 8],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 3,
+                range: [0, 3],
                 name: 'foo'
               },
               right: {
                 type: 'UnaryExpression',
                 start: 6,
                 end: 8,
+                range: [6, 8],
                 operator: '~',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
+                  range: [7, 8],
                   name: 'b'
                 }
               }
@@ -3351,37 +3423,44 @@ describe('Expressions - Unary', () => {
         type: 'Program',
         start: 0,
         end: 10,
+        range: [0, 10],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 10,
+            range: [0, 10],
             expression: {
               type: 'ConditionalExpression',
               start: 0,
               end: 10,
+              range: [0, 10],
               test: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'a'
               },
               consequent: {
                 type: 'Identifier',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 name: 'b'
               },
               alternate: {
                 type: 'UnaryExpression',
                 start: 8,
                 end: 10,
+                range: [8, 10],
                 operator: '!',
                 prefix: true,
                 argument: {
                   type: 'Identifier',
                   start: 9,
                   end: 10,
+                  range: [9, 10],
                   name: 'c'
                 }
               }
