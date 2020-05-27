@@ -2000,16 +2000,10 @@
   }
   function validate(parser, pattern, flags) {
       try {
-          RegExp(pattern);
-      }
-      catch (e) {
-          report(parser, 32);
-      }
-      try {
           return new RegExp(pattern, flags);
       }
       catch (e) {
-          return null;
+          report(parser, 32);
       }
   }
 
