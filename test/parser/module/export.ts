@@ -752,15 +752,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 20,
+        range: [0, 20],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 20,
+            range: [0, 20],
             declaration: {
               type: 'Identifier',
               start: 15,
               end: 20,
+              range: [15, 20],
               name: 'async'
             }
           }
@@ -1003,11 +1006,13 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 9,
+        range: [0, 9],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 9,
+            range: [0, 9],
             declaration: null,
             specifiers: [],
             source: null
@@ -1023,27 +1028,32 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 11,
+            range: [0, 11],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 8,
                 end: 9,
+                range: [8, 9],
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 }
               }
@@ -1054,15 +1064,18 @@ describe('Module - Export', () => {
             type: 'VariableDeclaration',
             start: 12,
             end: 18,
+            range: [12, 18],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 16,
                 end: 17,
+                range: [16, 17],
                 id: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'x'
                 },
                 init: null
@@ -1081,20 +1094,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 22,
+        range: [0, 22],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 6,
+            range: [0, 6],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -1106,22 +1123,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 7,
             end: 22,
+            range: [7, 22],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 15,
                 end: 21,
+                range: [15, 21],
                 local: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
+                  range: [15, 16],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
+                  range: [20, 21],
                   name: 'a'
                 }
               }
@@ -1139,20 +1160,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 6,
+            range: [0, 6],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -1164,22 +1189,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 7,
             end: 18,
+            range: [7, 18],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 15,
                 end: 16,
+                range: [15, 16],
                 local: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
+                  range: [15, 16],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
+                  range: [15, 16],
                   name: 'x'
                 }
               }
@@ -1197,27 +1226,32 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 21,
+            range: [0, 21],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 8,
                 end: 9,
+                range: [8, 9],
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 }
               }
@@ -1226,6 +1260,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               start: 16,
               end: 21,
+              range: [16, 21],
               value: 'foo'
             }
           }
@@ -1240,27 +1275,32 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 26,
+            range: [0, 26],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'a'
                 }
               }
@@ -1269,6 +1309,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               start: 21,
               end: 26,
+              range: [21, 26],
               value: 'foo'
             }
           }
@@ -1314,20 +1355,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 6,
+            range: [0, 6],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -1339,22 +1384,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 7,
             end: 23,
+            range: [7, 23],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 15,
                 end: 21,
+                range: [15, 21],
                 local: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
+                  range: [15, 16],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
+                  range: [20, 21],
                   name: 'a'
                 }
               }
@@ -1372,20 +1421,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 8,
+            range: [0, 8],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -1394,10 +1447,12 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 start: 6,
                 end: 7,
+                range: [6, 7],
                 id: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'y'
                 },
                 init: null
@@ -1409,22 +1464,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 9,
             end: 32,
+            range: [9, 32],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 17,
                 end: 23,
+                range: [17, 23],
                 local: {
                   type: 'Identifier',
                   start: 17,
                   end: 18,
+                  range: [17, 18],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
+                  range: [22, 23],
                   name: 'a'
                 }
               },
@@ -1432,16 +1491,19 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 start: 25,
                 end: 31,
+                range: [25, 31],
                 local: {
                   type: 'Identifier',
                   start: 25,
                   end: 26,
+                  range: [25, 26],
                   name: 'y'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 30,
                   end: 31,
+                  range: [30, 31],
                   name: 'b'
                 }
               }
@@ -1459,30 +1521,36 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 25,
+            range: [0, 25],
             declaration: {
               type: 'VariableDeclaration',
               start: 7,
               end: 25,
+              range: [7, 25],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 17,
+                  range: [11, 17],
                   id: {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     name: 'x'
                   },
                   init: {
                     type: 'Literal',
                     start: 15,
                     end: 17,
+                    range: [15, 17],
                     value: 10
                   }
                 },
@@ -1490,16 +1558,19 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   start: 19,
                   end: 25,
+                  range: [19, 25],
                   id: {
                     type: 'Identifier',
                     start: 19,
                     end: 20,
+                    range: [19, 20],
                     name: 'y'
                   },
                   init: {
                     type: 'Literal',
                     start: 23,
                     end: 25,
+                    range: [23, 25],
                     value: 20
                   }
                 }
@@ -1520,24 +1591,29 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 12,
+            range: [0, 12],
             declaration: {
               type: 'VariableDeclaration',
               start: 7,
               end: 12,
+              range: [7, 12],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   id: {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     name: 'x'
                   },
                   init: null
@@ -1559,24 +1635,29 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 15,
+            range: [0, 15],
             declaration: {
               type: 'VariableDeclaration',
               start: 7,
               end: 15,
+              range: [7, 15],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   id: {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     name: 'x'
                   },
                   init: null
@@ -1585,10 +1666,12 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   start: 14,
                   end: 15,
+                  range: [14, 15],
                   id: {
                     type: 'Identifier',
                     start: 14,
                     end: 15,
+                    range: [14, 15],
                     name: 'y'
                   },
                   init: null
@@ -1610,30 +1693,36 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             declaration: {
               type: 'VariableDeclaration',
               start: 7,
               end: 27,
+              range: [7, 27],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 13,
                   end: 19,
+                  range: [13, 19],
                   id: {
                     type: 'Identifier',
                     start: 13,
                     end: 14,
+                    range: [13, 14],
                     name: 'x'
                   },
                   init: {
                     type: 'Literal',
                     start: 17,
                     end: 19,
+                    range: [17, 19],
                     value: 10
                   }
                 },
@@ -1641,16 +1730,19 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   start: 21,
                   end: 27,
+                  range: [21, 27],
                   id: {
                     type: 'Identifier',
                     start: 21,
                     end: 22,
+                    range: [21, 22],
                     name: 'y'
                   },
                   init: {
                     type: 'Literal',
                     start: 25,
                     end: 27,
+                    range: [25, 27],
                     value: 20
                   }
                 }
@@ -1671,19 +1763,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 21,
+            range: [0, 21],
             declaration: {
               type: 'FunctionDeclaration',
               start: 7,
               end: 21,
+              range: [7, 21],
               id: {
                 type: 'Identifier',
                 start: 16,
                 end: 17,
+                range: [16, 17],
                 name: 'f'
               },
               generator: false,
@@ -1693,6 +1789,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 19,
                 end: 21,
+                range: [19, 21],
                 body: []
               }
             },
@@ -1710,19 +1807,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             declaration: {
               type: 'FunctionDeclaration',
               start: 7,
               end: 27,
+              range: [7, 27],
               id: {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
+                range: [22, 23],
                 name: 'f'
               },
               generator: false,
@@ -1732,6 +1833,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 25,
                 end: 27,
+                range: [25, 27],
                 body: []
               }
             },
@@ -1807,19 +1909,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 35,
+        range: [0, 35],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 35,
+            range: [0, 35],
             declaration: {
               type: 'FunctionDeclaration',
               start: 15,
               end: 35,
+              range: [15, 35],
               id: {
                 type: 'Identifier',
                 start: 30,
                 end: 31,
+                range: [30, 31],
                 name: 'f'
               },
               generator: false,
@@ -1829,6 +1935,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 33,
                 end: 35,
+                range: [33, 35],
                 body: []
               }
             }
@@ -1845,19 +1952,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 30,
+        range: [0, 30],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 30,
+            range: [0, 30],
             declaration: {
               type: 'FunctionDeclaration',
               start: 15,
               end: 30,
+              range: [15, 30],
               id: {
                 type: 'Identifier',
                 start: 25,
                 end: 26,
+                range: [25, 26],
                 name: 'f'
               },
               generator: true,
@@ -1867,6 +1978,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 28,
                 end: 30,
+                range: [28, 30],
                 body: []
               }
             }
@@ -1882,19 +1994,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 17,
+            range: [0, 17],
             declaration: {
               type: 'ClassDeclaration',
               start: 7,
               end: 17,
+              range: [7, 17],
               id: {
                 type: 'Identifier',
                 start: 13,
                 end: 14,
+                range: [13, 14],
                 name: 'x'
               },
               superClass: null,
@@ -1902,6 +2018,7 @@ describe('Module - Export', () => {
                 type: 'ClassBody',
                 start: 15,
                 end: 17,
+                range: [15, 17],
                 body: []
               }
             },
@@ -1920,19 +2037,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 25,
+            range: [0, 25],
             declaration: {
               type: 'ClassDeclaration',
               start: 15,
               end: 25,
+              range: [15, 25],
               id: {
                 type: 'Identifier',
                 start: 21,
                 end: 22,
+                range: [21, 22],
                 name: 'x'
               },
               superClass: null,
@@ -1940,6 +2061,7 @@ describe('Module - Export', () => {
                 type: 'ClassBody',
                 start: 23,
                 end: 25,
+                range: [23, 25],
                 body: []
               }
             }
@@ -1955,33 +2077,40 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 21,
+            range: [0, 21],
             declaration: {
               type: 'VariableDeclaration',
               start: 7,
               end: 21,
+              range: [7, 21],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 21,
+                  range: [11, 21],
                   id: {
                     type: 'ArrayPattern',
                     start: 11,
                     end: 17,
+                    range: [11, 17],
                     elements: [
                       {
                         type: 'RestElement',
                         start: 12,
                         end: 16,
+                        range: [12, 16],
                         argument: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           name: 'x'
                         }
                       }
@@ -1991,6 +2120,7 @@ describe('Module - Export', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 21,
+                    range: [20, 21],
                     name: 'y'
                   }
                 }
@@ -2081,20 +2211,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 8,
+            range: [0, 8],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'a'
                 },
                 init: null
@@ -2103,10 +2237,12 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 start: 6,
                 end: 7,
+                range: [6, 7],
                 id: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'b'
                 },
                 init: null
@@ -2118,22 +2254,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 9,
             end: 20,
+            range: [9, 20],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 17,
                 end: 18,
+                range: [17, 18],
                 local: {
                   type: 'Identifier',
                   start: 17,
                   end: 18,
+                  range: [17, 18],
                   name: 'a'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 17,
                   end: 18,
+                  range: [17, 18],
                   name: 'a'
                 }
               }
@@ -2144,22 +2284,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 21,
             end: 32,
+            range: [21, 32],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 29,
                 end: 30,
+                range: [29, 30],
                 local: {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
+                  range: [29, 30],
                   name: 'b'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
+                  range: [29, 30],
                   name: 'b'
                 }
               }
@@ -2177,15 +2321,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 28,
+            range: [0, 28],
             declaration: {
               type: 'ArrowFunctionExpression',
               start: 15,
               end: 28,
+              range: [15, 28],
               expression: true,
               async: true,
               params: [],
@@ -2193,6 +2340,7 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 start: 27,
                 end: 28,
+                range: [27, 28],
                 name: 'y'
               }
             }
@@ -2208,15 +2356,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 29,
+        range: [0, 29],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 29,
+            range: [0, 29],
             declaration: {
               type: 'ArrowFunctionExpression',
               start: 15,
               end: 29,
+              range: [15, 29],
               expression: true,
               async: true,
               params: [
@@ -2224,6 +2375,7 @@ describe('Module - Export', () => {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
+                  range: [22, 23],
                   name: 'x'
                 }
               ],
@@ -2231,6 +2383,7 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 start: 28,
                 end: 29,
+                range: [28, 29],
                 name: 'y'
               }
             }
@@ -2246,15 +2399,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 33,
+        range: [0, 33],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 33,
+            range: [0, 33],
             declaration: {
               type: 'FunctionDeclaration',
               start: 15,
               end: 33,
+              range: [15, 33],
               id: null,
               generator: false,
               async: true,
@@ -2263,6 +2419,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 31,
                 end: 33,
+                range: [31, 33],
                 body: []
               }
             }
@@ -2303,20 +2460,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 24,
+        range: [0, 24],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 24,
+            range: [0, 24],
             declaration: {
               decorators: [],
               type: 'ClassDeclaration',
               start: 15,
               end: 24,
+              range: [15, 24],
               id: {
                 type: 'Identifier',
                 start: 21,
                 end: 22,
+                range: [21, 22],
                 name: 'x'
               },
               superClass: null,
@@ -2324,6 +2485,7 @@ describe('Module - Export', () => {
                 type: 'ClassBody',
                 start: 22,
                 end: 24,
+                range: [22, 24],
                 body: []
               }
             }
@@ -2339,17 +2501,20 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 18,
+            range: [0, 18],
             declaration: null,
             specifiers: [],
             source: {
               type: 'Literal',
               start: 15,
               end: 18,
+              range: [15, 18],
               value: 'x'
             }
           }
@@ -2364,15 +2529,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             declaration: {
               type: 'ArrowFunctionExpression',
               start: 15,
               end: 27,
+              range: [15, 27],
               expression: true,
               async: true,
               params: [
@@ -2380,6 +2548,7 @@ describe('Module - Export', () => {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
+                  range: [21, 22],
                   name: 'x'
                 }
               ],
@@ -2387,6 +2556,7 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 start: 26,
                 end: 27,
+                range: [26, 27],
                 name: 'y'
               }
             }
@@ -2402,15 +2572,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 26,
+            range: [0, 26],
             declaration: {
               type: 'ArrowFunctionExpression',
               start: 15,
               end: 26,
+              range: [15, 26],
               expression: false,
               async: false,
               params: [
@@ -2418,12 +2591,14 @@ describe('Module - Export', () => {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   name: 'b'
                 }
               ],
@@ -2431,6 +2606,7 @@ describe('Module - Export', () => {
                 type: 'BlockStatement',
                 start: 24,
                 end: 26,
+                range: [24, 26],
                 body: []
               }
             }
@@ -2634,19 +2810,23 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 23,
+            range: [0, 23],
             declaration: {
               type: 'BinaryExpression',
               start: 16,
               end: 21,
+              range: [16, 21],
               left: {
                 type: 'Literal',
                 start: 16,
                 end: 17,
+                range: [16, 17],
                 value: 1
               },
               operator: '+',
@@ -2654,6 +2834,7 @@ describe('Module - Export', () => {
                 type: 'Literal',
                 start: 20,
                 end: 21,
+                range: [20, 21],
                 value: 2
               }
             }
@@ -2722,15 +2903,18 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 18,
+            range: [0, 18],
             declaration: {
               type: 'ArrayExpression',
               start: 15,
               end: 17,
+              range: [15, 17],
               elements: []
             }
           }
@@ -2802,20 +2986,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 8,
+            range: [0, 8],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 7,
+                range: [4, 7],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 7,
+                  range: [4, 7],
                   name: 'foo'
                 },
                 init: null
@@ -2827,22 +3015,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 9,
             end: 28,
+            range: [9, 28],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 17,
                 end: 27,
+                range: [17, 27],
                 local: {
                   type: 'Identifier',
                   start: 17,
                   end: 20,
+                  range: [17, 20],
                   name: 'foo'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 24,
                   end: 27,
+                  range: [24, 27],
                   name: 'new'
                 }
               }
@@ -2860,27 +3052,32 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExportNamedDeclaration',
             start: 0,
             end: 16,
+            range: [0, 16],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'a'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'b'
                 }
               }
@@ -2891,15 +3088,18 @@ describe('Module - Export', () => {
             type: 'VariableDeclaration',
             start: 17,
             end: 23,
+            range: [17, 23],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 21,
                 end: 22,
+                range: [21, 22],
                 id: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
+                  range: [21, 22],
                   name: 'a'
                 },
                 init: null
@@ -2961,20 +3161,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 65,
+        range: [0, 65],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 43,
+            range: [0, 43],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 43,
+              range: [0, 43],
               elements: [
                 {
                   type: 'FunctionExpression',
                   start: 1,
                   end: 42,
+                  range: [1, 42],
                   id: null,
                   generator: true,
                   async: false,
@@ -2983,10 +3187,12 @@ describe('Module - Export', () => {
                       type: 'RestElement',
                       start: 12,
                       end: 17,
+                      range: [12, 17],
                       argument: {
                         type: 'ObjectPattern',
                         start: 15,
                         end: 17,
+                        range: [15, 17],
                         properties: []
                       }
                     }
@@ -2995,15 +3201,18 @@ describe('Module - Export', () => {
                     type: 'BlockStatement',
                     start: 19,
                     end: 42,
+                    range: [19, 42],
                     body: [
                       {
                         type: 'SwitchStatement',
                         start: 22,
                         end: 39,
+                        range: [22, 39],
                         discriminant: {
                           type: 'YieldExpression',
                           start: 30,
                           end: 35,
+                          range: [30, 35],
                           delegate: false,
                           argument: null
                         },
@@ -3019,21 +3228,25 @@ describe('Module - Export', () => {
             type: 'ExpressionStatement',
             start: 52,
             end: 65,
+            range: [52, 65],
             expression: {
               type: 'AssignmentExpression',
               start: 52,
               end: 65,
+              range: [52, 65],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 52,
                 end: 53,
+                range: [52, 53],
                 name: 'a'
               },
               right: {
                 type: 'ArrowFunctionExpression',
                 start: 56,
                 end: 65,
+                range: [56, 65],
                 expression: false,
                 async: false,
                 params: [
@@ -3041,6 +3254,7 @@ describe('Module - Export', () => {
                     type: 'Identifier',
                     start: 57,
                     end: 58,
+                    range: [57, 58],
                     name: 'u'
                   }
                 ],
@@ -3048,6 +3262,7 @@ describe('Module - Export', () => {
                   type: 'BlockStatement',
                   start: 63,
                   end: 65,
+                  range: [63, 65],
                   body: []
                 }
               }
@@ -3159,20 +3374,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 44,
+        range: [0, 44],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 6,
+            range: [0, 6],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -3184,22 +3403,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 7,
             end: 25,
+            range: [7, 25],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 16,
                 end: 22,
+                range: [16, 22],
                 local: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
+                  range: [21, 22],
                   name: 'a'
                 }
               }
@@ -3210,22 +3433,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 26,
             end: 44,
+            range: [26, 44],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 35,
                 end: 41,
+                range: [35, 41],
                 local: {
                   type: 'Identifier',
                   start: 35,
                   end: 36,
+                  range: [35, 36],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 40,
                   end: 41,
+                  range: [40, 41],
                   name: 'b'
                 }
               }
@@ -3243,25 +3470,30 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 22,
+        range: [0, 22],
         body: [
           {
             type: 'ExportDefaultDeclaration',
             start: 0,
             end: 22,
+            range: [0, 22],
             declaration: {
               type: 'AssignmentExpression',
               start: 15,
               end: 22,
+              range: [15, 22],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 15,
                 end: 18,
+                range: [15, 18],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 16,
                     end: 17,
+                    range: [16, 17],
                     name: 'x'
                   }
                 ]
@@ -3270,6 +3502,7 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 start: 21,
                 end: 22,
+                range: [21, 22],
                 name: 'y'
               }
             }
@@ -3719,20 +3952,24 @@ describe('Module - Export', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 8,
+            range: [0, 8],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 5,
+                range: [4, 5],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'x'
                 },
                 init: null
@@ -3741,10 +3978,12 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 start: 6,
                 end: 7,
+                range: [6, 7],
                 id: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'y'
                 },
                 init: null
@@ -3756,22 +3995,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             start: 9,
             end: 32,
+            range: [9, 32],
             declaration: null,
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 start: 17,
                 end: 23,
+                range: [17, 23],
                 local: {
                   type: 'Identifier',
                   start: 17,
                   end: 18,
+                  range: [17, 18],
                   name: 'x'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
+                  range: [22, 23],
                   name: 'a'
                 }
               },
@@ -3779,16 +4022,19 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 start: 25,
                 end: 31,
+                range: [25, 31],
                 local: {
                   type: 'Identifier',
                   start: 25,
                   end: 26,
+                  range: [25, 26],
                   name: 'y'
                 },
                 exported: {
                   type: 'Identifier',
                   start: 30,
                   end: 31,
+                  range: [30, 31],
                   name: 'b'
                 }
               }

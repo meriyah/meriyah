@@ -247,7 +247,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'Foo',
               start: 6,
-              end: 9
+              end: 9,
+              range: [6, 9]
             },
             superClass: null,
             body: {
@@ -259,30 +260,36 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'x',
                     start: 12,
-                    end: 13
+                    end: 13,
+                    range: [12, 13]
                   },
                   value: {
                     type: 'Literal',
                     value: 1,
                     start: 16,
-                    end: 17
+                    end: 17,
+                    range: [16, 17]
                   },
                   decorators: [],
                   computed: false,
                   static: false,
                   start: 12,
-                  end: 17
+                  end: 17,
+                  range: [12, 17]
                 }
               ],
               start: 10,
-              end: 20
+              end: 20,
+              range: [10, 20]
             },
             start: 0,
-            end: 20
+            end: 20,
+            range: [0, 20]
           }
         ],
         start: 0,
-        end: 20
+        end: 20,
+        range: [0, 20]
       }
     ],
     [
@@ -299,7 +306,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -311,25 +319,30 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'set',
                     start: 10,
-                    end: 13
+                    end: 13,
+                    range: [10, 13]
                   },
                   decorators: [],
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 13
+                  end: 13,
+                  range: [10, 13]
                 }
               ],
               start: 8,
-              end: 16
+              end: 16,
+              range: [8, 16]
             },
             start: 0,
-            end: 16
+            end: 16,
+            range: [0, 16]
           }
         ],
         start: 0,
-        end: 16
+        end: 16,
+        range: [0, 16]
       }
     ],
     [
@@ -402,59 +415,71 @@ describe('Next - Public fields', () => {
                               type: 'Identifier',
                               name: 'k',
                               start: 36,
-                              end: 37
+                              end: 37,
+                              range: [36, 37]
                             },
                             arguments: [],
                             start: 36,
-                            end: 39
+                            end: 39,
+                            range: [36, 39]
                           },
                           value: {
                             type: 'Literal',
                             value: 2,
                             start: 43,
-                            end: 44
+                            end: 44,
+                            range: [43, 44]
                           },
                           computed: true,
                           static: false,
                           start: 35,
-                          end: 44
+                          end: 44,
+                          range: [35, 44]
                         }
                       ],
                       start: 33,
-                      end: 46
+                      end: 46,
+                      range: [33, 46]
                     },
                     start: 27,
-                    end: 46
+                    end: 46,
+                    range: [27, 46]
                   },
                   params: [
                     {
                       type: 'Identifier',
                       name: 'k',
                       start: 21,
-                      end: 22
+                      end: 22,
+                      range: [21, 22]
                     }
                   ],
                   async: false,
                   expression: true,
                   start: 20,
-                  end: 46
+                  end: 46,
+                  range: [20, 46]
                 },
                 id: {
                   type: 'Identifier',
                   name: 'createClass',
                   start: 6,
-                  end: 17
+                  end: 17,
+                  range: [6, 17]
                 },
                 start: 6,
-                end: 46
+                end: 46,
+                range: [6, 46]
               }
             ],
             start: 0,
-            end: 47
+            end: 47,
+            range: [0, 47]
           }
         ],
         start: 0,
-        end: 47
+        end: 47,
+        range: [0, 47]
       }
     ],
     [
@@ -509,7 +534,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -522,18 +548,21 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'x',
                     start: 17,
-                    end: 18
+                    end: 18,
+                    range: [17, 18]
                   },
                   value: {
                     type: 'Literal',
                     value: 42,
                     start: 22,
-                    end: 24
+                    end: 24,
+                    range: [22, 24]
                   },
                   computed: true,
                   static: false,
                   start: 16,
-                  end: 24
+                  end: 24,
+                  range: [16, 24]
                 },
                 {
                   type: 'FieldDefinition',
@@ -542,18 +571,21 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 10,
                     start: 27,
-                    end: 29
+                    end: 29,
+                    range: [27, 29]
                   },
                   value: {
                     type: 'Literal',
                     value: 'meep',
                     start: 33,
-                    end: 39
+                    end: 39,
+                    range: [33, 39]
                   },
                   computed: true,
                   static: false,
                   start: 26,
-                  end: 39
+                  end: 39,
+                  range: [26, 39]
                 },
                 {
                   type: 'FieldDefinition',
@@ -562,24 +594,29 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'not initialized',
                     start: 42,
-                    end: 59
+                    end: 59,
+                    range: [42, 59]
                   },
                   value: null,
                   computed: true,
                   static: false,
                   start: 41,
-                  end: 60
+                  end: 60,
+                  range: [41, 60]
                 }
               ],
               start: 8,
-              end: 69
+              end: 69,
+              range: [8, 69]
             },
             start: 0,
-            end: 69
+            end: 69,
+            range: [0, 69]
           }
         ],
         start: 0,
-        end: 69
+        end: 69,
+        range: [0, 69]
       }
     ],
     [
@@ -599,7 +636,8 @@ describe('Next - Public fields', () => {
                   type: 'Identifier',
                   name: 'X',
                   start: 8,
-                  end: 9
+                  end: 9,
+                  range: [8, 9]
                 },
                 superClass: null,
                 body: {
@@ -612,7 +650,8 @@ describe('Next - Public fields', () => {
                         type: 'Identifier',
                         name: 'p',
                         start: 19,
-                        end: 20
+                        end: 20,
+                        range: [19, 20]
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -628,50 +667,61 @@ describe('Next - Public fields', () => {
                                   type: 'Identifier',
                                   name: 'arguments',
                                   start: 43,
-                                  end: 52
+                                  end: 52,
+                                  range: [43, 52]
                                 },
                                 computed: true,
                                 property: {
                                   type: 'Literal',
                                   value: 0,
                                   start: 53,
-                                  end: 54
+                                  end: 54,
+                                  range: [53, 54]
                                 },
                                 start: 43,
-                                end: 55
+                                end: 55,
+                                range: [43, 55]
                               },
                               start: 36,
-                              end: 56
+                              end: 56,
+                              range: [36, 56]
                             }
                           ],
                           start: 34,
-                          end: 58
+                          end: 58,
+                          range: [34, 58]
                         },
                         async: false,
                         generator: false,
                         id: null,
                         start: 23,
-                        end: 58
+                        end: 58,
+                        range: [23, 58]
                       },
                       computed: false,
                       static: true,
                       start: 19,
-                      end: 58
+                      end: 58,
+                      range: [19, 58]
                     }
                   ],
                   start: 10,
-                  end: 60
+                  end: 60,
+                  range: [10, 60]
                 },
                 start: 2,
-                end: 60
+                end: 60,
+                range: [2, 60]
               }
             ],
             start: 0,
-            end: 62
+            end: 62,
+            range: [0, 62]
           }
         ],
         start: 0,
-        end: 62
+        end: 62,
+        range: [0, 62]
       }
     ],
     [
@@ -688,7 +738,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -701,18 +752,21 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'a',
                     start: 11,
-                    end: 14
+                    end: 14,
+                    range: [11, 14]
                   },
                   value: {
                     type: 'Literal',
                     value: 0,
                     start: 18,
-                    end: 19
+                    end: 19,
+                    range: [18, 19]
                   },
                   computed: true,
                   static: false,
                   start: 10,
-                  end: 19
+                  end: 19,
+                  range: [10, 19]
                 },
                 {
                   type: 'FieldDefinition',
@@ -721,24 +775,29 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'b',
                     start: 21,
-                    end: 22
+                    end: 22,
+                    range: [21, 22]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 21,
-                  end: 22
+                  end: 22,
+                  range: [21, 22]
                 }
               ],
               start: 8,
-              end: 25
+              end: 25,
+              range: [8, 25]
             },
             start: 0,
-            end: 25
+            end: 25,
+            range: [0, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ],
     [
@@ -755,7 +814,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'Some',
               start: 6,
-              end: 10
+              end: 10,
+              range: [6, 10]
             },
             superClass: null,
             body: {
@@ -768,7 +828,8 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'render',
                     start: 13,
-                    end: 19
+                    end: 19,
+                    range: [13, 19]
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
@@ -781,36 +842,44 @@ describe('Next - Public fields', () => {
                             type: 'Literal',
                             value: null,
                             start: 34,
-                            end: 38
+                            end: 38,
+                            range: [34, 38]
                           },
                           start: 27,
-                          end: 39
+                          end: 39,
+                          range: [27, 39]
                         }
                       ],
                       start: 25,
-                      end: 41
+                      end: 41,
+                      range: [25, 41]
                     },
                     params: [],
                     async: false,
                     expression: false,
                     start: 20,
-                    end: 41
+                    end: 41,
+                    range: [20, 41]
                   },
                   computed: false,
                   static: false,
                   start: 13,
-                  end: 41
+                  end: 41,
+                  range: [13, 41]
                 }
               ],
               start: 11,
-              end: 42
+              end: 42,
+              range: [11, 42]
             },
             start: 0,
-            end: 42
+            end: 42,
+            range: [0, 42]
           }
         ],
         start: 0,
-        end: 42
+        end: 42,
+        range: [0, 42]
       }
     ],
     [
@@ -844,7 +913,8 @@ describe('Next - Public fields', () => {
                   type: 'Identifier',
                   name: 'X',
                   start: 16,
-                  end: 17
+                  end: 17,
+                  range: [16, 17]
                 },
                 superClass: null,
                 decorators: [],
@@ -857,7 +927,8 @@ describe('Next - Public fields', () => {
                         type: 'Identifier',
                         name: 'p',
                         start: 37,
-                        end: 38
+                        end: 38,
+                        range: [37, 38]
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -873,47 +944,57 @@ describe('Next - Public fields', () => {
                                   type: 'Identifier',
                                   name: 'arguments',
                                   start: 61,
-                                  end: 70
+                                  end: 70,
+                                  range: [61, 70]
                                 },
                                 computed: true,
                                 property: {
                                   type: 'Literal',
                                   value: 0,
                                   start: 71,
-                                  end: 72
+                                  end: 72,
+                                  range: [71, 72]
                                 },
                                 start: 61,
-                                end: 73
+                                end: 73,
+                                range: [61, 73]
                               },
                               start: 54,
-                              end: 74
+                              end: 74,
+                              range: [54, 74]
                             }
                           ],
                           start: 52,
-                          end: 76
+                          end: 76,
+                          range: [52, 76]
                         },
                         async: false,
                         generator: false,
                         id: null,
                         start: 41,
-                        end: 76
+                        end: 76,
+                        range: [41, 76]
                       },
                       static: true,
                       computed: false,
                       decorators: [],
                       start: 37,
-                      end: 76
+                      end: 76,
+                      range: [37, 76]
                     }
                   ],
                   start: 18,
-                  end: 86
+                  end: 86,
+                  range: [18, 86]
                 },
                 start: 10,
-                end: 86
+                end: 86,
+                range: [10, 86]
               }
             ],
             start: 0,
-            end: 94
+            end: 94,
+            range: [0, 94]
           },
           {
             type: 'BlockStatement',
@@ -924,7 +1005,8 @@ describe('Next - Public fields', () => {
                   type: 'Identifier',
                   name: 'X',
                   start: 118,
-                  end: 119
+                  end: 119,
+                  range: [118, 119]
                 },
                 superClass: null,
                 decorators: [],
@@ -937,7 +1019,8 @@ describe('Next - Public fields', () => {
                         type: 'Identifier',
                         name: 't',
                         start: 139,
-                        end: 140
+                        end: 140,
+                        range: [139, 140]
                       },
                       value: {
                         type: 'ArrowFunctionExpression',
@@ -958,24 +1041,29 @@ describe('Next - Public fields', () => {
                                         type: 'Identifier',
                                         name: 'arguments',
                                         start: 185,
-                                        end: 194
+                                        end: 194,
+                                        range: [185, 194]
                                       },
                                       computed: true,
                                       property: {
                                         type: 'Literal',
                                         value: 0,
                                         start: 195,
-                                        end: 196
+                                        end: 196,
+                                        range: [195, 196]
                                       },
                                       start: 185,
-                                      end: 197
+                                      end: 197,
+                                      range: [185, 197]
                                     },
                                     start: 178,
-                                    end: 198
+                                    end: 198,
+                                    range: [178, 198]
                                   }
                                 ],
                                 start: 176,
-                                end: 200
+                                end: 200,
+                                range: [176, 200]
                               },
                               async: false,
                               generator: false,
@@ -983,15 +1071,18 @@ describe('Next - Public fields', () => {
                                 type: 'Identifier',
                                 name: 'p',
                                 start: 172,
-                                end: 173
+                                end: 173,
+                                range: [172, 173]
                               },
                               start: 163,
-                              end: 200
+                              end: 200,
+                              range: [163, 200]
                             },
                             {
                               type: 'EmptyStatement',
                               start: 200,
-                              end: 201
+                              end: 201,
+                              range: [200, 201]
                             },
                             {
                               type: 'ReturnStatement',
@@ -999,33 +1090,40 @@ describe('Next - Public fields', () => {
                                 type: 'Identifier',
                                 name: 'p',
                                 start: 221,
-                                end: 222
+                                end: 222,
+                                range: [221, 222]
                               },
                               start: 214,
-                              end: 223
+                              end: 223,
+                              range: [214, 223]
                             }
                           ],
                           start: 149,
-                          end: 235
+                          end: 235,
+                          range: [149, 235]
                         },
                         params: [],
                         async: false,
                         expression: false,
                         start: 143,
-                        end: 235
+                        end: 235,
+                        range: [143, 235]
                       },
                       static: true,
                       computed: false,
                       decorators: [],
                       start: 139,
-                      end: 235
+                      end: 235,
+                      range: [139, 235]
                     }
                   ],
                   start: 120,
-                  end: 245
+                  end: 245,
+                  range: [120, 245]
                 },
                 start: 112,
-                end: 245
+                end: 245,
+                range: [112, 245]
               },
               {
                 type: 'VariableDeclaration',
@@ -1041,42 +1139,51 @@ describe('Next - Public fields', () => {
                           type: 'Identifier',
                           name: 'X',
                           start: 263,
-                          end: 264
+                          end: 264,
+                          range: [263, 264]
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
                           name: 't',
                           start: 265,
-                          end: 266
+                          end: 266,
+                          range: [265, 266]
                         },
                         start: 263,
-                        end: 266
+                        end: 266,
+                        range: [263, 266]
                       },
                       arguments: [],
                       start: 263,
-                      end: 268
+                      end: 268,
+                      range: [263, 268]
                     },
                     id: {
                       type: 'Identifier',
                       name: 'p',
                       start: 259,
-                      end: 260
+                      end: 260,
+                      range: [259, 260]
                     },
                     start: 259,
-                    end: 268
+                    end: 268,
+                    range: [259, 268]
                   }
                 ],
                 start: 255,
-                end: 269
+                end: 269,
+                range: [255, 269]
               }
             ],
             start: 102,
-            end: 277
+            end: 277,
+            range: [102, 277]
           }
         ],
         start: 0,
-        end: 277
+        end: 277,
+        range: [0, 277]
       }
     ],
     [
@@ -1201,7 +1308,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -1214,13 +1322,15 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'a',
                     start: 22,
-                    end: 25
+                    end: 25,
+                    range: [22, 25]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 22,
-                  end: 25
+                  end: 25,
+                  range: [22, 25]
                 },
                 {
                   type: 'FieldDefinition',
@@ -1229,13 +1339,15 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'b',
                     start: 27,
-                    end: 30
+                    end: 30,
+                    range: [27, 30]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 27,
-                  end: 30
+                  end: 30,
+                  range: [27, 30]
                 },
                 {
                   type: 'FieldDefinition',
@@ -1244,18 +1356,21 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'c',
                     start: 32,
-                    end: 35
+                    end: 35,
+                    range: [32, 35]
                   },
                   value: {
                     type: 'Literal',
                     value: 39,
                     start: 38,
-                    end: 40
+                    end: 40,
+                    range: [38, 40]
                   },
                   computed: false,
                   static: false,
                   start: 32,
-                  end: 40
+                  end: 40,
+                  range: [32, 40]
                 },
                 {
                   type: 'FieldDefinition',
@@ -1264,29 +1379,35 @@ describe('Next - Public fields', () => {
                     type: 'Literal',
                     value: 'd',
                     start: 43,
-                    end: 46
+                    end: 46,
+                    range: [43, 46]
                   },
                   value: {
                     type: 'Literal',
                     value: 42,
                     start: 49,
-                    end: 51
+                    end: 51,
+                    range: [49, 51]
                   },
                   computed: false,
                   static: false,
                   start: 43,
-                  end: 51
+                  end: 51,
+                  range: [43, 51]
                 }
               ],
               start: 8,
-              end: 66
+              end: 66,
+              range: [8, 66]
             },
             start: 0,
-            end: 66
+            end: 66,
+            range: [0, 66]
           }
         ],
         start: 0,
-        end: 66
+        end: 66,
+        range: [0, 66]
       }
     ],
     [
@@ -1303,7 +1424,8 @@ describe('Next - Public fields', () => {
               type: 'Identifier',
               name: 'A',
               start: 6,
-              end: 7
+              end: 7,
+              range: [6, 7]
             },
             superClass: null,
             body: {
@@ -1316,24 +1438,29 @@ describe('Next - Public fields', () => {
                     type: 'Identifier',
                     name: 'foo',
                     start: 10,
-                    end: 13
+                    end: 13,
+                    range: [10, 13]
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 13
+                  end: 13,
+                  range: [10, 13]
                 }
               ],
               start: 8,
-              end: 16
+              end: 16,
+              range: [8, 16]
             },
             start: 0,
-            end: 16
+            end: 16,
+            range: [0, 16]
           }
         ],
         start: 0,
-        end: 16
+        end: 16,
+        range: [0, 16]
       }
     ]
   ]);

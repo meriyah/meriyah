@@ -276,6 +276,7 @@ describe('Expressions - API', () => {
                 name: 'a',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -298,6 +299,7 @@ describe('Expressions - API', () => {
                       name: 'x',
                       start: 6,
                       end: 7,
+                      range: [6, 7],
                       loc: {
                         start: {
                           line: 1,
@@ -316,6 +318,7 @@ describe('Expressions - API', () => {
                         name: 'dd',
                         start: 11,
                         end: 13,
+                        range: [11, 13],
                         loc: {
                           start: {
                             line: 1,
@@ -332,6 +335,7 @@ describe('Expressions - API', () => {
                         name: 'aa',
                         start: 17,
                         end: 19,
+                        range: [17, 19],
                         loc: {
                           start: {
                             line: 1,
@@ -346,6 +350,7 @@ describe('Expressions - API', () => {
                       operator: '&&',
                       start: 11,
                       end: 19,
+                      range: [11, 19],
                       loc: {
                         start: {
                           line: 1,
@@ -360,6 +365,7 @@ describe('Expressions - API', () => {
                     operator: '||',
                     start: 6,
                     end: 19,
+                    range: [6, 19],
                     loc: {
                       start: {
                         line: 1,
@@ -376,6 +382,7 @@ describe('Expressions - API', () => {
                     name: 'y',
                     start: 23,
                     end: 24,
+                    range: [23, 24],
                     loc: {
                       start: {
                         line: 1,
@@ -390,6 +397,7 @@ describe('Expressions - API', () => {
                   operator: '/',
                   start: 5,
                   end: 24,
+                  range: [5, 24],
                   loc: {
                     start: {
                       line: 1,
@@ -406,6 +414,7 @@ describe('Expressions - API', () => {
                   name: 'foo',
                   start: 27,
                   end: 30,
+                  range: [27, 30],
                   loc: {
                     start: {
                       line: 1,
@@ -420,6 +429,7 @@ describe('Expressions - API', () => {
                 operator: '-',
                 start: 5,
                 end: 30,
+                range: [5, 30],
                 loc: {
                   start: {
                     line: 1,
@@ -434,6 +444,7 @@ describe('Expressions - API', () => {
               operator: '??',
               start: 0,
               end: 30,
+              range: [0, 30],
               loc: {
                 start: {
                   line: 1,
@@ -447,6 +458,7 @@ describe('Expressions - API', () => {
             },
             start: 0,
             end: 30,
+            range: [0, 30],
             loc: {
               start: {
                 line: 1,
@@ -461,6 +473,7 @@ describe('Expressions - API', () => {
         ],
         start: 0,
         end: 30,
+        range: [0, 30],
         loc: {
           start: {
             line: 1,

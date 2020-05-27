@@ -295,6 +295,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   if (context & Context.OptionsRanges) {
     node.start = 0;
     node.end = source.length;
+    node.range = [0, source.length];
   }
 
   if (context & Context.OptionsLoc) {
@@ -336,16 +337,18 @@ export function parseStatementList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.TopLevel,
-      {},
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    statements.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.TopLevel,
+        {},
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as ESTree.Statement
+    );
   }
   return statements;
 }
@@ -362,7 +365,7 @@ export function parseModuleItemList(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined
-): (ReturnType<typeof parseDirective | typeof parseModuleItem>)[] {
+): ReturnType<typeof parseDirective | typeof parseModuleItem>[] {
   // ecma262/#prod-Module
   // Module :
   //    ModuleBody?
@@ -373,7 +376,7 @@ export function parseModuleItemList(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const statements: (ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
+  const statements: ReturnType<typeof parseDirective | typeof parseModuleItem>[] = [];
 
   // Avoid this if we're not going to create any directive nodes. This is likely to be the case
   // most of the time, considering the prevalence of strict mode and the fact modules
@@ -386,14 +389,9 @@ export function parseModuleItemList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseModuleItem(
-      parser,
-      context,
-      scope,
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    statements.push(
+      parseModuleItem(parser, context, scope, parser.tokenPos, parser.linePos, parser.colPos) as ESTree.Statement
+    );
   }
   return statements;
 }
@@ -804,16 +802,18 @@ export function parseBlock(
   const body: ESTree.Statement[] = [];
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.token !== Token.RightBrace) {
-    body.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.BlockStatement,
-      { $: labels },
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as any);
+    body.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.BlockStatement,
+        { $: labels },
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as any
+    );
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
@@ -1405,18 +1405,20 @@ export function parseSwitchStatement(
       parser.token !== Token.RightBrace &&
       parser.token !== Token.DefaultKeyword
     ) {
-      consequent.push(parseStatementListItem(
-        parser,
-        context | Context.InSwitch,
-        scope,
-        Origin.BlockStatement,
-        {
-          $: labels
-        },
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos
-      ) as ESTree.Statement);
+      consequent.push(
+        parseStatementListItem(
+          parser,
+          context | Context.InSwitch,
+          scope,
+          Origin.BlockStatement,
+          {
+            $: labels
+          },
+          parser.tokenPos,
+          parser.linePos,
+          parser.colPos
+        ) as ESTree.Statement
+      );
     }
 
     cases.push(
@@ -3221,7 +3223,7 @@ export function parseAssignmentExpression(
   if ((token & Token.IsAssignOp) === Token.IsAssignOp) {
     if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
     if (
-      (!isPattern && (token === Token.Assign && ((left as ESTree.Expression).type as string) === 'ArrayExpression')) ||
+      (!isPattern && token === Token.Assign && ((left as ESTree.Expression).type as string) === 'ArrayExpression') ||
       ((left as ESTree.Expression).type as string) === 'ObjectExpression'
     ) {
       reinterpretToPattern(parser, left);
@@ -3715,7 +3717,9 @@ export function parseFunctionBody(
     if (
       context & Context.OptionsLexical &&
       scope &&
-      (scopeError !== void 0 && (prevContext & Context.Strict) < 1 && (context & Context.InGlobal) < 1)
+      scopeError !== void 0 &&
+      (prevContext & Context.Strict) < 1 &&
+      (context & Context.InGlobal) < 1
     ) {
       reportScopeError(scopeError);
     }
@@ -3728,16 +3732,18 @@ export function parseFunctionBody(
   parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
   while (parser.token !== Token.RightBrace) {
-    body.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.TopLevel,
-      {},
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    body.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.TopLevel,
+        {},
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as ESTree.Statement
+    );
   }
 
   consume(
@@ -7181,7 +7187,7 @@ export function parseFormalParametersOrFormalList(
   scope: ScopeState | undefined,
   inGroup: 0 | 1,
   kind: BindingKind
-): (ESTree.Parameter)[] {
+): ESTree.Parameter[] {
   /**
    * FormalParameter :
    *    BindingElement
@@ -7324,7 +7330,7 @@ export function parseFormalParametersOrFormalList(
 
   if (isSimpleParameterList) parser.flags |= Flags.SimpleParameterList;
 
-  if (scope && ((isSimpleParameterList || context & Context.Strict) && scope.scopeError !== void 0)) {
+  if (scope && (isSimpleParameterList || context & Context.Strict) && scope.scopeError !== void 0) {
     reportScopeError(scope.scopeError);
   }
 

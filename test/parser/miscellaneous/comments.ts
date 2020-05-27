@@ -337,15 +337,18 @@ describe('Miscellaneous - Comments', () => {
         type: 'Program',
         start: 0,
         end: 137,
+        range: [0, 137],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 12,
             end: 126,
+            range: [12, 126],
             id: {
               type: 'Identifier',
               start: 35,
               end: 36,
+              range: [35, 36],
               name: 'f'
             },
             generator: false,
@@ -355,12 +358,14 @@ describe('Miscellaneous - Comments', () => {
                 type: 'Identifier',
                 start: 55,
                 end: 56,
+                range: [55, 56],
                 name: 'x'
               },
               {
                 type: 'Identifier',
                 start: 75,
                 end: 76,
+                range: [75, 76],
                 name: 'y'
               }
             ],
@@ -368,16 +373,19 @@ describe('Miscellaneous - Comments', () => {
               type: 'BlockStatement',
               start: 95,
               end: 126,
+              range: [95, 126],
               body: [
                 {
                   type: 'EmptyStatement',
                   start: 105,
-                  end: 106
+                  end: 106,
+                  range: [105, 106]
                 },
                 {
                   type: 'EmptyStatement',
                   start: 115,
-                  end: 116
+                  end: 116,
+                  range: [115, 116]
                 }
               ]
             }
@@ -492,7 +500,8 @@ describe('Miscellaneous - Comments', () => {
         sourceType: 'script',
         body: [],
         start: 0,
-        end: 3
+        end: 3,
+        range: [0, 3]
       }
     ],
     [
@@ -508,14 +517,17 @@ describe('Miscellaneous - Comments', () => {
               type: 'Literal',
               value: 42,
               start: 0,
-              end: 2
+              end: 2,
+              range: [0, 2]
             },
             start: 0,
-            end: 2
+            end: 2,
+            range: [0, 2]
           }
         ],
         start: 0,
-        end: 46
+        end: 46,
+        range: [0, 46]
       }
     ],
     [
@@ -579,7 +591,8 @@ describe('Miscellaneous - Comments', () => {
               type: 'Identifier',
               name: 'x',
               start: 4,
-              end: 5
+              end: 5,
+              range: [4, 5]
             },
             consequent: {
               type: 'BlockStatement',
@@ -592,26 +605,32 @@ describe('Miscellaneous - Comments', () => {
                       type: 'Identifier',
                       name: 'doThat',
                       start: 28,
-                      end: 34
+                      end: 34,
+                      range: [28, 34]
                     },
                     arguments: [],
                     start: 28,
-                    end: 36
+                    end: 36,
+                    range: [28, 36]
                   },
                   start: 28,
-                  end: 36
+                  end: 36,
+                  range: [28, 36]
                 }
               ],
               start: 7,
-              end: 38
+              end: 38,
+              range: [7, 38]
             },
             alternate: null,
             start: 0,
-            end: 38
+            end: 38,
+            range: [0, 38]
           }
         ],
         start: 0,
-        end: 38
+        end: 38,
+        range: [0, 38]
       }
     ],
     [
@@ -633,16 +652,19 @@ describe('Miscellaneous - Comments', () => {
                     type: 'Literal',
                     value: true,
                     start: 37,
-                    end: 41
+                    end: 41,
+                    range: [37, 41]
                   },
                   body: {
                     type: 'BlockStatement',
                     body: [],
                     start: 43,
-                    end: 46
+                    end: 46,
+                    range: [43, 46]
                   },
                   start: 30,
-                  end: 46
+                  end: 46,
+                  range: [30, 46]
                 },
                 {
                   type: 'VariableDeclaration',
@@ -655,18 +677,22 @@ describe('Miscellaneous - Comments', () => {
                         type: 'Identifier',
                         name: 'each',
                         start: 61,
-                        end: 65
+                        end: 65,
+                        range: [61, 65]
                       },
                       start: 61,
-                      end: 65
+                      end: 65,
+                      range: [61, 65]
                     }
                   ],
                   start: 57,
-                  end: 66
+                  end: 66,
+                  range: [57, 66]
                 }
               ],
               start: 13,
-              end: 68
+              end: 68,
+              range: [13, 68]
             },
             async: false,
             generator: false,
@@ -674,14 +700,17 @@ describe('Miscellaneous - Comments', () => {
               type: 'Identifier',
               name: 'f',
               start: 9,
-              end: 10
+              end: 10,
+              range: [9, 10]
             },
             start: 0,
-            end: 68
+            end: 68,
+            range: [0, 68]
           }
         ],
         start: 0,
-        end: 68
+        end: 68,
+        range: [0, 68]
       }
     ],
     [
@@ -701,35 +730,42 @@ describe('Miscellaneous - Comments', () => {
                   type: 'Identifier',
                   name: 'i',
                   start: 7,
-                  end: 8
+                  end: 8,
+                  range: [7, 8]
                 },
                 operator: '--',
                 prefix: false,
                 start: 7,
-                end: 10
+                end: 10,
+                range: [7, 10]
               },
               right: {
                 type: 'Literal',
                 value: 0,
                 start: 11,
-                end: 12
+                end: 12,
+                range: [11, 12]
               },
               operator: '>',
               start: 7,
-              end: 12
+              end: 12,
+              range: [7, 12]
             },
             body: {
               type: 'BlockStatement',
               body: [],
               start: 14,
-              end: 16
+              end: 16,
+              range: [14, 16]
             },
             start: 0,
-            end: 16
+            end: 16,
+            range: [0, 16]
           }
         ],
         start: 0,
-        end: 16
+        end: 16,
+        range: [0, 16]
       }
     ],
     [
@@ -749,11 +785,13 @@ describe('Miscellaneous - Comments', () => {
                   type: 'ReturnStatement',
                   argument: null,
                   start: 26,
-                  end: 33
+                  end: 33,
+                  range: [26, 33]
                 }
               ],
               start: 12,
-              end: 45
+              end: 45,
+              range: [12, 45]
             },
             async: false,
             generator: false,
@@ -761,14 +799,17 @@ describe('Miscellaneous - Comments', () => {
               type: 'Identifier',
               name: 'x',
               start: 9,
-              end: 10
+              end: 10,
+              range: [9, 10]
             },
             start: 0,
-            end: 45
+            end: 45,
+            range: [0, 45]
           }
         ],
         start: 0,
-        end: 45
+        end: 45,
+        range: [0, 45]
       }
     ],
     [
@@ -785,7 +826,8 @@ describe('Miscellaneous - Comments', () => {
               type: 'BlockStatement',
               body: [],
               start: 13,
-              end: 15
+              end: 15,
+              range: [13, 15]
             },
             async: false,
             generator: false,
@@ -793,14 +835,17 @@ describe('Miscellaneous - Comments', () => {
               type: 'Identifier',
               name: 'a',
               start: 9,
-              end: 10
+              end: 10,
+              range: [9, 10]
             },
             start: 0,
-            end: 15
+            end: 15,
+            range: [0, 15]
           }
         ],
         start: 0,
-        end: 15
+        end: 15,
+        range: [0, 15]
       }
     ],
     [
@@ -817,7 +862,8 @@ describe('Miscellaneous - Comments', () => {
               type: 'BlockStatement',
               body: [],
               start: 18,
-              end: 20
+              end: 20,
+              range: [18, 20]
             },
             async: false,
             generator: false,
@@ -825,14 +871,17 @@ describe('Miscellaneous - Comments', () => {
               type: 'Identifier',
               name: 'a',
               start: 14,
-              end: 15
+              end: 15,
+              range: [14, 15]
             },
             start: 5,
-            end: 20
+            end: 20,
+            range: [5, 20]
           }
         ],
         start: 0,
-        end: 20
+        end: 20,
+        range: [0, 20]
       }
     ],
     [
@@ -852,20 +901,24 @@ describe('Miscellaneous - Comments', () => {
               type: 'Literal',
               value: true,
               start: 7,
-              end: 11
+              end: 11,
+              range: [7, 11]
             },
             body: {
               type: 'BlockStatement',
               body: [],
               start: 13,
-              end: 81
+              end: 81,
+              range: [13, 81]
             },
             start: 0,
-            end: 81
+            end: 81,
+            range: [0, 81]
           }
         ],
         start: 0,
-        end: 81
+        end: 81,
+        range: [0, 81]
       }
     ]
   ]);

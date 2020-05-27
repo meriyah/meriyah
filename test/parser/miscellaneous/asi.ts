@@ -145,12 +145,14 @@ describe('Miscellaneous - ASI', () => {
           {
             type: 'EmptyStatement',
             start: 0,
-            end: 1
+            end: 1,
+            range: [0, 1]
           },
           {
             type: 'EmptyStatement',
             start: 1,
-            end: 2
+            end: 2,
+            range: [1, 2]
           },
           {
             type: 'ExpressionStatement',
@@ -158,15 +160,18 @@ describe('Miscellaneous - ASI', () => {
               type: 'Literal',
               value: 1,
               start: 2,
-              end: 3
+              end: 3,
+              range: [2, 3]
             },
             start: 2,
-            end: 4
+            end: 4,
+            range: [2, 4]
           },
           {
             type: 'EmptyStatement',
             start: 4,
-            end: 5
+            end: 5,
+            range: [4, 5]
           },
           {
             type: 'ExpressionStatement',
@@ -174,15 +179,18 @@ describe('Miscellaneous - ASI', () => {
               type: 'Literal',
               value: 1,
               start: 5,
-              end: 6
+              end: 6,
+              range: [5, 6]
             },
             start: 5,
-            end: 7
+            end: 7,
+            range: [5, 7]
           },
           {
             type: 'EmptyStatement',
             start: 7,
-            end: 8
+            end: 8,
+            range: [7, 8]
           },
           {
             type: 'ExpressionStatement',
@@ -190,14 +198,17 @@ describe('Miscellaneous - ASI', () => {
               type: 'Literal',
               value: 1,
               start: 8,
-              end: 9
+              end: 9,
+              range: [8, 9]
             },
             start: 8,
-            end: 9
+            end: 9,
+            range: [8, 9]
           }
         ],
         start: 0,
-        end: 9
+        end: 9,
+        range: [0, 9]
       }
     ],
     [

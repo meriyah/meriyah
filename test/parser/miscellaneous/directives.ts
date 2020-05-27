@@ -353,10 +353,12 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'use strict',
               start: 0,
-              end: 12
+              end: 12,
+              range: [0, 12]
             },
             start: 0,
-            end: 13
+            end: 13,
+            range: [0, 13]
           },
           {
             type: 'ExpressionStatement',
@@ -367,18 +369,22 @@ describe('Miscellaneous - Directives', () => {
                 type: 'Literal',
                 value: 1,
                 start: 16,
-                end: 17
+                end: 17,
+                range: [16, 17]
               },
               prefix: true,
               start: 14,
-              end: 17
+              end: 17,
+              range: [14, 17]
             },
             start: 14,
-            end: 17
+            end: 17,
+            range: [14, 17]
           }
         ],
         start: 0,
-        end: 17
+        end: 17,
+        range: [0, 17]
       }
     ],
     [
@@ -394,10 +400,12 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'use strict',
               start: 1,
-              end: 13
+              end: 13,
+              range: [1, 13]
             },
             start: 0,
-            end: 15
+            end: 15,
+            range: [0, 15]
           },
           {
             type: 'ExpressionStatement',
@@ -407,24 +415,29 @@ describe('Miscellaneous - Directives', () => {
                 type: 'Identifier',
                 name: 'foo',
                 start: 16,
-                end: 19
+                end: 19,
+                range: [16, 19]
               },
               operator: '=',
               right: {
                 type: 'Literal',
                 value: 42,
                 start: 22,
-                end: 24
+                end: 24,
+                range: [22, 24]
               },
               start: 16,
-              end: 24
+              end: 24,
+              range: [16, 24]
             },
             start: 16,
-            end: 25
+            end: 25,
+            range: [16, 25]
           }
         ],
         start: 0,
-        end: 25
+        end: 25,
+        range: [0, 25]
       }
     ]
   ]);
