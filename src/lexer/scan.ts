@@ -184,7 +184,7 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.startLine = parser.line;
   parser.token = scanSingleToken(parser, context, LexerState.None);
   if (parser.onToken && parser.token !== Token.EOF)
-    parser.onToken(convertTokenType(parser.token), parser.startPos, parser.index);
+    parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
 }
 
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
