@@ -219,32 +219,37 @@ describe('Miscellaneous - ASI', () => {
         body: [
           {
             directive: 'foo',
-            end: 5,
             expression: {
-              end: 5,
               raw: '"foo"',
               start: 0,
+              end: 5,
+              range: [0, 5],
               type: 'Literal',
               value: 'foo'
             },
             start: 0,
+            end: 5,
+            range: [0, 5],
             type: 'ExpressionStatement'
           },
           {
-            end: 7,
             expression: {
-              end: 7,
               name: 'x',
               start: 6,
+              end: 7,
+              range: [6, 7],
               type: 'Identifier'
             },
             start: 6,
+            end: 7,
+            range: [6, 7],
             type: 'ExpressionStatement'
           }
         ],
-        end: 7,
         sourceType: 'script',
         start: 0,
+        end: 7,
+        range: [0, 7],
         type: 'Program'
       }
     ],
@@ -498,62 +503,72 @@ describe('Miscellaneous - ASI', () => {
               body: [
                 {
                   directive: 'use asm',
-                  end: 28,
                   expression: {
-                    end: 27,
                     raw: '"use asm"',
                     start: 18,
+                    end: 27,
+                    range: [18, 27],
                     type: 'Literal',
                     value: 'use asm'
                   },
                   start: 18,
+                  end: 28,
+                  range: [18, 28],
                   type: 'ExpressionStatement'
                 },
                 {
                   directive: 'use strict',
-                  end: 42,
                   expression: {
-                    end: 41,
                     raw: '"use strict"',
                     start: 29,
+                    end: 41,
+                    range: [29, 41],
                     type: 'Literal',
                     value: 'use strict'
                   },
                   start: 29,
+                  end: 42,
+                  range: [29, 42],
                   type: 'ExpressionStatement'
                 },
                 {
-                  end: 46,
                   expression: {
-                    end: 46,
                     name: 'foo',
                     start: 43,
+                    end: 46,
+                    range: [43, 46],
                     type: 'Identifier'
                   },
                   start: 43,
+                  end: 46,
+                  range: [43, 46],
                   type: 'ExpressionStatement'
                 }
               ],
-              end: 48,
               start: 16,
+              end: 48,
+              range: [16, 48],
               type: 'BlockStatement'
             },
-            end: 48,
             generator: false,
             id: {
-              end: 13,
               name: 'wrap',
               start: 9,
+              end: 13,
+              range: [9, 13],
               type: 'Identifier'
             },
             params: [],
             start: 0,
+            end: 48,
+            range: [0, 48],
             type: 'FunctionDeclaration'
           }
         ],
-        end: 48,
         sourceType: 'script',
         start: 0,
+        end: 48,
+        range: [0, 48],
         type: 'Program'
       }
     ],

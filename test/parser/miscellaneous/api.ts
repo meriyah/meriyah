@@ -20,9 +20,10 @@ describe('Expressions - API', () => {
       {
         body: [
           {
+            start: 0,
             end: 3,
+            range: [0, 3],
             expression: {
-              end: 3,
               loc: {
                 end: {
                   column: 3,
@@ -36,6 +37,8 @@ describe('Expressions - API', () => {
               },
               name: 'foo',
               start: 0,
+              end: 3,
+              range: [0, 3],
               pattern: false,
               type: 'Identifier'
             },
@@ -50,11 +53,9 @@ describe('Expressions - API', () => {
                 line: 1
               }
             },
-            start: 0,
             type: 'ExpressionStatement'
           }
         ],
-        end: 3,
         loc: {
           end: {
             column: 3,
@@ -68,6 +69,8 @@ describe('Expressions - API', () => {
         },
         sourceType: 'module',
         start: 0,
+        end: 3,
+        range: [0, 3],
         type: 'Program'
       }
     );

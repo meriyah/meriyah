@@ -374,15 +374,18 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 49,
+        range: [0, 49],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 49,
+            range: [0, 49],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'g'
             },
             generator: false,
@@ -392,15 +395,18 @@ describe('Expressions - Async function', () => {
               type: 'BlockStatement',
               start: 13,
               end: 49,
+              range: [13, 49],
               body: [
                 {
                   type: 'FunctionDeclaration',
                   start: 17,
                   end: 38,
+                  range: [17, 38],
                   id: {
                     type: 'Identifier',
                     start: 32,
                     end: 33,
+                    range: [32, 33],
                     name: 'f'
                   },
                   generator: false,
@@ -410,6 +416,7 @@ describe('Expressions - Async function', () => {
                     type: 'BlockStatement',
                     start: 36,
                     end: 38,
+                    range: [36, 38],
                     body: []
                   }
                 },
@@ -417,15 +424,18 @@ describe('Expressions - Async function', () => {
                   type: 'VariableDeclaration',
                   start: 39,
                   end: 45,
+                  range: [39, 45],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 43,
                       end: 44,
+                      range: [43, 44],
                       id: {
                         type: 'Identifier',
                         start: 43,
                         end: 44,
+                        range: [43, 44],
                         name: 'f'
                       },
                       init: null
@@ -472,23 +482,28 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 36,
+        range: [0, 36],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 36,
+            range: [0, 36],
             expression: {
               type: 'MemberExpression',
               start: 1,
               end: 35,
+              range: [1, 35],
               object: {
                 type: 'FunctionExpression',
                 start: 1,
                 end: 25,
+                range: [1, 25],
                 id: {
                   type: 'Identifier',
                   start: 16,
                   end: 19,
+                  range: [16, 19],
                   name: 'foo'
                 },
                 generator: false,
@@ -498,6 +513,7 @@ describe('Expressions - Async function', () => {
                   type: 'BlockStatement',
                   start: 22,
                   end: 25,
+                  range: [22, 25],
                   body: []
                 }
               },
@@ -505,6 +521,7 @@ describe('Expressions - Async function', () => {
                 type: 'Identifier',
                 start: 26,
                 end: 35,
+                range: [26, 35],
                 name: 'prototype'
               },
               computed: false
@@ -521,15 +538,18 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 58,
+        range: [0, 58],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 58,
+            range: [0, 58],
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               name: 'foo'
             },
             generator: false,
@@ -539,27 +559,32 @@ describe('Expressions - Async function', () => {
                 type: 'AssignmentPattern',
                 start: 19,
                 end: 54,
+                range: [19, 54],
                 left: {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   name: 'a'
                 },
                 right: {
                   type: 'ClassExpression',
                   start: 23,
                   end: 54,
+                  range: [23, 54],
                   id: null,
                   superClass: null,
                   body: {
                     type: 'ClassBody',
                     start: 29,
                     end: 54,
+                    range: [29, 54],
                     body: [
                       {
                         type: 'MethodDefinition',
                         start: 30,
                         end: 53,
+                        range: [30, 53],
                         kind: 'method',
                         static: false,
                         computed: false,
@@ -567,12 +592,14 @@ describe('Expressions - Async function', () => {
                           type: 'Identifier',
                           start: 36,
                           end: 39,
+                          range: [36, 39],
                           name: 'bar'
                         },
                         value: {
                           type: 'FunctionExpression',
                           start: 39,
                           end: 53,
+                          range: [39, 53],
                           id: null,
                           generator: false,
                           async: true,
@@ -581,19 +608,23 @@ describe('Expressions - Async function', () => {
                             type: 'BlockStatement',
                             start: 42,
                             end: 53,
+                            range: [42, 53],
                             body: [
                               {
                                 type: 'ExpressionStatement',
                                 start: 44,
                                 end: 51,
+                                range: [44, 51],
                                 expression: {
                                   type: 'AwaitExpression',
                                   start: 44,
                                   end: 51,
+                                  range: [44, 51],
                                   argument: {
                                     type: 'Identifier',
                                     start: 50,
                                     end: 51,
+                                    range: [50, 51],
                                     name: 'b'
                                   }
                                 }
@@ -611,6 +642,7 @@ describe('Expressions - Async function', () => {
               type: 'BlockStatement',
               start: 56,
               end: 58,
+              range: [56, 58],
               body: []
             }
           }
@@ -709,19 +741,23 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 32,
+            range: [0, 32],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 32,
+              range: [0, 32],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'f'
               },
               arguments: [
@@ -729,6 +765,7 @@ describe('Expressions - Async function', () => {
                   type: 'FunctionExpression',
                   start: 2,
                   end: 31,
+                  range: [2, 31],
                   id: null,
                   generator: false,
                   async: true,
@@ -737,6 +774,7 @@ describe('Expressions - Async function', () => {
                       type: 'Identifier',
                       start: 17,
                       end: 18,
+                      range: [17, 18],
                       name: 'x'
                     }
                   ],
@@ -744,19 +782,23 @@ describe('Expressions - Async function', () => {
                     type: 'BlockStatement',
                     start: 20,
                     end: 31,
+                    range: [20, 31],
                     body: [
                       {
                         type: 'ExpressionStatement',
                         start: 22,
                         end: 29,
+                        range: [22, 29],
                         expression: {
                           type: 'AwaitExpression',
                           start: 22,
                           end: 29,
+                          range: [22, 29],
                           argument: {
                             type: 'Identifier',
                             start: 28,
                             end: 29,
+                            range: [28, 29],
                             name: 'x'
                           }
                         }
@@ -778,19 +820,23 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 48,
+        range: [0, 48],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 48,
+            range: [0, 48],
             expression: {
               type: 'FunctionExpression',
               start: 1,
               end: 47,
+              range: [1, 47],
               id: {
                 type: 'Identifier',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 name: 'g'
               },
               generator: true,
@@ -800,19 +846,23 @@ describe('Expressions - Async function', () => {
                 type: 'BlockStatement',
                 start: 15,
                 end: 47,
+                range: [15, 47],
                 body: [
                   {
                     type: 'ExpressionStatement',
                     start: 17,
                     end: 45,
+                    range: [17, 45],
                     expression: {
                       type: 'FunctionExpression',
                       start: 18,
                       end: 43,
+                      range: [18, 43],
                       id: {
                         type: 'Identifier',
                         start: 33,
                         end: 38,
+                        range: [33, 38],
                         name: 'yield'
                       },
                       generator: false,
@@ -822,6 +872,7 @@ describe('Expressions - Async function', () => {
                         type: 'BlockStatement',
                         start: 41,
                         end: 43,
+                        range: [41, 43],
                         body: []
                       }
                     }
@@ -997,15 +1048,18 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 34,
+        range: [0, 34],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 34,
+            range: [0, 34],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'X'
             },
             superClass: null,
@@ -1013,11 +1067,13 @@ describe('Expressions - Async function', () => {
               type: 'ClassBody',
               start: 8,
               end: 34,
+              range: [8, 34],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 32,
+                  range: [10, 32],
                   kind: 'method',
                   static: true,
                   computed: false,
@@ -1025,12 +1081,14 @@ describe('Expressions - Async function', () => {
                     type: 'Identifier',
                     start: 23,
                     end: 28,
+                    range: [23, 28],
                     name: 'await'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 28,
                     end: 32,
+                    range: [28, 32],
                     id: null,
                     generator: false,
                     async: true,
@@ -1039,6 +1097,7 @@ describe('Expressions - Async function', () => {
                       type: 'BlockStatement',
                       start: 30,
                       end: 32,
+                      range: [30, 32],
                       body: []
                     }
                   }
@@ -1112,19 +1171,23 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 36,
+        range: [0, 36],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 36,
+            range: [0, 36],
             expression: {
               type: 'FunctionExpression',
               start: 1,
               end: 35,
+              range: [1, 35],
               id: {
                 type: 'Identifier',
                 start: 16,
                 end: 19,
+                range: [16, 19],
                 name: 'foo'
               },
               generator: false,
@@ -1134,22 +1197,26 @@ describe('Expressions - Async function', () => {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
+                  range: [20, 21],
                   name: 'a'
                 },
                 {
                   type: 'AssignmentPattern',
                   start: 23,
                   end: 29,
+                  range: [23, 29],
                   left: {
                     type: 'Identifier',
                     start: 23,
                     end: 24,
+                    range: [23, 24],
                     name: 'b'
                   },
                   right: {
                     type: 'Literal',
                     start: 27,
                     end: 29,
+                    range: [27, 29],
                     value: 39
                   }
                 }
@@ -1158,6 +1225,7 @@ describe('Expressions - Async function', () => {
                 type: 'BlockStatement',
                 start: 32,
                 end: 35,
+                range: [32, 35],
                 body: []
               }
             }
@@ -1173,15 +1241,18 @@ describe('Expressions - Async function', () => {
         type: 'Program',
         start: 0,
         end: 90,
+        range: [0, 90],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 90,
+            range: [0, 90],
             expression: {
               type: 'FunctionExpression',
               start: 1,
               end: 89,
+              range: [1, 89],
               id: null,
               generator: true,
               async: true,
@@ -1190,27 +1261,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 17,
                   end: 26,
+                  range: [17, 26],
                   left: {
                     type: 'Identifier',
                     start: 17,
                     end: 18,
+                    range: [17, 18],
                     name: 'a'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 21,
                     end: 26,
+                    range: [21, 26],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 21,
                       end: 22,
+                      range: [21, 22],
                       name: 'b'
                     },
                     right: {
                       type: 'Literal',
                       start: 25,
                       end: 26,
+                      range: [25, 26],
                       value: 1
                     }
                   }
@@ -1219,27 +1295,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 28,
                   end: 38,
+                  range: [28, 38],
                   left: {
                     type: 'Identifier',
                     start: 28,
                     end: 29,
+                    range: [28, 29],
                     name: 'c'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 32,
                     end: 38,
+                    range: [32, 38],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 32,
                       end: 33,
+                      range: [32, 33],
                       name: 'd'
                     },
                     right: {
                       type: 'Literal',
                       start: 37,
                       end: 38,
+                      range: [37, 38],
                       value: 1
                     }
                   }
@@ -1248,27 +1329,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 40,
                   end: 50,
+                  range: [40, 50],
                   left: {
                     type: 'Identifier',
                     start: 40,
                     end: 41,
+                    range: [40, 41],
                     name: 'e'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 44,
                     end: 50,
+                    range: [44, 50],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 44,
                       end: 45,
+                      range: [44, 45],
                       name: 'f'
                     },
                     right: {
                       type: 'Literal',
                       start: 49,
                       end: 50,
+                      range: [49, 50],
                       value: 1
                     }
                   }
@@ -1277,27 +1363,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 52,
                   end: 62,
+                  range: [52, 62],
                   left: {
                     type: 'Identifier',
                     start: 52,
                     end: 53,
+                    range: [52, 53],
                     name: 'g'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 56,
                     end: 62,
+                    range: [56, 62],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 56,
                       end: 57,
+                      range: [56, 57],
                       name: 'h'
                     },
                     right: {
                       type: 'Literal',
                       start: 61,
                       end: 62,
+                      range: [61, 62],
                       value: 1
                     }
                   }
@@ -1306,27 +1397,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 64,
                   end: 74,
+                  range: [64, 74],
                   left: {
                     type: 'Identifier',
                     start: 64,
                     end: 65,
+                    range: [64, 65],
                     name: 'i'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 68,
                     end: 74,
+                    range: [68, 74],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 68,
                       end: 69,
+                      range: [68, 69],
                       name: 'j'
                     },
                     right: {
                       type: 'Literal',
                       start: 73,
                       end: 74,
+                      range: [73, 74],
                       value: 1
                     }
                   }
@@ -1335,27 +1431,32 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   start: 76,
                   end: 85,
+                  range: [76, 85],
                   left: {
                     type: 'Identifier',
                     start: 76,
                     end: 77,
+                    range: [76, 77],
                     name: 'k'
                   },
                   right: {
                     type: 'AssignmentExpression',
                     start: 80,
                     end: 85,
+                    range: [80, 85],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 80,
                       end: 81,
+                      range: [80, 81],
                       name: 'l'
                     },
                     right: {
                       type: 'Literal',
                       start: 84,
                       end: 85,
+                      range: [84, 85],
                       value: 1
                     }
                   }
@@ -1365,6 +1466,7 @@ describe('Expressions - Async function', () => {
                 type: 'BlockStatement',
                 start: 87,
                 end: 89,
+                range: [87, 89],
                 body: []
               }
             }

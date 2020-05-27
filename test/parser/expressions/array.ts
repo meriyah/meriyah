@@ -892,15 +892,18 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 37,
+        range: [0, 37],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 37,
+            range: [0, 37],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'f'
             },
             generator: true,
@@ -910,29 +913,35 @@ describe('Expressions - Array', () => {
               type: 'BlockStatement',
               start: 13,
               end: 37,
+              range: [13, 37],
               body: [
                 {
                   type: 'ReturnStatement',
                   start: 15,
                   end: 35,
+                  range: [15, 35],
                   argument: {
                     type: 'ArrayExpression',
                     start: 22,
                     end: 34,
+                    range: [22, 34],
                     elements: [
                       {
                         type: 'SpreadElement',
                         start: 23,
                         end: 33,
+                        range: [23, 33],
                         argument: {
                           type: 'YieldExpression',
                           start: 26,
                           end: 33,
+                          range: [26, 33],
                           delegate: false,
                           argument: {
                             type: 'Identifier',
                             start: 32,
                             end: 33,
+                            range: [32, 33],
                             name: 'x'
                           }
                         }
@@ -954,15 +963,18 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 38,
+        range: [0, 38],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             expression: {
               type: 'Literal',
               start: 0,
               end: 12,
+              range: [0, 12],
               value: 'use strict',
               raw: '"use strict"'
             },
@@ -972,20 +984,24 @@ describe('Expressions - Array', () => {
             type: 'VariableDeclaration',
             start: 14,
             end: 38,
+            range: [14, 38],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 20,
                 end: 37,
+                range: [20, 37],
                 id: {
                   type: 'ObjectPattern',
                   start: 20,
                   end: 33,
+                  range: [20, 33],
                   properties: [
                     {
                       type: 'Property',
                       start: 22,
                       end: 32,
+                      range: [22, 32],
                       method: false,
                       shorthand: false,
                       computed: true,
@@ -993,12 +1009,14 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 23,
                         end: 27,
+                        range: [23, 27],
                         name: 'eval'
                       },
                       value: {
                         type: 'ArrayPattern',
                         start: 30,
                         end: 32,
+                        range: [30, 32],
                         elements: []
                       },
                       kind: 'init'
@@ -1009,6 +1027,7 @@ describe('Expressions - Array', () => {
                   type: 'Identifier',
                   start: 36,
                   end: 37,
+                  range: [36, 37],
                   name: 'a'
                 }
               }
@@ -1026,15 +1045,18 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 35,
+        range: [0, 35],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 35,
+            range: [0, 35],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'f'
             },
             generator: true,
@@ -1044,24 +1066,29 @@ describe('Expressions - Array', () => {
               type: 'BlockStatement',
               start: 13,
               end: 35,
+              range: [13, 35],
               body: [
                 {
                   type: 'ReturnStatement',
                   start: 15,
                   end: 33,
+                  range: [15, 33],
                   argument: {
                     type: 'ArrayExpression',
                     start: 22,
                     end: 32,
+                    range: [22, 32],
                     elements: [
                       {
                         type: 'SpreadElement',
                         start: 23,
                         end: 31,
+                        range: [23, 31],
                         argument: {
                           type: 'YieldExpression',
                           start: 26,
                           end: 31,
+                          range: [26, 31],
                           delegate: false,
                           argument: null
                         }
@@ -1083,35 +1110,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 10,
+                range: [0, 10],
                 elements: [
                   {
                     type: 'AssignmentPattern',
                     start: 1,
                     end: 9,
+                    range: [1, 9],
                     left: {
                       type: 'Identifier',
                       start: 1,
                       end: 2,
+                      range: [1, 2],
                       name: 'x'
                     },
                     right: {
                       type: 'Literal',
                       start: 5,
                       end: 9,
+                      range: [5, 9],
                       value: true
                     }
                   }
@@ -1121,6 +1155,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 13,
                 end: 14,
+                range: [13, 14],
                 name: 'y'
               }
             }
@@ -1646,39 +1681,47 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 11,
+                range: [0, 11],
                 elements: [
                   {
                     type: 'RestElement',
                     start: 1,
                     end: 10,
+                    range: [1, 10],
                     argument: {
                       type: 'MemberExpression',
                       start: 4,
                       end: 10,
+                      range: [4, 10],
                       object: {
                         type: 'Identifier',
                         start: 4,
                         end: 5,
+                        range: [4, 5],
                         name: 'x'
                       },
                       property: {
                         type: 'Identifier',
                         start: 6,
                         end: 10,
+                        range: [6, 10],
                         name: 'list'
                       },
                       computed: false
@@ -1690,6 +1733,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 14,
                 end: 15,
+                range: [14, 15],
                 name: 'a'
               }
             }
@@ -1705,26 +1749,31 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 7,
+                range: [0, 7],
                 elements: [
                   null,
                   {
                     type: 'Identifier',
                     start: 3,
                     end: 4,
+                    range: [3, 4],
                     name: 'x'
                   },
                   null
@@ -1734,6 +1783,7 @@ describe('Expressions - Array', () => {
                 type: 'Literal',
                 start: 10,
                 end: 11,
+                range: [10, 11],
                 value: 0
               }
             }
@@ -1749,34 +1799,41 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 12,
+              range: [0, 12],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 8,
+                range: [0, 8],
                 elements: [
                   {
                     type: 'RestElement',
                     start: 1,
                     end: 7,
+                    range: [1, 7],
                     argument: {
                       type: 'ArrayPattern',
                       start: 4,
                       end: 7,
+                      range: [4, 7],
                       elements: [
                         {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           name: 'x'
                         }
                       ]
@@ -1788,6 +1845,7 @@ describe('Expressions - Array', () => {
                 type: 'Literal',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 value: 0
               }
             }
@@ -10714,35 +10772,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               elements: [
                 {
                   type: 'SpreadElement',
                   start: 1,
                   end: 10,
+                  range: [1, 10],
                   argument: {
                     type: 'AssignmentExpression',
                     start: 4,
                     end: 10,
+                    range: [4, 10],
                     operator: '+=',
                     left: {
                       type: 'Identifier',
                       start: 4,
                       end: 5,
+                      range: [4, 5],
                       name: 'x'
                     },
                     right: {
                       type: 'Identifier',
                       start: 9,
                       end: 10,
+                      range: [9, 10],
                       name: 'y'
                     }
                   }
@@ -10761,37 +10826,45 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               elements: [
                 {
                   type: 'SpreadElement',
                   start: 1,
                   end: 17,
+                  range: [1, 17],
                   argument: {
                     type: 'CallExpression',
                     start: 4,
                     end: 17,
+                    range: [4, 17],
                     callee: {
                       type: 'MemberExpression',
                       start: 4,
                       end: 11,
+                      range: [4, 11],
                       object: {
                         type: 'ArrayExpression',
                         start: 4,
                         end: 7,
+                        range: [4, 7],
                         elements: [
                           {
                             type: 'Identifier',
                             start: 5,
                             end: 6,
+                            range: [5, 6],
                             name: 'x'
                           }
                         ]
@@ -10800,6 +10873,7 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 11,
+                        range: [8, 11],
                         name: 'map'
                       },
                       computed: false
@@ -10809,12 +10883,14 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 12,
                         end: 13,
+                        range: [12, 13],
                         name: 'y'
                       },
                       {
                         type: 'Identifier',
                         start: 15,
                         end: 16,
+                        range: [15, 16],
                         name: 'z'
                       }
                     ]
@@ -10834,46 +10910,56 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 26,
+            range: [0, 26],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 25,
+              range: [0, 25],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 21,
+                range: [0, 21],
                 elements: [
                   {
                     type: 'RestElement',
                     start: 1,
                     end: 20,
+                    range: [1, 20],
                     argument: {
                       type: 'MemberExpression',
                       start: 4,
                       end: 20,
+                      range: [4, 20],
                       object: {
                         type: 'CallExpression',
                         start: 4,
                         end: 17,
+                        range: [4, 17],
                         callee: {
                           type: 'MemberExpression',
                           start: 4,
                           end: 11,
+                          range: [4, 11],
                           object: {
                             type: 'ArrayExpression',
                             start: 4,
                             end: 7,
+                            range: [4, 7],
                             elements: [
                               {
                                 type: 'Identifier',
                                 start: 5,
                                 end: 6,
+                                range: [5, 6],
                                 name: 'x'
                               }
                             ]
@@ -10882,6 +10968,7 @@ describe('Expressions - Array', () => {
                             type: 'Identifier',
                             start: 8,
                             end: 11,
+                            range: [8, 11],
                             name: 'map'
                           },
                           computed: false
@@ -10891,12 +10978,14 @@ describe('Expressions - Array', () => {
                             type: 'Identifier',
                             start: 12,
                             end: 13,
+                            range: [12, 13],
                             name: 'y'
                           },
                           {
                             type: 'Identifier',
                             start: 15,
                             end: 16,
+                            range: [15, 16],
                             name: 'z'
                           }
                         ]
@@ -10905,6 +10994,7 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 18,
                         end: 19,
+                        range: [18, 19],
                         name: 'x'
                       },
                       computed: true
@@ -10916,6 +11006,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 24,
                 end: 25,
+                range: [24, 25],
                 name: 'a'
               }
             }
@@ -10931,42 +11022,50 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               expressions: [
                 {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'x'
                 },
                 {
                   type: 'AssignmentExpression',
                   start: 3,
                   end: 19,
+                  range: [3, 19],
                   operator: '=',
                   left: {
                     type: 'ArrayPattern',
                     start: 3,
                     end: 13,
+                    range: [3, 13],
                     elements: [
                       {
                         type: 'Identifier',
                         start: 4,
                         end: 7,
+                        range: [4, 7],
                         name: 'foo'
                       },
                       {
                         type: 'Identifier',
                         start: 9,
                         end: 12,
+                        range: [9, 12],
                         name: 'bar'
                       }
                     ]
@@ -10975,6 +11074,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 16,
                     end: 19,
+                    range: [16, 19],
                     name: 'doo'
                   }
                 }
@@ -10992,46 +11092,55 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'SequenceExpression',
               start: 0,
               end: 23,
+              range: [0, 23],
               expressions: [
                 {
                   type: 'Identifier',
                   start: 0,
                   end: 1,
+                  range: [0, 1],
                   name: 'x'
                 },
                 {
                   type: 'AssignmentExpression',
                   start: 3,
                   end: 23,
+                  range: [3, 23],
                   operator: '=',
                   left: {
                     type: 'ArrayPattern',
                     start: 3,
                     end: 17,
+                    range: [3, 17],
                     elements: [
                       {
                         type: 'AssignmentPattern',
                         start: 4,
                         end: 11,
+                        range: [4, 11],
                         left: {
                           type: 'Identifier',
                           start: 4,
                           end: 7,
+                          range: [4, 7],
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
+                          range: [10, 11],
                           name: 'y'
                         }
                       },
@@ -11039,6 +11148,7 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 13,
                         end: 16,
+                        range: [13, 16],
                         name: 'bar'
                       }
                     ]
@@ -11047,6 +11157,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 20,
                     end: 23,
+                    range: [20, 23],
                     name: 'doo'
                   }
                 }
@@ -11064,42 +11175,50 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               operator: '=',
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'x'
               },
               right: {
                 type: 'AssignmentExpression',
                 start: 4,
                 end: 14,
+                range: [4, 14],
                 operator: '=',
                 left: {
                   type: 'ArrayPattern',
                   start: 4,
                   end: 10,
+                  range: [4, 10],
                   elements: [
                     {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       name: 'a'
                     },
                     {
                       type: 'Identifier',
                       start: 8,
                       end: 9,
+                      range: [8, 9],
                       name: 'b'
                     }
                   ]
@@ -11108,6 +11227,7 @@ describe('Expressions - Array', () => {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'y'
                 }
               }
@@ -11124,31 +11244,37 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 14,
+        range: [0, 14],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 14,
+            range: [0, 14],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 14,
+              range: [0, 14],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 6,
+                range: [0, 6],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   {
                     type: 'Identifier',
                     start: 4,
                     end: 5,
+                    range: [4, 5],
                     name: 'b'
                   }
                 ]
@@ -11157,17 +11283,20 @@ describe('Expressions - Array', () => {
                 type: 'AssignmentExpression',
                 start: 9,
                 end: 14,
+                range: [9, 14],
                 operator: '=',
                 left: {
                   type: 'Identifier',
                   start: 9,
                   end: 10,
+                  range: [9, 10],
                   name: 'c'
                 },
                 right: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'd'
                 }
               }
@@ -11184,34 +11313,41 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 14,
+                range: [0, 14],
                 elements: [
                   {
                     type: 'MemberExpression',
                     start: 1,
                     end: 13,
+                    range: [1, 13],
                     object: {
                       type: 'ArrayExpression',
                       start: 1,
                       end: 6,
+                      range: [1, 6],
                       elements: [
                         {
                           type: 'Identifier',
                           start: 2,
                           end: 5,
+                          range: [2, 5],
                           name: 'foo'
                         }
                       ]
@@ -11220,6 +11356,7 @@ describe('Expressions - Array', () => {
                       type: 'Identifier',
                       start: 7,
                       end: 13,
+                      range: [7, 13],
                       name: 'length'
                     },
                     computed: false
@@ -11230,6 +11367,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
+                range: [17, 18],
                 name: 'x'
               }
             }
@@ -11245,26 +11383,31 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 6,
+        range: [0, 6],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 6,
+            range: [0, 6],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 6,
+              range: [0, 6],
               elements: [
                 {
                   type: 'Identifier',
                   start: 1,
                   end: 2,
+                  range: [1, 2],
                   name: 'x'
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
+                  range: [4, 5],
                   name: 'y'
                 }
               ]
@@ -11281,31 +11424,37 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 7,
+        range: [0, 7],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 7,
+            range: [0, 7],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 7,
+              range: [0, 7],
               elements: [
                 {
                   type: 'AssignmentExpression',
                   start: 1,
                   end: 6,
+                  range: [1, 6],
                   operator: '=',
                   left: {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'x'
                   },
                   right: {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
+                    range: [5, 6],
                     name: 'y'
                   }
                 }
@@ -11323,30 +11472,36 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 5,
+        range: [0, 5],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 5,
+            range: [0, 5],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 5,
+              range: [0, 5],
               elements: [
                 {
                   type: 'MemberExpression',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   object: {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'x'
                   },
                   property: {
                     type: 'Identifier',
                     start: 3,
                     end: 4,
+                    range: [3, 4],
                     name: 'y'
                   },
                   computed: false
@@ -11438,20 +11593,24 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 6,
+        range: [0, 6],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 6,
+            range: [0, 6],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 6,
+              range: [0, 6],
               elements: [
                 {
                   type: 'Identifier',
                   start: 1,
                   end: 2,
+                  range: [1, 2],
                   name: 'x'
                 },
                 null,
@@ -11497,35 +11656,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 9,
+                range: [0, 9],
                 elements: [
                   {
                     type: 'AssignmentPattern',
                     start: 1,
                     end: 8,
+                    range: [1, 8],
                     left: {
                       type: 'Identifier',
                       start: 1,
                       end: 4,
+                      range: [1, 4],
                       name: 'foo'
                     },
                     right: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
+                      range: [7, 8],
                       name: 'A'
                     }
                   }
@@ -11535,6 +11701,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 12,
                 end: 15,
+                range: [12, 15],
                 name: 'arr'
               }
             }
@@ -11550,31 +11717,37 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 17,
+            range: [0, 17],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 16,
+              range: [0, 16],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 10,
+                range: [0, 10],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 4,
+                    range: [1, 4],
                     name: 'foo'
                   },
                   {
                     type: 'Identifier',
                     start: 6,
                     end: 9,
+                    range: [6, 9],
                     name: 'bar'
                   }
                 ]
@@ -11583,6 +11756,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 13,
                 end: 16,
+                range: [13, 16],
                 name: 'arr'
               }
             }
@@ -11598,35 +11772,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 25,
+            range: [0, 25],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 24,
+              range: [0, 24],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 18,
+                range: [0, 18],
                 elements: [
                   {
                     type: 'AssignmentPattern',
                     start: 1,
                     end: 8,
+                    range: [1, 8],
                     left: {
                       type: 'Identifier',
                       start: 1,
                       end: 4,
+                      range: [1, 4],
                       name: 'foo'
                     },
                     right: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
+                      range: [7, 8],
                       name: 'A'
                     }
                   },
@@ -11634,16 +11815,19 @@ describe('Expressions - Array', () => {
                     type: 'AssignmentPattern',
                     start: 10,
                     end: 17,
+                    range: [10, 17],
                     left: {
                       type: 'Identifier',
                       start: 10,
                       end: 13,
+                      range: [10, 13],
                       name: 'bar'
                     },
                     right: {
                       type: 'Identifier',
                       start: 16,
                       end: 17,
+                      range: [16, 17],
                       name: 'B'
                     }
                   }
@@ -11653,6 +11837,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 21,
                 end: 24,
+                range: [21, 24],
                 name: 'arr'
               }
             }
@@ -11668,31 +11853,37 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 9,
+        range: [0, 9],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 9,
+            range: [0, 9],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 9,
+              range: [0, 9],
               elements: [
                 {
                   type: 'AssignmentExpression',
                   start: 1,
                   end: 8,
+                  range: [1, 8],
                   operator: '&=',
                   left: {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'x'
                   },
                   right: {
                     type: 'Literal',
                     start: 6,
                     end: 8,
+                    range: [6, 8],
                     value: 42,
                     raw: '42'
                   }
@@ -11741,35 +11932,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 11,
+                range: [0, 11],
                 elements: [
                   {
                     type: 'AssignmentPattern',
                     start: 1,
                     end: 10,
+                    range: [1, 10],
                     left: {
                       type: 'Identifier',
                       start: 1,
                       end: 6,
+                      range: [1, 6],
                       name: 'await'
                     },
                     right: {
                       type: 'Identifier',
                       start: 9,
                       end: 10,
+                      range: [9, 10],
                       name: 'x'
                     }
                   }
@@ -11779,6 +11977,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 14,
                 end: 15,
+                range: [14, 15],
                 name: 'x'
               }
             }
@@ -11824,29 +12023,35 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 11,
+              range: [0, 11],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 9,
+                range: [0, 9],
                 elements: [
                   {
                     type: 'MemberExpression',
                     start: 1,
                     end: 8,
+                    range: [1, 8],
                     object: {
                       type: 'Literal',
                       start: 1,
                       end: 4,
+                      range: [1, 4],
                       value: 'x',
                       raw: '"x"'
                     },
@@ -11854,6 +12059,7 @@ describe('Expressions - Array', () => {
                       type: 'Identifier',
                       start: 5,
                       end: 8,
+                      range: [5, 8],
                       name: 'foo'
                     },
                     computed: false
@@ -11864,6 +12070,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
+                range: [10, 11],
                 name: 'x'
               }
             }
@@ -11879,35 +12086,42 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 9,
+        range: [0, 9],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 9,
+            range: [0, 9],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 9,
+              range: [0, 9],
               elements: [
                 {
                   type: 'AssignmentExpression',
                   start: 1,
                   end: 8,
+                  range: [1, 8],
                   operator: '=',
                   left: {
                     type: 'MemberExpression',
                     start: 1,
                     end: 4,
+                    range: [1, 4],
                     object: {
                       type: 'Identifier',
                       start: 1,
                       end: 2,
+                      range: [1, 2],
                       name: 'x'
                     },
                     property: {
                       type: 'Identifier',
                       start: 3,
                       end: 4,
+                      range: [3, 4],
                       name: 'y'
                     },
                     computed: false
@@ -11916,6 +12130,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
+                    range: [7, 8],
                     name: 'z'
                   }
                 }
@@ -11933,52 +12148,62 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 15,
+        range: [0, 15],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 15,
+            range: [0, 15],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 15,
+              range: [0, 15],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 11,
+                range: [0, 11],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   {
                     type: 'AssignmentPattern',
                     start: 3,
                     end: 10,
+                    range: [3, 10],
                     left: {
                       type: 'Identifier',
                       start: 3,
                       end: 4,
+                      range: [3, 4],
                       name: 'b'
                     },
                     right: {
                       type: 'ArrayExpression',
                       start: 5,
                       end: 10,
+                      range: [5, 10],
                       elements: [
                         {
                           type: 'Identifier',
                           start: 6,
                           end: 7,
+                          range: [6, 7],
                           name: 'x'
                         },
                         {
                           type: 'Identifier',
                           start: 8,
                           end: 9,
+                          range: [8, 9],
                           name: 'y'
                         }
                       ]
@@ -11990,6 +12215,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 14,
                 end: 15,
+                range: [14, 15],
                 name: 'z'
               }
             }
@@ -12048,36 +12274,43 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 19,
+              range: [0, 19],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 13,
+                range: [0, 13],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
                     start: 4,
                     end: 9,
+                    range: [4, 9],
                     properties: [
                       {
                         type: 'Property',
                         start: 5,
                         end: 8,
+                        range: [5, 8],
                         method: false,
                         shorthand: false,
                         computed: false,
@@ -12085,12 +12318,14 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           name: 'b'
                         },
                         value: {
                           type: 'Identifier',
                           start: 7,
                           end: 8,
+                          range: [7, 8],
                           name: 'd'
                         },
                         kind: 'init'
@@ -12101,6 +12336,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     name: 'c'
                   }
                 ]
@@ -12109,6 +12345,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 16,
                 end: 19,
+                range: [16, 19],
                 name: 'obj'
               }
             }
@@ -12124,36 +12361,43 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 21,
+            range: [0, 21],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 21,
+              range: [0, 21],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 15,
+                range: [0, 15],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
                     start: 4,
                     end: 11,
+                    range: [4, 11],
                     properties: [
                       {
                         type: 'Property',
                         start: 5,
                         end: 10,
+                        range: [5, 10],
                         method: false,
                         shorthand: false,
                         computed: true,
@@ -12161,12 +12405,14 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 6,
                           end: 7,
+                          range: [6, 7],
                           name: 'b'
                         },
                         value: {
                           type: 'Identifier',
                           start: 9,
                           end: 10,
+                          range: [9, 10],
                           name: 'd'
                         },
                         kind: 'init'
@@ -12177,6 +12423,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 13,
                     end: 14,
+                    range: [13, 14],
                     name: 'c'
                   }
                 ]
@@ -12185,6 +12432,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 18,
                 end: 21,
+                range: [18, 21],
                 name: 'obj'
               }
             }
@@ -12200,36 +12448,43 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 42,
+        range: [0, 42],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 42,
+            range: [0, 42],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 42,
+              range: [0, 42],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 28,
+                range: [0, 28],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 7,
+                    range: [1, 7],
                     name: 'please'
                   },
                   {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 21,
+                    range: [9, 21],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 20,
+                        range: [10, 20],
                         method: false,
                         shorthand: false,
                         computed: true,
@@ -12237,12 +12492,14 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 11,
                           end: 15,
+                          range: [11, 15],
                           name: 'make'
                         },
                         value: {
                           type: 'Identifier',
                           start: 18,
                           end: 20,
+                          range: [18, 20],
                           name: 'it'
                         },
                         kind: 'init'
@@ -12253,6 +12510,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 23,
                     end: 27,
+                    range: [23, 27],
                     name: 'stop'
                   }
                 ]
@@ -12261,6 +12519,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 31,
                 end: 42,
+                range: [31, 42],
                 name: 'bwahahahaha'
               }
             }
@@ -12276,45 +12535,54 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 62,
+        range: [0, 62],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 62,
+            range: [0, 62],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 62,
+              range: [0, 62],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 48,
+                range: [0, 48],
                 elements: [
                   {
                     type: 'AssignmentPattern',
                     start: 1,
                     end: 27,
+                    range: [1, 27],
                     left: {
                       type: 'Identifier',
                       start: 1,
                       end: 7,
+                      range: [1, 7],
                       name: 'pweeze'
                     },
                     right: {
                       type: 'AssignmentExpression',
                       start: 10,
                       end: 27,
+                      range: [10, 27],
                       operator: '=',
                       left: {
                         type: 'ArrayPattern',
                         start: 10,
                         end: 18,
+                        range: [10, 18],
                         elements: [
                           {
                             type: 'Identifier',
                             start: 11,
                             end: 17,
+                            range: [11, 17],
                             name: 'pretty'
                           }
                         ]
@@ -12323,6 +12591,7 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 21,
                         end: 27,
+                        range: [21, 27],
                         name: 'please'
                       }
                     }
@@ -12331,11 +12600,13 @@ describe('Expressions - Array', () => {
                     type: 'ObjectPattern',
                     start: 29,
                     end: 41,
+                    range: [29, 41],
                     properties: [
                       {
                         type: 'Property',
                         start: 30,
                         end: 40,
+                        range: [30, 40],
                         method: false,
                         shorthand: false,
                         computed: true,
@@ -12343,12 +12614,14 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 31,
                           end: 35,
+                          range: [31, 35],
                           name: 'make'
                         },
                         value: {
                           type: 'Identifier',
                           start: 38,
                           end: 40,
+                          range: [38, 40],
                           name: 'it'
                         },
                         kind: 'init'
@@ -12359,6 +12632,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 43,
                     end: 47,
+                    range: [43, 47],
                     name: 'stop'
                   }
                 ]
@@ -12367,6 +12641,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 51,
                 end: 62,
+                range: [51, 62],
                 name: 'bwahahahaha'
               }
             }
@@ -12382,19 +12657,23 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 17,
+              range: [0, 17],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 3,
+                range: [0, 3],
                 name: 'log'
               },
               arguments: [
@@ -12402,11 +12681,13 @@ describe('Expressions - Array', () => {
                   type: 'ObjectExpression',
                   start: 4,
                   end: 16,
+                  range: [4, 16],
                   properties: [
                     {
                       type: 'Property',
                       start: 5,
                       end: 15,
+                      range: [5, 15],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -12414,17 +12695,20 @@ describe('Expressions - Array', () => {
                         type: 'Identifier',
                         start: 5,
                         end: 8,
+                        range: [5, 8],
                         name: 'foo'
                       },
                       value: {
                         type: 'ArrayExpression',
                         start: 10,
                         end: 15,
+                        range: [10, 15],
                         elements: [
                           {
                             type: 'Identifier',
                             start: 11,
                             end: 14,
+                            range: [11, 14],
                             name: 'bar'
                           }
                         ]
@@ -12447,19 +12731,23 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 24,
+        range: [0, 24],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 24,
+            range: [0, 24],
             expression: {
               type: 'CallExpression',
               start: 0,
               end: 23,
+              range: [0, 23],
               callee: {
                 type: 'Identifier',
                 start: 0,
                 end: 3,
+                range: [0, 3],
                 name: 'log'
               },
               arguments: [
@@ -12467,16 +12755,19 @@ describe('Expressions - Array', () => {
                   type: 'AssignmentExpression',
                   start: 4,
                   end: 22,
+                  range: [4, 22],
                   operator: '=',
                   left: {
                     type: 'ObjectPattern',
                     start: 4,
                     end: 16,
+                    range: [4, 16],
                     properties: [
                       {
                         type: 'Property',
                         start: 5,
                         end: 15,
+                        range: [5, 15],
                         method: false,
                         shorthand: false,
                         computed: false,
@@ -12484,17 +12775,20 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 8,
+                          range: [5, 8],
                           name: 'foo'
                         },
                         value: {
                           type: 'ArrayPattern',
                           start: 10,
                           end: 15,
+                          range: [10, 15],
                           elements: [
                             {
                               type: 'Identifier',
                               start: 11,
                               end: 14,
+                              range: [11, 14],
                               name: 'bar'
                             }
                           ]
@@ -12507,6 +12801,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 19,
                     end: 22,
+                    range: [19, 22],
                     name: 'obj'
                   }
                 }
@@ -12524,34 +12819,41 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 17,
+            range: [0, 17],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 16,
+              range: [0, 16],
               elements: [
                 {
                   type: 'SpreadElement',
                   start: 1,
                   end: 15,
+                  range: [1, 15],
                   argument: {
                     type: 'AssignmentExpression',
                     start: 4,
                     end: 15,
+                    range: [4, 15],
                     operator: '=',
                     left: {
                       type: 'ObjectPattern',
                       start: 4,
                       end: 11,
+                      range: [4, 11],
                       properties: [
                         {
                           type: 'Property',
                           start: 5,
                           end: 10,
+                          range: [5, 10],
                           method: false,
                           shorthand: true,
                           computed: false,
@@ -12559,6 +12861,7 @@ describe('Expressions - Array', () => {
                             type: 'Identifier',
                             start: 5,
                             end: 6,
+                            range: [5, 6],
                             name: 'a'
                           },
                           kind: 'init',
@@ -12566,16 +12869,19 @@ describe('Expressions - Array', () => {
                             type: 'AssignmentPattern',
                             start: 5,
                             end: 10,
+                            range: [5, 10],
                             left: {
                               type: 'Identifier',
                               start: 5,
                               end: 6,
+                              range: [5, 6],
                               name: 'a'
                             },
                             right: {
                               type: 'Identifier',
                               start: 9,
                               end: 10,
+                              range: [9, 10],
                               name: 'b'
                             }
                           }
@@ -12586,6 +12892,7 @@ describe('Expressions - Array', () => {
                       type: 'Identifier',
                       start: 14,
                       end: 15,
+                      range: [14, 15],
                       name: 'c'
                     }
                   }
@@ -12604,36 +12911,43 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 17,
+            range: [0, 17],
             expression: {
               type: 'AssignmentExpression',
               start: 0,
               end: 17,
+              range: [0, 17],
               operator: '=',
               left: {
                 type: 'ArrayPattern',
                 start: 0,
                 end: 11,
+                range: [0, 11],
                 elements: [
                   {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   {
                     type: 'ObjectPattern',
                     start: 4,
                     end: 7,
+                    range: [4, 7],
                     properties: [
                       {
                         type: 'Property',
                         start: 5,
                         end: 6,
+                        range: [5, 6],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -12641,6 +12955,7 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           name: 'b'
                         },
                         kind: 'init',
@@ -12648,6 +12963,7 @@ describe('Expressions - Array', () => {
                           type: 'Identifier',
                           start: 5,
                           end: 6,
+                          range: [5, 6],
                           name: 'b'
                         }
                       }
@@ -12657,6 +12973,7 @@ describe('Expressions - Array', () => {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'c'
                   }
                 ]
@@ -12665,6 +12982,7 @@ describe('Expressions - Array', () => {
                 type: 'Identifier',
                 start: 14,
                 end: 17,
+                range: [14, 17],
                 name: 'obj'
               }
             }
@@ -12680,26 +12998,31 @@ describe('Expressions - Array', () => {
         type: 'Program',
         start: 0,
         end: 5,
+        range: [0, 5],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 5,
+            range: [0, 5],
             expression: {
               type: 'ArrayExpression',
               start: 0,
               end: 5,
+              range: [0, 5],
               elements: [
                 {
                   type: 'UpdateExpression',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   operator: '++',
                   prefix: false,
                   argument: {
                     type: 'Identifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'z'
                   }
                 }

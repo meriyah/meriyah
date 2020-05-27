@@ -96,50 +96,59 @@ describe('Statements  Switch', () => {
                       consequent: [
                         {
                           body: {
-                            end: 93,
                             expression: {
-                              end: 92,
                               left: {
-                                end: 88,
                                 name: 'a',
                                 start: 87,
+                                end: 88,
+                                range: [87, 88],
                                 type: 'Identifier'
                               },
                               operator: '=',
                               right: {
-                                end: 92,
                                 start: 91,
+                                end: 92,
+                                range: [91, 92],
                                 type: 'Literal',
                                 value: 3
                               },
                               start: 87,
+                              end: 92,
+                              range: [87, 92],
                               type: 'AssignmentExpression'
                             },
                             start: 87,
+                            end: 93,
+                            range: [87, 93],
                             type: 'ExpressionStatement'
                           },
-                          end: 93,
                           label: {
-                            end: 86,
                             name: 'foo',
                             start: 83,
+                            end: 86,
+                            range: [83, 86],
                             type: 'Identifier'
                           },
                           start: 83,
+                          end: 93,
+                          range: [83, 93],
                           type: 'LabeledStatement'
                         },
                         {
-                          end: 114,
                           label: null,
                           start: 108,
+                          end: 114,
+                          range: [108, 114],
                           type: 'BreakStatement'
                         }
                       ],
-                      end: 114,
                       start: 61,
+                      end: 114,
+                      range: [61, 114],
                       test: {
-                        end: 67,
                         start: 66,
+                        end: 67,
+                        range: [66, 67],
                         type: 'Literal',
                         value: 2
                       },
@@ -147,84 +156,98 @@ describe('Statements  Switch', () => {
                     }
                   ],
                   discriminant: {
-                    end: 47,
                     name: 'a',
                     start: 46,
+                    end: 47,
+                    range: [46, 47],
                     type: 'Identifier'
                   },
-                  end: 124,
                   start: 38,
+                  end: 124,
+                  range: [38, 124],
                   type: 'SwitchStatement'
                 }
               ],
-              end: 130,
               start: 28,
+              end: 130,
+              range: [28, 130],
               type: 'BlockStatement'
             },
-            end: 130,
             init: {
               declarations: [
                 {
-                  end: 14,
                   id: {
-                    end: 10,
                     name: 'i',
                     start: 9,
+                    end: 10,
+                    range: [9, 10],
                     type: 'Identifier'
                   },
                   init: {
-                    end: 14,
                     start: 13,
+                    end: 14,
+                    range: [13, 14],
                     type: 'Literal',
                     value: 0
                   },
                   start: 9,
+                  end: 14,
+                  range: [9, 14],
                   type: 'VariableDeclarator'
                 }
               ],
-              end: 14,
               kind: 'let',
               start: 5,
+              end: 14,
+              range: [5, 14],
               type: 'VariableDeclaration'
             },
             start: 0,
+            end: 130,
+            range: [0, 130],
             test: {
-              end: 21,
               left: {
-                end: 17,
                 name: 'i',
                 start: 16,
+                end: 17,
+                range: [16, 17],
                 type: 'Identifier'
               },
               operator: '<',
               right: {
-                end: 21,
                 start: 20,
+                end: 21,
+                range: [20, 21],
                 type: 'Literal',
                 value: 1
               },
               start: 16,
+              end: 21,
+              range: [16, 21],
               type: 'BinaryExpression'
             },
             type: 'ForStatement',
             update: {
               argument: {
-                end: 26,
                 name: 'i',
                 start: 25,
+                end: 26,
+                range: [25, 26],
                 type: 'Identifier'
               },
-              end: 26,
               operator: '++',
               prefix: true,
               start: 23,
+              end: 26,
+              range: [23, 26],
               type: 'UpdateExpression'
             }
           }
         ],
-        end: 130,
         sourceType: 'script',
         start: 0,
+        end: 130,
+        range: [0, 130],
         type: 'Program'
       }
     ],
@@ -537,61 +560,71 @@ describe('Statements  Switch', () => {
                   {
                     declarations: [
                       {
-                        end: 32,
                         id: {
                           elements: [
                             {
-                              end: 27,
                               name: 'x',
                               start: 26,
+                              end: 27,
+                              range: [26, 27],
                               type: 'Identifier'
                             }
                           ],
-                          end: 28,
                           start: 25,
+                          end: 28,
+                          range: [25, 28],
                           type: 'ArrayPattern'
                         },
                         init: {
-                          end: 32,
-                          name: 'y',
                           start: 31,
+                          end: 32,
+                          range: [31, 32],
+                          name: 'y',
                           type: 'Identifier'
                         },
                         start: 25,
+                        end: 32,
+                        range: [25, 32],
                         type: 'VariableDeclarator'
                       }
                     ],
-                    end: 32,
                     kind: 'let',
                     start: 21,
+                    end: 32,
+                    range: [21, 32],
                     type: 'VariableDeclaration'
                   }
                 ],
-                end: 32,
                 start: 13,
+                end: 32,
+                range: [13, 32],
                 test: {
-                  end: 19,
                   name: 'b',
                   start: 18,
+                  end: 19,
+                  range: [18, 19],
                   type: 'Identifier'
                 },
                 type: 'SwitchCase'
               }
             ],
             discriminant: {
-              end: 9,
               name: 'a',
               start: 8,
+              end: 9,
+              range: [8, 9],
               type: 'Identifier'
             },
-            end: 34,
             start: 0,
+            end: 34,
+            range: [0, 34],
             type: 'SwitchStatement'
           }
         ],
-        end: 34,
         sourceType: 'script',
         start: 0,
+        end: 34,
+        range: [0, 34],
         type: 'Program'
       }
     ],

@@ -251,9 +251,10 @@ describe('Miscellaneous - Comments', () => {
       Context.OptionsRanges | Context.OptionsWebCompat,
       {
         body: [],
-        end: 16,
         sourceType: 'script',
         start: 0,
+        end: 16,
+        range: [0, 16],
         type: 'Program'
       }
     ],
@@ -265,57 +266,66 @@ describe('Miscellaneous - Comments', () => {
           {
             declarations: [
               {
-                end: 10,
                 id: {
-                  end: 5,
                   name: 'x',
                   start: 4,
+                  end: 5,
+                  range: [4, 5],
                   type: 'Identifier'
                 },
                 init: {
-                  end: 10,
                   start: 8,
+                  end: 10,
+                  range: [8, 10],
                   type: 'Literal',
                   value: 42
                 },
                 start: 4,
+                end: 10,
+                range: [4, 10],
                 type: 'VariableDeclarator'
               }
             ],
-            end: 11,
             kind: 'var',
             start: 0,
+            end: 11,
+            range: [0, 11],
             type: 'VariableDeclaration'
           },
           {
             declarations: [
               {
-                end: 44,
                 id: {
-                  end: 39,
                   name: 'y',
                   start: 38,
+                  end: 39,
+                  range: [38, 39],
                   type: 'Identifier'
                 },
                 init: {
-                  end: 44,
                   start: 42,
+                  end: 44,
+                  range: [42, 44],
                   type: 'Literal',
                   value: 37
                 },
                 start: 38,
+                end: 44,
+                range: [38, 44],
                 type: 'VariableDeclarator'
               }
             ],
-            end: 45,
             kind: 'var',
             start: 34,
+            end: 45,
+            range: [34, 45],
             type: 'VariableDeclaration'
           }
         ],
-        end: 46,
         sourceType: 'script',
         start: 0,
+        end: 46,
+        range: [0, 46],
         type: 'Program'
       }
     ],
@@ -324,9 +334,10 @@ describe('Miscellaneous - Comments', () => {
       Context.OptionsRanges | Context.OptionsWebCompat,
       {
         body: [],
-        end: 69,
         sourceType: 'script',
         start: 0,
+        end: 69,
+        range: [0, 69],
         type: 'Program'
       }
     ],

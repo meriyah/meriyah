@@ -165,11 +165,11 @@ describe('Next - Public fields', () => {
           {
             declarations: [
               {
-                end: 46,
                 id: {
-                  end: 5,
                   name: 'C',
                   start: 4,
+                  end: 5,
+                  range: [4, 5],
                   type: 'Identifier'
                 },
                 init: {
@@ -178,58 +178,68 @@ describe('Next - Public fields', () => {
                       {
                         computed: false,
                         decorators: [],
-                        end: 44,
                         key: {
-                          end: 39,
                           name: 'prototype',
                           start: 23,
+                          end: 39,
+                          range: [23, 39],
                           type: 'PrivateName'
                         },
                         kind: 'method',
                         start: 16,
+                        end: 44,
+                        range: [16, 44],
                         static: true,
                         type: 'MethodDefinition',
                         value: {
                           async: true,
                           body: {
                             body: [],
-                            end: 44,
                             start: 42,
+                            end: 44,
+                            range: [42, 44],
                             type: 'BlockStatement'
                           },
-                          end: 44,
                           generator: false,
                           id: null,
                           params: [],
                           start: 39,
+                          end: 44,
+                          range: [39, 44],
                           type: 'FunctionExpression'
                         }
                       }
                     ],
-                    end: 46,
                     start: 14,
+                    end: 46,
+                    range: [14, 46],
                     type: 'ClassBody'
                   },
                   decorators: [],
-                  end: 46,
                   id: null,
                   start: 8,
+                  end: 46,
+                  range: [8, 46],
                   superClass: null,
                   type: 'ClassExpression'
                 },
                 start: 4,
+                end: 46,
+                range: [4, 46],
                 type: 'VariableDeclarator'
               }
             ],
-            end: 47,
             kind: 'var',
             start: 0,
+            end: 47,
+            range: [0, 47],
             type: 'VariableDeclaration'
           }
         ],
-        end: 47,
         sourceType: 'script',
         start: 0,
+        end: 47,
+        range: [0, 47],
         type: 'Program'
       }
     ],

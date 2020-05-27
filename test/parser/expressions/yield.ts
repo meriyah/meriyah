@@ -833,25 +833,29 @@ yield d;
                 type: 'Identifier',
                 name: 'a',
                 start: 14,
-                end: 15
+                end: 15,
+                range: [14, 15]
               },
               {
                 type: 'Identifier',
                 name: 'b',
                 start: 17,
-                end: 18
+                end: 18,
+                range: [17, 18]
               },
               {
                 type: 'Identifier',
                 name: 'c',
                 start: 20,
-                end: 21
+                end: 21,
+                range: [20, 21]
               },
               {
                 type: 'Identifier',
                 name: 'd',
                 start: 23,
-                end: 24
+                end: 24,
+                range: [23, 24]
               }
             ],
             body: {
@@ -865,14 +869,17 @@ yield d;
                       type: 'Identifier',
                       name: 'a',
                       start: 34,
-                      end: 35
+                      end: 35,
+                      range: [34, 35]
                     },
                     delegate: false,
                     start: 28,
-                    end: 35
+                    end: 35,
+                    range: [28, 35]
                   },
                   start: 28,
-                  end: 36
+                  end: 36,
+                  range: [28, 36]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -882,14 +889,17 @@ yield d;
                       type: 'Identifier',
                       name: 'b',
                       start: 43,
-                      end: 44
+                      end: 44,
+                      range: [43, 44]
                     },
                     delegate: false,
                     start: 37,
-                    end: 44
+                    end: 44,
+                    range: [37, 44]
                   },
                   start: 37,
-                  end: 45
+                  end: 45,
+                  range: [37, 45]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -899,14 +909,17 @@ yield d;
                       type: 'Identifier',
                       name: 'c',
                       start: 52,
-                      end: 53
+                      end: 53,
+                      range: [52, 53]
                     },
                     delegate: false,
                     start: 46,
-                    end: 53
+                    end: 53,
+                    range: [46, 53]
                   },
                   start: 46,
-                  end: 54
+                  end: 54,
+                  range: [46, 54]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -916,18 +929,22 @@ yield d;
                       type: 'Identifier',
                       name: 'd',
                       start: 61,
-                      end: 62
+                      end: 62,
+                      range: [61, 62]
                     },
                     delegate: false,
                     start: 55,
-                    end: 62
+                    end: 62,
+                    range: [55, 62]
                   },
                   start: 55,
-                  end: 63
+                  end: 63,
+                  range: [55, 63]
                 }
               ],
               start: 26,
-              end: 65
+              end: 65,
+              range: [26, 65]
             },
             async: false,
             generator: true,
@@ -935,14 +952,17 @@ yield d;
               type: 'Identifier',
               name: 'foo',
               start: 10,
-              end: 13
+              end: 13,
+              range: [10, 13]
             },
             start: 0,
-            end: 65
+            end: 65,
+            range: [0, 65]
           }
         ],
         start: 0,
-        end: 65
+        end: 65,
+        range: [0, 65]
       }
     ],
 
@@ -983,7 +1003,8 @@ yield d;
                                 type: 'Literal',
                                 value: 1,
                                 start: 60,
-                                end: 61
+                                end: 61,
+                                range: [60, 61]
                               },
                               right: {
                                 type: 'YieldExpression',
@@ -991,36 +1012,44 @@ yield d;
                                   type: 'Literal',
                                   value: 2,
                                   start: 71,
-                                  end: 72
+                                  end: 72,
+                                  range: [71, 72]
                                 },
                                 delegate: false,
                                 start: 65,
-                                end: 72
+                                end: 72,
+                                range: [65, 72]
                               },
                               operator: '+',
                               start: 60,
-                              end: 73
+                              end: 73,
+                              range: [60, 73]
                             },
                             right: {
                               type: 'Literal',
                               value: 3,
                               start: 76,
-                              end: 77
+                              end: 77,
+                              range: [76, 77]
                             },
                             operator: '+',
                             start: 60,
-                            end: 77
+                            end: 77,
+                            range: [60, 77]
                           },
                           delegate: false,
                           start: 53,
-                          end: 78
+                          end: 78,
+                          range: [53, 78]
                         },
                         start: 46,
-                        end: 79
+                        end: 79,
+                        range: [46, 79]
                       }
                     ],
                     start: 32,
-                    end: 91
+                    end: 91,
+                    range: [32, 91]
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1028,7 +1057,8 @@ yield d;
                       type: 'Identifier',
                       name: 'e',
                       start: 99,
-                      end: 100
+                      end: 100,
+                      range: [99, 100]
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1044,21 +1074,25 @@ yield d;
                                 type: 'Identifier',
                                 name: 'e',
                                 start: 127,
-                                end: 128
+                                end: 128,
+                                range: [127, 128]
                               },
                               prefix: true,
                               start: 120,
-                              end: 128
+                              end: 128,
+                              range: [120, 128]
                             },
                             right: {
                               type: 'Literal',
                               value: 'object',
                               start: 132,
-                              end: 140
+                              end: 140,
+                              range: [132, 140]
                             },
                             operator: '==',
                             start: 120,
-                            end: 140
+                            end: 140,
+                            range: [120, 140]
                           },
                           consequent: {
                             type: 'ThrowStatement',
@@ -1066,14 +1100,17 @@ yield d;
                               type: 'Identifier',
                               name: 'e',
                               start: 148,
-                              end: 149
+                              end: 149,
+                              range: [148, 149]
                             },
                             start: 142,
-                            end: 150
+                            end: 150,
+                            range: [142, 150]
                           },
                           alternate: null,
                           start: 116,
-                          end: 150
+                          end: 150,
+                          range: [116, 150]
                         },
                         {
                           type: 'ReturnStatement',
@@ -1083,7 +1120,8 @@ yield d;
                               type: 'Identifier',
                               name: 'e',
                               start: 170,
-                              end: 171
+                              end: 171,
+                              range: [170, 171]
                             },
                             right: {
                               type: 'YieldExpression',
@@ -1095,7 +1133,8 @@ yield d;
                                     type: 'Literal',
                                     value: 4,
                                     start: 182,
-                                    end: 183
+                                    end: 183,
+                                    range: [182, 183]
                                   },
                                   right: {
                                     type: 'YieldExpression',
@@ -1103,51 +1142,63 @@ yield d;
                                       type: 'Literal',
                                       value: 5,
                                       start: 193,
-                                      end: 194
+                                      end: 194,
+                                      range: [193, 194]
                                     },
                                     delegate: false,
                                     start: 187,
-                                    end: 194
+                                    end: 194,
+                                    range: [187, 194]
                                   },
                                   operator: '+',
                                   start: 182,
-                                  end: 195
+                                  end: 195,
+                                  range: [182, 195]
                                 },
                                 right: {
                                   type: 'Literal',
                                   value: 6,
                                   start: 198,
-                                  end: 199
+                                  end: 199,
+                                  range: [198, 199]
                                 },
                                 operator: '+',
                                 start: 182,
-                                end: 199
+                                end: 199,
+                                range: [182, 199]
                               },
                               delegate: false,
                               start: 175,
-                              end: 200
+                              end: 200,
+                              range: [175, 200]
                             },
                             operator: '+',
                             start: 170,
-                            end: 201
+                            end: 201,
+                            range: [170, 201]
                           },
                           start: 163,
-                          end: 202
+                          end: 202,
+                          range: [163, 202]
                         }
                       ],
                       start: 102,
-                      end: 214
+                      end: 214,
+                      range: [102, 214]
                     },
                     start: 92,
-                    end: 214
+                    end: 214,
+                    range: [92, 214]
                   },
                   finalizer: null,
                   start: 28,
-                  end: 214
+                  end: 214,
+                  range: [28, 214]
                 }
               ],
               start: 16,
-              end: 224
+              end: 224,
+              range: [16, 224]
             },
             async: false,
             generator: true,
@@ -1155,14 +1206,17 @@ yield d;
               type: 'Identifier',
               name: 'g25',
               start: 10,
-              end: 13
+              end: 13,
+              range: [10, 13]
             },
             start: 0,
-            end: 224
+            end: 224,
+            range: [0, 224]
           }
         ],
         start: 0,
-        end: 224
+        end: 224,
+        range: [0, 224]
       }
     ],
 
@@ -1194,20 +1248,23 @@ yield d;
                               type: 'Identifier',
                               name: 'x',
                               start: 27,
-                              end: 28
+                              end: 28,
+                              range: [27, 28]
                             },
                             value: {
                               type: 'Literal',
                               value: 42,
                               start: 30,
-                              end: 32
+                              end: 32,
+                              range: [30, 32]
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
                             shorthand: false,
                             start: 27,
-                            end: 32
+                            end: 32,
+                            range: [27, 32]
                           },
                           {
                             type: 'Property',
@@ -1215,7 +1272,8 @@ yield d;
                               type: 'Identifier',
                               name: 'g',
                               start: 34,
-                              end: 35
+                              end: 35,
+                              range: [34, 35]
                             },
                             value: {
                               type: 'FunctionExpression',
@@ -1224,7 +1282,8 @@ yield d;
                                   type: 'Identifier',
                                   name: 'a',
                                   start: 48,
-                                  end: 49
+                                  end: 49,
+                                  range: [48, 49]
                                 }
                               ],
                               body: {
@@ -1239,73 +1298,88 @@ yield d;
                                         object: {
                                           type: 'ThisExpression',
                                           start: 59,
-                                          end: 63
+                                          end: 63,
+                                          range: [59, 63]
                                         },
                                         computed: false,
                                         property: {
                                           type: 'Identifier',
                                           name: 'x',
                                           start: 64,
-                                          end: 65
+                                          end: 65,
+                                          range: [64, 65]
                                         },
                                         start: 59,
-                                        end: 65
+                                        end: 65,
+                                        range: [59, 65]
                                       },
                                       delegate: false,
                                       start: 53,
-                                      end: 65
+                                      end: 65,
+                                      range: [53, 65]
                                     },
                                     start: 53,
-                                    end: 65
+                                    end: 65,
+                                    range: [53, 65]
                                   }
                                 ],
                                 start: 51,
-                                end: 67
+                                end: 67,
+                                range: [51, 67]
                               },
                               async: false,
                               generator: true,
                               id: null,
                               start: 37,
-                              end: 67
+                              end: 67,
+                              range: [37, 67]
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
                             shorthand: false,
                             start: 34,
-                            end: 67
+                            end: 67,
+                            range: [34, 67]
                           }
                         ],
                         start: 25,
-                        end: 69
+                        end: 69,
+                        range: [25, 69]
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
                         name: 'g',
                         start: 71,
-                        end: 72
+                        end: 72,
+                        range: [71, 72]
                       },
                       start: 24,
-                      end: 72
+                      end: 72,
+                      range: [24, 72]
                     },
                     arguments: [
                       {
                         type: 'Literal',
                         value: 0,
                         start: 73,
-                        end: 74
+                        end: 74,
+                        range: [73, 74]
                       }
                     ],
                     start: 24,
-                    end: 75
+                    end: 75,
+                    range: [24, 75]
                   },
                   start: 17,
-                  end: 76
+                  end: 76,
+                  range: [17, 76]
                 }
               ],
               start: 15,
-              end: 78
+              end: 78,
+              range: [15, 78]
             },
             async: false,
             generator: false,
@@ -1313,14 +1387,17 @@ yield d;
               type: 'Identifier',
               name: 'foo',
               start: 9,
-              end: 12
+              end: 12,
+              range: [9, 12]
             },
             start: 0,
-            end: 78
+            end: 78,
+            range: [0, 78]
           }
         ],
         start: 0,
-        end: 78
+        end: 78,
+        range: [0, 78]
       }
     ],
 
@@ -1339,24 +1416,29 @@ yield d;
                 type: 'Identifier',
                 name: 'yield',
                 start: 0,
-                end: 5
+                end: 5,
+                range: [0, 5]
               },
               operator: '*=',
               right: {
                 type: 'Identifier',
                 name: 'x',
                 start: 9,
-                end: 10
+                end: 10,
+                range: [9, 10]
               },
               start: 0,
-              end: 10
+              end: 10,
+              range: [0, 10]
             },
             start: 0,
-            end: 11
+            end: 11,
+            range: [0, 11]
           }
         ],
         start: 0,
-        end: 11
+        end: 11,
+        range: [0, 11]
       }
     ],
     [
@@ -1380,14 +1462,17 @@ yield d;
                       type: 'Literal',
                       value: 1,
                       start: 22,
-                      end: 23
+                      end: 23,
+                      range: [22, 23]
                     },
                     delegate: false,
                     start: 16,
-                    end: 23
+                    end: 23,
+                    range: [16, 23]
                   },
                   start: 16,
-                  end: 24
+                  end: 24,
+                  range: [16, 24]
                 },
                 {
                   type: 'TryStatement',
@@ -1402,18 +1487,22 @@ yield d;
                             type: 'Literal',
                             value: 2,
                             start: 37,
-                            end: 38
+                            end: 38,
+                            range: [37, 38]
                           },
                           delegate: false,
                           start: 31,
-                          end: 38
+                          end: 38,
+                          range: [31, 38]
                         },
                         start: 31,
-                        end: 39
+                        end: 39,
+                        range: [31, 39]
                       }
                     ],
                     start: 29,
-                    end: 41
+                    end: 41,
+                    range: [29, 41]
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1421,7 +1510,8 @@ yield d;
                       type: 'Identifier',
                       name: 'e',
                       start: 49,
-                      end: 50
+                      end: 50,
+                      range: [49, 50]
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1434,25 +1524,31 @@ yield d;
                               type: 'Identifier',
                               name: 'e',
                               start: 60,
-                              end: 61
+                              end: 61,
+                              range: [60, 61]
                             },
                             delegate: false,
                             start: 54,
-                            end: 61
+                            end: 61,
+                            range: [54, 61]
                           },
                           start: 54,
-                          end: 62
+                          end: 62,
+                          range: [54, 62]
                         }
                       ],
                       start: 52,
-                      end: 64
+                      end: 64,
+                      range: [52, 64]
                     },
                     start: 42,
-                    end: 64
+                    end: 64,
+                    range: [42, 64]
                   },
                   finalizer: null,
                   start: 25,
-                  end: 64
+                  end: 64,
+                  range: [25, 64]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1462,18 +1558,22 @@ yield d;
                       type: 'Literal',
                       value: 3,
                       start: 71,
-                      end: 72
+                      end: 72,
+                      range: [71, 72]
                     },
                     delegate: false,
                     start: 65,
-                    end: 72
+                    end: 72,
+                    range: [65, 72]
                   },
                   start: 65,
-                  end: 73
+                  end: 73,
+                  range: [65, 73]
                 }
               ],
               start: 14,
-              end: 75
+              end: 75,
+              range: [14, 75]
             },
             async: false,
             generator: true,
@@ -1481,14 +1581,17 @@ yield d;
               type: 'Identifier',
               name: 'g',
               start: 10,
-              end: 11
+              end: 11,
+              range: [10, 11]
             },
             start: 0,
-            end: 75
+            end: 75,
+            range: [0, 75]
           }
         ],
         start: 0,
-        end: 75
+        end: 75,
+        range: [0, 75]
       }
     ],
 
@@ -1534,35 +1637,43 @@ yield d;
                                         type: 'Literal',
                                         value: 42,
                                         start: 68,
-                                        end: 70
+                                        end: 70,
+                                        range: [68, 70]
                                       },
                                       delegate: false,
                                       start: 62,
-                                      end: 70
+                                      end: 70,
+                                      range: [62, 70]
                                     },
                                     start: 62,
-                                    end: 71
+                                    end: 71,
+                                    range: [62, 71]
                                   }
                                 ],
                                 start: 60,
-                                end: 73
+                                end: 73,
+                                range: [60, 73]
                               },
                               async: false,
                               generator: true,
                               id: null,
                               start: 48,
-                              end: 73
+                              end: 73,
+                              range: [48, 73]
                             },
                             arguments: [],
                             start: 48,
-                            end: 75
+                            end: 75,
+                            range: [48, 75]
                           },
                           delegate: true,
                           start: 40,
-                          end: 76
+                          end: 76,
+                          range: [40, 76]
                         },
                         start: 40,
-                        end: 77
+                        end: 77,
+                        range: [40, 77]
                       },
                       {
                         type: 'ExpressionStatement',
@@ -1572,41 +1683,50 @@ yield d;
                             type: 'Identifier',
                             name: 'assertUnreachable',
                             start: 94,
-                            end: 111
+                            end: 111,
+                            range: [94, 111]
                           },
                           arguments: [],
                           start: 94,
-                          end: 113
+                          end: 113,
+                          range: [94, 113]
                         },
                         start: 94,
-                        end: 114
+                        end: 114,
+                        range: [94, 114]
                       }
                     ],
                     start: 22,
-                    end: 130
+                    end: 130,
+                    range: [22, 130]
                   },
                   async: false,
                   generator: true,
                   id: null,
                   start: 10,
-                  end: 130
+                  end: 130,
+                  range: [10, 130]
                 },
                 id: {
                   type: 'Identifier',
                   name: 'foo',
                   start: 4,
-                  end: 7
+                  end: 7,
+                  range: [4, 7]
                 },
                 start: 4,
-                end: 130
+                end: 130,
+                range: [4, 130]
               }
             ],
             start: 0,
-            end: 130
+            end: 130,
+            range: [0, 130]
           }
         ],
         start: 0,
-        end: 130
+        end: 130,
+        range: [0, 130]
       }
     ],
 
@@ -1635,7 +1755,8 @@ yield d;
                           type: 'Literal',
                           value: 1,
                           start: 26,
-                          end: 27
+                          end: 27,
+                          range: [26, 27]
                         },
                         right: {
                           type: 'YieldExpression',
@@ -1643,32 +1764,39 @@ yield d;
                             type: 'Literal',
                             value: 2,
                             start: 37,
-                            end: 38
+                            end: 38,
+                            range: [37, 38]
                           },
                           delegate: false,
                           start: 31,
-                          end: 38
+                          end: 38,
+                          range: [31, 38]
                         },
                         operator: '+',
                         start: 26,
-                        end: 39
+                        end: 39,
+                        range: [26, 39]
                       },
                       right: {
                         type: 'Literal',
                         value: 3,
                         start: 42,
-                        end: 43
+                        end: 43,
+                        range: [42, 43]
                       },
                       operator: '+',
                       start: 26,
-                      end: 43
+                      end: 43,
+                      range: [26, 43]
                     },
                     delegate: false,
                     start: 19,
-                    end: 44
+                    end: 44,
+                    range: [19, 44]
                   },
                   start: 19,
-                  end: 45
+                  end: 45,
+                  range: [19, 45]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1682,7 +1810,8 @@ yield d;
                           type: 'Literal',
                           value: 4,
                           start: 53,
-                          end: 54
+                          end: 54,
+                          range: [53, 54]
                         },
                         right: {
                           type: 'YieldExpression',
@@ -1690,36 +1819,44 @@ yield d;
                             type: 'Literal',
                             value: 5,
                             start: 64,
-                            end: 65
+                            end: 65,
+                            range: [64, 65]
                           },
                           delegate: false,
                           start: 58,
-                          end: 65
+                          end: 65,
+                          range: [58, 65]
                         },
                         operator: '+',
                         start: 53,
-                        end: 66
+                        end: 66,
+                        range: [53, 66]
                       },
                       right: {
                         type: 'Literal',
                         value: 6,
                         start: 69,
-                        end: 70
+                        end: 70,
+                        range: [69, 70]
                       },
                       operator: '+',
                       start: 53,
-                      end: 70
+                      end: 70,
+                      range: [53, 70]
                     },
                     delegate: false,
                     start: 46,
-                    end: 71
+                    end: 71,
+                    range: [46, 71]
                   },
                   start: 46,
-                  end: 72
+                  end: 72,
+                  range: [46, 72]
                 }
               ],
               start: 17,
-              end: 74
+              end: 74,
+              range: [17, 74]
             },
             async: false,
             generator: true,
@@ -1727,14 +1864,17 @@ yield d;
               type: 'Identifier',
               name: 'g22',
               start: 11,
-              end: 14
+              end: 14,
+              range: [11, 14]
             },
             start: 1,
-            end: 74
+            end: 74,
+            range: [1, 74]
           }
         ],
         start: 0,
-        end: 74
+        end: 74,
+        range: [0, 74]
       }
     ],
 
@@ -1761,20 +1901,24 @@ yield d;
                         type: 'Literal',
                         value: 1,
                         start: 26,
-                        end: 27
+                        end: 27,
+                        range: [26, 27]
                       },
                       id: {
                         type: 'Identifier',
                         name: 'x',
                         start: 22,
-                        end: 23
+                        end: 23,
+                        range: [22, 23]
                       },
                       start: 22,
-                      end: 27
+                      end: 27,
+                      range: [22, 27]
                     }
                   ],
                   start: 18,
-                  end: 28
+                  end: 28,
+                  range: [18, 28]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1784,14 +1928,17 @@ yield d;
                       type: 'Identifier',
                       name: 'x',
                       start: 35,
-                      end: 36
+                      end: 36,
+                      range: [35, 36]
                     },
                     delegate: false,
                     start: 29,
-                    end: 36
+                    end: 36,
+                    range: [29, 36]
                   },
                   start: 29,
-                  end: 37
+                  end: 37,
+                  range: [29, 37]
                 },
                 {
                   type: 'WithStatement',
@@ -1804,24 +1951,28 @@ yield d;
                           type: 'Identifier',
                           name: 'x',
                           start: 44,
-                          end: 45
+                          end: 45,
+                          range: [44, 45]
                         },
                         value: {
                           type: 'Literal',
                           value: 2,
                           start: 46,
-                          end: 47
+                          end: 47,
+                          range: [46, 47]
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
                         shorthand: false,
                         start: 44,
-                        end: 47
+                        end: 47,
+                        range: [44, 47]
                       }
                     ],
                     start: 43,
-                    end: 48
+                    end: 48,
+                    range: [43, 48]
                   },
                   body: {
                     type: 'BlockStatement',
@@ -1834,21 +1985,26 @@ yield d;
                             type: 'Identifier',
                             name: 'x',
                             start: 58,
-                            end: 59
+                            end: 59,
+                            range: [58, 59]
                           },
                           delegate: false,
                           start: 52,
-                          end: 59
+                          end: 59,
+                          range: [52, 59]
                         },
                         start: 52,
-                        end: 60
+                        end: 60,
+                        range: [52, 60]
                       }
                     ],
                     start: 50,
-                    end: 62
+                    end: 62,
+                    range: [50, 62]
                   },
                   start: 38,
-                  end: 62
+                  end: 62,
+                  range: [38, 62]
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1858,18 +2014,22 @@ yield d;
                       type: 'Identifier',
                       name: 'x',
                       start: 69,
-                      end: 70
+                      end: 70,
+                      range: [69, 70]
                     },
                     delegate: false,
                     start: 63,
-                    end: 70
+                    end: 70,
+                    range: [63, 70]
                   },
                   start: 63,
-                  end: 71
+                  end: 71,
+                  range: [63, 71]
                 }
               ],
               start: 16,
-              end: 73
+              end: 73,
+              range: [16, 73]
             },
             async: false,
             generator: true,
@@ -1877,14 +2037,17 @@ yield d;
               type: 'Identifier',
               name: 'g19',
               start: 10,
-              end: 13
+              end: 13,
+              range: [10, 13]
             },
             start: 0,
-            end: 73
+            end: 73,
+            range: [0, 73]
           }
         ],
         start: 0,
-        end: 73
+        end: 73,
+        range: [0, 73]
       }
     ],
     [
@@ -1913,18 +2076,22 @@ yield d;
                             type: 'Identifier',
                             name: 'x',
                             start: 53,
-                            end: 54
+                            end: 54,
+                            range: [53, 54]
                           },
                           delegate: false,
                           start: 47,
-                          end: 54
+                          end: 54,
+                          range: [47, 54]
                         },
                         start: 47,
-                        end: 55
+                        end: 55,
+                        range: [47, 55]
                       }
                     ],
                     start: 45,
-                    end: 57
+                    end: 57,
+                    range: [45, 57]
                   },
                   init: {
                     type: 'VariableDeclaration',
@@ -1936,20 +2103,24 @@ yield d;
                           type: 'Literal',
                           value: 0,
                           start: 30,
-                          end: 31
+                          end: 31,
+                          range: [30, 31]
                         },
                         id: {
                           type: 'Identifier',
                           name: 'x',
                           start: 26,
-                          end: 27
+                          end: 27,
+                          range: [26, 27]
                         },
                         start: 26,
-                        end: 31
+                        end: 31,
+                        range: [26, 31]
                       }
                     ],
                     start: 22,
-                    end: 31
+                    end: 31,
+                    range: [22, 31]
                   },
                   test: {
                     type: 'BinaryExpression',
@@ -1957,17 +2128,20 @@ yield d;
                       type: 'Identifier',
                       name: 'x',
                       start: 33,
-                      end: 34
+                      end: 34,
+                      range: [33, 34]
                     },
                     right: {
                       type: 'Literal',
                       value: 4,
                       start: 37,
-                      end: 38
+                      end: 38,
+                      range: [37, 38]
                     },
                     operator: '<',
                     start: 33,
-                    end: 38
+                    end: 38,
+                    range: [33, 38]
                   },
                   update: {
                     type: 'UpdateExpression',
@@ -1975,19 +2149,23 @@ yield d;
                       type: 'Identifier',
                       name: 'x',
                       start: 40,
-                      end: 41
+                      end: 41,
+                      range: [40, 41]
                     },
                     operator: '++',
                     prefix: false,
                     start: 40,
-                    end: 43
+                    end: 43,
+                    range: [40, 43]
                   },
                   start: 17,
-                  end: 57
+                  end: 57,
+                  range: [17, 57]
                 }
               ],
               start: 15,
-              end: 59
+              end: 59,
+              range: [15, 59]
             },
             async: false,
             generator: true,
@@ -1995,14 +2173,17 @@ yield d;
               type: 'Identifier',
               name: 'g8',
               start: 10,
-              end: 12
+              end: 12,
+              range: [10, 12]
             },
             start: 0,
-            end: 59
+            end: 59,
+            range: [0, 59]
           }
         ],
         start: 0,
-        end: 59
+        end: 59,
+        range: [0, 59]
       }
     ],
     [
@@ -2012,15 +2193,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 27,
+            range: [0, 27],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'a'
             },
             generator: true,
@@ -2030,26 +2214,31 @@ yield d;
               type: 'BlockStatement',
               start: 13,
               end: 27,
+              range: [13, 27],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 26,
+                  range: [14, 26],
                   expression: {
                     type: 'YieldExpression',
                     start: 14,
                     end: 26,
+                    range: [14, 26],
                     delegate: false,
                     argument: {
                       type: 'UnaryExpression',
                       start: 20,
                       end: 26,
+                      range: [20, 26],
                       operator: 'void',
                       prefix: true,
                       argument: {
                         type: 'Literal',
                         start: 25,
                         end: 26,
+                        range: [25, 26],
                         value: 0
                       }
                     }
@@ -2069,15 +2258,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 23,
+            range: [0, 23],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'a'
             },
             generator: true,
@@ -2087,26 +2279,31 @@ yield d;
               type: 'BlockStatement',
               start: 13,
               end: 23,
+              range: [13, 23],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 22,
+                  range: [14, 22],
                   expression: {
                     type: 'YieldExpression',
                     start: 14,
                     end: 22,
+                    range: [14, 22],
                     delegate: false,
                     argument: {
                       type: 'UnaryExpression',
                       start: 20,
                       end: 22,
+                      range: [20, 22],
                       operator: '~',
                       prefix: true,
                       argument: {
                         type: 'Literal',
                         start: 21,
                         end: 22,
+                        range: [21, 22],
                         value: 0
                       }
                     }
@@ -2168,15 +2365,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 30,
+        range: [0, 30],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 30,
+            range: [0, 30],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'a'
             },
             generator: false,
@@ -2186,20 +2386,24 @@ yield d;
               type: 'BlockStatement',
               start: 12,
               end: 30,
+              range: [12, 30],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 13,
                   end: 29,
+                  range: [13, 29],
                   expression: {
                     type: 'ObjectExpression',
                     start: 14,
                     end: 28,
+                    range: [14, 28],
                     properties: [
                       {
                         type: 'Property',
                         start: 15,
                         end: 27,
+                        range: [15, 27],
                         method: true,
                         shorthand: false,
                         computed: true,
@@ -2207,6 +2411,7 @@ yield d;
                           type: 'Identifier',
                           start: 17,
                           end: 22,
+                          range: [17, 22],
                           name: 'yield'
                         },
                         kind: 'init',
@@ -2214,6 +2419,7 @@ yield d;
                           type: 'FunctionExpression',
                           start: 23,
                           end: 27,
+                          range: [23, 27],
                           id: null,
                           generator: true,
                           async: false,
@@ -2222,6 +2428,7 @@ yield d;
                             type: 'BlockStatement',
                             start: 25,
                             end: 27,
+                            range: [25, 27],
                             body: []
                           }
                         }
@@ -2742,31 +2949,37 @@ yield d;
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'ArrayExpression',
               start: 1,
               end: 18,
+              range: [1, 18],
               elements: [
                 {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
+                  range: [2, 3],
                   name: 'x'
                 },
                 {
                   type: 'ObjectExpression',
                   start: 5,
                   end: 17,
+                  range: [5, 17],
                   properties: [
                     {
                       type: 'Property',
                       start: 6,
                       end: 16,
+                      range: [6, 16],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -2774,17 +2987,20 @@ yield d;
                         type: 'Identifier',
                         start: 6,
                         end: 7,
+                        range: [6, 7],
                         name: 'y'
                       },
                       value: {
                         type: 'ArrayExpression',
                         start: 9,
                         end: 16,
+                        range: [9, 16],
                         elements: [
                           {
                             type: 'Identifier',
                             start: 10,
                             end: 15,
+                            range: [10, 15],
                             name: 'yield'
                           }
                         ]
@@ -2855,15 +3071,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 32,
+            range: [0, 32],
             id: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'f'
             },
             generator: true,
@@ -2873,24 +3092,29 @@ yield d;
               type: 'BlockStatement',
               start: 14,
               end: 32,
+              range: [14, 32],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 16,
                   end: 30,
+                  range: [16, 30],
                   expression: {
                     type: 'YieldExpression',
                     start: 17,
                     end: 29,
+                    range: [17, 29],
                     delegate: false,
                     argument: {
                       type: 'BinaryExpression',
                       start: 23,
                       end: 29,
+                      range: [23, 29],
                       left: {
                         type: 'Identifier',
                         start: 23,
                         end: 24,
+                        range: [23, 24],
                         name: 'x'
                       },
                       operator: '**',
@@ -2898,6 +3122,7 @@ yield d;
                         type: 'Identifier',
                         start: 28,
                         end: 29,
+                        range: [28, 29],
                         name: 'y'
                       }
                     }
@@ -8855,15 +9080,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 22,
+        range: [0, 22],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 22,
+            range: [0, 22],
             id: {
               type: 'Identifier',
               start: 11,
               end: 16,
+              range: [11, 16],
               name: 'yield'
             },
             generator: true,
@@ -8873,6 +9101,7 @@ yield d;
               type: 'BlockStatement',
               start: 19,
               end: 22,
+              range: [19, 22],
               body: []
             }
           }
@@ -8946,15 +9175,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 38,
+        range: [0, 38],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 38,
+            range: [0, 38],
             id: {
               type: 'Identifier',
               start: 11,
               end: 14,
+              range: [11, 14],
               name: 'gen'
             },
             generator: true,
@@ -8964,20 +9196,24 @@ yield d;
               type: 'BlockStatement',
               start: 17,
               end: 38,
+              range: [17, 38],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 19,
                   end: 29,
+                  range: [19, 29],
                   expression: {
                     type: 'YieldExpression',
                     start: 19,
                     end: 28,
+                    range: [19, 28],
                     delegate: true,
                     argument: {
                       type: 'Identifier',
                       start: 27,
                       end: 28,
+                      range: [27, 28],
                       name: 'a'
                     }
                   }
@@ -8986,6 +9222,7 @@ yield d;
                   type: 'ReturnStatement',
                   start: 30,
                   end: 36,
+                  range: [30, 36],
                   argument: null
                 }
               ]
@@ -10938,15 +11175,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 40,
+        range: [0, 40],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 40,
+            range: [0, 40],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -10956,15 +11196,18 @@ yield d;
               type: 'BlockStatement',
               start: 13,
               end: 40,
+              range: [13, 40],
               body: [
                 {
                   type: 'ClassDeclaration',
                   start: 15,
                   end: 38,
+                  range: [15, 38],
                   id: {
                     type: 'Identifier',
                     start: 21,
                     end: 22,
+                    range: [21, 22],
                     name: 'C'
                   },
                   superClass: null,
@@ -10972,11 +11215,13 @@ yield d;
                     type: 'ClassBody',
                     start: 23,
                     end: 38,
+                    range: [23, 38],
                     body: [
                       {
                         type: 'MethodDefinition',
                         start: 25,
                         end: 36,
+                        range: [25, 36],
                         kind: 'method',
                         static: false,
                         computed: false,
@@ -10984,12 +11229,14 @@ yield d;
                           type: 'Identifier',
                           start: 25,
                           end: 30,
+                          range: [25, 30],
                           name: 'yield'
                         },
                         value: {
                           type: 'FunctionExpression',
                           start: 30,
                           end: 36,
+                          range: [30, 36],
                           id: null,
                           generator: false,
                           async: false,
@@ -10998,6 +11245,7 @@ yield d;
                             type: 'BlockStatement',
                             start: 33,
                             end: 36,
+                            range: [33, 36],
                             body: []
                           }
                         }
@@ -12312,15 +12560,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 62,
+        range: [0, 62],
         body: [
           {
             type: 'ClassDeclaration',
             start: 0,
             end: 62,
+            range: [0, 62],
             id: {
               type: 'Identifier',
               start: 6,
               end: 7,
+              range: [6, 7],
               name: 'C'
             },
             superClass: null,
@@ -12328,11 +12579,13 @@ yield d;
               type: 'ClassBody',
               start: 8,
               end: 62,
+              range: [8, 62],
               body: [
                 {
                   type: 'MethodDefinition',
                   start: 10,
                   end: 60,
+                  range: [10, 60],
                   kind: 'method',
                   static: false,
                   computed: false,
@@ -12340,12 +12593,14 @@ yield d;
                     type: 'Identifier',
                     start: 11,
                     end: 13,
+                    range: [11, 13],
                     name: 'gf'
                   },
                   value: {
                     type: 'FunctionExpression',
                     start: 13,
                     end: 60,
+                    range: [13, 60],
                     id: null,
                     generator: true,
                     async: false,
@@ -12354,15 +12609,18 @@ yield d;
                       type: 'BlockStatement',
                       start: 16,
                       end: 60,
+                      range: [16, 60],
                       body: [
                         {
                           type: 'SwitchStatement',
                           start: 18,
                           end: 58,
+                          range: [18, 58],
                           discriminant: {
                             type: 'Literal',
                             start: 26,
                             end: 27,
+                            range: [26, 27],
                             value: 1
                           },
                           cases: [
@@ -12370,11 +12628,13 @@ yield d;
                               type: 'SwitchCase',
                               start: 31,
                               end: 56,
+                              range: [31, 56],
                               consequent: [
                                 {
                                   type: 'BreakStatement',
                                   start: 50,
                                   end: 56,
+                                  range: [50, 56],
                                   label: null
                                 }
                               ],
@@ -12382,11 +12642,13 @@ yield d;
                                 type: 'YieldExpression',
                                 start: 36,
                                 end: 48,
+                                range: [36, 48],
                                 delegate: true,
                                 argument: {
                                   type: 'Literal',
                                   start: 43,
                                   end: 48,
+                                  range: [43, 48],
                                   value: 'foo'
                                 }
                               }
@@ -12894,15 +13156,18 @@ yield d;
         type: 'Program',
         start: 0,
         end: 514,
+        range: [0, 514],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 359,
+            range: [0, 359],
             id: {
               type: 'Identifier',
               start: 10,
               end: 23,
+              range: [10, 23],
               name: 'testGenerator'
             },
             generator: true,
@@ -12912,6 +13177,7 @@ yield d;
                 type: 'Identifier',
                 start: 24,
                 end: 28,
+                range: [24, 28],
                 name: 'arg1'
               }
             ],
@@ -12919,26 +13185,31 @@ yield d;
               type: 'BlockStatement',
               start: 30,
               end: 359,
+              range: [30, 359],
               body: [
                 {
                   type: 'VariableDeclaration',
                   start: 40,
                   end: 52,
+                  range: [40, 52],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 44,
                       end: 51,
+                      range: [44, 51],
                       id: {
                         type: 'Identifier',
                         start: 44,
                         end: 45,
+                        range: [44, 45],
                         name: 'i'
                       },
                       init: {
                         type: 'Literal',
                         start: 48,
                         end: 51,
+                        range: [48, 51],
                         value: 100,
                         raw: '100'
                       }
@@ -12950,21 +13221,25 @@ yield d;
                   type: 'VariableDeclaration',
                   start: 61,
                   end: 74,
+                  range: [61, 74],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 65,
                       end: 73,
+                      range: [65, 73],
                       id: {
                         type: 'Identifier',
                         start: 65,
                         end: 66,
+                        range: [65, 66],
                         name: 'j'
                       },
                       init: {
                         type: 'Literal',
                         start: 69,
                         end: 73,
+                        range: [69, 73],
                         value: 1000,
                         raw: '1000'
                       }
@@ -12976,21 +13251,25 @@ yield d;
                   type: 'VariableDeclaration',
                   start: 83,
                   end: 97,
+                  range: [83, 97],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 87,
                       end: 96,
+                      range: [87, 96],
                       id: {
                         type: 'Identifier',
                         start: 87,
                         end: 88,
+                        range: [87, 88],
                         name: 'k'
                       },
                       init: {
                         type: 'Literal',
                         start: 91,
                         end: 96,
+                        range: [91, 96],
                         value: 10000,
                         raw: '10000'
                       }
@@ -13002,20 +13281,24 @@ yield d;
                   type: 'ExpressionStatement',
                   start: 106,
                   end: 161,
+                  range: [106, 161],
                   expression: {
                     type: 'YieldExpression',
                     start: 106,
                     end: 160,
+                    range: [106, 160],
                     delegate: false,
                     argument: {
                       type: 'ObjectExpression',
                       start: 112,
                       end: 160,
+                      range: [112, 160],
                       properties: [
                         {
                           type: 'Property',
                           start: 114,
                           end: 126,
+                          range: [114, 126],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13023,18 +13306,21 @@ yield d;
                             type: 'Identifier',
                             start: 114,
                             end: 118,
+                            range: [114, 118],
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 120,
                             end: 126,
+                            range: [120, 126],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 120,
                               end: 124,
+                              range: [120, 124],
                               name: 'arg1'
                             }
                           },
@@ -13044,6 +13330,7 @@ yield d;
                           type: 'Property',
                           start: 128,
                           end: 134,
+                          range: [128, 134],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13051,18 +13338,21 @@ yield d;
                             type: 'Identifier',
                             start: 128,
                             end: 129,
+                            range: [128, 129],
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 131,
                             end: 134,
+                            range: [131, 134],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 133,
                               end: 134,
+                              range: [133, 134],
                               name: 'i'
                             }
                           },
@@ -13072,6 +13362,7 @@ yield d;
                           type: 'Property',
                           start: 136,
                           end: 142,
+                          range: [136, 142],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13079,18 +13370,21 @@ yield d;
                             type: 'Identifier',
                             start: 136,
                             end: 137,
+                            range: [136, 137],
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 139,
                             end: 142,
+                            range: [139, 142],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 139,
                               end: 140,
+                              range: [139, 140],
                               name: 'j'
                             }
                           },
@@ -13100,6 +13394,7 @@ yield d;
                           type: 'Property',
                           start: 144,
                           end: 150,
+                          range: [144, 150],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13107,18 +13402,21 @@ yield d;
                             type: 'Identifier',
                             start: 144,
                             end: 145,
+                            range: [144, 145],
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 147,
                             end: 150,
+                            range: [147, 150],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 147,
                               end: 148,
+                              range: [147, 148],
                               name: 'k'
                             }
                           },
@@ -13128,6 +13426,7 @@ yield d;
                           type: 'Property',
                           start: 152,
                           end: 158,
+                          range: [152, 158],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13135,18 +13434,21 @@ yield d;
                             type: 'Identifier',
                             start: 152,
                             end: 153,
+                            range: [152, 153],
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 155,
                             end: 158,
+                            range: [155, 158],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 157,
                               end: 158,
+                              range: [157, 158],
                               name: 'p'
                             }
                           },
@@ -13160,20 +13462,24 @@ yield d;
                   type: 'ExpressionStatement',
                   start: 170,
                   end: 225,
+                  range: [170, 225],
                   expression: {
                     type: 'YieldExpression',
                     start: 170,
                     end: 224,
+                    range: [170, 224],
                     delegate: false,
                     argument: {
                       type: 'ObjectExpression',
                       start: 176,
                       end: 224,
+                      range: [176, 224],
                       properties: [
                         {
                           type: 'Property',
                           start: 178,
                           end: 190,
+                          range: [178, 190],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13181,18 +13487,21 @@ yield d;
                             type: 'Identifier',
                             start: 178,
                             end: 182,
+                            range: [178, 182],
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 184,
                             end: 190,
+                            range: [184, 190],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 184,
                               end: 188,
+                              range: [184, 188],
                               name: 'arg1'
                             }
                           },
@@ -13202,6 +13511,7 @@ yield d;
                           type: 'Property',
                           start: 192,
                           end: 198,
+                          range: [192, 198],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13209,18 +13519,21 @@ yield d;
                             type: 'Identifier',
                             start: 192,
                             end: 193,
+                            range: [192, 193],
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 195,
                             end: 198,
+                            range: [195, 198],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 197,
                               end: 198,
+                              range: [197, 198],
                               name: 'i'
                             }
                           },
@@ -13230,6 +13543,7 @@ yield d;
                           type: 'Property',
                           start: 200,
                           end: 206,
+                          range: [200, 206],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13237,18 +13551,21 @@ yield d;
                             type: 'Identifier',
                             start: 200,
                             end: 201,
+                            range: [200, 201],
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 203,
                             end: 206,
+                            range: [203, 206],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 203,
                               end: 204,
+                              range: [203, 204],
                               name: 'j'
                             }
                           },
@@ -13258,6 +13575,7 @@ yield d;
                           type: 'Property',
                           start: 208,
                           end: 214,
+                          range: [208, 214],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13265,18 +13583,21 @@ yield d;
                             type: 'Identifier',
                             start: 208,
                             end: 209,
+                            range: [208, 209],
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 211,
                             end: 214,
+                            range: [211, 214],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 211,
                               end: 212,
+                              range: [211, 212],
                               name: 'k'
                             }
                           },
@@ -13286,6 +13607,7 @@ yield d;
                           type: 'Property',
                           start: 216,
                           end: 222,
+                          range: [216, 222],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13293,18 +13615,21 @@ yield d;
                             type: 'Identifier',
                             start: 216,
                             end: 217,
+                            range: [216, 217],
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 219,
                             end: 222,
+                            range: [219, 222],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 221,
                               end: 222,
+                              range: [221, 222],
                               name: 'p'
                             }
                           },
@@ -13318,20 +13643,24 @@ yield d;
                   type: 'ExpressionStatement',
                   start: 234,
                   end: 289,
+                  range: [234, 289],
                   expression: {
                     type: 'YieldExpression',
                     start: 234,
                     end: 288,
+                    range: [234, 288],
                     delegate: false,
                     argument: {
                       type: 'ObjectExpression',
                       start: 240,
                       end: 288,
+                      range: [240, 288],
                       properties: [
                         {
                           type: 'Property',
                           start: 242,
                           end: 254,
+                          range: [242, 254],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13339,18 +13668,21 @@ yield d;
                             type: 'Identifier',
                             start: 242,
                             end: 246,
+                            range: [242, 246],
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 248,
                             end: 254,
+                            range: [248, 254],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 248,
                               end: 252,
+                              range: [248, 252],
                               name: 'arg1'
                             }
                           },
@@ -13360,6 +13692,7 @@ yield d;
                           type: 'Property',
                           start: 256,
                           end: 262,
+                          range: [256, 262],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13367,18 +13700,21 @@ yield d;
                             type: 'Identifier',
                             start: 256,
                             end: 257,
+                            range: [256, 257],
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 259,
                             end: 262,
+                            range: [259, 262],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 261,
                               end: 262,
+                              range: [261, 262],
                               name: 'i'
                             }
                           },
@@ -13388,6 +13724,7 @@ yield d;
                           type: 'Property',
                           start: 264,
                           end: 270,
+                          range: [264, 270],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13395,18 +13732,21 @@ yield d;
                             type: 'Identifier',
                             start: 264,
                             end: 265,
+                            range: [264, 265],
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 267,
                             end: 270,
+                            range: [267, 270],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 267,
                               end: 268,
+                              range: [267, 268],
                               name: 'j'
                             }
                           },
@@ -13416,6 +13756,7 @@ yield d;
                           type: 'Property',
                           start: 272,
                           end: 278,
+                          range: [272, 278],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13423,18 +13764,21 @@ yield d;
                             type: 'Identifier',
                             start: 272,
                             end: 273,
+                            range: [272, 273],
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 275,
                             end: 278,
+                            range: [275, 278],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 275,
                               end: 276,
+                              range: [275, 276],
                               name: 'k'
                             }
                           },
@@ -13444,6 +13788,7 @@ yield d;
                           type: 'Property',
                           start: 280,
                           end: 286,
+                          range: [280, 286],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13451,18 +13796,21 @@ yield d;
                             type: 'Identifier',
                             start: 280,
                             end: 281,
+                            range: [280, 281],
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 283,
                             end: 286,
+                            range: [283, 286],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 285,
                               end: 286,
+                              range: [285, 286],
                               name: 'p'
                             }
                           },
@@ -13476,20 +13824,24 @@ yield d;
                   type: 'ExpressionStatement',
                   start: 298,
                   end: 353,
+                  range: [298, 353],
                   expression: {
                     type: 'YieldExpression',
                     start: 298,
                     end: 352,
+                    range: [298, 352],
                     delegate: false,
                     argument: {
                       type: 'ObjectExpression',
                       start: 304,
                       end: 352,
+                      range: [304, 352],
                       properties: [
                         {
                           type: 'Property',
                           start: 306,
                           end: 318,
+                          range: [306, 318],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13497,18 +13849,21 @@ yield d;
                             type: 'Identifier',
                             start: 306,
                             end: 310,
+                            range: [306, 310],
                             name: 'arg1'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 312,
                             end: 318,
+                            range: [312, 318],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 312,
                               end: 316,
+                              range: [312, 316],
                               name: 'arg1'
                             }
                           },
@@ -13518,6 +13873,7 @@ yield d;
                           type: 'Property',
                           start: 320,
                           end: 326,
+                          range: [320, 326],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13525,18 +13881,21 @@ yield d;
                             type: 'Identifier',
                             start: 320,
                             end: 321,
+                            range: [320, 321],
                             name: 'i'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 323,
                             end: 326,
+                            range: [323, 326],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 325,
                               end: 326,
+                              range: [325, 326],
                               name: 'i'
                             }
                           },
@@ -13546,6 +13905,7 @@ yield d;
                           type: 'Property',
                           start: 328,
                           end: 334,
+                          range: [328, 334],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13553,18 +13913,21 @@ yield d;
                             type: 'Identifier',
                             start: 328,
                             end: 329,
+                            range: [328, 329],
                             name: 'j'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 331,
                             end: 334,
+                            range: [331, 334],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 331,
                               end: 332,
+                              range: [331, 332],
                               name: 'j'
                             }
                           },
@@ -13574,6 +13937,7 @@ yield d;
                           type: 'Property',
                           start: 336,
                           end: 342,
+                          range: [336, 342],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13581,18 +13945,21 @@ yield d;
                             type: 'Identifier',
                             start: 336,
                             end: 337,
+                            range: [336, 337],
                             name: 'k'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 339,
                             end: 342,
+                            range: [339, 342],
                             operator: '++',
                             prefix: false,
                             argument: {
                               type: 'Identifier',
                               start: 339,
                               end: 340,
+                              range: [339, 340],
                               name: 'k'
                             }
                           },
@@ -13602,6 +13969,7 @@ yield d;
                           type: 'Property',
                           start: 344,
                           end: 350,
+                          range: [344, 350],
                           method: false,
                           shorthand: false,
                           computed: false,
@@ -13609,18 +13977,21 @@ yield d;
                             type: 'Identifier',
                             start: 344,
                             end: 345,
+                            range: [344, 345],
                             name: 'p'
                           },
                           value: {
                             type: 'UpdateExpression',
                             start: 347,
                             end: 350,
+                            range: [347, 350],
                             operator: '++',
                             prefix: true,
                             argument: {
                               type: 'Identifier',
                               start: 349,
                               end: 350,
+                              range: [349, 350],
                               name: 'p'
                             }
                           },
@@ -13637,25 +14008,30 @@ yield d;
             type: 'VariableDeclaration',
             start: 365,
             end: 393,
+            range: [365, 393],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 369,
                 end: 392,
+                range: [369, 392],
                 id: {
                   type: 'Identifier',
                   start: 369,
                   end: 372,
+                  range: [369, 372],
                   name: 'gen'
                 },
                 init: {
                   type: 'CallExpression',
                   start: 375,
                   end: 392,
+                  range: [375, 392],
                   callee: {
                     type: 'Identifier',
                     start: 375,
                     end: 388,
+                    range: [375, 388],
                     name: 'testGenerator'
                   },
                   arguments: [
@@ -13663,6 +14039,7 @@ yield d;
                       type: 'Literal',
                       start: 389,
                       end: 391,
+                      range: [389, 391],
                       value: 10,
                       raw: '10'
                     }
@@ -13676,10 +14053,12 @@ yield d;
             type: 'FunctionDeclaration',
             start: 399,
             end: 514,
+            range: [399, 514],
             id: {
               type: 'Identifier',
               start: 408,
               end: 416,
+              range: [408, 416],
               name: 'yieldOne'
             },
             generator: false,
@@ -13689,40 +14068,48 @@ yield d;
               type: 'BlockStatement',
               start: 419,
               end: 514,
+              range: [419, 514],
               body: [
                 {
                   type: 'VariableDeclaration',
                   start: 429,
                   end: 449,
+                  range: [429, 449],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 433,
                       end: 448,
+                      range: [433, 448],
                       id: {
                         type: 'Identifier',
                         start: 433,
                         end: 435,
+                        range: [433, 435],
                         name: 'v1'
                       },
                       init: {
                         type: 'CallExpression',
                         start: 438,
                         end: 448,
+                        range: [438, 448],
                         callee: {
                           type: 'MemberExpression',
                           start: 438,
                           end: 446,
+                          range: [438, 446],
                           object: {
                             type: 'Identifier',
                             start: 438,
                             end: 441,
+                            range: [438, 441],
                             name: 'gen'
                           },
                           property: {
                             type: 'Identifier',
                             start: 442,
                             end: 446,
+                            range: [442, 446],
                             name: 'next'
                           },
                           computed: false
@@ -13737,35 +14124,42 @@ yield d;
                   type: 'VariableDeclaration',
                   start: 458,
                   end: 508,
+                  range: [458, 508],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 462,
                       end: 507,
+                      range: [462, 507],
                       id: {
                         type: 'Identifier',
                         start: 462,
                         end: 465,
+                        range: [462, 465],
                         name: 'val'
                       },
                       init: {
                         type: 'CallExpression',
                         start: 468,
                         end: 507,
+                        range: [468, 507],
                         callee: {
                           type: 'MemberExpression',
                           start: 468,
                           end: 482,
+                          range: [468, 482],
                           object: {
                             type: 'Identifier',
                             start: 468,
                             end: 472,
+                            range: [468, 472],
                             name: 'JSON'
                           },
                           property: {
                             type: 'Identifier',
                             start: 473,
                             end: 482,
+                            range: [473, 482],
                             name: 'stringify'
                           },
                           computed: false
@@ -13775,16 +14169,19 @@ yield d;
                             type: 'MemberExpression',
                             start: 483,
                             end: 491,
+                            range: [483, 491],
                             object: {
                               type: 'Identifier',
                               start: 483,
                               end: 485,
+                              range: [483, 485],
                               name: 'v1'
                             },
                             property: {
                               type: 'Identifier',
                               start: 486,
                               end: 491,
+                              range: [486, 491],
                               name: 'value'
                             },
                             computed: false
@@ -13793,12 +14190,14 @@ yield d;
                             type: 'Identifier',
                             start: 493,
                             end: 502,
+                            range: [493, 502],
                             name: 'undefined'
                           },
                           {
                             type: 'Literal',
                             start: 504,
                             end: 506,
+                            range: [504, 506],
                             value: '',
                             raw: "''"
                           }

@@ -191,34 +191,39 @@ describe('Miscellaneous - Directives', () => {
         body: [
           {
             directive: 'use strict',
-            end: 31,
             expression: {
-              end: 31,
               left: {
-                end: 12,
                 raw: '"use strict"',
                 start: 0,
+                end: 12,
+                range: [0, 12],
                 type: 'Literal',
                 value: 'use strict'
               },
               operator: '+',
               right: {
-                end: 31,
                 raw: '"Hello\\312World"',
                 start: 15,
+                end: 31,
+                range: [15, 31],
                 type: 'Literal',
                 value: 'HelloÊWorld'
               },
               start: 0,
+              end: 31,
+              range: [0, 31],
               type: 'BinaryExpression'
             },
             start: 0,
+            end: 31,
+            range: [0, 31],
             type: 'ExpressionStatement'
           }
         ],
-        end: 31,
         sourceType: 'module',
         start: 0,
+        end: 31,
+        range: [0, 31],
         type: 'Program'
       }
     ],
@@ -228,45 +233,52 @@ describe('Miscellaneous - Directives', () => {
       {
         body: [
           {
-            end: 15,
             expression: {
-              end: 13,
               raw: '"use strict"',
               start: 1,
+              end: 13,
+              range: [1, 13],
               type: 'Literal',
               value: 'use strict'
             },
             start: 0,
+            end: 15,
+            range: [0, 15],
             type: 'ExpressionStatement'
           },
           {
-            end: 25,
             expression: {
-              end: 24,
               left: {
-                end: 19,
                 name: 'foo',
                 start: 16,
+                end: 19,
+                range: [16, 19],
                 type: 'Identifier'
               },
               operator: '=',
               right: {
-                end: 24,
                 raw: '42',
                 start: 22,
+                end: 24,
+                range: [22, 24],
                 type: 'Literal',
                 value: 42
               },
               start: 16,
+              end: 24,
+              range: [16, 24],
               type: 'AssignmentExpression'
             },
             start: 16,
+            end: 25,
+            range: [16, 25],
             type: 'ExpressionStatement'
           }
         ],
-        end: 25,
         sourceType: 'module',
         start: 0,
+        end: 25,
+        range: [0, 25],
         type: 'Program'
       }
     ],
@@ -276,33 +288,38 @@ describe('Miscellaneous - Directives', () => {
       {
         body: [
           {
-            end: 30,
             expression: {
-              end: 30,
               expressions: [
                 {
-                  end: 12,
                   start: 0,
+                  end: 12,
+                  range: [0, 12],
                   type: 'Literal',
                   value: 'use strict'
                 },
                 {
-                  end: 30,
                   start: 14,
+                  end: 30,
+                  range: [14, 30],
                   type: 'Literal',
                   value: 'HelloÊWorld'
                 }
               ],
               start: 0,
+              end: 30,
+              range: [0, 30],
               type: 'SequenceExpression'
             },
             start: 0,
+            end: 30,
+            range: [0, 30],
             type: 'ExpressionStatement'
           }
         ],
-        end: 30,
         sourceType: 'script',
         start: 0,
+        end: 30,
+        range: [0, 30],
         type: 'Program'
       }
     ],
@@ -312,31 +329,36 @@ describe('Miscellaneous - Directives', () => {
       {
         body: [
           {
-            end: 9,
             expression: {
-              end: 9,
               start: 0,
+              end: 9,
+              range: [0, 9],
               type: 'Literal',
               value: 'use asm'
             },
             start: 0,
+            end: 9,
+            range: [0, 9],
             type: 'ExpressionStatement'
           },
           {
-            end: 24,
             expression: {
-              end: 24,
               start: 12,
+              end: 24,
+              range: [12, 24],
               type: 'Literal',
               value: 'use strict'
             },
             start: 12,
+            end: 24,
+            range: [12, 24],
             type: 'ExpressionStatement'
           }
         ],
-        end: 24,
         sourceType: 'script',
         start: 0,
+        end: 24,
+        range: [0, 24],
         type: 'Program'
       }
     ],

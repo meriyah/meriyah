@@ -1170,29 +1170,35 @@ describe('Declarations - Let', () => {
         type: 'Program',
         start: 0,
         end: 39,
+        range: [0, 39],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 39,
+            range: [0, 39],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 30,
+              range: [5, 30],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 30,
+                  range: [9, 30],
                   id: {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 30,
+                    range: [9, 30],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 15,
+                        range: [10, 15],
                         method: false,
                         shorthand: false,
                         computed: false,
@@ -1200,12 +1206,14 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
+                          range: [10, 11],
                           name: 'x'
                         },
                         value: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
+                          range: [14, 15],
                           name: 'y'
                         },
                         kind: 'init'
@@ -1214,6 +1222,7 @@ describe('Declarations - Let', () => {
                         type: 'Property',
                         start: 17,
                         end: 18,
+                        range: [17, 18],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -1221,6 +1230,7 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 17,
                           end: 18,
+                          range: [17, 18],
                           name: 'z'
                         },
                         kind: 'init',
@@ -1228,6 +1238,7 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 17,
                           end: 18,
+                          range: [17, 18],
                           name: 'z'
                         }
                       },
@@ -1235,6 +1246,7 @@ describe('Declarations - Let', () => {
                         type: 'Property',
                         start: 20,
                         end: 29,
+                        range: [20, 29],
                         method: false,
                         shorthand: false,
                         computed: false,
@@ -1242,22 +1254,26 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 20,
                           end: 21,
+                          range: [20, 21],
                           name: 'a'
                         },
                         value: {
                           type: 'AssignmentPattern',
                           start: 24,
                           end: 29,
+                          range: [24, 29],
                           left: {
                             type: 'Identifier',
                             start: 24,
                             end: 25,
+                            range: [24, 25],
                             name: 'b'
                           },
                           right: {
                             type: 'Identifier',
                             start: 28,
                             end: 29,
+                            range: [28, 29],
                             name: 'c'
                           }
                         },
@@ -1274,12 +1290,14 @@ describe('Declarations - Let', () => {
               type: 'Identifier',
               start: 34,
               end: 37,
+              range: [34, 37],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 38,
-              end: 39
+              end: 39,
+              range: [38, 39]
             }
           }
         ],
@@ -1293,29 +1311,35 @@ describe('Declarations - Let', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 26,
+            range: [0, 26],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 17,
+              range: [5, 17],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 17,
+                  range: [9, 17],
                   id: {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 17,
+                    range: [9, 17],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 16,
+                        range: [10, 16],
                         method: false,
                         shorthand: false,
                         computed: true,
@@ -1323,12 +1347,14 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          range: [11, 12],
                           name: 'x'
                         },
                         value: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           name: 'y'
                         },
                         kind: 'init'
@@ -1344,12 +1370,14 @@ describe('Declarations - Let', () => {
               type: 'Identifier',
               start: 21,
               end: 24,
+              range: [21, 24],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 25,
-              end: 26
+              end: 26,
+              range: [25, 26]
             }
           }
         ],
@@ -1363,29 +1391,35 @@ describe('Declarations - Let', () => {
         type: 'Program',
         start: 0,
         end: 30,
+        range: [0, 30],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 30,
+            range: [0, 30],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 21,
+              range: [5, 21],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 21,
+                  range: [9, 21],
                   id: {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 21,
+                    range: [9, 21],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 20,
+                        range: [10, 20],
                         method: false,
                         shorthand: false,
                         computed: true,
@@ -1393,22 +1427,26 @@ describe('Declarations - Let', () => {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          range: [11, 12],
                           name: 'x'
                         },
                         value: {
                           type: 'AssignmentPattern',
                           start: 15,
                           end: 20,
+                          range: [15, 20],
                           left: {
                             type: 'Identifier',
                             start: 15,
                             end: 16,
+                            range: [15, 16],
                             name: 'y'
                           },
                           right: {
                             type: 'Identifier',
                             start: 19,
                             end: 20,
+                            range: [19, 20],
                             name: 'z'
                           }
                         },
@@ -1425,12 +1463,14 @@ describe('Declarations - Let', () => {
               type: 'Identifier',
               start: 25,
               end: 28,
+              range: [25, 28],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 29,
-              end: 30
+              end: 30,
+              range: [29, 30]
             }
           }
         ],
@@ -3252,25 +3292,30 @@ describe('Declarations - Let', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 17,
+            range: [0, 17],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 16,
+                range: [4, 16],
                 id: {
                   type: 'ObjectPattern',
                   start: 4,
                   end: 10,
+                  range: [4, 10],
                   properties: [
                     {
                       type: 'Property',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       method: false,
                       shorthand: true,
                       computed: false,
@@ -3278,6 +3323,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 5,
                         end: 6,
+                        range: [5, 6],
                         name: 'x'
                       },
                       kind: 'init',
@@ -3285,6 +3331,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 5,
                         end: 6,
+                        range: [5, 6],
                         name: 'x'
                       }
                     },
@@ -3292,6 +3339,7 @@ describe('Declarations - Let', () => {
                       type: 'Property',
                       start: 8,
                       end: 9,
+                      range: [8, 9],
                       method: false,
                       shorthand: true,
                       computed: false,
@@ -3299,6 +3347,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         name: 'y'
                       },
                       kind: 'init',
@@ -3306,6 +3355,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         name: 'y'
                       }
                     }
@@ -3315,6 +3365,7 @@ describe('Declarations - Let', () => {
                   type: 'Identifier',
                   start: 13,
                   end: 16,
+                  range: [13, 16],
                   name: 'obj'
                 }
               }
@@ -3365,25 +3416,30 @@ describe('Declarations - Let', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 23,
+            range: [0, 23],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 11,
+                range: [4, 11],
                 id: {
                   type: 'ObjectPattern',
                   start: 4,
                   end: 7,
+                  range: [4, 7],
                   properties: [
                     {
                       type: 'Property',
                       start: 5,
                       end: 6,
+                      range: [5, 6],
                       method: false,
                       shorthand: true,
                       computed: false,
@@ -3391,6 +3447,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 5,
                         end: 6,
+                        range: [5, 6],
                         name: 'x'
                       },
                       kind: 'init',
@@ -3398,6 +3455,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 5,
                         end: 6,
+                        range: [5, 6],
                         name: 'x'
                       }
                     }
@@ -3407,6 +3465,7 @@ describe('Declarations - Let', () => {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
+                  range: [10, 11],
                   name: 'a'
                 }
               },
@@ -3414,15 +3473,18 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 start: 13,
                 end: 22,
+                range: [13, 22],
                 id: {
                   type: 'ObjectPattern',
                   start: 13,
                   end: 16,
+                  range: [13, 16],
                   properties: [
                     {
                       type: 'Property',
                       start: 14,
                       end: 15,
+                      range: [14, 15],
                       method: false,
                       shorthand: true,
                       computed: false,
@@ -3430,6 +3492,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 14,
                         end: 15,
+                        range: [14, 15],
                         name: 'y'
                       },
                       kind: 'init',
@@ -3437,6 +3500,7 @@ describe('Declarations - Let', () => {
                         type: 'Identifier',
                         start: 14,
                         end: 15,
+                        range: [14, 15],
                         name: 'y'
                       }
                     }
@@ -3446,6 +3510,7 @@ describe('Declarations - Let', () => {
                   type: 'Identifier',
                   start: 19,
                   end: 22,
+                  range: [19, 22],
                   name: 'obj'
                 }
               }

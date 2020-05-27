@@ -956,20 +956,23 @@ describe('Module - Export', () => {
       {
         body: [
           {
-            end: 17,
             source: {
-              end: 17,
               start: 14,
+              end: 17,
+              range: [14, 17],
               type: 'Literal',
               value: 'a'
             },
             start: 0,
+            end: 17,
+            range: [0, 17],
             type: 'ExportAllDeclaration'
           }
         ],
-        end: 17,
         sourceType: 'module',
         start: 0,
+        end: 17,
+        range: [0, 17],
         type: 'Program'
       }
     ],
