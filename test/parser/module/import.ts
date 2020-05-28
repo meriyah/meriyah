@@ -426,16 +426,19 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 18,
+            range: [0, 18],
             specifiers: [],
             source: {
               type: 'Literal',
               start: 15,
               end: 18,
+              range: [15, 18],
               value: 'y'
             }
           }
@@ -450,20 +453,24 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 44,
+        range: [0, 44],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 44,
+            range: [0, 44],
             specifiers: [
               {
                 type: 'ImportDefaultSpecifier',
                 start: 7,
                 end: 8,
+                range: [7, 8],
                 local: {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
+                  range: [7, 8],
                   name: 'e'
                 }
               },
@@ -471,16 +478,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 11,
                 end: 17,
+                range: [11, 17],
                 imported: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   name: 'f'
                 },
                 local: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'g'
                 }
               },
@@ -488,16 +498,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 19,
                 end: 25,
+                range: [19, 25],
                 imported: {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   name: 'h'
                 },
                 local: {
                   type: 'Identifier',
                   start: 24,
                   end: 25,
+                  range: [24, 25],
                   name: 'i'
                 }
               },
@@ -505,16 +518,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 27,
                 end: 28,
+                range: [27, 28],
                 imported: {
                   type: 'Identifier',
                   start: 27,
                   end: 28,
+                  range: [27, 28],
                   name: 'j'
                 },
                 local: {
                   type: 'Identifier',
                   start: 27,
                   end: 28,
+                  range: [27, 28],
                   name: 'j'
                 }
               }
@@ -523,6 +539,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 35,
               end: 43,
+              range: [35, 43],
               value: 'module'
             }
           }
@@ -537,26 +554,31 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 33,
+        range: [0, 33],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 33,
+            range: [0, 33],
             specifiers: [
               {
                 type: 'ImportSpecifier',
                 start: 8,
                 end: 9,
+                range: [8, 9],
                 imported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'n'
                 },
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'n'
                 }
               },
@@ -564,16 +586,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 11,
                 end: 17,
+                range: [11, 17],
                 imported: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   name: 'o'
                 },
                 local: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'p'
                 }
               }
@@ -582,6 +607,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 24,
               end: 32,
+              range: [24, 32],
               value: 'module'
             }
           }
@@ -596,26 +622,31 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 40,
+        range: [0, 40],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 40,
+            range: [0, 40],
             specifiers: [
               {
                 type: 'ImportSpecifier',
                 start: 9,
                 end: 11,
+                range: [9, 11],
                 imported: {
                   type: 'Identifier',
                   start: 9,
                   end: 11,
+                  range: [9, 11],
                   name: 'as'
                 },
                 local: {
                   type: 'Identifier',
                   start: 9,
                   end: 11,
+                  range: [9, 11],
                   name: 'as'
                 }
               },
@@ -623,16 +654,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 13,
                 end: 16,
+                range: [13, 16],
                 imported: {
                   type: 'Identifier',
                   start: 13,
                   end: 16,
+                  range: [13, 16],
                   name: 'get'
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 16,
+                  range: [13, 16],
                   name: 'get'
                 }
               },
@@ -640,16 +674,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 18,
                 end: 21,
+                range: [18, 21],
                 imported: {
                   type: 'Identifier',
                   start: 18,
                   end: 21,
+                  range: [18, 21],
                   name: 'set'
                 },
                 local: {
                   type: 'Identifier',
                   start: 18,
                   end: 21,
+                  range: [18, 21],
                   name: 'set'
                 }
               },
@@ -657,16 +694,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 23,
                 end: 27,
+                range: [23, 27],
                 imported: {
                   type: 'Identifier',
                   start: 23,
                   end: 27,
+                  range: [23, 27],
                   name: 'from'
                 },
                 local: {
                   type: 'Identifier',
                   start: 23,
                   end: 27,
+                  range: [23, 27],
                   name: 'from'
                 }
               }
@@ -675,6 +715,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 35,
               end: 40,
+              range: [35, 40],
               value: 'baz'
             }
           }
@@ -689,20 +730,24 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 28,
+            range: [0, 28],
             specifiers: [
               {
                 type: 'ImportDefaultSpecifier',
                 start: 7,
                 end: 8,
+                range: [7, 8],
                 local: {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
+                  range: [7, 8],
                   name: 'x'
                 }
               },
@@ -710,10 +755,12 @@ describe('Module - Import', () => {
                 type: 'ImportNamespaceSpecifier',
                 start: 10,
                 end: 17,
+                range: [10, 17],
                 local: {
                   type: 'Identifier',
                   start: 15,
                   end: 17,
+                  range: [15, 17],
                   name: 'ns'
                 }
               }
@@ -722,6 +769,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 23,
               end: 28,
+              range: [23, 28],
               value: 'foo'
             }
           }
@@ -762,20 +810,24 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 28,
+            range: [0, 28],
             specifiers: [
               {
                 type: 'ImportNamespaceSpecifier',
                 start: 7,
                 end: 13,
+                range: [7, 13],
                 local: {
                   type: 'Identifier',
                   start: 12,
                   end: 13,
+                  range: [12, 13],
                   name: 'd'
                 }
               }
@@ -784,6 +836,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 19,
               end: 27,
+              range: [19, 27],
               value: 'module'
             }
           }
@@ -891,26 +944,31 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 22,
+        range: [0, 22],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 22,
+            range: [0, 22],
             specifiers: [
               {
                 type: 'ImportSpecifier',
                 start: 8,
                 end: 9,
+                range: [8, 9],
                 imported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'a'
                 },
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'a'
                 }
               },
@@ -918,16 +976,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 imported: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   name: 'b'
                 },
                 local: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
+                  range: [11, 12],
                   name: 'b'
                 }
               }
@@ -936,6 +997,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 19,
               end: 22,
+              range: [19, 22],
               value: 'c'
             }
           }
@@ -976,20 +1038,24 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 25,
+            range: [0, 25],
             specifiers: [
               {
                 type: 'ImportDefaultSpecifier',
                 start: 7,
                 end: 8,
+                range: [7, 8],
                 local: {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
+                  range: [7, 8],
                   name: 'x'
                 }
               },
@@ -997,10 +1063,12 @@ describe('Module - Import', () => {
                 type: 'ImportNamespaceSpecifier',
                 start: 10,
                 end: 16,
+                range: [10, 16],
                 local: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
+                  range: [15, 16],
                   name: 'a'
                 }
               }
@@ -1009,6 +1077,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 22,
               end: 25,
+              range: [22, 25],
               value: 'y'
             }
           }
@@ -1041,16 +1110,19 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 10,
+        range: [0, 10],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 10,
+            range: [0, 10],
             specifiers: [],
             source: {
               type: 'Literal',
               start: 7,
               end: 10,
+              range: [7, 10],
               value: 'y'
             }
           }
@@ -1155,26 +1227,31 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 25,
+            range: [0, 25],
             specifiers: [
               {
                 type: 'ImportSpecifier',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 imported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'z'
                 }
               }
@@ -1183,6 +1260,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 22,
               end: 25,
+              range: [22, 25],
               value: 'y'
             }
           }
@@ -1361,26 +1439,31 @@ describe('Module - Import', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'ImportDeclaration',
             start: 0,
             end: 32,
+            range: [0, 32],
             specifiers: [
               {
                 type: 'ImportSpecifier',
                 start: 8,
                 end: 14,
+                range: [8, 14],
                 imported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'x'
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
+                  range: [13, 14],
                   name: 'a'
                 }
               },
@@ -1388,16 +1471,19 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 start: 16,
                 end: 22,
+                range: [16, 22],
                 imported: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
+                  range: [16, 17],
                   name: 'z'
                 },
                 local: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
+                  range: [21, 22],
                   name: 'b'
                 }
               }
@@ -1406,6 +1492,7 @@ describe('Module - Import', () => {
               type: 'Literal',
               start: 29,
               end: 32,
+              range: [29, 32],
               value: 'y'
             }
           }

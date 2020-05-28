@@ -139,7 +139,8 @@ describe('Miscellaneous - JSX', () => {
               type: 'Identifier',
               name: 'Columns',
               start: 6,
-              end: 13
+              end: 13,
+              range: [6, 13]
             },
             superClass: {
               type: 'MemberExpression',
@@ -147,17 +148,20 @@ describe('Miscellaneous - JSX', () => {
                 type: 'Identifier',
                 name: 'React',
                 start: 22,
-                end: 27
+                end: 27,
+                range: [22, 27]
               },
               computed: false,
               property: {
                 type: 'Identifier',
                 name: 'Component',
                 start: 28,
-                end: 37
+                end: 37,
+                range: [28, 37]
               },
               start: 22,
-              end: 37
+              end: 37,
+              range: [22, 37]
             },
             body: {
               type: 'ClassBody',
@@ -171,7 +175,8 @@ describe('Miscellaneous - JSX', () => {
                     type: 'Identifier',
                     name: 'render',
                     start: 48,
-                    end: 54
+                    end: 54,
+                    range: [48, 54]
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -188,7 +193,8 @@ describe('Miscellaneous - JSX', () => {
                                 type: 'JSXText',
                                 value: '\n              ',
                                 start: 92,
-                                end: 107
+                                end: 107,
+                                range: [92, 107]
                               },
                               {
                                 type: 'JSXElement',
@@ -197,7 +203,8 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXText',
                                     value: 'Hello',
                                     start: 111,
-                                    end: 116
+                                    end: 116,
+                                    range: [111, 116]
                                   }
                                 ],
                                 openingElement: {
@@ -206,12 +213,14 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXIdentifier',
                                     name: 'td',
                                     start: 108,
-                                    end: 110
+                                    end: 110,
+                                    range: [108, 110]
                                   },
                                   attributes: [],
                                   selfClosing: false,
                                   start: 107,
-                                  end: 111
+                                  end: 111,
+                                  range: [107, 111]
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -219,19 +228,23 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXIdentifier',
                                     name: 'td',
                                     start: 118,
-                                    end: 120
+                                    end: 120,
+                                    range: [118, 120]
                                   },
                                   start: 116,
-                                  end: 121
+                                  end: 121,
+                                  range: [116, 121]
                                 },
                                 start: 107,
-                                end: 121
+                                end: 121,
+                                range: [107, 121]
                               },
                               {
                                 type: 'JSXText',
                                 value: '\n              ',
                                 start: 121,
-                                end: 136
+                                end: 136,
+                                range: [121, 136]
                               },
                               {
                                 type: 'JSXElement',
@@ -240,7 +253,8 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXText',
                                     value: 'World',
                                     start: 140,
-                                    end: 145
+                                    end: 145,
+                                    range: [140, 145]
                                   }
                                 ],
                                 openingElement: {
@@ -249,12 +263,14 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXIdentifier',
                                     name: 'td',
                                     start: 137,
-                                    end: 139
+                                    end: 139,
+                                    range: [137, 139]
                                   },
                                   attributes: [],
                                   selfClosing: false,
                                   start: 136,
-                                  end: 140
+                                  end: 140,
+                                  range: [136, 140]
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -262,60 +278,74 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXIdentifier',
                                     name: 'td',
                                     start: 147,
-                                    end: 149
+                                    end: 149,
+                                    range: [147, 149]
                                   },
                                   start: 145,
-                                  end: 150
+                                  end: 150,
+                                  range: [145, 150]
                                 },
                                 start: 136,
-                                end: 150
+                                end: 150,
+                                range: [136, 150]
                               },
                               {
                                 type: 'JSXText',
                                 value: '\n            ',
                                 start: 150,
-                                end: 163
+                                end: 163,
+                                range: [150, 163]
                               }
                             ],
                             openingFragment: {
                               type: 'JSXOpeningFragment',
                               start: 90,
-                              end: 92
+                              end: 92,
+                              range: [90, 92]
                             },
                             closingFragment: {
                               type: 'JSXClosingFragment',
                               start: 163,
-                              end: 166
+                              end: 166,
+                              range: [163, 166]
                             },
                             start: 90,
-                            end: 166
+                            end: 166,
+                            range: [90, 166]
                           },
                           start: 69,
-                          end: 179
+                          end: 179,
+                          range: [69, 179]
                         }
                       ],
                       start: 57,
-                      end: 189
+                      end: 189,
+                      range: [57, 189]
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 54,
-                    end: 189
+                    end: 189,
+                    range: [54, 189]
                   },
                   start: 48,
-                  end: 189
+                  end: 189,
+                  range: [48, 189]
                 }
               ],
               start: 38,
-              end: 197
+              end: 197,
+              range: [38, 197]
             },
             start: 0,
-            end: 197
+            end: 197,
+            range: [0, 197]
           }
         ],
         start: 0,
-        end: 197
+        end: 197,
+        range: [0, 197]
       }
     ],
     [
@@ -325,24 +355,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 16,
+              range: [0, 16],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: false
@@ -351,10 +386,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 10,
                 end: 16,
+                range: [10, 16],
                 name: {
                   type: 'JSXIdentifier',
                   start: 12,
                   end: 15,
+                  range: [12, 15],
                   name: 'div'
                 }
               },
@@ -363,10 +400,12 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   start: 5,
                   end: 10,
+                  range: [5, 10],
                   expression: {
                     type: 'Literal',
                     start: 6,
                     end: 9,
+                    range: [6, 9],
                     value: 111
                   }
                 }
@@ -384,24 +423,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 11,
+        range: [0, 11],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 11,
+            range: [0, 11],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 11,
+              range: [0, 11],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: false
@@ -410,10 +454,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 5,
                 end: 11,
+                range: [5, 11],
                 name: {
                   type: 'JSXIdentifier',
                   start: 7,
                   end: 10,
+                  range: [7, 10],
                   name: 'div'
                 }
               },
@@ -431,42 +477,51 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 21,
+            range: [0, 21],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 21,
+              range: [0, 21],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 21,
+                range: [0, 21],
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     start: 5,
                     end: 18,
+                    range: [5, 18],
                     argument: {
                       type: 'ArrayExpression',
                       start: 9,
                       end: 17,
+                      range: [9, 17],
                       elements: [
                         {
                           type: 'JSXElement',
                           start: 10,
                           end: 16,
+                          range: [10, 16],
                           openingElement: {
                             type: 'JSXOpeningElement',
                             start: 10,
                             end: 16,
+                            range: [10, 16],
                             attributes: [],
                             name: {
                               type: 'JSXIdentifier',
                               start: 11,
                               end: 14,
+                              range: [11, 14],
                               name: 'div'
                             },
                             selfClosing: true
@@ -482,6 +537,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: true
@@ -542,24 +598,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 28,
+            range: [0, 28],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 28,
+              range: [0, 28],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 6,
+                range: [0, 6],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: false
@@ -568,10 +629,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 22,
                 end: 28,
+                range: [22, 28],
                 name: {
                   type: 'JSXIdentifier',
                   start: 24,
                   end: 27,
+                  range: [24, 27],
                   name: 'div'
                 }
               },
@@ -580,16 +643,19 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 6,
                   end: 9,
+                  range: [6, 9],
                   value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
                   start: 9,
                   end: 14,
+                  range: [9, 14],
                   expression: {
                     type: 'Literal',
                     start: 10,
                     end: 13,
+                    range: [10, 13],
                     value: 111
                   }
                 },
@@ -597,16 +663,19 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 14,
                   end: 17,
+                  range: [14, 17],
                   value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
                   start: 17,
                   end: 22,
+                  range: [17, 22],
                   expression: {
                     type: 'Literal',
                     start: 18,
                     end: 21,
+                    range: [18, 21],
                     value: 222
                   }
                 }
@@ -624,24 +693,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 67,
+        range: [0, 67],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 67,
+            range: [0, 67],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 67,
+              range: [0, 67],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 6,
+                range: [0, 6],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: false
@@ -650,10 +724,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 61,
                 end: 67,
+                range: [61, 67],
                 name: {
                   type: 'JSXIdentifier',
                   start: 63,
                   end: 66,
+                  range: [63, 66],
                   name: 'div'
                 }
               },
@@ -662,16 +738,19 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 6,
                   end: 9,
+                  range: [6, 9],
                   value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
                   start: 9,
                   end: 53,
+                  range: [9, 53],
                   expression: {
                     type: 'FunctionExpression',
                     start: 10,
                     end: 52,
+                    range: [10, 52],
                     id: null,
                     generator: false,
                     async: false,
@@ -680,38 +759,46 @@ describe('Miscellaneous - JSX', () => {
                       type: 'BlockStatement',
                       start: 20,
                       end: 52,
+                      range: [20, 52],
                       body: [
                         {
                           type: 'ReturnStatement',
                           start: 21,
                           end: 51,
+                          range: [21, 51],
                           argument: {
                             type: 'JSXElement',
                             start: 28,
                             end: 51,
+                            range: [28, 51],
                             openingElement: {
                               type: 'JSXOpeningElement',
                               start: 28,
                               end: 42,
+                              range: [28, 42],
                               attributes: [
                                 {
                                   type: 'JSXAttribute',
                                   start: 33,
                                   end: 41,
+                                  range: [33, 41],
                                   name: {
                                     type: 'JSXIdentifier',
                                     start: 33,
                                     end: 35,
+                                    range: [33, 35],
                                     name: 'id'
                                   },
                                   value: {
                                     type: 'JSXExpressionContainer',
                                     start: 36,
                                     end: 41,
+                                    range: [36, 41],
                                     expression: {
                                       type: 'Identifier',
                                       start: 37,
                                       end: 40,
+                                      range: [37, 40],
                                       name: 'aaa'
                                     }
                                   }
@@ -721,6 +808,7 @@ describe('Miscellaneous - JSX', () => {
                                 type: 'JSXIdentifier',
                                 start: 29,
                                 end: 32,
+                                range: [29, 32],
                                 name: 'div'
                               },
                               selfClosing: false
@@ -729,10 +817,12 @@ describe('Miscellaneous - JSX', () => {
                               type: 'JSXClosingElement',
                               start: 45,
                               end: 51,
+                              range: [45, 51],
                               name: {
                                 type: 'JSXIdentifier',
                                 start: 47,
                                 end: 50,
+                                range: [47, 50],
                                 name: 'div'
                               }
                             },
@@ -741,6 +831,7 @@ describe('Miscellaneous - JSX', () => {
                                 type: 'JSXText',
                                 start: 42,
                                 end: 45,
+                                range: [42, 45],
                                 value: '111'
                               }
                             ]
@@ -754,16 +845,19 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 53,
                   end: 56,
+                  range: [53, 56],
                   value: 'xxx'
                 },
                 {
                   type: 'JSXExpressionContainer',
                   start: 56,
                   end: 61,
+                  range: [56, 61],
                   expression: {
                     type: 'Literal',
                     start: 57,
                     end: 60,
+                    range: [57, 60],
                     value: 222
                   }
                 }
@@ -781,24 +875,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 57,
+        range: [0, 57],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 57,
+            range: [0, 57],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 57,
+              range: [0, 57],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 4,
+                range: [0, 4],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 3,
+                  range: [1, 3],
                   name: 'ul'
                 },
                 selfClosing: false
@@ -807,10 +906,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 52,
                 end: 57,
+                range: [52, 57],
                 name: {
                   type: 'JSXIdentifier',
                   start: 54,
                   end: 56,
+                  range: [54, 56],
                   name: 'ul'
                 }
               },
@@ -819,15 +920,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXElement',
                   start: 4,
                   end: 16,
+                  range: [4, 16],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 4,
                     end: 8,
+                    range: [4, 8],
                     attributes: [],
                     name: {
                       type: 'JSXIdentifier',
                       start: 5,
                       end: 7,
+                      range: [5, 7],
                       name: 'li'
                     },
                     selfClosing: false
@@ -836,10 +940,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 11,
                     end: 16,
+                    range: [11, 16],
                     name: {
                       type: 'JSXIdentifier',
                       start: 13,
                       end: 15,
+                      range: [13, 15],
                       name: 'li'
                     }
                   },
@@ -848,6 +954,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 8,
                       end: 11,
+                      range: [8, 11],
                       value: '111'
                     }
                   ]
@@ -856,15 +963,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXElement',
                   start: 16,
                   end: 28,
+                  range: [16, 28],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 16,
                     end: 20,
+                    range: [16, 20],
                     attributes: [],
                     name: {
                       type: 'JSXIdentifier',
                       start: 17,
                       end: 19,
+                      range: [17, 19],
                       name: 'li'
                     },
                     selfClosing: false
@@ -873,10 +983,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 23,
                     end: 28,
+                    range: [23, 28],
                     name: {
                       type: 'JSXIdentifier',
                       start: 25,
                       end: 27,
+                      range: [25, 27],
                       name: 'li'
                     }
                   },
@@ -885,6 +997,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 20,
                       end: 23,
+                      range: [20, 23],
                       value: '222'
                     }
                   ]
@@ -893,15 +1006,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXElement',
                   start: 28,
                   end: 40,
+                  range: [28, 40],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 28,
                     end: 32,
+                    range: [28, 32],
                     attributes: [],
                     name: {
                       type: 'JSXIdentifier',
                       start: 29,
                       end: 31,
+                      range: [29, 31],
                       name: 'li'
                     },
                     selfClosing: false
@@ -910,10 +1026,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 35,
                     end: 40,
+                    range: [35, 40],
                     name: {
                       type: 'JSXIdentifier',
                       start: 37,
                       end: 39,
+                      range: [37, 39],
                       name: 'li'
                     }
                   },
@@ -922,6 +1040,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 32,
                       end: 35,
+                      range: [32, 35],
                       value: '333'
                     }
                   ]
@@ -930,15 +1049,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXElement',
                   start: 40,
                   end: 52,
+                  range: [40, 52],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 40,
                     end: 44,
+                    range: [40, 44],
                     attributes: [],
                     name: {
                       type: 'JSXIdentifier',
                       start: 41,
                       end: 43,
+                      range: [41, 43],
                       name: 'li'
                     },
                     selfClosing: false
@@ -947,10 +1069,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 47,
                     end: 52,
+                    range: [47, 52],
                     name: {
                       type: 'JSXIdentifier',
                       start: 49,
                       end: 51,
+                      range: [49, 51],
                       name: 'li'
                     }
                   },
@@ -959,6 +1083,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXText',
                       start: 44,
                       end: 47,
+                      range: [44, 47],
                       value: '444'
                     }
                   ]
@@ -2231,24 +2356,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 5,
+        range: [0, 5],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 5,
+            range: [0, 5],
             expression: {
               type: 'JSXFragment',
               start: 0,
               end: 5,
+              range: [0, 5],
               openingFragment: {
                 type: 'JSXOpeningFragment',
                 start: 0,
-                end: 2
+                end: 2,
+                range: [0, 2]
               },
               closingFragment: {
                 type: 'JSXClosingFragment',
                 start: 2,
-                end: 5
+                end: 5,
+                range: [2, 5]
               },
               children: []
             }
@@ -2264,24 +2394,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 12,
+        range: [0, 12],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 12,
+            range: [0, 12],
             expression: {
               type: 'JSXFragment',
               start: 0,
               end: 12,
+              range: [0, 12],
               openingFragment: {
                 type: 'JSXOpeningFragment',
                 start: 0,
-                end: 6
+                end: 6,
+                range: [0, 6]
               },
               closingFragment: {
                 type: 'JSXClosingFragment',
                 start: 6,
-                end: 12
+                end: 12,
+                range: [6, 12]
               },
               children: []
             }
@@ -3663,34 +3798,41 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 7,
+        range: [0, 7],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 7,
+            range: [0, 7],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 7,
+              range: [0, 7],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 7,
+                range: [0, 7],
                 attributes: [],
                 name: {
                   type: 'JSXNamespacedName',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   namespace: {
                     type: 'JSXIdentifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'n'
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 3,
                     end: 4,
+                    range: [3, 4],
                     name: 'a'
                   }
                 },
@@ -3711,34 +3853,41 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 23,
+        range: [0, 23],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 23,
+            range: [0, 23],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 22,
+              range: [0, 22],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 attributes: [],
                 name: {
                   type: 'JSXNamespacedName',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   namespace: {
                     type: 'JSXIdentifier',
                     start: 1,
                     end: 2,
+                    range: [1, 2],
                     name: 'a'
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 3,
                     end: 4,
+                    range: [3, 4],
                     name: 'b'
                   }
                 },
@@ -3748,20 +3897,24 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 16,
                 end: 22,
+                range: [16, 22],
                 name: {
                   type: 'JSXNamespacedName',
                   start: 18,
                   end: 21,
+                  range: [18, 21],
                   namespace: {
                     type: 'JSXIdentifier',
                     start: 18,
                     end: 19,
+                    range: [18, 19],
                     name: 'a'
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 20,
                     end: 21,
+                    range: [20, 21],
                     name: 'b'
                   }
                 }
@@ -3771,25 +3924,30 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXElement',
                   start: 5,
                   end: 16,
+                  range: [5, 16],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 5,
                     end: 10,
+                    range: [5, 10],
                     attributes: [],
                     name: {
                       type: 'JSXNamespacedName',
                       start: 6,
                       end: 9,
+                      range: [6, 9],
                       namespace: {
                         type: 'JSXIdentifier',
                         start: 6,
                         end: 7,
+                        range: [6, 7],
                         name: 'a'
                       },
                       name: {
                         type: 'JSXIdentifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         name: 'b'
                       }
                     },
@@ -3799,20 +3957,24 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 10,
                     end: 16,
+                    range: [10, 16],
                     name: {
                       type: 'JSXNamespacedName',
                       start: 12,
                       end: 15,
+                      range: [12, 15],
                       namespace: {
                         type: 'JSXIdentifier',
                         start: 12,
                         end: 13,
+                        range: [12, 13],
                         name: 'a'
                       },
                       name: {
                         type: 'JSXIdentifier',
                         start: 14,
                         end: 15,
+                        range: [14, 15],
                         name: 'b'
                       }
                     }
@@ -7186,56 +7348,67 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 42,
+        range: [0, 42],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 42,
+            range: [0, 42],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 42,
+                range: [4, 42],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 13,
+                  range: [4, 13],
                   name: 'rewrites4'
                 },
                 init: {
                   type: 'JSXElement',
                   start: 16,
                   end: 42,
+                  range: [16, 42],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 16,
                     end: 36,
+                    range: [16, 36],
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         start: 21,
                         end: 35,
+                        range: [21, 35],
                         name: {
                           type: 'JSXIdentifier',
                           start: 21,
                           end: 22,
+                          range: [21, 22],
                           name: 'a'
                         },
                         value: {
                           type: 'JSXExpressionContainer',
                           start: 23,
                           end: 35,
+                          range: [23, 35],
                           expression: {
                             type: 'ArrowFunctionExpression',
                             start: 24,
                             end: 34,
+                            range: [24, 34],
                             expression: true,
                             async: false,
                             params: [],
                             body: {
                               type: 'ThisExpression',
                               start: 30,
-                              end: 34
+                              end: 34,
+                              range: [30, 34]
                             }
                           }
                         }
@@ -7245,6 +7418,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXIdentifier',
                       start: 17,
                       end: 20,
+                      range: [17, 20],
                       name: 'div'
                     },
                     selfClosing: false
@@ -7253,10 +7427,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 36,
                     end: 42,
+                    range: [36, 42],
                     name: {
                       type: 'JSXIdentifier',
                       start: 38,
                       end: 41,
+                      range: [38, 41],
                       name: 'div'
                     }
                   },
@@ -7351,54 +7527,65 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 35,
+        range: [0, 35],
         body: [
           {
             type: 'VariableDeclaration',
             start: 0,
             end: 35,
+            range: [0, 35],
             declarations: [
               {
                 type: 'VariableDeclarator',
                 start: 4,
                 end: 35,
+                range: [4, 35],
                 id: {
                   type: 'Identifier',
                   start: 4,
                   end: 13,
+                  range: [4, 13],
                   name: 'rewrites6'
                 },
                 init: {
                   type: 'JSXElement',
                   start: 16,
                   end: 35,
+                  range: [16, 35],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     start: 16,
                     end: 29,
+                    range: [16, 29],
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         start: 21,
                         end: 28,
+                        range: [21, 28],
                         name: {
                           type: 'JSXIdentifier',
                           start: 21,
                           end: 22,
+                          range: [21, 22],
                           name: 'a'
                         },
                         value: {
                           type: 'JSXExpressionContainer',
                           start: 23,
                           end: 28,
+                          range: [23, 28],
                           expression: {
                             type: 'ObjectExpression',
                             start: 24,
                             end: 27,
+                            range: [24, 27],
                             properties: [
                               {
                                 type: 'Property',
                                 start: 25,
                                 end: 26,
+                                range: [25, 26],
                                 method: false,
                                 shorthand: true,
                                 computed: false,
@@ -7406,6 +7593,7 @@ describe('Miscellaneous - JSX', () => {
                                   type: 'Identifier',
                                   start: 25,
                                   end: 26,
+                                  range: [25, 26],
                                   name: 'p'
                                 },
                                 kind: 'init',
@@ -7413,6 +7601,7 @@ describe('Miscellaneous - JSX', () => {
                                   type: 'Identifier',
                                   start: 25,
                                   end: 26,
+                                  range: [25, 26],
                                   name: 'p'
                                 }
                               }
@@ -7425,6 +7614,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXIdentifier',
                       start: 17,
                       end: 20,
+                      range: [17, 20],
                       name: 'div'
                     },
                     selfClosing: false
@@ -7433,10 +7623,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXClosingElement',
                     start: 29,
                     end: 35,
+                    range: [29, 35],
                     name: {
                       type: 'JSXIdentifier',
                       start: 31,
                       end: 34,
+                      range: [31, 34],
                       name: 'div'
                     }
                   },
@@ -9275,38 +9467,46 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 18,
+              range: [0, 18],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 18,
+                range: [0, 18],
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     start: 5,
                     end: 16,
+                    range: [5, 16],
                     name: {
                       type: 'JSXIdentifier',
                       start: 5,
                       end: 10,
+                      range: [5, 10],
                       name: 'width'
                     },
                     value: {
                       type: 'JSXExpressionContainer',
                       start: 11,
                       end: 16,
+                      range: [11, 16],
                       expression: {
                         type: 'Literal',
                         start: 12,
                         end: 15,
+                        range: [12, 15],
                         value: 320
                       }
                     }
@@ -9316,6 +9516,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'img'
                 },
                 selfClosing: true
@@ -9411,50 +9612,61 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 58,
+        range: [0, 58],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 58,
+            range: [0, 58],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 58,
+              range: [0, 58],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 58,
+                range: [0, 58],
                 attributes: [],
                 name: {
                   type: 'JSXMemberExpression',
                   start: 1,
                   end: 55,
+                  range: [1, 55],
                   object: {
                     type: 'JSXMemberExpression',
                     start: 1,
                     end: 41,
+                    range: [1, 41],
                     object: {
                       type: 'JSXMemberExpression',
                       start: 1,
                       end: 30,
+                      range: [1, 30],
                       object: {
                         type: 'JSXMemberExpression',
                         start: 1,
                         end: 26,
+                        range: [1, 26],
                         object: {
                           type: 'JSXMemberExpression',
                           start: 1,
                           end: 18,
+                          range: [1, 18],
                           object: {
                             type: 'JSXIdentifier',
                             start: 1,
                             end: 12,
+                            range: [1, 12],
                             name: 'SolarSystem'
                           },
                           property: {
                             type: 'JSXIdentifier',
                             start: 13,
                             end: 18,
+                            range: [13, 18],
                             name: 'Earth'
                           }
                         },
@@ -9462,6 +9674,7 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXIdentifier',
                           start: 19,
                           end: 26,
+                          range: [19, 26],
                           name: 'America'
                         }
                       },
@@ -9469,6 +9682,7 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXIdentifier',
                         start: 27,
                         end: 30,
+                        range: [27, 30],
                         name: 'USA'
                       }
                     },
@@ -9476,6 +9690,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXIdentifier',
                       start: 31,
                       end: 41,
+                      range: [31, 41],
                       name: 'California'
                     }
                   },
@@ -9483,6 +9698,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXIdentifier',
                     start: 42,
                     end: 55,
+                    range: [42, 55],
                     name: 'mountain-view'
                   }
                 },
@@ -9503,24 +9719,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 19,
+              range: [0, 19],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
+                  range: [1, 4],
                   name: 'div'
                 },
                 selfClosing: false
@@ -9529,10 +9750,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 13,
                 end: 19,
+                range: [13, 19],
                 name: {
                   type: 'JSXIdentifier',
                   start: 15,
                   end: 18,
+                  range: [15, 18],
                   name: 'div'
                 }
               },
@@ -9541,6 +9764,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXText',
                   start: 5,
                   end: 13,
+                  range: [5, 13],
                   value: ' foo:bar'
                 }
               ]
@@ -10571,24 +10795,29 @@ describe('Miscellaneous - JSX', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 28,
+            range: [0, 28],
             expression: {
               type: 'JSXElement',
               start: 0,
               end: 28,
+              range: [0, 28],
               openingElement: {
                 type: 'JSXOpeningElement',
                 start: 0,
                 end: 7,
+                range: [0, 7],
                 attributes: [],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 6,
+                  range: [1, 6],
                   name: 'title'
                 },
                 selfClosing: false
@@ -10597,10 +10826,12 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXClosingElement',
                 start: 20,
                 end: 28,
+                range: [20, 28],
                 name: {
                   type: 'JSXIdentifier',
                   start: 22,
                   end: 27,
+                  range: [22, 27],
                   name: 'title'
                 }
               },
@@ -10609,15 +10840,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   start: 7,
                   end: 20,
+                  range: [7, 20],
                   expression: {
                     type: 'ObjectExpression',
                     start: 9,
                     end: 18,
+                    range: [9, 18],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 17,
+                        range: [10, 17],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -10625,6 +10859,7 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 17,
+                          range: [10, 17],
                           name: 'caption'
                         },
                         kind: 'init',
@@ -10632,6 +10867,7 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 17,
+                          range: [10, 17],
                           name: 'caption'
                         }
                       }

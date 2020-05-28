@@ -1172,35 +1172,42 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 27,
+        range: [0, 27],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 27,
+            range: [0, 27],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 18,
+              range: [5, 18],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 18,
+                  range: [9, 18],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 18,
+                    range: [9, 18],
                     elements: [
                       {
                         type: 'Identifier',
                         start: 10,
                         end: 13,
+                        range: [10, 13],
                         name: 'foo'
                       },
                       {
                         type: 'Identifier',
                         start: 14,
                         end: 17,
+                        range: [14, 17],
                         name: 'bar'
                       }
                     ]
@@ -1214,12 +1221,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 22,
               end: 25,
+              range: [22, 25],
               name: 'arr'
             },
             body: {
               type: 'EmptyStatement',
               start: 26,
-              end: 27
+              end: 27,
+              range: [26, 27]
             }
           }
         ],
@@ -1233,25 +1242,30 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 20,
+        range: [0, 20],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 20,
+            range: [0, 20],
             left: {
               type: 'MemberExpression',
               start: 5,
               end: 10,
+              range: [5, 10],
               object: {
                 type: 'Identifier',
                 start: 5,
                 end: 8,
+                range: [5, 8],
                 name: 'let'
               },
               property: {
                 type: 'Identifier',
                 start: 9,
                 end: 10,
+                range: [9, 10],
                 name: 'x'
               },
               computed: false
@@ -1260,12 +1274,14 @@ describe('Statements - For in', () => {
               type: 'ObjectExpression',
               start: 14,
               end: 16,
+              range: [14, 16],
               properties: []
             },
             body: {
               type: 'BlockStatement',
               start: 18,
               end: 20,
+              range: [18, 20],
               body: []
             }
           }
@@ -1280,29 +1296,35 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 25,
+            range: [0, 25],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 16,
+              range: [5, 16],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 16,
+                  range: [9, 16],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 16,
+                    range: [9, 16],
                     elements: [
                       {
                         type: 'Identifier',
                         start: 10,
                         end: 13,
+                        range: [10, 13],
                         name: 'foo'
                       },
                       null
@@ -1317,12 +1339,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 20,
               end: 23,
+              range: [20, 23],
               name: 'arr'
             },
             body: {
               type: 'EmptyStatement',
               start: 24,
-              end: 25
+              end: 25,
+              range: [24, 25]
             }
           }
         ],
@@ -1336,39 +1360,47 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 32,
+            range: [0, 32],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 23,
+              range: [5, 23],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 23,
+                  range: [9, 23],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 23,
+                    range: [9, 23],
                     elements: [
                       {
                         type: 'AssignmentPattern',
                         start: 10,
                         end: 15,
+                        range: [10, 15],
                         left: {
                           type: 'Identifier',
                           start: 10,
                           end: 13,
+                          range: [10, 13],
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
+                          range: [14, 15],
                           name: 'a'
                         }
                       },
@@ -1376,16 +1408,19 @@ describe('Statements - For in', () => {
                         type: 'AssignmentPattern',
                         start: 17,
                         end: 22,
+                        range: [17, 22],
                         left: {
                           type: 'Identifier',
                           start: 17,
                           end: 20,
+                          range: [17, 20],
                           name: 'bar'
                         },
                         right: {
                           type: 'Identifier',
                           start: 21,
                           end: 22,
+                          range: [21, 22],
                           name: 'b'
                         }
                       }
@@ -1400,12 +1435,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 27,
               end: 30,
+              range: [27, 30],
               name: 'arr'
             },
             body: {
               type: 'EmptyStatement',
               start: 31,
-              end: 32
+              end: 32,
+              range: [31, 32]
             }
           }
         ],
@@ -1419,24 +1456,29 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 12,
+              range: [5, 12],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 12,
+                  range: [9, 12],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 12,
+                    range: [9, 12],
                     elements: [null]
                   },
                   init: null
@@ -1448,12 +1490,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 16,
               end: 17,
+              range: [16, 17],
               name: 'x'
             },
             body: {
               type: 'EmptyStatement',
               start: 18,
-              end: 19
+              end: 19,
+              range: [18, 19]
             }
           }
         ],
@@ -1552,39 +1596,47 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 30,
+        range: [0, 30],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 30,
+            range: [0, 30],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 21,
+              range: [5, 21],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 21,
+                  range: [9, 21],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 21,
+                    range: [9, 21],
                     elements: [
                       {
                         type: 'AssignmentPattern',
                         start: 10,
                         end: 15,
+                        range: [10, 15],
                         left: {
                           type: 'Identifier',
                           start: 10,
                           end: 13,
+                          range: [10, 13],
                           name: 'foo'
                         },
                         right: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
+                          range: [14, 15],
                           name: 'a'
                         }
                       },
@@ -1592,6 +1644,7 @@ describe('Statements - For in', () => {
                         type: 'Identifier',
                         start: 17,
                         end: 20,
+                        range: [17, 20],
                         name: 'bar'
                       }
                     ]
@@ -1605,12 +1658,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 25,
               end: 28,
+              range: [25, 28],
               name: 'arr'
             },
             body: {
               type: 'EmptyStatement',
               start: 29,
-              end: 30
+              end: 30,
+              range: [29, 30]
             }
           }
         ],
@@ -1674,33 +1729,40 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 26,
+            range: [0, 26],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 17,
+              range: [5, 17],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 17,
+                  range: [9, 17],
                   id: {
                     type: 'ArrayPattern',
                     start: 9,
                     end: 17,
+                    range: [9, 17],
                     elements: [
                       {
                         type: 'RestElement',
                         start: 10,
                         end: 16,
+                        range: [10, 16],
                         argument: {
                           type: 'Identifier',
                           start: 13,
                           end: 16,
+                          range: [13, 16],
                           name: 'foo'
                         }
                       }
@@ -1715,12 +1777,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 21,
               end: 24,
+              range: [21, 24],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 25,
-              end: 26
+              end: 26,
+              range: [25, 26]
             }
           }
         ],
@@ -1818,29 +1882,35 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 24,
+        range: [0, 24],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 24,
+            range: [0, 24],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 15,
+              range: [5, 15],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 15,
+                  range: [9, 15],
                   id: {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 15,
+                    range: [9, 15],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 11,
+                        range: [10, 11],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -1848,6 +1918,7 @@ describe('Statements - For in', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
+                          range: [10, 11],
                           name: 'x'
                         },
                         kind: 'init',
@@ -1855,6 +1926,7 @@ describe('Statements - For in', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
+                          range: [10, 11],
                           name: 'x'
                         }
                       },
@@ -1862,6 +1934,7 @@ describe('Statements - For in', () => {
                         type: 'Property',
                         start: 13,
                         end: 14,
+                        range: [13, 14],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -1869,6 +1942,7 @@ describe('Statements - For in', () => {
                           type: 'Identifier',
                           start: 13,
                           end: 14,
+                          range: [13, 14],
                           name: 'y'
                         },
                         kind: 'init',
@@ -1876,6 +1950,7 @@ describe('Statements - For in', () => {
                           type: 'Identifier',
                           start: 13,
                           end: 14,
+                          range: [13, 14],
                           name: 'y'
                         }
                       }
@@ -1890,12 +1965,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 19,
               end: 22,
+              range: [19, 22],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 23,
-              end: 24
+              end: 24,
+              range: [23, 24]
             }
           }
         ],
@@ -1959,29 +2036,35 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 25,
+            range: [0, 25],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 16,
+              range: [5, 16],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 16,
+                  range: [9, 16],
                   id: {
                     type: 'ObjectPattern',
                     start: 9,
                     end: 16,
+                    range: [9, 16],
                     properties: [
                       {
                         type: 'Property',
                         start: 10,
                         end: 15,
+                        range: [10, 15],
                         method: false,
                         shorthand: true,
                         computed: false,
@@ -1989,6 +2072,7 @@ describe('Statements - For in', () => {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
+                          range: [10, 11],
                           name: 'x'
                         },
                         kind: 'init',
@@ -1996,16 +2080,19 @@ describe('Statements - For in', () => {
                           type: 'AssignmentPattern',
                           start: 10,
                           end: 15,
+                          range: [10, 15],
                           left: {
                             type: 'Identifier',
                             start: 10,
                             end: 11,
+                            range: [10, 11],
                             name: 'x'
                           },
                           right: {
                             type: 'Identifier',
                             start: 14,
                             end: 15,
+                            range: [14, 15],
                             name: 'y'
                           }
                         }
@@ -2021,12 +2108,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 20,
               end: 23,
+              range: [20, 23],
               name: 'obj'
             },
             body: {
               type: 'EmptyStatement',
               start: 24,
-              end: 25
+              end: 25,
+              range: [24, 25]
             }
           }
         ],
@@ -2064,71 +2153,84 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 41,
+        range: [0, 41],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             left: {
               type: 'Identifier',
               start: 5,
               end: 6,
+              range: [5, 6],
               name: 'a'
             },
             right: {
               type: 'Identifier',
               start: 10,
               end: 11,
+              range: [10, 11],
               name: 'b'
             },
             body: {
               type: 'EmptyStatement',
               start: 12,
-              end: 13
+              end: 13,
+              range: [12, 13]
             }
           },
           {
             type: 'ForInStatement',
             start: 14,
             end: 27,
+            range: [14, 27],
             left: {
               type: 'Identifier',
               start: 19,
               end: 20,
+              range: [19, 20],
               name: 'a'
             },
             right: {
               type: 'Identifier',
               start: 24,
               end: 25,
+              range: [24, 25],
               name: 'b'
             },
             body: {
               type: 'EmptyStatement',
               start: 26,
-              end: 27
+              end: 27,
+              range: [26, 27]
             }
           },
           {
             type: 'ForInStatement',
             start: 28,
             end: 41,
+            range: [28, 41],
             left: {
               type: 'Identifier',
               start: 33,
               end: 34,
+              range: [33, 34],
               name: 'a'
             },
             right: {
               type: 'Identifier',
               start: 38,
               end: 39,
+              range: [38, 39],
               name: 'b'
             },
             body: {
               type: 'EmptyStatement',
               start: 40,
-              end: 41
+              end: 41,
+              range: [40, 41]
             }
           }
         ],
@@ -2176,26 +2278,31 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             left: {
               type: 'ArrayPattern',
               start: 5,
               end: 10,
+              range: [5, 10],
               elements: [
                 {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'b'
                 }
               ]
@@ -2204,16 +2311,19 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 14,
               end: 15,
+              range: [14, 15],
               name: 'x'
             },
             body: {
               type: 'ExpressionStatement',
               start: 17,
               end: 19,
+              range: [17, 19],
               expression: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
+                range: [17, 18],
                 name: 'a'
               }
             }
@@ -2229,27 +2339,32 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ForOfStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             await: false,
             left: {
               type: 'ArrayPattern',
               start: 5,
               end: 10,
+              range: [5, 10],
               elements: [
                 {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   name: 'a'
                 },
                 {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   name: 'b'
                 }
               ]
@@ -2258,16 +2373,19 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 14,
               end: 15,
+              range: [14, 15],
               name: 'x'
             },
             body: {
               type: 'ExpressionStatement',
               start: 17,
               end: 19,
+              range: [17, 19],
               expression: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
+                range: [17, 18],
                 name: 'a'
               }
             }
@@ -2342,21 +2460,25 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 19,
+        range: [0, 19],
         body: [
           {
             type: 'ForOfStatement',
             start: 0,
             end: 19,
+            range: [0, 19],
             await: false,
             left: {
               type: 'ObjectPattern',
               start: 5,
               end: 10,
+              range: [5, 10],
               properties: [
                 {
                   type: 'Property',
                   start: 6,
                   end: 7,
+                  range: [6, 7],
                   method: false,
                   shorthand: true,
                   computed: false,
@@ -2364,6 +2486,7 @@ describe('Statements - For in', () => {
                     type: 'Identifier',
                     start: 6,
                     end: 7,
+                    range: [6, 7],
                     name: 'a'
                   },
                   kind: 'init',
@@ -2371,6 +2494,7 @@ describe('Statements - For in', () => {
                     type: 'Identifier',
                     start: 6,
                     end: 7,
+                    range: [6, 7],
                     name: 'a'
                   }
                 },
@@ -2378,6 +2502,7 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   start: 8,
                   end: 9,
+                  range: [8, 9],
                   method: false,
                   shorthand: true,
                   computed: false,
@@ -2385,6 +2510,7 @@ describe('Statements - For in', () => {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
+                    range: [8, 9],
                     name: 'b'
                   },
                   kind: 'init',
@@ -2392,6 +2518,7 @@ describe('Statements - For in', () => {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
+                    range: [8, 9],
                     name: 'b'
                   }
                 }
@@ -2401,16 +2528,19 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 14,
               end: 15,
+              range: [14, 15],
               name: 'x'
             },
             body: {
               type: 'ExpressionStatement',
               start: 17,
               end: 19,
+              range: [17, 19],
               expression: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
+                range: [17, 18],
                 name: 'a'
               }
             }
@@ -2426,33 +2556,40 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 25,
+            range: [0, 25],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 17,
+              range: [5, 17],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 17,
+                  range: [11, 17],
                   id: {
                     type: 'ArrayPattern',
                     start: 11,
                     end: 17,
+                    range: [11, 17],
                     elements: [
                       {
                         type: 'RestElement',
                         start: 12,
                         end: 16,
+                        range: [12, 16],
                         argument: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           name: 'x'
                         }
                       }
@@ -2467,12 +2604,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 21,
               end: 22,
+              range: [21, 22],
               name: 'y'
             },
             body: {
               type: 'BlockStatement',
               start: 23,
               end: 25,
+              range: [23, 25],
               body: []
             }
           }
@@ -2487,33 +2626,40 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 25,
+        range: [0, 25],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 25,
+            range: [0, 25],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 17,
+              range: [5, 17],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 11,
                   end: 17,
+                  range: [11, 17],
                   id: {
                     type: 'ObjectPattern',
                     start: 11,
                     end: 17,
+                    range: [11, 17],
                     properties: [
                       {
                         type: 'RestElement',
                         start: 12,
                         end: 16,
+                        range: [12, 16],
                         argument: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           name: 'x'
                         }
                       }
@@ -2528,12 +2674,14 @@ describe('Statements - For in', () => {
               type: 'Identifier',
               start: 21,
               end: 22,
+              range: [21, 22],
               name: 'y'
             },
             body: {
               type: 'BlockStatement',
               start: 23,
               end: 25,
+              range: [23, 25],
               body: []
             }
           }
@@ -2548,30 +2696,36 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 16,
+        range: [0, 16],
         body: [
           {
             type: 'ForStatement',
             start: 0,
             end: 16,
+            range: [0, 16],
             init: {
               type: 'VariableDeclaration',
               start: 5,
               end: 12,
+              range: [5, 12],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 12,
+                  range: [9, 12],
                   id: {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   },
                   init: {
                     type: 'Literal',
                     start: 11,
                     end: 12,
+                    range: [11, 12],
                     value: 1
                   }
                 }
@@ -2583,7 +2737,8 @@ describe('Statements - For in', () => {
             body: {
               type: 'EmptyStatement',
               start: 15,
-              end: 16
+              end: 16,
+              range: [15, 16]
             }
           }
         ],
@@ -3017,41 +3172,49 @@ describe('Statements - For in', () => {
         type: 'Program',
         start: 0,
         end: 64,
+        range: [0, 64],
         body: [
           {
             type: 'ForInStatement',
             start: 0,
             end: 64,
+            range: [0, 64],
             left: {
               type: 'VariableDeclaration',
               start: 5,
               end: 28,
+              range: [5, 28],
               declarations: [
                 {
                   type: 'VariableDeclarator',
                   start: 9,
                   end: 28,
+                  range: [9, 28],
                   id: {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
+                    range: [9, 10],
                     name: 'a'
                   },
                   init: {
                     type: 'SequenceExpression',
                     start: 14,
                     end: 27,
+                    range: [14, 27],
                     expressions: [
                       {
                         type: 'UpdateExpression',
                         start: 14,
                         end: 23,
+                        range: [14, 23],
                         operator: '++',
                         prefix: true,
                         argument: {
                           type: 'Identifier',
                           start: 16,
                           end: 23,
+                          range: [16, 23],
                           name: 'effects'
                         }
                       },
@@ -3059,12 +3222,14 @@ describe('Statements - For in', () => {
                         type: 'UnaryExpression',
                         start: 25,
                         end: 27,
+                        range: [25, 27],
                         operator: '-',
                         prefix: true,
                         argument: {
                           type: 'Literal',
                           start: 26,
                           end: 27,
+                          range: [26, 27],
                           value: 1
                         }
                       }
@@ -3078,22 +3243,26 @@ describe('Statements - For in', () => {
               type: 'SequenceExpression',
               start: 32,
               end: 62,
+              range: [32, 62],
               expressions: [
                 {
                   type: 'AssignmentExpression',
                   start: 32,
                   end: 42,
+                  range: [32, 42],
                   operator: '=',
                   left: {
                     type: 'Identifier',
                     start: 32,
                     end: 38,
+                    range: [32, 38],
                     name: 'stored'
                   },
                   right: {
                     type: 'Identifier',
                     start: 41,
                     end: 42,
+                    range: [41, 42],
                     name: 'a'
                   }
                 },
@@ -3101,11 +3270,13 @@ describe('Statements - For in', () => {
                   type: 'ObjectExpression',
                   start: 44,
                   end: 62,
+                  range: [44, 62],
                   properties: [
                     {
                       type: 'Property',
                       start: 45,
                       end: 49,
+                      range: [45, 49],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -3113,12 +3284,14 @@ describe('Statements - For in', () => {
                         type: 'Identifier',
                         start: 45,
                         end: 46,
+                        range: [45, 46],
                         name: 'a'
                       },
                       value: {
                         type: 'Literal',
                         start: 48,
                         end: 49,
+                        range: [48, 49],
                         value: 0
                       },
                       kind: 'init'
@@ -3127,6 +3300,7 @@ describe('Statements - For in', () => {
                       type: 'Property',
                       start: 51,
                       end: 55,
+                      range: [51, 55],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -3134,12 +3308,14 @@ describe('Statements - For in', () => {
                         type: 'Identifier',
                         start: 51,
                         end: 52,
+                        range: [51, 52],
                         name: 'b'
                       },
                       value: {
                         type: 'Literal',
                         start: 54,
                         end: 55,
+                        range: [54, 55],
                         value: 1
                       },
                       kind: 'init'
@@ -3148,6 +3324,7 @@ describe('Statements - For in', () => {
                       type: 'Property',
                       start: 57,
                       end: 61,
+                      range: [57, 61],
                       method: false,
                       shorthand: false,
                       computed: false,
@@ -3155,12 +3332,14 @@ describe('Statements - For in', () => {
                         type: 'Identifier',
                         start: 57,
                         end: 58,
+                        range: [57, 58],
                         name: 'c'
                       },
                       value: {
                         type: 'Literal',
                         start: 60,
                         end: 61,
+                        range: [60, 61],
                         value: 2
                       },
                       kind: 'init'
@@ -3172,7 +3351,8 @@ describe('Statements - For in', () => {
             body: {
               type: 'EmptyStatement',
               start: 63,
-              end: 64
+              end: 64,
+              range: [63, 64]
             }
           }
         ],

@@ -74,9 +74,10 @@ describe('Miscellaneous - onComment', () => {
       }),
       {
         body: [],
-        end: 24,
         sourceType: 'script',
         start: 0,
+        end: 24,
+        range: [0, 24],
         type: 'Program'
       }
     );
@@ -104,8 +105,9 @@ describe('Miscellaneous - onComment', () => {
     });
     t.deepEqual(arr, [
       {
-        end: 24,
         start: 2,
+        end: 24,
+        range: [2, 24],
         type: 'MultiLine',
         value: ' Multi line comment '
       }
@@ -120,38 +122,44 @@ describe('Miscellaneous - onComment', () => {
     });
     t.deepEqual(arr, [
       {
-        end: 7,
         start: 2,
+        end: 7,
+        range: [2, 7],
         type: 'MultiLine',
         value: ' a '
       },
       {
-        end: 22,
         start: 19,
+        end: 22,
+        range: [19, 22],
         type: 'MultiLine',
         value: 'b'
       },
       {
-        end: 31,
         start: 28,
+        end: 31,
+        range: [28, 31],
         type: 'MultiLine',
         value: 'c'
       },
       {
-        end: 36,
         start: 33,
+        end: 36,
+        range: [33, 36],
         type: 'MultiLine',
         value: 'd'
       },
       {
-        end: 64,
         start: 42,
+        end: 64,
+        range: [42, 64],
         type: 'MultiLine',
         value: ' Multi line comment '
       },
       {
-        end: 77,
         start: 69,
+        end: 77,
+        range: [69, 77],
         type: 'SingleLine',
         value: ' The end'
       }

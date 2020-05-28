@@ -16,15 +16,18 @@ describe('Statements - Return', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 32,
+            range: [0, 32],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'a'
             },
             generator: false,
@@ -34,32 +37,38 @@ describe('Statements - Return', () => {
               type: 'BlockStatement',
               start: 13,
               end: 32,
+              range: [13, 32],
               body: [
                 {
                   type: 'ReturnStatement',
                   start: 15,
                   end: 30,
+                  range: [15, 30],
                   argument: {
                     type: 'SequenceExpression',
                     start: 22,
                     end: 29,
+                    range: [22, 29],
                     expressions: [
                       {
                         type: 'Identifier',
                         start: 22,
                         end: 23,
+                        range: [22, 23],
                         name: 'a'
                       },
                       {
                         type: 'Identifier',
                         start: 25,
                         end: 26,
+                        range: [25, 26],
                         name: 'b'
                       },
                       {
                         type: 'Identifier',
                         start: 28,
                         end: 29,
+                        range: [28, 29],
                         name: 'c'
                       }
                     ]

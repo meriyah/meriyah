@@ -86,15 +86,18 @@ describe('Statements - Throw', () => {
         type: 'Program',
         start: 0,
         end: 10,
+        range: [0, 10],
         body: [
           {
             type: 'ThrowStatement',
             start: 0,
             end: 10,
+            range: [0, 10],
             argument: {
               type: 'Identifier',
               start: 6,
               end: 9,
+              range: [6, 9],
               name: 'foo'
             }
           }

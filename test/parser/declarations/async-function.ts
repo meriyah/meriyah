@@ -576,15 +576,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 43,
+        range: [0, 43],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 43,
+            range: [0, 43],
             id: {
               type: 'Identifier',
               start: 16,
               end: 19,
+              range: [16, 19],
               name: 'gen'
             },
             generator: true,
@@ -594,29 +597,35 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 22,
               end: 43,
+              range: [22, 43],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 24,
                   end: 41,
+                  range: [24, 41],
                   expression: {
                     type: 'YieldExpression',
                     start: 24,
                     end: 40,
+                    range: [24, 40],
                     delegate: false,
                     argument: {
                       type: 'ArrayExpression',
                       start: 30,
                       end: 40,
+                      range: [30, 40],
                       elements: [
                         {
                           type: 'SpreadElement',
                           start: 31,
                           end: 39,
+                          range: [31, 39],
                           argument: {
                             type: 'YieldExpression',
                             start: 34,
                             end: 39,
+                            range: [34, 39],
                             delegate: false,
                             argument: null
                           }
@@ -639,15 +648,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 75,
+        range: [0, 75],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 13,
+            range: [0, 13],
             expression: {
               type: 'Literal',
               start: 0,
               end: 12,
+              range: [0, 12],
               value: 'use strict',
               raw: '"use strict"'
             },
@@ -657,10 +669,12 @@ describe('Declarations - Async Function', () => {
             type: 'FunctionDeclaration',
             start: 14,
             end: 75,
+            range: [14, 75],
             id: {
               type: 'Identifier',
               start: 29,
               end: 32,
+              range: [29, 32],
               name: 'foo'
             },
             generator: false,
@@ -670,15 +684,18 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 35,
               end: 75,
+              range: [35, 75],
               body: [
                 {
                   type: 'FunctionDeclaration',
                   start: 37,
                   end: 66,
+                  range: [37, 66],
                   id: {
                     type: 'Identifier',
                     start: 46,
                     end: 49,
+                    range: [46, 49],
                     name: 'bar'
                   },
                   generator: false,
@@ -688,26 +705,31 @@ describe('Declarations - Async Function', () => {
                     type: 'BlockStatement',
                     start: 52,
                     end: 66,
+                    range: [52, 66],
                     body: [
                       {
                         type: 'ExpressionStatement',
                         start: 54,
                         end: 64,
+                        range: [54, 64],
                         expression: {
                           type: 'AssignmentExpression',
                           start: 54,
                           end: 63,
+                          range: [54, 63],
                           operator: '=',
                           left: {
                             type: 'Identifier',
                             start: 54,
                             end: 59,
+                            range: [54, 59],
                             name: 'await'
                           },
                           right: {
                             type: 'Literal',
                             start: 62,
                             end: 63,
+                            range: [62, 63],
                             value: 1,
                             raw: '1'
                           }
@@ -720,14 +742,17 @@ describe('Declarations - Async Function', () => {
                   type: 'ExpressionStatement',
                   start: 67,
                   end: 73,
+                  range: [67, 73],
                   expression: {
                     type: 'CallExpression',
                     start: 67,
                     end: 72,
+                    range: [67, 72],
                     callee: {
                       type: 'Identifier',
                       start: 67,
                       end: 70,
+                      range: [67, 70],
                       name: 'bar'
                     },
                     arguments: []
@@ -777,15 +802,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 26,
+            range: [0, 26],
             id: {
               type: 'Identifier',
               start: 15,
               end: 20,
+              range: [15, 20],
               name: 'await'
             },
             generator: false,
@@ -795,6 +823,7 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 23,
               end: 26,
+              range: [23, 26],
               body: []
             }
           }
@@ -809,19 +838,23 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 26,
+        range: [0, 26],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 26,
+            range: [0, 26],
             expression: {
               type: 'FunctionExpression',
               start: 1,
               end: 25,
+              range: [1, 25],
               id: {
                 type: 'Identifier',
                 start: 16,
                 end: 19,
+                range: [16, 19],
                 name: 'foo'
               },
               generator: false,
@@ -831,6 +864,7 @@ describe('Declarations - Async Function', () => {
                 type: 'BlockStatement',
                 start: 22,
                 end: 25,
+                range: [22, 25],
                 body: []
               }
             }
@@ -846,6 +880,7 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         loc: {
           start: {
             line: 1,
@@ -861,6 +896,7 @@ describe('Declarations - Async Function', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             loc: {
               start: {
                 line: 1,
@@ -875,6 +911,7 @@ describe('Declarations - Async Function', () => {
               type: 'CallExpression',
               start: 0,
               end: 18,
+              range: [0, 18],
               loc: {
                 start: {
                   line: 1,
@@ -889,6 +926,7 @@ describe('Declarations - Async Function', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 5,
+                range: [0, 5],
                 loc: {
                   start: {
                     line: 1,
@@ -906,6 +944,7 @@ describe('Declarations - Async Function', () => {
                   type: 'ObjectExpression',
                   start: 7,
                   end: 17,
+                  range: [7, 17],
                   loc: {
                     start: {
                       line: 1,
@@ -921,6 +960,7 @@ describe('Declarations - Async Function', () => {
                       type: 'Property',
                       start: 8,
                       end: 16,
+                      range: [8, 16],
                       loc: {
                         start: {
                           line: 1,
@@ -938,6 +978,7 @@ describe('Declarations - Async Function', () => {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
+                        range: [8, 9],
                         loc: {
                           start: {
                             line: 1,
@@ -954,6 +995,7 @@ describe('Declarations - Async Function', () => {
                         type: 'AssignmentExpression',
                         start: 11,
                         end: 16,
+                        range: [11, 16],
                         loc: {
                           start: {
                             line: 1,
@@ -969,6 +1011,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Identifier',
                           start: 11,
                           end: 12,
+                          range: [11, 12],
                           loc: {
                             start: {
                               line: 1,
@@ -985,6 +1028,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
+                          range: [15, 16],
                           loc: {
                             start: {
                               line: 1,
@@ -1016,20 +1060,24 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 21,
+            range: [0, 21],
             expression: {
               type: 'ObjectExpression',
               start: 1,
               end: 20,
+              range: [1, 20],
               properties: [
                 {
                   type: 'Property',
                   start: 2,
                   end: 19,
+                  range: [2, 19],
                   method: true,
                   shorthand: false,
                   computed: false,
@@ -1037,6 +1085,7 @@ describe('Declarations - Async Function', () => {
                     type: 'Identifier',
                     start: 8,
                     end: 13,
+                    range: [8, 13],
                     name: 'await'
                   },
                   kind: 'init',
@@ -1044,6 +1093,7 @@ describe('Declarations - Async Function', () => {
                     type: 'FunctionExpression',
                     start: 13,
                     end: 19,
+                    range: [13, 19],
                     id: null,
                     generator: false,
                     async: true,
@@ -1052,6 +1102,7 @@ describe('Declarations - Async Function', () => {
                       type: 'BlockStatement',
                       start: 16,
                       end: 19,
+                      range: [16, 19],
                       body: []
                     }
                   }
@@ -1070,15 +1121,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 36,
+        range: [0, 36],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 36,
+            range: [0, 36],
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               name: 'foo'
             },
             generator: false,
@@ -1088,12 +1142,14 @@ describe('Declarations - Async Function', () => {
                 type: 'Identifier',
                 start: 19,
                 end: 20,
+                range: [19, 20],
                 name: 'a'
               },
               {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
+                range: [22, 23],
                 name: 'b'
               }
             ],
@@ -1101,19 +1157,23 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 25,
               end: 36,
+              range: [25, 36],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 27,
                   end: 34,
+                  range: [27, 34],
                   expression: {
                     type: 'AwaitExpression',
                     start: 27,
                     end: 34,
+                    range: [27, 34],
                     argument: {
                       type: 'Identifier',
                       start: 33,
                       end: 34,
+                      range: [33, 34],
                       name: 'a'
                     }
                   }
@@ -1132,19 +1192,23 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 35,
+        range: [0, 35],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 35,
+            range: [0, 35],
             expression: {
               type: 'FunctionExpression',
               start: 1,
               end: 34,
+              range: [1, 34],
               id: {
                 type: 'Identifier',
                 start: 16,
                 end: 19,
+                range: [16, 19],
                 name: 'foo'
               },
               generator: false,
@@ -1154,6 +1218,7 @@ describe('Declarations - Async Function', () => {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
+                  range: [20, 21],
                   name: 'a'
                 }
               ],
@@ -1161,19 +1226,23 @@ describe('Declarations - Async Function', () => {
                 type: 'BlockStatement',
                 start: 23,
                 end: 34,
+                range: [23, 34],
                 body: [
                   {
                     type: 'ExpressionStatement',
                     start: 25,
                     end: 32,
+                    range: [25, 32],
                     expression: {
                       type: 'AwaitExpression',
                       start: 25,
                       end: 32,
+                      range: [25, 32],
                       argument: {
                         type: 'Identifier',
                         start: 31,
                         end: 32,
+                        range: [31, 32],
                         name: 'a'
                       }
                     }
@@ -1281,15 +1350,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 46,
+        range: [0, 46],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 46,
+            range: [0, 46],
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               name: 'foo'
             },
             generator: false,
@@ -1299,12 +1371,14 @@ describe('Declarations - Async Function', () => {
                 type: 'Identifier',
                 start: 19,
                 end: 20,
+                range: [19, 20],
                 name: 'a'
               },
               {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
+                range: [22, 23],
                 name: 'b'
               }
             ],
@@ -1312,23 +1386,28 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 25,
               end: 46,
+              range: [25, 46],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 27,
                   end: 44,
+                  range: [27, 44],
                   expression: {
                     type: 'BinaryExpression',
                     start: 27,
                     end: 44,
+                    range: [27, 44],
                     left: {
                       type: 'AwaitExpression',
                       start: 27,
                       end: 34,
+                      range: [27, 34],
                       argument: {
                         type: 'Identifier',
                         start: 33,
                         end: 34,
+                        range: [33, 34],
                         name: 'a'
                       }
                     },
@@ -1337,10 +1416,12 @@ describe('Declarations - Async Function', () => {
                       type: 'AwaitExpression',
                       start: 37,
                       end: 44,
+                      range: [37, 44],
                       argument: {
                         type: 'Identifier',
                         start: 43,
                         end: 44,
+                        range: [43, 44],
                         name: 'b'
                       }
                     }
@@ -1360,6 +1441,7 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 28,
+        range: [0, 28],
         loc: {
           start: {
             line: 1,
@@ -1375,6 +1457,7 @@ describe('Declarations - Async Function', () => {
             type: 'FunctionDeclaration',
             start: 0,
             end: 28,
+            range: [0, 28],
             loc: {
               start: {
                 line: 1,
@@ -1389,6 +1472,7 @@ describe('Declarations - Async Function', () => {
               type: 'Identifier',
               start: 9,
               end: 12,
+              range: [9, 12],
               loc: {
                 start: {
                   line: 1,
@@ -1408,6 +1492,7 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 15,
               end: 28,
+              range: [15, 28],
               loc: {
                 start: {
                   line: 1,
@@ -1423,6 +1508,7 @@ describe('Declarations - Async Function', () => {
                   type: 'ExpressionStatement',
                   start: 17,
                   end: 26,
+                  range: [17, 26],
                   loc: {
                     start: {
                       line: 1,
@@ -1437,6 +1523,7 @@ describe('Declarations - Async Function', () => {
                     type: 'BinaryExpression',
                     start: 17,
                     end: 26,
+                    range: [17, 26],
                     loc: {
                       start: {
                         line: 1,
@@ -1451,6 +1538,7 @@ describe('Declarations - Async Function', () => {
                       type: 'Identifier',
                       start: 17,
                       end: 22,
+                      range: [17, 22],
                       loc: {
                         start: {
                           line: 1,
@@ -1468,6 +1556,7 @@ describe('Declarations - Async Function', () => {
                       type: 'Literal',
                       start: 25,
                       end: 26,
+                      range: [25, 26],
                       loc: {
                         start: {
                           line: 1,
@@ -1496,6 +1585,7 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 59,
+        range: [0, 59],
         loc: {
           start: {
             line: 1,
@@ -1511,6 +1601,7 @@ describe('Declarations - Async Function', () => {
             type: 'FunctionDeclaration',
             start: 0,
             end: 59,
+            range: [0, 59],
             loc: {
               start: {
                 line: 1,
@@ -1525,6 +1616,7 @@ describe('Declarations - Async Function', () => {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               loc: {
                 start: {
                   line: 1,
@@ -1544,6 +1636,7 @@ describe('Declarations - Async Function', () => {
                 type: 'AssignmentPattern',
                 start: 19,
                 end: 55,
+                range: [19, 55],
                 loc: {
                   start: {
                     line: 1,
@@ -1558,6 +1651,7 @@ describe('Declarations - Async Function', () => {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   loc: {
                     start: {
                       line: 1,
@@ -1574,6 +1668,7 @@ describe('Declarations - Async Function', () => {
                   type: 'FunctionExpression',
                   start: 23,
                   end: 55,
+                  range: [23, 55],
                   loc: {
                     start: {
                       line: 1,
@@ -1588,6 +1683,7 @@ describe('Declarations - Async Function', () => {
                     type: 'Identifier',
                     start: 38,
                     end: 41,
+                    range: [38, 41],
                     loc: {
                       start: {
                         line: 1,
@@ -1607,6 +1703,7 @@ describe('Declarations - Async Function', () => {
                     type: 'BlockStatement',
                     start: 44,
                     end: 55,
+                    range: [44, 55],
                     loc: {
                       start: {
                         line: 1,
@@ -1622,6 +1719,7 @@ describe('Declarations - Async Function', () => {
                         type: 'ExpressionStatement',
                         start: 46,
                         end: 53,
+                        range: [46, 53],
                         loc: {
                           start: {
                             line: 1,
@@ -1636,6 +1734,7 @@ describe('Declarations - Async Function', () => {
                           type: 'AwaitExpression',
                           start: 46,
                           end: 53,
+                          range: [46, 53],
                           loc: {
                             start: {
                               line: 1,
@@ -1650,6 +1749,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 52,
                             end: 53,
+                            range: [52, 53],
                             loc: {
                               start: {
                                 line: 1,
@@ -1673,6 +1773,7 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 57,
               end: 59,
+              range: [57, 59],
               loc: {
                 start: {
                   line: 1,
@@ -1744,15 +1845,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 52,
+        range: [0, 52],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 52,
+            range: [0, 52],
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               name: 'foo'
             },
             generator: false,
@@ -1762,21 +1866,25 @@ describe('Declarations - Async Function', () => {
                 type: 'AssignmentPattern',
                 start: 19,
                 end: 48,
+                range: [19, 48],
                 left: {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   name: 'a'
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 23,
                   end: 48,
+                  range: [23, 48],
                   properties: [
                     {
                       type: 'Property',
                       start: 24,
                       end: 47,
+                      range: [24, 47],
                       method: true,
                       shorthand: false,
                       computed: false,
@@ -1784,6 +1892,7 @@ describe('Declarations - Async Function', () => {
                         type: 'Identifier',
                         start: 30,
                         end: 33,
+                        range: [30, 33],
                         name: 'bar'
                       },
                       kind: 'init',
@@ -1791,6 +1900,7 @@ describe('Declarations - Async Function', () => {
                         type: 'FunctionExpression',
                         start: 33,
                         end: 47,
+                        range: [33, 47],
                         id: null,
                         generator: false,
                         async: true,
@@ -1799,19 +1909,23 @@ describe('Declarations - Async Function', () => {
                           type: 'BlockStatement',
                           start: 36,
                           end: 47,
+                          range: [36, 47],
                           body: [
                             {
                               type: 'ExpressionStatement',
                               start: 38,
                               end: 45,
+                              range: [38, 45],
                               expression: {
                                 type: 'AwaitExpression',
                                 start: 38,
                                 end: 45,
+                                range: [38, 45],
                                 argument: {
                                   type: 'Identifier',
                                   start: 44,
                                   end: 45,
+                                  range: [44, 45],
                                   name: 'b'
                                 }
                               }
@@ -1828,6 +1942,7 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 50,
               end: 52,
+              range: [50, 52],
               body: []
             }
           }
@@ -1842,15 +1957,18 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 58,
+        range: [0, 58],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 58,
+            range: [0, 58],
             id: {
               type: 'Identifier',
               start: 15,
               end: 18,
+              range: [15, 18],
               name: 'foo'
             },
             generator: false,
@@ -1860,27 +1978,32 @@ describe('Declarations - Async Function', () => {
                 type: 'AssignmentPattern',
                 start: 19,
                 end: 54,
+                range: [19, 54],
                 left: {
                   type: 'Identifier',
                   start: 19,
                   end: 20,
+                  range: [19, 20],
                   name: 'a'
                 },
                 right: {
                   type: 'ClassExpression',
                   start: 23,
                   end: 54,
+                  range: [23, 54],
                   id: null,
                   superClass: null,
                   body: {
                     type: 'ClassBody',
                     start: 29,
                     end: 54,
+                    range: [29, 54],
                     body: [
                       {
                         type: 'MethodDefinition',
                         start: 30,
                         end: 53,
+                        range: [30, 53],
                         kind: 'method',
                         static: false,
                         computed: false,
@@ -1888,12 +2011,14 @@ describe('Declarations - Async Function', () => {
                           type: 'Identifier',
                           start: 36,
                           end: 39,
+                          range: [36, 39],
                           name: 'bar'
                         },
                         value: {
                           type: 'FunctionExpression',
                           start: 39,
                           end: 53,
+                          range: [39, 53],
                           id: null,
                           generator: false,
                           async: true,
@@ -1902,19 +2027,23 @@ describe('Declarations - Async Function', () => {
                             type: 'BlockStatement',
                             start: 42,
                             end: 53,
+                            range: [42, 53],
                             body: [
                               {
                                 type: 'ExpressionStatement',
                                 start: 44,
                                 end: 51,
+                                range: [44, 51],
                                 expression: {
                                   type: 'AwaitExpression',
                                   start: 44,
                                   end: 51,
+                                  range: [44, 51],
                                   argument: {
                                     type: 'Identifier',
                                     start: 50,
                                     end: 51,
+                                    range: [50, 51],
                                     name: 'b'
                                   }
                                 }
@@ -1932,6 +2061,7 @@ describe('Declarations - Async Function', () => {
               type: 'BlockStatement',
               start: 56,
               end: 58,
+              range: [56, 58],
               body: []
             }
           }
@@ -1946,6 +2076,7 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 111,
+        range: [0, 111],
         loc: {
           start: {
             line: 1,
@@ -1961,6 +2092,7 @@ describe('Declarations - Async Function', () => {
             type: 'ExpressionStatement',
             start: 0,
             end: 111,
+            range: [0, 111],
             loc: {
               start: {
                 line: 1,
@@ -1975,6 +2107,7 @@ describe('Declarations - Async Function', () => {
               type: 'AssignmentExpression',
               start: 0,
               end: 111,
+              range: [0, 111],
               loc: {
                 start: {
                   line: 1,
@@ -1990,6 +2123,7 @@ describe('Declarations - Async Function', () => {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 loc: {
                   start: {
                     line: 1,
@@ -2006,6 +2140,7 @@ describe('Declarations - Async Function', () => {
                 type: 'ArrowFunctionExpression',
                 start: 4,
                 end: 111,
+                range: [4, 111],
                 loc: {
                   start: {
                     line: 1,
@@ -2023,6 +2158,7 @@ describe('Declarations - Async Function', () => {
                     type: 'AssignmentPattern',
                     start: 5,
                     end: 104,
+                    range: [5, 104],
                     loc: {
                       start: {
                         line: 1,
@@ -2037,6 +2173,7 @@ describe('Declarations - Async Function', () => {
                       type: 'ObjectPattern',
                       start: 5,
                       end: 67,
+                      range: [5, 67],
                       loc: {
                         start: {
                           line: 1,
@@ -2052,6 +2189,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 7,
                           end: 20,
+                          range: [7, 20],
                           loc: {
                             start: {
                               line: 1,
@@ -2069,6 +2207,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 7,
                             end: 8,
+                            range: [7, 8],
                             loc: {
                               start: {
                                 line: 1,
@@ -2086,6 +2225,7 @@ describe('Declarations - Async Function', () => {
                             type: 'AssignmentPattern',
                             start: 7,
                             end: 20,
+                            range: [7, 20],
                             loc: {
                               start: {
                                 line: 1,
@@ -2100,6 +2240,7 @@ describe('Declarations - Async Function', () => {
                               type: 'Identifier',
                               start: 7,
                               end: 8,
+                              range: [7, 8],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2116,6 +2257,7 @@ describe('Declarations - Async Function', () => {
                               type: 'CallExpression',
                               start: 11,
                               end: 20,
+                              range: [11, 20],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2130,6 +2272,7 @@ describe('Declarations - Async Function', () => {
                                 type: 'Identifier',
                                 start: 11,
                                 end: 18,
+                                range: [11, 18],
                                 loc: {
                                   start: {
                                     line: 1,
@@ -2150,6 +2293,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 22,
                           end: 35,
+                          range: [22, 35],
                           loc: {
                             start: {
                               line: 1,
@@ -2167,6 +2311,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 22,
                             end: 23,
+                            range: [22, 23],
                             loc: {
                               start: {
                                 line: 1,
@@ -2184,6 +2329,7 @@ describe('Declarations - Async Function', () => {
                             type: 'AssignmentPattern',
                             start: 22,
                             end: 35,
+                            range: [22, 35],
                             loc: {
                               start: {
                                 line: 1,
@@ -2198,6 +2344,7 @@ describe('Declarations - Async Function', () => {
                               type: 'Identifier',
                               start: 22,
                               end: 23,
+                              range: [22, 23],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2214,6 +2361,7 @@ describe('Declarations - Async Function', () => {
                               type: 'CallExpression',
                               start: 26,
                               end: 35,
+                              range: [26, 35],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2228,6 +2376,7 @@ describe('Declarations - Async Function', () => {
                                 type: 'Identifier',
                                 start: 26,
                                 end: 33,
+                                range: [26, 33],
                                 loc: {
                                   start: {
                                     line: 1,
@@ -2248,6 +2397,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 37,
                           end: 50,
+                          range: [37, 50],
                           loc: {
                             start: {
                               line: 1,
@@ -2265,6 +2415,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 37,
                             end: 38,
+                            range: [37, 38],
                             loc: {
                               start: {
                                 line: 1,
@@ -2282,6 +2433,7 @@ describe('Declarations - Async Function', () => {
                             type: 'AssignmentPattern',
                             start: 37,
                             end: 50,
+                            range: [37, 50],
                             loc: {
                               start: {
                                 line: 1,
@@ -2296,6 +2448,7 @@ describe('Declarations - Async Function', () => {
                               type: 'Identifier',
                               start: 37,
                               end: 38,
+                              range: [37, 38],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2312,6 +2465,7 @@ describe('Declarations - Async Function', () => {
                               type: 'CallExpression',
                               start: 41,
                               end: 50,
+                              range: [41, 50],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2326,6 +2480,7 @@ describe('Declarations - Async Function', () => {
                                 type: 'Identifier',
                                 start: 41,
                                 end: 48,
+                                range: [41, 48],
                                 loc: {
                                   start: {
                                     line: 1,
@@ -2346,6 +2501,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 52,
                           end: 65,
+                          range: [52, 65],
                           loc: {
                             start: {
                               line: 1,
@@ -2363,6 +2519,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 52,
                             end: 53,
+                            range: [52, 53],
                             loc: {
                               start: {
                                 line: 1,
@@ -2380,6 +2537,7 @@ describe('Declarations - Async Function', () => {
                             type: 'AssignmentPattern',
                             start: 52,
                             end: 65,
+                            range: [52, 65],
                             loc: {
                               start: {
                                 line: 1,
@@ -2394,6 +2552,7 @@ describe('Declarations - Async Function', () => {
                               type: 'Identifier',
                               start: 52,
                               end: 53,
+                              range: [52, 53],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2410,6 +2569,7 @@ describe('Declarations - Async Function', () => {
                               type: 'CallExpression',
                               start: 56,
                               end: 65,
+                              range: [56, 65],
                               loc: {
                                 start: {
                                   line: 1,
@@ -2424,6 +2584,7 @@ describe('Declarations - Async Function', () => {
                                 type: 'Identifier',
                                 start: 56,
                                 end: 63,
+                                range: [56, 63],
                                 loc: {
                                   start: {
                                     line: 1,
@@ -2446,6 +2607,7 @@ describe('Declarations - Async Function', () => {
                       type: 'ObjectExpression',
                       start: 70,
                       end: 104,
+                      range: [70, 104],
                       loc: {
                         start: {
                           line: 1,
@@ -2461,6 +2623,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 72,
                           end: 79,
+                          range: [72, 79],
                           loc: {
                             start: {
                               line: 1,
@@ -2478,6 +2641,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 72,
                             end: 73,
+                            range: [72, 73],
                             loc: {
                               start: {
                                 line: 1,
@@ -2494,6 +2658,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Literal',
                             start: 75,
                             end: 79,
+                            range: [75, 79],
                             loc: {
                               start: {
                                 line: 1,
@@ -2512,6 +2677,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 81,
                           end: 85,
+                          range: [81, 85],
                           loc: {
                             start: {
                               line: 1,
@@ -2529,6 +2695,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 81,
                             end: 82,
+                            range: [81, 82],
                             loc: {
                               start: {
                                 line: 1,
@@ -2545,6 +2712,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Literal',
                             start: 84,
                             end: 85,
+                            range: [84, 85],
                             loc: {
                               start: {
                                 line: 1,
@@ -2563,6 +2731,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 87,
                           end: 95,
+                          range: [87, 95],
                           loc: {
                             start: {
                               line: 1,
@@ -2580,6 +2749,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 87,
                             end: 88,
+                            range: [87, 88],
                             loc: {
                               start: {
                                 line: 1,
@@ -2596,6 +2766,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Literal',
                             start: 90,
                             end: 95,
+                            range: [90, 95],
                             loc: {
                               start: {
                                 line: 1,
@@ -2614,6 +2785,7 @@ describe('Declarations - Async Function', () => {
                           type: 'Property',
                           start: 97,
                           end: 102,
+                          range: [97, 102],
                           loc: {
                             start: {
                               line: 1,
@@ -2631,6 +2803,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Identifier',
                             start: 97,
                             end: 98,
+                            range: [97, 98],
                             loc: {
                               start: {
                                 line: 1,
@@ -2647,6 +2820,7 @@ describe('Declarations - Async Function', () => {
                             type: 'Literal',
                             start: 100,
                             end: 102,
+                            range: [100, 102],
                             loc: {
                               start: {
                                 line: 1,
@@ -2669,6 +2843,7 @@ describe('Declarations - Async Function', () => {
                   type: 'BlockStatement',
                   start: 109,
                   end: 111,
+                  range: [109, 111],
                   loc: {
                     start: {
                       line: 1,
@@ -2695,25 +2870,30 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 18,
+        range: [0, 18],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 18,
+            range: [0, 18],
             expression: {
               type: 'AssignmentExpression',
               start: 1,
               end: 17,
+              range: [1, 17],
               operator: '=',
               left: {
                 type: 'ObjectPattern',
                 start: 1,
                 end: 12,
+                range: [1, 12],
                 properties: [
                   {
                     type: 'Property',
                     start: 2,
                     end: 11,
+                    range: [2, 11],
                     method: false,
                     shorthand: true,
                     computed: false,
@@ -2721,6 +2901,7 @@ describe('Declarations - Async Function', () => {
                       type: 'Identifier',
                       start: 2,
                       end: 7,
+                      range: [2, 7],
                       name: 'async'
                     },
                     kind: 'init',
@@ -2728,16 +2909,19 @@ describe('Declarations - Async Function', () => {
                       type: 'AssignmentPattern',
                       start: 2,
                       end: 11,
+                      range: [2, 11],
                       left: {
                         type: 'Identifier',
                         start: 2,
                         end: 7,
+                        range: [2, 7],
                         name: 'async'
                       },
                       right: {
                         type: 'Literal',
                         start: 10,
                         end: 11,
+                        range: [10, 11],
                         value: 0
                       }
                     }
@@ -2748,6 +2932,7 @@ describe('Declarations - Async Function', () => {
                 type: 'ObjectExpression',
                 start: 15,
                 end: 17,
+                range: [15, 17],
                 properties: []
               }
             }
@@ -2763,20 +2948,24 @@ describe('Declarations - Async Function', () => {
         type: 'Program',
         start: 0,
         end: 17,
+        range: [0, 17],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 17,
+            range: [0, 17],
             expression: {
               type: 'ObjectExpression',
               start: 1,
               end: 16,
+              range: [1, 16],
               properties: [
                 {
                   type: 'Property',
                   start: 2,
                   end: 15,
+                  range: [2, 15],
                   method: true,
                   shorthand: false,
                   computed: false,
@@ -2784,6 +2973,7 @@ describe('Declarations - Async Function', () => {
                     type: 'Literal',
                     start: 8,
                     end: 11,
+                    range: [8, 11],
                     value: 100
                   },
                   kind: 'init',
@@ -2791,6 +2981,7 @@ describe('Declarations - Async Function', () => {
                     type: 'FunctionExpression',
                     start: 11,
                     end: 15,
+                    range: [11, 15],
                     id: null,
                     generator: false,
                     async: true,
@@ -2799,6 +2990,7 @@ describe('Declarations - Async Function', () => {
                       type: 'BlockStatement',
                       start: 13,
                       end: 15,
+                      range: [13, 15],
                       body: []
                     }
                   }

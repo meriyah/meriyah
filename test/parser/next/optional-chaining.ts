@@ -388,38 +388,44 @@ describe('Next - Optional chaining', () => {
       {
         body: [
           {
-            end: 4,
             expression: {
               chain: {
                 base: null,
                 computed: false,
-                end: 4,
                 property: {
-                  end: 4,
                   name: 'b',
                   start: 3,
+                  end: 4,
+                  range: [3, 4],
                   type: 'Identifier'
                 },
                 start: 0,
+                end: 4,
+                range: [0, 4],
                 type: 'OptionalChain'
               },
-              end: 4,
               object: {
-                end: 1,
                 name: 'a',
                 start: 0,
+                end: 1,
+                range: [0, 1],
                 type: 'Identifier'
               },
               start: 0,
+              end: 4,
+              range: [0, 4],
               type: 'OptionalExpression'
             },
             start: 0,
+            end: 4,
+            range: [0, 4],
             type: 'ExpressionStatement'
           }
         ],
-        end: 4,
         sourceType: 'script',
         start: 0,
+        end: 4,
+        range: [0, 4],
         type: 'Program'
       }
     ]

@@ -10,19 +10,23 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 3,
+        range: [0, 3],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 3,
+            range: [0, 3],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 3,
+              range: [0, 3],
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'a'
               },
               operator: '&',
@@ -30,6 +34,7 @@ describe('Expressions - Conditional', () => {
                 type: 'Identifier',
                 start: 2,
                 end: 3,
+                range: [2, 3],
                 name: 'b'
               }
             }
@@ -182,19 +187,23 @@ describe('Expressions - Conditional', () => {
         type: 'Program',
         start: 0,
         end: 4,
+        range: [0, 4],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 4,
+            range: [0, 4],
             expression: {
               type: 'BinaryExpression',
               start: 0,
               end: 4,
+              range: [0, 4],
               left: {
                 type: 'Identifier',
                 start: 0,
                 end: 1,
+                range: [0, 1],
                 name: 'a'
               },
               operator: '>>',
@@ -202,6 +211,7 @@ describe('Expressions - Conditional', () => {
                 type: 'Identifier',
                 start: 3,
                 end: 4,
+                range: [3, 4],
                 name: 'b'
               }
             }

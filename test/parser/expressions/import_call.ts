@@ -164,50 +164,58 @@ describe('Next - ImportCall', () => {
       {
         body: [
           {
+            start: 0,
             end: 30,
+            range: [0, 30],
             expression: {
               arguments: [
                 {
-                  end: 28,
-                  name: 'doThis',
                   start: 22,
+                  end: 28,
+                  range: [22, 28],
+                  name: 'doThis',
                   type: 'Identifier'
                 }
               ],
               callee: {
                 computed: false,
+                start: 0,
                 end: 21,
+                range: [0, 21],
                 object: {
+                  start: 0,
                   end: 16,
+                  range: [0, 16],
                   source: {
-                    end: 15,
                     start: 7,
+                    end: 15,
+                    range: [7, 15],
                     type: 'Literal',
                     value: 'lib.js'
                   },
-                  start: 0,
                   type: 'ImportExpression'
                 },
                 property: {
-                  end: 21,
-                  name: 'then',
                   start: 17,
+                  end: 21,
+                  range: [17, 21],
+                  name: 'then',
                   type: 'Identifier'
                 },
-                start: 0,
                 type: 'MemberExpression'
               },
-              end: 29,
               start: 0,
+              end: 29,
+              range: [0, 29],
               type: 'CallExpression'
             },
-            start: 0,
             type: 'ExpressionStatement'
           }
         ],
-        end: 30,
         sourceType: 'module',
         start: 0,
+        end: 30,
+        range: [0, 30],
         type: 'Program'
       }
     ],

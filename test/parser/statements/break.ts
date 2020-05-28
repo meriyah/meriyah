@@ -550,15 +550,18 @@ describe('Statements - Break', () => {
         type: 'Program',
         start: 0,
         end: 44,
+        range: [0, 44],
         body: [
           {
             type: 'SwitchStatement',
             start: 0,
             end: 44,
+            range: [0, 44],
             discriminant: {
               type: 'Identifier',
               start: 8,
               end: 9,
+              range: [8, 9],
               name: 'a'
             },
             cases: [
@@ -566,26 +569,31 @@ describe('Statements - Break', () => {
                 type: 'SwitchCase',
                 start: 13,
                 end: 42,
+                range: [13, 42],
                 consequent: [
                   {
                     type: 'BlockStatement',
                     start: 23,
                     end: 42,
+                    range: [23, 42],
                     body: [
                       {
                         type: 'IfStatement',
                         start: 25,
                         end: 34,
+                        range: [25, 34],
                         test: {
                           type: 'Identifier',
                           start: 29,
                           end: 30,
+                          range: [29, 30],
                           name: 'a'
                         },
                         consequent: {
                           type: 'BlockStatement',
                           start: 32,
                           end: 34,
+                          range: [32, 34],
                           body: []
                         },
                         alternate: null
@@ -594,6 +602,7 @@ describe('Statements - Break', () => {
                         type: 'BreakStatement',
                         start: 35,
                         end: 40,
+                        range: [35, 40],
                         label: null
                       }
                     ]
@@ -603,6 +612,7 @@ describe('Statements - Break', () => {
                   type: 'Literal',
                   start: 18,
                   end: 21,
+                  range: [18, 21],
                   value: 123
                 }
               }
@@ -620,27 +630,33 @@ describe('Statements - Break', () => {
         type: 'Program',
         start: 0,
         end: 39,
+        range: [0, 39],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 39,
+            range: [0, 39],
             body: {
               type: 'LabeledStatement',
               start: 6,
               end: 39,
+              range: [6, 39],
               body: {
                 type: 'LabeledStatement',
                 start: 11,
                 end: 39,
+                range: [11, 39],
                 body: {
                   type: 'WhileStatement',
                   start: 16,
                   end: 39,
+                  range: [16, 39],
                   test: {
                     type: 'Literal',
                     start: 23,
                     end: 27,
+                    range: [23, 27],
                     value: true,
                     raw: 'true'
                   },
@@ -648,10 +664,12 @@ describe('Statements - Break', () => {
                     type: 'BreakStatement',
                     start: 29,
                     end: 39,
+                    range: [29, 39],
                     label: {
                       type: 'Identifier',
                       start: 35,
                       end: 38,
+                      range: [35, 38],
                       name: 'foo'
                     }
                   }
@@ -660,6 +678,7 @@ describe('Statements - Break', () => {
                   type: 'Identifier',
                   start: 11,
                   end: 14,
+                  range: [11, 14],
                   name: 'bar'
                 }
               },
@@ -667,6 +686,7 @@ describe('Statements - Break', () => {
                 type: 'Identifier',
                 start: 6,
                 end: 9,
+                range: [6, 9],
                 name: 'foo'
               }
             },
@@ -674,6 +694,7 @@ describe('Statements - Break', () => {
               type: 'Identifier',
               start: 0,
               end: 4,
+              range: [0, 4],
               name: 'ding'
             }
           }
@@ -794,19 +815,23 @@ describe('Statements - Break', () => {
         type: 'Program',
         start: 0,
         end: 38,
+        range: [0, 38],
         body: [
           {
             type: 'LabeledStatement',
             start: 0,
             end: 38,
+            range: [0, 38],
             body: {
               type: 'SwitchStatement',
               start: 5,
               end: 38,
+              range: [5, 38],
               discriminant: {
                 type: 'Identifier',
                 start: 13,
                 end: 14,
+                range: [13, 14],
                 name: 'x'
               },
               cases: [
@@ -814,15 +839,18 @@ describe('Statements - Break', () => {
                   type: 'SwitchCase',
                   start: 18,
                   end: 36,
+                  range: [18, 36],
                   consequent: [
                     {
                       type: 'BreakStatement',
                       start: 26,
                       end: 36,
+                      range: [26, 36],
                       label: {
                         type: 'Identifier',
                         start: 32,
                         end: 35,
+                        range: [32, 35],
                         name: 'foo'
                       }
                     }
@@ -831,6 +859,7 @@ describe('Statements - Break', () => {
                     type: 'Identifier',
                     start: 23,
                     end: 24,
+                    range: [23, 24],
                     name: 'x'
                   }
                 }
@@ -840,6 +869,7 @@ describe('Statements - Break', () => {
               type: 'Identifier',
               start: 0,
               end: 3,
+              range: [0, 3],
               name: 'foo'
             }
           }
@@ -854,15 +884,18 @@ describe('Statements - Break', () => {
         type: 'Program',
         start: 0,
         end: 4,
+        range: [0, 4],
         body: [
           {
             type: 'ExpressionStatement',
             start: 0,
             end: 4,
+            range: [0, 4],
             expression: {
               type: 'ThisExpression',
               start: 0,
-              end: 4
+              end: 4,
+              range: [0, 4]
             }
           }
         ],
@@ -931,15 +964,18 @@ describe('Statements - Break', () => {
         type: 'Program',
         start: 0,
         end: 29,
+        range: [0, 29],
         body: [
           {
             type: 'SwitchStatement',
             start: 0,
             end: 29,
+            range: [0, 29],
             discriminant: {
               type: 'Identifier',
               start: 8,
               end: 9,
+              range: [8, 9],
               name: 'x'
             },
             cases: [
@@ -947,11 +983,13 @@ describe('Statements - Break', () => {
                 type: 'SwitchCase',
                 start: 13,
                 end: 27,
+                range: [13, 27],
                 consequent: [
                   {
                     type: 'BreakStatement',
                     start: 21,
                     end: 27,
+                    range: [21, 27],
                     label: null
                   }
                 ],
@@ -959,6 +997,7 @@ describe('Statements - Break', () => {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
+                  range: [18, 19],
                   name: 'x'
                 }
               }

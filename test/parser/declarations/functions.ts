@@ -588,7 +588,8 @@ describe('Declarations - Function', () => {
                 type: 'Identifier',
                 name: 'casecase',
                 start: 11,
-                end: 19
+                end: 19,
+                range: [11, 19]
               }
             ],
             body: {
@@ -600,7 +601,8 @@ describe('Declarations - Function', () => {
                     type: 'Identifier',
                     name: 'y',
                     start: 21,
-                    end: 22
+                    end: 22,
+                    range: [21, 22]
                   },
                   body: {
                     type: 'LabeledStatement',
@@ -608,7 +610,8 @@ describe('Declarations - Function', () => {
                       type: 'Identifier',
                       name: 'j',
                       start: 23,
-                      end: 24
+                      end: 24,
+                      range: [23, 24]
                     },
                     body: {
                       type: 'FunctionDeclaration',
@@ -617,7 +620,8 @@ describe('Declarations - Function', () => {
                         type: 'BlockStatement',
                         body: [],
                         start: 44,
-                        end: 46
+                        end: 46,
+                        range: [44, 46]
                       },
                       async: false,
                       generator: false,
@@ -625,20 +629,25 @@ describe('Declarations - Function', () => {
                         type: 'Identifier',
                         name: 'casecase',
                         start: 34,
-                        end: 42
+                        end: 42,
+                        range: [34, 42]
                       },
                       start: 25,
-                      end: 46
+                      end: 46,
+                      range: [25, 46]
                     },
                     start: 23,
-                    end: 46
+                    end: 46,
+                    range: [23, 46]
                   },
                   start: 21,
-                  end: 46
+                  end: 46,
+                  range: [21, 46]
                 }
               ],
               start: 20,
-              end: 47
+              end: 47,
+              range: [20, 47]
             },
             async: false,
             generator: false,
@@ -646,14 +655,17 @@ describe('Declarations - Function', () => {
               type: 'Identifier',
               name: 'w',
               start: 9,
-              end: 10
+              end: 10,
+              range: [9, 10]
             },
             start: 0,
-            end: 47
+            end: 47,
+            range: [0, 47]
           }
         ],
         start: 0,
-        end: 47
+        end: 47,
+        range: [0, 47]
       }
     ],
     [
@@ -866,15 +878,18 @@ describe('Declarations - Function', () => {
         type: 'Program',
         start: 0,
         end: 175,
+        range: [0, 175],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 175,
+            range: [0, 175],
             id: {
               type: 'Identifier',
               start: 9,
               end: 21,
+              range: [9, 21],
               name: 'compareArray'
             },
             generator: false,
@@ -884,12 +899,14 @@ describe('Declarations - Function', () => {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
+                range: [22, 23],
                 name: 'a'
               },
               {
                 type: 'Identifier',
                 start: 25,
                 end: 26,
+                range: [25, 26],
                 name: 'b'
               }
             ],
@@ -897,29 +914,35 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement',
               start: 28,
               end: 175,
+              range: [28, 175],
               body: [
                 {
                   type: 'IfStatement',
                   start: 38,
                   end: 96,
+                  range: [38, 96],
                   test: {
                     type: 'BinaryExpression',
                     start: 42,
                     end: 63,
+                    range: [42, 63],
                     left: {
                       type: 'MemberExpression',
                       start: 42,
                       end: 50,
+                      range: [42, 50],
                       object: {
                         type: 'Identifier',
                         start: 42,
                         end: 43,
+                        range: [42, 43],
                         name: 'b'
                       },
                       property: {
                         type: 'Identifier',
                         start: 44,
                         end: 50,
+                        range: [44, 50],
                         name: 'length'
                       },
                       computed: false
@@ -929,16 +952,19 @@ describe('Declarations - Function', () => {
                       type: 'MemberExpression',
                       start: 55,
                       end: 63,
+                      range: [55, 63],
                       object: {
                         type: 'Identifier',
                         start: 55,
                         end: 56,
+                        range: [55, 56],
                         name: 'a'
                       },
                       property: {
                         type: 'Identifier',
                         start: 57,
                         end: 63,
+                        range: [57, 63],
                         name: 'length'
                       },
                       computed: false
@@ -948,11 +974,13 @@ describe('Declarations - Function', () => {
                     type: 'BlockStatement',
                     start: 65,
                     end: 96,
+                    range: [65, 96],
                     body: [
                       {
                         type: 'ReturnStatement',
                         start: 79,
                         end: 86,
+                        range: [79, 86],
                         argument: null
                       }
                     ]
@@ -963,25 +991,30 @@ describe('Declarations - Function', () => {
                   type: 'ForStatement',
                   start: 105,
                   end: 169,
+                  range: [105, 169],
                   init: {
                     type: 'VariableDeclaration',
                     start: 110,
                     end: 119,
+                    range: [110, 119],
                     declarations: [
                       {
                         type: 'VariableDeclarator',
                         start: 114,
                         end: 119,
+                        range: [114, 119],
                         id: {
                           type: 'Identifier',
                           start: 114,
                           end: 115,
+                          range: [114, 115],
                           name: 'i'
                         },
                         init: {
                           type: 'Literal',
                           start: 118,
                           end: 119,
+                          range: [118, 119],
                           value: 0,
                           raw: '0'
                         }
@@ -993,10 +1026,12 @@ describe('Declarations - Function', () => {
                     type: 'BinaryExpression',
                     start: 121,
                     end: 133,
+                    range: [121, 133],
                     left: {
                       type: 'Identifier',
                       start: 121,
                       end: 122,
+                      range: [121, 122],
                       name: 'i'
                     },
                     operator: '<',
@@ -1004,16 +1039,19 @@ describe('Declarations - Function', () => {
                       type: 'MemberExpression',
                       start: 125,
                       end: 133,
+                      range: [125, 133],
                       object: {
                         type: 'Identifier',
                         start: 125,
                         end: 126,
+                        range: [125, 126],
                         name: 'a'
                       },
                       property: {
                         type: 'Identifier',
                         start: 127,
                         end: 133,
+                        range: [127, 133],
                         name: 'length'
                       },
                       computed: false
@@ -1023,12 +1061,14 @@ describe('Declarations - Function', () => {
                     type: 'UpdateExpression',
                     start: 135,
                     end: 138,
+                    range: [135, 138],
                     operator: '++',
                     prefix: false,
                     argument: {
                       type: 'Identifier',
                       start: 135,
                       end: 136,
+                      range: [135, 136],
                       name: 'i'
                     }
                   },
@@ -1036,25 +1076,30 @@ describe('Declarations - Function', () => {
                     type: 'BlockStatement',
                     start: 140,
                     end: 169,
+                    range: [140, 169],
                     body: [
                       {
                         type: 'ExpressionStatement',
                         start: 154,
                         end: 159,
+                        range: [154, 159],
                         expression: {
                           type: 'MemberExpression',
                           start: 154,
                           end: 158,
+                          range: [154, 158],
                           object: {
                             type: 'Identifier',
                             start: 154,
                             end: 155,
+                            range: [154, 155],
                             name: 'b'
                           },
                           property: {
                             type: 'Literal',
                             start: 156,
                             end: 157,
+                            range: [156, 157],
                             value: 0,
                             raw: '0'
                           },
@@ -1087,15 +1132,18 @@ describe('Declarations - Function', () => {
         type: 'Program',
         start: 0,
         end: 246,
+        range: [0, 246],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 246,
+            range: [0, 246],
             id: {
               type: 'Identifier',
               start: 9,
               end: 20,
+              range: [9, 20],
               name: 'shouldThrow'
             },
             generator: false,
@@ -1105,12 +1153,14 @@ describe('Declarations - Function', () => {
                 type: 'Identifier',
                 start: 21,
                 end: 25,
+                range: [21, 25],
                 name: 'func'
               },
               {
                 type: 'Identifier',
                 start: 27,
                 end: 39,
+                range: [27, 39],
                 name: 'errorMessage'
               }
             ],
@@ -1118,26 +1168,31 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement',
               start: 41,
               end: 246,
+              range: [41, 246],
               body: [
                 {
                   type: 'VariableDeclaration',
                   start: 53,
                   end: 77,
+                  range: [53, 77],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 57,
                       end: 76,
+                      range: [57, 76],
                       id: {
                         type: 'Identifier',
                         start: 57,
                         end: 68,
+                        range: [57, 68],
                         name: 'errorThrown'
                       },
                       init: {
                         type: 'Literal',
                         start: 71,
                         end: 76,
+                        range: [71, 76],
                         value: false,
                         raw: 'false'
                       }
@@ -1149,21 +1204,25 @@ describe('Declarations - Function', () => {
                   type: 'VariableDeclaration',
                   start: 88,
                   end: 105,
+                  range: [88, 105],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 92,
                       end: 104,
+                      range: [92, 104],
                       id: {
                         type: 'Identifier',
                         start: 92,
                         end: 97,
+                        range: [92, 97],
                         name: 'error'
                       },
                       init: {
                         type: 'Literal',
                         start: 100,
                         end: 104,
+                        range: [100, 104],
                         value: null,
                         raw: 'null'
                       }
@@ -1175,23 +1234,28 @@ describe('Declarations - Function', () => {
                   type: 'TryStatement',
                   start: 116,
                   end: 238,
+                  range: [116, 238],
                   block: {
                     type: 'BlockStatement',
                     start: 120,
                     end: 155,
+                    range: [120, 155],
                     body: [
                       {
                         type: 'ExpressionStatement',
                         start: 136,
                         end: 143,
+                        range: [136, 143],
                         expression: {
                           type: 'CallExpression',
                           start: 136,
                           end: 142,
+                          range: [136, 142],
                           callee: {
                             type: 'Identifier',
                             start: 136,
                             end: 140,
+                            range: [136, 140],
                             name: 'func'
                           },
                           arguments: []
@@ -1203,36 +1267,43 @@ describe('Declarations - Function', () => {
                     type: 'CatchClause',
                     start: 156,
                     end: 238,
+                    range: [156, 238],
                     param: {
                       type: 'Identifier',
                       start: 163,
                       end: 164,
+                      range: [163, 164],
                       name: 'e'
                     },
                     body: {
                       type: 'BlockStatement',
                       start: 166,
                       end: 238,
+                      range: [166, 238],
                       body: [
                         {
                           type: 'ExpressionStatement',
                           start: 182,
                           end: 201,
+                          range: [182, 201],
                           expression: {
                             type: 'AssignmentExpression',
                             start: 182,
                             end: 200,
+                            range: [182, 200],
                             operator: '=',
                             left: {
                               type: 'Identifier',
                               start: 182,
                               end: 193,
+                              range: [182, 193],
                               name: 'errorThrown'
                             },
                             right: {
                               type: 'Literal',
                               start: 196,
                               end: 200,
+                              range: [196, 200],
                               value: true,
                               raw: 'true'
                             }
@@ -1242,21 +1313,25 @@ describe('Declarations - Function', () => {
                           type: 'ExpressionStatement',
                           start: 216,
                           end: 226,
+                          range: [216, 226],
                           expression: {
                             type: 'AssignmentExpression',
                             start: 216,
                             end: 225,
+                            range: [216, 225],
                             operator: '=',
                             left: {
                               type: 'Identifier',
                               start: 216,
                               end: 221,
+                              range: [216, 221],
                               name: 'error'
                             },
                             right: {
                               type: 'Identifier',
                               start: 224,
                               end: 225,
+                              range: [224, 225],
                               name: 'e'
                             }
                           }
@@ -2383,15 +2458,18 @@ describe('Declarations - Function', () => {
         type: 'Program',
         start: 0,
         end: 33,
+        range: [0, 33],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 33,
+            range: [0, 33],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -2401,6 +2479,7 @@ describe('Declarations - Function', () => {
                 type: 'Identifier',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 name: 'x'
               }
             ],
@@ -2408,31 +2487,37 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement',
               start: 14,
               end: 33,
+              range: [14, 33],
               body: [
                 {
                   type: 'BlockStatement',
                   start: 16,
                   end: 31,
+                  range: [16, 31],
                   body: [
                     {
                       type: 'VariableDeclaration',
                       start: 18,
                       end: 29,
+                      range: [18, 29],
                       declarations: [
                         {
                           type: 'VariableDeclarator',
                           start: 24,
                           end: 29,
+                          range: [24, 29],
                           id: {
                             type: 'Identifier',
                             start: 24,
                             end: 25,
+                            range: [24, 25],
                             name: 'x'
                           },
                           init: {
                             type: 'Identifier',
                             start: 28,
                             end: 29,
+                            range: [28, 29],
                             name: 'y'
                           }
                         }
@@ -2455,15 +2540,18 @@ describe('Declarations - Function', () => {
         type: 'Program',
         start: 0,
         end: 32,
+        range: [0, 32],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 32,
+            range: [0, 32],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -2473,36 +2561,43 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement',
               start: 12,
               end: 32,
+              range: [12, 32],
               body: [
                 {
                   type: 'ExpressionStatement',
                   start: 14,
                   end: 30,
+                  range: [14, 30],
                   expression: {
                     type: 'AssignmentExpression',
                     start: 14,
                     end: 30,
+                    range: [14, 30],
                     operator: '=',
                     left: {
                       type: 'Identifier',
                       start: 14,
                       end: 17,
+                      range: [14, 17],
                       name: 'foo'
                     },
                     right: {
                       type: 'MetaProperty',
                       start: 20,
                       end: 30,
+                      range: [20, 30],
                       meta: {
                         type: 'Identifier',
                         start: 20,
                         end: 23,
+                        range: [20, 23],
                         name: 'new'
                       },
                       property: {
                         type: 'Identifier',
                         start: 24,
                         end: 30,
+                        range: [24, 30],
                         name: 'target'
                       }
                     }
@@ -2522,15 +2617,18 @@ describe('Declarations - Function', () => {
         type: 'Program',
         start: 0,
         end: 21,
+        range: [0, 21],
         body: [
           {
             type: 'FunctionDeclaration',
             start: 0,
             end: 21,
+            range: [0, 21],
             id: {
               type: 'Identifier',
               start: 9,
               end: 10,
+              range: [9, 10],
               name: 'f'
             },
             generator: false,
@@ -2540,6 +2638,7 @@ describe('Declarations - Function', () => {
                 type: 'Identifier',
                 start: 11,
                 end: 12,
+                range: [11, 12],
                 name: 'x'
               }
             ],
@@ -2547,20 +2646,24 @@ describe('Declarations - Function', () => {
               type: 'BlockStatement',
               start: 14,
               end: 21,
+              range: [14, 21],
               body: [
                 {
                   type: 'VariableDeclaration',
                   start: 15,
                   end: 20,
+                  range: [15, 20],
                   declarations: [
                     {
                       type: 'VariableDeclarator',
                       start: 19,
                       end: 20,
+                      range: [19, 20],
                       id: {
                         type: 'Identifier',
                         start: 19,
                         end: 20,
+                        range: [19, 20],
                         name: 'x'
                       },
                       init: null
