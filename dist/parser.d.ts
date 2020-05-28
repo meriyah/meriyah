@@ -24,7 +24,7 @@ export interface Options {
 }
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState | undefined): ESTree.Statement[];
-export declare function parseModuleItemList(parser: ParserState, context: Context, scope: ScopeState | undefined): (ReturnType<typeof parseDirective | typeof parseModuleItem>)[];
+export declare function parseModuleItemList(parser: ParserState, context: Context, scope: ScopeState | undefined): ReturnType<typeof parseDirective | typeof parseModuleItem>[];
 export declare function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined, start: number, line: number, column: number): any;
 export declare function parseStatementListItem(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.Statement | ESTree.Decorator[];
 export declare function parseStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels, allowFuncDecl: 0 | 1, start: number, line: number, column: number): ESTree.Statement;
@@ -95,7 +95,7 @@ export declare function parseComputedPropertyName(parser: ParserState, context: 
 export declare function parseParenthesizedExpression(parser: ParserState, context: Context, canAssign: 0 | 1, kind: BindingKind, origin: Origin, start: number, line: number, column: number): any;
 export declare function parseIdentifierOrArrow(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Identifier | ESTree.ArrowFunctionExpression;
 export declare function parseArrowFunctionExpression(parser: ParserState, context: Context, scope: ScopeState | undefined, params: any, isAsync: 0 | 1, start: number, line: number, column: number): ESTree.ArrowFunctionExpression;
-export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, scope: ScopeState | undefined, inGroup: 0 | 1, kind: BindingKind): (ESTree.Parameter)[];
+export declare function parseFormalParametersOrFormalList(parser: ParserState, context: Context, scope: ScopeState | undefined, inGroup: 0 | 1, kind: BindingKind): ESTree.Parameter[];
 export declare function parseMembeExpressionNoCall(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, start: number, line: number, column: number): any;
 export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number, line: number, column: number): ESTree.MetaProperty;

@@ -1,6 +1,7 @@
 export interface _Node {
     start?: number;
     end?: number;
+    range?: [number, number];
     loc?: SourceLocation | null;
 }
 export interface SourceLocation {

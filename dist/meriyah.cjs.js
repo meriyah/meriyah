@@ -356,7 +356,7 @@ function nextToken(parser, context) {
     parser.startLine = parser.line;
     parser.token = scanSingleToken(parser, context, 0);
     if (parser.onToken && parser.token !== 1048576)
-        parser.onToken(convertTokenType(parser.token), parser.startPos, parser.index);
+        parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
 }
 function scanSingleToken(parser, context, state) {
     const isStartOfLine = parser.index === 0;
@@ -2228,6 +2228,7 @@ function finishNode(parser, context, start, line, column, node) {
     if (context & 2) {
         node.start = start;
         node.end = parser.startPos;
+        node.range = [start, parser.startPos];
     }
     if (context & 4) {
         node.loc = {
@@ -2374,6 +2375,7 @@ function pushComment(context, array) {
         if (context & 2) {
             comment.start = start;
             comment.end = end;
+            comment.range = [start, end];
         }
         array.push(comment);
     };
@@ -2512,6 +2514,7 @@ function parseSource(source, options, context) {
     if (context & 2) {
         node.start = 0;
         node.end = source.length;
+        node.range = [0, source.length];
     }
     if (context & 4) {
         node.loc = {
@@ -3556,7 +3559,7 @@ function parseAssignmentExpression(parser, context, inGroup, isPattern, start, l
     if ((token & 4194304) === 4194304) {
         if (parser.assignable & 2)
             report(parser, 24);
-        if ((!isPattern && (token === 1077936157 && left.type === 'ArrayExpression')) ||
+        if ((!isPattern && token === 1077936157 && left.type === 'ArrayExpression') ||
             left.type === 'ObjectExpression') {
             reinterpretToPattern(parser, left);
         }
@@ -3777,7 +3780,9 @@ function parseFunctionBody(parser, context, scope, origin, firstRestricted, scop
         }
         if (context & 64 &&
             scope &&
-            (scopeError !== void 0 && (prevContext & 1024) < 1 && (context & 8192) < 1)) {
+            scopeError !== void 0 &&
+            (prevContext & 1024) < 1 &&
+            (context & 8192) < 1) {
             reportScopeError(scopeError);
         }
     }
@@ -5606,7 +5611,7 @@ function parseFormalParametersOrFormalList(parser, context, scope, inGroup, kind
     }
     if (isSimpleParameterList)
         parser.flags |= 128;
-    if (scope && ((isSimpleParameterList || context & 1024) && scope.scopeError !== void 0)) {
+    if (scope && (isSimpleParameterList || context & 1024) && scope.scopeError !== void 0) {
         reportScopeError(scope.scopeError);
     }
     consume(parser, context, 16);
