@@ -6526,7 +6526,7 @@
     function parse(source, options) {
         return parseSource(source, options, 0);
     }
-    var version = '1.9.12';
+    var version = '1.9.15';
 
     exports.ESTree = estree;
     exports.parse = parse;
