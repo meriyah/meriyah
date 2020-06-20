@@ -11,7 +11,7 @@
     "@aurelia/jit-html-browser": "0.3.0-dev.20190112",
     "@types/benchmark": "1.0.31",
     "@types/node": "12.0.4",
-    "angular": "1.7.9",
+    "angular": "1.8.0",
     "benchmark": "2.1.4",
     "cherow": "1.6.9",
     "cross-env": "5.2.0",
