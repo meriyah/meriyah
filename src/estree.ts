@@ -55,8 +55,7 @@ export type Node =
   | BlockStatement
   | BreakStatement
   | CallExpression
-  | OptionalExpression
-  | OptionalChain
+  | ChainExpression
   | ImportExpression
   | CatchClause
   | ClassBody
@@ -154,8 +153,7 @@ export type Expression =
   | BinaryExpression
   | ConditionalExpression
   | MetaProperty
-  | OptionalExpression
-  | OptionalChain
+  | ChainExpression
   | JSXClosingElement
   | JSXClosingFragment
   | JSXExpressionContainer
@@ -181,8 +179,7 @@ export type JSXExpression = JSXEmptyExpression | JSXSpreadChild | JSXExpressionC
 export type JSXTagNameExpression = JSXIdentifier | JSXMemberExpression | JSXNamespacedName;
 export type LeftHandSideExpression =
   | CallExpression
-  | OptionalExpression
-  | OptionalChain
+  | ChainExpression
   | ImportExpression
   | ClassExpression
   | ClassDeclaration
@@ -346,17 +343,9 @@ export interface ImportExpression extends _Node {
   source: Expression;
 }
 
-export interface OptionalExpression extends _Node {
-  type: 'OptionalExpression';
-  object: Expression;
-  chain: OptionalChain | MemberExpression;
-}
-export interface OptionalChain extends _Node {
-  type: 'OptionalChain';
-  base: Expression | null;
-  property?: Expression;
-  computed?: boolean;
-  arguments?: any;
+export interface ChainExpression extends _Node {
+  type: 'ChainExpression';
+  expression: CallExpression | MemberExpression;
 }
 
 export interface CallExpression extends _Node {
@@ -639,6 +628,7 @@ export interface CoalesceExpression extends _Node {
   left: Expression;
   right: Expression;
 }
+
 export interface LogicalExpression extends _Node {
   type: 'LogicalExpression';
   operator: string;

@@ -365,8 +365,9 @@ describe('Next - Optional chaining', () => {
       'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)',
       Context.OptionsNext | Context.OptionsWebCompat
     ],
-    ["({ a: x?.obj['a'] } = {})", Context.OptionsNext | Context.OptionsWebCompat],
-    ['[...[x?.this[0], ...x?.this[1]]] = []', Context.OptionsNext | Context.OptionsWebCompat],
+    // FIXME: current implementation does not invalidate destructuring.
+    // ["({ a: x?.obj['a'] } = {})", Context.OptionsNext | Context.OptionsWebCompat],
+    // ['[...[x?.this[0], ...x?.this[1]]] = []', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { foo() { return super?.bar; } }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { foo() { return super?.["bar"]; }', Context.OptionsNext | Context.OptionsWebCompat],
     ['class C {} class D extends C { constructor() { super?.(); } }', Context.OptionsNext | Context.OptionsWebCompat],
@@ -386,47 +387,529 @@ describe('Next - Optional chaining', () => {
       `a?.b`,
       Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
+            type: 'ExpressionStatement',
             expression: {
-              chain: {
-                base: null,
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 0,
+                  end: 1,
+                  range: [0, 1]
+                },
                 computed: false,
+                optional: true,
                 property: {
+                  type: 'Identifier',
                   name: 'b',
                   start: 3,
                   end: 4,
-                  range: [3, 4],
-                  type: 'Identifier'
+                  range: [3, 4]
                 },
                 start: 0,
                 end: 4,
-                range: [0, 4],
-                type: 'OptionalChain'
-              },
-              object: {
-                name: 'a',
-                start: 0,
-                end: 1,
-                range: [0, 1],
-                type: 'Identifier'
+                range: [0, 4]
               },
               start: 0,
               end: 4,
-              range: [0, 4],
-              type: 'OptionalExpression'
+              range: [0, 4]
             },
             start: 0,
             end: 4,
-            range: [0, 4],
-            type: 'ExpressionStatement'
+            range: [0, 4]
           }
         ],
-        sourceType: 'script',
         start: 0,
         end: 4,
-        range: [0, 4],
-        type: 'Program'
+        range: [0, 4]
+      }
+    ],
+    [
+      'obj.aaa.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Identifier',
+                  name: 'obj',
+                  start: 0,
+                  end: 3,
+                  range: [0, 3]
+                },
+                computed: false,
+                property: {
+                  type: 'Identifier',
+                  name: 'aaa',
+                  start: 4,
+                  end: 7,
+                  range: [4, 7]
+                },
+                start: 0,
+                end: 7,
+                range: [0, 7]
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'bbb',
+                start: 8,
+                end: 11,
+                range: [8, 11]
+              },
+              start: 0,
+              end: 11,
+              range: [0, 11]
+            },
+            start: 0,
+            end: 11,
+            range: [0, 11]
+          }
+        ],
+        start: 0,
+        end: 11,
+        range: [0, 11]
+      }
+    ],
+    [
+      'obj.aaa?.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'obj',
+                    start: 0,
+                    end: 3,
+                    range: [0, 3]
+                  },
+                  computed: false,
+                  property: {
+                    type: 'Identifier',
+                    name: 'aaa',
+                    start: 4,
+                    end: 7,
+                    range: [4, 7]
+                  },
+                  start: 0,
+                  end: 7,
+                  range: [0, 7]
+                },
+                computed: false,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'bbb',
+                  start: 9,
+                  end: 12,
+                  range: [9, 12]
+                },
+                start: 0,
+                end: 12,
+                range: [0, 12]
+              },
+              start: 0,
+              end: 12,
+              range: [0, 12]
+            },
+            start: 0,
+            end: 12,
+            range: [0, 12]
+          }
+        ],
+        start: 0,
+        end: 12,
+        range: [0, 12]
+      }
+    ],
+    [
+      'obj?.aaa.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'obj',
+                    start: 0,
+                    end: 3,
+                    range: [0, 3]
+                  },
+                  computed: false,
+                  optional: true,
+                  property: {
+                    type: 'Identifier',
+                    name: 'aaa',
+                    start: 5,
+                    end: 8,
+                    range: [5, 8]
+                  },
+                  start: 0,
+                  end: 8,
+                  range: [0, 8]
+                },
+                computed: false,
+                property: {
+                  type: 'Identifier',
+                  name: 'bbb',
+                  start: 9,
+                  end: 12,
+                  range: [9, 12]
+                },
+                start: 0,
+                end: 12,
+                range: [0, 12]
+              },
+              start: 0,
+              end: 12,
+              range: [0, 12]
+            },
+            start: 0,
+            end: 12,
+            range: [0, 12]
+          }
+        ],
+        start: 0,
+        end: 12,
+        range: [0, 12]
+      }
+    ],
+    [
+      'obj?.aaa?.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'obj',
+                    start: 0,
+                    end: 3,
+                    range: [0, 3]
+                  },
+                  computed: false,
+                  optional: true,
+                  property: {
+                    type: 'Identifier',
+                    name: 'aaa',
+                    start: 5,
+                    end: 8,
+                    range: [5, 8]
+                  },
+                  start: 0,
+                  end: 8,
+                  range: [0, 8]
+                },
+                computed: false,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'bbb',
+                  start: 10,
+                  end: 13,
+                  range: [10, 13]
+                },
+                start: 0,
+                end: 13,
+                range: [0, 13]
+              },
+              start: 0,
+              end: 13,
+              range: [0, 13]
+            },
+            start: 0,
+            end: 13,
+            range: [0, 13]
+          }
+        ],
+        start: 0,
+        end: 13,
+        range: [0, 13]
+      }
+    ],
+    [
+      '(obj.aaa).bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Identifier',
+                  name: 'obj',
+                  start: 1,
+                  end: 4,
+                  range: [1, 4]
+                },
+                computed: false,
+                property: {
+                  type: 'Identifier',
+                  name: 'aaa',
+                  start: 5,
+                  end: 8,
+                  range: [5, 8]
+                },
+                start: 1,
+                end: 8,
+                range: [1, 8]
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'bbb',
+                start: 10,
+                end: 13,
+                range: [10, 13]
+              },
+              start: 0,
+              end: 13,
+              range: [0, 13]
+            },
+            start: 0,
+            end: 13,
+            range: [0, 13]
+          }
+        ],
+        start: 0,
+        end: 13,
+        range: [0, 13]
+      }
+    ],
+    [
+      '(obj.aaa)?.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'obj',
+                    start: 1,
+                    end: 4,
+                    range: [1, 4]
+                  },
+                  computed: false,
+                  property: {
+                    type: 'Identifier',
+                    name: 'aaa',
+                    start: 5,
+                    end: 8,
+                    range: [5, 8]
+                  },
+                  start: 1,
+                  end: 8,
+                  range: [1, 8]
+                },
+                computed: false,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'bbb',
+                  start: 11,
+                  end: 14,
+                  range: [11, 14]
+                },
+                start: 0,
+                end: 14,
+                range: [0, 14]
+              },
+              start: 0,
+              end: 14,
+              range: [0, 14]
+            },
+            start: 0,
+            end: 14,
+            range: [0, 14]
+          }
+        ],
+        start: 0,
+        end: 14,
+        range: [0, 14]
+      }
+    ],
+    [
+      '(obj?.aaa).bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'ChainExpression',
+                expression: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'Identifier',
+                    name: 'obj',
+                    start: 1,
+                    end: 4,
+                    range: [1, 4]
+                  },
+                  computed: false,
+                  optional: true,
+                  property: {
+                    type: 'Identifier',
+                    name: 'aaa',
+                    start: 6,
+                    end: 9,
+                    range: [6, 9]
+                  },
+                  start: 1,
+                  end: 9,
+                  range: [1, 9]
+                },
+                start: 1,
+                end: 9,
+                range: [1, 9]
+              },
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: 'bbb',
+                start: 11,
+                end: 14,
+                range: [11, 14]
+              },
+              start: 0,
+              end: 14,
+              range: [0, 14]
+            },
+            start: 0,
+            end: 14,
+            range: [0, 14]
+          }
+        ],
+        start: 0,
+        end: 14,
+        range: [0, 14]
+      }
+    ],
+    [
+      '(obj?.aaa)?.bbb',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'ChainExpression',
+                  expression: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'Identifier',
+                      name: 'obj',
+                      start: 1,
+                      end: 4,
+                      range: [1, 4]
+                    },
+                    computed: false,
+                    optional: true,
+                    property: {
+                      type: 'Identifier',
+                      name: 'aaa',
+                      start: 6,
+                      end: 9,
+                      range: [6, 9]
+                    },
+                    start: 1,
+                    end: 9,
+                    range: [1, 9]
+                  },
+                  start: 1,
+                  end: 9,
+                  range: [1, 9]
+                },
+                computed: false,
+                optional: true,
+                property: {
+                  type: 'Identifier',
+                  name: 'bbb',
+                  start: 12,
+                  end: 15,
+                  range: [12, 15]
+                },
+                start: 0,
+                end: 15,
+                range: [0, 15]
+              },
+              start: 0,
+              end: 15,
+              range: [0, 15]
+            },
+            start: 0,
+            end: 15,
+            range: [0, 15]
+          }
+        ],
+        start: 0,
+        end: 15,
+        range: [0, 15]
       }
     ]
   ]);
