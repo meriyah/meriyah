@@ -133,7 +133,8 @@ export const enum Flags {
   SimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
   StrictEvalArguments = 1 << 9,
-  DisallowCall   = 1 << 10
+  DisallowCall   = 1 << 10,
+  HasOptionalChaining = 1 << 11
 }
 
 export const enum HoistedClassFlags {
