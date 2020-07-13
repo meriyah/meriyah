@@ -69,8 +69,8 @@ export declare function parseAwaitExpression(parser: ParserState, context: Conte
 export declare function parseFunctionBody(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, firstRestricted: Token | undefined, scopeError: any): ESTree.BlockStatement;
 export declare function parseSuperExpression(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Super;
 export declare function parseLeftHandSideExpression(parser: ParserState, context: Context, canAssign: 0 | 1, inGroup: 0 | 1, isLHS: 0 | 1, start: number, line: number, column: number): ESTree.Expression;
-export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, start: number, line: number, column: number): any;
-export declare function parseOptionalChain(parser: ParserState, context: Context, start: number, line: number, column: number): any;
+export declare function parseMemberOrUpdateExpression(parser: ParserState, context: Context, expr: ESTree.Expression, inGroup: 0 | 1, inChain: 0 | 1, start: number, line: number, column: number): any;
+export declare function parseOptionalChain(parser: ParserState, context: Context, expr: ESTree.Expression, start: number, line: number, column: number): ESTree.MemberExpression | ESTree.CallExpression;
 export declare function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Context): any;
 export declare function parseUpdateExpressionPrefixed(parser: ParserState, context: Context, inNew: 0 | 1, isLHS: 0 | 1, start: number, line: number, column: number): ESTree.UpdateExpression;
 export declare function parsePrimaryExpression(parser: ParserState, context: Context, kind: BindingKind, inNew: 0 | 1, canAssign: 0 | 1, isPattern: 0 | 1, inGroup: 0 | 1, isLHS: 0 | 1, start: number, line: number, column: number): any;
