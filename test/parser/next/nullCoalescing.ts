@@ -156,7 +156,7 @@ describe('Next - Nullish Coalescing', () => {
                   type: 'Literal',
                   value: 3
                 },
-                type: 'CoalesceExpression'
+                type: 'LogicalExpression'
               },
               property: {
                 name: 'x',
@@ -187,7 +187,7 @@ describe('Next - Nullish Coalescing', () => {
                 type: 'Literal',
                 value: 3
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -212,7 +212,7 @@ describe('Next - Nullish Coalescing', () => {
                 type: 'Literal',
                 value: 3
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -245,7 +245,7 @@ describe('Next - Nullish Coalescing', () => {
                 type: 'Literal',
                 value: 3
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -278,7 +278,7 @@ describe('Next - Nullish Coalescing', () => {
                 type: 'Literal',
                 value: 3
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -311,7 +311,7 @@ describe('Next - Nullish Coalescing', () => {
                 },
                 type: 'LogicalExpression'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -339,14 +339,14 @@ describe('Next - Nullish Coalescing', () => {
                   name: 'b',
                   type: 'Identifier'
                 },
-                type: 'CoalesceExpression'
+                type: 'LogicalExpression'
               },
               operator: '??',
               right: {
                 name: 'c',
                 type: 'Identifier'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -371,7 +371,7 @@ describe('Next - Nullish Coalescing', () => {
                 type: 'Literal',
                 value: 1
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -397,14 +397,14 @@ describe('Next - Nullish Coalescing', () => {
                   name: 'b',
                   type: 'Identifier'
                 },
-                type: 'CoalesceExpression'
+                type: 'LogicalExpression'
               },
               operator: '??',
               right: {
                 name: 'c',
                 type: 'Identifier'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -437,7 +437,7 @@ describe('Next - Nullish Coalescing', () => {
                 },
                 type: 'LogicalExpression'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -470,7 +470,7 @@ describe('Next - Nullish Coalescing', () => {
                 name: 'c',
                 type: 'Identifier'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }
@@ -503,7 +503,7 @@ describe('Next - Nullish Coalescing', () => {
                 name: 'c',
                 type: 'Identifier'
               },
-              type: 'CoalesceExpression'
+              type: 'LogicalExpression'
             },
             type: 'ExpressionStatement'
           }

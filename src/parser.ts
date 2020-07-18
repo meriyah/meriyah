@@ -3416,7 +3416,7 @@ export function parseBinaryExpression(
     nextToken(parser, context | Context.AllowRegExp);
 
     left = finishNode(parser, context, start, line, column, {
-      type: t & Token.IsLogical ? 'LogicalExpression' : t & Token.IsCoalesc ? 'CoalesceExpression' : 'BinaryExpression',
+      type: t & Token.IsLogical || t & Token.IsCoalesc ? 'LogicalExpression' : 'BinaryExpression',
       left,
       right: parseBinaryExpression(
         parser,
