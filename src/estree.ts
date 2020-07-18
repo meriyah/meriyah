@@ -30,7 +30,6 @@ export type ArgumentExpression =
   | SpreadElement
   | BinaryExpression
   | LogicalExpression
-  | CoalesceExpression
   | SequenceExpression;
 
 export type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
@@ -104,7 +103,6 @@ export type Node =
   | LabeledStatement
   | Literal
   | LogicalExpression
-  | CoalesceExpression
   | MemberExpression
   | MetaProperty
   | MethodDefinition
@@ -161,7 +159,6 @@ export type Expression =
   | JSXOpeningFragment
   | JSXSpreadChild
   | LogicalExpression
-  | CoalesceExpression
   | NewExpression
   | RestElement
   | SequenceExpression
@@ -620,13 +617,6 @@ export interface Literal extends _Node {
   type: 'Literal';
   value: boolean | number | string | null;
   raw?: string;
-}
-
-export interface CoalesceExpression extends _Node {
-  type: 'CoalesceExpression';
-  operator: string;
-  left: Expression;
-  right: Expression;
 }
 
 export interface LogicalExpression extends _Node {
