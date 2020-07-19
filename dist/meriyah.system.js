@@ -3641,7 +3641,7 @@ System.register('meriyah', [], function (exports) {
                   break;
               nextToken(parser, context | 32768);
               left = finishNode(parser, context, start, line, column, {
-                  type: t & 524288 ? 'LogicalExpression' : t & 268435456 ? 'CoalesceExpression' : 'BinaryExpression',
+                  type: t & 524288 || t & 268435456 ? 'LogicalExpression' : 'BinaryExpression',
                   left,
                   right: parseBinaryExpression(parser, context, inGroup, parser.tokenPos, parser.linePos, parser.colPos, prec, t, parseLeftHandSideExpression(parser, context, 0, inGroup, 1, parser.tokenPos, parser.linePos, parser.colPos)),
                   operator: KeywordDescTable[t & 255]
@@ -6438,7 +6438,7 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '1.9.15');
+      const version = exports('version', '2.1.0');
 
     }
   };
