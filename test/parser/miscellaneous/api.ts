@@ -273,7 +273,7 @@ describe('Expressions - API', () => {
           {
             type: 'ExpressionStatement',
             expression: {
-              type: 'CoalesceExpression',
+              type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
                 name: 'a',
