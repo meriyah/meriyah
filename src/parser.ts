@@ -8869,7 +8869,7 @@ export function parseJSXAttributes(
   context: Context
 ): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] {
   const attributes: (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] = [];
-  while (parser.token !== Token.Divide && parser.token !== Token.GreaterThan) {
+  while (parser.token !== Token.Divide && parser.token !== Token.GreaterThan && parser.token !== Token.EOF) {
     attributes.push(parseJsxAttribute(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return attributes;
