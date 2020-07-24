@@ -128,7 +128,7 @@ describe('Miscellaneous - JSX', () => {
           );
         }
       }`,
-      Context.OptionsJSX | Context.OptionsRanges,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -140,7 +140,17 @@ describe('Miscellaneous - JSX', () => {
               name: 'Columns',
               start: 6,
               end: 13,
-              range: [6, 13]
+              range: [6, 13],
+              loc: {
+                start: {
+                  column: 6,
+                  line: 1
+                },
+                end: {
+                  column: 13,
+                  line: 1
+                }
+              }
             },
             superClass: {
               type: 'MemberExpression',
@@ -149,7 +159,17 @@ describe('Miscellaneous - JSX', () => {
                 name: 'React',
                 start: 22,
                 end: 27,
-                range: [22, 27]
+                range: [22, 27],
+                loc: {
+                  start: {
+                    column: 22,
+                    line: 1
+                  },
+                  end: {
+                    column: 27,
+                    line: 1
+                  }
+                }
               },
               computed: false,
               property: {
@@ -157,11 +177,31 @@ describe('Miscellaneous - JSX', () => {
                 name: 'Component',
                 start: 28,
                 end: 37,
-                range: [28, 37]
+                range: [28, 37],
+                loc: {
+                  start: {
+                    column: 28,
+                    line: 1
+                  },
+                  end: {
+                    column: 37,
+                    line: 1
+                  }
+                }
               },
               start: 22,
               end: 37,
-              range: [22, 37]
+              range: [22, 37],
+              loc: {
+                start: {
+                  column: 22,
+                  line: 1
+                },
+                end: {
+                  column: 37,
+                  line: 1
+                }
+              }
             },
             body: {
               type: 'ClassBody',
@@ -176,7 +216,17 @@ describe('Miscellaneous - JSX', () => {
                     name: 'render',
                     start: 48,
                     end: 54,
-                    range: [48, 54]
+                    range: [48, 54],
+                    loc: {
+                      start: {
+                        column: 8,
+                        line: 2
+                      },
+                      end: {
+                        column: 14,
+                        line: 2
+                      }
+                    }
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -194,7 +244,17 @@ describe('Miscellaneous - JSX', () => {
                                 value: '\n              ',
                                 start: 92,
                                 end: 107,
-                                range: [92, 107]
+                                range: [92, 107],
+                                loc: {
+                                  start: {
+                                    column: 14,
+                                    line: 4
+                                  },
+                                  end: {
+                                    column: 14,
+                                    line: 5
+                                  }
+                                }
                               },
                               {
                                 type: 'JSXElement',
@@ -204,7 +264,17 @@ describe('Miscellaneous - JSX', () => {
                                     value: 'Hello',
                                     start: 111,
                                     end: 116,
-                                    range: [111, 116]
+                                    range: [111, 116],
+                                    loc: {
+                                      start: {
+                                        column: 18,
+                                        line: 5
+                                      },
+                                      end: {
+                                        column: 23,
+                                        line: 5
+                                      }
+                                    }
                                   }
                                 ],
                                 openingElement: {
@@ -214,13 +284,33 @@ describe('Miscellaneous - JSX', () => {
                                     name: 'td',
                                     start: 108,
                                     end: 110,
-                                    range: [108, 110]
+                                    range: [108, 110],
+                                    loc: {
+                                      start: {
+                                        column: 15,
+                                        line: 5
+                                      },
+                                      end: {
+                                        column: 17,
+                                        line: 5
+                                      }
+                                    }
                                   },
                                   attributes: [],
                                   selfClosing: false,
                                   start: 107,
                                   end: 111,
-                                  range: [107, 111]
+                                  range: [107, 111],
+                                  loc: {
+                                    start: {
+                                      column: 14,
+                                      line: 5
+                                    },
+                                    end: {
+                                      column: 18,
+                                      line: 5
+                                    }
+                                  }
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -229,22 +319,62 @@ describe('Miscellaneous - JSX', () => {
                                     name: 'td',
                                     start: 118,
                                     end: 120,
-                                    range: [118, 120]
+                                    range: [118, 120],
+                                    loc: {
+                                      start: {
+                                        column: 25,
+                                        line: 5
+                                      },
+                                      end: {
+                                        column: 27,
+                                        line: 5
+                                      }
+                                    }
                                   },
                                   start: 116,
                                   end: 121,
-                                  range: [116, 121]
+                                  range: [116, 121],
+                                  loc: {
+                                    start: {
+                                      column: 23,
+                                      line: 5
+                                    },
+                                    end: {
+                                      column: 28,
+                                      line: 5
+                                    }
+                                  }
                                 },
                                 start: 107,
                                 end: 121,
-                                range: [107, 121]
+                                range: [107, 121],
+                                loc: {
+                                  start: {
+                                    column: 14,
+                                    line: 5
+                                  },
+                                  end: {
+                                    column: 28,
+                                    line: 5
+                                  }
+                                }
                               },
                               {
                                 type: 'JSXText',
                                 value: '\n              ',
                                 start: 121,
                                 end: 136,
-                                range: [121, 136]
+                                range: [121, 136],
+                                loc: {
+                                  start: {
+                                    column: 28,
+                                    line: 5
+                                  },
+                                  end: {
+                                    column: 14,
+                                    line: 6
+                                  }
+                                }
                               },
                               {
                                 type: 'JSXElement',
@@ -254,7 +384,17 @@ describe('Miscellaneous - JSX', () => {
                                     value: 'World',
                                     start: 140,
                                     end: 145,
-                                    range: [140, 145]
+                                    range: [140, 145],
+                                    loc: {
+                                      start: {
+                                        column: 18,
+                                        line: 6
+                                      },
+                                      end: {
+                                        column: 23,
+                                        line: 6
+                                      }
+                                    }
                                   }
                                 ],
                                 openingElement: {
@@ -264,13 +404,33 @@ describe('Miscellaneous - JSX', () => {
                                     name: 'td',
                                     start: 137,
                                     end: 139,
-                                    range: [137, 139]
+                                    range: [137, 139],
+                                    loc: {
+                                      start: {
+                                        column: 15,
+                                        line: 6
+                                      },
+                                      end: {
+                                        column: 17,
+                                        line: 6
+                                      }
+                                    }
                                   },
                                   attributes: [],
                                   selfClosing: false,
                                   start: 136,
                                   end: 140,
-                                  range: [136, 140]
+                                  range: [136, 140],
+                                  loc: {
+                                    start: {
+                                      column: 14,
+                                      line: 6
+                                    },
+                                    end: {
+                                      column: 18,
+                                      line: 6
+                                    }
+                                  }
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -279,73 +439,213 @@ describe('Miscellaneous - JSX', () => {
                                     name: 'td',
                                     start: 147,
                                     end: 149,
-                                    range: [147, 149]
+                                    range: [147, 149],
+                                    loc: {
+                                      start: {
+                                        column: 25,
+                                        line: 6
+                                      },
+                                      end: {
+                                        column: 27,
+                                        line: 6
+                                      }
+                                    }
                                   },
                                   start: 145,
                                   end: 150,
-                                  range: [145, 150]
+                                  range: [145, 150],
+                                  loc: {
+                                    start: {
+                                      column: 23,
+                                      line: 6
+                                    },
+                                    end: {
+                                      column: 28,
+                                      line: 6
+                                    }
+                                  }
                                 },
                                 start: 136,
                                 end: 150,
-                                range: [136, 150]
+                                range: [136, 150],
+                                loc: {
+                                  start: {
+                                    column: 14,
+                                    line: 6
+                                  },
+                                  end: {
+                                    column: 28,
+                                    line: 6
+                                  }
+                                }
                               },
                               {
                                 type: 'JSXText',
                                 value: '\n            ',
                                 start: 150,
                                 end: 163,
-                                range: [150, 163]
+                                range: [150, 163],
+                                loc: {
+                                  start: {
+                                    column: 28,
+                                    line: 6
+                                  },
+                                  end: {
+                                    column: 12,
+                                    line: 7
+                                  }
+                                }
                               }
                             ],
                             openingFragment: {
                               type: 'JSXOpeningFragment',
                               start: 90,
                               end: 92,
-                              range: [90, 92]
+                              range: [90, 92],
+                              loc: {
+                                start: {
+                                  column: 12,
+                                  line: 4
+                                },
+                                end: {
+                                  column: 14,
+                                  line: 4
+                                }
+                              }
                             },
                             closingFragment: {
                               type: 'JSXClosingFragment',
                               start: 163,
                               end: 166,
-                              range: [163, 166]
+                              range: [163, 166],
+                              loc: {
+                                start: {
+                                  column: 12,
+                                  line: 7
+                                },
+                                end: {
+                                  column: 15,
+                                  line: 7
+                                }
+                              }
                             },
                             start: 90,
                             end: 166,
-                            range: [90, 166]
+                            range: [90, 166],
+                            loc: {
+                              start: {
+                                column: 12,
+                                line: 4
+                              },
+                              end: {
+                                column: 15,
+                                line: 7
+                              }
+                            }
                           },
                           start: 69,
                           end: 179,
-                          range: [69, 179]
+                          range: [69, 179],
+                          loc: {
+                            start: {
+                              column: 10,
+                              line: 3
+                            },
+                            end: {
+                              column: 12,
+                              line: 8
+                            }
+                          }
                         }
                       ],
                       start: 57,
                       end: 189,
-                      range: [57, 189]
+                      range: [57, 189],
+                      loc: {
+                        start: {
+                          column: 17,
+                          line: 2
+                        },
+                        end: {
+                          column: 9,
+                          line: 9
+                        }
+                      }
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 54,
                     end: 189,
-                    range: [54, 189]
+                    range: [54, 189],
+                    loc: {
+                      start: {
+                        column: 14,
+                        line: 2
+                      },
+                      end: {
+                        column: 9,
+                        line: 9
+                      }
+                    }
                   },
                   start: 48,
                   end: 189,
-                  range: [48, 189]
+                  range: [48, 189],
+                  loc: {
+                    start: {
+                      column: 8,
+                      line: 2
+                    },
+                    end: {
+                      column: 9,
+                      line: 9
+                    }
+                  }
                 }
               ],
               start: 38,
               end: 197,
-              range: [38, 197]
+              range: [38, 197],
+              loc: {
+                start: {
+                  column: 38,
+                  line: 1
+                },
+                end: {
+                  column: 7,
+                  line: 10
+                }
+              }
             },
             start: 0,
             end: 197,
-            range: [0, 197]
+            range: [0, 197],
+            loc: {
+              start: {
+                column: 0,
+                line: 1
+              },
+              end: {
+                column: 7,
+                line: 10
+              }
+            }
           }
         ],
         start: 0,
         end: 197,
-        range: [0, 197]
+        range: [0, 197],
+        loc: {
+          start: {
+            column: 0,
+            line: 1
+          },
+          end: {
+            column: 7,
+            line: 10
+          }
+        }
       }
     ],
     [
