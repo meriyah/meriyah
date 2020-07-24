@@ -34,6 +34,7 @@ describe('Miscellaneous - JSX', () => {
 
   fail('Miscellaneous - JSX (fail)', [
     ['<', Context.None],
+    ['<foo', Context.None],
     ['>', Context.None],
     ['<>', Context.None],
     ['< >', Context.None],
