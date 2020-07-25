@@ -2054,10 +2054,27 @@ function scanJSXToken(parser) {
             parser.token = 2162700;
             break;
         }
-        default:
-            while (parser.index < parser.end && (CharTypes[advanceChar(parser)] & 16384) === 0) { }
+        default: {
+            let state = 0;
+            while (parser.index < parser.end) {
+                const type = CharTypes[parser.source.charCodeAt(parser.index)];
+                if (type & 1024) {
+                    state |= 1 | 4;
+                    scanNewLine(parser);
+                }
+                else if (type & 2048) {
+                    consumeLineFeed(parser, state);
+                    state = (state & ~4) | 1;
+                }
+                else {
+                    advanceChar(parser);
+                }
+                if (CharTypes[parser.currentChar] & 16384)
+                    break;
+            }
             parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
             parser.token = 135;
+        }
     }
     return parser.token;
 }
@@ -6311,7 +6328,7 @@ function parseJSXMemberExpression(parser, context, object, start, line, column) 
 }
 function parseJSXAttributes(parser, context) {
     const attributes = [];
-    while (parser.token !== 8457013 && parser.token !== 8456256) {
+    while (parser.token !== 8457013 && parser.token !== 8456256 && parser.token !== 1048576) {
         attributes.push(parseJsxAttribute(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
     }
     return attributes;
