@@ -3,8 +3,7 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
-import { advanceChar, LexerState, TokenLookup } from './';
-import { scanSingleToken } from './scan';
+import { advanceChar, LexerState, TokenLookup, scanSingleToken, scanNewLine, consumeLineFeed } from './';
 
 /**
  * Scans JSX attribute value
@@ -77,11 +76,28 @@ export function scanJSXToken(parser: ParserState): Token {
       parser.token = Token.LeftBrace;
       break;
     }
-    default:
-      while (parser.index < parser.end && (CharTypes[advanceChar(parser)] & CharFlags.JSXToken) === 0) {}
+    default: {
+      let state = LexerState.None;
+
+      while (parser.index < parser.end) {
+        const type = CharTypes[parser.source.charCodeAt(parser.index)];
+
+        if (type & CharFlags.CarriageReturn) {
+          state |= LexerState.NewLine | LexerState.LastIsCR;
+          scanNewLine(parser);
+        } else if (type & CharFlags.LineFeed) {
+          consumeLineFeed(parser, state);
+          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+        } else {
+          advanceChar(parser);
+        }
+
+        if (CharTypes[parser.currentChar] & CharFlags.JSXToken) break;
+      }
 
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
       parser.token = Token.JSXText;
+    }
   }
 
   return parser.token;
