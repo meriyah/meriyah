@@ -203,7 +203,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
 
   if (isBigInt) {
     parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
-    parser.tokenValue = parseInt(value, 0xa);
+    parser.tokenValue = BigInt(value);
     return Token.BigIntLiteral;
   }
 
