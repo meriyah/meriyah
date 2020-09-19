@@ -5,7 +5,7 @@ import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Numberic literals', () => {
-  const tokens: [Context, Token, string, number][] = [
+  const tokens: [Context, Token, string, number | bigint][] = [
     // Numeric literals
     [Context.None, Token.NumericLiteral, '0', 0],
     [Context.None, Token.NumericLiteral, '1', 1],
@@ -151,15 +151,21 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0000000000234567454548', 234567454548],
 
     // BigInt
-    [Context.None, Token.BigIntLiteral, '1n', 1],
-    [Context.None, Token.BigIntLiteral, '0o45n', 37],
-    [Context.None, Token.BigIntLiteral, '0b10n', 2],
-    [Context.None, Token.BigIntLiteral, '0x9an', 154],
-    [Context.None, Token.BigIntLiteral, '9007199254740991n', 9007199254740991],
-    [Context.None, Token.BigIntLiteral, '100000000000000000n', 100000000000000000],
-    [Context.OptionsRaw, Token.BigIntLiteral, '123456789000000000000000n', 123456789000000000000000],
-    [Context.None, Token.BigIntLiteral, '0xfn', 15],
-    [Context.None, Token.BigIntLiteral, '0n', 0],
+    [Context.None, Token.BigIntLiteral, '1n', BigInt(1)],
+    [Context.None, Token.BigIntLiteral, '0o45n', BigInt(37)],
+    [Context.None, Token.BigIntLiteral, '0b10n', BigInt(2)],
+    [Context.None, Token.BigIntLiteral, '0x9an', BigInt(154)],
+    [Context.None, Token.BigIntLiteral, '9007199254740991n', BigInt(9007199254740991)],
+    [Context.None, Token.BigIntLiteral, '100000000000000000n', BigInt(100000000000000000)],
+    [Context.OptionsRaw, Token.BigIntLiteral, '123456789000000000000000n', BigInt('123456789000000000000000')],
+    [Context.None, Token.BigIntLiteral, '0xfn', BigInt(15)],
+    [Context.None, Token.BigIntLiteral, '0n', BigInt(0)],
+    [
+      Context.None,
+      Token.BigIntLiteral,
+      '0x12300000000000000000000000000000000n',
+      BigInt('99022168773993092867842010762644549533696')
+    ],
 
     // Numeric separators
     [Context.OptionsRaw, Token.NumericLiteral, '0', 0],
