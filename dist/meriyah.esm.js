@@ -1782,7 +1782,7 @@ function scanNumber(parser, context, kind) {
     }
     if (isBigInt) {
         parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
-        parser.tokenValue = parseInt(value, 0xa);
+        parser.tokenValue = BigInt(value);
         return 122;
     }
     parser.tokenValue =
