@@ -4403,13 +4403,13 @@ export function parseBigIntLiteral(
     column,
     context & Context.OptionsRaw
       ? {
-          type: 'BigIntLiteral',
+          type: 'Literal',
           value: tokenValue,
           bigint: tokenRaw,
           raw: tokenRaw
         }
       : {
-          type: 'BigIntLiteral',
+          type: 'Literal',
           value: tokenValue,
           bigint: tokenRaw
         }
@@ -7780,7 +7780,7 @@ export function parseRegExpLiteral(
   start: number,
   line: number,
   column: number
-): ESTree.Literal {
+): ESTree.RegExpLiteral {
   const { tokenRaw, tokenRegExp, tokenValue } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
@@ -7788,13 +7788,13 @@ export function parseRegExpLiteral(
     ? finishNode(parser, context, start, line, column, {
         type: 'Literal',
         value: tokenValue,
-        regex: tokenRegExp,
+        regex: tokenRegExp as { pattern: string; flags: string },
         raw: tokenRaw
       })
     : finishNode(parser, context, start, line, column, {
         type: 'Literal',
         value: tokenValue,
-        regex: tokenRegExp
+        regex: tokenRegExp as { pattern: string; flags: string }
       });
 }
 
