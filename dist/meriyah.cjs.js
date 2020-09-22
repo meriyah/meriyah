@@ -4136,13 +4136,13 @@ function parseBigIntLiteral(parser, context, start, line, column) {
     parser.assignable = 2;
     return finishNode(parser, context, start, line, column, context & 512
         ? {
-            type: 'BigIntLiteral',
+            type: 'Literal',
             value: tokenValue,
             bigint: tokenRaw,
             raw: tokenRaw
         }
         : {
-            type: 'BigIntLiteral',
+            type: 'Literal',
             value: tokenValue,
             bigint: tokenRaw
         });

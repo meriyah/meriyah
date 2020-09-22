@@ -100,7 +100,7 @@ export declare function parseMembeExpressionNoCall(parser: ParserState, context:
 export declare function parseNewExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty;
 export declare function parseMetaProperty(parser: ParserState, context: Context, meta: ESTree.Identifier, start: number, line: number, column: number): ESTree.MetaProperty;
 export declare function parseAsyncArrowOrCallExpression(parser: ParserState, context: Context, callee: ESTree.Identifier | void, canAssign: 0 | 1, kind: BindingKind, origin: Origin, flags: Flags, start: number, line: number, column: number): ESTree.CallExpression | ESTree.ArrowFunctionExpression;
-export declare function parseRegExpLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Literal;
+export declare function parseRegExpLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.RegExpLiteral;
 export declare function parseClassDeclaration(parser: ParserState, context: Context, scope: ScopeState | undefined, flags: HoistedClassFlags, start: number, line: number, column: number): ESTree.ClassDeclaration;
 export declare function parseClassExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.ClassExpression;
 export declare function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[];
