@@ -113,6 +113,7 @@ export type Node =
   | PrivateName
   | Program
   | Property
+  | RegExpLiteral
   | RestElement
   | ReturnStatement
   | SequenceExpression
@@ -185,7 +186,7 @@ export type LeftHandSideExpression =
   | MemberExpression
   | PrimaryExpression
   | TaggedTemplateExpression;
-export type LiteralExpression = BigIntLiteral | Literal | TemplateLiteral;
+export type LiteralExpression = Literal | TemplateLiteral;
 export type ObjectLiteralElementLike = MethodDefinition | Property | RestElement | SpreadElement;
 export type Parameter = AssignmentPattern | RestElement | ArrayPattern | ObjectPattern | Identifier;
 export type PrimaryExpression =
@@ -311,11 +312,8 @@ export interface AwaitExpression extends _Node {
   argument: Expression;
 }
 
-export interface BigIntLiteral extends _Node {
-  type: 'BigIntLiteral';
-  value: number | null;
+export interface BigIntLiteral extends Literal {
   bigint: string;
-  raw?: string;
 }
 
 export interface BinaryExpression extends _Node {
@@ -615,7 +613,7 @@ export interface LabeledStatement extends _Node {
 
 export interface Literal extends _Node {
   type: 'Literal';
-  value: boolean | number | string | null;
+  value: boolean | number | string | null | RegExp | bigint;
   raw?: string;
 }
 
@@ -681,6 +679,13 @@ export interface Property extends _Node {
   method: boolean;
   shorthand: boolean;
   kind: 'init' | 'get' | 'set';
+}
+
+export interface RegExpLiteral extends Literal {
+  regex: {
+    pattern: string;
+    flags: string;
+  };
 }
 
 export interface RestElement extends _Node {
