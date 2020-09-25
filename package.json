@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -58,7 +58,8 @@
     "test:watch:verbose": "npm run test:watch -- -R spec",
     "prepare-nightly": "node scripts/bump-dev-version",
     "coverage": "cross-env TS_NODE_PROJECT=\"test/tsconfig.json\" nyc -n \"src/**/*.ts\" -e .ts -i ts-node/register -r text-summary -r lcov -r html npm test",
-    "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls"
+    "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
+    "prepublish": "npm run bundle"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
