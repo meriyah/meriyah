@@ -911,6 +911,158 @@ describe('Next - Optional chaining', () => {
         end: 15,
         range: [0, 15]
       }
+    ],
+    [
+      'a?.[x]',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            end: 6,
+            expression: {
+              end: 6,
+              expression: {
+                computed: true,
+                end: 6,
+                object: {
+                  end: 1,
+                  name: 'a',
+                  range: [0, 1],
+                  start: 0,
+                  type: 'Identifier'
+                },
+                optional: true,
+                property: {
+                  end: 5,
+                  name: 'x',
+                  range: [4, 5],
+                  start: 4,
+                  type: 'Identifier'
+                },
+                range: [0, 6],
+                start: 0,
+                type: 'MemberExpression'
+              },
+              range: [0, 6],
+              start: 0,
+              type: 'ChainExpression'
+            },
+            range: [0, 6],
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 6,
+        range: [0, 6],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      'a?.import("string")?.import.meta??(a)',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        body: [
+          {
+            end: 37,
+            expression: {
+              end: 37,
+              left: {
+                end: 32,
+                expression: {
+                  computed: false,
+                  end: 32,
+                  object: {
+                    computed: false,
+                    end: 27,
+                    object: {
+                      arguments: [
+                        {
+                          end: 18,
+                          range: [10, 18],
+                          start: 10,
+                          type: 'Literal',
+                          value: 'string'
+                        }
+                      ],
+                      callee: {
+                        computed: false,
+                        end: 9,
+                        object: {
+                          end: 1,
+                          name: 'a',
+                          range: [0, 1],
+                          start: 0,
+                          type: 'Identifier'
+                        },
+                        optional: true,
+                        property: {
+                          end: 9,
+                          name: 'import',
+                          range: [3, 9],
+                          start: 3,
+                          type: 'Identifier'
+                        },
+                        range: [0, 9],
+                        start: 0,
+                        type: 'MemberExpression'
+                      },
+                      end: 19,
+                      range: [0, 19],
+                      start: 0,
+                      type: 'CallExpression'
+                    },
+                    optional: true,
+                    property: {
+                      end: 27,
+                      name: 'import',
+                      range: [21, 27],
+                      start: 21,
+                      type: 'Identifier'
+                    },
+                    range: [0, 27],
+                    start: 0,
+                    type: 'MemberExpression'
+                  },
+                  property: {
+                    end: 32,
+                    name: 'meta',
+                    range: [28, 32],
+                    start: 28,
+                    type: 'Identifier'
+                  },
+                  range: [0, 32],
+                  start: 0,
+                  type: 'MemberExpression'
+                },
+                range: [0, 32],
+                start: 0,
+                type: 'ChainExpression'
+              },
+              operator: '??',
+              range: [0, 37],
+              right: {
+                end: 36,
+                name: 'a',
+                range: [35, 36],
+                start: 35,
+                type: 'Identifier'
+              },
+              start: 0,
+              type: 'LogicalExpression'
+            },
+            range: [0, 37],
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 37,
+        range: [0, 37],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
     ]
   ]);
 });
