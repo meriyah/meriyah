@@ -3901,6 +3901,11 @@ function parseMemberOrUpdateExpression(parser, context, expr, inGroup, inChain, 
                     parser.flags = (parser.flags | 1024) ^ 1024;
                     return expr;
                 }
+                let restoreHasOptionalChaining = false;
+                if ((parser.flags & 2048) === 2048) {
+                    restoreHasOptionalChaining = true;
+                    parser.flags = (parser.flags | 2048) ^ 2048;
+                }
                 const args = parseArguments(parser, context, inGroup);
                 parser.assignable = 2;
                 expr = finishNode(parser, context, start, line, column, {
@@ -3908,6 +3913,9 @@ function parseMemberOrUpdateExpression(parser, context, expr, inGroup, inChain, 
                     callee: expr,
                     arguments: args
                 });
+                if (restoreHasOptionalChaining) {
+                    parser.flags |= 2048;
+                }
                 break;
             }
             case 67108988: {
@@ -3942,13 +3950,21 @@ function parseMemberOrUpdateExpression(parser, context, expr, inGroup, inChain, 
     return expr;
 }
 function parseOptionalChain(parser, context, expr, start, line, column) {
+    let restoreHasOptionalChaining = false;
+    let node;
+    if (parser.token === 69271571 || parser.token === 67174411) {
+        if ((parser.flags & 2048) === 2048) {
+            restoreHasOptionalChaining = true;
+            parser.flags = (parser.flags | 2048) ^ 2048;
+        }
+    }
     if (parser.token === 69271571) {
         nextToken(parser, context | 32768);
         const { tokenPos, linePos, colPos } = parser;
         const property = parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos);
         consume(parser, context, 20);
         parser.assignable = 2;
-        return finishNode(parser, context, start, line, column, {
+        node = finishNode(parser, context, start, line, column, {
             type: 'MemberExpression',
             object: expr,
             computed: true,
@@ -3959,7 +3975,7 @@ function parseOptionalChain(parser, context, expr, start, line, column) {
     else if (parser.token === 67174411) {
         const args = parseArguments(parser, context, 0);
         parser.assignable = 2;
-        return finishNode(parser, context, start, line, column, {
+        node = finishNode(parser, context, start, line, column, {
             type: 'CallExpression',
             callee: expr,
             arguments: args
@@ -3970,7 +3986,7 @@ function parseOptionalChain(parser, context, expr, start, line, column) {
             report(parser, 154);
         const property = parseIdentifier(parser, context, 0);
         parser.assignable = 2;
-        return finishNode(parser, context, start, line, column, {
+        node = finishNode(parser, context, start, line, column, {
             type: 'MemberExpression',
             object: expr,
             computed: false,
@@ -3978,6 +3994,10 @@ function parseOptionalChain(parser, context, expr, start, line, column) {
             property
         });
     }
+    if (restoreHasOptionalChaining) {
+        parser.flags |= 2048;
+    }
+    return node;
 }
 function parsePropertyOrPrivatePropertyName(parser, context) {
     if ((parser.token & (143360 | 4096)) < 1 && parser.token !== 128) {
