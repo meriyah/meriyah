@@ -3946,6 +3946,12 @@ export function parseMemberOrUpdateExpression(
           return expr;
         }
 
+        let restoreHasOptionalChaining = false;
+        if ((parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining) {
+          restoreHasOptionalChaining = true;
+          parser.flags = (parser.flags | Flags.HasOptionalChaining) ^ Flags.HasOptionalChaining;
+        }
+
         const args = parseArguments(parser, context, inGroup);
 
         parser.assignable = AssignmentKind.CannotAssign;
@@ -3955,6 +3961,10 @@ export function parseMemberOrUpdateExpression(
           callee: expr,
           arguments: args
         });
+
+        if (restoreHasOptionalChaining) {
+          parser.flags |= Flags.HasOptionalChaining;
+        }
         break;
       }
 
@@ -4016,13 +4026,21 @@ export function parseOptionalChain(
   line: number,
   column: number
 ): ESTree.MemberExpression | ESTree.CallExpression {
+  let restoreHasOptionalChaining = false;
+  let node;
+  if (parser.token === Token.LeftBracket || parser.token === Token.LeftParen) {
+    if ((parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining) {
+      restoreHasOptionalChaining = true;
+      parser.flags = (parser.flags | Flags.HasOptionalChaining) ^ Flags.HasOptionalChaining;
+    }
+  }
   if (parser.token === Token.LeftBracket) {
     nextToken(parser, context | Context.AllowRegExp);
     const { tokenPos, linePos, colPos } = parser;
     const property = parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos);
     consume(parser, context, Token.RightBracket);
     parser.assignable = AssignmentKind.CannotAssign;
-    return finishNode(parser, context, start, line, column, {
+    node = finishNode(parser, context, start, line, column, {
       type: 'MemberExpression',
       object: expr,
       computed: true,
@@ -4034,7 +4052,7 @@ export function parseOptionalChain(
 
     parser.assignable = AssignmentKind.CannotAssign;
 
-    return finishNode(parser, context, start, line, column, {
+    node = finishNode(parser, context, start, line, column, {
       type: 'CallExpression',
       callee: expr,
       arguments: args
@@ -4043,7 +4061,7 @@ export function parseOptionalChain(
     if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1) report(parser, Errors.InvalidDotProperty);
     const property = parseIdentifier(parser, context, 0);
     parser.assignable = AssignmentKind.CannotAssign;
-    return finishNode(parser, context, start, line, column, {
+    node = finishNode(parser, context, start, line, column, {
       type: 'MemberExpression',
       object: expr,
       computed: false,
@@ -4051,6 +4069,11 @@ export function parseOptionalChain(
       property
     });
   }
+
+  if (restoreHasOptionalChaining) {
+    parser.flags |= Flags.HasOptionalChaining;
+  }
+  return node;
 }
 
 /**
