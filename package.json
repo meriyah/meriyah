@@ -59,7 +59,7 @@
     "prepare-nightly": "node scripts/bump-dev-version",
     "coverage": "cross-env TS_NODE_PROJECT=\"test/tsconfig.json\" nyc -n \"src/**/*.ts\" -e .ts -i ts-node/register -r text-summary -r lcov -r html npm test",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
-    "prepublish": "npm run bundle",
+    "prepublishOnly": "npm run bundle",
     "preversion": "npm test",
     "version": "standard-changelog && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish"
