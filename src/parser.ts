@@ -1174,7 +1174,7 @@ export function parseDirective(
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   }
 
-  return context & Context.OptionsDirectives
+  return context & Context.OptionsDirectives && expression.type === 'Literal' && typeof expression.value === 'string'
     ? finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression,
