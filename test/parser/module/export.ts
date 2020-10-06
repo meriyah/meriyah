@@ -908,16 +908,11 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'source'
             },
-            specifiers: [
-              {
-                specifier: {
-                  name: 'class',
-                  type: 'Identifier'
-                },
-                type: 'ExportNamespaceSpecifier'
-              }
-            ],
-            type: 'ExportNamedDeclaration'
+            exported: {
+              name: 'class',
+              type: 'Identifier'
+            },
+            type: 'ExportAllDeclaration'
           }
         ],
         sourceType: 'module',
@@ -934,16 +929,11 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'source'
             },
-            specifiers: [
-              {
-                specifier: {
-                  name: 'ns',
-                  type: 'Identifier'
-                },
-                type: 'ExportNamespaceSpecifier'
-              }
-            ],
-            type: 'ExportNamedDeclaration'
+            exported: {
+              name: 'ns',
+              type: 'Identifier'
+            },
+            type: 'ExportAllDeclaration'
           }
         ],
         sourceType: 'module',
@@ -963,6 +953,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'a'
             },
+            exported: null,
             start: 0,
             end: 17,
             range: [0, 17],
@@ -986,16 +977,11 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: './foo'
             },
-            specifiers: [
-              {
-                specifier: {
-                  name: 'foo',
-                  type: 'Identifier'
-                },
-                type: 'ExportNamespaceSpecifier'
-              }
-            ],
-            type: 'ExportNamedDeclaration'
+            exported: {
+              name: 'foo',
+              type: 'Identifier'
+            },
+            type: 'ExportAllDeclaration'
           }
         ],
         sourceType: 'module',
