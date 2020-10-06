@@ -1,3 +1,14 @@
+## [3.0.2](https://github.com/meriyah/meriyah/compare/v3.0.0...v3.0.2) (2020-10-06)
+
+
+### Bug Fixes
+
+* **parser:** directive is only for statement consisting entirely of a string literal ([8186dc1](https://github.com/meriyah/meriyah/commit/8186dc122d9cc4f7df9ebf95fbb3206b5df42dc0)), closes [#99](https://github.com/meriyah/meriyah/issues/99)
+* **parser:** follow latest estree spec on ExportAllDeclaration ([7a7fc76](https://github.com/meriyah/meriyah/commit/7a7fc76f2b59faf0b5db069094a3b2584bbbe77a)), closes [#97](https://github.com/meriyah/meriyah/issues/97)
+* fix wrong ChainExpression wrapper ([a33771c](https://github.com/meriyah/meriyah/commit/a33771c308a47d37deb8c9c452b4cbb896b52379)), closes [#98](https://github.com/meriyah/meriyah/issues/98)
+
+
+
 ## [3.0.1](https://github.com/meriyah/meriyah/compare/v3.0.0...v3.0.1) (2020-10-06)
 
 
