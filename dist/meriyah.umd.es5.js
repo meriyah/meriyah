@@ -2845,7 +2845,7 @@
             }
             matchOrInsertSemicolon(parser, context | 32768);
         }
-        return context & 8
+        return context & 8 && expression.type === 'Literal' && typeof expression.value === 'string'
             ? finishNode(parser, context, start, line, column, {
                 type: 'ExpressionStatement',
                 expression: expression,
@@ -3492,32 +3492,23 @@
         switch (parser.token) {
             case 8457011: {
                 nextToken(parser, context);
+                var exported = null;
                 var isNamedDeclaration = consumeOpt(parser, context, 12395);
                 if (isNamedDeclaration) {
                     if (scope)
                         declareUnboundVariable(parser, parser.tokenValue);
-                    specifiers = [
-                        finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
-                            type: 'ExportNamespaceSpecifier',
-                            specifier: parseIdentifier(parser, context, 0)
-                        })
-                    ];
+                    exported = parseIdentifier(parser, context, 0);
                 }
                 consume(parser, context, 12401);
                 if (parser.token !== 134283267)
                     report(parser, 102, 'Export');
                 source = parseLiteral(parser, context);
                 matchOrInsertSemicolon(parser, context | 32768);
-                return isNamedDeclaration
-                    ? finishNode(parser, context, start, line, column, {
-                        type: 'ExportNamedDeclaration',
-                        source: source,
-                        specifiers: specifiers
-                    })
-                    : finishNode(parser, context, start, line, column, {
-                        type: 'ExportAllDeclaration',
-                        source: source
-                    });
+                return finishNode(parser, context, start, line, column, {
+                    type: 'ExportAllDeclaration',
+                    source: source,
+                    exported: exported
+                });
             }
             case 2162700: {
                 nextToken(parser, context);
