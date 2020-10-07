@@ -1,6 +1,6 @@
 {
   "name": "meriyah",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
   "main": "dist/meriyah.umd.js",
   "module": "dist/meriyah.esm.js",
@@ -59,7 +59,10 @@
     "prepare-nightly": "node scripts/bump-dev-version",
     "coverage": "cross-env TS_NODE_PROJECT=\"test/tsconfig.json\" nyc -n \"src/**/*.ts\" -e .ts -i ts-node/register -r text-summary -r lcov -r html npm test",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
-    "prepublish": "npm run bundle"
+    "prepublishOnly": "npm run bundle",
+    "preversion": "npm test",
+    "version": "standard-changelog && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
@@ -84,6 +87,7 @@
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "source-map-support": "^0.5.13",
+    "standard-changelog": "^2.0.24",
     "test262-parser-tests": "0.0.5",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",

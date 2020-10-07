@@ -190,7 +190,6 @@ describe('Miscellaneous - Directives', () => {
       {
         body: [
           {
-            directive: 'use strict',
             expression: {
               left: {
                 raw: '"use strict"',

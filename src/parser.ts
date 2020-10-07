@@ -337,16 +337,18 @@ export function parseStatementList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.TopLevel,
-      {},
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    statements.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.TopLevel,
+        {},
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as ESTree.Statement
+    );
   }
   return statements;
 }
@@ -387,14 +389,9 @@ export function parseModuleItemList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(parseModuleItem(
-      parser,
-      context,
-      scope,
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    statements.push(
+      parseModuleItem(parser, context, scope, parser.tokenPos, parser.linePos, parser.colPos) as ESTree.Statement
+    );
   }
   return statements;
 }
@@ -805,16 +802,18 @@ export function parseBlock(
   const body: ESTree.Statement[] = [];
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.token !== Token.RightBrace) {
-    body.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.BlockStatement,
-      { $: labels },
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as any);
+    body.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.BlockStatement,
+        { $: labels },
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as any
+    );
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
@@ -1175,7 +1174,7 @@ export function parseDirective(
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   }
 
-  return context & Context.OptionsDirectives
+  return context & Context.OptionsDirectives && expression.type === 'Literal' && typeof expression.value === 'string'
     ? finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression,
@@ -1406,18 +1405,20 @@ export function parseSwitchStatement(
       parser.token !== Token.RightBrace &&
       parser.token !== Token.DefaultKeyword
     ) {
-      consequent.push(parseStatementListItem(
-        parser,
-        context | Context.InSwitch,
-        scope,
-        Origin.BlockStatement,
-        {
-          $: labels
-        },
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos
-      ) as ESTree.Statement);
+      consequent.push(
+        parseStatementListItem(
+          parser,
+          context | Context.InSwitch,
+          scope,
+          Origin.BlockStatement,
+          {
+            $: labels
+          },
+          parser.tokenPos,
+          parser.linePos,
+          parser.colPos
+        ) as ESTree.Statement
+      );
     }
 
     cases.push(
@@ -2742,7 +2743,7 @@ function parseExportDeclaration(
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
 
-  let specifiers: (ESTree.ExportSpecifier | ESTree.ExportNamespaceSpecifier)[] = [];
+  const specifiers: ESTree.ExportSpecifier[] = [];
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
   let source: ESTree.Literal | null = null;
@@ -2884,16 +2885,12 @@ function parseExportDeclaration(
 
       nextToken(parser, context); // Skips: '*'
 
+      let exported: ESTree.Identifier | null = null;
       const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
 
       if (isNamedDeclaration) {
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
-        specifiers = [
-          finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
-            type: 'ExportNamespaceSpecifier',
-            specifier: parseIdentifier(parser, context, 0)
-          })
-        ];
+        exported = parseIdentifier(parser, context, 0);
       }
 
       consume(parser, context, Token.FromKeyword);
@@ -2904,16 +2901,11 @@ function parseExportDeclaration(
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-      return isNamedDeclaration
-        ? finishNode(parser, context, start, line, column, {
-            type: 'ExportNamedDeclaration',
-            source,
-            specifiers
-          } as any)
-        : finishNode(parser, context, start, line, column, {
-            type: 'ExportAllDeclaration',
-            source
-          } as any);
+      return finishNode(parser, context, start, line, column, {
+        type: 'ExportAllDeclaration',
+        source,
+        exported
+      } as any);
     }
     case Token.LeftBrace: {
       // ExportClause :
@@ -3733,16 +3725,18 @@ export function parseFunctionBody(
   parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
   while (parser.token !== Token.RightBrace) {
-    body.push(parseStatementListItem(
-      parser,
-      context,
-      scope,
-      Origin.TopLevel,
-      {},
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
-    ) as ESTree.Statement);
+    body.push(
+      parseStatementListItem(
+        parser,
+        context,
+        scope,
+        Origin.TopLevel,
+        {},
+        parser.tokenPos,
+        parser.linePos,
+        parser.colPos
+      ) as ESTree.Statement
+    );
   }
 
   consume(
@@ -4004,7 +3998,7 @@ export function parseMemberOrUpdateExpression(
 
     expr = finishNode(parser, context, start, line, column, {
       type: 'ChainExpression',
-      expression: expr as (ESTree.CallExpression | ESTree.MemberExpression)
+      expression: expr as ESTree.CallExpression | ESTree.MemberExpression
     });
   }
 

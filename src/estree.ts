@@ -68,7 +68,6 @@ export type Node =
   | EmptyStatement
   | ExportAllDeclaration
   | ExportDefaultDeclaration
-  | ExportNamespaceSpecifier
   | ExportNamedDeclaration
   | ExportSpecifier
   | ExpressionStatement
@@ -140,7 +139,6 @@ export type DeclarationStatement =
   | ClassDeclaration
   | ClassExpression
   | ExportDefaultDeclaration
-  | ExportNamespaceSpecifier
   | ExportAllDeclaration
   | ExportNamedDeclaration
   | FunctionDeclaration;
@@ -415,12 +413,9 @@ export interface EmptyStatement extends _Node {
 export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
   source: Literal;
+  exported: Identifier | null;
 }
 
-export interface ExportNamespaceSpecifier extends _Node {
-  type: 'ExportNamespaceSpecifier';
-  specifier: Identifier;
-}
 export interface ExportDefaultDeclaration extends _Node {
   type: 'ExportDefaultDeclaration';
   declaration: ExportDeclaration | Expression;
@@ -429,7 +424,7 @@ export interface ExportDefaultDeclaration extends _Node {
 export interface ExportNamedDeclaration extends _Node {
   type: 'ExportNamedDeclaration';
   declaration: ExportDeclaration | null;
-  specifiers: (ExportNamespaceSpecifier | ExportSpecifier)[];
+  specifiers: ExportSpecifier[];
   source: Literal | null;
 }
 

@@ -147,8 +147,81 @@ describe('Expressions -In', () => {
                 name: '__proto'
               },
               operator: 'in'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '"use strict"',
+      Context.OptionsRaw | Context.OptionsDirectives,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'use strict',
+              raw: '"use strict"'
             },
-            directive: 'valueOf'
+            directive: 'use strict'
+          }
+        ]
+      }
+    ],
+    [
+      '"any-string"',
+      Context.OptionsRaw | Context.OptionsDirectives,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'any-string',
+              raw: '"any-string"'
+            },
+            directive: 'any-string'
+          }
+        ]
+      }
+    ],
+    [
+      '"any-string"',
+      Context.OptionsRaw,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'any-string',
+              raw: '"any-string"'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '123',
+      Context.OptionsRaw | Context.OptionsDirectives,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 123,
+              raw: '123'
+            }
           }
         ]
       }
