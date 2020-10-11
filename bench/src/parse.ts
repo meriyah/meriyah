@@ -32,10 +32,7 @@ const results: {
 };
 
 const format = function format(hz: number): string {
-  return (~~(hz * 100) / 100)
-    .toString()
-    .padEnd(4, ' ')
-    .padStart(6, ' ');
+  return (~~(hz * 100) / 100).toString().padEnd(4, ' ').padStart(6, ' ');
 };
 
 const onCycle = function onCycle(event: any): void {
@@ -68,13 +65,13 @@ const suite = new Benchmark.Suite(optionNames, { onCycle, onComplete });
 
 for (const name in files) {
   const source = files[name];
-  suite.add(`v1 ${name.padEnd(14, ' ')} ${optionNames}`, function() {
+  suite.add(`v1 ${name.padEnd(14, ' ')} ${optionNames}`, function () {
     master.cherow.parse(source, options);
   });
 }
 for (const name in files) {
   const source = files[name];
-  suite.add(`v2 ${name.padEnd(14, ' ')} ${optionNames}`, function() {
+  suite.add(`v2 ${name.padEnd(14, ' ')} ${optionNames}`, function () {
     local.cherow.parse(source, options);
   });
 }

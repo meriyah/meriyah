@@ -102,7 +102,7 @@ function decompress(compressed) {
   return new Function(`return ${makeDecompress(compressed)}`)();
 }
 
-const makeDecompress = compressed => `((compressed, lookup) => {
+const makeDecompress = (compressed) => `((compressed, lookup) => {
     const result = new Uint32Array(${compressed.size})
     let index = 0;
     let subIndex = 0
@@ -166,7 +166,7 @@ ${opts.eval ? 'return' : 'export'} {${Object.keys(opts.exports)}};
 
 if (require.main === module) {
   const path = require('path');
-  const load = name => {
+  const load = (name) => {
     const mod = require.resolve(`unicode-13.0.0/${name}/code-points`);
     const list = require(mod);
     delete require.cache[mod];
@@ -176,16 +176,16 @@ if (require.main === module) {
   const stream = require('fs').createWriteStream(path.resolve(__dirname, '../src/unicode.ts'));
 
   generate({
-    write: str =>
+    write: (str) =>
       new Promise((resolve, reject) => {
-        stream.write(str, err => (err != null ? reject(err) : resolve()));
+        stream.write(str, (err) => (err != null ? reject(err) : resolve()));
       }),
     exports: {
       isIDContinue: [load('Binary_Property/ID_Continue')],
       isIDStart: [load('Binary_Property/ID_Start')],
       mustEscape: [load('General_Category/Other'), load('General_Category/Separator')]
     }
-  }).catch(e =>
+  }).catch((e) =>
     process.nextTick(() => {
       throw e;
     })

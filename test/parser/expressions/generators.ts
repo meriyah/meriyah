@@ -4,7 +4,10 @@ import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Generators', () => {
-  fail('Expressions - Generators (pass)', [['foo\n++', Context.None], ['if (foo\n++);', Context.None]]);
+  fail('Expressions - Generators (pass)', [
+    ['foo\n++', Context.None],
+    ['if (foo\n++);', Context.None]
+  ]);
 
   for (const arg of [
     'var yield;',
