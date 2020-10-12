@@ -1365,7 +1365,7 @@ System.register('meriyah', [], function (exports) {
               parser.tokenValue += parser.source.slice(start, parser.index);
           }
           const length = parser.tokenValue.length;
-          if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+          if (isValidAsKeyword && length >= 2 && length <= 11) {
               const token = descKeywordTable[parser.tokenValue];
               if (token === void 0)
                   return 208897;
@@ -6449,8 +6449,6 @@ System.register('meriyah', [], function (exports) {
               name: tokenValue
           });
       }
-
-
 
       var estree = /*#__PURE__*/Object.freeze({
         __proto__: null

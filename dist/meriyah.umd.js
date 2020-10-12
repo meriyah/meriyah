@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.meriyah = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.meriyah = {}));
 }(this, (function (exports) { 'use strict';
 
   const errorMessages = {
@@ -1360,7 +1360,7 @@
           parser.tokenValue += parser.source.slice(start, parser.index);
       }
       const length = parser.tokenValue.length;
-      if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+      if (isValidAsKeyword && length >= 2 && length <= 11) {
           const token = descKeywordTable[parser.tokenValue];
           if (token === void 0)
               return 208897;
@@ -6444,8 +6444,6 @@
           name: tokenValue
       });
   }
-
-
 
   var estree = /*#__PURE__*/Object.freeze({
     __proto__: null
