@@ -71,7 +71,7 @@ export function scanIdentifierSlowCase(
 
   const length = parser.tokenValue.length;
 
-  if (isValidAsKeyword && (length >= 2 && length <= 11)) {
+  if (isValidAsKeyword && length >= 2 && length <= 11) {
     const token: Token | undefined = descKeywordTable[parser.tokenValue];
     if (token === void 0) return Token.Identifier;
     if (!hasEscape) return token;

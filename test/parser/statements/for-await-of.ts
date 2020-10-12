@@ -43,8 +43,8 @@ describe('Statements - For await of', () => {
     'for await(value of (x + x)) {}'
   ];
 
-  wrappers.forEach(wrapper => {
-    expressions.forEach(exp => {
+  wrappers.forEach((wrapper) => {
+    expressions.forEach((exp) => {
       it(wrapper.start + exp + wrapper.finish, () => {
         t.doesNotThrow(() => {
           parseSource(wrapper.start + exp + wrapper.finish, undefined, Context.None);
