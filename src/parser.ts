@@ -1699,7 +1699,15 @@ export function parseTryStatement(
   if (parser.token === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
     const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.CatchStatement) : void 0;
-    finalizer = parseBlock(parser, context, finalizerScope, { $: labels }, tokenPos, linePos, colPos);
+    finalizer = parseBlock(
+      parser,
+      context,
+      finalizerScope,
+      { $: labels },
+      parser.tokenPos,
+      parser.linePos,
+      parser.colPos
+    );
   }
 
   if (!handler && !finalizer) {

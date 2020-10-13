@@ -1276,7 +1276,7 @@ describe('Statements - Try', () => {
     ],
     [
       'try {try { } catch { } finally { }} catch ({e}) { }',
-      Context.None,
+      Context.None | Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1290,22 +1290,100 @@ describe('Statements - Try', () => {
                   type: 'TryStatement',
                   block: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
+                    start: 9,
+                    end: 12,
+                    range: [9, 12],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 9
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
+                    }
                   },
                   handler: {
                     type: 'CatchClause',
                     param: null,
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
+                      start: 19,
+                      end: 22,
+                      range: [19, 22],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 19
+                        },
+                        end: {
+                          line: 1,
+                          column: 22
+                        }
+                      }
+                    },
+                    start: 13,
+                    end: 22,
+                    range: [13, 22],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 13
+                      },
+                      end: {
+                        line: 1,
+                        column: 22
+                      }
                     }
                   },
                   finalizer: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
+                    start: 31,
+                    end: 34,
+                    range: [31, 34],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 31
+                      },
+                      end: {
+                        line: 1,
+                        column: 34
+                      }
+                    }
+                  },
+                  start: 5,
+                  end: 34,
+                  range: [5, 34],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 34
+                    }
                   }
                 }
-              ]
+              ],
+              start: 4,
+              end: 35,
+              range: [4, 35],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 4
+                },
+                end: {
+                  line: 1,
+                  column: 35
+                }
+              }
             },
             handler: {
               type: 'CatchClause',
@@ -1314,29 +1392,133 @@ describe('Statements - Try', () => {
                 properties: [
                   {
                     type: 'Property',
-                    kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
+                      start: 44,
+                      end: 45,
+                      range: [44, 45],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 44
+                        },
+                        end: {
+                          line: 1,
+                          column: 45
+                        }
+                      }
                     },
-                    computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
+                      start: 44,
+                      end: 45,
+                      range: [44, 45],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 44
+                        },
+                        end: {
+                          line: 1,
+                          column: 45
+                        }
+                      }
                     },
+                    kind: 'init',
+                    computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
+                    start: 44,
+                    end: 45,
+                    range: [44, 45],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 44
+                      },
+                      end: {
+                        line: 1,
+                        column: 45
+                      }
+                    }
                   }
-                ]
+                ],
+                start: 43,
+                end: 46,
+                range: [43, 46],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 43
+                  },
+                  end: {
+                    line: 1,
+                    column: 46
+                  }
+                }
               },
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
+                start: 48,
+                end: 51,
+                range: [48, 51],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 48
+                  },
+                  end: {
+                    line: 1,
+                    column: 51
+                  }
+                }
+              },
+              start: 36,
+              end: 51,
+              range: [36, 51],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 36
+                },
+                end: {
+                  line: 1,
+                  column: 51
+                }
               }
             },
-            finalizer: null
+            finalizer: null,
+            start: 0,
+            end: 51,
+            range: [0, 51],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 51
+              }
+            }
           }
-        ]
+        ],
+        start: 0,
+        end: 51,
+        range: [0, 51],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 51
+          }
+        }
       }
     ],
     [
