@@ -4430,13 +4430,13 @@ export function parseBigIntLiteral(
       ? {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw,
+          bigint: tokenRaw.substring(0, tokenRaw.length - 1), // without the ending "n"
           raw: tokenRaw
         }
       : {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw
+          bigint: tokenRaw.substring(0, tokenRaw.length - 1) // without the ending "n"
         }
   );
 }
