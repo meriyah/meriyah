@@ -2,6 +2,7 @@ const { join } = require('path');
 const rollup = require('rollup');
 const typescript2 = require('rollup-plugin-typescript2');
 const { terser } = require('rollup-plugin-terser');
+const json = require('@rollup/plugin-json');
 const ts = require('typescript');
 const project = require('./project');
 
@@ -26,7 +27,8 @@ async function bunldeCJS() {
       typescript2({
         tsconfig: project['tsconfig.json'].path,
         typescript: ts
-      })
+      }),
+      json()
     ]
   });
 
@@ -54,6 +56,7 @@ async function bundleES6() {
           tsconfig: project['tsconfig.json'].path,
           typescript: ts
         }),
+        json(),
         ...(type === 'minified' ? [terser()] : [])
       ]
     });
@@ -102,6 +105,7 @@ async function bundleES5() {
           tsconfigOverride: { compilerOptions: { target: 'es5' } },
           typescript: ts
         }),
+        json(),
         ...(type === 'minified' ? [terser()] : [])
       ]
     });
