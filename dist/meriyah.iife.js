@@ -6446,6 +6446,8 @@ var meriyah = (function (exports) {
     __proto__: null
   });
 
+  var version = "3.0.2";
+
   function parseScript(source, options) {
       return parseSource(source, options, 0);
   }
@@ -6455,7 +6457,6 @@ var meriyah = (function (exports) {
   function parse(source, options) {
       return parseSource(source, options, 0);
   }
-  const version = '2.1.0';
 
   exports.ESTree = estree;
   exports.parse = parse;

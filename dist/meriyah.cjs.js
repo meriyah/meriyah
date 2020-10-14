@@ -6447,6 +6447,8 @@ var estree = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
 
+var version = "3.0.2";
+
 function parseScript(source, options) {
     return parseSource(source, options, 0);
 }
@@ -6456,7 +6458,6 @@ function parseModule(source, options) {
 function parse(source, options) {
     return parseSource(source, options, 0);
 }
-const version = '2.1.0';
 
 exports.ESTree = estree;
 exports.parse = parse;

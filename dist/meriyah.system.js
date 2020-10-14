@@ -6455,6 +6455,8 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
+      var version = exports('version', "3.0.2");
+
       function parseScript(source, options) {
           return parseSource(source, options, 0);
       }
@@ -6464,7 +6466,6 @@ System.register('meriyah', [], function (exports) {
       function parse(source, options) {
           return parseSource(source, options, 0);
       }
-      const version = exports('version', '2.1.0');
 
     }
   };
