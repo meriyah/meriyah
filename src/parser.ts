@@ -4057,7 +4057,8 @@ export function parseOptionalChain(
     node = finishNode(parser, context, start, line, column, {
       type: 'CallExpression',
       callee: expr,
-      arguments: args
+      arguments: args,
+      optional: true
     });
   } else {
     if ((parser.token & (Token.IsIdentifier | Token.Keyword)) < 1) report(parser, Errors.InvalidDotProperty);

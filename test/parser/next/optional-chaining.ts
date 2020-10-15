@@ -1063,6 +1063,46 @@ describe('Next - Optional chaining', () => {
         start: 0,
         type: 'Program'
       }
+    ],
+    [
+      `a?.()`,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 0,
+                  end: 1,
+                  range: [0, 1]
+                },
+                arguments: [],
+                optional: true,
+                start: 0,
+                end: 5,
+                range: [0, 5]
+              },
+              start: 0,
+              end: 5,
+              range: [0, 5]
+            },
+            start: 0,
+            end: 5,
+            range: [0, 5]
+          }
+        ],
+        start: 0,
+        end: 5,
+        range: [0, 5]
+      }
     ]
   ]);
 });
