@@ -8,11 +8,6 @@ describe('Statements - Do while', () => {
     ['do async \n () => x; while(y)', Context.None],
     ['do async () \n => x; while(y)', Context.None],
     ['do let x = 1; while (false)', Context.None],
-    ['do switch(x){} while(x) x', Context.None],
-    ['do try {} catch {} while(x) x', Context.None],
-    ['do try {} catch {} while(x) x', Context.None],
-    ['do if (x) {} while(x) x', Context.None],
-    ['do debugger; while(x) x', Context.None],
     ['do x, y while (z)', Context.None],
     ['do foo while (bar);', Context.None],
     ['do ()=>x while(c)', Context.None],
@@ -25,7 +20,6 @@ describe('Statements - Do while', () => {
     ],
     ['do let {} = y', Context.None],
     ['do debugger while(x) x', Context.None],
-    ['do;while(0) 0;', Context.None],
     ['do x: function s(){}while(y)', Context.None],
     [
       `do throw function (v, h) {
@@ -38,7 +32,7 @@ describe('Statements - Do while', () => {
   pass('Statements - Do while (pass)', [
     [
       `do;while(0) 0;`,
-      Context.OptionsSpecDeviation,
+      Context.None,
       {
         body: [
           {
@@ -695,6 +689,34 @@ while(y)
           }
         ],
         sourceType: 'script'
+      }
+    ],
+    [
+      'do {} while (false) false',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'DoWhileStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: false
+            }
+          }
+        ]
       }
     ]
   ]);

@@ -231,7 +231,7 @@ export interface ParserState {
 
 /**
  * Check for automatic semicolon insertion according to the rules
- * given in `ECMA-262, section 7.9, page 21`.
+ * given in `ECMA-262, section 11.9`.
  *
  * @param parser Parser object
  * @param context Context masks

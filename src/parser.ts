@@ -1825,7 +1825,11 @@ export function parseDoWhileStatement(
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  matchOrInsertSemicolon(parser, context | Context.AllowRegExp, context & Context.OptionsSpecDeviation);
+  // ECMA-262, section 11.9
+  // The previous token is ) and the inserted semicolon would then be parsed as the terminating semicolon of a do-while statement (13.7.2).
+  // This cannot be implemented in matchOrInsertSemicolon() because it doesn't know
+  // this RightRaren is the end of a do-while statement.
+  consumeOpt(parser, context, Token.Semicolon);
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
     body,
