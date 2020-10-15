@@ -12,8 +12,7 @@ describe('Statements  Switch', () => {
     ['switch(0) { case 0: function f(){ break; } }', Context.None],
     ['switch(0) { default: !function(){ break; }; }', Context.None],
     ['switch(0) { default: function f(){ break; } }', Context.None],
-    ['switch(x) { default: break; case y: break; case z: break; default: break; }', Context.None],
-    ['do {} while(x) x', Context.None]
+    ['switch(x) { default: break; case y: break; case z: break; default: break; }', Context.None]
   ]);
 
   pass('Statements  Switch (pass)', [

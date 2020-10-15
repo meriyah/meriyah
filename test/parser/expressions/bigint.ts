@@ -154,7 +154,7 @@ describe('Expressions - BigInt', () => {
             expression: {
               type: 'Literal',
               value: BigInt(1),
-              bigint: '1n',
+              bigint: '1',
               start: 0,
               end: 2,
               range: [0, 2]
@@ -183,7 +183,7 @@ describe('Expressions - BigInt', () => {
               left: {
                 type: 'Literal',
                 value: BigInt(1),
-                bigint: '1n',
+                bigint: '1',
                 start: 0,
                 end: 2,
                 range: [0, 2]
@@ -191,7 +191,7 @@ describe('Expressions - BigInt', () => {
               right: {
                 type: 'Literal',
                 value: BigInt(2333333),
-                bigint: '2333333n',
+                bigint: '2333333',
                 start: 5,
                 end: 13,
                 range: [5, 13]
