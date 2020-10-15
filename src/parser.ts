@@ -3923,6 +3923,12 @@ export function parseMemberOrUpdateExpression(
 
       /* Property */
       case Token.LeftBracket: {
+        let restoreHasOptionalChaining = false;
+        if ((parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining) {
+          restoreHasOptionalChaining = true;
+          parser.flags = (parser.flags | Flags.HasOptionalChaining) ^ Flags.HasOptionalChaining;
+        }
+
         nextToken(parser, context | Context.AllowRegExp);
 
         const { tokenPos, linePos, colPos } = parser;
@@ -3938,6 +3944,10 @@ export function parseMemberOrUpdateExpression(
           computed: true,
           property
         });
+
+        if (restoreHasOptionalChaining) {
+          parser.flags |= Flags.HasOptionalChaining;
+        }
         break;
       }
 

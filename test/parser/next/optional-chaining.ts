@@ -1103,6 +1103,172 @@ describe('Next - Optional chaining', () => {
         end: 5,
         range: [0, 5]
       }
+    ],
+    [
+      `a?.b[3].c?.(x).d`,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'MemberExpression',
+                    object: {
+                      type: 'MemberExpression',
+                      object: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'a',
+                          start: 0,
+                          end: 1,
+                          range: [0, 1]
+                        },
+                        computed: false,
+                        optional: true,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b',
+                          start: 3,
+                          end: 4,
+                          range: [3, 4]
+                        },
+                        start: 0,
+                        end: 4,
+                        range: [0, 4]
+                      },
+                      computed: true,
+                      property: {
+                        type: 'Literal',
+                        value: 3,
+                        start: 5,
+                        end: 6,
+                        range: [5, 6]
+                      },
+                      start: 0,
+                      end: 7,
+                      range: [0, 7]
+                    },
+                    computed: false,
+                    property: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 8,
+                      end: 9,
+                      range: [8, 9]
+                    },
+                    start: 0,
+                    end: 9,
+                    range: [0, 9]
+                  },
+                  arguments: [
+                    {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 12,
+                      end: 13,
+                      range: [12, 13]
+                    }
+                  ],
+                  optional: true,
+                  start: 0,
+                  end: 14,
+                  range: [0, 14]
+                },
+                computed: false,
+                property: {
+                  type: 'Identifier',
+                  name: 'd',
+                  start: 15,
+                  end: 16,
+                  range: [15, 16]
+                },
+                start: 0,
+                end: 16,
+                range: [0, 16]
+              },
+              start: 0,
+              end: 16,
+              range: [0, 16]
+            },
+            start: 0,
+            end: 16,
+            range: [0, 16]
+          }
+        ],
+        start: 0,
+        end: 16,
+        range: [0, 16]
+      }
+    ],
+    [
+      `({})?.a["b"]`,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ChainExpression',
+              expression: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'MemberExpression',
+                  object: {
+                    type: 'ObjectExpression',
+                    properties: [],
+                    start: 1,
+                    end: 3,
+                    range: [1, 3]
+                  },
+                  computed: false,
+                  optional: true,
+                  property: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 6,
+                    end: 7,
+                    range: [6, 7]
+                  },
+                  start: 0,
+                  end: 7,
+                  range: [0, 7]
+                },
+                computed: true,
+                property: {
+                  type: 'Literal',
+                  value: 'b',
+                  start: 8,
+                  end: 11,
+                  range: [8, 11]
+                },
+                start: 0,
+                end: 12,
+                range: [0, 12]
+              },
+              start: 0,
+              end: 12,
+              range: [0, 12]
+            },
+            start: 0,
+            end: 12,
+            range: [0, 12]
+          }
+        ],
+        start: 0,
+        end: 12,
+        range: [0, 12]
+      }
     ]
   ]);
 });
