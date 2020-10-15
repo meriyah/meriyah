@@ -4505,9 +4505,9 @@ describe('Expressions - Object', () => {
                         quasis: [
                           {
                             type: 'TemplateElement',
-                            start: 23,
+                            start: 20,
                             end: 23,
-                            range: [23, 23],
+                            range: [20, 23],
                             value: {
                               raw: 'c',
                               cooked: 'c'
@@ -4590,8 +4590,8 @@ describe('Expressions - Object', () => {
                           {
                             type: 'TemplateElement',
                             start: 46,
-                            end: 46,
-                            range: [46, 46],
+                            end: 49,
+                            range: [46, 49],
                             value: {
                               raw: '',
                               cooked: ''
@@ -4601,8 +4601,8 @@ describe('Expressions - Object', () => {
                           {
                             type: 'TemplateElement',
                             start: 50,
-                            end: 50,
-                            range: [50, 50],
+                            end: 53,
+                            range: [50, 53],
                             value: {
                               raw: 'e',
                               cooked: 'e'
