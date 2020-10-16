@@ -732,7 +732,7 @@ export interface TemplateElement extends _Node {
   type: 'TemplateElement';
   value: {
     raw: string;
-    cooked: string;
+    cooked: string | null;
   };
   tail: boolean;
 }

@@ -4000,13 +4000,13 @@ export function parseMemberOrUpdateExpression(
         /* Tagged Template */
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
+        expr = finishNode(parser, context, start, line, column, {
           type: 'TaggedTemplateExpression',
           tag: expr,
           quasi:
             parser.token === Token.TemplateContinuation
-              ? parseTemplate(parser, context | Context.TaggedTemplate, start, line, column)
-              : parseTemplateLiteral(parser, context, start, line, column)
+              ? parseTemplate(parser, context | Context.TaggedTemplate, parser.tokenPos, parser.linePos, parser.colPos)
+              : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
         });
     }
 
@@ -4503,11 +4503,14 @@ export function parseTemplateLiteral(
    */
 
   parser.assignable = AssignmentKind.CannotAssign;
+  const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
   consume(parser, context, Token.TemplateSpan);
+  const quasis = [parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, true)];
+
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateLiteral',
     expressions: [],
-    quasis: [parseTemplateElement(parser, context, true)]
+    quasis
   });
 }
 
@@ -4526,25 +4529,34 @@ export function parseTemplate(
 ): ESTree.TemplateLiteral {
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
-  const quasis = [parseTemplateElement(parser, context, /* tail */ false)];
-
+  const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
   consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
+  const quasis = [
+    parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, /* tail */ false)
+  ];
 
   const expressions = [parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos)];
 
   if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
 
   while ((parser.token = scanTemplateTail(parser, context)) !== Token.TemplateSpan) {
-    const { tokenPos, linePos, colPos } = parser;
-    quasis.push(parseTemplateElement(parser, context, /* tail */ false));
+    const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
     consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
+    quasis.push(
+      parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, /* tail */ false)
+    );
+
     expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
     if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   }
 
-  quasis.push(parseTemplateElement(parser, context, /* tail */ true));
-
-  consume(parser, context, Token.TemplateSpan);
+  {
+    const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
+    consume(parser, context, Token.TemplateSpan);
+    quasis.push(
+      parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, /* tail */ true)
+    );
+  }
 
   return finishNode(parser, context, start, line, column, {
     type: 'TemplateLiteral',
@@ -4559,16 +4571,46 @@ export function parseTemplate(
  * @param parser  Parser object
  * @param tail
  */
-export function parseTemplateElement(parser: ParserState, context: Context, tail: boolean): ESTree.TemplateElement {
-  const { tokenPos, linePos, colPos } = parser;
-  return finishNode(parser, context, tokenPos, linePos, colPos, {
+export function parseTemplateElement(
+  parser: ParserState,
+  context: Context,
+  cooked: string | null,
+  raw: string,
+  start: number,
+  line: number,
+  col: number,
+  tail: boolean
+): ESTree.TemplateElement {
+  const node = finishNode(parser, context, start, line, col, {
     type: 'TemplateElement',
     value: {
-      cooked: parser.tokenValue,
-      raw: parser.tokenRaw
+      cooked,
+      raw
     },
     tail
-  });
+  }) as ESTree.TemplateElement;
+
+  const tailSize = tail ? 1 : 2;
+
+  // Patch range
+  if (context & Context.OptionsRanges) {
+    // skip the front "`" or "}"
+    (node.start as number) += 1;
+    (node.range as [number, number])[0] += 1;
+    // skip the tail "`" or "${"
+    (node.end as number) -= tailSize;
+    (node.range as [number, number])[1] -= tailSize;
+  }
+
+  // Patch loc
+  if (context & Context.OptionsLoc) {
+    // skip the front "`" or "}"
+    (node.loc as ESTree.SourceLocation).start.column += 1;
+    // skip the tail "`" or "${"
+    (node.loc as ESTree.SourceLocation).end.column -= tailSize;
+  }
+
+  return node;
 }
 
 /**
@@ -7422,13 +7464,13 @@ export function parseMembeExpressionNoCall(
       return parseMembeExpressionNoCall(
         parser,
         context,
-        finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
+        finishNode(parser, context, start, line, column, {
           type: 'TaggedTemplateExpression',
           tag: expr,
           quasi:
             parser.token === Token.TemplateContinuation
-              ? parseTemplate(parser, context | Context.TaggedTemplate, start, line, column)
-              : parseTemplateLiteral(parser, context, start, line, column)
+              ? parseTemplate(parser, context | Context.TaggedTemplate, parser.tokenPos, parser.linePos, parser.colPos)
+              : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
         }),
         0,
         start,
