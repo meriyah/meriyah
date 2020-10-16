@@ -8317,7 +8317,7 @@ function parseClassElementList(
       default: // ignore
     }
   } else if (token === Token.LeftBracket) {
-    kind = PropertyKind.Computed;
+    kind |= PropertyKind.Computed;
     key = parseComputedPropertyName(parser, inheritedContext, inGroup);
   } else if ((token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     key = parseLiteral(parser, context);

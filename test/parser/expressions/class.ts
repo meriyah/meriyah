@@ -1143,7 +1143,7 @@ describe('Expressions - Class', () => {
         2() { return 2; }
         1.1() { return 1.1; }
         2.2() { return 2.2; }
-        [1+3]() { return 4; }
+        static [1+3]() { return 4; }
         [1.1+1]() { return 2.1; }
         ["foo"+1]() { return "foo1"; }
         [sym1](){return "bart";}
@@ -1413,7 +1413,7 @@ describe('Expressions - Class', () => {
                 {
                   type: 'MethodDefinition',
                   kind: 'method',
-                  static: false,
+                  static: true,
                   computed: true,
                   key: {
                     type: 'BinaryExpression',
