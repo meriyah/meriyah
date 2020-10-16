@@ -51,6 +51,7 @@ export function skipSingleLineComment(
   type: CommentType
 ): LexerState {
   const { index } = parser;
+  let end = index;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;
@@ -63,9 +64,18 @@ export function skipSingleLineComment(
       break;
     }
     advanceChar(parser);
+    end++;
   }
   if (parser.onComment)
-    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.index), index, parser.index);
+    parser.onComment(
+      CommentTypes[type & 0xff],
+      source.slice(index, end),
+      // For Single, start before "//",
+      // For HTMLOpen, start before "<!--",
+      // For HTMLClose, start before "\n-->"
+      index - (type === CommentType.Single ? 2 : 4),
+      end
+    );
   return state | LexerState.NewLine;
 }
 
@@ -91,8 +101,8 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
             parser.onComment(
               CommentTypes[CommentType.Multi & 0xff],
               source.slice(index, parser.index - 2),
-              index,
-              parser.index
+              index - 2, // start before '/*'
+              parser.index // end after '*/'
             );
           return state;
         }
