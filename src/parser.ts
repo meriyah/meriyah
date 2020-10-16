@@ -4581,14 +4581,36 @@ export function parseTemplateElement(
   col: number,
   tail: boolean
 ): ESTree.TemplateElement {
-  return finishNode(parser, context, start, line, col, {
+  const node = finishNode(parser, context, start, line, col, {
     type: 'TemplateElement',
     value: {
       cooked,
       raw
     },
     tail
-  });
+  }) as ESTree.TemplateElement;
+
+  const tailSize = tail ? 1 : 2;
+
+  // Patch range
+  if (context & Context.OptionsRanges) {
+    // skip the front "`" or "}"
+    (node.start as number) += 1;
+    (node.range as [number, number])[0] += 1;
+    // skip the tail "`" or "${"
+    (node.end as number) -= tailSize;
+    (node.range as [number, number])[1] -= tailSize;
+  }
+
+  // Patch loc
+  if (context & Context.OptionsLoc) {
+    // skip the front "`" or "}"
+    (node.loc as ESTree.SourceLocation).start.column += 1;
+    // skip the tail "`" or "${"
+    (node.loc as ESTree.SourceLocation).end.column -= tailSize;
+  }
+
+  return node;
 }
 
 /**

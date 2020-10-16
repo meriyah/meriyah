@@ -3510,17 +3510,17 @@ describe('Expressions - Template', () => {
                       raw: 'a'
                     },
                     tail: true,
-                    start: 4,
-                    end: 7,
-                    range: [4, 7],
+                    start: 5,
+                    end: 6,
+                    range: [5, 6],
                     loc: {
                       start: {
                         line: 1,
-                        column: 4
+                        column: 5
                       },
                       end: {
                         line: 1,
-                        column: 7
+                        column: 6
                       }
                     }
                   }
@@ -3599,17 +3599,17 @@ describe('Expressions - Template', () => {
                       raw: 'b'
                     },
                     tail: true,
-                    start: 12,
-                    end: 15,
-                    range: [12, 15],
+                    start: 13,
+                    end: 14,
+                    range: [13, 14],
                     loc: {
                       start: {
                         line: 2,
-                        column: 4
+                        column: 5
                       },
                       end: {
                         line: 2,
-                        column: 7
+                        column: 6
                       }
                     }
                   }
