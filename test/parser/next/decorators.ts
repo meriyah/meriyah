@@ -391,27 +391,26 @@ describe('Next - Decorators', () => {
       }
     ],
     [
-      `@bar export default
+      `export default @bar
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
       {
         body: [
-          [
-            {
-              expression: {
-                name: 'bar',
-                type: 'Identifier'
-              },
-              type: 'Decorator'
-            }
-          ],
           {
             declaration: {
               body: {
                 body: [],
                 type: 'ClassBody'
               },
-              decorators: [],
+              decorators: [
+                {
+                  expression: {
+                    name: 'bar',
+                    type: 'Identifier'
+                  },
+                  type: 'Decorator'
+                }
+              ],
               id: {
                 name: 'Foo',
                 type: 'Identifier'
@@ -439,98 +438,97 @@ describe('Next - Decorators', () => {
       Context.OptionsNext | Context.Module | Context.Strict,
       {
         body: [
-          [
-            {
-              expression: {
-                arguments: [
-                  {
-                    properties: [
-                      {
-                        computed: false,
-                        key: {
-                          name: 'kind',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          type: 'Literal',
-                          value: 'initializer'
-                        }
-                      },
-                      {
-                        computed: false,
-                        key: {
-                          name: 'placement',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          type: 'Literal',
-                          value: 'own'
-                        }
-                      },
-                      {
-                        computed: false,
-                        key: {
-                          name: 'initializer',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: true,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          async: false,
-                          body: {
-                            body: [
-                              {
-                                expression: {
-                                  left: {
-                                    name: 'self',
-                                    type: 'Identifier'
-                                  },
-                                  operator: '=',
-                                  right: {
-                                    type: 'ThisExpression'
-                                  },
-                                  type: 'AssignmentExpression'
-                                },
-                                type: 'ExpressionStatement'
-                              }
-                            ],
-                            type: 'BlockStatement'
-                          },
-                          generator: false,
-                          id: null,
-                          params: [],
-                          type: 'FunctionExpression'
-                        }
-                      }
-                    ],
-                    type: 'ObjectExpression'
-                  }
-                ],
-                callee: {
-                  name: 'pushElement',
-                  type: 'Identifier'
-                },
-                type: 'CallExpression'
-              },
-              type: 'Decorator'
-            }
-          ],
           {
             body: {
               body: [],
               type: 'ClassBody'
             },
-            decorators: [],
+            decorators: [
+              {
+                expression: {
+                  arguments: [
+                    {
+                      properties: [
+                        {
+                          computed: false,
+                          key: {
+                            name: 'kind',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: false,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            type: 'Literal',
+                            value: 'initializer'
+                          }
+                        },
+                        {
+                          computed: false,
+                          key: {
+                            name: 'placement',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: false,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            type: 'Literal',
+                            value: 'own'
+                          }
+                        },
+                        {
+                          computed: false,
+                          key: {
+                            name: 'initializer',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: true,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            async: false,
+                            body: {
+                              body: [
+                                {
+                                  expression: {
+                                    left: {
+                                      name: 'self',
+                                      type: 'Identifier'
+                                    },
+                                    operator: '=',
+                                    right: {
+                                      type: 'ThisExpression'
+                                    },
+                                    type: 'AssignmentExpression'
+                                  },
+                                  type: 'ExpressionStatement'
+                                }
+                              ],
+                              type: 'BlockStatement'
+                            },
+                            generator: false,
+                            id: null,
+                            params: [],
+                            type: 'FunctionExpression'
+                          }
+                        }
+                      ],
+                      type: 'ObjectExpression'
+                    }
+                  ],
+                  callee: {
+                    name: 'pushElement',
+                    type: 'Identifier'
+                  },
+                  type: 'CallExpression'
+                },
+                type: 'Decorator'
+              }
+            ],
             id: {
               name: 'A',
               type: 'Identifier'

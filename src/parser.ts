@@ -426,8 +426,6 @@ export function parseModuleItem(
       return parseExportDeclaration(parser, context, scope, start, line, column);
     case Token.ImportKeyword:
       return parseImportDeclaration(parser, context, scope, start, line, column);
-    case Token.Decorator:
-      return parseDecorators(parser, context) as ESTree.Decorator[];
     default:
       return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
