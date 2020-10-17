@@ -3470,6 +3470,207 @@ describe('Expressions - Template', () => {
           }
         ]
       }
+    ],
+    [
+      'tagA`a`\ntagB`b`',
+      Context.None | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'TaggedTemplateExpression',
+              tag: {
+                type: 'Identifier',
+                name: 'tagA',
+                start: 0,
+                end: 4,
+                range: [0, 4],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 4
+                  }
+                }
+              },
+              quasi: {
+                type: 'TemplateLiteral',
+                expressions: [],
+                quasis: [
+                  {
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: 'a',
+                      raw: 'a'
+                    },
+                    tail: true,
+                    start: 5,
+                    end: 6,
+                    range: [5, 6],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 6
+                      }
+                    }
+                  }
+                ],
+                start: 4,
+                end: 7,
+                range: [4, 7],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 4
+                  },
+                  end: {
+                    line: 1,
+                    column: 7
+                  }
+                }
+              },
+              start: 0,
+              end: 7,
+              range: [0, 7],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 7
+                }
+              }
+            },
+            start: 0,
+            end: 7,
+            range: [0, 7],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 7
+              }
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'TaggedTemplateExpression',
+              tag: {
+                type: 'Identifier',
+                name: 'tagB',
+                start: 8,
+                end: 12,
+                range: [8, 12],
+                loc: {
+                  start: {
+                    line: 2,
+                    column: 0
+                  },
+                  end: {
+                    line: 2,
+                    column: 4
+                  }
+                }
+              },
+              quasi: {
+                type: 'TemplateLiteral',
+                expressions: [],
+                quasis: [
+                  {
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: 'b',
+                      raw: 'b'
+                    },
+                    tail: true,
+                    start: 13,
+                    end: 14,
+                    range: [13, 14],
+                    loc: {
+                      start: {
+                        line: 2,
+                        column: 5
+                      },
+                      end: {
+                        line: 2,
+                        column: 6
+                      }
+                    }
+                  }
+                ],
+                start: 12,
+                end: 15,
+                range: [12, 15],
+                loc: {
+                  start: {
+                    line: 2,
+                    column: 4
+                  },
+                  end: {
+                    line: 2,
+                    column: 7
+                  }
+                }
+              },
+              start: 8,
+              end: 15,
+              range: [8, 15],
+              loc: {
+                start: {
+                  line: 2,
+                  column: 0
+                },
+                end: {
+                  line: 2,
+                  column: 7
+                }
+              }
+            },
+            start: 8,
+            end: 15,
+            range: [8, 15],
+            loc: {
+              start: {
+                line: 2,
+                column: 0
+              },
+              end: {
+                line: 2,
+                column: 7
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 15,
+        range: [0, 15],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 2,
+            column: 7
+          }
+        }
+      }
     ]
   ]);
 });

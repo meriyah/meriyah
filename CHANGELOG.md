@@ -1,3 +1,20 @@
+## [3.0.3](https://github.com/meriyah/meriyah/compare/v3.0.2...v3.0.3) (2020-10-16)
+
+
+### Bug Fixes
+
+* add missing optional flag on CallExpression ([903c7f5](https://github.com/meriyah/meriyah/commit/903c7f5d8c296a2517d695a1948d52e7b5115238)), closes [#110](https://github.com/meriyah/meriyah/issues/110)
+* auto insert semicolon for do-while statement ([faa96bb](https://github.com/meriyah/meriyah/commit/faa96bb299f10bddfb05177ed89b94087eb4e71e)), closes [#102](https://github.com/meriyah/meriyah/issues/102)
+* bigint property should exclude the ending 'n' ([e7ed3df](https://github.com/meriyah/meriyah/commit/e7ed3df61d20d185ee7afd955c019354959da10f)), closes [#111](https://github.com/meriyah/meriyah/issues/111)
+* export version directly from package.json ([46a7d69](https://github.com/meriyah/meriyah/commit/46a7d6932ad83c431500a67bd967150920ab50af)), closes [#107](https://github.com/meriyah/meriyah/issues/107)
+* fix [] and () inside the ChainExpression ([fa72f93](https://github.com/meriyah/meriyah/commit/fa72f933e1ca444a67b5640ab9d40b96b3102c29))
+* fix finally block start, follow other parsers on comment start and end ([fe00a67](https://github.com/meriyah/meriyah/commit/fe00a67ad192ec7d7b81088b3caabca1cef44ebf)), closes [#104](https://github.com/meriyah/meriyah/issues/104)
+* fix missing static for computed class property ([bd00159](https://github.com/meriyah/meriyah/commit/bd00159c8f22875937237d2a0f5f7cba09b0150f)), closes [#106](https://github.com/meriyah/meriyah/issues/106)
+* fix TemplateElement range and loc ([2a3632c](https://github.com/meriyah/meriyah/commit/2a3632cc2012067b897ffd7776c0bdaa904d20e9))
+* fix wrong cooked value in TemplateElement, fix wrong loc and range in various template nodes ([ff71744](https://github.com/meriyah/meriyah/commit/ff71744d5b20b87c3bfbba6534656d3768215207)), closes [#109](https://github.com/meriyah/meriyah/issues/109) [#108](https://github.com/meriyah/meriyah/issues/108)
+
+
+
 ## [3.0.2](https://github.com/meriyah/meriyah/compare/v3.0.0...v3.0.2) (2020-10-06)
 
 
