@@ -3930,12 +3930,12 @@ var meriyah = (function (exports) {
                       report(parser, 160);
                   }
                   parser.assignable = 2;
-                  expr = finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
+                  expr = finishNode(parser, context, start, line, column, {
                       type: 'TaggedTemplateExpression',
                       tag: expr,
                       quasi: parser.token === 67174408
-                          ? parseTemplate(parser, context | 65536, start, line, column)
-                          : parseTemplateLiteral(parser, context, start, line, column)
+                          ? parseTemplate(parser, context | 65536, parser.tokenPos, parser.linePos, parser.colPos)
+                          : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
                   });
           }
           expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 1, start, line, column);
@@ -4170,46 +4170,65 @@ var meriyah = (function (exports) {
   }
   function parseTemplateLiteral(parser, context, start, line, column) {
       parser.assignable = 2;
+      const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
       consume(parser, context, 67174409);
+      const quasis = [parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, true)];
       return finishNode(parser, context, start, line, column, {
           type: 'TemplateLiteral',
           expressions: [],
-          quasis: [parseTemplateElement(parser, context, true)]
+          quasis
       });
   }
   function parseTemplate(parser, context, start, line, column) {
       context = (context | 134217728) ^ 134217728;
-      const quasis = [parseTemplateElement(parser, context, false)];
+      const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
       consume(parser, context | 32768, 67174408);
+      const quasis = [
+          parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, false)
+      ];
       const expressions = [parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos)];
       if (parser.token !== 1074790415)
           report(parser, 80);
       while ((parser.token = scanTemplateTail(parser, context)) !== 67174409) {
-          const { tokenPos, linePos, colPos } = parser;
-          quasis.push(parseTemplateElement(parser, context, false));
+          const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
           consume(parser, context | 32768, 67174408);
+          quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, false));
           expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
           if (parser.token !== 1074790415)
               report(parser, 80);
       }
-      quasis.push(parseTemplateElement(parser, context, true));
-      consume(parser, context, 67174409);
+      {
+          const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
+          consume(parser, context, 67174409);
+          quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, true));
+      }
       return finishNode(parser, context, start, line, column, {
           type: 'TemplateLiteral',
           expressions,
           quasis
       });
   }
-  function parseTemplateElement(parser, context, tail) {
-      const { tokenPos, linePos, colPos } = parser;
-      return finishNode(parser, context, tokenPos, linePos, colPos, {
+  function parseTemplateElement(parser, context, cooked, raw, start, line, col, tail) {
+      const node = finishNode(parser, context, start, line, col, {
           type: 'TemplateElement',
           value: {
-              cooked: parser.tokenValue,
-              raw: parser.tokenRaw
+              cooked,
+              raw
           },
           tail
       });
+      const tailSize = tail ? 1 : 2;
+      if (context & 2) {
+          node.start += 1;
+          node.range[0] += 1;
+          node.end -= tailSize;
+          node.range[1] -= tailSize;
+      }
+      if (context & 4) {
+          node.loc.start.column += 1;
+          node.loc.end.column -= tailSize;
+      }
+      return node;
   }
   function parseSpreadElement(parser, context, start, line, column) {
       context = (context | 134217728) ^ 134217728;
@@ -5648,12 +5667,12 @@ var meriyah = (function (exports) {
           }
           else if (token === 67174408 || token === 67174409) {
               parser.assignable = 2;
-              return parseMembeExpressionNoCall(parser, context, finishNode(parser, context, parser.tokenPos, parser.linePos, parser.colPos, {
+              return parseMembeExpressionNoCall(parser, context, finishNode(parser, context, start, line, column, {
                   type: 'TaggedTemplateExpression',
                   tag: expr,
                   quasi: parser.token === 67174408
-                      ? parseTemplate(parser, context | 65536, start, line, column)
-                      : parseTemplateLiteral(parser, context, start, line, column)
+                      ? parseTemplate(parser, context | 65536, parser.tokenPos, parser.linePos, parser.colPos)
+                      : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
               }), 0, start, line, column);
           }
       }
@@ -6027,7 +6046,7 @@ var meriyah = (function (exports) {
           }
       }
       else if (token === 69271571) {
-          kind = 2;
+          kind |= 2;
           key = parseComputedPropertyName(parser, inheritedContext, inGroup);
       }
       else if ((token & 134217728) === 134217728) {
@@ -6457,7 +6476,7 @@ var meriyah = (function (exports) {
     __proto__: null
   });
 
-  var version = "3.0.2";
+  var version = "3.0.3";
 
   function parseScript(source, options) {
       return parseSource(source, options, 0);
