@@ -178,7 +178,12 @@ export function create(
     /**
      * Holds either a function or array used on every token
      */
-    onToken
+    onToken,
+
+    /**
+     * Holds leading decorators before "export" or "class" keywords
+     */
+    leadingDecorators: void 0
   };
 }
 
@@ -415,6 +420,16 @@ export function parseModuleItem(
   line: number,
   column: number
 ): any {
+  if (context & Context.OptionsNext) {
+    const decorators = parseDecorators(parser, context);
+    if (decorators.length) {
+      parser.leadingDecorators = decorators;
+      if (parser.token !== Token.ExportKeyword && parser.token !== Token.ClassKeyword) {
+        report(parser, Errors.InvalidLeadingDecorator);
+      }
+    }
+  }
+
   // ecma262/#prod-ModuleItem
   // ModuleItem :
   //    ImportDeclaration
@@ -2880,6 +2895,11 @@ function parseExportDeclaration(
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
     if (scope) declareUnboundVariable(parser, 'default');
 
+    if (parser.leadingDecorators) {
+      // leadingDecorators should be consumed by parseClassDeclaration
+      report(parser, Errors.InvalidLeadingDecorator);
+    }
+
     return finishNode(parser, context, start, line, column, {
       type: 'ExportDefaultDeclaration',
       declaration
@@ -2892,6 +2912,10 @@ function parseExportDeclaration(
       // 'export' '*' 'as' IdentifierName 'from' ModuleSpecifier ';'
       //
       // See: https://github.com/tc39/ecma262/pull/1174
+
+      if (parser.leadingDecorators) {
+        report(parser, Errors.InvalidLeadingDecorator);
+      }
 
       nextToken(parser, context); // Skips: '*'
 
@@ -3086,6 +3110,10 @@ function parseExportDeclaration(
     // falls through
     default:
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+  }
+
+  if (parser.leadingDecorators) {
+    report(parser, Errors.InvalidLeadingDecorator);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -7903,6 +7931,11 @@ export function parseClassDeclaration(
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
   const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
+
+  if (parser.leadingDecorators) {
+    decorators.unshift(...parser.leadingDecorators);
+    parser.leadingDecorators = void 0;
+  }
 
   nextToken(parser, context);
   let id: ESTree.Expression | null = null;

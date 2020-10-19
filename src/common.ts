@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node, Comment } from './estree';
+import { Node, Comment, Decorator } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -227,6 +227,7 @@ export interface ParserState {
   currentChar: number;
   exportedNames: any;
   exportedBindings: any;
+  leadingDecorators: Decorator[] | void;
 }
 
 /**
