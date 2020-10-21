@@ -227,7 +227,7 @@ export interface ParserState {
   currentChar: number;
   exportedNames: any;
   exportedBindings: any;
-  leadingDecorators: Decorator[] | void;
+  leadingDecorators: Decorator[];
 }
 
 /**

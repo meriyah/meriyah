@@ -2852,6 +2852,194 @@ describe('Next - Decorators', () => {
           }
         ]
       }
+    ],
+    [
+      '@a(@b class C {}) @d(@e() class F {}) class G {}',
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'G'
+            },
+            superClass: null,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'C'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'Identifier',
+                            name: 'b'
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'd'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'F'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'e'
+                            },
+                            arguments: []
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            body: {
+              type: 'ClassBody',
+              body: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '@a(@b class C {}) @d(@e() class F {}) class G {}',
+      Context.OptionsNext | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'G'
+            },
+            superClass: null,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'C'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'Identifier',
+                            name: 'b'
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'd'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'F'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'e'
+                            },
+                            arguments: []
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            body: {
+              type: 'ClassBody',
+              body: []
+            }
+          }
+        ]
+      }
     ]
   ]);
 });
