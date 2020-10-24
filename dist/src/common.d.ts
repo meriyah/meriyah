@@ -1,6 +1,6 @@
 import { Token } from './token';
 import { Errors } from './errors';
-import { Node, Comment } from './estree';
+import { Node, Comment, Decorator } from './estree';
 export declare const enum Context {
     None = 0,
     OptionsNext = 1,
@@ -170,6 +170,7 @@ export interface ParserState {
     currentChar: number;
     exportedNames: any;
     exportedBindings: any;
+    leadingDecorators: Decorator[];
 }
 export declare function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void;
 export declare function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1;

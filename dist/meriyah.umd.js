@@ -168,7 +168,8 @@
       [160]: 'Invalid tagged template on optional chain',
       [161]: 'Invalid optional chain from super property',
       [162]: 'Invalid optional chain from new expression',
-      [163]: 'Cannot use "import.meta" outside a module'
+      [163]: 'Cannot use "import.meta" outside a module',
+      [164]: 'Leading decorators must be attached to a class declaration'
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -2461,7 +2462,8 @@
           assignable: 1,
           destructible: 0,
           onComment,
-          onToken
+          onToken,
+          leadingDecorators: []
       };
   }
   function parseSource(source, options, context) {
@@ -2577,13 +2579,15 @@
       return statements;
   }
   function parseModuleItem(parser, context, scope, start, line, column) {
+      parser.leadingDecorators = parseDecorators(parser, context);
+      if (parser.leadingDecorators.length && parser.token !== 20563 && parser.token !== 86093) {
+          report(parser, 164);
+      }
       switch (parser.token) {
           case 20563:
               return parseExportDeclaration(parser, context, scope, start, line, column);
           case 86105:
               return parseImportDeclaration(parser, context, scope, start, line, column);
-          case 130:
-              return parseDecorators(parser, context);
           default:
               return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
       }
@@ -3428,6 +3432,9 @@
           }
           if (scope)
               declareUnboundVariable(parser, 'default');
+          if (parser.leadingDecorators.length) {
+              report(parser, 164);
+          }
           return finishNode(parser, context, start, line, column, {
               type: 'ExportDefaultDeclaration',
               declaration
@@ -3435,6 +3442,9 @@
       }
       switch (parser.token) {
           case 8457011: {
+              if (parser.leadingDecorators.length) {
+                  report(parser, 164);
+              }
               nextToken(parser, context);
               let exported = null;
               const isNamedDeclaration = consumeOpt(parser, context, 12395);
@@ -3537,6 +3547,9 @@
               }
           default:
               report(parser, 28, KeywordDescTable[parser.token & 255]);
+      }
+      if (parser.leadingDecorators.length) {
+          report(parser, 164);
       }
       return finishNode(parser, context, start, line, column, {
           type: 'ExportNamedDeclaration',
@@ -5875,7 +5888,12 @@
   }
   function parseClassDeclaration(parser, context, scope, flags, start, line, column) {
       context = (context | 16777216 | 1024) ^ 16777216;
-      const decorators = context & 1 ? parseDecorators(parser, context) : [];
+      let decorators = parseDecorators(parser, context);
+      if (parser.leadingDecorators.length) {
+          parser.leadingDecorators.push(...decorators);
+          decorators = parser.leadingDecorators;
+          parser.leadingDecorators = [];
+      }
       nextToken(parser, context);
       let id = null;
       let superClass = null;
@@ -5930,7 +5948,7 @@
       let id = null;
       let superClass = null;
       context = (context | 1024 | 16777216) ^ 16777216;
-      const decorators = context & 1 ? parseDecorators(parser, context) : [];
+      const decorators = parseDecorators(parser, context);
       nextToken(parser, context);
       if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
           if (isStrictReservedWord(parser, context, parser.token))
@@ -5967,8 +5985,10 @@
   }
   function parseDecorators(parser, context) {
       const list = [];
-      while (parser.token === 130) {
-          list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+      if (context & 1) {
+          while (parser.token === 130) {
+              list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+          }
       }
       return list;
   }

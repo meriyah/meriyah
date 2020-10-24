@@ -163,7 +163,8 @@ export declare const enum Errors {
     OptionalChainingNoTemplate = 160,
     OptionalChainingNoSuper = 161,
     OptionalChainingNoNew = 162,
-    ImportMetaOutsideModule = 163
+    ImportMetaOutsideModule = 163,
+    InvalidLeadingDecorator = 164
 }
 export declare const errorMessages: {
     [key: string]: string;

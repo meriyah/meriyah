@@ -207,6 +207,7 @@
         _a[161] = 'Invalid optional chain from super property',
         _a[162] = 'Invalid optional chain from new expression',
         _a[163] = 'Cannot use "import.meta" outside a module',
+        _a[164] = 'Leading decorators must be attached to a class declaration',
         _a);
     var ParseError = (function (_super) {
         __extends(ParseError, _super);
@@ -2519,7 +2520,8 @@
             assignable: 1,
             destructible: 0,
             onComment: onComment,
-            onToken: onToken
+            onToken: onToken,
+            leadingDecorators: []
         };
     }
     function parseSource(source, options, context) {
@@ -2635,13 +2637,15 @@
         return statements;
     }
     function parseModuleItem(parser, context, scope, start, line, column) {
+        parser.leadingDecorators = parseDecorators(parser, context);
+        if (parser.leadingDecorators.length && parser.token !== 20563 && parser.token !== 86093) {
+            report(parser, 164);
+        }
         switch (parser.token) {
             case 20563:
                 return parseExportDeclaration(parser, context, scope, start, line, column);
             case 86105:
                 return parseImportDeclaration(parser, context, scope, start, line, column);
-            case 130:
-                return parseDecorators(parser, context);
             default:
                 return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
         }
@@ -3486,6 +3490,9 @@
             }
             if (scope)
                 declareUnboundVariable(parser, 'default');
+            if (parser.leadingDecorators.length) {
+                report(parser, 164);
+            }
             return finishNode(parser, context, start, line, column, {
                 type: 'ExportDefaultDeclaration',
                 declaration: declaration
@@ -3493,6 +3500,9 @@
         }
         switch (parser.token) {
             case 8457011: {
+                if (parser.leadingDecorators.length) {
+                    report(parser, 164);
+                }
                 nextToken(parser, context);
                 var exported = null;
                 var isNamedDeclaration = consumeOpt(parser, context, 12395);
@@ -3595,6 +3605,9 @@
                 }
             default:
                 report(parser, 28, KeywordDescTable[parser.token & 255]);
+        }
+        if (parser.leadingDecorators.length) {
+            report(parser, 164);
         }
         return finishNode(parser, context, start, line, column, {
             type: 'ExportNamedDeclaration',
@@ -5932,8 +5945,14 @@
             });
     }
     function parseClassDeclaration(parser, context, scope, flags, start, line, column) {
+        var _a;
         context = (context | 16777216 | 1024) ^ 16777216;
-        var decorators = context & 1 ? parseDecorators(parser, context) : [];
+        var decorators = parseDecorators(parser, context);
+        if (parser.leadingDecorators.length) {
+            (_a = parser.leadingDecorators).push.apply(_a, decorators);
+            decorators = parser.leadingDecorators;
+            parser.leadingDecorators = [];
+        }
         nextToken(parser, context);
         var id = null;
         var superClass = null;
@@ -5988,7 +6007,7 @@
         var id = null;
         var superClass = null;
         context = (context | 1024 | 16777216) ^ 16777216;
-        var decorators = context & 1 ? parseDecorators(parser, context) : [];
+        var decorators = parseDecorators(parser, context);
         nextToken(parser, context);
         if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
             if (isStrictReservedWord(parser, context, parser.token))
@@ -6025,8 +6044,10 @@
     }
     function parseDecorators(parser, context) {
         var list = [];
-        while (parser.token === 130) {
-            list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+        if (context & 1) {
+            while (parser.token === 130) {
+                list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+            }
         }
         return list;
     }
