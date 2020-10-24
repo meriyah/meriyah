@@ -46,12 +46,46 @@ describe('Statements - For in', () => {
       });
     });
   }
+  // ForInOfLoopInitializer only applies in strict mode when webCompat is off
   for (const arg of [
-    'for(var x=1 in [1,2,3]) 0', // Throws with no 'WebCompat'
+    'for(var x=1 in [1,2,3]) 0',
+    'for (var x = 1 in y) {}',
+    'for (var a = 0 in {});',
+    'for (var a = ++b in c);',
+    'for (var a = b in c);',
+    'for (var a = 0 in stored = a, {});',
+    'for (var a = (++effects, -1) in x);'
+  ]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.Strict);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.Strict);
+      });
+    });
+  }
+
+  for (const arg of [
+    '"use strict";\nfor (var a = 0 in {});',
     'for(var [] = 0 in {});',
     'for(var [,] = 0 in {});',
     'for(var [a] = 0 in {});',
-    'for (var x = 1 in y) {}',
     'for (([x])=y in z);',
     'for (a = 0 in {});',
     'for ([...x,] in [[]]) ;',
@@ -464,7 +498,6 @@ describe('Statements - For in', () => {
     ['for(([0]) in 0);', Context.None],
     ['for(({a: 0}) in 0);', Context.None],
     [`for ((()=>x) in y);`, Context.None],
-    ['for (var a = 0 in {});', Context.None],
     ['for (const [x,y,z] = 22 in foo);', Context.None],
     ['for (true ? 0 : 0 in {}; false; ) ;', Context.None],
     ['for (x = 22 in foo);', Context.None],
@@ -484,7 +517,6 @@ describe('Statements - For in', () => {
     ['for (let in o) { }', Context.Strict],
     ['for(var [...a] = 0 in {});', Context.None],
     ['for (var a = () => { return "a"} in {});', Context.None],
-    ['for (var a = ++b in c);', Context.None],
     ['for (const ...x in y){}', Context.None],
     ['for (...x in y){}', Context.None],
     ['for (let a = b => b in c; ;);', Context.None],
@@ -514,7 +546,6 @@ describe('Statements - For in', () => {
     ['for([a] = 0 in {});', Context.None],
     ['for([a = 0] = 0 in {});', Context.None],
     ['for([...a] = 0 in {});', Context.None],
-    ['for (var a = b in c);', Context.None],
     ['for([...[a]] = 0 in {});', Context.None],
     ['for({} = 0 in {});', Context.None],
     ['for({p: x} = 0 in {});', Context.None],
@@ -551,8 +582,6 @@ describe('Statements - For in', () => {
     ['"use strict"; for ({ x = yield } in [{}]) ;', Context.None],
     ['for (let x in {}) label1: label2: function f() {}', Context.None],
     ['for (x in {}) label1: label2: function f() {}', Context.None],
-    ['for (var a = 0 in stored = a, {});', Context.None],
-    ['for (var a = (++effects, -1) in x);', Context.None],
     ['for (var [a] = 0 in {});', Context.None],
     ['"use strict"; for (var i=0 in j);', Context.None],
     ['for (var {x}=0 in y);', Context.None],
@@ -779,7 +808,7 @@ describe('Statements - For in', () => {
     ],
     [
       'for(var x=1 in [1,2,3]) 0',
-      Context.OptionsWebCompat,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1130,7 +1159,7 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var a = b in c);',
-      Context.OptionsWebCompat,
+      Context.None,
       {
         type: 'Program',
         body: [
@@ -2880,45 +2909,8 @@ describe('Statements - For in', () => {
       }
     ],
     [
-      'for (var a = b in c);',
-      Context.OptionsWebCompat,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ForInStatement',
-            body: {
-              type: 'EmptyStatement'
-            },
-            left: {
-              type: 'VariableDeclaration',
-              kind: 'var',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  init: {
-                    type: 'Identifier',
-                    name: 'b'
-                  },
-                  id: {
-                    type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
-            },
-            right: {
-              type: 'Identifier',
-              name: 'c'
-            }
-          }
-        ]
-      }
-    ],
-    [
       'for (var a = ++b in c);',
-      Context.OptionsWebCompat,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -2960,7 +2952,7 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var a = 0 in stored = a, {});',
-      Context.OptionsWebCompat,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -3014,7 +3006,7 @@ describe('Statements - For in', () => {
     ],
     [
       'for (var a = (++effects, -1) in x);',
-      Context.OptionsWebCompat,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
