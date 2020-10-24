@@ -79,7 +79,17 @@ describe('Next - Decorators', () => {
     ['class Foo {  @a; m(){}}', Context.OptionsNext],
     ['class Foo { @abc constructor(){} }', Context.OptionsNext],
     ['class A { @foo && bar method() {}  }', Context.OptionsNext],
-    ['class A { @foo && bar; method() {}  }', Context.OptionsNext]
+    ['class A { @foo && bar; method() {}  }', Context.OptionsNext],
+    ['@bar export const foo = 1;', Context.OptionsNext | Context.Module],
+    ['@bar export {Foo};', Context.OptionsNext | Context.Module],
+    ['@bar export * from "./foo";', Context.OptionsNext | Context.Module],
+    ['@bar export default function foo() {}', Context.OptionsNext | Context.Module],
+    ['@bar const foo = 1;', Context.OptionsNext],
+    ['@bar function foo() {}', Context.OptionsNext],
+    ['(@bar const foo = 1);', Context.OptionsNext],
+    ['(@bar function foo() {})', Context.OptionsNext],
+    ['@bar;', Context.OptionsNext],
+    ['@bar();', Context.OptionsNext]
   ]);
 
   pass('Next - Decorators (pass)', [
@@ -356,6 +366,41 @@ describe('Next - Decorators', () => {
       }
     ],
     [
+      `@bar export default
+          class Foo { }`,
+      Context.OptionsNext | Context.Module | Context.Strict,
+      {
+        body: [
+          {
+            declaration: {
+              body: {
+                body: [],
+                type: 'ClassBody'
+              },
+              decorators: [
+                {
+                  expression: {
+                    name: 'bar',
+                    type: 'Identifier'
+                  },
+                  type: 'Decorator'
+                }
+              ],
+              id: {
+                name: 'Foo',
+                type: 'Identifier'
+              },
+              superClass: null,
+              type: 'ClassDeclaration'
+            },
+            type: 'ExportDefaultDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
       `export default
           @bar class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
@@ -391,27 +436,68 @@ describe('Next - Decorators', () => {
       }
     ],
     [
-      `@bar export default
+      `export default @bar
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
       {
         body: [
-          [
-            {
-              expression: {
-                name: 'bar',
-                type: 'Identifier'
-              },
-              type: 'Decorator'
-            }
-          ],
           {
             declaration: {
               body: {
                 body: [],
                 type: 'ClassBody'
               },
-              decorators: [],
+              decorators: [
+                {
+                  expression: {
+                    name: 'bar',
+                    type: 'Identifier'
+                  },
+                  type: 'Decorator'
+                }
+              ],
+              id: {
+                name: 'Foo',
+                type: 'Identifier'
+              },
+              superClass: null,
+              type: 'ClassDeclaration'
+            },
+            type: 'ExportDefaultDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
+      `@lo export default @bar
+          class Foo { }`,
+      Context.OptionsNext | Context.Module | Context.Strict,
+      {
+        body: [
+          {
+            declaration: {
+              body: {
+                body: [],
+                type: 'ClassBody'
+              },
+              decorators: [
+                {
+                  expression: {
+                    name: 'lo',
+                    type: 'Identifier'
+                  },
+                  type: 'Decorator'
+                },
+                {
+                  expression: {
+                    name: 'bar',
+                    type: 'Identifier'
+                  },
+                  type: 'Decorator'
+                }
+              ],
               id: {
                 name: 'Foo',
                 type: 'Identifier'
@@ -439,98 +525,97 @@ describe('Next - Decorators', () => {
       Context.OptionsNext | Context.Module | Context.Strict,
       {
         body: [
-          [
-            {
-              expression: {
-                arguments: [
-                  {
-                    properties: [
-                      {
-                        computed: false,
-                        key: {
-                          name: 'kind',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          type: 'Literal',
-                          value: 'initializer'
-                        }
-                      },
-                      {
-                        computed: false,
-                        key: {
-                          name: 'placement',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          type: 'Literal',
-                          value: 'own'
-                        }
-                      },
-                      {
-                        computed: false,
-                        key: {
-                          name: 'initializer',
-                          type: 'Identifier'
-                        },
-                        kind: 'init',
-                        method: true,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          async: false,
-                          body: {
-                            body: [
-                              {
-                                expression: {
-                                  left: {
-                                    name: 'self',
-                                    type: 'Identifier'
-                                  },
-                                  operator: '=',
-                                  right: {
-                                    type: 'ThisExpression'
-                                  },
-                                  type: 'AssignmentExpression'
-                                },
-                                type: 'ExpressionStatement'
-                              }
-                            ],
-                            type: 'BlockStatement'
-                          },
-                          generator: false,
-                          id: null,
-                          params: [],
-                          type: 'FunctionExpression'
-                        }
-                      }
-                    ],
-                    type: 'ObjectExpression'
-                  }
-                ],
-                callee: {
-                  name: 'pushElement',
-                  type: 'Identifier'
-                },
-                type: 'CallExpression'
-              },
-              type: 'Decorator'
-            }
-          ],
           {
             body: {
               body: [],
               type: 'ClassBody'
             },
-            decorators: [],
+            decorators: [
+              {
+                expression: {
+                  arguments: [
+                    {
+                      properties: [
+                        {
+                          computed: false,
+                          key: {
+                            name: 'kind',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: false,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            type: 'Literal',
+                            value: 'initializer'
+                          }
+                        },
+                        {
+                          computed: false,
+                          key: {
+                            name: 'placement',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: false,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            type: 'Literal',
+                            value: 'own'
+                          }
+                        },
+                        {
+                          computed: false,
+                          key: {
+                            name: 'initializer',
+                            type: 'Identifier'
+                          },
+                          kind: 'init',
+                          method: true,
+                          shorthand: false,
+                          type: 'Property',
+                          value: {
+                            async: false,
+                            body: {
+                              body: [
+                                {
+                                  expression: {
+                                    left: {
+                                      name: 'self',
+                                      type: 'Identifier'
+                                    },
+                                    operator: '=',
+                                    right: {
+                                      type: 'ThisExpression'
+                                    },
+                                    type: 'AssignmentExpression'
+                                  },
+                                  type: 'ExpressionStatement'
+                                }
+                              ],
+                              type: 'BlockStatement'
+                            },
+                            generator: false,
+                            id: null,
+                            params: [],
+                            type: 'FunctionExpression'
+                          }
+                        }
+                      ],
+                      type: 'ObjectExpression'
+                    }
+                  ],
+                  callee: {
+                    name: 'pushElement',
+                    type: 'Identifier'
+                  },
+                  type: 'CallExpression'
+                },
+                type: 'Decorator'
+              }
+            ],
             id: {
               name: 'A',
               type: 'Identifier'
@@ -967,6 +1052,135 @@ describe('Next - Decorators', () => {
                 }
               }
             ]
+          }
+        ]
+      }
+    ],
+    [
+      `@foo('bar')
+  class Foo {}`,
+      Context.OptionsNext | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'Foo'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: []
+            },
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'foo'
+                  },
+                  arguments: [
+                    {
+                      type: 'Literal',
+                      value: 'bar'
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      `(@foo('bar')
+  class Foo {})`,
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ClassExpression',
+              id: {
+                type: 'Identifier',
+                name: 'Foo'
+              },
+              superClass: null,
+              decorators: [
+                {
+                  type: 'Decorator',
+                  expression: {
+                    type: 'CallExpression',
+                    callee: {
+                      type: 'Identifier',
+                      name: 'foo'
+                    },
+                    arguments: [
+                      {
+                        type: 'Literal',
+                        value: 'bar'
+                      }
+                    ]
+                  }
+                }
+              ],
+              body: {
+                type: 'ClassBody',
+                body: []
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      `(@foo('bar')
+  class Foo {})`,
+      Context.OptionsNext | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ClassExpression',
+              id: {
+                type: 'Identifier',
+                name: 'Foo'
+              },
+              superClass: null,
+              decorators: [
+                {
+                  type: 'Decorator',
+                  expression: {
+                    type: 'CallExpression',
+                    callee: {
+                      type: 'Identifier',
+                      name: 'foo'
+                    },
+                    arguments: [
+                      {
+                        type: 'Literal',
+                        value: 'bar'
+                      }
+                    ]
+                  }
+                }
+              ],
+              body: {
+                type: 'ClassBody',
+                body: []
+              }
+            }
           }
         ]
       }
@@ -2634,6 +2848,194 @@ describe('Next - Decorators', () => {
                   }
                 }
               ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '@a(@b class C {}) @d(@e() class F {}) class G {}',
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'G'
+            },
+            superClass: null,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'C'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'Identifier',
+                            name: 'b'
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'd'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'F'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'e'
+                            },
+                            arguments: []
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            body: {
+              type: 'ClassBody',
+              body: []
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '@a(@b class C {}) @d(@e() class F {}) class G {}',
+      Context.OptionsNext | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'G'
+            },
+            superClass: null,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'a'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'C'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'Identifier',
+                            name: 'b'
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'd'
+                  },
+                  arguments: [
+                    {
+                      type: 'ClassExpression',
+                      id: {
+                        type: 'Identifier',
+                        name: 'F'
+                      },
+                      superClass: null,
+                      decorators: [
+                        {
+                          type: 'Decorator',
+                          expression: {
+                            type: 'CallExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'e'
+                            },
+                            arguments: []
+                          }
+                        }
+                      ],
+                      body: {
+                        type: 'ClassBody',
+                        body: []
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            body: {
+              type: 'ClassBody',
+              body: []
             }
           }
         ]

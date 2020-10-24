@@ -178,7 +178,12 @@ export function create(
     /**
      * Holds either a function or array used on every token
      */
-    onToken
+    onToken,
+
+    /**
+     * Holds leading decorators before "export" or "class" keywords
+     */
+    leadingDecorators: []
   };
 }
 
@@ -415,6 +420,11 @@ export function parseModuleItem(
   line: number,
   column: number
 ): any {
+  parser.leadingDecorators = parseDecorators(parser, context);
+  if (parser.leadingDecorators.length && parser.token !== Token.ExportKeyword && parser.token !== Token.ClassKeyword) {
+    report(parser, Errors.InvalidLeadingDecorator);
+  }
+
   // ecma262/#prod-ModuleItem
   // ModuleItem :
   //    ImportDeclaration
@@ -426,8 +436,6 @@ export function parseModuleItem(
       return parseExportDeclaration(parser, context, scope, start, line, column);
     case Token.ImportKeyword:
       return parseImportDeclaration(parser, context, scope, start, line, column);
-    case Token.Decorator:
-      return parseDecorators(parser, context) as ESTree.Decorator[];
     default:
       return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
@@ -2882,6 +2890,11 @@ function parseExportDeclaration(
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
     if (scope) declareUnboundVariable(parser, 'default');
 
+    if (parser.leadingDecorators.length) {
+      // leadingDecorators should be consumed by parseClassDeclaration
+      report(parser, Errors.InvalidLeadingDecorator);
+    }
+
     return finishNode(parser, context, start, line, column, {
       type: 'ExportDefaultDeclaration',
       declaration
@@ -2894,6 +2907,10 @@ function parseExportDeclaration(
       // 'export' '*' 'as' IdentifierName 'from' ModuleSpecifier ';'
       //
       // See: https://github.com/tc39/ecma262/pull/1174
+
+      if (parser.leadingDecorators.length) {
+        report(parser, Errors.InvalidLeadingDecorator);
+      }
 
       nextToken(parser, context); // Skips: '*'
 
@@ -3088,6 +3105,10 @@ function parseExportDeclaration(
     // falls through
     default:
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+  }
+
+  if (parser.leadingDecorators.length) {
+    report(parser, Errors.InvalidLeadingDecorator);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -7904,7 +7925,13 @@ export function parseClassDeclaration(
   //
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
-  const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
+  let decorators = parseDecorators(parser, context);
+
+  if (parser.leadingDecorators.length) {
+    parser.leadingDecorators.push(...decorators);
+    decorators = parser.leadingDecorators;
+    parser.leadingDecorators = [];
+  }
 
   nextToken(parser, context);
   let id: ESTree.Expression | null = null;
@@ -8011,7 +8038,7 @@ export function parseClassExpression(
   // All class code is always strict mode implicitly
   context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
 
-  const decorators: ESTree.Decorator[] = context & Context.OptionsNext ? parseDecorators(parser, context) : [];
+  const decorators = parseDecorators(parser, context);
 
   nextToken(parser, context);
 
@@ -8079,8 +8106,10 @@ export function parseClassExpression(
 export function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  while (parser.token === Token.Decorator) {
-    list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+  if (context & Context.OptionsNext) {
+    while (parser.token === Token.Decorator) {
+      list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+    }
   }
 
   return list;

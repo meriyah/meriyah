@@ -164,7 +164,8 @@ export const enum Errors {
   OptionalChainingNoTemplate,
   OptionalChainingNoSuper,
   OptionalChainingNoNew,
-  ImportMetaOutsideModule
+  ImportMetaOutsideModule,
+  InvalidLeadingDecorator
 }
 
 export const errorMessages: {
@@ -342,7 +343,8 @@ export const errorMessages: {
   [Errors.OptionalChainingNoTemplate]: 'Invalid tagged template on optional chain',
   [Errors.OptionalChainingNoSuper]: 'Invalid optional chain from super property',
   [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression',
-  [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module'
+  [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module',
+  [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration'
 };
 
 export class ParseError extends SyntaxError {
