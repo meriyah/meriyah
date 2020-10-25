@@ -1,3 +1,12 @@
+## [3.0.5](https://github.com/meriyah/meriyah/compare/v3.0.4...v3.0.5) (2020-10-25)
+
+
+### Bug Fixes
+
+* move optional-chaining out of next ([7504c64](https://github.com/meriyah/meriyah/commit/7504c646e3d9960aed9fd0949110cb8cb65b7b05)), closes [#117](https://github.com/meriyah/meriyah/issues/117)
+
+
+
 ## [3.0.4](https://github.com/meriyah/meriyah/compare/v3.0.3...v3.0.4) (2020-10-25)
 
 
