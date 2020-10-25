@@ -1,3 +1,14 @@
+## [3.0.4](https://github.com/meriyah/meriyah/compare/v3.0.3...v3.0.4) (2020-10-25)
+
+
+### Bug Fixes
+
+* follow latest decorator proposal ([e27b9d6](https://github.com/meriyah/meriyah/commit/e27b9d6278f572d1e50ebb9804a060d1f5f1990f)), closes [#105](https://github.com/meriyah/meriyah/issues/105)
+* ForInOfLoopInitializer only applies in strict mode ([5f6f0d8](https://github.com/meriyah/meriyah/commit/5f6f0d874c8dff69aae5e2cbc8396b18833df085)), closes [#116](https://github.com/meriyah/meriyah/issues/116)
+* support decorator before and after "export" keyword ([f3898ff](https://github.com/meriyah/meriyah/commit/f3898fffad601f70148ce147bb0b7710641d2814))
+
+
+
 ## [3.0.3](https://github.com/meriyah/meriyah/compare/v3.0.2...v3.0.3) (2020-10-16)
 
 
