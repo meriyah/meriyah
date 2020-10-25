@@ -2113,10 +2113,7 @@ function parseVariableDeclaration(
       if (
         parser.token === Token.OfKeyword ||
         (parser.token === Token.InKeyword &&
-          (token & Token.IsPatternStart ||
-            (kind & BindingKind.Variable) < 1 ||
-            (context & Context.OptionsWebCompat) < 1 ||
-            context & Context.Strict))
+          (token & Token.IsPatternStart || (kind & BindingKind.Variable) < 1 || context & Context.Strict))
       ) {
         reportMessageAt(
           tokenPos,
