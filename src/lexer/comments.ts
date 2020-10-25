@@ -50,8 +50,10 @@ export function skipSingleLineComment(
   state: LexerState,
   type: CommentType
 ): LexerState {
-  const { index } = parser;
+  const { index, line, column } = parser;
   let end = index;
+  let endLine = line;
+  let endColumn = column;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;
@@ -64,9 +66,27 @@ export function skipSingleLineComment(
       break;
     }
     advanceChar(parser);
+    endLine = parser.line;
+    endColumn = parser.column;
     end++;
   }
-  if (parser.onComment)
+  if (parser.onComment) {
+    const loc = {
+      start: {
+        // FIXME: there is a bug for HTMLClose.
+        // the start loc of should be before \n-->
+        // which is end of last line.
+        // But there is lack of information on column
+        // size of last line in our implementation.
+        // The linePos and colPos is recorded after \n.
+        line: parser.linePos,
+        column: parser.colPos
+      },
+      end: {
+        line: endLine,
+        column: endColumn
+      }
+    };
     parser.onComment(
       CommentTypes[type & 0xff],
       source.slice(index, end),
@@ -74,8 +94,10 @@ export function skipSingleLineComment(
       // For HTMLOpen, start before "<!--",
       // For HTMLClose, start before "\n-->"
       index - (type === CommentType.Single ? 2 : 4),
-      end
+      end,
+      loc
     );
+  }
   return state | LexerState.NewLine;
 }
 
@@ -97,13 +119,25 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
         }
         if (advanceChar(parser) === Chars.Slash) {
           advanceChar(parser);
-          if (parser.onComment)
+          if (parser.onComment) {
+            const loc = {
+              start: {
+                line: parser.linePos,
+                column: parser.colPos
+              },
+              end: {
+                line: parser.line,
+                column: parser.column
+              }
+            };
             parser.onComment(
               CommentTypes[CommentType.Multi & 0xff],
               source.slice(index, parser.index - 2),
               index - 2, // start before '/*'
-              parser.index // end after '*/'
+              parser.index, // end after '*/'
+              loc
             );
+          }
           return state;
         }
       }

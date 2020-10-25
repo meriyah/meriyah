@@ -183,8 +183,19 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
   parser.token = scanSingleToken(parser, context, LexerState.None);
-  if (parser.onToken && parser.token !== Token.EOF)
-    parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
+  if (parser.onToken && parser.token !== Token.EOF) {
+    const loc = {
+      start: {
+        line: parser.linePos,
+        column: parser.colPos
+      },
+      end: {
+        line: parser.line,
+        column: parser.column
+      }
+    };
+    parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index, loc);
+  }
 }
 
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
