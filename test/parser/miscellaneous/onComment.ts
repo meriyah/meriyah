@@ -410,4 +410,27 @@ describe('Miscellaneous - onComment', () => {
       }
     ]);
   });
+
+  it('should extract htmlclose comment on first line', () => {
+    const arr: any[] = [];
+    parseScript('--> comment #2\n', {
+      ranges: true,
+      loc: true,
+      onComment: arr,
+      webcompat: true
+    });
+    t.deepEqual(arr, [
+      {
+        type: 'HTMLClose',
+        value: ' comment #2',
+        start: 0,
+        end: 14,
+        range: [0, 14],
+        loc: {
+          start: { line: 1, column: 0 },
+          end: { line: 1, column: 14 }
+        }
+      }
+    ]);
+  });
 });

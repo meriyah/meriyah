@@ -87,16 +87,15 @@ export function skipSingleLineComment(
         column: endColumn
       }
     };
-    parser.onComment(
-      CommentTypes[type & 0xff],
-      source.slice(index, end),
-      // For Single, start before "//",
-      // For HTMLOpen, start before "<!--",
-      // For HTMLClose, start before "\n-->"
-      index - (type === CommentType.Single ? 2 : 4),
-      end,
-      loc
-    );
+    // For Single, start before "//",
+    // For HTMLOpen, start before "<!--",
+    // For HTMLClose, start before "\n-->"
+    let start = index - (type === CommentType.Single ? 2 : 4);
+    // HTMLClose would start with "-->" on first line.
+    if (start < 0) {
+      start = 0;
+    }
+    parser.onComment(CommentTypes[type & 0xff], source.slice(index, end), start, end, loc);
   }
   return state | LexerState.NewLine;
 }
