@@ -111,7 +111,7 @@ export function create(
     /**
      * The number of newlines
      */
-    linePos: 0,
+    linePos: 1,
 
     /**
      * Start position of text of current token

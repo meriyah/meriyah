@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node, Comment, Decorator } from './estree';
+import { Node, Comment, Decorator, SourceLocation } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -171,12 +171,12 @@ export const enum ScopeKind {
 /**
  * The type of the `onComment` option.
  */
-export type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
+export type OnComment = void | Comment[] | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
 
 /**
  * The type of the `onToken` option.
  */
-export type OnToken = void | Token[] | ((token: string, start?: number, end?: number) => any);
+export type OnToken = void | Token[] | ((token: string, start: number, end: number, loc: SourceLocation) => any);
 
 /**
  * Lexical scope interface
@@ -769,7 +769,7 @@ export function addBindingToExports(parser: ParserState, name: string): void {
 }
 
 export function pushComment(context: Context, array: any[]): any {
-  return function(type: string, value: string, start: number, end: number) {
+  return function(type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
       value
@@ -780,19 +780,26 @@ export function pushComment(context: Context, array: any[]): any {
       comment.end = end;
       comment.range = [start, end];
     }
+    if (context & Context.OptionsLoc) {
+      comment.loc = loc;
+    }
     array.push(comment);
   };
 }
 
 export function pushToken(context: Context, array: any[]): any {
-  return function(token: string, start: number, end: number) {
+  return function(token: string, start: number, end: number, loc: SourceLocation) {
     const tokens: any = {
       token
     };
 
-    if (context & Context.OptionsLoc) {
+    if (context & Context.OptionsRanges) {
       tokens.start = start;
       tokens.end = end;
+      tokens.range = [start, end];
+    }
+    if (context & Context.OptionsLoc) {
+      tokens.loc = loc;
     }
     array.push(tokens);
   };
