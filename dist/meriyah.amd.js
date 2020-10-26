@@ -607,8 +607,6 @@ define(['exports'], function (exports) { 'use strict';
                       return 67108877;
                   case 22: {
                       let ch = advanceChar(parser);
-                      if ((context & 1) < 1)
-                          return 22;
                       if (ch === 63) {
                           advanceChar(parser);
                           return 276889979;
@@ -3098,10 +3096,7 @@ define(['exports'], function (exports) { 'use strict';
           if (origin & 32 || (token & 2097152) < 1) {
               if (parser.token === 274546 ||
                   (parser.token === 8738865 &&
-                      (token & 2097152 ||
-                          (kind & 4) < 1 ||
-                          (context & 256) < 1 ||
-                          context & 1024))) {
+                      (token & 2097152 || (kind & 4) < 1 || context & 1024))) {
                   reportMessageAt(tokenPos, parser.line, parser.index - 3, 57, parser.token === 274546 ? 'of' : 'in');
               }
           }
@@ -6495,7 +6490,7 @@ define(['exports'], function (exports) { 'use strict';
     __proto__: null
   });
 
-  var version = "3.0.3";
+  var version = "3.0.5";
 
   function parseScript(source, options) {
       return parseSource(source, options, 0);
