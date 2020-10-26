@@ -399,12 +399,7 @@ describe('Miscellaneous - onComment', () => {
         end: 29,
         range: [14, 29],
         loc: {
-          // FIXME: the start loc of should be before
-          // \n--> which is end of last line.
-          // But there is lack of information on column
-          // size of last line in our implementation.
-          // start: { line: 1, column: 14 },
-          start: { line: 2, column: 0 },
+          start: { line: 1, column: 14 },
           end: { line: 2, column: 14 }
         }
       }
@@ -429,6 +424,63 @@ describe('Miscellaneous - onComment', () => {
         loc: {
           start: { line: 1, column: 0 },
           end: { line: 1, column: 14 }
+        }
+      }
+    ]);
+  });
+
+  it('should extract htmlclose comment', () => {
+    const arr: any[] = [];
+    parseScript('a;\n--> comment #2\n', {
+      ranges: true,
+      loc: true,
+      onComment: arr,
+      webcompat: true
+    });
+    t.deepEqual(arr, [
+      {
+        type: 'HTMLClose',
+        value: ' comment #2',
+        start: 2,
+        end: 17,
+        range: [2, 17],
+        loc: {
+          start: { line: 1, column: 2 },
+          end: { line: 2, column: 14 }
+        }
+      }
+    ]);
+  });
+
+  it('should extract htmlclose comment after multiline comment', () => {
+    const arr: any[] = [];
+    parseScript('/*\na\n*/\n--> comment #2\n', {
+      ranges: true,
+      loc: true,
+      onComment: arr,
+      webcompat: true
+    });
+    t.deepEqual(arr, [
+      {
+        start: 0,
+        end: 7,
+        range: [0, 7],
+        loc: {
+          start: { line: 1, column: 0 },
+          end: { line: 3, column: 2 }
+        },
+        type: 'MultiLine',
+        value: '\na\n'
+      },
+      {
+        type: 'HTMLClose',
+        value: ' comment #2',
+        start: 7,
+        end: 22,
+        range: [7, 22],
+        loc: {
+          start: { line: 3, column: 2 },
+          end: { line: 4, column: 14 }
         }
       }
     ]);

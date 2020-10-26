@@ -23,7 +23,15 @@ export function skipHashBang(parser: ParserState): void {
   //   #!  SingleLineCommentChars_opt
   const source = parser.source;
   if (parser.currentChar === Chars.Hash && source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
-    skipSingleLineComment(parser, source, LexerState.None, CommentType.HashBang);
+    skipSingleLineComment(
+      parser,
+      source,
+      LexerState.None,
+      CommentType.HashBang,
+      parser.tokenPos,
+      parser.linePos,
+      parser.colPos
+    );
   }
 }
 
@@ -32,10 +40,13 @@ export function skipSingleHTMLComment(
   source: string,
   state: LexerState,
   context: Context,
-  type: CommentType
+  type: CommentType,
+  start: number,
+  line: number,
+  column: number
 ): LexerState {
   if (context & Context.Module) report(parser, Errors.Unexpected);
-  return skipSingleLineComment(parser, source, state, type);
+  return skipSingleLineComment(parser, source, state, type, start, line, column);
 }
 
 /**
@@ -48,12 +59,12 @@ export function skipSingleLineComment(
   parser: ParserState,
   source: string,
   state: LexerState,
-  type: CommentType
+  type: CommentType,
+  start: number,
+  line: number,
+  column: number
 ): LexerState {
-  const { index, line, column } = parser;
-  let end = index;
-  let endLine = line;
-  let endColumn = column;
+  const { index } = parser;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;
@@ -66,36 +77,25 @@ export function skipSingleLineComment(
       break;
     }
     advanceChar(parser);
-    endLine = parser.line;
-    endColumn = parser.column;
-    end++;
+    parser.tokenPos = parser.index;
+    parser.linePos = parser.line;
+    parser.colPos = parser.column;
   }
   if (parser.onComment) {
     const loc = {
       start: {
-        // FIXME: there is a bug for HTMLClose.
-        // the start loc of should be before \n-->
-        // which is end of last line.
-        // But there is lack of information on column
-        // size of last line in our implementation.
-        // The linePos and colPos is recorded after \n.
-        line: parser.linePos,
-        column: parser.colPos
+        line,
+        column
       },
       end: {
-        line: endLine,
-        column: endColumn
+        line: parser.linePos,
+        column: parser.colPos
       }
     };
     // For Single, start before "//",
     // For HTMLOpen, start before "<!--",
     // For HTMLClose, start before "\n-->"
-    let start = index - (type === CommentType.Single ? 2 : 4);
-    // HTMLClose would start with "-->" on first line.
-    if (start < 0) {
-      start = 0;
-    }
-    parser.onComment(CommentTypes[type & 0xff], source.slice(index, end), start, end, loc);
+    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenPos), start, parser.tokenPos, loc);
   }
   return state | LexerState.NewLine;
 }
@@ -137,6 +137,9 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
               loc
             );
           }
+          parser.tokenPos = parser.index;
+          parser.linePos = parser.line;
+          parser.colPos = parser.column;
           return state;
         }
       }
