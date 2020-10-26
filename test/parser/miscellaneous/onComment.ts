@@ -485,4 +485,73 @@ describe('Miscellaneous - onComment', () => {
       }
     ]);
   });
+
+  it('should extract hashbang comment with next flag', () => {
+    let onCommentCount = 0;
+    t.deepEqual(
+      parseScript('#!/usr/bin/env node\n"use strict";\n', {
+        next: true,
+        ranges: true,
+        loc: true,
+        onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
+          t.deepEqual(type, 'HashbangComment');
+          t.deepEqual(value, '/usr/bin/env node');
+          t.equal(start, 0);
+          t.equal(end, 19);
+          t.deepEqual(loc, {
+            start: { line: 1, column: 0 },
+            end: { line: 1, column: 19 }
+          });
+          onCommentCount++;
+        }
+      }),
+      {
+        body: [
+          {
+            end: 33,
+            expression: {
+              end: 32,
+              loc: {
+                end: {
+                  column: 12,
+                  line: 2
+                },
+                start: {
+                  column: 0,
+                  line: 2
+                }
+              },
+              range: [20, 32],
+              start: 20,
+              type: 'Literal',
+              value: 'use strict'
+            },
+            loc: {
+              end: {
+                column: 13,
+                line: 2
+              },
+              start: {
+                column: 0,
+                line: 2
+              }
+            },
+            range: [20, 33],
+            start: 20,
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program',
+        start: 0,
+        end: 34,
+        range: [0, 34],
+        loc: {
+          start: { line: 1, column: 0 },
+          end: { line: 3, column: 0 }
+        }
+      }
+    );
+    t.equal(onCommentCount, 1);
+  });
 });

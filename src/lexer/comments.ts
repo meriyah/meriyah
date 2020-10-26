@@ -23,6 +23,8 @@ export function skipHashBang(parser: ParserState): void {
   //   #!  SingleLineCommentChars_opt
   const source = parser.source;
   if (parser.currentChar === Chars.Hash && source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
+    advanceChar(parser);
+    advanceChar(parser);
     skipSingleLineComment(
       parser,
       source,
