@@ -3,7 +3,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Next - Optional chaining', () => {
+describe('Optional chaining', () => {
   for (const arg of [
     'func?.()',
     'obj?.prop ',
@@ -246,6 +246,16 @@ describe('Next - Optional chaining', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+      });
+    });
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
       });
     });
@@ -257,135 +267,132 @@ describe('Next - Optional chaining', () => {
   }
 
   fail('Expressions - Optional chaining (fail)', [
-    ['a = { x = flag?.[] = true } = value;', Context.OptionsNext],
-    ['a?.fn`hello`;', Context.OptionsNext],
-    ['({x: [y]?.a = 0} = 1)', Context.OptionsNext],
-    ['async(x?.x)=>x?.z', Context.OptionsNext],
-    ['[a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.OptionsNext],
-    ['([a, b] = f?.x(() => { [a, b?.c] = [d.e, (f.g) = h]; }));', Context.OptionsNext],
-    ['[a, ...b?.a] = [1, 2, ...c];', Context.OptionsNext],
-    ['({..."x"?.x} = x);', Context.OptionsNext],
-    ['([x.y = a] = ([x.y = a?.y] = ([x.y?.y = a] = z)))', Context.OptionsNext],
-    ['([...[]?.x] = x);', Context.OptionsNext],
-    ['({...[][x?.y]} = (x?.i) = (y));', Context.OptionsNext],
-    ['({0: y?.a} = 0)', Context.OptionsNext],
-    ['({0: x?.a, 1: x} = 0)', Context.OptionsNext],
-    ['({a:let?.foo} = 0);', Context.OptionsNext],
-    ['x?.[y] = foo', Context.OptionsNext],
-    ['0, [{ set y(val) {}}?.y] = [23];', Context.OptionsNext],
-    ['0, { x: y?.z = 42 } = { x: 23 };', Context.OptionsNext],
-    ['0, { x: y?.z = 42 } = { x: 23 };', Context.OptionsNext | Context.OptionsWebCompat],
-    ['0, { x: y?.z } = { x: 23 };', Context.OptionsNext],
-    ['0, { x: { set y(val) { }}?.y = 42} = {x: 42};', Context.OptionsNext],
-    ['0, { x: { set y(val) {}}?.y} = {x: 42};', Context.OptionsNext],
-    ['for ([x?.y = 42] in [[23]]) ;', Context.OptionsNext | Context.OptionsWebCompat],
-    ['for ([x?.y = 42] in [[23]]) ;', Context.OptionsNext],
-    ['for ([x?.y] in [[23]]) ;', Context.OptionsNext],
-    ['for ([x?.y] in [[23]]) ;', Context.OptionsNext | Context.OptionsWebCompat],
-    ['for ([{ set y(val) {}}?.y = 42] in [[23]]) ;', Context.OptionsNext],
-    ['for ([{ set y(val) {}}?.y] in [[23]]) ;', Context.OptionsNext],
-    ['for ({ x: y?.z = 42 } in [{ x: 23 }]) ;', Context.OptionsNext],
-    ['for ({ x: y?.z } in [{ x: 23 }]) ;', Context.OptionsNext],
-    ['for ({ x: { set y(val) { }}?.y = 42} in [{x: 42}]) ;', Context.OptionsNext],
-    ['for ({ x: { set y(val) {} }?.y} in [{x: 42}]) ;', Context.OptionsNext],
-    ['for ([x?.y = 42] of [[23]]) ;', Context.OptionsNext],
-    ['for ([x?.y] of [[23]]) ;', Context.OptionsNext],
-    ['for ([{ set y(val) {}}?.y = 42] of [[23]]) ;', Context.OptionsNext],
-    ['for ([{ set y(val) { }}?.y] of [[23]]) ;', Context.OptionsNext],
-    ['for ({ x: y?.z = 42 } of [{ x: 23 }]) ;', Context.OptionsNext],
-    ['for ({ x: y?.z } of [{ x: 23 }]) ;', Context.OptionsNext],
-    ['for ({ x: {set y(val) { }}?.y = 42} of [{x: 42}]) ;', Context.OptionsNext],
-    ['for ({ x: { set y(val) {}}?.y} of [{x: 42}]) ;', Context.OptionsNext],
-    ['0, [x?.y] = [23];', Context.OptionsNext],
-    ['0, [x?.y = 42] = [23];', Context.OptionsNext],
-    ['0, { x: { set y(val) {}}?.y} = {x: 42};', Context.OptionsNext],
-    ['0, [{ set y(val) {}}?.y] = [23];', Context.OptionsNext],
-    ['async?.(async?.(), async?.[])', Context.OptionsNext],
-    ['yield?.await = foo', Context.OptionsNext],
-    ['async?.await = foo', Context.OptionsNext],
-    ['async?.[x] = foo', Context.OptionsNext],
-    ['async?.() = foo', Context.OptionsNext],
-    ['a.?2.3', Context.OptionsNext],
-    ['a.?.2', Context.OptionsNext],
-    ['a.?2.n', Context.OptionsNext],
-    ['a.?2.3', Context.OptionsNext],
-    ['class C {} class D extends C { foo() { return super?.["bar"]; } }', Context.OptionsNext],
-    ['const o = { C: class {} }; new o?.C();', Context.OptionsNext],
-    ['const o = { C: class {} }; new o?.["C"]();', Context.OptionsNext],
-    ['class C {} new C?.();', Context.OptionsNext],
-    ['function foo() { new?.target; }', Context.OptionsNext],
-    ['function tag() {} tag?.``;', Context.OptionsNext],
-    ['const o = { tag() {} }; o?.tag``;', Context.OptionsNext],
-    ['a.?2.?n', Context.OptionsNext],
-    ['obj?.a = 33;', Context.OptionsNext],
-    ['a.? (?) [?]', Context.OptionsNext],
-    ['a.?2.3', Context.OptionsNext],
-    ['{a: 44}?.a', Context.OptionsNext],
-    ['let obj = {x:x?.1}; [...obj["x"]] = [10];', Context.OptionsNext],
-    ['let [...[...[...x?.a]]] = [x?.[[]]];', Context.OptionsNext],
-    ['let [...[...[...x?.a]]] = [[[]]];', Context.OptionsNext],
-    ['let [...[...[...x]]] = [?.a[[]]];', Context.OptionsNext],
-    ['try {} catch ([e?.a, ...a]) {}', Context.OptionsNext],
-    ['try {} catch (a?.[e]) {}', Context.OptionsNext],
-    ['[...[{x?.prop: 1}.prop]] = []', Context.OptionsNext],
-    ['[...[{prop?.a: 1}.prop]] = []', Context.OptionsNext],
-    ['[...[{prop: 1}.prop]] = x?.[]', Context.OptionsNext],
-    ['obj?.[expr] func?.(...args) new C?.(...args)', Context.OptionsNext],
-    ['o.x?[y]+z', Context.OptionsNext],
-    ['obj:?.prop', Context.OptionsNext],
-    ['obj:?[expr]', Context.OptionsNext],
-    ['func:?(...args)', Context.OptionsNext],
-    ['a === null: a?.b.c === undefined', Context.OptionsNext],
-    ['a === null: a?.b.c === undefined', Context.OptionsNext],
-    ['?.a?.b?.c', Context.OptionsNext],
-    ['?.(a.b.c)', Context.OptionsNext],
-    ['?. ?[] ?() ?:', Context.OptionsNext],
-    ['var b = condition ? a?.x.?y : a?.y?.z;', Context.OptionsNext],
-    ['a.?[b.c].d', Context.OptionsNext],
-    ['a[?b[c]]', Context.OptionsNext],
-    ['delete ?a.b.c', Context.OptionsNext],
+    ['a = { x = flag?.[] = true } = value;', Context.None],
+    ['a?.fn`hello`;', Context.None],
+    ['({x: [y]?.a = 0} = 1)', Context.None],
+    ['async(x?.x)=>x?.z', Context.None],
+    ['[a, x?.z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.None],
+    ['([a, b] = f?.x(() => { [a, b?.c] = [d.e, (f.g) = h]; }));', Context.None],
+    ['[a, ...b?.a] = [1, 2, ...c];', Context.None],
+    ['({..."x"?.x} = x);', Context.None],
+    ['([x.y = a] = ([x.y = a?.y] = ([x.y?.y = a] = z)))', Context.None],
+    ['([...[]?.x] = x);', Context.None],
+    ['({...[][x?.y]} = (x?.i) = (y));', Context.None],
+    ['({0: y?.a} = 0)', Context.None],
+    ['({0: x?.a, 1: x} = 0)', Context.None],
+    ['({a:let?.foo} = 0);', Context.None],
+    ['x?.[y] = foo', Context.None],
+    ['0, [{ set y(val) {}}?.y] = [23];', Context.None],
+    ['0, { x: y?.z = 42 } = { x: 23 };', Context.None],
+    ['0, { x: y?.z = 42 } = { x: 23 };', Context.OptionsWebCompat],
+    ['0, { x: y?.z } = { x: 23 };', Context.None],
+    ['0, { x: { set y(val) { }}?.y = 42} = {x: 42};', Context.None],
+    ['0, { x: { set y(val) {}}?.y} = {x: 42};', Context.None],
+    ['for ([x?.y = 42] in [[23]]) ;', Context.OptionsWebCompat],
+    ['for ([x?.y = 42] in [[23]]) ;', Context.None],
+    ['for ([x?.y] in [[23]]) ;', Context.None],
+    ['for ([x?.y] in [[23]]) ;', Context.OptionsWebCompat],
+    ['for ([{ set y(val) {}}?.y = 42] in [[23]]) ;', Context.None],
+    ['for ([{ set y(val) {}}?.y] in [[23]]) ;', Context.None],
+    ['for ({ x: y?.z = 42 } in [{ x: 23 }]) ;', Context.None],
+    ['for ({ x: y?.z } in [{ x: 23 }]) ;', Context.None],
+    ['for ({ x: { set y(val) { }}?.y = 42} in [{x: 42}]) ;', Context.None],
+    ['for ({ x: { set y(val) {} }?.y} in [{x: 42}]) ;', Context.None],
+    ['for ([x?.y = 42] of [[23]]) ;', Context.None],
+    ['for ([x?.y] of [[23]]) ;', Context.None],
+    ['for ([{ set y(val) {}}?.y = 42] of [[23]]) ;', Context.None],
+    ['for ([{ set y(val) { }}?.y] of [[23]]) ;', Context.None],
+    ['for ({ x: y?.z = 42 } of [{ x: 23 }]) ;', Context.None],
+    ['for ({ x: y?.z } of [{ x: 23 }]) ;', Context.None],
+    ['for ({ x: {set y(val) { }}?.y = 42} of [{x: 42}]) ;', Context.None],
+    ['for ({ x: { set y(val) {}}?.y} of [{x: 42}]) ;', Context.None],
+    ['0, [x?.y] = [23];', Context.None],
+    ['0, [x?.y = 42] = [23];', Context.None],
+    ['0, { x: { set y(val) {}}?.y} = {x: 42};', Context.None],
+    ['0, [{ set y(val) {}}?.y] = [23];', Context.None],
+    ['async?.(async?.(), async?.[])', Context.None],
+    ['yield?.await = foo', Context.None],
+    ['async?.await = foo', Context.None],
+    ['async?.[x] = foo', Context.None],
+    ['async?.() = foo', Context.None],
+    ['a.?2.3', Context.None],
+    ['a.?.2', Context.None],
+    ['a.?2.n', Context.None],
+    ['a.?2.3', Context.None],
+    ['class C {} class D extends C { foo() { return super?.["bar"]; } }', Context.None],
+    ['const o = { C: class {} }; new o?.C();', Context.None],
+    ['const o = { C: class {} }; new o?.["C"]();', Context.None],
+    ['class C {} new C?.();', Context.None],
+    ['function foo() { new?.target; }', Context.None],
+    ['function tag() {} tag?.``;', Context.None],
+    ['const o = { tag() {} }; o?.tag``;', Context.None],
+    ['a.?2.?n', Context.None],
+    ['obj?.a = 33;', Context.None],
+    ['a.? (?) [?]', Context.None],
+    ['a.?2.3', Context.None],
+    ['{a: 44}?.a', Context.None],
+    ['let obj = {x:x?.1}; [...obj["x"]] = [10];', Context.None],
+    ['let [...[...[...x?.a]]] = [x?.[[]]];', Context.None],
+    ['let [...[...[...x?.a]]] = [[[]]];', Context.None],
+    ['let [...[...[...x]]] = [?.a[[]]];', Context.None],
+    ['try {} catch ([e?.a, ...a]) {}', Context.None],
+    ['try {} catch (a?.[e]) {}', Context.None],
+    ['[...[{x?.prop: 1}.prop]] = []', Context.None],
+    ['[...[{prop?.a: 1}.prop]] = []', Context.None],
+    ['[...[{prop: 1}.prop]] = x?.[]', Context.None],
+    ['obj?.[expr] func?.(...args) new C?.(...args)', Context.None],
+    ['o.x?[y]+z', Context.None],
+    ['obj:?.prop', Context.None],
+    ['obj:?[expr]', Context.None],
+    ['func:?(...args)', Context.None],
+    ['a === null: a?.b.c === undefined', Context.None],
+    ['a === null: a?.b.c === undefined', Context.None],
+    ['?.a?.b?.c', Context.None],
+    ['?.(a.b.c)', Context.None],
+    ['?. ?[] ?() ?:', Context.None],
+    ['var b = condition ? a?.x.?y : a?.y?.z;', Context.None],
+    ['a.?[b.c].d', Context.None],
+    ['a[?b[c]]', Context.None],
+    ['delete ?a.b.c', Context.None],
     ['delete ?a.b.c', Context.None],
     ['[x?.y = 1]', Context.None],
     ['[x?.x?.y = 1]', Context.None],
     ['[x?.?.y = 1]', Context.None],
-    ['[x?.y = 1]', Context.OptionsNext],
-    ['a?.b => (a == null ? a : a.b)', Context.OptionsNext],
-    ['foo?.x?.y?.z?()=>foo;', Context.OptionsNext],
-    ['const a = { b(){ return super?.c; } }', Context.OptionsNext],
+    ['[x?.y = 1]', Context.None],
+    ['a?.b => (a == null ? a : a.b)', Context.None],
+    ['foo?.x?.y?.z?()=>foo;', Context.None],
+    ['const a = { b(){ return super?.c; } }', Context.None],
     ['class A{ b(){ return super?.b; } }', Context.OptionsWebCompat],
-    ['new a?.();', Context.OptionsNext | Context.Module | Context.Strict],
-    ['new C?.b.d()', Context.OptionsNext | Context.OptionsWebCompat],
-    ['a.?b.?()', Context.OptionsNext | Context.OptionsWebCompat],
-    ['a.?()', Context.OptionsNext | Context.OptionsWebCompat],
-    ['a?.b = c', Context.OptionsNext | Context.OptionsWebCompat],
-    ['a?.{a} = c', Context.OptionsNext | Context.OptionsWebCompat],
-    ['a?.(a) = c', Context.OptionsNext | Context.OptionsWebCompat],
-    ['o3?.a in ()', Context.OptionsNext | Context.OptionsWebCompat],
-    [
-      'a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)',
-      Context.OptionsNext | Context.OptionsWebCompat
-    ],
+    ['new a?.();', Context.Module | Context.Strict],
+    ['new C?.b.d()', Context.OptionsWebCompat],
+    ['a.?b.?()', Context.OptionsWebCompat],
+    ['a.?()', Context.OptionsWebCompat],
+    ['a?.b = c', Context.OptionsWebCompat],
+    ['a?.{a} = c', Context.OptionsWebCompat],
+    ['a?.(a) = c', Context.OptionsWebCompat],
+    ['o3?.a in ()', Context.OptionsWebCompat],
+    ['a?.b => (a == null ? void 0 : a.b) a?.b.c => (a == null ? void 0 : a.b.c)', Context.OptionsWebCompat],
     // FIXME: current implementation does not invalidate destructuring.
-    // ["({ a: x?.obj['a'] } = {})", Context.OptionsNext | Context.OptionsWebCompat],
-    // ['[...[x?.this[0], ...x?.this[1]]] = []', Context.OptionsNext | Context.OptionsWebCompat],
-    ['class C {} class D extends C { foo() { return super?.bar; } }', Context.OptionsNext | Context.OptionsWebCompat],
-    ['class C {} class D extends C { foo() { return super?.["bar"]; }', Context.OptionsNext | Context.OptionsWebCompat],
-    ['class C {} class D extends C { constructor() { super?.(); } }', Context.OptionsNext | Context.OptionsWebCompat],
-    ['const o = { C: class {} }; new o?.C();', Context.OptionsNext | Context.OptionsWebCompat],
-    ['const o = { C: class {} }; new o?.["C"]();', Context.OptionsNext | Context.OptionsWebCompat],
-    ['class C {} new C?.();', Context.OptionsNext | Context.OptionsWebCompat],
-    ['function tag() {} tag?.``', Context.OptionsNext | Context.OptionsWebCompat],
-    ['const o = { tag() {} }; o?.tag``', Context.OptionsNext | Context.OptionsWebCompat],
-    ['import?.("foo")', Context.OptionsNext | Context.OptionsWebCompat],
-    ['new new class {}()?.constructor?.();', Context.OptionsNext | Context.OptionsWebCompat],
+    // ["({ a: x?.obj['a'] } = {})", Context.OptionsWebCompat],
+    // ['[...[x?.this[0], ...x?.this[1]]] = []', Context.OptionsWebCompat],
+    ['class C {} class D extends C { foo() { return super?.bar; } }', Context.OptionsWebCompat],
+    ['class C {} class D extends C { foo() { return super?.["bar"]; }', Context.OptionsWebCompat],
+    ['class C {} class D extends C { constructor() { super?.(); } }', Context.OptionsWebCompat],
+    ['const o = { C: class {} }; new o?.C();', Context.OptionsWebCompat],
+    ['const o = { C: class {} }; new o?.["C"]();', Context.OptionsWebCompat],
+    ['class C {} new C?.();', Context.OptionsWebCompat],
+    ['function tag() {} tag?.``', Context.OptionsWebCompat],
+    ['const o = { tag() {} }; o?.tag``', Context.OptionsWebCompat],
+    ['import?.("foo")', Context.OptionsWebCompat],
+    ['new new class {}()?.constructor?.();', Context.OptionsWebCompat],
     ['a?.{a} = c', Context.None],
     ['a.?()', Context.None]
   ]);
 
-  pass('Next - Optional chaining (pass)', [
+  pass('Optional chaining (pass)', [
     [
       `a?.b`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -432,7 +439,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'obj.aaa.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -486,7 +493,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'obj.aaa?.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -547,7 +554,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'obj?.aaa.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -608,7 +615,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'obj?.aaa?.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -670,7 +677,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       '(obj.aaa).bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -724,7 +731,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       '(obj.aaa)?.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -785,7 +792,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       '(obj?.aaa).bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -846,7 +853,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       '(obj?.aaa)?.bbb',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -914,7 +921,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'a?.[x]',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         body: [
           {
@@ -961,7 +968,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       'a?.import("string")?.import.meta??(a)',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         body: [
           {
@@ -1066,7 +1073,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       `a?.()`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1106,7 +1113,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       `a?.b[3].c?.(x).d`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1211,7 +1218,7 @@ describe('Next - Optional chaining', () => {
     ],
     [
       `({})?.a["b"]`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsWebCompat,
+      Context.OptionsRanges | Context.OptionsWebCompat,
       {
         type: 'Program',
         sourceType: 'script',

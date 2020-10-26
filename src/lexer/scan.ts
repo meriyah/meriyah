@@ -490,7 +490,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `?`, `??`, `?.`
         case Token.QuestionMark: {
           let ch = advanceChar(parser);
-          if ((context & Context.OptionsNext) < 1) return Token.QuestionMark;
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);
             return Token.Coalesce;
