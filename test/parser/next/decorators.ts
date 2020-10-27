@@ -63,7 +63,7 @@ describe('Next - Decorators', () => {
     });
   }
 
-  fail('Expressions - Async (pass)', [
+  fail('Next - Decorators (fail)', [
     ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     [`class A {  constructor(@foo x) {} }`, Context.OptionsNext | Context.Module | Context.Strict],
     //[`@decorate`, Context.OptionsNext],
@@ -84,6 +84,7 @@ describe('Next - Decorators', () => {
     ['@bar export {Foo};', Context.OptionsNext | Context.Module],
     ['@bar export * from "./foo";', Context.OptionsNext | Context.Module],
     ['@bar export default function foo() {}', Context.OptionsNext | Context.Module],
+    ['@bar export const lo = {a: class Foo {}};', Context.OptionsNext | Context.Module],
     ['@bar const foo = 1;', Context.OptionsNext],
     ['@bar function foo() {}', Context.OptionsNext],
     ['(@bar const foo = 1);', Context.OptionsNext],

@@ -420,10 +420,8 @@ export function parseModuleItem(
   line: number,
   column: number
 ): any {
+  // Support legacy decorators before export keyword.
   parser.leadingDecorators = parseDecorators(parser, context);
-  if (parser.leadingDecorators.length && parser.token !== Token.ExportKeyword && parser.token !== Token.ClassKeyword) {
-    report(parser, Errors.InvalidLeadingDecorator);
-  }
 
   // ecma262/#prod-ModuleItem
   // ModuleItem :
@@ -431,14 +429,22 @@ export function parseModuleItem(
   //    ExportDeclaration
   //    StatementListItem
 
+  let moduleItem;
   switch (parser.token) {
     case Token.ExportKeyword:
-      return parseExportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseExportDeclaration(parser, context, scope, start, line, column);
+      break;
     case Token.ImportKeyword:
-      return parseImportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseImportDeclaration(parser, context, scope, start, line, column);
+      break;
     default:
-      return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
+      moduleItem = parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
+
+  if (parser.leadingDecorators.length) {
+    report(parser, Errors.InvalidLeadingDecorator);
+  }
+  return moduleItem;
 }
 
 /**
@@ -2887,11 +2893,6 @@ function parseExportDeclaration(
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
     if (scope) declareUnboundVariable(parser, 'default');
 
-    if (parser.leadingDecorators.length) {
-      // leadingDecorators should be consumed by parseClassDeclaration
-      report(parser, Errors.InvalidLeadingDecorator);
-    }
-
     return finishNode(parser, context, start, line, column, {
       type: 'ExportDefaultDeclaration',
       declaration
@@ -2904,11 +2905,6 @@ function parseExportDeclaration(
       // 'export' '*' 'as' IdentifierName 'from' ModuleSpecifier ';'
       //
       // See: https://github.com/tc39/ecma262/pull/1174
-
-      if (parser.leadingDecorators.length) {
-        report(parser, Errors.InvalidLeadingDecorator);
-      }
-
       nextToken(parser, context); // Skips: '*'
 
       let exported: ESTree.Identifier | null = null;
@@ -3102,10 +3098,6 @@ function parseExportDeclaration(
     // falls through
     default:
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
-  }
-
-  if (parser.leadingDecorators.length) {
-    report(parser, Errors.InvalidLeadingDecorator);
   }
 
   return finishNode(parser, context, start, line, column, {
