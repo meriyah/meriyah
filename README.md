@@ -109,9 +109,23 @@ This is the available options:
   // Allow edge cases that deviate from the spec
   specDeviation: false
 }
+
 ```
 
-Example usage:
+### onComment and onToken
+If an array is supplied, comments/tokens will be pushed to the array, the item in the array contains `start/end/range` information when ranges flag is true, it will also contain `loc` information when loc flag is true.
+
+If a function callback is supplied, the signature must be
+
+```ts
+function onComment(type: string, value: string, start: number, end: number, loc: SourceLocation): void {}
+
+function onToken(token: string, start: number, end: number, loc: SourceLocation): void {}
+```
+
+Note the `start/end/loc` information are provided to the function callback regardless of the settings on ranges and loc flags. onComment callback has one extra argument `value: string` for the body string of the comment.
+
+## Example usage
 
 ```js
 
