@@ -1,3 +1,25 @@
+# [3.1.0](https://github.com/meriyah/meriyah/compare/v3.0.5...v3.1.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* fix loc on hashbang comment ([f139dce](https://github.com/meriyah/meriyah/commit/f139dcec6b78690e39d6bc4a446a2a231850bebc))
+* fix range on HTMLClose comment on first line ([c445b90](https://github.com/meriyah/meriyah/commit/c445b90fa0f3c8373bfc4837c7d4b8473b1c80aa))
+* fix wrong loc in template expressions ([aa0e992](https://github.com/meriyah/meriyah/commit/aa0e9924016065800af6b2b52fabeeef634a13c0)), closes [#123](https://github.com/meriyah/meriyah/issues/123)
+* properly support loc on HTMLClose comment ([f72dd4f](https://github.com/meriyah/meriyah/commit/f72dd4fdd9a581f5db866682a88475beb4cbd8b0))
+
+
+### Features
+
+* support loc flag for onComment and onToken ([287b77c](https://github.com/meriyah/meriyah/commit/287b77cd155e3c44d25b694bf47600883e5a0dca)), closes [#95](https://github.com/meriyah/meriyah/issues/95)
+
+
+### Performance Improvements
+
+* **lexer:** improved lexer perf ([bc5e647](https://github.com/meriyah/meriyah/commit/bc5e6473312d2acee991b62a35be37fb24a1e533))
+
+
+
 ## [3.0.5](https://github.com/meriyah/meriyah/compare/v3.0.4...v3.0.5) (2020-10-25)
 
 
