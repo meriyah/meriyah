@@ -4554,7 +4554,7 @@ export function parseTemplate(
       parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, /* tail */ false)
     );
 
-    expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
+    expressions.push(parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
     if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   }
 
