@@ -363,12 +363,26 @@ System.register('meriyah', [], function (exports) {
           parser.startColumn = parser.column;
           parser.startLine = parser.line;
           parser.token = scanSingleToken(parser, context, 0);
-          if (parser.onToken && parser.token !== 1048576)
-              parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
+          if (parser.onToken && parser.token !== 1048576) {
+              const loc = {
+                  start: {
+                      line: parser.linePos,
+                      column: parser.colPos
+                  },
+                  end: {
+                      line: parser.line,
+                      column: parser.column
+                  }
+              };
+              parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index, loc);
+          }
       }
       function scanSingleToken(parser, context, state) {
           const isStartOfLine = parser.index === 0;
           const source = parser.source;
+          let startPos = parser.index;
+          let startLine = parser.line;
+          let startColumn = parser.column;
           while (parser.index < parser.end) {
               parser.tokenPos = parser.index;
               parser.colPos = parser.column;
@@ -412,7 +426,10 @@ System.register('meriyah', [], function (exports) {
                                       source.charCodeAt(index + 1) == 45) {
                                       parser.column += 3;
                                       parser.currentChar = source.charCodeAt((parser.index += 3));
-                                      state = skipSingleHTMLComment(parser, source, state, context, 2);
+                                      state = skipSingleHTMLComment(parser, source, state, context, 2, parser.tokenPos, parser.linePos, parser.colPos);
+                                      startPos = parser.tokenPos;
+                                      startLine = parser.linePos;
+                                      startColumn = parser.colPos;
                                       continue;
                                   }
                                   return 8456255;
@@ -508,7 +525,10 @@ System.register('meriyah', [], function (exports) {
                                   if ((context & 256) === 0)
                                       report(parser, 108);
                                   advanceChar(parser);
-                                  state = skipSingleHTMLComment(parser, source, state, context, 3);
+                                  state = skipSingleHTMLComment(parser, source, state, context, 3, startPos, startLine, startColumn);
+                                  startPos = parser.tokenPos;
+                                  startLine = parser.linePos;
+                                  startColumn = parser.colPos;
                                   continue;
                               }
                               return 33619996;
@@ -525,12 +545,18 @@ System.register('meriyah', [], function (exports) {
                               const ch = parser.currentChar;
                               if (ch === 47) {
                                   advanceChar(parser);
-                                  state = skipSingleLineComment(parser, source, state, 0);
+                                  state = skipSingleLineComment(parser, source, state, 0, parser.tokenPos, parser.linePos, parser.colPos);
+                                  startPos = parser.tokenPos;
+                                  startLine = parser.linePos;
+                                  startColumn = parser.colPos;
                                   continue;
                               }
                               if (ch === 42) {
                                   advanceChar(parser);
                                   state = skipMultiLineComment(parser, source, state);
+                                  startPos = parser.tokenPos;
+                                  startLine = parser.linePos;
+                                  startColumn = parser.colPos;
                                   continue;
                               }
                               if (context & 32768) {
@@ -692,17 +718,18 @@ System.register('meriyah', [], function (exports) {
       function skipHashBang(parser) {
           const source = parser.source;
           if (parser.currentChar === 35 && source.charCodeAt(parser.index + 1) === 33) {
-              skipSingleLineComment(parser, source, 0, 4);
+              advanceChar(parser);
+              advanceChar(parser);
+              skipSingleLineComment(parser, source, 0, 4, parser.tokenPos, parser.linePos, parser.colPos);
           }
       }
-      function skipSingleHTMLComment(parser, source, state, context, type) {
+      function skipSingleHTMLComment(parser, source, state, context, type, start, line, column) {
           if (context & 2048)
               report(parser, 0);
-          return skipSingleLineComment(parser, source, state, type);
+          return skipSingleLineComment(parser, source, state, type, start, line, column);
       }
-      function skipSingleLineComment(parser, source, state, type) {
+      function skipSingleLineComment(parser, source, state, type, start, line, column) {
           const { index } = parser;
-          let end = index;
           while (parser.index < parser.end) {
               if (CharTypes[parser.currentChar] & 8) {
                   const isCR = parser.currentChar === 13;
@@ -716,10 +743,23 @@ System.register('meriyah', [], function (exports) {
                   break;
               }
               advanceChar(parser);
-              end++;
+              parser.tokenPos = parser.index;
+              parser.linePos = parser.line;
+              parser.colPos = parser.column;
           }
-          if (parser.onComment)
-              parser.onComment(CommentTypes[type & 0xff], source.slice(index, end), index - (type === 0 ? 2 : 4), end);
+          if (parser.onComment) {
+              const loc = {
+                  start: {
+                      line,
+                      column
+                  },
+                  end: {
+                      line: parser.linePos,
+                      column: parser.colPos
+                  }
+              };
+              parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenPos), start, parser.tokenPos, loc);
+          }
           return state | 1;
       }
       function skipMultiLineComment(parser, source, state) {
@@ -734,8 +774,22 @@ System.register('meriyah', [], function (exports) {
                       }
                       if (advanceChar(parser) === 47) {
                           advanceChar(parser);
-                          if (parser.onComment)
-                              parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index);
+                          if (parser.onComment) {
+                              const loc = {
+                                  start: {
+                                      line: parser.linePos,
+                                      column: parser.colPos
+                                  },
+                                  end: {
+                                      line: parser.line,
+                                      column: parser.column
+                                  }
+                              };
+                              parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index, loc);
+                          }
+                          parser.tokenPos = parser.index;
+                          parser.linePos = parser.line;
+                          parser.colPos = parser.column;
                           return state;
                       }
                   }
@@ -2392,7 +2446,7 @@ System.register('meriyah', [], function (exports) {
           }
       }
       function pushComment(context, array) {
-          return function (type, value, start, end) {
+          return function (type, value, start, end, loc) {
               const comment = {
                   type,
                   value
@@ -2402,17 +2456,24 @@ System.register('meriyah', [], function (exports) {
                   comment.end = end;
                   comment.range = [start, end];
               }
+              if (context & 4) {
+                  comment.loc = loc;
+              }
               array.push(comment);
           };
       }
       function pushToken(context, array) {
-          return function (token, start, end) {
+          return function (token, start, end, loc) {
               const tokens = {
                   token
               };
-              if (context & 4) {
+              if (context & 2) {
                   tokens.start = start;
                   tokens.end = end;
+                  tokens.range = [start, end];
+              }
+              if (context & 4) {
+                  tokens.loc = loc;
               }
               array.push(tokens);
           };
@@ -2452,7 +2513,7 @@ System.register('meriyah', [], function (exports) {
               tokenPos: 0,
               startColumn: 0,
               colPos: 0,
-              linePos: 0,
+              linePos: 1,
               startLine: 1,
               sourceFile,
               tokenValue: '',

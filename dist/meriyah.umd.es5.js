@@ -412,12 +412,26 @@
         parser.startColumn = parser.column;
         parser.startLine = parser.line;
         parser.token = scanSingleToken(parser, context, 0);
-        if (parser.onToken && parser.token !== 1048576)
-            parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
+        if (parser.onToken && parser.token !== 1048576) {
+            var loc = {
+                start: {
+                    line: parser.linePos,
+                    column: parser.colPos
+                },
+                end: {
+                    line: parser.line,
+                    column: parser.column
+                }
+            };
+            parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index, loc);
+        }
     }
     function scanSingleToken(parser, context, state) {
         var isStartOfLine = parser.index === 0;
         var source = parser.source;
+        var startPos = parser.index;
+        var startLine = parser.line;
+        var startColumn = parser.column;
         while (parser.index < parser.end) {
             parser.tokenPos = parser.index;
             parser.colPos = parser.column;
@@ -461,7 +475,10 @@
                                     source.charCodeAt(index + 1) == 45) {
                                     parser.column += 3;
                                     parser.currentChar = source.charCodeAt((parser.index += 3));
-                                    state = skipSingleHTMLComment(parser, source, state, context, 2);
+                                    state = skipSingleHTMLComment(parser, source, state, context, 2, parser.tokenPos, parser.linePos, parser.colPos);
+                                    startPos = parser.tokenPos;
+                                    startLine = parser.linePos;
+                                    startColumn = parser.colPos;
                                     continue;
                                 }
                                 return 8456255;
@@ -557,7 +574,10 @@
                                 if ((context & 256) === 0)
                                     report(parser, 108);
                                 advanceChar(parser);
-                                state = skipSingleHTMLComment(parser, source, state, context, 3);
+                                state = skipSingleHTMLComment(parser, source, state, context, 3, startPos, startLine, startColumn);
+                                startPos = parser.tokenPos;
+                                startLine = parser.linePos;
+                                startColumn = parser.colPos;
                                 continue;
                             }
                             return 33619996;
@@ -574,12 +594,18 @@
                             var ch_5 = parser.currentChar;
                             if (ch_5 === 47) {
                                 advanceChar(parser);
-                                state = skipSingleLineComment(parser, source, state, 0);
+                                state = skipSingleLineComment(parser, source, state, 0, parser.tokenPos, parser.linePos, parser.colPos);
+                                startPos = parser.tokenPos;
+                                startLine = parser.linePos;
+                                startColumn = parser.colPos;
                                 continue;
                             }
                             if (ch_5 === 42) {
                                 advanceChar(parser);
                                 state = skipMultiLineComment(parser, source, state);
+                                startPos = parser.tokenPos;
+                                startLine = parser.linePos;
+                                startColumn = parser.colPos;
                                 continue;
                             }
                             if (context & 32768) {
@@ -741,17 +767,18 @@
     function skipHashBang(parser) {
         var source = parser.source;
         if (parser.currentChar === 35 && source.charCodeAt(parser.index + 1) === 33) {
-            skipSingleLineComment(parser, source, 0, 4);
+            advanceChar(parser);
+            advanceChar(parser);
+            skipSingleLineComment(parser, source, 0, 4, parser.tokenPos, parser.linePos, parser.colPos);
         }
     }
-    function skipSingleHTMLComment(parser, source, state, context, type) {
+    function skipSingleHTMLComment(parser, source, state, context, type, start, line, column) {
         if (context & 2048)
             report(parser, 0);
-        return skipSingleLineComment(parser, source, state, type);
+        return skipSingleLineComment(parser, source, state, type, start, line, column);
     }
-    function skipSingleLineComment(parser, source, state, type) {
+    function skipSingleLineComment(parser, source, state, type, start, line, column) {
         var index = parser.index;
-        var end = index;
         while (parser.index < parser.end) {
             if (CharTypes[parser.currentChar] & 8) {
                 var isCR = parser.currentChar === 13;
@@ -765,10 +792,23 @@
                 break;
             }
             advanceChar(parser);
-            end++;
+            parser.tokenPos = parser.index;
+            parser.linePos = parser.line;
+            parser.colPos = parser.column;
         }
-        if (parser.onComment)
-            parser.onComment(CommentTypes[type & 0xff], source.slice(index, end), index - (type === 0 ? 2 : 4), end);
+        if (parser.onComment) {
+            var loc = {
+                start: {
+                    line: line,
+                    column: column
+                },
+                end: {
+                    line: parser.linePos,
+                    column: parser.colPos
+                }
+            };
+            parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenPos), start, parser.tokenPos, loc);
+        }
         return state | 1;
     }
     function skipMultiLineComment(parser, source, state) {
@@ -783,8 +823,22 @@
                     }
                     if (advanceChar(parser) === 47) {
                         advanceChar(parser);
-                        if (parser.onComment)
-                            parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index);
+                        if (parser.onComment) {
+                            var loc = {
+                                start: {
+                                    line: parser.linePos,
+                                    column: parser.colPos
+                                },
+                                end: {
+                                    line: parser.line,
+                                    column: parser.column
+                                }
+                            };
+                            parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index, loc);
+                        }
+                        parser.tokenPos = parser.index;
+                        parser.linePos = parser.line;
+                        parser.colPos = parser.column;
                         return state;
                     }
                 }
@@ -2445,7 +2499,7 @@
         }
     }
     function pushComment(context, array) {
-        return function (type, value, start, end) {
+        return function (type, value, start, end, loc) {
             var comment = {
                 type: type,
                 value: value
@@ -2455,17 +2509,24 @@
                 comment.end = end;
                 comment.range = [start, end];
             }
+            if (context & 4) {
+                comment.loc = loc;
+            }
             array.push(comment);
         };
     }
     function pushToken(context, array) {
-        return function (token, start, end) {
+        return function (token, start, end, loc) {
             var tokens = {
                 token: token
             };
-            if (context & 4) {
+            if (context & 2) {
                 tokens.start = start;
                 tokens.end = end;
+                tokens.range = [start, end];
+            }
+            if (context & 4) {
+                tokens.loc = loc;
             }
             array.push(tokens);
         };
@@ -2505,7 +2566,7 @@
             tokenPos: 0,
             startColumn: 0,
             colPos: 0,
-            linePos: 0,
+            linePos: 1,
             startLine: 1,
             sourceFile: sourceFile,
             tokenValue: '',

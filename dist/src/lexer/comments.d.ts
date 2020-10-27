@@ -9,7 +9,7 @@ export declare const enum CommentType {
 }
 export declare const CommentTypes: string[];
 export declare function skipHashBang(parser: ParserState): void;
-export declare function skipSingleHTMLComment(parser: ParserState, source: string, state: LexerState, context: Context, type: CommentType): LexerState;
-export declare function skipSingleLineComment(parser: ParserState, source: string, state: LexerState, type: CommentType): LexerState;
+export declare function skipSingleHTMLComment(parser: ParserState, source: string, state: LexerState, context: Context, type: CommentType, start: number, line: number, column: number): LexerState;
+export declare function skipSingleLineComment(parser: ParserState, source: string, state: LexerState, type: CommentType, start: number, line: number, column: number): LexerState;
 export declare function skipMultiLineComment(parser: ParserState, source: string, state: LexerState): LexerState | void;
 //# sourceMappingURL=comments.d.ts.map

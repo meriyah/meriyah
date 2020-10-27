@@ -1,6 +1,6 @@
 import { Token } from './token';
 import { Errors } from './errors';
-import { Node, Comment, Decorator } from './estree';
+import { Node, Comment, Decorator, SourceLocation } from './estree';
 export declare const enum Context {
     None = 0,
     OptionsNext = 1,
@@ -128,8 +128,8 @@ export declare const enum ScopeKind {
     ArrowParams = 1024,
     CatchIdentifier = 2048
 }
-export declare type OnComment = void | Comment[] | ((type: string, value: string, start?: number, end?: number) => any);
-export declare type OnToken = void | Token[] | ((token: string, start?: number, end?: number) => any);
+export declare type OnComment = void | Comment[] | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
+export declare type OnToken = void | Token[] | ((token: string, start: number, end: number, loc: SourceLocation) => any);
 export interface ScopeState {
     parent: ScopeState | undefined;
     type: ScopeKind;
