@@ -1747,7 +1747,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       `<div id={aa} class="className" ></div>`,
-      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1848,6 +1848,7 @@ describe('Miscellaneous - JSX', () => {
                     value: {
                       type: 'Literal',
                       value: 'className',
+                      raw: '"className"',
                       start: 19,
                       end: 30,
                       range: [19, 30],

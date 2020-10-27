@@ -17,7 +17,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
   parser.startLine = parser.linePos = parser.line;
   parser.token =
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
-      ? scanJSXString(parser)
+      ? scanJSXString(parser, context)
       : scanSingleToken(parser, context, LexerState.None);
   return parser.token;
 }
@@ -27,7 +27,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
  *
  * @param parser The parser object
  */
-export function scanJSXString(parser: ParserState): Token {
+export function scanJSXString(parser: ParserState, context: Context): Token {
   const quote = parser.currentChar;
   let char = advanceChar(parser);
   const start = parser.index;
@@ -40,6 +40,7 @@ export function scanJSXString(parser: ParserState): Token {
   if (char !== quote) report(parser, Errors.UnterminatedString);
   parser.tokenValue = parser.source.slice(start, parser.index);
   advanceChar(parser); // skip the quote
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
   return Token.StringLiteral;
 }
 
