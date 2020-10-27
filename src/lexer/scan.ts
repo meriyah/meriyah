@@ -234,6 +234,48 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           advanceChar(parser);
           return token;
 
+        // Look for an identifier
+        case Token.Identifier:
+          return scanIdentifier(parser, context, /* isValidAsKeyword */ 0);
+
+        // Look for identifier or keyword
+        case Token.Keyword:
+          return scanIdentifier(parser, context, /* isValidAsKeyword */ 1);
+
+        // Look for a decimal number.
+        case Token.NumericLiteral:
+          return scanNumber(parser, context, NumberKind.Decimal | NumberKind.ValidBigIntKind);
+
+        // Look for a string literal
+        case Token.StringLiteral:
+          return scanString(parser, context, char);
+
+        // Look for a template string
+        case Token.Template:
+          return scanTemplate(parser, context);
+
+        // Look for a escaped identifier
+        case Token.EscapedIdentifier:
+          return scanUnicodeIdentifier(parser, context);
+
+        // `#` (private name)
+        case Token.PrivateField:
+          return scanPrivateName(parser);
+
+        case Token.WhiteSpace:
+          advanceChar(parser);
+          break;
+
+        case Token.CarriageReturn:
+          state |= LexerState.NewLine | LexerState.LastIsCR;
+          scanNewLine(parser);
+          break;
+
+        case Token.LineFeed:
+          consumeLineFeed(parser, state);
+          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+          break;
+
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
         case Token.LessThan:
           let ch = advanceChar(parser);
@@ -293,7 +335,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
           advanceChar(parser);
-          if (parser.index >= parser.end) return Token.Assign;
+
           const ch = parser.currentChar;
 
           if (ch === Chars.EqualSign) {
@@ -378,7 +420,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `-`, `--`, `-=`, `-->`
         case Token.Subtract: {
           advanceChar(parser);
-          if (parser.index >= parser.end) return Token.Subtract;
+
           const ch = parser.currentChar;
 
           if (ch === Chars.Hyphen) {
@@ -454,10 +496,25 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.Divide;
         }
 
+        // `.`, `...`, `.123` (numeric literal)
+        case Token.Period:
+          const next = advanceChar(parser);
+          if (next >= Chars.Zero && next <= Chars.Nine)
+            return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
+          if (next === Chars.Period) {
+            const index = parser.index + 1;
+            if (index < parser.end && source.charCodeAt(index) === Chars.Period) {
+              parser.column += 2;
+              parser.currentChar = source.charCodeAt((parser.index += 2));
+              return Token.Ellipsis;
+            }
+          }
+          return Token.Period;
+
         // `|`, `||`, `|=`
         case Token.BitwiseOr: {
           advanceChar(parser);
-          if (parser.index >= parser.end) return Token.BitwiseOr;
+
           const ch = parser.currentChar;
 
           if (ch === Chars.VerticalBar) {
@@ -475,8 +532,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `>`, `>=`, `>>`, `>>>`, `>>=`, `>>>=`
         case Token.GreaterThan: {
           advanceChar(parser);
-
-          if (parser.index >= parser.end) return Token.GreaterThan;
 
           const ch = parser.currentChar;
 
@@ -511,7 +566,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         // `&`, `&&`, `&=`
         case Token.BitwiseAnd: {
           advanceChar(parser);
-          if (parser.index >= parser.end) return Token.BitwiseAnd;
+
           const ch = parser.currentChar;
 
           if (ch === Chars.Ampersand) {
@@ -526,20 +581,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           return Token.BitwiseAnd;
         }
-        // `.`, `...`, `.123` (numeric literal)
-        case Token.Period:
-          const next = advanceChar(parser);
-          if (next >= Chars.Zero && next <= Chars.Nine)
-            return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
-          if (next === Chars.Period) {
-            const index = parser.index + 1;
-            if (index < parser.end && source.charCodeAt(index) === Chars.Period) {
-              parser.column += 2;
-              parser.currentChar = source.charCodeAt((parser.index += 2));
-              return Token.Ellipsis;
-            }
-          }
-          return Token.Period;
 
         // `?`, `??`, `?.`
         case Token.QuestionMark: {
@@ -564,48 +605,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.QuestionMark;
         }
 
-        // Look for identifier or keyword
-        case Token.Keyword:
-          return scanIdentifier(parser, context, /* isValidAsKeyword */ 1);
-
-        // Look for an identifier
-        case Token.Identifier:
-          return scanIdentifier(parser, context, /* isValidAsKeyword */ 0);
-
-        // Look for a decimal number.
-        case Token.NumericLiteral:
-          return scanNumber(parser, context, NumberKind.Decimal | NumberKind.ValidBigIntKind);
-
-        // Look for a string literal
-        case Token.StringLiteral:
-          return scanString(parser, context, char);
-
-        // Look for a template string
-        case Token.Template:
-          return scanTemplate(parser, context);
-
-        // Look for a escaped identifier
-        case Token.EscapedIdentifier:
-          return scanUnicodeIdentifier(parser, context);
-
-        // `#` (private name)
-        case Token.PrivateField:
-          return scanPrivateName(parser);
-
-        case Token.WhiteSpace:
-          advanceChar(parser);
-          break;
-
-        case Token.CarriageReturn:
-          state |= LexerState.NewLine | LexerState.LastIsCR;
-          scanNewLine(parser);
-          break;
-
-        case Token.LineFeed:
-          consumeLineFeed(parser, state);
-          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-          break;
-
         default:
         // unreachable
       }
@@ -627,7 +626,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         }
 
         parser.column++;
-
         parser.tokenValue = '';
         return scanIdentifierSlowCase(parser, context, /* hasEscape */ 0, /* canBeKeyword */ 0);
       }
