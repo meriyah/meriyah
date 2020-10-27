@@ -16,7 +16,7 @@ export const enum Escape {
 /**
  * Scan a string token.
  */
-export function scanString(parser: ParserState, context: Context, quote: number): any {
+export function scanString(parser: ParserState, context: Context, quote: number): Token {
   const { index: start } = parser;
 
   let ret: string | void = '';
@@ -54,6 +54,8 @@ export function scanString(parser: ParserState, context: Context, quote: number)
 
   report(parser, Errors.UnterminatedString);
 }
+
+// TODO! Use table lookup
 
 export function parseEscape(parser: ParserState, context: Context, first: number): number {
   switch (first) {

@@ -2487,9 +2487,7 @@ function parseImportDeclaration(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
         case Token.Period:
-          if (context & Context.OptionsNext) {
-            return parseImportMetaDeclaration(parser, context, start, line, column);
-          }
+          return parseImportMetaDeclaration(parser, context, start, line, column);
         default:
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
       }
@@ -4356,7 +4354,7 @@ function parseImportCallOrMetaExpression(
 
   let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context, 0);
 
-  if (context & Context.OptionsNext && parser.token === Token.Period) {
+  if (parser.token === Token.Period) {
     return parseImportMetaExpression(parser, context, expr, start, line, column);
   }
 
