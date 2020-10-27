@@ -1170,8 +1170,6 @@ export function parseDirective(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  const { tokenRaw } = parser;
-
   if (token !== Token.Semicolon) {
     parser.assignable = AssignmentKind.CannotAssign;
 
@@ -1192,7 +1190,8 @@ export function parseDirective(
     ? finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression,
-        directive: tokenRaw.slice(1, -1)
+        // OptionsRaw is implicitly turned on by OptionsDirectives.
+        directive: (expression.raw as string).slice(1, -1)
       })
     : finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
