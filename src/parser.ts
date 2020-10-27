@@ -9106,7 +9106,7 @@ function parseJSXExpressionContainer(
   if (parser.token === Token.RightBrace) {
     // JSX attributes must only be assigned a non-empty 'expression'
     if (isAttr) report(parser, Errors.InvalidNonEmptyJSXExpr);
-    expression = parseJSXEmptyExpression(parser, context, tokenPos, linePos, colPos);
+    expression = parseJSXEmptyExpression(parser, context, parser.startPos, parser.startLine, parser.startColumn);
   } else {
     expression = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
   }
@@ -9163,6 +9163,13 @@ function parseJSXEmptyExpression(
   line: number,
   column: number
 ): ESTree.JSXEmptyExpression {
+  // Since " }" is treated as single token, we have to artificially break
+  // it into " " and "}".
+  // Move token start from beginning of whitespace(s) to beginning of "}",
+  // so JSXEmptyExpression can have correct end loc.
+  parser.startPos = parser.tokenPos;
+  parser.startLine = parser.linePos;
+  parser.startColumn = parser.colPos;
   return finishNode(parser, context, start, line, column, {
     type: 'JSXEmptyExpression'
   });
