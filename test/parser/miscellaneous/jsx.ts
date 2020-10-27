@@ -1746,7 +1746,7 @@ describe('Miscellaneous - JSX', () => {
       }
     ],
     [
-      `<div id={aa} class="className" ></div>`,
+      `<div id={aa} class="className" > t </div>`,
       Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsRaw,
       {
         type: 'Program',
@@ -1756,7 +1756,26 @@ describe('Miscellaneous - JSX', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'JSXElement',
-              children: [],
+              children: [
+                {
+                  type: 'JSXText',
+                  value: ' t ',
+                  raw: ' t ',
+                  start: 32,
+                  end: 35,
+                  range: [32, 35],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 32
+                    },
+                    end: {
+                      line: 1,
+                      column: 35
+                    }
+                  }
+                }
+              ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
@@ -1915,37 +1934,37 @@ describe('Miscellaneous - JSX', () => {
                 name: {
                   type: 'JSXIdentifier',
                   name: 'div',
-                  start: 34,
-                  end: 37,
-                  range: [34, 37],
+                  start: 37,
+                  end: 40,
+                  range: [37, 40],
                   loc: {
                     start: {
                       line: 1,
-                      column: 34
+                      column: 37
                     },
                     end: {
                       line: 1,
-                      column: 37
+                      column: 40
                     }
                   }
                 },
-                start: 32,
-                end: 38,
-                range: [32, 38],
+                start: 35,
+                end: 41,
+                range: [35, 41],
                 loc: {
                   start: {
                     line: 1,
-                    column: 32
+                    column: 35
                   },
                   end: {
                     line: 1,
-                    column: 38
+                    column: 41
                   }
                 }
               },
               start: 0,
-              end: 38,
-              range: [0, 38],
+              end: 41,
+              range: [0, 41],
               loc: {
                 start: {
                   line: 1,
@@ -1953,13 +1972,13 @@ describe('Miscellaneous - JSX', () => {
                 },
                 end: {
                   line: 1,
-                  column: 38
+                  column: 41
                 }
               }
             },
             start: 0,
-            end: 38,
-            range: [0, 38],
+            end: 41,
+            range: [0, 41],
             loc: {
               start: {
                 line: 1,
@@ -1967,14 +1986,14 @@ describe('Miscellaneous - JSX', () => {
               },
               end: {
                 line: 1,
-                column: 38
+                column: 41
               }
             }
           }
         ],
         start: 0,
-        end: 38,
-        range: [0, 38],
+        end: 41,
+        range: [0, 41],
         loc: {
           start: {
             line: 1,
@@ -1982,7 +2001,7 @@ describe('Miscellaneous - JSX', () => {
           },
           end: {
             line: 1,
-            column: 38
+            column: 41
           }
         }
       }
@@ -10249,7 +10268,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 5,
                   end: 13,
                   range: [5, 13],
-                  value: ' foo:bar'
+                  value: ' foo:bar',
+                  raw: ' foo:bar'
                 }
               ]
             }

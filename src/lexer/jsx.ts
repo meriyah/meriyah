@@ -49,7 +49,7 @@ export function scanJSXString(parser: ParserState, context: Context): Token {
  *
  * @param parser The parser object
  */
-export function scanJSXToken(parser: ParserState): Token {
+export function scanJSXToken(parser: ParserState, context: Context): Token {
   parser.startPos = parser.tokenPos = parser.index;
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
@@ -97,6 +97,7 @@ export function scanJSXToken(parser: ParserState): Token {
       }
 
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
+      if (context & Context.OptionsRaw) parser.tokenRaw = parser.tokenValue;
       parser.token = Token.JSXText;
     }
   }

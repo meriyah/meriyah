@@ -8725,7 +8725,7 @@ export function parseOpeningFragment(
   line: number,
   column: number
 ): ESTree.JSXOpeningFragment {
-  scanJSXToken(parser);
+  scanJSXToken(parser, context);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXOpeningFragment'
   });
@@ -8754,7 +8754,7 @@ function parseJSXClosingElement(
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
-    parser.token = scanJSXToken(parser);
+    parser.token = scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8806,7 +8806,7 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
     parser.index = parser.tokenPos = parser.startPos;
     parser.column = parser.colPos = parser.startColumn;
     parser.line = parser.linePos = parser.startLine;
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
     children.push(parseJSXChild(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return children;
@@ -8846,11 +8846,24 @@ export function parseJSXText(
   line: number,
   column: number
 ): ESTree.JSXText {
-  scanJSXToken(parser);
-  return finishNode(parser, context, start, line, column, {
-    type: 'JSXText',
-    value: parser.tokenValue as string
-  });
+  scanJSXToken(parser, context);
+  return finishNode(
+    parser,
+    context,
+    start,
+    line,
+    column,
+    context & Context.OptionsRaw
+      ? {
+          type: 'JSXText',
+          value: parser.tokenValue as string,
+          raw: parser.tokenRaw
+        }
+      : {
+          type: 'JSXText',
+          value: parser.tokenValue as string
+        }
+  );
 }
 
 /**
@@ -8879,13 +8892,13 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const selfClosing = parser.token === Token.Divide;
 
   if (parser.token === Token.GreaterThan) {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   } else {
     consume(parser, context, Token.Divide);
     if (inJSXChild) {
       consume(parser, context, Token.GreaterThan);
     } else {
-      scanJSXToken(parser);
+      scanJSXToken(parser, context);
     }
   }
 
@@ -9113,7 +9126,7 @@ function parseJSXExpressionContainer(
   if (inJSXChild) {
     consume(parser, context, Token.RightBrace);
   } else {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
