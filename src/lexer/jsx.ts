@@ -12,9 +12,9 @@ import { advanceChar, LexerState, TokenLookup, scanSingleToken, scanNewLine, con
  * @param context Context masks
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
-  parser.startPos = parser.index;
-  parser.startColumn = parser.column;
-  parser.startLine = parser.line;
+  parser.startPos = parser.tokenPos = parser.index;
+  parser.startColumn = parser.colPos = parser.column;
+  parser.startLine = parser.linePos = parser.line;
   parser.token =
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
       ? scanJSXString(parser)

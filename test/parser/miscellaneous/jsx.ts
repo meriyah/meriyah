@@ -1747,7 +1747,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       `<div id={aa} class="className" ></div>`,
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1761,7 +1761,20 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  start: 1,
+                  end: 4,
+                  range: [1, 4],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 1
+                    },
+                    end: {
+                      line: 1,
+                      column: 4
+                    }
+                  }
                 },
                 attributes: [
                   {
@@ -1770,38 +1783,207 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'aa'
+                        name: 'aa',
+                        start: 9,
+                        end: 11,
+                        range: [9, 11],
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 9
+                          },
+                          end: {
+                            line: 1,
+                            column: 11
+                          }
+                        }
+                      },
+                      start: 8,
+                      end: 12,
+                      range: [8, 12],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 8
+                        },
+                        end: {
+                          line: 1,
+                          column: 12
+                        }
                       }
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'id'
+                      name: 'id',
+                      start: 5,
+                      end: 7,
+                      range: [5, 7],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 5
+                        },
+                        end: {
+                          line: 1,
+                          column: 7
+                        }
+                      }
+                    },
+                    start: 5,
+                    end: 12,
+                    range: [5, 12],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
                     }
                   },
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: 'className'
+                      value: 'className',
+                      start: 19,
+                      end: 30,
+                      range: [19, 30],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 19
+                        },
+                        end: {
+                          line: 1,
+                          column: 30
+                        }
+                      }
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'class'
+                      name: 'class',
+                      start: 13,
+                      end: 18,
+                      range: [13, 18],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 13
+                        },
+                        end: {
+                          line: 1,
+                          column: 18
+                        }
+                      }
+                    },
+                    start: 13,
+                    end: 30,
+                    range: [13, 30],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 13
+                      },
+                      end: {
+                        line: 1,
+                        column: 30
+                      }
                     }
                   }
                 ],
-                selfClosing: false
+                selfClosing: false,
+                start: 0,
+                end: 32,
+                range: [0, 32],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 32
+                  }
+                }
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  start: 34,
+                  end: 37,
+                  range: [34, 37],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 34
+                    },
+                    end: {
+                      line: 1,
+                      column: 37
+                    }
+                  }
+                },
+                start: 32,
+                end: 38,
+                range: [32, 38],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 32
+                  },
+                  end: {
+                    line: 1,
+                    column: 38
+                  }
                 }
+              },
+              start: 0,
+              end: 38,
+              range: [0, 38],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 38
+                }
+              }
+            },
+            start: 0,
+            end: 38,
+            range: [0, 38],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 38
               }
             }
           }
-        ]
+        ],
+        start: 0,
+        end: 38,
+        range: [0, 38],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 38
+          }
+        }
       }
     ],
     [
