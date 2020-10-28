@@ -420,10 +420,8 @@ export function parseModuleItem(
   line: number,
   column: number
 ): any {
+  // Support legacy decorators before export keyword.
   parser.leadingDecorators = parseDecorators(parser, context);
-  if (parser.leadingDecorators.length && parser.token !== Token.ExportKeyword && parser.token !== Token.ClassKeyword) {
-    report(parser, Errors.InvalidLeadingDecorator);
-  }
 
   // ecma262/#prod-ModuleItem
   // ModuleItem :
@@ -431,14 +429,22 @@ export function parseModuleItem(
   //    ExportDeclaration
   //    StatementListItem
 
+  let moduleItem;
   switch (parser.token) {
     case Token.ExportKeyword:
-      return parseExportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseExportDeclaration(parser, context, scope, start, line, column);
+      break;
     case Token.ImportKeyword:
-      return parseImportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseImportDeclaration(parser, context, scope, start, line, column);
+      break;
     default:
-      return parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
+      moduleItem = parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
   }
+
+  if (parser.leadingDecorators.length) {
+    report(parser, Errors.InvalidLeadingDecorator);
+  }
+  return moduleItem;
 }
 
 /**
@@ -1164,8 +1170,6 @@ export function parseDirective(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  const { tokenRaw } = parser;
-
   if (token !== Token.Semicolon) {
     parser.assignable = AssignmentKind.CannotAssign;
 
@@ -1186,7 +1190,8 @@ export function parseDirective(
     ? finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression,
-        directive: tokenRaw.slice(1, -1)
+        // OptionsRaw is implicitly turned on by OptionsDirectives.
+        directive: (expression.raw as string).slice(1, -1)
       })
     : finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
@@ -2487,9 +2492,7 @@ function parseImportDeclaration(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, start, line, column);
         case Token.Period:
-          if (context & Context.OptionsNext) {
-            return parseImportMetaDeclaration(parser, context, start, line, column);
-          }
+          return parseImportMetaDeclaration(parser, context, start, line, column);
         default:
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
       }
@@ -2887,11 +2890,6 @@ function parseExportDeclaration(
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
     if (scope) declareUnboundVariable(parser, 'default');
 
-    if (parser.leadingDecorators.length) {
-      // leadingDecorators should be consumed by parseClassDeclaration
-      report(parser, Errors.InvalidLeadingDecorator);
-    }
-
     return finishNode(parser, context, start, line, column, {
       type: 'ExportDefaultDeclaration',
       declaration
@@ -2904,11 +2902,6 @@ function parseExportDeclaration(
       // 'export' '*' 'as' IdentifierName 'from' ModuleSpecifier ';'
       //
       // See: https://github.com/tc39/ecma262/pull/1174
-
-      if (parser.leadingDecorators.length) {
-        report(parser, Errors.InvalidLeadingDecorator);
-      }
-
       nextToken(parser, context); // Skips: '*'
 
       let exported: ESTree.Identifier | null = null;
@@ -3102,10 +3095,6 @@ function parseExportDeclaration(
     // falls through
     default:
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
-  }
-
-  if (parser.leadingDecorators.length) {
-    report(parser, Errors.InvalidLeadingDecorator);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -4356,7 +4345,7 @@ function parseImportCallOrMetaExpression(
 
   let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context, 0);
 
-  if (context & Context.OptionsNext && parser.token === Token.Period) {
+  if (parser.token === Token.Period) {
     return parseImportMetaExpression(parser, context, expr, start, line, column);
   }
 
@@ -4564,7 +4553,7 @@ export function parseTemplate(
       parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, /* tail */ false)
     );
 
-    expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
+    expressions.push(parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
     if (parser.token !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
   }
 

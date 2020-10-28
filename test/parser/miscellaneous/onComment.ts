@@ -37,6 +37,40 @@ describe('Miscellaneous - onComment', () => {
     t.equal(onCommentCount, 1);
   });
 
+  it('should extract single line empty comment', () => {
+    let onCommentCount = 0;
+    t.deepEqual(
+      parseScript('//\n', {
+        ranges: true,
+        loc: true,
+        onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
+          t.deepEqual(type, 'SingleLine');
+          t.deepEqual(value, '');
+          t.equal(start, 0);
+          t.equal(end, 2);
+          t.deepEqual(loc, {
+            start: { line: 1, column: 0 },
+            end: { line: 1, column: 2 }
+          });
+          onCommentCount++;
+        }
+      }),
+      {
+        body: [],
+        sourceType: 'script',
+        type: 'Program',
+        start: 0,
+        end: 3,
+        range: [0, 3],
+        loc: {
+          start: { line: 1, column: 0 },
+          end: { line: 2, column: 0 }
+        }
+      }
+    );
+    t.equal(onCommentCount, 1);
+  });
+
   it('should extract single line comment with trailing new line', () => {
     let onCommentCount = 0;
     t.deepEqual(
@@ -151,6 +185,31 @@ describe('Miscellaneous - onComment', () => {
           t.deepEqual(loc, {
             start: { line: 1, column: 0 },
             end: { line: 1, column: 24 }
+          });
+          onCommentCount++;
+        }
+      }),
+      {
+        body: [],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    );
+    t.equal(onCommentCount, 1);
+  });
+
+  it('should extract empty multiline line comment', () => {
+    let onCommentCount = 0;
+    t.deepEqual(
+      parseScript('/**/', {
+        onComment: (type: string, value: string, start: number, end: number, loc: SourceLocation) => {
+          t.deepEqual(type, 'MultiLine');
+          t.deepEqual(value, '');
+          t.equal(start, 0);
+          t.equal(end, 4);
+          t.deepEqual(loc, {
+            start: { line: 1, column: 0 },
+            end: { line: 1, column: 4 }
           });
           onCommentCount++;
         }

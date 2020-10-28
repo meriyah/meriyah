@@ -67,6 +67,9 @@ export function skipSingleLineComment(
   column: number
 ): LexerState {
   const { index } = parser;
+  parser.tokenPos = parser.index;
+  parser.linePos = parser.line;
+  parser.colPos = parser.column;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;

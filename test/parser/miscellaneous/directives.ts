@@ -283,7 +283,7 @@ describe('Miscellaneous - Directives', () => {
     ],
     [
       '"use strict", "Hello\\312World"',
-      Context.None | Context.OptionsRanges,
+      Context.None | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
       {
         body: [
           {
@@ -294,14 +294,16 @@ describe('Miscellaneous - Directives', () => {
                   end: 12,
                   range: [0, 12],
                   type: 'Literal',
-                  value: 'use strict'
+                  value: 'use strict',
+                  raw: '"use strict"'
                 },
                 {
                   start: 14,
                   end: 30,
                   range: [14, 30],
                   type: 'Literal',
-                  value: 'HelloÊWorld'
+                  value: 'HelloÊWorld',
+                  raw: '"Hello\\312World"'
                 }
               ],
               start: 0,
@@ -324,7 +326,7 @@ describe('Miscellaneous - Directives', () => {
     ],
     [
       '"use asm" \n "use strict"',
-      Context.None | Context.OptionsRanges,
+      Context.None | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
       {
         body: [
           {
@@ -333,8 +335,10 @@ describe('Miscellaneous - Directives', () => {
               end: 9,
               range: [0, 9],
               type: 'Literal',
-              value: 'use asm'
+              value: 'use asm',
+              raw: '"use asm"'
             },
+            directive: 'use asm',
             start: 0,
             end: 9,
             range: [0, 9],
@@ -346,8 +350,10 @@ describe('Miscellaneous - Directives', () => {
               end: 24,
               range: [12, 24],
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
+              raw: '"use strict"'
             },
+            directive: 'use strict',
             start: 12,
             end: 24,
             range: [12, 24],
