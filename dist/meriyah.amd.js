@@ -396,6 +396,31 @@ define(['exports'], function (exports) { 'use strict';
                   case 126:
                       advanceChar(parser);
                       return token;
+                  case 208897:
+                      return scanIdentifier(parser, context, 0);
+                  case 4096:
+                      return scanIdentifier(parser, context, 1);
+                  case 134283266:
+                      return scanNumber(parser, context, 16 | 128);
+                  case 134283267:
+                      return scanString(parser, context, char);
+                  case 129:
+                      return scanTemplate(parser, context);
+                  case 134:
+                      return scanUnicodeIdentifier(parser, context);
+                  case 128:
+                      return scanPrivateName(parser);
+                  case 125:
+                      advanceChar(parser);
+                      break;
+                  case 127:
+                      state |= 1 | 4;
+                      scanNewLine(parser);
+                      break;
+                  case 133:
+                      consumeLineFeed(parser, state);
+                      state = (state & ~4) | 1;
+                      break;
                   case 8456255:
                       let ch = advanceChar(parser);
                       if (parser.index < parser.end) {
@@ -441,8 +466,6 @@ define(['exports'], function (exports) { 'use strict';
                       return 8456255;
                   case 1077936157: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 1077936157;
                       const ch = parser.currentChar;
                       if (ch === 61) {
                           if (advanceChar(parser) === 61) {
@@ -507,8 +530,6 @@ define(['exports'], function (exports) { 'use strict';
                   }
                   case 25233968: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 25233968;
                       const ch = parser.currentChar;
                       if (ch === 45) {
                           advanceChar(parser);
@@ -560,10 +581,21 @@ define(['exports'], function (exports) { 'use strict';
                       }
                       return 8457013;
                   }
+                  case 67108877:
+                      const next = advanceChar(parser);
+                      if (next >= 48 && next <= 57)
+                          return scanNumber(parser, context, 64 | 16);
+                      if (next === 46) {
+                          const index = parser.index + 1;
+                          if (index < parser.end && source.charCodeAt(index) === 46) {
+                              parser.column += 2;
+                              parser.currentChar = source.charCodeAt((parser.index += 2));
+                              return 14;
+                          }
+                      }
+                      return 67108877;
                   case 8455237: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8455237;
                       const ch = parser.currentChar;
                       if (ch === 124) {
                           advanceChar(parser);
@@ -577,8 +609,6 @@ define(['exports'], function (exports) { 'use strict';
                   }
                   case 8456256: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8456256;
                       const ch = parser.currentChar;
                       if (ch === 61) {
                           advanceChar(parser);
@@ -605,8 +635,6 @@ define(['exports'], function (exports) { 'use strict';
                   }
                   case 8455748: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8455748;
                       const ch = parser.currentChar;
                       if (ch === 38) {
                           advanceChar(parser);
@@ -618,19 +646,6 @@ define(['exports'], function (exports) { 'use strict';
                       }
                       return 8455748;
                   }
-                  case 67108877:
-                      const next = advanceChar(parser);
-                      if (next >= 48 && next <= 57)
-                          return scanNumber(parser, context, 64 | 16);
-                      if (next === 46) {
-                          const index = parser.index + 1;
-                          if (index < parser.end && source.charCodeAt(index) === 46) {
-                              parser.column += 2;
-                              parser.currentChar = source.charCodeAt((parser.index += 2));
-                              return 14;
-                          }
-                      }
-                      return 67108877;
                   case 22: {
                       let ch = advanceChar(parser);
                       if (ch === 63) {
@@ -649,31 +664,6 @@ define(['exports'], function (exports) { 'use strict';
                       }
                       return 22;
                   }
-                  case 4096:
-                      return scanIdentifier(parser, context, 1);
-                  case 208897:
-                      return scanIdentifier(parser, context, 0);
-                  case 134283266:
-                      return scanNumber(parser, context, 16 | 128);
-                  case 134283267:
-                      return scanString(parser, context, char);
-                  case 129:
-                      return scanTemplate(parser, context);
-                  case 134:
-                      return scanUnicodeIdentifier(parser, context);
-                  case 128:
-                      return scanPrivateName(parser);
-                  case 125:
-                      advanceChar(parser);
-                      break;
-                  case 127:
-                      state |= 1 | 4;
-                      scanNewLine(parser);
-                      break;
-                  case 133:
-                      consumeLineFeed(parser, state);
-                      state = (state & ~4) | 1;
-                      break;
               }
           }
           else {
@@ -721,6 +711,9 @@ define(['exports'], function (exports) { 'use strict';
   }
   function skipSingleLineComment(parser, source, state, type, start, line, column) {
       const { index } = parser;
+      parser.tokenPos = parser.index;
+      parser.linePos = parser.line;
+      parser.colPos = parser.column;
       while (parser.index < parser.end) {
           if (CharTypes[parser.currentChar] & 8) {
               const isCR = parser.currentChar === 13;
@@ -2635,17 +2628,21 @@ define(['exports'], function (exports) { 'use strict';
   }
   function parseModuleItem(parser, context, scope, start, line, column) {
       parser.leadingDecorators = parseDecorators(parser, context);
-      if (parser.leadingDecorators.length && parser.token !== 20563 && parser.token !== 86093) {
-          report(parser, 164);
-      }
+      let moduleItem;
       switch (parser.token) {
           case 20563:
-              return parseExportDeclaration(parser, context, scope, start, line, column);
+              moduleItem = parseExportDeclaration(parser, context, scope, start, line, column);
+              break;
           case 86105:
-              return parseImportDeclaration(parser, context, scope, start, line, column);
+              moduleItem = parseImportDeclaration(parser, context, scope, start, line, column);
+              break;
           default:
-              return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
+              moduleItem = parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
       }
+      if (parser.leadingDecorators.length) {
+          report(parser, 164);
+      }
+      return moduleItem;
   }
   function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
       switch (parser.token) {
@@ -2836,7 +2833,6 @@ define(['exports'], function (exports) { 'use strict';
       return parseExpressionStatement(parser, context, expr, start, line, column);
   }
   function parseDirective(parser, context, expression, token, start, line, column) {
-      const { tokenRaw } = parser;
       if (token !== 1074790417) {
           parser.assignable = 2;
           expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start, line, column);
@@ -2852,7 +2848,7 @@ define(['exports'], function (exports) { 'use strict';
           ? finishNode(parser, context, start, line, column, {
               type: 'ExpressionStatement',
               expression,
-              directive: tokenRaw.slice(1, -1)
+              directive: expression.raw.slice(1, -1)
           })
           : finishNode(parser, context, start, line, column, {
               type: 'ExpressionStatement',
@@ -3358,9 +3354,7 @@ define(['exports'], function (exports) { 'use strict';
                   case 67174411:
                       return parseImportCallDeclaration(parser, context, start, line, column);
                   case 67108877:
-                      if (context & 1) {
-                          return parseImportMetaDeclaration(parser, context, start, line, column);
-                      }
+                      return parseImportMetaDeclaration(parser, context, start, line, column);
                   default:
                       report(parser, 28, KeywordDescTable[parser.token & 255]);
               }
@@ -3484,9 +3478,6 @@ define(['exports'], function (exports) { 'use strict';
           }
           if (scope)
               declareUnboundVariable(parser, 'default');
-          if (parser.leadingDecorators.length) {
-              report(parser, 164);
-          }
           return finishNode(parser, context, start, line, column, {
               type: 'ExportDefaultDeclaration',
               declaration
@@ -3494,9 +3485,6 @@ define(['exports'], function (exports) { 'use strict';
       }
       switch (parser.token) {
           case 8457011: {
-              if (parser.leadingDecorators.length) {
-                  report(parser, 164);
-              }
               nextToken(parser, context);
               let exported = null;
               const isNamedDeclaration = consumeOpt(parser, context, 12395);
@@ -3599,9 +3587,6 @@ define(['exports'], function (exports) { 'use strict';
               }
           default:
               report(parser, 28, KeywordDescTable[parser.token & 255]);
-      }
-      if (parser.leadingDecorators.length) {
-          report(parser, 164);
       }
       return finishNode(parser, context, start, line, column, {
           type: 'ExportNamedDeclaration',
@@ -4186,7 +4171,7 @@ define(['exports'], function (exports) { 'use strict';
   }
   function parseImportCallOrMetaExpression(parser, context, inNew, inGroup, start, line, column) {
       let expr = parseIdentifier(parser, context, 0);
-      if (context & 1 && parser.token === 67108877) {
+      if (parser.token === 67108877) {
           return parseImportMetaExpression(parser, context, expr, start, line, column);
       }
       if (inNew)
@@ -4261,7 +4246,7 @@ define(['exports'], function (exports) { 'use strict';
           const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
           consume(parser, context | 32768, 67174408);
           quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, false));
-          expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
+          expressions.push(parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
           if (parser.token !== 1074790415)
               report(parser, 80);
       }
@@ -6551,7 +6536,7 @@ define(['exports'], function (exports) { 'use strict';
     __proto__: null
   });
 
-  var version = "3.0.5";
+  var version = "3.1.0";
 
   function parseScript(source, options) {
       return parseSource(source, options, 0);
