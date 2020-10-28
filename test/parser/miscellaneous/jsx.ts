@@ -1746,8 +1746,8 @@ describe('Miscellaneous - JSX', () => {
       }
     ],
     [
-      `<div id={aa} class="className" ></div>`,
-      Context.OptionsJSX,
+      `<div id={aa} class="className" > t </div>`,
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1756,12 +1756,44 @@ describe('Miscellaneous - JSX', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'JSXElement',
-              children: [],
+              children: [
+                {
+                  type: 'JSXText',
+                  value: ' t ',
+                  raw: ' t ',
+                  start: 32,
+                  end: 35,
+                  range: [32, 35],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 32
+                    },
+                    end: {
+                      line: 1,
+                      column: 35
+                    }
+                  }
+                }
+              ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  start: 1,
+                  end: 4,
+                  range: [1, 4],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 1
+                    },
+                    end: {
+                      line: 1,
+                      column: 4
+                    }
+                  }
                 },
                 attributes: [
                   {
@@ -1770,38 +1802,208 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'aa'
+                        name: 'aa',
+                        start: 9,
+                        end: 11,
+                        range: [9, 11],
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 9
+                          },
+                          end: {
+                            line: 1,
+                            column: 11
+                          }
+                        }
+                      },
+                      start: 8,
+                      end: 12,
+                      range: [8, 12],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 8
+                        },
+                        end: {
+                          line: 1,
+                          column: 12
+                        }
                       }
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'id'
+                      name: 'id',
+                      start: 5,
+                      end: 7,
+                      range: [5, 7],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 5
+                        },
+                        end: {
+                          line: 1,
+                          column: 7
+                        }
+                      }
+                    },
+                    start: 5,
+                    end: 12,
+                    range: [5, 12],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
                     }
                   },
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: 'className'
+                      value: 'className',
+                      raw: '"className"',
+                      start: 19,
+                      end: 30,
+                      range: [19, 30],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 19
+                        },
+                        end: {
+                          line: 1,
+                          column: 30
+                        }
+                      }
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'class'
+                      name: 'class',
+                      start: 13,
+                      end: 18,
+                      range: [13, 18],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 13
+                        },
+                        end: {
+                          line: 1,
+                          column: 18
+                        }
+                      }
+                    },
+                    start: 13,
+                    end: 30,
+                    range: [13, 30],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 13
+                      },
+                      end: {
+                        line: 1,
+                        column: 30
+                      }
                     }
                   }
                 ],
-                selfClosing: false
+                selfClosing: false,
+                start: 0,
+                end: 32,
+                range: [0, 32],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 32
+                  }
+                }
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  start: 37,
+                  end: 40,
+                  range: [37, 40],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 37
+                    },
+                    end: {
+                      line: 1,
+                      column: 40
+                    }
+                  }
+                },
+                start: 35,
+                end: 41,
+                range: [35, 41],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 35
+                  },
+                  end: {
+                    line: 1,
+                    column: 41
+                  }
                 }
+              },
+              start: 0,
+              end: 41,
+              range: [0, 41],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 41
+                }
+              }
+            },
+            start: 0,
+            end: 41,
+            range: [0, 41],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 41
               }
             }
           }
-        ]
+        ],
+        start: 0,
+        end: 41,
+        range: [0, 41],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 41
+          }
+        }
       }
     ],
     [
@@ -10066,7 +10268,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 5,
                   end: 13,
                   range: [5, 13],
-                  value: ' foo:bar'
+                  value: ' foo:bar',
+                  raw: ' foo:bar'
                 }
               ]
             }
@@ -11644,6 +11847,163 @@ describe('Miscellaneous - JSX', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '<div>{ }</div>',
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [
+                {
+                  type: 'JSXExpressionContainer',
+                  expression: {
+                    type: 'JSXEmptyExpression',
+                    start: 6,
+                    end: 7,
+                    range: [6, 7],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 6
+                      },
+                      end: {
+                        line: 1,
+                        column: 7
+                      }
+                    }
+                  },
+                  start: 5,
+                  end: 8,
+                  range: [5, 8],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 8
+                    }
+                  }
+                }
+              ],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'div',
+                  start: 1,
+                  end: 4,
+                  range: [1, 4],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 1
+                    },
+                    end: {
+                      line: 1,
+                      column: 4
+                    }
+                  }
+                },
+                attributes: [],
+                selfClosing: false,
+                start: 0,
+                end: 5,
+                range: [0, 5],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 5
+                  }
+                }
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'div',
+                  start: 10,
+                  end: 13,
+                  range: [10, 13],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 10
+                    },
+                    end: {
+                      line: 1,
+                      column: 13
+                    }
+                  }
+                },
+                start: 8,
+                end: 14,
+                range: [8, 14],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 8
+                  },
+                  end: {
+                    line: 1,
+                    column: 14
+                  }
+                }
+              },
+              start: 0,
+              end: 14,
+              range: [0, 14],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 14
+                }
+              }
+            },
+            start: 0,
+            end: 14,
+            range: [0, 14],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 14
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 14,
+        range: [0, 14],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 14
+          }
+        }
       }
     ]
   ]);

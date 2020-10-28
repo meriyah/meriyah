@@ -8728,7 +8728,7 @@ export function parseOpeningFragment(
   line: number,
   column: number
 ): ESTree.JSXOpeningFragment {
-  scanJSXToken(parser);
+  scanJSXToken(parser, context);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXOpeningFragment'
   });
@@ -8757,7 +8757,7 @@ function parseJSXClosingElement(
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
-    parser.token = scanJSXToken(parser);
+    parser.token = scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8809,7 +8809,7 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
     parser.index = parser.tokenPos = parser.startPos;
     parser.column = parser.colPos = parser.startColumn;
     parser.line = parser.linePos = parser.startLine;
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
     children.push(parseJSXChild(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return children;
@@ -8849,11 +8849,18 @@ export function parseJSXText(
   line: number,
   column: number
 ): ESTree.JSXText {
-  scanJSXToken(parser);
-  return finishNode(parser, context, start, line, column, {
+  scanJSXToken(parser, context);
+
+  const node = {
     type: 'JSXText',
     value: parser.tokenValue as string
-  });
+  } as ESTree.JSXText;
+
+  if (context & Context.OptionsRaw) {
+    node.raw = parser.tokenRaw;
+  }
+
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
@@ -8882,13 +8889,13 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const selfClosing = parser.token === Token.Divide;
 
   if (parser.token === Token.GreaterThan) {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   } else {
     consume(parser, context, Token.Divide);
     if (inJSXChild) {
       consume(parser, context, Token.GreaterThan);
     } else {
-      scanJSXToken(parser);
+      scanJSXToken(parser, context);
     }
   }
 
@@ -9109,14 +9116,14 @@ function parseJSXExpressionContainer(
   if (parser.token === Token.RightBrace) {
     // JSX attributes must only be assigned a non-empty 'expression'
     if (isAttr) report(parser, Errors.InvalidNonEmptyJSXExpr);
-    expression = parseJSXEmptyExpression(parser, context, tokenPos, linePos, colPos);
+    expression = parseJSXEmptyExpression(parser, context, parser.startPos, parser.startLine, parser.startColumn);
   } else {
     expression = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
   }
   if (inJSXChild) {
     consume(parser, context, Token.RightBrace);
   } else {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9166,6 +9173,13 @@ function parseJSXEmptyExpression(
   line: number,
   column: number
 ): ESTree.JSXEmptyExpression {
+  // Since " }" is treated as single token, we have to artificially break
+  // it into " " and "}".
+  // Move token start from beginning of whitespace(s) to beginning of "}",
+  // so JSXEmptyExpression can have correct end loc.
+  parser.startPos = parser.tokenPos;
+  parser.startLine = parser.linePos;
+  parser.startColumn = parser.colPos;
   return finishNode(parser, context, start, line, column, {
     type: 'JSXEmptyExpression'
   });

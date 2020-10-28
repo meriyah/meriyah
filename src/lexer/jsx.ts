@@ -12,12 +12,12 @@ import { advanceChar, LexerState, TokenLookup, scanSingleToken, scanNewLine, con
  * @param context Context masks
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
-  parser.startPos = parser.index;
-  parser.startColumn = parser.column;
-  parser.startLine = parser.line;
+  parser.startPos = parser.tokenPos = parser.index;
+  parser.startColumn = parser.colPos = parser.column;
+  parser.startLine = parser.linePos = parser.line;
   parser.token =
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
-      ? scanJSXString(parser)
+      ? scanJSXString(parser, context)
       : scanSingleToken(parser, context, LexerState.None);
   return parser.token;
 }
@@ -27,7 +27,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
  *
  * @param parser The parser object
  */
-export function scanJSXString(parser: ParserState): Token {
+export function scanJSXString(parser: ParserState, context: Context): Token {
   const quote = parser.currentChar;
   let char = advanceChar(parser);
   const start = parser.index;
@@ -40,6 +40,7 @@ export function scanJSXString(parser: ParserState): Token {
   if (char !== quote) report(parser, Errors.UnterminatedString);
   parser.tokenValue = parser.source.slice(start, parser.index);
   advanceChar(parser); // skip the quote
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
   return Token.StringLiteral;
 }
 
@@ -48,7 +49,7 @@ export function scanJSXString(parser: ParserState): Token {
  *
  * @param parser The parser object
  */
-export function scanJSXToken(parser: ParserState): Token {
+export function scanJSXToken(parser: ParserState, context: Context): Token {
   parser.startPos = parser.tokenPos = parser.index;
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
@@ -96,6 +97,7 @@ export function scanJSXToken(parser: ParserState): Token {
       }
 
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
+      if (context & Context.OptionsRaw) parser.tokenRaw = parser.tokenValue;
       parser.token = Token.JSXText;
     }
   }
