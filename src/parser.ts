@@ -8847,23 +8847,17 @@ export function parseJSXText(
   column: number
 ): ESTree.JSXText {
   scanJSXToken(parser, context);
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsRaw
-      ? {
-          type: 'JSXText',
-          value: parser.tokenValue as string,
-          raw: parser.tokenRaw
-        }
-      : {
-          type: 'JSXText',
-          value: parser.tokenValue as string
-        }
-  );
+
+  const node = {
+    type: 'JSXText',
+    value: parser.tokenValue as string
+  } as ESTree.JSXText;
+
+  if (context & Context.OptionsRaw) {
+    node.raw = parser.tokenRaw;
+  }
+
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
