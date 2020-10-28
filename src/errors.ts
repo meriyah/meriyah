@@ -82,7 +82,7 @@ export const enum Errors {
   InvalidAssignmentInOfForLoop,
   InvalidForAwait,
   InvalidTemplateContinuation,
-  RestricedLetProduction,
+  RestrictedLetProduction,
   UnexpectedLetStrictReserved,
   InvalidCatchParams,
   InvalidCatchParamDefault,
@@ -264,7 +264,7 @@ export const errorMessages: {
     'The first token after the template expression should be a continuation of the template',
   [Errors.UnexpectedLetStrictReserved]:
     '`let` declaration not allowed here and `let` cannot be a regular var name in strict mode',
-  [Errors.RestricedLetProduction]: '`let \n [` is a restricted production at the start of a statement',
+  [Errors.RestrictedLetProduction]: '`let \n [` is a restricted production at the start of a statement',
   [Errors.InvalidCatchParams]: 'Catch clause requires exactly one parameter, not more (and no trailing comma)',
   [Errors.InvalidCatchParamDefault]: 'Catch clause parameter does not support default values',
   [Errors.NoCatchOrFinally]: 'Missing catch or finally after try',
