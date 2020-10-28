@@ -619,7 +619,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         if ((char & 0xfc00) === 0xdc00) {
           char = ((char & 0x3ff) << 10) | (char & 0x3ff) | 0x10000;
           if (((unicodeLookup[(char >>> 5) + 0] >>> char) & 31 & 1) === 0) {
-            report(parser, Errors.IllegalCaracter, fromCodePoint(char));
+            report(parser, Errors.IllegalCharacter, fromCodePoint(char));
           }
           parser.index++;
           parser.currentChar = char;
@@ -636,7 +636,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
       }
 
       // Invalid ASCII code point/unit
-      report(parser, Errors.IllegalCaracter, fromCodePoint(char));
+      report(parser, Errors.IllegalCharacter, fromCodePoint(char));
     }
   }
   return Token.EOF;
