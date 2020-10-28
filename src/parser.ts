@@ -3489,7 +3489,7 @@ export function parseUnaryExpression(
     parser.linePos,
     parser.colPos
   );
-  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
+  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);

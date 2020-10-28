@@ -32,7 +32,7 @@ export const enum Errors {
   UnexpectedToken,
   AwaitInParameter,
   YieldInParameter,
-  InvalidExponentationLHS,
+  InvalidExponentiationLHS,
   UnterminatedRegExp,
   UnexpectedTokenRegExpFlag,
   DuplicateRegExpFlag,
@@ -205,7 +205,7 @@ export const errorMessages: {
   [Errors.AwaitInParameter]: 'Await expression not allowed in formal parameter',
   [Errors.YieldInParameter]: 'Yield expression not allowed in formal parameter',
   [Errors.InvalidEscapedKeyword]: "Unexpected token: 'escaped keyword'",
-  [Errors.InvalidExponentationLHS]:
+  [Errors.InvalidExponentiationLHS]:
     'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
   [Errors.AsyncFunctionInSingleStatementContext]:
     'Async functions can only be declared at the top level or inside a block',
