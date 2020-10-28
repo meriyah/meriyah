@@ -206,7 +206,7 @@ export const errorMessages: {
   [Errors.YieldInParameter]: 'Yield expression not allowed in formal parameter',
   [Errors.InvalidEscapedKeyword]: "Unexpected token: 'escaped keyword'",
   [Errors.InvalidExponentiationLHS]:
-    'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
+    'Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses',
   [Errors.AsyncFunctionInSingleStatementContext]:
     'Async functions can only be declared at the top level or inside a block',
   [Errors.UnterminatedRegExp]: 'Unterminated regular expression',
