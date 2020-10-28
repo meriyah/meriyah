@@ -54,7 +54,7 @@ export const enum Token {
   RightBrace   = 15 | IsAutoSemicolon | IsClassField, // }
   RightParen   = 16, // )
   Semicolon    = 17 | IsAutoSemicolon | IsClassField, // ;
-  Comma        = 18 | IsClassField, // ,
+  Comma        = 18, // ,
   LeftBracket  = 19 | IsExpressionStart | IsPatternStart | IsMemberOrCallExpression, // [
   RightBracket = 20, // ]
   Colon        = 21, // :

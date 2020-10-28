@@ -8166,7 +8166,7 @@ export function parseClassBody(
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
   const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
-  let decorators: ESTree.Decorator[] = [];
+  let decorators: ESTree.Decorator[];
 
   while (parser.token !== Token.RightBrace) {
     let length = 0;
