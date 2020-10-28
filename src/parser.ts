@@ -693,7 +693,7 @@ export function parseExpressionOrLabelledStatement(
       // "let" followed by either "[", "{" or an identifier means a lexical
       // declaration, which should not appear here.
       // However, ASI may insert a line break before an identifier or a brace.
-      if (parser.token === Token.LeftBracket) report(parser, Errors.RestricedLetProduction);
+      if (parser.token === Token.LeftBracket) report(parser, Errors.RestrictedLetProduction);
 
       break;
 
@@ -3489,7 +3489,7 @@ export function parseUnaryExpression(
     parser.linePos,
     parser.colPos
   );
-  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
+  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);
