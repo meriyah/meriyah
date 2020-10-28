@@ -255,7 +255,7 @@ export const errorMessages: {
   [Errors.SloppyFunction]:
     'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
   [Errors.WebCompatFunction]:
-    'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
+    'Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
   [Errors.ClassForbiddenAsStatement]: "Class declaration can't appear in single-statement context",
   [Errors.CantAssignToInOfForLoop]: 'Invalid left-hand side in for-%0',
   [Errors.InvalidAssignmentInOfForLoop]: 'Invalid assignment in for-%0',
@@ -290,7 +290,7 @@ export const errorMessages: {
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
   [Errors.AwaitOrYieldIdentInModule]: "'%0' may not be used as an identifier in this context",
-  [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compability (Annex B)',
+  [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compatibility (Annex B)',
   [Errors.StrictInvalidLetInExprPos]: "The identifier 'let' must not be in expression position in strict mode",
   [Errors.NotAssignableLetArgs]: 'Cannot assign to `eval` and `arguments` in strict mode',
   [Errors.ForOfLet]: "The left-hand side of a for-of loop may not start with 'let'",

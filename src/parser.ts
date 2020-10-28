@@ -197,7 +197,7 @@ export interface Options {
   next?: boolean;
   // Enable start and end offsets to each node
   ranges?: boolean;
-  // Enable web compability
+  // Enable web compatibility
   webcompat?: boolean;
   // Enable line/column location information to each node
   loc?: boolean;
@@ -1340,7 +1340,7 @@ export function parseConsequentOrAlternative(
   column: number
 ): ESTree.Statement | ESTree.FunctionDeclaration {
   return context & Context.Strict ||
-    // Disallow if web compability is off
+    // Disallow if web compatibility is off
     (context & Context.OptionsWebCompat) < 1 ||
     parser.token !== Token.FunctionKeyword
     ? parseStatement(
