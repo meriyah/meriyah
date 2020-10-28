@@ -12634,6 +12634,51 @@ describe('Expressions - Class', () => {
         sourceType: 'script',
         type: 'Program'
       }
+    ],
+    [
+      `class A { [1n](){} }`,
+      Context.None,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: true,
+                  key: {
+                    bigint: '1',
+                    type: 'Literal',
+                    value: 1n
+                  },
+                  kind: 'method',
+                  static: false,
+                  type: 'MethodDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [],
+                      type: 'BlockStatement'
+                    },
+                    generator: false,
+                    id: null,
+                    params: [],
+                    type: 'FunctionExpression'
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
     ]
   ]);
 });
