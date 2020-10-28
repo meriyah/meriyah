@@ -176,7 +176,7 @@ export const enum Token {
 
   // Stage #3 proposals
   PrivateName        = 121,
-  BigIntLiteral      = 122,
+  BigIntLiteral      = 122 | IsExpressionStart | IsStringOrNumber,
   Coalesce           = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
   QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.
 

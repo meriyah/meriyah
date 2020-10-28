@@ -26630,6 +26630,58 @@ describe('Expressions - Object', () => {
           }
         ]
       }
+    ],
+    [
+      '({1n:1})',
+      Context.OptionsRanges,
+      {
+        sourceType: 'script',
+        start: 0,
+        type: 'Program',
+        body: [
+          {
+            end: 8,
+            expression: {
+              end: 7,
+              properties: [
+                {
+                  computed: false,
+                  end: 6,
+                  key: {
+                    bigint: '1',
+                    end: 4,
+                    range: [2, 4],
+                    start: 2,
+                    type: 'Literal',
+                    value: 1n
+                  },
+                  kind: 'init',
+                  method: false,
+                  range: [2, 6],
+                  shorthand: false,
+                  start: 2,
+                  type: 'Property',
+                  value: {
+                    end: 6,
+                    range: [5, 6],
+                    start: 5,
+                    type: 'Literal',
+                    value: 1
+                  }
+                }
+              ],
+              range: [1, 7],
+              start: 1,
+              type: 'ObjectExpression'
+            },
+            range: [0, 8],
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 8,
+        range: [0, 8]
+      }
     ]
   ]);
 });

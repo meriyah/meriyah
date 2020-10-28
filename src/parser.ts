@@ -4452,13 +4452,13 @@ export function parseBigIntLiteral(
       ? {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw.substring(0, tokenRaw.length - 1), // without the ending "n"
+          bigint: tokenRaw.slice(0, -1), // without the ending "n"
           raw: tokenRaw
         }
       : {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw.substring(0, tokenRaw.length - 1) // without the ending "n"
+          bigint: tokenRaw.slice(0, -1) // without the ending "n"
         }
   );
 }
@@ -4721,6 +4721,10 @@ export function parseIdentifier(parser: ParserState, context: Context, isPattern
  */
 export function parseLiteral(parser: ParserState, context: Context): ESTree.Literal {
   const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
+  if (parser.token === Token.BigIntLiteral) {
+    return parseBigIntLiteral(parser, context, tokenPos, linePos, colPos);
+  }
+
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(
