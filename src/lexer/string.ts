@@ -162,11 +162,6 @@ export function parseEscape(parser: ParserState, context: Context, first: number
       return code;
     }
 
-    // `8`, `9` (invalid escapes)
-    case Chars.Eight:
-    case Chars.Nine:
-      return Escape.EightOrNine;
-
     // HexEscapeSequence
     // \x HexDigit HexDigit
     case Chars.LowerX: {
@@ -214,6 +209,11 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         return (toHex(ch) << 12) | (toHex(ch2) << 8) | (toHex(ch3) << 4) | toHex(ch4);
       }
     }
+
+    // `8`, `9` (invalid escapes)
+    case Chars.Eight:
+    case Chars.Nine:
+      if ((context & Context.OptionsWebCompat) === 0) return Escape.EightOrNine;
 
     default:
       return first;
