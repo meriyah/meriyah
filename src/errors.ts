@@ -19,7 +19,7 @@ export const enum Errors {
   UnterminatedTemplate,
   UnterminatedComment,
   InvalidDynamicUnicode,
-  IllegalCaracter,
+  IllegalCharacter,
   MissingHexDigits,
   InvalidImplicitOctals,
   InvalidStringLT,
@@ -32,7 +32,7 @@ export const enum Errors {
   UnexpectedToken,
   AwaitInParameter,
   YieldInParameter,
-  InvalidExponentationLHS,
+  InvalidExponentiationLHS,
   UnterminatedRegExp,
   UnexpectedTokenRegExpFlag,
   DuplicateRegExpFlag,
@@ -82,7 +82,7 @@ export const enum Errors {
   InvalidAssignmentInOfForLoop,
   InvalidForAwait,
   InvalidTemplateContinuation,
-  RestricedLetProduction,
+  RestrictedLetProduction,
   UnexpectedLetStrictReserved,
   InvalidCatchParams,
   InvalidCatchParamDefault,
@@ -191,7 +191,7 @@ export const errorMessages: {
   [Errors.UnterminatedTemplate]: 'Unterminated template literal',
   [Errors.UnterminatedComment]: 'Multiline comment was not closed properly',
   [Errors.InvalidDynamicUnicode]: 'The identifier contained dynamic unicode escape that was not closed',
-  [Errors.IllegalCaracter]: "Illegal character '%0'",
+  [Errors.IllegalCharacter]: "Illegal character '%0'",
   [Errors.MissingHexDigits]: 'Missing hexadecimal digits',
   [Errors.InvalidImplicitOctals]: 'Invalid implicit octal',
   [Errors.InvalidStringLT]: 'Invalid line break in string literal',
@@ -205,8 +205,8 @@ export const errorMessages: {
   [Errors.AwaitInParameter]: 'Await expression not allowed in formal parameter',
   [Errors.YieldInParameter]: 'Yield expression not allowed in formal parameter',
   [Errors.InvalidEscapedKeyword]: "Unexpected token: 'escaped keyword'",
-  [Errors.InvalidExponentationLHS]:
-    'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
+  [Errors.InvalidExponentiationLHS]:
+    'Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses',
   [Errors.AsyncFunctionInSingleStatementContext]:
     'Async functions can only be declared at the top level or inside a block',
   [Errors.UnterminatedRegExp]: 'Unterminated regular expression',
@@ -255,7 +255,7 @@ export const errorMessages: {
   [Errors.SloppyFunction]:
     'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
   [Errors.WebCompatFunction]:
-    'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
+    'Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
   [Errors.ClassForbiddenAsStatement]: "Class declaration can't appear in single-statement context",
   [Errors.CantAssignToInOfForLoop]: 'Invalid left-hand side in for-%0',
   [Errors.InvalidAssignmentInOfForLoop]: 'Invalid assignment in for-%0',
@@ -264,7 +264,7 @@ export const errorMessages: {
     'The first token after the template expression should be a continuation of the template',
   [Errors.UnexpectedLetStrictReserved]:
     '`let` declaration not allowed here and `let` cannot be a regular var name in strict mode',
-  [Errors.RestricedLetProduction]: '`let \n [` is a restricted production at the start of a statement',
+  [Errors.RestrictedLetProduction]: '`let \n [` is a restricted production at the start of a statement',
   [Errors.InvalidCatchParams]: 'Catch clause requires exactly one parameter, not more (and no trailing comma)',
   [Errors.InvalidCatchParamDefault]: 'Catch clause parameter does not support default values',
   [Errors.NoCatchOrFinally]: 'Missing catch or finally after try',
@@ -290,7 +290,7 @@ export const errorMessages: {
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
   [Errors.AwaitOrYieldIdentInModule]: "'%0' may not be used as an identifier in this context",
-  [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compability (Annex B)',
+  [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compatibility (Annex B)',
   [Errors.StrictInvalidLetInExprPos]: "The identifier 'let' must not be in expression position in strict mode",
   [Errors.NotAssignableLetArgs]: 'Cannot assign to `eval` and `arguments` in strict mode',
   [Errors.ForOfLet]: "The left-hand side of a for-of loop may not start with 'let'",

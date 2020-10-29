@@ -2,7 +2,7 @@ import { Context } from '../../../src/common';
 import * as t from 'assert';
 import { parseSource } from '../../../src/parser';
 
-describe('Miscellaneous - Web compability (AnnexB)', () => {
+describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   describe('HTML Comments', () => {
     for (const arg of [
       // Before first real token.

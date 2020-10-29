@@ -96,48 +96,84 @@ describe('Next - Decorators', () => {
   pass('Next - Decorators (pass)', [
     [
       `class A { @dec name = 0; }`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
       {
+        type: 'Program',
+        sourceType: 'script',
         body: [
           {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              start: 6,
+              end: 7,
+              range: [6, 7],
+              loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 7 } }
+            },
+            superClass: null,
+            decorators: [],
             body: {
+              type: 'ClassBody',
               body: [
                 {
+                  type: 'FieldDefinition',
+                  key: {
+                    type: 'Identifier',
+                    name: 'name',
+                    start: 15,
+                    end: 19,
+                    range: [15, 19],
+                    loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 19 } }
+                  },
+                  value: {
+                    type: 'Literal',
+                    value: 0,
+                    start: 22,
+                    end: 23,
+                    range: [22, 23],
+                    loc: { start: { line: 1, column: 22 }, end: { line: 1, column: 23 } }
+                  },
+                  static: false,
                   computed: false,
                   decorators: [
                     {
+                      type: 'Decorator',
                       expression: {
+                        type: 'Identifier',
                         name: 'dec',
-                        type: 'Identifier'
+                        start: 11,
+                        end: 14,
+                        range: [11, 14],
+                        loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 14 } }
                       },
-                      type: 'Decorator'
+                      start: 10,
+                      end: 14,
+                      range: [10, 14],
+                      loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 14 } }
                     }
                   ],
-                  key: {
-                    name: 'name',
-                    type: 'Identifier'
-                  },
-                  static: false,
-                  type: 'FieldDefinition',
-                  value: {
-                    type: 'Literal',
-                    value: 0
-                  }
+                  start: 15,
+                  end: 23,
+                  range: [15, 23],
+                  loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 23 } }
                 }
               ],
-              type: 'ClassBody'
+              start: 8,
+              end: 26,
+              range: [8, 26],
+              loc: { start: { line: 1, column: 8 }, end: { line: 1, column: 26 } }
             },
-            decorators: [],
-            id: {
-              name: 'A',
-              type: 'Identifier'
-            },
-            superClass: null,
-            type: 'ClassDeclaration'
+            start: 0,
+            end: 26,
+            range: [0, 26],
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } }
           }
         ],
-        sourceType: 'script',
-        type: 'Program'
+        start: 0,
+        end: 26,
+        range: [0, 26],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } }
       }
     ],
     [
@@ -369,71 +405,127 @@ describe('Next - Decorators', () => {
     [
       `@bar export default
           class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict,
+      Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
+            type: 'ExportDefaultDeclaration',
             declaration: {
-              body: {
-                body: [],
-                type: 'ClassBody'
-              },
-              decorators: [
-                {
-                  expression: {
-                    name: 'bar',
-                    type: 'Identifier'
-                  },
-                  type: 'Decorator'
-                }
-              ],
+              type: 'ClassDeclaration',
               id: {
+                type: 'Identifier',
                 name: 'Foo',
-                type: 'Identifier'
+                start: 36,
+                end: 39,
+                range: [36, 39],
+                loc: { start: { line: 2, column: 16 }, end: { line: 2, column: 19 } }
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              decorators: [
+                {
+                  type: 'Decorator',
+                  expression: {
+                    type: 'Identifier',
+                    name: 'bar',
+                    start: 1,
+                    end: 4,
+                    range: [1, 4],
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 4 } }
+                  },
+                  start: 0,
+                  end: 4,
+                  range: [0, 4],
+                  loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 4 } }
+                }
+              ],
+              body: {
+                type: 'ClassBody',
+                body: [],
+                start: 40,
+                end: 43,
+                range: [40, 43],
+                loc: { start: { line: 2, column: 20 }, end: { line: 2, column: 23 } }
+              },
+              start: 30,
+              end: 43,
+              range: [30, 43],
+              loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 23 } }
             },
-            type: 'ExportDefaultDeclaration'
+            start: 5,
+            end: 43,
+            range: [5, 43],
+            loc: { start: { line: 1, column: 5 }, end: { line: 2, column: 23 } }
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 43,
+        range: [0, 43],
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 23 } }
       }
     ],
     [
       `export default
           @bar class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict,
+      Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
       {
+        type: 'Program',
+        sourceType: 'module',
         body: [
           {
+            type: 'ExportDefaultDeclaration',
             declaration: {
-              body: {
-                body: [],
-                type: 'ClassBody'
-              },
-              decorators: [
-                {
-                  expression: {
-                    name: 'bar',
-                    type: 'Identifier'
-                  },
-                  type: 'Decorator'
-                }
-              ],
+              type: 'ClassDeclaration',
               id: {
+                type: 'Identifier',
                 name: 'Foo',
-                type: 'Identifier'
+                start: 36,
+                end: 39,
+                range: [36, 39],
+                loc: { start: { line: 2, column: 21 }, end: { line: 2, column: 24 } }
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              decorators: [
+                {
+                  type: 'Decorator',
+                  expression: {
+                    type: 'Identifier',
+                    name: 'bar',
+                    start: 26,
+                    end: 29,
+                    range: [26, 29],
+                    loc: { start: { line: 2, column: 11 }, end: { line: 2, column: 14 } }
+                  },
+                  start: 25,
+                  end: 29,
+                  range: [25, 29],
+                  loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 14 } }
+                }
+              ],
+              body: {
+                type: 'ClassBody',
+                body: [],
+                start: 40,
+                end: 43,
+                range: [40, 43],
+                loc: { start: { line: 2, column: 25 }, end: { line: 2, column: 28 } }
+              },
+              start: 30,
+              end: 43,
+              range: [30, 43],
+              loc: { start: { line: 2, column: 15 }, end: { line: 2, column: 28 } }
             },
-            type: 'ExportDefaultDeclaration'
+            start: 0,
+            end: 43,
+            range: [0, 43],
+            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } }
           }
         ],
-        sourceType: 'module',
-        type: 'Program'
+        start: 0,
+        end: 43,
+        range: [0, 43],
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } }
       }
     ],
     [
@@ -1101,7 +1193,7 @@ describe('Next - Decorators', () => {
     [
       `(@foo('bar')
   class Foo {})`,
-      Context.OptionsNext,
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1112,7 +1204,11 @@ describe('Next - Decorators', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
+                start: 21,
+                end: 24,
+                range: [21, 24],
+                loc: { start: { line: 2, column: 8 }, end: { line: 2, column: 11 } }
               },
               superClass: null,
               decorators: [
@@ -1122,24 +1218,56 @@ describe('Next - Decorators', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
+                      start: 2,
+                      end: 5,
+                      range: [2, 5],
+                      loc: { start: { line: 1, column: 2 }, end: { line: 1, column: 5 } }
                     },
                     arguments: [
                       {
                         type: 'Literal',
-                        value: 'bar'
+                        value: 'bar',
+                        start: 6,
+                        end: 11,
+                        range: [6, 11],
+                        loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 11 } }
                       }
-                    ]
-                  }
+                    ],
+                    start: 1,
+                    end: 12,
+                    range: [1, 12],
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } }
+                  },
+                  start: 1,
+                  end: 12,
+                  range: [1, 12],
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } }
                 }
               ],
               body: {
                 type: 'ClassBody',
-                body: []
-              }
-            }
+                body: [],
+                start: 25,
+                end: 27,
+                range: [25, 27],
+                loc: { start: { line: 2, column: 12 }, end: { line: 2, column: 14 } }
+              },
+              start: 15,
+              end: 27,
+              range: [15, 27],
+              loc: { start: { line: 2, column: 2 }, end: { line: 2, column: 14 } }
+            },
+            start: 0,
+            end: 28,
+            range: [0, 28],
+            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } }
           }
-        ]
+        ],
+        start: 0,
+        end: 28,
+        range: [0, 28],
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } }
       }
     ],
     [
@@ -3040,6 +3168,61 @@ describe('Next - Decorators', () => {
             }
           }
         ]
+      }
+    ],
+    [
+      '@a class G {}',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'G',
+              start: 9,
+              end: 10,
+              range: [9, 10],
+              loc: { start: { line: 1, column: 9 }, end: { line: 1, column: 10 } }
+            },
+            superClass: null,
+            decorators: [
+              {
+                type: 'Decorator',
+                expression: {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 1,
+                  end: 2,
+                  range: [1, 2],
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                },
+                start: 0,
+                end: 2,
+                range: [0, 2],
+                loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 2 } }
+              }
+            ],
+            body: {
+              type: 'ClassBody',
+              body: [],
+              start: 11,
+              end: 13,
+              range: [11, 13],
+              loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 13 } }
+            },
+            start: 3,
+            end: 13,
+            range: [3, 13],
+            loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 13 } }
+          }
+        ],
+        start: 0,
+        end: 13,
+        range: [0, 13],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 13 } }
       }
     ]
   ]);

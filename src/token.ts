@@ -54,7 +54,7 @@ export const enum Token {
   RightBrace   = 15 | IsAutoSemicolon | IsClassField, // }
   RightParen   = 16, // )
   Semicolon    = 17 | IsAutoSemicolon | IsClassField, // ;
-  Comma        = 18 | IsClassField, // ,
+  Comma        = 18, // ,
   LeftBracket  = 19 | IsExpressionStart | IsPatternStart | IsMemberOrCallExpression, // [
   RightBracket = 20, // ]
   Colon        = 21, // :
@@ -176,7 +176,7 @@ export const enum Token {
 
   // Stage #3 proposals
   PrivateName        = 121,
-  BigIntLiteral      = 122,
+  BigIntLiteral      = 122 | IsExpressionStart | IsStringOrNumber,
   Coalesce           = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
   QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.
 

@@ -67,7 +67,7 @@ This is the available options:
   // The flag to enable start, end offsets and range: [start, end] to each node
   ranges: false;
 
-  // Enable web compability
+  // Enable web compatibility
   webcompat: false;
 
   // The flag to enable line/column location information to each node

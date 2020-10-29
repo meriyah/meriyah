@@ -197,7 +197,7 @@ export interface Options {
   next?: boolean;
   // Enable start and end offsets to each node
   ranges?: boolean;
-  // Enable web compability
+  // Enable web compatibility
   webcompat?: boolean;
   // Enable line/column location information to each node
   loc?: boolean;
@@ -342,18 +342,7 @@ export function parseStatementList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(
-      parseStatementListItem(
-        parser,
-        context,
-        scope,
-        Origin.TopLevel,
-        {},
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos
-      ) as ESTree.Statement
-    );
+    statements.push(parseStatementListItem(parser, context, scope, Origin.TopLevel, {}) as ESTree.Statement);
   }
   return statements;
 }
@@ -394,9 +383,7 @@ export function parseModuleItemList(
   }
 
   while (parser.token !== Token.EOF) {
-    statements.push(
-      parseModuleItem(parser, context, scope, parser.tokenPos, parser.linePos, parser.colPos) as ESTree.Statement
-    );
+    statements.push(parseModuleItem(parser, context, scope) as ESTree.Statement);
   }
   return statements;
 }
@@ -409,17 +396,9 @@ export function parseModuleItemList(
  * @param parser  Parser object
  * @param context Context masks
  * @param scope Scope object
- * @param start
  */
 
-export function parseModuleItem(
-  parser: ParserState,
-  context: Context,
-  scope: ScopeState | undefined,
-  start: number,
-  line: number,
-  column: number
-): any {
+export function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined): any {
   // Support legacy decorators before export keyword.
   parser.leadingDecorators = parseDecorators(parser, context);
 
@@ -432,13 +411,13 @@ export function parseModuleItem(
   let moduleItem;
   switch (parser.token) {
     case Token.ExportKeyword:
-      moduleItem = parseExportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseExportDeclaration(parser, context, scope);
       break;
     case Token.ImportKeyword:
-      moduleItem = parseImportDeclaration(parser, context, scope, start, line, column);
+      moduleItem = parseImportDeclaration(parser, context, scope);
       break;
     default:
-      moduleItem = parseStatementListItem(parser, context, scope, Origin.TopLevel, {}, start, line, column);
+      moduleItem = parseStatementListItem(parser, context, scope, Origin.TopLevel, {});
   }
 
   if (parser.leadingDecorators.length) {
@@ -452,6 +431,7 @@ export function parseModuleItem(
  *
  * @param parser  Parser object
  * @param context Context masks
+ * @param scope Scope object
  */
 
 export function parseStatementListItem(
@@ -459,10 +439,7 @@ export function parseStatementListItem(
   context: Context,
   scope: ScopeState | undefined,
   origin: Origin,
-  labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number
+  labels: ESTree.Labels
 ): ESTree.Statement | ESTree.Decorator[] {
   // ECMA 262 10th Edition
   // StatementListItem[Yield, Return] :
@@ -480,6 +457,9 @@ export function parseStatementListItem(
   //
   // LexicalDeclaration[In, Yield] :
   //   LetOrConst BindingList[?In, ?Yield] ;
+  const start = parser.tokenPos;
+  const line = parser.linePos;
+  const column = parser.colPos;
 
   switch (parser.token) {
     //   HoistableDeclaration[?Yield, ~Default]
@@ -693,7 +673,7 @@ export function parseExpressionOrLabelledStatement(
       // "let" followed by either "[", "{" or an identifier means a lexical
       // declaration, which should not appear here.
       // However, ASI may insert a line break before an identifier or a brace.
-      if (parser.token === Token.LeftBracket) report(parser, Errors.RestricedLetProduction);
+      if (parser.token === Token.LeftBracket) report(parser, Errors.RestrictedLetProduction);
 
       break;
 
@@ -816,18 +796,7 @@ export function parseBlock(
   const body: ESTree.Statement[] = [];
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.token !== Token.RightBrace) {
-    body.push(
-      parseStatementListItem(
-        parser,
-        context,
-        scope,
-        Origin.BlockStatement,
-        { $: labels },
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos
-      ) as any
-    );
+    body.push(parseStatementListItem(parser, context, scope, Origin.BlockStatement, { $: labels }) as any);
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
@@ -1340,7 +1309,7 @@ export function parseConsequentOrAlternative(
   column: number
 ): ESTree.Statement | ESTree.FunctionDeclaration {
   return context & Context.Strict ||
-    // Disallow if web compability is off
+    // Disallow if web compatibility is off
     (context & Context.OptionsWebCompat) < 1 ||
     parser.token !== Token.FunctionKeyword
     ? parseStatement(
@@ -1419,18 +1388,9 @@ export function parseSwitchStatement(
       parser.token !== Token.DefaultKeyword
     ) {
       consequent.push(
-        parseStatementListItem(
-          parser,
-          context | Context.InSwitch,
-          scope,
-          Origin.BlockStatement,
-          {
-            $: labels
-          },
-          parser.tokenPos,
-          parser.linePos,
-          parser.colPos
-        ) as ESTree.Statement
+        parseStatementListItem(parser, context | Context.InSwitch, scope, Origin.BlockStatement, {
+          $: labels
+        }) as ESTree.Statement
       );
     }
 
@@ -2418,17 +2378,11 @@ export function parseRestrictedIdentifier(
  * @param parser  Parser object
  * @param context Context masks
  * @param scope Scope object
- * @param start Start pos of node
- * @param line
- * @param column
  */
 function parseImportDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | undefined,
-  start: number,
-  line: number,
-  column: number
+  scope: ScopeState | undefined
 ): ESTree.ImportDeclaration | ESTree.ExpressionStatement {
   // ImportDeclaration :
   //   'import' ImportClause 'from' ModuleSpecifier ';'
@@ -2443,6 +2397,9 @@ function parseImportDeclaration(
   //
   // NameSpaceImport :
   //   '*' 'as' ImportedBinding
+  const start = parser.tokenPos;
+  const line = parser.linePos;
+  const column = parser.colPos;
 
   nextToken(parser, context);
 
@@ -2747,10 +2704,7 @@ function parseImportCallDeclaration(
 function parseExportDeclaration(
   parser: ParserState,
   context: Context,
-  scope: ScopeState | undefined,
-  start: number,
-  line: number,
-  column: number
+  scope: ScopeState | undefined
 ): ESTree.ExportAllDeclaration | ESTree.ExportNamedDeclaration | ESTree.ExportDefaultDeclaration {
   // ExportDeclaration:
   //    'export' '*' 'from' ModuleSpecifier ';'
@@ -2759,6 +2713,9 @@ function parseExportDeclaration(
   //    'export' VariableStatement
   //    'export' Declaration
   //    'export' 'default'
+  const start = parser.tokenPos;
+  const line = parser.linePos;
+  const column = parser.colPos;
 
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
@@ -3489,7 +3446,7 @@ export function parseUnaryExpression(
     parser.linePos,
     parser.colPos
   );
-  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentationLHS);
+  if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);
@@ -3744,18 +3701,7 @@ export function parseFunctionBody(
   parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
   while (parser.token !== Token.RightBrace) {
-    body.push(
-      parseStatementListItem(
-        parser,
-        context,
-        scope,
-        Origin.TopLevel,
-        {},
-        parser.tokenPos,
-        parser.linePos,
-        parser.colPos
-      ) as ESTree.Statement
-    );
+    body.push(parseStatementListItem(parser, context, scope, Origin.TopLevel, {}) as ESTree.Statement);
   }
 
   consume(
@@ -4452,13 +4398,13 @@ export function parseBigIntLiteral(
       ? {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw.substring(0, tokenRaw.length - 1), // without the ending "n"
+          bigint: tokenRaw.slice(0, -1), // without the ending "n"
           raw: tokenRaw
         }
       : {
           type: 'Literal',
           value: tokenValue,
-          bigint: tokenRaw.substring(0, tokenRaw.length - 1) // without the ending "n"
+          bigint: tokenRaw.slice(0, -1) // without the ending "n"
         }
   );
 }
@@ -4721,6 +4667,10 @@ export function parseIdentifier(parser: ParserState, context: Context, isPattern
  */
 export function parseLiteral(parser: ParserState, context: Context): ESTree.Literal {
   const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
+  if (parser.token === Token.BigIntLiteral) {
+    return parseBigIntLiteral(parser, context, tokenPos, linePos, colPos);
+  }
+
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return finishNode(
@@ -7912,6 +7862,11 @@ export function parseClassDeclaration(
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
   let decorators = parseDecorators(parser, context);
+  if (decorators.length) {
+    start = parser.tokenPos;
+    line = parser.linePos;
+    column = parser.colPos;
+  }
 
   if (parser.leadingDecorators.length) {
     parser.leadingDecorators.push(...decorators);
@@ -8025,6 +7980,11 @@ export function parseClassExpression(
   context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
 
   const decorators = parseDecorators(parser, context);
+  if (decorators.length) {
+    start = parser.tokenPos;
+    line = parser.linePos;
+    column = parser.colPos;
+  }
 
   nextToken(parser, context);
 
@@ -8206,7 +8166,7 @@ export function parseClassBody(
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
   const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
-  let decorators: ESTree.Decorator[] = [];
+  let decorators: ESTree.Decorator[];
 
   while (parser.token !== Token.RightBrace) {
     let length = 0;
@@ -8724,7 +8684,7 @@ export function parseOpeningFragment(
   line: number,
   column: number
 ): ESTree.JSXOpeningFragment {
-  scanJSXToken(parser);
+  scanJSXToken(parser, context);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXOpeningFragment'
   });
@@ -8753,7 +8713,7 @@ function parseJSXClosingElement(
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
-    parser.token = scanJSXToken(parser);
+    parser.token = scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -8805,7 +8765,7 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
     parser.index = parser.tokenPos = parser.startPos;
     parser.column = parser.colPos = parser.startColumn;
     parser.line = parser.linePos = parser.startLine;
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
     children.push(parseJSXChild(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return children;
@@ -8845,11 +8805,18 @@ export function parseJSXText(
   line: number,
   column: number
 ): ESTree.JSXText {
-  scanJSXToken(parser);
-  return finishNode(parser, context, start, line, column, {
+  scanJSXToken(parser, context);
+
+  const node = {
     type: 'JSXText',
     value: parser.tokenValue as string
-  });
+  } as ESTree.JSXText;
+
+  if (context & Context.OptionsRaw) {
+    node.raw = parser.tokenRaw;
+  }
+
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
@@ -8878,13 +8845,13 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const selfClosing = parser.token === Token.Divide;
 
   if (parser.token === Token.GreaterThan) {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   } else {
     consume(parser, context, Token.Divide);
     if (inJSXChild) {
       consume(parser, context, Token.GreaterThan);
     } else {
-      scanJSXToken(parser);
+      scanJSXToken(parser, context);
     }
   }
 
@@ -9105,14 +9072,14 @@ function parseJSXExpressionContainer(
   if (parser.token === Token.RightBrace) {
     // JSX attributes must only be assigned a non-empty 'expression'
     if (isAttr) report(parser, Errors.InvalidNonEmptyJSXExpr);
-    expression = parseJSXEmptyExpression(parser, context, tokenPos, linePos, colPos);
+    expression = parseJSXEmptyExpression(parser, context, parser.startPos, parser.startLine, parser.startColumn);
   } else {
     expression = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
   }
   if (inJSXChild) {
     consume(parser, context, Token.RightBrace);
   } else {
-    scanJSXToken(parser);
+    scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9162,6 +9129,13 @@ function parseJSXEmptyExpression(
   line: number,
   column: number
 ): ESTree.JSXEmptyExpression {
+  // Since " }" is treated as single token, we have to artificially break
+  // it into " " and "}".
+  // Move token start from beginning of whitespace(s) to beginning of "}",
+  // so JSXEmptyExpression can have correct end loc.
+  parser.startPos = parser.tokenPos;
+  parser.startLine = parser.linePos;
+  parser.startColumn = parser.colPos;
   return finishNode(parser, context, start, line, column, {
     type: 'JSXEmptyExpression'
   });
