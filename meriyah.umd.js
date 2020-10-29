@@ -38,7 +38,7 @@
       [29]: 'Await expression not allowed in formal parameter',
       [30]: 'Yield expression not allowed in formal parameter',
       [92]: "Unexpected token: 'escaped keyword'",
-      [31]: 'Unary expressions as the left operand of an exponentation expression must be disambiguated with parentheses',
+      [31]: 'Unary expressions as the left operand of an exponentiation expression must be disambiguated with parentheses',
       [119]: 'Async functions can only be declared at the top level or inside a block',
       [32]: 'Unterminated regular expression',
       [33]: 'Unexpected regular expression flag',
@@ -83,7 +83,7 @@
       [71]: 'Invalid rest argument',
       [73]: 'In strict mode code, functions can only be declared at top level or inside a block',
       [74]: 'In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement',
-      [75]: 'Without web compability enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
+      [75]: 'Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement',
       [76]: "Class declaration can't appear in single-statement context",
       [77]: 'Invalid left-hand side in for-%0',
       [78]: 'Invalid assignment in for-%0',
@@ -116,7 +116,7 @@
       [105]: 'Trailing decorator may be followed by method',
       [106]: "Decorators can't be used with a constructor",
       [107]: "'%0' may not be used as an identifier in this context",
-      [108]: 'HTML comments are only allowed with web compability (Annex B)',
+      [108]: 'HTML comments are only allowed with web compatibility (Annex B)',
       [109]: "The identifier 'let' must not be in expression position in strict mode",
       [110]: 'Cannot assign to `eval` and `arguments` in strict mode',
       [111]: "The left-hand side of a for-of loop may not start with 'let'",
@@ -168,7 +168,8 @@
       [160]: 'Invalid tagged template on optional chain',
       [161]: 'Invalid optional chain from super property',
       [162]: 'Invalid optional chain from new expression',
-      [163]: 'Cannot use "import.meta" outside a module'
+      [163]: 'Cannot use "import.meta" outside a module',
+      [164]: 'Leading decorators must be attached to a class declaration'
   };
   class ParseError extends SyntaxError {
       constructor(startindex, line, column, type, ...params) {
@@ -266,7 +267,7 @@
       16,
       8457011,
       25233967,
-      1073741842,
+      18,
       25233968,
       67108877,
       8457013,
@@ -357,12 +358,26 @@
       parser.startColumn = parser.column;
       parser.startLine = parser.line;
       parser.token = scanSingleToken(parser, context, 0);
-      if (parser.onToken && parser.token !== 1048576)
-          parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index);
+      if (parser.onToken && parser.token !== 1048576) {
+          const loc = {
+              start: {
+                  line: parser.linePos,
+                  column: parser.colPos
+              },
+              end: {
+                  line: parser.line,
+                  column: parser.column
+              }
+          };
+          parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index, loc);
+      }
   }
   function scanSingleToken(parser, context, state) {
       const isStartOfLine = parser.index === 0;
       const source = parser.source;
+      let startPos = parser.index;
+      let startLine = parser.line;
+      let startColumn = parser.column;
       while (parser.index < parser.end) {
           parser.tokenPos = parser.index;
           parser.colPos = parser.column;
@@ -379,12 +394,37 @@
                   case 20:
                   case 21:
                   case 1074790417:
-                  case 1073741842:
+                  case 18:
                   case 16842798:
                   case 130:
                   case 126:
                       advanceChar(parser);
                       return token;
+                  case 208897:
+                      return scanIdentifier(parser, context, 0);
+                  case 4096:
+                      return scanIdentifier(parser, context, 1);
+                  case 134283266:
+                      return scanNumber(parser, context, 16 | 128);
+                  case 134283267:
+                      return scanString(parser, context, char);
+                  case 129:
+                      return scanTemplate(parser, context);
+                  case 134:
+                      return scanUnicodeIdentifier(parser, context);
+                  case 128:
+                      return scanPrivateName(parser);
+                  case 125:
+                      advanceChar(parser);
+                      break;
+                  case 127:
+                      state |= 1 | 4;
+                      scanNewLine(parser);
+                      break;
+                  case 133:
+                      consumeLineFeed(parser, state);
+                      state = (state & ~4) | 1;
+                      break;
                   case 8456255:
                       let ch = advanceChar(parser);
                       if (parser.index < parser.end) {
@@ -406,7 +446,10 @@
                                   source.charCodeAt(index + 1) == 45) {
                                   parser.column += 3;
                                   parser.currentChar = source.charCodeAt((parser.index += 3));
-                                  state = skipSingleHTMLComment(parser, source, state, context, 2);
+                                  state = skipSingleHTMLComment(parser, source, state, context, 2, parser.tokenPos, parser.linePos, parser.colPos);
+                                  startPos = parser.tokenPos;
+                                  startLine = parser.linePos;
+                                  startColumn = parser.colPos;
                                   continue;
                               }
                               return 8456255;
@@ -427,8 +470,6 @@
                       return 8456255;
                   case 1077936157: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 1077936157;
                       const ch = parser.currentChar;
                       if (ch === 61) {
                           if (advanceChar(parser) === 61) {
@@ -493,8 +534,6 @@
                   }
                   case 25233968: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 25233968;
                       const ch = parser.currentChar;
                       if (ch === 45) {
                           advanceChar(parser);
@@ -502,7 +541,10 @@
                               if ((context & 256) === 0)
                                   report(parser, 108);
                               advanceChar(parser);
-                              state = skipSingleHTMLComment(parser, source, state, context, 3);
+                              state = skipSingleHTMLComment(parser, source, state, context, 3, startPos, startLine, startColumn);
+                              startPos = parser.tokenPos;
+                              startLine = parser.linePos;
+                              startColumn = parser.colPos;
                               continue;
                           }
                           return 33619996;
@@ -519,12 +561,18 @@
                           const ch = parser.currentChar;
                           if (ch === 47) {
                               advanceChar(parser);
-                              state = skipSingleLineComment(parser, source, state, 0);
+                              state = skipSingleLineComment(parser, source, state, 0, parser.tokenPos, parser.linePos, parser.colPos);
+                              startPos = parser.tokenPos;
+                              startLine = parser.linePos;
+                              startColumn = parser.colPos;
                               continue;
                           }
                           if (ch === 42) {
                               advanceChar(parser);
                               state = skipMultiLineComment(parser, source, state);
+                              startPos = parser.tokenPos;
+                              startLine = parser.linePos;
+                              startColumn = parser.colPos;
                               continue;
                           }
                           if (context & 32768) {
@@ -537,10 +585,21 @@
                       }
                       return 8457013;
                   }
+                  case 67108877:
+                      const next = advanceChar(parser);
+                      if (next >= 48 && next <= 57)
+                          return scanNumber(parser, context, 64 | 16);
+                      if (next === 46) {
+                          const index = parser.index + 1;
+                          if (index < parser.end && source.charCodeAt(index) === 46) {
+                              parser.column += 2;
+                              parser.currentChar = source.charCodeAt((parser.index += 2));
+                              return 14;
+                          }
+                      }
+                      return 67108877;
                   case 8455237: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8455237;
                       const ch = parser.currentChar;
                       if (ch === 124) {
                           advanceChar(parser);
@@ -554,8 +613,6 @@
                   }
                   case 8456256: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8456256;
                       const ch = parser.currentChar;
                       if (ch === 61) {
                           advanceChar(parser);
@@ -582,8 +639,6 @@
                   }
                   case 8455748: {
                       advanceChar(parser);
-                      if (parser.index >= parser.end)
-                          return 8455748;
                       const ch = parser.currentChar;
                       if (ch === 38) {
                           advanceChar(parser);
@@ -595,23 +650,8 @@
                       }
                       return 8455748;
                   }
-                  case 67108877:
-                      const next = advanceChar(parser);
-                      if (next >= 48 && next <= 57)
-                          return scanNumber(parser, context, 64 | 16);
-                      if (next === 46) {
-                          const index = parser.index + 1;
-                          if (index < parser.end && source.charCodeAt(index) === 46) {
-                              parser.column += 2;
-                              parser.currentChar = source.charCodeAt((parser.index += 2));
-                              return 14;
-                          }
-                      }
-                      return 67108877;
                   case 22: {
                       let ch = advanceChar(parser);
-                      if ((context & 1) < 1)
-                          return 22;
                       if (ch === 63) {
                           advanceChar(parser);
                           return 276889979;
@@ -628,31 +668,6 @@
                       }
                       return 22;
                   }
-                  case 4096:
-                      return scanIdentifier(parser, context, 1);
-                  case 208897:
-                      return scanIdentifier(parser, context, 0);
-                  case 134283266:
-                      return scanNumber(parser, context, 16 | 128);
-                  case 134283267:
-                      return scanString(parser, context, char);
-                  case 129:
-                      return scanTemplate(parser, context);
-                  case 134:
-                      return scanUnicodeIdentifier(parser, context);
-                  case 128:
-                      return scanPrivateName(parser);
-                  case 125:
-                      advanceChar(parser);
-                      break;
-                  case 127:
-                      state |= 1 | 4;
-                      scanNewLine(parser);
-                      break;
-                  case 133:
-                      consumeLineFeed(parser, state);
-                      state = (state & ~4) | 1;
-                      break;
               }
           }
           else {
@@ -688,17 +703,21 @@
   function skipHashBang(parser) {
       const source = parser.source;
       if (parser.currentChar === 35 && source.charCodeAt(parser.index + 1) === 33) {
-          skipSingleLineComment(parser, source, 0, 4);
+          advanceChar(parser);
+          advanceChar(parser);
+          skipSingleLineComment(parser, source, 0, 4, parser.tokenPos, parser.linePos, parser.colPos);
       }
   }
-  function skipSingleHTMLComment(parser, source, state, context, type) {
+  function skipSingleHTMLComment(parser, source, state, context, type, start, line, column) {
       if (context & 2048)
           report(parser, 0);
-      return skipSingleLineComment(parser, source, state, type);
+      return skipSingleLineComment(parser, source, state, type, start, line, column);
   }
-  function skipSingleLineComment(parser, source, state, type) {
+  function skipSingleLineComment(parser, source, state, type, start, line, column) {
       const { index } = parser;
-      let end = index;
+      parser.tokenPos = parser.index;
+      parser.linePos = parser.line;
+      parser.colPos = parser.column;
       while (parser.index < parser.end) {
           if (CharTypes[parser.currentChar] & 8) {
               const isCR = parser.currentChar === 13;
@@ -712,10 +731,23 @@
               break;
           }
           advanceChar(parser);
-          end++;
+          parser.tokenPos = parser.index;
+          parser.linePos = parser.line;
+          parser.colPos = parser.column;
       }
-      if (parser.onComment)
-          parser.onComment(CommentTypes[type & 0xff], source.slice(index, end), index - (type === 0 ? 2 : 4), end);
+      if (parser.onComment) {
+          const loc = {
+              start: {
+                  line,
+                  column
+              },
+              end: {
+                  line: parser.linePos,
+                  column: parser.colPos
+              }
+          };
+          parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenPos), start, parser.tokenPos, loc);
+      }
       return state | 1;
   }
   function skipMultiLineComment(parser, source, state) {
@@ -730,8 +762,22 @@
                   }
                   if (advanceChar(parser) === 47) {
                       advanceChar(parser);
-                      if (parser.onComment)
-                          parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index);
+                      if (parser.onComment) {
+                          const loc = {
+                              start: {
+                                  line: parser.linePos,
+                                  column: parser.colPos
+                              },
+                              end: {
+                                  line: parser.line,
+                                  column: parser.column
+                              }
+                          };
+                          parser.onComment(CommentTypes[1 & 0xff], source.slice(index, parser.index - 2), index - 2, parser.index, loc);
+                      }
+                      parser.tokenPos = parser.index;
+                      parser.linePos = parser.line;
+                      parser.colPos = parser.column;
                       return state;
                   }
               }
@@ -1563,9 +1609,6 @@
               parser.flags |= 64;
               return code;
           }
-          case 56:
-          case 57:
-              return -3;
           case 120: {
               const ch1 = advanceChar(parser);
               if ((CharTypes[ch1] & 64) === 0)
@@ -1609,6 +1652,10 @@
                   return (toHex(ch) << 12) | (toHex(ch2) << 8) | (toHex(ch3) << 4) | toHex(ch4);
               }
           }
+          case 56:
+          case 57:
+              if ((context & 256) === 0)
+                  return -3;
           default:
               return first;
       }
@@ -1791,7 +1838,7 @@
       if (isBigInt) {
           parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
           parser.tokenValue = BigInt(value);
-          return 122;
+          return 134283386;
       }
       parser.tokenValue =
           kind & (1 | 2 | 8 | 4)
@@ -2010,16 +2057,16 @@
   }
 
   function scanJSXAttributeValue(parser, context) {
-      parser.startPos = parser.index;
-      parser.startColumn = parser.column;
-      parser.startLine = parser.line;
+      parser.startPos = parser.tokenPos = parser.index;
+      parser.startColumn = parser.colPos = parser.column;
+      parser.startLine = parser.linePos = parser.line;
       parser.token =
           CharTypes[parser.currentChar] & 8192
-              ? scanJSXString(parser)
+              ? scanJSXString(parser, context)
               : scanSingleToken(parser, context, 0);
       return parser.token;
   }
-  function scanJSXString(parser) {
+  function scanJSXString(parser, context) {
       const quote = parser.currentChar;
       let char = advanceChar(parser);
       const start = parser.index;
@@ -2032,9 +2079,11 @@
           report(parser, 14);
       parser.tokenValue = parser.source.slice(start, parser.index);
       advanceChar(parser);
+      if (context & 512)
+          parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
       return 134283267;
   }
-  function scanJSXToken(parser) {
+  function scanJSXToken(parser, context) {
       parser.startPos = parser.tokenPos = parser.index;
       parser.startColumn = parser.colPos = parser.column;
       parser.startLine = parser.linePos = parser.line;
@@ -2077,6 +2126,8 @@
                       break;
               }
               parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
+              if (context & 512)
+                  parser.tokenRaw = parser.tokenValue;
               parser.token = 135;
           }
       }
@@ -2388,7 +2439,7 @@
       }
   }
   function pushComment(context, array) {
-      return function (type, value, start, end) {
+      return function (type, value, start, end, loc) {
           const comment = {
               type,
               value
@@ -2398,17 +2449,24 @@
               comment.end = end;
               comment.range = [start, end];
           }
+          if (context & 4) {
+              comment.loc = loc;
+          }
           array.push(comment);
       };
   }
   function pushToken(context, array) {
-      return function (token, start, end) {
+      return function (token, start, end, loc) {
           const tokens = {
               token
           };
-          if (context & 4) {
+          if (context & 2) {
               tokens.start = start;
               tokens.end = end;
+              tokens.range = [start, end];
+          }
+          if (context & 4) {
+              tokens.loc = loc;
           }
           array.push(tokens);
       };
@@ -2448,7 +2506,7 @@
           tokenPos: 0,
           startColumn: 0,
           colPos: 0,
-          linePos: 0,
+          linePos: 1,
           startLine: 1,
           sourceFile,
           tokenValue: '',
@@ -2461,7 +2519,8 @@
           assignable: 1,
           destructible: 0,
           onComment,
-          onToken
+          onToken,
+          leadingDecorators: []
       };
   }
   function parseSource(source, options, context) {
@@ -2558,7 +2617,7 @@
           statements.push(parseDirective(parser, context, expr, token, tokenPos, linePos, colPos));
       }
       while (parser.token !== 1048576) {
-          statements.push(parseStatementListItem(parser, context, scope, 4, {}, parser.tokenPos, parser.linePos, parser.colPos));
+          statements.push(parseStatementListItem(parser, context, scope, 4, {}));
       }
       return statements;
   }
@@ -2572,23 +2631,32 @@
           }
       }
       while (parser.token !== 1048576) {
-          statements.push(parseModuleItem(parser, context, scope, parser.tokenPos, parser.linePos, parser.colPos));
+          statements.push(parseModuleItem(parser, context, scope));
       }
       return statements;
   }
-  function parseModuleItem(parser, context, scope, start, line, column) {
+  function parseModuleItem(parser, context, scope) {
+      parser.leadingDecorators = parseDecorators(parser, context);
+      let moduleItem;
       switch (parser.token) {
           case 20563:
-              return parseExportDeclaration(parser, context, scope, start, line, column);
+              moduleItem = parseExportDeclaration(parser, context, scope);
+              break;
           case 86105:
-              return parseImportDeclaration(parser, context, scope, start, line, column);
-          case 130:
-              return parseDecorators(parser, context);
+              moduleItem = parseImportDeclaration(parser, context, scope);
+              break;
           default:
-              return parseStatementListItem(parser, context, scope, 4, {}, start, line, column);
+              moduleItem = parseStatementListItem(parser, context, scope, 4, {});
       }
+      if (parser.leadingDecorators.length) {
+          report(parser, 164);
+      }
+      return moduleItem;
   }
-  function parseStatementListItem(parser, context, scope, origin, labels, start, line, column) {
+  function parseStatementListItem(parser, context, scope, origin, labels) {
+      const start = parser.tokenPos;
+      const line = parser.linePos;
+      const column = parser.colPos;
       switch (parser.token) {
           case 86103:
               return parseFunctionDeclaration(parser, context, scope, origin, 1, 0, 0, start, line, column);
@@ -2686,7 +2754,7 @@
       }
       expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
       expr = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expr);
-      if (parser.token === 1073741842) {
+      if (parser.token === 18) {
           expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
       }
       return parseExpressionStatement(parser, context, expr, start, line, column);
@@ -2695,7 +2763,7 @@
       const body = [];
       consume(parser, context | 32768, 2162700);
       while (parser.token !== 1074790415) {
-          body.push(parseStatementListItem(parser, context, scope, 2, { $: labels }, parser.tokenPos, parser.linePos, parser.colPos));
+          body.push(parseStatementListItem(parser, context, scope, 2, { $: labels }));
       }
       consume(parser, context | 32768, 1074790415);
       return finishNode(parser, context, start, line, column, {
@@ -2754,7 +2822,7 @@
           }
           if ((parser.token & 143360) === 143360) {
               expr = parseAsyncArrowAfterIdent(parser, context, 1, start, line, column);
-              if (parser.token === 1073741842)
+              if (parser.token === 18)
                   expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
               return parseExpressionStatement(parser, context, expr, start, line, column);
           }
@@ -2770,20 +2838,19 @@
           parser.assignable = 1;
       }
       expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
-      if (parser.token === 1073741842)
+      if (parser.token === 18)
           expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
       expr = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expr);
       parser.assignable = 1;
       return parseExpressionStatement(parser, context, expr, start, line, column);
   }
   function parseDirective(parser, context, expression, token, start, line, column) {
-      const { tokenRaw } = parser;
       if (token !== 1074790417) {
           parser.assignable = 2;
           expression = parseMemberOrUpdateExpression(parser, context, expression, 0, 0, start, line, column);
           if (parser.token !== 1074790417) {
               expression = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expression);
-              if (parser.token === 1073741842) {
+              if (parser.token === 18) {
                   expression = parseSequenceExpression(parser, context, 0, start, line, column, expression);
               }
           }
@@ -2793,7 +2860,7 @@
           ? finishNode(parser, context, start, line, column, {
               type: 'ExpressionStatement',
               expression,
-              directive: tokenRaw.slice(1, -1)
+              directive: expression.raw.slice(1, -1)
           })
           : finishNode(parser, context, start, line, column, {
               type: 'ExpressionStatement',
@@ -2872,7 +2939,7 @@
               parser.token !== 20560) {
               consequent.push(parseStatementListItem(parser, context | 4096, scope, 2, {
                   $: labels
-              }, parser.tokenPos, parser.linePos, parser.colPos));
+              }));
           }
           cases.push(finishNode(parser, context, tokenPos, linePos, colPos, {
               type: 'SwitchCase',
@@ -2991,7 +3058,7 @@
           param = parseBindingPattern(parser, context, scope, (parser.token & 2097152) === 2097152
               ? 256
               : 512, 0, parser.tokenPos, parser.linePos, parser.colPos);
-          if (parser.token === 1073741842) {
+          if (parser.token === 18) {
               report(parser, 83);
           }
           else if (parser.token === 1077936157) {
@@ -3051,7 +3118,7 @@
           expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
           expr = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expr);
       }
-      if (parser.token === 1073741842) {
+      if (parser.token === 18) {
           expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
       }
       return parseExpressionStatement(parser, context, expr, start, line, column);
@@ -3079,7 +3146,7 @@
   function parseVariableDeclarationList(parser, context, scope, kind, origin) {
       let bindingCount = 1;
       const list = [parseVariableDeclaration(parser, context, scope, kind, origin)];
-      while (consumeOpt(parser, context, 1073741842)) {
+      while (consumeOpt(parser, context, 18)) {
           bindingCount++;
           list.push(parseVariableDeclaration(parser, context, scope, kind, origin));
       }
@@ -3098,10 +3165,7 @@
           if (origin & 32 || (token & 2097152) < 1) {
               if (parser.token === 274546 ||
                   (parser.token === 8738865 &&
-                      (token & 2097152 ||
-                          (kind & 4) < 1 ||
-                          (context & 256) < 1 ||
-                          context & 1024))) {
+                      (token & 2097152 || (kind & 4) < 1 || context & 1024))) {
                   reportMessageAt(tokenPos, parser.line, parser.index - 3, 57, parser.token === 274546 ? 'of' : 'in');
               }
           }
@@ -3234,7 +3298,7 @@
           }
           init = parseAssignmentExpression(parser, context | 134217728, 0, 0, tokenPos, linePos, colPos, init);
       }
-      if (parser.token === 1073741842)
+      if (parser.token === 18)
           init = parseSequenceExpression(parser, context, 0, parser.tokenPos, parser.linePos, parser.colPos, init);
       consume(parser, context | 32768, 1074790417);
       if (parser.token !== 1074790417)
@@ -3261,7 +3325,10 @@
           addBlockName(parser, context, scope, parser.tokenValue, 8, 0);
       return parseIdentifier(parser, context, 0);
   }
-  function parseImportDeclaration(parser, context, scope, start, line, column) {
+  function parseImportDeclaration(parser, context, scope) {
+      const start = parser.tokenPos;
+      const line = parser.linePos;
+      const column = parser.colPos;
       nextToken(parser, context);
       let source = null;
       const { tokenPos, linePos, colPos } = parser;
@@ -3278,7 +3345,7 @@
                       local
                   })
               ];
-              if (consumeOpt(parser, context, 1073741842)) {
+              if (consumeOpt(parser, context, 18)) {
                   switch (parser.token) {
                       case 8457011:
                           specifiers.push(parseImportNamespaceSpecifier(parser, context, scope));
@@ -3302,9 +3369,7 @@
                   case 67174411:
                       return parseImportCallDeclaration(parser, context, start, line, column);
                   case 67108877:
-                      if (context & 1) {
-                          return parseImportMetaDeclaration(parser, context, start, line, column);
-                      }
+                      return parseImportMetaDeclaration(parser, context, start, line, column);
                   default:
                       report(parser, 28, KeywordDescTable[parser.token & 255]);
               }
@@ -3343,7 +3408,7 @@
           const imported = parseIdentifier(parser, context, 0);
           let local;
           if (consumeOpt(parser, context, 12395)) {
-              if ((parser.token & 134217728) === 134217728 || parser.token === 1073741842) {
+              if ((parser.token & 134217728) === 134217728 || parser.token === 18) {
                   report(parser, 103);
               }
               else {
@@ -3364,7 +3429,7 @@
               imported
           }));
           if (parser.token !== 1074790415)
-              consume(parser, context, 1073741842);
+              consume(parser, context, 18);
       }
       consume(parser, context, 1074790415);
       return specifiers;
@@ -3383,7 +3448,10 @@
       expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
       return parseExpressionStatement(parser, context, expr, start, line, column);
   }
-  function parseExportDeclaration(parser, context, scope, start, line, column) {
+  function parseExportDeclaration(parser, context, scope) {
+      const start = parser.tokenPos;
+      const line = parser.linePos;
+      const column = parser.colPos;
       nextToken(parser, context | 32768);
       const specifiers = [];
       let declaration = null;
@@ -3486,7 +3554,7 @@
                       exported
                   }));
                   if (parser.token !== 1074790415)
-                      consume(parser, context, 1073741842);
+                      consume(parser, context, 18);
               }
               consume(parser, context, 1074790415);
               if (consumeOpt(parser, context, 12401)) {
@@ -3552,7 +3620,7 @@
   }
   function parseSequenceExpression(parser, context, inGroup, start, line, column, expr) {
       const expressions = [expr];
-      while (consumeOpt(parser, context | 32768, 1073741842)) {
+      while (consumeOpt(parser, context | 32768, 18)) {
           expressions.push(parseExpression(parser, context, 1, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos));
       }
       return finishNode(parser, context, start, line, column, {
@@ -3562,7 +3630,7 @@
   }
   function parseExpressions(parser, context, inGroup, canAssign, start, line, column) {
       const expr = parseExpression(parser, context, canAssign, 0, inGroup, start, line, column);
-      return parser.token === 1073741842
+      return parser.token === 18
           ? parseSequenceExpression(parser, context, inGroup, start, line, column, expr)
           : expr;
   }
@@ -3803,7 +3871,7 @@
               (512 | 256 | 64);
       parser.destructible = (parser.destructible | 256) ^ 256;
       while (parser.token !== 1074790415) {
-          body.push(parseStatementListItem(parser, context, scope, 4, {}, parser.tokenPos, parser.linePos, parser.colPos));
+          body.push(parseStatementListItem(parser, context, scope, 4, {}));
       }
       consume(parser, origin & (16 | 8) ? context | 32768 : context, 1074790415);
       parser.flags &= ~(128 | 64);
@@ -4104,7 +4172,7 @@
               return parseTemplate(parser, context, start, line, column);
           case 86106:
               return parseNewExpression(parser, context, inGroup, start, line, column);
-          case 122:
+          case 134283386:
               return parseBigIntLiteral(parser, context, start, line, column);
           case 128:
               return parsePrivateName(parser, context, start, line, column);
@@ -4121,7 +4189,7 @@
   }
   function parseImportCallOrMetaExpression(parser, context, inNew, inGroup, start, line, column) {
       let expr = parseIdentifier(parser, context, 0);
-      if (context & 1 && parser.token === 67108877) {
+      if (parser.token === 67108877) {
           return parseImportMetaExpression(parser, context, expr, start, line, column);
       }
       if (inNew)
@@ -4162,13 +4230,13 @@
           ? {
               type: 'Literal',
               value: tokenValue,
-              bigint: tokenRaw.substring(0, tokenRaw.length - 1),
+              bigint: tokenRaw.slice(0, -1),
               raw: tokenRaw
           }
           : {
               type: 'Literal',
               value: tokenValue,
-              bigint: tokenRaw.substring(0, tokenRaw.length - 1)
+              bigint: tokenRaw.slice(0, -1)
           });
   }
   function parseTemplateLiteral(parser, context, start, line, column) {
@@ -4196,7 +4264,7 @@
           const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
           consume(parser, context | 32768, 67174408);
           quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, false));
-          expressions.push(parseExpressions(parser, context, 0, 1, tokenPos, linePos, colPos));
+          expressions.push(parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
           if (parser.token !== 1074790415)
               report(parser, 80);
       }
@@ -4257,7 +4325,7 @@
           else {
               args.push(parseExpression(parser, context, 1, 0, inGroup, parser.tokenPos, parser.linePos, parser.colPos));
           }
-          if (parser.token !== 1073741842)
+          if (parser.token !== 18)
               break;
           nextToken(parser, context | 32768);
           if (parser.token === 16)
@@ -4282,6 +4350,9 @@
   }
   function parseLiteral(parser, context) {
       const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
+      if (parser.token === 134283386) {
+          return parseBigIntLiteral(parser, context, tokenPos, linePos, colPos);
+      }
       nextToken(parser, context);
       parser.assignable = 2;
       return finishNode(parser, context, tokenPos, linePos, colPos, context & 512
@@ -4419,7 +4490,7 @@
       let destructible = 0;
       context = (context | 134217728) ^ 134217728;
       while (parser.token !== 20) {
-          if (consumeOpt(parser, context | 32768, 1073741842)) {
+          if (consumeOpt(parser, context | 32768, 18)) {
               elements.push(null);
           }
           else {
@@ -4453,7 +4524,7 @@
                                   ? 128
                                   : 0;
                   }
-                  else if (parser.token === 1073741842 || parser.token === 20) {
+                  else if (parser.token === 18 || parser.token === 20) {
                       if (parser.assignable & 2) {
                           destructible |= 16;
                       }
@@ -4475,7 +4546,7 @@
                                   ? 16
                                   : 0;
                       left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, tokenPos, linePos, colPos);
-                      if (parser.token !== 1073741842 && parser.token !== 20) {
+                      if (parser.token !== 18 && parser.token !== 20) {
                           if (parser.token !== 1077936157)
                               destructible |= 16;
                           left = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, left);
@@ -4498,7 +4569,7 @@
                       parser.destructible & 16
                           ? 2
                           : 1;
-                  if (parser.token === 1073741842 || parser.token === 20) {
+                  if (parser.token === 18 || parser.token === 20) {
                       if (parser.assignable & 2) {
                           destructible |= 16;
                       }
@@ -4509,7 +4580,7 @@
                   else {
                       left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, tokenPos, linePos, colPos);
                       destructible = parser.assignable & 2 ? 16 : 0;
-                      if (parser.token !== 1073741842 && parser.token !== 20) {
+                      if (parser.token !== 18 && parser.token !== 20) {
                           left = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, left);
                       }
                       else if (parser.token !== 1077936157) {
@@ -4523,12 +4594,12 @@
               else if (token === 14) {
                   left = parseSpreadOrRestElement(parser, context, scope, 20, kind, origin, 0, inGroup, isPattern, tokenPos, linePos, colPos);
                   destructible |= parser.destructible;
-                  if (parser.token !== 1073741842 && parser.token !== 20)
+                  if (parser.token !== 18 && parser.token !== 20)
                       report(parser, 28, KeywordDescTable[parser.token & 255]);
               }
               else {
                   left = parseLeftHandSideExpression(parser, context, 1, 0, 1, tokenPos, linePos, colPos);
-                  if (parser.token !== 1073741842 && parser.token !== 20) {
+                  if (parser.token !== 18 && parser.token !== 20) {
                       left = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, left);
                       if ((kind & (2 | 1)) < 1 && token === 67174411)
                           destructible |= 16;
@@ -4544,7 +4615,7 @@
                   }
               }
               elements.push(left);
-              if (consumeOpt(parser, context | 32768, 1073741842)) {
+              if (consumeOpt(parser, context | 32768, 18)) {
                   if (parser.token === 20)
                       break;
               }
@@ -4601,7 +4672,7 @@
           argument = parsePrimaryExpression(parser, context, kind, 0, 1, 0, inGroup, 1, tokenPos, linePos, colPos);
           token = parser.token;
           argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, 0, tokenPos, linePos, colPos);
-          if (parser.token !== 1073741842 && parser.token !== closingToken) {
+          if (parser.token !== 18 && parser.token !== closingToken) {
               if (parser.assignable & 2 && parser.token === 1077936157)
                   report(parser, 68);
               destructible |= 16;
@@ -4610,7 +4681,7 @@
           if (parser.assignable & 2) {
               destructible |= 16;
           }
-          else if (token === closingToken || token === 1073741842) {
+          else if (token === closingToken || token === 18) {
               if (scope)
                   addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
           }
@@ -4628,7 +4699,7 @@
                   ? parseObjectLiteralOrPattern(parser, context, scope, 1, inGroup, isPattern, kind, origin, tokenPos, linePos, colPos)
                   : parseArrayExpressionOrPattern(parser, context, scope, 1, inGroup, isPattern, kind, origin, tokenPos, linePos, colPos);
           token = parser.token;
-          if (token !== 1077936157 && token !== closingToken && token !== 1073741842) {
+          if (token !== 1077936157 && token !== closingToken && token !== 18) {
               if (parser.destructible & 8)
                   report(parser, 68);
               argument = parseMemberOrUpdateExpression(parser, context, argument, inGroup, 0, tokenPos, linePos, colPos);
@@ -4662,14 +4733,14 @@
           destructible |= 32;
           argument = parseLeftHandSideExpression(parser, context, 1, inGroup, 1, parser.tokenPos, parser.linePos, parser.colPos);
           const { token, tokenPos, linePos, colPos } = parser;
-          if (token === 1077936157 && token !== closingToken && token !== 1073741842) {
+          if (token === 1077936157 && token !== closingToken && token !== 18) {
               if (parser.assignable & 2)
                   report(parser, 24);
               argument = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, argument);
               destructible |= 16;
           }
           else {
-              if (token === 1073741842) {
+              if (token === 18) {
                   destructible |= 16;
               }
               else if (token !== closingToken) {
@@ -4679,7 +4750,7 @@
                   parser.assignable & 1 ? 32 : 16;
           }
           parser.destructible = destructible;
-          if (parser.token !== closingToken && parser.token !== 1073741842)
+          if (parser.token !== closingToken && parser.token !== 18)
               report(parser, 155);
           return finishNode(parser, context, start, line, column, {
               type: isPattern ? 'RestElement' : 'SpreadElement',
@@ -4766,7 +4837,7 @@
               const t = parser.token;
               if (parser.token & (143360 | 4096) || parser.token === 118) {
                   key = parseIdentifier(parser, context, 0);
-                  if (parser.token === 1073741842 || parser.token === 1074790415 || parser.token === 1077936157) {
+                  if (parser.token === 18 || parser.token === 1074790415 || parser.token === 1077936157) {
                       state |= 4;
                       if (context & 1024 && (token & 537079808) === 537079808) {
                           destructible |= 16;
@@ -4809,8 +4880,8 @@
                           value = parsePrimaryExpression(parser, context, kind, 0, 1, 0, inGroup, 1, tokenPos, linePos, colPos);
                           const { token } = parser;
                           value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
-                              if (token === 1077936157 || token === 1074790415 || token === 1073741842) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
+                              if (token === 1077936157 || token === 1074790415 || token === 18) {
                                   destructible |= parser.destructible & 128 ? 128 : 0;
                                   if (parser.assignable & 2) {
                                       destructible |= 16;
@@ -4856,7 +4927,7 @@
                           destructible = parser.destructible;
                           parser.assignable =
                               destructible & 16 ? 2 : 1;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2)
                                   destructible |= 16;
                           }
@@ -4889,14 +4960,14 @@
                               parser.assignable & 1
                                   ? 32
                                   : 16;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2)
                                   destructible |= 16;
                           }
                           else {
                               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, tokenPos, colPos);
                               destructible = parser.assignable & 2 ? 16 : 0;
-                              if (parser.token !== 1073741842 && token !== 1074790415) {
+                              if (parser.token !== 18 && token !== 1074790415) {
                                   if (parser.token !== 1077936157)
                                       destructible |= 16;
                                   value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, tokenPos, colPos, value);
@@ -4996,8 +5067,8 @@
                           value = parsePrimaryExpression(parser, context, kind, 0, 1, 0, inGroup, 1, tokenPos, linePos, colPos);
                           const { token, tokenValue: valueAfterColon } = parser;
                           value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
-                              if (token === 1077936157 || token === 1074790415 || token === 1073741842) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
+                              if (token === 1077936157 || token === 1074790415 || token === 18) {
                                   if (parser.assignable & 2) {
                                       destructible |= 16;
                                   }
@@ -5030,7 +5101,7 @@
                           destructible = parser.destructible;
                           parser.assignable =
                               destructible & 16 ? 2 : 1;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2) {
                                   destructible |= 16;
                               }
@@ -5061,7 +5132,7 @@
                               parser.assignable & 1
                                   ? 32
                                   : 16;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2) {
                                   destructible |= 16;
                               }
@@ -5069,7 +5140,7 @@
                           else {
                               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
                               destructible = parser.assignable & 1 ? 0 : 16;
-                              if (parser.token !== 1073741842 && parser.token !== 1074790415) {
+                              if (parser.token !== 18 && parser.token !== 1074790415) {
                                   if (parser.token !== 1077936157)
                                       destructible |= 16;
                                   value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, value);
@@ -5106,8 +5177,8 @@
                                           : 32;
                               value = parseAssignmentExpressionOrPattern(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, value);
                           }
-                          else if (parser.token === 1073741842 || parser.token === 1074790415) {
-                              if (token === 1077936157 || token === 1074790415 || token === 1073741842) {
+                          else if (parser.token === 18 || parser.token === 1074790415) {
+                              if (token === 1077936157 || token === 1074790415 || token === 18) {
                                   if (parser.assignable & 2) {
                                       destructible |= 16;
                                   }
@@ -5135,7 +5206,7 @@
                           destructible = parser.destructible;
                           parser.assignable =
                               destructible & 16 ? 2 : 1;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2)
                                   destructible |= 16;
                           }
@@ -5171,14 +5242,14 @@
                               parser.assignable & 1
                                   ? 32
                                   : 16;
-                          if (parser.token === 1073741842 || parser.token === 1074790415) {
+                          if (parser.token === 18 || parser.token === 1074790415) {
                               if (parser.assignable & 2)
                                   destructible |= 16;
                           }
                           else {
                               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
                               destructible = parser.assignable & 1 ? 0 : 16;
-                              if (parser.token !== 1073741842 && parser.token !== 1074790415) {
+                              if (parser.token !== 18 && parser.token !== 1074790415) {
                                   if (parser.token !== 1077936157)
                                       destructible |= 16;
                                   value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, value);
@@ -5246,7 +5317,7 @@
               }));
           }
           destructible |= parser.destructible;
-          if (parser.token !== 1073741842)
+          if (parser.token !== 18)
               break;
           nextToken(parser, context);
       }
@@ -5283,7 +5354,7 @@
       context = (context | 134217728) ^ 134217728;
       let setterArgs = 0;
       let isSimpleParameterList = 0;
-      while (parser.token !== 1073741842) {
+      while (parser.token !== 18) {
           let left = null;
           const { tokenPos, linePos, colPos } = parser;
           if (parser.token & 143360) {
@@ -5323,7 +5394,7 @@
           }
           setterArgs++;
           params.push(left);
-          if (!consumeOpt(parser, context, 1073741842))
+          if (!consumeOpt(parser, context, 18))
               break;
           if (parser.token === 16) {
               break;
@@ -5367,7 +5438,7 @@
               if (scope)
                   addBlockName(parser, context, scope, parser.tokenValue, 1, 0);
               expr = parsePrimaryExpression(parser, context, kind, 0, 1, 0, 1, 1, tokenPos, linePos, colPos);
-              if (parser.token === 16 || parser.token === 1073741842) {
+              if (parser.token === 16 || parser.token === 18) {
                   if (parser.assignable & 2) {
                       destructible |= 16;
                       isSimpleParameterList = 1;
@@ -5385,7 +5456,7 @@
                       destructible |= 16;
                   }
                   expr = parseMemberOrUpdateExpression(parser, context, expr, 1, 0, tokenPos, linePos, colPos);
-                  if (parser.token !== 16 && parser.token !== 1073741842) {
+                  if (parser.token !== 16 && parser.token !== 18) {
                       expr = parseAssignmentExpression(parser, context, 1, 0, tokenPos, linePos, colPos, expr);
                   }
               }
@@ -5398,12 +5469,12 @@
               destructible |= parser.destructible;
               isSimpleParameterList = 1;
               parser.assignable = 2;
-              if (parser.token !== 16 && parser.token !== 1073741842) {
+              if (parser.token !== 16 && parser.token !== 18) {
                   if (destructible & 8)
                       report(parser, 118);
                   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, tokenPos, linePos, colPos);
                   destructible |= 16;
-                  if (parser.token !== 16 && parser.token !== 1073741842) {
+                  if (parser.token !== 16 && parser.token !== 18) {
                       expr = parseAssignmentExpression(parser, context, 0, 0, tokenPos, linePos, colPos, expr);
                   }
               }
@@ -5413,7 +5484,7 @@
               if (parser.destructible & 16)
                   report(parser, 71);
               isSimpleParameterList = 1;
-              if (isSequence && (parser.token === 16 || parser.token === 1073741842)) {
+              if (isSequence && (parser.token === 16 || parser.token === 18)) {
                   expressions.push(expr);
               }
               destructible |= 8;
@@ -5422,17 +5493,17 @@
           else {
               destructible |= 16;
               expr = parseExpression(parser, context, 1, 0, 1, tokenPos, linePos, colPos);
-              if (isSequence && (parser.token === 16 || parser.token === 1073741842)) {
+              if (isSequence && (parser.token === 16 || parser.token === 18)) {
                   expressions.push(expr);
               }
-              if (parser.token === 1073741842) {
+              if (parser.token === 18) {
                   if (!isSequence) {
                       isSequence = 1;
                       expressions = [expr];
                   }
               }
               if (isSequence) {
-                  while (consumeOpt(parser, context | 32768, 1073741842)) {
+                  while (consumeOpt(parser, context | 32768, 18)) {
                       expressions.push(parseExpression(parser, context, 1, 0, 1, parser.tokenPos, parser.linePos, parser.colPos));
                   }
                   parser.assignable = 2;
@@ -5445,10 +5516,10 @@
               parser.destructible = destructible;
               return expr;
           }
-          if (isSequence && (parser.token === 16 || parser.token === 1073741842)) {
+          if (isSequence && (parser.token === 16 || parser.token === 18)) {
               expressions.push(expr);
           }
-          if (!consumeOpt(parser, context | 32768, 1073741842))
+          if (!consumeOpt(parser, context | 32768, 18))
               break;
           if (!isSequence) {
               isSequence = 1;
@@ -5584,7 +5655,7 @@
           return params;
       context = (context | 134217728) ^ 134217728;
       let isSimpleParameterList = 0;
-      while (parser.token !== 1073741842) {
+      while (parser.token !== 18) {
           let left;
           const { tokenPos, linePos, colPos } = parser;
           if (parser.token & 143360) {
@@ -5627,7 +5698,7 @@
               });
           }
           params.push(left);
-          if (!consumeOpt(parser, context, 1073741842))
+          if (!consumeOpt(parser, context, 18))
               break;
           if (parser.token === 16) {
               break;
@@ -5755,7 +5826,7 @@
               if (scope)
                   addBlockName(parser, context, scope, parser.tokenValue, kind, 0);
               expr = parsePrimaryExpression(parser, context, kind, 0, 1, 0, 1, 1, tokenPos, linePos, colPos);
-              if (parser.token === 16 || parser.token === 1073741842) {
+              if (parser.token === 16 || parser.token === 18) {
                   if (parser.assignable & 2) {
                       destructible |= 16;
                       isSimpleParameterList = 1;
@@ -5775,7 +5846,7 @@
                       destructible |= 16;
                   }
                   expr = parseMemberOrUpdateExpression(parser, context, expr, 1, 0, tokenPos, linePos, colPos);
-                  if (parser.token !== 16 && parser.token !== 1073741842) {
+                  if (parser.token !== 16 && parser.token !== 18) {
                       expr = parseAssignmentExpression(parser, context, 1, 0, tokenPos, linePos, colPos, expr);
                   }
               }
@@ -5787,7 +5858,7 @@
                       : parseArrayExpressionOrPattern(parser, context, scope, 0, 1, 0, kind, origin, tokenPos, linePos, colPos);
               destructible |= parser.destructible;
               isSimpleParameterList = 1;
-              if (parser.token !== 16 && parser.token !== 1073741842) {
+              if (parser.token !== 16 && parser.token !== 18) {
                   if (destructible & 8)
                       report(parser, 118);
                   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, tokenPos, linePos, colPos);
@@ -5809,7 +5880,7 @@
               expr = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
               destructible = parser.assignable;
               params.push(expr);
-              while (consumeOpt(parser, context | 32768, 1073741842)) {
+              while (consumeOpt(parser, context | 32768, 18)) {
                   params.push(parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos));
               }
               destructible |= parser.assignable;
@@ -5823,7 +5894,7 @@
               });
           }
           params.push(expr);
-          if (!consumeOpt(parser, context | 32768, 1073741842))
+          if (!consumeOpt(parser, context | 32768, 18))
               break;
       }
       consume(parser, context, 16);
@@ -5875,7 +5946,17 @@
   }
   function parseClassDeclaration(parser, context, scope, flags, start, line, column) {
       context = (context | 16777216 | 1024) ^ 16777216;
-      const decorators = context & 1 ? parseDecorators(parser, context) : [];
+      let decorators = parseDecorators(parser, context);
+      if (decorators.length) {
+          start = parser.tokenPos;
+          line = parser.linePos;
+          column = parser.colPos;
+      }
+      if (parser.leadingDecorators.length) {
+          parser.leadingDecorators.push(...decorators);
+          decorators = parser.leadingDecorators;
+          parser.leadingDecorators = [];
+      }
       nextToken(parser, context);
       let id = null;
       let superClass = null;
@@ -5930,7 +6011,12 @@
       let id = null;
       let superClass = null;
       context = (context | 1024 | 16777216) ^ 16777216;
-      const decorators = context & 1 ? parseDecorators(parser, context) : [];
+      const decorators = parseDecorators(parser, context);
+      if (decorators.length) {
+          start = parser.tokenPos;
+          line = parser.linePos;
+          column = parser.colPos;
+      }
       nextToken(parser, context);
       if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
           if (isStrictReservedWord(parser, context, parser.token))
@@ -5967,8 +6053,10 @@
   }
   function parseDecorators(parser, context) {
       const list = [];
-      while (parser.token === 130) {
-          list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+      if (context & 1) {
+          while (parser.token === 130) {
+              list.push(parseDecoratorList(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
+          }
       }
       return list;
   }
@@ -5987,7 +6075,7 @@
       context = (context | 134217728) ^ 134217728;
       parser.flags = (parser.flags | 32) ^ 32;
       const body = [];
-      let decorators = [];
+      let decorators;
       while (parser.token !== 1074790415) {
           let length = 0;
           decorators = parseDecorators(parser, context);
@@ -6180,7 +6268,7 @@
           if ((parser.token & 1073741824) !== 1073741824) {
               value = parseMemberOrUpdateExpression(parser, context | 16384, value, 0, 0, tokenPos, linePos, colPos);
               value = parseAssignmentExpression(parser, context | 16384, 0, 0, tokenPos, linePos, colPos, value);
-              if (parser.token === 1073741842) {
+              if (parser.token === 18) {
                   value = parseSequenceExpression(parser, context, 0, start, line, column, value);
               }
           }
@@ -6267,7 +6355,7 @@
       });
   }
   function parseOpeningFragment(parser, context, start, line, column) {
-      scanJSXToken(parser);
+      scanJSXToken(parser, context);
       return finishNode(parser, context, start, line, column, {
           type: 'JSXOpeningFragment'
       });
@@ -6279,7 +6367,7 @@
           consume(parser, context, 8456256);
       }
       else {
-          parser.token = scanJSXToken(parser);
+          parser.token = scanJSXToken(parser, context);
       }
       return finishNode(parser, context, start, line, column, {
           type: 'JSXClosingElement',
@@ -6304,7 +6392,7 @@
           parser.index = parser.tokenPos = parser.startPos;
           parser.column = parser.colPos = parser.startColumn;
           parser.line = parser.linePos = parser.startLine;
-          scanJSXToken(parser);
+          scanJSXToken(parser, context);
           children.push(parseJSXChild(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
       }
       return children;
@@ -6319,11 +6407,15 @@
       report(parser, 0);
   }
   function parseJSXText(parser, context, start, line, column) {
-      scanJSXToken(parser);
-      return finishNode(parser, context, start, line, column, {
+      scanJSXToken(parser, context);
+      const node = {
           type: 'JSXText',
           value: parser.tokenValue
-      });
+      };
+      if (context & 512) {
+          node.raw = parser.tokenRaw;
+      }
+      return finishNode(parser, context, start, line, column, node);
   }
   function parseJSXOpeningFragmentOrSelfCloseElement(parser, context, inJSXChild, start, line, column) {
       if ((parser.token & 143360) !== 143360 && (parser.token & 4096) !== 4096)
@@ -6332,7 +6424,7 @@
       const attributes = parseJSXAttributes(parser, context);
       const selfClosing = parser.token === 8457013;
       if (parser.token === 8456256) {
-          scanJSXToken(parser);
+          scanJSXToken(parser, context);
       }
       else {
           consume(parser, context, 8457013);
@@ -6340,7 +6432,7 @@
               consume(parser, context, 8456256);
           }
           else {
-              scanJSXToken(parser);
+              scanJSXToken(parser, context);
           }
       }
       return finishNode(parser, context, start, line, column, {
@@ -6436,7 +6528,7 @@
       if (parser.token === 1074790415) {
           if (isAttr)
               report(parser, 151);
-          expression = parseJSXEmptyExpression(parser, context, tokenPos, linePos, colPos);
+          expression = parseJSXEmptyExpression(parser, context, parser.startPos, parser.startLine, parser.startColumn);
       }
       else {
           expression = parseExpression(parser, context, 1, 0, 0, tokenPos, linePos, colPos);
@@ -6445,7 +6537,7 @@
           consume(parser, context, 1074790415);
       }
       else {
-          scanJSXToken(parser);
+          scanJSXToken(parser, context);
       }
       return finishNode(parser, context, start, line, column, {
           type: 'JSXExpressionContainer',
@@ -6462,6 +6554,9 @@
       });
   }
   function parseJSXEmptyExpression(parser, context, start, line, column) {
+      parser.startPos = parser.tokenPos;
+      parser.startLine = parser.linePos;
+      parser.startColumn = parser.colPos;
       return finishNode(parser, context, start, line, column, {
           type: 'JSXEmptyExpression'
       });
@@ -6479,7 +6574,7 @@
     __proto__: null
   });
 
-  var version = "3.0.3";
+  var version = "3.1.1";
 
   function parseScript(source, options) {
       return parseSource(source, options, 0);
