@@ -838,8 +838,6 @@ describe('Miscellaneous - Failure', () => {
     '"use strict";\n"\\011"',
     '"use strict"; "\\08"',
     '"use strict"; "\\09"',
-    '"use strict"; "\\8"',
-    '"use strict"; "\\9"',
     'await ~123',
     'async () => class await {}',
     '{_ => {}/123/g;}',

@@ -45,7 +45,12 @@ const expectations = {
     'e3fbcf63d7e43ead.js',
     '15a6123f6b825c38.js',
     '147fa078a7436e0e.js',
-    'fd2a45941e114896.js'
+    'fd2a45941e114896.js',
+    // https://github.com/tc39/test262-parser-tests/issues/25
+    '0d5e450f1da8a92a.js',
+    '748656edbfb2d0bb.js',
+    '79f882da06f88c9f.js',
+    '92b6af54adef3624.js'
   ],
   early: [
     'eeb5ffaafa815bb2.js',
