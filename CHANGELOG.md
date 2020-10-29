@@ -1,3 +1,21 @@
+## [3.1.1](https://github.com/meriyah/meriyah/compare/v3.1.0...v3.1.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **lexer:** \8 \9 are acceptable in web compatibility mode ([26a19a8](https://github.com/meriyah/meriyah/commit/26a19a86ce36df373c7ed3d3390a2d61570c06a6)), closes [#137](https://github.com/meriyah/meriyah/issues/137)
+* bigint is a number literal ([2ad1a27](https://github.com/meriyah/meriyah/commit/2ad1a27c17161b78dc5883950b0b33088e00349a)), closes [#136](https://github.com/meriyah/meriyah/issues/136)
+* fix ending loc of empty comment ([d62d0b8](https://github.com/meriyah/meriyah/commit/d62d0b8c158c819749840ed1756c35d90b00e670)), closes [#126](https://github.com/meriyah/meriyah/issues/126)
+* fix infinite loop on broken class body ([22eb9f8](https://github.com/meriyah/meriyah/commit/22eb9f8ba4baed88e25f102e2642b79b95dc127a)), closes [#143](https://github.com/meriyah/meriyah/issues/143)
+* fix range of ExportDeclaration/ClassDeclaration/ClassExpression after decorators ([81b07fb](https://github.com/meriyah/meriyah/commit/81b07fb92b70319033b44bd4b14c8470adebd4eb)), closes [#124](https://github.com/meriyah/meriyah/issues/124)
+* fix wrongly captured directive with two literal expression statements ([9504b6a](https://github.com/meriyah/meriyah/commit/9504b6a0ab5c0ca340b328190bbfa113afd22ce9)), closes [#130](https://github.com/meriyah/meriyah/issues/130)
+* **jsx:** fix JSXIdentifier literal value range and loc ([076e454](https://github.com/meriyah/meriyah/commit/076e454c231e788c0ff2778395924551747b4b71)), closes [#127](https://github.com/meriyah/meriyah/issues/127)
+* **jsx:** fix missing raw for JSXAttribute.value ([bbd8b8a](https://github.com/meriyah/meriyah/commit/bbd8b8a2541e470b5799dbc78496e865df3b3382)), closes [#128](https://github.com/meriyah/meriyah/issues/128)
+* **jsx:** fix wrong range and loc on JSXEmptyExpression ([11765ce](https://github.com/meriyah/meriyah/commit/11765ce5848efc689e3de5077766199cd4996146)), closes [#125](https://github.com/meriyah/meriyah/issues/125)
+* **jsx:** JSXText node should have raw ([5ea7bda](https://github.com/meriyah/meriyah/commit/5ea7bdae48efc6afd843206cadb368b48375b5b7)), closes [#129](https://github.com/meriyah/meriyah/issues/129)
+
+
+
 # [3.1.0](https://github.com/meriyah/meriyah/compare/v3.0.5...v3.1.0) (2020-10-27)
 
 
