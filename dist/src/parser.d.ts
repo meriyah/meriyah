@@ -25,8 +25,8 @@ export interface Options {
 export declare function parseSource(source: string, options: Options | void, context: Context): ESTree.Program;
 export declare function parseStatementList(parser: ParserState, context: Context, scope: ScopeState | undefined): ESTree.Statement[];
 export declare function parseModuleItemList(parser: ParserState, context: Context, scope: ScopeState | undefined): ReturnType<typeof parseDirective | typeof parseModuleItem>[];
-export declare function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined, start: number, line: number, column: number): any;
-export declare function parseStatementListItem(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.Statement | ESTree.Decorator[];
+export declare function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined): any;
+export declare function parseStatementListItem(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels): ESTree.Statement | ESTree.Decorator[];
 export declare function parseStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels, allowFuncDecl: 0 | 1, start: number, line: number, column: number): ESTree.Statement;
 export declare function parseExpressionOrLabelledStatement(parser: ParserState, context: Context, scope: ScopeState | undefined, origin: Origin, labels: ESTree.Labels, allowFuncDecl: 0 | 1, start: number, line: number, column: number): ESTree.ExpressionStatement | ESTree.LabeledStatement;
 export declare function parseBlock(parser: ParserState, context: Context, scope: ScopeState | undefined, labels: ESTree.Labels, start: number, line: number, column: number): ESTree.BlockStatement;
