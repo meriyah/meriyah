@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/meriyah/meriyah/compare/v3.1.1...v3.1.2) (2020-10-30)
+
+
+### Bug Fixes
+
+* **lexer:** fix line continuation with \r\n ([1423e81](https://github.com/meriyah/meriyah/commit/1423e8100075b66fa80624a9389aaaa12b809836)), closes [#146](https://github.com/meriyah/meriyah/issues/146)
+
+
+
 ## [3.1.1](https://github.com/meriyah/meriyah/compare/v3.1.0...v3.1.1) (2020-10-29)
 
 
