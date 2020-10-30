@@ -1614,9 +1614,6 @@ System.register('meriyah', [], function (exports) {
                   parser.flags |= 64;
                   return code;
               }
-              case 56:
-              case 57:
-                  return -3;
               case 120: {
                   const ch1 = advanceChar(parser);
                   if ((CharTypes[ch1] & 64) === 0)
@@ -1660,6 +1657,10 @@ System.register('meriyah', [], function (exports) {
                       return (toHex(ch) << 12) | (toHex(ch2) << 8) | (toHex(ch3) << 4) | toHex(ch4);
                   }
               }
+              case 56:
+              case 57:
+                  if ((context & 256) === 0)
+                      return -3;
               default:
                   return first;
           }
@@ -6579,7 +6580,7 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
-      var version = exports('version', "3.1.0");
+      var version = exports('version', "3.1.1");
 
       function parseScript(source, options) {
           return parseSource(source, options, 0);
