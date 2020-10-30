@@ -136,7 +136,18 @@ describe('Lexer - String', () => {
     // \8 \9 are acceptable in web compatibility mode
     [Context.OptionsWebCompat, Token.StringLiteral, '"\\8"', '8'],
     [Context.OptionsWebCompat, Token.StringLiteral, '"\\9"', '9'],
-    [Context.OptionsWebCompat, Token.StringLiteral, '"\\9999"', '9999']
+    [Context.OptionsWebCompat, Token.StringLiteral, '"a\\9999"', 'a9999'],
+
+    // Line continuation
+    [Context.None, Token.StringLiteral, '"a\\\nb"', 'ab'],
+    [Context.None, Token.StringLiteral, '"a\\\rb"', 'ab'],
+    [Context.None, Token.StringLiteral, '"a\\\r\nb"', 'ab'],
+    [Context.None, Token.StringLiteral, '"a\\\u2028b"', 'ab'], // unicode LineSeparator
+    [Context.None, Token.StringLiteral, '"a\\\u2029b"', 'ab'], // unicode ParagraphSeparator
+    [Context.None, Token.StringLiteral, '"\\\n"', ''],
+    [Context.None, Token.StringLiteral, '"a\\\r"', 'a'],
+    [Context.None, Token.StringLiteral, '"\\\r\nb"', 'b'],
+    [Context.None, Token.StringLiteral, '"\\\r\n"', '']
   ];
 
   for (const [ctx, token, op, value] of tokens) {

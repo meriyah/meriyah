@@ -36,13 +36,12 @@ export function scanString(parser: ParserState, context: Context, quote: number)
       ret += parser.source.slice(marker, parser.index);
       char = advanceChar(parser);
 
-      if (char > 0x7e) {
-        ret += fromCodePoint(char);
-      } else {
+      if (char < 0x7f || char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
         const code = parseEscape(parser, context, char);
-
         if (code >= 0) ret += fromCodePoint(code);
         else handleStringError(parser, code as Escape, /* isTemplate */ 0);
+      } else {
+        ret += fromCodePoint(char);
       }
       marker = parser.index + 1;
     }
@@ -77,9 +76,10 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     // Line continuations
     case Chars.CarriageReturn: {
       if (parser.index < parser.end) {
-        if (parser.currentChar === Chars.LineFeed) {
+        const nextChar = parser.source.charCodeAt(parser.index + 1);
+        if (nextChar === Chars.LineFeed) {
           parser.index = parser.index + 1;
-          parser.currentChar = parser.source.charCodeAt(parser.index);
+          parser.currentChar = nextChar;
         }
       }
     }
