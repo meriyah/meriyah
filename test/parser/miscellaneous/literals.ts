@@ -38,7 +38,6 @@ describe('Miscellaneous - Literal', () => {
     "'use strict'; ('\\123')",
     "('\\x')",
     '(")',
-    "('\\9')",
     '\\0009',
     '("\\u{FFFFFFF}")',
     "'",

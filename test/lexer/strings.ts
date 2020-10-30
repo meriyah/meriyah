@@ -131,7 +131,12 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, '"\\302"', 'Â'],
     [Context.None, Token.StringLiteral, '"\\000"', '\u0000'],
     [Context.None, Token.StringLiteral, '"\\104"', 'D'],
-    [Context.None, Token.StringLiteral, '"\\221"', '']
+    [Context.None, Token.StringLiteral, '"\\221"', ''],
+
+    // \8 \9 are acceptable in web compatibility mode
+    [Context.OptionsWebCompat, Token.StringLiteral, '"\\8"', '8'],
+    [Context.OptionsWebCompat, Token.StringLiteral, '"\\9"', '9'],
+    [Context.OptionsWebCompat, Token.StringLiteral, '"\\9999"', '9999']
   ];
 
   for (const [ctx, token, op, value] of tokens) {
