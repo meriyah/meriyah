@@ -1559,15 +1559,15 @@
             if ((char & 8) === 8 && char === 92) {
                 ret += parser.source.slice(marker, parser.index);
                 char = advanceChar(parser);
-                if (char > 0x7e) {
-                    ret += fromCodePoint(char);
-                }
-                else {
+                if (char < 0x7f || char === 8232 || char === 8233) {
                     var code = parseEscape(parser, context, char);
                     if (code >= 0)
                         ret += fromCodePoint(code);
                     else
                         handleStringError(parser, code, 0);
+                }
+                else {
+                    ret += fromCodePoint(char);
                 }
                 marker = parser.index + 1;
             }
@@ -1593,9 +1593,10 @@
                 return 11;
             case 13: {
                 if (parser.index < parser.end) {
-                    if (parser.currentChar === 10) {
+                    var nextChar = parser.source.charCodeAt(parser.index + 1);
+                    if (nextChar === 10) {
                         parser.index = parser.index + 1;
-                        parser.currentChar = parser.source.charCodeAt(parser.index);
+                        parser.currentChar = nextChar;
                     }
                 }
             }
@@ -6633,7 +6634,7 @@
         __proto__: null
     });
 
-    var version = "3.1.1";
+    var version = "3.1.2";
 
     function parseScript(source, options) {
         return parseSource(source, options, 0);
