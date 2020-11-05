@@ -32,7 +32,7 @@ export type ArgumentExpression =
   | LogicalExpression
   | SequenceExpression;
 
-export type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
+export type CommentType = 'SingleLine' | 'MultiLine' | 'HTMLOpen' | 'HTMLClose' | 'HashbangComment';
 
 export interface Comment {
   type: CommentType;
