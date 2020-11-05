@@ -18,6 +18,13 @@
   "bugs": {
     "url": "https://github.com/meriyah/meriyah/issues"
   },
+  "authors": [
+    {
+      "name": "Chunpeng Huo",
+      "social": "@3cp",
+      "url": "https://github.com/3cp"
+    }
+  ],
   "keywords": [
     "parsing",
     "ecmascript",
@@ -28,6 +35,7 @@
     "es2018",
     "es2019",
     "es2020",
+    "es2021",
     "esnext",
     "lexer",
     "ast",
