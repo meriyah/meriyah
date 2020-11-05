@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/meriyah/meriyah/compare/v3.1.3...v3.1.4) (2020-11-05)
+
+
+### Bug Fixes
+
+* fix wrong typescript def file location ([1ffac6e](https://github.com/meriyah/meriyah/commit/1ffac6e7dd475d696de6b726701a41cffc362f72)), closes [#153](https://github.com/meriyah/meriyah/issues/153)
+
+
+
 ## [3.1.3](https://github.com/meriyah/meriyah/compare/v3.1.2...v3.1.3) (2020-11-04)
 
 
