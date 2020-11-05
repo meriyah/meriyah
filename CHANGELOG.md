@@ -1,3 +1,12 @@
+## [3.1.5](https://github.com/meriyah/meriyah/compare/v3.1.4...v3.1.5) (2020-11-05)
+
+
+### Bug Fixes
+
+* fix wrong CommentType type definition ([641b6ee](https://github.com/meriyah/meriyah/commit/641b6ee0d2028775b5473af4962c0b7e215e3683))
+
+
+
 ## [3.1.4](https://github.com/meriyah/meriyah/compare/v3.1.3...v3.1.4) (2020-11-05)
 
 
