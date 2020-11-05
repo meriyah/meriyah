@@ -1,3 +1,12 @@
+## [3.1.3](https://github.com/meriyah/meriyah/compare/v3.1.2...v3.1.3) (2020-11-04)
+
+
+### Bug Fixes
+
+* fix wrong ParenthesizedExpression location ([db468c2](https://github.com/meriyah/meriyah/commit/db468c2c6a176afd44935ef94042fb8330dd600c)), closes [#152](https://github.com/meriyah/meriyah/issues/152)
+
+
+
 ## [3.1.2](https://github.com/meriyah/meriyah/compare/v3.1.1...v3.1.2) (2020-10-30)
 
 

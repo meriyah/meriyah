@@ -6745,6 +6745,8 @@ export function parseParenthesizedExpression(
 ): any {
   parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
+  const { tokenPos: piStart, linePos: plStart, colPos: pcStart } = parser;
+
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
   const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
@@ -6974,7 +6976,7 @@ export function parseParenthesizedExpression(
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
 
   return context & Context.OptionsPreserveParens
-    ? finishNode(parser, context, iStart, lStart, cStart, {
+    ? finishNode(parser, context, piStart, plStart, pcStart, {
         type: 'ParenthesizedExpression',
         expression: expr
       })

@@ -14210,6 +14210,220 @@ describe('Expressions - Group', () => {
         ],
         sourceType: 'script'
       }
+    ],
+    [
+      '(x)',
+      Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Identifier',
+              name: 'x',
+              start: 1,
+              end: 2,
+              range: [1, 2],
+              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+            },
+            start: 0,
+            end: 3,
+            range: [0, 3],
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+          }
+        ],
+        start: 0,
+        end: 3,
+        range: [0, 3],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+      }
+    ],
+    [
+      '(x)',
+      Context.OptionsPreserveParens | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ParenthesizedExpression',
+              expression: {
+                type: 'Identifier',
+                name: 'x',
+                start: 1,
+                end: 2,
+                range: [1, 2],
+                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+              },
+              start: 0,
+              end: 3,
+              range: [0, 3],
+              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+            },
+            start: 0,
+            end: 3,
+            range: [0, 3],
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+          }
+        ],
+        start: 0,
+        end: 3,
+        range: [0, 3],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+      }
+    ],
+    [
+      '(a,[b]=c)',
+      Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'SequenceExpression',
+              expressions: [
+                {
+                  type: 'Identifier',
+                  name: 'a',
+                  start: 1,
+                  end: 2,
+                  range: [1, 2],
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                },
+                {
+                  type: 'AssignmentExpression',
+                  left: {
+                    type: 'ArrayPattern',
+                    elements: [
+                      {
+                        type: 'Identifier',
+                        name: 'b',
+                        start: 4,
+                        end: 5,
+                        range: [4, 5],
+                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
+                      }
+                    ],
+                    start: 3,
+                    end: 6,
+                    range: [3, 6],
+                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } }
+                  },
+                  operator: '=',
+                  right: {
+                    type: 'Identifier',
+                    name: 'c',
+                    start: 7,
+                    end: 8,
+                    range: [7, 8],
+                    loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } }
+                  },
+                  start: 3,
+                  end: 8,
+                  range: [3, 8],
+                  loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } }
+                }
+              ],
+              start: 1,
+              end: 8,
+              range: [1, 8],
+              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } }
+            },
+            start: 0,
+            end: 9,
+            range: [0, 9],
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+          }
+        ],
+        start: 0,
+        end: 9,
+        range: [0, 9],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+      }
+    ],
+    [
+      '(a,[b]=c)',
+      Context.OptionsPreserveParens | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ParenthesizedExpression',
+              expression: {
+                type: 'SequenceExpression',
+                expressions: [
+                  {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 1,
+                    end: 2,
+                    range: [1, 2],
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                  },
+                  {
+                    type: 'AssignmentExpression',
+                    left: {
+                      type: 'ArrayPattern',
+                      elements: [
+                        {
+                          type: 'Identifier',
+                          name: 'b',
+                          start: 4,
+                          end: 5,
+                          range: [4, 5],
+                          loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
+                        }
+                      ],
+                      start: 3,
+                      end: 6,
+                      range: [3, 6],
+                      loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } }
+                    },
+                    operator: '=',
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 7,
+                      end: 8,
+                      range: [7, 8],
+                      loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } }
+                    },
+                    start: 3,
+                    end: 8,
+                    range: [3, 8],
+                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } }
+                  }
+                ],
+                start: 1,
+                end: 8,
+                range: [1, 8],
+                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } }
+              },
+              start: 0,
+              end: 9,
+              range: [0, 9],
+              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+            },
+            start: 0,
+            end: 9,
+            range: [0, 9],
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+          }
+        ],
+        start: 0,
+        end: 9,
+        range: [0, 9],
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+      }
     ]
   ]);
 });
