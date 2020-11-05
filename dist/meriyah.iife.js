@@ -5416,6 +5416,7 @@ var meriyah = (function (exports) {
   }
   function parseParenthesizedExpression(parser, context, canAssign, kind, origin, start, line, column) {
       parser.flags = (parser.flags | 128) ^ 128;
+      const { tokenPos: piStart, linePos: plStart, colPos: pcStart } = parser;
       nextToken(parser, context | 32768 | 1073741824);
       const scope = context & 64 ? addChildScope(createScope(), 1024) : void 0;
       context = (context | 134217728 | 8192) ^ (8192 | 134217728);
@@ -5561,7 +5562,7 @@ var meriyah = (function (exports) {
       }
       parser.destructible = ((parser.destructible | 256) ^ 256) | destructible;
       return context & 128
-          ? finishNode(parser, context, iStart, lStart, cStart, {
+          ? finishNode(parser, context, piStart, plStart, pcStart, {
               type: 'ParenthesizedExpression',
               expression: expr
           })
@@ -6572,7 +6573,7 @@ var meriyah = (function (exports) {
     __proto__: null
   });
 
-  var version = "3.1.2";
+  var version = "3.1.3";
 
   function parseScript(source, options) {
       return parseSource(source, options, 0);
