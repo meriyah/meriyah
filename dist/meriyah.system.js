@@ -6582,7 +6582,7 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
-      var version = exports('version', "3.1.3");
+      var version = exports('version', "3.1.5");
 
       function parseScript(source, options) {
           return parseSource(source, options, 0);

@@ -6574,7 +6574,7 @@ var estree = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
 
-var version = "3.1.3";
+var version = "3.1.5";
 
 function parseScript(source, options) {
     return parseSource(source, options, 0);

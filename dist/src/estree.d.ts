@@ -16,7 +16,7 @@ export interface Position {
 export declare type Labels = any;
 export declare type IdentifierOrExpression = Identifier | Expression | ArrowFunctionExpression;
 export declare type ArgumentExpression = ArrayExpression | AssignmentExpression | ConditionalExpression | Literal | SpreadElement | BinaryExpression | LogicalExpression | SequenceExpression;
-export declare type CommentType = 'Line' | 'Block' | 'HTMLOpen' | 'HTMLClose';
+export declare type CommentType = 'SingleLine' | 'MultiLine' | 'HTMLOpen' | 'HTMLClose' | 'HashbangComment';
 export interface Comment {
     type: CommentType;
     value: string;
