@@ -1,3 +1,12 @@
+## [3.1.6](https://github.com/meriyah/meriyah/compare/v3.1.5...v3.1.6) (2020-11-07)
+
+
+### Bug Fixes
+
+* bypass type def of package.json ([d267336](https://github.com/meriyah/meriyah/commit/d2673360724a541f5789cd003aa952be75dda9a0)), closes [#155](https://github.com/meriyah/meriyah/issues/155)
+
+
+
 ## [3.1.5](https://github.com/meriyah/meriyah/compare/v3.1.4...v3.1.5) (2020-11-05)
 
 
