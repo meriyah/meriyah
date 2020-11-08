@@ -6582,8 +6582,9 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
-      var version = exports('version', "3.1.5");
+      var version = "3.1.6";
 
+      const version$1 = exports('version', version);
       function parseScript(source, options) {
           return parseSource(source, options, 0);
       }

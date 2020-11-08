@@ -6572,8 +6572,9 @@ define(['exports'], function (exports) { 'use strict';
     __proto__: null
   });
 
-  var version = "3.1.5";
+  var version = "3.1.6";
 
+  const version$1 = version;
   function parseScript(source, options) {
       return parseSource(source, options, 0);
   }
@@ -6588,7 +6589,7 @@ define(['exports'], function (exports) { 'use strict';
   exports.parse = parse;
   exports.parseModule = parseModule;
   exports.parseScript = parseScript;
-  exports.version = version;
+  exports.version = version$1;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
