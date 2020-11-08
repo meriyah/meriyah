@@ -1,6 +1,9 @@
 import { Context } from './common';
 import { parseSource, Options } from './parser';
 import * as ESTree from './estree';
+// Current version
+import * as meta from '../package.json';
+const version: string = meta.version;
 
 /**
  * Parse a script, optionally with various options.
@@ -23,7 +26,4 @@ export function parse(source: string, options?: Options): ESTree.Program {
   return parseSource(source, options, Context.None);
 }
 
-export { Options, ESTree };
-
-// Current version
-export { version } from '../package.json';
+export { Options, ESTree, version };
