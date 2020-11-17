@@ -1,4 +1,5 @@
-import { ParserState } from './common';
+import { Location, Node, Position } from './estree';
+import { Context, finishNode, ParserState } from './common';
 
 export const enum Errors {
   Unexpected,
@@ -352,26 +353,39 @@ export class ParseError extends SyntaxError {
     line: ParseError['line'];
     column: ParseError['column'];
   };
+  public end?: Position;
   public index: number;
   public line: number;
   public column: number;
   public description: string;
   /*eslint-disable*/
-  constructor(startindex: number, line: number, column: number, type: Errors, ...params: string[]) {
+  constructor(startindex: number, loc: { start: Position; end?: Position }, type: Errors, ...params: string[]) {
     const message =
-      '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
+      '[' +
+      loc.start.line +
+      ':' +
+      loc.start.column +
+      ']: ' +
+      errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     super(`${message}`);
     this.index = startindex;
-    this.line = line;
-    this.column = column;
+    this.line = loc.start.line;
+    this.column = loc.start.column;
     this.description = message;
     /* Acorn compat */
     this.loc = {
-      line,
-      column
-    } as any;
+      line: this.line,
+      column: this.line
+    };
+    this.end = loc.end
+      ? {
+          line: loc.end.line,
+          column: loc.end.column
+        }
+      : undefined;
   }
 }
+
 /**
  * Throws an error
  *
@@ -381,11 +395,22 @@ export class ParseError extends SyntaxError {
  * @param {...string[]} params
  * @returns {never}
  */
-export function report(parser: ParserState, type: Errors, ...params: string[]): never {
-  throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
+export function report(parser: ParserState, context: Context, node: Node, type: Errors, ...params: string[]): never {
+  const end = finishNode(parser, context, parser.index, parser.line, parser.column, node).loc?.end;
+
+  throw new ParseError(
+    parser.index,
+    {
+      start: { line: parser.line, column: parser.column },
+      end: end ? ({ line: end.line, column: end.column } as Position) : undefined
+    },
+    type,
+    ...params
+  );
 }
 
 export function reportScopeError(scope: any): never {
+  // warn me about this pls
   throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
 }
 
@@ -400,8 +425,8 @@ export function reportScopeError(scope: any): never {
  * @param {Errors} type
  * @param {...string[]} params
  */
-export function reportMessageAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
-  throw new ParseError(index, line, column, type, ...params);
+export function reportMessageAt(index: number, loc: Location, type: Errors, ...params: string[]): never {
+  throw new ParseError(index, loc, type, ...params);
 }
 
 /**
@@ -414,6 +439,6 @@ export function reportMessageAt(index: number, line: number, column: number, typ
  * @param {number} column
  * @param {Errors} type
  */
-export function reportScannerError(index: number, line: number, column: number, type: Errors): never {
-  throw new ParseError(index, line, column, type);
+export function reportScannerError(index: number, loc: Location, type: Errors): never {
+  throw new ParseError(index, loc, type);
 }

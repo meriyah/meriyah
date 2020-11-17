@@ -5,16 +5,19 @@ export interface _Node {
   loc?: SourceLocation | null;
 }
 
-export interface SourceLocation {
-  source?: string | null;
+export interface Location {
   start: Position;
   end: Position;
 }
 
+export interface SourceLocation extends Location {
+  source?: string | null;
+}
+
 export interface Position {
-  /** >= 1 */
+  /** \>= 1 */
   line: number;
-  /** >= 0 */
+  /** \>= 0 */
   column: number;
 }
 
