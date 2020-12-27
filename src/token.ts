@@ -175,7 +175,7 @@ export const enum Token {
   AnyIdentifier      = 120 | IsIdentifier,
 
   // Stage #3 proposals
-  PrivateName        = 121,
+  PrivateIdentifier  = 121,
   BigIntLiteral      = 122 | IsExpressionStart | IsStringOrNumber,
   Coalesce           = 123 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
   QuestionMarkPeriod = 124 | IsMemberOrCallExpression, // ?.

@@ -115,8 +115,8 @@ export function scanIdentifierSlowCase(
  *
  * @param parser  Parser object
  */
-export function scanPrivateName(parser: ParserState): Token {
-  if (!isIdentifierStart(advanceChar(parser))) report(parser, Errors.MissingPrivateName);
+export function scanPrivateIdentifier(parser: ParserState): Token {
+  if (!isIdentifierStart(advanceChar(parser))) report(parser, Errors.MissingPrivateIdentifier);
   return Token.PrivateField;
 }
 

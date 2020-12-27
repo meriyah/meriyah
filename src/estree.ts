@@ -71,7 +71,7 @@ export type Node =
   | ExportNamedDeclaration
   | ExportSpecifier
   | ExpressionStatement
-  | FieldDefinition
+  | PropertyDefinition
   | ForInStatement
   | ForOfStatement
   | ForStatement
@@ -109,7 +109,7 @@ export type Node =
   | ObjectExpression
   | ObjectPattern
   | ParenthesizedExpression
-  | PrivateName
+  | PrivateIdentifier
   | Program
   | Property
   | RegExpLiteral
@@ -223,7 +223,7 @@ export type PrimaryExpressionExtended =
   | MetaProperty
   | ObjectExpression
   | ObjectPattern
-  | PrivateName
+  | PrivateIdentifier
   | NewExpression
   | Super
   | TemplateLiteral
@@ -266,7 +266,7 @@ interface FunctionDeclarationBase extends _Node {
 }
 
 interface MethodDefinitionBase extends _Node {
-  key: Expression | PrivateName | null;
+  key: Expression | PrivateIdentifier | null;
   value: FunctionExpression;
   computed: boolean;
   static: boolean;
@@ -356,21 +356,23 @@ export interface CatchClause extends _Node {
 
 export interface ClassBody extends _Node {
   type: 'ClassBody';
-  body: (ClassElement | FieldDefinition)[];
+  body: (ClassElement | PropertyDefinition)[];
 }
 
-export interface FieldDefinition extends _Node {
-  type: 'FieldDefinition';
-  key: PrivateName | Expression;
+export interface PropertyDefinition extends _Node {
+  type: 'PropertyDefinition';
+  key: PrivateIdentifier | Expression;
   value: any;
   decorators?: Decorator[] | null;
   computed: boolean;
   static: boolean;
 }
-export interface PrivateName extends _Node {
-  type: 'PrivateName';
+
+export interface PrivateIdentifier extends _Node {
+  type: 'PrivateIdentifier';
   name: string;
 }
+
 export interface ClassDeclaration extends ClassDeclarationBase {
   type: 'ClassDeclaration';
 }
@@ -473,7 +475,6 @@ export interface FunctionExpression extends FunctionDeclarationBase {
 export interface Identifier extends _Node {
   type: 'Identifier';
   name: string;
-  optional?: boolean;
 }
 
 export interface IfStatement extends _Node {
@@ -489,7 +490,7 @@ export interface Import extends _Node {
 
 export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
-  source: Expression;
+  source: Literal;
   specifiers: ImportClause[];
 }
 
@@ -622,7 +623,7 @@ export interface LogicalExpression extends _Node {
 export interface MemberExpression extends _Node {
   type: 'MemberExpression';
   object: Expression | Super;
-  property: Expression | PrivateName;
+  property: Expression | PrivateIdentifier;
   computed?: boolean;
   optional?: boolean;
 }

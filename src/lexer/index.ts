@@ -23,7 +23,7 @@ export {
   scanIdentifier,
   scanIdentifierSlowCase,
   scanUnicodeIdentifier,
-  scanPrivateName,
+  scanPrivateIdentifier,
   scanUnicodeEscape
 } from './identifier';
 export { scanString } from './string';
