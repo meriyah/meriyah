@@ -276,7 +276,7 @@ interface MethodDefinitionBase extends _Node {
 
 export interface ArrayExpression extends _Node {
   type: 'ArrayExpression';
-  elements: any[];
+  elements: (Expression | SpreadElement | null)[];
 }
 
 export interface ArrayPattern extends _Node {
