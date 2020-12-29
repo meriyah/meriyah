@@ -185,7 +185,7 @@ describe('Next - Public fields', () => {
                           start: 23,
                           end: 39,
                           range: [23, 39],
-                          type: 'PrivateName'
+                          type: 'PrivateIdentifier'
                         },
                         kind: 'method',
                         start: 16,
@@ -267,7 +267,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
                     type: 'Identifier',
                     name: 'x',
@@ -326,7 +326,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
                     type: 'Identifier',
                     name: 'set',
@@ -373,7 +373,7 @@ describe('Next - Public fields', () => {
                     type: 'Identifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     name: 'get',
                     type: 'Identifier'
@@ -419,7 +419,7 @@ describe('Next - Public fields', () => {
                       type: 'ClassBody',
                       body: [
                         {
-                          type: 'FieldDefinition',
+                          type: 'PropertyDefinition',
                           decorators: [],
                           key: {
                             type: 'CallExpression',
@@ -510,7 +510,7 @@ describe('Next - Public fields', () => {
                     type: 'Identifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     type: 'Literal',
                     value: 0
@@ -554,7 +554,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Identifier',
@@ -577,7 +577,7 @@ describe('Next - Public fields', () => {
                   range: [16, 24]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -600,7 +600,7 @@ describe('Next - Public fields', () => {
                   range: [26, 39]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -656,7 +656,7 @@ describe('Next - Public fields', () => {
                   type: 'ClassBody',
                   body: [
                     {
-                      type: 'FieldDefinition',
+                      type: 'PropertyDefinition',
                       decorators: [],
                       key: {
                         type: 'Identifier',
@@ -758,7 +758,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -781,7 +781,7 @@ describe('Next - Public fields', () => {
                   range: [10, 19]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Identifier',
@@ -834,7 +834,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Identifier',
@@ -934,7 +934,7 @@ describe('Next - Public fields', () => {
                   type: 'ClassBody',
                   body: [
                     {
-                      type: 'FieldDefinition',
+                      type: 'PropertyDefinition',
                       key: {
                         type: 'Identifier',
                         name: 'p',
@@ -1026,7 +1026,7 @@ describe('Next - Public fields', () => {
                   type: 'ClassBody',
                   body: [
                     {
-                      type: 'FieldDefinition',
+                      type: 'PropertyDefinition',
                       key: {
                         type: 'Identifier',
                         name: 't',
@@ -1214,7 +1214,7 @@ describe('Next - Public fields', () => {
                     type: 'Identifier'
                   },
                   static: true,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     arguments: [
                       {
@@ -1261,7 +1261,7 @@ describe('Next - Public fields', () => {
                     type: 'Identifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     async: false,
                     body: {
@@ -1328,7 +1328,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -1345,7 +1345,7 @@ describe('Next - Public fields', () => {
                   range: [22, 25]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -1362,7 +1362,7 @@ describe('Next - Public fields', () => {
                   range: [27, 30]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -1385,7 +1385,7 @@ describe('Next - Public fields', () => {
                   range: [32, 40]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Literal',
@@ -1444,7 +1444,7 @@ describe('Next - Public fields', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Identifier',

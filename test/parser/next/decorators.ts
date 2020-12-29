@@ -117,7 +117,7 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
                     type: 'Identifier',
                     name: 'name',
@@ -194,9 +194,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'prop'
                   },
                   value: null,
@@ -213,9 +213,9 @@ describe('Next - Decorators', () => {
                   ]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'foo'
                   },
                   value: {
@@ -250,7 +250,7 @@ describe('Next - Decorators', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'foo'
                             }
                           }
@@ -1396,9 +1396,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'x'
                   },
                   value: {
@@ -1484,7 +1484,7 @@ describe('Next - Decorators', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'x'
                             }
                           }
@@ -1552,7 +1552,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'get'
                   },
                   value: {
@@ -1574,7 +1574,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'set'
                   },
                   value: {
@@ -1601,7 +1601,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'getset'
                   },
                   value: {
@@ -1623,7 +1623,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'getset'
                   },
                   value: {
@@ -1668,7 +1668,7 @@ describe('Next - Decorators', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'get'
                             }
                           }
@@ -1684,7 +1684,7 @@ describe('Next - Decorators', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'set'
                               }
                             },
@@ -1704,7 +1704,7 @@ describe('Next - Decorators', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'getset'
                             }
                           }
@@ -1720,7 +1720,7 @@ describe('Next - Decorators', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'getset'
                               }
                             },
@@ -1784,7 +1784,7 @@ describe('Next - Decorators', () => {
                   static: true,
                   computed: false,
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'foo'
                   },
                   value: {
@@ -1827,7 +1827,7 @@ describe('Next - Decorators', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'foo'
                               }
                             },
@@ -1869,9 +1869,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'x'
                   },
                   value: null,
@@ -2046,9 +2046,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'x'
                   },
                   value: {
@@ -2077,9 +2077,9 @@ describe('Next - Decorators', () => {
                   ]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'y'
                   },
                   value: {
@@ -2149,7 +2149,7 @@ describe('Next - Decorators', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'x'
                               }
                             },
@@ -2194,7 +2194,7 @@ describe('Next - Decorators', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'y'
                               }
                             },
@@ -2686,9 +2686,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'name'
                   },
                   value: {
@@ -2791,9 +2791,9 @@ describe('Next - Decorators', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'name'
                   },
                   value: {
