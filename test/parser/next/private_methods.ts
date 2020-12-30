@@ -277,10 +277,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'key',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -311,7 +311,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: '_',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   decorators: [],
                   kind: 'method',
@@ -383,10 +383,10 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'a',
                     start: 10,
                     end: 12,
@@ -400,10 +400,10 @@ describe('Next - Private methods', () => {
                   range: [10, 12]
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'b',
                     start: 14,
                     end: 16,
@@ -453,10 +453,10 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'yield',
                     start: 10,
                     end: 16,
@@ -526,10 +526,10 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'yield',
                     start: 10,
                     end: 16,
@@ -599,10 +599,10 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'yield',
                     start: 10,
                     end: 16,
@@ -642,7 +642,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: 'gen',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'method',
                   static: true,
@@ -730,7 +730,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: 'gen',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -773,7 +773,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: 'gen',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'method',
                   static: true,
@@ -838,7 +838,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: 'gen',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -881,7 +881,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: '℘',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'get',
                   static: false,
@@ -903,7 +903,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: '℘',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'set',
                   static: false,
@@ -948,7 +948,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: '℘',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -986,7 +986,7 @@ describe('Next - Private methods', () => {
                               },
                               property: {
                                 name: '℘',
-                                type: 'PrivateName'
+                                type: 'PrivateIdentifier'
                               },
                               type: 'MemberExpression'
                             },
@@ -1057,7 +1057,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'm'
                   },
                   value: {
@@ -1105,7 +1105,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'm'
                             }
                           }
@@ -1136,10 +1136,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'foo',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     name: 'bar',
                     type: 'Identifier'
@@ -1226,9 +1226,9 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateField'
                   },
                   value: {
@@ -1291,7 +1291,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
                   },
                   value: {
@@ -1309,7 +1309,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'privateField'
                             }
                           }
@@ -1328,7 +1328,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
                   },
                   value: {
@@ -1353,7 +1353,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateField'
                               }
                             },
@@ -1396,7 +1396,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'privateFieldValue'
                             }
                           }
@@ -1440,7 +1440,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -1572,7 +1572,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateField'
                               }
                             },
@@ -1616,7 +1616,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -1630,7 +1630,7 @@ describe('Next - Private methods', () => {
                                 },
                                 computed: false,
                                 property: {
-                                  type: 'PrivateName',
+                                  type: 'PrivateIdentifier',
                                   name: 'privateFieldValue'
                                 }
                               },
@@ -1684,7 +1684,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -1722,7 +1722,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -1766,7 +1766,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -1783,7 +1783,7 @@ describe('Next - Private methods', () => {
                                   },
                                   computed: false,
                                   property: {
-                                    type: 'PrivateName',
+                                    type: 'PrivateIdentifier',
                                     name: 'privateFieldValue'
                                   }
                                 },
@@ -1794,7 +1794,7 @@ describe('Next - Private methods', () => {
                                   },
                                   computed: false,
                                   property: {
-                                    type: 'PrivateName',
+                                    type: 'PrivateIdentifier',
                                     name: 'privateFieldValue'
                                   }
                                 },
@@ -1895,9 +1895,9 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateField'
                   },
                   value: {
@@ -1915,7 +1915,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
                   },
                   value: {
@@ -1933,7 +1933,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'privateField'
                             }
                           }
@@ -1972,7 +1972,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -2037,9 +2037,9 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateField'
                   },
                   value: {
@@ -2102,7 +2102,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
                   },
                   value: {
@@ -2120,7 +2120,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'privateField'
                             }
                           }
@@ -2139,7 +2139,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
                   },
                   value: {
@@ -2164,7 +2164,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateField'
                               }
                             },
@@ -2207,7 +2207,7 @@ describe('Next - Private methods', () => {
                             },
                             computed: false,
                             property: {
-                              type: 'PrivateName',
+                              type: 'PrivateIdentifier',
                               name: 'privateFieldValue'
                             }
                           }
@@ -2251,7 +2251,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'privateFieldValue'
                               }
                             },
@@ -2300,7 +2300,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'key'
                   },
                   value: {
@@ -2334,10 +2334,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'yield',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     type: 'Literal',
                     value: 0
@@ -2384,7 +2384,7 @@ describe('Next - Private methods', () => {
                   static: false,
                   computed: false,
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'foo'
                   },
                   value: {
@@ -2396,7 +2396,7 @@ describe('Next - Private methods', () => {
                         {
                           type: 'ExpressionStatement',
                           expression: {
-                            type: 'PrivateName',
+                            type: 'PrivateIdentifier',
                             name: 'bar'
                           }
                         }
@@ -2426,10 +2426,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'key',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: true,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -2461,7 +2461,7 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'foo',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'method',
                   static: true,
@@ -2534,10 +2534,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'a',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -2569,10 +2569,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'a',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -2626,10 +2626,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'a',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -2659,10 +2659,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'b',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -2724,10 +2724,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'a',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -2735,10 +2735,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: '__',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -2746,10 +2746,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'NJ_',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -2757,10 +2757,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: '℘_',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -2800,10 +2800,10 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'foo'
                   },
                   value: {
@@ -2846,7 +2846,7 @@ describe('Next - Private methods', () => {
                               },
                               computed: false,
                               property: {
-                                type: 'PrivateName',
+                                type: 'PrivateIdentifier',
                                 name: 'foo'
                               }
                             },
@@ -2885,9 +2885,9 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'x'
                   },
                   value: {
@@ -2899,9 +2899,9 @@ describe('Next - Private methods', () => {
                   decorators: []
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'y'
                   },
                   value: {
@@ -2940,9 +2940,9 @@ describe('Next - Private methods', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'x'
                   },
                   value: null,
@@ -2951,9 +2951,9 @@ describe('Next - Private methods', () => {
                   decorators: []
                 },
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'y'
                   },
                   value: {
@@ -2983,10 +2983,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'm',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     async: true,
                     body: {
@@ -3032,7 +3032,7 @@ describe('Next - Private methods', () => {
                               },
                               property: {
                                 name: 'm',
-                                type: 'PrivateName'
+                                type: 'PrivateIdentifier'
                               },
                               type: 'MemberExpression'
                             },
@@ -3097,7 +3097,7 @@ describe('Next - Private methods', () => {
                               },
                               property: {
                                 name: 'm',
-                                type: 'PrivateName'
+                                type: 'PrivateIdentifier'
                               },
                               type: 'MemberExpression'
                             },
@@ -3119,10 +3119,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'm',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     async: false,
                     body: {
@@ -3173,7 +3173,7 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'm',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'method',
                   static: false,
@@ -3220,7 +3220,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: 'b',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -3240,10 +3240,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'b',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: {
                     arguments: [],
                     callee: {
@@ -3253,7 +3253,7 @@ describe('Next - Private methods', () => {
                       },
                       property: {
                         name: 'm',
-                        type: 'PrivateName'
+                        type: 'PrivateIdentifier'
                       },
                       type: 'MemberExpression'
                     },
@@ -3282,7 +3282,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: 'm',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -3348,10 +3348,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: '$_',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 },
                 {
@@ -3359,10 +3359,10 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: '℘_',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   static: false,
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   value: null
                 }
               ],
@@ -3412,7 +3412,7 @@ describe('Next - Private methods', () => {
                               },
                               property: {
                                 name: '$_',
-                                type: 'PrivateName'
+                                type: 'PrivateIdentifier'
                               },
                               type: 'MemberExpression'
                             },
@@ -3433,7 +3433,7 @@ describe('Next - Private methods', () => {
                             },
                             property: {
                               name: '$',
-                              type: 'PrivateName'
+                              type: 'PrivateIdentifier'
                             },
                             type: 'MemberExpression'
                           },
@@ -3527,9 +3527,9 @@ describe('Next - Private methods', () => {
                         }
                       },
                       {
-                        type: 'FieldDefinition',
+                        type: 'PropertyDefinition',
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '$_'
                         },
                         value: null,
@@ -3538,9 +3538,9 @@ describe('Next - Private methods', () => {
                         decorators: []
                       },
                       {
-                        type: 'FieldDefinition',
+                        type: 'PropertyDefinition',
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '__'
                         },
                         value: null,
@@ -3549,9 +3549,9 @@ describe('Next - Private methods', () => {
                         decorators: []
                       },
                       {
-                        type: 'FieldDefinition',
+                        type: 'PropertyDefinition',
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '℘_'
                         },
                         value: null,
@@ -3566,7 +3566,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         decorators: [],
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '$'
                         },
                         value: {
@@ -3591,7 +3591,7 @@ describe('Next - Private methods', () => {
                                     },
                                     computed: false,
                                     property: {
-                                      type: 'PrivateName',
+                                      type: 'PrivateIdentifier',
                                       name: '$_'
                                     }
                                   },
@@ -3616,7 +3616,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         decorators: [],
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '_'
                         },
                         value: {
@@ -3641,7 +3641,7 @@ describe('Next - Private methods', () => {
                                     },
                                     computed: false,
                                     property: {
-                                      type: 'PrivateName',
+                                      type: 'PrivateIdentifier',
                                       name: '__'
                                     }
                                   },
@@ -3685,7 +3685,7 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'foo',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'get',
                   static: false,
@@ -3785,9 +3785,9 @@ describe('Next - Private methods', () => {
                         }
                       },
                       {
-                        type: 'FieldDefinition',
+                        type: 'PropertyDefinition',
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '$_'
                         },
                         value: null,
@@ -3796,9 +3796,9 @@ describe('Next - Private methods', () => {
                         decorators: []
                       },
                       {
-                        type: 'FieldDefinition',
+                        type: 'PropertyDefinition',
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '__'
                         },
                         value: null,
@@ -3813,7 +3813,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         decorators: [],
                         key: {
-                          type: 'PrivateName',
+                          type: 'PrivateIdentifier',
                           name: '_'
                         },
                         value: {
@@ -3831,7 +3831,7 @@ describe('Next - Private methods', () => {
                                   },
                                   computed: false,
                                   property: {
-                                    type: 'PrivateName',
+                                    type: 'PrivateIdentifier',
                                     name: '__'
                                   }
                                 }
@@ -3875,7 +3875,7 @@ describe('Next - Private methods', () => {
                                     },
                                     computed: false,
                                     property: {
-                                      type: 'PrivateName',
+                                      type: 'PrivateIdentifier',
                                       name: '$_'
                                     }
                                   },
@@ -3895,7 +3895,7 @@ describe('Next - Private methods', () => {
                                   },
                                   computed: false,
                                   property: {
-                                    type: 'PrivateName',
+                                    type: 'PrivateIdentifier',
                                     name: '$'
                                   }
                                 }
@@ -3939,7 +3939,7 @@ describe('Next - Private methods', () => {
                                     },
                                     computed: false,
                                     property: {
-                                      type: 'PrivateName',
+                                      type: 'PrivateIdentifier',
                                       name: '__'
                                     }
                                   },
@@ -3959,7 +3959,7 @@ describe('Next - Private methods', () => {
                                   },
                                   computed: false,
                                   property: {
-                                    type: 'PrivateName',
+                                    type: 'PrivateIdentifier',
                                     name: '_'
                                   }
                                 }
@@ -4016,7 +4016,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'evil'
                   },
                   value: {
@@ -4050,7 +4050,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   decorators: [],
                   key: {
-                    type: 'PrivateName',
+                    type: 'PrivateIdentifier',
                     name: 'evil'
                   },
                   value: {
@@ -4129,7 +4129,7 @@ describe('Next - Private methods', () => {
                         decorators: [],
                         key: {
                           name: 'x',
-                          type: 'PrivateName'
+                          type: 'PrivateIdentifier'
                         },
                         kind: 'method',
                         static: true,
@@ -4172,7 +4172,7 @@ describe('Next - Private methods', () => {
                         decorators: [],
                         key: {
                           name: 'y',
-                          type: 'PrivateName'
+                          type: 'PrivateIdentifier'
                         },
                         kind: 'method',
                         static: true,
@@ -4239,7 +4239,7 @@ describe('Next - Private methods', () => {
                                     },
                                     property: {
                                       name: 'x',
-                                      type: 'PrivateName'
+                                      type: 'PrivateIdentifier'
                                     },
                                     type: 'MemberExpression'
                                   },
@@ -4285,7 +4285,7 @@ describe('Next - Private methods', () => {
                                     },
                                     property: {
                                       name: 'y',
-                                      type: 'PrivateName'
+                                      type: 'PrivateIdentifier'
                                     },
                                     type: 'MemberExpression'
                                   },
@@ -4334,7 +4334,7 @@ describe('Next - Private methods', () => {
                   decorators: [],
                   key: {
                     name: 'foo',
-                    type: 'PrivateName'
+                    type: 'PrivateIdentifier'
                   },
                   kind: 'set',
                   static: true,

@@ -4058,7 +4058,7 @@ export function parsePropertyOrPrivatePropertyName(parser: ParserState, context:
   }
 
   return context & Context.OptionsNext && parser.token === Token.PrivateField
-    ? parsePrivateName(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
+    ? parsePrivateIdentifier(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
     : parseIdentifier(parser, context, 0);
 }
 
@@ -4255,7 +4255,7 @@ export function parsePrimaryExpression(
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context, start, line, column);
     case Token.PrivateField:
-      return parsePrivateName(parser, context, start, line, column);
+      return parsePrivateIdentifier(parser, context, start, line, column);
     case Token.ImportKeyword:
       return parseImportCallOrMetaExpression(parser, context, inNew, inGroup, start, line, column);
     case Token.LessThan:
@@ -8115,8 +8115,8 @@ export function parseClassBody(
    *   MethodDefinition
    *   DecoratorList
    *   DecoratorList static MethodDefinition
-   *   DecoratorList FieldDefinition
-   *   DecoratorList static FieldDefinition
+   *   DecoratorList PropertyDefinition
+   *   DecoratorList static PropertyDefinition
    *
    * MethodDefinition :
    *   ClassElementName ( FormalParameterList ) { FunctionBody }
@@ -8125,9 +8125,9 @@ export function parseClassBody(
    *
    * ClassElementName :
    *   PropertyName
-   *   PrivateName
+   *   PrivateIdentifier
    *
-   * PrivateName ::
+   * PrivateIdentifier ::
    *   # IdentifierName
    *
    * IdentifierName ::
@@ -8167,7 +8167,7 @@ export function parseClassBody(
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
-  const body: (ESTree.MethodDefinition | ESTree.FieldDefinition)[] = [];
+  const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition)[] = [];
   let decorators: ESTree.Decorator[];
 
   while (parser.token !== Token.RightBrace) {
@@ -8235,9 +8235,9 @@ function parseClassElementList(
   start: number,
   line: number,
   column: number
-): ESTree.MethodDefinition | ESTree.FieldDefinition {
+): ESTree.MethodDefinition | ESTree.PropertyDefinition {
   let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
-  let key: ESTree.Expression | ESTree.PrivateName | null = null;
+  let key: ESTree.Expression | ESTree.PrivateIdentifier | null = null;
 
   const { token, tokenPos, linePos, colPos } = parser;
 
@@ -8266,7 +8266,7 @@ function parseClassElementList(
       case Token.AsyncKeyword:
         if (parser.token !== Token.LeftParen && (parser.flags & Flags.NewLine) < 1) {
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
-            return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+            return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
 
           kind |= PropertyKind.Async | (optionalBit(parser, context, Token.Multiply) ? PropertyKind.Generator : 0);
@@ -8276,7 +8276,7 @@ function parseClassElementList(
       case Token.GetKeyword:
         if (parser.token !== Token.LeftParen) {
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
-            return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+            return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
           kind |= PropertyKind.Getter;
         }
@@ -8285,7 +8285,7 @@ function parseClassElementList(
       case Token.SetKeyword:
         if (parser.token !== Token.LeftParen) {
           if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
-            return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+            return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
           kind |= PropertyKind.Setter;
         }
@@ -8303,7 +8303,7 @@ function parseClassElementList(
     nextToken(parser, context); // skip: '*'
   } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
     kind |= PropertyKind.PrivateField;
-    key = parsePrivateName(parser, context, tokenPos, linePos, colPos);
+    key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
     context = context | Context.InClass;
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
@@ -8328,7 +8328,7 @@ function parseClassElementList(
       key = parseIdentifier(parser, context, 0);
     } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
-      key = parsePrivateName(parser, context, tokenPos, linePos, colPos);
+      key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
     } else report(parser, Errors.InvalidKeyToken);
   }
 
@@ -8356,7 +8356,7 @@ function parseClassElementList(
   }
 
   if (context & Context.OptionsNext && parser.token !== Token.LeftParen) {
-    return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+    return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
   }
 
   const value = parseMethodDefinition(parser, context, kind, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
@@ -8408,14 +8408,14 @@ function parseClassElementList(
  * @param parser Parser object
  * @param context Context masks
  */
-function parsePrivateName(
+function parsePrivateIdentifier(
   parser: ParserState,
   context: Context,
   start: number,
   line: number,
   column: number
-): ESTree.PrivateName {
-  // PrivateName::
+): ESTree.PrivateIdentifier {
+  // PrivateIdentifier::
   //    #IdentifierName
   nextToken(parser, context); // skip: '#'
   const { tokenValue } = parser;
@@ -8423,7 +8423,7 @@ function parsePrivateName(
   nextToken(parser, context);
 
   return finishNode(parser, context, start, line, column, {
-    type: 'PrivateName',
+    type: 'PrivateIdentifier',
     name: tokenValue
   });
 }
@@ -8438,20 +8438,20 @@ function parsePrivateName(
  * @param decorators
  */
 
-export function parseFieldDefinition(
+export function parsePropertyDefinition(
   parser: ParserState,
   context: Context,
-  key: ESTree.PrivateName | ESTree.Expression | null,
+  key: ESTree.PrivateIdentifier | ESTree.Expression | null,
   state: PropertyKind,
   decorators: ESTree.Decorator[] | null,
   start: number,
   line: number,
   column: number
-): ESTree.FieldDefinition {
+): ESTree.PropertyDefinition {
   //  ClassElement :
   //    MethodDefinition
   //    static MethodDefinition
-  //    FieldDefinition ;
+  //    PropertyDefinition ;
   //  ;
   let value: ESTree.Expression | null = null;
 
@@ -8498,7 +8498,7 @@ export function parseFieldDefinition(
   }
 
   return finishNode(parser, context, start, line, column, {
-    type: 'FieldDefinition',
+    type: 'PropertyDefinition',
     key,
     value,
     static: (state & PropertyKind.Static) > 0,

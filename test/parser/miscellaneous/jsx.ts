@@ -4193,7 +4193,7 @@ describe('Miscellaneous - JSX', () => {
               type: 'ClassBody',
               body: [
                 {
-                  type: 'FieldDefinition',
+                  type: 'PropertyDefinition',
                   decorators: [],
                   key: {
                     type: 'Identifier',

@@ -19,7 +19,7 @@ import {
   scanIdentifier,
   scanUnicodeIdentifier,
   scanIdentifierSlowCase,
-  scanPrivateName,
+  scanPrivateIdentifier,
   fromCodePoint,
   consumeLineFeed,
   scanNewLine,
@@ -260,7 +260,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
         // `#` (private name)
         case Token.PrivateField:
-          return scanPrivateName(parser);
+          return scanPrivateIdentifier(parser);
 
         case Token.WhiteSpace:
           advanceChar(parser);

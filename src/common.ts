@@ -456,7 +456,7 @@ export function isStrictReservedWord(parser: ParserState, context: Context, t: T
  * @param context  Context masks
  */
 export function isPropertyWithPrivateFieldKey(expr: any): boolean {
-  return !expr.property ? false : expr.property.type === 'PrivateName';
+  return !expr.property ? false : expr.property.type === 'PrivateIdentifier';
 }
 
 /**
