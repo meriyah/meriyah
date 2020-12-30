@@ -142,7 +142,7 @@ export declare const enum Token {
     EscapedReserved = 118,
     EscapedFutureReserved = 119,
     AnyIdentifier = 143480,
-    PrivateName = 121,
+    PrivateIdentifier = 121,
     BigIntLiteral = 134283386,
     Coalesce = 276889979,
     QuestionMarkPeriod = 67108988,

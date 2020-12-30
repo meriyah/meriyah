@@ -411,7 +411,7 @@ function scanSingleToken(parser, context, state) {
                 case 134:
                     return scanUnicodeIdentifier(parser, context);
                 case 128:
-                    return scanPrivateName(parser);
+                    return scanPrivateIdentifier(parser);
                 case 125:
                     advanceChar(parser);
                     break;
@@ -1442,7 +1442,7 @@ function scanIdentifierSlowCase(parser, context, hasEscape, isValidAsKeyword) {
     }
     return 208897;
 }
-function scanPrivateName(parser) {
+function scanPrivateIdentifier(parser) {
     if (!isIdentifierStart(advanceChar(parser)))
         report(parser, 93);
     return 128;
@@ -2271,7 +2271,7 @@ function isStrictReservedWord(parser, context, t) {
         t == 119);
 }
 function isPropertyWithPrivateFieldKey(expr) {
-    return !expr.property ? false : expr.property.type === 'PrivateName';
+    return !expr.property ? false : expr.property.type === 'PrivateIdentifier';
 }
 function isValidLabel(parser, labels, name, isIterationStatement) {
     while (labels) {
@@ -4075,7 +4075,7 @@ function parsePropertyOrPrivatePropertyName(parser, context) {
         report(parser, 154);
     }
     return context & 1 && parser.token === 128
-        ? parsePrivateName(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
+        ? parsePrivateIdentifier(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
         : parseIdentifier(parser, context, 0);
 }
 function parseUpdateExpressionPrefixed(parser, context, inNew, isLHS, start, line, column) {
@@ -4174,7 +4174,7 @@ function parsePrimaryExpression(parser, context, kind, inNew, canAssign, isPatte
         case 134283386:
             return parseBigIntLiteral(parser, context, start, line, column);
         case 128:
-            return parsePrivateName(parser, context, start, line, column);
+            return parsePrivateIdentifier(parser, context, start, line, column);
         case 86105:
             return parseImportCallOrMetaExpression(parser, context, inNew, inGroup, start, line, column);
         case 8456255:
@@ -6113,7 +6113,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
             case 143468:
                 if (parser.token !== 67174411 && (parser.flags & 1) < 1) {
                     if (context & 1 && (parser.token & 1073741824) === 1073741824) {
-                        return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+                        return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
                     }
                     kind |= 16 | (optionalBit(parser, context, 8457011) ? 8 : 0);
                 }
@@ -6121,7 +6121,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
             case 12399:
                 if (parser.token !== 67174411) {
                     if (context & 1 && (parser.token & 1073741824) === 1073741824) {
-                        return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+                        return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
                     }
                     kind |= 256;
                 }
@@ -6129,7 +6129,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
             case 12400:
                 if (parser.token !== 67174411) {
                     if (context & 1 && (parser.token & 1073741824) === 1073741824) {
-                        return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+                        return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
                     }
                     kind |= 512;
                 }
@@ -6149,7 +6149,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
     }
     else if (context & 1 && parser.token === 128) {
         kind |= 4096;
-        key = parsePrivateName(parser, context, tokenPos, linePos, colPos);
+        key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
         context = context | 16384;
     }
     else if (context & 1 && (parser.token & 1073741824) === 1073741824) {
@@ -6180,7 +6180,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
         }
         else if (context & 1 && parser.token === 128) {
             kind |= 4096;
-            key = parsePrivateName(parser, context, tokenPos, linePos, colPos);
+            key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
         }
         else
             report(parser, 131);
@@ -6210,7 +6210,7 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
         }
     }
     if (context & 1 && parser.token !== 67174411) {
-        return parseFieldDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
+        return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
     }
     const value = parseMethodDefinition(parser, context, kind, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
     return finishNode(parser, context, start, line, column, context & 1
@@ -6244,18 +6244,18 @@ function parseClassElementList(parser, context, scope, inheritedContext, type, d
             value
         });
 }
-function parsePrivateName(parser, context, start, line, column) {
+function parsePrivateIdentifier(parser, context, start, line, column) {
     nextToken(parser, context);
     const { tokenValue } = parser;
     if (tokenValue === 'constructor')
         report(parser, 124);
     nextToken(parser, context);
     return finishNode(parser, context, start, line, column, {
-        type: 'PrivateName',
+        type: 'PrivateIdentifier',
         name: tokenValue
     });
 }
-function parseFieldDefinition(parser, context, key, state, decorators, start, line, column) {
+function parsePropertyDefinition(parser, context, key, state, decorators, start, line, column) {
     let value = null;
     if (state & 8)
         report(parser, 0);
@@ -6274,7 +6274,7 @@ function parseFieldDefinition(parser, context, key, state, decorators, start, li
         }
     }
     return finishNode(parser, context, start, line, column, {
-        type: 'FieldDefinition',
+        type: 'PropertyDefinition',
         key,
         value,
         static: (state & 32) > 0,

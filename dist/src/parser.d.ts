@@ -106,7 +106,7 @@ export declare function parseClassExpression(parser: ParserState, context: Conte
 export declare function parseDecorators(parser: ParserState, context: Context): ESTree.Decorator[];
 export declare function parseDecoratorList(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.Decorator;
 export declare function parseClassBody(parser: ParserState, context: Context, inheritedContext: Context, scope: ScopeState | undefined, kind: BindingKind, origin: Origin, inGroup: 0 | 1): ESTree.ClassBody;
-export declare function parseFieldDefinition(parser: ParserState, context: Context, key: ESTree.PrivateName | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number, line: number, column: number): ESTree.FieldDefinition;
+export declare function parsePropertyDefinition(parser: ParserState, context: Context, key: ESTree.PrivateIdentifier | ESTree.Expression | null, state: PropertyKind, decorators: ESTree.Decorator[] | null, start: number, line: number, column: number): ESTree.PropertyDefinition;
 export declare function parseBindingPattern(parser: ParserState, context: Context, scope: ScopeState | undefined, type: BindingKind, origin: Origin, start: number, line: number, column: number): ESTree.BindingPattern;
 export declare function parseOpeningFragment(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.JSXOpeningFragment;
 export declare function parseJSXClosingFragment(parser: ParserState, context: Context, inJSXChild: 0 | 1, start: number, line: number, column: number): ESTree.JSXClosingFragment;
