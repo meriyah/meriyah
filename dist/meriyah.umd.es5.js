@@ -1399,7 +1399,7 @@
         extends: { value: 20564 },
         false: { value: 86021 },
         from: { value: 12401 },
-        get: { value: 12399 },
+        get: { value: 77935 },
         implements: { value: 36963 },
         import: { value: 86105 },
         interface: { value: 36964 },
@@ -1410,15 +1410,15 @@
         private: { value: 36966 },
         protected: { value: 36967 },
         public: { value: 36968 },
-        set: { value: 12400 },
+        set: { value: 77936 },
         static: { value: 36969 },
         super: { value: 86108 },
         true: { value: 86022 },
         with: { value: 20578 },
         yield: { value: 241770 },
-        enum: { value: 20595 },
+        enum: { value: 86131 },
         eval: { value: 537079924 },
-        as: { value: 12395 },
+        as: { value: 77931 },
         arguments: { value: 537079925 },
         target: { value: 143491 },
         meta: { value: 143492 },
@@ -3445,7 +3445,7 @@
     function parseImportNamespaceSpecifier(parser, context, scope) {
         var tokenPos = parser.tokenPos, linePos = parser.linePos, colPos = parser.colPos;
         nextToken(parser, context);
-        consume(parser, context, 12395);
+        consume(parser, context, 77931);
         if ((parser.token & 134217728) === 134217728) {
             reportMessageAt(tokenPos, parser.line, parser.index, 28, KeywordDescTable[parser.token & 255]);
         }
@@ -3466,7 +3466,7 @@
             var token = parser.token, tokenValue = parser.tokenValue, tokenPos = parser.tokenPos, linePos = parser.linePos, colPos = parser.colPos;
             var imported = parseIdentifier(parser, context, 0);
             var local = void 0;
-            if (consumeOpt(parser, context, 12395)) {
+            if (consumeOpt(parser, context, 77931)) {
                 if ((parser.token & 134217728) === 134217728 || parser.token === 18) {
                     report(parser, 103);
                 }
@@ -3564,7 +3564,7 @@
             case 8457011: {
                 nextToken(parser, context);
                 var exported = null;
-                var isNamedDeclaration = consumeOpt(parser, context, 12395);
+                var isNamedDeclaration = consumeOpt(parser, context, 77931);
                 if (isNamedDeclaration) {
                     if (scope)
                         declareUnboundVariable(parser, parser.tokenValue);
@@ -3589,7 +3589,7 @@
                     var tokenPos_1 = parser.tokenPos, tokenValue = parser.tokenValue, linePos_1 = parser.linePos, colPos_1 = parser.colPos;
                     var local = parseIdentifier(parser, context, 0);
                     var exported = void 0;
-                    if (parser.token === 12395) {
+                    if (parser.token === 77931) {
                         nextToken(parser, context);
                         if ((parser.token & 134217728) === 134217728) {
                             report(parser, 103);
@@ -5039,9 +5039,9 @@
                         if (token === 143468)
                             state |= 16;
                         state |=
-                            (token === 12399
+                            (token === 77935
                                 ? 256
-                                : token === 12400
+                                : token === 77936
                                     ? 512
                                     : 1) | 2;
                         key = parseComputedPropertyName(parser, context, inGroup);
@@ -5059,9 +5059,9 @@
                         }
                         key = parseIdentifier(parser, context, 0);
                         state |=
-                            token === 12399
+                            token === 77935
                                 ? 256
-                                : token === 12400
+                                : token === 77936
                                     ? 512
                                     : 1;
                         value = parseMethodDefinition(parser, context, state, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
@@ -5073,7 +5073,7 @@
                     }
                     else if (parser.token === 8457011) {
                         destructible |= 16;
-                        if (token === 12399 || token === 12400) {
+                        if (token === 77935 || token === 77936) {
                             report(parser, 40);
                         }
                         else if (token === 143480) {
@@ -5102,9 +5102,9 @@
                         if (token === 143468)
                             state |= 16;
                         state |=
-                            token === 12399
+                            token === 77935
                                 ? 256
-                                : token === 12400
+                                : token === 77936
                                     ? 512
                                     : 1;
                         destructible |= 16;
@@ -5339,7 +5339,7 @@
                         else {
                             reportMessageAt(index, line_1, index, token_5 === 143468
                                 ? 43
-                                : token_5 === 12399 || parser.token === 12400
+                                : token_5 === 77935 || parser.token === 77936
                                     ? 42
                                     : 44, KeywordDescTable[token_5 & 255]);
                         }
@@ -6179,7 +6179,7 @@
                         kind |= 16 | (optionalBit(parser, context, 8457011) ? 8 : 0);
                     }
                     break;
-                case 12399:
+                case 77935:
                     if (parser.token !== 67174411) {
                         if (context & 1 && (parser.token & 1073741824) === 1073741824) {
                             return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
@@ -6187,7 +6187,7 @@
                         kind |= 256;
                     }
                     break;
-                case 12400:
+                case 77936:
                     if (parser.token !== 67174411) {
                         if (context & 1 && (parser.token & 1073741824) === 1073741824) {
                             return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
