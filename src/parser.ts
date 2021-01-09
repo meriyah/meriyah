@@ -3557,7 +3557,7 @@ export function parseYieldExpression(
 
     if ((parser.flags & Flags.NewLine) < 1) {
       delegate = consumeOpt(parser, context | Context.AllowRegExp, Token.Multiply);
-      if (parser.token & Token.IsExpressionStart || delegate) {
+      if (parser.token & (Token.Contextual | Token.IsExpressionStart) || delegate) {
         argument = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
       }
     }
