@@ -157,15 +157,15 @@ export const enum Token {
   YieldKeyword      = 106 | FutureReserved | IsExpressionStart | IsIdentifier,
 
   /* Contextual keywords */
-  AsKeyword          = 107 | Contextual,
+  AsKeyword          = 107 | Contextual | IsExpressionStart,
   AsyncKeyword       = 108 | Contextual | IsIdentifier,
   AwaitKeyword       = 109 | Contextual | IsExpressionStart | IsIdentifier,
   ConstructorKeyword = 110 | Contextual,
-  GetKeyword         = 111 | Contextual,
-  SetKeyword         = 112 | Contextual,
+  GetKeyword         = 111 | Contextual | IsExpressionStart,
+  SetKeyword         = 112 | Contextual | IsExpressionStart,
   FromKeyword        = 113 | Contextual,
   OfKeyword          = 114 | Contextual | IsInOrOf,
-  EnumKeyword        = 115 | Reserved,
+  EnumKeyword        = 115 | Reserved | IsExpressionStart,
 
   Eval               = 116 | IsEvalOrArguments,
   Arguments          = 117 | IsEvalOrArguments,
