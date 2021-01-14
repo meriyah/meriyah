@@ -105,7 +105,21 @@ describe('Expressions - Yield', () => {
       function* getData() {
         return yield get();
       }
-    `
+    `,
+    `const f = async function * (source, block, opts) {
+      for await (const entry of source) {
+        yield async function () {
+          const cid = await persist(entry.content.serialize(), block, opts)
+
+          return {
+            cid,
+            path: entry.path,
+            unixfs: UnixFS.unmarshal(entry.content.Data),
+            node: entry.content
+          }
+        }
+      }
+    }`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
