@@ -100,7 +100,12 @@ describe('Expressions - Yield', () => {
       let labels = [...(infix(tree))];
       // 0,23,17,5,20,44,16,4,7,0,23,41,11,3,8,2,5,1,6,7
       if (labels[0] != 0) throw "wrong";
-    }`
+    }`,
+    `function get() {}
+      function* getData() {
+        return yield get();
+      }
+    `
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
