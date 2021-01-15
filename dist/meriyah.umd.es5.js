@@ -6635,7 +6635,7 @@
         __proto__: null
     });
 
-    var version = "3.1.6";
+    var version = "4.0.0";
 
     var version$1 = version;
     function parseScript(source, options) {
