@@ -1,3 +1,24 @@
+# [4.0.0](https://github.com/meriyah/meriyah/compare/v3.1.6...v4.0.0) (2021-01-14)
+
+
+### Bug Fixes
+
+* **estree:** rename FieldDefinition -> PropertyDefinition, PrivateName -> PrivateIdentifier ([2a588e5](https://github.com/meriyah/meriyah/commit/2a588e5b420da50c81d0feccc82ce8adc9ca165a)), closes [#134](https://github.com/meriyah/meriyah/issues/134)
+* **parser:** fixed 'async' as  'IsExpressionStart' ([5b7a592](https://github.com/meriyah/meriyah/commit/5b7a5929169bab10bf4dc31d64f2905414004964))
+* **parser:** fixed issue with 'yield expr' ([5cd7c1d](https://github.com/meriyah/meriyah/commit/5cd7c1d7743dc6d19c323727eb758cadcd3040e0))
+
+
+### chore
+
+* update deps, add previous missing breaking change note ([286863e](https://github.com/meriyah/meriyah/commit/286863ec5ec212958c39a2c790095cec70315068))
+
+
+### BREAKING CHANGES
+
+* updated estree node names: FieldDefinition -> PropertyDefinition, PrivateName -> PrivateIdentifier
+
+
+
 ## [3.1.6](https://github.com/meriyah/meriyah/compare/v3.1.5...v3.1.6) (2020-11-07)
 
 
