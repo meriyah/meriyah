@@ -3958,7 +3958,7 @@ export function parseMemberOrUpdateExpression(
           tag: expr,
           quasi:
             parser.token === Token.TemplateContinuation
-              ? parseTemplate(parser, context | Context.TaggedTemplate, parser.tokenPos, parser.linePos, parser.colPos)
+              ? parseTemplate(parser, context | Context.TaggedTemplate)
               : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
         });
     }
@@ -4249,7 +4249,7 @@ export function parsePrimaryExpression(
     case Token.TemplateSpan:
       return parseTemplateLiteral(parser, context, start, line, column);
     case Token.TemplateContinuation:
-      return parseTemplate(parser, context, start, line, column);
+      return parseTemplate(parser, context);
     case Token.NewKeyword:
       return parseNewExpression(parser, context, inGroup, start, line, column);
     case Token.BigIntLiteral:
@@ -4473,13 +4473,7 @@ export function parseTemplateLiteral(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseTemplate(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number
-): ESTree.TemplateLiteral {
+export function parseTemplate(parser: ParserState, context: Context): ESTree.TemplateLiteral {
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
@@ -4511,7 +4505,7 @@ export function parseTemplate(
     );
   }
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenPos, linePos, colPos, {
     type: 'TemplateLiteral',
     expressions,
     quasis
@@ -7428,7 +7422,7 @@ export function parseMembeExpressionNoCall(
           tag: expr,
           quasi:
             parser.token === Token.TemplateContinuation
-              ? parseTemplate(parser, context | Context.TaggedTemplate, parser.tokenPos, parser.linePos, parser.colPos)
+              ? parseTemplate(parser, context | Context.TaggedTemplate)
               : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
         }),
         0,
