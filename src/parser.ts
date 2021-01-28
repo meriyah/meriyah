@@ -5969,7 +5969,7 @@ export function parseObjectLiteralOrPattern(
             if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
               if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
             } else {
-              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, tokenPos, colPos);
+              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
 
               destructible = parser.assignable & AssignmentKind.CannotAssign ? DestructuringKind.CannotDestruct : 0;
 
@@ -5981,7 +5981,7 @@ export function parseObjectLiteralOrPattern(
                   inGroup,
                   isPattern,
                   tokenPos,
-                  tokenPos,
+                  linePos,
                   colPos,
                   value
                 );
