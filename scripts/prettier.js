@@ -15,7 +15,7 @@ const glob = require('glob');
 const prettier = require('prettier');
 const fs = require('fs');
 const listChangedFiles = require('./list-changed-files');
-const prettierConfigPath = require.resolve('../prettier.config.js');
+const prettierConfigPath = require.resolve('../prettier.config.cjs');
 const prettierIgnorePath = require.resolve('../.prettierignore');
 
 const mode = process.argv[2] || 'check';
