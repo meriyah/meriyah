@@ -4006,7 +4006,7 @@
                       type: 'TaggedTemplateExpression',
                       tag: expr,
                       quasi: parser.token === 67174408
-                          ? parseTemplate(parser, context | 65536, parser.tokenPos, parser.linePos, parser.colPos)
+                          ? parseTemplate(parser, context | 65536)
                           : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
                   });
           }
@@ -4170,7 +4170,7 @@
           case 67174409:
               return parseTemplateLiteral(parser, context, start, line, column);
           case 67174408:
-              return parseTemplate(parser, context, start, line, column);
+              return parseTemplate(parser, context);
           case 86106:
               return parseNewExpression(parser, context, inGroup, start, line, column);
           case 134283386:
@@ -4251,7 +4251,7 @@
           quasis
       });
   }
-  function parseTemplate(parser, context, start, line, column) {
+  function parseTemplate(parser, context) {
       context = (context | 134217728) ^ 134217728;
       const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
       consume(parser, context | 32768, 67174408);
@@ -4274,7 +4274,7 @@
           consume(parser, context, 67174409);
           quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenPos, linePos, colPos, true));
       }
-      return finishNode(parser, context, start, line, column, {
+      return finishNode(parser, context, tokenPos, linePos, colPos, {
           type: 'TemplateLiteral',
           expressions,
           quasis
@@ -4966,12 +4966,12 @@
                                   destructible |= 16;
                           }
                           else {
-                              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, tokenPos, colPos);
+                              value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
                               destructible = parser.assignable & 2 ? 16 : 0;
                               if (parser.token !== 18 && token !== 1074790415) {
                                   if (parser.token !== 1077936157)
                                       destructible |= 16;
-                                  value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, tokenPos, colPos, value);
+                                  value = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, value);
                               }
                           }
                       }
@@ -5747,7 +5747,7 @@
                   type: 'TaggedTemplateExpression',
                   tag: expr,
                   quasi: parser.token === 67174408
-                      ? parseTemplate(parser, context | 65536, parser.tokenPos, parser.linePos, parser.colPos)
+                      ? parseTemplate(parser, context | 65536)
                       : parseTemplateLiteral(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
               }), 0, start, line, column);
           }

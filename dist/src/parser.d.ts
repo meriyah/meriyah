@@ -78,7 +78,7 @@ export declare function parseImportMetaExpression(parser: ParserState, context: 
 export declare function parseImportExpression(parser: ParserState, context: Context, inGroup: 0 | 1, start: number, line: number, column: number): ESTree.ImportExpression;
 export declare function parseBigIntLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.BigIntLiteral;
 export declare function parseTemplateLiteral(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.TemplateLiteral;
-export declare function parseTemplate(parser: ParserState, context: Context, start: number, line: number, column: number): ESTree.TemplateLiteral;
+export declare function parseTemplate(parser: ParserState, context: Context): ESTree.TemplateLiteral;
 export declare function parseTemplateElement(parser: ParserState, context: Context, cooked: string | null, raw: string, start: number, line: number, col: number, tail: boolean): ESTree.TemplateElement;
 export declare function parseArguments(parser: ParserState, context: Context, inGroup: 0 | 1): (ESTree.SpreadElement | ESTree.Expression)[];
 export declare function parseIdentifier(parser: ParserState, context: Context, isPattern: 0 | 1): ESTree.Identifier;
