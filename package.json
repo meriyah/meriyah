@@ -6,6 +6,11 @@
   "module": "dist/meriyah.esm.js",
   "jsnext:main": "dist/meriyah.esm.js",
   "browser": "dist/meriyah.umd.js",
+  "type": "module",
+  "exports": {
+    "import": "./dist/meriyah.esm.js",
+    "require": "./dist/meriyah.umd.js"
+  },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",
   "author": "KFlash",
