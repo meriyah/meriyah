@@ -3861,6 +3861,178 @@ describe('Expressions - Template', () => {
           }
         }
       }
+    ],
+    [
+      'function a() {\nreturn `1234${b}`;\n}\n',
+      Context.None | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 9,
+              end: 10,
+              range: [9, 10],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 9
+                },
+                end: {
+                  line: 1,
+                  column: 10
+                }
+              }
+            },
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ReturnStatement',
+                  argument: {
+                    type: 'TemplateLiteral',
+                    expressions: [
+                      {
+                        type: 'Identifier',
+                        name: 'b',
+                        start: 29,
+                        end: 30,
+                        range: [29, 30],
+                        loc: {
+                          start: {
+                            line: 2,
+                            column: 14
+                          },
+                          end: {
+                            line: 2,
+                            column: 15
+                          }
+                        }
+                      }
+                    ],
+                    quasis: [
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: '1234',
+                          raw: '1234'
+                        },
+                        tail: false,
+                        start: 23,
+                        end: 27,
+                        range: [23, 27],
+                        loc: {
+                          start: {
+                            line: 2,
+                            column: 8
+                          },
+                          end: {
+                            line: 2,
+                            column: 12
+                          }
+                        }
+                      },
+                      {
+                        type: 'TemplateElement',
+                        value: {
+                          cooked: '',
+                          raw: ''
+                        },
+                        tail: true,
+                        start: 31,
+                        end: 31,
+                        range: [31, 31],
+                        loc: {
+                          start: {
+                            line: 2,
+                            column: 16
+                          },
+                          end: {
+                            line: 2,
+                            column: 16
+                          }
+                        }
+                      }
+                    ],
+                    start: 22,
+                    end: 32,
+                    range: [22, 32],
+                    loc: {
+                      start: {
+                        line: 2,
+                        column: 7
+                      },
+                      end: {
+                        line: 2,
+                        column: 17
+                      }
+                    }
+                  },
+                  start: 15,
+                  end: 33,
+                  range: [15, 33],
+                  loc: {
+                    start: {
+                      line: 2,
+                      column: 0
+                    },
+                    end: {
+                      line: 2,
+                      column: 18
+                    }
+                  }
+                }
+              ],
+              start: 13,
+              end: 35,
+              range: [13, 35],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 13
+                },
+                end: {
+                  line: 3,
+                  column: 1
+                }
+              }
+            },
+            async: false,
+            generator: false,
+            start: 0,
+            end: 35,
+            range: [0, 35],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 3,
+                column: 1
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 36,
+        range: [0, 36],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 4,
+            column: 0
+          }
+        }
+      }
     ]
   ]);
 });
