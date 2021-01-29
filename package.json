@@ -59,7 +59,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "lint": "eslint \"{src,test,scripts}/**/*.{ts,js}\"",
+    "lint": "eslint \"{src,test}/**/*.{ts,js}\"",
     "prettier": "node ./scripts/prettier.js write-changed",
     "prettier-all": "node ./scripts/prettier.js write",
     "bundle": "cross-env rimraf dist && node scripts/bundle.js",
