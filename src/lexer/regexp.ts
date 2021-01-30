@@ -1,7 +1,8 @@
 import { Chars } from '../chars';
 import { Context, ParserState } from '../common';
 import { Token } from '../token';
-import { advanceChar, isIdentifierPart } from './';
+import { advanceChar } from './common';
+import { isIdentifierPart } from './charClassifier';
 import { report, Errors } from '../errors';
 
 /**

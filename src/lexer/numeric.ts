@@ -1,6 +1,7 @@
 import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
-import { advanceChar, toHex, CharTypes, CharFlags, isIdentifierStart, NumberKind } from './';
+import { advanceChar, toHex, NumberKind } from './common';
+import { CharTypes, CharFlags, isIdentifierStart } from './charClassifier';
 import { Chars } from '../chars';
 import { report, Errors, reportScannerError } from '../errors';
 
