@@ -1,4 +1,5 @@
 const { join } = require('path');
+const fs = require('fs');
 const rollup = require('rollup');
 const typescript2 = require('rollup-plugin-typescript2');
 const { terser } = require('rollup-plugin-terser');
@@ -14,6 +15,8 @@ async function bundle() {
   } else {
     await bundleES6();
     await bundleES5();
+    await fs.promises.copyFile('./dist/meriyah.umd.js', './dist/meriyah.umd.cjs');
+    await fs.promises.copyFile('./dist/meriyah.umd.min.js', './dist/meriyah.umd.min.cjs');
   }
 }
 
