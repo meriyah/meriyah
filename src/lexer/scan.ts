@@ -511,7 +511,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           }
           return Token.Period;
 
-        // `|`, `||`, `|=`
+        // `|`, `||`, `|=`, `||=`
         case Token.BitwiseOr: {
           advanceChar(parser);
 
@@ -519,6 +519,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           if (ch === Chars.VerticalBar) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.LogicalOrAssign;
+            }
+
             return Token.LogicalOr;
           }
           if (ch === Chars.EqualSign) {
@@ -563,7 +569,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.ShiftRight;
         }
 
-        // `&`, `&&`, `&=`
+        // `&`, `&&`, `&=`, `&&=`
         case Token.BitwiseAnd: {
           advanceChar(parser);
 
@@ -571,6 +577,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           if (ch === Chars.Ampersand) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.LogicalAndAssign;
+            }
+
             return Token.LogicalAnd;
           }
 
@@ -582,11 +594,17 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.BitwiseAnd;
         }
 
-        // `?`, `??`, `?.`
+        // `?`, `??`, `?.`, `??=`
         case Token.QuestionMark: {
           let ch = advanceChar(parser);
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.CoalesceAssign;
+            }
+
             return Token.Coalesce;
           }
 
