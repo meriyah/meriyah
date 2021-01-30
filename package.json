@@ -13,7 +13,6 @@
   },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",
-  "author": "KFlash",
   "license": "ISC",
   "homepage": "https://github.com/meriyah/meriyah",
   "repository": {
@@ -96,7 +95,7 @@
     "path": "^0.12.7",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.36.1",
+    "rollup": "^2.38.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "source-map-support": "^0.5.19",
