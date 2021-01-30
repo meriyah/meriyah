@@ -5,26 +5,20 @@ import { report, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 import {
   advanceChar,
-  skipSingleLineComment,
-  skipMultiLineComment,
-  skipSingleHTMLComment,
-  CommentType,
   LexerState,
   isExoticECMAScriptWhitespace,
-  scanRegularExpression,
-  scanTemplate,
-  scanNumber,
   NumberKind,
-  scanString,
-  scanIdentifier,
-  scanUnicodeIdentifier,
-  scanIdentifierSlowCase,
-  scanPrivateIdentifier,
   fromCodePoint,
   consumeLineFeed,
   scanNewLine,
   convertTokenType
-} from './';
+} from './common';
+import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
+import { scanRegularExpression } from './regexp';
+import { scanTemplate } from './template';
+import { scanNumber } from './numeric';
+import { scanString } from './string';
+import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier } from './identifier';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
