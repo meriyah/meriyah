@@ -29,11 +29,12 @@ module.exports = {
       }
     },
     {
+      // currently ignored in .eslintignore because eslint didn't
+      // respect scripts/package.json overrides type:commonjs
       files: ['scripts/*.js'],
-      rules:
-        {
-          "node/no-unsupported-features/es-syntax": ["error", {"version": "10.0", "ignores": []}]
-        }
+      rules: {
+        "node/no-unsupported-features/es-syntax": ["error", {"version": "10.0", "ignores": []}]
+      }
     }
   ]
 };

@@ -6,6 +6,11 @@
   "module": "dist/meriyah.esm.js",
   "jsnext:main": "dist/meriyah.esm.js",
   "browser": "dist/meriyah.umd.js",
+  "type": "module",
+  "exports": {
+    "import": "./dist/meriyah.esm.js",
+    "require": "./dist/meriyah.umd.js"
+  },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",
   "author": "KFlash",
@@ -54,7 +59,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "lint": "eslint \"{src,test,scripts}/**/*.{ts,js}\"",
+    "lint": "eslint \"{src,test}/**/*.{ts,js}\"",
     "prettier": "node ./scripts/prettier.js write-changed",
     "prettier-all": "node ./scripts/prettier.js write",
     "bundle": "cross-env rimraf dist && node scripts/bundle.js",

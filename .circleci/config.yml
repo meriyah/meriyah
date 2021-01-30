@@ -35,7 +35,7 @@ executors:
     parameters:
       node:
         type: string
-        default: "10.12"
+        default: "14"
     working_directory: ~/repo
     docker:
       - image: "circleci/node:<< parameters.node >>-stretch-browsers"
@@ -67,13 +67,19 @@ jobs:
     <<: *test
     executor:
       name: docker-circleci
-      node: "10.12"
+      node: "10"
 
   test-12:
     <<: *test
     executor:
       name: docker-circleci
-      node: "12.9"
+      node: "12"
+
+  test-14:
+    <<: *test
+    executor:
+      name: docker-circleci
+      node: "14"
 
   publish_dev:
     executor: docker-circleci
@@ -148,6 +154,8 @@ workflows:
           <<: *filter_ignore_dev
       - test-12:
           <<: *filter_ignore_dev
+      - test-14:
+          <<: *filter_ignore_dev
 
   publish_nightly:
     jobs:
@@ -165,6 +173,7 @@ workflows:
       - bundle
       - test-10
       - test-12
+      - test-14
       - merge_and_dist:
           requires:
             - build
@@ -172,3 +181,4 @@ workflows:
             - bundle
             - test-10
             - test-12
+            - test-14
