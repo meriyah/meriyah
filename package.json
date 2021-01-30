@@ -22,10 +22,13 @@
   "bugs": {
     "url": "https://github.com/meriyah/meriyah/issues"
   },
-  "authors": [
+  "author": {
+    "name": "Kenny F.",
+    "url": "https://github.com/KFlash"
+  },
+  "contributors": [
     {
       "name": "Chunpeng Huo",
-      "social": "@3cp",
       "url": "https://github.com/3cp"
     }
   ],
