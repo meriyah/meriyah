@@ -10,6 +10,7 @@ node_modules
 /packages/*/coverage
 /packages/*/.nyc_output
 /packages/*/.rpt2_cache
+package-lock.json
 yarn.lock
 *.log
 npm-debug.log*

@@ -46,21 +46,21 @@ jobs:
     executor: docker-circleci
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install
       - run: npm run build
 
   lint:
     executor: docker-circleci
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install
       - run: npm run lint
 
   bundle:
     executor: docker-circleci
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install
       - run: npm run bundle
 
   test-10:
@@ -85,7 +85,7 @@ jobs:
     executor: docker-circleci
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install
       - run:
           name: "Authenticate with registry"
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
@@ -109,7 +109,7 @@ jobs:
         default: "chore(all): add latest build artifacts"
     steps:
       - checkout
-      - run: npm ci
+      - run: npm install
       - run: npm run bundle
       - run:
           name: "Configure git"

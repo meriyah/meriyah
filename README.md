@@ -17,7 +17,7 @@
 
 ## Features
 
-* Conforms to the standard ECMAScript® 2020 (ECMA-262 10th Edition) language specification
+* Conforms to the standard ECMAScript® 2021 (ECMA-262 11th Edition) language specification
 * Support TC39 proposals via option
 * Support for additional ECMAScript features for Web Browsers
 * JSX support via option
@@ -33,10 +33,6 @@
 * [Decorators](https://github.com/tc39/proposal-decorators)
 * [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
 * [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
-* [import.meta](https://github.com/tc39/proposal-import-meta)
-* [Nullish coalescing Operator](https://github.com/tc39/proposal-nullish-coalescing)
-* [Numeric separators](https://github.com/tc39/proposal-numeric-separator)
-* [Optional Chaining](https://github.com/tc39/proposal-optional-chaining)
 * [Private methods](https://github.com/tc39/proposal-private-methods)
 * [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 
