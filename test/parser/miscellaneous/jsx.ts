@@ -12005,6 +12005,149 @@ describe('Miscellaneous - JSX', () => {
           }
         }
       }
+    ],
+    [
+      '<div>&nbsp;&amp;</div>',
+      Context.OptionsJSX | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsRaw,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [
+                {
+                  type: 'JSXText',
+                  value: '\u00a0&',
+                  raw: '&nbsp;&amp;',
+                  start: 5,
+                  end: 16,
+                  range: [5, 16],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 5
+                    },
+                    end: {
+                      line: 1,
+                      column: 16
+                    }
+                  }
+                }
+              ],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'div',
+                  start: 1,
+                  end: 4,
+                  range: [1, 4],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 1
+                    },
+                    end: {
+                      line: 1,
+                      column: 4
+                    }
+                  }
+                },
+                attributes: [],
+                selfClosing: false,
+                start: 0,
+                end: 5,
+                range: [0, 5],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 5
+                  }
+                }
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'div',
+                  start: 18,
+                  end: 21,
+                  range: [18, 21],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 18
+                    },
+                    end: {
+                      line: 1,
+                      column: 21
+                    }
+                  }
+                },
+                start: 16,
+                end: 22,
+                range: [16, 22],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 16
+                  },
+                  end: {
+                    line: 1,
+                    column: 22
+                  }
+                }
+              },
+              start: 0,
+              end: 22,
+              range: [0, 22],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 22
+                }
+              }
+            },
+            start: 0,
+            end: 22,
+            range: [0, 22],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 22
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 22,
+        range: [0, 22],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 22
+          }
+        }
+      }
     ]
   ]);
 });
