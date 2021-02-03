@@ -4,6 +4,7 @@ import { Token } from '../token';
 import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
 import { advanceChar, LexerState, TokenLookup, scanSingleToken, scanNewLine, consumeLineFeed } from './';
+import { decodeHTMLStrict } from './decodeHTML';
 
 /**
  * Scans JSX attribute value
@@ -96,8 +97,9 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
         if (CharTypes[parser.currentChar] & CharFlags.JSXToken) break;
       }
 
-      parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
-      if (context & Context.OptionsRaw) parser.tokenRaw = parser.tokenValue;
+      const raw = parser.source.slice(parser.tokenPos, parser.index);
+      if (context & Context.OptionsRaw) parser.tokenRaw = raw;
+      parser.tokenValue = decodeHTMLStrict(raw);
       parser.token = Token.JSXText;
     }
   }
