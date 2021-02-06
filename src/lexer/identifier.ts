@@ -1,7 +1,7 @@
 import { ParserState, Context } from '../common';
 import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
-import { advanceChar, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './';
+import { advanceChar, consumeMultiUnitCodePoint, fromCodePoint, toHex } from './common';
 import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
 import { report, reportScannerError, Errors } from '../errors';
 

@@ -5,26 +5,20 @@ import { report, Errors } from '../errors';
 import { unicodeLookup } from '../unicode';
 import {
   advanceChar,
-  skipSingleLineComment,
-  skipMultiLineComment,
-  skipSingleHTMLComment,
-  CommentType,
   LexerState,
   isExoticECMAScriptWhitespace,
-  scanRegularExpression,
-  scanTemplate,
-  scanNumber,
   NumberKind,
-  scanString,
-  scanIdentifier,
-  scanUnicodeIdentifier,
-  scanIdentifierSlowCase,
-  scanPrivateIdentifier,
   fromCodePoint,
   consumeLineFeed,
   scanNewLine,
   convertTokenType
-} from './';
+} from './common';
+import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
+import { scanRegularExpression } from './regexp';
+import { scanTemplate } from './template';
+import { scanNumber } from './numeric';
+import { scanString } from './string';
+import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier } from './identifier';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
@@ -511,7 +505,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           }
           return Token.Period;
 
-        // `|`, `||`, `|=`
+        // `|`, `||`, `|=`, `||=`
         case Token.BitwiseOr: {
           advanceChar(parser);
 
@@ -519,6 +513,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           if (ch === Chars.VerticalBar) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.LogicalOrAssign;
+            }
+
             return Token.LogicalOr;
           }
           if (ch === Chars.EqualSign) {
@@ -563,7 +563,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.ShiftRight;
         }
 
-        // `&`, `&&`, `&=`
+        // `&`, `&&`, `&=`, `&&=`
         case Token.BitwiseAnd: {
           advanceChar(parser);
 
@@ -571,6 +571,12 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
 
           if (ch === Chars.Ampersand) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.LogicalAndAssign;
+            }
+
             return Token.LogicalAnd;
           }
 
@@ -582,11 +588,17 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return Token.BitwiseAnd;
         }
 
-        // `?`, `??`, `?.`
+        // `?`, `??`, `?.`, `??=`
         case Token.QuestionMark: {
           let ch = advanceChar(parser);
           if (ch === Chars.QuestionMark) {
             advanceChar(parser);
+
+            if (parser.currentChar === Chars.EqualSign) {
+              advanceChar(parser);
+              return Token.CoalesceAssign;
+            }
+
             return Token.Coalesce;
           }
 
