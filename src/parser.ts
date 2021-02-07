@@ -7876,10 +7876,7 @@ export function parseClassDeclaration(
 
   const { tokenValue } = parser;
 
-  if (
-    ((parser.token & 0b0000000000000000001_0000_11111111) ^ 0b0000000000000000000_0000_01010100) >
-    0b0000000000000000001_0000_00000000
-  ) {
+  if (parser.token & Token.Keyword && parser.token !== Token.ExtendsKeyword) {
     if (isStrictReservedWord(parser, context, parser.token)) {
       report(parser, Errors.UnexpectedStrictReserved);
     }
@@ -7984,7 +7981,7 @@ export function parseClassExpression(
 
   nextToken(parser, context);
 
-  if (((parser.token & 0x10ff) ^ 0x54) > 0x1000) {
+  if (parser.token & Token.Keyword && parser.token !== Token.ExtendsKeyword) {
     if (isStrictReservedWord(parser, context, parser.token)) report(parser, Errors.UnexpectedStrictReserved);
     if ((parser.token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
       report(parser, Errors.StrictEvalArguments);

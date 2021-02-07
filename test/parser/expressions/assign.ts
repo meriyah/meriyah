@@ -651,6 +651,146 @@ describe('Expressions - Assign', () => {
         ],
         sourceType: 'script'
       }
+    ],
+    [
+      'a ||= b',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              operator: '||=',
+              right: {
+                type: 'Identifier',
+                name: 'b'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'a &&= b',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              operator: '&&=',
+              right: {
+                type: 'Identifier',
+                name: 'b'
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'a ??= b',
+      Context.None | Context.OptionsRanges | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a',
+                start: 0,
+                end: 1,
+                range: [0, 1],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 1
+                  }
+                }
+              },
+              operator: '??=',
+              right: {
+                type: 'Identifier',
+                name: 'b',
+                start: 6,
+                end: 7,
+                range: [6, 7],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 6
+                  },
+                  end: {
+                    line: 1,
+                    column: 7
+                  }
+                }
+              },
+              start: 0,
+              end: 7,
+              range: [0, 7],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 7
+                }
+              }
+            },
+            start: 0,
+            end: 7,
+            range: [0, 7],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 7
+              }
+            }
+          }
+        ],
+        start: 0,
+        end: 7,
+        range: [0, 7],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 7
+          }
+        }
+      }
     ]
   ]);
 });
