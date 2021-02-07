@@ -22,16 +22,12 @@ export class App extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      jsCode: "",
+      jsCode: getCodeFromLocalStage(),
       settings: { module: true },
       menuOpened: true
     };
   }
 
-  componentWillMount() {
-    this.setState({ jsCode: getCodeFromLocalStage() });
-    this.parse();
-  }
   private jsonEditor;
   private tm;
 

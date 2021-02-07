@@ -9,13 +9,13 @@ class Context {
 
       entry: 'repl-src/index.tsx',
       webIndex: {
-        publicPath: '/meriyah/',
+        publicPath: this.isProduction ? '/meriyah/' : '/',
         template: 'repl-src/index.html',
         embedIndexedBundles: this.isProduction
       },
       resources: {
         resourceFolder: './resources',
-        resourcePublicRoot: './resources'
+        resourcePublicRoot: this.isProduction ? '/meriyah/resources' : '/resources'
       },
 
       hmr: true,

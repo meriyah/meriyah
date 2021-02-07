@@ -20,6 +20,7 @@ yarn-error.log*
 .fuzz-output
 .DS_Store
 cherow-rewritten.js
+/.cache
 
 # fuzz output
 /packages/cherow/.fuzz-output/
