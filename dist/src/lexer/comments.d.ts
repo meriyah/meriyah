@@ -1,4 +1,4 @@
-import { LexerState } from './';
+import { LexerState } from './common';
 import { Context, ParserState } from '../common';
 export declare const enum CommentType {
     Single = 0,
