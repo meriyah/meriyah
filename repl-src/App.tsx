@@ -2,7 +2,7 @@ import * as React from "react";
 import { LeftMenu } from "./LeftMenu";
 import "./styles/main.scss";
 import { Editor } from "./editor";
-import * as meriyah from "../meriyah.umd.js";
+import * as meriyah from "meriyah";
 
 import { Header } from "./Header";
 import { DEFAULT_CODE } from "./config";

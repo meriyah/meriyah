@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { version } from 'meriyah';
 import { CheckBox } from './ui/CheckBox/CheckBox';
 import { __values } from 'tslib';
 import './styles/LeftMenu.scss';
@@ -38,6 +39,9 @@ export class LeftMenu extends React.Component<ILeftMenuInterface, any> {
       <div className="left-menu">
         <div className="logo" />
         <div className="section">
+          <div className="block">
+            v{ version }
+          </div>
           {LEFT_MENU_CONFIG.map(cat => {
             return (
               <div key={cat.category} className="block">
