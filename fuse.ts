@@ -18,7 +18,7 @@ class Context {
       },
       resources: {
         resourceFolder: './resources',
-        resourcePublicRoot: '/resources'
+        resourcePublicRoot: this.isProduction ? '/meriyah/resources' : '/resources'
       },
 
       hmr: true,
