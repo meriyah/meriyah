@@ -9,6 +9,7 @@ class Context {
 
       entry: 'repl-src/index.tsx',
       webIndex: {
+        publicPath: '/meriyah/',
         template: 'repl-src/index.html',
         embedIndexedBundles: this.isProduction
       },
@@ -22,21 +23,24 @@ class Context {
     });
   }
 }
-const { task } = sparky<Context>(Context);
+const { rm, task } = sparky<Context>(Context);
 
 task('default', async ctx => {
+  rm('docs');
   ctx.runServer = true;
   const fuse = ctx.getConfig();
   await fuse.runDev({ bundles: { distRoot: 'docs' } });
 });
 
 task('preview', async ctx => {
+  rm('docs');
   ctx.runServer = true;
   ctx.isProduction = true;
   const fuse = ctx.getConfig();
   await fuse.runProd({ uglify: true, bundles: { distRoot: 'docs' } });
 });
 task('dist', async ctx => {
+  rm('docs');
   ctx.runServer = false;
   ctx.isProduction = true;
   const fuse = ctx.getConfig();
