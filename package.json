@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "fuse-box": "4.0.0-alpha.49",
+    "fuse-box": "^4.0.0",
     "node-sass": "^5.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
