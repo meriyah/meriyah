@@ -8773,7 +8773,7 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
-      var version = "4.0.0";
+      var version = "4.1.0";
 
       const version$1 = exports('version', version);
       function parseScript(source, options) {
