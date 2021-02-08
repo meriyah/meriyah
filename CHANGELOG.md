@@ -1,3 +1,19 @@
+# [4.1.0](https://github.com/meriyah/meriyah/compare/v4.0.0...v4.1.0) (2021-02-07)
+
+
+### Bug Fixes
+
+* **jsx:** decode html entities for JSXText value ([f8121f0](https://github.com/meriyah/meriyah/commit/f8121f04dbb000fc74b664496f7cf22d72477e1c)), closes [#133](https://github.com/meriyah/meriyah/issues/133)
+* **parser:** fix wrong loc for BinaryExpression ([ab1ab37](https://github.com/meriyah/meriyah/commit/ab1ab37f36c449d7a1247debdd4457f94c62bf1f)), closes [#169](https://github.com/meriyah/meriyah/issues/169)
+* **parser:** fix wrong loc for TemplateLiteral ([a893c16](https://github.com/meriyah/meriyah/commit/a893c1664fdc0b403aa8cb482f9443d9d97c7e1d)), closes [#167](https://github.com/meriyah/meriyah/issues/167)
+
+
+### Features
+
+* add support of logical assignment ||=, &&=, and ??= ([2a5f12e](https://github.com/meriyah/meriyah/commit/2a5f12e2566f23ad280077c15dee16ca79e0d9ad)), closes [#168](https://github.com/meriyah/meriyah/issues/168)
+
+
+
 # [4.0.0](https://github.com/meriyah/meriyah/compare/v3.1.6...v4.0.0) (2021-01-14)
 
 
