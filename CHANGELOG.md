@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/meriyah/meriyah/compare/v4.1.0...v4.1.1) (2021-02-09)
+
+
+### Bug Fixes
+
+* avoid rollup typescript cache ([d6462be](https://github.com/meriyah/meriyah/commit/d6462be14519dae16f1543918fe752d4bca9514d)), closes [#176](https://github.com/meriyah/meriyah/issues/176)
+
+
+
 # [4.1.0](https://github.com/meriyah/meriyah/compare/v4.0.0...v4.1.0) (2021-02-07)
 
 
