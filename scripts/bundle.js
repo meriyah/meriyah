@@ -29,7 +29,8 @@ async function bunldeCJS() {
     plugins: [
       typescript2({
         tsconfig: project['tsconfig.json'].path,
-        typescript: ts
+        typescript: ts,
+        clean: true
       }),
       json()
     ]
@@ -57,7 +58,8 @@ async function bundleES6() {
       plugins: [
         typescript2({
           tsconfig: project['tsconfig.json'].path,
-          typescript: ts
+          typescript: ts,
+          clean: true
         }),
         json(),
         ...(type === 'minified' ? [terser()] : [])
@@ -106,7 +108,8 @@ async function bundleES5() {
         typescript2({
           tsconfig: project['tsconfig.json'].path,
           tsconfigOverride: { compilerOptions: { target: 'es5' } },
-          typescript: ts
+          typescript: ts,
+          clean: true
         }),
         json(),
         ...(type === 'minified' ? [terser()] : [])
