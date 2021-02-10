@@ -5,8 +5,8 @@
   "main": "dist/meriyah.cjs",
   "module": "dist/meriyah.esm.js",
   "jsnext:main": "dist/meriyah.esm.js",
-  "browser": "dist/meriyah.umd.js",
-  "unpkg": "dist/meriyah.umd.js",
+  "browser": "dist/meriyah.umd.min.js",
+  "unpkg": "dist/meriyah.umd.min.js",
   "type": "module",
   "exports": {
     "import": "./dist/meriyah.esm.js",
