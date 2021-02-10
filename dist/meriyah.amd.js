@@ -8763,7 +8763,7 @@ define(['exports'], function (exports) { 'use strict';
     __proto__: null
   });
 
-  var version = "4.1.0";
+  var version = "4.1.1";
 
   const version$1 = version;
   function parseScript(source, options) {
