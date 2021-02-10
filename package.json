@@ -2,14 +2,15 @@
   "name": "meriyah",
   "version": "4.1.1",
   "description": "A 100% compliant, self-hosted javascript parser with high focus on both performance and stability",
-  "main": "dist/meriyah.umd.js",
+  "main": "dist/meriyah.cjs",
   "module": "dist/meriyah.esm.js",
   "jsnext:main": "dist/meriyah.esm.js",
   "browser": "dist/meriyah.umd.js",
+  "unpkg": "dist/meriyah.umd.js",
   "type": "module",
   "exports": {
     "import": "./dist/meriyah.esm.js",
-    "require": "./dist/meriyah.umd.cjs"
+    "require": "./dist/meriyah.cjs"
   },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",

@@ -15,6 +15,8 @@ async function bundle() {
   } else {
     await bundleES6();
     await bundleES5();
+    await copyFile('./dist/meriyah.cjs.js', './dist/meriyah.cjs');
+    await copyFile('./dist/meriyah.cjs.min.js', './dist/meriyah.min.cjs');
     await copyFile('./dist/meriyah.umd.js', './dist/meriyah.umd.cjs');
     await copyFile('./dist/meriyah.umd.min.js', './dist/meriyah.umd.min.cjs');
   }
