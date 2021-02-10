@@ -10,7 +10,7 @@
   "type": "module",
   "exports": {
     "import": "./dist/meriyah.esm.js",
-    "require": "./dist/meriyah.umd.cjs"
+    "require": "./dist/meriyah.cjs"
   },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",
