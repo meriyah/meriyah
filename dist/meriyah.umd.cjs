@@ -8767,7 +8767,7 @@
     __proto__: null
   });
 
-  var version = "4.1.1";
+  var version = "4.1.2";
 
   const version$1 = version;
   function parseScript(source, options) {
