@@ -17,7 +17,7 @@ export declare const enum CharFlags {
     JSXToken = 16384,
     Hyphen = 32768
 }
-export declare const CharTypes: number[];
+export declare const CharTypes: (number | CharFlags)[];
 export declare const isIdStart: number[];
 export declare const isIdPart: number[];
 export declare function isIdentifierStart(code: number): number;
