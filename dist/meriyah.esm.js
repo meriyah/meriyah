@@ -8761,9 +8761,9 @@ var estree = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
 
-var version = "4.1.2";
+var version$1 = "4.1.2";
 
-const version$1 = version;
+const version = version$1;
 function parseScript(source, options) {
     return parseSource(source, options, 0);
 }
@@ -8774,4 +8774,4 @@ function parse(source, options) {
     return parseSource(source, options, 0);
 }
 
-export { estree as ESTree, parse, parseModule, parseScript, version$1 as version };
+export { estree as ESTree, parse, parseModule, parseScript, version };

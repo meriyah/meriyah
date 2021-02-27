@@ -8764,9 +8764,9 @@ var meriyah = (function (exports) {
     __proto__: null
   });
 
-  var version = "4.1.2";
+  var version$1 = "4.1.2";
 
-  const version$1 = version;
+  const version = version$1;
   function parseScript(source, options) {
       return parseSource(source, options, 0);
   }
@@ -8781,7 +8781,7 @@ var meriyah = (function (exports) {
   exports.parse = parse;
   exports.parseModule = parseModule;
   exports.parseScript = parseScript;
-  exports.version = version$1;
+  exports.version = version;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
