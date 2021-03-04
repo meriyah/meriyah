@@ -23,6 +23,9 @@ describe('Declarations - Function', () => {
   }
 
   for (const arg of [
+    'function 10() {}',
+    'function 0x7F() {}',
+    'function "str"() {}',
     'try function foo() {} catch (e) {}',
     'do function foo() {} while (0);',
     'for (;false;) function foo() {}',
