@@ -4817,7 +4817,11 @@ export function parseFunctionDeclaration(
 
     firstRestricted = parser.token;
 
-    id = parseIdentifier(parser, context, 0);
+    if (parser.token & Token.IsIdentifier) {
+      id = parseIdentifier(parser, context, 0);
+    } else {
+      report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+    }
   }
 
   context =
