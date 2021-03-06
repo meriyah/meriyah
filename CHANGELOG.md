@@ -1,3 +1,12 @@
+## [4.1.5](https://github.com/meriyah/meriyah/compare/v4.1.4...v4.1.5) (2021-03-05)
+
+
+### Bug Fixes
+
+* **parser:** fix missing rejection on function name ([3327326](https://github.com/meriyah/meriyah/commit/332732676e4a55d8d1c3269d9354a8ed02facd68)), closes [#182](https://github.com/meriyah/meriyah/issues/182)
+
+
+
 ## [4.1.4](https://github.com/meriyah/meriyah/compare/v4.1.3...v4.1.4) (2021-02-28)
 
 
