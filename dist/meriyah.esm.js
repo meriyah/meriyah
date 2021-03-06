@@ -6607,7 +6607,12 @@ function parseFunctionDeclaration(parser, context, scope, origin, allowGen, flag
             }
         }
         firstRestricted = parser.token;
-        id = parseIdentifier(parser, context, 0);
+        if (parser.token & 143360) {
+            id = parseIdentifier(parser, context, 0);
+        }
+        else {
+            report(parser, 28, KeywordDescTable[parser.token & 255]);
+        }
     }
     context =
         ((context | 32243712) ^ 32243712) |
@@ -8761,7 +8766,7 @@ var estree = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
 
-var version$1 = "4.1.4";
+var version$1 = "4.1.5";
 
 const version = version$1;
 function parseScript(source, options) {

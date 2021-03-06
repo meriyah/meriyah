@@ -6618,7 +6618,12 @@ System.register('meriyah', [], function (exports) {
                   }
               }
               firstRestricted = parser.token;
-              id = parseIdentifier(parser, context, 0);
+              if (parser.token & 143360) {
+                  id = parseIdentifier(parser, context, 0);
+              }
+              else {
+                  report(parser, 28, KeywordDescTable[parser.token & 255]);
+              }
           }
           context =
               ((context | 32243712) ^ 32243712) |
@@ -8773,7 +8778,7 @@ System.register('meriyah', [], function (exports) {
       });
       exports('ESTree', estree);
 
-      var version$1 = "4.1.4";
+      var version$1 = "4.1.5";
 
       const version = exports('version', version$1);
       function parseScript(source, options) {
