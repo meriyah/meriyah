@@ -3613,6 +3613,8 @@ export function parseAwaitExpression(
       parser.colPos
     );
 
+    if (parser.token === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
+
     parser.assignable = AssignmentKind.CannotAssign;
 
     return finishNode(parser, context, start, line, column, {
