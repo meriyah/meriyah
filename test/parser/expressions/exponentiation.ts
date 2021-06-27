@@ -80,7 +80,8 @@ describe('Expressions - Exponentiation', () => {
     ['(!3 ** 2)', Context.None],
     ['(+x ** 2)', Context.None],
     ['(a * +a ** a ** 3)', Context.None],
-    ['for (var import.meta of [1]) {}', Context.None]
+    ['for (var import.meta of [1]) {}', Context.None],
+    ['async function f() { await 2 ** 2; }', Context.None]
   ]);
 
   for (const arg of [
@@ -672,6 +673,122 @@ describe('Expressions - Exponentiation', () => {
               },
               operator: '*'
             }
+          }
+        ]
+      }
+    ],
+    [
+      '(+1) ** 2',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'UnaryExpression',
+                operator: '+',
+                argument: {
+                  type: 'Literal',
+                  value: 1
+                },
+                prefix: true
+              },
+              right: {
+                type: 'Literal',
+                value: 2
+              },
+              operator: '**'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'async function f() { (await 2) ** 2; }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            },
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'AwaitExpression',
+                      argument: {
+                        type: 'Literal',
+                        value: 2
+                      }
+                    },
+                    right: {
+                      type: 'Literal',
+                      value: 2
+                    },
+                    operator: '**'
+                  }
+                }
+              ]
+            },
+            async: true,
+            generator: false
+          }
+        ]
+      }
+    ],
+    [
+      'async function f() { await (2 ** 2); }',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'FunctionDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'f'
+            },
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: [
+                {
+                  type: 'ExpressionStatement',
+                  expression: {
+                    type: 'AwaitExpression',
+                    argument: {
+                      type: 'BinaryExpression',
+                      left: {
+                        type: 'Literal',
+                        value: 2
+                      },
+                      right: {
+                        type: 'Literal',
+                        value: 2
+                      },
+                      operator: '**'
+                    }
+                  }
+                }
+              ]
+            },
+            async: true,
+            generator: false
           }
         ]
       }
