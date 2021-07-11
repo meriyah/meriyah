@@ -1,3 +1,18 @@
+# [4.2.0](https://github.com/meriyah/meriyah/compare/v4.1.5...v4.2.0) (2021-07-11)
+
+
+### Bug Fixes
+
+* **parser:** keep InGlobal flag in parenthesized ([023ee0e](https://github.com/meriyah/meriyah/commit/023ee0e36fc28e75d0448739b8343ec801ac887f))
+* **parser:** rejects "await 2**2" ([9a75bf6](https://github.com/meriyah/meriyah/commit/9a75bf67c9a6d22d28accc782665ed614a5a66c1)), closes [#187](https://github.com/meriyah/meriyah/issues/187)
+
+
+### Features
+
+* **parser:** support top-level await ([7b2a5bd](https://github.com/meriyah/meriyah/commit/7b2a5bd5832cfa4c98dac4219f22901c6eb28196)), closes [#186](https://github.com/meriyah/meriyah/issues/186)
+
+
+
 ## [4.1.5](https://github.com/meriyah/meriyah/compare/v4.1.4...v4.1.5) (2021-03-05)
 
 
