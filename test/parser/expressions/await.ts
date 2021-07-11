@@ -840,6 +840,36 @@ describe('Expressions - Await', () => {
       }
     ],
     [
+      'const foo = (await bar)',
+      Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'VariableDeclaration',
+            kind: 'const',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                init: {
+                  type: 'AwaitExpression',
+                  argument: {
+                    type: 'Identifier',
+                    name: 'bar'
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
       'async function f(){ if (await \n x) {} }',
       Context.None,
       {
