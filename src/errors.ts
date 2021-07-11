@@ -274,7 +274,6 @@ export const errorMessages: {
   [Errors.IllegalReturn]: 'Illegal return statement',
   [Errors.InvalidForLHSBinding]: 'The left hand side of the for-header binding declaration is not destructible',
   [Errors.InvalidNewTarget]: 'new.target only allowed within functions',
-  [Errors.InvalidEscapedKeyword]: "'Unexpected token: 'escaped keyword'",
   [Errors.MissingPrivateIdentifier]: "'#' not followed by identifier",
   [Errors.KeywordNotId]: 'Invalid keyword',
   [Errors.InvalidLetClassName]: "Can not use 'let' as a class name",

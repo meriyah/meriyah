@@ -6750,7 +6750,7 @@ export function parseParenthesizedExpression(
 
   const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
-  context = (context | Context.DisallowIn | Context.InGlobal) ^ (Context.InGlobal | Context.DisallowIn);
+  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   if (consumeOpt(parser, context, Token.RightParen)) {
     // Not valid expression syntax, but this is valid in an arrow function

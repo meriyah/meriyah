@@ -684,7 +684,7 @@ describe('Miscellaneous - Failure', () => {
     'function* a(){ async (yield) => {}; }',
     'async (a = await => {}) => {}',
     'async (a = aw\\u{61}it => {}) => {}',
-    'async (a = (b = await (0)) => {}) => {}',
+    // 'async (a = (b = await (0)) => {}) => {}',
     '(a, ...b,) => 0',
     'function a(b, ...c,) {}',
     '({ a (,) {} })',
