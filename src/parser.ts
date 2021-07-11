@@ -3593,7 +3593,7 @@ export function parseAwaitExpression(
   column: number
 ): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
   if (inGroup) parser.destructible |= DestructuringKind.Await;
-  if (context & Context.InAwaitContext) {
+  if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
     if (inNew) report(parser, Errors.Unexpected);
 
     if (context & Context.InArgumentList) {
@@ -3623,8 +3623,7 @@ export function parseAwaitExpression(
     });
   }
 
-  if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
-
+  if (context & Context.Module) report(parser, Errors.AwaitOutsideAsync);
   return parseIdentifierOrArrow(parser, context, start, line, column);
 }
 
@@ -6751,7 +6750,7 @@ export function parseParenthesizedExpression(
 
   const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
-  context = (context | Context.DisallowIn | Context.InGlobal) ^ (Context.InGlobal | Context.DisallowIn);
+  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   if (consumeOpt(parser, context, Token.RightParen)) {
     // Not valid expression syntax, but this is valid in an arrow function

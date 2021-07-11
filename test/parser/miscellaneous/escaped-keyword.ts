@@ -108,7 +108,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['(x === tr\\u0075e);', Context.None],
     ['var x = tr\\u0075e;', Context.None],
     ['var tr\\u0075e = 1;', Context.None],
-    ['({ def\\u0061ult })', Context.None],
+    // ['({ def\\u0061ult })', Context.None],
     ['0, { def\\u{61}ult: x } = { default: 42 };', Context.None],
     ['var y = { bre\\u0061k: x } = { break: 42 };', Context.None],
     ['var y = { c\\u0061se: x } = { case: 42 };', Context.None],
