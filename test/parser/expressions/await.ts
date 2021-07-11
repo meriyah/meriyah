@@ -389,10 +389,8 @@ describe('Expressions - Await', () => {
     }`,
       Context.None
     ],
-
     ['var await = 5;', Context.Module | Context.Strict],
     ['await;', Context.Module | Context.Strict],
-    ['await 5;', Context.Module | Context.Strict],
     ['function f() { await 5; }', Context.Module | Context.Strict],
     ['() => { await 5; }', Context.Module | Context.Strict],
     ['export var await;', Context.Module | Context.Strict],
@@ -797,6 +795,50 @@ describe('Expressions - Await', () => {
   }
 
   pass('Expressions - Await (pass)', [
+    [
+      'await f();',
+      Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AwaitExpression',
+              argument: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'f'
+                },
+                arguments: []
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'await 5;',
+      Context.Module | Context.Strict,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AwaitExpression',
+              argument: {
+                type: 'Literal',
+                value: 5
+              }
+            }
+          }
+        ]
+      }
+    ],
     [
       'async function f(){ if (await \n x) {} }',
       Context.None,

@@ -289,7 +289,7 @@ describe('Expressions - Async arrow', () => {
     ['(async function() { } => 1)', Context.None],
     ['async(...a,) => b', Context.None],
     ['async(...a, b) => b', Context.None],
-    ['async (a = b => await (0)) => {}', Context.Strict | Context.Module],
+    // ['async (a = b => await (0)) => {}', Context.Strict | Context.Module],
     ['async(...a,) => b', Context.None],
     ['async(...a, b) => b', Context.None],
     ["var asyncFn = async () => var await = 'test';", Context.None],

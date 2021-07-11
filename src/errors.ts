@@ -289,7 +289,6 @@ export const errorMessages: {
   [Errors.InvalidDefaultImport]: "Only '*' or '{...}' can be imported after default",
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
-  [Errors.AwaitOrYieldIdentInModule]: "'%0' may not be used as an identifier in this context",
   [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compatibility (Annex B)',
   [Errors.StrictInvalidLetInExprPos]: "The identifier 'let' must not be in expression position in strict mode",
   [Errors.NotAssignableLetArgs]: 'Cannot assign to `eval` and `arguments` in strict mode',

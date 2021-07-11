@@ -3593,7 +3593,7 @@ export function parseAwaitExpression(
   column: number
 ): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
   if (inGroup) parser.destructible |= DestructuringKind.Await;
-  if (context & Context.InAwaitContext) {
+  if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
     if (inNew) report(parser, Errors.Unexpected);
 
     if (context & Context.InArgumentList) {
@@ -3623,8 +3623,7 @@ export function parseAwaitExpression(
     });
   }
 
-  if (context & Context.Module) report(parser, Errors.AwaitOrYieldIdentInModule, 'Await');
-
+  if (context & Context.Module) report(parser, Errors.AwaitOutsideAsync);
   return parseIdentifierOrArrow(parser, context, start, line, column);
 }
 
