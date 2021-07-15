@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node, Comment, Decorator, SourceLocation } from './estree';
+import { Node, Comment, Decorator, SourceLocation, Position, Location } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -133,7 +133,7 @@ export const enum Flags {
   SimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
   StrictEvalArguments = 1 << 9,
-  DisallowCall   = 1 << 10,
+  DisallowCall = 1 << 10,
   HasOptionalChaining = 1 << 11
 }
 
@@ -200,34 +200,133 @@ export interface ScopeError {
  * The parser interface.
  */
 export interface ParserState {
-  source: string;
-  flags: Flags;
-  index: number;
-  line: number;
-  column: number;
-  tokenPos: number;
-  startPos: number;
-  startColumn: number;
-  startLine: number;
-  colPos: number;
-  linePos: number;
-  end: number;
-  token: Token;
-  onComment: any;
-  onToken: any;
-  tokenValue: any;
-  tokenRaw: string;
+  /**
+   * The source code to be parsed
+   */
+  source: string
+
+  /**
+   * The mutable parser flags, in case any flags need passed by reference.
+   */
+  flags: Flags
+
+  /**
+   * The current index
+   */
+  index: number
+
+  /**
+   * Beginning of current line
+   */
+  line: number
+
+  /**
+   * Beginning of current column
+   */
+  column: number
+
+  /**
+   * Start position of whitespace before current token
+   */
+  startPos: number
+
+  /**
+   * The end of the source code
+   */
+  end: number
+
+  /**
+   * Start position of text of current token
+   */
+  tokenPos: number
+
+  /**
+   * Start position of the colum before newline
+   */
+  startColumn: number
+
+  /**
+   * Position in the input code of the first character after the last newline
+   */
+  colPos: number
+
+  /**
+   * The number of newlines
+   */
+  linePos: number
+
+  /**
+   * Start position of text of current token
+   */
+  startLine: number
+
+  /**
+   * Used together with source maps. File containing the code being parsed
+   */
+  sourceFile: string | void
+
+  /**
+   * Holds the scanned token value
+   */
+  tokenValue: any
+
+  /**
+   * The current token in the stream to consume
+   */
+  token: Token
+
+  /**
+   * Holds the raw text that have been scanned by the lexer
+   */
+  tokenRaw: string
+
+  /**
+   * Holds the regExp info text that have been collected by the lexer
+   */
   tokenRegExp: void | {
-    pattern: string;
-    flags: string;
-  };
-  sourceFile: string | void;
-  assignable: AssignmentKind | DestructuringKind;
-  destructible: AssignmentKind | DestructuringKind;
-  currentChar: number;
-  exportedNames: any;
-  exportedBindings: any;
-  leadingDecorators: Decorator[];
+    pattern: string
+    flags: string
+  }
+
+  /**
+   * The code point at the current index
+   */
+  currentChar: number
+
+  /**
+   *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
+   */
+  exportedNames: any
+
+  /**
+   * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
+   */
+  exportedBindings: any
+
+  /**
+   * Assignable state
+   */
+  assignable: AssignmentKind | DestructuringKind
+
+  /**
+   * Destructuring state
+   */
+  destructible: AssignmentKind | DestructuringKind
+
+  /**
+   * Holds either a function or array used on every comment
+   */
+  onComment: any
+
+  /**
+   * Holds either a function or array used on every token
+   */
+  onToken: any
+
+  /**
+   * Holds leading decorators before "export" or "class" keywords
+   */
+  leadingDecorators: Decorator[]
 }
 
 /**
@@ -406,11 +505,11 @@ export function validateFunctionName(
 
     if (t === Token.EscapedFutureReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
-     }
+    }
 
     if (t === Token.EscapedReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
-     }
+    }
   }
 
   if ((t & Token.Reserved) === Token.Reserved) {
@@ -769,7 +868,7 @@ export function addBindingToExports(parser: ParserState, name: string): void {
 }
 
 export function pushComment(context: Context, array: any[]): any {
-  return function(type: string, value: string, start: number, end: number, loc: SourceLocation) {
+  return function (type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
       value
@@ -788,7 +887,7 @@ export function pushComment(context: Context, array: any[]): any {
 }
 
 export function pushToken(context: Context, array: any[]): any {
-  return function(token: string, start: number, end: number, loc: SourceLocation) {
+  return function (token: string, start: number, end: number, loc: SourceLocation) {
     const tokens: any = {
       token
     };

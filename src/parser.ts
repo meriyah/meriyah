@@ -58,131 +58,30 @@ export function create(
   onToken: OnToken | void
 ): ParserState {
   return {
-    /**
-     * The source code to be parsed
-     */
     source,
-
-    /**
-     * The mutable parser flags, in case any flags need passed by reference.
-     */
     flags: Flags.None,
-
-    /**
-     * The current index
-     */
     index: 0,
-
-    /**
-     * Beginning of current line
-     */
     line: 1,
-
-    /**
-     * Beginning of current column
-     */
     column: 0,
-
-    /**
-     * Start position of whitespace before current token
-     */
     startPos: 0,
-
-    /**
-     * The end of the source code
-     */
     end: source.length,
-
-    /**
-     * Start position of text of current token
-     */
     tokenPos: 0,
-
-    /**
-     * Start position of the colum before newline
-     */
     startColumn: 0,
-
-    /**
-     * Position in the input code of the first character after the last newline
-     */
     colPos: 0,
-
-    /**
-     * The number of newlines
-     */
     linePos: 1,
-
-    /**
-     * Start position of text of current token
-     */
     startLine: 1,
-
-    /**
-     * Used together with source maps. File containing the code being parsed
-     */
-
     sourceFile,
-
-    /**
-     * Holds the scanned token value
-     */
     tokenValue: '',
-
-    /**
-     * The current token in the stream to consume
-     */
     token: Token.EOF,
-
-    /**
-     * Holds the raw text that have been scanned by the lexer
-     */
     tokenRaw: '',
-
-    /**
-     * Holds the regExp info text that have been collected by the lexer
-     */
     tokenRegExp: void 0,
-
-    /**
-     * The code point at the current index
-     */
     currentChar: source.charCodeAt(0),
-
-    /**
-     *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
-     */
     exportedNames: [],
-
-    /**
-     * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
-     */
-
     exportedBindings: [],
-
-    /**
-     * Assignable state
-     */
     assignable: 1,
-
-    /**
-     * Destructuring state
-     */
     destructible: 0,
-
-    /**
-     * Holds either a function or array used on every comment
-     */
     onComment,
-
-    /**
-     * Holds either a function or array used on every token
-     */
     onToken,
-
-    /**
-     * Holds leading decorators before "export" or "class" keywords
-     */
     leadingDecorators: []
   };
 }
@@ -191,41 +90,41 @@ export function create(
  * The parser options.
  */
 export interface Options {
-  // Allow module code
+  /** Allow module code */
   module?: boolean;
-  // Enable stage 3 support (ESNext)
+  /** Enable stage 3 support (ESNext) */
   next?: boolean;
-  // Enable start and end offsets to each node
+  /** Enable start and end offsets to each node */
   ranges?: boolean;
-  // Enable web compatibility
+  /** Enable web compatibility */
   webcompat?: boolean;
-  // Enable line/column location information to each node
+  /** Enable line/column location information to each node */
   loc?: boolean;
-  // Attach raw property to each literal and identifier node
+  /** Attach raw property to each literal and identifier node */
   raw?: boolean;
-  // Enabled directives
+  /** Enabled directives */
   directives?: boolean;
-  // Allow return in the global scope
+  /** Allow return in the global scope */
   globalReturn?: boolean;
-  // Enable implied strict mode
+  /** Enable implied strict mode */
   impliedStrict?: boolean;
-  // Enable non-standard parenthesized expression node
+  /** Enable non-standard parenthesized expression node */
   preserveParens?: boolean;
-  // Enable lexical binding and scope tracking
+  /** Enable lexical binding and scope tracking */
   lexical?: boolean;
-  // Adds a source attribute in every node’s loc object when the locations option is `true`
+  /** Adds a source attribute in every node’s loc object when the locations option is `true` */
   source?: string;
-  // Distinguish Identifier from IdentifierPattern
+  /** Distinguish Identifier from IdentifierPattern */
   identifierPattern?: boolean;
-  // Enable React JSX parsing
+  /** Enable React JSX parsing */
   jsx?: boolean;
-  // Allow edge cases that deviate from the spec
+  /** Allow edge cases that deviate from the spec */
   specDeviation?: boolean;
-  // Allows comment extraction. Accepts either a a callback function or an array
+  /** Allows comment extraction. Accepts either a a callback function or an array */
   onComment?: OnComment;
-  // Allows token extraction. Accepts either a a callback function or an array
+  /** Allows token extraction. Accepts either a a callback function or an array */
   onToken?: OnToken;
-  // Creates unique key for in ObjectPattern when key value are same
+  /** Creates unique key for in ObjectPattern when key value are same */
   uniqueKeyInPattern?: boolean;
 }
 
@@ -284,7 +183,8 @@ export function parseSource(source: string, options: Options | void, context: Co
 
     if (scope) {
       for (const key in parser.exportedBindings) {
-        if (key[0] === '#' && !(scope as any)[key]) report(parser, Errors.UndeclaredExportedBinding, key.slice(1));
+        if (key[0] === '#' && !(scope as any)[key])
+          report(parser, context, Errors.UndeclaredExportedBinding, key.slice(1));
       }
     }
   } else {
@@ -398,7 +298,11 @@ export function parseModuleItemList(
  * @param scope Scope object
  */
 
-export function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined): any {
+export function parseModuleItem(
+  parser: ParserState,
+  context: Context,
+  scope: ScopeState | undefined
+): ReturnType<typeof parseExportDeclaration | typeof parseImportDeclaration | typeof parseStatementListItem> {
   // Support legacy decorators before export keyword.
   parser.leadingDecorators = parseDecorators(parser, context);
 
@@ -421,7 +325,7 @@ export function parseModuleItem(parser: ParserState, context: Context, scope: Sc
   }
 
   if (parser.leadingDecorators.length) {
-    report(parser, Errors.InvalidLeadingDecorator);
+    report(parser, context, scope, Errors.InvalidLeadingDecorator);
   }
   return moduleItem;
 }
@@ -2083,7 +1987,6 @@ function parseVariableDeclaration(
         reportMessageAt(
           tokenPos,
           parser.line,
-          parser.index - 3,
           Errors.ForInOfLoopInitializer,
           parser.token === Token.OfKeyword ? 'of' : 'in'
         );

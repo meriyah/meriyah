@@ -22,7 +22,8 @@
     "target": "ES2020",
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types"],
-    "types": ["node", "mocha"]
+    "types": ["node", "mocha"],
+    "lib": [ "ES2016" ]
   },
   "include": ["src"]
 }
