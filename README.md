@@ -21,8 +21,9 @@
 * Support TC39 proposals via option
 * Support for additional ECMAScript features for Web Browsers
 * JSX support via option
+* Does **not** support TypeScript or Flow
 * Optionally track syntactic node locations
-* Emits an ESTree-compatible abstract syntax tree.
+* Emits an ESTree-compatible abstract syntax tree
 * No backtracking
 * Low memory usage
 * Very well tested (~99 000 unit tests with full code coverage)
