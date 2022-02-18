@@ -393,6 +393,113 @@ describe('Expressions - Logical', () => {
       }
     ],
     [
+      'a == b <= c',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '<='
+              },
+              operator: '=='
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'a == b >= c',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'Identifier',
+                name: 'a'
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                operator: '>='
+              },
+              operator: '=='
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'a >= b !== c >= d',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'BinaryExpression',
+              left: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
+                },
+                operator: '>='
+              },
+              right: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'c'
+                },
+                right: {
+                  type: 'Identifier',
+                  name: 'd'
+                },
+                operator: '>='
+              },
+              operator: '!=='
+            }
+          }
+        ]
+      }
+    ],
+    [
       'a << b < c',
       Context.None,
       {
