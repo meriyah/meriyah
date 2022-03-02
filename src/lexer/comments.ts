@@ -48,7 +48,7 @@ export function skipSingleHTMLComment(
   line: number,
   column: number
 ): LexerState {
-  if (context & Context.Module) report(parser, Errors.Unexpected);
+  if (context & Context.Module && !(context & Context.OptionsHTMLCommentModule)) report(parser, Errors.Unexpected);
   return skipSingleLineComment(parser, source, state, type, start, line, column);
 }
 

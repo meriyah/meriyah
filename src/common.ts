@@ -39,6 +39,7 @@ export const enum Context {
   OptionsSpecDeviation = 1 << 29,
   AllowEscapedKeyword = 1 << 30,
   OptionsUniqueKeyInPattern = 1 << 31,
+  OptionsHTMLCommentModule = 1 << 32,
 }
 
 /**

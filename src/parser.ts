@@ -227,6 +227,8 @@ export interface Options {
   onToken?: OnToken;
   // Creates unique key for in ObjectPattern when key value are same
   uniqueKeyInPattern?: boolean;
+  // Allow HTML comments when the module option is `true`
+  htmlCommentModule?: boolean;
 }
 
 /**
@@ -242,6 +244,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.loc) context |= Context.OptionsLoc;
     if (options.ranges) context |= Context.OptionsRanges;
     if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
+    if (options.htmlCommentModule) context |= Context.OptionsHTMLCommentModule;
     if (options.lexical) context |= Context.OptionsLexical;
     if (options.webcompat) context |= Context.OptionsWebCompat;
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
