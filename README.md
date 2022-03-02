@@ -79,6 +79,9 @@ This is the available options:
   // The flag to allow return in the global scope
   globalReturn: false;
 
+  // Allow HTML comments when the module option is `true`
+  htmlCommentModule: false;
+
   // The flag to enable implied strict mode
   impliedStrict: false;
 
