@@ -565,18 +565,48 @@ describe('Statements - Return', () => {
       }
     ],
     [
-      'function a(foo) { return x; }',
-      Context.None,
+      'function a(x) { return x+y; }',
+      Context.OptionsLoc | Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'FunctionDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 9,
+              end: 10,
+              range: [9, 10],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 9
+                },
+                end: {
+                  line: 1,
+                  column: 10
+                }
+              }
+            },
             params: [
               {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'x',
+                start: 11,
+                end: 12,
+                range: [11, 12],
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 11
+                  },
+                  end: {
+                    line: 1,
+                    column: 12
+                  }
+                }
               }
             ],
             body: {
@@ -585,21 +615,115 @@ describe('Statements - Return', () => {
                 {
                   type: 'ReturnStatement',
                   argument: {
-                    type: 'Identifier',
-                    name: 'x'
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: 'x',
+                      start: 23,
+                      end: 24,
+                      range: [23, 24],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 23
+                        },
+                        end: {
+                          line: 1,
+                          column: 24
+                        }
+                      }
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'y',
+                      start: 25,
+                      end: 26,
+                      range: [25, 26],
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 25
+                        },
+                        end: {
+                          line: 1,
+                          column: 26
+                        }
+                      }
+                    },
+                    operator: '+',
+                    start: 23,
+                    end: 26,
+                    range: [23, 26],
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 23
+                      },
+                      end: {
+                        line: 1,
+                        column: 26
+                      }
+                    }
+                  },
+                  start: 16,
+                  end: 27,
+                  range: [16, 27],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 16
+                    },
+                    end: {
+                      line: 1,
+                      column: 27
+                    }
                   }
                 }
-              ]
+              ],
+              start: 14,
+              end: 29,
+              range: [14, 29],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 14
+                },
+                end: {
+                  line: 1,
+                  column: 29
+                }
+              }
             },
             async: false,
             generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'a'
+            start: 0,
+            end: 29,
+            range: [0, 29],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 29
+              }
             }
           }
-        ]
+        ],
+        start: 0,
+        end: 29,
+        range: [0, 29],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 29
+          }
+        }
       }
     ]
   ]);
