@@ -834,7 +834,7 @@ export function parseReturnStatement(
   const argument =
     parser.flags & Flags.NewLine || parser.token & Token.IsAutoSemicolon
       ? null
-      : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.line, parser.column);
+      : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
