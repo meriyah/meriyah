@@ -9061,7 +9061,7 @@ function parseJSXExpressionContainer(
   line: number,
   column: number
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
-  nextToken(parser, context);
+  nextToken(parser, context | Context.AllowRegExp);
   const { tokenPos, linePos, colPos } = parser;
   if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, tokenPos, linePos, colPos);
 
