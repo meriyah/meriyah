@@ -192,7 +192,9 @@ describe('Next - Private methods', () => {
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
-    'method() { super.#x(); }'
+    'method() { super.#x(); }',
+    '#method() { super.x(); }',
+    '#method() { super.#x(); }'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
