@@ -3742,7 +3742,7 @@ export function parseSuperExpression(
     case Token.LeftParen: {
       // The super property has to be within a class constructor
       if ((context & Context.SuperCall) < 1) report(parser, Errors.SuperNoConstructor);
-      if (context & Context.InClass) report(parser, Errors.UnexpectedPrivateField);
+      if (context & Context.InClass) report(parser, Errors.InvalidSuperProperty);
       parser.assignable = AssignmentKind.CannotAssign;
       break;
     }
@@ -3751,7 +3751,7 @@ export function parseSuperExpression(
       // new super() is never allowed.
       // super() is only allowed in derived constructor
       if ((context & Context.SuperProperty) < 1) report(parser, Errors.InvalidSuperProperty);
-      if (context & Context.InClass) report(parser, Errors.UnexpectedPrivateField);
+      if (context & Context.InClass) report(parser, Errors.InvalidSuperProperty);
       parser.assignable = AssignmentKind.Assignable;
       break;
     }
@@ -8299,11 +8299,9 @@ function parseClassElementList(
     nextToken(parser, context); // skip: '*'
   } else if (context & Context.OptionsNext && parser.token === Token.PrivateField) {
     kind |= PropertyKind.PrivateField;
-    key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
-    context = context | Context.InClass;
+    key = parsePrivateIdentifier(parser, context | Context.InClass, tokenPos, linePos, colPos);
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
-    context = context | Context.InClass;
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context, 0);
     if (parser.token !== Token.LeftParen)
