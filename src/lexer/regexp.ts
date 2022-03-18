@@ -59,13 +59,13 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   const bodyEnd = parser.index - 1;
 
   const enum RegexFlags {
-    Empty = 0b00000,
-    IgnoreCase = 0b00001,
-    Global = 0b00010,
-    Multiline = 0b00100,
-    Unicode = 0b10000,
-    Sticky = 0b01000,
-    DotAll = 0b1100
+    Empty = 0b000000,
+    IgnoreCase = 0b000001,
+    Global = 0b000010,
+    Multiline = 0b000100,
+    Unicode = 0b010000,
+    Sticky = 0b001000,
+    DotAll = 0b100000
   }
 
   let mask = RegexFlags.Empty;

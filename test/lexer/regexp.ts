@@ -133,6 +133,13 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/a(?!b(?!c)d)e/', 'a(?!b(?!c)d)e', ''],
     [Context.AllowRegExp, '/[^a-z]{4}/', '[^a-z]{4}', ''],
     [Context.AllowRegExp, '/1?1/mig', '1?1', 'mig'],
+    [Context.AllowRegExp, '/.*/sm', '.*', 'sm'],
+    [Context.AllowRegExp, '/.*/ms', '.*', 'ms'],
+    [Context.AllowRegExp, '/.*/sy', '.*', 'sy'],
+    [Context.AllowRegExp, '/.*/ys', '.*', 'ys'],
+    [Context.AllowRegExp, '/.*/s', '.*', 's'],
+    [Context.AllowRegExp, '/.*/m', '.*', 'm'],
+    [Context.AllowRegExp, '/.*/y', '.*', 'y'],
     [Context.AllowRegExp, '/\\%([0-9]*)\\[(\\^)?(\\]?[^\\]]*)\\]/', '\\%([0-9]*)\\[(\\^)?(\\]?[^\\]]*)\\]', '']
   ];
 
