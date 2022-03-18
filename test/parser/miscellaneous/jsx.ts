@@ -18,7 +18,9 @@ describe('Miscellaneous - JSX', () => {
       text
     </>;`,
     '<div>{this.props.children}</div>;',
-    '<a>{}</a>;'
+    '<a>{}</a>;',
+    '<p>{1/2}</p>',
+    '<p>{/w/.test(s)}</p>'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -105,7 +107,8 @@ describe('Miscellaneous - JSX', () => {
     ['[foo] > ;', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
-    ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX]
+    ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX],
+    ['<p>{/}</p>', Context.OptionsJSX]
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
