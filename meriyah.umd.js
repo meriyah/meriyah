@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.meriyah = {}));
-}(this, (function (exports) { 'use strict';
+})(this, (function (exports) { 'use strict';
 
   const errorMessages = {
       [0]: 'Unexpected token',
@@ -100,7 +100,6 @@
       [89]: 'Illegal return statement',
       [90]: 'The left hand side of the for-header binding declaration is not destructible',
       [91]: 'new.target only allowed within functions',
-      [92]: "'Unexpected token: 'escaped keyword'",
       [93]: "'#' not followed by identifier",
       [99]: 'Invalid keyword',
       [98]: "Can not use 'let' as a class name",
@@ -115,7 +114,6 @@
       [104]: "Only '*' or '{...}' can be imported after default",
       [105]: 'Trailing decorator may be followed by method',
       [106]: "Decorators can't be used with a constructor",
-      [107]: "'%0' may not be used as an identifier in this context",
       [108]: 'HTML comments are only allowed with web compatibility (Annex B)',
       [109]: "The identifier 'let' must not be in expression position in strict mode",
       [110]: 'Cannot assign to `eval` and `arguments` in strict mode',
@@ -880,9 +878,9 @@
                   mask |= 8;
                   break;
               case 115:
-                  if (mask & 12)
+                  if (mask & 32)
                       report(parser, 34, 's');
-                  mask |= 12;
+                  mask |= 32;
                   break;
               default:
                   report(parser, 33);
@@ -1795,7 +1793,7 @@
                           }
                           else if (ch === 61) {
                               advanceChar(parser);
-                              return 8456000;
+                              return 8456256;
                           }
                           if (ch === 33) {
                               const index = parser.index + 1;
@@ -1978,7 +1976,7 @@
                       const ch = parser.currentChar;
                       if (ch === 61) {
                           advanceChar(parser);
-                          return 8456001;
+                          return 8456257;
                       }
                       if (ch !== 62)
                           return 8456259;
@@ -4970,7 +4968,7 @@
       nextToken(parser, context | 32768);
       const argument = parser.flags & 1 || parser.token & 1048576
           ? null
-          : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.line, parser.column);
+          : parseExpressions(parser, context, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
       matchOrInsertSemicolon(parser, context | 32768);
       return finishNode(parser, context, start, line, column, {
           type: 'ReturnStatement',
@@ -5999,7 +5997,7 @@
   function parseAwaitExpression(parser, context, inNew, inGroup, start, line, column) {
       if (inGroup)
           parser.destructible |= 128;
-      if (context & 4194304) {
+      if (context & 4194304 || (context & 2048 && context & 8192)) {
           if (inNew)
               report(parser, 0);
           if (context & 8388608) {
@@ -6007,6 +6005,8 @@
           }
           nextToken(parser, context | 32768);
           const argument = parseLeftHandSideExpression(parser, context, 0, 0, 1, parser.tokenPos, parser.linePos, parser.colPos);
+          if (parser.token === 8457273)
+              report(parser, 31);
           parser.assignable = 2;
           return finishNode(parser, context, start, line, column, {
               type: 'AwaitExpression',
@@ -6014,7 +6014,7 @@
           });
       }
       if (context & 2048)
-          report(parser, 107, 'Await');
+          report(parser, 95);
       return parseIdentifierOrArrow(parser, context, start, line, column);
   }
   function parseFunctionBody(parser, context, scope, origin, firstRestricted, scopeError) {
@@ -6084,7 +6084,7 @@
               if ((context & 524288) < 1)
                   report(parser, 26);
               if (context & 16384)
-                  report(parser, 143);
+                  report(parser, 27);
               parser.assignable = 2;
               break;
           }
@@ -6093,7 +6093,7 @@
               if ((context & 262144) < 1)
                   report(parser, 27);
               if (context & 16384)
-                  report(parser, 143);
+                  report(parser, 27);
               parser.assignable = 1;
               break;
           }
@@ -6124,10 +6124,10 @@
           expr = parseUpdateExpression(parser, context, expr, start, line, column);
       }
       else if ((parser.token & 67108864) === 67108864) {
-          context = (context | 134217728 | 8192) ^ (134217728 | 8192);
+          context = (context | 134217728) ^ 134217728;
           switch (parser.token) {
               case 67108877: {
-                  nextToken(parser, context | 1073741824);
+                  nextToken(parser, (context | 1073741824 | 8192) ^ 8192);
                   parser.assignable = 1;
                   const property = parsePropertyOrPrivatePropertyName(parser, context);
                   expr = finishNode(parser, context, start, line, column, {
@@ -6183,7 +6183,7 @@
                   break;
               }
               case 67108991: {
-                  nextToken(parser, context);
+                  nextToken(parser, (context | 1073741824 | 8192) ^ 8192);
                   parser.flags |= 2048;
                   parser.assignable = 2;
                   expr = parseOptionalChain(parser, context, expr, start, line, column);
@@ -7619,7 +7619,7 @@
       const { tokenPos: piStart, linePos: plStart, colPos: pcStart } = parser;
       nextToken(parser, context | 32768 | 1073741824);
       const scope = context & 64 ? addChildScope(createScope(), 1024) : void 0;
-      context = (context | 134217728 | 8192) ^ (8192 | 134217728);
+      context = (context | 134217728) ^ 134217728;
       if (consumeOpt(parser, context, 16)) {
           return parseParenthesizedArrow(parser, context, scope, [], canAssign, 0, start, line, column);
       }
@@ -8347,12 +8347,10 @@
       }
       else if (context & 1 && parser.token === 131) {
           kind |= 4096;
-          key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
-          context = context | 16384;
+          key = parsePrivateIdentifier(parser, context | 16384, tokenPos, linePos, colPos);
       }
       else if (context & 1 && (parser.token & 1073741824) === 1073741824) {
           kind |= 128;
-          context = context | 16384;
       }
       else if (token === 122) {
           key = parseIdentifier(parser, context, 0);
@@ -8718,7 +8716,7 @@
       });
   }
   function parseJSXExpressionContainer(parser, context, inJSXChild, isAttr, start, line, column) {
-      nextToken(parser, context);
+      nextToken(parser, context | 32768);
       const { tokenPos, linePos, colPos } = parser;
       if (parser.token === 14)
           return parseJSXSpreadChild(parser, context, tokenPos, linePos, colPos);
@@ -8772,7 +8770,7 @@
     __proto__: null
   });
 
-  var version$1 = "4.1.5";
+  var version$1 = "4.2.1";
 
   const version = version$1;
   function parseScript(source, options) {
@@ -8793,4 +8791,4 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
