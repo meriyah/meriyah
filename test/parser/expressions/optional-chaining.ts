@@ -6,7 +6,8 @@ import { parseSource } from '../../../src/parser';
 describe('Optional chaining', () => {
   for (const arg of [
     'func?.()',
-    'obj?.prop ',
+    'obj?.prop',
+    'obj?.def\\u{61}ult',
     'func?.(...args)',
     'a?.[x]',
     'a?.()',

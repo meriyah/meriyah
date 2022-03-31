@@ -3859,12 +3859,12 @@ export function parseMemberOrUpdateExpression(
   if ((parser.token & Token.IsUpdateOp) === Token.IsUpdateOp && (parser.flags & Flags.NewLine) < 1) {
     expr = parseUpdateExpression(parser, context, expr, start, line, column);
   } else if ((parser.token & Token.IsMemberOrCallExpression) === Token.IsMemberOrCallExpression) {
-    context = (context | Context.DisallowIn | Context.InGlobal) ^ (Context.DisallowIn | Context.InGlobal);
+    context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
     switch (parser.token) {
       /* Property */
       case Token.Period: {
-        nextToken(parser, context | Context.AllowEscapedKeyword);
+        nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
         parser.assignable = AssignmentKind.Assignable;
 
@@ -3940,7 +3940,7 @@ export function parseMemberOrUpdateExpression(
 
       /* Optional chaining */
       case Token.QuestionMarkPeriod: {
-        nextToken(parser, context); // skips: '?.'
+        nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal); // skips: '?.'
         parser.flags |= Flags.HasOptionalChaining;
         parser.assignable = AssignmentKind.CannotAssign;
         expr = parseOptionalChain(parser, context, expr, start, line, column);
