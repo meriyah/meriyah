@@ -11,6 +11,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     '(\\u0069nterface = 1);',
     '({ def\\u0061ult: 0 })',
     '({ def\\u{61}ult: 0 })',
+    'foo = {}; foo?.def\\u{61}ult + 3;',
     'foo = {}; foo.def\\u{61}ult = 3;',
     'var int\\u0065rface = 1;',
     'var { int\\u0065rface  } = {};',

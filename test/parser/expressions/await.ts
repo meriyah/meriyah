@@ -3282,6 +3282,63 @@ describe('Expressions - Await', () => {
           }
         ]
       }
+    ],
+    [
+      'foo[await 1]',
+      Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'MemberExpression',
+              object: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              computed: true,
+              property: {
+                type: 'AwaitExpression',
+                argument: {
+                  type: 'Literal',
+                  value: 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'foo(await bar)',
+      Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: 'foo'
+              },
+              arguments: [
+                {
+                  type: 'AwaitExpression',
+                  argument: {
+                    type: 'Identifier',
+                    name: 'bar'
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
     ]
   ]);
 });
