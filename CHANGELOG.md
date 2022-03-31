@@ -1,3 +1,16 @@
+## [4.2.1](https://github.com/meriyah/meriyah/compare/v4.2.0...v4.2.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* **lexer:** fix wrong error when using regex flag s together with m or y ([d757c6b](https://github.com/meriyah/meriyah/commit/d757c6b20ae4f6f4e55a77179726db36cf2bd50b)), closes [#202](https://github.com/meriyah/meriyah/issues/202)
+* **parser:** allow regular expression in JSXExpressionContainer ([a5fcb80](https://github.com/meriyah/meriyah/commit/a5fcb8072084f2961e11e9db24f7b8ac0ecd04a6)), closes [#204](https://github.com/meriyah/meriyah/issues/204)
+* **parser:** allow top level await in expressions ([37c6361](https://github.com/meriyah/meriyah/commit/37c63613771e5bc6e23b7da2d92e992c60dafc5a)), closes [#212](https://github.com/meriyah/meriyah/issues/212)
+* **parser:** fix wrong starting loc for any non-trival expression in return statement ([7063af5](https://github.com/meriyah/meriyah/commit/7063af55b2c5d6d370fdf6480b87b70387c707fe)), closes [#207](https://github.com/meriyah/meriyah/issues/207)
+* **parser:** super call should be allowed in private method ([6de707a](https://github.com/meriyah/meriyah/commit/6de707a0efb3053767deaa36b1ed6979b0d3f873)), closes [#203](https://github.com/meriyah/meriyah/issues/203)
+
+
+
 # [4.2.0](https://github.com/meriyah/meriyah/compare/v4.1.5...v4.2.0) (2021-07-11)
 
 
