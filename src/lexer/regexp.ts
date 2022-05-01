@@ -59,13 +59,14 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   const bodyEnd = parser.index - 1;
 
   const enum RegexFlags {
-    Empty = 0b000000,
-    IgnoreCase = 0b000001,
-    Global = 0b000010,
-    Multiline = 0b000100,
-    Unicode = 0b010000,
-    Sticky = 0b001000,
-    DotAll = 0b100000
+    Empty = 0b0000000,
+    IgnoreCase = 0b0000001,
+    Global = 0b0000010,
+    Multiline = 0b0000100,
+    Unicode = 0b0010000,
+    Sticky = 0b0001000,
+    DotAll = 0b0100000,
+    Indices = 0b1000000
   }
 
   let mask = RegexFlags.Empty;
@@ -91,7 +92,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         break;
 
       case Chars.LowerU:
-        if (mask & RegexFlags.Unicode) report(parser, Errors.DuplicateRegExpFlag, 'g');
+        if (mask & RegexFlags.Unicode) report(parser, Errors.DuplicateRegExpFlag, 'u');
         mask |= RegexFlags.Unicode;
         break;
 
@@ -103,6 +104,11 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
       case Chars.LowerS:
         if (mask & RegexFlags.DotAll) report(parser, Errors.DuplicateRegExpFlag, 's');
         mask |= RegexFlags.DotAll;
+        break;
+
+      case Chars.LowerD:
+        if (mask & RegexFlags.Indices) report(parser, Errors.DuplicateRegExpFlag, 'd');
+        mask |= RegexFlags.Indices;
         break;
 
       default:
@@ -136,6 +142,8 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
  */
 function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
   try {
+    // Temporarily allows older version of Nodejs (or browser) to accept the new Indices flag "d".
+    flags = flags.replace('d', '');
     return new RegExp(pattern, flags);
   } catch (e) {
     report(parser, Errors.UnterminatedRegExp);

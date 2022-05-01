@@ -52,6 +52,8 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/a{,61}/', 'a{,61}', ''],
     [Context.AllowRegExp, '/foo/gy', 'foo', 'gy'],
     [Context.AllowRegExp, '/foo/igy', 'foo', 'igy'],
+    [Context.AllowRegExp, '/foo/d', 'foo', 'd'],
+    [Context.AllowRegExp, '/foo/musd', 'foo', 'musd'],
     [Context.AllowRegExp, '/\\D/', '\\D', ''],
     [Context.AllowRegExp, '/\\r/', '\\r', ''],
     [Context.AllowRegExp, '/\\s/', '\\s', ''],
@@ -171,21 +173,19 @@ describe('Lexer - Regular expressions', () => {
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }
-  fail('fails on /i/ii', '/ ', Context.AllowRegExp);
-  fail('fails on /i/ii', '/\n$/\n', Context.AllowRegExp);
-  fail('fails on /i/ii', '/\r$/\n', Context.AllowRegExp);
-  fail('fails on /i/ii', '/\u2028$/\n', Context.AllowRegExp);
-  fail('fails on /i/ii', '/\u2029$/\n', Context.AllowRegExp);
-  fail('fails on /i/ii', '/\u2028$/\n', Context.AllowRegExp);
-  fail('fails on /i/ii', '/$\r/', Context.AllowRegExp);
-  fail('fails on /i/ii', '/$\u2028/', Context.AllowRegExp);
-  fail('fails on /i/ii', '/$\u2029/', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/igui', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/mmgui', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ggui', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/guui', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
+  fail('fails on /', '/ ', Context.AllowRegExp);
+  fail('fails on /\n$/\n', '/\n$/\n', Context.AllowRegExp);
+  fail('fails on /\r$/\n', '/\r$/\n', Context.AllowRegExp);
+  fail('fails on /\u2028$/\n', '/\u2028$/\n', Context.AllowRegExp);
+  fail('fails on /\u2029$/\n', '/\u2029$/\n', Context.AllowRegExp);
+  fail('fails on /\u2028$/\n', '/\u2028$/\n', Context.AllowRegExp);
+  fail('fails on /$\r/', '/$\r/', Context.AllowRegExp);
+  fail('fails on /$\u2028/', '/$\u2028/', Context.AllowRegExp);
+  fail('fails on /$\u2029/', '/$\u2029/', Context.AllowRegExp);
+  fail('fails on /i/igui', '/i/igui', Context.AllowRegExp);
+  fail('fails on /i/mmgui', '/i/mmgui', Context.AllowRegExp);
+  fail('fails on /i/ggui', '/i/ggui', Context.AllowRegExp);
+  fail('fails on /i/guui', '/i/guui', Context.AllowRegExp);
   fail('fails on /\\B*/u', '/\\B*/u', Context.AllowRegExp);
   fail('fails on \\b+/u', '\\b+/u', Context.AllowRegExp);
   fail('fails on /[d-G\\r]/', '/[d-G\\r]/', Context.AllowRegExp);
@@ -195,21 +195,16 @@ describe('Lexer - Regular expressions', () => {
   fail('fails on /{1,}/', '/{1,}/', Context.AllowRegExp);
   fail('fails on /x{1,}{1}/', '/x{1,}{1}/', Context.AllowRegExp);
   fail('fails on /a(?=b(?!cde/', '/a(?=b(?!cde/', Context.AllowRegExp);
-  fail('fails on /a(', '/(', Context.AllowRegExp);
+  fail('fails on /(', '/(', Context.AllowRegExp);
   fail('fails on /(?=b(?!cde/', '/(?=b(?!cde/', Context.AllowRegExp);
   fail('fails on /[abc\\udeff', '/[abc\\udeff', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/yy', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/ss', Context.AllowRegExp);
-  fail('fails on /i/ii', '/i/፰', Context.AllowRegExp);
+  fail('fails on /i/gg', '/i/gg', Context.AllowRegExp);
+  fail('fails on /i/ii', '/i/ii', Context.AllowRegExp);
+  fail('fails on /i/mm', '/i/mm', Context.AllowRegExp);
+  fail('fails on /i/uu', '/i/uu', Context.AllowRegExp);
+  fail('fails on /i/yy', '/i/yy', Context.AllowRegExp);
+  fail('fails on /i/ss', '/i/ss', Context.AllowRegExp);
+  fail('fails on /i/dd', '/i/dd', Context.AllowRegExp);
+  fail('fails on /i/a', '/i/a', Context.AllowRegExp);
+  fail('fails on /i/፰', '/i/፰', Context.AllowRegExp);
 });
