@@ -142,10 +142,15 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
  */
 function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
   try {
-    // Temporarily allows older version of Nodejs (or browser) to accept the new Indices flag "d".
-    flags = flags.replace('d', '');
     return new RegExp(pattern, flags);
   } catch (e) {
-    report(parser, Errors.UnterminatedRegExp);
+    try {
+      // Some JavaScript engine has not supported flag "d".
+      new RegExp(pattern, flags.replace('d', ''));
+      // Use null as tokenValue according to ESTree spec
+      return null;
+    } catch (e) {
+      report(parser, Errors.UnterminatedRegExp);
+    }
   }
 }
