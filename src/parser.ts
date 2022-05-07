@@ -1771,6 +1771,41 @@ export function parseCatchBlock(
 }
 
 /**
+ * Parses class static initialization block
+ *
+ * @see [Link](https://github.com/tc39/proposal-class-static-block)
+ *
+ * @param parser Parser object
+ * @param context Context masks
+ * @param scope Scope instance
+ * @param start Start pos of node
+ * @param line
+ * @param column
+ */
+export function parseStaticBlock(
+  parser: ParserState,
+  context: Context,
+  scope: ScopeState | undefined,
+  start: number,
+  line: number,
+  column: number
+): ESTree.StaticBlock {
+  // StaticBlock ::
+  //   '{' StatementList '}'
+
+  if (scope) scope = addChildScope(scope, ScopeKind.Block);
+
+  const ctorContext = Context.InClass | Context.SuperCall;
+  context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty;
+  const { body } = parseBlock(parser, context, scope, {}, start, line, column);
+
+  return finishNode(parser, context, start, line, column, {
+    type: 'StaticBlock',
+    body
+  });
+}
+
+/**
  * Parses do while statement
  *
  * @param parser Parser object
@@ -8163,7 +8198,7 @@ export function parseClassBody(
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
-  const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition)[] = [];
+  const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock)[] = [];
   let decorators: ESTree.Decorator[];
 
   while (parser.token !== Token.RightBrace) {
@@ -8231,7 +8266,7 @@ function parseClassElementList(
   start: number,
   line: number,
   column: number
-): ESTree.MethodDefinition | ESTree.PropertyDefinition {
+): ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock {
   let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
   let key: ESTree.Expression | ESTree.PrivateIdentifier | null = null;
 
@@ -8302,6 +8337,8 @@ function parseClassElementList(
     key = parsePrivateIdentifier(parser, context | Context.InClass, tokenPos, linePos, colPos);
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
+  } else if (context & Context.OptionsNext && isStatic && token === Token.LeftBrace) {
+    return parseStaticBlock(parser, context, scope, tokenPos, linePos, colPos);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context, 0);
     if (parser.token !== Token.LeftParen)
