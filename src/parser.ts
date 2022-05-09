@@ -8337,7 +8337,7 @@ function parseClassElementList(
     key = parsePrivateIdentifier(parser, context | Context.InClass, tokenPos, linePos, colPos);
   } else if (context & Context.OptionsNext && (parser.token & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
-  } else if (context & Context.OptionsNext && isStatic && token === Token.LeftBrace) {
+  } else if (isStatic && token === Token.LeftBrace) {
     return parseStaticBlock(parser, context, scope, tokenPos, linePos, colPos);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context, 0);

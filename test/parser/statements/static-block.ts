@@ -3,18 +3,16 @@ import { pass, fail } from '../../test-utils';
 
 describe('Next - Class static initialization block', () => {
   fail('Next - Class static initialization block (fail)', [
-    ['class A { static {} }', Context.OptionsWebCompat],
-    ['class A { static {} }', Context.None],
-    ['class A { static { super() } }', Context.OptionsNext],
-    ['class A {}; class B extends A { static { super() } }', Context.OptionsNext],
-    ['class A { static async {} }', Context.OptionsNext],
-    ['class A { async static {} }', Context.OptionsNext]
+    ['class A { static { super() } }', Context.None],
+    ['class A {}; class B extends A { static { super() } }', Context.None],
+    ['class A { static async {} }', Context.None],
+    ['class A { async static {} }', Context.None]
   ]);
 
   pass('Next - Class static initialization block (pass)', [
     [
       `class A { static {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -27,7 +25,6 @@ describe('Next - Class static initialization block', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
             id: {
               name: 'A',
               type: 'Identifier'
@@ -42,7 +39,7 @@ describe('Next - Class static initialization block', () => {
     ],
     [
       `class A { static { this.a } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -70,7 +67,6 @@ describe('Next - Class static initialization block', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
             id: {
               name: 'A',
               type: 'Identifier'
@@ -85,7 +81,7 @@ describe('Next - Class static initialization block', () => {
     ],
     [
       `class A {}; class B extends A { static { super.a } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -93,7 +89,6 @@ describe('Next - Class static initialization block', () => {
               body: [],
               type: 'ClassBody'
             },
-            decorators: [],
             id: {
               name: 'A',
               type: 'Identifier'
@@ -129,7 +124,6 @@ describe('Next - Class static initialization block', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
             id: {
               name: 'B',
               type: 'Identifier'
