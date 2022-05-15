@@ -117,6 +117,7 @@ export type Node =
   | ReturnStatement
   | SequenceExpression
   | SpreadElement
+  | StaticBlock
   | Super
   | SwitchCase
   | SwitchStatement
@@ -274,6 +275,10 @@ interface MethodDefinitionBase extends _Node {
   decorators?: Decorator[];
 }
 
+export interface BlockStatementBase extends _Node {
+  body: Statement[];
+}
+
 export interface ArrayExpression extends _Node {
   type: 'ArrayExpression';
   elements: (Expression | SpreadElement | null)[];
@@ -321,9 +326,8 @@ export interface BinaryExpression extends _Node {
   right: Expression;
 }
 
-export interface BlockStatement extends _Node {
+export interface BlockStatement extends BlockStatementBase {
   type: 'BlockStatement';
-  body: Statement[];
 }
 
 export interface BreakStatement extends _Node {
@@ -354,9 +358,13 @@ export interface CatchClause extends _Node {
   body: BlockStatement;
 }
 
+export interface StaticBlock extends BlockStatementBase {
+  type: 'StaticBlock';
+}
+
 export interface ClassBody extends _Node {
   type: 'ClassBody';
-  body: (ClassElement | PropertyDefinition)[];
+  body: (ClassElement | PropertyDefinition | StaticBlock)[];
 }
 
 export interface PropertyDefinition extends _Node {
