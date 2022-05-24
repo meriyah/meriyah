@@ -13,9 +13,6 @@ $md-checkbox-padding: 4px;
 $md-checkmark-width: 2px;
 $md-checkmark-color: $color1;
 .checkbox-element {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   &.disabled-element {
     opacity: 0.4;
   }
