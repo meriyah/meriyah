@@ -2163,7 +2163,9 @@ export function parseForStatement(
 ): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement {
   nextToken(parser, context);
 
-  const forAwait = (context & Context.InAwaitContext) > 0 && consumeOpt(parser, context, Token.AwaitKeyword);
+  const forAwait =
+    ((context & Context.InAwaitContext) > 0 || ((context & Context.Module) > 0 && (context & Context.InGlobal) > 0)) &&
+    consumeOpt(parser, context, Token.AwaitKeyword);
 
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
