@@ -32,7 +32,8 @@ describe('Miscellaneous - Regular expressions', () => {
     ['/(?<𝟐>foo)/', Context.OptionsNext],
     ['/(?<\\uD835\\uDFD0rest>foo)/', Context.OptionsWebCompat],
     ['/(?<abc\\uD835\\uDFD0def>foo\\k<abc\\uD835def>)/', Context.OptionsNext | Context.Module | Context.Strict],
-    ['/(?<\\ud87e\\udddfrest>foo)/', Context.OptionsNext | Context.OptionsWebCompat],
+    // Nodejs v18 now accepts unicode in capture group name
+    // ['/(?<\\ud87e\\udddfrest>foo)/', Context.OptionsNext | Context.OptionsWebCompat],
     [
       `function* f(){ yield
       /foo }`,

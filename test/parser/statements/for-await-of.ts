@@ -529,4 +529,18 @@ describe('Statements - For await of', () => {
       });
     });
   }
+
+  it('accepts top level for await in module context', () => {
+    t.doesNotThrow(() => {
+      parseSource('for await (const a of b) {}', undefined, Context.Module);
+    });
+
+    t.throws(() => {
+      parseSource('for await (const a of b) {}', undefined, Context.None);
+    });
+
+    t.throws(() => {
+      parseSource('function c() { for await (const a of b) {} }', undefined, Context.Module);
+    });
+  });
 });
