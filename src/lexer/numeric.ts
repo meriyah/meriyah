@@ -49,8 +49,8 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           char = advanceChar(parser);
         }
 
-        if (digits < 1 || !allowSeparator) {
-          report(parser, digits < 1 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
+        if (digits === 0 || !allowSeparator) {
+          report(parser, digits === 0 ? Errors.MissingHexDigits : Errors.TrailingNumericSeparator);
         }
         // Octal
       } else if ((char | 32) === Chars.LowerO) {
@@ -70,8 +70,8 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           digits++;
           char = advanceChar(parser);
         }
-        if (digits < 1 || !allowSeparator) {
-          report(parser, digits < 1 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
+        if (digits === 0 || !allowSeparator) {
+          report(parser, digits === 0 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
         }
       } else if ((char | 32) === Chars.LowerB) {
         kind = NumberKind.Binary | NumberKind.ValidBigIntKind;
@@ -90,8 +90,8 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           digits++;
           char = advanceChar(parser);
         }
-        if (digits < 1 || !allowSeparator) {
-          report(parser, digits < 1 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
+        if (digits === 0 || !allowSeparator) {
+          report(parser, digits === 0 ? Errors.Unexpected : Errors.TrailingNumericSeparator);
         }
       } else if (CharTypes[char] & CharFlags.Octal) {
         // Octal integer literals are not permitted in strict mode code
@@ -187,7 +187,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
       const { index } = parser;
 
       // Exponential notation must contain at least one digit
-      if ((CharTypes[char] & CharFlags.Decimal) < 1) report(parser, Errors.MissingExponent);
+      if ((CharTypes[char] & CharFlags.Decimal) === 0) report(parser, Errors.MissingExponent);
 
       // Consume exponential digits
       value += parser.source.substring(end, index) + scanDecimalDigitsOrSeparator(parser, char);

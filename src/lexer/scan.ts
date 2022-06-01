@@ -312,7 +312,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               return Token.LessThan;
             }
             if (ch === Chars.Slash) {
-              if ((context & Context.OptionsJSX) < 1) return Token.LessThan;
+              if ((context & Context.OptionsJSX) === 0) return Token.LessThan;
               const index = parser.index + 1;
 
               // Check that it's not a comment start.
