@@ -1,3 +1,20 @@
+# [4.3.0](https://github.com/meriyah/meriyah/compare/v4.2.1...v4.3.0) (2022-08-02)
+
+
+### Bug Fixes
+
+* **parser:** Support for class static initialization block without next flag ([a3b10f0](https://github.com/meriyah/meriyah/commit/a3b10f01651cb1f02e703fde0ef2fac1a3222d65))
+* **parser:** support top level for-await in module context ([69761bf](https://github.com/meriyah/meriyah/commit/69761bf60d30524e7d95251d4219ed8166d97577)), closes [#214](https://github.com/meriyah/meriyah/issues/214)
+* use null as regex value in environment missing flag "d" support ([b174ae6](https://github.com/meriyah/meriyah/commit/b174ae69cc45ce1d925c86f6c8eab8cce58057b8))
+
+
+### Features
+
+* **lexer:** support new RegExp Indices flag "d" ([#217](https://github.com/meriyah/meriyah/issues/217)) ([b98e3bd](https://github.com/meriyah/meriyah/commit/b98e3bd79f7c13bef436976c37b04e128b40cec5)), closes [#214](https://github.com/meriyah/meriyah/issues/214)
+* **parser:** Add support for class static initialization block ([1510e36](https://github.com/meriyah/meriyah/commit/1510e36b28e58317be93e59b7caed35985320c68))
+
+
+
 ## [4.2.1](https://github.com/meriyah/meriyah/compare/v4.2.0...v4.2.1) (2022-03-31)
 
 
