@@ -869,7 +869,7 @@
                   break;
               case 117:
                   if (mask & 16)
-                      report(parser, 34, 'g');
+                      report(parser, 34, 'u');
                   mask |= 16;
                   break;
               case 121:
@@ -881,6 +881,11 @@
                   if (mask & 32)
                       report(parser, 34, 's');
                   mask |= 32;
+                  break;
+              case 100:
+                  if (mask & 64)
+                      report(parser, 34, 'd');
+                  mask |= 64;
                   break;
               default:
                   report(parser, 33);
@@ -900,7 +905,13 @@
           return new RegExp(pattern, flags);
       }
       catch (e) {
-          report(parser, 32);
+          try {
+              new RegExp(pattern, flags.replace('d', ''));
+              return null;
+          }
+          catch (e) {
+              report(parser, 32);
+          }
       }
   }
 
@@ -1211,8 +1222,8 @@
                       digits++;
                       char = advanceChar(parser);
                   }
-                  if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 19 : 147);
+                  if (digits === 0 || !allowSeparator) {
+                      report(parser, digits === 0 ? 19 : 147);
                   }
               }
               else if ((char | 32) === 111) {
@@ -1232,8 +1243,8 @@
                       digits++;
                       char = advanceChar(parser);
                   }
-                  if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 0 : 147);
+                  if (digits === 0 || !allowSeparator) {
+                      report(parser, digits === 0 ? 0 : 147);
                   }
               }
               else if ((char | 32) === 98) {
@@ -1253,8 +1264,8 @@
                       digits++;
                       char = advanceChar(parser);
                   }
-                  if (digits < 1 || !allowSeparator) {
-                      report(parser, digits < 1 ? 0 : 147);
+                  if (digits === 0 || !allowSeparator) {
+                      report(parser, digits === 0 ? 0 : 147);
                   }
               }
               else if (CharTypes[char] & 32) {
@@ -1330,7 +1341,7 @@
               if (CharTypes[char] & 256)
                   char = advanceChar(parser);
               const { index } = parser;
-              if ((CharTypes[char] & 16) < 1)
+              if ((CharTypes[char] & 16) === 0)
                   report(parser, 10);
               value += parser.source.substring(end, index) + scanDecimalDigitsOrSeparator(parser, char);
               char = parser.currentChar;
@@ -1811,7 +1822,7 @@
                               return 8456258;
                           }
                           if (ch === 47) {
-                              if ((context & 16) < 1)
+                              if ((context & 16) === 0)
                                   return 8456258;
                               const index = parser.index + 1;
                               if (index < parser.end) {
@@ -4917,7 +4928,7 @@
           case 86106:
               report(parser, context & 1024
                   ? 73
-                  : (context & 256) < 1
+                  : (context & 256) === 0
                       ? 75
                       : 74);
           case 86096:
@@ -4963,7 +4974,7 @@
       });
   }
   function parseReturnStatement(parser, context, start, line, column) {
-      if ((context & 32) < 1 && context & 8192)
+      if ((context & 32) === 0 && context & 8192)
           report(parser, 89);
       nextToken(parser, context | 32768);
       const argument = parser.flags & 1 || parser.token & 1048576
@@ -4987,7 +4998,7 @@
       validateAndDeclareLabel(parser, labels, value);
       nextToken(parser, context | 32768);
       const body = allowFuncDecl &&
-          (context & 1024) < 1 &&
+          (context & 1024) === 0 &&
           context & 256 &&
           parser.token === 86106
           ? parseFunctionDeclaration(parser, context, addChildScope(scope, 2), origin, 0, 0, 0, parser.tokenPos, parser.linePos, parser.colPos)
@@ -5096,7 +5107,7 @@
   }
   function parseConsequentOrAlternative(parser, context, scope, labels, start, line, column) {
       return context & 1024 ||
-          (context & 256) < 1 ||
+          (context & 256) === 0 ||
           parser.token !== 86106
           ? parseStatement(parser, context, scope, 0, { $: labels }, 0, parser.tokenPos, parser.linePos, parser.colPos)
           : parseFunctionDeclaration(parser, context, addChildScope(scope, 2), 0, 0, 0, 0, start, line, column);
@@ -5161,11 +5172,11 @@
       return parseStatement(parser, ((context | 134217728) ^ 134217728) | 131072, scope, 0, { loop: 1, $: labels }, 0, parser.tokenPos, parser.linePos, parser.colPos);
   }
   function parseContinueStatement(parser, context, labels, start, line, column) {
-      if ((context & 131072) < 1)
+      if ((context & 131072) === 0)
           report(parser, 65);
       nextToken(parser, context);
       let label = null;
-      if ((parser.flags & 1) < 1 && parser.token & 143360) {
+      if ((parser.flags & 1) === 0 && parser.token & 143360) {
           const { tokenValue } = parser;
           label = parseIdentifier(parser, context | 32768, 0);
           if (!isValidLabel(parser, labels, tokenValue, 1))
@@ -5180,13 +5191,13 @@
   function parseBreakStatement(parser, context, labels, start, line, column) {
       nextToken(parser, context | 32768);
       let label = null;
-      if ((parser.flags & 1) < 1 && parser.token & 143360) {
+      if ((parser.flags & 1) === 0 && parser.token & 143360) {
           const { tokenValue } = parser;
           label = parseIdentifier(parser, context | 32768, 0);
           if (!isValidLabel(parser, labels, tokenValue, 0))
               report(parser, 134, tokenValue);
       }
-      else if ((context & (4096 | 131072)) < 1) {
+      else if ((context & (4096 | 131072)) === 0) {
           report(parser, 66);
       }
       matchOrInsertSemicolon(parser, context | 32768);
@@ -5263,6 +5274,17 @@
       return finishNode(parser, context, start, line, column, {
           type: 'CatchClause',
           param,
+          body
+      });
+  }
+  function parseStaticBlock(parser, context, scope, start, line, column) {
+      if (scope)
+          scope = addChildScope(scope, 2);
+      const ctorContext = 16384 | 524288;
+      context = ((context | ctorContext) ^ ctorContext) | 262144;
+      const { body } = parseBlock(parser, context, scope, {}, start, line, column);
+      return finishNode(parser, context, start, line, column, {
+          type: 'StaticBlock',
           body
       });
   }
@@ -5353,10 +5375,10 @@
       if (parser.token === 1077936157) {
           nextToken(parser, context | 32768);
           init = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
-          if (origin & 32 || (token & 2097152) < 1) {
+          if (origin & 32 || (token & 2097152) === 0) {
               if (parser.token === 274549 ||
                   (parser.token === 8738868 &&
-                      (token & 2097152 || (kind & 4) < 1 || context & 1024))) {
+                      (token & 2097152 || (kind & 4) === 0 || context & 1024))) {
                   reportMessageAt(tokenPos, parser.line, parser.index - 3, 57, parser.token === 274549 ? 'of' : 'in');
               }
           }
@@ -5373,7 +5395,8 @@
   }
   function parseForStatement(parser, context, scope, labels, start, line, column) {
       nextToken(parser, context);
-      const forAwait = (context & 4194304) > 0 && consumeOpt(parser, context, 209008);
+      const forAwait = ((context & 4194304) > 0 || ((context & 2048) > 0 && (context & 8192) > 0)) &&
+          consumeOpt(parser, context, 209008);
       consume(parser, context | 32768, 67174411);
       if (scope)
           scope = addChildScope(scope, 1);
@@ -5662,7 +5685,7 @@
                   const { tokenPos, linePos, colPos } = parser;
                   declaration = parseIdentifier(parser, context, 0);
                   const { flags } = parser;
-                  if ((flags & 1) < 1) {
+                  if ((flags & 1) === 0) {
                       if (parser.token === 86106) {
                           declaration = parseFunctionDeclaration(parser, context, scope, 4, 1, 1, 1, tokenPos, linePos, colPos);
                       }
@@ -5786,7 +5809,7 @@
           case 209007:
               const { tokenPos, linePos, colPos } = parser;
               nextToken(parser, context);
-              if ((parser.flags & 1) < 1 && parser.token === 86106) {
+              if ((parser.flags & 1) === 0 && parser.token === 86106) {
                   declaration = parseFunctionDeclaration(parser, context, scope, 4, 1, 2, 1, tokenPos, linePos, colPos);
                   if (scope) {
                       key = declaration.id ? declaration.id.name : '';
@@ -5943,7 +5966,7 @@
       const { token } = parser;
       const expr = parseIdentifier(parser, context, isPattern);
       const { flags } = parser;
-      if ((flags & 1) < 1) {
+      if ((flags & 1) === 0) {
           if (parser.token === 86106) {
               return parseFunctionExpression(parser, context, 1, inGroup, start, line, column);
           }
@@ -5977,7 +6000,7 @@
               report(parser, 120);
           let argument = null;
           let delegate = false;
-          if ((parser.flags & 1) < 1) {
+          if ((parser.flags & 1) === 0) {
               delegate = consumeOpt(parser, context | 32768, 8457014);
               if (parser.token & (12288 | 65536) || delegate) {
                   argument = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
@@ -6054,8 +6077,8 @@
           if (context & 64 &&
               scope &&
               scopeError !== void 0 &&
-              (prevContext & 1024) < 1 &&
-              (context & 8192) < 1) {
+              (prevContext & 1024) === 0 &&
+              (context & 8192) === 0) {
               reportScopeError(scopeError);
           }
       }
@@ -6081,7 +6104,7 @@
           case 67108991:
               report(parser, 161);
           case 67174411: {
-              if ((context & 524288) < 1)
+              if ((context & 524288) === 0)
                   report(parser, 26);
               if (context & 16384)
                   report(parser, 27);
@@ -6090,7 +6113,7 @@
           }
           case 69271571:
           case 67108877: {
-              if ((context & 262144) < 1)
+              if ((context & 262144) === 0)
                   report(parser, 27);
               if (context & 16384)
                   report(parser, 27);
@@ -6120,7 +6143,7 @@
       });
   }
   function parseMemberOrUpdateExpression(parser, context, expr, inGroup, inChain, start, line, column) {
-      if ((parser.token & 33619968) === 33619968 && (parser.flags & 1) < 1) {
+      if ((parser.token & 33619968) === 33619968 && (parser.flags & 1) === 0) {
           expr = parseUpdateExpression(parser, context, expr, start, line, column);
       }
       else if ((parser.token & 67108864) === 67108864) {
@@ -6247,7 +6270,7 @@
           });
       }
       else {
-          if ((parser.token & (143360 | 4096)) < 1)
+          if ((parser.token & (143360 | 4096)) === 0)
               report(parser, 154);
           const property = parseIdentifier(parser, context, 0);
           parser.assignable = 2;
@@ -6265,7 +6288,7 @@
       return node;
   }
   function parsePropertyOrPrivatePropertyName(parser, context) {
-      if ((parser.token & (143360 | 4096)) < 1 && parser.token !== 131) {
+      if ((parser.token & (143360 | 4096)) === 0 && parser.token !== 131) {
           report(parser, 154);
       }
       return context & 1 && parser.token === 131
@@ -6590,11 +6613,11 @@
       let firstRestricted;
       let functionScope = scope ? createScope() : void 0;
       if (parser.token === 67174411) {
-          if ((flags & 1) < 1)
+          if ((flags & 1) === 0)
               report(parser, 37, 'Function');
       }
       else {
-          const kind = origin & 4 && ((context & 8192) < 1 || (context & 2048) < 1)
+          const kind = origin & 4 && ((context & 8192) === 0 || (context & 2048) === 0)
               ? 4
               : 64;
           validateFunctionName(parser, context | ((context & 3072) << 11), parser.token);
@@ -6740,7 +6763,7 @@
                       destructible |=
                           kind & 1
                               ? 32
-                              : (kind & 2) < 1
+                              : (kind & 2) === 0
                                   ? 16
                                   : 0;
                       left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, tokenPos, linePos, colPos);
@@ -6799,7 +6822,7 @@
                   left = parseLeftHandSideExpression(parser, context, 1, 0, 1, tokenPos, linePos, colPos);
                   if (parser.token !== 18 && parser.token !== 20) {
                       left = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, left);
-                      if ((kind & (2 | 1)) < 1 && token === 67174411)
+                      if ((kind & (2 | 1)) === 0 && token === 67174411)
                           destructible |= 16;
                   }
                   else if (parser.assignable & 2) {
@@ -6988,7 +7011,7 @@
       });
   }
   function parseMethodDefinition(parser, context, kind, inGroup, start, line, column) {
-      const modifierFlags = (kind & 64) < 1 ? 31981568 : 14680064;
+      const modifierFlags = (kind & 64) === 0 ? 31981568 : 14680064;
       context =
           ((context | modifierFlags) ^ modifierFlags) |
               ((kind & 88) << 18) |
@@ -7556,7 +7579,7 @@
           let left = null;
           const { tokenPos, linePos, colPos } = parser;
           if (parser.token & 143360) {
-              if ((context & 1024) < 1) {
+              if ((context & 1024) === 0) {
                   if ((parser.token & 36864) === 36864) {
                       parser.flags |= 256;
                   }
@@ -7817,7 +7840,7 @@
               (134221824 | 8192 | 16384), scope, 16, void 0, void 0);
           switch (parser.token) {
               case 69271571:
-                  if ((parser.flags & 1) < 1) {
+                  if ((parser.flags & 1) === 0) {
                       report(parser, 112);
                   }
                   break;
@@ -7826,13 +7849,13 @@
               case 22:
                   report(parser, 113);
               case 67174411:
-                  if ((parser.flags & 1) < 1) {
+                  if ((parser.flags & 1) === 0) {
                       report(parser, 112);
                   }
                   parser.flags |= 1024;
                   break;
           }
-          if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) < 1)
+          if ((parser.token & 8454144) === 8454144 && (parser.flags & 1) === 0)
               report(parser, 28, KeywordDescTable[parser.token & 255]);
           if ((parser.token & 33619968) === 33619968)
               report(parser, 121);
@@ -7858,7 +7881,7 @@
           let left;
           const { tokenPos, linePos, colPos } = parser;
           if (parser.token & 143360) {
-              if ((context & 1024) < 1) {
+              if ((context & 1024) === 0) {
                   if ((parser.token & 36864) === 36864) {
                       parser.flags |= 256;
                   }
@@ -8178,7 +8201,7 @@
           id = parseIdentifier(parser, context, 0);
       }
       else {
-          if ((flags & 1) < 1)
+          if ((flags & 1) === 0)
               report(parser, 37, 'Class');
       }
       let inheritedContext = context;
@@ -8309,7 +8332,7 @@
                   }
                   break;
               case 209007:
-                  if (parser.token !== 67174411 && (parser.flags & 1) < 1) {
+                  if (parser.token !== 67174411 && (parser.flags & 1) === 0) {
                       if (context & 1 && (parser.token & 1073741824) === 1073741824) {
                           return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
                       }
@@ -8352,6 +8375,9 @@
       else if (context & 1 && (parser.token & 1073741824) === 1073741824) {
           kind |= 128;
       }
+      else if (isStatic && token === 2162700) {
+          return parseStaticBlock(parser, context, scope, tokenPos, linePos, colPos);
+      }
       else if (token === 122) {
           key = parseIdentifier(parser, context, 0);
           if (parser.token !== 67174411)
@@ -8381,16 +8407,16 @@
           else
               report(parser, 131);
       }
-      if ((kind & 2) < 1) {
+      if ((kind & 2) === 0) {
           if (parser.tokenValue === 'constructor') {
               if ((parser.token & 1073741824) === 1073741824) {
                   report(parser, 125);
               }
-              else if ((kind & 32) < 1 && parser.token === 67174411) {
+              else if ((kind & 32) === 0 && parser.token === 67174411) {
                   if (kind & (768 | 16 | 128 | 8)) {
                       report(parser, 50, 'accessor');
                   }
-                  else if ((context & 524288) < 1) {
+                  else if ((context & 524288) === 0) {
                       if (parser.flags & 32)
                           report(parser, 51);
                       else
@@ -8399,7 +8425,7 @@
               }
               kind |= 64;
           }
-          else if ((kind & 4096) < 1 &&
+          else if ((kind & 4096) === 0 &&
               kind & (32 | 768 | 8 | 16) &&
               parser.tokenValue === 'prototype') {
               report(parser, 49);
@@ -8412,7 +8438,7 @@
       return finishNode(parser, context, start, line, column, context & 1
           ? {
               type: 'MethodDefinition',
-              kind: (kind & 32) < 1 && kind & 64
+              kind: (kind & 32) === 0 && kind & 64
                   ? 'constructor'
                   : kind & 256
                       ? 'get'
@@ -8427,7 +8453,7 @@
           }
           : {
               type: 'MethodDefinition',
-              kind: (kind & 32) < 1 && kind & 64
+              kind: (kind & 32) === 0 && kind & 64
                   ? 'constructor'
                   : kind & 256
                       ? 'get'
@@ -8770,7 +8796,7 @@
     __proto__: null
   });
 
-  var version$1 = "4.2.1";
+  var version$1 = "4.3.0";
 
   const version = version$1;
   function parseScript(source, options) {
