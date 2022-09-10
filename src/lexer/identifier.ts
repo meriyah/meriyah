@@ -85,13 +85,20 @@ export function scanIdentifierSlowCase(
     }
 
     if (context & Context.Strict) {
-      return token === Token.StaticKeyword
-        ? Token.EscapedFutureReserved
-        : (token & Token.FutureReserved) === Token.FutureReserved
-        ? Token.EscapedFutureReserved
-        : (token & Token.Reserved) === Token.Reserved
-        ? Token.EscapedReserved
-        : Token.AnyIdentifier;
+      if (token === Token.StaticKeyword) {
+        return Token.EscapedFutureReserved;
+      }
+      if ((token & Token.FutureReserved) === Token.FutureReserved) {
+        return Token.EscapedFutureReserved;
+      }
+      if ((token & Token.Reserved) === Token.Reserved) {
+        if (context & Context.AllowEscapedKeyword && (context & Context.InGlobal) === 0) {
+          return token;
+        } else {
+          return Token.EscapedReserved;
+        }
+      }
+      return Token.AnyIdentifier;
     }
     if (
       context & Context.AllowEscapedKeyword &&

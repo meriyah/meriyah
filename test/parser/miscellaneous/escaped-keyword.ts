@@ -89,11 +89,21 @@ describe('Miscellaneous - Escaped keywords', () => {
     `async function a() {
       \\u0061sync
       p => {}
-    }`
+    }`,
+    `obj.bre\\u0061k = 42;`,
+    `for (\\u0061sync of [7]);`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, undefined, Context.None);
+      });
+    });
+  }
+
+  for (const arg of [`obj.bre\\u0061k = 42;`, `for (\\u0061sync of [7]);`]) {
+    it(`${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
   }
