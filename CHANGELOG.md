@@ -1,3 +1,13 @@
+## [4.3.1](https://github.com/meriyah/meriyah/compare/v4.3.0...v4.3.1) (2022-09-11)
+
+
+### Bug Fixes
+
+* async is not reserved word, and some fix on reserved words ([427233e](https://github.com/meriyah/meriyah/commit/427233eef1122ac0dcdeffbc238e933eba6ada04)), closes [#221](https://github.com/meriyah/meriyah/issues/221)
+* dot property should allow escaped keyword in strict mode ([efaa535](https://github.com/meriyah/meriyah/commit/efaa535b8520ecd9be73253518b575413fcabe2a)), closes [#224](https://github.com/meriyah/meriyah/issues/224)
+
+
+
 # [4.3.0](https://github.com/meriyah/meriyah/compare/v4.2.1...v4.3.0) (2022-08-02)
 
 
