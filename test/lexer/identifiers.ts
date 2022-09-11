@@ -90,9 +90,11 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.LetKeyword, 'let', 'let'],
     [Context.None, Token.PublicKeyword, 'public', 'public'],
 
+    // Async is not reserved keyword
+    [Context.None, Token.AnyIdentifier, '\\u0061sync', 'async'],
+    [Context.Strict, Token.AnyIdentifier, '\\u0061sync', 'async'],
+
     // Escaped Keywords
-    [Context.None, Token.EscapedReserved, '\\u0061sync', 'async'],
-    [Context.Strict, Token.EscapedReserved, '\\u0061sync', 'async'],
     [Context.None, Token.EscapedReserved, 'br\\u0065ak', 'break'],
     [Context.None, Token.Identifier, 'Br\\u0065ak', 'Break'],
     [Context.Strict, Token.EscapedFutureReserved, 'int\\u0065rface', 'interface'],

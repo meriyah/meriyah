@@ -76,14 +76,29 @@ export function scanIdentifierSlowCase(
     if (token === void 0) return Token.Identifier;
     if (!hasEscape) return token;
 
+    if (token === Token.AwaitKeyword) {
+      // await is only reserved word in async functions or modules
+      if ((context & (Context.Module | Context.InAwaitContext)) === 0) {
+        return token;
+      }
+      return Token.EscapedReserved;
+    }
+
     if (context & Context.Strict) {
-      return token === Token.AwaitKeyword && (context & (Context.Module | Context.InAwaitContext)) === 0
-        ? token
-        : token === Token.StaticKeyword
-        ? Token.EscapedFutureReserved
-        : (token & Token.FutureReserved) === Token.FutureReserved
-        ? Token.EscapedFutureReserved
-        : Token.EscapedReserved;
+      if (token === Token.StaticKeyword) {
+        return Token.EscapedFutureReserved;
+      }
+      if ((token & Token.FutureReserved) === Token.FutureReserved) {
+        return Token.EscapedFutureReserved;
+      }
+      if ((token & Token.Reserved) === Token.Reserved) {
+        if (context & Context.AllowEscapedKeyword && (context & Context.InGlobal) === 0) {
+          return token;
+        } else {
+          return Token.EscapedReserved;
+        }
+      }
+      return Token.AnyIdentifier;
     }
     if (
       context & Context.AllowEscapedKeyword &&
@@ -99,13 +114,17 @@ export function scanIdentifierSlowCase(
         : token;
     }
 
-    return token === Token.AsyncKeyword && context & Context.AllowEscapedKeyword
-      ? Token.AnyIdentifier
-      : (token & Token.FutureReserved) === Token.FutureReserved
-      ? token
-      : token === Token.AwaitKeyword && (context & Context.InAwaitContext) === 0
-      ? token
-      : Token.EscapedReserved;
+    // async is not reserved; it can be used as a variable name
+    // or statement label without restriction
+    if (token === Token.AsyncKeyword) {
+      // Escaped "async" such as \u0061sync can only be identifier
+      // not as "async" keyword
+      return Token.AnyIdentifier;
+    }
+    if ((token & Token.FutureReserved) === Token.FutureReserved) {
+      return token;
+    }
+    return Token.EscapedReserved;
   }
   return Token.Identifier;
 }
