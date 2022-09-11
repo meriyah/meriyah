@@ -1515,14 +1515,28 @@
               return 208897;
           if (!hasEscape)
               return token;
+          if (token === 209008) {
+              if ((context & (2048 | 4194304)) === 0) {
+                  return token;
+              }
+              return 121;
+          }
           if (context & 1024) {
-              return token === 209008 && (context & (2048 | 4194304)) === 0
-                  ? token
-                  : token === 36972
-                      ? 122
-                      : (token & 36864) === 36864
-                          ? 122
-                          : 121;
+              if (token === 36972) {
+                  return 122;
+              }
+              if ((token & 36864) === 36864) {
+                  return 122;
+              }
+              if ((token & 20480) === 20480) {
+                  if (context & 1073741824 && (context & 8192) === 0) {
+                      return token;
+                  }
+                  else {
+                      return 121;
+                  }
+              }
+              return 143483;
           }
           if (context & 1073741824 &&
               (context & 8192) === 0 &&
@@ -1535,13 +1549,13 @@
                       ? 121
                       : token;
           }
-          return token === 209007 && context & 1073741824
-              ? 143483
-              : (token & 36864) === 36864
-                  ? token
-                  : token === 209008 && (context & 4194304) === 0
-                      ? token
-                      : 121;
+          if (token === 209007) {
+              return 143483;
+          }
+          if ((token & 36864) === 36864) {
+              return token;
+          }
+          return 121;
       }
       return 208897;
   }
@@ -8796,7 +8810,7 @@
     __proto__: null
   });
 
-  var version$1 = "4.3.0";
+  var version$1 = "4.3.1";
 
   const version = version$1;
   function parseScript(source, options) {
