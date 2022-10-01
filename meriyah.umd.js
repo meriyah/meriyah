@@ -1474,7 +1474,7 @@
   function scanIdentifier(parser, context, isValidAsKeyword) {
       while (isIdPart[advanceChar(parser)]) { }
       parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
-      return parser.currentChar !== 92 && parser.currentChar < 0x7e
+      return parser.currentChar !== 92 && parser.currentChar <= 0x7e
           ? descKeywordTable[parser.tokenValue] || 208897
           : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
   }
@@ -8810,7 +8810,7 @@
     __proto__: null
   });
 
-  var version$1 = "4.3.1";
+  var version$1 = "4.3.2";
 
   const version = version$1;
   function parseScript(source, options) {
