@@ -1,3 +1,12 @@
+## [4.3.2](https://github.com/meriyah/meriyah/compare/v4.3.1...v4.3.2) (2022-10-01)
+
+
+### Bug Fixes
+
+* **parser:** ~ (0x7e) is valid stop for Identifier or Keyword ([d702ebd](https://github.com/meriyah/meriyah/commit/d702ebdb6d5020c9a4f8a0f987cb421e50ae136e)), closes [#226](https://github.com/meriyah/meriyah/issues/226)
+
+
+
 ## [4.3.1](https://github.com/meriyah/meriyah/compare/v4.3.0...v4.3.1) (2022-09-11)
 
 
