@@ -438,8 +438,9 @@ describe('Statements - For of', () => {
     'for (function(){ }[x in y] of x);',
     'for (function(){ if (a in b); }.prop of x);',
     'for (function(){ a in b; }.prop of x);',
-
-    `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`
+    `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`,
+    'for(x of ~y);',
+    'for(x of~y);'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

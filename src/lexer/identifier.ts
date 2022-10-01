@@ -15,7 +15,7 @@ export function scanIdentifier(parser: ParserState, context: Context, isValidAsK
   while (isIdPart[advanceChar(parser)]) {}
   parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
 
-  return parser.currentChar !== Chars.Backslash && parser.currentChar < 0x7e
+  return parser.currentChar !== Chars.Backslash && parser.currentChar <= 0x7e
     ? descKeywordTable[parser.tokenValue] || Token.Identifier
     : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
 }
