@@ -1,3 +1,12 @@
+## [4.3.3](https://github.com/meriyah/meriyah/compare/v4.3.2...v4.3.3) (2022-11-12)
+
+
+### Bug Fixes
+
+* **parser:** invalid generator setter should have correct error message ([193b3ef](https://github.com/meriyah/meriyah/commit/193b3efedea56c025f14afce7e34f28dc7080501)), closes [#228](https://github.com/meriyah/meriyah/issues/228)
+
+
+
 ## [4.3.2](https://github.com/meriyah/meriyah/compare/v4.3.1...v4.3.2) (2022-10-01)
 
 
