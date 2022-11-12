@@ -6093,8 +6093,10 @@ export function parseObjectLiteralOrPattern(
         } else if (parser.token === Token.Multiply) {
           destructible |= DestructuringKind.CannotDestruct;
 
-          if (token === Token.GetKeyword || token === Token.SetKeyword) {
+          if (token === Token.GetKeyword) {
             report(parser, Errors.InvalidGeneratorGetter);
+          } else if (token === Token.SetKeyword) {
+            report(parser, Errors.InvalidGeneratorSetter);
           } else if (token === Token.AnyIdentifier) {
             report(parser, Errors.InvalidEscapedKeyword);
           }
