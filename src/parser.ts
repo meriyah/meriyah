@@ -8281,7 +8281,12 @@ function parseClassElementList(
 
     switch (token) {
       case Token.StaticKeyword:
-        if (!isStatic && parser.token !== Token.LeftParen) {
+        if (
+          !isStatic &&
+          parser.token !== Token.LeftParen &&
+          (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon &&
+          parser.token !== Token.Assign
+        ) {
           return parseClassElementList(
             parser,
             context,
