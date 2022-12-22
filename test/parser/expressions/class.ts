@@ -12681,6 +12681,114 @@ describe('Expressions - Class', () => {
         sourceType: 'script',
         type: 'Program'
       }
+    ],
+    [
+      `class A { static }`,
+      Context.OptionsNext | Context.Module,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'static',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: null
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
+      `class A { static; }`,
+      Context.OptionsNext | Context.Module,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'static',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: null
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
+      `class A { static = 1 }`,
+      Context.OptionsNext | Context.Module,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  key: {
+                    name: 'static',
+                    type: 'Identifier'
+                  },
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    type: 'Literal',
+                    value: 1
+                  }
+                }
+              ],
+              type: 'ClassBody'
+            },
+            decorators: [],
+            id: {
+              name: 'A',
+              type: 'Identifier'
+            },
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
     ]
   ]);
 });
