@@ -9107,7 +9107,7 @@ function parseJSXExpressionContainer(
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
   nextToken(parser, context | Context.AllowRegExp);
   const { tokenPos, linePos, colPos } = parser;
-  if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, tokenPos, linePos, colPos);
+  if (parser.token === Token.Ellipsis) return parseJSXSpreadChild(parser, context, start, line, column);
 
   let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
 

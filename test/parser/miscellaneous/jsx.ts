@@ -9225,7 +9225,7 @@ describe('Miscellaneous - JSX', () => {
     ],
     [
       '<div {...a }>{...b}</div>',
-      Context.OptionsJSX,
+      Context.OptionsJSX | Context.OptionsLoc,
       {
         type: 'Program',
         sourceType: 'script',
@@ -9239,7 +9239,27 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXSpreadChild',
                   expression: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 17
+                      },
+                      end: {
+                        line: 1,
+                        column: 18
+                      }
+                    }
+                  },
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 13
+                    },
+                    end: {
+                      line: 1,
+                      column: 19
+                    }
                   }
                 }
               ],
@@ -9247,29 +9267,119 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 1
+                    },
+                    end: {
+                      line: 1,
+                      column: 4
+                    }
+                  }
                 },
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 9
+                        },
+                        end: {
+                          line: 1,
+                          column: 10
+                        }
+                      }
+                    },
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 5
+                      },
+                      end: {
+                        line: 1,
+                        column: 12
+                      }
                     }
                   }
                 ],
-                selfClosing: false
+                selfClosing: false,
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 0
+                  },
+                  end: {
+                    line: 1,
+                    column: 13
+                  }
+                }
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 21
+                    },
+                    end: {
+                      line: 1,
+                      column: 24
+                    }
+                  }
+                },
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 19
+                  },
+                  end: {
+                    line: 1,
+                    column: 25
+                  }
                 }
+              },
+              loc: {
+                start: {
+                  line: 1,
+                  column: 0
+                },
+                end: {
+                  line: 1,
+                  column: 25
+                }
+              }
+            },
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 25
               }
             }
           }
-        ]
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 25
+          }
+        }
       }
     ],
     [
