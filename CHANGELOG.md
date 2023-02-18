@@ -1,3 +1,13 @@
+## [4.3.4](https://github.com/meriyah/meriyah/compare/v4.3.3...v4.3.4) (2023-02-18)
+
+
+### Bug Fixes
+
+* **parser:** "static" can be used as an identifier in ClassElement ([663937a](https://github.com/meriyah/meriyah/commit/663937af80c00978c7aa0b0a5c8a61bf179608af)), closes [#231](https://github.com/meriyah/meriyah/issues/231)
+* **parser:** fix loc info for JSXSpreadChild ([4a99416](https://github.com/meriyah/meriyah/commit/4a994161328dbcafb535eeadc01d81cc8600a1b0)), closes [#235](https://github.com/meriyah/meriyah/issues/235)
+
+
+
 ## [4.3.3](https://github.com/meriyah/meriyah/compare/v4.3.2...v4.3.3) (2022-11-12)
 
 
