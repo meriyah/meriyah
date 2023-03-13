@@ -1,3 +1,7 @@
+## [4.3.5](https://github.com/meriyah/meriyah/compare/v4.3.4...v4.3.5) (2023-03-13)
+
+
+
 ## [4.3.4](https://github.com/meriyah/meriyah/compare/v4.3.3...v4.3.4) (2023-02-18)
 
 
