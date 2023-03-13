@@ -2700,7 +2700,7 @@ function parseImportCallDeclaration(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
-  let expr = parseImportExpression(parser, context, /* inGroup */ 0, start, line, column);
+  let expr: ESTree.Expression = parseImportExpression(parser, context, /* inGroup */ 0, start, line, column);
 
   /** MemberExpression :
    *   1. PrimaryExpression
@@ -2722,6 +2722,10 @@ function parseImportCallDeclaration(
    */
 
   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
+
+  if (parser.token === Token.Comma) {
+    expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
+  }
 
   /**
    * ExpressionStatement[Yield, Await]:
