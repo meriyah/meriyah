@@ -9,7 +9,8 @@
   "unpkg": "dist/meriyah.umd.min.js",
   "exports": {
     "import": "./dist/meriyah.esm.mjs",
-    "require": "./dist/meriyah.cjs"
+    "require": "./dist/meriyah.cjs",
+    "types": "./dist/src/meriyah.d.ts"
   },
   "types": "dist/src/meriyah.d.ts",
   "typings": "dist/src/meriyah.d.ts",
