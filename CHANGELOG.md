@@ -1,3 +1,12 @@
+## [4.3.7](https://github.com/meriyah/meriyah/compare/v4.3.6...v4.3.7) (2023-05-12)
+
+
+### Bug Fixes
+
+* **parser:** nested class with constructor should not fail ([c0856b9](https://github.com/meriyah/meriyah/commit/c0856b974dde8c6c5a703186d2847257a64812e2))
+
+
+
 ## [4.3.6](https://github.com/meriyah/meriyah/compare/v4.3.5...v4.3.6) (2023-05-10)
 
 
