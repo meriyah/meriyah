@@ -1474,6 +1474,79 @@ describe('Next - Public fields', () => {
         end: 16,
         range: [0, 16]
       }
+    ],
+    [
+      `class A { a = b = c }`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            decorators: [],
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              start: 6,
+              end: 7,
+              range: [6, 7]
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 10,
+                    end: 11,
+                    range: [10, 11]
+                  },
+                  value: {
+                    type: 'AssignmentExpression',
+                    operator: '=',
+                    start: 14,
+                    end: 19,
+                    range: [14, 19],
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 14,
+                      end: 15,
+                      range: [14, 15]
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 18,
+                      end: 19,
+                      range: [18, 19]
+                    }
+                  },
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 19,
+                  range: [10, 19]
+                }
+              ],
+              start: 8,
+              end: 21,
+              range: [8, 21]
+            },
+            start: 0,
+            end: 21,
+            range: [0, 21]
+          }
+        ],
+        start: 0,
+        end: 21,
+        range: [0, 21]
+      }
     ]
   ]);
 });
