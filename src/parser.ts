@@ -8525,7 +8525,10 @@ export function parsePropertyDefinition(
       colPos
     );
 
-    if ((parser.token & Token.IsClassField) !== Token.IsClassField) {
+    if (
+      (parser.token & Token.IsClassField) !== Token.IsClassField ||
+      (parser.token & Token.IsAssignOp) === Token.IsAssignOp
+    ) {
       value = parseMemberOrUpdateExpression(
         parser,
         context | Context.InClass,
