@@ -1,3 +1,12 @@
+## [4.3.8](https://github.com/meriyah/meriyah/compare/v4.3.7...v4.3.8) (2023-11-01)
+
+
+### Bug Fixes
+
+* **parser:** assignment as a value for property definition ([5f8f006](https://github.com/meriyah/meriyah/commit/5f8f0061feba7cc46911ef6abd55c7c0ab2bd792))
+
+
+
 ## [4.3.7](https://github.com/meriyah/meriyah/compare/v4.3.6...v4.3.7) (2023-05-12)
 
 
