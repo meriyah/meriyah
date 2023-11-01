@@ -1474,6 +1474,152 @@ describe('Next - Public fields', () => {
         end: 16,
         range: [0, 16]
       }
+    ],
+    [
+      `class A { a = b = c }`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            decorators: [],
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              start: 6,
+              end: 7,
+              range: [6, 7]
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  decorators: [],
+                  key: {
+                    type: 'Identifier',
+                    name: 'a',
+                    start: 10,
+                    end: 11,
+                    range: [10, 11]
+                  },
+                  value: {
+                    type: 'AssignmentExpression',
+                    operator: '=',
+                    start: 14,
+                    end: 19,
+                    range: [14, 19],
+                    left: {
+                      type: 'Identifier',
+                      name: 'b',
+                      start: 14,
+                      end: 15,
+                      range: [14, 15]
+                    },
+                    right: {
+                      type: 'Identifier',
+                      name: 'c',
+                      start: 18,
+                      end: 19,
+                      range: [18, 19]
+                    }
+                  },
+                  computed: false,
+                  static: false,
+                  start: 10,
+                  end: 19,
+                  range: [10, 19]
+                }
+              ],
+              start: 8,
+              end: 21,
+              range: [8, 21]
+            },
+            start: 0,
+            end: 21,
+            range: [0, 21]
+          }
+        ],
+        start: 0,
+        end: 21,
+        range: [0, 21]
+      }
+    ],
+    [
+      `class A { a = b += c }`,
+      Context.OptionsNext | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 20,
+                  key: {
+                    end: 11,
+                    name: 'a',
+                    range: [10, 11],
+                    start: 10,
+                    type: 'Identifier'
+                  },
+                  range: [10, 20],
+                  start: 10,
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    end: 20,
+                    left: {
+                      end: 15,
+                      name: 'b',
+                      range: [14, 15],
+                      start: 14,
+                      type: 'Identifier'
+                    },
+                    operator: '+=',
+                    range: [14, 20],
+                    right: {
+                      end: 20,
+                      name: 'c',
+                      range: [19, 20],
+                      start: 19,
+                      type: 'Identifier'
+                    },
+                    start: 14,
+                    type: 'AssignmentExpression'
+                  }
+                }
+              ],
+              end: 22,
+              range: [8, 22],
+              start: 8,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 22,
+            id: {
+              end: 7,
+              name: 'A',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 22],
+            start: 0,
+            superClass: null,
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 22,
+        range: [0, 22],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
     ]
   ]);
 });
