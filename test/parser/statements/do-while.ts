@@ -718,6 +718,55 @@ while(y)
           }
         ]
       }
+    ],
+    [
+      'do { } while (a); /^.*$/.test(b)',
+      Context.OptionsWebCompat,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'DoWhileStatement',
+            body: {
+              type: 'BlockStatement',
+              body: []
+            },
+            test: {
+              type: 'Identifier',
+              name: 'a'
+            }
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'CallExpression',
+              callee: {
+                type: 'MemberExpression',
+                object: {
+                  type: 'Literal',
+                  value: /^.*$/,
+                  regex: {
+                    pattern: '^.*$',
+                    flags: ''
+                  }
+                },
+                computed: false,
+                property: {
+                  type: 'Identifier',
+                  name: 'test'
+                }
+              },
+              arguments: [
+                {
+                  type: 'Identifier',
+                  name: 'b'
+                }
+              ]
+            }
+          }
+        ]
+      }
     ]
   ]);
 });
