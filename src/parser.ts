@@ -1837,7 +1837,7 @@ export function parseDoWhileStatement(
   // The previous token is ) and the inserted semicolon would then be parsed as the terminating semicolon of a do-while statement (13.7.2).
   // This cannot be implemented in matchOrInsertSemicolon() because it doesn't know
   // this RightRaren is the end of a do-while statement.
-  consumeOpt(parser, context, Token.Semicolon);
+  consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
     body,
