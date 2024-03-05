@@ -1,3 +1,12 @@
+# [4.4.0](https://github.com/meriyah/meriyah/compare/v4.3.9...v4.4.0) (2024-03-05)
+
+
+### Features
+
+* **parser:** add onInsertedSemicolon option ([557a893](https://github.com/meriyah/meriyah/commit/557a89301bab294f77d46e431b5c527d6b8c9011))
+
+
+
 ## [4.3.9](https://github.com/meriyah/meriyah/compare/v4.3.8...v4.3.9) (2023-11-24)
 
 
