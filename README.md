@@ -85,6 +85,9 @@ This is the available options:
   // Allows comment extraction. Accepts either a function or array
   onComment: []
 
+  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
+  onInsertedSemicolon: (pos) => {}
+
   // Allows token extraction. Accepts either a function or array
   onToken: []
 
@@ -115,12 +118,19 @@ If an array is supplied, comments/tokens will be pushed to the array, the item i
 If a function callback is supplied, the signature must be
 
 ```ts
-function onComment(type: string, value: string, start: number, end: number, loc: SourceLocation): void {}
+declare function onComment(type: string, value: string, start: number, end: number, loc: SourceLocation): void;
 
-function onToken(token: string, start: number, end: number, loc: SourceLocation): void {}
+declare function onToken(token: string, start: number, end: number, loc: SourceLocation): void;
 ```
 
 Note the `start/end/loc` information are provided to the function callback regardless of the settings on ranges and loc flags. onComment callback has one extra argument `value: string` for the body string of the comment.
+
+### onInsertedSemicolon
+If a function callback is supplied, the signature must be
+
+```ts
+declare function onInsertedSemicolon(position: number): void;
+```
 
 ## Example usage
 

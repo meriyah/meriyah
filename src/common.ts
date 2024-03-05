@@ -174,6 +174,11 @@ export const enum ScopeKind {
 export type OnComment = void | Comment[] | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
 
 /**
+ * The type of the `onInsertedSemicolon` option.
+ */
+export type OnInsertedSemicolon = void | ((pos: number) => any);
+
+/**
  * The type of the `onToken` option.
  */
 export type OnToken = void | Token[] | ((token: string, start: number, end: number, loc: SourceLocation) => any);
@@ -214,6 +219,7 @@ export interface ParserState {
   end: number;
   token: Token;
   onComment: any;
+  onInsertedSemicolon: any;
   onToken: any;
   tokenValue: any;
   tokenRaw: string;
@@ -247,7 +253,11 @@ export function matchOrInsertSemicolon(parser: ParserState, context: Context, sp
   ) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
-  consumeOpt(parser, context, Token.Semicolon);
+
+  if (!consumeOpt(parser, context, Token.Semicolon)) {
+    // Automatic semicolon insertion has occurred
+    parser.onInsertedSemicolon?.(parser.startPos);
+  }
 }
 
 export function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1 {

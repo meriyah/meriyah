@@ -13,6 +13,7 @@ import {
   consume,
   Flags,
   OnComment,
+  OnInsertedSemicolon,
   OnToken,
   pushComment,
   pushToken,
@@ -55,7 +56,8 @@ export function create(
   source: string,
   sourceFile: string | void,
   onComment: OnComment | void,
-  onToken: OnToken | void
+  onToken: OnToken | void,
+  onInsertedSemicolon: OnInsertedSemicolon | void
 ): ParserState {
   return {
     /**
@@ -181,6 +183,11 @@ export function create(
     onToken,
 
     /**
+     * Function invoked with the character offset when automatic semicolon insertion occurs
+     */
+    onInsertedSemicolon,
+
+    /**
      * Holds leading decorators before "export" or "class" keywords
      */
     leadingDecorators: []
@@ -221,9 +228,11 @@ export interface Options {
   jsx?: boolean;
   // Allow edge cases that deviate from the spec
   specDeviation?: boolean;
-  // Allows comment extraction. Accepts either a a callback function or an array
+  // Allows comment extraction. Accepts either a callback function or an array
   onComment?: OnComment;
-  // Allows token extraction. Accepts either a a callback function or an array
+  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
+  onInsertedSemicolon?: OnInsertedSemicolon;
+  // Allows token extraction. Accepts either a callback function or an array
   onToken?: OnToken;
   // Creates unique key for in ObjectPattern when key value are same
   uniqueKeyInPattern?: boolean;
@@ -235,6 +244,7 @@ export interface Options {
 export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
   let sourceFile = '';
   let onComment;
+  let onInsertedSemicolon;
   let onToken;
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
@@ -257,6 +267,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.onComment != null) {
       onComment = Array.isArray(options.onComment) ? pushComment(context, options.onComment) : options.onComment;
     }
+    if (options.onInsertedSemicolon != null) onInsertedSemicolon = options.onInsertedSemicolon;
     // Accepts either a callback function to be invoked or an array to collect tokens
     if (options.onToken != null) {
       onToken = Array.isArray(options.onToken) ? pushToken(context, options.onToken) : options.onToken;
@@ -264,7 +275,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   }
 
   // Initialize parser state
-  const parser = create(source, sourceFile, onComment, onToken);
+  const parser = create(source, sourceFile, onComment, onToken, onInsertedSemicolon);
 
   // See: https://github.com/tc39/proposal-hashbang
   if (context & Context.OptionsNext) skipHashBang(parser);
