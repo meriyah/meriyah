@@ -398,6 +398,7 @@ describe('Declarations - Function', () => {
     'function f() { const await = 10; }',
     'function f(a = async function (x) { await x; }) { a(); } f();',
     'function f() {async = 1, a = 2;}',
+    'function f() {a = 1, async = 2;}',
     'function f() {var async = 1; return async;}',
     'function f() {let async = 1; return async;}',
     'function f() {const async = 1; return async;}',

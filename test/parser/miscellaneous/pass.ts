@@ -2835,6 +2835,7 @@ after = err;
     'class X { await() {} }',
     'let async = await;',
     'async = 1, b = 2;',
+    'b = 2, async = 1;',
     'x = { await: false }',
     'yield[100]',
     `async
