@@ -104,6 +104,8 @@ describe('Next - Import Meta', () => {
     '1, import.meta;',
     'import.meta, a = 1;',
     'a = 1, import.meta;',
+    'import.meta.url = 1, import.meta.url = 2;',
+    'import.meta, import.meta.url = 1;',
     'import.meta;'
   ]) {
     it(`${arg}`, () => {
