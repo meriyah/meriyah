@@ -100,6 +100,12 @@ describe('Next - Import Meta', () => {
     '(a?.import("string")?.import.meta??(a))',
     'import.meta?.(a?.import("string")?.import.meta??(a))',
     'var a = import.meta;',
+    'import.meta, 1;',
+    '1, import.meta;',
+    'import.meta, a = 1;',
+    'a = 1, import.meta;',
+    'import.meta.url = 1, import.meta.url = 2;',
+    'import.meta, import.meta.url = 1;',
     'import.meta;'
   ]) {
     it(`${arg}`, () => {

@@ -1100,15 +1100,6 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
    */
 
   expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, start, line, column);
-  /** Sequence expression
-   *
-   * Note: The comma operator leads to a sequence expression which is not equivalent
-   * to the ES Expression, but it's part of the ESTree specs:
-   *
-   * https://github.com/estree/estree/blob/master/es5.md#sequenceexpression
-   *
-   */
-  if (parser.token === Token.Comma) expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
 
   /** AssignmentExpression :
    *
@@ -1119,6 +1110,18 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   expr = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expr as ESTree.ArgumentExpression);
 
   parser.assignable = AssignmentKind.Assignable;
+
+  /** Sequence expression
+   *
+   * Note: The comma operator leads to a sequence expression which is not equivalent
+   * to the ES Expression, but it's part of the ESTree specs:
+   *
+   * https://github.com/estree/estree/blob/master/es5.md#sequenceexpression
+   *
+   */
+  if (parser.token === Token.Comma) {
+    expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
+  }
 
   /**
    * ExpressionStatement[Yield, Await]:
@@ -2688,6 +2691,10 @@ export function parseImportMetaDeclaration(
 
   expr = parseAssignmentExpression(parser, context, 0, 0, start, line, column, expr as ESTree.Expression);
 
+  if (parser.token === Token.Comma) {
+    expr = parseSequenceExpression(parser, context, 0, start, line, column, expr);
+  }
+
   /**
    * ExpressionStatement[Yield, Await]:
    *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
@@ -3574,6 +3581,8 @@ export function parseAsyncExpression(
     if (inNew) report(parser, Errors.InvalidAsyncArrow);
     return parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, inNew, canAssign, 0, start, line, column);
   }
+
+  parser.assignable = AssignmentKind.Assignable;
   return expr;
 }
 
