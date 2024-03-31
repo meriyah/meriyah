@@ -1,3 +1,14 @@
+## [4.4.1](https://github.com/meriyah/meriyah/compare/v4.4.0...v4.4.1) (2024-03-31)
+
+
+### Bug Fixes
+
+* **parser:** fix `import.meta` in sequence ([15ea395](https://github.com/meriyah/meriyah/commit/15ea395a1dc59a253c99d57e4697c3a33147e3a8))
+* **parser:** fix async assignment in comma expression ([9652602](https://github.com/meriyah/meriyah/commit/9652602728cca827ebabcdcf3ed8f240ec125c7f))
+* **parser:** fix async assignment in sequence ([223936e](https://github.com/meriyah/meriyah/commit/223936ec62b3b4f008a351075f25c466ca89e9da))
+
+
+
 # [4.4.0](https://github.com/meriyah/meriyah/compare/v4.3.9...v4.4.0) (2024-03-05)
 
 
