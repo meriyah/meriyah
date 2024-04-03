@@ -338,7 +338,15 @@ describe('Expressions - Template', () => {
     'test`\\18`;',
     '(`\n`)',
     '(`\r`)',
-    'new nestedNewOperatorFunction`1``2``3``array`'
+    'new nestedNewOperatorFunction`1``2``3``array`',
+    "tag()`'\\00a0'`;",
+    "(tag = () => {})`'\\00a0'`",
+    "(() => {})`'\\00a0'`",
+    "(function tag() { return () => {}; })()`'\\00a0'`",
+    "(function() { return () => {}; })()`'\\00a0'`",
+    "(function tag() {})`'\\00a0'`",
+    "(function() {})`'\\00a0'`",
+    'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -4032,6 +4040,134 @@ describe('Expressions - Template', () => {
             column: 0
           }
         }
+      }
+    ],
+    [
+      "tag()`'\\00a0'`;",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: undefined,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                arguments: [],
+                callee: {
+                  name: 'tag',
+                  type: 'Identifier'
+                },
+                type: 'CallExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      "(tag = () => {})`'\\00a0'`",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: undefined,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                left: {
+                  name: 'tag',
+                  type: 'Identifier'
+                },
+                operator: '=',
+                right: {
+                  async: false,
+                  body: {
+                    body: [],
+                    type: 'BlockStatement'
+                  },
+                  expression: false,
+                  params: [],
+                  type: 'ArrowFunctionExpression'
+                },
+                type: 'AssignmentExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: undefined,
+                      raw: '{\rtf1adeflang1025ansiansicpg1252\\uc1'
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                computed: false,
+                object: {
+                  name: 'String',
+                  type: 'Identifier'
+                },
+                property: {
+                  name: 'raw',
+                  type: 'Identifier'
+                },
+                type: 'MemberExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
       }
     ]
   ]);
