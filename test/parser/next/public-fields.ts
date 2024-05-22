@@ -17,6 +17,10 @@ describe('Next - Public fields', () => {
       'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
       Context.OptionsWebCompat | Context.OptionsNext
     ],
+    [
+      'class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }',
+      Context.OptionsWebCompat | Context.OptionsNext
+    ],
     ['class A { a, b }', Context.None],
     ['class A { a, b }', Context.OptionsNext]
   ]);

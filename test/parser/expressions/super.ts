@@ -3757,6 +3757,528 @@ describe('Expressions - Super', () => {
           }
         ]
       }
+    ],
+    [
+      'class x extends y { a = () => super.a(); }',
+      Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 39,
+                  key: {
+                    end: 21,
+                    name: 'a',
+                    range: [20, 21],
+                    start: 20,
+                    type: 'Identifier'
+                  },
+                  range: [20, 39],
+                  start: 20,
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      arguments: [],
+                      callee: {
+                        computed: false,
+                        end: 37,
+                        object: {
+                          end: 35,
+                          range: [30, 35],
+                          start: 30,
+                          type: 'Super'
+                        },
+                        property: {
+                          end: 37,
+                          name: 'a',
+                          range: [36, 37],
+                          start: 36,
+                          type: 'Identifier'
+                        },
+                        range: [30, 37],
+                        start: 30,
+                        type: 'MemberExpression'
+                      },
+                      end: 39,
+                      range: [30, 39],
+                      start: 30,
+                      type: 'CallExpression'
+                    },
+                    end: 39,
+                    expression: true,
+                    params: [],
+                    range: [24, 39],
+                    start: 24,
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              end: 42,
+              range: [18, 42],
+              start: 18,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 42,
+            id: {
+              end: 7,
+              name: 'x',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 42],
+            start: 0,
+            superClass: {
+              end: 17,
+              name: 'y',
+              range: [16, 17],
+              start: 16,
+              type: 'Identifier'
+            },
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 42,
+        range: [0, 42],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      'class x extends y { a = () => { super.a(); }}',
+      Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 44,
+                  key: {
+                    end: 21,
+                    name: 'a',
+                    range: [20, 21],
+                    start: 20,
+                    type: 'Identifier'
+                  },
+                  range: [20, 44],
+                  start: 20,
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    async: false,
+                    body: {
+                      body: [
+                        {
+                          end: 42,
+                          expression: {
+                            arguments: [],
+                            callee: {
+                              computed: false,
+                              end: 39,
+                              object: {
+                                end: 37,
+                                range: [32, 37],
+                                start: 32,
+                                type: 'Super'
+                              },
+                              property: {
+                                end: 39,
+                                name: 'a',
+                                range: [38, 39],
+                                start: 38,
+                                type: 'Identifier'
+                              },
+                              range: [32, 39],
+                              start: 32,
+                              type: 'MemberExpression'
+                            },
+                            end: 41,
+                            range: [32, 41],
+                            start: 32,
+                            type: 'CallExpression'
+                          },
+                          range: [32, 42],
+                          start: 32,
+                          type: 'ExpressionStatement'
+                        }
+                      ],
+                      end: 44,
+                      range: [30, 44],
+                      start: 30,
+                      type: 'BlockStatement'
+                    },
+                    end: 44,
+                    expression: false,
+                    params: [],
+                    range: [24, 44],
+                    start: 24,
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              end: 45,
+              range: [18, 45],
+              start: 18,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 45,
+            id: {
+              end: 7,
+              name: 'x',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 45],
+            start: 0,
+            superClass: {
+              end: 17,
+              name: 'y',
+              range: [16, 17],
+              start: 16,
+              type: 'Identifier'
+            },
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 45,
+        range: [0, 45],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      'class x extends y { a = async () => await super.a(); }',
+      Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 51,
+                  key: {
+                    end: 21,
+                    name: 'a',
+                    range: [20, 21],
+                    start: 20,
+                    type: 'Identifier'
+                  },
+                  range: [20, 51],
+                  start: 20,
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    async: true,
+                    body: {
+                      argument: {
+                        arguments: [],
+                        callee: {
+                          computed: false,
+                          end: 49,
+                          object: {
+                            end: 47,
+                            range: [42, 47],
+                            start: 42,
+                            type: 'Super'
+                          },
+                          property: {
+                            end: 49,
+                            name: 'a',
+                            range: [48, 49],
+                            start: 48,
+                            type: 'Identifier'
+                          },
+                          range: [42, 49],
+                          start: 42,
+                          type: 'MemberExpression'
+                        },
+                        end: 51,
+                        range: [42, 51],
+                        start: 42,
+                        type: 'CallExpression'
+                      },
+                      end: 51,
+                      range: [36, 51],
+                      start: 36,
+                      type: 'AwaitExpression'
+                    },
+                    end: 51,
+                    expression: true,
+                    params: [],
+                    range: [24, 51],
+                    start: 24,
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              end: 54,
+              range: [18, 54],
+              start: 18,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 54,
+            id: {
+              end: 7,
+              name: 'x',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 54],
+            start: 0,
+            superClass: {
+              end: 17,
+              name: 'y',
+              range: [16, 17],
+              start: 16,
+              type: 'Identifier'
+            },
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 54,
+        range: [0, 54],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      'class x extends y { a = async () => { await super.a(); }}',
+      Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 56,
+                  key: {
+                    end: 21,
+                    name: 'a',
+                    range: [20, 21],
+                    start: 20,
+                    type: 'Identifier'
+                  },
+                  range: [20, 56],
+                  start: 20,
+                  static: false,
+                  type: 'PropertyDefinition',
+                  value: {
+                    async: true,
+                    body: {
+                      body: [
+                        {
+                          end: 54,
+                          expression: {
+                            argument: {
+                              arguments: [],
+                              callee: {
+                                computed: false,
+                                end: 51,
+                                object: {
+                                  end: 49,
+                                  range: [44, 49],
+                                  start: 44,
+                                  type: 'Super'
+                                },
+                                property: {
+                                  end: 51,
+                                  name: 'a',
+                                  range: [50, 51],
+                                  start: 50,
+                                  type: 'Identifier'
+                                },
+                                range: [44, 51],
+                                start: 44,
+                                type: 'MemberExpression'
+                              },
+                              end: 53,
+                              range: [44, 53],
+                              start: 44,
+                              type: 'CallExpression'
+                            },
+                            end: 53,
+                            range: [38, 53],
+                            start: 38,
+                            type: 'AwaitExpression'
+                          },
+                          range: [38, 54],
+                          start: 38,
+                          type: 'ExpressionStatement'
+                        }
+                      ],
+                      end: 56,
+                      range: [36, 56],
+                      start: 36,
+                      type: 'BlockStatement'
+                    },
+                    end: 56,
+                    expression: false,
+                    params: [],
+                    range: [24, 56],
+                    start: 24,
+                    type: 'ArrowFunctionExpression'
+                  }
+                }
+              ],
+              end: 57,
+              range: [18, 57],
+              start: 18,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 57,
+            id: {
+              end: 7,
+              name: 'x',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 57],
+            start: 0,
+            superClass: {
+              end: 17,
+              name: 'y',
+              range: [16, 17],
+              start: 16,
+              type: 'Identifier'
+            },
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 57,
+        range: [0, 57],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
+    ],
+    [
+      'class x extends y { static properties = { ...super.constructor.properties }; }',
+      Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
+      {
+        body: [
+          {
+            body: {
+              body: [
+                {
+                  computed: false,
+                  decorators: [],
+                  end: 75,
+                  key: {
+                    end: 37,
+                    name: 'properties',
+                    range: [27, 37],
+                    start: 27,
+                    type: 'Identifier'
+                  },
+                  range: [27, 75],
+                  start: 27,
+                  static: true,
+                  type: 'PropertyDefinition',
+                  value: {
+                    end: 75,
+                    properties: [
+                      {
+                        argument: {
+                          computed: false,
+                          end: 73,
+                          object: {
+                            computed: false,
+                            end: 62,
+                            object: {
+                              end: 50,
+                              range: [45, 50],
+                              start: 45,
+                              type: 'Super'
+                            },
+                            property: {
+                              end: 62,
+                              name: 'constructor',
+                              range: [51, 62],
+                              start: 51,
+                              type: 'Identifier'
+                            },
+                            range: [45, 62],
+                            start: 45,
+                            type: 'MemberExpression'
+                          },
+                          property: {
+                            end: 73,
+                            name: 'properties',
+                            range: [63, 73],
+                            start: 63,
+                            type: 'Identifier'
+                          },
+                          range: [45, 73],
+                          start: 45,
+                          type: 'MemberExpression'
+                        },
+                        end: 73,
+                        range: [42, 73],
+                        start: 42,
+                        type: 'SpreadElement'
+                      }
+                    ],
+                    range: [40, 75],
+                    start: 40,
+                    type: 'ObjectExpression'
+                  }
+                }
+              ],
+              end: 78,
+              range: [18, 78],
+              start: 18,
+              type: 'ClassBody'
+            },
+            decorators: [],
+            end: 78,
+            id: {
+              end: 7,
+              name: 'x',
+              range: [6, 7],
+              start: 6,
+              type: 'Identifier'
+            },
+            range: [0, 78],
+            start: 0,
+            superClass: {
+              end: 17,
+              name: 'y',
+              range: [16, 17],
+              start: 16,
+              type: 'Identifier'
+            },
+            type: 'ClassDeclaration'
+          }
+        ],
+        end: 78,
+        range: [0, 78],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
     ]
   ]);
 });
