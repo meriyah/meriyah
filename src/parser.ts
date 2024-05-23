@@ -3931,11 +3931,7 @@ export function parseMemberOrUpdateExpression(
       case Token.Period: {
         nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
-        if (
-          context & Context.InClass &&
-          (parser.token & Token.PrivateField) === Token.PrivateField &&
-          parser.tokenValue === 'super'
-        ) {
+        if (context & Context.InClass && parser.token === Token.PrivateField && parser.tokenValue === 'super') {
           report(parser, Errors.InvalidSuperProperty);
         }
 
