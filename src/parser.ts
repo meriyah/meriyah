@@ -3803,7 +3803,9 @@ export function parseSuperExpression(
     case Token.LeftParen: {
       // The super property has to be within a class constructor
       if ((context & Context.SuperCall) === 0) report(parser, Errors.SuperNoConstructor);
-      if (context & Context.InClass) report(parser, Errors.InvalidSuperProperty);
+      if (context & Context.InClass && !(context & Context.InMethod)) {
+        report(parser, Errors.InvalidSuperProperty);
+      }
       parser.assignable = AssignmentKind.CannotAssign;
       break;
     }
@@ -3812,7 +3814,9 @@ export function parseSuperExpression(
       // new super() is never allowed.
       // super() is only allowed in derived constructor
       if ((context & Context.SuperProperty) === 0) report(parser, Errors.InvalidSuperProperty);
-      if (context & Context.InClass) report(parser, Errors.InvalidSuperProperty);
+      if (context & Context.InClass && !(context & Context.InMethod)) {
+        report(parser, Errors.InvalidSuperProperty);
+      }
       parser.assignable = AssignmentKind.Assignable;
       break;
     }
@@ -3926,6 +3930,10 @@ export function parseMemberOrUpdateExpression(
       /* Property */
       case Token.Period: {
         nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
+
+        if (context & Context.InClass && parser.token === Token.PrivateField && parser.tokenValue === 'super') {
+          report(parser, Errors.InvalidSuperProperty);
+        }
 
         parser.assignable = AssignmentKind.Assignable;
 
@@ -7195,7 +7203,16 @@ export function parseArrowFunctionExpression(
 
   if (expression) {
     // Single-expression body
-    body = parseExpression(parser, context, 1, 0, 0, parser.tokenPos, parser.linePos, parser.colPos);
+    body = parseExpression(
+      parser,
+      context & Context.InClass ? context | Context.InMethod : context,
+      1,
+      0,
+      0,
+      parser.tokenPos,
+      parser.linePos,
+      parser.colPos
+    );
   } else {
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
@@ -8530,6 +8547,16 @@ export function parsePropertyDefinition(
     const { tokenPos, linePos, colPos } = parser;
 
     if (parser.token === Token.Arguments) report(parser, Errors.StrictEvalArguments);
+
+    const modifierFlags =
+      (state & PropertyKind.Constructor) === 0
+        ? 0b0000001111010000000_0000_00000000
+        : 0b0000000111000000000_0000_00000000;
+
+    context =
+      ((context | modifierFlags) ^ modifierFlags) |
+      ((state & 0b0000000000000000000_0000_01011000) << 18) |
+      0b0000110000001000000_0000_00000000;
 
     value = parsePrimaryExpression(
       parser,
