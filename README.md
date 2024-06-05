@@ -100,9 +100,6 @@ This is the available options:
   // Adds a source attribute in every node’s loc object when the locations option is `true`
   source: false;
 
-  // Distinguish Identifier from IdentifierPattern
-  identifierPattern: false;
-
    // Enable React JSX parsing
   jsx: false
 }
