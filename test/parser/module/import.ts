@@ -170,6 +170,7 @@ describe('Module - Import', () => {
     'import { foo }',
     'import [ foo ] from "foo.js";',
     'import * foo from "foo.js";',
+    'import * as from "foo";',
     'import * as "foo" from "foo.js";',
     'import { , foo } from "foo.js";',
     '() => { import arrow from ""; }',
@@ -400,6 +401,7 @@ describe('Module - Import', () => {
     "import { a } from 'm.js';",
     "import 'foo';",
     "import from from 'foo';",
+    "import * as from from 'foo';",
     "import { a } from 'foo';",
     'import { a as of } from "k";',
     // Runtime errors
