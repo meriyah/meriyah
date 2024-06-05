@@ -36,9 +36,8 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   OptionsIdentifierPattern = 1 << 28,
-  OptionsSpecDeviation = 1 << 29,
-  AllowEscapedKeyword = 1 << 30,
-  OptionsUniqueKeyInPattern = 1 << 31,
+  AllowEscapedKeyword = 1 << 29,
+  OptionsUniqueKeyInPattern = 1 << 30,
 }
 
 /**
@@ -244,12 +243,11 @@ export interface ParserState {
  * @param context Context masks
  */
 
-export function matchOrInsertSemicolon(parser: ParserState, context: Context, specDeviation?: number): void {
+export function matchOrInsertSemicolon(parser: ParserState, context: Context): void {
 
   if (
     (parser.flags & Flags.NewLine) === 0 &&
-    (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon &&
-    !specDeviation
+    (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
   ) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
