@@ -9,7 +9,6 @@ describe('Expressions - API', () => {
         globalReturn: true,
         ranges: true,
         webcompat: true,
-        specDeviation: true,
         module: true,
         preserveParens: true,
         jsx: true,

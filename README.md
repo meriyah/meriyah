@@ -105,9 +105,6 @@ This is the available options:
 
    // Enable React JSX parsing
   jsx: false
-
-  // Allow edge cases that deviate from the spec
-  specDeviation: false
 }
 
 ```

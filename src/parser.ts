@@ -226,8 +226,6 @@ export interface Options {
   identifierPattern?: boolean;
   // Enable React JSX parsing
   jsx?: boolean;
-  // Allow edge cases that deviate from the spec
-  specDeviation?: boolean;
   // Allows comment extraction. Accepts either a callback function or an array
   onComment?: OnComment;
   // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
@@ -261,7 +259,6 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
     if (options.identifierPattern) context |= Context.OptionsIdentifierPattern;
-    if (options.specDeviation) context |= Context.OptionsSpecDeviation;
     if (options.source) sourceFile = options.source;
     // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
     if (options.onComment != null) {
@@ -1850,7 +1847,7 @@ export function parseDoWhileStatement(
   // ECMA-262, section 11.9
   // The previous token is ) and the inserted semicolon would then be parsed as the terminating semicolon of a do-while statement (13.7.2).
   // This cannot be implemented in matchOrInsertSemicolon() because it doesn't know
-  // this RightRaren is the end of a do-while statement.
+  // this RightParen is the end of a do-while statement.
   consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
   return finishNode(parser, context, start, line, column, {
     type: 'DoWhileStatement',
