@@ -2566,7 +2566,9 @@ function parseImportNamespaceSpecifier(
 function parseModuleSpecifier(parser: ParserState, context: Context): ESTree.Literal {
   // ModuleSpecifier :
   //   StringLiteral
-  consumeOpt(parser, context, Token.FromKeyword);
+  if (!consumeOpt(parser, context, Token.FromKeyword)) {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+  }
 
   if (parser.token !== Token.StringLiteral) report(parser, Errors.InvalidExportImportSource, 'Import');
 
