@@ -28,6 +28,7 @@ describe('Module - Import', () => {
     'import {} from;',
     "import {,} from 'a';",
     'import from;',
+    "import from 'foo';",
     "import { foo as !d } from 'foo';",
     "import { foo as 123 } from 'foo';",
     "import { foo as [123] } from 'foo';",
@@ -169,6 +170,7 @@ describe('Module - Import', () => {
     'import { foo }',
     'import [ foo ] from "foo.js";',
     'import * foo from "foo.js";',
+    'import * as from "foo";',
     'import * as "foo" from "foo.js";',
     'import { , foo } from "foo.js";',
     '() => { import arrow from ""; }',
@@ -398,6 +400,8 @@ describe('Module - Import', () => {
     "import { } from 'm.js';",
     "import { a } from 'm.js';",
     "import 'foo';",
+    "import from from 'foo';",
+    "import * as from from 'foo';",
     "import { a } from 'foo';",
     'import { a as of } from "k";',
     // Runtime errors
@@ -792,6 +796,32 @@ describe('Module - Import', () => {
                 local: {
                   type: 'Identifier',
                   name: '$'
+                }
+              }
+            ],
+            source: {
+              type: 'Literal',
+              value: 'foo'
+            }
+          }
+        ]
+      }
+    ],
+    [
+      'import from from "foo"',
+      Context.Strict | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ImportDeclaration',
+            specifiers: [
+              {
+                type: 'ImportDefaultSpecifier',
+                local: {
+                  type: 'Identifier',
+                  name: 'from'
                 }
               }
             ],
