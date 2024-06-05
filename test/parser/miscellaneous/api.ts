@@ -12,7 +12,6 @@ describe('Expressions - API', () => {
         module: true,
         preserveParens: true,
         jsx: true,
-        identifierPattern: true,
         lexical: true,
         source: 'bullshit'
       }),
@@ -38,7 +37,6 @@ describe('Expressions - API', () => {
               start: 0,
               end: 3,
               range: [0, 3],
-              pattern: false,
               type: 'Identifier'
             },
             loc: {
