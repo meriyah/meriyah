@@ -619,8 +619,8 @@ export function parseStatement(
         context & Context.Strict
           ? Errors.StrictFunction
           : (context & Context.OptionsWebCompat) === 0
-          ? Errors.WebCompatFunction
-          : Errors.SloppyFunction
+            ? Errors.WebCompatFunction
+            : Errors.SloppyFunction
       );
     case Token.ClassKeyword:
       report(parser, Errors.ClassForbiddenAsStatement);
@@ -5150,8 +5150,8 @@ export function parseArrayExpressionOrPattern(
             parser.destructible & DestructuringKind.Yield
               ? DestructuringKind.Yield
               : 0 | (parser.destructible & DestructuringKind.Await)
-              ? DestructuringKind.Await
-              : 0;
+                ? DestructuringKind.Await
+                : 0;
         } else if (parser.token === Token.Comma || parser.token === Token.RightBracket) {
           if (parser.assignable & AssignmentKind.CannotAssign) {
             destructible |= DestructuringKind.CannotDestruct;
@@ -5162,15 +5162,15 @@ export function parseArrayExpressionOrPattern(
             parser.destructible & DestructuringKind.Yield
               ? DestructuringKind.Yield
               : 0 | (parser.destructible & DestructuringKind.Await)
-              ? DestructuringKind.Await
-              : 0;
+                ? DestructuringKind.Await
+                : 0;
         } else {
           destructible |=
             kind & BindingKind.ArgumentList
               ? DestructuringKind.Assignable
               : (kind & BindingKind.Empty) === 0
-              ? DestructuringKind.CannotDestruct
-              : 0;
+                ? DestructuringKind.CannotDestruct
+                : 0;
 
           left = parseMemberOrUpdateExpression(parser, context, left, inGroup, 0, tokenPos, linePos, colPos);
 
@@ -5860,8 +5860,8 @@ export function parseObjectLiteralOrPattern(
               parser.destructible & DestructuringKind.Yield
                 ? DestructuringKind.Yield
                 : 0 | (parser.destructible & DestructuringKind.Await)
-                ? DestructuringKind.Await
-                : 0;
+                  ? DestructuringKind.Await
+                  : 0;
 
             value = finishNode(parser, context, tokenPos, linePos, colPos, {
               type: 'AssignmentPattern',
@@ -6029,8 +6029,8 @@ export function parseObjectLiteralOrPattern(
             (token === Token.GetKeyword
               ? PropertyKind.Getter
               : token === Token.SetKeyword
-              ? PropertyKind.Setter
-              : PropertyKind.Method) | PropertyKind.Computed;
+                ? PropertyKind.Setter
+                : PropertyKind.Method) | PropertyKind.Computed;
 
           key = parseComputedPropertyName(parser, context, inGroup);
           destructible |= parser.assignable;
@@ -6057,8 +6057,8 @@ export function parseObjectLiteralOrPattern(
             token === Token.GetKeyword
               ? PropertyKind.Getter
               : token === Token.SetKeyword
-              ? PropertyKind.Setter
-              : PropertyKind.Method;
+                ? PropertyKind.Setter
+                : PropertyKind.Method;
 
           value = parseMethodDefinition(
             parser,
@@ -6124,8 +6124,8 @@ export function parseObjectLiteralOrPattern(
             token === Token.GetKeyword
               ? PropertyKind.Getter
               : token === Token.SetKeyword
-              ? PropertyKind.Setter
-              : PropertyKind.Method;
+                ? PropertyKind.Setter
+                : PropertyKind.Method;
 
           destructible |= DestructuringKind.CannotDestruct;
 
@@ -6318,8 +6318,8 @@ export function parseObjectLiteralOrPattern(
                 parser.assignable & AssignmentKind.CannotAssign
                   ? DestructuringKind.CannotDestruct
                   : token === Token.Assign
-                  ? 0
-                  : DestructuringKind.Assignable;
+                    ? 0
+                    : DestructuringKind.Assignable;
               value = parseAssignmentExpressionOrPattern(
                 parser,
                 context,
@@ -6487,8 +6487,8 @@ export function parseObjectLiteralOrPattern(
               token === Token.AsyncKeyword
                 ? Errors.InvalidAsyncGetter
                 : token === Token.GetKeyword || parser.token === Token.SetKeyword
-                ? Errors.InvalidGetSetGenerator
-                : Errors.InvalidGenMethodShorthand,
+                  ? Errors.InvalidGetSetGenerator
+                  : Errors.InvalidGenMethodShorthand,
               KeywordDescTable[token & Token.Type]
             );
           }
@@ -6974,8 +6974,8 @@ export function parseParenthesizedExpression(
     parser.destructible & DestructuringKind.Yield
       ? DestructuringKind.Yield
       : 0 | (parser.destructible & DestructuringKind.Await)
-      ? DestructuringKind.Await
-      : 0;
+        ? DestructuringKind.Await
+        : 0;
 
   if (parser.token === Token.Arrow) {
     if (destructible & (DestructuringKind.Assignable | DestructuringKind.CannotDestruct))
@@ -7798,8 +7798,8 @@ export function parseAsyncArrowOrCallExpression(
     parser.destructible & DestructuringKind.Yield
       ? DestructuringKind.Yield
       : 0 | (parser.destructible & DestructuringKind.Await)
-      ? DestructuringKind.Await
-      : 0;
+        ? DestructuringKind.Await
+        : 0;
 
   if (parser.token === Token.Arrow) {
     if (destructible & (DestructuringKind.Assignable | DestructuringKind.CannotDestruct))
@@ -8187,7 +8187,7 @@ export function parseClassBody(
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
-  let hasConstr = parser.flags & Flags.HasConstructor;
+  const hasConstr = parser.flags & Flags.HasConstructor;
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
   const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock)[] = [];
@@ -8403,10 +8403,10 @@ function parseClassElementList(
             (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
               ? 'constructor'
               : kind & PropertyKind.Getter
-              ? 'get'
-              : kind & PropertyKind.Setter
-              ? 'set'
-              : 'method',
+                ? 'get'
+                : kind & PropertyKind.Setter
+                  ? 'set'
+                  : 'method',
           static: (kind & PropertyKind.Static) > 0,
           computed: (kind & PropertyKind.Computed) > 0,
           key,
@@ -8419,10 +8419,10 @@ function parseClassElementList(
             (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
               ? 'constructor'
               : kind & PropertyKind.Getter
-              ? 'get'
-              : kind & PropertyKind.Setter
-              ? 'set'
-              : 'method',
+                ? 'get'
+                : kind & PropertyKind.Setter
+                  ? 'set'
+                  : 'method',
           static: (kind & PropertyKind.Static) > 0,
           computed: (kind & PropertyKind.Computed) > 0,
           key,

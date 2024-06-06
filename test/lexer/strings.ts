@@ -25,8 +25,13 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, '""', ''],
     [Context.None, Token.StringLiteral, '"123"', '123'],
     [Context.None, Token.StringLiteral, '"true"', 'true'],
-    [Context.None, Token.StringLiteral, '"\
-    "', '    '],
+    [
+      Context.None,
+      Token.StringLiteral,
+      '"\
+    "',
+      '    '
+    ],
 
     // Russian letters
     [Context.None, Token.StringLiteral, '"\\б"', 'б'],

@@ -110,8 +110,8 @@ export function scanIdentifierSlowCase(
       return context & Context.AllowEscapedKeyword
         ? Token.AnyIdentifier
         : context & Context.InYieldContext
-        ? Token.EscapedReserved
-        : token;
+          ? Token.EscapedReserved
+          : token;
     }
 
     // async is not reserved; it can be used as a variable name

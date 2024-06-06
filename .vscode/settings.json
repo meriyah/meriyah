@@ -1,12 +1,12 @@
 {
-    "typescript.tsdk": "./node_modules/typescript/lib",
-    "emmet.triggerExpansionOnTab": true,
-    "search.exclude": {
-      "**/node_modules": true,
-      "**/dist": true,
-      "**/build": true,
-      "**/.vscode": true
-    },
-    "prettier.singleQuote": true,
-    "deepscan.ignoreConfirmWarning": true
-  }
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "emmet.triggerExpansionOnTab": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.vscode": true
+  },
+  "prettier.singleQuote": true,
+  "deepscan.ignoreConfirmWarning": true
+}

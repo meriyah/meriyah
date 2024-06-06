@@ -323,7 +323,7 @@ describe('Expressions - Class', () => {
          constructor() {}
        }
      }
-     constructor() {}`,
+     constructor() {}`
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -12818,56 +12818,56 @@ describe('Expressions - Class', () => {
       {
         body: [
           {
-            type: "ExpressionStatement",
+            type: 'ExpressionStatement',
             expression: {
-              type: "NewExpression",
+              type: 'NewExpression',
               callee: {
-                type: "ClassExpression",
+                type: 'ClassExpression',
                 id: null,
                 superClass: null,
                 body: {
-                  type: "ClassBody",
+                  type: 'ClassBody',
                   body: [
                     {
-                      type: "MethodDefinition",
-                      kind: "method",
+                      type: 'MethodDefinition',
+                      kind: 'method',
                       static: false,
                       computed: false,
                       key: {
-                        type: "Identifier",
-                        name: "start"
+                        type: 'Identifier',
+                        name: 'start'
                       },
                       value: {
-                        type: "FunctionExpression",
+                        type: 'FunctionExpression',
                         params: [],
                         body: {
-                          type: "BlockStatement",
+                          type: 'BlockStatement',
                           body: [
                             {
-                              type: "ExpressionStatement",
+                              type: 'ExpressionStatement',
                               expression: {
-                                type: "NewExpression",
+                                type: 'NewExpression',
                                 callee: {
-                                  type: "ClassExpression",
+                                  type: 'ClassExpression',
                                   id: null,
                                   superClass: null,
                                   body: {
-                                    type: "ClassBody",
+                                    type: 'ClassBody',
                                     body: [
                                       {
-                                        type: "MethodDefinition",
-                                        kind: "constructor",
+                                        type: 'MethodDefinition',
+                                        kind: 'constructor',
                                         static: false,
                                         computed: false,
                                         key: {
-                                          type: "Identifier",
-                                          name: "constructor"
+                                          type: 'Identifier',
+                                          name: 'constructor'
                                         },
                                         value: {
-                                          type: "FunctionExpression",
+                                          type: 'FunctionExpression',
                                           params: [],
                                           body: {
-                                            type: "BlockStatement",
+                                            type: 'BlockStatement',
                                             body: []
                                           },
                                           async: false,
@@ -12889,19 +12889,19 @@ describe('Expressions - Class', () => {
                       }
                     },
                     {
-                      type: "MethodDefinition",
-                      kind: "constructor",
+                      type: 'MethodDefinition',
+                      kind: 'constructor',
                       static: false,
                       computed: false,
                       key: {
-                        type: "Identifier",
-                        name: "constructor"
+                        type: 'Identifier',
+                        name: 'constructor'
                       },
                       value: {
-                        type: "FunctionExpression",
+                        type: 'FunctionExpression',
                         params: [],
                         body: {
-                          type: "BlockStatement",
+                          type: 'BlockStatement',
                           body: []
                         },
                         async: false,
@@ -12916,8 +12916,8 @@ describe('Expressions - Class', () => {
             }
           }
         ],
-        type: "Program",
-        sourceType: "script"
+        type: 'Program',
+        sourceType: 'script'
       }
     ]
   ]);

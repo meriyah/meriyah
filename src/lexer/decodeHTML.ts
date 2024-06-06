@@ -2163,11 +2163,9 @@ export function decodeHTMLStrict(text: string): string {
   return text.replace(/&(?:[a-zA-Z]+|#[xX][\da-fA-F]+|#\d+);/g, (key) => {
     if (key.charAt(1) === '#') {
       const secondChar = key.charAt(2);
-    const codePoint =
-      secondChar === 'X' || secondChar === 'x'
-        ? parseInt(key.slice(3), 16)
-        : parseInt(key.slice(2), 10);
-    return decodeCodePoint(codePoint);
+      const codePoint =
+        secondChar === 'X' || secondChar === 'x' ? parseInt(key.slice(3), 16) : parseInt(key.slice(2), 10);
+      return decodeCodePoint(codePoint);
     }
     return entities[key.slice(1, -1)] || key;
   });

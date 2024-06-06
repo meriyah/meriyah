@@ -1,1 +1,1 @@
-node ./scripts/prettier.js check-changed
+npx lint-staged

@@ -1584,21 +1584,17 @@ describe('Expressions - Arrow', () => {
                                                                                                     {
                                                                                                       type: 'Property',
                                                                                                       key: {
-                                                                                                        type:
-                                                                                                          'Identifier',
+                                                                                                        type: 'Identifier',
                                                                                                         name: 'a'
                                                                                                       },
                                                                                                       value: {
-                                                                                                        type:
-                                                                                                          'AssignmentPattern',
+                                                                                                        type: 'AssignmentPattern',
                                                                                                         left: {
-                                                                                                          type:
-                                                                                                            'Identifier',
+                                                                                                          type: 'Identifier',
                                                                                                           name: 'a'
                                                                                                         },
                                                                                                         right: {
-                                                                                                          type:
-                                                                                                            'Identifier',
+                                                                                                          type: 'Identifier',
                                                                                                           name: 'b'
                                                                                                         }
                                                                                                       },
