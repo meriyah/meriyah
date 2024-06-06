@@ -1067,7 +1067,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
     );
   } else {
     if (parser.token === Token.Arrow) {
-      classifyIdentifier(parser, context, token, /* isArrow */ 1);
+      classifyIdentifier(parser, context, token);
       expr = parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, 0, 1, 0, start, line, column);
     }
 
@@ -3561,7 +3561,7 @@ export function parseAsyncExpression(
   }
 
   if (parser.token === Token.Arrow) {
-    classifyIdentifier(parser, context, token, /* isArrow */ 1);
+    classifyIdentifier(parser, context, token);
     if (inNew) report(parser, Errors.InvalidAsyncArrow);
     return parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, inNew, canAssign, 0, start, line, column);
   }
@@ -4229,7 +4229,7 @@ export function parsePrimaryExpression(
 
     if (parser.token === Token.Arrow) {
       if (!isLHS) report(parser, Errors.Unexpected);
-      classifyIdentifier(parser, context, token, /* isArrow */ 1);
+      classifyIdentifier(parser, context, token);
       return parseArrowFromIdentifier(parser, context, tokenValue, expr, inNew, canAssign, 0, start, line, column);
     }
 
