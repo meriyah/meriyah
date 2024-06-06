@@ -62,9 +62,12 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "lint": "eslint \"{src,test}/**/*.{ts,js}\"",
-    "prettier": "node ./scripts/prettier.js write-changed",
-    "prettier-all": "node ./scripts/prettier.js write",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint \"{src,test}/**/*.{ts,js}\"",
+    "lint:prettier": "prettier . --check",
+    "fix": "npm run fix:eslint && npm run fix:prettier",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "prettier . --write",
     "bundle": "rimraf dist && node scripts/bundle.js",
     "bundle:bench": "rimraf dist && node scripts/bundle.js bench",
     "test": "mocha --\"test/**/*.ts\"",
@@ -89,18 +92,15 @@
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "@unicode/unicode-15.1.0": "^1.5.2",
-    "chalk": "^4.1.2",
     "coveralls": "^3.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.21.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "glob": "^8.0.3",
     "husky": "^9.0.11",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
-    "path": "^0.12.7",
-    "prettier": "^2.7.1",
+    "prettier": "^3.3.1",
     "rimraf": "^3.0.2",
     "rollup": "^4.18.0",
     "rollup-plugin-typescript2": "^0.36.0",
@@ -115,5 +115,9 @@
   },
   "engines": {
     "node": ">=10.4.0"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "eslint --fix",
+    "*": "prettier --write --ignore-unknown"
   }
 }
