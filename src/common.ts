@@ -830,12 +830,11 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
 export function classifyIdentifier(
   parser: ParserState,
   context: Context,
-  t: Token,
-  isArrow: 0 | 1
+  t: Token
 ): any {
   if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
     if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
-    if (isArrow) parser.flags |= Flags.StrictEvalArguments;
+    parser.flags |= Flags.StrictEvalArguments;
   }
 
   if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
