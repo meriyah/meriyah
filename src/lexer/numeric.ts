@@ -212,8 +212,8 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
       ? value
       : kind & NumberKind.NonOctalDecimal
-      ? parseFloat(parser.source.substring(parser.tokenPos, parser.index))
-      : +value;
+        ? parseFloat(parser.source.substring(parser.tokenPos, parser.index))
+        : +value;
 
   if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
 

@@ -17,25 +17,25 @@
 
 ## Features
 
-* Conforms to the standard ECMAScript® 2021 (ECMA-262 11th Edition) language specification
-* Support TC39 proposals via option
-* Support for additional ECMAScript features for Web Browsers
-* JSX support via option
-* Does **not** support TypeScript or Flow
-* Optionally track syntactic node locations
-* Emits an ESTree-compatible abstract syntax tree
-* No backtracking
-* Low memory usage
-* Very well tested (~99 000 unit tests with full code coverage)
-* Lightweight - ~90 KB minified
+- Conforms to the standard ECMAScript® 2021 (ECMA-262 11th Edition) language specification
+- Support TC39 proposals via option
+- Support for additional ECMAScript features for Web Browsers
+- JSX support via option
+- Does **not** support TypeScript or Flow
+- Optionally track syntactic node locations
+- Emits an ESTree-compatible abstract syntax tree
+- No backtracking
+- Low memory usage
+- Very well tested (~99 000 unit tests with full code coverage)
+- Lightweight - ~90 KB minified
 
 ## ESNext features
 
-* [Decorators](https://github.com/tc39/proposal-decorators)
-* [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
-* [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
-* [Private methods](https://github.com/tc39/proposal-private-methods)
-* [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
+- [Decorators](https://github.com/tc39/proposal-decorators)
+- [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
+- [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
+- [Private methods](https://github.com/tc39/proposal-private-methods)
+- [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
 
 **Note:** These features need to be enabled with the `next` option.
 
@@ -83,13 +83,13 @@ This is the available options:
   impliedStrict: false;
 
   // Allows comment extraction. Accepts either a function or array
-  onComment: []
+  onComment: [];
 
   // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
-  onInsertedSemicolon: (pos) => {}
+  onInsertedSemicolon: (pos) => {};
 
   // Allows token extraction. Accepts either a function or array
-  onToken: []
+  onToken: [];
 
   // Enable non-standard parenthesized expression node
   preserveParens: false;
@@ -100,13 +100,13 @@ This is the available options:
   // Adds a source attribute in every node’s loc object when the locations option is `true`
   source: false;
 
-   // Enable React JSX parsing
-  jsx: false
+  // Enable React JSX parsing
+  jsx: false;
 }
-
 ```
 
 ### onComment and onToken
+
 If an array is supplied, comments/tokens will be pushed to the array, the item in the array contains `start/end/range` information when ranges flag is true, it will also contain `loc` information when loc flag is true.
 
 If a function callback is supplied, the signature must be
@@ -120,6 +120,7 @@ declare function onToken(token: string, start: number, end: number, loc: SourceL
 Note the `start/end/loc` information are provided to the function callback regardless of the settings on ranges and loc flags. onComment callback has one extra argument `value: string` for the body string of the comment.
 
 ### onInsertedSemicolon
+
 If a function callback is supplied, the signature must be
 
 ```ts
@@ -129,11 +130,9 @@ declare function onInsertedSemicolon(position: number): void;
 ## Example usage
 
 ```js
-
 import { parseScript } from './meriyah';
 
 parseScript('({x: [y] = 0} = 1)');
-
 ```
 
 This will return when serialized in json:
