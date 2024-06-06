@@ -97,12 +97,6 @@ function compressorEnd(state) {
   }
 }
 
-exports.decompress = decompress;
-
-function decompress(compressed) {
-  return new Function(`return ${makeDecompress(compressed)}`)();
-}
-
 const makeDecompress = (compressed) => `((compressed, lookup) => {
     const result = new Uint32Array(${compressed.size})
     let index = 0;
@@ -127,7 +121,10 @@ const makeDecompress = (compressed) => `((compressed, lookup) => {
     [${compressed.lookup}]
 )`;
 
-exports.generate = generate;
+function decompress(compressed) {
+  return new Function(`return ${makeDecompress(compressed)}`)();
+}
+exports.decompress = decompress;
 
 async function generate(opts) {
   await opts.write(`// Unicode v${UNICODE_VERSION} support
@@ -164,6 +161,8 @@ export const unicodeLookup = ${makeDecompress(compress)}
 ${opts.eval ? 'return' : 'export'} {${Object.keys(opts.exports)}};
 `);
 }
+
+exports.generate = generate;
 
 if (require.main === module) {
   const path = require('path');
