@@ -1,3 +1,12 @@
+## [4.4.4](https://github.com/meriyah/meriyah/compare/v4.4.3...v4.4.4) (2024-06-06)
+
+
+### Bug Fixes
+
+* **parser:** reject "import from 'foo'" ([bee9e31](https://github.com/meriyah/meriyah/commit/bee9e312a752fcfa021bf491ced8c25481420fab)), closes [#258](https://github.com/meriyah/meriyah/issues/258)
+
+
+
 ## [4.4.3](https://github.com/meriyah/meriyah/compare/v4.4.2...v4.4.3) (2024-05-23)
 
 
