@@ -742,6 +742,7 @@ describe('Statements - For of', () => {
                             },
                             right: {
                               type: 'Literal',
+                              // eslint-disable-next-line no-control-regex
                               value: /([--])|[--]|=+|[-$-+-­-]/y,
                               regex: {
                                 pattern: '([--])|[--]|=+|[-\u001c$-+-­-]',

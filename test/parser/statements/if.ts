@@ -468,6 +468,7 @@ describe('Statements - None', () => {
                   pattern: '  foo'
                 },
                 type: 'Literal',
+                // eslint-disable-next-line no-regex-spaces
                 value: /  foo/
               },
               type: 'ExpressionStatement'
@@ -647,6 +648,7 @@ describe('Statements - None', () => {
                   pattern: '  foo'
                 },
                 type: 'Literal',
+                // eslint-disable-next-line no-regex-spaces
                 value: /  foo/
               },
               type: 'ExpressionStatement'
