@@ -85,6 +85,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.0.3",
     "@eslint/js": "^9.4.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",

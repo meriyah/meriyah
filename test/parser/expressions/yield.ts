@@ -567,7 +567,6 @@ yield b;
 yield c;
 yield d;
 }`,
-    ,
     'function* gf() { var fe = function yield() { } }',
     'function* gf() { var o = { yield: 10 } }',
     'function* gf() { var o = { *yield() { } } }',

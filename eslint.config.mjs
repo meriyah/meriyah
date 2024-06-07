@@ -1,3 +1,4 @@
+import { fixupPluginRules } from '@eslint/compat';
 import eslintJs from '@eslint/js';
 import eslintPluginN from 'eslint-plugin-n';
 import tseslint from 'typescript-eslint';
@@ -7,8 +8,7 @@ export default [
   eslintJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,js}'],
-    plugins: { import: eslintPluginImport },
+    plugins: { import: fixupPluginRules(eslintPluginImport) },
     settings: eslintPluginImport.configs.typescript.settings,
     rules: {
       ...eslintPluginImport.configs.errors.rules,
@@ -23,7 +23,8 @@ export default [
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/class-name-casing': 0,
       '@typescript-eslint/camelcase': 0,
-      '@typescript-eslint/no-var-requires': 0
+      '@typescript-eslint/no-var-requires': 0,
+      'no-fallthrough': 0
     }
   },
   {
@@ -43,6 +44,16 @@ export default [
       'n/no-unsupported-features/es-syntax': ['error', { version: '10.0', ignores: [] }],
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0
+    }
+  },
+  {
+    files: ['eslint.config.mjs'],
+    rules: {
+      'import/no-unresolved': 0,
+      'import/namespace': 0,
+      'import/default': 0,
+      'import/no-named-as-default': 0,
+      'import/no-named-as-default-member': 0
     }
   },
   {

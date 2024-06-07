@@ -214,7 +214,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.Eight:
     case Chars.Nine:
       if ((context & Context.OptionsWebCompat) === 0) return Escape.EightOrNine;
-
+    // fallthrough
     default:
       return first;
   }
@@ -237,6 +237,6 @@ export function handleStringError(state: ParserState, code: Escape, isTemplate: 
     case Escape.OutOfRange:
       report(state, Errors.UnicodeOverflow);
 
-    default:
+    // No default
   }
 }

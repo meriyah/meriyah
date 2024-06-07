@@ -481,10 +481,9 @@ export function parseStatementListItem(
         line,
         column
       );
-    // @decorator
-    case Token.Decorator:
-    // ClassDeclaration[?Yield, ~Default]
-    case Token.ClassKeyword:
+
+    case Token.Decorator: // @decorator
+    case Token.ClassKeyword: // ClassDeclaration[?Yield, ~Default]
       return parseClassDeclaration(parser, context, scope, HoistedClassFlags.None, start, line, column);
     // LexicalDeclaration[In, ?Yield]
     // LetOrConst BindingList[?In, ?Yield]
@@ -2818,7 +2817,7 @@ function parseExportDeclaration(
         break;
 
       // export default HoistableDeclaration[Default]
-      case Token.AsyncKeyword:
+      case Token.AsyncKeyword: {
         const { tokenPos, linePos, colPos } = parser;
 
         declaration = parseIdentifier(parser, context);
@@ -2891,6 +2890,7 @@ function parseExportDeclaration(
           }
         }
         break;
+      }
 
       default:
         // export default [lookahead ∉ {function, class}] AssignmentExpression[In] ;
@@ -3079,7 +3079,7 @@ function parseExportDeclaration(
         parser.colPos
       );
       break;
-    case Token.AsyncKeyword:
+    case Token.AsyncKeyword: {
       const { tokenPos, linePos, colPos } = parser;
 
       nextToken(parser, context);
@@ -3103,6 +3103,7 @@ function parseExportDeclaration(
         }
         break;
       }
+    }
     // falls through
     default:
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);

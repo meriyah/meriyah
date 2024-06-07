@@ -316,7 +316,7 @@ export function consume(parser: ParserState, context: Context, t: Token): void {
  */
 export function reinterpretToPattern(state: ParserState, node: any): void {
   switch (node.type) {
-    case 'ArrayExpression':
+    case 'ArrayExpression': {
       node.type = 'ArrayPattern';
       const elements = node.elements;
       for (let i = 0, n = elements.length; i < n; ++i) {
@@ -324,13 +324,15 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
         if (element) reinterpretToPattern(state, element);
       }
       return;
-    case 'ObjectExpression':
+}
+    case 'ObjectExpression':{
       node.type = 'ObjectPattern';
       const properties = node.properties;
       for (let i = 0, n = properties.length; i < n; ++i) {
         reinterpretToPattern(state, properties[i]);
       }
       return;
+}
     case 'AssignmentExpression':
       node.type = 'AssignmentPattern';
       if (node.operator !== '=') report(state, Errors.InvalidDestructuringTarget);
@@ -343,7 +345,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
     case 'SpreadElement':
       node.type = 'RestElement';
       reinterpretToPattern(state, node.argument);
-    default: // ignore
+    // No default
   }
 }
 
@@ -664,6 +666,7 @@ export function addBlockName(
       value & BindingKind.FunctionLexical &&
       origin & Origin.BlockStatement
     ) {
+      // No op
     } else {
       report(parser, Errors.DuplicateBinding, name);
     }
@@ -718,6 +721,7 @@ export function addVarName(
         ((kind & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
           (value & BindingKind.FunctionStatement && kind & BindingKind.LexicalOrFunction))
       ) {
+        // No op
       } else {
         report(parser, Errors.DuplicateBinding, name);
       }
@@ -776,7 +780,7 @@ export function addBindingToExports(parser: ParserState, name: string): void {
 }
 
 export function pushComment(context: Context, array: any[]): any {
-  return function(type: string, value: string, start: number, end: number, loc: SourceLocation) {
+return function(type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
       value
