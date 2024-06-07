@@ -3,7 +3,7 @@ import { parseSource, Options } from './parser';
 import * as ESTree from './estree';
 // Current version
 import * as meta from '../package.json';
-const version: string = meta.version;
+const { version } = meta;
 
 /**
  * Parse a script, optionally with various options.

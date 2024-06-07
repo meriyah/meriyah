@@ -833,7 +833,7 @@ export function classifyIdentifier(parser: ParserState, context: Context, t: Tok
 }
 
 /**
- * A helper function to check parser state, workaround TS2678 error
+ * A helper function to prevent TS narrowing down type of `parser.token`
  * @see https://github.com/microsoft/TypeScript/issues/9998
  */
 export const is = (value: number | boolean) => value;
