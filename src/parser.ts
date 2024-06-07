@@ -45,7 +45,8 @@ import {
   createArrowHeadParsingScope,
   addVarOrBlock,
   isValidIdentifier,
-  classifyIdentifier
+  classifyIdentifier,
+  is
 } from './common';
 
 /**
@@ -465,8 +466,9 @@ export function parseStatementListItem(
   const start = parser.tokenPos;
   const line = parser.linePos;
   const column = parser.colPos;
+  const { token } = parser;
 
-  switch (parser.token) {
+  switch (token) {
     //   HoistableDeclaration[?Yield, ~Default]
     case Token.FunctionKeyword:
       return parseFunctionDeclaration(
@@ -1376,7 +1378,7 @@ export function parseSwitchStatement(
   const cases: ESTree.SwitchCase[] = [];
   let seenDefault: 0 | 1 = 0;
   if (scope) scope = addChildScope(scope, ScopeKind.SwitchStatement);
-  while (parser.token !== Token.RightBrace) {
+  while (is(parser.token !== Token.RightBrace)) {
     const { tokenPos, linePos, colPos } = parser;
     let test: ESTree.Expression | null = null;
     const consequent: ESTree.Statement[] = [];
@@ -2110,7 +2112,7 @@ function parseVariableDeclaration(
 
   const id = parseBindingPattern(parser, context, scope, kind, origin, tokenPos, linePos, colPos);
 
-  if (parser.token === Token.Assign) {
+  if (is(parser.token === Token.Assign)) {
     nextToken(parser, context | Context.AllowRegExp);
     init = parseExpression(parser, context, 1, 0, parser.tokenPos, parser.linePos, parser.colPos);
     if (origin & Origin.ForStatement || (token & Token.IsPatternStart) === 0) {

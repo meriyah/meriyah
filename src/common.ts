@@ -317,7 +317,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
   switch (node.type) {
     case 'ArrayExpression': {
       node.type = 'ArrayPattern';
-      const elements = node.elements;
+      const { elements } = node;
       for (let i = 0, n = elements.length; i < n; ++i) {
         const element = elements[i];
         if (element) reinterpretToPattern(state, element);
@@ -326,7 +326,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
     }
     case 'ObjectExpression': {
       node.type = 'ObjectPattern';
-      const properties = node.properties;
+      const { properties } = node;
       for (let i = 0, n = properties.length; i < n; ++i) {
         reinterpretToPattern(state, properties[i]);
       }
@@ -831,3 +831,9 @@ export function classifyIdentifier(parser: ParserState, context: Context, t: Tok
 
   if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
 }
+
+/**
+ * A helper function to check parser state, workaround TS2678 error
+ * @see https://github.com/microsoft/TypeScript/issues/9998
+ */
+export const is = (value: number | boolean) => value;
