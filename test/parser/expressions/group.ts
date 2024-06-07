@@ -8870,6 +8870,7 @@ describe('Expressions - Group', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Literal',
+                  // eslint-disable-next-line no-control-regex
                   value: /[^\x0f+-\x6d+$-)-]/giuy,
                   regex: {
                     pattern: '[^\\x0f+-\\x6d+$-)-]',

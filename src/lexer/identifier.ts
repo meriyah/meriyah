@@ -12,7 +12,7 @@ import { report, reportScannerError, Errors } from '../errors';
  * @param context Context masks
  */
 export function scanIdentifier(parser: ParserState, context: Context, isValidAsKeyword: 0 | 1): Token {
-  while (isIdPart[advanceChar(parser)]) {}
+  while (isIdPart[advanceChar(parser)]);
   parser.tokenValue = parser.source.slice(parser.tokenPos, parser.index);
 
   return parser.currentChar !== Chars.Backslash && parser.currentChar <= 0x7e

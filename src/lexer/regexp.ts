@@ -47,7 +47,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         case Chars.LineSeparator:
         case Chars.ParagraphSeparator:
           report(parser, Errors.UnterminatedRegExp);
-        default: // ignore
+        // No default
       }
     }
 

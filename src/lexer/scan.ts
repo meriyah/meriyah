@@ -271,7 +271,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           break;
 
         // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
-        case Token.LessThan:
+        case Token.LessThan: {
           let ch = advanceChar(parser);
           if (parser.index < parser.end) {
             if (ch === Chars.LessThan) {
@@ -325,6 +325,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
           }
           return Token.LessThan;
+        }
 
         // `=`, `==`, `===`, `=>`
         case Token.Assign: {
@@ -491,7 +492,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         }
 
         // `.`, `...`, `.123` (numeric literal)
-        case Token.Period:
+        case Token.Period: {
           const next = advanceChar(parser);
           if (next >= Chars.Zero && next <= Chars.Nine)
             return scanNumber(parser, context, NumberKind.Float | NumberKind.Decimal);
@@ -504,6 +505,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
             }
           }
           return Token.Period;
+        }
 
         // `|`, `||`, `|=`, `||=`
         case Token.BitwiseOr: {

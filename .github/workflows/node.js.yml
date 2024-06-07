@@ -17,13 +17,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm i --legacy-peer-deps
+      - run: npm run lint
+
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        node-version: [16, 18, 20, 22]
+        node-version: [22, 20, 18, 16]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -32,5 +41,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i
+      - run: npm i --legacy-peer-deps
       - run: npm test

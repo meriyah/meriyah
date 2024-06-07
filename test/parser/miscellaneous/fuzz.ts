@@ -213,7 +213,7 @@ describe('Miscellaneous - Fuzz', () => {
       static get [(true)]() {
       }
       "a7JQ×"() {}
-      static *"Ïït -"() {}
+      static *"Ïït\u00A0-"() {}
       static '"Ï'() {
         "use strict";
       }
@@ -238,7 +238,7 @@ describe('Miscellaneous - Fuzz', () => {
   })), , ...q <<= (function (o) {
     "use strict"
   }), ...(new true(t **= (0)))]))) {
-    for (; new (eval[(/\\xF1\\b\\b\\B\\x22/gmuy.instanceof /= (() => ((('kendon')))))]);) do arguments: for (var k = (this); (/[^\ -]/gy); (class {})) while ((this)) ; while ((/[-*-\\x85?-{-]/imu))
+    for (; new (eval[(/\\xF1\\b\\b\\B\\x22/gmuy.instanceof /= (() => ((('kendon')))))]);) do arguments: for (var k = (this); (/[^ -]/gy); (class {})) while ((this)) ; while ((/[-*-\\x85?-{-]/imu))
     {
       for (((2e308)); (0x1E898CAFF70604);) try {} catch (t) {}
     }

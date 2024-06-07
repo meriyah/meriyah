@@ -36,7 +36,7 @@ export const enum Context {
   AllowNewTarget = 1 << 26,
   DisallowIn = 1 << 27,
   AllowEscapedKeyword = 1 << 28,
-  OptionsUniqueKeyInPattern = 1 << 29,
+  OptionsUniqueKeyInPattern = 1 << 29
 }
 
 /**
@@ -91,7 +91,7 @@ export const enum Origin {
   Declaration = 1 << 3,
   Arrow = 1 << 4,
   ForStatement = 1 << 5,
-  Export = 1 << 6,
+  Export = 1 << 6
 }
 
 /**
@@ -131,7 +131,7 @@ export const enum Flags {
   SimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
   StrictEvalArguments = 1 << 9,
-  DisallowCall   = 1 << 10,
+  DisallowCall = 1 << 10,
   HasOptionalChaining = 1 << 11
 }
 
@@ -163,13 +163,16 @@ export const enum ScopeKind {
   FunctionRoot = 1 << 8,
   FunctionParams = 1 << 9,
   ArrowParams = 1 << 10,
-  CatchIdentifier = 1 << 11,
+  CatchIdentifier = 1 << 11
 }
 
 /**
  * The type of the `onComment` option.
  */
-export type OnComment = void | Comment[] | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
+export type OnComment =
+  | void
+  | Comment[]
+  | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
 
 /**
  * The type of the `onInsertedSemicolon` option.
@@ -243,11 +246,7 @@ export interface ParserState {
  */
 
 export function matchOrInsertSemicolon(parser: ParserState, context: Context): void {
-
-  if (
-    (parser.flags & Flags.NewLine) === 0 &&
-    (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon
-  ) {
+  if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
   }
 
@@ -316,7 +315,7 @@ export function consume(parser: ParserState, context: Context, t: Token): void {
  */
 export function reinterpretToPattern(state: ParserState, node: any): void {
   switch (node.type) {
-    case 'ArrayExpression':
+    case 'ArrayExpression': {
       node.type = 'ArrayPattern';
       const elements = node.elements;
       for (let i = 0, n = elements.length; i < n; ++i) {
@@ -324,13 +323,15 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
         if (element) reinterpretToPattern(state, element);
       }
       return;
-    case 'ObjectExpression':
+    }
+    case 'ObjectExpression': {
       node.type = 'ObjectPattern';
       const properties = node.properties;
       for (let i = 0, n = properties.length; i < n; ++i) {
         reinterpretToPattern(state, properties[i]);
       }
       return;
+    }
     case 'AssignmentExpression':
       node.type = 'AssignmentPattern';
       if (node.operator !== '=') report(state, Errors.InvalidDestructuringTarget);
@@ -343,7 +344,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
     case 'SpreadElement':
       node.type = 'RestElement';
       reinterpretToPattern(state, node.argument);
-    default: // ignore
+    // No default
   }
 }
 
@@ -363,9 +364,7 @@ export function validateBindingIdentifier(
   t: Token,
   skipEvalArgCheck: 0 | 1
 ): void {
-
   if (context & Context.Strict) {
-
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
       report(parser, Errors.UnexpectedStrictReserved);
     }
@@ -395,14 +394,8 @@ export function validateBindingIdentifier(
   }
 }
 
-export function validateFunctionName(
-  parser: ParserState,
-  context: Context,
-  t: Token
-): void {
-
+export function validateFunctionName(parser: ParserState, context: Context, t: Token): void {
   if (context & Context.Strict) {
-
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
       report(parser, Errors.UnexpectedStrictReserved);
     }
@@ -413,11 +406,11 @@ export function validateFunctionName(
 
     if (t === Token.EscapedFutureReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
-     }
+    }
 
     if (t === Token.EscapedReserved) {
       report(parser, Errors.InvalidEscapedKeyword);
-     }
+    }
   }
 
   if ((t & Token.Reserved) === Token.Reserved) {
@@ -569,7 +562,7 @@ export function createArrowHeadParsingScope(parser: ParserState, context: Contex
 
 /**
  * Record duplicate binding errors that may occur in a arrow head or function parameters
-*
+ *
  * @param parser Parser state
  * @param type Errors type
  */
@@ -664,6 +657,7 @@ export function addBlockName(
       value & BindingKind.FunctionLexical &&
       origin & Origin.BlockStatement
     ) {
+      // No op
     } else {
       report(parser, Errors.DuplicateBinding, name);
     }
@@ -671,7 +665,8 @@ export function addBlockName(
 
   if (
     scope.type & ScopeKind.FunctionBody &&
-    ((scope as any).parent['#' + name] && ((scope as any).parent['#' + name] & BindingKind.Empty) === 0)
+    (scope as any).parent['#' + name] &&
+    ((scope as any).parent['#' + name] & BindingKind.Empty) === 0
   ) {
     report(parser, Errors.DuplicateBinding, name);
   }
@@ -718,6 +713,7 @@ export function addVarName(
         ((kind & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
           (value & BindingKind.FunctionStatement && kind & BindingKind.LexicalOrFunction))
       ) {
+        // No op
       } else {
         report(parser, Errors.DuplicateBinding, name);
       }
@@ -776,7 +772,7 @@ export function addBindingToExports(parser: ParserState, name: string): void {
 }
 
 export function pushComment(context: Context, array: any[]): any {
-  return function(type: string, value: string, start: number, end: number, loc: SourceLocation) {
+  return function (type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
       value
@@ -795,7 +791,7 @@ export function pushComment(context: Context, array: any[]): any {
 }
 
 export function pushToken(context: Context, array: any[]): any {
-  return function(token: string, start: number, end: number, loc: SourceLocation) {
+  return function (token: string, start: number, end: number, loc: SourceLocation) {
     const tokens: any = {
       token
     };
@@ -827,11 +823,7 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
   );
 }
 
-export function classifyIdentifier(
-  parser: ParserState,
-  context: Context,
-  t: Token
-): any {
+export function classifyIdentifier(parser: ParserState, context: Context, t: Token): any {
   if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
     if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
     parser.flags |= Flags.StrictEvalArguments;
