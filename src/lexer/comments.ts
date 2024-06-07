@@ -22,7 +22,7 @@ export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose',
 export function skipHashBang(parser: ParserState): void {
   // HashbangComment ::
   //   #!  SingleLineCommentChars_opt
-  const source = parser.source;
+  const { source } = parser;
   if (parser.currentChar === Chars.Hash && source.charCodeAt(parser.index + 1) === Chars.Exclamation) {
     advanceChar(parser);
     advanceChar(parser);

@@ -2,8 +2,7 @@ import { Context } from './common';
 import { parseSource, Options } from './parser';
 import * as ESTree from './estree';
 // Current version
-import * as meta from '../package.json';
-const version: string = meta.version;
+import { version } from '../package.json';
 
 /**
  * Parse a script, optionally with various options.

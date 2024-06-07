@@ -195,7 +195,7 @@ export function nextToken(parser: ParserState, context: Context): void {
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
-  const source = parser.source;
+  const { source } = parser;
 
   // These three are only for HTMLClose comment
   let startPos = parser.index;
