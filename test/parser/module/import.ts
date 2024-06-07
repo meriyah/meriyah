@@ -28,7 +28,6 @@ describe('Module - Import', () => {
     'import {} from;',
     "import {,} from 'a';",
     'import from;',
-    "import from 'foo';",
     "import { foo as !d } from 'foo';",
     "import { foo as 123 } from 'foo';",
     "import { foo as [123] } from 'foo';",
@@ -192,6 +191,21 @@ describe('Module - Import', () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
+    });
+  }
+
+  for (const arg of [
+    'import from "foo";',
+    'import a "foo";',
+    'import * as a "foo";',
+    'import { a } "foo";',
+    'import b, { a } "foo";',
+    'import { default as a, b } "foo";'
+  ]) {
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+      }, /Expected 'from'$/);
     });
   }
 
