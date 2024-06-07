@@ -32,7 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [16, 18, 20, 22]
+        node-version: [22, 20, 18, 16]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
