@@ -63,10 +63,10 @@
     "build": "tsc",
     "build:watch": "tsc -w",
     "lint": "npm run lint:eslint && npm run lint:prettier",
-    "lint:eslint": "eslint .",
+    "lint:eslint": "eslint",
     "lint:prettier": "prettier . --check",
     "fix": "npm run fix:eslint && npm run fix:prettier",
-    "fix:eslint": "eslint . --fix",
+    "fix:eslint": "eslint --fix",
     "fix:prettier": "prettier . --write",
     "bundle": "rimraf dist && node scripts/bundle.js",
     "bundle:bench": "rimraf dist && node scripts/bundle.js bench",
@@ -117,7 +117,7 @@
     "node": ">=10.4.0"
   },
   "lint-staged": {
-    "*.{ts,js}": "eslint --fix",
+    "*.{ts,mts,cts,js,mjs,cjs}": "eslint --fix",
     "*": "prettier --write --ignore-unknown"
   }
 }

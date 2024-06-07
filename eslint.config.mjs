@@ -31,7 +31,8 @@ export default [
   {
     files: ['bench/**/*'],
     rules: {
-      'import/no-unresolved': 0
+      'import/no-unresolved': 0,
+      'import/namespace': 0
     }
   },
   {
@@ -41,5 +42,8 @@ export default [
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0
     }
+  },
+  {
+    ignores: ['dist']
   }
 ];
