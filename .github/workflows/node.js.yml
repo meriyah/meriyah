@@ -26,7 +26,7 @@ jobs:
       - run: npm i --legacy-peer-deps
       - run: npm run lint
 
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
