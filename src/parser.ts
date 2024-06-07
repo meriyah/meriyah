@@ -5533,7 +5533,7 @@ function parseSpreadOrRestElement(
     );
 
     const { token, tokenPos, linePos, colPos } = parser;
-
+    // @ts-expect-error BUG?
     if (token === Token.Assign && token !== closingToken && token !== Token.Comma) {
       if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
 
@@ -6431,7 +6431,7 @@ export function parseObjectLiteralOrPattern(
                 ? DestructuringKind.Assignable
                 : DestructuringKind.CannotDestruct;
 
-            if (parser.token === Token.Comma || parser.token === Token.RightBrace) {
+            if (is(parser.token === Token.Comma || parser.token === Token.RightBrace)) {
               if (parser.assignable & AssignmentKind.CannotAssign) destructible |= DestructuringKind.CannotDestruct;
             } else {
               value = parseMemberOrUpdateExpression(parser, context, value, inGroup, 0, tokenPos, linePos, colPos);
@@ -6599,7 +6599,7 @@ export function parseMethodFormals(
 
   parser.flags = (parser.flags | Flags.SimpleParameterList) ^ Flags.SimpleParameterList;
 
-  if (parser.token === Token.RightParen) {
+  if (is(parser.token === Token.RightParen)) {
     if (kind & PropertyKind.Setter) {
       report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
     }
@@ -6806,7 +6806,7 @@ export function parseParenthesizedExpression(
 
   parser.assignable = AssignmentKind.Assignable;
 
-  while (parser.token !== Token.RightParen) {
+  while (is(parser.token !== Token.RightParen)) {
     const { token, tokenPos, linePos, colPos } = parser;
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
@@ -6814,7 +6814,7 @@ export function parseParenthesizedExpression(
 
       expr = parsePrimaryExpression(parser, context, kind, 0, 1, 1, 1, tokenPos, linePos, colPos);
 
-      if (parser.token === Token.RightParen || parser.token === Token.Comma) {
+      if (is(parser.token === Token.RightParen || parser.token === Token.Comma)) {
         if (parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
           isSimpleParameterList = 1;
@@ -6873,7 +6873,7 @@ export function parseParenthesizedExpression(
 
       parser.assignable = AssignmentKind.CannotAssign;
 
-      if (parser.token !== Token.RightParen && parser.token !== Token.Comma) {
+      if (is(parser.token !== Token.RightParen && parser.token !== Token.Comma)) {
         if (destructible & DestructuringKind.HasToDestruct) report(parser, Errors.InvalidPatternTail);
 
         expr = parseMemberOrUpdateExpression(parser, context, expr, 0, 0, tokenPos, linePos, colPos);
@@ -7685,7 +7685,7 @@ export function parseAsyncArrowOrCallExpression(
 
   const params: ESTree.Expression[] = [];
 
-  while (parser.token !== Token.RightParen) {
+  while (is(parser.token !== Token.RightParen)) {
     const { token, tokenPos, linePos, colPos } = parser;
 
     if (token & (Token.IsIdentifier | Token.Keyword)) {
@@ -7693,7 +7693,7 @@ export function parseAsyncArrowOrCallExpression(
 
       expr = parsePrimaryExpression(parser, context, kind, 0, 1, 1, 1, tokenPos, linePos, colPos);
 
-      if (parser.token === Token.RightParen || parser.token === Token.Comma) {
+      if (is(parser.token === Token.RightParen || parser.token === Token.Comma)) {
         if (parser.assignable & AssignmentKind.CannotAssign) {
           destructible |= DestructuringKind.CannotDestruct;
           isSimpleParameterList = 1;
@@ -8199,7 +8199,7 @@ export function parseClassBody(
   const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock)[] = [];
   let decorators: ESTree.Decorator[];
 
-  while (parser.token !== Token.RightBrace) {
+  while (is(parser.token !== Token.RightBrace)) {
     let length = 0;
 
     // See: https://github.com/tc39/proposal-decorators
@@ -8492,7 +8492,7 @@ export function parsePropertyDefinition(
 
   if (state & PropertyKind.Generator) report(parser, Errors.Unexpected);
 
-  if (parser.token === Token.Assign) {
+  if (is(parser.token === Token.Assign)) {
     nextToken(parser, context | Context.AllowRegExp);
 
     const { tokenPos, linePos, colPos } = parser;
