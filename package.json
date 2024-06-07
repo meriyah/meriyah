@@ -108,7 +108,6 @@
     "test262-parser-tests": "0.0.5",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tslib": "^2.6.3",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.12.0",
     "unexpected": "^13.2.1"
