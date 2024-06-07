@@ -5526,7 +5526,7 @@ function parseSpreadOrRestElement(
 
     const { token, tokenPos, linePos, colPos } = parser;
 
-    if (token === Token.Assign && token !== closingToken && token !== Token.Comma) {
+    if (token === Token.Assign) {
       if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
 
       argument = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, argument);
