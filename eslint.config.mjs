@@ -1,8 +1,10 @@
+import eslintJs from '@eslint/js';
 import eslintPluginN from 'eslint-plugin-n';
 import tseslint from 'typescript-eslint';
 import eslintPluginImport from 'eslint-plugin-import';
 
 export default [
+  eslintJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
     files: ['**/*.{ts,js}'],
