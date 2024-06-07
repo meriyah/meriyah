@@ -356,7 +356,7 @@ export class ParseError extends SyntaxError {
   public line: number;
   public column: number;
   public description: string;
-  /*eslint-disable*/
+
   constructor(startindex: number, line: number, column: number, type: Errors, ...params: string[]) {
     const message =
       '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
