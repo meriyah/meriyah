@@ -4,11 +4,8 @@
 
 <p align="center">
     <a href="https://www.npmjs.com/package/meriyah"><img src="https://img.shields.io/npm/v/meriyah.svg?style=flat-square" alt="Meriyah NPM"/></a>
-    <a href="https://lgtm.com/projects/g/meriyah/meriyah/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="GitHub license" /></a>
-    <a href="https://lgtm.com/projects/g/meriyah/meriyah/alerts"><img src="https://img.shields.io/lgtm/alerts/g/meriyah/meriyah.svg?logo=lgtm&logoWidth=18" alt="Total alerts" /></a>
-    <a href="https://circleci.com/gh/meriyah/meriyah"><img src="https://circleci.com/gh/meriyah/meriyah.svg?style=svg" alt="Circle" /></a>
+    <a href="https://github.com/meriyah/meriyah/actions/workflows/node.js.yml"><img src="https://github.com/meriyah/meriyah/actions/workflows/node.js.yml/badge.svg" alt="Node.js CI"/></a>
     <a href="https://github.com/meriyah/meriyah/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/meriyah/meriyah.svg" alt="License" /></a>
-
 </p>
 
 <br>
