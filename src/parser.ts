@@ -7170,7 +7170,9 @@ export function parseArrowFunctionExpression(
 
   consume(parser, context | Context.AllowRegExp, Token.Arrow);
 
-  context = ((context | 0b0000000111100000000_0000_00000000) ^ 0b0000000111100000000_0000_00000000) | (isAsync << 22);
+  const modifierFlags = Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList;
+
+  context = ((context | modifierFlags) ^ modifierFlags) | (isAsync ? Context.InAwaitContext : 0);
 
   const expression = parser.token !== Token.LeftBrace;
 
@@ -7194,15 +7196,9 @@ export function parseArrowFunctionExpression(
   } else {
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-    body = parseFunctionBody(
-      parser,
-      (context | 0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass) ^
-        (0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass),
-      scope,
-      Origin.Arrow,
-      void 0,
-      void 0
-    );
+    const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal | Context.InClass;
+
+    body = parseFunctionBody(parser, (context | modifierFlags) ^ modifierFlags, scope, Origin.Arrow, void 0, void 0);
 
     switch (parser.token) {
       case Token.LeftBracket:
