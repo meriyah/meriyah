@@ -4833,7 +4833,7 @@ export function parseFunctionDeclaration(
         ? BindingKind.Variable
         : BindingKind.FunctionLexical;
 
-    validateFunctionName(parser, context | ((context & 0b0000000000000000000_1100_00000000) << 11), parser.token);
+    validateFunctionName(parser, context, parser.token);
 
     if (scope) {
       if (kind & BindingKind.Variable) {
@@ -4860,8 +4860,16 @@ export function parseFunctionDeclaration(
     }
   }
 
+  const modifierFlags =
+    Context.SuperProperty |
+    Context.SuperCall |
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    Context.InConstructor;
+
   context =
-    ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
+    ((context | modifierFlags) ^ modifierFlags) |
     Context.AllowNewTarget |
     ((isAsync * 2 + isGenerator) << 21) |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
@@ -4929,8 +4937,16 @@ export function parseFunctionExpression(
   // Create a new function scope
   let scope = context & Context.OptionsLexical ? createScope() : void 0;
 
+  const modifierFlags =
+    Context.SuperProperty |
+    Context.SuperCall |
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    Context.InConstructor;
+
   if ((parser.token & (Token.IsIdentifier | Token.Keyword | Token.FutureReserved)) > 0) {
-    validateFunctionName(parser, ((context | 0x1ec0000) ^ 0x1ec0000) | generatorAndAsyncFlags, parser.token);
+    validateFunctionName(parser, ((context | modifierFlags) ^ modifierFlags) | generatorAndAsyncFlags, parser.token);
 
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionRoot);
 
@@ -4939,7 +4955,7 @@ export function parseFunctionExpression(
   }
 
   context =
-    ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
+    ((context | modifierFlags) ^ modifierFlags) |
     Context.AllowNewTarget |
     generatorAndAsyncFlags |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
@@ -5620,7 +5636,10 @@ export function parseMethodDefinition(
   column: number
 ): ESTree.FunctionExpression {
   const modifierFlags =
-    (kind & PropertyKind.Constructor) === 0 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    ((kind & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 
   context =
     ((context | modifierFlags) ^ modifierFlags) |
@@ -8492,9 +8511,10 @@ export function parsePropertyDefinition(
     if (parser.token === Token.Arguments) report(parser, Errors.StrictEvalArguments);
 
     const modifierFlags =
-      (state & PropertyKind.Constructor) === 0
-        ? 0b0000001111010000000_0000_00000000
-        : 0b0000000111000000000_0000_00000000;
+      Context.InYieldContext |
+      Context.InAwaitContext |
+      Context.InArgumentList |
+      ((state & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 
     context =
       ((context | modifierFlags) ^ modifierFlags) |
