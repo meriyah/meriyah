@@ -3769,7 +3769,7 @@ describe('Expressions - Super', () => {
                 {
                   computed: false,
                   decorators: [],
-                  end: 39,
+                  end: 40,
                   key: {
                     end: 21,
                     name: 'a',
@@ -3777,7 +3777,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     type: 'Identifier'
                   },
-                  range: [20, 39],
+                  range: [20, 40],
                   start: 20,
                   static: false,
                   type: 'PropertyDefinition',
@@ -3971,7 +3971,7 @@ describe('Expressions - Super', () => {
                 {
                   computed: false,
                   decorators: [],
-                  end: 51,
+                  end: 52,
                   key: {
                     end: 21,
                     name: 'a',
@@ -3979,7 +3979,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     type: 'Identifier'
                   },
-                  range: [20, 51],
+                  range: [20, 52],
                   start: 20,
                   static: false,
                   type: 'PropertyDefinition',
@@ -4185,7 +4185,7 @@ describe('Expressions - Super', () => {
                 {
                   computed: false,
                   decorators: [],
-                  end: 75,
+                  end: 76,
                   key: {
                     end: 37,
                     name: 'properties',
@@ -4193,7 +4193,7 @@ describe('Expressions - Super', () => {
                     start: 27,
                     type: 'Identifier'
                   },
-                  range: [27, 75],
+                  range: [27, 76],
                   start: 27,
                   static: true,
                   type: 'PropertyDefinition',

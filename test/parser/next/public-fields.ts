@@ -22,7 +22,12 @@ describe('Next - Public fields', () => {
       Context.OptionsWebCompat | Context.OptionsNext
     ],
     ['class A { a, b }', Context.None],
-    ['class A { a, b }', Context.OptionsNext]
+    ['class A { a, b }', Context.OptionsNext],
+    ['class A { a b }', Context.None],
+    ['class A { a b }', Context.OptionsNext],
+    ['class A { a b() {} }', Context.OptionsNext],
+    ['class A { a = 1, 2 }', Context.OptionsNext],
+    ['class A { a = 1, b = 2 }', Context.OptionsNext]
   ]);
 
   for (const arg of [
@@ -64,6 +69,7 @@ describe('Next - Public fields', () => {
 
   for (const arg of [
     'a = 0;',
+    'a = (1, 2)',
     'a = 0; b;',
     'a = 0; b(){}',
     'a = 0; *b(){}',
@@ -290,8 +296,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 12,
-                  end: 17,
-                  range: [12, 17]
+                  end: 18,
+                  range: [12, 18]
                 }
               ],
               start: 10,
@@ -343,8 +349,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 13,
-                  range: [10, 13]
+                  end: 14,
+                  range: [10, 14]
                 }
               ],
               start: 8,
@@ -577,8 +583,8 @@ describe('Next - Public fields', () => {
                   computed: true,
                   static: false,
                   start: 16,
-                  end: 24,
-                  range: [16, 24]
+                  end: 25,
+                  range: [16, 25]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -600,8 +606,8 @@ describe('Next - Public fields', () => {
                   computed: true,
                   static: false,
                   start: 26,
-                  end: 39,
-                  range: [26, 39]
+                  end: 40,
+                  range: [26, 40]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -617,8 +623,8 @@ describe('Next - Public fields', () => {
                   computed: true,
                   static: false,
                   start: 41,
-                  end: 60,
-                  range: [41, 60]
+                  end: 61,
+                  range: [41, 61]
                 }
               ],
               start: 8,
@@ -781,8 +787,8 @@ describe('Next - Public fields', () => {
                   computed: true,
                   static: false,
                   start: 10,
-                  end: 19,
-                  range: [10, 19]
+                  end: 20,
+                  range: [10, 20]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -798,8 +804,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 21,
-                  end: 22,
-                  range: [21, 22]
+                  end: 23,
+                  range: [21, 23]
                 }
               ],
               start: 8,
@@ -1345,8 +1351,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 22,
-                  end: 25,
-                  range: [22, 25]
+                  end: 26,
+                  range: [22, 26]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -1362,8 +1368,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 27,
-                  end: 30,
-                  range: [27, 30]
+                  end: 31,
+                  range: [27, 31]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -1385,8 +1391,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 32,
-                  end: 40,
-                  range: [32, 40]
+                  end: 41,
+                  range: [32, 41]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -1408,8 +1414,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 43,
-                  end: 51,
-                  range: [43, 51]
+                  end: 52,
+                  range: [43, 52]
                 }
               ],
               start: 8,
@@ -1461,8 +1467,8 @@ describe('Next - Public fields', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 13,
-                  range: [10, 13]
+                  end: 14,
+                  range: [10, 14]
                 }
               ],
               start: 8,
