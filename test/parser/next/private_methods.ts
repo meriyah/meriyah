@@ -7,6 +7,10 @@ describe('Next - Private methods', () => {
   fail('Private methods (fail)', [
     ['class A { #a }', Context.OptionsWebCompat],
     ['class A { #a }', Context.None],
+    ['class A { #a b() {} }', Context.OptionsNext],
+    ['class A { #a b }', Context.OptionsNext],
+    ['class A { #a #b }', Context.OptionsNext],
+    ['class A { a #b }', Context.OptionsNext],
     ['a = { #ab() {} }', Context.OptionsNext],
     ['class A { [{#ab() {}}]() {} }', Context.OptionsNext],
     ['class A{ # a() {}}', Context.OptionsNext],
@@ -235,7 +239,6 @@ describe('Next - Private methods', () => {
     'var C = class { static async m() { return 42; } #℘_; ℘(value) { this.#℘_ = value; return this.#℘; }}',
     'var C = class { static async m() { return 42; } static * #$(value) { yield * value; }  static * #_(value) {  yield * value; } }',
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
-    'var C = class { var C = class { [obj1] = 42; [obj2] = 43; [obj3] = 44; } }',
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
     `{
@@ -398,8 +401,8 @@ describe('Next - Private methods', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 12,
-                  range: [10, 12]
+                  end: 13,
+                  range: [10, 13]
                 },
                 {
                   type: 'PropertyDefinition',
@@ -415,8 +418,8 @@ describe('Next - Private methods', () => {
                   computed: false,
                   static: false,
                   start: 14,
-                  end: 16,
-                  range: [14, 16]
+                  end: 17,
+                  range: [14, 17]
                 }
               ],
               start: 8,
@@ -488,8 +491,8 @@ describe('Next - Private methods', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 23,
-                  range: [10, 23]
+                  end: 24,
+                  range: [10, 24]
                 }
               ],
               start: 8,
@@ -561,8 +564,8 @@ describe('Next - Private methods', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 28,
-                  range: [10, 28]
+                  end: 29,
+                  range: [10, 29]
                 }
               ],
               start: 8,
@@ -614,8 +617,8 @@ describe('Next - Private methods', () => {
                   computed: false,
                   static: false,
                   start: 10,
-                  end: 16,
-                  range: [10, 16]
+                  end: 17,
+                  range: [10, 17]
                 }
               ],
               start: 8,

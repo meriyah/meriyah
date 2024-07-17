@@ -8562,11 +8562,10 @@ export function parsePropertyDefinition(
       );
 
       value = parseAssignmentExpression(parser, context | Context.InClass, 0, 0, tokenPos, linePos, colPos, value);
-      if (parser.token === Token.Comma) {
-        value = parseSequenceExpression(parser, context, 0, start, line, column, value as any);
-      }
     }
   }
+
+  matchOrInsertSemicolon(parser, context);
 
   return finishNode(parser, context, start, line, column, {
     type: 'PropertyDefinition',
