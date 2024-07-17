@@ -5643,8 +5643,12 @@ export function parseMethodDefinition(
 
   context =
     ((context | modifierFlags) ^ modifierFlags) |
-    ((kind & 0b0000000000000000000_0000_01011000) << 18) |
-    0b0000110000001000000_0000_00000000;
+    (kind & PropertyKind.Generator ? Context.InYieldContext : 0) |
+    (kind & PropertyKind.Async ? Context.InAwaitContext : 0) |
+    (kind & PropertyKind.Constructor ? Context.InConstructor : 0) |
+    Context.SuperProperty |
+    Context.InMethod |
+    Context.AllowNewTarget;
 
   let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
 
@@ -8518,8 +8522,12 @@ export function parsePropertyDefinition(
 
     context =
       ((context | modifierFlags) ^ modifierFlags) |
-      ((state & 0b0000000000000000000_0000_01011000) << 18) |
-      0b0000110000001000000_0000_00000000;
+      (state & PropertyKind.Generator ? Context.InYieldContext : 0) |
+      (state & PropertyKind.Async ? Context.InAwaitContext : 0) |
+      (state & PropertyKind.Constructor ? Context.InConstructor : 0) |
+      Context.SuperProperty |
+      Context.InMethod |
+      Context.AllowNewTarget;
 
     value = parsePrimaryExpression(
       parser,
