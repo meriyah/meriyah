@@ -4871,7 +4871,8 @@ export function parseFunctionDeclaration(
   context =
     ((context | modifierFlags) ^ modifierFlags) |
     Context.AllowNewTarget |
-    ((isAsync * 2 + isGenerator) << 21) |
+    (isAsync ? Context.InAwaitContext : 0) |
+    (isGenerator ? Context.InYieldContext : 0) |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
 
   if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
@@ -4929,7 +4930,7 @@ export function parseFunctionExpression(
   nextToken(parser, context | Context.AllowRegExp);
 
   const isGenerator = optionalBit(parser, context, Token.Multiply);
-  const generatorAndAsyncFlags = (isAsync * 2 + isGenerator) << 21;
+  const generatorAndAsyncFlags = (isAsync ? Context.InAwaitContext : 0) | (isGenerator ? Context.InYieldContext : 0);
 
   let id: ESTree.Identifier | null = null;
   let firstRestricted: Token | undefined;
@@ -4972,7 +4973,7 @@ export function parseFunctionExpression(
 
   const body = parseFunctionBody(
     parser,
-    context & ~(0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InClass),
+    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass),
     scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
     0,
     firstRestricted,
@@ -5663,7 +5664,14 @@ export function parseMethodDefinition(
 
   if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-  const body = parseFunctionBody(parser, context & ~(0x8001000 | Context.InGlobal), scope, Origin.None, void 0, void 0);
+  const body = parseFunctionBody(
+    parser,
+    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal),
+    scope,
+    Origin.None,
+    void 0,
+    void 0
+  );
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',

@@ -28,15 +28,15 @@ export const enum Context {
   InIteration = 1 << 17,
   SuperProperty = 1 << 18,
   SuperCall = 1 << 19,
-  InYieldContext = 1 << 21,
-  InAwaitContext = 1 << 22,
-  InArgumentList = 1 << 23,
-  InConstructor = 1 << 24,
-  InMethod = 1 << 25,
-  AllowNewTarget = 1 << 26,
-  DisallowIn = 1 << 27,
-  AllowEscapedKeyword = 1 << 28,
-  OptionsUniqueKeyInPattern = 1 << 29
+  InYieldContext = 1 << 20,
+  InAwaitContext = 1 << 21,
+  InArgumentList = 1 << 22,
+  InConstructor = 1 << 23,
+  InMethod = 1 << 24,
+  AllowNewTarget = 1 << 25,
+  DisallowIn = 1 << 26,
+  AllowEscapedKeyword = 1 << 27,
+  OptionsUniqueKeyInPattern = 1 << 28
 }
 
 /**
