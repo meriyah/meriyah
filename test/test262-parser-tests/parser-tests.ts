@@ -19,6 +19,10 @@ const skipped = {
     '79f882da06f88c9f.js',
     '92b6af54adef3624.js',
 
+    // class fields
+    '98204d734f8c72b3.js',
+    'ef81b93cf9bdb4ec.js',
+
     // FIXME: "use strict" should be preflighted
     '147fa078a7436e0e.js',
     '15a6123f6b825c38.js',

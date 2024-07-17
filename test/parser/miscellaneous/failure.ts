@@ -1331,7 +1331,6 @@ describe('Miscellaneous - Failure', () => {
     `(a, ...b);`,
     `[ a -= 12 ] = 12;`,
     `class A {static static static(){}}`,
-    '(class {a})',
     `(function*() {
       function*(x = yield 3) {}
   })`,

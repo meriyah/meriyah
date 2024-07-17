@@ -605,7 +605,6 @@ describe('Expressions - Await', () => {
     ['var lambdaParenNoArg = await () => x < y;', Context.None],
     ['var lambdaArgs = await async (a, b ,c) => a + b + c;', Context.None],
     ['function method() { var x = await call(); }', Context.None],
-    ['class C { async\nam() { } };', Context.None],
     ['async (a, await) => { }', Context.None],
     ['function () { a = async await => { } }', Context.None],
     ['async (a, b = await 1) => {}', Context.None],
