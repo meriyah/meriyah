@@ -176,8 +176,8 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.startPos = parser.index;
   parser.startColumn = parser.column;
   parser.startLine = parser.line;
-  parser.token = scanSingleToken(parser, context, LexerState.None);
-  if (parser.onToken && parser.token !== Token.EOF) {
+  parser.setToken(scanSingleToken(parser, context, LexerState.None));
+  if (parser.onToken && parser.getToken() !== Token.EOF) {
     const loc = {
       start: {
         line: parser.linePos,
@@ -188,14 +188,14 @@ export function nextToken(parser: ParserState, context: Context): void {
         column: parser.column
       }
     };
-    parser.onToken(convertTokenType(parser.token), parser.tokenPos, parser.index, loc);
+    parser.onToken(convertTokenType(parser.getToken()), parser.tokenPos, parser.index, loc);
   }
 }
 
 export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
-  const source = parser.source;
+  const { source } = parser;
 
   // These three are only for HTMLClose comment
   let startPos = parser.index;
