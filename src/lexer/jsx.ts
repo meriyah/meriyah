@@ -16,11 +16,12 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
   parser.startPos = parser.tokenPos = parser.index;
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
-  parser.token =
+  parser.setToken(
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
       ? scanJSXString(parser, context)
-      : scanSingleToken(parser, context, LexerState.None);
-  return parser.token;
+      : scanSingleToken(parser, context, LexerState.None)
+  );
+  return parser.getToken();
 }
 
 /**
@@ -55,7 +56,7 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
 
-  if (parser.index >= parser.end) return (parser.token = Token.EOF);
+  if (parser.index >= parser.end) return parser.setToken(Token.EOF);
 
   const token = TokenLookup[parser.source.charCodeAt(parser.index)];
 
@@ -65,9 +66,9 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
       advanceChar(parser);
       if (parser.currentChar === Chars.Slash) {
         advanceChar(parser);
-        parser.token = Token.JSXClose;
+        parser.setToken(Token.JSXClose);
       } else {
-        parser.token = Token.LessThan;
+        parser.setToken(Token.LessThan);
       }
 
       break;
@@ -75,7 +76,7 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
     // '{'
     case Token.LeftBrace: {
       advanceChar(parser);
-      parser.token = Token.LeftBrace;
+      parser.setToken(Token.LeftBrace);
       break;
     }
     default: {
@@ -100,11 +101,11 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
       const raw = parser.source.slice(parser.tokenPos, parser.index);
       if (context & Context.OptionsRaw) parser.tokenRaw = raw;
       parser.tokenValue = decodeHTMLStrict(raw);
-      parser.token = Token.JSXText;
+      parser.setToken(Token.JSXText);
     }
   }
 
-  return parser.token;
+  return parser.getToken();
 }
 
 /**
@@ -113,7 +114,7 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
  * @param parser The parser instance
  */
 export function scanJSXIdentifier(parser: ParserState): Token {
-  if ((parser.token & Token.IsIdentifier) === Token.IsIdentifier) {
+  if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
     let char = parser.currentChar;
     while (CharTypes[char] & (CharFlags.Hyphen | CharFlags.IdentifierPart)) {
@@ -121,6 +122,6 @@ export function scanJSXIdentifier(parser: ParserState): Token {
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }
-  parser.token = Token.Identifier;
-  return parser.token;
+  parser.setToken(Token.Identifier);
+  return parser.getToken();
 }
