@@ -218,7 +218,8 @@ export interface ParserState {
   colPos: number;
   linePos: number;
   end: number;
-  token: Token;
+  getToken(): Token;
+  setToken(token: Token): Token;
   onComment: any;
   onInsertedSemicolon: any;
   onToken: any;
@@ -246,8 +247,8 @@ export interface ParserState {
  */
 
 export function matchOrInsertSemicolon(parser: ParserState, context: Context): void {
-  if ((parser.flags & Flags.NewLine) === 0 && (parser.token & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
+  if ((parser.flags & Flags.NewLine) === 0 && (parser.getToken() & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 
   if (!consumeOpt(parser, context, Token.Semicolon)) {
@@ -258,7 +259,7 @@ export function matchOrInsertSemicolon(parser: ParserState, context: Context): v
 
 export function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1 {
   if (index - tokenPos < 13 && tokenValue === 'use strict') {
-    if ((parser.token & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
+    if ((parser.getToken() & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
       return 1;
     }
   }
@@ -274,7 +275,7 @@ export function isValidStrictMode(parser: ParserState, index: number, tokenPos: 
  * @param token The type of token to consume
  */
 export function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1 {
-  if (parser.token !== t) return 0;
+  if (parser.getToken() !== t) return 0;
   nextToken(parser, context);
   return 1;
 }
@@ -288,7 +289,7 @@ export function optionalBit(parser: ParserState, context: Context, t: Token): 0 
  * @param token The type of token to consume
  */
 export function consumeOpt(parser: ParserState, context: Context, t: Token): boolean {
-  if (parser.token !== t) return false;
+  if (parser.getToken() !== t) return false;
   nextToken(parser, context);
   return true;
 }
@@ -302,7 +303,7 @@ export function consumeOpt(parser: ParserState, context: Context, t: Token): boo
  * @param t The type of token to consume
  */
 export function consume(parser: ParserState, context: Context, t: Token): void {
-  if (parser.token !== t) report(parser, Errors.ExpectedToken, KeywordDescTable[t & Token.Type]);
+  if (parser.getToken() !== t) report(parser, Errors.ExpectedToken, KeywordDescTable[t & Token.Type]);
   nextToken(parser, context);
 }
 
@@ -317,7 +318,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
   switch (node.type) {
     case 'ArrayExpression': {
       node.type = 'ArrayPattern';
-      const elements = node.elements;
+      const { elements } = node;
       for (let i = 0, n = elements.length; i < n; ++i) {
         const element = elements[i];
         if (element) reinterpretToPattern(state, element);
@@ -326,7 +327,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
     }
     case 'ObjectExpression': {
       node.type = 'ObjectPattern';
-      const properties = node.properties;
+      const { properties } = node;
       for (let i = 0, n = properties.length; i < n; ++i) {
         reinterpretToPattern(state, properties[i]);
       }
