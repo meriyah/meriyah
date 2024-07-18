@@ -2560,10 +2560,7 @@ function parseImportNamespaceSpecifier(
 function parseModuleSpecifier(parser: ParserState, context: Context): ESTree.Literal {
   // ModuleSpecifier :
   //   StringLiteral
-  if (!consumeOpt(parser, context, Token.FromKeyword)) {
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.token & Token.Type]);
-  }
-
+  consume(parser, context, Token.FromKeyword);
   if (parser.token !== Token.StringLiteral) report(parser, Errors.InvalidExportImportSource, 'Import');
 
   return parseLiteral(parser, context);
@@ -4841,7 +4838,7 @@ export function parseFunctionDeclaration(
         ? BindingKind.Variable
         : BindingKind.FunctionLexical;
 
-    validateFunctionName(parser, context | ((context & 0b0000000000000000000_1100_00000000) << 11), parser.token);
+    validateFunctionName(parser, context, parser.token);
 
     if (scope) {
       if (kind & BindingKind.Variable) {
@@ -4868,10 +4865,19 @@ export function parseFunctionDeclaration(
     }
   }
 
+  const modifierFlags =
+    Context.SuperProperty |
+    Context.SuperCall |
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    Context.InConstructor;
+
   context =
-    ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
+    ((context | modifierFlags) ^ modifierFlags) |
     Context.AllowNewTarget |
-    ((isAsync * 2 + isGenerator) << 21) |
+    (isAsync ? Context.InAwaitContext : 0) |
+    (isGenerator ? Context.InYieldContext : 0) |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
 
   if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
@@ -4929,7 +4935,7 @@ export function parseFunctionExpression(
   nextToken(parser, context | Context.AllowRegExp);
 
   const isGenerator = optionalBit(parser, context, Token.Multiply);
-  const generatorAndAsyncFlags = (isAsync * 2 + isGenerator) << 21;
+  const generatorAndAsyncFlags = (isAsync ? Context.InAwaitContext : 0) | (isGenerator ? Context.InYieldContext : 0);
 
   let id: ESTree.Identifier | null = null;
   let firstRestricted: Token | undefined;
@@ -4937,8 +4943,16 @@ export function parseFunctionExpression(
   // Create a new function scope
   let scope = context & Context.OptionsLexical ? createScope() : void 0;
 
+  const modifierFlags =
+    Context.SuperProperty |
+    Context.SuperCall |
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    Context.InConstructor;
+
   if ((parser.token & (Token.IsIdentifier | Token.Keyword | Token.FutureReserved)) > 0) {
-    validateFunctionName(parser, ((context | 0x1ec0000) ^ 0x1ec0000) | generatorAndAsyncFlags, parser.token);
+    validateFunctionName(parser, ((context | modifierFlags) ^ modifierFlags) | generatorAndAsyncFlags, parser.token);
 
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionRoot);
 
@@ -4947,7 +4961,7 @@ export function parseFunctionExpression(
   }
 
   context =
-    ((context | 0b0000001111011000000_0000_00000000) ^ 0b0000001111011000000_0000_00000000) |
+    ((context | modifierFlags) ^ modifierFlags) |
     Context.AllowNewTarget |
     generatorAndAsyncFlags |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
@@ -4964,7 +4978,7 @@ export function parseFunctionExpression(
 
   const body = parseFunctionBody(
     parser,
-    context & ~(0x8001000 | Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InClass),
+    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass),
     scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
     0,
     firstRestricted,
@@ -5533,8 +5547,8 @@ function parseSpreadOrRestElement(
     );
 
     const { token, tokenPos, linePos, colPos } = parser;
-    // @ts-expect-error BUG?
-    if (token === Token.Assign && token !== closingToken && token !== Token.Comma) {
+
+    if (token === Token.Assign) {
       if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.CantAssignTo);
 
       argument = parseAssignmentExpression(parser, context, inGroup, isPattern, tokenPos, linePos, colPos, argument);
@@ -5628,12 +5642,19 @@ export function parseMethodDefinition(
   column: number
 ): ESTree.FunctionExpression {
   const modifierFlags =
-    (kind & PropertyKind.Constructor) === 0 ? 0b0000001111010000000_0000_00000000 : 0b0000000111000000000_0000_00000000;
+    Context.InYieldContext |
+    Context.InAwaitContext |
+    Context.InArgumentList |
+    ((kind & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 
   context =
     ((context | modifierFlags) ^ modifierFlags) |
-    ((kind & 0b0000000000000000000_0000_01011000) << 18) |
-    0b0000110000001000000_0000_00000000;
+    (kind & PropertyKind.Generator ? Context.InYieldContext : 0) |
+    (kind & PropertyKind.Async ? Context.InAwaitContext : 0) |
+    (kind & PropertyKind.Constructor ? Context.InConstructor : 0) |
+    Context.SuperProperty |
+    Context.InMethod |
+    Context.AllowNewTarget;
 
   let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
 
@@ -5648,7 +5669,14 @@ export function parseMethodDefinition(
 
   if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-  const body = parseFunctionBody(parser, context & ~(0x8001000 | Context.InGlobal), scope, Origin.None, void 0, void 0);
+  const body = parseFunctionBody(
+    parser,
+    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal),
+    scope,
+    Origin.None,
+    void 0,
+    void 0
+  );
 
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',
@@ -7155,7 +7183,9 @@ export function parseArrowFunctionExpression(
 
   consume(parser, context | Context.AllowRegExp, Token.Arrow);
 
-  context = ((context | 0b0000000111100000000_0000_00000000) ^ 0b0000000111100000000_0000_00000000) | (isAsync << 22);
+  const modifierFlags = Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList;
+
+  context = ((context | modifierFlags) ^ modifierFlags) | (isAsync ? Context.InAwaitContext : 0);
 
   const expression = parser.token !== Token.LeftBrace;
 
@@ -7179,15 +7209,9 @@ export function parseArrowFunctionExpression(
   } else {
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-    body = parseFunctionBody(
-      parser,
-      (context | 0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass) ^
-        (0b0001000000000000001_0000_00000000 | Context.InGlobal | Context.InClass),
-      scope,
-      Origin.Arrow,
-      void 0,
-      void 0
-    );
+    const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal | Context.InClass;
+
+    body = parseFunctionBody(parser, (context | modifierFlags) ^ modifierFlags, scope, Origin.Arrow, void 0, void 0);
 
     switch (parser.token) {
       case Token.LeftBracket:
@@ -8500,14 +8524,19 @@ export function parsePropertyDefinition(
     if (parser.token === Token.Arguments) report(parser, Errors.StrictEvalArguments);
 
     const modifierFlags =
-      (state & PropertyKind.Constructor) === 0
-        ? 0b0000001111010000000_0000_00000000
-        : 0b0000000111000000000_0000_00000000;
+      Context.InYieldContext |
+      Context.InAwaitContext |
+      Context.InArgumentList |
+      ((state & PropertyKind.Constructor) === 0 ? Context.SuperCall | Context.InConstructor : 0);
 
     context =
       ((context | modifierFlags) ^ modifierFlags) |
-      ((state & 0b0000000000000000000_0000_01011000) << 18) |
-      0b0000110000001000000_0000_00000000;
+      (state & PropertyKind.Generator ? Context.InYieldContext : 0) |
+      (state & PropertyKind.Async ? Context.InAwaitContext : 0) |
+      (state & PropertyKind.Constructor ? Context.InConstructor : 0) |
+      Context.SuperProperty |
+      Context.InMethod |
+      Context.AllowNewTarget;
 
     value = parsePrimaryExpression(
       parser,
@@ -8538,11 +8567,10 @@ export function parsePropertyDefinition(
       );
 
       value = parseAssignmentExpression(parser, context | Context.InClass, 0, 0, tokenPos, linePos, colPos, value);
-      if (parser.token === Token.Comma) {
-        value = parseSequenceExpression(parser, context, 0, start, line, column, value as any);
-      }
     }
   }
+
+  matchOrInsertSemicolon(parser, context);
 
   return finishNode(parser, context, start, line, column, {
     type: 'PropertyDefinition',

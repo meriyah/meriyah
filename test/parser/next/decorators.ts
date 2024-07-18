@@ -154,9 +154,9 @@ describe('Next - Decorators', () => {
                     }
                   ],
                   start: 15,
-                  end: 23,
-                  range: [15, 23],
-                  loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 23 } }
+                  end: 24,
+                  range: [15, 24],
+                  loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 24 } }
                 }
               ],
               start: 8,
