@@ -85,7 +85,6 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.0.3",
     "@eslint/js": "^9.4.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -94,8 +93,8 @@
     "@unicode/unicode-15.1.0": "^1.5.2",
     "coveralls": "^3.1.1",
     "cross-env": "^7.0.3",
-    "eslint": "^9.4.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^9.7.0",
+    "eslint-plugin-import-x": "^3.0.1",
     "eslint-plugin-n": "^17.8.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
@@ -110,7 +109,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.12.0",
+    "typescript-eslint": "rc-v8",
     "unexpected": "^13.2.1"
   },
   "engines": {

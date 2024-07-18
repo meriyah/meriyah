@@ -143,13 +143,13 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
   try {
     return new RegExp(pattern, flags);
-  } catch (e) {
+  } catch {
     try {
       // Some JavaScript engine has not supported flag "d".
       new RegExp(pattern, flags.replace('d', ''));
       // Use null as tokenValue according to ESTree spec
       return null;
-    } catch (e) {
+    } catch {
       report(parser, Errors.UnterminatedRegExp);
     }
   }
