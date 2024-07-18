@@ -32,7 +32,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '4.0', 4],
     [Context.None, Token.NumericLiteral, '0.0', 0],
     [Context.OptionsRaw, Token.NumericLiteral, '456.345', 456.345],
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision -- FIXME
+    // eslint-disable-next-line no-loss-of-precision -- FIXME
     [Context.None, Token.NumericLiteral, '1234567890.0987654321', 1234567890.0987654321],
 
     // Numeric literals with exponent
