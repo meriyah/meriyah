@@ -6,14 +6,14 @@ import-attributes
 regexp-duplicate-named-groups
 regexp-v-flag
 
+
+source-phase-imports
+source-phase-imports-module-source
+
 # Confirming
 align-detached-buffer-semantics-with-web-reality
 arbitrary-module-namespace-names
-array-find-from-last
-array-grouping
 arraybuffer-transfer
-arrow-function
-async-functions
 async-iteration
 caller
 class
@@ -60,26 +60,13 @@ object-rest
 object-spread
 optional-catch-binding
 optional-chaining
-promise-try
-promise-with-resolvers
 proxy-missing-checks
 regexp-dotall
 regexp-duplicate-named-groups
 regexp-lookbehind
 regexp-match-indices
 regexp-modifiers
-regexp-named-groups
 regexp-unicode-property-escapes
-rest-parameters
 set-methods
-source-phase-imports
-source-phase-imports-module-source
-string-trimming
 super
-symbols-as-weakmap-keys
-tail-call-optimization
-template
-top-level-await
 u180e
-uint8array-base64
-well-formed-json-stringify
