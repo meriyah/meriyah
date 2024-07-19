@@ -14,7 +14,7 @@ function loadList(filename: string) {
 }
 
 const unsupportedFeatures = new Set(loadList('unsupported-features.txt'));
-const whitelist = loadList('whitelist.text');
+const whitelist = loadList('whitelist.txt');
 
 function parse(src: string, { sourceType }: { sourceType: 'module' | 'script' }) {
   return (sourceType === 'module' ? parseModule : parseScript)(src, { webcompat: true, lexical: true, next: true });
