@@ -34,16 +34,12 @@ destructuring-assignment
 dynamic-import
 export-star-as-namespace-from-module
 generators
-host-gc-required
-import-assertions
-import-attributes
 import.meta
 intl-normative-optional
 iterator-helpers
 json-modules
 json-superset
 legacy-regexp
-numeric-separator-literal
 object-rest
 object-spread
 optional-chaining
