@@ -18,7 +18,6 @@ class-static-fields-private
 class-static-fields-public
 class-static-methods-private
 coalesce-expression
-destructuring-assignment
 dynamic-import
 export-star-as-namespace-from-module
 json-modules
