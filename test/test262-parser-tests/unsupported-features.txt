@@ -18,8 +18,6 @@ class-static-fields-private
 class-static-fields-public
 class-static-methods-private
 coalesce-expression
-dynamic-import
-export-star-as-namespace-from-module
 json-modules
 json-superset
 regexp-modifiers
