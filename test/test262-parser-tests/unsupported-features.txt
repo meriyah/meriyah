@@ -24,6 +24,5 @@ dynamic-import
 export-star-as-namespace-from-module
 json-modules
 json-superset
-optional-chaining
 regexp-modifiers
 u180e
