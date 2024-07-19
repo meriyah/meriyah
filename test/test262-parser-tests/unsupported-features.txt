@@ -27,6 +27,5 @@ import.meta
 json-modules
 json-superset
 optional-chaining
-regexp-match-indices
 regexp-modifiers
 u180e
