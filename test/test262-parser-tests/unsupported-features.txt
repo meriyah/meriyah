@@ -11,5 +11,3 @@ source-phase-imports-module-source
 
 # Confirming
 class-fields-private-in
-class-static-fields-private
-class-static-methods-private
