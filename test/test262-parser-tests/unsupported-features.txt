@@ -27,16 +27,12 @@ class-static-fields-public
 class-static-methods-private
 coalesce-expression
 computed-property-names
-const
-cross-realm
 decorators
 destructuring-assignment
 dynamic-import
 export-star-as-namespace-from-module
 generators
 import.meta
-intl-normative-optional
-iterator-helpers
 json-modules
 json-superset
 legacy-regexp
