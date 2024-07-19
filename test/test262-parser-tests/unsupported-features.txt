@@ -10,8 +10,6 @@ source-phase-imports
 source-phase-imports-module-source
 
 # Confirming
-async-iteration
-caller
 class-fields-private
 class-fields-private-in
 class-fields-public
