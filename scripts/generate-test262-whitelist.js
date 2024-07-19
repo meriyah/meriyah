@@ -9,6 +9,7 @@ const stdout = childProcess.execSync('ts-node ./scripts/run-test262-cli.ts', { e
 const lines = stdout
   .split('\n')
   .map((line) => line.trim().replaceAll('\\', '/'))
-  .filter((line) => line.startsWith('language/'));
+  .filter((line) => line.startsWith('language/'))
+  .sort();
 
 fs.writeFileSync(WHITELIST_FILE, lines.join('\n') + '\n');
