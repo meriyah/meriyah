@@ -38,10 +38,7 @@ error-cause
 explicit-resource-management
 exponentiation
 export-star-as-namespace-from-module
-for-in-order
-for-of
 generators
-hashbang
 host-gc-required
 import-assertions
 import-attributes
