@@ -8,6 +8,3 @@ regexp-v-flag
 arbitrary-module-namespace-names
 source-phase-imports
 source-phase-imports-module-source
-
-# Confirming
-class-fields-private-in
