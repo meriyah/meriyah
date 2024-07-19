@@ -5,14 +5,11 @@ import-assertions
 import-attributes
 regexp-duplicate-named-groups
 regexp-v-flag
-
-
+arbitrary-module-namespace-names
 source-phase-imports
 source-phase-imports-module-source
 
 # Confirming
-arbitrary-module-namespace-names
-arraybuffer-transfer
 async-iteration
 caller
 class-fields-private
