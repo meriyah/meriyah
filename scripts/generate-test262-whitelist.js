@@ -8,8 +8,8 @@ fs.writeFileSync(WHITELIST_FILE, '');
 const stdout = childProcess.execSync('ts-node ./scripts/run-test262-cli.ts', { encoding: 'utf8' });
 const lines = stdout
   .split('\n')
+  .filter((line) => /^[ ]{3}.* \(default|strict mode\)$/.test(line))
   .map((line) => line.trim().replaceAll('\\', '/'))
-  .filter((line) => line.startsWith('language/'))
   .sort();
 
 fs.writeFileSync(WHITELIST_FILE, lines.join('\n') + '\n');
