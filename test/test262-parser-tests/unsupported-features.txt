@@ -11,12 +11,10 @@ source-phase-imports
 source-phase-imports-module-source
 
 # Confirming
-align-detached-buffer-semantics-with-web-reality
 arbitrary-module-namespace-names
 arraybuffer-transfer
 async-iteration
 caller
-class
 class-fields-private
 class-fields-private-in
 class-fields-public
@@ -41,6 +39,4 @@ object-spread
 optional-chaining
 regexp-match-indices
 regexp-modifiers
-regexp-unicode-property-escapes
-super
 u180e
