@@ -4139,7 +4139,7 @@ export function parsePropertyOrPrivatePropertyName(parser: ParserState, context:
     report(parser, Errors.InvalidDotProperty);
   }
 
-  return context & Context.OptionsNext && parser.getToken() === Token.PrivateField
+  return parser.getToken() === Token.PrivateField
     ? parsePrivateIdentifier(parser, context, parser.tokenPos, parser.linePos, parser.colPos)
     : parseIdentifier(parser, context);
 }
@@ -8030,27 +8030,13 @@ export function parseClassDeclaration(
 
   const body = parseClassBody(parser, inheritedContext, context, scope, BindingKind.Empty, Origin.Declaration, 0);
 
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsNext
-      ? {
-          type: 'ClassDeclaration',
-          id,
-          superClass,
-          decorators,
-          body
-        }
-      : {
-          type: 'ClassDeclaration',
-          id,
-          superClass,
-          body
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'ClassDeclaration',
+    id,
+    superClass,
+    body,
+    ...(context & Context.OptionsNext ? { decorators } : null)
+  });
 }
 
 /**
@@ -8120,27 +8106,13 @@ export function parseClassExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsNext
-      ? {
-          type: 'ClassExpression',
-          id,
-          superClass,
-          decorators,
-          body
-        }
-      : {
-          type: 'ClassExpression',
-          id,
-          superClass,
-          body
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'ClassExpression',
+    id,
+    superClass,
+    body,
+    ...(context & Context.OptionsNext ? { decorators } : null)
+  });
 }
 
 /**
@@ -8372,7 +8344,7 @@ function parseClassElementList(
 
       case Token.AsyncKeyword:
         if (parser.getToken() !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
-          if (context & Context.OptionsNext && (parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+          if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
             return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
 
@@ -8382,7 +8354,7 @@ function parseClassElementList(
 
       case Token.GetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
-          if (context & Context.OptionsNext && (parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+          if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
             return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
           kind |= PropertyKind.Getter;
@@ -8391,7 +8363,7 @@ function parseClassElementList(
 
       case Token.SetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
-          if (context & Context.OptionsNext && (parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+          if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
             return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
           }
           kind |= PropertyKind.Setter;
@@ -8408,10 +8380,10 @@ function parseClassElementList(
   } else if (token === Token.Multiply) {
     kind |= PropertyKind.Generator;
     nextToken(parser, context); // skip: '*'
-  } else if (context & Context.OptionsNext && parser.getToken() === Token.PrivateField) {
+  } else if (parser.getToken() === Token.PrivateField) {
     kind |= PropertyKind.PrivateField;
     key = parsePrivateIdentifier(parser, context | Context.InClass, tokenPos, linePos, colPos);
-  } else if (context & Context.OptionsNext && (parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+  } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
     return parseStaticBlock(parser, context, scope, tokenPos, linePos, colPos);
@@ -8433,7 +8405,7 @@ function parseClassElementList(
       key = parseComputedPropertyName(parser, context, /* inGroup */ 0);
     } else if (parser.getToken() === Token.EscapedFutureReserved) {
       key = parseIdentifier(parser, context);
-    } else if (context & Context.OptionsNext && parser.getToken() === Token.PrivateField) {
+    } else if (parser.getToken() === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
       key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);
     } else report(parser, Errors.InvalidKeyToken);
@@ -8462,51 +8434,28 @@ function parseClassElementList(
     }
   }
 
-  if (context & Context.OptionsNext && parser.getToken() !== Token.LeftParen) {
+  if (parser.getToken() !== Token.LeftParen && (kind & PropertyKind.GetSet) === 0) {
     return parsePropertyDefinition(parser, context, key, kind, decorators, tokenPos, linePos, colPos);
   }
 
   const value = parseMethodDefinition(parser, context, kind, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
 
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsNext
-      ? {
-          type: 'MethodDefinition',
-          kind:
-            (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
-              ? 'constructor'
-              : kind & PropertyKind.Getter
-                ? 'get'
-                : kind & PropertyKind.Setter
-                  ? 'set'
-                  : 'method',
-          static: (kind & PropertyKind.Static) > 0,
-          computed: (kind & PropertyKind.Computed) > 0,
-          key,
-          decorators,
-          value
-        }
-      : {
-          type: 'MethodDefinition',
-          kind:
-            (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
-              ? 'constructor'
-              : kind & PropertyKind.Getter
-                ? 'get'
-                : kind & PropertyKind.Setter
-                  ? 'set'
-                  : 'method',
-          static: (kind & PropertyKind.Static) > 0,
-          computed: (kind & PropertyKind.Computed) > 0,
-          key,
-          value
-        }
-  );
+  return finishNode(parser, context, start, line, column, {
+    type: 'MethodDefinition',
+    kind:
+      (kind & PropertyKind.Static) === 0 && kind & PropertyKind.Constructor
+        ? 'constructor'
+        : kind & PropertyKind.Getter
+          ? 'get'
+          : kind & PropertyKind.Setter
+            ? 'set'
+            : 'method',
+    static: (kind & PropertyKind.Static) > 0,
+    computed: (kind & PropertyKind.Computed) > 0,
+    key,
+    value,
+    ...(context & Context.OptionsNext ? { decorators } : null)
+  });
 }
 
 /**
@@ -8626,7 +8575,7 @@ export function parsePropertyDefinition(
     value,
     static: (state & PropertyKind.Static) > 0,
     computed: (state & PropertyKind.Computed) > 0,
-    decorators
+    ...(context & Context.OptionsNext ? { decorators } : null)
   } as any);
 }
 

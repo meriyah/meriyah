@@ -5,63 +5,61 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Private methods', () => {
   fail('Private methods (fail)', [
-    ['class A { #a }', Context.OptionsWebCompat],
-    ['class A { #a }', Context.None],
-    ['class A { #a b() {} }', Context.OptionsNext],
-    ['class A { #a b }', Context.OptionsNext],
-    ['class A { #a #b }', Context.OptionsNext],
-    ['class A { a #b }', Context.OptionsNext],
-    ['a = { #ab() {} }', Context.OptionsNext],
-    ['class A { [{#ab() {}}]() {} }', Context.OptionsNext],
-    ['class A{ # a() {}}', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['var o = { #m() {} };', Context.OptionsNext],
-    ['var o = { async #m() {} };', Context.OptionsNext],
-    ['var o = { *#m() {} };', Context.OptionsNext],
-    ['class A { constructor = 4 }', Context.OptionsNext],
-    ['class A { #constructor = 4 }', Context.OptionsNext],
-    ['class A { a = () => super() }', Context.OptionsNext],
-    ['class A { # a }', Context.OptionsNext],
-    ['class A { #a; a() { this.# a } }', Context.OptionsNext],
-    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.OptionsNext],
-    ['class A {  #x; x = delete (this.#m); }', Context.OptionsNext],
-    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.OptionsNext],
-    ['class A {  #x; x = delete (g().#m); async *#m() {} }', Context.OptionsNext],
-    ['class A {  #x; x() { var g = this.f; delete g().#x; } }', Context.OptionsNext],
-    ['class A {  #x; x() { delete ((this.#m ));  } async #m() {} }', Context.OptionsNext],
-    ['class A { # x }', Context.OptionsNext],
-    ['class A { #\\u0000; }', Context.OptionsNext],
-    ['class A { * # m() {} }', Context.OptionsNext],
-    ['class A { # x; }', Context.OptionsNext],
-    ['class A { #x; m() { this.# x; }}', Context.OptionsNext],
-    ['class A { # m() {} }', Context.OptionsNext],
-    ['class A { static get # m() {} }', Context.OptionsNext],
-    ['class A { * method() { super(); } }', Context.OptionsNext],
-    ['class A { static async * prototype() {} }', Context.OptionsNext],
-    ['class A { static async #method() { super(); } }', Context.OptionsNext],
-    ['class A { method() { this.\\u0023field; } }', Context.OptionsNext],
-    ['class C { static #x = super(); }', Context.OptionsNext],
-    ['class C { async \\u0023m() {} } }', Context.OptionsNext],
-    ['class C { static async *#gen() { var await; } }', Context.OptionsNext],
-    ['class C { static async *#gen() { void await; } }', Context.OptionsNext],
-    ['class C { static async *#gen() { var yield; } }', Context.OptionsNext],
-    ['class C { static async *#gen() { void yield; } }', Context.OptionsNext],
-    ['class C { static async *#gen() { yield: ; } }', Context.OptionsNext],
-    ['class C { static async *#gen() {  void \\u0061wait; } }', Context.OptionsNext],
-    ['class C { async \\u0023m() {} } }', Context.OptionsNext],
-    ['class C { #method() { a() { foo().\\u0023field; } } }', Context.OptionsNext],
-    ['class C { #method() { \\u0023field; } }', Context.OptionsNext],
-    ['class C {  async \\u0023m() {} }', Context.OptionsNext],
-    ['var C = class { x = 42  *gen() {} }', Context.OptionsNext],
-    ['class Spaces { #  wrongSpaces() { return fail(); } }', Context.OptionsNext],
-    ['class C{ #method() { #[m] = 1} }', Context.OptionsNext],
-    ['class C{ #method() { #"p" = x } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['(class C extends Base { async #*a() { } })', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C{ #method() { super(); } }', Context.OptionsNext],
-    ['class C { #x = () => arguments; }', Context.OptionsNext]
+    ['class A { #a b() {} }', Context.None],
+    ['class A { #a b }', Context.None],
+    ['class A { #a #b }', Context.None],
+    ['class A { a #b }', Context.None],
+    ['a = { #ab() {} }', Context.None],
+    ['class A { [{#ab() {}}]() {} }', Context.None],
+    ['class A{ # a() {}}', Context.None],
+    ['class C{ #method() { super(); } }', Context.None],
+    ['var o = { #m() {} };', Context.None],
+    ['var o = { async #m() {} };', Context.None],
+    ['var o = { *#m() {} };', Context.None],
+    ['class A { constructor = 4 }', Context.None],
+    ['class A { #constructor = 4 }', Context.None],
+    ['class A { a = () => super() }', Context.None],
+    ['class A { # a }', Context.None],
+    ['class A { #a; a() { this.# a } }', Context.None],
+    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.None],
+    ['class A {  #x; x = delete (this.#m); }', Context.None],
+    ['class A {  #x; g = this.f; x = delete (g().#m); }', Context.None],
+    ['class A {  #x; x = delete (g().#m); async *#m() {} }', Context.None],
+    ['class A {  #x; x() { var g = this.f; delete g().#x; } }', Context.None],
+    ['class A {  #x; x() { delete ((this.#m ));  } async #m() {} }', Context.None],
+    ['class A { # x }', Context.None],
+    ['class A { #\\u0000; }', Context.None],
+    ['class A { * # m() {} }', Context.None],
+    ['class A { # x; }', Context.None],
+    ['class A { #x; m() { this.# x; }}', Context.None],
+    ['class A { # m() {} }', Context.None],
+    ['class A { static get # m() {} }', Context.None],
+    ['class A { * method() { super(); } }', Context.None],
+    ['class A { static async * prototype() {} }', Context.None],
+    ['class A { static async #method() { super(); } }', Context.None],
+    ['class A { method() { this.\\u0023field; } }', Context.None],
+    ['class C { static #x = super(); }', Context.None],
+    ['class C { async \\u0023m() {} } }', Context.None],
+    ['class C { static async *#gen() { var await; } }', Context.None],
+    ['class C { static async *#gen() { void await; } }', Context.None],
+    ['class C { static async *#gen() { var yield; } }', Context.None],
+    ['class C { static async *#gen() { void yield; } }', Context.None],
+    ['class C { static async *#gen() { yield: ; } }', Context.None],
+    ['class C { static async *#gen() {  void \\u0061wait; } }', Context.None],
+    ['class C { async \\u0023m() {} } }', Context.None],
+    ['class C { #method() { a() { foo().\\u0023field; } } }', Context.None],
+    ['class C { #method() { \\u0023field; } }', Context.None],
+    ['class C {  async \\u0023m() {} }', Context.None],
+    ['var C = class { x = 42  *gen() {} }', Context.None],
+    ['class Spaces { #  wrongSpaces() { return fail(); } }', Context.None],
+    ['class C{ #method() { #[m] = 1} }', Context.None],
+    ['class C{ #method() { #"p" = x } }', Context.None],
+    ['class C{ #method() { super(); } }', Context.None],
+    ['(class C extends Base { async #*a() { } })', Context.None],
+    ['class C{ #method() { super(); } }', Context.None],
+    ['class C{ #method() { super(); } }', Context.None],
+    ['class C{ #method() { super(); } }', Context.None],
+    ['class C { #x = () => arguments; }', Context.None]
   ]);
 
   for (const arg of [
@@ -114,25 +112,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, undefined, Context.None);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.OptionsNext);
+        parseSource(`(class C { ${arg} })`, undefined, Context.None);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.OptionsNext);
+        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
       });
     });
   }
@@ -202,25 +200,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, undefined, Context.None);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.OptionsNext);
+        parseSource(`(class C { ${arg} })`, undefined, Context.None);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.OptionsNext);
+        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
       });
     });
   }
@@ -264,14 +262,14 @@ describe('Next - Private methods', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, undefined, Context.None);
       });
     });
   }
   pass('Next - Private methods (pass)', [
     [
       `class A { #key; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -279,7 +277,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'key',
                     type: 'PrivateIdentifier'
@@ -291,7 +289,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -306,7 +304,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { static async #_(value) { return await value;} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -318,7 +316,7 @@ describe('Next - Private methods', () => {
                     name: '_',
                     type: 'PrivateIdentifier'
                   },
-                  decorators: [],
+
                   kind: 'method',
                   static: true,
                   type: 'MethodDefinition',
@@ -353,7 +351,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -368,14 +366,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #a; #b; }`,
-      Context.OptionsNext | Context.OptionsRanges,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A',
@@ -389,7 +387,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'a',
@@ -406,7 +404,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'b',
@@ -438,14 +436,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #yield = b[c]; }`,
-      Context.OptionsNext | Context.OptionsRanges,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A',
@@ -459,7 +457,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'yield',
@@ -511,14 +509,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #yield = foo + bar; }`,
-      Context.OptionsNext | Context.OptionsRanges,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A',
@@ -532,7 +530,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'yield',
@@ -584,14 +582,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #yield; }`,
-      Context.OptionsNext | Context.OptionsRanges,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A',
@@ -605,7 +603,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'yield',
@@ -637,7 +635,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -651,7 +649,7 @@ describe('Next - Private methods', () => {
                   },
                   kind: 'method',
                   static: true,
-                  decorators: [],
+
                   type: 'MethodDefinition',
                   value: {
                     async: true,
@@ -715,7 +713,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'gen',
                     type: 'Identifier'
@@ -753,7 +751,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'C',
               type: 'Identifier'
@@ -768,7 +766,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -782,7 +780,7 @@ describe('Next - Private methods', () => {
                   },
                   kind: 'method',
                   static: true,
-                  decorators: [],
+
                   type: 'MethodDefinition',
                   value: {
                     async: false,
@@ -823,7 +821,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'gen',
                     type: 'Identifier'
@@ -861,7 +859,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'C',
               type: 'Identifier'
@@ -876,7 +874,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -890,7 +888,7 @@ describe('Next - Private methods', () => {
                   },
                   kind: 'get',
                   static: false,
-                  decorators: [],
+
                   type: 'MethodDefinition',
                   value: {
                     async: false,
@@ -912,7 +910,7 @@ describe('Next - Private methods', () => {
                   },
                   kind: 'set',
                   static: false,
-                  decorators: [],
+
                   type: 'MethodDefinition',
                   value: {
                     async: false,
@@ -933,7 +931,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'a',
                     type: 'Identifier'
@@ -970,7 +968,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'b',
                     type: 'Identifier'
@@ -1021,7 +1019,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'C',
               type: 'Identifier'
@@ -1039,14 +1037,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class C { #m() { return 42; } get ref() { return this.#m; } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'C'
@@ -1060,7 +1058,7 @@ describe('Next - Private methods', () => {
                   kind: 'method',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'm'
@@ -1090,7 +1088,7 @@ describe('Next - Private methods', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'Identifier',
                     name: 'ref'
@@ -1130,7 +1128,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #foo = bar; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -1138,7 +1136,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'foo',
                     type: 'PrivateIdentifier'
@@ -1153,7 +1151,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -1214,7 +1212,7 @@ describe('Next - Private methods', () => {
           this.publicFieldValue = -(this.publicFieldValue ** this.publicFieldValue);
         }
       }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1226,7 +1224,7 @@ describe('Next - Private methods', () => {
               name: 'Cl'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -1241,8 +1239,7 @@ describe('Next - Private methods', () => {
                     value: 'top secret string'
                   },
                   static: false,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 },
                 {
                   type: 'MethodDefinition',
@@ -1253,7 +1250,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'constructor'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -1294,7 +1291,7 @@ describe('Next - Private methods', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
@@ -1331,7 +1328,7 @@ describe('Next - Private methods', () => {
                   kind: 'set',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
@@ -1385,7 +1382,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicGetPrivateField'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -1422,7 +1419,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicSetPrivateField'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [
@@ -1472,7 +1469,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicFieldValue'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -1509,7 +1506,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicFieldValue'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [
@@ -1559,7 +1556,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'testUpdates'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -1883,7 +1880,7 @@ describe('Next - Private methods', () => {
             this.#privateFieldValue = 1;
           }
         }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -1895,7 +1892,7 @@ describe('Next - Private methods', () => {
               name: 'Cl'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -1910,15 +1907,14 @@ describe('Next - Private methods', () => {
                     value: 0
                   },
                   static: false,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 },
                 {
                   type: 'MethodDefinition',
                   kind: 'get',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
@@ -1959,7 +1955,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'constructor'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -2025,7 +2021,7 @@ describe('Next - Private methods', () => {
               this.#privateFieldValue = newValue;
             }
           } `,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -2037,7 +2033,7 @@ describe('Next - Private methods', () => {
               name: 'Cl'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -2052,8 +2048,7 @@ describe('Next - Private methods', () => {
                     value: 'top secret string'
                   },
                   static: false,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 },
                 {
                   type: 'MethodDefinition',
@@ -2064,7 +2059,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'constructor'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -2105,7 +2100,7 @@ describe('Next - Private methods', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
@@ -2142,7 +2137,7 @@ describe('Next - Private methods', () => {
                   kind: 'set',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'privateFieldValue'
@@ -2196,7 +2191,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicGetPrivateField'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [],
@@ -2233,7 +2228,7 @@ describe('Next - Private methods', () => {
                     type: 'Identifier',
                     name: 'publicSetPrivateField'
                   },
-                  decorators: [],
+
                   value: {
                     type: 'FunctionExpression',
                     params: [
@@ -2282,14 +2277,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #key() {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A'
@@ -2303,7 +2298,7 @@ describe('Next - Private methods', () => {
                   kind: 'method',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'key'
@@ -2328,7 +2323,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #yield\n = 0; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2336,7 +2331,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'yield',
                     type: 'PrivateIdentifier'
@@ -2351,7 +2346,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2366,14 +2361,14 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #foo() { #bar } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A'
@@ -2385,7 +2380,7 @@ describe('Next - Private methods', () => {
                 {
                   type: 'MethodDefinition',
                   kind: 'method',
-                  decorators: [],
+
                   static: false,
                   computed: false,
                   key: {
@@ -2420,7 +2415,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { static #key; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2428,7 +2423,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'key',
                     type: 'PrivateIdentifier'
@@ -2440,7 +2435,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2455,7 +2450,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { static #foo(bar) {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2463,7 +2458,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'foo',
                     type: 'PrivateIdentifier'
@@ -2491,7 +2486,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2506,7 +2501,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { m() {} #a; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2514,7 +2509,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'Identifier'
@@ -2536,7 +2531,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'a',
                     type: 'PrivateIdentifier'
@@ -2548,7 +2543,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2563,7 +2558,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A {  #a; m() {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2571,7 +2566,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'a',
                     type: 'PrivateIdentifier'
@@ -2582,7 +2577,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'Identifier'
@@ -2605,7 +2600,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2620,7 +2615,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A {  #a; m() {} #b; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2628,7 +2623,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'a',
                     type: 'PrivateIdentifier'
@@ -2639,7 +2634,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'Identifier'
@@ -2661,7 +2656,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'b',
                     type: 'PrivateIdentifier'
@@ -2673,7 +2668,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2688,7 +2683,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2696,7 +2691,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'Identifier'
@@ -2726,7 +2721,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'a',
                     type: 'PrivateIdentifier'
@@ -2737,7 +2732,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: '__',
                     type: 'PrivateIdentifier'
@@ -2748,7 +2743,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'NJ_',
                     type: 'PrivateIdentifier'
@@ -2759,7 +2754,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: '℘_',
                     type: 'PrivateIdentifier'
@@ -2771,7 +2766,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -2788,14 +2783,14 @@ describe('Next - Private methods', () => {
       `class A { #foo = () => 'bar';  method() {
         return this.#foo();
       } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
         body: [
           {
             type: 'ClassDeclaration',
-            decorators: [],
+
             id: {
               type: 'Identifier',
               name: 'A'
@@ -2806,7 +2801,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   type: 'PropertyDefinition',
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'foo'
@@ -2829,7 +2824,7 @@ describe('Next - Private methods', () => {
                   kind: 'method',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'Identifier',
                     name: 'method'
@@ -2873,7 +2868,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class B { #x = 0; #y = 1; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -2885,7 +2880,7 @@ describe('Next - Private methods', () => {
               name: 'B'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -2900,8 +2895,7 @@ describe('Next - Private methods', () => {
                     value: 0
                   },
                   static: false,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 },
                 {
                   type: 'PropertyDefinition',
@@ -2914,8 +2908,7 @@ describe('Next - Private methods', () => {
                     value: 1
                   },
                   static: false,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 }
               ]
             }
@@ -2928,7 +2921,7 @@ describe('Next - Private methods', () => {
           static #x;
           static #y = 1;
         }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -2940,7 +2933,7 @@ describe('Next - Private methods', () => {
               name: 'A'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -2952,8 +2945,7 @@ describe('Next - Private methods', () => {
                   },
                   value: null,
                   static: true,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 },
                 {
                   type: 'PropertyDefinition',
@@ -2966,8 +2958,7 @@ describe('Next - Private methods', () => {
                     value: 1
                   },
                   static: true,
-                  computed: false,
-                  decorators: []
+                  computed: false
                 }
               ]
             }
@@ -2977,7 +2968,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -2985,7 +2976,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'PrivateIdentifier'
@@ -3015,7 +3006,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'method',
                     type: 'Identifier'
@@ -3057,7 +3048,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3072,7 +3063,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -3080,7 +3071,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'method',
                     type: 'Identifier'
@@ -3121,7 +3112,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'PrivateIdentifier'
@@ -3152,7 +3143,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3167,7 +3158,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -3175,7 +3166,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'm',
                     type: 'PrivateIdentifier'
@@ -3205,7 +3196,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'bGetter',
                     type: 'Identifier'
@@ -3242,7 +3233,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'b',
                     type: 'PrivateIdentifier'
@@ -3267,7 +3258,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'ref',
                     type: 'Identifier'
@@ -3304,7 +3295,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'constructor',
                     type: 'Identifier'
@@ -3327,7 +3318,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3342,7 +3333,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { #$_; #℘_; }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -3350,7 +3341,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: '$_',
                     type: 'PrivateIdentifier'
@@ -3361,7 +3352,7 @@ describe('Next - Private methods', () => {
                 },
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: '℘_',
                     type: 'PrivateIdentifier'
@@ -3373,7 +3364,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3388,7 +3379,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { $(value) { this.#$_ = value; return this.#$; } }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -3396,7 +3387,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: '$',
                     type: 'Identifier'
@@ -3461,7 +3452,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3482,7 +3473,7 @@ describe('Next - Private methods', () => {
           this.#__ = value;
         }
       }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -3497,7 +3488,7 @@ describe('Next - Private methods', () => {
                   type: 'ClassExpression',
                   id: null,
                   superClass: null,
-                  decorators: [],
+
                   body: {
                     type: 'ClassBody',
                     body: [
@@ -3510,7 +3501,7 @@ describe('Next - Private methods', () => {
                           type: 'Identifier',
                           name: 'm'
                         },
-                        decorators: [],
+
                         value: {
                           type: 'FunctionExpression',
                           params: [],
@@ -3539,8 +3530,7 @@ describe('Next - Private methods', () => {
                         },
                         value: null,
                         static: false,
-                        computed: false,
-                        decorators: []
+                        computed: false
                       },
                       {
                         type: 'PropertyDefinition',
@@ -3550,8 +3540,7 @@ describe('Next - Private methods', () => {
                         },
                         value: null,
                         static: false,
-                        computed: false,
-                        decorators: []
+                        computed: false
                       },
                       {
                         type: 'PropertyDefinition',
@@ -3561,15 +3550,14 @@ describe('Next - Private methods', () => {
                         },
                         value: null,
                         static: false,
-                        computed: false,
-                        decorators: []
+                        computed: false
                       },
                       {
                         type: 'MethodDefinition',
                         kind: 'set',
                         static: false,
                         computed: false,
-                        decorators: [],
+
                         key: {
                           type: 'PrivateIdentifier',
                           name: '$'
@@ -3619,7 +3607,7 @@ describe('Next - Private methods', () => {
                         kind: 'set',
                         static: false,
                         computed: false,
-                        decorators: [],
+
                         key: {
                           type: 'PrivateIdentifier',
                           name: '_'
@@ -3679,7 +3667,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { get #foo/*{ declareWith }*/() {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -3687,7 +3675,7 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
+
                   key: {
                     name: 'foo',
                     type: 'PrivateIdentifier'
@@ -3710,7 +3698,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'
@@ -3740,7 +3728,7 @@ describe('Next - Private methods', () => {
         }
 
       }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -3755,7 +3743,7 @@ describe('Next - Private methods', () => {
                   type: 'ClassExpression',
                   id: null,
                   superClass: null,
-                  decorators: [],
+
                   body: {
                     type: 'ClassBody',
                     body: [
@@ -3768,7 +3756,7 @@ describe('Next - Private methods', () => {
                           type: 'Identifier',
                           name: 'm'
                         },
-                        decorators: [],
+
                         value: {
                           type: 'FunctionExpression',
                           params: [],
@@ -3797,8 +3785,7 @@ describe('Next - Private methods', () => {
                         },
                         value: null,
                         static: false,
-                        computed: false,
-                        decorators: []
+                        computed: false
                       },
                       {
                         type: 'PropertyDefinition',
@@ -3808,15 +3795,14 @@ describe('Next - Private methods', () => {
                         },
                         value: null,
                         static: false,
-                        computed: false,
-                        decorators: []
+                        computed: false
                       },
                       {
                         type: 'MethodDefinition',
                         kind: 'get',
                         static: false,
                         computed: false,
-                        decorators: [],
+
                         key: {
                           type: 'PrivateIdentifier',
                           name: '_'
@@ -3857,7 +3843,7 @@ describe('Next - Private methods', () => {
                           type: 'Identifier',
                           name: '$'
                         },
-                        decorators: [],
+
                         value: {
                           type: 'FunctionExpression',
                           params: [
@@ -3921,7 +3907,7 @@ describe('Next - Private methods', () => {
                           type: 'Identifier',
                           name: '_'
                         },
-                        decorators: [],
+
                         value: {
                           type: 'FunctionExpression',
                           params: [
@@ -3998,7 +3984,7 @@ describe('Next - Private methods', () => {
           return makeEvil(x);
         }
       }`,
-      Context.OptionsNext,
+      Context.None,
       {
         type: 'Program',
         sourceType: 'script',
@@ -4010,7 +3996,7 @@ describe('Next - Private methods', () => {
               name: 'Hotel'
             },
             superClass: null,
-            decorators: [],
+
             body: {
               type: 'ClassBody',
               body: [
@@ -4019,7 +4005,7 @@ describe('Next - Private methods', () => {
                   kind: 'get',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'evil'
@@ -4053,7 +4039,7 @@ describe('Next - Private methods', () => {
                   kind: 'set',
                   static: false,
                   computed: false,
-                  decorators: [],
+
                   key: {
                     type: 'PrivateIdentifier',
                     name: 'evil'
@@ -4116,7 +4102,7 @@ describe('Next - Private methods', () => {
           return this.#y(43);
         }
       } `,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -4131,7 +4117,7 @@ describe('Next - Private methods', () => {
                     body: [
                       {
                         computed: false,
-                        decorators: [],
+
                         key: {
                           name: 'x',
                           type: 'PrivateIdentifier'
@@ -4174,7 +4160,7 @@ describe('Next - Private methods', () => {
                       },
                       {
                         computed: false,
-                        decorators: [],
+
                         key: {
                           name: 'y',
                           type: 'PrivateIdentifier'
@@ -4217,7 +4203,7 @@ describe('Next - Private methods', () => {
                       },
                       {
                         computed: false,
-                        decorators: [],
+
                         key: {
                           name: 'x',
                           type: 'Identifier'
@@ -4263,7 +4249,7 @@ describe('Next - Private methods', () => {
                       },
                       {
                         computed: false,
-                        decorators: [],
+
                         key: {
                           name: 'y',
                           type: 'Identifier'
@@ -4310,7 +4296,7 @@ describe('Next - Private methods', () => {
                     ],
                     type: 'ClassBody'
                   },
-                  decorators: [],
+
                   id: null,
                   superClass: null,
                   type: 'ClassExpression'
@@ -4328,7 +4314,7 @@ describe('Next - Private methods', () => {
     ],
     [
       `class A { static set #foo/*{ declareWith }*/(param) {} }`,
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
@@ -4336,7 +4322,6 @@ describe('Next - Private methods', () => {
               body: [
                 {
                   computed: false,
-                  decorators: [],
                   key: {
                     name: 'foo',
                     type: 'PrivateIdentifier'
@@ -4364,7 +4349,7 @@ describe('Next - Private methods', () => {
               ],
               type: 'ClassBody'
             },
-            decorators: [],
+
             id: {
               name: 'A',
               type: 'Identifier'

@@ -94,7 +94,7 @@ describe('Expressions - Async', () => {
     });
   }
 
-  fail('Expressions - Async (pass)', [
+  fail('Expressions - Async (fail)', [
     ['await => { let x; }', Context.InAwaitContext],
     ['async while (1) {}', Context.None],
     ['(async function(...x = []) {})', Context.None],
@@ -116,7 +116,6 @@ describe('Expressions - Async', () => {
     ['f(async\nfunction(){})', Context.None],
     ['async function f(){ return await => {}; }', Context.None],
     ['foo(async[])', Context.None],
-    ['class x {async \n foo() {}}', Context.None],
     ['class X { async(async => {}) {} }', Context.None],
     ['async\nfunction f(){await x}', Context.None],
     ['async\nfunction f(){await x}', Context.None],

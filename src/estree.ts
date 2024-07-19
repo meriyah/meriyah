@@ -371,7 +371,7 @@ export interface PropertyDefinition extends _Node {
   type: 'PropertyDefinition';
   key: PrivateIdentifier | Expression;
   value: any;
-  decorators?: Decorator[] | null;
+  decorators?: Decorator[];
   computed: boolean;
   static: boolean;
 }

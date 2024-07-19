@@ -462,7 +462,6 @@ describe('Declarations - Async Function', () => {
     ['{ function* f() {} async function f() {} }', Context.OptionsLexical | Context.Strict],
     ['async function* f() { a = async function*(a = await) {}; }', Context.None],
     ['function f(a = async function(a = await) {}) {}', Context.None],
-    ['({async\nfoo() { }})', Context.None],
     [
       `async function x(a=class b{
       [a = class b{
@@ -506,8 +505,6 @@ describe('Declarations - Async Function', () => {
     ['({async foo() { return {await} }})', Context.None],
     ['async function f(a = await) {}', Context.None],
     ['({async foo: 1})', Context.None],
-    ['class A {async\nfoo() { }}', Context.None],
-    ['class A {static async\nfoo() { }}', Context.None],
     ['async function* g(){ ({[await]: a}) => 0; }', Context.None],
     ['class A {async constructor() { }}', Context.None],
     ['await', Context.Module],

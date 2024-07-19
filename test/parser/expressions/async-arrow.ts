@@ -348,8 +348,6 @@ describe('Expressions - Async arrow', () => {
     ['function* a(){ async yield => {}; }', Context.None],
     ['function* a(){ async (yield) => {}; }', Context.None],
     ['async await => 0', Context.None],
-    ['(class { async })', Context.None],
-    ['(class { async\na(){} })', Context.None],
     ['(class { async get a(){} })', Context.None],
     ['async function x({await}) { return 1 }', Context.None],
     ['async function f() { return {await}; }', Context.None],
