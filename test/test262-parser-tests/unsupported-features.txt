@@ -18,12 +18,10 @@ class-static-fields-private
 class-static-fields-public
 class-static-methods-private
 coalesce-expression
-computed-property-names
 decorators
 destructuring-assignment
 dynamic-import
 export-star-as-namespace-from-module
-import.meta
 json-modules
 json-superset
 optional-chaining
