@@ -19,7 +19,6 @@ class-fields-private
 class-fields-private-in
 class-fields-public
 class-methods-private
-class-static-block
 class-static-fields-private
 class-static-fields-public
 class-static-methods-private
