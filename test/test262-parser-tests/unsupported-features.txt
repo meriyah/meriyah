@@ -32,9 +32,6 @@ cross-realm
 decorators
 destructuring-assignment
 dynamic-import
-error-cause
-explicit-resource-management
-exponentiation
 export-star-as-namespace-from-module
 generators
 host-gc-required
@@ -49,11 +46,9 @@ legacy-regexp
 numeric-separator-literal
 object-rest
 object-spread
-optional-catch-binding
 optional-chaining
 regexp-match-indices
 regexp-modifiers
 regexp-unicode-property-escapes
-set-methods
 super
 u180e
