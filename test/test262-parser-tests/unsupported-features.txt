@@ -3,3 +3,4 @@ explicit-resource-management
 regexp-modifiers
 import-assertions
 import-attributes
+regexp-duplicate-named-groups
