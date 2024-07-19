@@ -30,9 +30,7 @@ computed-property-names
 const
 cross-realm
 decorators
-default-parameters
 destructuring-assignment
-destructuring-binding
 dynamic-import
 error-cause
 explicit-resource-management
