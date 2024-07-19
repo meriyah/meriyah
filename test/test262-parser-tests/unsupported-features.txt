@@ -18,7 +18,6 @@ class-static-fields-private
 class-static-fields-public
 class-static-methods-private
 coalesce-expression
-json-modules
 json-superset
 regexp-modifiers
 u180e
