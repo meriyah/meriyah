@@ -27,9 +27,6 @@ generators
 import.meta
 json-modules
 json-superset
-legacy-regexp
-object-rest
-object-spread
 optional-chaining
 regexp-match-indices
 regexp-modifiers
