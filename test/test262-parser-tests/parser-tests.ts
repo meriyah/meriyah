@@ -41,7 +41,7 @@ async function runTest() {
   });
 
   const { exitCode } = process;
-  delete process.exitCode;
+  process.exitCode = 0;
 
   return exitCode;
 }
@@ -51,6 +51,6 @@ describe('Test262', function () {
 
   it('Should pass tests', async () => {
     const exitCode = await runTest();
-    t.ok(exitCode === 0);
+    t.equal(exitCode, 0);
   });
 });
