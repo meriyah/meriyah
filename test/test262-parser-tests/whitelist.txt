@@ -114,3 +114,5 @@ language/statements/switch/syntax/redeclaration/async-function-name-redeclaratio
 language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-async-function.js (default)
 language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-async-function.js (strict mode)
 language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-function.js (strict mode)
+language/statements/try/optional-catch-binding-lexical.js (default)
+language/statements/try/optional-catch-binding-lexical.js (strict mode)
