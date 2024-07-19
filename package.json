@@ -82,7 +82,8 @@
     "preversion": "npm test",
     "version": "standard-changelog && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate-ts262-whitelist": "node scripts/generate-test262-whitelist.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
