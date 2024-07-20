@@ -339,6 +339,7 @@ export interface BreakStatement extends _Node {
 export interface ImportExpression extends _Node {
   type: 'ImportExpression';
   source: Expression;
+  options?: Expression | null;
 }
 
 export interface ChainExpression extends _Node {
@@ -501,6 +502,7 @@ export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
   source: Literal;
   specifiers: ImportClause[];
+  attributes?: ImportAttribute[];
 }
 
 export interface ImportAttribute extends _Node {

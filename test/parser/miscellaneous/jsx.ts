@@ -2500,7 +2500,6 @@ describe('Miscellaneous - JSX', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'react'

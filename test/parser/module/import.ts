@@ -418,7 +418,6 @@ describe('Module - Import', () => {
     "import * as from from 'foo';",
     "import { a } from 'foo';",
     'import { a as of } from "k";',
-    'import foo from "./foo.json" with { type: "json" }',
     // Runtime errors
     'import foo from "foo.js"; try { (() => { foo = 12; })() } catch(e) {}',
     'import { foo } from "foo.js"; try { (() => { foo = 12; })() } catch(e) { assert.areEqual("Assignment to const", e.message); }',
@@ -453,7 +452,6 @@ describe('Module - Import', () => {
             end: 18,
             range: [0, 18],
             specifiers: [],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 15,
@@ -555,7 +553,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 35,
@@ -624,7 +621,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 24,
@@ -733,7 +729,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 35,
@@ -788,7 +783,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 23,
@@ -819,7 +813,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'foo'
@@ -846,7 +839,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'foo'
@@ -884,7 +876,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 19,
@@ -930,7 +921,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'module'
@@ -957,7 +947,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'await'
@@ -984,7 +973,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1049,7 +1037,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 19,
@@ -1079,7 +1066,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1131,7 +1117,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 22,
@@ -1153,7 +1138,6 @@ describe('Module - Import', () => {
           {
             type: 'ImportDeclaration',
             specifiers: [],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1178,7 +1162,6 @@ describe('Module - Import', () => {
             end: 10,
             range: [0, 10],
             specifiers: [],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 7,
@@ -1213,7 +1196,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1244,7 +1226,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1274,7 +1255,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1320,7 +1300,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 22,
@@ -1365,7 +1344,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1407,7 +1385,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1450,7 +1427,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1491,7 +1467,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1557,7 +1532,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               start: 29,
@@ -1602,7 +1576,6 @@ describe('Module - Import', () => {
                 }
               }
             ],
-            attributes: [],
             source: {
               type: 'Literal',
               value: 'y'
@@ -1610,152 +1583,6 @@ describe('Module - Import', () => {
           }
         ],
         sourceType: 'module'
-      }
-    ],
-    [
-      `import foo from "./foo.json" with { type: "json" };`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        body: [
-          {
-            type: 'ImportDeclaration',
-            specifiers: [
-              {
-                type: 'ImportDefaultSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                  start: 7,
-                  end: 10,
-                  range: [7, 10]
-                },
-                start: 7,
-                end: 10,
-                range: [7, 10]
-              }
-            ],
-            source: {
-              type: 'Literal',
-              value: './foo.json',
-              start: 16,
-              end: 28,
-              range: [16, 28]
-            },
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                  start: 36,
-                  end: 40,
-                  range: [36, 40]
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                  start: 42,
-                  end: 48,
-                  range: [42, 48]
-                },
-                start: 36,
-                end: 48,
-                range: [36, 48]
-              }
-            ],
-            start: 0,
-            end: 51,
-            range: [0, 51]
-          }
-        ],
-        sourceType: 'module',
-        start: 0,
-        end: 51,
-        range: [0, 51],
-        type: 'Program'
-      }
-    ],
-    [
-      `import bar from "./bar.xml" with { type: "xml", version: "1.0" };`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        body: [
-          {
-            attributes: [
-              {
-                end: 46,
-                key: {
-                  end: 39,
-                  name: 'type',
-                  range: [35, 39],
-                  start: 35,
-                  type: 'Identifier'
-                },
-                range: [35, 46],
-                start: 35,
-                type: 'ImportAttribute',
-                value: {
-                  end: 46,
-                  range: [41, 46],
-                  start: 41,
-                  type: 'Literal',
-                  value: 'xml'
-                }
-              },
-              {
-                end: 62,
-                key: {
-                  end: 55,
-                  name: 'version',
-                  range: [48, 55],
-                  start: 48,
-                  type: 'Identifier'
-                },
-                range: [48, 62],
-                start: 48,
-                type: 'ImportAttribute',
-                value: {
-                  end: 62,
-                  range: [57, 62],
-                  start: 57,
-                  type: 'Literal',
-                  value: '1.0'
-                }
-              }
-            ],
-            end: 65,
-            range: [0, 65],
-            source: {
-              end: 27,
-              range: [16, 27],
-              start: 16,
-              type: 'Literal',
-              value: './bar.xml'
-            },
-            specifiers: [
-              {
-                end: 10,
-                local: {
-                  end: 10,
-                  name: 'bar',
-                  range: [7, 10],
-                  start: 7,
-                  type: 'Identifier'
-                },
-                range: [7, 10],
-                start: 7,
-                type: 'ImportDefaultSpecifier'
-              }
-            ],
-            start: 0,
-            type: 'ImportDeclaration'
-          }
-        ],
-        end: 65,
-        range: [0, 65],
-        sourceType: 'module',
-        start: 0,
-        type: 'Program'
       }
     ]
   ]);

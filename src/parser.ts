@@ -2527,19 +2527,19 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
-  let attributes: ESTree.ImportAttribute[] = [];
-  if (parser.getToken() === Token.WithKeyword) {
-    attributes = parseImportAttributes(parser, context);
+  const node: ESTree.ImportDeclaration = {
+    type: 'ImportDeclaration',
+    specifiers,
+    source
+  };
+
+  if (context & Context.OptionsNext) {
+    node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context) : [];
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-  return finishNode(parser, context, start, line, column, {
-    type: 'ImportDeclaration',
-    specifiers,
-    source,
-    attributes
-  });
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
@@ -4451,29 +4451,30 @@ export function parseImportExpression(
   if (parser.getToken() === Token.Ellipsis) report(parser, Errors.InvalidSpreadInImport);
 
   const source = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
-  let options: ESTree.Expression | null = null;
+  const node: ESTree.ImportExpression = {
+    type: 'ImportExpression',
+    source
+  };
 
-  if (parser.getToken() === Token.Comma) {
-    consume(parser, context, Token.Comma);
+  if (context & Context.OptionsNext) {
+    let options: ESTree.Expression | null = null;
 
-    if (parser.getToken() === Token.LeftBrace) {
-      options = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+    if (parser.getToken() === Token.Comma) {
+      consume(parser, context, Token.Comma);
 
-      if (options && options.type !== 'ObjectExpression') {
+      if (parser.getToken() === Token.LeftBrace) {
+        options = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+      } else {
         report(parser, Errors.InvalidImportExpression);
       }
-    } else {
-      report(parser, Errors.InvalidImportExpression);
     }
+
+    node.options = options;
   }
 
   consume(parser, context, Token.RightParen);
 
-  return finishNode(parser, context, start, line, column, {
-    type: 'ImportExpression',
-    source,
-    options
-  });
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
