@@ -185,6 +185,7 @@ describe('Next - ImportCall', () => {
                 end: 21,
                 range: [0, 21],
                 object: {
+                  options: null,
                   start: 0,
                   end: 16,
                   range: [0, 16],
@@ -233,6 +234,7 @@ describe('Next - ImportCall', () => {
                 {
                   expression: {
                     argument: {
+                      options: null,
                       source: {
                         type: 'Literal',
                         value: './nchanged'
@@ -287,6 +289,7 @@ describe('Next - ImportCall', () => {
                         callee: {
                           computed: false,
                           object: {
+                            options: null,
                             source: {
                               name: 'file',
                               type: 'Identifier'
@@ -345,6 +348,95 @@ describe('Next - ImportCall', () => {
           }
         ],
         sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      `import("./foo.json", { with: { type: "json" } });`,
+      Context.Strict | Context.Module | Context.OptionsRanges,
+      {
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'ImportExpression',
+              source: {
+                type: 'Literal',
+                value: './foo.json',
+                start: 7,
+                end: 19,
+                range: [7, 19]
+              },
+              options: {
+                type: 'ObjectExpression',
+                properties: [
+                  {
+                    type: 'Property',
+                    key: {
+                      type: 'Identifier',
+                      name: 'with',
+                      start: 23,
+                      end: 27,
+                      range: [23, 27]
+                    },
+                    value: {
+                      type: 'ObjectExpression',
+                      properties: [
+                        {
+                          type: 'Property',
+                          key: {
+                            type: 'Identifier',
+                            name: 'type',
+                            start: 31,
+                            end: 35,
+                            range: [31, 35]
+                          },
+                          value: {
+                            type: 'Literal',
+                            value: 'json',
+                            start: 37,
+                            end: 43,
+                            range: [37, 43]
+                          },
+                          kind: 'init',
+                          method: false,
+                          shorthand: false,
+                          computed: false,
+                          start: 31,
+                          end: 43,
+                          range: [31, 43]
+                        }
+                      ],
+                      start: 29,
+                      end: 45,
+                      range: [29, 45]
+                    },
+                    kind: 'init',
+                    method: false,
+                    shorthand: false,
+                    computed: false,
+                    start: 23,
+                    end: 45,
+                    range: [23, 45]
+                  }
+                ],
+                start: 21,
+                end: 47,
+                range: [21, 47]
+              },
+              start: 0,
+              end: 48,
+              range: [0, 48]
+            },
+            start: 0,
+            end: 49,
+            range: [0, 49]
+          }
+        ],
+        sourceType: 'module',
+        start: 0,
+        end: 49,
+        range: [0, 49],
         type: 'Program'
       }
     ]

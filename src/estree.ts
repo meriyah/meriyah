@@ -82,6 +82,7 @@ export type Node =
   | Import
   | ImportDeclaration
   | ImportDefaultSpecifier
+  | ImportAttribute
   | ImportNamespaceSpecifier
   | ImportSpecifier
   | JSXNamespacedName
@@ -500,6 +501,12 @@ export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
   source: Literal;
   specifiers: ImportClause[];
+}
+
+export interface ImportAttribute extends _Node {
+  type: 'ImportAttribute';
+  key: Identifier | Literal;
+  value: Literal;
 }
 
 export interface ImportDefaultSpecifier extends _Node {

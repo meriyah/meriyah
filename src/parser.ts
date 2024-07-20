@@ -2527,12 +2527,18 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
+  let attributes: ESTree.ImportAttribute[] = [];
+  if (parser.getToken() === Token.WithKeyword) {
+    attributes = parseImportAttributes(parser, context);
+  }
+
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
   return finishNode(parser, context, start, line, column, {
     type: 'ImportDeclaration',
     specifiers,
-    source
+    source,
+    attributes
   });
 }
 
@@ -4445,13 +4451,77 @@ export function parseImportExpression(
   if (parser.getToken() === Token.Ellipsis) report(parser, Errors.InvalidSpreadInImport);
 
   const source = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+  let options: ESTree.Expression | null = null;
+
+  if (parser.getToken() === Token.Comma) {
+    consume(parser, context, Token.Comma);
+
+    if (parser.getToken() === Token.LeftBrace) {
+      options = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+
+      if (options && options.type !== 'ObjectExpression') {
+        report(parser, Errors.InvalidImportExpression);
+      }
+    } else {
+      report(parser, Errors.InvalidImportExpression);
+    }
+  }
 
   consume(parser, context, Token.RightParen);
 
   return finishNode(parser, context, start, line, column, {
     type: 'ImportExpression',
-    source
+    source,
+    options
   });
+}
+
+/**
+ * Parses import attributes
+ *
+ * @param parser Parser object
+ * @param context Context masks
+ * @returns
+ */
+
+export function parseImportAttributes(parser: ParserState, context: Context): ESTree.ImportAttribute[] {
+  consume(parser, context, Token.WithKeyword);
+  consume(parser, context, Token.LeftBrace);
+
+  const attributes: ESTree.ImportAttribute[] = [];
+
+  while (parser.getToken() !== Token.RightBrace) {
+    const start = parser.tokenPos;
+    const line = parser.linePos;
+    const column = parser.colPos;
+
+    const key = parseIdentifierOrLiteral(parser, context);
+    consume(parser, context, Token.Colon);
+    const value = parseLiteral(parser, context);
+
+    attributes.push(
+      finishNode(parser, context, start, line, column, {
+        type: 'ImportAttribute',
+        key,
+        value
+      })
+    );
+
+    if (parser.getToken() !== Token.RightBrace) {
+      consume(parser, context, Token.Comma);
+    }
+  }
+
+  consume(parser, context, Token.RightBrace);
+  return attributes;
+}
+
+function parseIdentifierOrLiteral(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+  if (parser.getToken() === Token.StringLiteral) {
+    return parseLiteral(parser, context);
+  } else {
+    return parseIdentifier(parser, context);
+  }
 }
 
 /**
