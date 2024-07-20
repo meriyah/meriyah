@@ -5,6 +5,8 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Import Attributes', () => {
   for (const arg of [
+    `import foo from 'bar' with { type: 'json' };`,
+    `import foo from 'bar' with { type: 'json', 'data-type': 'json' };`,
     `import('module', { type: 'json' });`,
     `import('module', { lazy: true });`,
     `import('module', { dynamic: false });`,
@@ -22,7 +24,8 @@ describe('Next - Import Attributes', () => {
     `for await (let module of [import('module', { type: 'json' })]) {}`,
     `import('module', { type: 'json' }).then(module => { /* ... */ });`,
     `import('module', { 'data-type': 'json' }).then(module => { /* ... */ });`,
-    `const result = await import('module', { type: 'json' });`
+    `const result = await import('module', { type: 'json' });`,
+    ``
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -51,7 +54,18 @@ describe('Next - Import Attributes', () => {
       'import("module", { type: "json", "extra": "value" }, "another")',
       Context.OptionsNext | Context.Strict | Context.Module
     ],
-    ['import("module", { type: "json" }, "extra")', Context.OptionsNext | Context.Strict | Context.Module]
+    ['import("module", { type: "json" }, "extra")', Context.OptionsNext | Context.Strict | Context.Module],
+    [
+      'import foo from "bar" with { type: "json", "data-type": "json"',
+      Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    ['import foo from "bar" with { type: ', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", ', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", "data-type": ', Context.OptionsNext | Context.Strict | Context.Module],
+    [
+      'import foo from "bar" with { type: "json", "data-type": "json" ',
+      Context.OptionsNext | Context.Strict | Context.Module
+    ]
   ]);
 
   pass('Next - Import Attributes (pass)', [
