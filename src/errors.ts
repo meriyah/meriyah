@@ -139,6 +139,7 @@ export const enum Errors {
   UnknownLabel,
   InvalidImportTail,
   InvalidImportExpression,
+  InvalidImportBinding,
   ImportNotOneArg,
   InvalidImportNew,
   InvalidSpreadInImport,

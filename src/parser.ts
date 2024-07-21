@@ -2534,7 +2534,7 @@ function parseImportDeclaration(
   };
 
   if (context & Context.OptionsNext) {
-    node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context) : [];
+    node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context, specifiers) : [];
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -4485,11 +4485,21 @@ export function parseImportExpression(
  * @returns
  */
 
-export function parseImportAttributes(parser: ParserState, context: Context): ESTree.ImportAttribute[] {
+export function parseImportAttributes(
+  parser: ParserState,
+  context: Context,
+  specifiers: ESTree.ImportDeclaration['specifiers']
+): ESTree.ImportAttribute[] {
   consume(parser, context, Token.WithKeyword);
   consume(parser, context, Token.LeftBrace);
 
   const attributes: ESTree.ImportAttribute[] = [];
+  const keysContent = new Set<ESTree.Literal['value'] | ESTree.Identifier['name']>();
+  const validJSONImportAttributeBindings =
+    specifiers.length >= 1 &&
+    (specifiers[0].type === 'ImportDefaultSpecifier' ||
+      specifiers[0].type === 'ImportNamespaceSpecifier' ||
+      (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default'));
 
   while (parser.getToken() !== Token.RightBrace) {
     const start = parser.tokenPos;
@@ -4499,7 +4509,18 @@ export function parseImportAttributes(parser: ParserState, context: Context): ES
     const key = parseIdentifierOrLiteral(parser, context);
     consume(parser, context, Token.Colon);
     const value = parseLiteral(parser, context);
+    const keyContent = key.type === 'Literal' ? key.value : key.name;
+    const isJSONImportAttribute = keyContent === 'type' && value.value === 'json';
 
+    if (isJSONImportAttribute && !validJSONImportAttributeBindings) {
+      report(parser, Errors.InvalidImportBinding);
+    }
+
+    if (keysContent.has(keyContent)) {
+      report(parser, Errors.DuplicateBinding, `${keyContent}`);
+    }
+
+    keysContent.add(keyContent);
     attributes.push(
       finishNode(parser, context, start, line, column, {
         type: 'ImportAttribute',

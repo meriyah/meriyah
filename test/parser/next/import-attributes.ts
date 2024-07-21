@@ -7,6 +7,14 @@ describe('Next - Import Attributes', () => {
   for (const arg of [
     `import foo from 'bar' with { type: 'json' };`,
     `import foo from 'bar' with { type: 'json', 'data-type': 'json' };`,
+    `import foo from 'bar' with { "type": 'json' };`,
+    `import foo from 'bar' with { "type": 'json', 'data-type': 'json' };`,
+    `import {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { type: 'json' };`,
+    `import {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { "type": 'json' };`,
+    `import * as ns from './json-via-namespace_FIXTURE.json' with { type: 'json' };`,
+    `import * as ns from './json-via-namespace_FIXTURE.json' with { "type": 'json' };`,
+    `import { random } from './random.ts' with { type: 'macro' };`,
+    `import { random } from './random.ts' with { "type": 'macro' };`,
     `import('module', { type: 'json' });`,
     `import('module', { lazy: true });`,
     `import('module', { dynamic: false });`,
@@ -18,14 +26,21 @@ describe('Next - Import Attributes', () => {
     `async function load() { return import('module', { type: 'json' }); }`,
     `(() => import('module', { type: 'json' }))()`,
     `let dynamicImport = import('module', { type: 'json' });`,
+    `let dynamicImport = import('module', { "type": 'json' });`,
     `const importWithAttributes = import('module', { type: 'json' });`,
     `({ async load() { return import('module', { type: 'json' }); } })`,
+    `({ async load() { return import('module', { "type": 'json' }); } })`,
     `function* gen() { yield import('module', { type: 'json' }); }`,
+    `function* gen() { yield import('module', { "type": 'json' }); }`,
     `for await (let module of [import('module', { type: 'json' })]) {}`,
+    `for await (let module of [import('module', { "type": 'json' })]) {}`,
     `import('module', { type: 'json' }).then(module => { /* ... */ });`,
     `import('module', { 'data-type': 'json' }).then(module => { /* ... */ });`,
     `const result = await import('module', { type: 'json' });`,
-    ``
+    `const result = await import('module', { "type": 'json' });`,
+    `import x from './import-attribute-1_FIXTURE.js' with {};`,
+    `import './import-attribute-2_FIXTURE.js' with {};`,
+    `export * from './import-attribute-3_FIXTURE.js' with {};`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -64,6 +79,21 @@ describe('Next - Import Attributes', () => {
     ['import foo from "bar" with { type: "json", "data-type": ', Context.OptionsNext | Context.Strict | Context.Module],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" ',
+      Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    [
+      `import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };`,
+      Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    [
+      `import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' };`,
+      Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    [
+      `import x from './import-attribute-1_FIXTURE.js' with {
+      type: 'json',
+      'typ\u0065': ''
+    };`,
       Context.OptionsNext | Context.Strict | Context.Module
     ]
   ]);
