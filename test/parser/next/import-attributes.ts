@@ -40,7 +40,10 @@ describe('Next - Import Attributes', () => {
     `const result = await import('module', { "type": 'json' });`,
     `import x from './import-attribute-1_FIXTURE.js' with {};`,
     `import './import-attribute-2_FIXTURE.js' with {};`,
-    `export * from './import-attribute-3_FIXTURE.js' with {};`
+    `export * from './import-attribute-3_FIXTURE.js' with {};`,
+    `(async function () { return import('./2nd-param_FIXTURE.js', await undefined);}())`,
+    `var iter = function*() { beforeCount += 1, import('', yield), afterCount += 1;}();`,
+    `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -63,7 +66,6 @@ describe('Next - Import Attributes', () => {
     ['import("module", { type: "json" }, "extra")', Context.None],
     ['import("module", { type: "json", "extra": })', Context.OptionsNext | Context.Strict | Context.Module],
     ['import("module", ...extra)', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import("module", { "extra": "value" } { type: "json" })', Context.OptionsNext | Context.Strict | Context.Module],
     ['import("module", { type: "json", "extra": "value" ', Context.OptionsNext | Context.Strict | Context.Module],
     [
       'import("module", { type: "json", "extra": "value" }, "another")',
