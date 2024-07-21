@@ -426,6 +426,7 @@ export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
   source: Literal;
   exported: Identifier | null;
+  attributes?: ImportAttribute[];
 }
 
 export interface ExportDefaultDeclaration extends _Node {

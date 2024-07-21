@@ -2962,13 +2962,19 @@ function parseExportDeclaration(
 
       source = parseLiteral(parser, context);
 
-      matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-
-      return finishNode(parser, context, start, line, column, {
+      const node: ESTree.ExportAllDeclaration = {
         type: 'ExportAllDeclaration',
         source,
         exported
-      } as any);
+      };
+
+      if (context & Context.OptionsNext) {
+        node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context) : [];
+      }
+
+      matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
+
+      return finishNode(parser, context, start, line, column, node);
     }
     case Token.LeftBrace: {
       // ExportClause :
@@ -4488,7 +4494,7 @@ export function parseImportExpression(
 export function parseImportAttributes(
   parser: ParserState,
   context: Context,
-  specifiers: ESTree.ImportDeclaration['specifiers']
+  specifiers: ESTree.ImportDeclaration['specifiers'] = []
 ): ESTree.ImportAttribute[] {
   consume(parser, context, Token.WithKeyword);
   consume(parser, context, Token.LeftBrace);
