@@ -4475,11 +4475,7 @@ export function parseImportExpression(
     }
 
     node.options = options;
-
-    // Allow trailing comma after options
-    if (parser.getToken() === Token.Comma) {
-      consume(parser, context, Token.Comma);
-    }
+    consumeOpt(parser, context, Token.Comma);
   }
 
   consume(parser, context, Token.RightParen);
