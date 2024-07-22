@@ -388,6 +388,76 @@ describe('Next - Import Attributes', () => {
         sourceType: 'module',
         type: 'Program'
       }
+    ],
+    [
+      `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        body: [
+          {
+            declarations: [
+              {
+                id: {
+                  name: 'promise',
+                  type: 'Identifier'
+                },
+                init: null,
+                type: 'VariableDeclarator'
+              }
+            ],
+            kind: 'var',
+            type: 'VariableDeclaration'
+          },
+          {
+            body: {
+              type: 'EmptyStatement'
+            },
+            init: {
+              left: {
+                name: 'promise',
+                type: 'Identifier'
+              },
+              operator: '=',
+              right: {
+                options: {
+                  left: {
+                    left: {
+                      type: 'Literal',
+                      value: 'test262'
+                    },
+                    operator: 'in',
+                    right: {
+                      properties: [],
+                      type: 'ObjectExpression'
+                    },
+                    type: 'BinaryExpression'
+                  },
+                  operator: '||',
+                  right: {
+                    name: 'undefined',
+                    type: 'Identifier'
+                  },
+                  type: 'LogicalExpression'
+                },
+                source: {
+                  type: 'Literal',
+                  value: './2nd-param_FIXTURE.js'
+                },
+                type: 'ImportExpression'
+              },
+              type: 'AssignmentExpression'
+            },
+            test: {
+              type: 'Literal',
+              value: false
+            },
+            type: 'ForStatement',
+            update: null
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
     ]
   ]);
 });

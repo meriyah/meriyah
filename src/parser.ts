@@ -4468,11 +4468,9 @@ export function parseImportExpression(
     if (parser.getToken() === Token.Comma) {
       consume(parser, context, Token.Comma);
 
-      while (parser.getToken() !== Token.RightParen && parser.getToken() !== Token.Comma) {
-        if (parser.getToken() === Token.InKeyword) {
-          consume(parser, context, Token.InKeyword);
-        }
-        options = parseExpression(parser, context, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
+      if (parser.getToken() !== Token.RightParen) {
+        const expContext = (context | Context.DisallowIn) ^ Context.DisallowIn;
+        options = parseExpression(parser, expContext, 1, inGroup, parser.tokenPos, parser.linePos, parser.colPos);
       }
     }
 
