@@ -4519,7 +4519,7 @@ export function parseImportAttributes(
     const isJSONImportAttribute = keyContent === 'type' && value.value === 'json';
 
     if (isJSONImportAttribute && !validJSONImportAttributeBindings) {
-      report(parser, Errors.InvalidImportBinding);
+      report(parser, Errors.InvalidJSONImportBinding);
     }
 
     if (keysContent.has(keyContent)) {
