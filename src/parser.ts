@@ -4501,11 +4501,6 @@ export function parseImportAttributes(
 
   const attributes: ESTree.ImportAttribute[] = [];
   const keysContent = new Set<ESTree.Literal['value'] | ESTree.Identifier['name']>();
-  const validJSONImportAttributeBindings =
-    specifiers.length === 1 &&
-    (specifiers[0].type === 'ImportDefaultSpecifier' ||
-      specifiers[0].type === 'ImportNamespaceSpecifier' ||
-      (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default'));
 
   while (parser.getToken() !== Token.RightBrace) {
     const start = parser.tokenPos;
@@ -4518,8 +4513,14 @@ export function parseImportAttributes(
     const keyContent = key.type === 'Literal' ? key.value : key.name;
     const isJSONImportAttribute = keyContent === 'type' && value.value === 'json';
 
-    if (isJSONImportAttribute && !validJSONImportAttributeBindings) {
-      report(parser, Errors.InvalidJSONImportBinding);
+    if (isJSONImportAttribute) {
+      const validJSONImportAttributeBindings =
+        specifiers.length === 1 &&
+        (specifiers[0].type === 'ImportDefaultSpecifier' ||
+          specifiers[0].type === 'ImportNamespaceSpecifier' ||
+          (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default'));
+
+      if (!validJSONImportAttributeBindings) report(parser, Errors.InvalidJSONImportBinding);
     }
 
     if (keysContent.has(keyContent)) {
