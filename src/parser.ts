@@ -4507,9 +4507,9 @@ export function parseImportAttributes(
     const line = parser.linePos;
     const column = parser.colPos;
 
-    const key = parseIdentifierOrLiteral(parser, context);
+    const key = parseIdentifierOrStringLiteral(parser, context);
     consume(parser, context, Token.Colon);
-    const value = parseLiteral(parser, context);
+    const value = parseStringLiteral(parser, context);
     const keyContent = key.type === 'Literal' ? key.value : key.name;
     const isJSONImportAttribute = keyContent === 'type' && value.value === 'json';
 
@@ -4545,11 +4545,21 @@ export function parseImportAttributes(
   return attributes;
 }
 
-function parseIdentifierOrLiteral(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+function parseStringLiteral(parser: ParserState, context: Context): ESTree.Literal {
   if (parser.getToken() === Token.StringLiteral) {
     return parseLiteral(parser, context);
   } else {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+  }
+}
+
+function parseIdentifierOrStringLiteral(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+  if (parser.getToken() === Token.StringLiteral) {
+    return parseLiteral(parser, context);
+  } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);
+  } else {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 }
 

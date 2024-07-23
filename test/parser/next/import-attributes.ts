@@ -105,7 +105,13 @@ describe('Next - Import Attributes', () => {
     [
       'import a, { foo } from "./foo.json" with { type: "json" };',
       Context.OptionsNext | Context.Strict | Context.Module
-    ]
+    ],
+    ['import foo from "bar" with { 1: "foo" };', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: 1 };', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: [1] };', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: null };', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: undefined };', Context.OptionsNext | Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", foo: {} };', Context.OptionsNext | Context.Strict | Context.Module]
   ]);
 
   pass('Next - Import Attributes (pass)', [
