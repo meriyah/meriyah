@@ -97,6 +97,14 @@ describe('Next - Import Attributes', () => {
       'typ\u0065': ''
     };`,
       Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    [
+      'import { default as a, foo } from "./foo.json" with { type: "json" };',
+      Context.OptionsNext | Context.Strict | Context.Module
+    ],
+    [
+      'import a, { foo } from "./foo.json" with { type: "json" };',
+      Context.OptionsNext | Context.Strict | Context.Module
     ]
   ]);
 
