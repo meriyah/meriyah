@@ -138,7 +138,6 @@ export const enum Errors {
   InvalidNestedStatement,
   UnknownLabel,
   InvalidImportTail,
-  InvalidImportExpression,
   InvalidJSONImportBinding,
   ImportNotOneArg,
   InvalidImportNew,
