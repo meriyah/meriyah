@@ -233,6 +233,7 @@ describe('Next - ImportCall', () => {
                 {
                   expression: {
                     argument: {
+                      options: null,
                       source: {
                         type: 'Literal',
                         value: './nchanged'
@@ -287,6 +288,7 @@ describe('Next - ImportCall', () => {
                         callee: {
                           computed: false,
                           object: {
+                            options: null,
                             source: {
                               name: 'file',
                               type: 'Identifier'

@@ -82,6 +82,7 @@ export type Node =
   | Import
   | ImportDeclaration
   | ImportDefaultSpecifier
+  | ImportAttribute
   | ImportNamespaceSpecifier
   | ImportSpecifier
   | JSXNamespacedName
@@ -338,6 +339,7 @@ export interface BreakStatement extends _Node {
 export interface ImportExpression extends _Node {
   type: 'ImportExpression';
   source: Expression;
+  options?: Expression | null;
 }
 
 export interface ChainExpression extends _Node {
@@ -424,6 +426,7 @@ export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
   source: Literal;
   exported: Identifier | null;
+  attributes?: ImportAttribute[];
 }
 
 export interface ExportDefaultDeclaration extends _Node {
@@ -500,6 +503,13 @@ export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
   source: Literal;
   specifiers: ImportClause[];
+  attributes?: ImportAttribute[];
+}
+
+export interface ImportAttribute extends _Node {
+  type: 'ImportAttribute';
+  key: Identifier | Literal;
+  value: Literal;
 }
 
 export interface ImportDefaultSpecifier extends _Node {

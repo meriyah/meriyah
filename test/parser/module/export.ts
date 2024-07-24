@@ -908,6 +908,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'source'
             },
+            attributes: [],
             exported: {
               name: 'class',
               type: 'Identifier'
@@ -929,6 +930,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'source'
             },
+            attributes: [],
             exported: {
               name: 'ns',
               type: 'Identifier'
@@ -953,6 +955,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: 'a'
             },
+            attributes: [],
             exported: null,
             start: 0,
             end: 17,
@@ -977,6 +980,7 @@ describe('Module - Export', () => {
               type: 'Literal',
               value: './foo'
             },
+            attributes: [],
             exported: {
               name: 'foo',
               type: 'Identifier'
