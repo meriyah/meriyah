@@ -29,10 +29,8 @@
 ## ESNext features
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
-- [Class Public Instance Fields & Private Instance Fields](https://github.com/tc39/proposal-class-fields)
-- [Hashbang grammar](https://github.com/tc39/proposal-hashbang)
-- [Private methods](https://github.com/tc39/proposal-private-methods)
-- [Static class fields and private static methods](https://github.com/tc39/proposal-static-class-features/)
+- [Import Attributes](https://github.com/tc39/proposal-import-attributes)
+- [JSON Modules](https://github.com/tc39/proposal-json-modules)
 
 **Note:** These features need to be enabled with the `next` option.
 
