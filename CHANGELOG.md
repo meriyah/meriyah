@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/meriyah/meriyah/compare/v4.5.0...v5.0.0) (2024-07-25)
+
+### Bug Fixes
+
+- **parser:** class property definition needs to be separated ([#276](https://github.com/meriyah/meriyah/issues/276)) ([fc252f4](https://github.com/meriyah/meriyah/commit/fc252f486a97811a0cc7857b0be33b9cb75d8016)), closes [#233](https://github.com/meriyah/meriyah/issues/233)
+
+### Features
+
+- **parser:** class public/private fields are in ecma spec now ([#278](https://github.com/meriyah/meriyah/issues/278)) ([332b738](https://github.com/meriyah/meriyah/commit/332b7386e8a92ceabac2681123ab26f645c57cbf))
+- **parser:** move hashbang out of "next" option ([e2f28fc](https://github.com/meriyah/meriyah/commit/e2f28fcb90a633f93279d19173ee49053f14cffe))
+- **parser:** support import attributes ([#280](https://github.com/meriyah/meriyah/issues/280)) ([77d3fdc](https://github.com/meriyah/meriyah/commit/77d3fdcb6dd5c0d108117525551e2295e68fb46d))
+
+### BREAKING CHANGES
+
+- **parser:** hashbang now works without "next" option.
+
 # [4.5.0](https://github.com/meriyah/meriyah/compare/v4.4.4...v4.5.0) (2024-06-06)
 
 ## [4.4.4](https://github.com/meriyah/meriyah/compare/v4.4.3...v4.4.4) (2024-06-06)
