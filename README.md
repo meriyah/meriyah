@@ -24,7 +24,7 @@
 - No backtracking
 - Low memory usage
 - Very well tested (~99 000 unit tests with full code coverage)
-- Lightweight - ~90 KB minified
+- Lightweight - ~130 KB minified
 
 ## ESNext features
 
