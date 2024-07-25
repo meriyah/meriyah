@@ -117,7 +117,7 @@
     "unexpected": "^13.2.1"
   },
   "engines": {
-    "node": ">=10.4.0"
+    "node": ">=18.0.0"
   },
   "lint-staged": {
     "*.{ts,mts,cts,js,mjs,cjs}": "eslint --fix",
