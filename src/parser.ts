@@ -287,7 +287,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   const parser = create(source, sourceFile, onComment, onToken, onInsertedSemicolon);
 
   // See: https://github.com/tc39/proposal-hashbang
-  if (context & Context.OptionsNext) skipHashBang(parser);
+  skipHashBang(parser);
 
   const scope: ScopeState | undefined = context & Context.OptionsLexical ? createScope() : void 0;
 

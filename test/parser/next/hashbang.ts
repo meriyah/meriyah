@@ -5,26 +5,26 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Hashbang grammar', () => {
   fail('Next - Hashbang grammar (fail)', [
-    ['\x20#!', Context.OptionsNext],
-    ['\r\n#!\n', Context.OptionsNext],
-    ['\r#!\n', Context.OptionsNext],
-    ['\n#!', Context.OptionsNext],
+    ['\x20#!', Context.None],
+    ['\r\n#!\n', Context.None],
+    ['\r#!\n', Context.None],
+    ['\n#!', Context.None],
     ['\\u0023!', Context.OptionsWebCompat],
     ['#\\u0021\n', Context.None],
     ['#\\u{21}\n', Context.None],
     ['#\\041\n', Context.None],
     ['#\\u{21}', Context.None],
-    ['\\x23!', Context.OptionsNext],
-    [`#!\n#!`, Context.OptionsNext],
-    ['/*\n*/#!', Context.OptionsNext],
-    ['"use strict"\n#!', Context.OptionsNext],
-    ['\\u0023\\u0021', Context.OptionsNext],
-    [';#!', Context.OptionsNext],
-    ['//\n#!', Context.OptionsNext],
-    ['{ #! }', Context.OptionsNext],
-    ['#\n/*\n\n*/', Context.OptionsNext],
-    ['function fn(a = #\\u0021\n) {}', Context.OptionsNext],
-    ['() => #\n/*\n\n*/', Context.OptionsNext]
+    ['\\x23!', Context.None],
+    [`#!\n#!`, Context.None],
+    ['/*\n*/#!', Context.None],
+    ['"use strict"\n#!', Context.None],
+    ['\\u0023\\u0021', Context.None],
+    [';#!', Context.None],
+    ['//\n#!', Context.None],
+    ['{ #! }', Context.None],
+    ['#\n/*\n\n*/', Context.None],
+    ['function fn(a = #\\u0021\n) {}', Context.None],
+    ['() => #\n/*\n\n*/', Context.None]
   ]);
 
   for (const arg of [
@@ -45,7 +45,7 @@ describe('Next - Hashbang grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, undefined, Context.None);
       });
     });
 
@@ -53,7 +53,7 @@ describe('Next - Hashbang grammar', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Strict | Context.Module);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
   }
