@@ -5,6 +5,23 @@ import { advanceChar } from './common';
 import { isIdentifierPart } from './charClassifier';
 import { report, Errors } from '../errors';
 
+enum RegexState {
+  Empty = 0,
+  Escape = 0x1,
+  Class = 0x2
+}
+
+enum RegexFlags {
+  Empty = 0b0000000,
+  IgnoreCase = 0b0000001,
+  Global = 0b0000010,
+  Multiline = 0b0000100,
+  Unicode = 0b0010000,
+  Sticky = 0b0001000,
+  DotAll = 0b0100000,
+  Indices = 0b1000000
+}
+
 /**
  * Scans regular expression
  *
@@ -13,11 +30,6 @@ import { report, Errors } from '../errors';
  */
 
 export function scanRegularExpression(parser: ParserState, context: Context): Token {
-  const enum RegexState {
-    Empty = 0,
-    Escape = 0x1,
-    Class = 0x2
-  }
   const bodyStart = parser.index;
   // Scan: ('/' | '/=') RegularExpressionBody '/' RegularExpressionFlags
   let preparseState = RegexState.Empty;
@@ -42,13 +54,17 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
         case Chars.RightBracket:
           preparseState &= RegexState.Escape;
           break;
-        case Chars.CarriageReturn:
-        case Chars.LineFeed:
-        case Chars.LineSeparator:
-        case Chars.ParagraphSeparator:
-          report(parser, Errors.UnterminatedRegExp);
         // No default
       }
+    }
+
+    if (
+      ch === Chars.CarriageReturn ||
+      ch === Chars.LineFeed ||
+      ch === Chars.LineSeparator ||
+      ch === Chars.ParagraphSeparator
+    ) {
+      report(parser, Errors.UnterminatedRegExp);
     }
 
     if (parser.index >= parser.source.length) {
@@ -57,17 +73,6 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
   }
 
   const bodyEnd = parser.index - 1;
-
-  const enum RegexFlags {
-    Empty = 0b0000000,
-    IgnoreCase = 0b0000001,
-    Global = 0b0000010,
-    Multiline = 0b0000100,
-    Unicode = 0b0010000,
-    Sticky = 0b0001000,
-    DotAll = 0b0100000,
-    Indices = 0b1000000
-  }
 
   let mask = RegexFlags.Empty;
   let char = parser.currentChar;

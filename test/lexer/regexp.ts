@@ -7,7 +7,6 @@ import { scanSingleToken } from '../../src/lexer/scan';
 describe('Lexer - Regular expressions', () => {
   const tokens: [Context, string, string, string][] = [
     // None unicode regular expression
-    [Context.AllowRegExp, '/\\\n/', '\\\n', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
@@ -173,6 +172,7 @@ describe('Lexer - Regular expressions', () => {
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }
+  fail('fails on "/\\\n/"', '/\\\n/', Context.AllowRegExp);
   fail('fails on /', '/ ', Context.AllowRegExp);
   fail('fails on /\n$/\n', '/\n$/\n', Context.AllowRegExp);
   fail('fails on /\r$/\n', '/\r$/\n', Context.AllowRegExp);
