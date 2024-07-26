@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, report } from './errors';
-import { Node, Comment, Decorator, SourceLocation } from './estree';
+import { Node, Decorator, SourceLocation } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**
@@ -167,22 +167,19 @@ export const enum ScopeKind {
 }
 
 /**
- * The type of the `onComment` option.
+ * Comment process function.
  */
-export type OnComment =
-  | void
-  | Comment[]
-  | ((type: string, value: string, start: number, end: number, loc: SourceLocation) => any);
+export type OnComment = (type: string, value: string, start: number, end: number, loc: SourceLocation) => any;
 
 /**
- * The type of the `onInsertedSemicolon` option.
+ * Function calls when semicolon inserted.
  */
-export type OnInsertedSemicolon = void | ((pos: number) => any);
+export type OnInsertedSemicolon = (pos: number) => any;
 
 /**
- * The type of the `onToken` option.
+ * Token process function.
  */
-export type OnToken = void | Token[] | ((token: string, start: number, end: number, loc: SourceLocation) => any);
+export type OnToken = (token: string, start: number, end: number, loc: SourceLocation) => any;
 
 /**
  * Lexical scope interface
@@ -220,9 +217,9 @@ export interface ParserState {
   end: number;
   getToken(): Token;
   setToken(token: Token): Token;
-  onComment: any;
-  onInsertedSemicolon: any;
-  onToken: any;
+  onComment: OnComment | void;
+  onInsertedSemicolon: OnInsertedSemicolon | void;
+  onToken: OnToken | void;
   tokenValue: any;
   tokenRaw: string;
   tokenRegExp: void | {
@@ -772,7 +769,7 @@ export function addBindingToExports(parser: ParserState, name: string): void {
   }
 }
 
-export function pushComment(context: Context, array: any[]): any {
+export function pushComment(context: Context, array: any[]): OnComment {
   return function (type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
@@ -791,7 +788,7 @@ export function pushComment(context: Context, array: any[]): any {
   };
 }
 
-export function pushToken(context: Context, array: any[]): any {
+export function pushToken(context: Context, array: any[]): OnToken {
   return function (token: string, start: number, end: number, loc: SourceLocation) {
     const tokens: any = {
       token
