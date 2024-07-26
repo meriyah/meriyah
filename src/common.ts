@@ -724,12 +724,8 @@ export function addVarName(
         currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
-    if (value & (BindingKind.CatchIdentifier | BindingKind.CatchPattern)) {
-      if (
-        (value & BindingKind.CatchIdentifier) === 0 ||
-        (context & Context.OptionsWebCompat) === 0 ||
-        context & Context.Strict
-      ) {
+    if (value & BindingKind.CatchIdentifierOrPattern) {
+      if ((context & Context.OptionsWebCompat) === 0 || (value & BindingKind.CatchIdentifier) === 0) {
         report(parser, Errors.DuplicateBinding, name);
       }
     }
