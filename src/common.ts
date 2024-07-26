@@ -724,10 +724,11 @@ export function addVarName(
         currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
-    if (value & BindingKind.CatchIdentifierOrPattern) {
-      if ((context & Context.OptionsWebCompat) === 0 || (value & BindingKind.CatchIdentifier) === 0) {
-        report(parser, Errors.DuplicateBinding, name);
-      }
+    if (
+      value & BindingKind.CatchPattern ||
+      (value & BindingKind.CatchIdentifier && (context & Context.OptionsWebCompat) === 0)
+    ) {
+      report(parser, Errors.DuplicateBinding, name);
     }
 
     currentScope['#' + name] = kind;
