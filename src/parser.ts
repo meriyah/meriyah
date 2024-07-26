@@ -240,11 +240,11 @@ export interface Options {
   // Enable React JSX parsing
   jsx?: boolean;
   // Allows comment extraction. Accepts either a callback function or an array
-  onComment?: OnComment;
+  onComment?: Comment[] | OnComment;
   // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array
-  onToken?: OnToken;
+  onToken?: Token[] | OnToken;
   // Creates unique key for in ObjectPattern when key value are same
   uniqueKeyInPattern?: boolean;
 }
