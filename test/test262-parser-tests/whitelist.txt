@@ -1,8 +1,3 @@
-annexB/language/statements/try/catch-redeclared-for-in-var.js (strict mode)
-annexB/language/statements/try/catch-redeclared-for-of-var.js (strict mode)
-annexB/language/statements/try/catch-redeclared-for-var.js (strict mode)
-annexB/language/statements/try/catch-redeclared-var-statement-captured.js (strict mode)
-annexB/language/statements/try/catch-redeclared-var-statement.js (strict mode)
 language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-function.js (default)
 language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-function.js (strict mode)
 language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-generator.js (default)

@@ -14,24 +14,7 @@ function loadList(filename: string) {
 }
 
 const unsupportedFeatures = new Set(loadList('unsupported-features.txt'));
-const whitelist = [
-  ...loadList('whitelist.txt'),
-  // Can't construct these regexps on Node.js v16
-  ...(process.version.startsWith('v16.')
-    ? [
-        'built-ins/RegExp/named-groups/non-unicode-property-names-valid.js (default)',
-        'built-ins/RegExp/named-groups/non-unicode-property-names-valid.js (strict mode)',
-        'built-ins/RegExp/property-escapes/generated/Script_-_Kawi.js (default)',
-        'built-ins/RegExp/property-escapes/generated/Script_-_Kawi.js (strict mode)',
-        'built-ins/RegExp/property-escapes/generated/Script_-_Nag_Mundari.js (default)',
-        'built-ins/RegExp/property-escapes/generated/Script_-_Nag_Mundari.js (strict mode)',
-        'built-ins/RegExp/property-escapes/generated/Script_Extensions_-_Kawi.js (default)',
-        'built-ins/RegExp/property-escapes/generated/Script_Extensions_-_Kawi.js (strict mode)',
-        'built-ins/RegExp/property-escapes/generated/Script_Extensions_-_Nag_Mundari.js (default)',
-        'built-ins/RegExp/property-escapes/generated/Script_Extensions_-_Nag_Mundari.js (strict mode)'
-      ]
-    : [])
-];
+const whitelist = loadList('whitelist.txt');
 
 function parse(src: string, { sourceType }: { sourceType: 'module' | 'script' }) {
   return (sourceType === 'module' ? parseModule : parseScript)(src, { webcompat: true, lexical: true, next: true });
