@@ -134,12 +134,12 @@ describe('Lexical - Try', () => {
     ['try {} catch ([foo, foo]) {}', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try { } catch (e) { function f(){} function f(){} }', Context.OptionsLexical],
     ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
+    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['try { function *f(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try { function(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try { async function f(){} var f } catch (e) {}', Context.OptionsLexical],
     ['try {} catch (e) { let e = x; }', Context.OptionsLexical],
     ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
-    ['try { } catch (e) { function *f(){} function *f(){} }', Context.OptionsLexical],
     ['try { } catch (e) { function(){} function(){} }', Context.OptionsLexical],
     ['try { } finally { function(){} function(){} }', Context.OptionsLexical],
     ['try {} catch (e) { var e = x; }', Context.OptionsLexical],
@@ -241,7 +241,6 @@ describe('Lexical - Try', () => {
     `try {} catch (e) { var e = x; }
     try {} catch (e) { var e = x; }`,
     'try {} catch(e) { var e; }',
-    'try { } catch (e) { function *f(){} function *f(){} }',
     'try { } finally { function f(){} function f(){} }',
     'try { throw 0; } catch(e) { { function e(){} } }',
     'try {} catch (e) { for (let e = 1;;) {} }',
@@ -256,8 +255,7 @@ describe('Lexical - Try', () => {
     'try { } catch (e) { function f(){} function f(){} }',
     'try {} catch (foo) { var foo; }',
     'try {} catch (e) { for (var e of y) {} }',
-    'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}',
-    'try { } catch (e) { function *f(){} function *f(){} }'
+    'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
