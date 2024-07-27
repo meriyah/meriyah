@@ -460,6 +460,7 @@ describe('Declarations - Async Function', () => {
     ['{ async function f() {} async function f() {} }', Context.OptionsLexical],
     ['switch (0) { case 1: async function f() {} default: function f() {} }', Context.OptionsLexical],
     ['{ function* f() {} async function f() {} }', Context.OptionsLexical | Context.Strict],
+    ['{ function* f() {} async function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['async function* f() { a = async function*(a = await) {}; }', Context.None],
     ['function f(a = async function(a = await) {}) {}', Context.None],
     [

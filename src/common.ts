@@ -72,9 +72,10 @@ export const enum BindingKind {
   Const = 1 << 4,
   Class = 1 << 5,
   FunctionLexical = 1 << 6,
-  FunctionStatement = 1 << 7,
-  CatchPattern = 1 << 8,
-  CatchIdentifier = 1 << 9,
+  AsyncFunctionLexical = (1 << 7) | FunctionLexical,
+  FunctionStatement = 1 << 8,
+  CatchPattern = 1 << 9,
+  CatchIdentifier = 1 << 10,
   CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
   LexicalOrFunction = Variable | FunctionLexical,
   LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
@@ -652,8 +653,10 @@ export function addBlockName(
       scope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
     } else if (
       context & Context.OptionsWebCompat &&
-      value & BindingKind.FunctionLexical &&
-      origin & Origin.BlockStatement
+      (context & Context.Strict) === 0 &&
+      origin & Origin.BlockStatement &&
+      value === BindingKind.FunctionLexical &&
+      kind === BindingKind.FunctionLexical
     ) {
       // No op
     } else {
