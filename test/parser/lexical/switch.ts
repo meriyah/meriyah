@@ -190,7 +190,8 @@ describe('Lexical - Switch', () => {
       Context.OptionsLexical | Context.OptionsWebCompat
     ],
     ['switch (x) { default: function f(){} function f(){} }', Context.OptionsLexical | Context.Strict],
-    ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical]
+    ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical],
+    ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical | Context.OptionsWebCompat]
   ]);
 
   for (const arg of [
@@ -231,8 +232,6 @@ describe('Lexical - Switch', () => {
     switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f`,
     'switch (0) { case 1: let f = 0; x; default: let x; } var {f} = f',
     'switch (x) { case c: function f(){} function f(){} }',
-    'switch (x) { default: function *f(){} function *f(){} }',
-    'switch (x) { case c: function *f(){} function *f(){} }',
     'switch (0) { case 1: let f = 0; default: [f] }',
     `switch (0) { case 1: let f = 0; default: [f] }
     switch (0) { case 1: let f = 0; default: [f] }`,

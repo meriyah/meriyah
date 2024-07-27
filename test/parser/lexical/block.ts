@@ -127,10 +127,12 @@ describe('Lexical - Block', () => {
     ['{ class f {} var f; }', Context.OptionsLexical],
     ['{ function* f() {} class f {}; }', Context.OptionsLexical],
     ['{ function* f() {} function f() {} }', Context.OptionsLexical],
+    ['{ function* f() {} function f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['{ function *foo() {}; function *foo() {}; }', Context.OptionsLexical],
     ['{ function *foo() {}; function *bar() {}; function *foo() {}; }', Context.OptionsLexical],
     ['{ function* f() {} function* f() {} }', Context.OptionsLexical],
     ['{ function* f() {} function* f() {} }', Context.OptionsLexical | Context.Strict],
+    ['{ function* f() {} function* f() {} }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['{ function* f() {} let f; }', Context.OptionsLexical],
     ['{ function* f() {} var f; }', Context.OptionsLexical],
     ['{ function f(){} function f(){} }', Context.OptionsLexical],
@@ -233,9 +235,7 @@ describe('Lexical - Block', () => {
     `try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
     try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }`,
     'let f = 123; switch (1) { default: function f() {  }  }',
-    '{ function* f() {} function f() {} }',
     '{ let x; } var x',
-    '{ function* f() {} function* f() {} }',
     '{ var f; var f; }',
     `{ var f; var f; }
     { var f; var f; }`,
