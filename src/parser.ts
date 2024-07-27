@@ -1678,10 +1678,15 @@ export function parseTryStatement(
   //   'try' Block Catch Finally
   //
   // Catch ::
-  //   'catch' '(' Identifier ')' Block
+  //   'catch' '(' CatchParameter ')' Block
+  //   'catch' Block
   //
   // Finally ::
   //   'finally' Block
+  //
+  // CatchParameter ::
+  //   BindingIdentifier
+  //   BindingPattern
 
   nextToken(parser, context | Context.AllowRegExp);
 
@@ -1772,12 +1777,9 @@ export function parseCatchBlock(
     }
 
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
-    // ES 13.15.7 CatchClauseEvaluation
-    //
-    // Step 8 means that the body of a catch block always has an additional
-    // lexical scope.
-    if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
   }
+
+  if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
 
   const body = parseBlock(
     parser,
