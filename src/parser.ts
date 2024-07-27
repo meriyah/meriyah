@@ -4973,7 +4973,9 @@ export function parseFunctionDeclaration(
     const kind =
       origin & Origin.TopLevel && ((context & Context.InGlobal) === 0 || (context & Context.Module) === 0)
         ? BindingKind.Variable
-        : BindingKind.FunctionLexical;
+        : isAsync
+          ? BindingKind.AsyncFunctionLexical
+          : BindingKind.FunctionLexical;
 
     validateFunctionName(parser, context, parser.getToken());
 
