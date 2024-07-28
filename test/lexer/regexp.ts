@@ -1,11 +1,16 @@
 import * as t from 'assert';
-import * as semver from 'semver';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
 import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
-const vFlagSupported = semver.gte(process.version.slice(1), '20.0.0');
+const vFlagSupported = (() => {
+  try {
+    return new RegExp('', 'v').flags === 'v';
+  } catch {
+    return false;
+  }
+})();
 
 describe('Lexer - Regular expressions', () => {
   const tokens: [Context, string, string, string][] = [
