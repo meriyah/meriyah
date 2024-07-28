@@ -1,10 +1,15 @@
 import { parseScript, parseModule } from '../src/meriyah';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as semver from 'semver';
 import run = require('test262-parser-runner');
 
-const vFlagSupported = semver.gte(process.version.slice(1), '20.0.0');
+const vFlagSupported = (() => {
+  try {
+    return new RegExp('', 'v').flags === 'v';
+  } catch {
+    return false;
+  }
+})();
 
 function loadList(filename: string) {
   const file = path.join(__dirname, '../test/test262-parser-tests', filename);
