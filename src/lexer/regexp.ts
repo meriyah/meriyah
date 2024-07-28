@@ -12,14 +12,15 @@ enum RegexState {
 }
 
 enum RegexFlags {
-  Empty = 0b0000000,
-  IgnoreCase = 0b0000001,
-  Global = 0b0000010,
-  Multiline = 0b0000100,
-  Unicode = 0b0010000,
-  Sticky = 0b0001000,
-  DotAll = 0b0100000,
-  Indices = 0b1000000
+  Empty = 0b0000_0000,
+  IgnoreCase = 0b0000_0001,
+  Global = 0b0000_0010,
+  Multiline = 0b0000_0100,
+  Unicode = 0b0001_0000,
+  Sticky = 0b0000_1000,
+  DotAll = 0b0010_0000,
+  Indices = 0b0100_0000,
+  UnicodeSets = 0b1000_0000
 }
 
 /**
@@ -98,7 +99,14 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 
       case Chars.LowerU:
         if (mask & RegexFlags.Unicode) report(parser, Errors.DuplicateRegExpFlag, 'u');
+        if (mask & RegexFlags.UnicodeSets) report(parser, Errors.DuplicateRegExpFlag, 'vu');
         mask |= RegexFlags.Unicode;
+        break;
+
+      case Chars.LowerV:
+        if (mask & RegexFlags.Unicode) report(parser, Errors.DuplicateRegExpFlag, 'uv');
+        if (mask & RegexFlags.UnicodeSets) report(parser, Errors.DuplicateRegExpFlag, 'v');
+        mask |= RegexFlags.UnicodeSets;
         break;
 
       case Chars.LowerY:
@@ -150,8 +158,8 @@ function validate(parser: ParserState, pattern: string, flags: string): RegExp |
     return new RegExp(pattern, flags);
   } catch {
     try {
-      // Some JavaScript engine has not supported flag "d".
-      new RegExp(pattern, flags.replace('d', ''));
+      // Some JavaScript engine has not supported flag "v". They will fail.
+      new RegExp(pattern, flags);
       // Use null as tokenValue according to ESTree spec
       return null;
     } catch {
