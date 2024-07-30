@@ -196,7 +196,18 @@ describe('Next - Private methods', () => {
     'foo() { this.#m, (() => this)().#m }',
     'method() { super.#x(); }',
     '#method() { super.x(); }',
-    '#method() { super.#x(); }'
+    '#method() { super.#x(); }',
+    '#\\u{61}',
+    '#\\u{61}\n',
+    '#\\u{61}bc;',
+    '#\\u{61};\n',
+    '#\\u{61} = 2',
+    '#\\u{61} = 2;\n',
+    'static #\\u{61}',
+    'static #\\u{61}\n',
+    'static #\\u{61};',
+    'static #\\u{61}bc=2',
+    'static #\\u{61} = 2;\n'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -4360,6 +4371,60 @@ describe('Next - Private methods', () => {
         ],
         sourceType: 'script',
         type: 'Program'
+      }
+    ],
+    [
+      `class A { #\\u{61}\nstatic #\\u0062() {} }`,
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'A'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: 'a'
+                  },
+                  value: null,
+                  static: false,
+                  computed: false
+                },
+                {
+                  type: 'MethodDefinition',
+                  kind: 'method',
+                  static: true,
+                  computed: false,
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: 'b'
+                  },
+                  value: {
+                    type: 'FunctionExpression',
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
+                    },
+                    async: false,
+                    generator: false,
+                    id: null
+                  }
+                }
+              ]
+            }
+          }
+        ]
       }
     ]
   ]);

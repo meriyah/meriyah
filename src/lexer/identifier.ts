@@ -135,7 +135,11 @@ export function scanIdentifierSlowCase(
  * @param parser  Parser object
  */
 export function scanPrivateIdentifier(parser: ParserState): Token {
-  if (!isIdentifierStart(advanceChar(parser))) report(parser, Errors.MissingPrivateIdentifier);
+  const nextChar = advanceChar(parser);
+  // When nextChar is Backslash "\", it's
+  // #\uXXXX unicode escaped private identifier.
+  // Unicode escape is scanned next.
+  if (nextChar !== Chars.Backslash && !isIdentifierStart(nextChar)) report(parser, Errors.MissingPrivateIdentifier);
   return Token.PrivateField;
 }
 
