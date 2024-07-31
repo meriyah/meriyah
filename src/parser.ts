@@ -8536,9 +8536,10 @@ function parseClassElementList(
       }
       kind |= PropertyKind.Constructor;
     } else if (
-      // Static Async Generator Private Methods can be named "#prototype" (class declaration)
+      // Private Methods and static private methods can be named "#prototype" (class declaration).
+      // Async/Generator/GetSet can be named "prototype".
       (kind & PropertyKind.PrivateField) === 0 &&
-      kind & (PropertyKind.Static | PropertyKind.GetSet | PropertyKind.Generator | PropertyKind.Async) &&
+      kind & PropertyKind.Static &&
       parser.tokenValue === 'prototype'
     ) {
       report(parser, Errors.StaticPrototype);
