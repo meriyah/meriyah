@@ -1,4 +1,4 @@
-import { unicodeLookup } from '../unicode';
+import { isIDStart, isIDContinue } from '../unicode';
 import { Chars } from '../chars';
 
 export const enum CharFlags {
@@ -418,7 +418,7 @@ export const isIdPart = [
 ];
 
 
-export function isIdentifierStart(code: number): number {
+export function isIdentifierStart(code: number): boolean {
   /*
    * ES2020 11.6 IdentifierStart
    *  $ (dollar sign)
@@ -428,11 +428,11 @@ export function isIdentifierStart(code: number): number {
    * We use a lookup table for small and thus common characters for speed.
    */
   return code <= 0x7F
-    ? isIdStart[code]
-    : (unicodeLookup[(code >>> 5) + 34816] >>> code) & 31 & 1;
+    ? isIdStart[code] > 0
+    : isIDStart(code);
 }
 
-export function isIdentifierPart(code: number): any {
+export function isIdentifierPart(code: number): boolean {
   /*
    * ES2020 11.6 IdentifierPart
    *  $ (dollar sign)
@@ -444,6 +444,6 @@ export function isIdentifierPart(code: number): any {
    * We use a lookup table for small and thus common characters for speed.
    */
   return code <= 0x7F
-    ? isIdPart[code]
-    : (unicodeLookup[(code >>> 5) + 0] >>> code) & 31 & 1 || (code === Chars.ZeroWidthJoiner || code === Chars.ZeroWidthNonJoiner);
+    ? isIdPart[code] > 0
+    : isIDContinue(code) || (code === Chars.ZeroWidthJoiner || code === Chars.ZeroWidthNonJoiner);
 }
