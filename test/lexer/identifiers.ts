@@ -72,7 +72,6 @@ describe('Lexer - Identifiers', () => {
 
     [Context.None, Token.Identifier, '\\u{70}bc', 'pbc'],
     [Context.None, Token.Identifier, '$\\u{32}', '$2'],
-    [Context.None, Token.Identifier, '\\u{37}', '7'],
     [Context.None, Token.Identifier, '\\u{70}bc\\u{70}bc', 'pbcpbc'],
     [Context.None, Token.Identifier, '\\u{070}bc', 'pbc'],
     [Context.None, Token.Identifier, 'ab\\u{0072}', 'abr'],
@@ -251,4 +250,5 @@ describe('Lexer - Identifiers', () => {
   fail('fails on \\u{10401', '\\u{10401', Context.None);
   fail('fails on \\u{110000}', '\\u{110000}', Context.None);
   fail('fails on \\u0x11ffff', '\\u0x11ffff', Context.None);
+  fail('fails on \\u{37}', '\\u{37}', Context.None);
 });

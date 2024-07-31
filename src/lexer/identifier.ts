@@ -7,6 +7,8 @@ import { report, reportScannerError, Errors } from '../errors';
 
 /**
  * Scans identifier
+ * For identifier doesn't start with unicode escape, but might contain
+ * unicode escape after the start.
  *
  * @param parser  Parser object
  * @param context Context masks
@@ -22,13 +24,14 @@ export function scanIdentifier(parser: ParserState, context: Context, isValidAsK
 
 /**
  * Scans unicode identifier
+ * For identifier starts with unicode escape.
  *
  * @param parser  Parser object
  * @param context Context masks
  */
 export function scanUnicodeIdentifier(parser: ParserState, context: Context): Token {
   const cookedChar = scanIdentifierUnicodeEscape(parser);
-  if (!isIdentifierPart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
+  if (!isIdentifierStart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
   parser.tokenValue = fromCodePoint(cookedChar);
   return scanIdentifierSlowCase(parser, context, /* hasEscape */ 1, CharTypes[cookedChar] & CharFlags.KeywordCandidate);
 }
