@@ -91,7 +91,12 @@ describe('Miscellaneous - Escaped keywords', () => {
       p => {}
     }`,
     `obj.bre\\u0061k = 42;`,
-    `for (\\u0061sync of [7]);`
+    `for (\\u0061sync of [7]);`,
+    'const [l\\u0065t] = 1',
+    'let l\\u0065t = 1',
+    'const l\\u0065t = 1',
+    'let [l\\u0065t] = 1',
+    '(function() {for (let l\\u0065t in {}) {}})()'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -141,9 +146,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['if (this \\u0069nstanceof Array) {}', Context.None],
     ['(n\\u0065w function f() {})', Context.None],
     ['(typ\\u0065of 123)', Context.None],
-    ['const [l\\u0065t] = 1', Context.None],
-    ['const [l\\u0065t] = 1', Context.None],
-    ['(function() {for (let l\\u0065t in {}) {}})()', Context.None],
+    ['(function() {for (let l\\u0065t in {}) {}})()', Context.Strict],
     ['cl\\u0061ss Foo {}', Context.None],
     ['export function br\\u0065ak() {}', Context.Strict | Context.Module],
     ['class aw\\u0061it {}', Context.Strict | Context.Module],
@@ -153,11 +156,10 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['class yi\\u0065ld {}', Context.Strict],
     ['aw\\u0061it: 1;', Context.Strict | Context.Module],
     ['a(1,2\\u0063onst foo = 1;', Context.None],
-    ['let l\\u0065t = 1', Context.None],
-    ['const l\\u0065t = 1', Context.None],
-    ['let [l\\u0065t] = 1', Context.None],
-    ['const [l\\u0065t] = 1', Context.None],
-    ['for (let l\\u0065t in {}) {}', Context.None],
+    ['let l\\u0065t = 1', Context.Strict],
+    ['const l\\u0065t = 1', Context.Strict],
+    ['let [l\\u0065t] = 1', Context.Strict],
+    ['for (let l\\u0065t in {}) {}', Context.Strict],
     ['(async ()=>{\\u0061wait 100})()', Context.None],
     ['(async ()=>{var \\u0061wait = 100})()', Context.None],
     ['\\u0063o { } while(0)', Context.None],
@@ -225,10 +227,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['class X { st\\u0061tic y() {} }', Context.None],
     ['class C { st\\u0061tic set bar() {} }', Context.None],
     ['class C { st\\u0061tic *bar() {} }', Context.None],
-    ['let l\\u0065t = 1', Context.None],
-    ['const l\\u0065t = 1', Context.None],
-    ['let [l\\u0065t] = 1', Context.None],
-    ['const [l\\u0065t] = 1', Context.None],
+
     ['if ("foo" \\u0069n this) {}', Context.None],
     ['if (this \\u0069nstanceof Array) {}', Context.None],
     ['(n\\u0065w function f() {})', Context.None],

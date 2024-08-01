@@ -97,7 +97,7 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.EscapedReserved, 'br\\u0065ak', 'break'],
     [Context.None, Token.Identifier, 'Br\\u0065ak', 'Break'],
     [Context.Strict, Token.EscapedFutureReserved, 'int\\u0065rface', 'interface'],
-    [Context.None, Token.InterfaceKeyword, 'int\\u0065rface', 'interface'],
+    [Context.None, Token.AnyIdentifier, 'int\\u0065rface', 'interface'],
     [Context.None, Token.YieldKeyword, 'yi\\u0065ld', 'yield'],
     [Context.Strict, Token.EscapedReserved, '\\u{64}ebugger', 'debugger'],
     [Context.Strict, Token.EscapedReserved, 'fina\\u{6c}ly', 'finally'],
