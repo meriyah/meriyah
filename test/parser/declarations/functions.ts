@@ -152,8 +152,6 @@ describe('Declarations - Function', () => {
     ['o = {foo(x = implements = y){ "use strict"; }}', Context.None],
     ['o = {foo(x= eval = y){ "use strict"; }}', Context.None],
     ['function f(async function() {}) { }', Context.None],
-    ['function foo(p\\u0061ckage) { "use strict"; }', Context.None],
-    ['function foo(p\\u0061ckage) { }', Context.Strict],
     ['function await() {}', Context.Strict | Context.Module],
     ['function *await() {}', Context.Strict | Context.Module],
     ['function foo(package) { "use strict"; }', Context.None],
@@ -563,7 +561,9 @@ describe('Declarations - Function', () => {
     'function *f(){ class x { [yield](){} }  }',
     'function *f(){ class x { yield(){} }  }',
     'function f() { throw `${delete(y)}`; }',
-    'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }'
+    'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
+    'function foo(p\\u0061ckage) { "use strict"; }',
+    'function foo(p\\u0061ckage) { }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

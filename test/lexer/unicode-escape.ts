@@ -14,7 +14,7 @@ describe('Lexer - Unicode Escape', () => {
     [Context.None, Token.Identifier, '\\u{61}', 'a'],
     [Context.None, Token.Identifier, '\\u{0000061}', 'a'],
     [Context.None, Token.Identifier, '\\u{0066}', 'f'],
-    [Context.None, Token.LetKeyword, 'l\\u0065t', 'let'],
+    [Context.None, Token.AnyIdentifier, 'l\\u0065t', 'let'],
     [Context.None, Token.Identifier, '\\u{0000000066}', 'f'],
     [Context.None, Token.Identifier, '\\u{000000000000000066}', 'f'],
     [Context.None, Token.Identifier, '\\u{00000000000000000000000066}', 'f'],

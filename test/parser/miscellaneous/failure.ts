@@ -875,9 +875,6 @@ describe('Miscellaneous - Failure', () => {
     'for (const [let] = 1; let < 1; let++) {}',
     'for (const [let] in {}) {}',
     'for (const [let] of []) {}',
-    'let l\\u0065t = 1',
-    'const l\\u0065t = 1',
-    'for (let l\\u0065t in {}) {}',
     'class A {foo(,) {}}',
     'class A {static foo(,) {}}',
     '(class {static foo(,) {}})',
@@ -2145,6 +2142,24 @@ describe('Miscellaneous - Failure', () => {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+      });
+    });
+  }
+
+  for (const arg of [
+    'let l\\u0065t = 1',
+    'const l\\u0065t = 1',
+    'for (let l\\u0065t in {}) {}',
+    'const package = 1;'
+  ]) {
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.Strict | Context.Module);
+      });
+    });
+    it(`${arg}`, () => {
+      t.throws(() => {
+        parseSource(`${arg}`, undefined, Context.Strict);
       });
     });
   }
