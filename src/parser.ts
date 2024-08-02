@@ -2536,7 +2536,10 @@ function parseImportDeclaration(
   };
 
   if (context & Context.OptionsNext) {
-    node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context, specifiers) : [];
+    node.attributes =
+      parser.getToken() === Token.WithKeyword || parser.getToken() === Token.Assert
+        ? parseImportAttributes(parser, context, specifiers)
+        : [];
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -2971,7 +2974,10 @@ function parseExportDeclaration(
       };
 
       if (context & Context.OptionsNext) {
-        node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context) : [];
+        node.attributes =
+          parser.getToken() === Token.WithKeyword || parser.getToken() === Token.Assert
+            ? parseImportAttributes(parser, context)
+            : [];
       }
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -4498,7 +4504,7 @@ export function parseImportAttributes(
   context: Context,
   specifiers: ESTree.ImportDeclaration['specifiers'] = []
 ): ESTree.ImportAttribute[] {
-  consume(parser, context, Token.WithKeyword);
+  consume(parser, context, parser.getToken());
   consume(parser, context, Token.LeftBrace);
 
   const attributes: ESTree.ImportAttribute[] = [];

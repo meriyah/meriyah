@@ -354,6 +354,45 @@ describe('Next - Import Attributes', () => {
       }
     ],
     [
+      'import foo from "bar" assert { type: "json" };',
+      Context.Module | Context.Strict | Context.OptionsNext,
+      {
+        body: [
+          {
+            source: {
+              type: 'Literal',
+              value: 'bar'
+            },
+            specifiers: [
+              {
+                local: {
+                  name: 'foo',
+                  type: 'Identifier'
+                },
+                type: 'ImportDefaultSpecifier'
+              }
+            ],
+            type: 'ImportDeclaration',
+            attributes: [
+              {
+                key: {
+                  name: 'type',
+                  type: 'Identifier'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'json'
+                },
+                type: 'ImportAttribute'
+              }
+            ]
+          }
+        ],
+        sourceType: 'module',
+        type: 'Program'
+      }
+    ],
+    [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
       Context.Module | Context.Strict | Context.OptionsNext,
       {
