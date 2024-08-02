@@ -8426,7 +8426,9 @@ function parseClassElementList(
   const { tokenPos, linePos, colPos } = parser;
   const token = parser.getToken();
 
-  if (token & (Token.IsIdentifier | Token.FutureReserved)) {
+  // Escaped reserved keyword can be used as ClassElementName which is NOT a Identifier,
+  // However in ESTree definition, "Identifier" is used for ClassElementName
+  if (token & (Token.IsIdentifier | Token.FutureReserved) || token === Token.EscapedReserved) {
     key = parseIdentifier(parser, context);
 
     switch (token) {
@@ -8507,15 +8509,18 @@ function parseClassElementList(
   }
 
   if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {
-    if (parser.getToken() & Token.IsIdentifier) {
+    if (
+      parser.getToken() & Token.IsIdentifier ||
+      // Escaped reserved keyword can be used as ClassElementName which is NOT a Identifier
+      parser.getToken() === Token.EscapedReserved ||
+      parser.getToken() === Token.EscapedFutureReserved
+    ) {
       key = parseIdentifier(parser, context);
     } else if ((parser.getToken() & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
       key = parseLiteral(parser, context);
     } else if (parser.getToken() === Token.LeftBracket) {
       kind |= PropertyKind.Computed;
       key = parseComputedPropertyName(parser, context, /* inGroup */ 0);
-    } else if (parser.getToken() === Token.EscapedFutureReserved) {
-      key = parseIdentifier(parser, context);
     } else if (parser.getToken() === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
       key = parsePrivateIdentifier(parser, context, tokenPos, linePos, colPos);

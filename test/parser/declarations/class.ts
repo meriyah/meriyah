@@ -170,7 +170,17 @@ describe('Declarations - Class', () => {
     'm() {}; static m() {}',
     'm() {}; m() {}',
     'static m() {}; static m() {}',
-    'get m() {}; set m(_) {}; get m() {}; set m(_) {};'
+    'get m() {}; set m(_) {}; get m() {}; set m(_) {};',
+    'void',
+    'voi\\u0064',
+    'get \\u0076oid() {} set voi\\u0064(v) {}',
+    'void() {}',
+    '\\u0076oid() {}',
+    'voi\\u0064() {}',
+    'static void',
+    'static voi\\u0064',
+    'static void() {}',
+    'static async *\\u0076oid() {}'
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
