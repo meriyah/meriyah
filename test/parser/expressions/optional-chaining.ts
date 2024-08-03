@@ -247,7 +247,8 @@ describe('Optional chaining', () => {
     'x?.void',
     'x?.voi\\u0064',
     'x?.protected',
-    'x?.prot\\u0065cted'
+    'x?.prot\\u0065cted',
+    'class C { #m = 1; static m(obj) { return obj?.#m; } }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -4124,13 +4124,7 @@ export function parseOptionalChain(
       optional: true
     });
   } else {
-    if (
-      (parser.getToken() & (Token.IsIdentifier | Token.Keyword)) === 0 &&
-      parser.getToken() !== Token.EscapedReserved &&
-      parser.getToken() !== Token.EscapedFutureReserved
-    )
-      report(parser, Errors.InvalidDotProperty);
-    const property = parseIdentifier(parser, context);
+    const property = parsePropertyOrPrivatePropertyName(parser, context);
     parser.assignable = AssignmentKind.CannotAssign;
     node = finishNode(parser, context, start, line, column, {
       type: 'MemberExpression',
