@@ -21,7 +21,11 @@ describe('Expressions - Member', () => {
     '0..toString();',
     '0.5.toString();',
     '1.0.toString();',
-    '1.000.toString();'
+    '1.000.toString();',
+    'x.void',
+    'x.voi\\u0064',
+    'x.protected',
+    'x.prot\\u0065cted'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

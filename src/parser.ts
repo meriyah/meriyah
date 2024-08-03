@@ -4124,7 +4124,12 @@ export function parseOptionalChain(
       optional: true
     });
   } else {
-    if ((parser.getToken() & (Token.IsIdentifier | Token.Keyword)) === 0) report(parser, Errors.InvalidDotProperty);
+    if (
+      (parser.getToken() & (Token.IsIdentifier | Token.Keyword)) === 0 &&
+      parser.getToken() !== Token.EscapedReserved &&
+      parser.getToken() !== Token.EscapedFutureReserved
+    )
+      report(parser, Errors.InvalidDotProperty);
     const property = parseIdentifier(parser, context);
     parser.assignable = AssignmentKind.CannotAssign;
     node = finishNode(parser, context, start, line, column, {
@@ -4149,7 +4154,12 @@ export function parseOptionalChain(
  * @param context Context masks
  */
 export function parsePropertyOrPrivatePropertyName(parser: ParserState, context: Context): any {
-  if ((parser.getToken() & (Token.IsIdentifier | Token.Keyword)) === 0 && parser.getToken() !== Token.PrivateField) {
+  if (
+    (parser.getToken() & (Token.IsIdentifier | Token.Keyword)) === 0 &&
+    parser.getToken() !== Token.EscapedReserved &&
+    parser.getToken() !== Token.EscapedFutureReserved &&
+    parser.getToken() !== Token.PrivateField
+  ) {
     report(parser, Errors.InvalidDotProperty);
   }
 
