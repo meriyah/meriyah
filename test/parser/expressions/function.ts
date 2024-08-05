@@ -131,8 +131,6 @@ describe('Expressions - Functions', () => {
     '(function b2(a, ...b) {})',
     'f( ({...c}=o, c) )',
     '(function fn({a = 1, ...b} = {}) {   return {a, b}; })',
-    // `(function package() { (function gave_away_the_package() { "use strict"; }) })`,
-    //`(function (eval) { (function () { "use strict"; })})`,
     `function iceFapper(idiot) {}`,
     '(function([{ u: v, w: x, y: z } = { u: 444, w: 555, y: 666 }] = [{ u: 777, w: 888, y: 999 }]) {})',
     '(function({} = null) {})',
@@ -263,6 +261,17 @@ describe('Expressions - Functions', () => {
     });
   }
 
+  for (const arg of [
+    `(function package() { (function gave_away_the_package() { "use strict"; }) })`,
+    `(function (eval) { (function () { "use strict"; })})`
+  ]) {
+    it(arg, () => {
+      t.doesNotThrow(() => {
+        parseSource(arg, undefined, Context.None);
+      });
+    });
+  }
+
   fail('Expressions - Functions (fail)', [
     ['(function foo(007){ "use strict"; })', Context.None],
     ['(function foo(){ "use strict"; 007 })', Context.None],
@@ -293,8 +302,11 @@ describe('Expressions - Functions', () => {
     ['function f({,,async} = await){}', Context.None],
     ['function f({foo,,bar} = x){}', Context.None],
     ['function f({...{a: b}}){}', Context.None],
-    ['function f({...a.b}){}', Context.None]
+    ['function f({...a.b}){}', Context.None],
+    ['function p\\u0061ckage() { "use strict"; }', Context.None],
+    ['function package() { "use strict"; }', Context.None]
   ]);
+
   pass('Expressions - Functions (pass)', [
     [
       `function f(async = await){}`,

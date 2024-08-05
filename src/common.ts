@@ -133,7 +133,7 @@ export const enum Flags {
   NewLine = 1 << 0,
   HasConstructor = 1 << 5,
   Octals = 1 << 6,
-  SimpleParameterList = 1 << 7,
+  NonSimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
   StrictEvalArguments = 1 << 9,
   DisallowCall = 1 << 10,

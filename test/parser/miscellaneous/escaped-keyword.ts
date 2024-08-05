@@ -91,12 +91,7 @@ describe('Miscellaneous - Escaped keywords', () => {
       p => {}
     }`,
     `obj.bre\\u0061k = 42;`,
-    `for (\\u0061sync of [7]);`,
-    'const [l\\u0065t] = 1',
-    'let l\\u0065t = 1',
-    'const l\\u0065t = 1',
-    'let [l\\u0065t] = 1',
-    '(function() {for (let l\\u0065t in {}) {}})()'
+    `for (\\u0061sync of [7]);`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
