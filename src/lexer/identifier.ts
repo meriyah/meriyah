@@ -125,8 +125,7 @@ export function scanIdentifierSlowCase(
       return Token.AnyIdentifier;
     }
     if ((token & Token.FutureReserved) === Token.FutureReserved) {
-      // In non-strict mode, future reserved can be used as identifier
-      return Token.AnyIdentifier;
+      return token;
     }
     return Token.EscapedReserved;
   }

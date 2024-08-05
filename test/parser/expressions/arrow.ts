@@ -547,15 +547,17 @@ describe('Expressions - Arrow', () => {
     ['a = b\n=>\nc', Context.None],
     ['a\n= b\n=> c', Context.None],
     ['(p\\u0061ckage) => { }', Context.Strict],
-    // FIXME: strict mode needs to cover function params too.
-    // How to do this without backtracing?
-    // ['(p\\u0061ckage) => { "use strict"; }', Context.None],
+    ['(p\\u0061ckage, a) => { }', Context.Strict],
+    ['(a, p\\u0061ckage) => { }', Context.Strict],
+    ['(p\\u0061ckage) => { "use strict"; }', Context.None],
+    ['(p\\u0061ckage, a) => { "use strict"; }', Context.None],
+    ['(a, p\\u0061ckage) => { "use strict"; }', Context.None],
     ['(p\\x61ckage) => { }', Context.None],
     ['(p\\x61ckage) => { "use strict"; }', Context.None],
     ['(p\\141ckage) => { "use strict"; }', Context.None],
-    // ['package => { "use strict"; }', Context.None],
-    // ['p\\u0061ckage => { }', Context.None],
-    // ['p\\u0061ckage => { "use strict"; }', Context.None],
+    ['package => { "use strict"; }', Context.None],
+    ['p\\u0061ckage => { }', Context.Strict],
+    ['p\\u0061ckage => { "use strict"; }', Context.None],
     ['p\\141ckage => { }', Context.None],
     ['p\\141ckage => { "use strict"; }', Context.None],
     ['()=>{}+a', Context.None],
@@ -1042,8 +1044,8 @@ describe('Expressions - Arrow', () => {
     '() => a + b - yield / 1',
     '(() => { try { Function("0 || () => 2")(); } catch(e) { return true; } })();',
     'var f = (function() { return z => arguments[0]; }(5));',
-    'yield => { "use strict"; 0 }',
-    "interface => { 'use strict'; 0 }",
+    'yield => { }',
+    'interface => { }',
     '({y}) => x;',
     '([x = 10]) => x',
     '([x = 10]) => x = ([x = 10]) => x',
@@ -1141,6 +1143,33 @@ describe('Expressions - Arrow', () => {
     });
   }
 
+  for (const arg of [
+    'yield => { "use strict"; 0 }',
+    'yield => { "lorem"; "use strict"; }',
+    "interface => { 'use strict' }"
+  ]) {
+    it(`${arg};`, () => {
+      t.throws(() => {
+        parseSource(`${arg};`, undefined, Context.None);
+      });
+    });
+    it(`${arg};`, () => {
+      t.throws(() => {
+        parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
+      });
+    });
+    it(`${arg};`, () => {
+      t.throws(() => {
+        parseSource(`${arg};`, undefined, Context.OptionsNext);
+      });
+    });
+
+    it(`function x(){${arg} }`, () => {
+      t.throws(() => {
+        parseSource(`function x(){${arg} }`, undefined, Context.None);
+      });
+    });
+  }
   pass('Expressions - Arrow (pass)', [
     [
       'async let => {}',

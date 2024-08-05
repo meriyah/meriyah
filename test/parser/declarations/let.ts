@@ -22,7 +22,12 @@ describe('Declarations - Let', () => {
     'const [let] = 1',
     'for (const [let] = 1; let < 1; let++) {}',
     'for (const [let] in {}) {}',
-    'for (const [let] of []) {}'
+    'for (const [let] of []) {}',
+    'let l\\u0065t = 1',
+    'const l\\u0065t = 1',
+    'let [l\\u0065t] = 1',
+    'const [l\\u0065t] = 1',
+    'for (let l\\u0065t in {}) {}'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -84,12 +89,7 @@ describe('Declarations - Let', () => {
     'var [let] = []',
     'let f = /* before */async /* a */ ( /* b */ a /* c */ , /* d */ b /* e */ ) /* f */ => /* g */ { /* h */ ; /* i */ }/* after */;',
     'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
-    'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;',
-    'let l\\u0065t = 1',
-    'const l\\u0065t = 1',
-    'let [l\\u0065t] = 1',
-    'const [l\\u0065t] = 1',
-    'for (let l\\u0065t in {}) {}'
+    'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;'
   ]) {
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
