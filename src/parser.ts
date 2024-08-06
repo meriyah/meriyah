@@ -1052,7 +1052,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
     }
 
     // async Identifier => ...
-    if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
+    if (isValidIdentifier(context, parser.getToken())) {
       /** ArrowFunction[In, Yield, Await]:
        *    ArrowParameters[?Yield, ?Await][no LineTerminator here]=>ConciseBody[?In]
        */
@@ -1087,6 +1087,9 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   } else {
     if (parser.getToken() === Token.Arrow) {
       classifyIdentifier(parser, context, token);
+      if ((token & Token.FutureReserved) === Token.FutureReserved) {
+        parser.flags |= Flags.HasStrictReserved;
+      }
       expr = parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, 0, 1, 0, start, line, column);
     }
 
@@ -1901,10 +1904,7 @@ export function parseLetIdentOrVarDeclarationStatement(
   const token = parser.getToken();
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
 
-  if (
-    parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart) ||
-    ((context & Context.Strict) === 0 && (parser.getToken() & Token.FutureReserved) === Token.FutureReserved)
-  ) {
+  if (parser.getToken() & (Token.IsIdentifier | Token.IsPatternStart)) {
     /* VariableDeclarations ::
      *  ('let') (Identifier ('=' AssignmentExpression)?)+[',']
      */
@@ -3583,8 +3583,11 @@ export function parseAsyncExpression(
     }
 
     // async Identifier => ...
-    if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
+    if (isValidIdentifier(context, parser.getToken())) {
       if (!isLHS) report(parser, Errors.Unexpected);
+      if ((parser.getToken() & Token.FutureReserved) === Token.FutureReserved) {
+        parser.flags |= Flags.HasStrictReserved;
+      }
       return parseAsyncArrowAfterIdent(parser, context, canAssign, start, line, column);
     }
   }
@@ -3608,6 +3611,9 @@ export function parseAsyncExpression(
   if (parser.getToken() === Token.Arrow) {
     classifyIdentifier(parser, context, token);
     if (inNew) report(parser, Errors.InvalidAsyncArrow);
+    if ((token & Token.FutureReserved) === Token.FutureReserved) {
+      parser.flags |= Flags.HasStrictReserved;
+    }
     return parseArrowFromIdentifier(parser, context, parser.tokenValue, expr, inNew, canAssign, 0, start, line, column);
   }
 
@@ -4281,6 +4287,9 @@ export function parsePrimaryExpression(
     if (parser.getToken() === Token.Arrow) {
       if (!isLHS) report(parser, Errors.Unexpected);
       classifyIdentifier(parser, context, token);
+      if ((token & Token.FutureReserved) === Token.FutureReserved) {
+        parser.flags |= Flags.HasStrictReserved;
+      }
       return parseArrowFromIdentifier(parser, context, tokenValue, expr, inNew, canAssign, 0, start, line, column);
     }
 
@@ -7371,6 +7380,10 @@ export function parseArrowFunctionExpression(
   }
 
   if (expression) {
+    parser.flags =
+      (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals) ^
+      (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals);
+
     // Single-expression body
     body = parseExpression(
       parser,
@@ -7810,8 +7823,10 @@ function parseAsyncArrowAfterIdent(
     report(parser, Errors.YieldInParameter);
   }
 
-  if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-    parser.flags |= Flags.StrictEvalArguments;
+  classifyIdentifier(parser, context, parser.getToken());
+
+  if ((parser.getToken() & Token.FutureReserved) === Token.FutureReserved) {
+    parser.flags |= Flags.HasStrictReserved;
   }
 
   return parseArrowFromIdentifier(

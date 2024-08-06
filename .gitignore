@@ -20,3 +20,4 @@ yarn-error.log*
 .rollupcache
 .fuzz-output
 .DS_Store
+/test.ts
