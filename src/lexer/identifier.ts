@@ -107,8 +107,9 @@ export function scanIdentifierSlowCase(
       context & Context.AllowEscapedKeyword &&
       (context & Context.InGlobal) === 0 &&
       (token & Token.Reserved) === Token.Reserved
-    )
+    ) {
       return token;
+    }
     if (token === Token.YieldKeyword) {
       return context & Context.AllowEscapedKeyword
         ? Token.AnyIdentifier
@@ -125,7 +126,7 @@ export function scanIdentifierSlowCase(
       return Token.AnyIdentifier;
     }
     if ((token & Token.FutureReserved) === Token.FutureReserved) {
-      return token | Token.IsIdentifier;
+      return token | Token.IsIdentifier | Token.IsEscaped;
     }
     return Token.EscapedReserved;
   }

@@ -384,7 +384,7 @@ export function validateBindingIdentifier(
   // The BoundNames of LexicalDeclaration and ForDeclaration must not
   // contain 'let'. (CatchParameter is the only lexical binding form
   // without this restriction.)
-  if (kind & (BindingKind.Let | BindingKind.Const) && t === Token.LetKeyword) {
+  if (kind & (BindingKind.Let | BindingKind.Const) && (t & Token.LetKeyword) === Token.LetKeyword) {
     report(parser, Errors.InvalidLetConstBinding);
   }
 
