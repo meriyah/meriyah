@@ -1827,7 +1827,7 @@ export function parseStaticBlock(
   if (scope) scope = addChildScope(scope, ScopeKind.Block);
 
   const ctorContext = Context.InClass | Context.SuperCall;
-  context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty;
+  context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext;
   const { body } = parseBlock(parser, context, scope, {}, start, line, column);
 
   return finishNode(parser, context, start, line, column, {
