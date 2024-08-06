@@ -26,6 +26,7 @@ export const enum Token {
   IsCoalesc                = 1 << 28,
   IsEvalOrArguments        = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsClassField             = 1 << 30,
+  IsEscaped                = 1 << 31, // Note 1 << 31 is negative integer
 
   // Note: 1 << 31... turns to negative
 
@@ -173,8 +174,8 @@ export const enum Token {
   Eval               = 119 | IsEvalOrArguments,
   Arguments          = 120 | IsEvalOrArguments,
 
-  EscapedReserved       = 121,
-  EscapedFutureReserved = 122,
+  EscapedReserved       = 121 | IsEscaped,
+  EscapedFutureReserved = 122 | IsEscaped,
   AnyIdentifier      = 123 | IsIdentifier,
 
   // Stage #3 proposals
@@ -193,7 +194,7 @@ export const enum Token {
   Target            = 134 | IsIdentifier,
   Meta              = 135 | IsIdentifier,
   LineFeed          = 136,
-  EscapedIdentifier = 137,
+  EscapedIdentifier = 137 | IsEscaped,
 
   // JSX
   JSXText           = 138,

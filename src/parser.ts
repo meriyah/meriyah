@@ -4297,7 +4297,7 @@ export function parsePrimaryExpression(
 
     // Only a "simple validation" is done here to handle 'let' edge cases
 
-    if (token === Token.LetKeyword) {
+    if ((token & Token.LetKeyword) === Token.LetKeyword) {
       if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
       if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
     }
@@ -8810,7 +8810,7 @@ function parseAndClassifyIdentifier(
   if (context & (Context.Module | Context.InYieldContext) && token === Token.YieldKeyword) {
     report(parser, Errors.YieldInParameter);
   }
-  if (token === Token.LetKeyword) {
+  if ((token & Token.LetKeyword) === Token.LetKeyword) {
     if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
   }
   if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
