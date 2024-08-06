@@ -126,7 +126,8 @@ export function scanIdentifierSlowCase(
       return Token.AnyIdentifier;
     }
     if ((token & Token.FutureReserved) === Token.FutureReserved) {
-      return token | Token.IsIdentifier | Token.IsEscaped;
+      // In non-strict mode, future reserved can be identifier.
+      return token | Token.Contextual | Token.IsEscaped;
     }
     return Token.EscapedReserved;
   }

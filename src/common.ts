@@ -815,14 +815,10 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
     // Module code is also "strict mode code"
     if (context & Context.Module && t === Token.AwaitKeyword) return false;
     if (context & Context.InYieldContext && t === Token.YieldKeyword) return false;
-    return (t & Token.IsIdentifier) === Token.IsIdentifier || (t & Token.Contextual) === Token.Contextual;
+    return (t & Token.Contextual) === Token.Contextual;
   }
 
-  return (
-    (t & Token.IsIdentifier) === Token.IsIdentifier ||
-    (t & Token.Contextual) === Token.Contextual ||
-    (t & Token.FutureReserved) === Token.FutureReserved
-  );
+  return (t & Token.Contextual) === Token.Contextual || (t & Token.FutureReserved) === Token.FutureReserved;
 }
 
 export function classifyIdentifier(parser: ParserState, context: Context, t: Token): any {
