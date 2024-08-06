@@ -143,7 +143,13 @@ describe('Expressions - Async function', () => {
     '"use strict"; ({ async yield() {} });',
     '(function f() { ({ async [yield]() {} }); })',
     `a = async
-  function f(){}`
+  function f(){}`,
+    'a = async package => 1',
+    'a = async package => { }',
+    'a = async p\\u0061ckage => { }',
+    'a = (async package => 1)',
+    'a = (async package => { })',
+    'a = (async p\\u0061ckage => { })'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -227,7 +233,13 @@ describe('Expressions - Async function', () => {
     ['async function f(await){}', Context.None],
     ['async function *f(await){}', Context.None],
     ['async(...a, b) => b', Context.None],
-    ['(async function(...x = []) {})', Context.None]
+    ['(async function(...x = []) {})', Context.None],
+    ['a = async package => { "use strict" }', Context.None],
+    ['a = async p\\u0061ckage => { "use strict" }', Context.None],
+    ['a = async (package) => { "use strict" }', Context.None],
+    ['a = async (p\\u0061ckage) => { "use strict" }', Context.None],
+    ['a = (async (package) => { "use strict" })', Context.None],
+    ['a = (async (p\\u0061ckage) => { "use strict" })', Context.None]
   ]);
   pass('Expressions - Async function (pass)', [
     [

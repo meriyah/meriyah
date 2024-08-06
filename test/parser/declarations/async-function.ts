@@ -10,7 +10,9 @@ describe('Declarations - Async Function', () => {
     'async function f() { for await ((x) in y) {} }',
     'async function f() { for await (var x in y) {} }',
     'async function f() { for await (let x in y) {} }',
-    'async function f() { for await (const x in y) {} }'
+    'async function f() { for await (const x in y) {} }',
+    'async function foo(p\\u0061ckage) { "use strict" }',
+    'async function foo(package) { "use strict" }'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -226,7 +228,9 @@ describe('Declarations - Async Function', () => {
     `async function f() {
       (((x = await y)));
             async (b) => {};
-    }`
+    }`,
+    'async function foo(package) { }',
+    'async function foo(p\\u0061ckage) { }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
