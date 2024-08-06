@@ -1821,8 +1821,14 @@ export function parseStaticBlock(
   line: number,
   column: number
 ): ESTree.StaticBlock {
-  // StaticBlock ::
-  //   '{' StatementList '}'
+  // ClassStaticBlock :
+  //   static { ClassStaticBlockBody }
+  //
+  // ClassStaticBlockBody :
+  //   ClassStaticBlockStatementList
+  //
+  // ClassStaticBlockStatementList :
+  //   StatementList[~Yield, +Await, ~Return]opt
 
   if (scope) scope = addChildScope(scope, ScopeKind.Block);
 
