@@ -421,8 +421,6 @@ language/statements/class/private-static-getter-non-static-setter-early-error.js
 language/statements/class/private-static-getter-non-static-setter-early-error.js (strict mode)
 language/statements/class/private-static-setter-non-static-getter-early-error.js (default)
 language/statements/class/private-static-setter-non-static-getter-early-error.js (strict mode)
-language/statements/class/static-init-expr-new-target.js (default)
-language/statements/class/static-init-expr-new-target.js (strict mode)
 language/statements/class/static-init-invalid-arguments.js (default)
 language/statements/class/static-init-invalid-arguments.js (strict mode)
 language/statements/class/static-init-invalid-await.js (default)
