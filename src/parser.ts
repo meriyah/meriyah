@@ -359,7 +359,13 @@ export function parseStatementList(
     const { index, tokenPos, tokenValue, linePos, colPos } = parser;
     const token = parser.getToken();
     const expr = parseLiteral(parser, context);
-    if (isValidStrictMode(parser, index, tokenPos, tokenValue)) context |= Context.Strict;
+    if (isValidStrictMode(parser, index, tokenPos, tokenValue)) {
+      context |= Context.Strict;
+
+      if (parser.flags & Flags.Octals) {
+        reportMessageAt(parser.index, parser.line, parser.tokenPos, Errors.StrictOctalLiteral);
+      }
+    }
     statements.push(parseDirective(parser, context, expr, token, tokenPos, linePos, colPos));
   }
 

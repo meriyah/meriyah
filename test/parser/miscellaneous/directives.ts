@@ -35,7 +35,6 @@ describe('Miscellaneous - Directives', () => {
     "'random\\u00a\\ foo'",
     "'random\\uax foo'",
     "'random\\u0au foo'",
-    '"use strict" "Hello\\312World"',
     '"use strict" ++',
     '"use strict" \\1',
     '"use strict" "\\1"',
@@ -143,7 +142,6 @@ describe('Miscellaneous - Directives', () => {
        return (this === undefined);
     }`,
     '"use strict", "Hello\\312World"',
-    '"use strict" \n "Hello\\312World"',
     '"use strict" + "Hello\\312World"',
     '"use strict", "Hello\\312World"',
     '"use strict", "Hello\\312World"',
@@ -180,7 +178,11 @@ describe('Miscellaneous - Directives', () => {
 
   fail('Miscellaneous - Directives (fail)', [
     ['"use strict"; var static;', Context.None],
-    ['\\u0061sync function f(){}', Context.None]
+    ['\\u0061sync function f(){}', Context.None],
+    ['"use strict" "Hello\\312World"', Context.None],
+    ['"use strict" \n "Hello\\312World"', Context.None],
+    ['function a() { "use strict" "Hello\\312World" }', Context.None],
+    ['function a() { "use strict" \n "Hello\\312World" }', Context.None]
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
