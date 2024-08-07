@@ -6260,16 +6260,15 @@ export function parseObjectLiteralOrPattern(
           if (token === Token.EscapedReserved) report(parser, Errors.InvalidEscapedKeyword);
           if (token === Token.AsyncKeyword) {
             if (parser.flags & Flags.NewLine) report(parser, Errors.AsyncRestrictedProd);
-            state |= PropertyKind.Async;
+            state |= PropertyKind.Async | PropertyKind.Method;
+          } else if (token === Token.GetKeyword) {
+            state |= PropertyKind.Getter;
+          } else if (token === Token.SetKeyword) {
+            state |= PropertyKind.Setter;
+          } else {
+            report(parser, Errors.Unexpected);
           }
           key = parseIdentifier(parser, context);
-
-          state |=
-            token === Token.GetKeyword
-              ? PropertyKind.Getter
-              : token === Token.SetKeyword
-                ? PropertyKind.Setter
-                : PropertyKind.Method;
 
           value = parseMethodDefinition(
             parser,
