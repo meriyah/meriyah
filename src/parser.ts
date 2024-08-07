@@ -266,7 +266,8 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.lexical) context |= Context.OptionsLexical;
     if (options.webcompat) context |= Context.OptionsWebCompat;
     if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
-    if (options.globalReturn) context |= Context.OptionsGlobalReturn;
+    // Turn on return context in global
+    if (options.globalReturn) context |= Context.InReturnContext;
     if (options.raw) context |= Context.OptionsRaw;
     if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
@@ -848,7 +849,7 @@ export function parseReturnStatement(
 ): ESTree.ReturnStatement {
   // ReturnStatement ::
   //   'return' [no line terminator] Expression? ';'
-  if ((context & Context.OptionsGlobalReturn) === 0 && context & Context.InGlobal) report(parser, Errors.IllegalReturn);
+  if ((context & Context.InReturnContext) === 0) report(parser, Errors.IllegalReturn);
 
   nextToken(parser, context | Context.AllowRegExp);
 
@@ -1832,7 +1833,7 @@ export function parseStaticBlock(
 
   if (scope) scope = addChildScope(scope, ScopeKind.Block);
 
-  const ctorContext = Context.InClass | Context.SuperCall;
+  const ctorContext = Context.InClass | Context.SuperCall | Context.InReturnContext;
   context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext;
   const { body } = parseBlock(parser, context, scope, {}, start, line, column);
 
@@ -5053,8 +5054,9 @@ export function parseFunctionDeclaration(
 
   const body = parseFunctionBody(
     parser,
-    (context | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
-      (Context.InGlobal | Context.InSwitch | Context.InIteration),
+    ((context | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
+      (Context.InGlobal | Context.InSwitch | Context.InIteration)) |
+      Context.InReturnContext,
     scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
     Origin.Declaration,
     funcNameToken,
@@ -5143,7 +5145,8 @@ export function parseFunctionExpression(
 
   const body = parseFunctionBody(
     parser,
-    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass),
+    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass)) |
+      Context.InReturnContext,
     scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
     0,
     funcNameToken,
@@ -5840,7 +5843,7 @@ export function parseMethodDefinition(
 
   const body = parseFunctionBody(
     parser,
-    context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal),
+    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal)) | Context.InReturnContext,
     scope,
     Origin.None,
     void 0,
@@ -7405,7 +7408,14 @@ export function parseArrowFunctionExpression(
 
     const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal | Context.InClass;
 
-    body = parseFunctionBody(parser, (context | modifierFlags) ^ modifierFlags, scope, Origin.Arrow, void 0, void 0);
+    body = parseFunctionBody(
+      parser,
+      ((context | modifierFlags) ^ modifierFlags) | Context.InReturnContext,
+      scope,
+      Origin.Arrow,
+      void 0,
+      void 0
+    );
 
     switch (parser.getToken()) {
       case Token.LeftBracket:

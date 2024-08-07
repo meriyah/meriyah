@@ -185,7 +185,7 @@ describe('Statements - Return', () => {
     ],
     [
       '{return}',
-      Context.OptionsGlobalReturn,
+      Context.InReturnContext,
       {
         body: [
           {
