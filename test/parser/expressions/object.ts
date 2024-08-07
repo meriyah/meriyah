@@ -65,7 +65,13 @@ describe('Expressions - Object', () => {
     'with (Math) { ({x=1}) };',
     'true ? {x=1} : 1;',
     'false ? 1 : {x=1};',
-    '{x=1} ? 2 : 3;'
+    '{x=1} ? 2 : 3;',
+    '({static a() {}})',
+    '({static b})',
+    '({a b})',
+    '({a b() {}})',
+    '{get async(v) {}}',
+    '{get let(v) {}}'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -173,7 +179,12 @@ describe('Expressions - Object', () => {
     '{d: {}[x ? y : z] += a}',
     '{ b: c.d === e ? f : g }',
     '{ "b": c.d === e ? f : g }',
-    '{ [b]: c.d === e ? f : g }'
+    '{ [b]: c.d === e ? f : g }',
+    '{async static() {}}',
+    '{async *static() {}}',
+    '{set async(v) {}}',
+    '{get async() {}}',
+    '{get let() {}}'
   ]) {
     it(`'use strict'; x = ${arg}`, () => {
       t.doesNotThrow(() => {
