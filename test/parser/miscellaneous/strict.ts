@@ -54,12 +54,23 @@ describe('Miscellaneous - Strict mode', () => {
     '({x:function([x], a){"use strict";}})',
     '([eval]) = [x]',
     'function f(x=package=10){ "use strict"; }',
-    'function f(x=yield=10){ "use strict"; }'
-    //'function f(package){ "use strict"; }',
-    //'function f(yield){ "use strict"; }',
-
-    // 'f = (package) => { "use strict"; }',
-    // 'f = (yield) => { "use strict"; }',
+    'function f(x=yield=10){ "use strict"; }',
+    'function f(package){ "use strict"; }',
+    'function f(yield){ "use strict"; }',
+    'f = (package) => { "use strict"; }',
+    'f = (yield) => { "use strict"; }',
+    '"use strict"; "\\1";',
+    '"use strict"; "\\7";',
+    '"\\1"; "use strict";',
+    '"\\7"; "use strict";',
+    'function a() { "use strict"; "\\1";}',
+    'function a() { "use strict"; "\\7";}',
+    'function a() { "\\1"; "use strict";}',
+    'function a() { "\\7"; "use strict";}',
+    'f = () => { "use strict"; "\\1";}',
+    'f = () => { "use strict"; "\\7";}',
+    'f = () => { "\\1"; "use strict";}',
+    'f = () => { "\\7"; "use strict";}'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
