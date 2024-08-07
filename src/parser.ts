@@ -1833,7 +1833,14 @@ export function parseStaticBlock(
 
   if (scope) scope = addChildScope(scope, ScopeKind.Block);
 
-  const ctorContext = Context.InClass | Context.SuperCall | Context.InReturnContext | Context.InYieldContext;
+  const ctorContext =
+    Context.InClass |
+    Context.SuperCall |
+    Context.InReturnContext |
+    Context.InYieldContext |
+    Context.InSwitch |
+    Context.InIteration;
+
   context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext;
   const { body } = parseBlock(parser, context, scope, {}, start, line, column);
 
