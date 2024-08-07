@@ -1841,7 +1841,8 @@ export function parseStaticBlock(
     Context.InSwitch |
     Context.InIteration;
 
-  context = ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext;
+  context =
+    ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext | Context.AllowNewTarget;
   const { body } = parseBlock(parser, context, scope, {}, start, line, column);
 
   return finishNode(parser, context, start, line, column, {

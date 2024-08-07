@@ -276,7 +276,7 @@ export const errorMessages: {
   [Errors.StrictWith]: 'Strict mode code may not include a with statement',
   [Errors.IllegalReturn]: 'Illegal return statement',
   [Errors.InvalidForLHSBinding]: 'The left hand side of the for-header binding declaration is not destructible',
-  [Errors.InvalidNewTarget]: 'new.target only allowed within functions',
+  [Errors.InvalidNewTarget]: 'new.target only allowed within functions or static blocks',
   [Errors.MissingPrivateIdentifier]: "'#' not followed by identifier",
   [Errors.KeywordNotId]: 'Invalid keyword',
   [Errors.InvalidLetClassName]: "Can not use 'let' as a class name",
