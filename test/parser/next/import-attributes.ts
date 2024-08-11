@@ -16,6 +16,8 @@ describe('Next - Import Attributes', () => {
     `import * as ns from './json-via-namespace_FIXTURE.json' with { "type": 'json' };`,
     `import { random } from './random.ts' with { type: 'macro' };`,
     `import { random } from './random.ts' with { "type": 'macro' };`,
+    `import { random as foo } from './random.ts' with { type: 'macro' };`,
+    `import { "random" as foo } from './random.ts' with { type: 'macro' };`,
     `import('module', { type: 'json' });`,
     `import('module', { lazy: true });`,
     `import('module', { dynamic: false });`,
@@ -129,7 +131,7 @@ describe('Next - Import Attributes', () => {
   pass('Next - Import Attributes (pass)', [
     [
       `import('module', { type: 'json' });`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -169,7 +171,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `import('module', { 'data-type': 'json' });`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -209,7 +211,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `async function load() { return import('module', { type: 'json' }); }`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         body: [
           {
@@ -264,7 +266,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `for await (let module of [import('module', { type: 'json' })]) {}`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -328,7 +330,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json" };',
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         body: [
           {
@@ -367,7 +369,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         body: [
           {
@@ -417,7 +419,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         body: [
           {
@@ -487,7 +489,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export * from './foo' with { type: 'json' }`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -518,7 +520,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export * as foo from './foo' with { type: 'json' };`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -552,7 +554,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export {} from './foo' with { type: 'html' };`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -584,7 +586,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export { foo } from './foo' with { type: 'html' }`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -628,7 +630,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export { foo, } from './foo' with { type: 'html' };`,
-      Context.Module | Context.OptionsNext,
+      Context.Module | Context.Strict | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',

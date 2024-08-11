@@ -47,6 +47,7 @@ import {
   isValidIdentifier,
   classifyIdentifier
 } from './common';
+import { Chars } from './chars';
 
 /**
  * Create a new parser instance
@@ -2639,14 +2640,18 @@ function parseImportSpecifierOrNamedImports(
   //
   // ImportSpecifier :
   //   BindingIdentifier
-  //   IdentifierName 'as' BindingIdentifier
+  //   ModuleExportName 'as' BindingIdentifier
+  //
+  // ModuleExportName :
+  //   IdentifierName
+  //   StringLiteral
 
   nextToken(parser, context);
 
-  while (parser.getToken() & Token.IsIdentifier) {
+  while (parser.getToken() & Token.IsIdentifier || parser.getToken() === Token.StringLiteral) {
     let { tokenValue, tokenPos, linePos, colPos } = parser;
     const token = parser.getToken();
-    const imported = parseIdentifier(parser, context);
+    const imported = parseModuleExportName(parser, context);
     let local: ESTree.Identifier;
 
     if (consumeOpt(parser, context, Token.AsKeyword)) {
@@ -2660,13 +2665,16 @@ function parseImportSpecifierOrNamedImports(
       }
       tokenValue = parser.tokenValue;
       local = parseIdentifier(parser, context);
-    } else {
+    } else if (imported.type === 'Identifier') {
       // Keywords cannot be bound to themselves, so an import name
       // that is a keyword is a syntax error if it is not followed
       // by the keyword 'as'.
       // See the ImportSpecifier production in ES6 section 15.2.2.
       validateBindingIdentifier(parser, context, BindingKind.Const, token, 0);
       local = imported;
+    } else {
+      // Expect `import "str" as ...`
+      report(parser, Errors.ExpectedToken, KeywordDescTable[Token.AsKeyword & Token.Type]);
     }
 
     if (scope) addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
@@ -2970,17 +2978,18 @@ function parseExportDeclaration(
   switch (parser.getToken()) {
     case Token.Multiply: {
       //
-      // 'export' '*' 'as' IdentifierName 'from' ModuleSpecifier ';'
+      // 'export' '*' 'as' ModuleExportName 'from' ModuleSpecifier ';'
       //
       // See: https://github.com/tc39/ecma262/pull/1174
       nextToken(parser, context); // Skips: '*'
 
-      let exported: ESTree.Identifier | null = null;
+      let exported: ESTree.Identifier | ESTree.Literal | null = null;
       const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
 
       if (isNamedDeclaration) {
+        // TODO check "str" ModuleExportName for variable
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
-        exported = parseIdentifier(parser, context);
+        exported = parseModuleExportName(parser, context);
       }
 
       consume(parser, context, Token.FromKeyword);
@@ -3014,30 +3023,39 @@ function parseExportDeclaration(
       //   ExportsList ',' ExportSpecifier
       //
       // ExportSpecifier :
+      //   ModuleExportName
+      //   ModuleExportName 'as' ModuleExportName
+      //
+      // ModuleExportName :
       //   IdentifierName
-      //   IdentifierName 'as' IdentifierName
+      //   StringLiteral
 
       nextToken(parser, context); // Skips: '{'
 
       const tmpExportedNames: string[] = [];
       const tmpExportedBindings: string[] = [];
+      let hasLiteralLocal: 0 | 1 = 0;
 
-      while (parser.getToken() & Token.IsIdentifier) {
+      while (parser.getToken() & Token.IsIdentifier || parser.getToken() === Token.StringLiteral) {
         const { tokenPos, tokenValue, linePos, colPos } = parser;
-        const local = parseIdentifier(parser, context);
+        const local = parseModuleExportName(parser, context);
+        if (local.type === 'Literal') {
+          hasLiteralLocal = 1;
+        }
 
-        let exported: ESTree.Identifier | null;
+        let exported: ESTree.Identifier | ESTree.Literal | null;
 
         if (parser.getToken() === Token.AsKeyword) {
           nextToken(parser, context);
-          if ((parser.getToken() & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
+          if ((parser.getToken() & Token.IsIdentifier) === 0 && parser.getToken() !== Token.StringLiteral) {
             report(parser, Errors.InvalidKeywordAsAlias);
           }
           if (scope) {
+            // TODO: check "str" ModuleExportName
             tmpExportedNames.push(parser.tokenValue);
             tmpExportedBindings.push(tokenValue);
           }
-          exported = parseIdentifier(parser, context);
+          exported = parseModuleExportName(parser, context);
         } else {
           if (scope) {
             tmpExportedNames.push(parser.tokenValue);
@@ -3069,17 +3087,23 @@ function parseExportDeclaration(
         if (context & Context.OptionsNext) {
           attributes = parseImportAttributes(parser, context, specifiers);
         }
-      } else if (scope) {
-        let i = 0;
-        let iMax = tmpExportedNames.length;
-        for (; i < iMax; i++) {
-          declareUnboundVariable(parser, tmpExportedNames[i]);
+      } else {
+        if (hasLiteralLocal) {
+          report(parser, Errors.InvalidExportReference);
         }
-        i = 0;
-        iMax = tmpExportedBindings.length;
 
-        for (; i < iMax; i++) {
-          addBindingToExports(parser, tmpExportedBindings[i]);
+        if (scope) {
+          let i = 0;
+          let iMax = tmpExportedNames.length;
+          for (; i < iMax; i++) {
+            declareUnboundVariable(parser, tmpExportedNames[i]);
+          }
+          i = 0;
+          iMax = tmpExportedBindings.length;
+
+          for (; i < iMax; i++) {
+            addBindingToExports(parser, tmpExportedBindings[i]);
+          }
         }
       }
 
@@ -4570,8 +4594,12 @@ export function parseImportAttributes(
         (specifiers.length === 1 &&
           (specifiers[0].type === 'ImportDefaultSpecifier' ||
             specifiers[0].type === 'ImportNamespaceSpecifier' ||
-            (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default') ||
-            (specifiers[0].type === 'ExportSpecifier' && specifiers[0].local.name === 'default')));
+            (specifiers[0].type === 'ImportSpecifier' &&
+              specifiers[0].imported.type === 'Identifier' &&
+              specifiers[0].imported.name === 'default') ||
+            (specifiers[0].type === 'ExportSpecifier' &&
+              specifiers[0].local.type === 'Identifier' &&
+              specifiers[0].local.name === 'default')));
 
       if (!validJSONImportAttributeBindings) report(parser, Errors.InvalidJSONImportBinding);
     }
@@ -4608,6 +4636,44 @@ function parseStringLiteral(parser: ParserState, context: Context): ESTree.Liter
 
 function parseIdentifierOrStringLiteral(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
   if (parser.getToken() === Token.StringLiteral) {
+    return parseLiteral(parser, context);
+  } else if (parser.getToken() & Token.IsIdentifier) {
+    return parseIdentifier(parser, context);
+  } else {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+  }
+}
+
+/**
+ * Checks IsStringWellFormedUnicode, same as String.prototype.isWellFormed
+ *
+ * @param str string to check
+ * @returns void when passed the check
+ */
+function validateStringWellFormed(parser: ParserState, str: string): void {
+  const len = str.length;
+  for (let i = 0; i < len; i++) {
+    const code = str.charCodeAt(i);
+    // Single UTF-16 unit
+    if ((code & 0xfc00) !== Chars.LeadSurrogateMin) continue;
+    // unpaired surrogate
+    if (code >= Chars.TrailSurrogateMin || ++i >= len || (str.charCodeAt(i) & 0xfc00) !== Chars.TrailSurrogateMin) {
+      report(parser, Errors.InvalidExportName, JSON.stringify(str.charAt(i--)));
+    }
+  }
+}
+
+function parseModuleExportName(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+  // ModuleExportName :
+  //   IdentifierName
+  //   StringLiteral
+  //
+  // ModuleExportName : StringLiteral
+  //   It is a Syntax Error if IsStringWellFormedUnicode(the SV of
+  //   StringLiteral) is false.
+
+  if (parser.getToken() === Token.StringLiteral) {
+    validateStringWellFormed(parser, parser.tokenValue as string);
     return parseLiteral(parser, context);
   } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);
