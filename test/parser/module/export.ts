@@ -2503,6 +2503,7 @@ describe('Module - Export', () => {
             range: [0, 18],
             declaration: null,
             specifiers: [],
+            attributes: [],
             source: {
               type: 'Literal',
               start: 15,

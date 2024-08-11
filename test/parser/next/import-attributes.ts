@@ -5,6 +5,7 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Import Attributes', () => {
   for (const arg of [
+    `import 'bar' with { type: 'what' };`,
     `import foo from 'bar' with { type: 'json' };`,
     `import foo from 'bar' with { type: 'json', 'data-type': 'json' };`,
     `import foo from 'bar' with { "type": 'json' };`,
@@ -43,7 +44,15 @@ describe('Next - Import Attributes', () => {
     `export * from './import-attribute-3_FIXTURE.js' with {};`,
     `(async function () { return import('./2nd-param_FIXTURE.js', await undefined);}())`,
     `var iter = function*() { beforeCount += 1, import('', yield), afterCount += 1;}();`,
-    `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`
+    `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
+    `export {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { type: 'json' };`,
+    `export {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { "type": 'json' };`,
+    `export * as foo from './foo.json' with { "type": 'json' };`,
+    // TODO: to follow up with spec
+    // Current JSON modules spec didn't prevent following line.
+    `export * from './foo.json' with { "type": 'json' };`,
+    `export { random } from './random.ts' with { type: 'macro' };`,
+    `export { random } from './random.ts' with { "type": 'macro' };`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -106,18 +115,21 @@ describe('Next - Import Attributes', () => {
       'import a, { foo } from "./foo.json" with { type: "json" };',
       Context.OptionsNext | Context.Strict | Context.Module
     ],
-    ['import foo from "bar" with { 1: "foo" };', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: 1 };', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: [1] };', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: null };', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: undefined };', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", foo: {} };', Context.OptionsNext | Context.Strict | Context.Module]
+    [`import 'bar' with { type: 'json' };`, Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { 1: "foo" };', Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { type: 1 };', Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { type: [1] };', Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { type: null };', Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { type: undefined };', Context.OptionsNext | Context.Module],
+    ['import foo from "bar" with { type: "json", foo: {} };', Context.OptionsNext | Context.Module],
+    [`export { foo } from './foo.json' with { type: 'json' };`, Context.OptionsNext | Context.Module],
+    [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.OptionsNext | Context.Module]
   ]);
 
   pass('Next - Import Attributes (pass)', [
     [
       `import('module', { type: 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -157,7 +169,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `import('module', { 'data-type': 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -197,7 +209,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `async function load() { return import('module', { type: 'json' }); }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         body: [
           {
@@ -252,7 +264,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `for await (let module of [import('module', { type: 'json' })]) {}`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         type: 'Program',
         sourceType: 'module',
@@ -316,7 +328,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json" };',
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         body: [
           {
@@ -355,7 +367,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         body: [
           {
@@ -405,7 +417,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.OptionsNext,
       {
         body: [
           {
@@ -471,6 +483,191 @@ describe('Next - Import Attributes', () => {
         ],
         sourceType: 'module',
         type: 'Program'
+      }
+    ],
+    [
+      `export * from './foo' with { type: 'json' }`,
+      Context.Module | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportAllDeclaration',
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            exported: null,
+            attributes: [
+              {
+                type: 'ImportAttribute',
+                key: {
+                  type: 'Identifier',
+                  name: 'type'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'json'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      `export * as foo from './foo' with { type: 'json' };`,
+      Context.Module | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportAllDeclaration',
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            exported: {
+              type: 'Identifier',
+              name: 'foo'
+            },
+            attributes: [
+              {
+                type: 'ImportAttribute',
+                key: {
+                  type: 'Identifier',
+                  name: 'type'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'json'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      `export {} from './foo' with { type: 'html' };`,
+      Context.Module | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportNamedDeclaration',
+            declaration: null,
+            specifiers: [],
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            attributes: [
+              {
+                type: 'ImportAttribute',
+                key: {
+                  type: 'Identifier',
+                  name: 'type'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'html'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      `export { foo } from './foo' with { type: 'html' }`,
+      Context.Module | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportNamedDeclaration',
+            declaration: null,
+            specifiers: [
+              {
+                type: 'ExportSpecifier',
+                local: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                exported: {
+                  type: 'Identifier',
+                  name: 'foo'
+                }
+              }
+            ],
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            attributes: [
+              {
+                type: 'ImportAttribute',
+                key: {
+                  type: 'Identifier',
+                  name: 'type'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'html'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      `export { foo, } from './foo' with { type: 'html' };`,
+      Context.Module | Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExportNamedDeclaration',
+            declaration: null,
+            specifiers: [
+              {
+                type: 'ExportSpecifier',
+                local: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                exported: {
+                  type: 'Identifier',
+                  name: 'foo'
+                }
+              }
+            ],
+            source: {
+              type: 'Literal',
+              value: './foo'
+            },
+            attributes: [
+              {
+                type: 'ImportAttribute',
+                key: {
+                  type: 'Identifier',
+                  name: 'type'
+                },
+                value: {
+                  type: 'Literal',
+                  value: 'html'
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   ]);
