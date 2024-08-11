@@ -42,7 +42,7 @@ export function consumeMultiUnitCodePoint(parser: ParserState, hi: number): 0 | 
   // See: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-string-type
   if ((hi & 0xfc00) !== Chars.LeadSurrogateMin) return 0;
   const lo = parser.source.charCodeAt(parser.index + 1);
-  if ((lo & 0xfc00) !== 0xdc00) return 0;
+  if ((lo & 0xfc00) !== Chars.TrailSurrogateMin) return 0;
   hi = parser.currentChar = Chars.NonBMPMin + ((hi & 0x3ff) << 10) + (lo & 0x3ff);
   if (((unicodeLookup[(hi >>> 5) + 0] >>> hi) & 31 & 1) === 0) {
     report(parser, Errors.IllegalCharacter, fromCodePoint(hi));

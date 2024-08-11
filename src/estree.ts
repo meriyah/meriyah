@@ -323,7 +323,7 @@ export interface BigIntLiteral extends Literal {
 export interface BinaryExpression extends _Node {
   type: 'BinaryExpression';
   operator: string;
-  left: Expression;
+  left: Expression | PrivateIdentifier;
   right: Expression;
 }
 
@@ -425,7 +425,7 @@ export interface EmptyStatement extends _Node {
 export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
   source: Literal;
-  exported: Identifier | null;
+  exported: Identifier | Literal | null;
   attributes?: ImportAttribute[];
 }
 
@@ -444,8 +444,8 @@ export interface ExportNamedDeclaration extends _Node {
 
 export interface ExportSpecifier extends _Node {
   type: 'ExportSpecifier';
-  local: Identifier;
-  exported: Identifier;
+  local: Identifier | Literal;
+  exported: Identifier | Literal;
 }
 
 export interface ExpressionStatement extends _Node {
@@ -526,7 +526,7 @@ export interface ImportNamespaceSpecifier extends _Node {
 export interface ImportSpecifier extends _Node {
   type: 'ImportSpecifier';
   local: Identifier;
-  imported: Identifier;
+  imported: Identifier | Literal;
 }
 
 export interface JSXNamespacedName extends _Node {

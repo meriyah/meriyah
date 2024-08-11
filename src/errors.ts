@@ -167,7 +167,9 @@ export const enum Errors {
   OptionalChainingNoSuper,
   OptionalChainingNoNew,
   ImportMetaOutsideModule,
-  InvalidLeadingDecorator
+  InvalidLeadingDecorator,
+  InvalidExportName,
+  InvalidExportReference
 }
 
 export const errorMessages: {
@@ -287,7 +289,7 @@ export const errorMessages: {
   [Errors.InvalidImportExportSloppy]: 'The %0 keyword can only be used with the module goal',
   [Errors.UnicodeOverflow]: 'Unicode codepoint must not be greater than 0x10FFFF',
   [Errors.InvalidExportImportSource]: '%0 source must be string',
-  [Errors.InvalidKeywordAsAlias]: 'Only a identifier can be used to indicate alias',
+  [Errors.InvalidKeywordAsAlias]: 'Only a identifier or string can be used to indicate alias',
   [Errors.InvalidDefaultImport]: "Only '*' or '{...}' can be imported after default",
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
@@ -346,7 +348,9 @@ export const errorMessages: {
   [Errors.OptionalChainingNoSuper]: 'Invalid optional chain from super property',
   [Errors.OptionalChainingNoNew]: 'Invalid optional chain from new expression',
   [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module',
-  [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration'
+  [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration',
+  [Errors.InvalidExportName]: 'An export name cannot include a lone surrogate, found %0',
+  [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`'
 };
 
 export class ParseError extends SyntaxError {

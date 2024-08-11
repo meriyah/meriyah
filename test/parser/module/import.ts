@@ -185,7 +185,13 @@ describe('Module - Import', () => {
     'while(false) import { default } from "module";',
     `do import { default } from "module"
                                 while (false);`,
-    'function () { import { default } from "module"; }'
+    'function () { import { default } from "module"; }',
+    'import { "foo"',
+    'import { "foo" }',
+    'import { "foo" } from',
+    'import { "foo", } from "./foo";',
+    'import { "foo" as "f" } from "./foo";',
+    'import { foo as "f" } from "./foo";'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -422,7 +428,13 @@ describe('Module - Import', () => {
     'import foo from "foo.js"; try { (() => { foo = 12; })() } catch(e) {}',
     'import { foo } from "foo.js"; try { (() => { foo = 12; })() } catch(e) { assert.areEqual("Assignment to const", e.message); }',
     'import * as foo from "foo.js"; try { (() => { foo = 12; })() } catch(e) { assert.areEqual("Assignment to const", e.message); }',
-    'import { foo as foo22 } from "foo.js"; try { (() => { foo22 = 12; })() } catch(e) { assert.areEqual("Assignment to const", e.message); }'
+    'import { foo as foo22 } from "foo.js"; try { (() => { foo22 = 12; })() } catch(e) { assert.areEqual("Assignment to const", e.message); }',
+    'import { "foo" as foo } from "./foo";',
+    'import { "foo" as foo, } from "./foo";',
+    'import { a, "foo" as foo, } from "./foo";',
+    'import { "foo" as foo, a } from "./foo";',
+    'import { "foo" as foo, a, } from "./foo";',
+    'import { "foo" as foo, "a" as a, default as b } from "./foo";'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -1583,6 +1595,47 @@ describe('Module - Import', () => {
           }
         ],
         sourceType: 'module'
+      }
+    ],
+    [
+      'import { default as f2, "foo" as foo } from "./foo";',
+      Context.Strict | Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ImportDeclaration',
+            specifiers: [
+              {
+                type: 'ImportSpecifier',
+                local: {
+                  type: 'Identifier',
+                  name: 'f2'
+                },
+                imported: {
+                  type: 'Identifier',
+                  name: 'default'
+                }
+              },
+              {
+                type: 'ImportSpecifier',
+                local: {
+                  type: 'Identifier',
+                  name: 'foo'
+                },
+                imported: {
+                  type: 'Literal',
+                  value: 'foo'
+                }
+              }
+            ],
+            source: {
+              type: 'Literal',
+              value: './foo'
+            }
+          }
+        ]
       }
     ]
   ]);
