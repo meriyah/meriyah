@@ -2560,7 +2560,7 @@ function parseImportDeclaration(
   };
 
   if (context & Context.OptionsNext) {
-    node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context, specifiers) : [];
+    node.attributes = parseImportAttributes(parser, context, specifiers);
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -2836,6 +2836,7 @@ function parseExportDeclaration(
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
   let source: ESTree.Literal | null = null;
+  let attributes: ESTree.ImportAttribute[] | null = null;
   let key: string;
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
@@ -2995,7 +2996,7 @@ function parseExportDeclaration(
       };
 
       if (context & Context.OptionsNext) {
-        node.attributes = parser.getToken() === Token.WithKeyword ? parseImportAttributes(parser, context) : [];
+        node.attributes = parseImportAttributes(parser, context);
       }
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
@@ -3064,6 +3065,10 @@ function parseExportDeclaration(
         if (parser.getToken() !== Token.StringLiteral) report(parser, Errors.InvalidExportImportSource, 'Export');
 
         source = parseLiteral(parser, context);
+
+        if (context & Context.OptionsNext) {
+          attributes = parseImportAttributes(parser, context, specifiers);
+        }
       } else if (scope) {
         let i = 0;
         let iMax = tmpExportedNames.length;
@@ -3174,12 +3179,18 @@ function parseExportDeclaration(
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 
-  return finishNode(parser, context, start, line, column, {
+  const node: ESTree.Node = {
     type: 'ExportNamedDeclaration',
     declaration,
     specifiers,
     source
-  });
+  };
+
+  if (attributes) {
+    node.attributes = attributes;
+  }
+
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**
@@ -4533,9 +4544,9 @@ export function parseImportExpression(
 export function parseImportAttributes(
   parser: ParserState,
   context: Context,
-  specifiers: ESTree.ImportDeclaration['specifiers'] = []
+  specifiers: (ESTree.ImportClause | ESTree.ExportSpecifier)[] | null = null
 ): ESTree.ImportAttribute[] {
-  consume(parser, context, Token.WithKeyword);
+  if (!consumeOpt(parser, context, Token.WithKeyword)) return [];
   consume(parser, context, Token.LeftBrace);
 
   const attributes: ESTree.ImportAttribute[] = [];
@@ -4554,10 +4565,13 @@ export function parseImportAttributes(
 
     if (isJSONImportAttribute) {
       const validJSONImportAttributeBindings =
-        specifiers.length === 1 &&
-        (specifiers[0].type === 'ImportDefaultSpecifier' ||
-          specifiers[0].type === 'ImportNamespaceSpecifier' ||
-          (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default'));
+        // ExportAllDeclaration has no specifiers
+        specifiers === null ||
+        (specifiers.length === 1 &&
+          (specifiers[0].type === 'ImportDefaultSpecifier' ||
+            specifiers[0].type === 'ImportNamespaceSpecifier' ||
+            (specifiers[0].type === 'ImportSpecifier' && specifiers[0].imported.name === 'default') ||
+            (specifiers[0].type === 'ExportSpecifier' && specifiers[0].local.name === 'default')));
 
       if (!validJSONImportAttributeBindings) report(parser, Errors.InvalidJSONImportBinding);
     }

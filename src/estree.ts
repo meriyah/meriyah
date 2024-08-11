@@ -439,6 +439,7 @@ export interface ExportNamedDeclaration extends _Node {
   declaration: ExportDeclaration | null;
   specifiers: ExportSpecifier[];
   source: Literal | null;
+  attributes?: ImportAttribute[];
 }
 
 export interface ExportSpecifier extends _Node {
