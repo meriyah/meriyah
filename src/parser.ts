@@ -2987,7 +2987,6 @@ function parseExportDeclaration(
       const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
 
       if (isNamedDeclaration) {
-        // TODO check "str" ModuleExportName for variable
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
         exported = parseModuleExportName(parser, context);
       }
@@ -3051,7 +3050,6 @@ function parseExportDeclaration(
             report(parser, Errors.InvalidKeywordAsAlias);
           }
           if (scope) {
-            // TODO: check "str" ModuleExportName
             tmpExportedNames.push(parser.tokenValue);
             tmpExportedBindings.push(tokenValue);
           }
@@ -3087,23 +3085,18 @@ function parseExportDeclaration(
         if (context & Context.OptionsNext) {
           attributes = parseImportAttributes(parser, context, specifiers);
         }
+
+        if (scope) {
+          tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
+        }
       } else {
         if (hasLiteralLocal) {
           report(parser, Errors.InvalidExportReference);
         }
 
         if (scope) {
-          let i = 0;
-          let iMax = tmpExportedNames.length;
-          for (; i < iMax; i++) {
-            declareUnboundVariable(parser, tmpExportedNames[i]);
-          }
-          i = 0;
-          iMax = tmpExportedBindings.length;
-
-          for (; i < iMax; i++) {
-            addBindingToExports(parser, tmpExportedBindings[i]);
-          }
+          tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
+          tmpExportedBindings.forEach((b) => addBindingToExports(parser, b));
         }
       }
 

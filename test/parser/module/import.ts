@@ -344,7 +344,20 @@ describe('Module - Import', () => {
     ['import foo from "string"; import foo from "string";', Context.Strict | Context.Module | Context.OptionsLexical],
     ['import { foo } from "string', Context.Strict | Context.Module | Context.OptionsLexical],
     ['import { foo as bar, bar } from "string";', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['() => { import arrow from ""; }', Context.Strict | Context.Module | Context.OptionsLexical]
+    ['() => { import arrow from ""; }', Context.Strict | Context.Module | Context.OptionsLexical],
+    [
+      'import * as "foo" from "./f"; import { foo } from "./m";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
+    [
+      'import * as foo from "./f"; import { foo } from "./m";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
+    ['import { foo } from "./f"; import { foo } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical],
+    [
+      'import { b as foo } from "./f"; import { "a" as foo } from "./m";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ]
   ]);
 
   for (const arg of [
