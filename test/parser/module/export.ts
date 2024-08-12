@@ -427,7 +427,18 @@ describe('Module - Export', () => {
     ['export {foob};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export { "a" as b };', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export { "\\uD83C" as b } from "./foo";', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { a as "\\uD83C" } from "./foo";', Context.Strict | Context.Module | Context.OptionsLexical]
+    ['export { a as "\\uD83C" } from "./foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export * as "foo" from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
+    ['export * as foo from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
+    [
+      'export * as foo from "./f"; export { "foo" } from "./m";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
+    [
+      'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
+    ['export { a }; export { "\\u0061" } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical]
   ]);
 
   for (const arg of [
