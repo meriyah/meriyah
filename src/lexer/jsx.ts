@@ -13,6 +13,7 @@ import { decodeHTMLStrict } from './decodeHTML';
  * @param context Context masks
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
+  // skip "=" before the value
   parser.startPos = parser.tokenPos = parser.index;
   parser.startColumn = parser.colPos = parser.column;
   parser.startLine = parser.linePos = parser.line;
@@ -122,6 +123,6 @@ export function scanJSXIdentifier(parser: ParserState): Token {
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
   }
-  parser.setToken(Token.Identifier);
+  parser.setToken(Token.Identifier, true);
   return parser.getToken();
 }

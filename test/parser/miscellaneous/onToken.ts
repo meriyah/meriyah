@@ -89,4 +89,116 @@ describe('Miscellaneous - onToken', () => {
     });
     t.equal(onTokenCount, 1);
   });
+
+  it('tokenize template literal', () => {
+    const tokens: any[] = [];
+    const source = 'var a = `${a}b${c}d`;';
+    parseScript(source, {
+      onToken(token: string, start: number, end: number) {
+        tokens.push({
+          token,
+          start,
+          end,
+          value: source.slice(start, end)
+        });
+      }
+    });
+    t.deepEqual(tokens, [
+      { token: 'Keyword', value: 'var', start: 0, end: 3 },
+      { token: 'Identifier', value: 'a', start: 4, end: 5 },
+      { token: 'Punctuator', value: '=', start: 6, end: 7 },
+      { token: 'TemplateLiteral', value: '`${', start: 8, end: 11 },
+      { token: 'Identifier', value: 'a', start: 11, end: 12 },
+      { token: 'TemplateLiteral', value: '}b${', start: 12, end: 16 },
+      { token: 'Identifier', value: 'c', start: 16, end: 17 },
+      { token: 'TemplateLiteral', value: '}d`', start: 17, end: 20 },
+      { token: 'Punctuator', value: ';', start: 20, end: 21 }
+    ]);
+  });
+
+  it('tokenize jsx', () => {
+    const tokens: any[] = [];
+    const source = 'var a = <div>\ndemo {w}\n<a-b>hello</a-b><c /></div>;';
+    parseScript(source, {
+      jsx: true,
+      onToken(token: string, start: number, end: number) {
+        tokens.push({
+          token,
+          start,
+          end,
+          value: source.slice(start, end)
+        });
+      }
+    });
+    t.deepEqual(tokens, [
+      { token: 'Keyword', start: 0, end: 3, value: 'var' },
+      { token: 'Identifier', start: 4, end: 5, value: 'a' },
+      { token: 'Punctuator', start: 6, end: 7, value: '=' },
+      { token: 'Punctuator', start: 8, end: 9, value: '<' },
+      { token: 'Identifier', start: 9, end: 12, value: 'div' },
+      { token: 'Punctuator', start: 12, end: 13, value: '>' },
+      { token: 'Punctuator', start: 13, end: 19, value: '\ndemo ' },
+      { token: 'Punctuator', start: 19, end: 20, value: '{' },
+      { token: 'Identifier', start: 20, end: 21, value: 'w' },
+      { token: 'Punctuator', start: 21, end: 22, value: '}' },
+      { token: 'Punctuator', start: 22, end: 23, value: '\n' },
+      { token: 'Punctuator', start: 23, end: 24, value: '<' },
+      { token: 'Identifier', start: 24, end: 27, value: 'a-b' },
+      { token: 'Punctuator', start: 27, end: 28, value: '>' },
+      { token: 'Punctuator', start: 28, end: 33, value: 'hello' },
+      { token: 'Punctuator', start: 33, end: 35, value: '</' },
+      { token: 'Identifier', start: 35, end: 38, value: 'a-b' },
+      { token: 'Punctuator', start: 38, end: 39, value: '>' },
+      { token: 'Punctuator', start: 39, end: 40, value: '<' },
+      { token: 'Identifier', start: 40, end: 41, value: 'c' },
+      { token: 'Punctuator', start: 42, end: 43, value: '/' },
+      { token: 'Punctuator', start: 43, end: 44, value: '>' },
+      { token: 'Punctuator', start: 44, end: 46, value: '</' },
+      { token: 'Identifier', start: 46, end: 49, value: 'div' },
+      { token: 'Punctuator', start: 49, end: 50, value: '>' },
+      { token: 'Punctuator', start: 50, end: 51, value: ';' }
+    ]);
+  });
+
+  it('tokenize jsx fragment', () => {
+    const tokens: any[] = [];
+    const source = 'var a = <>\ndemo {w}\n<a-b>hello</a-b><c /></>;';
+    parseScript(source, {
+      jsx: true,
+      onToken(token: string, start: number, end: number) {
+        tokens.push({
+          token,
+          start,
+          end,
+          value: source.slice(start, end)
+        });
+      }
+    });
+    t.deepEqual(tokens, [
+      { token: 'Keyword', start: 0, end: 3, value: 'var' },
+      { token: 'Identifier', start: 4, end: 5, value: 'a' },
+      { token: 'Punctuator', start: 6, end: 7, value: '=' },
+      { token: 'Punctuator', start: 8, end: 9, value: '<' },
+      { token: 'Punctuator', start: 9, end: 10, value: '>' },
+      { token: 'Punctuator', start: 10, end: 16, value: '\ndemo ' },
+      { token: 'Punctuator', start: 16, end: 17, value: '{' },
+      { token: 'Identifier', start: 17, end: 18, value: 'w' },
+      { token: 'Punctuator', start: 18, end: 19, value: '}' },
+      { token: 'Punctuator', start: 19, end: 20, value: '\n' },
+      { token: 'Punctuator', start: 20, end: 21, value: '<' },
+      { token: 'Identifier', start: 21, end: 24, value: 'a-b' },
+      { token: 'Punctuator', start: 24, end: 25, value: '>' },
+      { token: 'Punctuator', start: 25, end: 30, value: 'hello' },
+      { token: 'Punctuator', start: 30, end: 32, value: '</' },
+      { token: 'Identifier', start: 32, end: 35, value: 'a-b' },
+      { token: 'Punctuator', start: 35, end: 36, value: '>' },
+      { token: 'Punctuator', start: 36, end: 37, value: '<' },
+      { token: 'Identifier', start: 37, end: 38, value: 'c' },
+      { token: 'Punctuator', start: 39, end: 40, value: '/' },
+      { token: 'Punctuator', start: 40, end: 41, value: '>' },
+      { token: 'Punctuator', start: 41, end: 43, value: '</' },
+      { token: 'Punctuator', start: 43, end: 44, value: '>' },
+      { token: 'Punctuator', start: 44, end: 45, value: ';' }
+    ]);
+  });
 });

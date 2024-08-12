@@ -221,7 +221,7 @@ export interface ParserState {
   linePos: number;
   end: number;
   getToken(): Token;
-  setToken(token: Token): Token;
+  setToken(token: Token, replaceLast?: boolean): Token;
   onComment: OnComment | void;
   onInsertedSemicolon: OnInsertedSemicolon | void;
   onToken: OnToken | void;
