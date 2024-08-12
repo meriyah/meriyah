@@ -1,4 +1,4 @@
-import { nextToken, skipHashBang } from './lexer';
+import { convertTokenType, nextToken, skipHashBang } from './lexer';
 import { Token, KeywordDescTable } from './token';
 import * as ESTree from './estree';
 import { report, reportMessageAt, reportScopeError, Errors } from './errors';
@@ -61,7 +61,7 @@ export function create(
   onInsertedSemicolon: OnInsertedSemicolon | void
 ): ParserState {
   let token = Token.EOF;
-
+  let lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
   return {
     /**
      * The source code to be parsed
@@ -148,7 +148,31 @@ export function create(
      * This function exists as workaround for TS issue
      * https://github.com/microsoft/TypeScript/issues/9998
      */
-    setToken(value: Token) {
+    setToken(value: Token, replaceLast = false) {
+      if (onToken) {
+        if (value !== Token.EOF) {
+          const loc = {
+            start: {
+              line: this.linePos,
+              column: this.colPos
+            },
+            end: {
+              line: this.line,
+              column: this.column
+            }
+          };
+
+          if (!replaceLast && lastOnToken) {
+            onToken(...lastOnToken);
+          }
+          lastOnToken = [convertTokenType(value), this.tokenPos, this.index, loc];
+        } else {
+          if (lastOnToken) {
+            onToken(...lastOnToken);
+            lastOnToken = null;
+          }
+        }
+      }
       return (token = value);
     },
 
@@ -4789,7 +4813,7 @@ export function parseTemplate(parser: ParserState, context: Context): ESTree.Tem
 
   if (parser.getToken() !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
 
-  while (parser.setToken(scanTemplateTail(parser, context)) !== Token.TemplateSpan) {
+  while (parser.setToken(scanTemplateTail(parser, context), true) !== Token.TemplateSpan) {
     const { tokenValue, tokenRaw, tokenPos, linePos, colPos } = parser;
     consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
     quasis.push(
@@ -9046,7 +9070,7 @@ function parseJSXClosingElement(
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
-    parser.setToken(scanJSXToken(parser, context));
+    scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9095,10 +9119,6 @@ export function parseJSXClosingFragment(
 export function parseJSXChildren(parser: ParserState, context: Context): ESTree.JSXChild[] {
   const children: ESTree.JSXChild[] = [];
   while (parser.getToken() !== Token.JSXClose) {
-    parser.index = parser.tokenPos = parser.startPos;
-    parser.column = parser.colPos = parser.startColumn;
-    parser.line = parser.linePos = parser.startLine;
-    scanJSXToken(parser, context);
     children.push(parseJSXChild(parser, context, parser.tokenPos, parser.linePos, parser.colPos));
   }
   return children;

@@ -17,10 +17,10 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
 
   while (char !== Chars.Backtick) {
     if (char === Chars.Dollar && parser.source.charCodeAt(parser.index + 1) === Chars.LeftBrace) {
-      advanceChar(parser); // Skip: '}'
+      advanceChar(parser); // Skip: '$'
       token = Token.TemplateContinuation;
       break;
-    } else if ((char & 8) === 8 && char === Chars.Backslash) {
+    } else if (char === Chars.Backslash) {
       char = advanceChar(parser);
       if (char > 0x7e) {
         ret += fromCodePoint(char);
