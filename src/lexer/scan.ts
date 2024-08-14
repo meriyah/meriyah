@@ -304,7 +304,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
               // Check that it's not a comment start.
               if (index < parser.end) {
                 ch = source.charCodeAt(index);
-                if (ch === Chars.Asterisk || ch === Chars.Slash) break;
+                if (ch === Chars.Asterisk || ch === Chars.Slash) return Token.LessThan;
               }
               advanceChar(parser);
               return Token.JSXClose;
@@ -639,5 +639,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
       report(parser, Errors.IllegalCharacter, fromCodePoint(char));
     }
   }
+
   return Token.EOF;
 }
