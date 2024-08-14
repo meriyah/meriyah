@@ -9102,7 +9102,7 @@ export function parseJSXClosingFragment(
   if (inJSXChild) {
     consume(parser, context, Token.GreaterThan);
   } else {
-    consume(parser, context, Token.GreaterThan);
+    scanJSXToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {

@@ -3376,6 +3376,10 @@ describe('Miscellaneous - JSX', () => {
                       closingFragment: {
                         type: 'JSXClosingFragment'
                       }
+                    },
+                    {
+                      type: 'JSXText',
+                      value: '\n     '
                     }
                   ],
                   openingFragment: {
@@ -3384,6 +3388,10 @@ describe('Miscellaneous - JSX', () => {
                   closingFragment: {
                     type: 'JSXClosingFragment'
                   }
+                },
+                {
+                  type: 'JSXText',
+                  value: '\n   '
                 }
               ],
               openingFragment: {
@@ -3440,6 +3448,10 @@ describe('Miscellaneous - JSX', () => {
                       closingFragment: {
                         type: 'JSXClosingFragment'
                       }
+                    },
+                    {
+                      type: 'JSXText',
+                      value: '\n     '
                     }
                   ],
                   openingFragment: {
@@ -3448,6 +3460,10 @@ describe('Miscellaneous - JSX', () => {
                   closingFragment: {
                     type: 'JSXClosingFragment'
                   }
+                },
+                {
+                  type: 'JSXText',
+                  value: '\n   '
                 }
               ],
               openingFragment: {
@@ -12260,6 +12276,247 @@ describe('Miscellaneous - JSX', () => {
             column: 22
           }
         }
+      }
+    ],
+    [
+      '<a><// line\n/a>;',
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 1,
+                  end: 2,
+                  range: [1, 2]
+                },
+                attributes: [],
+                selfClosing: false,
+                start: 0,
+                end: 3,
+                range: [0, 3]
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 13,
+                  end: 14,
+                  range: [13, 14]
+                },
+                start: 12,
+                end: 15,
+                range: [12, 15]
+              },
+              start: 0,
+              end: 15,
+              range: [0, 15]
+            },
+            start: 0,
+            end: 16,
+            range: [0, 16]
+          }
+        ],
+        start: 0,
+        end: 16,
+        range: [0, 16]
+      }
+    ],
+    [
+      '<// line\na\n><\n/\na\n>;',
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 9,
+                  end: 10,
+                  range: [9, 10]
+                },
+                attributes: [],
+                selfClosing: false,
+                start: 0,
+                end: 12,
+                range: [0, 12]
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 16,
+                  end: 17,
+                  range: [16, 17]
+                },
+                start: 14,
+                end: 19,
+                range: [14, 19]
+              },
+              start: 0,
+              end: 19,
+              range: [0, 19]
+            },
+            start: 0,
+            end: 20,
+            range: [0, 20]
+          }
+        ],
+        start: 0,
+        end: 20,
+        range: [0, 20]
+      }
+    ],
+    [
+      '<a></* block */\n/a>;',
+      Context.OptionsJSX,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a'
+                },
+                attributes: [],
+                selfClosing: false
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a'
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    [
+      '</* open fragment */>\n</ /* close fragment */>;',
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXFragment',
+              openingFragment: {
+                type: 'JSXOpeningFragment',
+                start: 0,
+                end: 21,
+                range: [0, 21]
+              },
+              children: [
+                {
+                  type: 'JSXText',
+                  value: '\n',
+                  start: 21,
+                  end: 22,
+                  range: [21, 22]
+                }
+              ],
+              closingFragment: {
+                type: 'JSXClosingFragment',
+                start: 22,
+                end: 46,
+                range: [22, 46]
+              },
+              start: 0,
+              end: 46,
+              range: [0, 46]
+            },
+            start: 0,
+            end: 47,
+            range: [0, 47]
+          }
+        ],
+        start: 0,
+        end: 47,
+        range: [0, 47]
+      }
+    ],
+    [
+      '<a><  /a>',
+      Context.OptionsJSX | Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'JSXElement',
+              children: [],
+              openingElement: {
+                type: 'JSXOpeningElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 1,
+                  end: 2,
+                  range: [1, 2]
+                },
+                attributes: [],
+                selfClosing: false,
+                start: 0,
+                end: 3,
+                range: [0, 3]
+              },
+              closingElement: {
+                type: 'JSXClosingElement',
+                name: {
+                  type: 'JSXIdentifier',
+                  name: 'a',
+                  start: 7,
+                  end: 8,
+                  range: [7, 8]
+                },
+                start: 6,
+                end: 9,
+                range: [6, 9]
+              },
+              start: 0,
+              end: 9,
+              range: [0, 9]
+            },
+            start: 0,
+            end: 9,
+            range: [0, 9]
+          }
+        ],
+        start: 0,
+        end: 9,
+        range: [0, 9]
       }
     ]
   ]);
