@@ -209,17 +209,26 @@ export interface ScopeError {
  */
 export interface ParserState {
   source: string;
+  // End position of source, same as source.length.
+  end: number;
+
   flags: Flags;
+
+  // Current pointer, end of current token
   index: number;
   line: number;
   column: number;
-  tokenPos: number;
-  startPos: number;
+
+  // Start position of current token
+  tokenIndex: number;
+  tokenColumn: number;
+  tokenLine: number;
+
+  // Start position of whitespace/comment before current token,
+  startIndex: number;
   startColumn: number;
   startLine: number;
-  colPos: number;
-  linePos: number;
-  end: number;
+
   getToken(): Token;
   setToken(token: Token, replaceLast?: boolean): Token;
   onComment: OnComment | void;
@@ -255,12 +264,12 @@ export function matchOrInsertSemicolon(parser: ParserState, context: Context): v
 
   if (!consumeOpt(parser, context, Token.Semicolon)) {
     // Automatic semicolon insertion has occurred
-    parser.onInsertedSemicolon?.(parser.startPos);
+    parser.onInsertedSemicolon?.(parser.startIndex);
   }
 }
 
-export function isValidStrictMode(parser: ParserState, index: number, tokenPos: number, tokenValue: string): 0 | 1 {
-  if (index - tokenPos < 13 && tokenValue === 'use strict') {
+export function isValidStrictMode(parser: ParserState, index: number, tokenIndex: number, tokenValue: string): 0 | 1 {
+  if (index - tokenIndex < 13 && tokenValue === 'use strict') {
     if ((parser.getToken() & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
       return 1;
     }
@@ -511,8 +520,8 @@ export function finishNode<T extends Node>(
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
-    node.end = parser.startPos;
-    node.range = [start, parser.startPos];
+    node.end = parser.startIndex;
+    node.range = [start, parser.startIndex];
   }
 
   if (context & Context.OptionsLoc) {

@@ -151,7 +151,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
           // Most numbers are pure decimal integers without fractional component
           // or exponential notation.  Handle that with optimized code.
           parser.tokenValue = value;
-          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
+          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
           return Token.NumericLiteral;
         }
       }
@@ -203,7 +203,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
   }
 
   if (isBigInt) {
-    parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
+    parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
     parser.tokenValue = BigInt(value);
     return Token.BigIntLiteral;
   }
@@ -212,10 +212,10 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
     kind & (NumberKind.ImplicitOctal | NumberKind.Binary | NumberKind.Hex | NumberKind.Octal)
       ? value
       : kind & NumberKind.NonOctalDecimal
-        ? parseFloat(parser.source.substring(parser.tokenPos, parser.index))
+        ? parseFloat(parser.source.substring(parser.tokenIndex, parser.index))
         : +value;
 
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
   return Token.NumericLiteral;
 }
