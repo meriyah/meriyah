@@ -13,9 +13,9 @@ import { decodeHTMLStrict } from './decodeHTML';
  */
 export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
   // skip "=" before the value
-  parser.startPos = parser.tokenPos = parser.index;
-  parser.startColumn = parser.colPos = parser.column;
-  parser.startLine = parser.linePos = parser.line;
+  parser.startIndex = parser.tokenIndex = parser.index;
+  parser.startColumn = parser.tokenColumn = parser.column;
+  parser.startLine = parser.tokenLine = parser.line;
   parser.setToken(
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
       ? scanJSXString(parser, context)
@@ -42,7 +42,7 @@ export function scanJSXString(parser: ParserState, context: Context): Token {
   if (char !== quote) report(parser, Errors.UnterminatedString);
   parser.tokenValue = parser.source.slice(start, parser.index);
   advanceChar(parser); // skip the quote
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenPos, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
   return Token.StringLiteral;
 }
 
@@ -52,9 +52,9 @@ export function scanJSXString(parser: ParserState, context: Context): Token {
  * @param parser The parser object
  */
 export function scanJSXToken(parser: ParserState, context: Context): Token {
-  parser.startPos = parser.tokenPos = parser.index;
-  parser.startColumn = parser.colPos = parser.column;
-  parser.startLine = parser.linePos = parser.line;
+  parser.startIndex = parser.tokenIndex = parser.index;
+  parser.startColumn = parser.tokenColumn = parser.column;
+  parser.startLine = parser.tokenLine = parser.line;
 
   if (parser.index >= parser.end) return parser.setToken(Token.EOF);
 
@@ -73,12 +73,12 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
         index,
         line,
         column,
-        tokenPos,
-        startPos,
+        tokenIndex,
+        startIndex,
         startColumn,
         startLine,
-        colPos,
-        linePos,
+        tokenColumn,
+        tokenLine,
         currentChar,
         tokenValue,
         tokenRaw,
@@ -94,12 +94,12 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
         parser.index = index;
         parser.line = line;
         parser.column = column;
-        parser.tokenPos = tokenPos;
-        parser.startPos = startPos;
+        parser.tokenIndex = tokenIndex;
+        parser.startIndex = startIndex;
         parser.startColumn = startColumn;
         parser.startLine = startLine;
-        parser.colPos = colPos;
-        parser.linePos = linePos;
+        parser.tokenColumn = tokenColumn;
+        parser.tokenLine = tokenLine;
         parser.currentChar = currentChar;
         parser.tokenValue = tokenValue;
         parser.tokenRaw = tokenRaw;
@@ -133,7 +133,7 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
         if (CharTypes[parser.currentChar] & CharFlags.JSXToken) break;
       }
 
-      const raw = parser.source.slice(parser.tokenPos, parser.index);
+      const raw = parser.source.slice(parser.tokenIndex, parser.index);
       if (context & Context.OptionsRaw) parser.tokenRaw = raw;
       parser.tokenValue = decodeHTMLStrict(raw);
       parser.setToken(Token.JSXText);

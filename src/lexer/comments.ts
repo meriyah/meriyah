@@ -31,9 +31,9 @@ export function skipHashBang(parser: ParserState): void {
       source,
       LexerState.None,
       CommentType.HashBang,
-      parser.tokenPos,
-      parser.linePos,
-      parser.colPos
+      parser.tokenIndex,
+      parser.tokenLine,
+      parser.tokenColumn
     );
   }
 }
@@ -68,9 +68,9 @@ export function skipSingleLineComment(
   column: number
 ): LexerState {
   const { index } = parser;
-  parser.tokenPos = parser.index;
-  parser.linePos = parser.line;
-  parser.colPos = parser.column;
+  parser.tokenIndex = parser.index;
+  parser.tokenLine = parser.line;
+  parser.tokenColumn = parser.column;
   while (parser.index < parser.end) {
     if (CharTypes[parser.currentChar] & CharFlags.LineTerminator) {
       const isCR = parser.currentChar === Chars.CarriageReturn;
@@ -83,9 +83,9 @@ export function skipSingleLineComment(
       break;
     }
     advanceChar(parser);
-    parser.tokenPos = parser.index;
-    parser.linePos = parser.line;
-    parser.colPos = parser.column;
+    parser.tokenIndex = parser.index;
+    parser.tokenLine = parser.line;
+    parser.tokenColumn = parser.column;
   }
   if (parser.onComment) {
     const loc = {
@@ -94,14 +94,14 @@ export function skipSingleLineComment(
         column
       },
       end: {
-        line: parser.linePos,
-        column: parser.colPos
+        line: parser.tokenLine,
+        column: parser.tokenColumn
       }
     };
     // For Single, start before "//",
     // For HTMLOpen, start before "<!--",
     // For HTMLClose, start before "\n-->"
-    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenPos), start, parser.tokenPos, loc);
+    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenIndex), start, parser.tokenIndex, loc);
   }
   return state | LexerState.NewLine;
 }
@@ -127,8 +127,8 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
           if (parser.onComment) {
             const loc = {
               start: {
-                line: parser.linePos,
-                column: parser.colPos
+                line: parser.tokenLine,
+                column: parser.tokenColumn
               },
               end: {
                 line: parser.line,
@@ -143,9 +143,9 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
               loc
             );
           }
-          parser.tokenPos = parser.index;
-          parser.linePos = parser.line;
-          parser.colPos = parser.column;
+          parser.tokenIndex = parser.index;
+          parser.tokenLine = parser.line;
+          parser.tokenColumn = parser.column;
           return state;
         }
       }
