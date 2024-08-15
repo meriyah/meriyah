@@ -146,14 +146,16 @@ describe('Miscellaneous - onToken', () => {
       { token: 'Identifier', start: 24, end: 27, value: 'a-b' },
       { token: 'Punctuator', start: 27, end: 28, value: '>' },
       { token: 'Punctuator', start: 28, end: 33, value: 'hello' },
-      { token: 'Punctuator', start: 33, end: 35, value: '</' },
+      { token: 'Punctuator', start: 33, end: 34, value: '<' },
+      { token: 'Punctuator', start: 34, end: 35, value: '/' },
       { token: 'Identifier', start: 35, end: 38, value: 'a-b' },
       { token: 'Punctuator', start: 38, end: 39, value: '>' },
       { token: 'Punctuator', start: 39, end: 40, value: '<' },
       { token: 'Identifier', start: 40, end: 41, value: 'c' },
       { token: 'Punctuator', start: 42, end: 43, value: '/' },
       { token: 'Punctuator', start: 43, end: 44, value: '>' },
-      { token: 'Punctuator', start: 44, end: 46, value: '</' },
+      { token: 'Punctuator', start: 44, end: 45, value: '<' },
+      { token: 'Punctuator', start: 45, end: 46, value: '/' },
       { token: 'Identifier', start: 46, end: 49, value: 'div' },
       { token: 'Punctuator', start: 49, end: 50, value: '>' },
       { token: 'Punctuator', start: 50, end: 51, value: ';' }
@@ -189,14 +191,16 @@ describe('Miscellaneous - onToken', () => {
       { token: 'Identifier', start: 21, end: 24, value: 'a-b' },
       { token: 'Punctuator', start: 24, end: 25, value: '>' },
       { token: 'Punctuator', start: 25, end: 30, value: 'hello' },
-      { token: 'Punctuator', start: 30, end: 32, value: '</' },
+      { token: 'Punctuator', start: 30, end: 31, value: '<' },
+      { token: 'Punctuator', start: 31, end: 32, value: '/' },
       { token: 'Identifier', start: 32, end: 35, value: 'a-b' },
       { token: 'Punctuator', start: 35, end: 36, value: '>' },
       { token: 'Punctuator', start: 36, end: 37, value: '<' },
       { token: 'Identifier', start: 37, end: 38, value: 'c' },
       { token: 'Punctuator', start: 39, end: 40, value: '/' },
       { token: 'Punctuator', start: 40, end: 41, value: '>' },
-      { token: 'Punctuator', start: 41, end: 43, value: '</' },
+      { token: 'Punctuator', start: 41, end: 42, value: '<' },
+      { token: 'Punctuator', start: 42, end: 43, value: '/' },
       { token: 'Punctuator', start: 43, end: 44, value: '>' },
       { token: 'Punctuator', start: 44, end: 45, value: ';' }
     ]);
@@ -220,9 +224,35 @@ describe('Miscellaneous - onToken', () => {
       { token: 'Punctuator', start: 0, end: 1, value: '<' },
       { token: 'Identifier', start: 2, end: 3, value: 'a' },
       { token: 'Punctuator', start: 3, end: 4, value: '>' },
-      { token: 'Punctuator', start: 4, end: 7, value: '< /' },
+      { token: 'Punctuator', start: 4, end: 5, value: '<' },
+      { token: 'Punctuator', start: 6, end: 7, value: '/' },
       { token: 'Identifier', start: 7, end: 8, value: 'a' },
       { token: 'Punctuator', start: 9, end: 10, value: '>' }
+    ]);
+  });
+
+  it('tokenize jsx with comments', () => {
+    const tokens: any[] = [];
+    const source = '<// lorem\na>< /* mm */ / /* xx */ a\n>';
+    parseScript(source, {
+      jsx: true,
+      onToken(token: string, start: number, end: number) {
+        tokens.push({
+          token,
+          start,
+          end,
+          value: source.slice(start, end)
+        });
+      }
+    });
+    t.deepEqual(tokens, [
+      { token: 'Punctuator', start: 0, end: 1, value: '<' },
+      { token: 'Identifier', start: 10, end: 11, value: 'a' },
+      { token: 'Punctuator', start: 11, end: 12, value: '>' },
+      { token: 'Punctuator', start: 12, end: 13, value: '<' },
+      { token: 'Punctuator', start: 23, end: 24, value: '/' },
+      { token: 'Identifier', start: 34, end: 35, value: 'a' },
+      { token: 'Punctuator', start: 36, end: 37, value: '>' }
     ]);
   });
 });

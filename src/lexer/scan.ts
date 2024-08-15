@@ -256,9 +256,9 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
           break;
 
-        // `<`, `<=`, `<<`, `<<=`, `</`, `<!--`
+        // `<`, `<=`, `<<`, `<<=`, `<!--`
         case Token.LessThan: {
-          let ch = advanceChar(parser);
+          const ch = advanceChar(parser);
           if (parser.index < parser.end) {
             if (ch === Chars.LessThan) {
               if (parser.index < parser.end && advanceChar(parser) === Chars.EqualSign) {
@@ -296,18 +296,6 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 continue;
               }
               return Token.LessThan;
-            }
-            if (ch === Chars.Slash) {
-              if ((context & Context.OptionsJSX) === 0) return Token.LessThan;
-              const index = parser.index + 1;
-
-              // Check that it's not a comment start.
-              if (index < parser.end) {
-                ch = source.charCodeAt(index);
-                if (ch === Chars.Asterisk || ch === Chars.Slash) return Token.LessThan;
-              }
-              advanceChar(parser);
-              return Token.JSXClose;
             }
           }
           return Token.LessThan;

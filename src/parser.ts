@@ -3,7 +3,7 @@ import { Token, KeywordDescTable } from './token';
 import * as ESTree from './estree';
 import { report, reportMessageAt, reportScopeError, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
-import { scanJSXIdentifier, scanJSXToken, scanJSXAttributeValue } from './lexer/jsx';
+import { rescanJSXIdentifier, nextJSXToken, scanJSXAttributeValue } from './lexer/jsx';
 import {
   Context,
   ParserState,
@@ -4418,7 +4418,7 @@ export function parsePrimaryExpression(
 
     // Only a "simple validation" is done here to handle 'let' edge cases
 
-    if ((token & Token.LetKeyword) === Token.LetKeyword) {
+    if ((token & Token.Type) === (Token.LetKeyword & Token.Type)) {
       if (context & Context.Strict) report(parser, Errors.StrictInvalidLetInExprPos);
       if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
     }
@@ -4492,7 +4492,7 @@ export function parsePrimaryExpression(
       return parseImportCallOrMetaExpression(parser, context, inNew, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
-        return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
+        return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 0, start, line, column);
     default:
       if (isValidIdentifier(context, parser.getToken()))
         return parseIdentifierOrArrow(parser, context, start, line, column);
@@ -9338,7 +9338,8 @@ function parseAndClassifyIdentifier(
   if (context & (Context.Module | Context.InYieldContext) && token === Token.YieldKeyword) {
     report(parser, Errors.YieldInParameter);
   }
-  if ((token & Token.LetKeyword) === Token.LetKeyword) {
+
+  if ((token & Token.Type) === (Token.LetKeyword & Token.Type)) {
     if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
   }
   if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
@@ -9374,29 +9375,30 @@ function parseJSXRootElementOrFragment(
   line: number,
   column: number
 ): ESTree.JSXElement | ESTree.JSXFragment {
-  nextToken(parser, context);
+  // "<" is pre-consumed in parseJSXChildren
+  if (!inJSXChild) consume(parser, context, Token.LessThan);
 
   // JSX fragments
   if (parser.getToken() === Token.GreaterThan) {
+    const openingFragment = parseOpeningFragment(parser, context, start, line, column);
+    const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, inJSXChild);
+
     return finishNode(parser, context, start, line, column, {
       type: 'JSXFragment',
-      openingFragment: parseOpeningFragment(parser, context, start, line, column),
-      children: parseJSXChildren(parser, context),
-      closingFragment: parseJSXClosingFragment(
-        parser,
-        context,
-        inJSXChild,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn
-      )
+      openingFragment,
+      children,
+      closingFragment
     });
   }
+
+  // Unexpected JSX Close
+  if (parser.getToken() === Token.Divide)
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
 
   let closingElement: ESTree.JSXClosingElement | null = null;
   let children: ESTree.JSXChild[] = [];
 
-  const openingElement: ESTree.JSXOpeningElement = parseJSXOpeningFragmentOrSelfCloseElement(
+  const openingElement: ESTree.JSXOpeningElement = parseJSXOpeningElementOrSelfCloseElement(
     parser,
     context,
     inJSXChild,
@@ -9406,15 +9408,8 @@ function parseJSXRootElementOrFragment(
   );
 
   if (!openingElement.selfClosing) {
-    children = parseJSXChildren(parser, context);
-    closingElement = parseJSXClosingElement(
-      parser,
-      context,
-      inJSXChild,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn
-    );
+    [children, closingElement] = parseJSXChildrenAndClosingElement(parser, context, inJSXChild);
+
     const close = isEqualTagName(closingElement.name);
     if (isEqualTagName(openingElement.name) !== close) report(parser, Errors.ExpectedJSXClosingTag, close);
   }
@@ -9443,7 +9438,7 @@ export function parseOpeningFragment(
   line: number,
   column: number
 ): ESTree.JSXOpeningFragment {
-  scanJSXToken(parser, context);
+  nextJSXToken(parser, context);
   return finishNode(parser, context, start, line, column, {
     type: 'JSXOpeningFragment'
   });
@@ -9467,12 +9462,17 @@ function parseJSXClosingElement(
   line: number,
   column: number
 ): ESTree.JSXClosingElement {
-  consume(parser, context, Token.JSXClose);
+  consume(parser, context, Token.Divide);
   const name = parseJSXElementName(parser, context, parser.tokenIndex, parser.tokenLine, parser.tokenColumn);
+
+  if (parser.getToken() !== Token.GreaterThan) {
+    report(parser, Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
+  }
+
   if (inJSXChild) {
-    consume(parser, context, Token.GreaterThan);
+    nextJSXToken(parser, context);
   } else {
-    scanJSXToken(parser, context);
+    nextToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9499,12 +9499,16 @@ export function parseJSXClosingFragment(
   line: number,
   column: number
 ): ESTree.JSXClosingFragment {
-  consume(parser, context, Token.JSXClose);
+  consume(parser, context, Token.Divide);
+
+  if (parser.getToken() !== Token.GreaterThan) {
+    report(parser, Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
+  }
 
   if (inJSXChild) {
-    consume(parser, context, Token.GreaterThan);
+    nextJSXToken(parser, context);
   } else {
-    scanJSXToken(parser, context);
+    nextToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9518,16 +9522,58 @@ export function parseJSXClosingFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXChildren(parser: ParserState, context: Context): ESTree.JSXChild[] {
+export function parseJSXChildrenAndClosingElement(
+  parser: ParserState,
+  context: Context,
+  inJSXChild: 0 | 1
+): [ESTree.JSXChild[], ESTree.JSXClosingElement] {
   const children: ESTree.JSXChild[] = [];
-  while (parser.getToken() !== Token.JSXClose) {
-    children.push(parseJSXChild(parser, context, parser.tokenIndex, parser.tokenLine, parser.tokenColumn));
+  while (true) {
+    const child = parseJSXChildOrClosingElement(
+      parser,
+      context,
+      inJSXChild,
+      parser.tokenIndex,
+      parser.tokenLine,
+      parser.tokenColumn
+    );
+    if (child.type === 'JSXClosingElement') {
+      return [children, child];
+    }
+    children.push(child);
   }
-  return children;
 }
 
 /**
- * Parses a JSX child node
+ * Parses JSX children
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ */
+export function parseJSXChildrenAndClosingFragment(
+  parser: ParserState,
+  context: Context,
+  inJSXChild: 0 | 1
+): [ESTree.JSXChild[], ESTree.JSXClosingFragment] {
+  const children: ESTree.JSXChild[] = [];
+  while (true) {
+    const child = parseJSXChildOrClosingFragment(
+      parser,
+      context,
+      inJSXChild,
+      parser.tokenIndex,
+      parser.tokenLine,
+      parser.tokenColumn
+    );
+    if (child.type === 'JSXClosingFragment') {
+      return [children, child];
+    }
+    children.push(child);
+  }
+}
+
+/**
+ * Parses a JSX child node or closing element
  *
  * @param parser Parser object
  * @param context  Context masks
@@ -9535,12 +9581,54 @@ export function parseJSXChildren(parser: ParserState, context: Context): ESTree.
  * @param line
  * @param column
  */
-function parseJSXChild(parser: ParserState, context: Context, start: number, line: number, column: number): any {
+function parseJSXChildOrClosingElement(
+  parser: ParserState,
+  context: Context,
+  inJSXChild: 0 | 1,
+  start: number,
+  line: number,
+  column: number
+) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context, start, line, column);
   if (parser.getToken() === Token.LeftBrace)
-    return parseJSXExpressionContainer(parser, context, /*inJSXChild*/ 0, /* isAttr */ 0, start, line, column);
-  if (parser.getToken() === Token.LessThan)
-    return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 0, start, line, column);
+    return parseJSXExpressionContainer(parser, context, /*inJSXChild*/ 1, /* isAttr */ 0, start, line, column);
+  if (parser.getToken() === Token.LessThan) {
+    nextToken(parser, context);
+    if (parser.getToken() === Token.Divide)
+      return parseJSXClosingElement(parser, context, inJSXChild, start, line, column);
+    return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
+  }
+
+  report(parser, Errors.Unexpected);
+}
+
+/**
+ * Parses a JSX child node or closing fragment
+ *
+ * @param parser Parser object
+ * @param context  Context masks
+ * @param start
+ * @param line
+ * @param column
+ */
+function parseJSXChildOrClosingFragment(
+  parser: ParserState,
+  context: Context,
+  inJSXChild: 0 | 1,
+  start: number,
+  line: number,
+  column: number
+) {
+  if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context, start, line, column);
+  if (parser.getToken() === Token.LeftBrace)
+    return parseJSXExpressionContainer(parser, context, /*inJSXChild*/ 1, /* isAttr */ 0, start, line, column);
+  if (parser.getToken() === Token.LessThan) {
+    nextToken(parser, context);
+    if (parser.getToken() === Token.Divide)
+      return parseJSXClosingFragment(parser, context, inJSXChild, start, line, column);
+    return parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, start, line, column);
+  }
+
   report(parser, Errors.Unexpected);
 }
 
@@ -9560,7 +9648,7 @@ export function parseJSXText(
   line: number,
   column: number
 ): ESTree.JSXText {
-  scanJSXToken(parser, context);
+  nextToken(parser, context);
 
   const node = {
     type: 'JSXText',
@@ -9584,7 +9672,7 @@ export function parseJSXText(
  * @param line
  * @param column
  */
-function parseJSXOpeningFragmentOrSelfCloseElement(
+function parseJSXOpeningElementOrSelfCloseElement(
   parser: ParserState,
   context: Context,
   inJSXChild: 0 | 1,
@@ -9602,15 +9690,16 @@ function parseJSXOpeningFragmentOrSelfCloseElement(
   const attributes = parseJSXAttributes(parser, context);
   const selfClosing = parser.getToken() === Token.Divide;
 
-  if (parser.getToken() === Token.GreaterThan) {
-    scanJSXToken(parser, context);
+  if (selfClosing) consume(parser, context, Token.Divide);
+
+  if (parser.getToken() !== Token.GreaterThan) {
+    report(parser, Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
+  }
+
+  if (inJSXChild || !selfClosing) {
+    nextJSXToken(parser, context);
   } else {
-    consume(parser, context, Token.Divide);
-    if (inJSXChild) {
-      consume(parser, context, Token.GreaterThan);
-    } else {
-      scanJSXToken(parser, context);
-    }
+    nextToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
@@ -9637,7 +9726,7 @@ function parseJSXElementName(
   line: number,
   column: number
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression | ESTree.JSXNamespacedName {
-  scanJSXIdentifier(parser);
+  rescanJSXIdentifier(parser);
 
   let key: ESTree.JSXIdentifier | ESTree.JSXMemberExpression = parseJSXIdentifier(parser, context, start, line, column);
 
@@ -9646,7 +9735,7 @@ function parseJSXElementName(
 
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
-    scanJSXIdentifier(parser);
+    rescanJSXIdentifier(parser);
     key = parseJSXMemberExpression(parser, context, key, start, line, column);
   }
   return key;
@@ -9744,7 +9833,7 @@ function parseJsxAttribute(
   column: number
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
   if (parser.getToken() === Token.LeftBrace) return parseJSXSpreadAttribute(parser, context, start, line, column);
-  scanJSXIdentifier(parser);
+  rescanJSXIdentifier(parser);
   let value: ESTree.JSXAttributeValue | null = null;
   let name: ESTree.JSXNamespacedName | ESTree.JSXIdentifier = parseJSXIdentifier(parser, context, start, line, column);
 
@@ -9761,10 +9850,10 @@ function parseJsxAttribute(
         value = parseLiteral(parser, context);
         break;
       case Token.LessThan:
-        value = parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 1, tokenIndex, tokenLine, tokenColumn);
+        value = parseJSXRootElementOrFragment(parser, context, /*inJSXChild*/ 0, tokenIndex, tokenLine, tokenColumn)!;
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(parser, context, 1, 1, tokenIndex, tokenLine, tokenColumn);
+        value = parseJSXExpressionContainer(parser, context, /*inJSXChild*/ 0, 1, tokenIndex, tokenLine, tokenColumn);
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -9838,10 +9927,15 @@ function parseJSXExpressionContainer(
   } else {
     expression = parseExpression(parser, context, 1, 0, tokenIndex, tokenLine, tokenColumn);
   }
+
+  if (parser.getToken() !== Token.RightBrace) {
+    report(parser, Errors.ExpectedToken, KeywordDescTable[Token.RightBrace & Token.Type]);
+  }
+
   if (inJSXChild) {
-    consume(parser, context, Token.RightBrace);
+    nextJSXToken(parser, context);
   } else {
-    scanJSXToken(parser, context);
+    nextToken(parser, context);
   }
 
   return finishNode(parser, context, start, line, column, {
