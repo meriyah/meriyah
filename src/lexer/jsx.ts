@@ -68,42 +68,43 @@ export function scanJSXToken(parser: ParserState, context: Context): Token {
       if (parser.getToken() !== Token.LessThan)
         report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
 
-      // Possible white space or comments between "<" and "/".
+      // Possible whitespace or comments between "<" and "/".
       const {
         index,
         line,
         column,
         tokenIndex,
+        tokenColumn,
+        tokenLine,
         startIndex,
         startColumn,
         startLine,
-        tokenColumn,
-        tokenLine,
         currentChar,
         tokenValue,
         tokenRaw,
         tokenRegExp
       } = parser;
       const tokenAfter = scanSingleToken(parser, context, LexerState.None);
+      parser.tokenIndex = tokenIndex;
+      parser.tokenColumn = tokenColumn;
+      parser.tokenLine = tokenLine;
+      parser.startIndex = startIndex;
+      parser.startColumn = startColumn;
+      parser.startLine = startLine;
+      // Punctuator doesn't change tokenValue or raw, just keep previous
+      parser.tokenValue = tokenValue;
+      parser.tokenRaw = tokenRaw;
+      parser.tokenRegExp = tokenRegExp;
 
       if (tokenAfter === Token.Divide) {
         // Rewrite LessThan + Divide as JSXClose
         parser.setToken(Token.JSXClose, true);
       } else {
-        // Reset if not merged
+        // Restore if not merged
         parser.index = index;
         parser.line = line;
         parser.column = column;
-        parser.tokenIndex = tokenIndex;
-        parser.startIndex = startIndex;
-        parser.startColumn = startColumn;
-        parser.startLine = startLine;
-        parser.tokenColumn = tokenColumn;
-        parser.tokenLine = tokenLine;
         parser.currentChar = currentChar;
-        parser.tokenValue = tokenValue;
-        parser.tokenRaw = tokenRaw;
-        parser.tokenRegExp = tokenRegExp;
       }
 
       break;
