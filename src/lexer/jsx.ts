@@ -1,9 +1,10 @@
 import { CharFlags, CharTypes } from './charClassifier';
-import { KeywordDescTable, Token } from '../token';
+import { Token } from '../token';
 import { ParserState, Context } from '../common';
 import { report, Errors } from '../errors';
-import { advanceChar, LexerState, TokenLookup, scanSingleToken, scanNewLine, consumeLineFeed, nextToken } from './';
+import { advanceChar, LexerState, scanSingleToken, scanNewLine, consumeLineFeed } from './';
 import { decodeHTMLStrict } from './decodeHTML';
+import { Chars } from '../chars';
 
 /**
  * Scans JSX attribute value
@@ -47,109 +48,65 @@ export function scanJSXString(parser: ParserState, context: Context): Token {
 }
 
 /**
- * Scans JSX token
+ * consume Token.LessThan, Token.LeftBrace, or Token.JSXText
  *
  * @param parser The parser object
  */
-export function scanJSXToken(parser: ParserState, context: Context): Token {
+export function nextJSXToken(parser: ParserState, context: Context) {
   parser.startIndex = parser.tokenIndex = parser.index;
   parser.startColumn = parser.tokenColumn = parser.column;
   parser.startLine = parser.tokenLine = parser.line;
 
-  if (parser.index >= parser.end) return parser.setToken(Token.EOF);
-
-  const token = TokenLookup[parser.source.charCodeAt(parser.index)];
-
-  switch (token) {
-    // '<'
-    case Token.LessThan: {
-      nextToken(parser, context);
-      if (parser.getToken() === Token.JSXClose) break;
-      if (parser.getToken() !== Token.LessThan)
-        report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
-
-      // Possible whitespace or comments between "<" and "/".
-      const {
-        index,
-        line,
-        column,
-        tokenIndex,
-        tokenColumn,
-        tokenLine,
-        startIndex,
-        startColumn,
-        startLine,
-        currentChar,
-        tokenValue,
-        tokenRaw,
-        tokenRegExp
-      } = parser;
-      const tokenAfter = scanSingleToken(parser, context, LexerState.None);
-      parser.tokenIndex = tokenIndex;
-      parser.tokenColumn = tokenColumn;
-      parser.tokenLine = tokenLine;
-      parser.startIndex = startIndex;
-      parser.startColumn = startColumn;
-      parser.startLine = startLine;
-      // Punctuator doesn't change tokenValue or raw, just keep previous
-      parser.tokenValue = tokenValue;
-      parser.tokenRaw = tokenRaw;
-      parser.tokenRegExp = tokenRegExp;
-
-      if (tokenAfter === Token.Divide) {
-        // Rewrite LessThan + Divide as JSXClose
-        parser.setToken(Token.JSXClose, true);
-      } else {
-        // Restore if not merged
-        parser.index = index;
-        parser.line = line;
-        parser.column = column;
-        parser.currentChar = currentChar;
-      }
-
-      break;
-    }
-    // '{'
-    case Token.LeftBrace: {
-      advanceChar(parser);
-      parser.setToken(Token.LeftBrace);
-      break;
-    }
-    default: {
-      let state = LexerState.None;
-
-      while (parser.index < parser.end) {
-        const type = CharTypes[parser.source.charCodeAt(parser.index)];
-
-        if (type & CharFlags.CarriageReturn) {
-          state |= LexerState.NewLine | LexerState.LastIsCR;
-          scanNewLine(parser);
-        } else if (type & CharFlags.LineFeed) {
-          consumeLineFeed(parser, state);
-          state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
-        } else {
-          advanceChar(parser);
-        }
-
-        if (CharTypes[parser.currentChar] & CharFlags.JSXToken) break;
-      }
-
-      const raw = parser.source.slice(parser.tokenIndex, parser.index);
-      if (context & Context.OptionsRaw) parser.tokenRaw = raw;
-      parser.tokenValue = decodeHTMLStrict(raw);
-      parser.setToken(Token.JSXText);
-    }
+  if (parser.index >= parser.end) {
+    parser.setToken(Token.EOF);
+    return;
   }
 
-  return parser.getToken();
+  if (parser.currentChar === Chars.LessThan) {
+    advanceChar(parser);
+    parser.setToken(Token.LessThan);
+    return;
+  }
+
+  if (parser.currentChar === Chars.LeftBrace) {
+    advanceChar(parser);
+    parser.setToken(Token.LeftBrace);
+    return;
+  }
+
+  let state = LexerState.None;
+
+  while (parser.index < parser.end) {
+    const type = CharTypes[parser.source.charCodeAt(parser.index)];
+
+    if (type & CharFlags.CarriageReturn) {
+      state |= LexerState.NewLine | LexerState.LastIsCR;
+      scanNewLine(parser);
+    } else if (type & CharFlags.LineFeed) {
+      consumeLineFeed(parser, state);
+      state = (state & ~LexerState.LastIsCR) | LexerState.NewLine;
+    } else {
+      advanceChar(parser);
+    }
+
+    if (CharTypes[parser.currentChar] & CharFlags.JSXToken) break;
+  }
+
+  // No text, next char is "}" or ">"
+  if (parser.tokenIndex === parser.index) report(parser, Errors.Unexpected);
+
+  const raw = parser.source.slice(parser.tokenIndex, parser.index);
+  if (context & Context.OptionsRaw) parser.tokenRaw = raw;
+  parser.tokenValue = decodeHTMLStrict(raw);
+  parser.setToken(Token.JSXText);
 }
 
 /**
- * Scans JSX identifier
+ * Re-scans JSX identifier which might include hyphen
  *
  * @param parser The parser instance
  */
-export function scanJSXIdentifier(parser: ParserState): Token {
+export function rescanJSXIdentifier(parser: ParserState): Token {
   if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
     let char = parser.currentChar;
