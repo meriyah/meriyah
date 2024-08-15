@@ -201,4 +201,28 @@ describe('Miscellaneous - onToken', () => {
       { token: 'Punctuator', start: 44, end: 45, value: ';' }
     ]);
   });
+
+  it('tokenize jsx with gaps', () => {
+    const tokens: any[] = [];
+    const source = '<\na>< /a\n>';
+    parseScript(source, {
+      jsx: true,
+      onToken(token: string, start: number, end: number) {
+        tokens.push({
+          token,
+          start,
+          end,
+          value: source.slice(start, end)
+        });
+      }
+    });
+    t.deepEqual(tokens, [
+      { token: 'Punctuator', start: 0, end: 1, value: '<' },
+      { token: 'Identifier', start: 2, end: 3, value: 'a' },
+      { token: 'Punctuator', start: 3, end: 4, value: '>' },
+      { token: 'Punctuator', start: 4, end: 7, value: '< /' },
+      { token: 'Identifier', start: 7, end: 8, value: 'a' },
+      { token: 'Punctuator', start: 9, end: 10, value: '>' }
+    ]);
+  });
 });
