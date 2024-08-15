@@ -12314,9 +12314,9 @@ describe('Miscellaneous - JSX', () => {
                   end: 14,
                   range: [13, 14]
                 },
-                start: 12,
+                start: 3,
                 end: 15,
-                range: [12, 15]
+                range: [3, 15]
               },
               start: 0,
               end: 15,
@@ -12368,9 +12368,9 @@ describe('Miscellaneous - JSX', () => {
                   end: 17,
                   range: [16, 17]
                 },
-                start: 14,
+                start: 12,
                 end: 19,
-                range: [14, 19]
+                range: [12, 19]
               },
               start: 0,
               end: 19,
@@ -12501,9 +12501,9 @@ describe('Miscellaneous - JSX', () => {
                   end: 8,
                   range: [7, 8]
                 },
-                start: 6,
+                start: 3,
                 end: 9,
-                range: [6, 9]
+                range: [3, 9]
               },
               start: 0,
               end: 9,
