@@ -388,7 +388,15 @@ export function parseStatementList(
       context |= Context.Strict;
 
       if (parser.flags & Flags.Octals) {
-        reportMessageAt(parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
+        reportMessageAt(
+          parser.tokenIndex,
+          parser.tokenLine,
+          parser.tokenColumn,
+          parser.index,
+          parser.line,
+          parser.column,
+          Errors.StrictOctalLiteral
+        );
       }
     }
     statements.push(parseDirective(parser, context, expr, token, tokenIndex, tokenLine, tokenColumn));
@@ -2206,8 +2214,11 @@ function parseVariableDeclaration(
       ) {
         reportMessageAt(
           tokenIndex,
+          tokenLine,
+          tokenColumn,
+          parser.index,
           parser.line,
-          parser.index - 3,
+          parser.column,
           Errors.ForInOfLoopInitializer,
           parser.getToken() === Token.OfKeyword ? 'of' : 'in'
         );
@@ -2645,8 +2656,11 @@ function parseImportNamespaceSpecifier(
   if ((parser.getToken() & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     reportMessageAt(
       tokenIndex,
-      parser.line,
+      tokenLine,
+      tokenColumn,
       parser.index,
+      parser.line,
+      parser.column,
       Errors.UnexpectedToken,
       KeywordDescTable[parser.getToken() & Token.Type]
     );
@@ -3805,7 +3819,15 @@ export function parseAwaitExpression(
     if (inNew) report(parser, Errors.Unexpected);
 
     if (context & Context.InArgumentList) {
-      reportMessageAt(parser.index, parser.line, parser.index, Errors.AwaitInParameter);
+      reportMessageAt(
+        parser.tokenIndex,
+        parser.tokenLine,
+        parser.tokenColumn,
+        parser.index,
+        parser.line,
+        parser.column,
+        Errors.AwaitInParameter
+      );
     }
 
     nextToken(parser, context | Context.AllowRegExp);
@@ -3871,11 +3893,27 @@ export function parseFunctionBody(
         // in the body of a function with non-simple parameter list, on
         // 29/7/2015. https://goo.gl/ueA7Ln
         if (parser.flags & Flags.NonSimpleParameterList) {
-          reportMessageAt(parser.index, parser.line, parser.tokenIndex, Errors.IllegalUseStrict);
+          reportMessageAt(
+            tokenIndex,
+            tokenLine,
+            tokenColumn,
+            parser.index,
+            parser.line,
+            parser.column,
+            Errors.IllegalUseStrict
+          );
         }
 
         if (parser.flags & Flags.Octals) {
-          reportMessageAt(parser.index, parser.line, parser.tokenIndex, Errors.StrictOctalLiteral);
+          reportMessageAt(
+            tokenIndex,
+            tokenLine,
+            tokenColumn,
+            parser.index,
+            parser.line,
+            parser.column,
+            Errors.StrictOctalLiteral
+          );
         }
       }
       body.push(parseDirective(parser, context, expr, token, tokenIndex, parser.tokenLine, parser.tokenColumn));
@@ -7098,7 +7136,6 @@ export function parseObjectLiteralOrPattern(
         state |= PropertyKind.Generator;
 
         if (parser.getToken() & Token.IsIdentifier) {
-          const { line, index } = parser;
           const token = parser.getToken();
 
           key = parseIdentifier(parser, context);
@@ -7118,9 +7155,12 @@ export function parseObjectLiteralOrPattern(
             );
           } else {
             reportMessageAt(
-              index,
-              line,
-              index,
+              parser.tokenIndex,
+              parser.tokenLine,
+              parser.tokenColumn,
+              parser.index,
+              parser.line,
+              parser.column,
               token === Token.AsyncKeyword
                 ? Errors.InvalidAsyncGetter
                 : token === Token.GetKeyword || parser.getToken() === Token.SetKeyword
@@ -7356,7 +7396,7 @@ export function parseMethodFormals(
     report(parser, Errors.AccessorWrongArgs, 'Setter', 'one', '');
   }
 
-  if (scope && scope.scopeError !== void 0) reportScopeError(scope.scopeError);
+  if (scope && scope.scopeError) reportScopeError(scope.scopeError);
   if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
   consume(parser, context, Token.RightParen);
@@ -7818,7 +7858,7 @@ export function parseArrowFunctionExpression(
 
   let body: ESTree.BlockStatement | ESTree.Expression;
 
-  if (scope && scope.scopeError !== void 0) {
+  if (scope && scope.scopeError) {
     reportScopeError(scope.scopeError);
   }
 
@@ -8048,7 +8088,7 @@ export function parseFormalParametersOrFormalList(
   }
   if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
-  if (scope && (isNonSimpleParameterList || context & Context.Strict) && scope.scopeError !== void 0) {
+  if (scope && (isNonSimpleParameterList || context & Context.Strict) && scope.scopeError) {
     reportScopeError(scope.scopeError);
   }
 
