@@ -1,4 +1,5 @@
-import { ParserState } from './common';
+import { _Node, SourceLocation } from './estree';
+import { ParserState, ScopeError } from './common';
 
 export const enum Errors {
   Unexpected,
@@ -353,29 +354,44 @@ export const errorMessages: {
   [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`'
 };
 
-export class ParseError extends SyntaxError {
-  public loc: {
-    line: ParseError['line'];
-    column: ParseError['column'];
-  };
-  public index: number;
-  public line: number;
-  public column: number;
+export class ParseError extends SyntaxError implements _Node {
+  public start: number;
+  public end: number;
+  public range: [number, number];
+  public loc: SourceLocation;
+
   public description: string;
 
-  constructor(startindex: number, line: number, column: number, type: Errors, ...params: string[]) {
+  constructor(
+    start: number,
+    startLine: number,
+    startColumn: number,
+    end: number,
+    endLine: number,
+    endColumn: number,
+    type: Errors,
+    ...params: string[]
+  ) {
     const message =
-      '[' + line + ':' + column + ']: ' + errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
+      '[' +
+      startLine +
+      ':' +
+      startColumn +
+      '-' +
+      endLine +
+      ':' +
+      endColumn +
+      ']: ' +
+      errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     super(`${message}`);
-    this.index = startindex;
-    this.line = line;
-    this.column = column;
-    this.description = message;
-    /* Acorn compat */
+    this.start = start;
+    this.end = end;
+    this.range = [start, end];
     this.loc = {
-      line,
-      column
-    } as any;
+      start: { line: startLine, column: startColumn },
+      end: { line: endLine, column: endColumn }
+    };
+    this.description = message;
   }
 }
 /**
@@ -388,11 +404,29 @@ export class ParseError extends SyntaxError {
  * @returns {never}
  */
 export function report(parser: ParserState, type: Errors, ...params: string[]): never {
-  throw new ParseError(parser.index, parser.line, parser.column, type, ...params);
+  throw new ParseError(
+    parser.tokenIndex,
+    parser.tokenLine,
+    parser.tokenColumn,
+    parser.index,
+    parser.line,
+    parser.column,
+    type,
+    ...params
+  );
 }
 
-export function reportScopeError(scope: any): never {
-  throw new ParseError(scope.index, scope.line, scope.column, scope.type, scope.params);
+export function reportScopeError(scope: ScopeError): never {
+  throw new ParseError(
+    scope.tokenIndex,
+    scope.tokenLine,
+    scope.tokenColumn,
+    scope.index,
+    scope.line,
+    scope.column,
+    scope.type,
+    ...scope.params
+  );
 }
 
 /**
@@ -406,8 +440,17 @@ export function reportScopeError(scope: any): never {
  * @param {Errors} type
  * @param {...string[]} params
  */
-export function reportMessageAt(index: number, line: number, column: number, type: Errors, ...params: string[]): never {
-  throw new ParseError(index, line, column, type, ...params);
+export function reportMessageAt(
+  tokenIndex: number,
+  tokenLine: number,
+  tokenColumn: number,
+  index: number,
+  line: number,
+  column: number,
+  type: Errors,
+  ...params: string[]
+): never {
+  throw new ParseError(tokenIndex, tokenLine, tokenColumn, index, line, column, type, ...params);
 }
 
 /**
@@ -420,6 +463,14 @@ export function reportMessageAt(index: number, line: number, column: number, typ
  * @param {number} column
  * @param {Errors} type
  */
-export function reportScannerError(index: number, line: number, column: number, type: Errors): never {
-  throw new ParseError(index, line, column, type);
+export function reportScannerError(
+  tokenIndex: number,
+  tokenLine: number,
+  tokenColumn: number,
+  index: number,
+  line: number,
+  column: number,
+  type: Errors
+): never {
+  throw new ParseError(tokenIndex, tokenLine, tokenColumn, index, line, column, type);
 }

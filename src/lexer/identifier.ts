@@ -177,12 +177,29 @@ export function scanUnicodeEscape(parser: ParserState): number {
     const begin = parser.index - 2;
     while (CharTypes[advanceChar(parser)] & CharFlags.Hex) {
       codePoint = (codePoint << 4) | toHex(parser.currentChar);
-      if (codePoint > Chars.NonBMPMax) reportScannerError(begin, parser.line, parser.index + 1, Errors.UnicodeOverflow);
+      if (codePoint > Chars.NonBMPMax)
+        reportScannerError(
+          begin,
+          parser.line,
+          parser.column,
+          parser.index,
+          parser.line,
+          parser.column,
+          Errors.UnicodeOverflow
+        );
     }
 
     // At least 4 characters have to be read
     if ((parser.currentChar as number) !== Chars.RightBrace) {
-      reportScannerError(begin, parser.line, parser.index - 1, Errors.InvalidHexEscapeSequence);
+      reportScannerError(
+        begin,
+        parser.line,
+        parser.column,
+        parser.index,
+        parser.line,
+        parser.column,
+        Errors.InvalidHexEscapeSequence
+      );
     }
     advanceChar(parser); // consumes '}'
     return codePoint;

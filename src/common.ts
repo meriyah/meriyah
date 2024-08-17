@@ -202,6 +202,9 @@ export interface ScopeError {
   index: number;
   line: number;
   column: number;
+  tokenIndex: number;
+  tokenLine: number;
+  tokenColumn: number;
 }
 
 /**
@@ -579,13 +582,16 @@ export function createArrowHeadParsingScope(parser: ParserState, context: Contex
  * @param type Errors type
  */
 export function recordScopeError(parser: ParserState, type: Errors, ...params: string[]): ScopeError {
-  const { index, line, column } = parser;
+  const { index, line, column, tokenIndex, tokenLine, tokenColumn } = parser;
   return {
     type,
     params,
     index,
     line,
-    column
+    column,
+    tokenIndex,
+    tokenLine,
+    tokenColumn
   };
 }
 
