@@ -14,25 +14,47 @@
 
 ## Features
 
-- Conforms to the standard ECMAScript® 2021 (ECMA-262 11th Edition) language specification
-- Support TC39 proposals via option
-- Support for additional ECMAScript features for Web Browsers
-- JSX support via option
-- Does **not** support TypeScript or Flow
-- Optionally track syntactic node locations
+- Conforms to the standard ECMAScript® 2024 (ECMA-262 15th Edition) language specification
+  - Except RegExp duplicate named groups (See [RegExp support](#regexp-support))
+- Support some TC39 stage 3 proposals via option "next"
+- Support for additional ECMAScript features for Web Browsers (Annex B)
+- JSX support via option "jsx"
+- Does **NOT** support TypeScript or Flow syntax
+- Track syntactic node locations with option "ranges" or "loc"
 - Emits an ESTree-compatible abstract syntax tree
 - No backtracking
 - Low memory usage
-- Very well tested (~99 000 unit tests with full code coverage)
-- Lightweight - ~130 KB minified
 
-## ESNext features
+## ESNext Stage 3 features
+
+### Supported stage 3 features:
+
+**note** These features need to be enabled with the `next` option.
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
 - [Import Attributes](https://github.com/tc39/proposal-import-attributes)
 - [JSON Modules](https://github.com/tc39/proposal-json-modules)
 
-**Note:** These features need to be enabled with the `next` option.
+### Not yet supported stage 3 features:
+
+- [Explicit resource management](https://github.com/tc39/proposal-explicit-resource-management)
+- [Source phase import](https://github.com/tc39/proposal-source-phase-imports)
+
+- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (See [RegExp support](#regexp-support))
+
+## RegExp support
+
+Meriyah doesn't parse RegExp internal syntax, ESTree spec didn't require internal structure of RegExp. Meriyah
+does use JavaScript runtime to validate the RegExp literal. That means Meriyah's RegExp support is only as good
+as JavaScript runtime's RegExp support.
+
+As of Auguest 2024, some latest RegExp features are not supported due to missing implementation in general
+JavaScript runtime.
+
+- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) is not supported
+- [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups) is not supported
+
+In addition, RegExp v flag (unicodeSets) only works on Nodejs v20+ and latest browsers.
 
 ## Installation
 
