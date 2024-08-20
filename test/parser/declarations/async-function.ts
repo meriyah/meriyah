@@ -192,7 +192,7 @@ describe('Declarations - Async Function', () => {
     'async function f() { for await (x[a in b] of y); }',
     'async function a() { await a.b[c](d).e; }',
     'await.b[c](d).e;',
-    `function *a(){yield\n*a}`,
+    `function *a(){yield*a}`,
     'async function * fn() { import(yield * ["Mr. X", "Mr. Y", "Mr. Z"]); }',
     'async function* f(a = async function*() { await 1; }) {}',
     'function f() { return await; }',
