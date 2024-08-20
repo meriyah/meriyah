@@ -197,8 +197,6 @@ language/expressions/object/ident-name-prop-name-literal-public-escaped.js (stri
 language/expressions/object/ident-name-prop-name-literal-static-escaped.js (strict mode)
 language/expressions/object/method-definition/yield-star-after-newline.js (default)
 language/expressions/object/method-definition/yield-star-after-newline.js (strict mode)
-language/expressions/tagged-template/invalid-escape-sequences.js (default)
-language/expressions/tagged-template/invalid-escape-sequences.js (strict mode)
 language/expressions/template-literal/invalid-legacy-octal-escape-sequence-8.js (default)
 language/expressions/template-literal/invalid-legacy-octal-escape-sequence-8.js (strict mode)
 language/expressions/template-literal/invalid-legacy-octal-escape-sequence-9.js (default)
