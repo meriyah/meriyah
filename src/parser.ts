@@ -4872,8 +4872,39 @@ export function parseTemplateLiteral(
    * TemplateCharacter ::
    *   SourceCharacter but not one of ` or \ or $
    *   $ [lookahead not { ]
-   *   \ EscapeSequence
+   *   \ TemplateEscapeSequence
+   *   \ NotEscapeSequence
    *   LineContinuation
+   *   LineTerminatorSequence
+   *   SourceCharacter but not one of ` or \ or $ or LineTerminator
+   *
+   * TemplateEscapeSequence ::
+   *   CharacterEscapeSequence
+   *   0 [lookahead ∉ DecimalDigit]
+   *   HexEscapeSeqeuence
+   *   UnicodeEscapeSequence
+   *
+   * Note: TemplateEscapeSequence removed
+   *   LegacyOctalEscapeSequence
+   *   NonOctalDecimalEscapeSequence
+   * from EscapeSequence.
+   *
+   * NotEscapeSequence :: 0 DecimalDigit
+   *   DecimalDigit but not 0
+   *   x [lookahead ∉ HexDigit]
+   *   x HexDigit [lookahead ∉ HexDigit]
+   *   u [lookahead ∉ HexDigit] [lookahead ≠ {]
+   *   u HexDigit [lookahead ∉ HexDigit]
+   *   u HexDigit HexDigit [lookahead ∉ HexDigit]
+   *   u HexDigit HexDigit HexDigit [lookahead ∉ HexDigit] u { [lookahead ∉ HexDigit]
+   *   u { NotCodePoint [lookahead ∉ HexDigit]
+   *   u { CodePoint [lookahead ∉ HexDigit] [lookahead ≠ }]
+   *
+   * NotCodePoint ::
+   *   HexDigits[~Sep] but only if MV of HexDigits > 0x10FFFF
+   *
+   * CodePoint ::
+   *   HexDigits[~Sep] but only if MV of HexDigits ≤ 0x10FFFF
    */
 
   parser.assignable = AssignmentKind.CannotAssign;
@@ -4900,20 +4931,29 @@ export function parseTemplate(parser: ParserState, context: Context): ESTree.Tem
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
   const { tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn } = parser;
-  consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
+  consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
+
   const quasis = [
     parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn, /* tail */ false)
   ];
 
   const expressions = [
-    parseExpressions(parser, context, 0, 1, parser.tokenIndex, parser.tokenLine, parser.tokenColumn)
+    parseExpressions(
+      parser,
+      context & ~Context.TaggedTemplate,
+      0,
+      1,
+      parser.tokenIndex,
+      parser.tokenLine,
+      parser.tokenColumn
+    )
   ];
 
   if (parser.getToken() !== Token.RightBrace) report(parser, Errors.InvalidTemplateContinuation);
 
   while (parser.setToken(scanTemplateTail(parser, context), true) !== Token.TemplateSpan) {
     const { tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn } = parser;
-    consume(parser, context | Context.AllowRegExp, Token.TemplateContinuation);
+    consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
     quasis.push(
       parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn, /* tail */ false)
     );
@@ -8181,7 +8221,13 @@ export function parseMembeExpressionNoCall(
           quasi:
             parser.getToken() === Token.TemplateContinuation
               ? parseTemplate(parser, context | Context.TaggedTemplate)
-              : parseTemplateLiteral(parser, context, parser.tokenIndex, parser.tokenLine, parser.tokenColumn)
+              : parseTemplateLiteral(
+                  parser,
+                  context | Context.TaggedTemplate,
+                  parser.tokenIndex,
+                  parser.tokenLine,
+                  parser.tokenColumn
+                )
         }),
         0,
         start,

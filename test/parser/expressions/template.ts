@@ -336,6 +336,7 @@ describe('Expressions - Template', () => {
     'test`\\uG`;',
     'test`\\xG`;',
     'test`\\18`;',
+    'test`\\u{0`',
     '(`\n`)',
     '(`\r`)',
     'new nestedNewOperatorFunction`1``2``3``array`',
@@ -346,7 +347,8 @@ describe('Expressions - Template', () => {
     "(function() { return () => {}; })()`'\\00a0'`",
     "(function tag() {})`'\\00a0'`",
     "(function() {})`'\\00a0'`",
-    'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;'
+    'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
+    'x`\\u{0${x`\\8`}`'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -427,7 +429,8 @@ describe('Expressions - Template', () => {
     ['`\\u11${', Context.None],
     ['`\\u{g}`', Context.None],
     ['`\\u{110000}${', Context.None],
-    ['`\\u{11ffff}${', Context.None]
+    ['`\\u{11ffff}${', Context.None],
+    ['x`\\u{0${`\\8`}`', Context.None]
   ]);
   pass('Expressions - Template (pass)', [
     [
@@ -4056,7 +4059,7 @@ describe('Expressions - Template', () => {
                     tail: true,
                     type: 'TemplateElement',
                     value: {
-                      cooked: undefined,
+                      cooked: null,
                       raw: "'\\00a0'"
                     }
                   }
@@ -4094,7 +4097,7 @@ describe('Expressions - Template', () => {
                     tail: true,
                     type: 'TemplateElement',
                     value: {
-                      cooked: undefined,
+                      cooked: null,
                       raw: "'\\00a0'"
                     }
                   }
@@ -4142,7 +4145,7 @@ describe('Expressions - Template', () => {
                     tail: true,
                     type: 'TemplateElement',
                     value: {
-                      cooked: undefined,
+                      cooked: null,
                       raw: '{\rtf1adeflang1025ansiansicpg1252\\uc1'
                     }
                   }
@@ -4168,6 +4171,40 @@ describe('Expressions - Template', () => {
         ],
         sourceType: 'script',
         type: 'Program'
+      }
+    ],
+    [
+      'test`\\u{0`',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'TaggedTemplateExpression',
+              tag: {
+                type: 'Identifier',
+                name: 'test'
+              },
+              quasi: {
+                type: 'TemplateLiteral',
+                expressions: [],
+                quasis: [
+                  {
+                    type: 'TemplateElement',
+                    value: {
+                      raw: '\\u{0',
+                      cooked: null
+                    },
+                    tail: true
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
     ]
   ]);

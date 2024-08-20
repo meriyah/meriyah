@@ -11,7 +11,7 @@ import { report, Errors } from '../errors';
 export function scanTemplate(parser: ParserState, context: Context): Token {
   const { index: start } = parser;
   let token: Token = Token.TemplateSpan;
-  let ret: string | void = '';
+  let ret: string | null = '';
 
   let char = advanceChar(parser);
 
@@ -25,11 +25,16 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
       if (char > 0x7e) {
         ret += fromCodePoint(char);
       } else {
+        const { index, line, column } = parser;
         const code = parseEscape(parser, context | Context.Strict, char);
         if (code >= 0) {
           ret += fromCodePoint(code);
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
-          ret = undefined;
+          // Restore before the error in parseEscape
+          parser.index = index;
+          parser.line = line;
+          parser.column = column;
+          ret = null;
           char = scanBadTemplate(parser, char);
           if (char < 0) token = Token.TemplateContinuation;
           break;
