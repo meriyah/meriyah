@@ -3782,6 +3782,8 @@ export function parseYieldExpression(
       if (parser.getToken() & (Token.Contextual | Token.IsExpressionStart) || delegate) {
         argument = parseExpression(parser, context, 1, 0, parser.tokenIndex, parser.tokenLine, parser.tokenColumn);
       }
+    } else if (parser.getToken() === Token.Multiply) {
+      report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
     }
 
     parser.assignable = AssignmentKind.CannotAssign;
