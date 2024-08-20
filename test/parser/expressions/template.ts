@@ -348,7 +348,17 @@ describe('Expressions - Template', () => {
     "(function tag() {})`'\\00a0'`",
     "(function() {})`'\\00a0'`",
     'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
-    'x`\\u{0${x`\\8`}`'
+    'x`\\u{0${x`\\8`}`',
+    'x`\\0`',
+    'x`\\1`',
+    'x`\\2`',
+    'x`\\3`',
+    'x`\\4`',
+    'x`\\5`',
+    'x`\\6`',
+    'x`\\7`',
+    'x`\\8`',
+    'x`\\9`'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -430,7 +440,17 @@ describe('Expressions - Template', () => {
     ['`\\u{g}`', Context.None],
     ['`\\u{110000}${', Context.None],
     ['`\\u{11ffff}${', Context.None],
-    ['x`\\u{0${`\\8`}`', Context.None]
+    ['x`\\u{0${`\\8`}`', Context.None],
+    ['`\\0`', Context.None],
+    ['`\\1`', Context.None],
+    ['`\\2`', Context.None],
+    ['`\\3`', Context.None],
+    ['`\\4`', Context.None],
+    ['`\\5`', Context.None],
+    ['`\\6`', Context.None],
+    ['`\\7`', Context.None],
+    ['`\\8`', Context.None],
+    ['`\\9`', Context.None]
   ]);
   pass('Expressions - Template (pass)', [
     [
