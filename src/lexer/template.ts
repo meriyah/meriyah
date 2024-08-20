@@ -26,7 +26,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         ret += fromCodePoint(char);
       } else {
         const { index, line, column } = parser;
-        const code = parseEscape(parser, context | Context.Strict, char);
+        const code = parseEscape(parser, context | Context.Strict, char, /* isTemplate */ 1);
         if (code >= 0) {
           ret += fromCodePoint(code);
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {

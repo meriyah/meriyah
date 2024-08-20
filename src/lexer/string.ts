@@ -56,7 +56,7 @@ export function scanString(parser: ParserState, context: Context, quote: number)
 
 // TODO! Use table lookup
 
-export function parseEscape(parser: ParserState, context: Context, first: number): number {
+export function parseEscape(parser: ParserState, context: Context, first: number, isTemplate: 0 | 1 = 0): number {
   switch (first) {
     // https://tc39.github.io/ecma262/#prod-SingleEscapeCharacter
     // one of ' " \ b f n r t v
@@ -97,6 +97,8 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.One:
     case Chars.Two:
     case Chars.Three: {
+      if (isTemplate) return Escape.StrictOctal;
+
       let code = first - Chars.Zero;
       let index = parser.index + 1;
       let column = parser.column + 1;
@@ -139,6 +141,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.Five:
     case Chars.Six:
     case Chars.Seven: {
+      if (isTemplate) return Escape.StrictOctal;
       if (context & Context.Strict) return Escape.StrictOctal;
 
       let code = first - Chars.Zero;
@@ -212,6 +215,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     // `8`, `9` (invalid escapes)
     case Chars.Eight:
     case Chars.Nine:
+      if (isTemplate) return Escape.EightOrNine;
       if ((context & Context.OptionsWebCompat) === 0) return Escape.EightOrNine;
     // fallthrough
     default:
@@ -228,7 +232,7 @@ export function handleStringError(state: ParserState, code: Escape, isTemplate: 
       report(state, isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
 
     case Escape.EightOrNine:
-      report(state, Errors.InvalidEightAndNine);
+      report(state, isTemplate ? Errors.TemplateEightAndNine : Errors.InvalidEightAndNine);
 
     case Escape.InvalidHex:
       report(state, Errors.InvalidHexEscapeSequence);
