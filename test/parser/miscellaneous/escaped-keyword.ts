@@ -91,7 +91,13 @@ describe('Miscellaneous - Escaped keywords', () => {
       p => {}
     }`,
     `obj.bre\\u0061k = 42;`,
-    `for (\\u0061sync of [7]);`
+    `for (\\u0061sync of [7]);`,
+    '0, { def\\u{61}ult: x } = { default: 42 };',
+    'var y = { bre\\u0061k: x } = { break: 42 };',
+    'var y = { c\\u0061se: x } = { case: 42 };',
+    'var y = { c\\u0061tch: x } = { catch: 42 };',
+    'var y = { \\u0063onst: x } = { const: 42 };',
+    'var y = { \\u0064ebugger: x } = { debugger: 42 };'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -119,13 +125,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['(x === tr\\u0075e);', Context.None],
     ['var x = tr\\u0075e;', Context.None],
     ['var tr\\u0075e = 1;', Context.None],
-    // ['({ def\\u0061ult })', Context.None],
-    ['0, { def\\u{61}ult: x } = { default: 42 };', Context.None],
-    ['var y = { bre\\u0061k: x } = { break: 42 };', Context.None],
-    ['var y = { c\\u0061se: x } = { case: 42 };', Context.None],
-    ['var y = { c\\u0061tch: x } = { catch: 42 };', Context.None],
-    ['var y = { \\u0063onst: x } = { const: 42 };', Context.None],
-    ['var y = { \\u0064ebugger: x } = { debugger: 42 };', Context.None],
+    ['({ def\\u0061ult })', Context.None],
     ['var { tr\\u0075e } = {};', Context.None],
     ['tr\\u0075e = 1;', Context.None],
     ['(x === f\\u0061lse);', Context.None],
@@ -222,12 +222,10 @@ describe('Miscellaneous - Escaped keywords', () => {
     ['class X { st\\u0061tic y() {} }', Context.None],
     ['class C { st\\u0061tic set bar() {} }', Context.None],
     ['class C { st\\u0061tic *bar() {} }', Context.None],
-
     ['if ("foo" \\u0069n this) {}', Context.None],
     ['if (this \\u0069nstanceof Array) {}', Context.None],
     ['(n\\u0065w function f() {})', Context.None],
     ['(typ\\u0065of 123)', Context.None],
-    ['var y = { c\\u0061se: x } = { case: 42 };', Context.None],
     ['({ def\\u{61}ult }) => 42;', Context.None],
     ['0, { def\\u{61}ult } = { default: 42 };', Context.None],
     ['var x = ({ bre\\u0061k }) => {};', Context.None],
