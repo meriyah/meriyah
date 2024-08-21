@@ -134,7 +134,8 @@ describe('Lexer - Template', () => {
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', undefined],
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\x0g`', undefined],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\x0g${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', undefined]
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', undefined],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\0`', '\u0000']
     ];
 
     for (const [ctx, token, op, value] of tokens) {
@@ -235,14 +236,22 @@ describe('Lexer - Template', () => {
   fail('fails on "\\xFq"', '"\\xFq"', Context.None);
   fail('fails on "\\xFq"', '"\\xFq"', Context.None);
   fail('fails on "\\xFq"', '"\\xFq"', Context.None);
-  fail('fails on "`\\u{11ffff}${"', '`\\u{11ffff}${', Context.None);
-  fail('fails on "`\\u{110000}${"', '`\\u{110000}${', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\u{g}`', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\u11${', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\uAA`', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\ufffg${', Context.None);
-  fail('fails on "\\u00g0"', '`\\u00g0`', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\xgg`', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\xg0`', Context.None);
-  fail('fails on "`\\u{g}`"', '`\\x0g`', Context.None);
+  fail('fails on `\\u{11ffff}${"', '`\\u{11ffff}${', Context.None);
+  fail('fails on `\\u{110000}${"', '`\\u{110000}${', Context.None);
+  fail('fails on `\\u{g}`', '`\\u{g}`', Context.None);
+  fail('fails on `\\u{g}`', '`\\u11${', Context.None);
+  fail('fails on `\\u{g}`', '`\\uAA`', Context.None);
+  fail('fails on `\\u{g}`', '`\\ufffg${', Context.None);
+  fail('fails on `\\u00g0`', '`\\u00g0`', Context.None);
+  fail('fails on `\\u{g}`', '`\\xgg`', Context.None);
+  fail('fails on `\\u{g}`', '`\\xg0`', Context.None);
+  fail('fails on `\\u{g}`', '`\\x0g`', Context.None);
+  fail('fails on `\\01`', '`\\01`', Context.None);
+  fail('fails on `\\1`', '`\\1`', Context.None);
+  fail('fails on `\\2`', '`\\2`', Context.None);
+  fail('fails on `\\3`', '`\\3`', Context.None);
+  fail('fails on `\\4`', '`\\4`', Context.None);
+  fail('fails on `\\5`', '`\\5`', Context.None);
+  fail('fails on `\\6`', '`\\6`', Context.None);
+  fail('fails on `\\7`', '`\\7`', Context.None);
 });

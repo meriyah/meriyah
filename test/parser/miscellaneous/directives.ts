@@ -6,10 +6,26 @@ import { parseSource } from '../../../src/parser';
 describe('Miscellaneous - Directives', () => {
   for (const arg of [
     '"\\1;" "use strict";',
+    '"\\2;" "use strict";',
+    '"\\3;" "use strict";',
+    '"\\4;" "use strict";',
+    '"\\5;" "use strict";',
+    '"\\6;" "use strict";',
+    '"\\7;" "use strict";',
+    '"\\8;" "use strict";',
+    '"\\9;" "use strict";',
     '"use strict"; function f(){"\\1";}',
     '"\\1;" "use strict"; null',
     '"use strict"; with (a) b = c;',
     '"use strict"; "\\1;"',
+    '"use strict"; "\\2;"',
+    '"use strict"; "\\3;"',
+    '"use strict"; "\\4;"',
+    '"use strict"; "\\5;"',
+    '"use strict"; "\\6;"',
+    '"use strict"; "\\7;"',
+    '"use strict"; "\\8;"',
+    '"use strict"; "\\9;"',
     '"use strict"; "\\1;" null',
     '"random\\x0\nnewline"',
     '"random\\u\nnewline"',
@@ -145,7 +161,11 @@ describe('Miscellaneous - Directives', () => {
     '"use strict" + "Hello\\312World"',
     '"use strict", "Hello\\312World"',
     '"use strict", "Hello\\312World"',
-    'function foo() { "use strict" .foo }'
+    'function foo() { "use strict" .foo }',
+    '"use strict"; "\\0";',
+    '"\\0"; "use strict";',
+    'function a() {"use strict"; "\\0";}',
+    'function a() {"\\0"; "use strict";}'
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
