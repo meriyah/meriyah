@@ -398,6 +398,18 @@ export function parseStatementList(
           Errors.StrictOctalLiteral
         );
       }
+
+      if (parser.flags & Flags.EightAndNine) {
+        reportMessageAt(
+          parser.tokenIndex,
+          parser.tokenLine,
+          parser.tokenColumn,
+          parser.index,
+          parser.line,
+          parser.column,
+          Errors.StrictEightAndNine
+        );
+      }
     }
     statements.push(parseDirective(parser, context, expr, token, tokenIndex, tokenLine, tokenColumn));
   }
@@ -3917,6 +3929,18 @@ export function parseFunctionBody(
             Errors.StrictOctalLiteral
           );
         }
+
+        if (parser.flags & Flags.EightAndNine) {
+          reportMessageAt(
+            tokenIndex,
+            tokenLine,
+            tokenColumn,
+            parser.index,
+            parser.line,
+            parser.column,
+            Errors.StrictEightAndNine
+          );
+        }
       }
       body.push(parseDirective(parser, context, expr, token, tokenIndex, parser.tokenLine, parser.tokenColumn));
     }
@@ -3945,8 +3969,8 @@ export function parseFunctionBody(
   }
 
   parser.flags =
-    (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals) ^
-    (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals);
+    (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine) ^
+    (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine);
 
   parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
@@ -3960,7 +3984,7 @@ export function parseFunctionBody(
     Token.RightBrace
   );
 
-  parser.flags &= ~(Flags.NonSimpleParameterList | Flags.Octals);
+  parser.flags &= ~(Flags.NonSimpleParameterList | Flags.Octals | Flags.EightAndNine);
 
   if (parser.getToken() === Token.Assign) report(parser, Errors.CantAssignTo);
 
@@ -7903,8 +7927,8 @@ export function parseArrowFunctionExpression(
 
   if (expression) {
     parser.flags =
-      (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals) ^
-      (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals);
+      (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine) ^
+      (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine);
 
     // Single-expression body
     body = parseExpression(

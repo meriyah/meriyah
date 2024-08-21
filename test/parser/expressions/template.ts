@@ -441,7 +441,7 @@ describe('Expressions - Template', () => {
     ['`\\u{110000}${', Context.None],
     ['`\\u{11ffff}${', Context.None],
     ['x`\\u{0${`\\8`}`', Context.None],
-    ['`\\0`', Context.None],
+    ['`\\01`', Context.None],
     ['`\\1`', Context.None],
     ['`\\2`', Context.None],
     ['`\\3`', Context.None],

@@ -97,8 +97,6 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.One:
     case Chars.Two:
     case Chars.Three: {
-      if (isTemplate) return Escape.StrictOctal;
-
       let code = first - Chars.Zero;
       let index = parser.index + 1;
       let column = parser.column + 1;
@@ -108,9 +106,11 @@ export function parseEscape(parser: ParserState, context: Context, first: number
 
         if ((CharTypes[next] & CharFlags.Octal) === 0) {
           // Verify that it's `\0` if we're in strict mode.
-          if ((code !== 0 || CharTypes[next] & CharFlags.ImplicitOctalDigits) && context & Context.Strict)
-            return Escape.StrictOctal;
-        } else if (context & Context.Strict) {
+          if (code !== 0 || CharTypes[next] & CharFlags.ImplicitOctalDigits) {
+            if (context & Context.Strict || isTemplate) return Escape.StrictOctal;
+            parser.flags |= Flags.Octals;
+          }
+        } else if (context & Context.Strict || isTemplate) {
           return Escape.StrictOctal;
         } else {
           parser.currentChar = next;
@@ -127,9 +127,9 @@ export function parseEscape(parser: ParserState, context: Context, first: number
               column++;
             }
           }
+          parser.flags |= Flags.Octals;
         }
 
-        parser.flags |= Flags.Octals;
         parser.index = index - 1;
         parser.column = column - 1;
       }
@@ -141,8 +141,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     case Chars.Five:
     case Chars.Six:
     case Chars.Seven: {
-      if (isTemplate) return Escape.StrictOctal;
-      if (context & Context.Strict) return Escape.StrictOctal;
+      if (isTemplate || context & Context.Strict) return Escape.StrictOctal;
 
       let code = first - Chars.Zero;
       const index = parser.index + 1;
@@ -215,8 +214,9 @@ export function parseEscape(parser: ParserState, context: Context, first: number
     // `8`, `9` (invalid escapes)
     case Chars.Eight:
     case Chars.Nine:
-      if (isTemplate) return Escape.EightOrNine;
-      if ((context & Context.OptionsWebCompat) === 0) return Escape.EightOrNine;
+      if (isTemplate || (context & Context.OptionsWebCompat) === 0 || context & Context.Strict)
+        return Escape.EightOrNine;
+      parser.flags |= Flags.EightAndNine;
     // fallthrough
     default:
       return first;
