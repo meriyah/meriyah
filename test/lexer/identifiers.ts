@@ -79,7 +79,7 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.Identifier, 'ab\\u{072}', 'abr'],
     [Context.None, Token.Identifier, '\\u{4fff}', '俿'],
     [Context.None, Token.Identifier, '\\u{222}', 'Ȣ'],
-    [Context.None, Token.Identifier, '\\u{1EE00}', '{Ȁ'],
+    [Context.None, Token.Identifier, '\\u{1EE00}', '𞸀'],
     [Context.None, Token.Identifier, 'a\\u{0000000000000000000071}c', 'aqc'],
 
     // Keywords
@@ -134,7 +134,11 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.Identifier, '℮', '℮'],
     [Context.None, Token.Identifier, '℘', '℘'],
     [Context.None, Token.Identifier, 'a᧚', 'a᧚'],
-    [Context.None, Token.Identifier, '$00xxx\\u0069\\u0524\\u{20BB7}', '$00xxxiԤη']
+    [Context.None, Token.Identifier, '$00xxx\\u0069\\u0524\\u{20BB7}', '$00xxxiԤ𠮷'],
+
+    // UTF-16 surrogate pairs.
+    [Context.None, Token.Identifier, '𐌭', '𐌭'],
+    [Context.None, Token.Identifier, '\\u{1032d}', '𐌭']
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -251,4 +255,5 @@ describe('Lexer - Identifiers', () => {
   fail('fails on \\u{110000}', '\\u{110000}', Context.None);
   fail('fails on \\u0x11ffff', '\\u0x11ffff', Context.None);
   fail('fails on \\u{37}', '\\u{37}', Context.None);
+  fail('fails on \\ud800\\udf2d', '\\ud800\\udf2d', Context.None);
 });

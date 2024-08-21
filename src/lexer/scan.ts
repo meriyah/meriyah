@@ -2,15 +2,15 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { ParserState, Context, Flags } from '../common';
 import { report, Errors } from '../errors';
-import { unicodeLookup } from '../unicode';
+import { isIDStart } from '../unicode';
 import {
   advanceChar,
   LexerState,
   isExoticECMAScriptWhitespace,
   NumberKind,
-  fromCodePoint,
   consumeLineFeed,
-  scanNewLine
+  scanNewLine,
+  consumePossibleSurrogatePair
 } from './common';
 import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
 import { scanRegularExpression } from './regexp';
@@ -603,17 +603,10 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
         continue;
       }
 
-      if ((char & 0xfc00) === 0xd800 || ((unicodeLookup[(char >>> 5) + 34816] >>> char) & 31 & 1) !== 0) {
-        if ((char & 0xfc00) === 0xdc00) {
-          char = ((char & 0x3ff) << 10) | (char & 0x3ff) | 0x10000;
-          if (((unicodeLookup[(char >>> 5) + 0] >>> char) & 31 & 1) === 0) {
-            report(parser, Errors.IllegalCharacter, fromCodePoint(char));
-          }
-          parser.index++;
-          parser.currentChar = char;
-        }
+      const merged = consumePossibleSurrogatePair(parser);
+      if (merged > 0) char = merged;
 
-        parser.column++;
+      if (isIDStart(char)) {
         parser.tokenValue = '';
         return scanIdentifierSlowCase(parser, context, /* hasEscape */ 0, /* canBeKeyword */ 0);
       }
@@ -624,7 +617,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
       }
 
       // Invalid ASCII code point/unit
-      report(parser, Errors.IllegalCharacter, fromCodePoint(char));
+      report(parser, Errors.IllegalCharacter, String.fromCodePoint(char));
     }
   }
 

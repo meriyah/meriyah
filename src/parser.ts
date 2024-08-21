@@ -4770,7 +4770,7 @@ function validateStringWellFormed(parser: ParserState, str: string): void {
     // Single UTF-16 unit
     if ((code & 0xfc00) !== Chars.LeadSurrogateMin) continue;
     // unpaired surrogate
-    if (code >= Chars.TrailSurrogateMin || ++i >= len || (str.charCodeAt(i) & 0xfc00) !== Chars.TrailSurrogateMin) {
+    if (code > Chars.LeadSurrogateMax || ++i >= len || (str.charCodeAt(i) & 0xfc00) !== Chars.TrailSurrogateMin) {
       report(parser, Errors.InvalidExportName, JSON.stringify(str.charAt(i--)));
     }
   }

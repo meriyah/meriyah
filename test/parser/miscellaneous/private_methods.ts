@@ -4426,6 +4426,159 @@ describe('Next - Private methods', () => {
           }
         ]
       }
+    ],
+    [
+      'class a {#𐌭人}',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 6,
+              end: 7,
+              range: [6, 7]
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: '𐌭人',
+                    start: 9,
+                    end: 13,
+                    range: [9, 13]
+                  },
+                  value: null,
+                  static: false,
+                  computed: false,
+                  start: 9,
+                  end: 13,
+                  range: [9, 13]
+                }
+              ],
+              start: 8,
+              end: 14,
+              range: [8, 14]
+            },
+            start: 0,
+            end: 14,
+            range: [0, 14]
+          }
+        ],
+        start: 0,
+        end: 14,
+        range: [0, 14]
+      }
+    ],
+    [
+      'class a {#人}',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 6,
+              end: 7,
+              range: [6, 7]
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: '人',
+                    start: 9,
+                    end: 11,
+                    range: [9, 11]
+                  },
+                  value: null,
+                  static: false,
+                  computed: false,
+                  start: 9,
+                  end: 11,
+                  range: [9, 11]
+                }
+              ],
+              start: 8,
+              end: 12,
+              range: [8, 12]
+            },
+            start: 0,
+            end: 12,
+            range: [0, 12]
+          }
+        ],
+        start: 0,
+        end: 12,
+        range: [0, 12]
+      }
+    ],
+    [
+      'class a {#𐌭}',
+      Context.OptionsRanges,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'a',
+              start: 6,
+              end: 7,
+              range: [6, 7]
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'PropertyDefinition',
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: '𐌭',
+                    start: 9,
+                    end: 12,
+                    range: [9, 12]
+                  },
+                  value: null,
+                  static: false,
+                  computed: false,
+                  start: 9,
+                  end: 12,
+                  range: [9, 12]
+                }
+              ],
+              start: 8,
+              end: 13,
+              range: [8, 13]
+            },
+            start: 0,
+            end: 13,
+            range: [0, 13]
+          }
+        ],
+        start: 0,
+        end: 13,
+        range: [0, 13]
+      }
     ]
   ]);
 });

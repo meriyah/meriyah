@@ -1,7 +1,7 @@
 import { ParserState, Context } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
-import { advanceChar, fromCodePoint } from './common';
+import { advanceChar } from './common';
 import { parseEscape, Escape, handleStringError } from './string';
 import { report, Errors } from '../errors';
 
@@ -23,12 +23,12 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
     } else if (char === Chars.Backslash) {
       char = advanceChar(parser);
       if (char > 0x7e) {
-        ret += fromCodePoint(char);
+        ret += String.fromCodePoint(char);
       } else {
         const { index, line, column } = parser;
         const code = parseEscape(parser, context | Context.Strict, char, /* isTemplate */ 1);
         if (code >= 0) {
-          ret += fromCodePoint(code);
+          ret += String.fromCodePoint(code);
         } else if (code !== Escape.Empty && context & Context.TaggedTemplate) {
           // Restore before the error in parseEscape
           parser.index = index;
@@ -48,7 +48,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         char === Chars.CarriageReturn &&
         parser.source.charCodeAt(parser.index) === Chars.LineFeed
       ) {
-        ret += fromCodePoint(char);
+        ret += String.fromCodePoint(char);
         parser.currentChar = parser.source.charCodeAt(++parser.index);
       }
 
@@ -56,7 +56,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
         parser.column = -1;
         parser.line++;
       }
-      ret += fromCodePoint(char);
+      ret += String.fromCodePoint(char);
     }
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
     char = advanceChar(parser);
