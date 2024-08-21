@@ -8,9 +8,8 @@ export {
 } from './comments';
 export {
   advanceChar,
-  consumeMultiUnitCodePoint,
+  consumePossibleSurrogatePair,
   isExoticECMAScriptWhitespace,
-  fromCodePoint,
   toHex,
   consumeLineFeed,
   scanNewLine,

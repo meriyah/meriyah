@@ -2,7 +2,7 @@ import { ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
-import { toHex, advanceChar, fromCodePoint } from './common';
+import { toHex, advanceChar } from './common';
 import { CharTypes, CharFlags } from './charClassifier';
 // Intentionally negative
 export const enum Escape {
@@ -38,10 +38,10 @@ export function scanString(parser: ParserState, context: Context, quote: number)
 
       if (char < 0x7f || char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
         const code = parseEscape(parser, context, char);
-        if (code >= 0) ret += fromCodePoint(code);
+        if (code >= 0) ret += String.fromCodePoint(code);
         else handleStringError(parser, code as Escape, /* isTemplate */ 0);
       } else {
-        ret += fromCodePoint(char);
+        ret += String.fromCodePoint(char);
       }
       marker = parser.index + 1;
     }
