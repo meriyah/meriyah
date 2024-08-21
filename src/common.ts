@@ -389,7 +389,7 @@ export function validateBindingIdentifier(
     }
   }
 
-  if ((t & Token.Reserved) === Token.Reserved) {
+  if ((t & Token.Reserved) === Token.Reserved || t === Token.EscapedReserved) {
     report(parser, Errors.KeywordNotId);
   }
 
