@@ -1,7 +1,7 @@
 declare module 'test262-parser-runner' {
   type Parse = (src: string, { sourceType }: { sourceType: 'module' | 'script' }) => any;
   type Options = {
-    testDir?: string;
+    testsDirectory?: string;
     skip(test: any): boolean;
     whitelist: string[];
   };
