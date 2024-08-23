@@ -9656,7 +9656,6 @@ export function parseClassDeclaration(
   //   DecoratorList[?Yield, ?Await]optclassBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
   //   DecoratorList[?Yield, ?Await]optclassClassTail[?Yield, ?Await]
   //
-  context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
   let decorators = parseDecorators(parser, context, privateScope);
   if (decorators.length) {
@@ -9670,6 +9669,8 @@ export function parseClassDeclaration(
     decorators = parser.leadingDecorators;
     parser.leadingDecorators = [];
   }
+
+  context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;
 
   nextToken(parser, context);
   let id: ESTree.Expression | null = null;
@@ -9776,15 +9777,14 @@ export function parseClassExpression(
   let id: ESTree.Expression | null = null;
   let superClass: ESTree.Expression | null = null;
 
-  // All class code is always strict mode implicitly
-  context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
-
   const decorators = parseDecorators(parser, context, privateScope);
   if (decorators.length) {
     start = parser.tokenIndex;
     line = parser.tokenLine;
     column = parser.tokenColumn;
   }
+
+  context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
 
   nextToken(parser, context);
 
