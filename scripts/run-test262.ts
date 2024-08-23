@@ -50,6 +50,7 @@ function shouldSkip(test: Test) {
 
 async function runTest() {
   await run(parse, {
+    testsDirectory: path.dirname(require.resolve('test262/package.json')),
     skip: shouldSkip,
     whitelist: path.sep === '/' ? whitelist : whitelist.map((file) => file.replaceAll('/', path.sep))
   });
