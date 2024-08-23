@@ -40,6 +40,10 @@ type Test = {
 };
 
 function shouldSkip(test: Test) {
+  if (test.file.endsWith('.md')) {
+    return true;
+  }
+
   const features = test.attrs.features ?? [];
   return features.some((feature) => unsupportedFeatures.has(feature));
 }
