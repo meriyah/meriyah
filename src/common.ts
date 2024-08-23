@@ -825,7 +825,7 @@ export function addPrivateIdentifier(
  * @param name Binding name
  */
 export function addPrivateIdentifierRef(parser: ParserState, scope: PrivateScopeState, name: string): void {
-  if (!(name in scope.refs)) scope.refs[name] = [];
+  scope.refs[name] ??= [];
   scope.refs[name].push({
     index: parser.tokenIndex,
     line: parser.tokenLine,
