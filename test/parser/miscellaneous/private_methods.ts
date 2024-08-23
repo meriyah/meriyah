@@ -59,7 +59,14 @@ describe('Next - Private methods', () => {
     ['class C{ #method() { super(); } }', Context.None],
     ['class C{ #method() { super(); } }', Context.None],
     ['class C{ #method() { super(); } }', Context.None],
-    ['class C { #x = () => arguments; }', Context.None]
+    ['class C { #x = () => arguments; }', Context.None],
+    ['class A { #x; #x }', Context.OptionsLexical],
+    ['class A { get #x() {} get #x() {} }', Context.OptionsLexical],
+    ['class A { set #x(v) {} set #x(v) {} }', Context.OptionsLexical],
+    ['class A { static get #x() {} static get #x() {} }', Context.OptionsLexical],
+    ['class A { static set #x(v) {} static set #x(v) {} }', Context.OptionsLexical],
+    ['class A { #x; fn() { return this.#y } }', Context.OptionsLexical],
+    ['class A { #x } function fn() { return this.#y }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
