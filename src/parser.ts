@@ -7015,7 +7015,13 @@ export function parseObjectLiteralOrPattern(
       let state = PropertyKind.None;
       let key: ESTree.Expression | null = null;
       let value;
-      if (parser.getToken() & Token.IsIdentifier || parser.getToken() === Token.EscapedReserved) {
+      if (
+        parser.getToken() & Token.IsIdentifier ||
+        parser.getToken() === Token.EscapedReserved ||
+        parser.getToken() === Token.EscapedFutureReserved
+      ) {
+        if (parser.getToken() === Token.EscapedFutureReserved) destructible |= DestructuringKind.CannotDestruct;
+
         key = parseIdentifier(parser, context);
 
         if (
