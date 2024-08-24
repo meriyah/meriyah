@@ -4318,7 +4318,6 @@ export function parseFunctionBody(
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
   const body: ESTree.Statement[] = [];
-  const prevContext = context;
 
   if (parser.getToken() !== Token.RightBrace) {
     while (parser.getToken() === Token.StringLiteral) {
@@ -4365,6 +4364,8 @@ export function parseFunctionBody(
             Errors.StrictEightAndNine
           );
         }
+
+        if (scopeError) reportScopeError(scopeError);
       }
       body.push(parseDirective(parser, context, expr, token, tokenIndex, parser.tokenLine, parser.tokenColumn));
     }
@@ -4379,16 +4380,6 @@ export function parseFunctionBody(
       }
       if (parser.flags & Flags.StrictEvalArguments) report(parser, Errors.StrictEvalArguments);
       if (parser.flags & Flags.HasStrictReserved) report(parser, Errors.UnexpectedStrictReserved);
-    }
-
-    if (
-      context & Context.OptionsLexical &&
-      scope &&
-      scopeError !== void 0 &&
-      (prevContext & Context.Strict) === 0 &&
-      (context & Context.InGlobal) === 0
-    ) {
-      reportScopeError(scopeError);
     }
   }
 
@@ -5857,7 +5848,7 @@ export function parseFunctionDeclaration(
     privateScope,
     Origin.Declaration,
     funcNameToken,
-    scope ? (functionScope as ScopeState).scopeError : void 0
+    functionScope?.scopeError
   );
 
   return finishNode(parser, context, start, line, column, {
@@ -5950,7 +5941,7 @@ export function parseFunctionExpression(
     privateScope,
     0,
     funcNameToken,
-    void 0
+    scope?.scopeError
   );
 
   parser.assignable = AssignmentKind.CannotAssign;
@@ -6824,7 +6815,7 @@ export function parseMethodDefinition(
     privateScope,
     Origin.None,
     void 0,
-    void 0
+    scope?.parent?.scopeError
   );
 
   return finishNode(parser, context, start, line, column, {
@@ -8785,9 +8776,7 @@ export function parseArrowFunctionExpression(
 
   let body: ESTree.BlockStatement | ESTree.Expression;
 
-  if (scope && scope.scopeError) {
-    reportScopeError(scope.scopeError);
-  }
+  if (scope && scope.scopeError) reportScopeError(scope.scopeError);
 
   if (expression) {
     parser.flags =
