@@ -193,6 +193,11 @@ export type OnToken = (token: string, start: number, end: number, loc: SourceLoc
 export interface ScopeState {
   parent: ScopeState | undefined;
   type: ScopeKind;
+  // Some scopeError doesn't necessarily fail parsing.
+  // For example function a(dup, dup) {} is fine,
+  // But duplicated params is not allowed in strict mode,
+  // So function a(dup, dup) { "use strict" } would fail.
+  // Retain the scopeError on scope for later decision.
   scopeError?: ScopeError | null;
 }
 
@@ -204,6 +209,12 @@ export interface PrivateScopeState {
   refs: {
     [name: string]: { index: number; line: number; column: number }[];
   };
+  // Note PrivateScopeState doesn't retain a scopeError
+  // like ScopeState, because it doesn't need to.
+  // Private identifier is new in ecma, the spec for it
+  // is much more strict than other older parts of JavaScript
+  // For example class A { dup; dup; } is allowed,
+  // But class A { #dup; #dup; } is not allowed.
 }
 
 /** Scope error interface */
