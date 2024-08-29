@@ -39,7 +39,6 @@
 
 - [Explicit resource management](https://github.com/tc39/proposal-explicit-resource-management)
 - [Source phase import](https://github.com/tc39/proposal-source-phase-imports)
-
 - [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (See [RegExp support](#regexp-support))
 
 ## RegExp support
