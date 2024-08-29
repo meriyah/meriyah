@@ -4,8 +4,6 @@ language/expressions/class/elements/nested-private-arrow-fnc-init-err-contains-a
 language/expressions/class/elements/nested-private-arrow-fnc-init-err-contains-arguments.js (strict mode)
 language/expressions/class/elements/syntax/early-errors/super-private-access-invalid.js (default)
 language/expressions/class/elements/syntax/early-errors/super-private-access-invalid.js (strict mode)
-language/expressions/exponentiation/bigint-arithmetic.js (default)
-language/expressions/exponentiation/bigint-arithmetic.js (strict mode)
 language/expressions/import.meta/syntax/escape-sequence-meta.js (default)
 language/expressions/import.meta/syntax/escape-sequence-meta.js (strict mode)
 language/expressions/in/private-field-in-nested.js (default)
