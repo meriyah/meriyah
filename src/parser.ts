@@ -9980,7 +9980,8 @@ export function parseClassBody(
   const hasConstr = parser.flags & Flags.HasConstructor;
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
 
-  const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock)[] = [];
+  const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.AccessorProperty | ESTree.StaticBlock)[] =
+    [];
   let decorators: ESTree.Decorator[];
 
   while (parser.getToken() !== Token.RightBrace) {
@@ -10054,7 +10055,7 @@ function parseClassElementList(
   start: number,
   line: number,
   column: number
-): ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.StaticBlock {
+): ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.AccessorProperty | ESTree.StaticBlock {
   let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
   let key: ESTree.Expression | ESTree.PrivateIdentifier | null = null;
 
@@ -10148,7 +10149,25 @@ function parseClassElementList(
           kind |= PropertyKind.Setter;
         }
         break;
-
+      case Token.AccessorKeyword:
+        if (parser.getToken() !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
+          if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
+            return parsePropertyDefinition(
+              parser,
+              context,
+              privateScope,
+              key,
+              kind,
+              decorators,
+              tokenIndex,
+              tokenLine,
+              tokenColumn
+            );
+          }
+          // class auto-accessor is part of stage 3 decorator spec
+          if (context & Context.OptionsNext) kind |= PropertyKind.Accessor;
+        }
+        break;
       default: // ignore
     }
   } else if (token === Token.LeftBracket) {
@@ -10183,7 +10202,7 @@ function parseClassElementList(
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 
-  if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet)) {
+  if (kind & (PropertyKind.Generator | PropertyKind.Async | PropertyKind.GetSet | PropertyKind.Accessor)) {
     if (
       parser.getToken() & Token.IsIdentifier ||
       // Escaped reserved keyword can be used as ClassElementName which is NOT a Identifier
@@ -10226,7 +10245,7 @@ function parseClassElementList(
     }
   }
 
-  if (parser.getToken() !== Token.LeftParen && (kind & PropertyKind.GetSet) === 0) {
+  if (kind & PropertyKind.Accessor || (parser.getToken() !== Token.LeftParen && (kind & PropertyKind.GetSet) === 0)) {
     return parsePropertyDefinition(
       parser,
       context,
@@ -10329,7 +10348,7 @@ export function parsePropertyDefinition(
   start: number,
   line: number,
   column: number
-): ESTree.PropertyDefinition {
+): ESTree.PropertyDefinition | ESTree.AccessorProperty {
   //  ClassElement :
   //    MethodDefinition
   //    static MethodDefinition
@@ -10408,7 +10427,7 @@ export function parsePropertyDefinition(
   matchOrInsertSemicolon(parser, context);
 
   return finishNode(parser, context, start, line, column, {
-    type: 'PropertyDefinition',
+    type: state & PropertyKind.Accessor ? 'AccessorProperty' : 'PropertyDefinition',
     key,
     value,
     static: (state & PropertyKind.Static) > 0,

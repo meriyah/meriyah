@@ -49,7 +49,16 @@ describe('Next - Decorators', () => {
     `class Foo {
       @dec
       static bar() {}
-    }`
+    }`,
+    `class A { accessor = 1}`,
+    `class A { accessor x}`,
+    `class A { accessor x = 1}`,
+    `class A { @a.b accessor = 1}`,
+    `class A { @dec accessor x}`,
+    `class A { @dec accessor x = 1}`,
+    `(class { @a.b accessor = 1})`,
+    `(class { @dec accessor x})`,
+    `(class { @dec accessor x = 1})`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -64,6 +73,9 @@ describe('Next - Decorators', () => {
   }
 
   fail('Next - Decorators (fail)', [
+    ['class A { accessor a() {}}', Context.OptionsNext | Context.Module | Context.Strict],
+    ['class A { @dec accessor a() {}}', Context.OptionsNext | Context.Module | Context.Strict],
+    ['class A { accessor @dec a}', Context.OptionsNext | Context.Module | Context.Strict],
     ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     [`class A {  constructor(@foo x) {} }`, Context.OptionsNext | Context.Module | Context.Strict],
     //[`@decorate`, Context.OptionsNext],
@@ -3223,6 +3235,172 @@ describe('Next - Decorators', () => {
         end: 13,
         range: [0, 13],
         loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 13 } }
+      }
+    ],
+    [
+      'class A { @dec accessor a }',
+      Context.OptionsNext | Context.OptionsLoc,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'A',
+              loc: {
+                start: {
+                  line: 1,
+                  column: 6
+                },
+                end: {
+                  line: 1,
+                  column: 7
+                }
+              }
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'AccessorProperty',
+                  key: {
+                    type: 'Identifier',
+                    name: 'a',
+                    loc: {
+                      start: {
+                        line: 1,
+                        column: 24
+                      },
+                      end: {
+                        line: 1,
+                        column: 25
+                      }
+                    }
+                  },
+                  value: null,
+                  static: false,
+                  computed: false,
+                  decorators: [
+                    {
+                      type: 'Decorator',
+                      expression: {
+                        type: 'Identifier',
+                        name: 'dec',
+                        loc: {
+                          start: {
+                            line: 1,
+                            column: 11
+                          },
+                          end: {
+                            line: 1,
+                            column: 14
+                          }
+                        }
+                      },
+                      loc: {
+                        start: {
+                          line: 1,
+                          column: 10
+                        },
+                        end: {
+                          line: 1,
+                          column: 14
+                        }
+                      }
+                    }
+                  ],
+                  loc: {
+                    start: {
+                      line: 1,
+                      column: 15
+                    },
+                    end: {
+                      line: 1,
+                      column: 25
+                    }
+                  }
+                }
+              ],
+              loc: {
+                start: {
+                  line: 1,
+                  column: 8
+                },
+                end: {
+                  line: 1,
+                  column: 27
+                }
+              }
+            },
+            decorators: [],
+            loc: {
+              start: {
+                line: 1,
+                column: 0
+              },
+              end: {
+                line: 1,
+                column: 27
+              }
+            }
+          }
+        ],
+        loc: {
+          start: {
+            line: 1,
+            column: 0
+          },
+          end: {
+            line: 1,
+            column: 27
+          }
+        }
+      }
+    ],
+    [
+      'class A { @dec accessor #a }',
+      Context.OptionsNext,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ClassDeclaration',
+            id: {
+              type: 'Identifier',
+              name: 'A'
+            },
+            superClass: null,
+            body: {
+              type: 'ClassBody',
+              body: [
+                {
+                  type: 'AccessorProperty',
+                  key: {
+                    type: 'PrivateIdentifier',
+                    name: 'a'
+                  },
+                  value: null,
+                  static: false,
+                  computed: false,
+                  decorators: [
+                    {
+                      type: 'Decorator',
+                      expression: {
+                        type: 'Identifier',
+                        name: 'dec'
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            decorators: []
+          }
+        ]
       }
     ]
   ]);

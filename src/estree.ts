@@ -366,7 +366,16 @@ export interface StaticBlock extends BlockStatementBase {
 
 export interface ClassBody extends _Node {
   type: 'ClassBody';
-  body: (ClassElement | PropertyDefinition | StaticBlock)[];
+  body: (ClassElement | PropertyDefinition | AccessorProperty | StaticBlock)[];
+}
+
+export interface AccessorProperty extends _Node {
+  type: 'AccessorProperty';
+  key: PrivateIdentifier | Expression;
+  value: any;
+  decorators?: Decorator[];
+  computed: boolean;
+  static: boolean;
 }
 
 export interface PropertyDefinition extends _Node {
