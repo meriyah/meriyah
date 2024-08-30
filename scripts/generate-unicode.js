@@ -1,11 +1,18 @@
 'use strict';
 
+const packageJson = require('../package.json');
 const UnicodeCodeCount = 0x110000; /* codes */
 const VectorSize = Uint32Array.BYTES_PER_ELEMENT * 8;
 const VectorMask = VectorSize - 1;
 const VectorBitCount = 32 - Math.clz32(VectorMask);
 const VectorByteSize = UnicodeCodeCount / VectorSize;
-const UNICODE_VERSION = '15.1.0';
+
+const UNICODE_PACKAGE_PREFIX = '@unicode/unicode-';
+const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) =>
+  name.startsWith(UNICODE_PACKAGE_PREFIX)
+);
+
+const UNICODE_VERSION = unicodePackageName.slice(UNICODE_PACKAGE_PREFIX.length);
 
 const DataInst = {
   Empty: 0x0,
@@ -167,7 +174,7 @@ exports.generate = generate;
 if (require.main === module) {
   const path = require('path');
   const load = (name) => {
-    const mod = require.resolve(`@unicode/unicode-${UNICODE_VERSION}/${name}/code-points`);
+    const mod = require.resolve(`${unicodePackageName}/${name}/code-points`);
     const list = require(mod);
     delete require.cache[mod];
     return list;
