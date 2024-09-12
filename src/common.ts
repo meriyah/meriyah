@@ -32,7 +32,7 @@ export const enum Context {
   InReturnContext = 1 << 21,
   InArgumentList = 1 << 22,
   InConstructor = 1 << 23,
-  InMethod = 1 << 24,
+  InMethodOrFunction = 1 << 24,
   AllowNewTarget = 1 << 25,
   DisallowIn = 1 << 26,
   AllowEscapedKeyword = 1 << 27,

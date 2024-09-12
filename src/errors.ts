@@ -173,7 +173,8 @@ export const enum Errors {
   ImportMetaOutsideModule,
   InvalidLeadingDecorator,
   InvalidExportName,
-  InvalidExportReference
+  InvalidExportReference,
+  InvalidSuperPrivate
 }
 
 export const errorMessages: {
@@ -357,7 +358,8 @@ export const errorMessages: {
   [Errors.ImportMetaOutsideModule]: 'Cannot use "import.meta" outside a module',
   [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration',
   [Errors.InvalidExportName]: 'An export name cannot include a lone surrogate, found %0',
-  [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`'
+  [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`',
+  [Errors.InvalidSuperPrivate]: "Private fields can't be accessed on super"
 };
 
 export class ParseError extends SyntaxError implements _Node {

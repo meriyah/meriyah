@@ -4430,9 +4430,6 @@ export function parseSuperExpression(
     case Token.LeftParen: {
       // The super property has to be within a class constructor
       if ((context & Context.SuperCall) === 0) report(parser, Errors.SuperNoConstructor);
-      if (context & Context.InClass && !(context & Context.InMethod)) {
-        report(parser, Errors.InvalidSuperProperty);
-      }
       parser.assignable = AssignmentKind.CannotAssign;
       break;
     }
@@ -4441,9 +4438,6 @@ export function parseSuperExpression(
       // new super() is never allowed.
       // super() is only allowed in derived constructor
       if ((context & Context.SuperProperty) === 0) report(parser, Errors.InvalidSuperProperty);
-      if (context & Context.InClass && !(context & Context.InMethod)) {
-        report(parser, Errors.InvalidSuperProperty);
-      }
       parser.assignable = AssignmentKind.Assignable;
       break;
     }
@@ -4561,7 +4555,7 @@ export function parseMemberOrUpdateExpression(
         nextToken(parser, (context | Context.AllowEscapedKeyword | Context.InGlobal) ^ Context.InGlobal);
 
         if (context & Context.InClass && parser.getToken() === Token.PrivateField && parser.tokenValue === 'super') {
-          report(parser, Errors.InvalidSuperProperty);
+          report(parser, Errors.InvalidSuperPrivate);
         }
 
         parser.assignable = AssignmentKind.Assignable;
@@ -4944,7 +4938,8 @@ export function parsePrimaryExpression(
       );
     }
 
-    if (context & Context.InClass && token === Token.Arguments) report(parser, Errors.InvalidClassFieldArgEval);
+    if (context & Context.InClass && !(context & Context.InMethodOrFunction) && token === Token.Arguments)
+      report(parser, Errors.InvalidClassFieldArgEval);
 
     // Only a "simple validation" is done here to handle 'let' edge cases
 
@@ -5843,6 +5838,7 @@ export function parseFunctionDeclaration(
     parser,
     ((context | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
       (Context.InGlobal | Context.InSwitch | Context.InIteration)) |
+      Context.InMethodOrFunction |
       Context.InReturnContext,
     scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
     privateScope,
@@ -5936,6 +5932,7 @@ export function parseFunctionExpression(
   const body = parseFunctionBody(
     parser,
     (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass)) |
+      Context.InMethodOrFunction |
       Context.InReturnContext,
     scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
     privateScope,
@@ -6791,7 +6788,7 @@ export function parseMethodDefinition(
     (kind & PropertyKind.Async ? Context.InAwaitContext : 0) |
     (kind & PropertyKind.Constructor ? Context.InConstructor : 0) |
     Context.SuperProperty |
-    Context.InMethod |
+    Context.InMethodOrFunction |
     Context.AllowNewTarget;
 
   let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
@@ -6810,7 +6807,9 @@ export function parseMethodDefinition(
 
   const body = parseFunctionBody(
     parser,
-    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal)) | Context.InReturnContext,
+    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal)) |
+      Context.InMethodOrFunction |
+      Context.InReturnContext,
     scope,
     privateScope,
     Origin.None,
@@ -8792,7 +8791,7 @@ export function parseArrowFunctionExpression(
     // Single-expression body
     body = parseExpression(
       parser,
-      context & Context.InClass ? context | Context.InMethod : context,
+      context,
       privateScope,
       1,
       0,
@@ -10261,7 +10260,7 @@ function parseClassElementList(
 
   const value = parseMethodDefinition(
     parser,
-    context,
+    context | Context.InClass,
     privateScope,
     kind,
     inGroup,
@@ -10377,7 +10376,6 @@ export function parsePropertyDefinition(
       (state & PropertyKind.Async ? Context.InAwaitContext : 0) |
       (state & PropertyKind.Constructor ? Context.InConstructor : 0) |
       Context.SuperProperty |
-      Context.InMethod |
       Context.AllowNewTarget;
 
     value = parsePrimaryExpression(

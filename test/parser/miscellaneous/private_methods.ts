@@ -66,7 +66,8 @@ describe('Next - Private methods', () => {
     ['class A { static get #x() {} static get #x() {} }', Context.OptionsLexical],
     ['class A { static set #x(v) {} static set #x(v) {} }', Context.OptionsLexical],
     ['class A { #x; fn() { return this.#y } }', Context.OptionsLexical],
-    ['class A { #x } function fn() { return this.#y }', Context.OptionsLexical]
+    ['class A { #x } function fn() { return this.#y }', Context.OptionsLexical],
+    ['class A extends B { #x() {} method() { super.#x() }  }', Context.OptionsLexical]
   ]);
 
   for (const arg of [
@@ -201,9 +202,7 @@ describe('Next - Private methods', () => {
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
     'foo() { this.#m, (() => this)().#m }',
-    'method() { super.#x(); }',
     '#method() { super.x(); }',
-    '#method() { super.#x(); }',
     '#\\u{61}',
     '#\\u{61}\n',
     '#\\u{61}bc;',
