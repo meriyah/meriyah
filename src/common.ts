@@ -36,7 +36,8 @@ export const enum Context {
   AllowNewTarget = 1 << 25,
   DisallowIn = 1 << 26,
   AllowEscapedKeyword = 1 << 27,
-  OptionsUniqueKeyInPattern = 1 << 28
+  OptionsUniqueKeyInPattern = 1 << 28,
+  InStaticBlock = 1 << 29
 }
 
 /**
