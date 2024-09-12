@@ -317,7 +317,7 @@ export const errorMessages: {
   [Errors.DeletePrivateField]: 'Private fields can not be deleted',
   [Errors.InvalidClassFieldConstructor]: 'Classes may not have a field called constructor',
   [Errors.InvalidStaticClassFieldConstructor]: 'Classes may not have a private element named constructor',
-  [Errors.InvalidClassFieldArgEval]: 'A class field initializer may not contain arguments',
+  [Errors.InvalidClassFieldArgEval]: 'A class field initializer or static block may not contain arguments',
   [Errors.InvalidGeneratorFunction]: 'Generators can only be declared at the top level or inside a block',
   [Errors.AsyncRestrictedProd]: 'Async methods are a restricted production and cannot have a newline following it',
   [Errors.UnexpectedCharAfterObjLit]: 'Unexpected character after object literal property name',

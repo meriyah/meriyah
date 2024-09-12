@@ -2049,12 +2049,7 @@ export function parseStaticBlock(
   if (scope) scope = addChildScope(scope, ScopeKind.Block);
 
   const ctorContext =
-    Context.InClass |
-    Context.SuperCall |
-    Context.InReturnContext |
-    Context.InYieldContext |
-    Context.InSwitch |
-    Context.InIteration;
+    Context.SuperCall | Context.InReturnContext | Context.InYieldContext | Context.InSwitch | Context.InIteration;
 
   context =
     ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext | Context.AllowNewTarget;
@@ -4938,7 +4933,14 @@ export function parsePrimaryExpression(
       );
     }
 
-    if (context & Context.InClass && !(context & Context.InMethodOrFunction) && token === Token.Arguments)
+    if (
+      context & Context.InClass &&
+      !(context & Context.InMethodOrFunction) &&
+      !(context & Context.InArgumentList) &&
+      // Use tokenValue instead of token === Token.Arguments
+      // because "arguments" maybe escaped like argument\u0073
+      parser.tokenValue === 'arguments'
+    )
       report(parser, Errors.InvalidClassFieldArgEval);
 
     // Only a "simple validation" is done here to handle 'let' edge cases
@@ -8802,7 +8804,7 @@ export function parseArrowFunctionExpression(
   } else {
     if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
 
-    const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal | Context.InClass;
+    const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal;
 
     body = parseFunctionBody(
       parser,
@@ -10192,7 +10194,7 @@ function parseClassElementList(
   } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
-    return parseStaticBlock(parser, context, scope, privateScope, tokenIndex, tokenLine, tokenColumn);
+    return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, tokenIndex, tokenLine, tokenColumn);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context);
     if (parser.getToken() !== Token.LeftParen)
