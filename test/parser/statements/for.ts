@@ -461,8 +461,6 @@ describe('Statements - For', () => {
     'for (a ? b : c;;);',
     'for (a = b;;);',
     'for (a += b;;);',
-    'for ([{__proto__: 1, __proto__: 2}];;);',
-    'for ({__proto__: 1, __proto__: 2};;);',
     'for (((x)=>{}).x in y);',
     'for (((x)=>{}).x of y);',
     `var let;
@@ -493,6 +491,8 @@ describe('Statements - For', () => {
   }
 
   fail('Statements - For (pass)', [
+    ['for ([{__proto__: 1, __proto__: 2}];;);', Context.None],
+    ['for ({__proto__: 1, __proto__: 2};;);', Context.None],
     [`for ({x=y} ;;) b;`, Context.Strict],
     ['for({a=0};;);', Context.None],
     ['for (let=10;;);', Context.Strict],

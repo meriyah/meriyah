@@ -1,7 +1,5 @@
 language/expressions/in/private-field-in-nested.js (default)
 language/expressions/in/private-field-in-nested.js (strict mode)
-language/expressions/object/__proto__-duplicate.js (default)
-language/expressions/object/__proto__-duplicate.js (strict mode)
 language/import/import-attributes/json-invalid.js (default)
 language/import/import-attributes/json-invalid.js (strict mode)
 language/statements/block/labeled-continue.js (default)
