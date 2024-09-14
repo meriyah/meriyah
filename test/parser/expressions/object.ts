@@ -184,9 +184,10 @@ describe('Expressions - Object', () => {
     '{async *static() {}}',
     '{set async(v) {}}',
     '{get async() {}}',
-    '{get let() {}}'
+    '{get let() {}}',
+    'async ({__proto__: a, __proto__: b}) => 1'
   ]) {
-    it(`'use strict'; x = ${arg}`, () => {
+    it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = ${arg}`, undefined, Context.OptionsWebCompat);
       });
@@ -221,13 +222,8 @@ describe('Expressions - Object', () => {
     'x = {__proto__: 1, "__proto__": 2}',
     'x = {\'__proto__\': 1, "__proto__": 2}',
     "x = {'__proto__': 1, __proto__: 2}",
-    'x = {__proto__: 1, "__proto__": 2}'
-    // FIXME:
-    // async() (not a async function) has different code path.
-    // Following should fail:
-    //   async ({__proto__: a, __proto__: b});
-    // But following should pass:
-    //   async ({__proto__: a, __proto__: b}) => 1;
+    'x = {__proto__: 1, "__proto__": 2}',
+    'async ({__proto__: a, __proto__: b});'
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -249,25 +245,25 @@ describe('Expressions - Object', () => {
     '__proto__: {}, set __proto__(v) {}',
     '__proto__: {}, __proto__'
   ]) {
-    it(`${arg}`, () => {
+    it(`({${arg}})`, () => {
       t.doesNotThrow(() => {
         parseSource(`({${arg}});`, undefined, Context.None);
       });
     });
 
-    it(`"use strict"; (${arg})`, () => {
+    it(`"use strict"; ({${arg}});`, () => {
       t.doesNotThrow(() => {
         parseSource(`"use strict"; ({${arg}});`, undefined, Context.None);
       });
     });
 
-    it(`x = ${arg}`, () => {
+    it(`x = {${arg}}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = {${arg}};`, undefined, Context.None);
       });
     });
 
-    it(`x = ${arg}`, () => {
+    it(`x = {${arg}}`, () => {
       t.doesNotThrow(() => {
         parseSource(`x = {${arg}};`, undefined, Context.OptionsWebCompat);
       });

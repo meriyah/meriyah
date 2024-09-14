@@ -8666,7 +8666,7 @@ export function parseParenthesizedExpression(
     );
   }
 
-  if (parser.destructible & DestructuringKind.SeenProto) {
+  if (destructible & DestructuringKind.SeenProto) {
     report(parser, Errors.DuplicateProto);
   }
 
@@ -9664,7 +9664,13 @@ export function parseAsyncArrowOrCallExpression(
       line,
       column
     );
-  } else if (destructible & DestructuringKind.HasToDestruct) {
+  }
+
+  if (destructible & DestructuringKind.SeenProto) {
+    report(parser, Errors.DuplicateProto);
+  }
+
+  if (destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
 
