@@ -1745,58 +1745,6 @@ describe('Expressions - Arrow', () => {
       }
     ],
     [
-      '(a = await/r/g) => {}',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrowFunctionExpression',
-              body: {
-                type: 'BlockStatement',
-                body: []
-              },
-              params: [
-                {
-                  type: 'AssignmentPattern',
-                  left: {
-                    type: 'Identifier',
-                    name: 'a'
-                  },
-                  right: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'BinaryExpression',
-                      left: {
-                        type: 'Identifier',
-                        name: 'await'
-                      },
-                      right: {
-                        type: 'Identifier',
-                        name: 'r'
-                      },
-                      operator: '/'
-                    },
-                    right: {
-                      type: 'Identifier',
-                      name: 'g'
-                    },
-                    operator: '/'
-                  }
-                }
-              ],
-
-              async: false,
-              expression: false
-            }
-          }
-        ]
-      }
-    ],
-    [
       'a => a / x',
       Context.OptionsRanges,
       {

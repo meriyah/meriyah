@@ -18,7 +18,7 @@ export const enum Token {
   IsAutoSemicolon          = 1 << 20,
   IsPatternStart           = 1 << 21, // Start of pattern, '[' or '{'
   IsAssignOp               = 1 << 22,
-  IsBinaryOp               = 1 << 23 | IsExpressionStart,
+  IsBinaryOp               = 1 << 23,
   IsUnaryOp                = 1 << 24 | IsExpressionStart,
   IsUpdateOp               = 1 << 25 | IsExpressionStart,
   IsMemberOrCallExpression = 1 << 26,
@@ -91,8 +91,8 @@ export const enum Token {
   VoidKeyword        = 45 | IsUnaryOp | Reserved,
   Negate             = 46 | IsUnaryOp, // !
   Complement         = 47 | IsUnaryOp, // ~
-  Add                = 48 | IsUnaryOp | IsBinaryOp | 10 << PrecStart, // +
-  Subtract           = 49 | IsUnaryOp | IsBinaryOp | 10 << PrecStart, // -
+  Add                = 48 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecStart, // +
+  Subtract           = 49 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecStart, // -
   InKeyword          = 50 | IsBinaryOp | 8 << PrecStart | Reserved | IsInOrOf,
   InstanceofKeyword  = 51 | IsBinaryOp | 8 << PrecStart | Reserved,
   Multiply           = 52 | IsBinaryOp | 11 << PrecStart, // *
@@ -192,7 +192,7 @@ export const enum Token {
   Target            = 133 | IsIdentifier,
   Meta              = 134 | IsIdentifier,
   LineFeed          = 135,
-  EscapedIdentifier = 136 | IsEscaped,
+  EscapeStart       = 136,
 
   // JSX
   JSXText           = 137,

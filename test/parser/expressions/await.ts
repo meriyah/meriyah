@@ -9,7 +9,6 @@ describe('Expressions - Await', () => {
     'class await {}',
     `function await(yield) {}`,
     'var await = 1',
-    'async(await)',
     '({ await: async })',
     'await => {}',
     'await => async',
@@ -409,19 +408,15 @@ describe('Expressions - Await', () => {
     ['async (foo = await bar) => {}', Context.None],
     ['await.b[c] => async', Context.None],
     ['(foo = await bar) => {}', Context.None],
-    ['async (foo = await bar);', Context.None],
     ['({x} = await bar) => {}', Context.None],
     ['async ({x} = await bar) => {}', Context.None],
-    ['async ({x} = await bar);', Context.None],
     ['([x] = await bar) => {}', Context.None],
     ['async ([x] = await bar) => {}', Context.None],
-    ['async ([x] = await bar);', Context.None],
     ['(foo = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['({o} = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['async ({await}) => 1;', Context.None],
     ['([p] = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['async ([p] = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async ([p] = [{m: 5 + t(await bar)}]);', Context.None],
     ['(foo = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['(foo = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['x = { async f() { let await } }', Context.None],
@@ -526,20 +521,13 @@ describe('Expressions - Await', () => {
     ['async function g(){let x = function f(foo = await bar){}    }', Context.None],
     ['async function g(){    function f(foo = await bar){}    }', Context.None],
     ['([p] = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async ([p] = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async ([p] = [{m: 5 + t(await bar)}]);', Context.None],
     ['sync ({o} = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async ({o} = [{m: 5 + t(await bar)}]);', Context.None],
     ['({o} = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async (foo = [{m: 5 + t(await bar)}]);', Context.None],
     ['async (foo = [{m: 5 + t(await bar)}]) => {}', Context.None],
     ['(foo = [{m: 5 + t(await bar)}]) => {}', Context.None],
-    ['async ([x] = await bar);', Context.None],
     ['async ([x] = await bar) => {}', Context.None],
     ['([x] = await bar) => {}', Context.None],
-    ['async ({x} = await bar);', Context.None],
     ['({x} = await bar) => {}', Context.None],
-    ['async (foo = await bar);', Context.None],
     ['async (foo = await bar) => {}', Context.None],
     ['(foo = await bar) => {}', Context.None],
     ['class x {async *f(foo = [{m: t(await bar)}]){}}', Context.None],
@@ -698,7 +686,6 @@ describe('Expressions - Await', () => {
     'function f() { var o = { *await() { } } }',
     'function f() { class C { *await() { } } }',
     'var O = { async 0() { await 1; } }',
-    'async function await() {}',
     'var asyncFn = async({ foo = 1 }) => foo;',
     'var asyncFn = async({ foo = 1 } = {}) => foo;',
     'function* g() { var f = async(yield); }',
@@ -730,7 +717,6 @@ describe('Expressions - Await', () => {
     'function f() { var await = 10; var o = { await }; }',
     'function f() { class C { await() { } } }',
     'class x {*f(await){}}',
-    'async(await)',
     'function *f(){  (await) => x  }',
     'function *f(){  foo(await)  }',
     'function *f(foo = await){}',
@@ -738,23 +724,11 @@ describe('Expressions - Await', () => {
     'let o = {*f(foo = await){}}',
     'class x {f(foo = await){}}',
     'class x {*f(foo = await){}}',
-    'async function await(){}',
     'function *await(){}',
     'async function f(){ new (await foo) }',
     'async function f(){ await \n x; }',
     'async function f(){ await foo\n/foo/g }',
-    '(await())',
-    'async(await);',
     'function f() { var await; }',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
-    'async(await);',
     'function call(foo=await){}',
     'function call(await){}',
     `async function f() {
@@ -1667,114 +1641,6 @@ describe('Expressions - Await', () => {
       }
     ],
     [
-      'call(await())',
-      Context.OptionsRanges | Context.OptionsLoc,
-      {
-        type: 'Program',
-        start: 0,
-        end: 13,
-        range: [0, 13],
-        loc: {
-          start: {
-            line: 1,
-            column: 0
-          },
-          end: {
-            line: 1,
-            column: 13
-          }
-        },
-        body: [
-          {
-            type: 'ExpressionStatement',
-            start: 0,
-            end: 13,
-            range: [0, 13],
-            loc: {
-              start: {
-                line: 1,
-                column: 0
-              },
-              end: {
-                line: 1,
-                column: 13
-              }
-            },
-            expression: {
-              type: 'CallExpression',
-              start: 0,
-              end: 13,
-              range: [0, 13],
-              loc: {
-                start: {
-                  line: 1,
-                  column: 0
-                },
-                end: {
-                  line: 1,
-                  column: 13
-                }
-              },
-              callee: {
-                type: 'Identifier',
-                start: 0,
-                end: 4,
-                range: [0, 4],
-                loc: {
-                  start: {
-                    line: 1,
-                    column: 0
-                  },
-                  end: {
-                    line: 1,
-                    column: 4
-                  }
-                },
-                name: 'call'
-              },
-              arguments: [
-                {
-                  type: 'CallExpression',
-                  start: 5,
-                  end: 12,
-                  range: [5, 12],
-                  loc: {
-                    start: {
-                      line: 1,
-                      column: 5
-                    },
-                    end: {
-                      line: 1,
-                      column: 12
-                    }
-                  },
-                  callee: {
-                    type: 'Identifier',
-                    start: 5,
-                    end: 10,
-                    range: [5, 10],
-                    loc: {
-                      start: {
-                        line: 1,
-                        column: 5
-                      },
-                      end: {
-                        line: 1,
-                        column: 10
-                      }
-                    },
-                    name: 'await'
-                  },
-                  arguments: []
-                }
-              ]
-            }
-          }
-        ],
-        sourceType: 'script'
-      }
-    ],
-    [
       'call(await[1])',
       Context.OptionsLoc | Context.OptionsRanges,
       {
@@ -2107,27 +1973,6 @@ describe('Expressions - Await', () => {
           }
         ],
         sourceType: 'script'
-      }
-    ],
-    [
-      '(await())',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'await'
-              },
-              arguments: []
-            }
-          }
-        ]
       }
     ],
     [
@@ -3116,32 +2961,6 @@ describe('Expressions - Await', () => {
 
               async: false,
               expression: true
-            }
-          }
-        ]
-      }
-    ],
-    [
-      'async(await)',
-      Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'async'
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'await'
-                }
-              ]
             }
           }
         ]

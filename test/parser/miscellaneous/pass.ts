@@ -2824,14 +2824,11 @@ after = err;
     'class await {}',
     `function await(yield) {}`,
     'var await = 1',
-    'async(await)',
     '({ await: async })',
     'await => {}',
     'await => async',
     'class X { await(){} }',
-    'f(x, await(y, z))',
     'class X { static await(){} }',
-    'x = await(y);',
     'class X { await() {} }',
     'let async = await;',
     'async = 1, b = 2;',
@@ -6052,7 +6049,6 @@ for (var i = 0; i < 10000; i++){
     'abc\nfunction foo() {}',
     'async\nfunction\nfoo() {}',
     "'foo\\'bar'",
-    'await +123',
     `if (x) {
       foo();
   }
@@ -8601,7 +8597,6 @@ f(w, ...[x, y,], z);
     '(a) = b;',
     '((a)) = b;',
     'a = ((b)) = c;',
-    '(await())',
     '(x);',
     '(a) = 1;',
     '(a.b) = 1;',

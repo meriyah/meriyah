@@ -50,37 +50,37 @@ describe('Lexer - Identifiers', () => {
 
     // Unicode escape sequence - classic
 
-    [Context.None, Token.Identifier, '\\u0070bc', 'pbc'],
-    [Context.None, Token.Identifier, 'a\\u0071c', 'aqc'],
-    [Context.None, Token.Identifier, 'ab\\u0072', 'abr'],
-    [Context.None, Token.Identifier, '\\u0024', '$'],
-    [Context.None, Token.Identifier, '\\u0078\\u0078', 'xx'],
-    [Context.None, Token.Identifier, '\\u0024_', '$_'],
-    [Context.None, Token.Identifier, '\\u005F\\u005F', '__'],
-    [Context.None, Token.Identifier, '\\u044D', 'э'],
-    [Context.None, Token.Identifier, '\\u0431', 'б'],
-    [Context.None, Token.Identifier, 'ab\\u0072', 'abr'],
-    [Context.None, Token.Identifier, 'a\\u2118', 'a℘'],
-    [Context.None, Token.Identifier, 'a\\u309C', 'a゜'],
-    [Context.None, Token.Identifier, '\\u2118', '℘'],
-    [Context.None, Token.Identifier, '\\u309C', '゜'],
-    [Context.None, Token.Identifier, '\\u1886', 'ᢆ'],
-    [Context.None, Token.Identifier, 'foo\\u00d8bar', 'fooØbar'], // Identifier With Unicode Escape Sequence (`\\uXXXX`)
-    [Context.None, Token.Identifier, 'f\u00d8\u00d8bar', 'fØØbar'], // Identifier With Embedded Unicode Character
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0070bc', 'pbc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'a\\u0071c', 'aqc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'ab\\u0072', 'abr'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0024', '$'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0078\\u0078', 'xx'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0024_', '$_'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u005F\\u005F', '__'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u044D', 'э'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0431', 'б'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'ab\\u0072', 'abr'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'a\\u2118', 'a℘'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'a\\u309C', 'a゜'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u2118', '℘'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u309C', '゜'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u1886', 'ᢆ'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'foo\\u00d8bar', 'fooØbar'], // Identifier With Unicode Escape Sequence (`\\uXXXX`)
+    [Context.None, Token.Identifier | Token.IsEscaped, 'f\\u00d8\\u00d8bar', 'fØØbar'], // Identifier With Embedded Unicode Character
 
     // Long unicode escape
 
-    [Context.None, Token.Identifier, '\\u{70}bc', 'pbc'],
-    [Context.None, Token.Identifier, '$\\u{32}', '$2'],
-    [Context.None, Token.Identifier, '\\u{70}bc\\u{70}bc', 'pbcpbc'],
-    [Context.None, Token.Identifier, '\\u{070}bc', 'pbc'],
-    [Context.None, Token.Identifier, 'ab\\u{0072}', 'abr'],
-    [Context.None, Token.Identifier, 'ab\\u{00072}', 'abr'],
-    [Context.None, Token.Identifier, 'ab\\u{072}', 'abr'],
-    [Context.None, Token.Identifier, '\\u{4fff}', '俿'],
-    [Context.None, Token.Identifier, '\\u{222}', 'Ȣ'],
-    [Context.None, Token.Identifier, '\\u{1EE00}', '𞸀'],
-    [Context.None, Token.Identifier, 'a\\u{0000000000000000000071}c', 'aqc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{70}bc', 'pbc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '$\\u{32}', '$2'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{70}bc\\u{70}bc', 'pbcpbc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{070}bc', 'pbc'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'ab\\u{0072}', 'abr'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'ab\\u{00072}', 'abr'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'ab\\u{072}', 'abr'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{4fff}', '俿'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{222}', 'Ȣ'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{1EE00}', '𞸀'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'a\\u{0000000000000000000071}c', 'aqc'],
 
     // Keywords
     [Context.None, Token.BreakKeyword, 'break', 'break'],
@@ -90,15 +90,15 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.PublicKeyword, 'public', 'public'],
 
     // Async is not reserved keyword
-    [Context.None, Token.AnyIdentifier, '\\u0061sync', 'async'],
-    [Context.Strict, Token.AnyIdentifier, '\\u0061sync', 'async'],
+    [Context.None, Token.AnyIdentifier | Token.IsEscaped, '\\u0061sync', 'async'],
+    [Context.Strict, Token.AnyIdentifier | Token.IsEscaped, '\\u0061sync', 'async'],
 
     // Escaped Keywords
     [Context.None, Token.EscapedReserved, 'br\\u0065ak', 'break'],
-    [Context.None, Token.Identifier, 'Br\\u0065ak', 'Break'],
+    [Context.None, Token.Identifier | Token.IsEscaped, 'Br\\u0065ak', 'Break'],
     [Context.Strict, Token.EscapedFutureReserved, 'int\\u0065rface', 'interface'],
     [Context.None, Token.InterfaceKeyword | Token.Contextual | Token.IsEscaped, 'int\\u0065rface', 'interface'],
-    [Context.None, Token.YieldKeyword, 'yi\\u0065ld', 'yield'],
+    [Context.None, Token.YieldKeyword | Token.IsEscaped, 'yi\\u0065ld', 'yield'],
     [Context.Strict, Token.EscapedReserved, '\\u{64}ebugger', 'debugger'],
     [Context.Strict, Token.EscapedReserved, 'fina\\u{6c}ly', 'finally'],
     [Context.Strict, Token.EscapedReserved, '\\u0069\\u0066', 'if'],
@@ -111,14 +111,14 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.Identifier, 'ц', 'ц'],
 
     // Escaped Russian letters
-    [Context.None, Token.Identifier, '\\u0431', 'б'],
-    [Context.None, Token.Identifier, '\\u0434', 'д'],
-    [Context.None, Token.Identifier, '\\u0447', 'ч'],
-    [Context.None, Token.Identifier, '\\u004C', 'L'],
-    [Context.None, Token.Identifier, '\\u004C', 'L'],
-    [Context.None, Token.Identifier, '\\u{413}', 'Г'],
-    [Context.None, Token.Identifier, '\\u{419}', 'Й'],
-    [Context.None, Token.Identifier, '\\u{424}', 'Ф'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0431', 'б'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0434', 'д'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u0447', 'ч'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u004C', 'L'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u004C', 'L'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{413}', 'Г'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{419}', 'Й'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{424}', 'Ф'],
 
     // Others
 
@@ -134,11 +134,11 @@ describe('Lexer - Identifiers', () => {
     [Context.None, Token.Identifier, '℮', '℮'],
     [Context.None, Token.Identifier, '℘', '℘'],
     [Context.None, Token.Identifier, 'a᧚', 'a᧚'],
-    [Context.None, Token.Identifier, '$00xxx\\u0069\\u0524\\u{20BB7}', '$00xxxiԤ𠮷'],
+    [Context.None, Token.Identifier | Token.IsEscaped, '$00xxx\\u0069\\u0524\\u{20BB7}', '$00xxxiԤ𠮷'],
 
     // UTF-16 surrogate pairs.
     [Context.None, Token.Identifier, '𐌭', '𐌭'],
-    [Context.None, Token.Identifier, '\\u{1032d}', '𐌭']
+    [Context.None, Token.Identifier | Token.IsEscaped, '\\u{1032d}', '𐌭']
   ];
 
   for (const [ctx, token, op, value] of tokens) {

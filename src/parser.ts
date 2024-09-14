@@ -1212,7 +1212,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
       }
       expr = parseArrowFromIdentifier(
         parser,
-        context,
+        context | Context.InAwaitContext,
         privateScope,
         parser.tokenValue,
         expr,
@@ -2052,7 +2052,11 @@ export function parseStaticBlock(
     Context.SuperCall | Context.InReturnContext | Context.InYieldContext | Context.InSwitch | Context.InIteration;
 
   context =
-    ((context | ctorContext) ^ ctorContext) | Context.SuperProperty | Context.InAwaitContext | Context.AllowNewTarget;
+    ((context | ctorContext) ^ ctorContext) |
+    Context.SuperProperty |
+    Context.InAwaitContext |
+    Context.InStaticBlock |
+    Context.AllowNewTarget;
   const { body } = parseBlock(parser, context, scope, privateScope, {}, start, line, column);
 
   return finishNode(parser, context, start, line, column, {
@@ -4171,7 +4175,7 @@ export function parseAsyncExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseYieldExpression(
+export function parseYieldExpressionOrIdentifier(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4235,7 +4239,7 @@ export function parseYieldExpression(
  * @param context Context masks
  * @param inNew
  */
-export function parseAwaitExpression(
+export function parseAwaitExpressionOrIdentifier(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4246,22 +4250,69 @@ export function parseAwaitExpression(
   column: number
 ): ESTree.IdentifierOrExpression | ESTree.AwaitExpression {
   if (inGroup) parser.destructible |= DestructuringKind.Await;
-  if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
-    if (inNew) report(parser, Errors.Unexpected);
+  if (context & Context.InStaticBlock) report(parser, Errors.InvalidAwaitInStaticBlock);
 
-    if (context & Context.InArgumentList) {
+  // Peek next Token first;
+  const possibleIdentiferOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+
+  // If got an arrow function, or token after "await" is an expression.
+  const isIdentifier =
+    possibleIdentiferOrArrowFunc.type === 'ArrowFunctionExpression' ||
+    (parser.getToken() & Token.IsExpressionStart) === 0;
+
+  if (isIdentifier) {
+    if (context & Context.InAwaitContext)
       reportMessageAt(
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-        parser.index,
-        parser.line,
-        parser.column,
-        Errors.AwaitInParameter
+        start,
+        line,
+        column,
+        parser.startIndex,
+        parser.startLine,
+        parser.startColumn,
+        Errors.InvalidAwaitAsIdentifier
       );
-    }
+    if (context & Context.Module)
+      reportMessageAt(
+        start,
+        line,
+        column,
+        parser.startIndex,
+        parser.startLine,
+        parser.startColumn,
+        Errors.AwaitIdentInModuleOrAsyncFunc
+      );
 
-    nextToken(parser, context | Context.AllowRegExp);
+    if (context & Context.InArgumentList && context & Context.InAwaitContext)
+      reportMessageAt(
+        start,
+        line,
+        column,
+        parser.startIndex,
+        parser.startLine,
+        parser.startColumn,
+        Errors.AwaitIdentInModuleOrAsyncFunc
+      );
+    // "await" can be identifier out of async func.
+    return possibleIdentiferOrArrowFunc;
+  }
+
+  // "await" is start of await expression.
+  if (context & Context.InArgumentList) {
+    reportMessageAt(
+      start,
+      line,
+      column,
+      parser.startIndex,
+      parser.startLine,
+      parser.startColumn,
+      Errors.AwaitInParameter
+    );
+  }
+
+  // await expression is only allowed in async func or at module top level.
+  if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
+    if (inNew)
+      reportMessageAt(start, line, column, parser.startIndex, parser.startLine, parser.startColumn, Errors.Unexpected);
 
     const argument = parseLeftHandSideExpression(
       parser,
@@ -4285,8 +4336,18 @@ export function parseAwaitExpression(
     });
   }
 
-  if (context & Context.Module) report(parser, Errors.AwaitOutsideAsync);
-  return parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+  if (context & Context.Module)
+    reportMessageAt(
+      start,
+      line,
+      column,
+      parser.startIndex,
+      parser.startLine,
+      parser.startColumn,
+      Errors.AwaitOutsideAsync
+    );
+  // Fallback to identifier in script mode
+  return possibleIdentiferOrArrowFunc;
 }
 
 /**
@@ -4888,9 +4949,9 @@ export function parsePrimaryExpression(
   if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
     switch (parser.getToken()) {
       case Token.AwaitKeyword:
-        return parseAwaitExpression(parser, context, privateScope, inNew, inGroup, start, line, column);
+        return parseAwaitExpressionOrIdentifier(parser, context, privateScope, inNew, inGroup, start, line, column);
       case Token.YieldKeyword:
-        return parseYieldExpression(parser, context, privateScope, inGroup, canAssign, start, line, column);
+        return parseYieldExpressionOrIdentifier(parser, context, privateScope, inGroup, canAssign, start, line, column);
       case Token.AsyncKeyword:
         return parseAsyncExpression(
           parser,
@@ -5088,9 +5149,12 @@ export function parseImportMetaExpression(
   if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
 
   nextToken(parser, context); // skips: '.'
-
-  if (parser.getToken() !== Token.Meta && parser.tokenValue !== 'meta')
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+  const token = parser.getToken();
+  if (token !== Token.Meta && parser.tokenValue !== 'meta') {
+    report(parser, Errors.InvalidImportMeta);
+  } else if (token & Token.IsEscaped) {
+    report(parser, Errors.InvalidEscapedImportMeta);
+  }
 
   parser.assignable = AssignmentKind.CannotAssign;
 
@@ -5630,7 +5694,9 @@ export function parseArguments(
  */
 export function parseIdentifier(parser: ParserState, context: Context): ESTree.Identifier {
   const { tokenValue, tokenIndex, tokenLine, tokenColumn } = parser;
-  nextToken(parser, context);
+
+  const allowRegex = tokenValue === 'await' && (parser.getToken() & Token.IsEscaped) === 0;
+  nextToken(parser, context | (allowRegex ? Context.AllowRegExp : 0));
 
   return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'Identifier',
@@ -5829,19 +5895,18 @@ export function parseFunctionDeclaration(
 
   const params = parseFormalParametersOrFormalList(
     parser,
-    context | Context.InArgumentList,
+    (context | Context.InArgumentList) & ~Context.InStaticBlock,
     functionScope,
     privateScope,
     0,
     BindingKind.ArgumentList
   );
 
+  const modiferFlags = Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InStaticBlock;
+
   const body = parseFunctionBody(
     parser,
-    ((context | Context.InGlobal | Context.InSwitch | Context.InIteration) ^
-      (Context.InGlobal | Context.InSwitch | Context.InIteration)) |
-      Context.InMethodOrFunction |
-      Context.InReturnContext,
+    ((context | modiferFlags) ^ modiferFlags) | Context.InMethodOrFunction | Context.InReturnContext,
     scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
     privateScope,
     Origin.Declaration,
@@ -5899,7 +5964,8 @@ export function parseFunctionExpression(
     Context.InYieldContext |
     Context.InAwaitContext |
     Context.InArgumentList |
-    Context.InConstructor;
+    Context.InConstructor |
+    Context.InStaticBlock;
 
   if (parser.getToken() & Token.IsIdentifier) {
     validateFunctionName(
@@ -5924,7 +5990,7 @@ export function parseFunctionExpression(
 
   const params = parseFormalParametersOrFormalList(
     parser,
-    context | Context.InArgumentList,
+    (context | Context.InArgumentList) & ~Context.InStaticBlock,
     scope,
     privateScope,
     inGroup,
@@ -5944,7 +6010,6 @@ export function parseFunctionExpression(
   );
 
   parser.assignable = AssignmentKind.CannotAssign;
-
   return finishNode(parser, context, start, line, column, {
     type: 'FunctionExpression',
     id,
@@ -6797,7 +6862,7 @@ export function parseMethodDefinition(
 
   const params = parseMethodFormals(
     parser,
-    context | Context.InArgumentList,
+    (context | Context.InArgumentList) & ~Context.InStaticBlock,
     scope,
     privateScope,
     kind,
@@ -6809,7 +6874,7 @@ export function parseMethodDefinition(
 
   const body = parseFunctionBody(
     parser,
-    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal)) |
+    (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InStaticBlock)) |
       Context.InMethodOrFunction |
       Context.InReturnContext,
     scope,
@@ -7390,8 +7455,8 @@ export function parseObjectLiteralOrPattern(
             report(parser, Errors.InvalidGeneratorGetter);
           } else if (token === Token.SetKeyword) {
             report(parser, Errors.InvalidGeneratorSetter);
-          } else if (token === Token.AnyIdentifier) {
-            report(parser, Errors.InvalidEscapedKeyword);
+          } else if (token !== Token.AsyncKeyword) {
+            report(parser, Errors.UnexpectedToken, KeywordDescTable[Token.Multiply & Token.Type]);
           }
 
           nextToken(parser, context);
@@ -8775,7 +8840,8 @@ export function parseArrowFunctionExpression(
 
   consume(parser, context | Context.AllowRegExp, Token.Arrow);
 
-  const modifierFlags = Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList;
+  const modifierFlags =
+    Context.InYieldContext | Context.InAwaitContext | Context.InArgumentList | Context.InStaticBlock;
 
   context = ((context | modifierFlags) ^ modifierFlags) | (isAsync ? Context.InAwaitContext : 0);
 
@@ -9292,7 +9358,7 @@ function parseAsyncArrowAfterIdent(
 
   return parseArrowFromIdentifier(
     parser,
-    context,
+    (context & ~Context.InStaticBlock) | Context.InAwaitContext,
     privateScope,
     parser.tokenValue,
     parseIdentifier(parser, context),
@@ -9362,6 +9428,9 @@ export function parseAsyncArrowOrCallExpression(
 
   const params: ESTree.Expression[] = [];
 
+  // FIXME: #337 at this point, it's unknown whether this is a argument list, or calling params list.
+  // const previousContext = context;
+  // context = context | Context.InArgumentList;
   while (parser.getToken() !== Token.RightParen) {
     const { tokenIndex, tokenLine, tokenColumn } = parser;
     const token = parser.getToken();
@@ -9558,6 +9627,7 @@ export function parseAsyncArrowOrCallExpression(
     if (!consumeOpt(parser, context | Context.AllowRegExp, Token.Comma)) break;
   }
 
+  // context = previousContext;
   consume(parser, context, Token.RightParen);
 
   destructible |=
@@ -9576,7 +9646,18 @@ export function parseAsyncArrowOrCallExpression(
       report(parser, Errors.YieldInParameter);
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
-    return parseParenthesizedArrow(parser, context, scope, privateScope, params, canAssign, 1, start, line, column);
+    return parseParenthesizedArrow(
+      parser,
+      context | Context.InAwaitContext,
+      scope,
+      privateScope,
+      params,
+      canAssign,
+      1,
+      start,
+      line,
+      column
+    );
   } else if (destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.InvalidShorthandPropInit);
   }
@@ -9976,7 +10057,9 @@ export function parseClassBody(
   const privateScope = context & Context.OptionsLexical ? addChildPrivateScope(parentScope) : undefined;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
-  context = (context | Context.DisallowIn) ^ Context.DisallowIn;
+
+  const modifierFlags = Context.DisallowIn | Context.InStaticBlock;
+  context = (context | modifierFlags) ^ modifierFlags;
 
   const hasConstr = parser.flags & Flags.HasConstructor;
   parser.flags = (parser.flags | Flags.HasConstructor) ^ Flags.HasConstructor;
@@ -10512,15 +10595,17 @@ function parseAndClassifyIdentifier(
     report(parser, Errors.KeywordNotId);
   }
 
-  if (context & (Context.Module | Context.InYieldContext) && token === Token.YieldKeyword) {
-    report(parser, Errors.YieldInParameter);
+  if (token === Token.YieldKeyword) {
+    if (context & Context.InYieldContext) report(parser, Errors.YieldInParameter);
+    if (context & Context.Module) report(parser, Errors.YieldIdentInModule);
   }
 
   if ((token & Token.Type) === (Token.LetKeyword & Token.Type)) {
     if (kind & (BindingKind.Let | BindingKind.Const)) report(parser, Errors.InvalidLetConstBinding);
   }
-  if (context & (Context.InAwaitContext | Context.Module) && token === Token.AwaitKeyword) {
-    report(parser, Errors.AwaitOutsideAsync);
+  if (token === Token.AwaitKeyword) {
+    if (context & Context.InAwaitContext) report(parser, Errors.InvalidAwaitAsIdentifier);
+    if (context & Context.Module) report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
   nextToken(parser, context);

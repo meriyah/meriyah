@@ -425,7 +425,7 @@ export function validateBindingIdentifier(
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
-    report(parser, Errors.AwaitOutsideAsync);
+    report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
@@ -457,7 +457,7 @@ export function validateFunctionName(parser: ParserState, context: Context, t: T
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
-    report(parser, Errors.AwaitOutsideAsync);
+    report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
@@ -475,7 +475,7 @@ export function validateFunctionName(parser: ParserState, context: Context, t: T
 
 export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
-    if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitOutsideAsync);
+    if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
     parser.destructible |= DestructuringKind.Await;
   }
 
