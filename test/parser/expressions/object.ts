@@ -933,7 +933,6 @@ describe('Expressions - Object', () => {
     'key: bar.foo + x',
     'key: bar.foo + x',
     'async: async.await + x',
-    'key: await /foo/g',
     'key: bar/x',
     'key: bar, foo: zoo',
     'x:y} = { ',

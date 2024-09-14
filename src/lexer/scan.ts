@@ -126,7 +126,7 @@ export const TokenLookup = [
   /*  89 - Y                  */ Token.Identifier,
   /*  90 - Z                  */ Token.Identifier,
   /*  91 - [                  */ Token.LeftBracket,
-  /*  92 - \                  */ Token.EscapedIdentifier,
+  /*  92 - \                  */ Token.EscapeStart,
   /*  93 - ]                  */ Token.RightBracket,
   /*  94 - ^                  */ Token.BitwiseXor,
   /*  95 - _                  */ Token.Identifier,
@@ -235,7 +235,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
           return scanTemplate(parser, context);
 
         // Look for a escaped identifier
-        case Token.EscapedIdentifier:
+        case Token.EscapeStart:
           return scanUnicodeIdentifier(parser, context);
 
         // `#` (private name)

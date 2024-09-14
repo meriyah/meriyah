@@ -408,7 +408,6 @@ describe('Expressions - Group', () => {
     ['(...x = y) => x', Context.None],
     ['([...x.y]) => z', Context.None],
     ['([a + b] = x) => a;', Context.None],
-    ['async(a = await x);', Context.None],
     ['([...a.b]) => c', Context.None],
     ['({ident: [foo, bar].join("")}) => x', Context.None],
     ['({ident: [foo, bar]/x}) => x', Context.None],

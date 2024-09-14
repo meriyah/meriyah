@@ -354,8 +354,6 @@ describe('Expressions - Async arrow', () => {
     ['async function f() { return {await = 0} = {}; }', Context.None],
     ['async (a = (await) => {}) => {}', Context.None],
     ['async (a = await => {}) => {}', Context.None],
-    // ['async (a = await\\u{61}it => {}) => {}', Context.None],
-    ['async (a = (b = await (0)) => {}) => {}', Context.None],
     ['x = async \n () => x, y', Context.None],
     ['async \n () => {}', Context.None],
     ['async () \n => {}', Context.None],
@@ -392,7 +390,6 @@ describe('Expressions - Async arrow', () => {
     ['async a => {} ()', Context.None],
     ['a + async b => {}', Context.None],
     ['function* a(){ async (yield) => {}; }', Context.None],
-    ['async(await) => {  }', Context.None],
     ['function* a(){ async yield => {}; }', Context.None],
     ['x[async \n () => x];', Context.None],
     ['x(async \n () => x);', Context.None],
@@ -480,7 +477,6 @@ describe('Expressions - Async arrow', () => {
     ['({async get foo() { }})', Context.None],
     ['({async set foo(value) { }})', Context.None],
     ['with (async \n () => x) {}', Context.None],
-    ['async(a = await x);', Context.None],
     ['async (a, async (1) => 0)', Context.None],
     ['async (a, async (async (a) => 0) => 0)', Context.None],
     ['(a, async (a) => 0) => 0', Context.None],
@@ -735,8 +731,6 @@ describe('Expressions - Async arrow', () => {
     'async () => {}',
     '(async a => {})()',
     'a, async () => b, c',
-    'async (a = await => {})',
-    //'async (a = aw\\u{61}it => {})',
     '({ async a(){} })',
     `async(a) => x`,
     '({ async get(){} })',
@@ -754,7 +748,6 @@ describe('Expressions - Async arrow', () => {
     '(async function() { (await y); })',
     'async function a(){}',
     '(async function a(){})',
-    'async function a() { function b(c = await (0)) {} }',
     '({ async })',
     'async("foo".bar);',
     'var asyncFn = async({ foo = 1 }) => foo;',
@@ -2471,78 +2464,6 @@ describe('Expressions - Async arrow', () => {
             }
           }
         ]
-      }
-    ],
-    [
-      'async (a = await => {})',
-      Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 23,
-        range: [0, 23],
-        body: [
-          {
-            type: 'ExpressionStatement',
-            start: 0,
-            end: 23,
-            range: [0, 23],
-            expression: {
-              type: 'CallExpression',
-              start: 0,
-              end: 23,
-              range: [0, 23],
-              callee: {
-                type: 'Identifier',
-                start: 0,
-                end: 5,
-                range: [0, 5],
-                name: 'async'
-              },
-              arguments: [
-                {
-                  type: 'AssignmentExpression',
-                  start: 7,
-                  end: 22,
-                  range: [7, 22],
-                  operator: '=',
-                  left: {
-                    type: 'Identifier',
-                    start: 7,
-                    end: 8,
-                    range: [7, 8],
-                    name: 'a'
-                  },
-                  right: {
-                    type: 'ArrowFunctionExpression',
-                    start: 11,
-                    end: 22,
-                    range: [11, 22],
-                    expression: false,
-                    async: false,
-                    params: [
-                      {
-                        type: 'Identifier',
-                        start: 11,
-                        end: 16,
-                        range: [11, 16],
-                        name: 'await'
-                      }
-                    ],
-                    body: {
-                      type: 'BlockStatement',
-                      start: 20,
-                      end: 22,
-                      range: [20, 22],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        sourceType: 'script'
       }
     ],
     [

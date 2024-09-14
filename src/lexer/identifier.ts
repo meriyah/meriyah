@@ -83,16 +83,15 @@ export function scanIdentifierSlowCase(
   }
 
   const { length } = parser.tokenValue;
-
   if (isValidAsKeyword && length >= 2 && length <= 11) {
     const token: Token | undefined = descKeywordTable[parser.tokenValue];
-    if (token === void 0) return Token.Identifier;
+    if (token === void 0) return Token.Identifier | (hasEscape ? Token.IsEscaped : 0);
     if (!hasEscape) return token;
 
     if (token === Token.AwaitKeyword) {
       // await is only reserved word in async functions or modules
       if ((context & (Context.Module | Context.InAwaitContext)) === 0) {
-        return token;
+        return token | Token.IsEscaped;
       }
       return Token.EscapedReserved;
     }
@@ -106,26 +105,26 @@ export function scanIdentifierSlowCase(
       }
       if ((token & Token.Reserved) === Token.Reserved) {
         if (context & Context.AllowEscapedKeyword && (context & Context.InGlobal) === 0) {
-          return token;
+          return token | Token.IsEscaped;
         } else {
           return Token.EscapedReserved;
         }
       }
-      return Token.AnyIdentifier;
+      return Token.AnyIdentifier | Token.IsEscaped;
     }
     if (
       context & Context.AllowEscapedKeyword &&
       (context & Context.InGlobal) === 0 &&
       (token & Token.Reserved) === Token.Reserved
     ) {
-      return token;
+      return token | Token.IsEscaped;
     }
     if (token === Token.YieldKeyword) {
       return context & Context.AllowEscapedKeyword
-        ? Token.AnyIdentifier
+        ? Token.AnyIdentifier | Token.IsEscaped
         : context & Context.InYieldContext
           ? Token.EscapedReserved
-          : token;
+          : token | Token.IsEscaped;
     }
 
     // async is not reserved; it can be used as a variable name
@@ -133,7 +132,7 @@ export function scanIdentifierSlowCase(
     if (token === Token.AsyncKeyword) {
       // Escaped "async" such as \u0061sync can only be identifier
       // not as "async" keyword
-      return Token.AnyIdentifier;
+      return Token.AnyIdentifier | Token.IsEscaped;
     }
     if ((token & Token.FutureReserved) === Token.FutureReserved) {
       // In non-strict mode, future reserved can be identifier.
@@ -141,7 +140,7 @@ export function scanIdentifierSlowCase(
     }
     return Token.EscapedReserved;
   }
-  return Token.Identifier;
+  return Token.Identifier | (hasEscape ? Token.IsEscaped : 0);
 }
 
 /**

@@ -112,7 +112,8 @@ export const enum Errors {
   InvalidDefaultImport,
   TrailingDecorators,
   GeneratorConstructor,
-  AwaitOrYieldIdentInModule,
+  AwaitIdentInModuleOrAsyncFunc,
+  YieldIdentInModule,
   HtmlCommentInWebCompat,
   StrictInvalidLetInExprPos,
   NotAssignableLetArgs,
@@ -174,7 +175,11 @@ export const enum Errors {
   InvalidLeadingDecorator,
   InvalidExportName,
   InvalidExportReference,
-  InvalidSuperPrivate
+  InvalidSuperPrivate,
+  InvalidImportMeta,
+  InvalidEscapedImportMeta,
+  InvalidAwaitAsIdentifier,
+  InvalidAwaitInStaticBlock
 }
 
 export const errorMessages: {
@@ -300,6 +305,8 @@ export const errorMessages: {
   [Errors.InvalidDefaultImport]: "Only '*' or '{...}' can be imported after default",
   [Errors.TrailingDecorators]: 'Trailing decorator may be followed by method',
   [Errors.GeneratorConstructor]: "Decorators can't be used with a constructor",
+  [Errors.AwaitIdentInModuleOrAsyncFunc]: 'Can not use `await` as identifier in module or async func',
+  [Errors.YieldIdentInModule]: 'Can not use `await` as identifier in module',
   [Errors.HtmlCommentInWebCompat]: 'HTML comments are only allowed with web compatibility (Annex B)',
   [Errors.StrictInvalidLetInExprPos]: "The identifier 'let' must not be in expression position in strict mode",
   [Errors.NotAssignableLetArgs]: 'Cannot assign to `eval` and `arguments` in strict mode',
@@ -359,7 +366,11 @@ export const errorMessages: {
   [Errors.InvalidLeadingDecorator]: 'Leading decorators must be attached to a class declaration',
   [Errors.InvalidExportName]: 'An export name cannot include a lone surrogate, found %0',
   [Errors.InvalidExportReference]: 'A string literal cannot be used as an exported binding without `from`',
-  [Errors.InvalidSuperPrivate]: "Private fields can't be accessed on super"
+  [Errors.InvalidSuperPrivate]: "Private fields can't be accessed on super",
+  [Errors.InvalidImportMeta]: "The only valid meta property for import is 'import.meta'",
+  [Errors.InvalidEscapedImportMeta]: "'import.meta' must not contain escaped characters",
+  [Errors.InvalidAwaitAsIdentifier]: 'cannot use "await" as identifier inside an async function',
+  [Errors.InvalidAwaitInStaticBlock]: 'cannot use "await" in static blocks'
 };
 
 export class ParseError extends SyntaxError implements _Node {

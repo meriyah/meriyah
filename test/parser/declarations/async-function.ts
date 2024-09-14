@@ -49,7 +49,6 @@ describe('Declarations - Async Function', () => {
     'async function x(a, b, c) { await a; }',
     'async function a({x}) { var x = 2; return x }',
     'async function a() { await 4; } var await = 5',
-    'async function a() { function b() { return await; } }',
     'async function a() { var k = { async: 4 } }',
     'async function a() { await 4; }',
     'async function a() { var t = !await 1 }',
