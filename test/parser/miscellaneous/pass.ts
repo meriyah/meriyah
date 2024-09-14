@@ -175,7 +175,6 @@ describe('Miscellaneous - Pass', () => {
     '(a, [b, [c, {__proto__: d, __proto__: e}]], f) => x;',
     'function f({__proto__: a, __proto__: b}) {}',
     'function f(a, [b, [c, {__proto__: d, __proto__: e}]], f) {}',
-    'async ({__proto__: a, __proto__: b});',
     'async ({__proto__: a, __proto__: b}) => x;',
     '({ __proto__: x, __proto__: y}) => x;',
     'function f(a, [b, [c, {__proto__: d, __proto__: e}]], f) {}',
