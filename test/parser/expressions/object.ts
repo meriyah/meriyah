@@ -222,6 +222,12 @@ describe('Expressions - Object', () => {
     'x = {\'__proto__\': 1, "__proto__": 2}',
     "x = {'__proto__': 1, __proto__: 2}",
     'x = {__proto__: 1, "__proto__": 2}'
+    // FIXME:
+    // async() (not a async function) has different code path.
+    // Following should fail:
+    //   async ({__proto__: a, __proto__: b});
+    // But following should pass:
+    //   async ({__proto__: a, __proto__: b}) => 1;
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -230,7 +236,7 @@ describe('Expressions - Object', () => {
     });
 
     it(`${arg}`, () => {
-      t.doesNotThrow(() => {
+      t.throws(() => {
         parseSource(`${arg}`, undefined, Context.None);
       });
     });
@@ -1108,7 +1114,6 @@ describe('Expressions - Object', () => {
     ['({...(a,b)}) => {}', Context.None],
     ['x = {\'__proto__\': 1, "__proto__": 2}', Context.OptionsWebCompat],
     ['x = {__proto__: 1, "__proto__": 2}', Context.OptionsWebCompat],
-    ["x = {'__proto__': 1, __proto__: 2}", Context.OptionsWebCompat],
     ['({ get *x(){} })', Context.None],
     ['({get +:3})', Context.None],
     ['({get bar(x) {})', Context.None],
@@ -1416,7 +1421,10 @@ describe('Expressions - Object', () => {
     ['let {...x, ...y} = {}', Context.None],
     ['({...rest, b} = {})', Context.None],
     ["x = {'__proto__': 1, __proto__: 2}", Context.OptionsWebCompat],
-    ['({g\\u0065t m() {} });', Context.None]
+    ["x = {'__proto__': 1, __proto__: 2}", Context.None],
+    ['({g\\u0065t m() {} });', Context.None],
+    ['([{web: false, __proto__: a, __proto__: b}]);', Context.None],
+    ['({web: false, __proto__: a, __proto__: b});', Context.None]
   ]);
 
   pass('Expressions - Object (pass)', [
@@ -1493,193 +1501,6 @@ describe('Expressions - Object', () => {
         start: 0,
         end: 20,
         range: [0, 20]
-      }
-    ],
-    [
-      '({web: false, __proto__: a, __proto__: b});',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              properties: [
-                {
-                  computed: false,
-                  key: {
-                    name: 'web',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    type: 'Literal',
-                    value: false
-                  }
-                },
-                {
-                  computed: false,
-                  key: {
-                    name: '__proto__',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    name: 'a',
-                    type: 'Identifier'
-                  }
-                },
-                {
-                  computed: false,
-                  key: {
-                    name: '__proto__',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    name: 'b',
-                    type: 'Identifier'
-                  }
-                }
-              ],
-              type: 'ObjectExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      '([{web: false, __proto__: a, __proto__: b}]);',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              elements: [
-                {
-                  properties: [
-                    {
-                      computed: false,
-                      key: {
-                        name: 'web',
-                        type: 'Identifier'
-                      },
-                      kind: 'init',
-                      method: false,
-                      shorthand: false,
-                      type: 'Property',
-                      value: {
-                        type: 'Literal',
-                        value: false
-                      }
-                    },
-                    {
-                      computed: false,
-                      key: {
-                        name: '__proto__',
-                        type: 'Identifier'
-                      },
-                      kind: 'init',
-                      method: false,
-                      shorthand: false,
-                      type: 'Property',
-                      value: {
-                        name: 'a',
-                        type: 'Identifier'
-                      }
-                    },
-                    {
-                      computed: false,
-                      key: {
-                        name: '__proto__',
-                        type: 'Identifier'
-                      },
-                      kind: 'init',
-                      method: false,
-                      shorthand: false,
-                      type: 'Property',
-                      value: {
-                        name: 'b',
-                        type: 'Identifier'
-                      }
-                    }
-                  ],
-                  type: 'ObjectExpression'
-                }
-              ],
-              type: 'ArrayExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
-      }
-    ],
-    [
-      "x = {'__proto__': 1, __proto__: 2}",
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              left: {
-                name: 'x',
-                type: 'Identifier'
-              },
-              operator: '=',
-              right: {
-                properties: [
-                  {
-                    computed: false,
-                    key: {
-                      type: 'Literal',
-                      value: '__proto__'
-                    },
-                    kind: 'init',
-                    method: false,
-                    shorthand: false,
-                    type: 'Property',
-                    value: {
-                      type: 'Literal',
-                      value: 1
-                    }
-                  },
-                  {
-                    computed: false,
-                    key: {
-                      name: '__proto__',
-                      type: 'Identifier'
-                    },
-                    kind: 'init',
-                    method: false,
-                    shorthand: false,
-                    type: 'Property',
-                    value: {
-                      type: 'Literal',
-                      value: 2
-                    }
-                  }
-                ],
-                type: 'ObjectExpression'
-              },
-              type: 'AssignmentExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
       }
     ],
     [
@@ -2223,69 +2044,6 @@ describe('Expressions - Object', () => {
           }
         ],
         sourceType: 'script'
-      }
-    ],
-    [
-      '({ __proto__: null, other: null, "__proto__": null });',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              properties: [
-                {
-                  computed: false,
-                  key: {
-                    name: '__proto__',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    type: 'Literal',
-                    value: null
-                  }
-                },
-                {
-                  computed: false,
-                  key: {
-                    name: 'other',
-                    type: 'Identifier'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    type: 'Literal',
-                    value: null
-                  }
-                },
-                {
-                  computed: false,
-                  key: {
-                    type: 'Literal',
-                    value: '__proto__'
-                  },
-                  kind: 'init',
-                  method: false,
-                  shorthand: false,
-                  type: 'Property',
-                  value: {
-                    type: 'Literal',
-                    value: null
-                  }
-                }
-              ],
-              type: 'ObjectExpression'
-            },
-            type: 'ExpressionStatement'
-          }
-        ],
-        sourceType: 'script',
-        type: 'Program'
       }
     ],
     [

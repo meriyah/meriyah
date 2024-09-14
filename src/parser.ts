@@ -2643,7 +2643,7 @@ export function parseForStatement(
 
     destructible = parser.destructible;
 
-    if (context & Context.OptionsWebCompat && destructible & DestructuringKind.SeenProto) {
+    if (destructible & DestructuringKind.SeenProto) {
       report(parser, Errors.DuplicateProto);
     }
 
@@ -6071,7 +6071,7 @@ function parseArrayLiteral(
     column
   );
 
-  if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
+  if (parser.destructible & DestructuringKind.SeenProto) {
     report(parser, Errors.DuplicateProto);
   }
 
@@ -6966,7 +6966,7 @@ function parseObjectLiteral(
     column
   );
 
-  if (context & Context.OptionsWebCompat && parser.destructible & DestructuringKind.SeenProto) {
+  if (parser.destructible & DestructuringKind.SeenProto) {
     report(parser, Errors.DuplicateProto);
   }
 
@@ -8664,7 +8664,13 @@ export function parseParenthesizedExpression(
       line,
       column
     );
-  } else if (destructible & DestructuringKind.HasToDestruct) {
+  }
+
+  if (parser.destructible & DestructuringKind.SeenProto) {
+    report(parser, Errors.DuplicateProto);
+  }
+
+  if (destructible & DestructuringKind.HasToDestruct) {
     report(parser, Errors.UncompleteArrow);
   }
 
