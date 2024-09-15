@@ -9228,7 +9228,8 @@ describe('Expressions - Class', () => {
                             end: 42,
                             range: [30, 42],
                             value: 'use strict'
-                          }
+                          },
+                          directive: 'use strict'
                         }
                       ]
                     }
@@ -9282,7 +9283,8 @@ describe('Expressions - Class', () => {
                             end: 75,
                             range: [63, 75],
                             value: 'use strict'
-                          }
+                          },
+                          directive: 'use strict'
                         }
                       ]
                     }
@@ -9337,7 +9339,8 @@ describe('Expressions - Class', () => {
                             end: 108,
                             range: [96, 108],
                             value: 'use strict'
-                          }
+                          },
+                          directive: 'use strict'
                         }
                       ]
                     }

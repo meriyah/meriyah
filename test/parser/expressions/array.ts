@@ -958,7 +958,7 @@ describe('Expressions - Array', () => {
     ],
     [
       '"use strict"; const { [eval]: []} = a;',
-      Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
         start: 0,

@@ -128,7 +128,7 @@ describe('Expressions -In', () => {
     ],
     [
       '"valueOf" in __proto',
-      Context.OptionsRaw | Context.OptionsDirectives,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -154,7 +154,7 @@ describe('Expressions -In', () => {
     ],
     [
       '"use strict"',
-      Context.OptionsRaw | Context.OptionsDirectives,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -173,7 +173,7 @@ describe('Expressions -In', () => {
     ],
     [
       '"any-string"',
-      Context.OptionsRaw | Context.OptionsDirectives,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -203,14 +203,15 @@ describe('Expressions -In', () => {
               type: 'Literal',
               value: 'any-string',
               raw: '"any-string"'
-            }
+            },
+            directive: 'any-string'
           }
         ]
       }
     ],
     [
       '123',
-      Context.OptionsRaw | Context.OptionsDirectives,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',

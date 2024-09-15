@@ -125,6 +125,7 @@ describe('Expressions - Update', () => {
               type: 'Literal',
               value: 'foo'
             },
+            directive: 'foo',
             type: 'ExpressionStatement'
           },
           {

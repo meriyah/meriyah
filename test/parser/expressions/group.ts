@@ -956,7 +956,8 @@ describe('Expressions - Group', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'ExpressionStatement',
@@ -1675,7 +1676,8 @@ describe('Expressions - Group', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'ExpressionStatement',
@@ -1978,7 +1980,8 @@ describe('Expressions - Group', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'ExpressionStatement',

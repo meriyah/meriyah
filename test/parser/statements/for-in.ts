@@ -5147,7 +5147,8 @@ describe('Statements - For in', () => {
                   expression: {
                     type: 'Literal',
                     value: 'use strict'
-                  }
+                  },
+                  directive: 'use strict'
                 },
                 {
                   type: 'ForInStatement',

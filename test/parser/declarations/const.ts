@@ -306,7 +306,8 @@ describe('Declarations - const', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'VariableDeclaration',

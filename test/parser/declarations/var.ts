@@ -1975,6 +1975,7 @@ describe('Declarations - Var', () => {
                 }
               }
             },
+            directive: 'use strict',
             loc: {
               start: {
                 line: 1,
@@ -2182,7 +2183,8 @@ describe('Declarations - Var', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'VariableDeclaration',

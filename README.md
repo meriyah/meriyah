@@ -89,9 +89,6 @@ This is the available options:
   // The flag to attach raw property to each literal and identifier node
   raw: false;
 
-  // Enabled directives
-  directives: false;
-
   // The flag to allow return in the global scope
   globalReturn: false;
 

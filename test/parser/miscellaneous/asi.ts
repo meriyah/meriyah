@@ -137,7 +137,7 @@ describe('Miscellaneous - ASI', () => {
     // Acorn issue: https://github.com/acornjs/acorn/issues/775
     [
       `;;1;;1;;1`,
-      Context.OptionsDirectives | Context.OptionsRanges,
+      Context.OptionsRanges,
       {
         type: 'Program',
         sourceType: 'script',
@@ -213,8 +213,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '"foo"\nx',
-      Context.OptionsDirectives | Context.OptionsRaw | Context.OptionsRanges,
-
+      Context.OptionsRaw | Context.OptionsRanges,
       {
         body: [
           {
@@ -255,7 +254,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       `function f(){\n'foo';\n}`,
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         body: [
           {
@@ -290,7 +289,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(){\n"foo"\n}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         body: [
           {
@@ -325,7 +324,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '"ignore me"\n++x',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         body: [
           {
@@ -356,7 +355,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '("use strict"); foo = 42;',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -390,7 +389,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '("use strict"); eval = 42;',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -424,7 +423,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '"USE STRICT";  var public = 1;',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -461,7 +460,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '() => { "use strict"; }',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         body: [
           {
@@ -494,7 +493,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function wrap() { "use asm"; "use strict"; foo }',
-      Context.OptionsDirectives | Context.OptionsRaw | Context.OptionsRanges,
+      Context.OptionsRaw | Context.OptionsRanges,
       {
         body: [
           {
@@ -574,7 +573,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '{ "use strict"; }',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -597,7 +596,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function a() { "use strict" } "use strict"; foo;',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -646,7 +645,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(){ "Esprima uses directives"; "use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -690,7 +689,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(){ 123; "use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -732,7 +731,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(){"use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -767,7 +766,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '+function f(){"use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -809,7 +808,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       '({x:function(){"use strict";}})',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -859,7 +858,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(x){"use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',
@@ -898,7 +897,7 @@ describe('Miscellaneous - ASI', () => {
     ],
     [
       'function f(x, y){"use strict";}',
-      Context.OptionsDirectives | Context.OptionsRaw,
+      Context.OptionsRaw,
       {
         type: 'Program',
         sourceType: 'script',

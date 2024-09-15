@@ -909,7 +909,8 @@ describe('Expressions - Async function', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'ExpressionStatement',
