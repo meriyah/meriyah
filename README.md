@@ -73,7 +73,7 @@ import { parse } from 'meriyah';
 const result = parse('let some = "code";', { ranges: true });
 ```
 
-This is the available options:
+The available options:
 
 ```js
 {
