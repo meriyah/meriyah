@@ -255,8 +255,6 @@ export interface Options {
   loc?: boolean;
   // Attach raw property to each literal and identifier node
   raw?: boolean;
-  // Enabled directives
-  directives?: boolean;
   // Allow return in the global scope
   globalReturn?: boolean;
   // Enable implied strict mode
@@ -295,7 +293,6 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
     if (options.lexical) context |= Context.OptionsLexical;
     if (options.webcompat) context |= Context.OptionsWebCompat;
-    if (options.directives) context |= Context.OptionsDirectives | Context.OptionsRaw;
     // Turn on return context in global
     if (options.globalReturn) context |= Context.InReturnContext;
     if (options.raw) context |= Context.OptionsRaw;
@@ -450,17 +447,12 @@ export function parseModuleItemList(
 
   const statements: ReturnType<typeof parseDirective | typeof parseModuleItem>[] = [];
 
-  // Avoid this if we're not going to create any directive nodes. This is likely to be the case
-  // most of the time, considering the prevalence of strict mode and the fact modules
-  // are already in strict mode.
-  if (context & Context.OptionsDirectives) {
-    while (parser.getToken() === Token.StringLiteral) {
-      const { tokenIndex, tokenLine, tokenColumn } = parser;
-      const token = parser.getToken();
-      statements.push(
-        parseDirective(parser, context, parseLiteral(parser, context), token, tokenIndex, tokenLine, tokenColumn)
-      );
-    }
+  while (parser.getToken() === Token.StringLiteral) {
+    const { tokenIndex, tokenLine, tokenColumn } = parser;
+    const token = parser.getToken();
+    statements.push(
+      parseDirective(parser, context, parseLiteral(parser, context), token, tokenIndex, tokenLine, tokenColumn)
+    );
   }
 
   while (parser.getToken() !== Token.EOF) {
@@ -1310,6 +1302,8 @@ export function parseDirective(
   line: number,
   column: number
 ): ESTree.ExpressionStatement {
+  const endIndex = parser.startIndex;
+
   if (token !== Token.Semicolon) {
     parser.assignable = AssignmentKind.CannotAssign;
 
@@ -1326,12 +1320,11 @@ export function parseDirective(
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   }
 
-  return context & Context.OptionsDirectives && expression.type === 'Literal' && typeof expression.value === 'string'
+  return expression.type === 'Literal' && typeof expression.value === 'string'
     ? finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',
         expression,
-        // OptionsRaw is implicitly turned on by OptionsDirectives.
-        directive: (expression.raw as string).slice(1, -1)
+        directive: parser.source.slice(start + 1, endIndex - 1)
       })
     : finishNode(parser, context, start, line, column, {
         type: 'ExpressionStatement',

@@ -1146,7 +1146,8 @@ describe('Statements - For', () => {
                             expression: {
                               type: 'Literal',
                               value: ''
-                            }
+                            },
+                            directive: ''
                           }
                         ]
                       },

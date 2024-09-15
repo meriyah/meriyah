@@ -508,7 +508,8 @@ describe('Next - Import Meta', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'ExpressionStatement',

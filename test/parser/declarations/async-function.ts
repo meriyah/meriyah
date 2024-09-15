@@ -644,7 +644,7 @@ describe('Declarations - Async Function', () => {
     ],
     [
       '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
-      Context.Strict | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.Strict | Context.OptionsRanges | Context.OptionsRaw,
       {
         type: 'Program',
         start: 0,

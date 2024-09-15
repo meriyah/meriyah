@@ -2902,7 +2902,8 @@ yield d;
                   expression: {
                     type: 'Literal',
                     value: 'use strict'
-                  }
+                  },
+                  directive: 'use strict'
                 },
                 {
                   type: 'IfStatement',

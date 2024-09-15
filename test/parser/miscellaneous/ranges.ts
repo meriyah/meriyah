@@ -7497,7 +7497,8 @@ describe('Miscellaneous - ranges', () => {
               end: 5,
               range: [0, 5],
               value: 'foo'
-            }
+            },
+            directive: 'foo'
           }
         ],
         sourceType: 'script'

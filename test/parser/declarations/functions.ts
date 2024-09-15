@@ -761,7 +761,8 @@ describe('Declarations - Function', () => {
             expression: {
               type: 'Literal',
               value: 'use strict'
-            }
+            },
+            directive: 'use strict'
           },
           {
             type: 'FunctionDeclaration',
@@ -1926,6 +1927,7 @@ describe('Declarations - Function', () => {
                       type: 'Literal',
                       value: 'use strict'
                     },
+                    directive: 'use strict',
                     type: 'ExpressionStatement'
                   }
                 ],

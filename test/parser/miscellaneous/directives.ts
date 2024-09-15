@@ -169,17 +169,13 @@ describe('Miscellaneous - Directives', () => {
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsDirectives | Context.OptionsRaw);
+        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsRaw);
       });
     });
 
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `/* comment in front */ ${arg}`,
-          undefined,
-          Context.OptionsDirectives | Context.OptionsWebCompat | Context.OptionsRaw
-        );
+        parseSource(`/* comment in front */ ${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsRaw);
       });
     });
   }
@@ -208,7 +204,7 @@ describe('Miscellaneous - Directives', () => {
   pass('Miscellaneous - Directives (pass)', [
     [
       '"use strict" + "Hello\\312World"',
-      Context.Module | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.Module | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
           {
@@ -250,7 +246,7 @@ describe('Miscellaneous - Directives', () => {
     ],
     [
       '("use strict"); foo = 42;',
-      Context.Module | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.Module | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
           {
@@ -305,7 +301,7 @@ describe('Miscellaneous - Directives', () => {
     ],
     [
       '"use strict", "Hello\\312World"',
-      Context.None | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.None | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
           {
@@ -348,7 +344,7 @@ describe('Miscellaneous - Directives', () => {
     ],
     [
       '"use asm" \n "use strict"',
-      Context.None | Context.OptionsRanges | Context.OptionsDirectives | Context.OptionsRaw,
+      Context.None | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
           {
@@ -405,6 +401,7 @@ describe('Miscellaneous - Directives', () => {
               end: 12,
               range: [0, 12]
             },
+            directive: 'use strict',
             start: 0,
             end: 13,
             range: [0, 13]
@@ -487,6 +484,58 @@ describe('Miscellaneous - Directives', () => {
         start: 0,
         end: 25,
         range: [0, 25]
+      }
+    ],
+    [
+      '"\\u0061b"\n"c\\u0064"',
+      Context.None,
+      {
+        type: 'Program',
+        sourceType: 'script',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'ab'
+            },
+            directive: '\\u0061b'
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'cd'
+            },
+            directive: 'c\\u0064'
+          }
+        ]
+      }
+    ],
+    [
+      '"\\u0061b"\n"c\\u0064"',
+      Context.Module,
+      {
+        type: 'Program',
+        sourceType: 'module',
+        body: [
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'ab'
+            },
+            directive: '\\u0061b'
+          },
+          {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'Literal',
+              value: 'cd'
+            },
+            directive: 'c\\u0064'
+          }
+        ]
       }
     ]
   ]);

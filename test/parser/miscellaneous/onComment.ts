@@ -585,6 +585,7 @@ describe('Miscellaneous - onComment', () => {
               type: 'Literal',
               value: 'use strict'
             },
+            directive: 'use strict',
             loc: {
               end: {
                 column: 13,
