@@ -37,25 +37,25 @@ var setupBenchmarks,
 parsers = [
 {
     name: 'Meriyah',
-    src: '../meriyah.umd.js',
+    src: 'https://unpkg.com/meriyah',
     version: function () {
         return window.meriyah.version;
     },
     parse: function (code) {
-        var syntax = window.meriyah.parseScript(code, { ranges: false, locations: false });
+        var syntax = window.meriyah.parseScript(code, { next: true });
         return syntax.body.length;
     }
 },
 {
-    name: 'Cherow',
-    src: '../cherow.umd.js',
-    version: function () {
-        return '1.6.9';
-    },
-    parse: function (code) {
-        var syntax = window.kleuver.parseScript(code, { ranges: false, locations: false });
-        return syntax.body.length;
-    }
+  name: 'Meriyah+loc',
+  src: 'https://unpkg.com/meriyah',
+  version: function () {
+      return window.meriyah.version;
+  },
+  parse: function (code) {
+      var syntax = window.meriyah.parseScript(code, { next: true, ranges: true, loc: true });
+      return syntax.body.length;
+  }
 },
 {
     name: 'Acorn',
@@ -65,35 +65,45 @@ parsers = [
         return window.acorn.version;
     },
     parse: function (code) {
-        var syntax = window.acorn.parse(code, { ranges: true, locations: true });
+        var syntax = window.acorn.parse(code, { ecmaVersion: 2024 });
         return syntax.body.length;
     }
 },
 {
-    name: 'Esprima',
-    link: 'https://github.com/jquery/esprima',
-    src: 'https://unpkg.com/esprima',
+  name: 'Acorn+loc',
+  link: 'https://github.com/marijnh/acorn',
+  src: 'https://unpkg.com/acorn',
+  version: function () {
+      return window.acorn.version;
+  },
+  parse: function (code) {
+      var syntax = window.acorn.parse(code, { ecmaVersion: 2022, ranges: true, locations: true });
+      return syntax.body.length;
+  }
+},
+{
+    name: 'TypeScript',
+    link: 'https://github.com/microsoft/TypeScript',
+    src: 'https://unpkg.com/typescript',
     version: function () {
-        return window.esprima.version;
+        return window.ts.version;
     },
     parse: function (code) {
-        var syntax = window.esprima.parse(code, { range: true, loc: true });
-        return syntax.body.length;
+        var syntax = window.ts.createSourceFile('test.js', code, window.ts.ScriptTarget.Latest);
+        return syntax.length;
     }
 },
 ];
 
 fixtureList = [
-     'tsserver',
-     'jquery-1.9.1',
-      'angular-1.6.6',
-      'React 0.13.3',
-      'typescript-2.5'
+    { label: 'jQuery v3.7.1', url: 'https://unpkg.com/jquery@3.7.1' },
+    { label: 'React v18.3.1', url: 'https://unpkg.com/react@18.3.1/umd/react.development.js' },
+    { label: 'TypeScript v5.6.2', url: 'https://unpkg.com/typescript@5.6.2' }
 ];
 
 resources =
     parsers.map(parser => parser.src)
-    .concat(fixtureList.map(fixture => '3rdparty/' + slug(fixture) + '.js'));
+    .concat(fixtureList.map(f => f.url));
 
 function slug(name) {
     'use strict';
@@ -136,12 +146,10 @@ if (typeof window !== 'undefined') {
 
         function enableRunButtons() {
             id('runwarm').disabled = false;
-            id('runcold').disabled = false;
         }
 
         function disableRunButtons() {
             id('runwarm').disabled = true;
-            id('runcold').disabled = true;
         }
 
         function createTable() {
@@ -164,9 +172,9 @@ if (typeof window !== 'undefined') {
             str += '<tbody>';
             for (index = 0; index < fixtureList.length; index += 1) {
                 test = fixtureList[index];
-                name = slug(test);
+                name = slug(test.label);
                 str += '<tr>';
-                str += '<td>' + test + '</td>';
+                str += '<td>' + test.label + '</td>';
                 for (i = 0; i < parsers.length; i += 1) {
                     str += '<td id="' + name + '-' + slug(parsers[i].name) + '-time"></td>';
                 }
@@ -256,7 +264,7 @@ if (typeof window !== 'undefined') {
             for (let i = 0; i < fixtureList.length; i += 1) {
                 for (let j = 0; j < parsers.length; j += 1) {
                     suite.push({
-                        fixture: fixtureList[i],
+                        fixture: fixtureList[i].label,
                         parserInfo: parsers[j]
                     });
                 }
@@ -298,9 +306,10 @@ if (typeof window !== 'undefined') {
                 }
 
                 fixture = suite[index].fixture;
+                const url = fixtureList.find(f => f.label === fixture).url;
                 pp = suite[index].parserInfo;
 
-                source = window.data['3rdparty/' + slug(fixture) + '.js'];
+                source = window.data[url];
 
                 test = slug(fixture) + '-' + slug(pp.name);
                 setText(test + '-time', 'Running...');
@@ -382,9 +391,6 @@ if (typeof window !== 'undefined') {
 
         id('runwarm').onclick = function () {
             runBenchmarks(true);
-        };
-        id('runcold').onclick = function () {
-            runBenchmarks(false);
         };
 
         setText('benchmarkjs-version', ' version ' + window.Benchmark.version);

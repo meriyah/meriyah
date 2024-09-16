@@ -1,20 +1,235 @@
 <!doctype html>
-<html>
+<html lang="en" data-bs-theme="dark">
 <head>
-  <title>Meriyah</title>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE=" crossorigin="anonymous" />
-  <link href="/meriyah/docs/styles/styles.05ca52de1.css" rel="stylesheet"/>
-</head>
-<body>
+<title>Meriyah</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://unpkg.com/codemirror@5"></script>
+<script src="https://unpkg.com/codemirror@5/mode/javascript/javascript.js"></script>
+<script src="https://unpkg.com/codemirror@5/mode/xml/xml.js"></script>
+<script src="https://unpkg.com/codemirror@5/mode/jsx/jsx.js"></script>
+<link href="https://unpkg.com/codemirror@5/lib/codemirror.css" rel="stylesheet">
+<style>
+  html {
+    height: 100%;
+  }
 
-<div id="app"></div>
-<script>
-    var global = window;
-    var exports = {};
-  </script>
-<script type="text/javascript" src="/meriyah/docs/app.017fcebda.js"></script>
+  body {
+    height: 100%;
+    overflow-x: auto;
+  }
+
+  .app {
+    min-width: 800px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+
+    .left-panel {
+      flex: 0 0 15rem;
+      overflow-y: auto;
+
+      .section {
+        margin-top: 0.75rem;
+        .head {
+          margin: 0.5rem 0;
+          color: var(--bs-gray-500);
+          font-weight: bold;
+        }
+
+        .item {
+          margin-left: 0.25rem;
+          font-size: 0.85em;
+        }
+      }
+    }
+
+    .source-panel, .result-panel {
+      flex: 1 1;
+      position: relative;
+    }
+  }
+
+  .CodeMirror {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body v-scope="App()">
+
+<script type="module">
+import { createApp } from 'https://unpkg.com/petite-vue?module';
+import { parse, version } from 'https://unpkg.com/meriyah/dist/meriyah.min.mjs';
+
+let sourceEditor, resultEditor;
+
+function App() {
+  return {
+    $template: '#app',
+    version,
+    source: 'let x = 1;',
+    options: {
+      module: false,
+      next: true,
+      webcompat: true,
+      ranges: false,
+      loc: false,
+      source: false,
+      raw: false,
+      globalReturn: false,
+      preserveParens: false,
+      lexical: true,
+      jsx: true,
+      impliedStrict: false
+    },
+    get result() {
+      try {
+        const result = parse(this.source, this.options);
+        return JSON.stringify(result, null, 2);
+      } catch (e) {
+        console.trace(e);
+        return e.message;
+      }
+    },
+    updateResult(content) {
+      resultEditor.setValue(content);
+    },
+    mounted() {
+      sourceEditor = CodeMirror.fromTextArea(document.getElementById('source'), {
+        value: this.source,
+        mode: 'jsx',
+        lineNumbers: true,
+        lineWrapping: true
+      });
+
+      sourceEditor.on('change', () => {
+        this.source = sourceEditor.getValue();
+      });
+
+      resultEditor = CodeMirror.fromTextArea(document.getElementById('result'), {
+        lineNumbers: true,
+        readOnly: true,
+        lineWrapping: true
+      });
+
+      // Init
+      this.updateResult(this.result);
+    }
+  };
+}
+createApp({ App }).mount();
+</script>
+<template id="app">
+  <div class="app" @vue:mounted="mounted">
+    <div class="left-panel">
+      <img src="/images/meriyah.png" class="mx-auto d-block" alt="meriyah" width="130">
+      <div class="mx-3 d-flex">
+        <a href="performance" class="btn btn-sm btn-light flex-fill">Benchmark</a>
+        <a href="https://github.com/meriyah/meriyah" class="btn btn-sm btn-light flex-fill ms-1">GitHub</a>
+      </div>
+      <div class="m-3">
+        <p>Latest version: {{ version }}</p>
+        <div class="section">
+          <div class="head">Source Type</div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="type-script" :value="false" v-model="options.module">
+              <label class="form-check-label" for="type-script">Script</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="type-module" :value="true" v-model="options.module">
+              <label class="form-check-label" for="type-module">Module</label>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="head">Options</div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-next" v-model="options.next">
+              <label class="form-check-label" for="opts-next">ESNext stage 3 features</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-webcompat" v-model="options.webcompat">
+              <label class="form-check-label" for="opts-webcompat">Web compatibility (Annex.B)</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-ranges" v-model="options.ranges">
+              <label class="form-check-label" for="opts-ranges">Ranges (start, end)</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-loc" v-model="options.loc">
+              <label class="form-check-label" for="opts-loc">Locations (line, column)</label>
+            </div>
+          </div>
+          <div class="item" v-if="options.loc">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-source" v-model="options.source">
+              <label class="form-check-label" for="opts-source">Attach source to loc</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-raw" v-model="options.raw">
+              <label class="form-check-label" for="opts-raw">Raw property</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-global-return" v-model="options.globalReturn">
+              <label class="form-check-label" for="opts-global-return">Enable global return</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-preserve-parens" v-model="options.preserveParens">
+              <label class="form-check-label" for="opts-preserve-parens">Preserve parenthesis</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-lexical" v-model="options.lexical">
+              <label class="form-check-label" for="opts-lexical">Lexical analysis</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-jsx" v-model="options.jsx">
+              <label class="form-check-label" for="opts-jsx">JSX support</label>
+            </div>
+          </div>
+          <div class="item" v-if="!options.module">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="opts-implied-strict" v-model="options.impliedStrict">
+              <label class="form-check-label" for="opts-implied-strict">Implied strict mode</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="source-panel">
+      <textarea id="source" v-model="source"></textarea>
+    </div>
+    <div class="result-panel" v-effect="updateResult(result)">
+      <textarea id="result"></textarea>
+    </div>
+  </div>
+</template>
 </body>
 </html>
 
