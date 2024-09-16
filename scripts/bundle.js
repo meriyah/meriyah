@@ -27,7 +27,7 @@ async function bundleDist(format, minified) {
 
   const fileName = join(project.dist.path, `meriyah${suffix}`);
   console.log(`writing ${fileName}`);
-  const options = { file: fileName, name: 'meriyah', format: 'cjs' };
+  const options = { file: fileName, name: 'meriyah', format };
   if (format === 'umd') {
     // For IIFE
     options.exports = 'named';
