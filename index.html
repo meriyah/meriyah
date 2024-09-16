@@ -95,8 +95,12 @@ function App() {
     get result() {
       try {
         const result = parse(this.source, this.options);
+        if (resultEditor) {
+          resultEditor.setOption('mode', 'application/json');
+        }
         return JSON.stringify(result, null, 2);
       } catch (e) {
+        console.error(e);
         // babel code-frame uses 1 based column?!
         const babelLoc = {
           start: { line: e.loc.start.line, column: e.loc.start.column + 1},
@@ -104,6 +108,9 @@ function App() {
         }
 
         const pretty = codeFrameColumns(this.source, babelLoc);
+        if (resultEditor) {
+          resultEditor.setOption('mode', null);
+        }
         return `${e.message}\n\n${pretty}`;
       }
     },
@@ -124,6 +131,7 @@ function App() {
 
       resultEditor = CodeMirror.fromTextArea(document.getElementById('result'), {
         lineNumbers: true,
+        mode: 'application/json',
         readOnly: true,
         lineWrapping: true
       });
