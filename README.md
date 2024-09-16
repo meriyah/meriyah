@@ -117,7 +117,7 @@ The available options:
   lexical: false;
 
   // Adds a source attribute in every node’s loc object when the locations option is `true`
-  source: false;
+  source: undefined; // Set to source: 'source-file.js'
 
   // Enable React JSX parsing
   jsx: false;
