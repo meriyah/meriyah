@@ -29,7 +29,7 @@
 
 ### Supported stage 3 features:
 
-**note** These features need to be enabled with the `next` option.
+These features need to be enabled with the `next` option.
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
 - [Import Attributes](https://github.com/tc39/proposal-import-attributes)
@@ -50,7 +50,7 @@ as JavaScript runtime's RegExp support.
 As of Auguest 2024, some latest RegExp features are not supported due to missing implementation in general
 JavaScript runtime.
 
-- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) is not supported
+- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (stage 3) is not supported
 - [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups) is not supported
 
 In addition, RegExp v flag (unicodeSets) only works on Nodejs v20+ and latest browsers.
