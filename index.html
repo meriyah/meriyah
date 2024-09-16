@@ -84,7 +84,6 @@ function App() {
       webcompat: true,
       ranges: false,
       loc: false,
-      source: false,
       raw: false,
       globalReturn: false,
       preserveParens: false,
@@ -190,12 +189,6 @@ createApp({ App }).mount();
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" id="opts-loc" v-model="options.loc">
               <label class="form-check-label" for="opts-loc">Locations (line, column)</label>
-            </div>
-          </div>
-          <div class="item" v-if="options.loc">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="opts-source" v-model="options.source">
-              <label class="form-check-label" for="opts-source">Attach source to loc</label>
             </div>
           </div>
           <div class="item">
