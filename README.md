@@ -10,7 +10,7 @@
 
 <br>
 
-## [Demo](https://meriyah.github.io/meriyah)
+## [Meriyah Playground](https://meriyah.github.io/meriyah)
 
 ## Features
 
