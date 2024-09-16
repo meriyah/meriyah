@@ -17,7 +17,7 @@
   "homepage": "https://github.com/meriyah/meriyah",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meriyah/meriyah"
+    "url": "git+https://github.com/meriyah/meriyah.git"
   },
   "bugs": {
     "url": "https://github.com/meriyah/meriyah/issues"
@@ -97,7 +97,7 @@
     "rollup": "^4.21.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "standard-changelog": "^6.0.0",
-    "test262": "tc39/test262#ea11e0e78739b2be9fd2f49787955b9c2bf54bcc",
+    "test262": "github:tc39/test262#ea11e0e78739b2be9fd2f49787955b9c2bf54bcc",
     "test262-parser-runner": "^0.5.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
