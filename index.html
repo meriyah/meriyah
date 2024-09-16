@@ -100,6 +100,10 @@ function App() {
         return JSON.stringify(result, null, 2);
       } catch (e) {
         console.error(e);
+        if (e.loc) {
+          // Be defensive if meriyah failed unexpectedly.
+          return e.message;
+        }
         // babel code-frame uses 1 based column?!
         const babelLoc = {
           start: { line: e.loc.start.line, column: e.loc.start.column + 1},
