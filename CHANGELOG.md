@@ -1,3 +1,12 @@
+## [6.0.1](https://github.com/meriyah/meriyah/compare/v6.0.0...v6.0.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* **scanner:** proper EOF error for unterminated template ([cde6b2f](https://github.com/meriyah/meriyah/commit/cde6b2f7db3768c0fc254e65a68aa6debea62eab))
+
+
+
 # [6.0.0](https://github.com/meriyah/meriyah/compare/v5.0.0...v6.0.0) (2024-09-16)
 
 ### Bug Fixes
