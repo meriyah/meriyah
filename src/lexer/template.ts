@@ -42,12 +42,8 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
           handleStringError(parser, code as Escape, /* isTemplate */ 1);
         }
       }
-    } else {
-      if (
-        parser.index < parser.end &&
-        char === Chars.CarriageReturn &&
-        parser.source.charCodeAt(parser.index) === Chars.LineFeed
-      ) {
+    } else if (parser.index < parser.end) {
+      if (char === Chars.CarriageReturn && parser.source.charCodeAt(parser.index) === Chars.LineFeed) {
         ret += String.fromCodePoint(char);
         parser.currentChar = parser.source.charCodeAt(++parser.index);
       }
