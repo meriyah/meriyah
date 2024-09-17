@@ -8,3 +8,4 @@ src/chars.ts
 src/lexer/charClassifier.ts
 src/unicode.ts
 package-lock.json
+CHANGELOG.md
