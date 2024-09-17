@@ -100,7 +100,7 @@ function App() {
         return JSON.stringify(result, null, 2);
       } catch (e) {
         console.error(e);
-        if (e.loc) {
+        if (!e.loc) {
           // Be defensive if meriyah failed unexpectedly.
           return e.message;
         }
