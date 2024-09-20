@@ -100,6 +100,9 @@ function App() {
         return JSON.stringify(result, null, 2);
       } catch (e) {
         console.error(e);
+        if (resultEditor) {
+          resultEditor.setOption('mode', null);
+        }
         if (!e.loc) {
           // Be defensive if meriyah failed unexpectedly.
           return e.message;
@@ -111,9 +114,6 @@ function App() {
         }
 
         const pretty = codeFrameColumns(this.source, babelLoc);
-        if (resultEditor) {
-          resultEditor.setOption('mode', null);
-        }
         return `${e.message}\n\n${pretty}`;
       }
     },
