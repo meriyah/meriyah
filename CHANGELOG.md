@@ -1,3 +1,12 @@
+## [6.0.2](https://github.com/meriyah/meriyah/compare/v6.0.1...v6.0.2) (2024-10-01)
+
+
+### Bug Fixes
+
+* **parser:** all identifiers can be start of an expression ([7f800c5](https://github.com/meriyah/meriyah/commit/7f800c5fce86d71f80cb15d3a1ead5fc2d70e8ef)), closes [#342](https://github.com/meriyah/meriyah/issues/342)
+
+
+
 ## [6.0.1](https://github.com/meriyah/meriyah/compare/v6.0.0...v6.0.1) (2024-09-16)
 
 
