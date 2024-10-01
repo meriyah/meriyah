@@ -160,7 +160,7 @@ export const enum Token {
 
   /* Contextual keywords */
   AsKeyword          = 108 | Contextual | IsExpressionStart,
-  AsyncKeyword       = 109 | Contextual | IsIdentifier | IsExpressionStart,
+  AsyncKeyword       = 109 | Contextual | IsExpressionStart | IsIdentifier,
   AwaitKeyword       = 110 | Contextual | IsExpressionStart | IsIdentifier, // await is only reserved word in async functions or modules
   ConstructorKeyword = 111 | Contextual,
   GetKeyword         = 112 | Contextual,
@@ -175,7 +175,7 @@ export const enum Token {
 
   EscapedReserved       = 120 | IsEscaped,
   EscapedFutureReserved = 121 | IsEscaped,
-  AnyIdentifier      = 122 | IsIdentifier,
+  AnyIdentifier      = 122 | IsExpressionStart | IsIdentifier,
 
   PrivateIdentifier  = 123,
   BigIntLiteral      = 124 | IsExpressionStart | IsStringOrNumber,
@@ -189,8 +189,8 @@ export const enum Token {
   PrivateField      = 130,
   Template          = 131,
   Decorator         = 132,
-  Target            = 133 | IsIdentifier,
-  Meta              = 134 | IsIdentifier,
+  Target            = 133 | IsExpressionStart | IsIdentifier,
+  Meta              = 134 | IsExpressionStart | IsIdentifier,
   LineFeed          = 135,
   EscapeStart       = 136,
 
