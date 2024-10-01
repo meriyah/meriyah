@@ -10,7 +10,8 @@
 
 <br>
 
-## [Meriyah Playground](https://meriyah.github.io/meriyah)
+[Interactive Playground](https://meriyah.github.io/meriyah)
+[Benchmark](https://meriyah.github.io/meriyah/performance)
 
 ## Features
 
