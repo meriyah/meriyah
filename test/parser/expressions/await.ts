@@ -37,7 +37,9 @@ describe('Expressions - Await', () => {
     '({ async* f(a, b = 2) { yield 1; } })',
     '({ async* f(a, b) { yield 1; } })',
     '({ async* f(a) { yield 1; } })',
-    '(x = class A {[await](){}; "x"(){}}) => {}'
+    '(x = class A {[await](){}; "x"(){}}) => {}',
+    'async function a() { await target }',
+    'async function a() { await meta }'
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
