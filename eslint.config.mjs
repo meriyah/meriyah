@@ -8,11 +8,11 @@ export default [
   ...tseslint.configs.recommended,
   {
     plugins: { 'import-x': eslintPluginImportX },
-    settings: eslintPluginImportX.configs.typescript.settings,
+    settings: eslintPluginImportX.flatConfigs.typescript.settings,
     rules: {
-      ...eslintPluginImportX.configs.errors.rules,
-      ...eslintPluginImportX.configs.warnings.rules,
-      ...eslintPluginImportX.configs.typescript.rules,
+      ...eslintPluginImportX.flatConfigs.errors.rules,
+      ...eslintPluginImportX.flatConfigs.warnings.rules,
+      ...eslintPluginImportX.flatConfigs.typescript.rules,
       '@typescript-eslint/no-use-before-define': [2, { functions: false }], // https://github.com/eslint/eslint/issues/11903
       '@typescript-eslint/indent': 0,
       'prefer-const': ['error', { destructuring: 'all' }],
@@ -40,7 +40,8 @@ export default [
       '@typescript-eslint/camelcase': 0,
       '@typescript-eslint/no-var-requires': 0,
       '@typescript-eslint/no-require-imports': 0,
-      'no-fallthrough': 0
+      'no-fallthrough': 0,
+      'import-x/no-rename-default': 0
     }
   },
   {
