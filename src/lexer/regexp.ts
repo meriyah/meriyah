@@ -139,31 +139,15 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
 
   if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
-  parser.tokenValue = validate(parser, pattern, flags);
+  let value = null;
+  try {
+    value = new RegExp(pattern, flags);
+  } catch {
+    // Use null as tokenValue according to ESTree spec
+    // https://github.com/estree/estree/blob/a27003adf4fd7bfad44de9cef372a2eacd527b1c/es5.md#regexpliteral
+  }
+
+  parser.tokenValue = value;
 
   return Token.RegularExpression;
-}
-
-/**
- * Validates regular expressions
- *
- *
- * @param state Parser instance
- * @param context Context masks
- * @param pattern Regexp body
- * @param flags Regexp flags
- */
-function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
-  try {
-    return new RegExp(pattern, flags);
-  } catch {
-    try {
-      // Some JavaScript engine has not supported flag "v". They will fail.
-      new RegExp(pattern, flags);
-      // Use null as tokenValue according to ESTree spec
-      return null;
-    } catch {
-      report(parser, Errors.UnterminatedRegExp);
-    }
-  }
 }

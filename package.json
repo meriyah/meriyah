@@ -67,6 +67,7 @@
     "test:watch": "npm run test -- --watch --watch-extensions ts",
     "test:verbose": "npm run test -- -R spec",
     "test:watch:verbose": "npm run test:watch -- -R spec",
+    "test:262": "ts-node ./scripts/run-test262-cli.ts",
     "prepare-nightly": "node scripts/bump-dev-version",
     "coverage": "cross-env TS_NODE_PROJECT=\"test/tsconfig.json\" nyc -n \"src/**/*.ts\" -e .ts -i ts-node/register -r text-summary -r lcov -r html npm test",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
