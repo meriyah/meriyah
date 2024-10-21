@@ -1,0 +1,32 @@
+name: Update test262
+
+on:
+  workflow_dispatch:
+  schedule:
+    # “At 00:00 on Sunday.” https://crontab.guru/#0_0_*_*_0
+    - cron: '0 0 * * 0'
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  update-test262:
+    if: github.event_name != 'schedule' || github.repository == 'meriyah/meriyah'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Get latest test262 commit hash
+        id: test262
+        run: |
+          echo "hash=$(git ls-remote --exit-code https://github.com/tc39/test262.git HEAD | cut -f1)" >> $GITHUB_OUTPUT
+      - run: |
+          npm install --save-dev test262@github:tc39/test262#${{ steps.test262.outputs.hash }}
+      - run: npm run generate-test262-whitelist
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'test: update test262'
+          branch: automated-update-test262
+          branch-suffix: timestamp
+          title: 'test: update test262'
