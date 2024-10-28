@@ -5674,7 +5674,7 @@ export function parseArguments(
     if (parser.getToken() === Token.RightParen) break;
   }
 
-  consume(parser, context, Token.RightParen);
+  consume(parser, context | Context.TaggedTemplate, Token.RightParen);
 
   return args;
 }
