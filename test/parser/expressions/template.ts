@@ -341,6 +341,11 @@ describe('Expressions - Template', () => {
     '(`\r`)',
     'new nestedNewOperatorFunction`1``2``3``array`',
     "tag()`'\\00a0'`;",
+    "tag('a')`'\\00a0'`",
+    "tag()('a')`'\\00a0'`",
+    "tag('a')('b')`'\\00a0'`",
+    "tag()(...a)`'\\00a0'`",
+    "tag('a')(b)(c, ...d)`'\\00a0'`;",
     "(tag = () => {})`'\\00a0'`",
     "(() => {})`'\\00a0'`",
     "(function tag() { return () => {}; })()`'\\00a0'`",
@@ -4091,6 +4096,219 @@ describe('Expressions - Template', () => {
                 callee: {
                   name: 'tag',
                   type: 'Identifier'
+                },
+                type: 'CallExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      "tag('a')`'\\00a0'`;",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: null,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                arguments: [
+                  {
+                    type: 'Literal',
+                    value: 'a'
+                  }
+                ],
+                callee: {
+                  name: 'tag',
+                  type: 'Identifier'
+                },
+                type: 'CallExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      "tag('a')('b')`'\\00a0'`;",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: null,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                arguments: [
+                  {
+                    type: 'Literal',
+                    value: 'b'
+                  }
+                ],
+                callee: {
+                  arguments: [
+                    {
+                      type: 'Literal',
+                      value: 'a'
+                    }
+                  ],
+                  callee: {
+                    name: 'tag',
+                    type: 'Identifier'
+                  },
+                  type: 'CallExpression'
+                },
+                type: 'CallExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      "tag()(...a)`'\\00a0'`;",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: null,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                arguments: [
+                  {
+                    argument: {
+                      name: 'a',
+                      type: 'Identifier'
+                    },
+                    type: 'SpreadElement'
+                  }
+                ],
+                callee: {
+                  arguments: [],
+                  callee: {
+                    name: 'tag',
+                    type: 'Identifier'
+                  },
+                  type: 'CallExpression'
+                },
+                type: 'CallExpression'
+              },
+              type: 'TaggedTemplateExpression'
+            },
+            type: 'ExpressionStatement'
+          }
+        ],
+        sourceType: 'script',
+        type: 'Program'
+      }
+    ],
+    [
+      "tag('a')(b)(c, ...d)`'\\00a0'`;",
+      Context.None,
+      {
+        body: [
+          {
+            expression: {
+              quasi: {
+                expressions: [],
+                quasis: [
+                  {
+                    tail: true,
+                    type: 'TemplateElement',
+                    value: {
+                      cooked: null,
+                      raw: "'\\00a0'"
+                    }
+                  }
+                ],
+                type: 'TemplateLiteral'
+              },
+              tag: {
+                arguments: [
+                  {
+                    name: 'c',
+                    type: 'Identifier'
+                  },
+                  {
+                    argument: {
+                      name: 'd',
+                      type: 'Identifier'
+                    },
+                    type: 'SpreadElement'
+                  }
+                ],
+                callee: {
+                  arguments: [
+                    {
+                      name: 'b',
+                      type: 'Identifier'
+                    }
+                  ],
+                  callee: {
+                    arguments: [
+                      {
+                        type: 'Literal',
+                        value: 'a'
+                      }
+                    ],
+                    callee: {
+                      name: 'tag',
+                      type: 'Identifier'
+                    },
+                    type: 'CallExpression'
+                  },
+                  type: 'CallExpression'
                 },
                 type: 'CallExpression'
               },
