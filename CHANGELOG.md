@@ -1,3 +1,12 @@
+## [6.0.3](https://github.com/meriyah/meriyah/compare/v6.0.2...v6.0.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* **parser:** fix tagged template parsing when tag has param(s) ([b549ed3](https://github.com/meriyah/meriyah/commit/b549ed39696b694c3c0c2e9220452c3e28538915)), closes [#350](https://github.com/meriyah/meriyah/issues/350)
+
+
+
 ## [6.0.2](https://github.com/meriyah/meriyah/compare/v6.0.1...v6.0.2) (2024-10-01)
 
 
