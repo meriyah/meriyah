@@ -32,7 +32,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [22, 20, 18]
+        # Skip nodejs v22 for now, as it implemented new features of RegExp that affects
+        # the test262 tests whitelist.
+        node-version: [20, 18]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:

@@ -40,7 +40,11 @@ describe('Module - Export', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+        parseSource(
+          `${arg}`,
+          undefined,
+          Context.Strict | Context.Module | Context.OptionsWebCompat | Context.OptionsLexical
+        );
       });
     });
   }
@@ -438,7 +442,15 @@ describe('Module - Export', () => {
       'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
       Context.Strict | Context.Module | Context.OptionsLexical
     ],
-    ['export { a }; export { "\\u0061" } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical]
+    ['export { a }; export { "\\u0061" } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical],
+    [
+      'export async function a() {}\nexport async function a() {}',
+      Context.OptionsLexical | Context.Strict | Context.Module
+    ],
+    ['export function a() {}\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['export async function a() {}\nexport function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['export async function a() {}\nexport const a = 1;', Context.OptionsLexical | Context.Strict | Context.Module],
+    ['export let a = 1;\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module]
   ]);
 
   for (const arg of [
