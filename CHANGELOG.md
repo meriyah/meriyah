@@ -1,3 +1,12 @@
+## [6.0.4](https://github.com/meriyah/meriyah/compare/v6.0.3...v6.0.4) (2025-01-03)
+
+
+### Bug Fixes
+
+* **parser:** fix lexical analysis on export of async func ([#361](https://github.com/meriyah/meriyah/issues/361)) ([8ff271e](https://github.com/meriyah/meriyah/commit/8ff271eb0a9d36725a1274c4b39e2a351964fb8e)), closes [#360](https://github.com/meriyah/meriyah/issues/360)
+
+
+
 ## [6.0.3](https://github.com/meriyah/meriyah/compare/v6.0.2...v6.0.3) (2024-10-28)
 
 
