@@ -11346,6 +11346,9 @@ export function parseJSXIdentifier(
   line: number,
   column: number
 ): ESTree.JSXIdentifier {
+  if (!(parser.getToken() & Token.IsIdentifier)) {
+    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+  }
   const { tokenValue } = parser;
   nextToken(parser, context);
 

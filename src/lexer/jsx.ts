@@ -114,7 +114,7 @@ export function rescanJSXIdentifier(parser: ParserState): Token {
       char = advanceChar(parser);
     }
     parser.tokenValue += parser.source.slice(index, parser.index);
+    parser.setToken(Token.Identifier, true);
   }
-  parser.setToken(Token.Identifier, true);
   return parser.getToken();
 }
