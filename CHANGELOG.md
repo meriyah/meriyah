@@ -1,3 +1,12 @@
+## [6.0.5](https://github.com/meriyah/meriyah/compare/v6.0.4...v6.0.5) (2025-01-10)
+
+
+### Bug Fixes
+
+* **parser:** fix JSX attribute name parse ([#363](https://github.com/meriyah/meriyah/issues/363)) ([b113081](https://github.com/meriyah/meriyah/commit/b11308101b265c0f3db43e5ca1ec7bb541d7a2c6))
+
+
+
 ## [6.0.4](https://github.com/meriyah/meriyah/compare/v6.0.3...v6.0.4) (2025-01-03)
 
 
