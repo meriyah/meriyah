@@ -108,7 +108,16 @@ describe('Miscellaneous - JSX', () => {
     ['[foo] > ;', Context.OptionsJSX],
     ['[foo] > ;', Context.OptionsJSX],
     ['var x = <div>one</div>, <div>two</div>;', Context.OptionsJSX],
-    ['<p>{/}</p>', Context.OptionsJSX]
+    ['<p>{/}</p>', Context.OptionsJSX],
+    ['<div=""></div>', Context.OptionsJSX],
+    ['<div =""></div>', Context.OptionsJSX],
+    ['<div=1></div>', Context.OptionsJSX],
+    ['<div=div></div>', Context.OptionsJSX],
+    ['<div=/>', Context.OptionsJSX],
+    ['<div=-/>', Context.OptionsJSX],
+    ['<div=/>', Context.OptionsJSX],
+    ['<div =/>', Context.OptionsJSX],
+    ['<div=+-%&([)]}.../>', Context.OptionsJSX]
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
