@@ -98,7 +98,7 @@
     "rollup": "^4.29.1",
     "rollup-plugin-typescript2": "^0.36.0",
     "standard-changelog": "^6.0.0",
-    "test262": "github:tc39/test262#9d8efae5c2c1848b9c3362c4aa81dd360ff8d3a7",
+    "test262": "github:tc39/test262#d77a127c219606ed3b333bf7c704f94a7a08a865",
     "test262-parser-runner": "^0.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
