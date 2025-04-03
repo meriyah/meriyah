@@ -4,6 +4,7 @@ import * as ESTree from './estree';
 // Current version
 import { version as pkgVersion } from '../package.json';
 
+// This bypass troublesome package.json in generated d.ts file.
 const version: string = pkgVersion;
 
 /**
