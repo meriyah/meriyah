@@ -163,11 +163,11 @@ export const enum Token {
   AsyncKeyword       = 109 | Contextual | IsExpressionStart | IsIdentifier,
   AwaitKeyword       = 110 | Contextual | IsExpressionStart | IsIdentifier, // await is only reserved word in async functions or modules
   ConstructorKeyword = 111 | Contextual,
-  GetKeyword         = 112 | Contextual,
-  SetKeyword         = 113 | Contextual,
+  GetKeyword         = 112 | Contextual | IsExpressionStart | IsIdentifier,
+  SetKeyword         = 113 | Contextual | IsExpressionStart | IsIdentifier,
   AccessorKeyword    = 114 | Contextual,
-  FromKeyword        = 115 | Contextual,
-  OfKeyword          = 116 | Contextual | IsInOrOf,
+  FromKeyword        = 115 | Contextual | IsExpressionStart | IsIdentifier,
+  OfKeyword          = 116 | Contextual | IsInOrOf | IsExpressionStart | IsIdentifier,
   EnumKeyword        = 117 | Reserved | IsExpressionStart,
 
   Eval               = 118 | IsEvalOrArguments,

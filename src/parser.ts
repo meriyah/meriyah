@@ -4243,7 +4243,7 @@ export function parseAwaitExpressionOrIdentifier(
   // Peek next Token first;
   const possibleIdentiferOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
 
-  // If got an arrow function, or token after "await" is an expression.
+  // If got an arrow function, or token after "await" is not an expression.
   const isIdentifier =
     possibleIdentiferOrArrowFunc.type === 'ArrowFunctionExpression' ||
     (parser.getToken() & Token.IsExpressionStart) === 0;
