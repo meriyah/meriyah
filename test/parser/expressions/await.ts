@@ -38,6 +38,11 @@ describe('Expressions - Await', () => {
     '({ async* f(a, b) { yield 1; } })',
     '({ async* f(a) { yield 1; } })',
     '(x = class A {[await](){}; "x"(){}}) => {}',
+    'async function a() { await as }',
+    'async function a() { await from }',
+    'async function a() { await get }',
+    'async function a() { await set }',
+    'async function a() { await of }',
     'async function a() { await target }',
     'async function a() { await meta }'
   ]) {
