@@ -1,3 +1,12 @@
+## [6.0.6](https://github.com/meriyah/meriyah/compare/v6.0.5...v6.0.6) (2025-04-04)
+
+
+### Bug Fixes
+
+* **parser:** get/set/from/of are allowed as identifiers ([#377](https://github.com/meriyah/meriyah/issues/377)) ([3ef007f](https://github.com/meriyah/meriyah/commit/3ef007f5952d05a4f82be990282b2d52cfb962f4))
+
+
+
 ## [6.0.5](https://github.com/meriyah/meriyah/compare/v6.0.4...v6.0.5) (2025-01-10)
 
 
