@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm i
+          cache: 'yarn'
+          cache-dependency-path: ./package.json
+      - run: yarn
       - run: npm run lint
       - run: npm test
