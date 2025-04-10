@@ -8,14 +8,14 @@
     "**/.vscode": true
   },
   "deepscan.ignoreConfirmWarning": true,
-  "[javascript][typescript]": {
+  "[json][jsonc][markdown][javascript][typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": ["source.fixAll.eslint"]
+    "editor.formatOnSave": true
   },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+  "[javascript][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
   },
-  "eslint.experimental.useFlatConfig": true,
   "prettier.requireConfig": true
 }
