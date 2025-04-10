@@ -62,8 +62,11 @@ export default [
     languageOptions: { globals: { ...globals.node } },
     rules: {
       'n/no-unsupported-features/es-syntax': 'error',
+      'n/no-extraneous-import': 0,
+      'n/no-unpublished-import': 0,
       'n/no-extraneous-require': 0,
-      'n/no-unpublished-require': 0
+      'n/no-unpublished-require': 0,
+      'n/hashbang': 0
     }
   },
   {
