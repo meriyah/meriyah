@@ -1,5 +1,5 @@
+#!/usr/bin/env node
 import fs from 'node:fs';
-// eslint-disable-next-line n/no-unpublished-import
 import packageJson from '../package.json' with { type: 'json' };
 
 const UnicodeCodeCount = 0x110000; /* codes */

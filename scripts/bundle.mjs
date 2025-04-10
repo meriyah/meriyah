@@ -1,14 +1,15 @@
-const { join } = require('path');
-const fs = require('fs').promises;
-const rollup = require('rollup');
-const typescript2 = require('rollup-plugin-typescript2');
-const terser = require('@rollup/plugin-terser');
-const json = require('@rollup/plugin-json');
-const ts = require('typescript');
-const project = require('./project');
+#!/usr/bin/env node
+import { join } from 'node:path';
+import fs from 'node:fs/promises';
+import { rollup } from 'rollup';
+import typescript2 from 'rollup-plugin-typescript2';
+import terser from '@rollup/plugin-terser';
+import json from '@rollup/plugin-json';
+import * as ts from 'typescript';
+import project from './project.js';
 
 async function bundleDist(format, minified) {
-  const bundle = await rollup.rollup({
+  const bundle = await rollup({
     input: project.entry.path,
     plugins: [
       typescript2({
@@ -56,4 +57,4 @@ async function bundle() {
   await bundleAll(cjsOnly);
 }
 
-bundle();
+await bundle();
