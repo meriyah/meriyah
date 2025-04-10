@@ -22,7 +22,7 @@
     "target": "ES2021",
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "types"],
-    "types": ["node", "mocha"]
+    "types": ["node", "vitest/globals"]
   },
   "include": ["src"]
 }
