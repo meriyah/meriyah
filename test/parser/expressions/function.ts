@@ -29,10 +29,8 @@ describe('Expressions - Functions', () => {
         parseSource(`const foo = (function (${arg}) {})`, undefined, Context.None);
       });
 
-      it(`(function (${arg}) {})`, () => {
-        t.throws(() => {
-          parseSource(`(function (${arg}) {})`, undefined, Context.Strict | Context.Module);
-        });
+      t.throws(() => {
+        parseSource(`(function (${arg}) {})`, undefined, Context.Strict | Context.Module);
       });
     });
   }
