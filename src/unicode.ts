@@ -1,5 +1,4 @@
 // Unicode v16.0.0 support
-/*eslint-disable*/
 
 function isIDContinue(code:number) {
     return (unicodeLookup[(code >>> 5) + 0] >>> code & 31 & 1) !== 0

@@ -2,11 +2,13 @@ import eslintJs from '@eslint/js';
 import eslintPluginN from 'eslint-plugin-n';
 import tseslint from 'typescript-eslint';
 import eslintPluginImportX from 'eslint-plugin-import-x';
+import globals from 'globals';
 
 export default [
   eslintJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    languageOptions: { globals: { ...globals.builtin } },
     plugins: { 'import-x': eslintPluginImportX },
     settings: eslintPluginImportX.flatConfigs.typescript.settings,
     rules: {
@@ -45,7 +47,7 @@ export default [
     }
   },
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', '**/*.mjs'],
     ...eslintPluginN.configs['flat/recommended']
   },
   {
@@ -56,9 +58,10 @@ export default [
     }
   },
   {
-    files: ['scripts/*.js'],
+    files: ['scripts/*.js', 'scripts/*.mjs'],
+    languageOptions: { globals: { ...globals.node } },
     rules: {
-      'n/no-unsupported-features/es-syntax': ['error', { version: '10.0', ignores: [] }],
+      'n/no-unsupported-features/es-syntax': 'error',
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0
     }
@@ -74,6 +77,6 @@ export default [
     }
   },
   {
-    ignores: ['dist']
+    ignores: ['dist', 'src/unicode.ts']
   }
 ];

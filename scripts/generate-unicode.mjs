@@ -1,6 +1,7 @@
-'use strict';
+import fs from 'node:fs';
+// eslint-disable-next-line n/no-unpublished-import
+import packageJson from '../package.json' with { type: 'json' };
 
-const packageJson = require('../package.json');
 const UnicodeCodeCount = 0x110000; /* codes */
 const VectorSize = Uint32Array.BYTES_PER_ELEMENT * 8;
 const VectorMask = VectorSize - 1;
@@ -20,9 +21,6 @@ const DataInst = {
   Link: 0x2
 };
 
-exports.DataInst = DataInst;
-exports.compressorCreate = compressorCreate;
-
 function compressorCreate() {
   return {
     result: [],
@@ -35,8 +33,6 @@ function compressorCreate() {
     size: 0
   };
 }
-
-exports.compressorSend = compressorSend;
 
 function compressorSend(state, code) {
   state.size++;
@@ -86,8 +82,6 @@ function compressorSend(state, code) {
   }
 }
 
-exports.compressorEnd = compressorEnd;
-
 function compressorEnd(state) {
   if (state.prev === 0) {
     state.result.push(-state.count);
@@ -128,14 +122,8 @@ const makeDecompress = (compressed) => `((compressed, lookup) => {
     [${compressed.lookup}]
 )`;
 
-function decompress(compressed) {
-  return new Function(`return ${makeDecompress(compressed)}`)();
-}
-exports.decompress = decompress;
-
 async function generate(opts) {
   await opts.write(`// Unicode v${UNICODE_VERSION} support
-/*eslint-disable*/
 `);
 
   const exportKeys = Object.keys(opts.exports);
@@ -169,32 +157,21 @@ ${opts.eval ? 'return' : 'export'} {${Object.keys(opts.exports)}};
 `);
 }
 
-exports.generate = generate;
+const load = async (name) => {
+  const { default: list } = await import(`${unicodePackageName}/${name}/code-points.js`);
+  return list;
+};
 
-if (require.main === module) {
-  const path = require('path');
-  const load = (name) => {
-    const mod = require.resolve(`${unicodePackageName}/${name}/code-points`);
-    const list = require(mod);
-    delete require.cache[mod];
-    return list;
-  };
+const stream = fs.createWriteStream(new URL('../src/unicode.ts', import.meta.url));
 
-  const stream = require('fs').createWriteStream(path.resolve(__dirname, '../src/unicode.ts'));
-
-  generate({
-    write: (str) =>
-      new Promise((resolve, reject) => {
-        stream.write(str, (err) => (err != null ? reject(err) : resolve()));
-      }),
-    exports: {
-      isIDContinue: [load('Binary_Property/ID_Continue')],
-      isIDStart: [load('Binary_Property/ID_Start')],
-      mustEscape: [load('General_Category/Other'), load('General_Category/Separator')]
-    }
-  }).catch((e) =>
-    process.nextTick(() => {
-      throw e;
-    })
-  );
-}
+await generate({
+  write: (str) =>
+    new Promise((resolve, reject) => {
+      stream.write(str, (err) => (err != null ? reject(err) : resolve()));
+    }),
+  exports: {
+    isIDContinue: [await load('Binary_Property/ID_Continue')],
+    isIDStart: [await load('Binary_Property/ID_Start')],
+    mustEscape: [await load('General_Category/Other'), await load('General_Category/Separator')]
+  }
+});
