@@ -64,7 +64,7 @@
     "bundle:bench": "node scripts/bundle.mjs bench",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "prepare-nightly": "node scripts/bump-dev-version",
+    "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
     "prepublishOnly": "npm run bundle",

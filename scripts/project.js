@@ -14,6 +14,5 @@ module.exports = {
   scripts: { path: join(root, 'scripts') },
   test: { path: join(root, 'test') },
   'tsconfig.json': { path: join(root, 'tsconfig.json') },
-  'package.json': { path: join(root, 'package.json') },
-  'package-lock.json': { path: join(root, 'package-lock.json') }
+  'package.json': { path: join(root, 'package.json') }
 };
