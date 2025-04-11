@@ -1,5 +1,6 @@
+#!/usr/bin/env node
 import fs from 'node:fs/promises';
-import project from './project.js';
+import packageJson from '../package.json' with { type: 'json' };
 
 async function updateJson(file, process) {
   const json = JSON.parse(await fs.readFile(file));
@@ -9,7 +10,7 @@ async function updateJson(file, process) {
 
 async function run() {
   const versionRegExp = /(\d+)\.(\d+)\.(\d+)($|-)/;
-  const match = project.pkg.version.match(versionRegExp);
+  const match = packageJson.version.match(versionRegExp);
   if (match === null) {
     throw new Error(`package.json 'version' should match ${versionRegExp}`);
   }
@@ -29,7 +30,7 @@ async function run() {
   const newVersion = `${major}.${minor}.${patch}-dev.${datestamp}`;
   console.log(`new version: ${newVersion}`);
 
-  await updateJson(project['package.json'].path, (json) => ({ ...json, version: newVersion }));
+  await updateJson(new URL('../package.json', import.meta.url), (json) => ({ ...json, version: newVersion }));
 }
 
 await run();
