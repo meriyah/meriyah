@@ -267,15 +267,6 @@ interface FunctionDeclarationBase extends _Node {
   body?: BlockStatement | null;
 }
 
-interface MethodDefinitionBase extends _Node {
-  key: Expression | PrivateIdentifier | null;
-  value: FunctionExpression;
-  computed: boolean;
-  static: boolean;
-  kind: 'method' | 'get' | 'set' | 'constructor';
-  decorators?: Decorator[];
-}
-
 export interface BlockStatementBase extends _Node {
   body: Statement[];
 }
@@ -382,6 +373,7 @@ export interface PropertyDefinition extends _Node {
   type: 'PropertyDefinition';
   key: PrivateIdentifier | Expression;
   value: any;
+  // @ts-expect-error -- Unknown reason
   decorators?: Decorator[];
   computed: boolean;
   static: boolean;
@@ -664,8 +656,15 @@ export interface MetaProperty extends _Node {
   property: Identifier;
 }
 
-export interface MethodDefinition extends MethodDefinitionBase {
+export interface MethodDefinition extends _Node {
   type: 'MethodDefinition';
+  key: Expression | PrivateIdentifier | null;
+  value: FunctionExpression;
+  computed: boolean;
+  static: boolean;
+  kind: 'method' | 'get' | 'set' | 'constructor';
+  // @ts-expect-error -- Unknown reason
+  decorators?: Decorator[];
 }
 
 export interface NewExpression extends _Node {

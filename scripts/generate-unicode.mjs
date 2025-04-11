@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import packageJson from '../package.json' with { type: 'json' };
 
 const UnicodeCodeCount = 0x110000; /* codes */
@@ -7,6 +7,7 @@ const VectorSize = Uint32Array.BYTES_PER_ELEMENT * 8;
 const VectorMask = VectorSize - 1;
 const VectorBitCount = 32 - Math.clz32(VectorMask);
 const VectorByteSize = UnicodeCodeCount / VectorSize;
+const FILE = new URL('../src/unicode.ts', import.meta.url);
 
 const UNICODE_PACKAGE_PREFIX = '@unicode/unicode-';
 const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) =>
@@ -14,6 +15,11 @@ const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) 
 );
 
 const UNICODE_VERSION = unicodePackageName.slice(UNICODE_PACKAGE_PREFIX.length);
+
+const loadUnicodeCodePoints = async (name) => {
+  const { default: list } = await import(`${unicodePackageName}/${name}/code-points.js`);
+  return list;
+};
 
 const DataInst = {
   Empty: 0x0,
@@ -122,17 +128,12 @@ const makeDecompress = (compressed) => `((compressed, lookup) => {
     [${compressed.lookup}]
 )`;
 
-async function generate(opts) {
-  await opts.write(`// Unicode v${UNICODE_VERSION} support
-`);
-
-  const exportKeys = Object.keys(opts.exports);
+async function generate(exports) {
+  const specifiers = Object.entries(exports);
   const compress = compressorCreate();
-
-  for (const [index, exported] of exportKeys.entries()) {
+  for (const [, unicodeNames] of specifiers) {
+    const items = await Promise.all(unicodeNames.map((name) => loadUnicodeCodePoints(name)));
     const codes = new Uint32Array(VectorByteSize);
-    const items = opts.exports[exported];
-
     for (const list of items) {
       for (const item of list) {
         codes[item >>> VectorBitCount] |= 1 << (item & VectorMask);
@@ -142,36 +143,29 @@ async function generate(opts) {
     for (const code of codes) {
       compressorSend(compress, code);
     }
-
-    await opts.write(`
-function ${exported}(code${opts.eval ? '' : ':number'}) {
-    return (unicodeLookup[(code >>> ${VectorBitCount}) + ${index * VectorByteSize}] >>> code & ${VectorMask} & 1) !== 0
-}`);
   }
 
   compressorEnd(compress);
 
-  await opts.write(`
-export const unicodeLookup = ${makeDecompress(compress)}
-${opts.eval ? 'return' : 'export'} {${Object.keys(opts.exports)}};
-`);
+  await fs.writeFile(
+    FILE,
+    `
+// Unicode v${UNICODE_VERSION} support
+
+const unicodeLookup = ${makeDecompress(compress)};
+
+${specifiers
+  .map(
+    ([specifier], index) =>
+      `export const ${specifier} = (code: number) => (unicodeLookup[(code >>> ${VectorBitCount}) + ${index * VectorByteSize}] >>> code & ${VectorMask} & 1) !== 0;`
+  )
+  .join('\n')}
+`.trimStart()
+  );
 }
 
-const load = async (name) => {
-  const { default: list } = await import(`${unicodePackageName}/${name}/code-points.js`);
-  return list;
-};
-
-const stream = fs.createWriteStream(new URL('../src/unicode.ts', import.meta.url));
-
 await generate({
-  write: (str) =>
-    new Promise((resolve, reject) => {
-      stream.write(str, (err) => (err != null ? reject(err) : resolve()));
-    }),
-  exports: {
-    isIDContinue: [await load('Binary_Property/ID_Continue')],
-    isIDStart: [await load('Binary_Property/ID_Start')],
-    mustEscape: [await load('General_Category/Other'), await load('General_Category/Separator')]
-  }
+  isIDContinue: ['Binary_Property/ID_Continue'],
+  isIDStart: ['Binary_Property/ID_Start'],
+  mustEscape: ['General_Category/Other', 'General_Category/Separator']
 });
