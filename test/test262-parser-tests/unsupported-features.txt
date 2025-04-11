@@ -4,3 +4,4 @@ import-assertions
 regexp-duplicate-named-groups
 source-phase-imports
 source-phase-imports-module-source
+import-defer
