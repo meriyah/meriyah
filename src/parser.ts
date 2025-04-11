@@ -10428,7 +10428,7 @@ export function parsePropertyDefinition(
   privateScope: PrivateScopeState | undefined,
   key: ESTree.PrivateIdentifier | ESTree.Expression | null,
   state: PropertyKind,
-  decorators: ESTree.Decorator[] | null,
+  decorators: ESTree.Decorator[],
   start: number,
   line: number,
   column: number

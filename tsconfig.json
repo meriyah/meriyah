@@ -21,8 +21,8 @@
     "stripInternal": true,
     "target": "ES2021",
     "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "types"],
-    "types": ["node", "vitest/globals"]
+    "types": ["node", "vitest/globals"],
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
