@@ -47,19 +47,11 @@ export default [
     }
   },
   {
-    files: ['**/*.js', '**/*.mjs'],
-    ...eslintPluginN.configs['flat/recommended']
+    files: ['**/*.mjs'],
+    ...eslintPluginN.configs['flat/recommended-module']
   },
   {
-    files: ['bench/**/*'],
-    rules: {
-      'import-x/no-unresolved': 0,
-      'import-x/namespace': 0
-    }
-  },
-  {
-    files: ['scripts/*.js', 'scripts/*.mjs'],
-    languageOptions: { globals: { ...globals.node } },
+    files: ['scripts/**/*.mjs'],
     rules: {
       'n/no-unsupported-features/es-syntax': 'error',
       'n/no-extraneous-import': 0,
@@ -67,6 +59,13 @@ export default [
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0,
       'n/hashbang': 0
+    }
+  },
+  {
+    files: ['bench/**/*'],
+    rules: {
+      'import-x/no-unresolved': 0,
+      'import-x/namespace': 0
     }
   },
   {

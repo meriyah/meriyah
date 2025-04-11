@@ -40,7 +40,7 @@ type Test = {
 };
 
 function shouldSkip(test: Test) {
-  if (test.file.endsWith('.md')) {
+  if (test.file.endsWith('.md') || test.file.endsWith('.py')) {
     return true;
   }
 

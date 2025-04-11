@@ -64,7 +64,7 @@
     "bundle:bench": "node scripts/bundle.mjs bench",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "prepare-nightly": "node scripts/bump-dev-version",
+    "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
     "prepublishOnly": "npm run bundle",
@@ -72,7 +72,7 @@
     "version": "standard-changelog && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish",
     "prepare": "husky",
-    "generate-test262-whitelist": "node scripts/generate-test262-whitelist.js"
+    "generate-test262-whitelist": "node scripts/generate-test262-whitelist.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",

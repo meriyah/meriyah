@@ -6,14 +6,19 @@ import typescript2 from 'rollup-plugin-typescript2';
 import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
 import * as ts from 'typescript';
-import project from './project.js';
+
+// eslint-disable-next-line n/no-unsupported-features/node-builtins
+const { dirname } = import.meta;
+const ENTRY = join('../src/meriyah.ts', dirname);
+const TSCONFIG = join('tsconfig.json', dirname);
+const DIST = join('../dis/', dirname);
 
 async function bundleDist(format, minified) {
   const bundle = await rollup({
-    input: project.entry.path,
+    input: ENTRY,
     plugins: [
       typescript2({
-        tsconfig: project['tsconfig.json'].path,
+        tsconfig: TSCONFIG,
         typescript: ts,
         clean: true
       }),
@@ -26,7 +31,7 @@ async function bundleDist(format, minified) {
   suffix += minified ? '.min' : '';
   suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
 
-  const fileName = join(project.dist.path, `meriyah${suffix}`);
+  const fileName = join(DIST, `meriyah${suffix}`);
   console.log(`writing ${fileName}`);
   const options = { file: fileName, name: 'meriyah', format };
   if (format === 'umd') {
@@ -51,7 +56,7 @@ async function bundleAll(cjsOnly) {
 }
 
 async function bundle() {
-  await fs.rm(project.dist.path, { force: true, recursive: true });
+  await fs.rm(DIST, { force: true, recursive: true });
 
   const cjsOnly = process.argv.slice(2)[0] === 'bench';
   await bundleAll(cjsOnly);
