@@ -41,10 +41,9 @@ async function bundleDist(format, minified) {
   await bundle.write(options);
 }
 
-async function bundleAll(cjsOnly) {
+async function bundleAll() {
   // CommonJS
   await bundleDist('cjs', false);
-  if (cjsOnly) return;
 
   // ESM
   await bundleDist('esm', true);
@@ -55,11 +54,5 @@ async function bundleAll(cjsOnly) {
   await bundleDist('umd', false);
 }
 
-async function bundle() {
-  await fs.rm(DIST, { force: true, recursive: true });
-
-  const cjsOnly = process.argv.slice(2)[0] === 'bench';
-  await bundleAll(cjsOnly);
-}
-
-await bundle();
+await fs.rm(DIST, { force: true, recursive: true });
+await bundleAll();

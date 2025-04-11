@@ -62,7 +62,6 @@
     "fix:eslint": "eslint --fix",
     "fix:prettier": "prettier . --write",
     "bundle": "node scripts/bundle.mjs",
-    "bundle:bench": "node scripts/bundle.mjs bench",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "prepare-nightly": "node scripts/bump-dev-version.mjs",

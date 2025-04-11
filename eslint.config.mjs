@@ -62,13 +62,6 @@ export default [
     }
   },
   {
-    files: ['bench/**/*'],
-    rules: {
-      'import-x/no-unresolved': 0,
-      'import-x/namespace': 0
-    }
-  },
-  {
     files: ['eslint.config.mjs'],
     rules: {
       'import-x/no-unresolved': 0,
