@@ -21,7 +21,7 @@
     "stripInternal": true,
     "target": "ES2021",
     "resolveJsonModule": true,
-    "types": ["node", "vitest/globals"],
+    "types": ["node", "vitest/globals", "./types/test262-parser-runner.d.ts"],
     "skipLibCheck": true
   },
   "include": ["src"]
