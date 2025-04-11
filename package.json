@@ -10,8 +10,9 @@
   "typings": "dist/src/meriyah.d.ts",
   "exports": {
     "types": "./dist/src/meriyah.d.ts",
-    "import": "./dist/meriyah.min.mjs",
-    "require": "./dist/meriyah.cjs"
+    "module-sync": "./dist/meriyah.mjs",
+    "require": "./dist/meriyah.cjs",
+    "default": "./dist/meriyah.mjs"
   },
   "license": "ISC",
   "homepage": "https://github.com/meriyah/meriyah",
