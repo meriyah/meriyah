@@ -73,6 +73,7 @@
     "version": "standard-changelog && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish",
     "prepare": "husky",
+    "generate-unicode": "node scripts/generate-unicode.mjs",
     "generate-test262-whitelist": "node scripts/generate-test262-whitelist.mjs"
   },
   "devDependencies": {
