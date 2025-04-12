@@ -57,9 +57,14 @@ const bundle = await rollup({
   input: ENTRY,
   plugins: [
     typescript2({
-      tsconfig: TSCONFIG,
       typescript: ts,
-      clean: true
+      clean: true,
+      tsconfig: TSCONFIG,
+      tsconfigOverride: {
+        compilerOptions: {
+          declarationMap: false
+        }
+      }
     }),
     json()
   ]

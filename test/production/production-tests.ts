@@ -3,9 +3,10 @@ import url from 'node:url';
 import path from 'node:path';
 import * as t from 'assert';
 
+const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
+
 describe('Production test', async function () {
-  const directory = new URL('../../dist/', import.meta.url);
-  const files = await fs.readdir(directory, { withFileTypes: true });
+  const files = await fs.readdir(DIST_DIRECTORY, { withFileTypes: true });
 
   for (const file of files) {
     if (!file.isFile()) {
@@ -23,4 +24,20 @@ describe('Production test', async function () {
       });
     });
   }
+});
+
+const glob = (pattern: string): Promise<string[]> =>
+  // @ts-expect-error -- Safe
+  Array.fromAsync(fs.glob(pattern, { cwd: url.fileURLToPath(DIST_DIRECTORY) }));
+
+describe('Types', () => {
+  it('Should emit `.d.ts` files', async () => {
+    const files = await glob('**/*.d.ts');
+    t.ok(files.length > 0);
+  });
+
+  it('Should not emit `.d.ts.map` files', async () => {
+    const files = await glob('**/*.d.ts.map');
+    t.deepEqual(files, []);
+  });
 });

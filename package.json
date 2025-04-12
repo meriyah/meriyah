@@ -64,6 +64,7 @@
     "bundle": "node scripts/bundle.mjs",
     "test": "vitest",
     "test:watch": "vitest --watch",
+    "production-test": "cross-env PRODUCTION_TEST=1 vitest test/production/production-tests.ts",
     "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
