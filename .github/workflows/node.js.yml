@@ -28,5 +28,5 @@ jobs:
           cache-dependency-path: ./package.json
       - run: yarn
       - run: node --run lint
-      - run: node --run bundle && ls dist
+      - run: node --run bundle
       - run: node --run test
