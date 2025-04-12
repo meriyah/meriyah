@@ -9,9 +9,9 @@ import * as ts from 'typescript';
 
 // eslint-disable-next-line n/no-unsupported-features/node-builtins
 const { dirname } = import.meta;
-const ENTRY = join('../src/meriyah.ts', dirname);
-const TSCONFIG = join('tsconfig.json', dirname);
-const DIST = join('../dis/', dirname);
+const ENTRY = join(dirname, '../src/meriyah.ts');
+const TSCONFIG = join(dirname, '../tsconfig.json');
+const DIST = join(dirname, '../dist/');
 
 async function bundleDist(format, minified) {
   const bundle = await rollup({
