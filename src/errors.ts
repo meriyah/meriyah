@@ -391,17 +391,8 @@ export class ParseError extends SyntaxError implements _Node {
     type: Errors,
     ...params: string[]
   ) {
-    const message =
-      '[' +
-      startLine +
-      ':' +
-      startColumn +
-      '-' +
-      endLine +
-      ':' +
-      endColumn +
-      ']: ' +
-      errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
+    const description = errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
+    const message = '[' + startLine + ':' + startColumn + '-' + endLine + ':' + endColumn + ']: ' + description;
     super(`${message}`);
     this.start = start;
     this.end = end;
@@ -410,7 +401,7 @@ export class ParseError extends SyntaxError implements _Node {
       start: { line: startLine, column: startColumn },
       end: { line: endLine, column: endColumn }
     };
-    this.description = message;
+    this.description = description;
   }
 }
 /**
