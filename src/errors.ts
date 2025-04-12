@@ -393,7 +393,7 @@ export class ParseError extends SyntaxError implements _Node {
   ) {
     const description = errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
     const message = '[' + startLine + ':' + startColumn + '-' + endLine + ':' + endColumn + ']: ' + description;
-    super(`${message}`);
+    super(message);
     this.start = start;
     this.end = end;
     this.range = [start, end];
