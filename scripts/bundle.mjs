@@ -13,7 +13,7 @@ const ENTRY = path.join(dirname, '../src/meriyah.ts');
 const TSCONFIG = path.join(dirname, '../tsconfig.json');
 const DIST = path.join(dirname, '../dist/');
 
-function createRollupOutputOptions(format, minified) {
+function getRollupOutputOptions(format, minified) {
   let suffix = format === 'umd' ? '.umd' : '';
   suffix += minified ? '.min' : '';
   suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
@@ -26,9 +26,9 @@ function createRollupOutputOptions(format, minified) {
   };
 }
 
-function* getRollupOutputOptions() {
+function* getEntries() {
   for (const format of ['esm', 'umd', 'cjs']) {
-    yield createRollupOutputOptions(format, false);
+    yield getRollupOutputOptions(format, false);
 
     // CommonJS version don't need minify
     if (format === 'cjs') {
@@ -36,7 +36,7 @@ function* getRollupOutputOptions() {
     }
 
     // Minified
-    yield createRollupOutputOptions(format, true);
+    yield getRollupOutputOptions(format, true);
   }
 }
 
@@ -55,7 +55,7 @@ const bundle = await rollup({
   ]
 });
 
-for (const options of getRollupOutputOptions()) {
+for (const options of getEntries()) {
   console.log(`writing ${path.relative(process.cwd(), options.file).replaceAll('\\', '/')}`);
   await bundle.write(options);
 }
