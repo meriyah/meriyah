@@ -106,10 +106,10 @@ describe('Lexer - Template', () => {
   });
 
   describe('Lexer - Tagged Template', () => {
-    const tokens: [Context, Token, string, string | void][] = [
+    const tokens: [Context, Token, string, string | null][] = [
       //[Context.TaggedTemplate, Token.TemplateSpan, '`\\u{70bc`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', undefined],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\7${', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\1${', null],
       [Context.TaggedTemplate, Token.TemplateContinuation, "`'${", "'"],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`"${', '"'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\`${', '`'],
@@ -122,19 +122,19 @@ describe('Lexer - Template', () => {
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\n`', '\n'],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\b${', '\b'],
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\t`', '\t'],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{11ffff}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{110000}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0g}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{0g}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{g}${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\x0g`', undefined],
-      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\x0g${', undefined],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', undefined],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{11ffff}`', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{11ffff}${', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{110000}${', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0g}`', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{0g}${', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g0}`', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\u{g}${', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\u{g}`', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\x0g`', null],
+      [Context.TaggedTemplate, Token.TemplateContinuation, '`\\x0g${', null],
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', null],
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\0`', '\u0000']
     ];
 
