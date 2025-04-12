@@ -13,7 +13,24 @@ const ENTRY = join(dirname, '../src/meriyah.ts');
 const TSCONFIG = join(dirname, '../tsconfig.json');
 const DIST = join(dirname, '../dist/');
 
-async function bundleDist(format, minified) {
+function getRollupOutputOptions(format, minified) {
+  let suffix = format === 'umd' ? '.umd' : '';
+  suffix += minified ? '.min' : '';
+  suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
+
+  return {
+    name: 'meriyah',
+    format,
+    file: join(DIST, `meriyah${suffix}`)
+  };
+}
+
+await fs.rm(DIST, { force: true, recursive: true });
+
+for (const { formats, minified } of [
+  { formats: ['esm', 'umd', 'cjs'], minified: false },
+  { formats: ['esm', 'umd'], minified: true }
+]) {
   const bundle = await rollup({
     input: ENTRY,
     plugins: [
@@ -27,32 +44,11 @@ async function bundleDist(format, minified) {
     ]
   });
 
-  let suffix = format === 'umd' ? '.umd' : '';
-  suffix += minified ? '.min' : '';
-  suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
-
-  const fileName = join(DIST, `meriyah${suffix}`);
-  console.log(`writing ${fileName}`);
-  const options = { file: fileName, name: 'meriyah', format };
-  if (format === 'umd') {
-    // For IIFE
-    options.exports = 'named';
-  }
-  await bundle.write(options);
+  await Promise.all(
+    formats.map((format) => {
+      const options = getRollupOutputOptions(format, minified);
+      console.log(`writing ${options.file}`);
+      return bundle.write(options);
+    })
+  );
 }
-
-async function bundleAll() {
-  // CommonJS
-  await bundleDist('cjs', false);
-
-  // ESM
-  await bundleDist('esm', true);
-  await bundleDist('esm', false);
-
-  // UMD supports AMD, CommonJS, and IIFE
-  await bundleDist('umd', true);
-  await bundleDist('umd', false);
-}
-
-await fs.rm(DIST, { force: true, recursive: true });
-await bundleAll();
