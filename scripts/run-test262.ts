@@ -1,7 +1,7 @@
 import { parseScript, parseModule } from '../src/meriyah';
 import * as path from 'path';
 import * as fs from 'fs';
-import run = require('test262-parser-runner');
+import run from 'test262-parser-runner';
 
 const vFlagSupported = (() => {
   try {
