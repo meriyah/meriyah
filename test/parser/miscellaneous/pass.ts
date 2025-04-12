@@ -1,5 +1,5 @@
 import { Context } from '../../../src/common';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { parseSource } from '../../../src/parser';
 
 // DO NOT REMOVE OR MODIFY THIS TESTS!!!

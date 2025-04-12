@@ -1,7 +1,7 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 
 describe('Declarations - Async Function', () => {
   for (const arg of [

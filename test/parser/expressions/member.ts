@@ -1,6 +1,6 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { parseSource } from '../../../src/parser';
 describe('Expressions - Member', () => {
   fail('Expressions - Member (fail)', [

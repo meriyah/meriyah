@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
 describe('Expressions - API', () => {

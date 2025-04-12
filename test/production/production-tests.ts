@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import url from 'node:url';
 import path from 'node:path';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 
 describe('Production test', async function () {
   const directory = new URL('../../dist/', import.meta.url);
