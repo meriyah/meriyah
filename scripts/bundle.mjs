@@ -30,7 +30,14 @@ function getRollupOutputOptions(format, minified) {
 }
 
 function* getEntries() {
-  for (const format of ['esm', 'umd', 'cjs']) {
+  for (const format of [
+    // ESM
+    'esm',
+    // UMD supports AMD, CommonJS, and IIFE
+    'umd',
+    // CommonJS
+    'cjs'
+  ]) {
     yield getRollupOutputOptions(format, false);
 
     // CommonJS version don't need minify
