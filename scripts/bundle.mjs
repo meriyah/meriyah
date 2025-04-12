@@ -56,6 +56,6 @@ const bundle = await rollup({
 });
 
 for (const options of getRollupOutputOptions()) {
-  console.log(`writing ${path.relative(process.cwd(), options.file)}`);
+  console.log(`writing ${path.relative(process.cwd(), options.file).replaceAll('\\', '/')}`);
   await bundle.write(options);
 }
