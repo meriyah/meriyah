@@ -34,6 +34,7 @@ export default [
           enforceForRenamedProperties: false
         }
       ],
+      'no-restricted-imports': ['error', 'assert', 'node:assert'],
 
       // TODO: enable it when all problems addressed
       '@typescript-eslint/explicit-function-return-type': 0,
