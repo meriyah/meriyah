@@ -6,10 +6,10 @@
   "module": "dist/meriyah.min.mjs",
   "browser": "dist/meriyah.umd.min.js",
   "unpkg": "dist/meriyah.umd.min.js",
-  "types": "dist/src/meriyah.d.ts",
-  "typings": "dist/src/meriyah.d.ts",
+  "types": "dist/types/meriyah.d.ts",
+  "typings": "dist/types/meriyah.d.ts",
   "exports": {
-    "types": "./dist/src/meriyah.d.ts",
+    "types": "./dist/types/meriyah.d.ts",
     "module-sync": "./dist/meriyah.mjs",
     "require": "./dist/meriyah.cjs",
     "default": "./dist/meriyah.mjs"

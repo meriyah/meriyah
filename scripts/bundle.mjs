@@ -59,10 +59,13 @@ const bundle = await rollup({
     typescript2({
       typescript: ts,
       clean: true,
+      useTsconfigDeclarationDir: true,
       tsconfig: TSCONFIG,
       tsconfigOverride: {
         compilerOptions: {
-          declarationMap: false
+          declarationMap: false,
+          rootDir: 'src/',
+          declarationDir: path.join(DIST, 'types')
         }
       }
     }),
