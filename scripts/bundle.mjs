@@ -14,14 +14,17 @@ const TSCONFIG = path.join(dirname, '../tsconfig.json');
 const DIST = path.join(dirname, '../dist/');
 
 function getRollupOutputOptions(format, minified) {
-  let suffix = format === 'umd' ? '.umd' : '';
-  suffix += minified ? '.min' : '';
-  suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
+  const filename = [
+    'meriyah',
+    format === 'umd' ? '.umd' : '',
+    minified ? '.min' : '',
+    format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js'
+  ].join('');
 
   return {
     name: 'meriyah',
     format,
-    file: path.join(DIST, `meriyah${suffix}`),
+    file: path.join(DIST, filename),
     plugins: minified ? [terser()] : []
   };
 }
