@@ -1,20 +1,20 @@
 import { convertTokenType, nextToken, skipHashBang } from './lexer';
 import { Token, KeywordDescTable } from './token';
-import * as ESTree from './estree';
+import type * as ESTree from './estree';
 import { report, reportMessageAt, reportScopeError, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
 import { rescanJSXIdentifier, nextJSXToken, scanJSXAttributeValue } from './lexer/jsx';
 import {
   Context,
-  ParserState,
+  type ParserState,
   PropertyKind,
   Origin,
   consumeOpt,
   consume,
   Flags,
-  OnComment,
-  OnInsertedSemicolon,
-  OnToken,
+  type OnComment,
+  type OnInsertedSemicolon,
+  type OnToken,
   pushComment,
   pushToken,
   reinterpretToPattern,
@@ -35,7 +35,7 @@ import {
   createScope,
   addChildScope,
   ScopeKind,
-  ScopeState,
+  type ScopeState,
   addVarName,
   addBlockName,
   addBindingToExports,
@@ -46,7 +46,7 @@ import {
   addVarOrBlock,
   isValidIdentifier,
   classifyIdentifier,
-  PrivateScopeState,
+  type PrivateScopeState,
   addPrivateIdentifier,
   addPrivateIdentifierRef,
   addChildPrivateScope,

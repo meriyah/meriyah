@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError, report } from './errors';
-import { Node, Decorator, SourceLocation } from './estree';
+import { type Node, type Decorator, type SourceLocation } from './estree';
 import { nextToken } from './lexer/scan';
 
 /**

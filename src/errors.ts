@@ -1,5 +1,5 @@
-import { _Node, SourceLocation } from './estree';
-import { ParserState, ScopeError } from './common';
+import { type _Node, type SourceLocation } from './estree';
+import { type ParserState, type ScopeError } from './common';
 
 export const enum Errors {
   Unexpected,

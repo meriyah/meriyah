@@ -1,7 +1,7 @@
 import * as t from 'assert';
-import { SourceLocation } from '../../../src/estree';
+import { type SourceLocation } from '../../../src/estree';
 import { parseScript } from '../../../src/meriyah';
-import { Token } from '../../../src/token';
+import { type Token } from '../../../src/token';
 
 describe('Miscellaneous - onToken', () => {
   it('tokenize braces using array', () => {

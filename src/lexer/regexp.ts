@@ -1,5 +1,5 @@
 import { Chars } from '../chars';
-import { Context, ParserState } from '../common';
+import { Context, type ParserState } from '../common';
 import { Token } from '../token';
 import { advanceChar } from './common';
 import { isIdentifierPart } from './charClassifier';
