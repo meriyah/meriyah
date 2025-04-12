@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { join } from 'node:path';
+import path from 'node:path';
 import fs from 'node:fs/promises';
 import { rollup } from 'rollup';
 import typescript2 from 'rollup-plugin-typescript2';
@@ -9,50 +9,63 @@ import * as ts from 'typescript';
 
 // eslint-disable-next-line n/no-unsupported-features/node-builtins
 const { dirname } = import.meta;
-const ENTRY = join(dirname, '../src/meriyah.ts');
-const TSCONFIG = join(dirname, '../tsconfig.json');
-const DIST = join(dirname, '../dist/');
+const ENTRY = path.join(dirname, '../src/meriyah.ts');
+const TSCONFIG = path.join(dirname, '../tsconfig.json');
+const DIST = path.join(dirname, '../dist/');
 
-async function bundleDist(format, minified) {
-  const bundle = await rollup({
-    input: ENTRY,
-    plugins: [
-      typescript2({
-        tsconfig: TSCONFIG,
-        typescript: ts,
-        clean: true
-      }),
-      json(),
-      ...(minified ? [terser()] : [])
-    ]
-  });
+function getRollupOutputOptions(format, minified) {
+  const filename = [
+    'meriyah',
+    format === 'umd' ? '.umd' : '',
+    minified ? '.min' : '',
+    format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js'
+  ].join('');
 
-  let suffix = format === 'umd' ? '.umd' : '';
-  suffix += minified ? '.min' : '';
-  suffix += format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js';
+  return {
+    name: 'meriyah',
+    format,
+    file: path.join(DIST, filename),
+    plugins: minified ? [terser()] : []
+  };
+}
 
-  const fileName = join(DIST, `meriyah${suffix}`);
-  console.log(`writing ${fileName}`);
-  const options = { file: fileName, name: 'meriyah', format };
-  if (format === 'umd') {
-    // For IIFE
-    options.exports = 'named';
+function* getEntries() {
+  for (const format of [
+    // ESM
+    'esm',
+    // UMD supports AMD, CommonJS, and IIFE
+    'umd',
+    // CommonJS
+    'cjs'
+  ]) {
+    yield getRollupOutputOptions(format, false);
+
+    // CommonJS version don't need minify
+    if (format === 'cjs') {
+      continue;
+    }
+
+    // Minified
+    yield getRollupOutputOptions(format, true);
   }
+}
+
+// Clean up `dist/`
+await fs.rm(DIST, { force: true, recursive: true });
+
+const bundle = await rollup({
+  input: ENTRY,
+  plugins: [
+    typescript2({
+      tsconfig: TSCONFIG,
+      typescript: ts,
+      clean: true
+    }),
+    json()
+  ]
+});
+
+for (const options of getEntries()) {
+  console.log(`writing ${path.relative(process.cwd(), options.file).replaceAll('\\', '/')}`);
   await bundle.write(options);
 }
-
-async function bundleAll() {
-  // CommonJS
-  await bundleDist('cjs', false);
-
-  // ESM
-  await bundleDist('esm', true);
-  await bundleDist('esm', false);
-
-  // UMD supports AMD, CommonJS, and IIFE
-  await bundleDist('umd', true);
-  await bundleDist('umd', false);
-}
-
-await fs.rm(DIST, { force: true, recursive: true });
-await bundleAll();
