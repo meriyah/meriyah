@@ -1,5 +1,5 @@
 import * as t from 'assert';
-import { Context } from '../../src/common';
+import { type Context } from '../../src/common';
 import { CharFlags, CharTypes } from '../../src/lexer/charClassifier';
 
 describe('Lexer - charClassifier', () => {

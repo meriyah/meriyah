@@ -16,6 +16,7 @@ export default [
       ...eslintPluginImportX.flatConfigs.warnings.rules,
       ...eslintPluginImportX.flatConfigs.typescript.rules,
       '@typescript-eslint/no-use-before-define': [2, { functions: false }], // https://github.com/eslint/eslint/issues/11903
+      '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
       '@typescript-eslint/indent': 0,
       'prefer-const': ['error', { destructuring: 'all' }],
       'prefer-destructuring': [
