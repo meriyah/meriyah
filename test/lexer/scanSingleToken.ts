@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
 import { create } from '../../src/parser';
@@ -84,19 +84,19 @@ describe('src/lexer/scan', () => {
       const token = scanSingleToken(state, Context.None, 0);
       t.deepEqual(token, Token.Add);
     });
-    it('should recognise single character numbers', () => {
+    it('should recognize single character numbers', () => {
       const src = '3';
       const state = create(src, '', undefined);
       const token = scanSingleToken(state, Context.None, 0);
-      t.deepEqual(token, Token.NumericLiteral);
-      t.deepEqual(state.tokenValue, src);
+      t.equal(token, Token.NumericLiteral);
+      t.equal(state.tokenValue, Number(src));
     });
-    it('should recognise multi character numbers', () => {
+    it('should recognize multi character numbers', () => {
       const src = '345';
       const state = create(src, '', undefined);
       const token = scanSingleToken(state, Context.None, 0);
-      t.deepEqual(token, Token.NumericLiteral);
-      t.deepEqual(state.tokenValue, src);
+      t.equal(token, Token.NumericLiteral);
+      t.equal(state.tokenValue, Number(src));
     });
     // tslint:disable quotemark
     it('should recognise strings', () => {

@@ -1,5 +1,5 @@
 import runTest from '../../scripts/run-test262';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 
 describe('Test262', function () {
   it(

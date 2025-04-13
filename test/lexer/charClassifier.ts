@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { type Context } from '../../src/common';
 import { CharFlags, CharTypes } from '../../src/lexer/charClassifier';
 

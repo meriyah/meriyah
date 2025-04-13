@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { type SourceLocation } from '../../../src/estree';
 import { parseScript } from '../../../src/meriyah';
 

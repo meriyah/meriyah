@@ -1,15 +1,8 @@
 import { parseScript, parseModule } from '../src/meriyah';
 import * as path from 'path';
 import * as fs from 'fs';
+import { supportsUnicodeSets } from './shared.mjs';
 import run = require('test262-parser-runner');
-
-const vFlagSupported = (() => {
-  try {
-    return new RegExp('', 'v').flags === 'v';
-  } catch {
-    return false;
-  }
-})();
 
 function loadList(filename: string) {
   const file = path.join(__dirname, '../test/test262-parser-tests', filename);
@@ -22,7 +15,7 @@ function loadList(filename: string) {
 }
 
 const unsupportedFeatures = new Set(loadList('unsupported-features.txt'));
-if (!vFlagSupported) {
+if (!supportsUnicodeSets) {
   unsupportedFeatures.add('regexp-v-flag');
 }
 const whitelist = loadList('whitelist.txt');

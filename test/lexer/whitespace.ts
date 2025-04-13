@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { Flags, Context } from '../../src/common';
 import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';

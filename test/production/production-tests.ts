@@ -1,7 +1,7 @@
 import { describe } from 'vitest';
 import fs from 'node:fs/promises';
 import url from 'node:url';
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 
 const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
 

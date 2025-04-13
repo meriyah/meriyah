@@ -1,4 +1,4 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { Flags } from '../../src/common';
 import { create } from '../../src/parser';
 import { skipHashBang } from '../../src/lexer';

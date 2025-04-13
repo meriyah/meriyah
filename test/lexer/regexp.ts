@@ -1,16 +1,9 @@
-import * as t from 'assert';
+import * as t from 'node:assert/strict';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
 import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
-
-const vFlagSupported = (() => {
-  try {
-    return new RegExp('', 'v').flags === 'v';
-  } catch {
-    return false;
-  }
-})();
+import { supportsUnicodeSets } from '../../scripts/shared.mjs';
 
 describe('Lexer - Regular expressions', () => {
   const tokens: [Context, string, string, string][] = [
@@ -174,7 +167,7 @@ describe('Lexer - Regular expressions', () => {
     });
   }
 
-  if (vFlagSupported) {
+  if (supportsUnicodeSets) {
     const vTokens: [Context, string, string, string][] = [
       [Context.AllowRegExp, '/[\\u{FDD0}-\\u{FDEF}]/v', '[\\u{FDD0}-\\u{FDEF}]', 'v'],
       [
