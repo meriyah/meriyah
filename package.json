@@ -6,10 +6,10 @@
   "module": "dist/meriyah.min.mjs",
   "browser": "dist/meriyah.umd.min.js",
   "unpkg": "dist/meriyah.umd.min.js",
-  "types": "dist/src/meriyah.d.ts",
-  "typings": "dist/src/meriyah.d.ts",
+  "types": "dist/types/meriyah.d.ts",
+  "typings": "dist/types/meriyah.d.ts",
   "exports": {
-    "types": "./dist/src/meriyah.d.ts",
+    "types": "./dist/types/meriyah.d.ts",
     "module-sync": "./dist/meriyah.mjs",
     "require": "./dist/meriyah.cjs",
     "default": "./dist/meriyah.mjs"
@@ -64,6 +64,7 @@
     "bundle": "node scripts/bundle.mjs",
     "test": "vitest",
     "test:watch": "vitest --watch",
+    "production-test": "npm run bundle && cross-env PRODUCTION_TEST=1 vitest test/production/production-tests.ts",
     "prepare-nightly": "node scripts/bump-dev-version.mjs",
     "coverage": "vitest --coverage",
     "post_coverage": "cross-env cat ./coverage/lcov.info | coveralls",
