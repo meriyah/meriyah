@@ -1,5 +1,5 @@
 import * as t from 'node:assert/strict';
-import { SourceLocation } from '../../../src/estree';
+import { type SourceLocation } from '../../../src/estree';
 import { parseScript } from '../../../src/meriyah';
 
 describe('Miscellaneous - onComment', () => {

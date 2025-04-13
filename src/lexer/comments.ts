@@ -1,7 +1,7 @@
 import { advanceChar, LexerState, scanNewLine, consumeLineFeed } from './common';
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
-import { Context, ParserState } from '../common';
+import { Context, type ParserState } from '../common';
 import { report, Errors } from '../errors';
 
 export const enum CommentType {

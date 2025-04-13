@@ -1,6 +1,6 @@
 import { Chars } from '../chars';
 import { Token } from '../token';
-import { ParserState, Context, Flags } from '../common';
+import { type ParserState, Context, Flags } from '../common';
 import { report, Errors } from '../errors';
 import { isIDStart } from '../unicode';
 import {

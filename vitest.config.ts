@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config';
 
 const IS_CI = Boolean(process.env.CI);
+const SHOULD_RUN_PRODUCTION_TEST = IS_CI || Boolean(process.env.PRODUCTION_TEST);
 
 export default defineConfig({
   test: {
@@ -8,8 +9,8 @@ export default defineConfig({
     include: ['test/**/*.ts'],
     exclude: [
       'test/test-utils.ts',
-      // Skip production test on local
-      ...(IS_CI ? [] : ['test/production/production-tests.ts'])
+      // Skip production test on local by default
+      ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts'])
     ],
     watch: false,
     pool: 'threads',

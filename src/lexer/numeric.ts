@@ -1,4 +1,4 @@
-import { ParserState, Context, Flags } from '../common';
+import { type ParserState, Context, Flags } from '../common';
 import { Token } from '../token';
 import { advanceChar, toHex, NumberKind } from './common';
 import { CharTypes, CharFlags, isIdentifierStart } from './charClassifier';
