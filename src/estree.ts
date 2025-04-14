@@ -373,7 +373,6 @@ export interface PropertyDefinition extends _Node {
   type: 'PropertyDefinition';
   key: PrivateIdentifier | Expression;
   value: any;
-  // @ts-expect-error -- Unknown reason
   decorators?: Decorator[];
   computed: boolean;
   static: boolean;
@@ -663,7 +662,6 @@ export interface MethodDefinition extends _Node {
   computed: boolean;
   static: boolean;
   kind: 'method' | 'get' | 'set' | 'constructor';
-  // @ts-expect-error -- Unknown reason
   decorators?: Decorator[];
 }
 
