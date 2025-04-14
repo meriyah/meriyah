@@ -15,7 +15,7 @@ export const enum CommentType {
 export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
 
 /**
- * Skips hasbang (stage 3)
+ * Skips hashbang (stage 3)
  *
  * @param parser  Parser object
  */

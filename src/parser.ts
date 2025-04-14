@@ -269,7 +269,7 @@ export interface Options {
   jsx?: boolean;
   // Allows comment extraction. Accepts either a callback function or an array
   onComment?: Comment[] | OnComment;
-  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
+  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array
   onToken?: Token[] | OnToken;
@@ -389,7 +389,7 @@ export function parseStatementList(
     if (isValidStrictMode(parser, index, tokenIndex, tokenValue)) {
       context |= Context.Strict;
 
-      if (parser.flags & Flags.Octals) {
+      if (parser.flags & Flags.Octal) {
         reportMessageAt(
           parser.tokenIndex,
           parser.tokenLine,
@@ -769,7 +769,7 @@ export function parseExpressionOrLabelledStatement(
   //   Identifier ':' Statement
   //
   // ExpressionStatement[Yield] :
-  //   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
+  //   [lookahead not in {{, function, class, let [}] Expression[In, ?Yield] ;
 
   const { tokenValue } = parser;
   const token = parser.getToken();
@@ -811,7 +811,7 @@ export function parseExpressionOrLabelledStatement(
    *   Identifier ':' Statement
    *
    * ExpressionStatement[Yield] :
-   *   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
+   *   [lookahead not in {{, function, class, let [}] Expression[In, ?Yield] ;
    */
   if (token & Token.IsIdentifier && parser.getToken() === Token.Colon) {
     return parseLabelledStatement(
@@ -2171,7 +2171,7 @@ export function parseLetIdentOrVarDeclarationStatement(
    *   Identifier ':' Statement
    *
    * ExpressionStatement[Yield] :
-   *   [lookahead notin {{, function, class, let [}] Expression[In, ?Yield] ;
+   *   [lookahead not in {{, function, class, let [}] Expression[In, ?Yield] ;
    */
 
   if (parser.getToken() === Token.Colon) {
@@ -2403,11 +2403,11 @@ function parseVariableDeclaration(
   origin: Origin
 ): ESTree.VariableDeclarator {
   // VariableDeclaration :
-  //   BindingIdentifier Initializeropt
+  //   BindingIdentifier Initializer opt
   //   BindingPattern Initializer
   //
   // VariableDeclarationNoIn :
-  //   BindingIdentifier InitializerNoInopt
+  //   BindingIdentifier InitializerNoIn opt
   //   BindingPattern InitializerNoIn
 
   const { tokenIndex, tokenLine, tokenColumn } = parser;
@@ -2678,7 +2678,7 @@ export function parseForStatement(
 
       // IterationStatement:
       //  for(LeftHandSideExpression of AssignmentExpression) Statement
-      //  forawait(LeftHandSideExpression of AssignmentExpression) Statement
+      //  for await(LeftHandSideExpression of AssignmentExpression) Statement
       right = parseExpression(
         parser,
         context,
@@ -3797,7 +3797,7 @@ export function parseAssignmentExpression(
    *
    */
   if ((token & Token.IsBinaryOp) === Token.IsBinaryOp) {
-    // We start using the binary expression parser for prec >= 4 only!
+    // We start using the binary expression parser for Precedence >= 4 only!
     left = parseBinaryExpression(
       parser,
       context,
@@ -3947,7 +3947,7 @@ export function parseConditionalExpression(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param minPrec The precedence of the last binary expression parsed
+ * @param minPrecedence The precedence of the last binary expression parsed
  * @param left ESTree AST node
  */
 export function parseBinaryExpression(
@@ -3958,31 +3958,32 @@ export function parseBinaryExpression(
   start: number,
   line: number,
   column: number,
-  minPrec: number,
+  minPrecedence: number,
   operator: Token,
   left: ESTree.ArgumentExpression | ESTree.Expression
 ): ESTree.ArgumentExpression | ESTree.Expression {
   const bit = -((context & Context.DisallowIn) > 0) & Token.InKeyword;
   let t: Token;
-  let prec: number;
+  let precedence: number;
 
   parser.assignable = AssignmentKind.CannotAssign;
 
   while (parser.getToken() & Token.IsBinaryOp) {
     t = parser.getToken();
-    prec = t & Token.Precedence;
+    precedence = t & Token.Precedence;
 
-    if ((t & Token.IsLogical && operator & Token.IsCoalesc) || (operator & Token.IsLogical && t & Token.IsCoalesc)) {
+    if ((t & Token.IsLogical && operator & Token.IsCoalesce) || (operator & Token.IsLogical && t & Token.IsCoalesce)) {
       report(parser, Errors.InvalidCoalescing);
     }
 
     // 0 precedence will terminate binary expression parsing
 
-    if (prec + (((t === Token.Exponentiate) as any) << 8) - (((bit === t) as any) << 12) <= minPrec) break;
+    if (precedence + (((t === Token.Exponentiation) as any) << 8) - (((bit === t) as any) << 12) <= minPrecedence)
+      break;
     nextToken(parser, context | Context.AllowRegExp);
 
     left = finishNode(parser, context, start, line, column, {
-      type: t & Token.IsLogical || t & Token.IsCoalesc ? 'LogicalExpression' : 'BinaryExpression',
+      type: t & Token.IsLogical || t & Token.IsCoalesce ? 'LogicalExpression' : 'BinaryExpression',
       left,
       right: parseBinaryExpression(
         parser,
@@ -3992,7 +3993,7 @@ export function parseBinaryExpression(
         parser.tokenIndex,
         parser.tokenLine,
         parser.tokenColumn,
-        prec,
+        precedence,
         t,
         parseLeftHandSideExpression(
           parser,
@@ -4057,7 +4058,7 @@ export function parseUnaryExpression(
     parser.tokenLine,
     parser.tokenColumn
   );
-  if (parser.getToken() === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
+  if (parser.getToken() === Token.Exponentiation) report(parser, Errors.InvalidExponentiationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
       report(parser, Errors.StrictDelete);
@@ -4241,11 +4242,11 @@ export function parseAwaitExpressionOrIdentifier(
   if (context & Context.InStaticBlock) report(parser, Errors.InvalidAwaitInStaticBlock);
 
   // Peek next Token first;
-  const possibleIdentiferOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
 
   // If got an arrow function, or token after "await" is not an expression.
   const isIdentifier =
-    possibleIdentiferOrArrowFunc.type === 'ArrowFunctionExpression' ||
+    possibleIdentifierOrArrowFunc.type === 'ArrowFunctionExpression' ||
     (parser.getToken() & Token.IsExpressionStart) === 0;
 
   if (isIdentifier) {
@@ -4281,7 +4282,7 @@ export function parseAwaitExpressionOrIdentifier(
         Errors.AwaitIdentInModuleOrAsyncFunc
       );
     // "await" can be identifier out of async func.
-    return possibleIdentiferOrArrowFunc;
+    return possibleIdentifierOrArrowFunc;
   }
 
   // "await" is start of await expression.
@@ -4314,7 +4315,7 @@ export function parseAwaitExpressionOrIdentifier(
       parser.tokenColumn
     );
 
-    if (parser.getToken() === Token.Exponentiate) report(parser, Errors.InvalidExponentiationLHS);
+    if (parser.getToken() === Token.Exponentiation) report(parser, Errors.InvalidExponentiationLHS);
 
     parser.assignable = AssignmentKind.CannotAssign;
 
@@ -4335,7 +4336,7 @@ export function parseAwaitExpressionOrIdentifier(
       Errors.AwaitOutsideAsync
     );
   // Fallback to identifier in script mode
-  return possibleIdentiferOrArrowFunc;
+  return possibleIdentifierOrArrowFunc;
 }
 
 /**
@@ -4385,7 +4386,7 @@ export function parseFunctionBody(
           );
         }
 
-        if (parser.flags & Flags.Octals) {
+        if (parser.flags & Flags.Octal) {
           reportMessageAt(
             tokenIndex,
             tokenLine,
@@ -4428,8 +4429,8 @@ export function parseFunctionBody(
   }
 
   parser.flags =
-    (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine) ^
-    (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine);
+    (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octal | Flags.EightAndNine) ^
+    (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octal | Flags.EightAndNine);
 
   parser.destructible = (parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield;
 
@@ -4443,7 +4444,7 @@ export function parseFunctionBody(
     Token.RightBrace
   );
 
-  parser.flags &= ~(Flags.NonSimpleParameterList | Flags.Octals | Flags.EightAndNine);
+  parser.flags &= ~(Flags.NonSimpleParameterList | Flags.Octal | Flags.EightAndNine);
 
   if (parser.getToken() === Token.Assign) report(parser, Errors.CantAssignTo);
 
@@ -5405,23 +5406,23 @@ export function parseTemplateLiteral(
    *   TemplateHead
    *
    * FullTemplate ::
-   *   `TemplateCharactersopt`
+   *   `Template Characters opt`
    *
    * TemplateHead ::
-   *   ` TemplateCharactersopt ${
+   *   ` Template Characters opt ${
    *
    * TemplateSubstitutionTail ::
    *   TemplateMiddle
    *   TemplateTail
    *
    * TemplateMiddle ::
-   *   } TemplateCharactersopt ${
+   *   } Template Characters opt ${
    *
    * TemplateTail ::
-   *   } TemplateCharactersopt `
+   *   } Template Characters opt `
    *
    * TemplateCharacters ::
-   *   TemplateCharacter TemplateCharactersopt
+   *   TemplateCharacter Template Characters opt
    *
    * TemplateCharacter ::
    *   SourceCharacter but not one of ` or \ or $
@@ -5435,7 +5436,7 @@ export function parseTemplateLiteral(
    * TemplateEscapeSequence ::
    *   CharacterEscapeSequence
    *   0 [lookahead ∉ DecimalDigit]
-   *   HexEscapeSeqeuence
+   *   HexEscapeSequence
    *   UnicodeEscapeSequence
    *
    * Note: TemplateEscapeSequence removed
@@ -5864,20 +5865,22 @@ export function parseFunctionDeclaration(
     }
   }
 
-  const modifierFlags =
-    Context.SuperProperty |
-    Context.SuperCall |
-    Context.InYieldContext |
-    Context.InAwaitContext |
-    Context.InArgumentList |
-    Context.InConstructor;
+  {
+    const modifierFlags =
+      Context.SuperProperty |
+      Context.SuperCall |
+      Context.InYieldContext |
+      Context.InAwaitContext |
+      Context.InArgumentList |
+      Context.InConstructor;
 
-  context =
-    ((context | modifierFlags) ^ modifierFlags) |
-    Context.AllowNewTarget |
-    (isAsync ? Context.InAwaitContext : 0) |
-    (isGenerator ? Context.InYieldContext : 0) |
-    (isGenerator ? 0 : Context.AllowEscapedKeyword);
+    context =
+      ((context | modifierFlags) ^ modifierFlags) |
+      Context.AllowNewTarget |
+      (isAsync ? Context.InAwaitContext : 0) |
+      (isGenerator ? Context.InYieldContext : 0) |
+      (isGenerator ? 0 : Context.AllowEscapedKeyword);
+  }
 
   if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
 
@@ -5890,11 +5893,11 @@ export function parseFunctionDeclaration(
     BindingKind.ArgumentList
   );
 
-  const modiferFlags = Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InStaticBlock;
+  const modifierFlags = Context.InGlobal | Context.InSwitch | Context.InIteration | Context.InStaticBlock;
 
   const body = parseFunctionBody(
     parser,
-    ((context | modiferFlags) ^ modiferFlags) | Context.InMethodOrFunction | Context.InReturnContext,
+    ((context | modifierFlags) ^ modifierFlags) | Context.InMethodOrFunction | Context.InReturnContext,
     scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
     privateScope,
     Origin.Declaration,
@@ -6026,15 +6029,15 @@ function parseArrayLiteral(
   column: number
 ): ESTree.ArrayExpression {
   /* ArrayLiteral :
-   *   [ Elisionopt ]
+   *   [ Elision opt ]
    *   [ ElementList ]
-   *   [ ElementList , Elisionopt ]
+   *   [ ElementList , Elision opt ]
    *
    * ElementList :
-   *   Elisionopt AssignmentExpression
-   *   Elisionopt ... AssignmentExpression
-   *   ElementList , Elisionopt AssignmentExpression
-   *   ElementList , Elisionopt SpreadElement
+   *   Elision opt AssignmentExpression
+   *   Elision opt ... AssignmentExpression
+   *   ElementList , Elision opt AssignmentExpression
+   *   ElementList , Elision opt SpreadElement
    *
    * Elision :
    *   ,
@@ -6094,15 +6097,15 @@ export function parseArrayExpressionOrPattern(
   column: number
 ): ESTree.ArrayExpression | ESTree.ArrayPattern | ESTree.AssignmentExpression {
   /* ArrayLiteral :
-   *   [ Elisionopt ]
+   *   [ Elision opt ]
    *   [ ElementList ]
-   *   [ ElementList , Elisionopt ]
+   *   [ ElementList , Elision opt ]
    *
    * ElementList :
-   *   Elisionopt AssignmentExpression
-   *   Elisionopt ... AssignmentExpression
-   *   ElementList , Elisionopt AssignmentExpression
-   *   ElementList , Elisionopt SpreadElement
+   *   Elision opt AssignmentExpression
+   *   Elision opt ... AssignmentExpression
+   *   ElementList , Elision opt AssignmentExpression
+   *   ElementList , Elision opt SpreadElement
    *
    * Elision :
    *   ,
@@ -6112,9 +6115,9 @@ export function parseArrayExpressionOrPattern(
    *   ... AssignmentExpression
    *
    * ArrayAssignmentPattern[Yield] :
-   *   [ Elisionopt AssignmentRestElement[?Yield]opt ]
+   *   [ Elision opt AssignmentRestElement[?Yield]opt ]
    *   [ AssignmentElementList[?Yield] ]
-   *   [ AssignmentElementList[?Yield] , Elisionopt AssignmentRestElement[?Yield]opt ]
+   *   [ AssignmentElementList[?Yield] , Elision opt AssignmentRestElement[?Yield]opt ]
    *
    * AssignmentRestElement[Yield] :
    *   ... DestructuringAssignmentTarget[?Yield]
@@ -6124,7 +6127,7 @@ export function parseArrayExpressionOrPattern(
    *   AssignmentElementList[?Yield] , AssignmentElisionElement[?Yield]
    *
    * AssignmentElisionElement[Yield] :
-   *   Elisionopt AssignmentElement[?Yield]
+   *   Elision opt AssignmentElement[?Yield]
    *
    * AssignmentElement[Yield] :
    *   DestructuringAssignmentTarget[?Yield] Initializer[In,?Yield]opt
@@ -7026,7 +7029,7 @@ export function parseObjectLiteralOrPattern(
    *   PropertyName : BindingElement
    *
    * SingleNameBinding :
-   *   BindingIdentifier Initializeropt
+   *   BindingIdentifier Initializer opt
    *
    * PropertyDefinition :
    *   IdentifierName
@@ -8659,7 +8662,7 @@ export function parseParenthesizedExpression(
   }
 
   if (destructible & DestructuringKind.HasToDestruct) {
-    report(parser, Errors.UncompleteArrow);
+    report(parser, Errors.IncompleteArrow);
   }
 
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
@@ -8815,7 +8818,7 @@ export function parseArrowFunctionExpression(
    *   ArrowParameters => ConciseBody
    *
    * ArrowParameters :
-   *   BindingIdentifer
+   *   BindingIdentifier
    *   CoverParenthesizedExpressionAndArrowParameterList
    *
    * CoverParenthesizedExpressionAndArrowParameterList :
@@ -8847,8 +8850,8 @@ export function parseArrowFunctionExpression(
 
   if (expression) {
     parser.flags =
-      (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine) ^
-      (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octals | Flags.EightAndNine);
+      (parser.flags | Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octal | Flags.EightAndNine) ^
+      (Flags.StrictEvalArguments | Flags.HasStrictReserved | Flags.Octal | Flags.EightAndNine);
 
     // Single-expression body
     body = parseExpression(
@@ -8946,7 +8949,7 @@ export function parseFormalParametersOrFormalList(
    *
    *     BindingElement :
    *      SingleNameBinding
-   *   BindingPattern Initializeropt
+   *   BindingPattern Initializer opt
    *
    */
   consume(parser, context, Token.LeftParen);
@@ -9098,7 +9101,7 @@ export function parseFormalParametersOrFormalList(
  * @param line
  * @param column
  */
-export function parseMembeExpressionNoCall(
+export function parseMemberExpressionNoCall(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -9119,7 +9122,7 @@ export function parseMembeExpressionNoCall(
 
       const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope);
 
-      return parseMembeExpressionNoCall(
+      return parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
@@ -9146,7 +9149,7 @@ export function parseMembeExpressionNoCall(
 
       parser.assignable = AssignmentKind.Assignable;
 
-      return parseMembeExpressionNoCall(
+      return parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
@@ -9165,7 +9168,7 @@ export function parseMembeExpressionNoCall(
     } else if (token === Token.TemplateContinuation || token === Token.TemplateSpan) {
       parser.assignable = AssignmentKind.CannotAssign;
 
-      return parseMembeExpressionNoCall(
+      return parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
@@ -9265,7 +9268,7 @@ export function parseNewExpression(
   if (parser.getToken() === Token.QuestionMarkPeriod) report(parser, Errors.OptionalChainingNoNew);
 
   // NewExpression without arguments.
-  const callee = parseMembeExpressionNoCall(
+  const callee = parseMemberExpressionNoCall(
     parser,
     context,
     privateScope,
@@ -9681,7 +9684,7 @@ export function parseAsyncArrowOrCallExpression(
  */
 
 /**
- * Parses reguar expression literal AST node
+ * Parses regular expression literal AST node
  *
  * @param parser Parser object
  * @param context Context masks
@@ -9730,8 +9733,8 @@ export function parseClassDeclaration(
   // ClassDeclaration ::
   //   'class' Identifier ('extends' LeftHandSideExpression)? '{' ClassBody '}'
   //   'class' ('extends' LeftHandSideExpression)? '{' ClassBody '}'
-  //   DecoratorList[?Yield, ?Await]optclassBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
-  //   DecoratorList[?Yield, ?Await]optclassClassTail[?Yield, ?Await]
+  //   DecoratorList[?Yield, ?Await]opt classBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
+  //   DecoratorList[?Yield, ?Await]opt classClassTail[?Yield, ?Await]
   //
 
   let decorators = parseDecorators(parser, context, privateScope);
@@ -9848,7 +9851,7 @@ export function parseClassExpression(
   // ClassExpression ::
   //   'class' Identifier ('extends' LeftHandSideExpression)? '{' ClassBody '}'
   //   'class' ('extends' LeftHandSideExpression)? '{' ClassBody '}'
-  //   DecoratorList[?Yield, ?Await]optclassBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
+  //   DecoratorList[?Yield, ?Await]opt classBindingIdentifier[?Yield, ?Await]ClassTail[?Yield, ?Await]
   //
 
   let id: ESTree.Expression | null = null;

@@ -183,7 +183,7 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): number {
  * @param parser  Parser object
  */
 export function scanUnicodeEscape(parser: ParserState): number {
-  // Accept both \uxxxx and \u{xxxxxx}
+  // Accept both \uXXXX and \u{XXXXXX}
   let codePoint = 0;
   const char = parser.currentChar;
   // First handle a delimited Unicode escape, e.g. \u{1F4A9}

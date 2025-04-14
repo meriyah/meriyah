@@ -169,7 +169,10 @@ export type Expression =
   | UnaryExpression
   | UpdateExpression
   | YieldExpression;
-export type ForInitialiser = Expression | VariableDeclaration;
+export type ForInitializer = Expression | VariableDeclaration;
+// TODO: Misspelled, remove this in v7
+// spellchecker: disable-next-line
+export { ForInitializer as ForInitialiser };
 export type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier;
 export type IterationStatement = DoWhileStatement | ForInStatement | ForOfStatement | ForStatement | WhileStatement;
 export type JSXChild = JSXElement | JSXExpression | JSXFragment | JSXText;
@@ -456,14 +459,14 @@ export interface ExpressionStatement extends _Node {
 
 export interface ForInStatement extends _Node {
   type: 'ForInStatement';
-  left: ForInitialiser;
+  left: ForInitializer;
   right: Expression;
   body: Statement;
 }
 
 export interface ForOfStatement extends _Node {
   type: 'ForOfStatement';
-  left: ForInitialiser;
+  left: ForInitializer;
   right: Expression;
   body: Statement;
   await: boolean;
@@ -471,7 +474,7 @@ export interface ForOfStatement extends _Node {
 
 export interface ForStatement extends _Node {
   type: 'ForStatement';
-  init: Expression | ForInitialiser | null;
+  init: Expression | ForInitializer | null;
   test: Expression | null;
   update: Expression | null;
   body: Statement;

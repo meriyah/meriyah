@@ -48,7 +48,7 @@ Meriyah doesn't parse RegExp internal syntax, ESTree spec didn't require interna
 does use JavaScript runtime to validate the RegExp literal. That means Meriyah's RegExp support is only as good
 as JavaScript runtime's RegExp support.
 
-As of Auguest 2024, some latest RegExp features are not supported due to missing implementation in general
+As of August 2024, some latest RegExp features are not supported due to missing implementation in general
 JavaScript runtime.
 
 - [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (stage 3) is not supported
@@ -105,7 +105,7 @@ The available options:
   // Allows comment extraction. Accepts either a function or array
   onComment: [];
 
-  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the charater offset where the semicolon was inserted
+  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
   onInsertedSemicolon: (pos) => {};
 
   // Allows token extraction. Accepts either a function or array
