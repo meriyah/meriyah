@@ -55,7 +55,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:cspell",
     "lint:eslint": "eslint",
     "lint:prettier": "prettier . --check",
     "lint:spellcheck": "cspell . --gitignore",
