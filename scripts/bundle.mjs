@@ -10,7 +10,7 @@ import * as ts from 'typescript';
 // eslint-disable-next-line n/no-unsupported-features/node-builtins
 const { dirname } = import.meta;
 const ENTRY = path.join(dirname, '../src/meriyah.ts');
-const TSCONFIG = path.join(dirname, '../tsconfig.json');
+const TSCONFIG = path.join(dirname, '../tsconfig.bundle.json');
 const DIST = path.join(dirname, '../dist/');
 
 function getRollupOutputOptions(format, minified) {
@@ -60,14 +60,7 @@ const bundle = await rollup({
       typescript: ts,
       clean: true,
       useTsconfigDeclarationDir: true,
-      tsconfig: TSCONFIG,
-      tsconfigOverride: {
-        compilerOptions: {
-          declarationMap: false,
-          rootDir: 'src/',
-          declarationDir: path.join(DIST, 'types')
-        }
-      }
+      tsconfig: TSCONFIG
     }),
     json()
   ]
