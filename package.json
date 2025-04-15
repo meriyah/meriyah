@@ -58,7 +58,7 @@
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:cspell",
     "lint:eslint": "eslint",
     "lint:prettier": "prettier . --check",
-    "lint:spellcheck": "cspell . --gitignore",
+    "lint:cspell": "cspell . --gitignore",
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix",
     "fix:prettier": "prettier . --write",
