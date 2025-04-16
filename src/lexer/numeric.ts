@@ -108,7 +108,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
         }
       } else if (CharTypes[char] & CharFlags.ImplicitOctalDigits) {
         if (context & Context.Strict) report(parser, Errors.StrictOctalEscape);
-        parser.flags |= Flags.Octals;
+        parser.flags |= Flags.Octal;
         kind = NumberKind.NonOctalDecimal;
       } else if (char === Chars.Underscore) {
         report(parser, Errors.Unexpected);

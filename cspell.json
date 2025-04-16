@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/master/cspell.schema.json",
+  "words": ["bitmask", "bitmasks", "Chunpeng", "meriyah", "preparse", "quasis", "rescan", "webcompat", "ZWNJ"],
+  "ignoreRegExpList": [],
+  "ignorePaths": ["CHANGELOG.md", "test/**/*"]
+}

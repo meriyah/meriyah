@@ -92,7 +92,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
       parser.line++;
       return Escape.Empty;
 
-    // Null character, octals
+    // Null character, octal
     case Chars.Zero:
     case Chars.One:
     case Chars.Two:
@@ -108,7 +108,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
           // Verify that it's `\0` if we're in strict mode.
           if (code !== 0 || CharTypes[next] & CharFlags.ImplicitOctalDigits) {
             if (context & Context.Strict || isTemplate) return Escape.StrictOctal;
-            parser.flags |= Flags.Octals;
+            parser.flags |= Flags.Octal;
           }
         } else if (context & Context.Strict || isTemplate) {
           return Escape.StrictOctal;
@@ -127,7 +127,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
               column++;
             }
           }
-          parser.flags |= Flags.Octals;
+          parser.flags |= Flags.Octal;
         }
 
         parser.index = index - 1;
@@ -158,7 +158,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
         }
       }
 
-      parser.flags |= Flags.Octals;
+      parser.flags |= Flags.Octal;
 
       return code;
     }

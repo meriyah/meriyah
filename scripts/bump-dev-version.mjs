@@ -26,8 +26,8 @@ async function run() {
   const y = raw.slice(0, 4);
   const m = raw.slice(4, 6);
   const d = raw.slice(6, 8);
-  const datestamp = `${y}${m}${d}`;
-  const newVersion = `${major}.${minor}.${patch}-dev.${datestamp}`;
+  const dateStamp = `${y}${m}${d}`;
+  const newVersion = `${major}.${minor}.${patch}-dev.${dateStamp}`;
   console.log(`new version: ${newVersion}`);
 
   await updateJson(new URL('../package.json', import.meta.url), (json) => ({ ...json, version: newVersion }));

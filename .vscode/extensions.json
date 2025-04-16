@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "joelday.docthis",
     "steoates.autoimport",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

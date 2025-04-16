@@ -133,7 +133,7 @@ export const enum Flags {
   None = 0,
   NewLine = 1 << 0,
   HasConstructor = 1 << 5,
-  Octals = 1 << 6,
+  Octal = 1 << 6,
   NonSimpleParameterList = 1 << 7,
   HasStrictReserved = 1 << 8,
   StrictEvalArguments = 1 << 9,
@@ -519,7 +519,7 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
 }
 
 /**
- * Checks if current label already have been declrared, and if not
+ * Checks if current label already have been declared, and if not
  * declare it
  *
  * @param parser Parser state

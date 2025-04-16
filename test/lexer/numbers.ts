@@ -123,7 +123,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0B00000111111100000011', 32515],
     [Context.OptionsRaw, Token.NumericLiteral, '0B0000000000000000000000000000000000000000000000001111111111', 1023],
 
-    // Octals
+    // Octal
     [Context.None, Token.NumericLiteral, '0O12345670', 2739128],
     [Context.None, Token.NumericLiteral, '0o45', 37],
     [Context.None, Token.NumericLiteral, '0o5', 5],

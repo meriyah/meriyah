@@ -1,4 +1,5 @@
 // https://html.spec.whatwg.org/entities.json
+/* spellchecker: disable */
 const entities: { [Identifier: string]: string } = {
   AElig: '\u00C6',
   AMP: '\u0026',
@@ -2126,6 +2127,7 @@ const entities: { [Identifier: string]: string } = {
   zwj: '\u200D',
   zwnj: '\u200C'
 };
+/* spellchecker: enable */
 
 const decodeMap: { [Identifier: string]: number } = {
   '0': 65533,

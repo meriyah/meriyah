@@ -106,7 +106,7 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, '"\\x4F"', 'O'],
     [Context.None, Token.StringLiteral, '"\\x69"', 'i'],
 
-    // Escaped octals
+    // Escaped octal
     [Context.None, Token.StringLiteral, '"\\01"', '\u0001'],
     [Context.None, Token.StringLiteral, '"\\023"', '\u0013'],
     [Context.None, Token.StringLiteral, '"\\04"', '\u0004'],

@@ -2,8 +2,8 @@ export const enum Token {
   Type = 0xFF,
 
   /* Precedence for binary operators (always positive) */
-  PrecStart               = 8,
-  Precedence              = 15 << PrecStart, // 8-11
+  PrecedenceStart         = 8,
+  Precedence              = 15 << PrecedenceStart, // 8-11
 
   /* Attribute names */
   Keyword                 = 1 << 12,
@@ -23,7 +23,7 @@ export const enum Token {
   IsUpdateOp               = 1 << 25 | IsExpressionStart,
   IsMemberOrCallExpression = 1 << 26,
   IsStringOrNumber         = 1 << 27,
-  IsCoalesc                = 1 << 28,
+  IsCoalesce               = 1 << 28,
   IsEvalOrArguments        = 1 << 29 | IsExpressionStart | IsIdentifier,
   IsClassField             = 1 << 30,
   IsEscaped                = 1 << 31, // Note 1 << 31 is negative integer
@@ -72,7 +72,7 @@ export const enum Token {
   ShiftLeftAssign         = 28 | IsAssignOp, // <<=
   ShiftRightAssign        = 29 | IsAssignOp, // >>=
   LogicalShiftRightAssign = 30 | IsAssignOp, // >>>=
-  ExponentiateAssign      = 31 | IsAssignOp, // **=
+  ExponentiationAssign    = 31 | IsAssignOp, // **=
   AddAssign               = 32 | IsAssignOp, // +=
   SubtractAssign          = 33 | IsAssignOp, // -=
   MultiplyAssign          = 34 | IsAssignOp, // *=
@@ -91,30 +91,30 @@ export const enum Token {
   VoidKeyword        = 45 | IsUnaryOp | Reserved,
   Negate             = 46 | IsUnaryOp, // !
   Complement         = 47 | IsUnaryOp, // ~
-  Add                = 48 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecStart, // +
-  Subtract           = 49 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecStart, // -
-  InKeyword          = 50 | IsBinaryOp | 8 << PrecStart | Reserved | IsInOrOf,
-  InstanceofKeyword  = 51 | IsBinaryOp | 8 << PrecStart | Reserved,
-  Multiply           = 52 | IsBinaryOp | 11 << PrecStart, // *
-  Modulo             = 53 | IsBinaryOp | 11 << PrecStart, // %
-  Divide             = 54 | IsBinaryOp | IsExpressionStart | 11 << PrecStart, // /
-  Exponentiate       = 55 | IsBinaryOp | 12 << PrecStart, // **
-  LogicalAnd         = 56 | IsBinaryOp | IsLogical | 3 << PrecStart, // &&
-  LogicalOr          = 57 | IsBinaryOp | IsLogical | 2 << PrecStart, // ||
-  StrictEqual        = 58 | IsBinaryOp | 7 << PrecStart, // ===
-  StrictNotEqual     = 59 | IsBinaryOp | 7 << PrecStart, // !==
-  LooseEqual         = 60 | IsBinaryOp | 7 << PrecStart, // ==
-  LooseNotEqual      = 61 | IsBinaryOp | 7 << PrecStart, // !=
-  LessThanOrEqual    = 62 | IsBinaryOp | 8 << PrecStart, // <=
-  GreaterThanOrEqual = 63 | IsBinaryOp | 8 << PrecStart, // >=
-  LessThan           = 64 | IsBinaryOp | IsExpressionStart | 8 << PrecStart, // <
-  GreaterThan        = 65 | IsBinaryOp | 8 << PrecStart, // >
-  ShiftLeft          = 66 | IsBinaryOp | 9 << PrecStart, // <<
-  ShiftRight         = 67 | IsBinaryOp | 9 << PrecStart, // >>
-  LogicalShiftRight  = 68 | IsBinaryOp | 9 << PrecStart, // >>>
-  BitwiseAnd         = 69 | IsBinaryOp | 6 << PrecStart, // &
-  BitwiseOr          = 70 | IsBinaryOp | 4 << PrecStart, // |
-  BitwiseXor         = 71 | IsBinaryOp | 5 << PrecStart, // ^
+  Add                = 48 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecedenceStart, // +
+  Subtract           = 49 | IsUnaryOp | IsBinaryOp | IsExpressionStart | 10 << PrecedenceStart, // -
+  InKeyword          = 50 | IsBinaryOp | 8 << PrecedenceStart | Reserved | IsInOrOf,
+  InstanceofKeyword  = 51 | IsBinaryOp | 8 << PrecedenceStart | Reserved,
+  Multiply           = 52 | IsBinaryOp | 11 << PrecedenceStart, // *
+  Modulo             = 53 | IsBinaryOp | 11 << PrecedenceStart, // %
+  Divide             = 54 | IsBinaryOp | IsExpressionStart | 11 << PrecedenceStart, // /
+  Exponentiation     = 55 | IsBinaryOp | 12 << PrecedenceStart, // **
+  LogicalAnd         = 56 | IsBinaryOp | IsLogical | 3 << PrecedenceStart, // &&
+  LogicalOr          = 57 | IsBinaryOp | IsLogical | 2 << PrecedenceStart, // ||
+  StrictEqual        = 58 | IsBinaryOp | 7 << PrecedenceStart, // ===
+  StrictNotEqual     = 59 | IsBinaryOp | 7 << PrecedenceStart, // !==
+  LooseEqual         = 60 | IsBinaryOp | 7 << PrecedenceStart, // ==
+  LooseNotEqual      = 61 | IsBinaryOp | 7 << PrecedenceStart, // !=
+  LessThanOrEqual    = 62 | IsBinaryOp | 8 << PrecedenceStart, // <=
+  GreaterThanOrEqual = 63 | IsBinaryOp | 8 << PrecedenceStart, // >=
+  LessThan           = 64 | IsBinaryOp | IsExpressionStart | 8 << PrecedenceStart, // <
+  GreaterThan        = 65 | IsBinaryOp | 8 << PrecedenceStart, // >
+  ShiftLeft          = 66 | IsBinaryOp | 9 << PrecedenceStart, // <<
+  ShiftRight         = 67 | IsBinaryOp | 9 << PrecedenceStart, // >>
+  LogicalShiftRight  = 68 | IsBinaryOp | 9 << PrecedenceStart, // >>>
+  BitwiseAnd         = 69 | IsBinaryOp | 6 << PrecedenceStart, // &
+  BitwiseOr          = 70 | IsBinaryOp | 4 << PrecedenceStart, // |
+  BitwiseXor         = 71 | IsBinaryOp | 5 << PrecedenceStart, // ^
 
   /* Variable declaration kinds */
   VarKeyword   = 72 | IsExpressionStart | Reserved,
@@ -179,7 +179,7 @@ export const enum Token {
 
   PrivateIdentifier  = 123,
   BigIntLiteral      = 124 | IsExpressionStart | IsStringOrNumber,
-  Coalesce           = 125 | IsBinaryOp | IsCoalesc | 1 << PrecStart, // ??
+  Coalesce           = 125 | IsBinaryOp | IsCoalesce | 1 << PrecedenceStart, // ??
   QuestionMarkPeriod = 126 | IsMemberOrCallExpression, // ?.
 
   // Others
