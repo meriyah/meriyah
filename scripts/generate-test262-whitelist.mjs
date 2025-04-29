@@ -6,7 +6,8 @@ const WHITELIST_FILE = new URL('../test/test262-parser-tests/whitelist.txt', imp
 
 await fs.writeFile(WHITELIST_FILE, '');
 
-const stdout = await childProcess.execSync('ts-node ./scripts/run-test262-cli.ts', { encoding: 'utf8' });
+const stdout = childProcess.execSync('node ./scripts/run-test262-cli.mjs', { encoding: 'utf8' });
+
 const lines = stdout
   .split('\n')
   .filter((line) => /^[ ]{3}.* \(default|strict mode\)$/.test(line))
@@ -14,3 +15,5 @@ const lines = stdout
   .sort();
 
 await fs.writeFile(WHITELIST_FILE, lines.join('\n') + '\n');
+
+console.log(`✅ test262 whitelist updated.`);

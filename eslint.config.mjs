@@ -60,7 +60,8 @@ export default [
       'n/no-unpublished-import': 0,
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0,
-      'n/hashbang': 0
+      'n/hashbang': 0,
+      'import-x/no-unresolved': 0
     }
   },
   {
