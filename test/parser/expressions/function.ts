@@ -301,7 +301,7 @@ describe('Expressions - Functions', () => {
     ['function f({foo,,bar} = x){}', Context.None],
     ['function f({...{a: b}}){}', Context.None],
     ['function f({...a.b}){}', Context.None],
-    ['function p\\u0061ckage() { "use strict"; }', Context.None],
+    [String.raw`function p\u0061ckage() { "use strict"; }`, Context.None],
     ['function package() { "use strict"; }', Context.None]
   ]);
 

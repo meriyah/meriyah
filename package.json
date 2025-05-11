@@ -91,6 +91,7 @@
     "eslint-import-resolver-typescript": "^4.3.2",
     "eslint-plugin-import-x": "^4.10.2",
     "eslint-plugin-n": "^17.17.0",
+    "eslint-plugin-unicorn": "^59.0.1",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",

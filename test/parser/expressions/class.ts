@@ -98,11 +98,11 @@ describe('Expressions - Class', () => {
     'static *prototype() {}',
     "static 'prototype'() {}",
     "static *'prototype'() {}",
-    'static prot\\u006ftype() {}',
-    "static 'prot\\u006ftype'() {}",
-    "static get 'prot\\u006ftype'() {}",
-    "static set 'prot\\u006ftype'(_) {}",
-    "static *'prot\\u006ftype'() {}"
+    String.raw`static prot\u006ftype() {}`,
+    String.raw`static 'prot\u006ftype'() {}`,
+    String.raw`static get 'prot\u006ftype'() {}`,
+    String.raw`static set 'prot\u006ftype'(_) {}`,
+    String.raw`static *'prot\u006ftype'() {}`
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
@@ -129,11 +129,11 @@ describe('Expressions - Class', () => {
     '*constructor() {}',
     "get 'constructor'() {}",
     "*'constructor'() {}",
-    'get c\\u006fnstructor() {}',
-    '*c\\u006fnstructor() {}',
-    "get 'c\\u006fnstructor'() {}",
-    "get 'c\\u006fnstructor'(_) {}",
-    "*'c\\u006fnstructor'() {}"
+    String.raw`get c\u006fnstructor() {}`,
+    String.raw`*c\u006fnstructor() {}`,
+    String.raw`get 'c\u006fnstructor'() {}`,
+    String.raw`get 'c\u006fnstructor'(_) {}`,
+    String.raw`*'c\u006fnstructor'() {}`
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
@@ -567,9 +567,9 @@ describe('Expressions - Class', () => {
     ['class eval { }', Context.None],
     ['class switch() {}', Context.None],
     ['class let { }', Context.None],
-    ['class impl\\u0065ments {}', Context.None],
+    [String.raw`class impl\u0065ments {}`, Context.None],
     ['classfunction yield(yield) { yield: yield (yield + yield(0)); }', Context.None],
-    ['class l\\u0065t { }', Context.None],
+    [String.raw`class l\u0065t { }`, Context.None],
     ['class E0 { static prototype() {} }', Context.None],
     ['class E1 { static get prototype() {} }', Context.None],
     ['class E2 { static set prototype(x) {} }', Context.None],
@@ -678,7 +678,7 @@ describe('Expressions - Class', () => {
     ['class x { static *prototype(){} }', Context.None],
     ['class x { static prototype(){} }', Context.None],
     ['class x { static async *prototype(){} }', Context.None],
-    ['class x { static async *prot\\u006ftype(){} }', Context.None],
+    [String.raw`class x { static async *prot\u006ftype(){} }`, Context.None],
     ['class x { static "prototype"(){} }', Context.None],
     ['class w {  t.x(){}  }', Context.None],
     ['class x extends ()=>1 {}', Context.None],
@@ -879,14 +879,14 @@ describe('Expressions - Class', () => {
     'static *async(){}',
     'static async *x(){}',
     // static-as-PropertyName is.
-    'st\\u0061tic() {}',
-    'get st\\u0061tic() {}',
-    'set st\\u0061tic(v) {}',
-    'static st\\u0061tic() {}',
-    'static get st\\u0061tic() {}',
-    'static set st\\u0061tic(v) {}',
-    '*st\\u0061tic() {}',
-    'static *st\\u0061tic() {}',
+    String.raw`st\u0061tic() {}`,
+    String.raw`get st\u0061tic() {}`,
+    String.raw`set st\u0061tic(v) {}`,
+    String.raw`static st\u0061tic() {}`,
+    String.raw`static get st\u0061tic() {}`,
+    String.raw`static set st\u0061tic(v) {}`,
+    String.raw`*st\u0061tic() {}`,
+    String.raw`static *st\u0061tic() {}`,
     'static async x(){}',
     'static async(){}',
     'static *async(){}',
@@ -922,7 +922,7 @@ describe('Expressions - Class', () => {
     "get .1() { return 'get string'; }",
     'set .1(param) { stringSet = param; }',
     "set 'singleQuote'(param) { stringSet = param; }",
-    "get 'hex\\x45scape'() { return 'get string'; }",
+    String.raw`get 'hex\x45scape'() { return 'get string'; }`,
     "set 'character\tescape'(param) { stringSet = param; }",
     'set 0(param) { stringSet = param; }',
     'set 1E+9(param) { stringSet = param; }',

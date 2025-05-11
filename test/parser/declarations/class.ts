@@ -172,15 +172,15 @@ describe('Declarations - Class', () => {
     'static m() {}; static m() {}',
     'get m() {}; set m(_) {}; get m() {}; set m(_) {};',
     'void',
-    'voi\\u0064',
-    'get \\u0076oid() {} set voi\\u0064(v) {}',
+    String.raw`voi\u0064`,
+    String.raw`get \u0076oid() {} set voi\u0064(v) {}`,
     'void() {}',
-    '\\u0076oid() {}',
-    'voi\\u0064() {}',
+    String.raw`\u0076oid() {}`,
+    String.raw`voi\u0064() {}`,
     'static void',
-    'static voi\\u0064',
+    String.raw`static voi\u0064`,
     'static void() {}',
-    'static async *\\u0076oid() {}'
+    String.raw`static async *\u0076oid() {}`
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -583,7 +583,7 @@ describe('Declarations - Class', () => {
     'set "doubleQuote"(a) {}',
     'set 0o10(a) {a}',
     'set 0(a) {a}',
-    'set "unicod\\u{000065}Escape"(a) {}',
+    String.raw`set "unicod\u{000065}Escape"(a) {}`,
     'static set [_ = "str' + 'ing"](param) {}',
     'get "character\tescape"() { return "get string"; }',
     'get "character\tescape"() { return "get string"; }',

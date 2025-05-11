@@ -8858,7 +8858,7 @@ describe('Expressions - Group', () => {
       }
     ],
     [
-      '(++/[^\\x0f+-\\x6d+$-)-]/giuy[(0[true] = {})])',
+      String.raw`(++/[^\x0f+-\x6d+$-)-]/giuy[(0[true] = {})])`,
       Context.None,
       {
         type: 'Program',
@@ -8875,7 +8875,7 @@ describe('Expressions - Group', () => {
                   // eslint-disable-next-line no-control-regex
                   value: /[^\x0f+-\x6d+$-)-]/giuy,
                   regex: {
-                    pattern: '[^\\x0f+-\\x6d+$-)-]',
+                    pattern: String.raw`[^\x0f+-\x6d+$-)-]`,
                     flags: 'giuy'
                   }
                 },
