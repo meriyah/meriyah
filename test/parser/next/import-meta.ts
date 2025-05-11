@@ -189,8 +189,8 @@ describe('Next - Import Meta', () => {
     ['var import.meta', Context.OptionsNext],
     ['for (var import.meta of [1]) {}', Context.OptionsWebCompat],
     ['var import.meta', Context.OptionsNext | Context.Module | Context.Strict],
-    ['import.m\\u0065ta;', Context.OptionsNext | Context.Module | Context.Strict],
-    ['import.\\u006deta;', Context.OptionsNext | Context.Module | Context.Strict],
+    [String.raw`import.m\u0065ta;`, Context.OptionsNext | Context.Module | Context.Strict],
+    [String.raw`import.\u006deta;`, Context.OptionsNext | Context.Module | Context.Strict],
     ['import.meta2;', Context.OptionsNext | Context.Module | Context.Strict]
   ]);
 

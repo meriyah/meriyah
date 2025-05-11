@@ -80,7 +80,7 @@ describe('Miscellaneous - Comments', () => {
     `a /*
     */ b;`,
     '<!-- console.log("foo") -->',
-    '//\\u00A0 single line \\u00A0 comment \\u00A0',
+    String.raw`//\u00A0 single line \u00A0 comment \u00A0`,
     '// foo',
     '// foo /* bar */',
     '/* foo */ // bar',

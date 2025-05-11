@@ -155,9 +155,9 @@ describe('Declarations - Function', () => {
     ['function await() {}', Context.Strict | Context.Module],
     ['function *await() {}', Context.Strict | Context.Module],
     ['function foo(package) { "use strict"; }', Context.None],
-    ['function foo(p\\x61ckage) { }', Context.None],
-    ['function foo(p\\x61ckage) { "use strict"; }', Context.None],
-    ['function foo(p\\141ckage) { }', Context.None],
+    [String.raw`function foo(p\x61ckage) { }`, Context.None],
+    [String.raw`function foo(p\x61ckage) { "use strict"; }`, Context.None],
+    [String.raw`function foo(p\141ckage) { }`, Context.None],
     ['function test({...x = 1}) {}', Context.None],
     ['function test({...[]}) {}', Context.None],
     ['function test({...x = 1}) {}', Context.None],
@@ -205,7 +205,7 @@ describe('Declarations - Function', () => {
     ['function f(){ class x { foo(x=new (yield)()){} }  }', Context.None],
     ['function f(){ class x { [yield](){} }  }', Context.None],
     ['function f(){ class x { [yield y](){} }  }', Context.None],
-    ['function foo(p\\u0061ckage) { "use strict"; }', Context.None]
+    [String.raw`function foo(p\u0061ckage) { "use strict"; }`, Context.None]
   ]);
 
   for (const arg of [
@@ -563,7 +563,7 @@ describe('Declarations - Function', () => {
     'function *f(){ class x { yield(){} }  }',
     'function f() { throw `${delete(y)}`; }',
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
-    'function foo(p\\u0061ckage) { }'
+    String.raw`function foo(p\u0061ckage) { }`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

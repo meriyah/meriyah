@@ -5,16 +5,16 @@ import { pass } from '../../test-utils';
 
 describe('Miscellaneous - Literal', () => {
   for (const arg of [
-    "('\\u{0000000000F8}')",
-    "('\\u{00F8}')",
-    "('\\7a')",
-    "('\\5a')",
-    "('\\2111')",
-    "('\\1')",
+    String.raw`('\u{0000000000F8}')`,
+    String.raw`('\u{00F8}')`,
+    String.raw`('\7a')`,
+    String.raw`('\5a')`,
+    String.raw`('\2111')`,
+    String.raw`('\1')`,
     "('\u202a')",
     "('\\\u2028')",
     "('\\\n')",
-    '("\\\\\\"")'
+    String.raw`("\\\"")`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -30,16 +30,16 @@ describe('Miscellaneous - Literal', () => {
   }
 
   for (const arg of [
-    "'use strict'; ('\\1')",
-    "'use strict'; ('\\4')",
-    "'use strict'; ('\\11')",
-    "'use strict'; ('\\000')",
-    "'use strict'; ('\\00')",
-    "'use strict'; ('\\123')",
-    "('\\x')",
+    String.raw`'use strict'; ('\1')`,
+    String.raw`'use strict'; ('\4')`,
+    String.raw`'use strict'; ('\11')`,
+    String.raw`'use strict'; ('\000')`,
+    String.raw`'use strict'; ('\00')`,
+    String.raw`'use strict'; ('\123')`,
+    String.raw`('\x')`,
     '(")',
-    '\\0009',
-    '("\\u{FFFFFFF}")',
+    String.raw`\0009`,
+    String.raw`("\u{FFFFFFF}")`,
     "'",
     "(')",
     "('\n')"
@@ -59,14 +59,14 @@ describe('Miscellaneous - Literal', () => {
 
   pass('Miscellaneous - Literal (pass)', [
     [
-      "('\\\\\\'')",
+      String.raw`('\\\'')`,
       Context.None,
       {
         body: [
           {
             expression: {
               type: 'Literal',
-              value: "\\'"
+              value: String.raw`\'`
             },
             type: 'ExpressionStatement'
           }
@@ -93,7 +93,7 @@ describe('Miscellaneous - Literal', () => {
       }
     ],
     [
-      "('\\0')",
+      String.raw`('\0')`,
       Context.None,
       {
         body: [
@@ -110,7 +110,7 @@ describe('Miscellaneous - Literal', () => {
       }
     ],
     [
-      "('\\7a')",
+      String.raw`('\7a')`,
       Context.None,
       {
         body: [

@@ -11,7 +11,7 @@ describe('Declarations - Async Function', () => {
     'async function f() { for await (var x in y) {} }',
     'async function f() { for await (let x in y) {} }',
     'async function f() { for await (const x in y) {} }',
-    'async function foo(p\\u0061ckage) { "use strict" }',
+    String.raw`async function foo(p\u0061ckage) { "use strict" }`,
     'async function foo(package) { "use strict" }'
   ]) {
     it(`${arg}`, () => {
@@ -229,7 +229,7 @@ describe('Declarations - Async Function', () => {
             async (b) => {};
     }`,
     'async function foo(package) { }',
-    'async function foo(p\\u0061ckage) { }'
+    String.raw`async function foo(p\u0061ckage) { }`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -412,7 +412,7 @@ describe('Declarations - Async Function', () => {
     ['async function foo (foo = super()) { let bar; }', Context.None],
     ['async function foo (foo = super()) { let bar; }', Context.None],
     ['async function foo (foo = super()) { let bar; }', Context.None],
-    ['\\u0061sync function f(){}', Context.None],
+    [String.raw`\u0061sync function f(){}`, Context.None],
     ['abc: async function a() {}', Context.None],
     ['async function wrap() {\nasync function await() { }\n}', Context.None],
     ['async function foo(await) { }', Context.None],
@@ -503,7 +503,7 @@ describe('Declarations - Async Function', () => {
     ['async function af() { var a = (await) => { }; }', Context.None],
     ['async function af() { var a = await => { }; }', Context.None],
     ['async function a(){ async ([a=await]) => 1 }', Context.None],
-    ['\\u0061sync function f(){}', Context.None],
+    [String.raw`\u0061sync function f(){}`, Context.None],
     ['({async foo() { var await }})', Context.None],
     ['({async foo(await) { }})', Context.None],
     ['({async foo() { return {await} }})', Context.None],

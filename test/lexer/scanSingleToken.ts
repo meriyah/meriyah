@@ -112,7 +112,7 @@ describe('src/lexer/scan', () => {
       t.deepEqual(state.tokenValue, '');
     });
     it('should recognise valid escape sequences.', () => {
-      const state = create("'\\\\ \\n \\t \\r \\' \\b \\f \\v \\0'", '', undefined);
+      const state = create(String.raw`'\\ \n \t \r \' \b \f \v \0'`, '', undefined);
       const token = scanSingleToken(state, Context.None, 0);
       t.deepEqual(token, Token.StringLiteral);
       t.deepEqual(state.tokenValue, "\\ \n \t \r ' \b \f \v \0");

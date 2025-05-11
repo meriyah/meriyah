@@ -2,6 +2,7 @@ import eslintJs from '@eslint/js';
 import eslintPluginN from 'eslint-plugin-n';
 import tseslint from 'typescript-eslint';
 import eslintPluginImportX from 'eslint-plugin-import-x';
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 
 export default [
@@ -9,7 +10,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     languageOptions: { globals: { ...globals.builtin } },
-    plugins: { 'import-x': eslintPluginImportX },
+    plugins: { 'import-x': eslintPluginImportX, unicorn: eslintPluginUnicorn },
     settings: eslintPluginImportX.flatConfigs.typescript.settings,
     rules: {
       ...eslintPluginImportX.flatConfigs.errors.rules,
@@ -46,6 +47,12 @@ export default [
       '@typescript-eslint/no-require-imports': 0,
       'no-fallthrough': 0,
       'import-x/no-rename-default': 0
+    }
+  },
+  {
+    ignores: ['src/**/*'],
+    rules: {
+      'unicorn/prefer-string-raw': 'error'
     }
   },
   {

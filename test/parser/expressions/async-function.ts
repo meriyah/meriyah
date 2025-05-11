@@ -146,10 +146,10 @@ describe('Expressions - Async function', () => {
   function f(){}`,
     'a = async package => 1',
     'a = async package => { }',
-    'a = async p\\u0061ckage => { }',
+    String.raw`a = async p\u0061ckage => { }`,
     'a = (async package => 1)',
     'a = (async package => { })',
-    'a = (async p\\u0061ckage => { })'
+    String.raw`a = (async p\u0061ckage => { })`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -235,11 +235,11 @@ describe('Expressions - Async function', () => {
     ['async(...a, b) => b', Context.None],
     ['(async function(...x = []) {})', Context.None],
     ['a = async package => { "use strict" }', Context.None],
-    ['a = async p\\u0061ckage => { "use strict" }', Context.None],
+    [String.raw`a = async p\u0061ckage => { "use strict" }`, Context.None],
     ['a = async (package) => { "use strict" }', Context.None],
-    ['a = async (p\\u0061ckage) => { "use strict" }', Context.None],
+    [String.raw`a = async (p\u0061ckage) => { "use strict" }`, Context.None],
     ['a = (async (package) => { "use strict" })', Context.None],
-    ['a = (async (p\\u0061ckage) => { "use strict" })', Context.None]
+    [String.raw`a = (async (p\u0061ckage) => { "use strict" })`, Context.None]
   ]);
   pass('Expressions - Async function (pass)', [
     [

@@ -64,8 +64,8 @@ describe('Module - Export', () => {
     'export default async function() { yield = 1; }',
     'export default async function() { yield; }',
     'export const await = 5',
-    'export function p\\u0061ckage() {}',
-    'export function br\\u0065ak() {}',
+    String.raw`export function p\u0061ckage() {}`,
+    String.raw`export function br\u0065ak() {}`,
     'export var {[x] = y} = z;',
     `export default var x = null;
     export default var x = null;`,
@@ -430,8 +430,8 @@ describe('Module - Export', () => {
     ['export {aa as bb, x};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export {foob};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export { "a" as b };', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { "\\uD83C" as b } from "./foo";', Context.Strict | Context.Module | Context.OptionsLexical],
-    ['export { a as "\\uD83C" } from "./foo";', Context.Strict | Context.Module | Context.OptionsLexical],
+    [String.raw`export { "\uD83C" as b } from "./foo";`, Context.Strict | Context.Module | Context.OptionsLexical],
+    [String.raw`export { a as "\uD83C" } from "./foo";`, Context.Strict | Context.Module | Context.OptionsLexical],
     ['export * as "foo" from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export * as foo from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
     [
@@ -442,7 +442,10 @@ describe('Module - Export', () => {
       'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
       Context.Strict | Context.Module | Context.OptionsLexical
     ],
-    ['export { a }; export { "\\u0061" } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical],
+    [
+      String.raw`export { a }; export { "\u0061" } from "./m";`,
+      Context.Strict | Context.Module | Context.OptionsLexical
+    ],
     [
       'export async function a() {}\nexport async function a() {}',
       Context.OptionsLexical | Context.Strict | Context.Module
@@ -721,7 +724,7 @@ describe('Module - Export', () => {
     'export { a as "b" } from "./foo";',
     'let a = 1; export { a as "b" };',
     'export { "a" as b } from "./foo";',
-    'export { "\\uD83C\\uDF19" as b } from "./foo";'
+    String.raw`export { "\uD83C\uDF19" as b } from "./foo";`
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -2743,7 +2746,7 @@ describe('Module - Export', () => {
       }
     ],
     [
-      'export function \\u{5A}() {}',
+      String.raw`export function \u{5A}() {}`,
       Context.Strict | Context.Module,
       {
         body: [
@@ -4422,7 +4425,7 @@ describe('Module - Export', () => {
       }
     ],
     [
-      'export { "\\uD83C\\uDF19" as "a"} from "./foo";',
+      String.raw`export { "\uD83C\uDF19" as "a"} from "./foo";`,
       Context.Strict | Context.Module | Context.OptionsLoc,
       {
         type: 'Program',
