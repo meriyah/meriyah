@@ -24,8 +24,10 @@ jobs:
         node:
           - '24'
           - '22'
-          - '20'
-          - '18'
+          # Not support `fs.glob`
+          # - '20'
+          # Can't install
+          # - '18'
     name: Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
@@ -36,6 +38,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: ./package.json
       - run: yarn
-      - run: yarn bundle
-      - run: yarn test
-      - run: yarn lint
+      - run: node --run bundle
+      - run: node --run test
+      - run: node --run lint
