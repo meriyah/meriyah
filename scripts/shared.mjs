@@ -7,7 +7,9 @@ const testFeature = (test) => {
   }
 };
 
-// eslint-disable-next-line n/no-unsupported-features/es-syntax
-export const supportsUnicodeSets = testFeature(() => new RegExp('', 'v').unicodeSets);
-export const supportsModifiers = testFeature(() => new RegExp('(?i:a)').test('A'));
-export const supportsDuplicateNamedCapturingGroups = testFeature(() => new RegExp('(?<group>a)|(?<group>b)').test('b'));
+export const regexFeatures = {
+  // eslint-disable-next-line n/no-unsupported-features/es-syntax
+  unicodeSets: testFeature(() => new RegExp('', 'v').unicodeSets),
+  modifiers: testFeature(() => new RegExp('(?i:a)').test('A')),
+  duplicateNamedCapturingGroups: testFeature(() => new RegExp('(?<group>a)|(?<group>b)').test('b'))
+};

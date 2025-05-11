@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import module from 'module';
-import { supportsUnicodeSets, supportsDuplicateNamedCapturingGroups, supportsModifiers } from './shared.mjs';
+import { regexFeatures } from './shared.mjs';
 import run from 'test262-parser-runner';
 
 function loadList(filename) {
@@ -15,13 +15,13 @@ function loadList(filename) {
 }
 
 const unsupportedFeatures = new Set(loadList('unsupported-features.txt'));
-if (!supportsUnicodeSets) {
+if (!regexFeatures.unicodeSets) {
   unsupportedFeatures.add('regexp-v-flag');
 }
-if (!supportsModifiers) {
+if (!regexFeatures.modifiers) {
   unsupportedFeatures.add('regexp-modifiers');
 }
-if (!supportsDuplicateNamedCapturingGroups) {
+if (!regexFeatures.duplicateNamedCapturingGroups) {
   unsupportedFeatures.add('regexp-duplicate-named-groups');
 }
 const whitelist = loadList('whitelist.txt');

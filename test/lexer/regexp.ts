@@ -3,7 +3,7 @@ import { Context } from '../../src/common';
 import { Token } from '../../src/token';
 import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
-import { supportsUnicodeSets } from '../../scripts/shared.mjs';
+import { regexFeatures } from '../../scripts/shared.mjs';
 
 describe('Lexer - Regular expressions', () => {
   const tokens: [Context, string, string, string][] = [
@@ -167,7 +167,7 @@ describe('Lexer - Regular expressions', () => {
     });
   }
 
-  if (supportsUnicodeSets) {
+  if (regexFeatures.unicodeSets) {
     const vTokens: [Context, string, string, string][] = [
       [Context.AllowRegExp, '/[\\u{FDD0}-\\u{FDEF}]/v', '[\\u{FDD0}-\\u{FDEF}]', 'v'],
       [
