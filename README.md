@@ -16,7 +16,7 @@
 ## Features
 
 - Conforms to the standard ECMAScript® 2024 (ECMA-262 15th Edition) language specification
-  - Except RegExp duplicate named groups (See [RegExp support](#regexp-support))
+  - See [RegExp support](#regexp-support)
 - Support some TC39 stage 3 proposals via option "next"
 - Support for additional ECMAScript features for Web Browsers (Annex B)
 - JSX support via option "jsx"
@@ -40,7 +40,6 @@ These features need to be enabled with the `next` option.
 
 - [Explicit resource management](https://github.com/tc39/proposal-explicit-resource-management)
 - [Source phase import](https://github.com/tc39/proposal-source-phase-imports)
-- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (See [RegExp support](#regexp-support))
 
 ## RegExp support
 
@@ -48,11 +47,10 @@ Meriyah doesn't parse RegExp internal syntax, ESTree spec didn't require interna
 does use JavaScript runtime to validate the RegExp literal. That means Meriyah's RegExp support is only as good
 as JavaScript runtime's RegExp support.
 
-As of August 2024, some latest RegExp features are not supported due to missing implementation in general
-JavaScript runtime.
+As of May 2025, some latest RegExp features requires Node.js>=24.
 
-- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers) (stage 3) is not supported
-- [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups) is not supported
+- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers)
+- [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups)
 
 In addition, RegExp v flag (unicodeSets) only works on Nodejs v20+ and latest browsers.
 

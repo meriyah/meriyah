@@ -3,7 +3,7 @@ import { Context } from '../../src/common';
 import { Token } from '../../src/token';
 import { create } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
-import { supportsUnicodeSets } from '../../scripts/shared.mjs';
+import { regexFeatures } from '../../scripts/shared.mjs';
 
 describe('Lexer - Regular expressions', () => {
   const tokens: [Context, string, string, string][] = [
@@ -145,6 +145,37 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, String.raw`/\%([0-9]*)\[(\^)?(\]?[^\]]*)\]/`, String.raw`\%([0-9]*)\[(\^)?(\]?[^\]]*)\]`, '']
   ];
 
+  if (regexFeatures.unicodeSets) {
+    tokens.push(
+      [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
+      [
+        Context.AllowRegExp,
+        String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
+        String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
+        'v'
+      ]
+    );
+  }
+
+  if (regexFeatures.modifiers) {
+    tokens.push(
+      // https://github.com/tc39/proposal-regexp-modifiers#examples
+      [Context.AllowRegExp, '/^(?i:[a-z])[a-z]$/', '^(?i:[a-z])[a-z]$', '']
+    );
+  }
+
+  if (regexFeatures.duplicateNamedCapturingGroups) {
+    tokens.push(
+      // https://github.com/tc39/proposal-duplicate-named-capturing-groups
+      [
+        Context.AllowRegExp,
+        '/(?<year>[0-9]{4})-[0-9]{2}|[0-9]{2}-(?<year>[0-9]{4})/',
+        '(?<year>[0-9]{4})-[0-9]{2}|[0-9]{2}-(?<year>[0-9]{4})',
+        ''
+      ]
+    );
+  }
+
   for (const [ctx, op, value, flags] of tokens) {
     it(`scans '${op}' at the end`, () => {
       const state = create(op, '', undefined);
@@ -165,40 +196,6 @@ describe('Lexer - Regular expressions', () => {
         }
       );
     });
-  }
-
-  if (supportsUnicodeSets) {
-    const vTokens: [Context, string, string, string][] = [
-      [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
-      [
-        Context.AllowRegExp,
-        String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
-        String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
-        'v'
-      ]
-    ];
-
-    for (const [ctx, op, value, flags] of vTokens) {
-      it(`scans '${op}' at the end`, () => {
-        const state = create(op, '', undefined);
-        const found = scanSingleToken(state, ctx, 0);
-
-        t.deepEqual(
-          {
-            token: found,
-            hasNext: state.index < state.source.length,
-            value: (state.tokenRegExp as any).pattern,
-            flags: (state.tokenRegExp as any).flags
-          },
-          {
-            token: Token.RegularExpression,
-            hasNext: false,
-            value,
-            flags
-          }
-        );
-      });
-    }
   }
 
   function fail(name: string, source: string, context: Context) {
