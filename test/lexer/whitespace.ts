@@ -338,7 +338,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips vertical tab in a string', {
-    source: "'\\u000Bstr\\u000Bing\\u000B'",
+    source: String.raw`'\u000Bstr\u000Bing\u000B'`,
     value: '\u000bstr\u000bing\u000b',
     newLine: false,
     line: 1,
@@ -347,7 +347,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips form feed in a string - #1', {
-    source: "'\\u000Cstr\\u000Cing\\u000C'",
+    source: String.raw`'\u000Cstr\u000Cing\u000C'`,
     value: '\fstr\fing\f',
     newLine: false,
     line: 1,
@@ -356,7 +356,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips form feed in a string - #2', {
-    source: "'\\fstr\\fing\\f'",
+    source: String.raw`'\fstr\fing\f'`,
     value: '\fstr\fing\f',
     newLine: false,
     line: 1,
@@ -437,7 +437,7 @@ describe('Lexer - Whitespace', () => {
     column: 0
   });
   pass('skips multi line comment with escaped newline', {
-    source: '/* \\n \\r \\x0a \\u000a */',
+    source: String.raw`/* \n \r \x0a \u000a */`,
     newLine: false,
     value: '',
     index: 23,
@@ -446,7 +446,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips single line comment with escaped newlines', {
-    source: '//\\n \\r \\x0a \\u000a still comment',
+    source: String.raw`//\n \r \x0a \u000a still comment`,
     value: '',
     newLine: false,
     index: 33,
@@ -473,7 +473,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips multi line comment with carriage return', {
-    source: '/*\\rmulti\\rline\\rcomment\\rx = 1;\\r*/',
+    source: String.raw`/*\rmulti\rline\rcomment\rx = 1;\r*/`,
     newLine: false,
     value: '',
     index: 36,
@@ -482,7 +482,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips multi line comment with carriage return', {
-    source: '/*\\rmulti\\rline\\rcomment\\rx = 1;\\r*/',
+    source: String.raw`/*\rmulti\rline\rcomment\rx = 1;\r*/`,
     newLine: false,
     value: '',
     index: 36,
@@ -527,7 +527,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips multi line comment with escaped newline', {
-    source: '/* \\n \\r \\x0a \\u000a */',
+    source: String.raw`/* \n \r \x0a \u000a */`,
     newLine: false,
     value: '',
     index: 23,
@@ -555,7 +555,7 @@ describe('Lexer - Whitespace', () => {
   });
 
   pass('skips single line comment with malformed escape', {
-    source: '//\\unope \\u{nope} \\xno ',
+    source: String.raw`//\unope \u{nope} \xno `,
     newLine: false,
     value: '',
     index: 23,

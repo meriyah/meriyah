@@ -5,28 +5,28 @@ import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Directives', () => {
   for (const arg of [
-    '"\\1;" "use strict";',
-    '"\\2;" "use strict";',
-    '"\\3;" "use strict";',
-    '"\\4;" "use strict";',
-    '"\\5;" "use strict";',
-    '"\\6;" "use strict";',
-    '"\\7;" "use strict";',
-    '"\\8;" "use strict";',
-    '"\\9;" "use strict";',
-    '"use strict"; function f(){"\\1";}',
-    '"\\1;" "use strict"; null',
+    String.raw`"\1;" "use strict";`,
+    String.raw`"\2;" "use strict";`,
+    String.raw`"\3;" "use strict";`,
+    String.raw`"\4;" "use strict";`,
+    String.raw`"\5;" "use strict";`,
+    String.raw`"\6;" "use strict";`,
+    String.raw`"\7;" "use strict";`,
+    String.raw`"\8;" "use strict";`,
+    String.raw`"\9;" "use strict";`,
+    String.raw`"use strict"; function f(){"\1";}`,
+    String.raw`"\1;" "use strict"; null`,
     '"use strict"; with (a) b = c;',
-    '"use strict"; "\\1;"',
-    '"use strict"; "\\2;"',
-    '"use strict"; "\\3;"',
-    '"use strict"; "\\4;"',
-    '"use strict"; "\\5;"',
-    '"use strict"; "\\6;"',
-    '"use strict"; "\\7;"',
-    '"use strict"; "\\8;"',
-    '"use strict"; "\\9;"',
-    '"use strict"; "\\1;" null',
+    String.raw`"use strict"; "\1;"`,
+    String.raw`"use strict"; "\2;"`,
+    String.raw`"use strict"; "\3;"`,
+    String.raw`"use strict"; "\4;"`,
+    String.raw`"use strict"; "\5;"`,
+    String.raw`"use strict"; "\6;"`,
+    String.raw`"use strict"; "\7;"`,
+    String.raw`"use strict"; "\8;"`,
+    String.raw`"use strict"; "\9;"`,
+    String.raw`"use strict"; "\1;" null`,
     '"random\\x0\nnewline"',
     '"random\\u\nnewline"',
     '"random\\u0\nnewline"',
@@ -37,34 +37,34 @@ describe('Miscellaneous - Directives', () => {
     '"random\\u00a\nnewline"',
     '"random\\u{0\nnewline"',
     '"random\\u{a\nnewline"',
-    "'random\\x foo'",
+    String.raw`'random\x foo'`,
     '"random\\u{a\rnewline"',
-    "'random\\u foo'",
-    "'random\\u0 foo'",
-    "'random\\u00 foo'",
-    "'random\\u0a foo'",
-    "'random\\x0\\ foo'",
-    "'random\\ua\\ foo'",
-    "'random\\x0\\ foo'",
-    "'random\\u0a\\ foo'",
-    "'random\\xx foo'",
-    "'random\\u00a\\ foo'",
-    "'random\\uax foo'",
-    "'random\\u0au foo'",
+    String.raw`'random\u foo'`,
+    String.raw`'random\u0 foo'`,
+    String.raw`'random\u00 foo'`,
+    String.raw`'random\u0a foo'`,
+    String.raw`'random\x0\ foo'`,
+    String.raw`'random\ua\ foo'`,
+    String.raw`'random\x0\ foo'`,
+    String.raw`'random\u0a\ foo'`,
+    String.raw`'random\xx foo'`,
+    String.raw`'random\u00a\ foo'`,
+    String.raw`'random\uax foo'`,
+    String.raw`'random\u0au foo'`,
     '"use strict" ++',
-    '"use strict" \\1',
-    '"use strict" "\\1"',
-    '"use strict"; "\\1";',
+    String.raw`"use strict" \1`,
+    String.raw`"use strict" "\1"`,
+    String.raw`"use strict"; "\1";`,
     '"use strict" ++',
     `function foo() { "use strict"; with (a) b = c; }`,
     '"use strict"; function foo() { with (a) b = c; }',
-    '"use strict"; function hello() { "\\000"; }',
-    '"use strict"; function hello() { "\\00"; }',
-    '"use strict"; function hello() { "\\0123"; }',
-    'function hello() { "use strict"; "\\000"; }',
-    'function hello() { "use strict"; "\\00"; }',
-    'function hello() { "use strict"; "\\0123"; }',
-    'function hello("\\000008") { "use strict"; }',
+    String.raw`"use strict"; function hello() { "\000"; }`,
+    String.raw`"use strict"; function hello() { "\00"; }`,
+    String.raw`"use strict"; function hello() { "\0123"; }`,
+    String.raw`function hello() { "use strict"; "\000"; }`,
+    String.raw`function hello() { "use strict"; "\00"; }`,
+    String.raw`function hello() { "use strict"; "\0123"; }`,
+    String.raw`function hello("\000008") { "use strict"; }`,
     ` function fun() {
                 "use strict";
                        var public = 1;
@@ -95,14 +95,14 @@ describe('Miscellaneous - Directives', () => {
 
   for (const arg of [
     '("use strict")',
-    '"\\n\\r\\t\\v\\b\\f\\\\\\\'\\"\\0"',
+    String.raw`"\n\r\t\v\b\f\\\'\"\0"`,
     '"use some future directive"',
     '"use some future directive";',
     '"use some future directive"; "use strict";',
-    '"Hello\\312World"',
+    String.raw`"Hello\312World"`,
     '"use strict"',
-    "'use\\x20strict'",
-    '"use\\x20strict"',
+    String.raw`'use\x20strict'`,
+    String.raw`"use\x20strict"`,
     "'use asm'",
     "'use asm'; 'use strict'",
     "'use asm' \n 'use strict'",
@@ -115,8 +115,8 @@ describe('Miscellaneous - Directives', () => {
     '"use asm" \u2028 "use strict"',
     "'use asm' \u2029 'use strict'",
     '"use asm" \u2029 "use strict"',
-    'function foo() { "use \\u0020strict"; with (a) b = c; }',
-    '"use \\u0020strict"; function foo() { with (a) b = c; }',
+    String.raw`function foo() { "use \u0020strict"; with (a) b = c; }`,
+    String.raw`"use \u0020strict"; function foo() { with (a) b = c; }`,
     '"use strict"\n foo',
     "'use strict'; foo",
     'function foo() { "use strict"\n bar }',
@@ -124,7 +124,7 @@ describe('Miscellaneous - Directives', () => {
     '() => { "use strict"\n foo }',
     '() => "use strict"',
     '({ wrap() { "use strict"; foo } })',
-    '"\\u0075se strict"',
+    String.raw`"\u0075se strict"`,
     '"use asm"; "use strict"; foo',
     'function wrap() { "use asm"; "use strict"; foo }',
     '"use strict"; foo; "use asm"',
@@ -136,36 +136,36 @@ describe('Miscellaneous - Directives', () => {
     'function a() { "use strict" } "use strict"; foo',
     'try { "use strict"; var public = 1; } catch (e) {}',
     '"use asm" \u2029 "use strict"',
-    '"\\n\\r\\t\\v\\b\\f\\\\\\\'\\"\\0"',
-    '"Hello\\312World"',
+    String.raw`"\n\r\t\v\b\f\\\'\"\0"`,
+    String.raw`"Hello\312World"`,
     `"use strict"; + 1`,
     `function wrap() { "use strict"\n foo }`,
     `"\\u0075se strict"`,
     'function wrap() { { "use strict" } foo }',
-    '"Hello\\0World"',
+    String.raw`"Hello\0World"`,
     '("use strict"); foo = 42;',
     '("use strict"); eval = 42;',
     '"USE STRICT";  var public = 1;',
     'function wrap() { "use asm"; "use strict"; foo }',
     '{ "use strict"; }',
     'function a() { "use strict" } "use strict"; foo;',
-    'function foo() { "use \\u0020strict"; with (a) b = c; }',
-    '"use \\u0020strict"; with (a) b = c;',
+    String.raw`function foo() { "use \u0020strict"; with (a) b = c; }`,
+    String.raw`"use \u0020strict"; with (a) b = c;`,
     `function foo()
     {
        "bogus directive";
        "use strict";
        return (this === undefined);
     }`,
-    '"use strict", "Hello\\312World"',
-    '"use strict" + "Hello\\312World"',
-    '"use strict", "Hello\\312World"',
-    '"use strict", "Hello\\312World"',
+    String.raw`"use strict", "Hello\312World"`,
+    String.raw`"use strict" + "Hello\312World"`,
+    String.raw`"use strict", "Hello\312World"`,
+    String.raw`"use strict", "Hello\312World"`,
     'function foo() { "use strict" .foo }',
-    '"use strict"; "\\0";',
-    '"\\0"; "use strict";',
-    'function a() {"use strict"; "\\0";}',
-    'function a() {"\\0"; "use strict";}'
+    String.raw`"use strict"; "\0";`,
+    String.raw`"\0"; "use strict";`,
+    String.raw`function a() {"use strict"; "\0";}`,
+    String.raw`function a() {"\0"; "use strict";}`
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
@@ -194,16 +194,16 @@ describe('Miscellaneous - Directives', () => {
 
   fail('Miscellaneous - Directives (fail)', [
     ['"use strict"; var static;', Context.None],
-    ['\\u0061sync function f(){}', Context.None],
-    ['"use strict" "Hello\\312World"', Context.None],
+    [String.raw`\u0061sync function f(){}`, Context.None],
+    [String.raw`"use strict" "Hello\312World"`, Context.None],
     ['"use strict" \n "Hello\\312World"', Context.None],
-    ['function a() { "use strict" "Hello\\312World" }', Context.None],
+    [String.raw`function a() { "use strict" "Hello\312World" }`, Context.None],
     ['function a() { "use strict" \n "Hello\\312World" }', Context.None]
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
     [
-      '"use strict" + "Hello\\312World"',
+      String.raw`"use strict" + "Hello\312World"`,
       Context.Module | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
@@ -219,7 +219,7 @@ describe('Miscellaneous - Directives', () => {
               },
               operator: '+',
               right: {
-                raw: '"Hello\\312World"',
+                raw: String.raw`"Hello\312World"`,
                 start: 15,
                 end: 31,
                 range: [15, 31],
@@ -300,7 +300,7 @@ describe('Miscellaneous - Directives', () => {
       }
     ],
     [
-      '"use strict", "Hello\\312World"',
+      String.raw`"use strict", "Hello\312World"`,
       Context.None | Context.OptionsRanges | Context.OptionsRaw,
       {
         body: [
@@ -321,7 +321,7 @@ describe('Miscellaneous - Directives', () => {
                   range: [14, 30],
                   type: 'Literal',
                   value: 'HelloÊWorld',
-                  raw: '"Hello\\312World"'
+                  raw: String.raw`"Hello\312World"`
                 }
               ],
               start: 0,
@@ -499,7 +499,7 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'ab'
             },
-            directive: '\\u0061b'
+            directive: String.raw`\u0061b`
           },
           {
             type: 'ExpressionStatement',
@@ -507,7 +507,7 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'cd'
             },
-            directive: 'c\\u0064'
+            directive: String.raw`c\u0064`
           }
         ]
       }
@@ -525,7 +525,7 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'ab'
             },
-            directive: '\\u0061b'
+            directive: String.raw`\u0061b`
           },
           {
             type: 'ExpressionStatement',
@@ -533,7 +533,7 @@ describe('Miscellaneous - Directives', () => {
               type: 'Literal',
               value: 'cd'
             },
-            directive: 'c\\u0064'
+            directive: String.raw`c\u0064`
           }
         ]
       }

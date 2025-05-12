@@ -2012,7 +2012,7 @@ describe('Expressions - Template', () => {
                         type: 'Literal',
                         value: /\d/,
                         regex: {
-                          pattern: '\\d',
+                          pattern: String.raw`\d`,
                           flags: ''
                         }
                       },
@@ -4085,7 +4085,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4123,7 +4123,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4166,7 +4166,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4218,7 +4218,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4268,7 +4268,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4336,7 +4336,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: "'\\00a0'"
+                      raw: String.raw`'\00a0'`
                     }
                   }
                 ],
@@ -4433,7 +4433,7 @@ describe('Expressions - Template', () => {
                   {
                     type: 'TemplateElement',
                     value: {
-                      raw: '\\u{0',
+                      raw: String.raw`\u{0`,
                       cooked: null
                     },
                     tail: true

@@ -243,7 +243,7 @@ describe('Declarations - Async Generator', () => {
   fail('Declarations - const (fail)', [
     ['({ yield })', Context.Strict],
     ['({async\n    foo() { }})', Context.None],
-    ['void \\u0061sync function* f(){};', Context.None],
+    [String.raw`void \u0061sync function* f(){};`, Context.None],
     ['for ( ; false; ) async function* g() {}', Context.None],
     ['class A { async* f() { () => await a; } }', Context.None],
     ['class A { async* f() { () => yield a; } }', Context.None],

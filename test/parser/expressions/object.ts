@@ -799,7 +799,7 @@ describe('Expressions - Object', () => {
     '1 : true',
     'prop : true',
     'true : 1',
-    "get ['unicod\\u{000065}Escape']() { return 'get string'; }",
+    String.raw`get ['unicod\u{000065}Escape']() { return 'get string'; }`,
     '[++counter]: ++counter, [++counter]: ++counter, [++counter]: ++counter, [++counter]: ++counter',
     'async: foo',
     'await: foo',
@@ -1231,7 +1231,7 @@ describe('Expressions - Object', () => {
     ['({Object = 0, String = 0}) = {};', Context.None],
     ['({a, b}) = {a: 1, b:2}', Context.None],
     ['({a, b}) = {a: 1, b:2}', Context.None],
-    ['"use\\040strict";', Context.Strict],
+    [String.raw`"use\040strict";`, Context.Strict],
     ['var x = 012;', Context.Strict],
     ['({b}) = b;', Context.None],
     ['([b]) = b;', Context.None],
@@ -1418,7 +1418,7 @@ describe('Expressions - Object', () => {
     ['({...rest, b} = {})', Context.None],
     ["x = {'__proto__': 1, __proto__: 2}", Context.OptionsWebCompat],
     ["x = {'__proto__': 1, __proto__: 2}", Context.None],
-    ['({g\\u0065t m() {} });', Context.None],
+    [String.raw`({g\u0065t m() {} });`, Context.None],
     ['([{web: false, __proto__: a, __proto__: b}]);', Context.None],
     ['({web: false, __proto__: a, __proto__: b});', Context.None]
   ]);

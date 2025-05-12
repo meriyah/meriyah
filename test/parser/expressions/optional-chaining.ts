@@ -7,7 +7,7 @@ describe('Optional chaining', () => {
   for (const arg of [
     'func?.()',
     'obj?.prop',
-    'obj?.def\\u{61}ult',
+    String.raw`obj?.def\u{61}ult`,
     'func?.(...args)',
     'a?.[x]',
     'a?.()',
@@ -245,9 +245,9 @@ describe('Optional chaining', () => {
     '({ x: y?.z })',
     'var a = b.c("string")?.d.e || 0;',
     'x?.void',
-    'x?.voi\\u0064',
+    String.raw`x?.voi\u0064`,
     'x?.protected',
-    'x?.prot\\u0065cted',
+    String.raw`x?.prot\u0065cted`,
     'class C { #m = 1; static m(obj) { return obj?.#m; } }'
   ]) {
     it(`${arg}`, () => {

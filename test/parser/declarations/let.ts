@@ -23,11 +23,11 @@ describe('Declarations - Let', () => {
     'for (const [let] = 1; let < 1; let++) {}',
     'for (const [let] in {}) {}',
     'for (const [let] of []) {}',
-    'let l\\u0065t = 1',
-    'const l\\u0065t = 1',
-    'let [l\\u0065t] = 1',
-    'const [l\\u0065t] = 1',
-    'for (let l\\u0065t in {}) {}'
+    String.raw`let l\u0065t = 1`,
+    String.raw`const l\u0065t = 1`,
+    String.raw`let [l\u0065t] = 1`,
+    String.raw`const [l\u0065t] = 1`,
+    String.raw`for (let l\u0065t in {}) {}`
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
