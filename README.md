@@ -49,7 +49,7 @@ as JavaScript runtime's RegExp support.
 
 As of May 2025, some latest RegExp features requires Node.js>=24.
 
-- [RegExp modifiers](https://github.com/tc39/proposalegexp-modifiers)
+- [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers)
 - [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups)
 
 In addition, RegExp v flag (unicodeSets) only works on Nodejs v20+ and latest browsers.
