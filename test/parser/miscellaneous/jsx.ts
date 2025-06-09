@@ -2512,7 +2512,8 @@ describe('Miscellaneous - JSX', () => {
             source: {
               type: 'Literal',
               value: 'react'
-            }
+            },
+            attributes: []
           },
           {
             type: 'VariableDeclaration',
