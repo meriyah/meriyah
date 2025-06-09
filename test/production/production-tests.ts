@@ -1,6 +1,7 @@
 import { describe } from 'vitest';
 import fs from 'node:fs/promises';
-import url from 'node:url';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import * as t from 'node:assert/strict';
 
 const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
@@ -8,11 +9,15 @@ const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
 describe('Production test', async function () {
   const files = (await fs.readdir(DIST_DIRECTORY, { recursive: true, withFileTypes: true }))
     .filter((dirent) => dirent.isFile())
-    .map((dirent) => dirent.name.replaceAll('\\', '/'));
+    .map((dirent) => {
+      const url = pathToFileURL(path.join(dirent.path, dirent.name));
+      const relativePath = url.href.slice(DIST_DIRECTORY.href.length);
+      return { url, relativePath };
+    });
 
-  for (const file of files.filter((file) => !file.startsWith('types'))) {
-    it(file, async () => {
-      const meriyah = await import(new URL(file, DIST_DIRECTORY).href);
+  for (const { relativePath, url } of files.filter((file) => !file.relativePath.startsWith('types'))) {
+    it(relativePath, async () => {
+      const meriyah = await import(url.href);
 
       t.equal(typeof meriyah.version, 'string');
       t.doesNotThrow(() => {
@@ -25,13 +30,13 @@ describe('Production test', async function () {
 
   it('Package structure', async () => {
     // Should not emit `.d.ts.map` files
-    t.ok(files.every((file) => !file.endsWith('.d.ts.map')));
+    t.ok(files.every((file) => !file.relativePath.endsWith('.d.ts.map')));
 
-    const declarationFiles = files.filter((file) => file.endsWith('.d.ts'));
+    const declarationFiles = files.filter((file) => file.relativePath.endsWith('.d.ts'));
     // Should emit `.d.ts` files
     t.ok(declarationFiles.length > 0);
 
     // `.d.ts` files should be emitted in `types/` directory
-    t.ok(declarationFiles.every((file) => file.startsWith('types/')));
+    t.ok(declarationFiles.every((file) => file.relativePath.startsWith('types/')));
   });
 });
