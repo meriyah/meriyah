@@ -2591,6 +2591,7 @@ describe('Expressions - Class', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -3180,6 +3181,7 @@ describe('Expressions - Class', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -3233,6 +3235,7 @@ describe('Expressions - Class', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -3710,6 +3713,7 @@ describe('Expressions - Class', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -3785,6 +3789,7 @@ describe('Expressions - Class', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []

@@ -505,6 +505,7 @@ describe('Expressions - Functions', () => {
                             arguments: [
                               {
                                 type: 'ArrowFunctionExpression',
+                                generator: false,
                                 body: {
                                   type: 'Literal',
                                   value: 123
@@ -4918,6 +4919,7 @@ describe('Expressions - Functions', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -5800,6 +5802,7 @@ describe('Expressions - Functions', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'ObjectExpression',
                         properties: [
@@ -6890,6 +6893,7 @@ describe('Expressions - Functions', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -6942,6 +6946,7 @@ describe('Expressions - Functions', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -6996,6 +7001,7 @@ describe('Expressions - Functions', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -7089,6 +7095,7 @@ describe('Expressions - Functions', () => {
                       },
                       {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'CallExpression',
                           callee: {

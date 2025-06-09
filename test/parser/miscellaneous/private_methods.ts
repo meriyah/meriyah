@@ -2825,6 +2825,7 @@ describe('Next - Private methods', () => {
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Literal',
                       value: 'bar'

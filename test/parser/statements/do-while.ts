@@ -236,6 +236,7 @@ describe('Statements - Do while', () => {
               type: 'IfStatement',
               test: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: [],
@@ -313,6 +314,7 @@ describe('Statements - Do while', () => {
               type: 'IfStatement',
               test: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: [],
@@ -617,6 +619,7 @@ while(y)
               type: 'ExpressionStatement',
               expression: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'x',

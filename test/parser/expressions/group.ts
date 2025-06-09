@@ -728,6 +728,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'z'
@@ -2149,6 +2150,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'foo'
@@ -2481,6 +2483,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'z'
@@ -2733,6 +2736,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2829,6 +2833,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2866,6 +2871,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2913,6 +2919,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2944,6 +2951,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2980,6 +2988,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -3027,6 +3036,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'b'
@@ -3060,6 +3070,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'c'
@@ -3100,6 +3111,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'e'
@@ -3464,6 +3476,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -3554,6 +3567,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -3609,6 +3623,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'foo'
@@ -3783,6 +3798,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'foo'
@@ -3811,6 +3827,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'y'
@@ -3915,6 +3932,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -3975,6 +3993,7 @@ describe('Expressions - Group', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'foo'
@@ -4160,6 +4179,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'baz'
@@ -4284,6 +4304,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4376,6 +4397,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'z'
@@ -4599,6 +4621,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4660,6 +4683,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'z'
@@ -4719,6 +4743,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'z'
@@ -5172,6 +5197,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5223,6 +5249,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5263,6 +5290,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5307,6 +5335,7 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6387,6 +6416,7 @@ describe('Expressions - Group', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'Identifier',
                           name: 'z'
@@ -6453,6 +6483,7 @@ describe('Expressions - Group', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'Identifier',
                         name: 'x'

@@ -1182,6 +1182,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -1210,6 +1211,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -1246,6 +1248,7 @@ describe('Expressions - Arrow', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -1293,6 +1296,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -1347,7 +1351,8 @@ describe('Expressions - Arrow', () => {
                   type: 'Identifier'
                 }
               ],
-              type: 'ArrowFunctionExpression'
+              type: 'ArrowFunctionExpression',
+              generator: false
             },
             type: 'ExpressionStatement'
           }
@@ -1377,7 +1382,8 @@ describe('Expressions - Arrow', () => {
                       type: 'Identifier'
                     }
                   ],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 },
                 {
                   async: false,
@@ -1392,7 +1398,8 @@ describe('Expressions - Arrow', () => {
                       type: 'Identifier'
                     }
                   ],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 }
               ],
               type: 'SequenceExpression'
@@ -1425,7 +1432,8 @@ describe('Expressions - Arrow', () => {
                       type: 'Identifier'
                     }
                   ],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 },
                 {
                   async: false,
@@ -1440,7 +1448,8 @@ describe('Expressions - Arrow', () => {
                       type: 'Identifier'
                     }
                   ],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 }
               ],
               type: 'SequenceExpression'
@@ -1463,6 +1472,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -1498,6 +1508,7 @@ describe('Expressions - Arrow', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -1544,6 +1555,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 0
@@ -1703,6 +1715,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 10],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 10,
               range: [0, 10],
@@ -1760,6 +1773,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 10],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 10,
               range: [0, 10],
@@ -1817,6 +1831,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 10],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 10,
               range: [0, 10],
@@ -1879,6 +1894,7 @@ describe('Expressions - Arrow', () => {
               range: [0, 15],
               left: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 1,
                 end: 9,
                 range: [1, 9],
@@ -1923,6 +1939,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 11],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 11,
               range: [0, 11],
@@ -1980,6 +1997,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 8],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 8,
               range: [0, 8],
@@ -2029,7 +2047,8 @@ describe('Expressions - Arrow', () => {
                 },
                 expression: false,
                 params: [],
-                type: 'ArrowFunctionExpression'
+                type: 'ArrowFunctionExpression',
+                generator: false
               },
               operator: '+',
               right: {
@@ -2081,6 +2100,7 @@ describe('Expressions - Arrow', () => {
               },
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 5,
                 end: 22,
                 range: [5, 22],
@@ -2171,6 +2191,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 10],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 10,
               range: [0, 10],
@@ -2214,6 +2235,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 20],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 20,
               range: [0, 20],
@@ -2284,6 +2306,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 18],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 18,
               range: [0, 18],
@@ -2422,6 +2445,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 13],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 13,
               range: [0, 13],
@@ -2467,6 +2491,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -2525,6 +2550,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 522],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 522,
               range: [0, 522],
@@ -2687,6 +2713,7 @@ describe('Expressions - Arrow', () => {
                       },
                       right: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         start: 181,
                         end: 243,
                         range: [181, 243],
@@ -2884,6 +2911,7 @@ describe('Expressions - Arrow', () => {
                             arguments: [
                               {
                                 type: 'ArrowFunctionExpression',
+                                generator: false,
                                 start: 353,
                                 end: 498,
                                 range: [353, 498],
@@ -3030,6 +3058,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 16],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 16,
               range: [0, 16],
@@ -3093,6 +3122,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 23],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 23,
               range: [0, 23],
@@ -3176,6 +3206,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 16],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 16,
               range: [0, 16],
@@ -3270,6 +3301,7 @@ describe('Expressions - Arrow', () => {
                 },
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 8,
                   end: 22,
                   range: [8, 22],
@@ -3367,6 +3399,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 16],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 16,
               range: [0, 16],
@@ -3426,6 +3459,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 0
@@ -3459,6 +3493,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 'test'
@@ -3494,6 +3529,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 18],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 18,
               range: [0, 18],
@@ -3559,6 +3595,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -3606,6 +3643,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 14],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 14,
               range: [0, 14],
@@ -3671,6 +3709,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 42
@@ -3701,6 +3740,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 42
@@ -3738,8 +3778,10 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'SequenceExpression',
                   expressions: [
@@ -3805,6 +3847,7 @@ describe('Expressions - Arrow', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -3839,6 +3882,7 @@ describe('Expressions - Arrow', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -3875,6 +3919,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -3920,6 +3965,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -3957,6 +4003,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -3990,6 +4037,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -4026,6 +4074,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
 
               expression: true,
 
@@ -4057,6 +4106,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -4102,6 +4152,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4148,6 +4199,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4186,6 +4238,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4228,6 +4281,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4300,7 +4354,8 @@ describe('Expressions - Arrow', () => {
               },
               expression: false,
               params: [],
-              type: 'ArrowFunctionExpression'
+              type: 'ArrowFunctionExpression',
+              generator: false
             },
             type: 'ExpressionStatement'
           }
@@ -4320,6 +4375,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4354,6 +4410,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4409,6 +4466,7 @@ describe('Expressions - Arrow', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'c'
@@ -4473,6 +4531,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4535,6 +4594,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4602,6 +4662,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 16],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 16,
               range: [0, 16],
@@ -4703,6 +4764,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 7,
                   end: 18,
                   range: [7, 18],
@@ -4761,6 +4823,7 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 0,
                   end: 11,
                   range: [0, 11],
@@ -4792,6 +4855,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 13,
                   end: 24,
                   range: [13, 24],
@@ -4857,6 +4921,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 4,
                   end: 11,
                   range: [4, 11],
@@ -4881,6 +4946,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 13,
                   end: 23,
                   range: [13, 23],
@@ -4940,6 +5006,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 23],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 23,
               range: [0, 23],
@@ -5017,6 +5084,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 35],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 35,
               range: [0, 35],
@@ -5177,6 +5245,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 15],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 15,
               range: [0, 15],
@@ -5258,6 +5327,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 13],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 13,
               range: [0, 13],
@@ -5303,6 +5373,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5337,6 +5408,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 42
@@ -5379,6 +5451,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 16],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 16,
               range: [0, 16],
@@ -5437,6 +5510,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5479,6 +5553,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 10],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 9,
               range: [0, 9],
@@ -5517,6 +5592,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BinaryExpression',
                 left: {
@@ -5564,6 +5640,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 26],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 26,
               range: [0, 26],
@@ -5587,6 +5664,7 @@ describe('Expressions - Arrow', () => {
               ],
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 10,
                 end: 26,
                 range: [10, 26],
@@ -5654,6 +5732,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5707,6 +5786,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'bar'
@@ -5732,6 +5812,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5783,6 +5864,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5848,6 +5930,7 @@ describe('Expressions - Arrow', () => {
             },
             init: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BinaryExpression',
                 left: {
@@ -5891,8 +5974,10 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BinaryExpression',
                   left: {
@@ -5954,8 +6039,10 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BinaryExpression',
                   left: {
@@ -6024,6 +6111,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Literal',
                     value: 0
@@ -6067,6 +6155,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Literal',
                     value: 0
@@ -6107,6 +6196,7 @@ describe('Expressions - Arrow', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'x'
@@ -6183,10 +6273,13 @@ describe('Expressions - Arrow', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'AssignmentExpression',
                         left: {
@@ -6285,12 +6378,16 @@ describe('Expressions - Arrow', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: [
@@ -6371,6 +6468,7 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Literal',
                     value: 0
@@ -6392,6 +6490,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Literal',
                     value: 1
@@ -6435,6 +6534,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -6452,6 +6552,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BinaryExpression',
                     left: {
@@ -6495,6 +6596,7 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -6516,6 +6618,7 @@ describe('Expressions - Arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BinaryExpression',
                     left: {
@@ -6570,6 +6673,7 @@ describe('Expressions - Arrow', () => {
                     },
                     {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'Literal',
                         value: 0
@@ -6632,6 +6736,7 @@ describe('Expressions - Arrow', () => {
               },
               alternate: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 12,
                 end: 21,
                 range: [12, 21],
@@ -6671,6 +6776,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6705,6 +6811,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6739,6 +6846,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6785,6 +6893,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6822,6 +6931,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6863,6 +6973,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6904,6 +7015,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -6956,6 +7068,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -7009,6 +7122,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -7051,6 +7165,7 @@ describe('Expressions - Arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -7105,6 +7220,7 @@ describe('Expressions - Arrow', () => {
             range: [0, 9],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 8,
               range: [0, 8],
@@ -7135,6 +7251,7 @@ describe('Expressions - Arrow', () => {
             range: [25, 37],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 25,
               end: 36,
               range: [25, 36],
@@ -7172,6 +7289,7 @@ describe('Expressions - Arrow', () => {
             range: [53, 61],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 53,
               end: 60,
               range: [53, 60],
@@ -7194,6 +7312,7 @@ describe('Expressions - Arrow', () => {
             range: [77, 93],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 77,
               end: 92,
               range: [77, 92],
@@ -7210,6 +7329,7 @@ describe('Expressions - Arrow', () => {
               ],
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 84,
                 end: 92,
                 range: [84, 92],
@@ -7241,6 +7361,7 @@ describe('Expressions - Arrow', () => {
             range: [133, 151],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 133,
               end: 150,
               range: [133, 150],
@@ -7257,6 +7378,7 @@ describe('Expressions - Arrow', () => {
               ],
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 141,
                 end: 149,
                 range: [141, 149],
@@ -7288,6 +7410,7 @@ describe('Expressions - Arrow', () => {
             range: [188, 205],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 188,
               end: 204,
               range: [188, 204],
@@ -7296,6 +7419,7 @@ describe('Expressions - Arrow', () => {
               params: [],
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 194,
                 end: 204,
                 range: [194, 204],
@@ -7334,6 +7458,7 @@ describe('Expressions - Arrow', () => {
             range: [245, 259],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 245,
               end: 259,
               range: [245, 259],
@@ -7378,6 +7503,7 @@ describe('Expressions - Arrow', () => {
             range: [264, 273],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 264,
               end: 272,
               range: [264, 272],
@@ -7434,6 +7560,7 @@ describe('Expressions - Arrow', () => {
                 },
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 10,
                   end: 32,
                   range: [10, 32],
@@ -7507,6 +7634,7 @@ describe('Expressions - Arrow', () => {
               range: [0, 18],
               left: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 1,
                 end: 9,
                 range: [1, 9],
@@ -7543,6 +7671,7 @@ describe('Expressions - Arrow', () => {
               range: [24, 42],
               test: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 25,
                 end: 33,
                 range: [25, 33],
@@ -7598,6 +7727,7 @@ describe('Expressions - Arrow', () => {
               range: [0, 14],
               left: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 1,
                 end: 9,
                 range: [1, 9],
@@ -7654,6 +7784,7 @@ describe('Expressions - Arrow', () => {
               },
               consequent: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 8,
                 end: 37,
                 range: [8, 37],
@@ -7677,6 +7808,7 @@ describe('Expressions - Arrow', () => {
                 ],
                 body: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 18,
                   end: 37,
                   range: [18, 37],

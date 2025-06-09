@@ -2522,6 +2522,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'JSXElement',
                     children: [
@@ -3536,6 +3537,7 @@ describe('Miscellaneous - JSX', () => {
                     arguments: [
                       {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'JSXElement',
                           children: [
@@ -5740,6 +5742,7 @@ describe('Miscellaneous - JSX', () => {
                         arguments: [
                           {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'JSXElement',
                               children: [],
@@ -6563,6 +6566,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'JSXElement',
                       children: [],
@@ -7702,6 +7706,7 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'ThisExpression'
                         },
@@ -7929,6 +7934,7 @@ describe('Miscellaneous - JSX', () => {
                           range: [23, 35],
                           expression: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             start: 24,
                             end: 34,
                             range: [24, 34],
@@ -8295,6 +8301,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'JSXElement',
                     children: [],
@@ -8698,6 +8705,7 @@ describe('Miscellaneous - JSX', () => {
                               },
                               value: {
                                 type: 'ArrowFunctionExpression',
+                                generator: false,
                                 body: {
                                   type: 'BlockStatement',
                                   body: [
@@ -9574,6 +9582,7 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'JSXElement',
                       children: [],

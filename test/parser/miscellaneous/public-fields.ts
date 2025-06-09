@@ -420,6 +420,7 @@ describe('Next - Public fields', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'ClassExpression',
                     decorators: [],
@@ -855,6 +856,7 @@ describe('Next - Public fields', () => {
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: [
@@ -1046,6 +1048,7 @@ describe('Next - Public fields', () => {
                       },
                       value: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: [
@@ -1297,7 +1300,8 @@ describe('Next - Public fields', () => {
                         type: 'Identifier'
                       }
                     ],
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   }
                 }
               ],

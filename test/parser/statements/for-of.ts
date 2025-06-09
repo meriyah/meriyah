@@ -867,6 +867,7 @@ describe('Statements - For of', () => {
                         },
                         value: {
                           type: 'ArrowFunctionExpression',
+                          generator: false,
                           body: {
                             type: 'BlockStatement',
                             body: []
@@ -918,8 +919,10 @@ describe('Statements - For of', () => {
                         type: 'LogicalExpression',
                         left: {
                           type: 'ArrowFunctionExpression',
+                          generator: false,
                           body: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Literal',
                               value: 2646

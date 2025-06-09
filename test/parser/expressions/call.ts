@@ -421,7 +421,8 @@ describe('Expressions - Call', () => {
                   type: 'Identifier'
                 }
               ],
-              type: 'ArrowFunctionExpression'
+              type: 'ArrowFunctionExpression',
+              generator: false
             },
             type: 'ExpressionStatement'
           }
@@ -1771,6 +1772,7 @@ describe('Expressions - Call', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []

@@ -2358,6 +2358,7 @@ describe('Module - Export', () => {
             range: [0, 28],
             declaration: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 15,
               end: 28,
               range: [15, 28],
@@ -2393,6 +2394,7 @@ describe('Module - Export', () => {
             range: [0, 29],
             declaration: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 15,
               end: 29,
               range: [15, 29],
@@ -2567,6 +2569,7 @@ describe('Module - Export', () => {
             range: [0, 27],
             declaration: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 15,
               end: 27,
               range: [15, 27],
@@ -2610,6 +2613,7 @@ describe('Module - Export', () => {
             range: [0, 26],
             declaration: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 15,
               end: 26,
               range: [15, 26],
@@ -2655,6 +2659,7 @@ describe('Module - Export', () => {
             type: 'ExportDefaultDeclaration',
             declaration: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -3273,6 +3278,7 @@ describe('Module - Export', () => {
               },
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 56,
                 end: 65,
                 range: [56, 65],

@@ -482,7 +482,8 @@ describe('Miscellaneous - ASI', () => {
               },
               expression: false,
               params: [],
-              type: 'ArrowFunctionExpression'
+              type: 'ArrowFunctionExpression',
+              generator: false
             },
             type: 'ExpressionStatement'
           }

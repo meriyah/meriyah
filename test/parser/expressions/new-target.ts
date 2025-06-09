@@ -402,6 +402,7 @@ describe('Expressions - New target', () => {
                   range: [14, 36],
                   argument: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 21,
                     end: 36,
                     range: [21, 36],
@@ -482,6 +483,7 @@ describe('Expressions - New target', () => {
                   range: [14, 34],
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 14,
                     end: 34,
                     range: [14, 34],
@@ -498,6 +500,7 @@ describe('Expressions - New target', () => {
                     ],
                     body: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       start: 19,
                       end: 34,
                       range: [19, 34],
@@ -553,6 +556,7 @@ describe('Expressions - New target', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'FunctionExpression',
                 params: [],

@@ -832,6 +832,7 @@ describe('Statements - For', () => {
             },
             init: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -1046,6 +1047,7 @@ describe('Statements - For', () => {
             },
             init: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -1126,6 +1128,7 @@ describe('Statements - For', () => {
                     },
                     {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'BlockStatement',
                         body: []
