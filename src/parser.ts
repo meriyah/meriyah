@@ -5364,25 +5364,18 @@ export function parseBigIntLiteral(
   const { tokenRaw, tokenValue } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return finishNode(
-    parser,
-    context,
-    start,
-    line,
-    column,
-    context & Context.OptionsRaw
-      ? {
-          type: 'Literal',
-          value: tokenValue,
-          bigint: tokenRaw.slice(0, -1), // without the ending "n"
-          raw: tokenRaw
-        }
-      : {
-          type: 'Literal',
-          value: tokenValue,
-          bigint: tokenRaw.slice(0, -1) // without the ending "n"
-        }
-  );
+
+  const node: ESTree.BigIntLiteral = {
+    type: 'Literal',
+    value: tokenValue,
+    bigint: String(tokenValue)
+  };
+
+  if (context & Context.OptionsRaw) {
+    node.raw = tokenRaw;
+  }
+
+  return finishNode(parser, context, start, line, column, node);
 }
 
 /**

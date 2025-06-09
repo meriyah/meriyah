@@ -210,6 +210,34 @@ describe('Expressions - BigInt', () => {
         end: 13,
         range: [0, 13]
       }
+    ],
+    [
+      '0xdead_BEEFn',
+      Context.OptionsRanges | Context.OptionsRaw,
+      {
+        body: [
+          {
+            end: 12,
+            expression: {
+              bigint: '3735928559',
+              end: 12,
+              range: [0, 12],
+              raw: '0xdead_BEEFn',
+              start: 0,
+              type: 'Literal',
+              value: 3735928559n
+            },
+            range: [0, 12],
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 12,
+        range: [0, 12],
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      }
     ]
   ]);
 });
