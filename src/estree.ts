@@ -429,7 +429,7 @@ export interface ExportAllDeclaration extends _Node {
   type: 'ExportAllDeclaration';
   source: Literal;
   exported: Identifier | Literal | null;
-  attributes?: ImportAttribute[];
+  attributes: ImportAttribute[];
 }
 
 export interface ExportDefaultDeclaration extends _Node {
@@ -442,7 +442,7 @@ export interface ExportNamedDeclaration extends _Node {
   declaration: ExportDeclaration | null;
   specifiers: ExportSpecifier[];
   source: Literal | null;
-  attributes?: ImportAttribute[];
+  attributes: ImportAttribute[];
 }
 
 export interface ExportSpecifier extends _Node {
@@ -507,7 +507,7 @@ export interface ImportDeclaration extends _Node {
   type: 'ImportDeclaration';
   source: Literal;
   specifiers: ImportClause[];
-  attributes?: ImportAttribute[];
+  attributes: ImportAttribute[];
 }
 
 export interface ImportAttribute extends _Node {

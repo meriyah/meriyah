@@ -846,7 +846,8 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier'
               }
             ],
-            type: 'ExportNamedDeclaration'
+            type: 'ExportNamedDeclaration',
+            attributes: []
           }
         ],
         sourceType: 'module',
@@ -894,7 +895,8 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier'
               }
             ],
-            type: 'ExportNamedDeclaration'
+            type: 'ExportNamedDeclaration',
+            attributes: []
           }
         ],
         sourceType: 'module',
@@ -1043,7 +1045,8 @@ describe('Module - Export', () => {
             range: [0, 9],
             declaration: null,
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1086,7 +1089,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           },
           {
             type: 'VariableDeclaration',
@@ -1175,7 +1179,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1241,7 +1246,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1290,7 +1296,8 @@ describe('Module - Export', () => {
               end: 21,
               range: [16, 21],
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1339,7 +1346,8 @@ describe('Module - Export', () => {
               end: 26,
               range: [21, 26],
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1371,7 +1379,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -1436,7 +1445,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1536,7 +1546,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1606,7 +1617,8 @@ describe('Module - Export', () => {
               kind: 'var'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1650,7 +1662,8 @@ describe('Module - Export', () => {
               kind: 'let'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1708,7 +1721,8 @@ describe('Module - Export', () => {
               kind: 'let'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1778,7 +1792,8 @@ describe('Module - Export', () => {
               kind: 'const'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1822,7 +1837,8 @@ describe('Module - Export', () => {
               }
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1866,7 +1882,8 @@ describe('Module - Export', () => {
               }
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1897,7 +1914,8 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 name: 'f'
               }
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -2051,7 +2069,8 @@ describe('Module - Export', () => {
               }
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -2156,7 +2175,8 @@ describe('Module - Export', () => {
               kind: 'let'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -2197,7 +2217,8 @@ describe('Module - Export', () => {
                   }
                 }
               ]
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -2306,7 +2327,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           },
           {
             type: 'ExportNamedDeclaration',
@@ -2336,7 +2358,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -2678,7 +2701,8 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             source: null,
             specifiers: [],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -2709,7 +2733,8 @@ describe('Module - Export', () => {
               kind: 'var'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -2740,7 +2765,8 @@ describe('Module - Export', () => {
                 type: 'Identifier',
                 name: 'foo'
               }
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -2768,7 +2794,8 @@ describe('Module - Export', () => {
             },
             source: null,
             specifiers: [],
-            type: 'ExportNamedDeclaration'
+            type: 'ExportNamedDeclaration',
+            attributes: []
           }
         ],
         sourceType: 'module',
@@ -2802,7 +2829,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -2893,7 +2921,8 @@ describe('Module - Export', () => {
             },
             source: null,
             specifiers: [],
-            type: 'ExportNamedDeclaration'
+            type: 'ExportNamedDeclaration',
+            attributes: []
           }
         ],
         sourceType: 'module',
@@ -3068,7 +3097,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3111,7 +3141,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           },
           {
             type: 'VariableDeclaration',
@@ -3177,7 +3208,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -3324,7 +3356,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           },
           {
             type: 'FunctionDeclaration',
@@ -3372,7 +3405,8 @@ describe('Module - Export', () => {
             },
             source: null,
             specifiers: [],
-            type: 'ExportNamedDeclaration'
+            type: 'ExportNamedDeclaration',
+            attributes: []
           }
         ],
         sourceType: 'module',
@@ -3456,7 +3490,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3486,7 +3521,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3595,7 +3631,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3647,7 +3684,8 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             source: null,
             specifiers: [],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -3675,7 +3713,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           },
           {
             type: 'VariableDeclaration',
@@ -3730,7 +3769,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3772,7 +3812,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3803,7 +3844,8 @@ describe('Module - Export', () => {
             source: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3834,7 +3876,8 @@ describe('Module - Export', () => {
             source: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3865,7 +3908,8 @@ describe('Module - Export', () => {
             source: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -3908,7 +3952,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            declaration: null
+            declaration: null,
+            attributes: []
           }
         ]
       }
@@ -3968,7 +4013,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4068,7 +4114,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4129,7 +4176,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4190,7 +4238,8 @@ describe('Module - Export', () => {
                 }
               }
             ],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4219,7 +4268,8 @@ describe('Module - Export', () => {
               kind: 'var'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4256,7 +4306,8 @@ describe('Module - Export', () => {
               kind: 'var'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4299,7 +4350,8 @@ describe('Module - Export', () => {
               kind: 'var'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4328,7 +4380,8 @@ describe('Module - Export', () => {
               kind: 'let'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4365,7 +4418,8 @@ describe('Module - Export', () => {
               kind: 'let'
             },
             specifiers: [],
-            source: null
+            source: null,
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -4398,7 +4452,8 @@ describe('Module - Export', () => {
                   }
                 }
               ]
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -4419,7 +4474,8 @@ describe('Module - Export', () => {
             exported: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -4500,7 +4556,8 @@ describe('Module - Export', () => {
                 line: 1,
                 column: 45
               }
-            }
+            },
+            attributes: []
           }
         ],
         loc: {
