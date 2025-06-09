@@ -5,12 +5,10 @@ import * as t from 'node:assert/strict';
 
 const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
 
-const glob = (pattern: string): Promise<string[]> =>
-  // @ts-expect-error -- Safe
-  Array.fromAsync(fs.glob(pattern, { cwd: url.fileURLToPath(DIST_DIRECTORY) }));
-
 describe('Production test', async function () {
-  const files = [...(await glob('**/*'))].map((file) => file.replaceAll('\\', '/'));
+  const files = (await fs.readdir(DIST_DIRECTORY, { recursive: true, withFileTypes: true }))
+    .filter((dirent) => dirent.isFile())
+    .map((dirent) => dirent.name.replaceAll('\\', '/'));
 
   for (const file of files.filter((file) => !file.startsWith('types'))) {
     it(file, async () => {

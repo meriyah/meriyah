@@ -24,8 +24,7 @@ jobs:
         node:
           - '24'
           - '22'
-          # Not support `fs.glob`
-          # - '20'
+          - '20'
           # Can't install
           # - '18'
     name: Node.js ${{ matrix.node }}
