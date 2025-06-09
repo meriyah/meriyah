@@ -10,7 +10,7 @@ describe('Production test', async function () {
   const files = (await fs.readdir(DIST_DIRECTORY, { recursive: true, withFileTypes: true }))
     .filter((dirent) => dirent.isFile())
     .map((dirent) => {
-      const url = pathToFileURL(path.join(dirent.path, dirent.name));
+      const url = pathToFileURL(path.join(dirent.parentPath, dirent.name));
       const relativePath = url.href.slice(DIST_DIRECTORY.href.length);
       return { url, relativePath };
     });
