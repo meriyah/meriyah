@@ -24,8 +24,7 @@ jobs:
         node:
           - '24'
           - '22'
-          # Not support `fs.glob`
-          # - '20'
+          - '20'
           # Can't install
           # - '18'
     name: Node.js ${{ matrix.node }}
@@ -38,6 +37,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: ./package.json
       - run: yarn
-      - run: node --run bundle
-      - run: node --run test
-      - run: node --run lint
+      - run: npm run bundle
+      - run: npm run test
+      - run: npm run lint
