@@ -11,7 +11,7 @@ describe('Expressions - Assign', () => {
     ['([(a = b)] = []', Context.None],
     ['42 = 42;', Context.None],
     ['"x" = 42;', Context.None],
-    ['[(a = 0)] = 1', Context.None]
+    ['[(a = 0)] = 1', Context.None],
   ]);
 
   for (const arg of [
@@ -61,7 +61,7 @@ describe('Expressions - Assign', () => {
     'x = { __proto__: x, __proto__: y } = value;',
     'x = x = y = null;',
     'x = ({ __proto__: x, __proto__: y } = value);',
-    'arrow = () => {};'
+    'arrow = () => {};',
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
@@ -84,17 +84,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '*=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a /= b',
@@ -109,17 +109,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '/=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a %= b',
@@ -134,17 +134,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '%=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a += b',
@@ -159,17 +159,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '+=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a -= b',
@@ -184,17 +184,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '-=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a <<= b',
@@ -209,17 +209,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '<<=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a >>= b',
@@ -234,17 +234,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '>>=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a >>>= b',
@@ -259,17 +259,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '>>>=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a |= b',
@@ -284,17 +284,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '|=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ^= b',
@@ -309,17 +309,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '^=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a |= b',
@@ -334,17 +334,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '|=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a **= b',
@@ -359,17 +359,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '**=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = b = c',
@@ -384,25 +384,25 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'c'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'c',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = b = c = d',
@@ -417,33 +417,33 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 operator: '=',
                 right: {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'd'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
+                    name: 'd',
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) = b;',
@@ -458,17 +458,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '((a)) = b;',
@@ -483,17 +483,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ((y)) = z',
@@ -508,25 +508,25 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'z',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = ((b)) = c;',
@@ -539,12 +539,12 @@ describe('Expressions - Assign', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 14
-          }
+            column: 14,
+          },
         },
         body: [
           {
@@ -555,12 +555,12 @@ describe('Expressions - Assign', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 14
-              }
+                column: 14,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -570,12 +570,12 @@ describe('Expressions - Assign', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 13
-                }
+                  column: 13,
+                },
               },
               operator: '=',
               left: {
@@ -586,14 +586,14 @@ describe('Expressions - Assign', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -603,12 +603,12 @@ describe('Expressions - Assign', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 13
-                  }
+                    column: 13,
+                  },
                 },
                 operator: '=',
                 left: {
@@ -619,14 +619,14 @@ describe('Expressions - Assign', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 6
+                      column: 6,
                     },
                     end: {
                       line: 1,
-                      column: 7
-                    }
+                      column: 7,
+                    },
                   },
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
@@ -636,21 +636,21 @@ describe('Expressions - Assign', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 12
+                      column: 12,
                     },
                     end: {
                       line: 1,
-                      column: 13
-                    }
+                      column: 13,
+                    },
                   },
-                  name: 'c'
-                }
-              }
-            }
-          }
+                  name: 'c',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a ||= b',
@@ -665,17 +665,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '||=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a &&= b',
@@ -690,17 +690,17 @@ describe('Expressions - Assign', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '&&=',
               right: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ??= b',
@@ -722,13 +722,13 @@ describe('Expressions - Assign', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
-                }
+                    column: 1,
+                  },
+                },
               },
               operator: '??=',
               right: {
@@ -740,13 +740,13 @@ describe('Expressions - Assign', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 6
+                    column: 6,
                   },
                   end: {
                     line: 1,
-                    column: 7
-                  }
-                }
+                    column: 7,
+                  },
+                },
               },
               start: 0,
               end: 7,
@@ -754,13 +754,13 @@ describe('Expressions - Assign', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 7
-                }
-              }
+                  column: 7,
+                },
+              },
             },
             start: 0,
             end: 7,
@@ -768,14 +768,14 @@ describe('Expressions - Assign', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 7
-              }
-            }
-          }
+                column: 7,
+              },
+            },
+          },
         ],
         start: 0,
         end: 7,
@@ -783,14 +783,14 @@ describe('Expressions - Assign', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 7
-          }
-        }
-      }
-    ]
+            column: 7,
+          },
+        },
+      },
+    ],
   ]);
 });

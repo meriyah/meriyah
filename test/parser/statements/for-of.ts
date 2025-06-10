@@ -75,7 +75,7 @@ describe('Statements - For of', () => {
     'for(o[0] = 0 of {});',
     'for(f() = 0 of {});',
     'for(({a}) of 0);',
-    'for(([a]) of 0);'
+    'for(([a]) of 0);',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -199,7 +199,7 @@ describe('Statements - For of', () => {
     ['for (function(){} of x);', Context.None],
     ['for ([...[a]] = 0 of {});', Context.None],
     ['for ([] = 0 of {});', Context.None],
-    ['for (let [...{ x } = []] of [[]]) {}', Context.None]
+    ['for (let [...{ x } = []] of [[]]) {}', Context.None],
   ]);
 
   for (const arg of [
@@ -440,7 +440,7 @@ describe('Statements - For of', () => {
     'for (function(){ a in b; }.prop of x);',
     `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`,
     'for(x of ~y);',
-    'for(x of~y);'
+    'for(x of~y);',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -502,20 +502,20 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var a of b);',
@@ -527,7 +527,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -538,19 +538,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let a of b);',
@@ -562,7 +562,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -573,19 +573,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const a of b);',
@@ -597,7 +597,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -608,19 +608,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (a of b=c);',
@@ -632,28 +632,28 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'c'
-              }
+                name: 'c',
+              },
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([a.b] of c) d',
@@ -668,8 +668,8 @@ describe('Statements - For of', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             },
             left: {
               type: 'ArrayPattern',
@@ -678,24 +678,24 @@ describe('Statements - For of', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'c'
+              name: 'c',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}',
@@ -708,7 +708,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -725,20 +725,20 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'f'
+                          name: 'f',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'f'
+                            name: 'f',
                           },
                           right: {
                             type: 'BinaryExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             right: {
                               type: 'Literal',
@@ -746,28 +746,28 @@ describe('Statements - For of', () => {
                               value: /([--])|[--]|=+|[-$-+-­-]/y,
                               regex: {
                                 pattern: '([--])|[--]|=+|[-\u001c$-+-­-]',
-                                flags: 'y'
-                              }
+                                flags: 'y',
+                              },
                             },
-                            operator: 'in'
-                          }
+                            operator: 'in',
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
+              elements: [],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([a.b].foo of c) d',
@@ -782,8 +782,8 @@ describe('Statements - For of', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             },
             left: {
               type: 'MemberExpression',
@@ -794,30 +794,30 @@ describe('Statements - For of', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
-                ]
+                      name: 'b',
+                    },
+                  },
+                ],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'c'
+              name: 'c',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
 
     [
@@ -834,7 +834,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -845,10 +845,10 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'puxdlkurdxjjhtxg'
-                  }
-                }
-              ]
+                    name: 'puxdlkurdxjjhtxg',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -863,55 +863,55 @@ describe('Statements - For of', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'ArrowFunctionExpression',
                           generator: false,
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           params: [],
 
                           async: false,
-                          expression: false
+                          expression: false,
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   arguments: [
                     {
                       type: 'SpreadElement',
                       argument: {
                         type: 'Literal',
-                        value: 'ªZW'
-                      }
+                        value: 'ªZW',
+                      },
                     },
                     {
-                      type: 'ThisExpression'
+                      type: 'ThisExpression',
                     },
                     {
-                      type: 'ThisExpression'
+                      type: 'ThisExpression',
                     },
                     {
                       type: 'SpreadElement',
@@ -925,17 +925,17 @@ describe('Statements - For of', () => {
                             generator: false,
                             body: {
                               type: 'Literal',
-                              value: 2646
+                              value: 2646,
                             },
                             params: [],
 
                             async: false,
-                            expression: true
+                            expression: true,
                           },
                           params: [],
 
                           async: false,
-                          expression: true
+                          expression: true,
                         },
                         right: {
                           type: 'FunctionExpression',
@@ -947,28 +947,28 @@ describe('Statements - For of', () => {
                                 type: 'ExpressionStatement',
                                 expression: {
                                   type: 'Literal',
-                                  value: '¡\u0015\u0001'
+                                  value: '¡\u0015\u0001',
                                 },
-                                directive: '¡\u0015\u0001'
-                              }
-                            ]
+                                directive: '¡\u0015\u0001',
+                              },
+                            ],
                           },
                           async: false,
                           generator: true,
 
-                          id: null
+                          id: null,
                         },
-                        operator: '||'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        operator: '||',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({a: b.c} of d) e',
@@ -983,8 +983,8 @@ describe('Statements - For of', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'e'
-              }
+                name: 'e',
+              },
             },
             left: {
               type: 'ObjectPattern',
@@ -993,35 +993,35 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
+                      name: 'c',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'd'
+              name: 'd',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({a: b.c}.foo of d) e',
@@ -1036,8 +1036,8 @@ describe('Statements - For of', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'e'
-              }
+                name: 'e',
+              },
             },
             left: {
               type: 'MemberExpression',
@@ -1048,41 +1048,41 @@ describe('Statements - For of', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'd'
+              name: 'd',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (foo=10;;);',
@@ -1094,25 +1094,25 @@ describe('Statements - For of', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 10
-              }
+                value: 10,
+              },
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for (let=10;;);',
@@ -1124,25 +1124,25 @@ describe('Statements - For of', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'let'
+                name: 'let',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 10
-              }
+                value: 10,
+              },
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for ({x, y} of [{x: 1, y: 2}]) {}',
@@ -1155,7 +1155,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -1164,33 +1164,33 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -1202,40 +1202,40 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let {j} of x) { foo = j }',
@@ -1255,16 +1255,16 @@ describe('Statements - For of', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'j'
-                    }
-                  }
-                }
-              ]
+                      name: 'j',
+                    },
+                  },
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -1281,29 +1281,29 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}',
@@ -1316,11 +1316,11 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
-              elements: []
+              elements: [],
             },
             right: {
               type: 'ArrayExpression',
@@ -1332,7 +1332,7 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'next'
+                        name: 'next',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -1349,37 +1349,37 @@ describe('Statements - For of', () => {
                                     type: 'Property',
                                     key: {
                                       type: 'Identifier',
-                                      name: 'done'
+                                      name: 'done',
                                     },
                                     value: {
                                       type: 'Literal',
-                                      value: true
+                                      value: true,
                                     },
                                     kind: 'init',
                                     computed: false,
                                     method: false,
-                                    shorthand: false
-                                  }
-                                ]
-                              }
-                            }
-                          ]
+                                    shorthand: false,
+                                  },
+                                ],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'return'
+                        name: 'return',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -1391,29 +1391,29 @@ describe('Statements - For of', () => {
                               type: 'ReturnStatement',
                               argument: {
                                 type: 'ObjectExpression',
-                                properties: []
-                              }
-                            }
-                          ]
+                                properties: [],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const {j} of x) { var [foo] = [j] }',
@@ -1442,25 +1442,25 @@ describe('Statements - For of', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 36
+                                column: 36,
                               },
                               end: {
                                 line: 1,
-                                column: 37
-                              }
-                            }
-                          }
+                                column: 37,
+                              },
+                            },
+                          },
                         ],
                         loc: {
                           start: {
                             line: 1,
-                            column: 35
+                            column: 35,
                           },
                           end: {
                             line: 1,
-                            column: 38
-                          }
-                        }
+                            column: 38,
+                          },
+                        },
                       },
                       id: {
                         type: 'ArrayPattern',
@@ -1471,60 +1471,60 @@ describe('Statements - For of', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 28
+                                column: 28,
                               },
                               end: {
                                 line: 1,
-                                column: 31
-                              }
-                            }
-                          }
+                                column: 31,
+                              },
+                            },
+                          },
                         ],
                         loc: {
                           start: {
                             line: 1,
-                            column: 27
+                            column: 27,
                           },
                           end: {
                             line: 1,
-                            column: 32
-                          }
-                        }
+                            column: 32,
+                          },
+                        },
                       },
                       loc: {
                         start: {
                           line: 1,
-                          column: 27
+                          column: 27,
                         },
                         end: {
                           line: 1,
-                          column: 38
-                        }
-                      }
-                    }
+                          column: 38,
+                        },
+                      },
+                    },
                   ],
                   loc: {
                     start: {
                       line: 1,
-                      column: 23
+                      column: 23,
                     },
                     end: {
                       line: 1,
-                      column: 38
-                    }
-                  }
-                }
+                      column: 38,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 21
+                  column: 21,
                 },
                 end: {
                   line: 1,
-                  column: 40
-                }
-              }
+                  column: 40,
+                },
+              },
             },
             left: {
               type: 'VariableDeclaration',
@@ -1545,13 +1545,13 @@ describe('Statements - For of', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 12
+                              column: 12,
                             },
                             end: {
                               line: 1,
-                              column: 13
-                            }
-                          }
+                              column: 13,
+                            },
+                          },
                         },
                         computed: false,
                         value: {
@@ -1560,61 +1560,61 @@ describe('Statements - For of', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 12
+                              column: 12,
                             },
                             end: {
                               line: 1,
-                              column: 13
-                            }
-                          }
+                              column: 13,
+                            },
+                          },
                         },
                         method: false,
                         shorthand: true,
                         loc: {
                           start: {
                             line: 1,
-                            column: 12
+                            column: 12,
                           },
                           end: {
                             line: 1,
-                            column: 13
-                          }
-                        }
-                      }
+                            column: 13,
+                          },
+                        },
+                      },
                     ],
                     loc: {
                       start: {
                         line: 1,
-                        column: 11
+                        column: 11,
                       },
                       end: {
                         line: 1,
-                        column: 14
-                      }
-                    }
+                        column: 14,
+                      },
+                    },
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 11
+                      column: 11,
                     },
                     end: {
                       line: 1,
-                      column: 14
-                    }
-                  }
-                }
+                      column: 14,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 5
+                  column: 5,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
-              }
+                  column: 14,
+                },
+              },
             },
             right: {
               type: 'Identifier',
@@ -1622,38 +1622,38 @@ describe('Statements - For of', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 18
+                  column: 18,
                 },
                 end: {
                   line: 1,
-                  column: 19
-                }
-              }
+                  column: 19,
+                },
+              },
             },
             await: false,
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 40
-              }
-            }
-          }
+                column: 40,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 40
-          }
-        }
-      }
+            column: 40,
+          },
+        },
+      },
     ],
     [
       'for([{a=0}] of b);',
@@ -1669,13 +1669,13 @@ describe('Statements - For of', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 17
+                  column: 17,
                 },
                 end: {
                   line: 1,
-                  column: 18
-                }
-              }
+                  column: 18,
+                },
+              },
             },
             left: {
               type: 'ArrayPattern',
@@ -1691,13 +1691,13 @@ describe('Statements - For of', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 6
+                            column: 6,
                           },
                           end: {
                             line: 1,
-                            column: 7
-                          }
-                        }
+                            column: 7,
+                          },
+                        },
                       },
                       value: {
                         type: 'AssignmentPattern',
@@ -1707,13 +1707,13 @@ describe('Statements - For of', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 6
+                              column: 6,
                             },
                             end: {
                               line: 1,
-                              column: 7
-                            }
-                          }
+                              column: 7,
+                            },
+                          },
                         },
                         right: {
                           type: 'Literal',
@@ -1721,24 +1721,24 @@ describe('Statements - For of', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 8
+                              column: 8,
                             },
                             end: {
                               line: 1,
-                              column: 9
-                            }
-                          }
+                              column: 9,
+                            },
+                          },
                         },
                         loc: {
                           start: {
                             line: 1,
-                            column: 6
+                            column: 6,
                           },
                           end: {
                             line: 1,
-                            column: 9
-                          }
-                        }
+                            column: 9,
+                          },
+                        },
                       },
                       kind: 'init',
                       computed: false,
@@ -1747,37 +1747,37 @@ describe('Statements - For of', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 6
+                          column: 6,
                         },
                         end: {
                           line: 1,
-                          column: 9
-                        }
-                      }
-                    }
+                          column: 9,
+                        },
+                      },
+                    },
                   ],
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 10
-                    }
-                  }
-                }
+                      column: 10,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 4
+                  column: 4,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
-              }
+                  column: 11,
+                },
+              },
             },
             right: {
               type: 'Identifier',
@@ -1785,38 +1785,38 @@ describe('Statements - For of', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 15
+                  column: 15,
                 },
                 end: {
                   line: 1,
-                  column: 16
-                }
-              }
+                  column: 16,
+                },
+              },
             },
             await: false,
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 18
-              }
-            }
-          }
+                column: 18,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 18
-          }
-        }
-      }
+            column: 18,
+          },
+        },
+      },
     ],
     [
       'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
@@ -1829,7 +1829,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -1846,88 +1846,88 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'cover'
+                          name: 'cover',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'cover'
+                            name: 'cover',
                           },
                           right: {
                             type: 'FunctionExpression',
                             params: [],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
 
-                            id: null
-                          }
+                            id: null,
+                          },
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'SequenceExpression',
                             expressions: [
                               {
                                 type: 'Literal',
-                                value: 0
+                                value: 0,
                               },
                               {
                                 type: 'FunctionExpression',
                                 params: [],
                                 body: {
                                   type: 'BlockStatement',
-                                  body: []
+                                  body: [],
                                 },
                                 async: false,
                                 generator: false,
 
-                                id: null
-                              }
-                            ]
-                          }
+                                id: null,
+                              },
+                            ],
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
+                  properties: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var [...{ length }] of [[1, 2, 3]]) {}',
@@ -1940,7 +1940,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -1962,23 +1962,23 @@ describe('Statements - For of', () => {
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'length'
+                                name: 'length',
                               },
                               computed: false,
                               value: {
                                 type: 'Identifier',
-                                name: 'length'
+                                name: 'length',
                               },
                               method: false,
-                              shorthand: true
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              shorthand: true,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -1988,24 +1988,24 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     {
                       type: 'Literal',
-                      value: 3
-                    }
-                  ]
-                }
-              ]
+                      value: 3,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var [...[...x]] of [[1, 2, 3]]) {}',
@@ -2018,7 +2018,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -2039,16 +2039,16 @@ describe('Statements - For of', () => {
                               type: 'RestElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                                name: 'x',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -2058,24 +2058,24 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     {
                       type: 'Literal',
-                      value: 3
-                    }
-                  ]
-                }
-              ]
+                      value: 3,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[]]) {}',
@@ -2088,7 +2088,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -2110,47 +2110,47 @@ describe('Statements - For of', () => {
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               computed: false,
                               value: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               method: false,
-                              shorthand: true
+                              shorthand: true,
                             },
                             {
                               type: 'Property',
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
                               computed: false,
                               value: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
                               method: false,
-                              shorthand: true
+                              shorthand: true,
                             },
                             {
                               type: 'Property',
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'z'
+                                name: 'z',
                               },
                               computed: false,
                               value: {
                                 type: 'Identifier',
-                                name: 'z'
+                                name: 'z',
                               },
                               method: false,
-                              shorthand: true
-                            }
-                          ]
+                              shorthand: true,
+                            },
+                          ],
                         },
                         right: {
                           type: 'ObjectExpression',
@@ -2159,68 +2159,68 @@ describe('Statements - For of', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 44
+                                value: 44,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
+                              shorthand: false,
                             },
                             {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 55
+                                value: 55,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
+                              shorthand: false,
                             },
                             {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'z'
+                                name: 'z',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 66
+                                value: 66,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ArrayExpression',
-                  elements: []
-                }
-              ]
+                  elements: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([] of [[]]) {}',
@@ -2233,25 +2233,25 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
-              elements: []
+              elements: [],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ArrayExpression',
-                  elements: []
-                }
-              ]
+                  elements: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([...{ 0: x, length }] of [[null]]) {}',
@@ -2264,7 +2264,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
@@ -2278,36 +2278,36 @@ describe('Statements - For of', () => {
                         type: 'Property',
                         key: {
                           type: 'Literal',
-                          value: 0
+                          value: 0,
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'length'
+                          name: 'length',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'length'
+                          name: 'length',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -2317,16 +2317,16 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: null
-                    }
-                  ]
-                }
-              ]
+                      value: null,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({x, y} of z);',
@@ -2338,7 +2338,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ObjectPattern',
@@ -2347,42 +2347,42 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'z'
+              name: 'z',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     /*['for (let of, bar; false; ) { }', Context.None, {
       "type": "Program",
@@ -2477,29 +2477,29 @@ describe('Statements - For of', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'j'
-                    }
-                  }
-                }
-              ]
+                      name: 'j',
+                    },
+                  },
+                },
+              ],
             },
             left: {
               type: 'Identifier',
-              name: 'j'
+              name: 'j',
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (j of x) { function foo() {return j} }',
@@ -2523,33 +2523,33 @@ describe('Statements - For of', () => {
                         type: 'ReturnStatement',
                         argument: {
                           type: 'Identifier',
-                          name: 'j'
-                        }
-                      }
-                    ]
+                          name: 'j',
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
+                    name: 'foo',
+                  },
+                },
+              ],
             },
             left: {
               type: 'Identifier',
-              name: 'j'
+              name: 'j',
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (j of x) { const [foo] = [j] }',
@@ -2574,36 +2574,36 @@ describe('Statements - For of', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'j'
-                          }
-                        ]
+                            name: 'j',
+                          },
+                        ],
                       },
                       id: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                            name: 'foo',
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             left: {
               type: 'Identifier',
-              name: 'j'
+              name: 'j',
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'function* g() { for(x of yield) {} }',
@@ -2622,31 +2622,31 @@ describe('Statements - For of', () => {
                   type: 'ForOfStatement',
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
+                    delegate: false,
                   },
-                  await: false
-                }
-              ]
+                  await: false,
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {j} of x) { [foo] = [j] }',
@@ -2669,9 +2669,9 @@ describe('Statements - For of', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     operator: '=',
                     right: {
@@ -2679,13 +2679,13 @@ describe('Statements - For of', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'j'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          name: 'j',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -2702,29 +2702,29 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({x, y} of [{x: 1, y: 2}]) {}',
@@ -2737,7 +2737,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -2746,33 +2746,33 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -2784,40 +2784,40 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       `for ( var i = 0, list = items; i < list.length; i += 1 ) {
@@ -2844,20 +2844,20 @@ describe('Statements - For of', () => {
                         type: 'MemberExpression',
                         object: {
                           type: 'Identifier',
-                          name: 'list'
+                          name: 'list',
                         },
                         computed: true,
                         property: {
                           type: 'Identifier',
-                          name: 'i'
-                        }
+                          name: 'i',
+                        },
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'item'
-                      }
-                    }
-                  ]
+                        name: 'item',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'IfStatement',
@@ -2865,26 +2865,26 @@ describe('Statements - For of', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'item'
+                      name: 'item',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
+                      name: 'foo',
+                    },
                   },
                   consequent: {
                     type: 'BlockStatement',
                     body: [
                       {
                         type: 'ContinueStatement',
-                        label: null
-                      }
-                    ]
+                        label: null,
+                      },
+                    ],
                   },
-                  alternate: null
-                }
-              ]
+                  alternate: null,
+                },
+              ],
             },
             init: {
               type: 'VariableDeclaration',
@@ -2894,61 +2894,61 @@ describe('Statements - For of', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'i'
-                  }
+                    name: 'i',
+                  },
                 },
                 {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'items'
+                    name: 'items',
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'list'
-                  }
-                }
-              ]
+                    name: 'list',
+                  },
+                },
+              ],
             },
             test: {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'i'
+                name: 'i',
               },
               right: {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'list'
+                  name: 'list',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'length'
-                }
+                  name: 'length',
+                },
               },
-              operator: '<'
+              operator: '<',
             },
             update: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'i'
+                name: 'i',
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `for ( let member of [ 'a', 'b', 'c' ] ) {
@@ -2972,7 +2972,7 @@ describe('Statements - For of', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'setTimeout'
+                      name: 'setTimeout',
                     },
                     arguments: [
                       {
@@ -2987,27 +2987,27 @@ describe('Statements - For of', () => {
                                 type: 'CallExpression',
                                 callee: {
                                   type: 'Identifier',
-                                  name: 'doSomething'
+                                  name: 'doSomething',
                                 },
                                 arguments: [
                                   {
                                     type: 'Identifier',
-                                    name: 'member'
-                                  }
-                                ]
-                              }
-                            }
-                          ]
+                                    name: 'member',
+                                  },
+                                ],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
-                      }
-                    ]
-                  }
-                }
-              ]
+                        id: null,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3018,32 +3018,32 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'member'
-                  }
-                }
-              ]
+                    name: 'member',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'Literal',
-                  value: 'a'
+                  value: 'a',
                 },
                 {
                   type: 'Literal',
-                  value: 'b'
+                  value: 'b',
                 },
                 {
                   type: 'Literal',
-                  value: 'c'
-                }
-              ]
+                  value: 'c',
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}',
@@ -3056,11 +3056,11 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
-              elements: []
+              elements: [],
             },
             right: {
               type: 'ArrayExpression',
@@ -3072,7 +3072,7 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'next'
+                        name: 'next',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -3089,37 +3089,37 @@ describe('Statements - For of', () => {
                                     type: 'Property',
                                     key: {
                                       type: 'Identifier',
-                                      name: 'done'
+                                      name: 'done',
                                     },
                                     value: {
                                       type: 'Literal',
-                                      value: true
+                                      value: true,
                                     },
                                     kind: 'init',
                                     computed: false,
                                     method: false,
-                                    shorthand: false
-                                  }
-                                ]
-                              }
-                            }
-                          ]
+                                    shorthand: false,
+                                  },
+                                ],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'return'
+                        name: 'return',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -3131,29 +3131,29 @@ describe('Statements - For of', () => {
                               type: 'ReturnStatement',
                               argument: {
                                 type: 'ObjectExpression',
-                                properties: []
-                              }
-                            }
-                          ]
+                                properties: [],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'function* g() { for(var x of yield) {} }',
@@ -3172,7 +3172,7 @@ describe('Statements - For of', () => {
                   type: 'ForOfStatement',
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   left: {
                     type: 'VariableDeclaration',
@@ -3183,30 +3183,30 @@ describe('Statements - For of', () => {
                         init: null,
                         id: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
+                    delegate: false,
                   },
-                  await: false
-                }
-              ]
+                  await: false,
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(let [a] of b);',
@@ -3218,7 +3218,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3232,21 +3232,21 @@ describe('Statements - For of', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'a',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
@@ -3259,7 +3259,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3276,88 +3276,88 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'cover'
+                          name: 'cover',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'cover'
+                            name: 'cover',
                           },
                           right: {
                             type: 'FunctionExpression',
                             params: [],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
 
-                            id: null
-                          }
+                            id: null,
+                          },
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'SequenceExpression',
                             expressions: [
                               {
                                 type: 'Literal',
-                                value: 0
+                                value: 0,
                               },
                               {
                                 type: 'FunctionExpression',
                                 params: [],
                                 body: {
                                   type: 'BlockStatement',
-                                  body: []
+                                  body: [],
                                 },
                                 async: false,
                                 generator: false,
 
-                                id: null
-                              }
-                            ]
-                          }
+                                id: null,
+                              },
+                            ],
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
+                  properties: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     /**[
       'for({a=0} of b);',
@@ -3418,7 +3418,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3432,12 +3432,12 @@ describe('Statements - For of', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'x',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -3447,16 +3447,16 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 34
-                    }
-                  ]
-                }
-              ]
+                      value: 34,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var [...{ length }] of [[1, 2, 3]]) {}',
@@ -3469,7 +3469,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3491,23 +3491,23 @@ describe('Statements - For of', () => {
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'length'
+                                name: 'length',
                               },
                               computed: false,
                               value: {
                                 type: 'Identifier',
-                                name: 'length'
+                                name: 'length',
                               },
                               method: false,
-                              shorthand: true
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              shorthand: true,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -3517,24 +3517,24 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     {
                       type: 'Literal',
-                      value: 3
-                    }
-                  ]
-                }
-              ]
+                      value: 3,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var a of b);',
@@ -3546,7 +3546,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3557,19 +3557,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let a of b);',
@@ -3581,7 +3581,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3592,19 +3592,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const a of b);',
@@ -3616,7 +3616,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3627,19 +3627,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (a of b);',
@@ -3651,20 +3651,20 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var a of b);',
@@ -3676,7 +3676,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3687,19 +3687,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
+              name: 'b',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({ x: [ x ] } of [{}]) {}',
@@ -3712,7 +3712,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -3721,37 +3721,37 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
+                  properties: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ({ x: [x = yield] } of [{ x: [] }]) {}',
@@ -3764,7 +3764,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -3773,7 +3773,7 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'ArrayPattern',
@@ -3782,21 +3782,21 @@ describe('Statements - For of', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
-                    ]
+                          name: 'yield',
+                        },
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -3808,25 +3808,25 @@ describe('Statements - For of', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'ArrayExpression',
-                        elements: []
+                        elements: [],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     /*  [
       'for ({ x: prop = "x" in {} } of [{}]) {}',
@@ -4066,7 +4066,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -4075,39 +4075,39 @@ describe('Statements - For of', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
+                  properties: [],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for ([...x.y] of [[4, 3, 2]]) {}',
@@ -4120,7 +4120,7 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
@@ -4131,16 +4131,16 @@ describe('Statements - For of', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -4150,24 +4150,24 @@ describe('Statements - For of', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 4
+                      value: 4,
                     },
                     {
                       type: 'Literal',
-                      value: 3
+                      value: 3,
                     },
                     {
                       type: 'Literal',
-                      value: 2
-                    }
-                  ]
-                }
-              ]
+                      value: 2,
+                    },
+                  ],
+                },
+              ],
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (x of let) {}',
@@ -4180,20 +4180,20 @@ describe('Statements - For of', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             right: {
               type: 'Identifier',
-              name: 'let'
+              name: 'let',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (var {x, y} of z);',
@@ -4205,7 +4205,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4222,44 +4222,44 @@ describe('Statements - For of', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'z'
+              name: 'z',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const y of list);',
@@ -4271,7 +4271,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4282,19 +4282,19 @@ describe('Statements - For of', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
-              ]
+                    name: 'y',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'list'
+              name: 'list',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for(const x = 1; ; ) {}',
@@ -4307,7 +4307,7 @@ describe('Statements - For of', () => {
             type: 'ForStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             init: {
               type: 'VariableDeclaration',
@@ -4317,20 +4317,20 @@ describe('Statements - For of', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for (let [p, q] of r);',
@@ -4342,7 +4342,7 @@ describe('Statements - For of', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4356,25 +4356,25 @@ describe('Statements - For of', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'p'
+                        name: 'p',
                       },
                       {
                         type: 'Identifier',
-                        name: 'q'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'q',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'r'
+              name: 'r',
             },
-            await: false
-          }
-        ]
-      }
-    ]
+            await: false,
+          },
+        ],
+      },
+    ],
   ]);
 });

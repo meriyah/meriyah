@@ -81,7 +81,7 @@ describe('Next - Nullish Coalescing', () => {
     `0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2`,
     'a.b ?? c.d ?? e ()',
     'async.await??c.d??async ()',
-    'a.b??c.d??e ()'
+    'a.b??c.d??e ()',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -115,10 +115,10 @@ describe('Next - Nullish Coalescing', () => {
 
     [
       '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-      Context.OptionsNext
+      Context.OptionsNext,
     ],
     ['e ?? f ?? g || h;', Context.OptionsNext | Context.Module | Context.Strict],
-    ['c && d ?? e', Context.OptionsNext | Context.Module | Context.Strict]
+    ['c && d ?? e', Context.OptionsNext | Context.Module | Context.Strict],
   ]);
 
   pass('Next - Null Coalescing (pass)', [
@@ -137,7 +137,7 @@ describe('Next - Nullish Coalescing', () => {
                       computed: false,
                       key: {
                         name: 'x',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
                       kind: 'init',
                       method: false,
@@ -145,31 +145,31 @@ describe('Next - Nullish Coalescing', () => {
                       type: 'Property',
                       value: {
                         type: 'Literal',
-                        value: 'hi'
-                      }
-                    }
+                        value: 'hi',
+                      },
+                    },
                   ],
-                  type: 'ObjectExpression'
+                  type: 'ObjectExpression',
                 },
                 operator: '??',
                 right: {
                   type: 'Literal',
-                  value: 3
+                  value: 3,
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
               property: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'MemberExpression'
+              type: 'MemberExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `'hi' ?? 3`,
@@ -180,21 +180,21 @@ describe('Next - Nullish Coalescing', () => {
             expression: {
               left: {
                 type: 'Literal',
-                value: 'hi'
+                value: 'hi',
               },
               operator: '??',
               right: {
                 type: 'Literal',
-                value: 3
+                value: 3,
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `undefined ?? 3`,
@@ -205,21 +205,21 @@ describe('Next - Nullish Coalescing', () => {
             expression: {
               left: {
                 name: 'undefined',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '??',
               right: {
                 type: 'Literal',
-                value: 3
+                value: 3,
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `1 << null ?? 3`,
@@ -231,28 +231,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 operator: '<<',
                 right: {
                   type: 'Literal',
-                  value: null
+                  value: null,
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               operator: '??',
               right: {
                 type: 'Literal',
-                value: 3
+                value: 3,
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `1 / null ?? 3`,
@@ -264,28 +264,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 operator: '/',
                 right: {
                   type: 'Literal',
-                  value: null
+                  value: null,
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               operator: '??',
               right: {
                 type: 'Literal',
-                value: 3
+                value: 3,
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `a ?? (b && c);`,
@@ -296,29 +296,29 @@ describe('Next - Nullish Coalescing', () => {
             expression: {
               left: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '??',
               right: {
                 left: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '&&',
                 right: {
                   name: 'c',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `a
@@ -332,28 +332,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '??',
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
               operator: '??',
               right: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `foo ?? 1;`,
@@ -364,21 +364,21 @@ describe('Next - Nullish Coalescing', () => {
             expression: {
               left: {
                 name: 'foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '??',
               right: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `a ?? b ?? c;`,
@@ -390,28 +390,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '??',
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
               operator: '??',
               right: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `a ?? (b || c);`,
@@ -422,29 +422,29 @@ describe('Next - Nullish Coalescing', () => {
             expression: {
               left: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '??',
               right: {
                 left: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '||',
                 right: {
                   name: 'c',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `(a || b) ?? c;`,
@@ -456,28 +456,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '||',
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
               operator: '??',
               right: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `(a && b) ?? c`,
@@ -489,28 +489,28 @@ describe('Next - Nullish Coalescing', () => {
               left: {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '&&',
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'LogicalExpression'
+                type: 'LogicalExpression',
               },
               operator: '??',
               right: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

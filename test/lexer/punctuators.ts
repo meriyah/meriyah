@@ -62,7 +62,7 @@ describe('src/lexer/scan', () => {
     [Context.None, Token.LogicalShiftRight, '>>>'],
     [Context.None, Token.BitwiseAnd, '&'],
     [Context.None, Token.BitwiseOr, '|'],
-    [Context.None, Token.BitwiseXor, '^']
+    [Context.None, Token.BitwiseXor, '^'],
   ];
 
   for (const [ctx, token, op] of tokens) {
@@ -74,13 +74,13 @@ describe('src/lexer/scan', () => {
         {
           token: found,
           hasNext: state.index < state.source.length,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
 
@@ -92,13 +92,13 @@ describe('src/lexer/scan', () => {
         {
           token: found,
           hasNext: state.index < state.source.length,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: true,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

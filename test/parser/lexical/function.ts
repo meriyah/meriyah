@@ -154,7 +154,7 @@ describe('Lexical - Function', () => {
     ['function foo() {try {} catch({z1, x:{z:[z1]}}) {} }', Context.OptionsLexical],
     ['function foo() {try {} catch([x]) { let x = 10;} }', Context.OptionsLexical],
     ['function foo() {try {} catch([x]) { function x() {} } }', Context.OptionsLexical],
-    ['function foo() {try {} catch([x]) { var x = 10;} }', Context.OptionsLexical]
+    ['function foo() {try {} catch([x]) { var x = 10;} }', Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -247,7 +247,7 @@ describe('Lexical - Function', () => {
           z = y;
       }
       return z;
-    }`
+    }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -316,7 +316,7 @@ function a() {}`,
     '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
     '(function foo(x) { {  function x() {} } })(1);',
     '(function foo([[x]]) { { function x() {}}})([[1]]);',
-    'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()'
+    'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -440,7 +440,7 @@ function a() {}`,
         }
 
         return 10;
-    }`
+    }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -72,7 +72,7 @@ describe('Miscellaneous - Directives', () => {
     ` function fun() {
               "use strict"
                      var public = 1;
-          }`
+          }`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -165,7 +165,7 @@ describe('Miscellaneous - Directives', () => {
     String.raw`"use strict"; "\0";`,
     String.raw`"\0"; "use strict";`,
     String.raw`function a() {"use strict"; "\0";}`,
-    String.raw`function a() {"\0"; "use strict";}`
+    String.raw`function a() {"\0"; "use strict";}`,
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
@@ -198,7 +198,7 @@ describe('Miscellaneous - Directives', () => {
     [String.raw`"use strict" "Hello\312World"`, Context.None],
     ['"use strict" \n "Hello\\312World"', Context.None],
     [String.raw`function a() { "use strict" "Hello\312World" }`, Context.None],
-    ['function a() { "use strict" \n "Hello\\312World" }', Context.None]
+    ['function a() { "use strict" \n "Hello\\312World" }', Context.None],
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
@@ -215,7 +215,7 @@ describe('Miscellaneous - Directives', () => {
                 end: 12,
                 range: [0, 12],
                 type: 'Literal',
-                value: 'use strict'
+                value: 'use strict',
               },
               operator: '+',
               right: {
@@ -224,25 +224,25 @@ describe('Miscellaneous - Directives', () => {
                 end: 31,
                 range: [15, 31],
                 type: 'Literal',
-                value: 'HelloÊWorld'
+                value: 'HelloÊWorld',
               },
               start: 0,
               end: 31,
               range: [0, 31],
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
             start: 0,
             end: 31,
             range: [0, 31],
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'module',
         start: 0,
         end: 31,
         range: [0, 31],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '("use strict"); foo = 42;',
@@ -256,12 +256,12 @@ describe('Miscellaneous - Directives', () => {
               end: 13,
               range: [1, 13],
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
             start: 0,
             end: 15,
             range: [0, 15],
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
@@ -270,7 +270,7 @@ describe('Miscellaneous - Directives', () => {
                 start: 16,
                 end: 19,
                 range: [16, 19],
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
@@ -279,25 +279,25 @@ describe('Miscellaneous - Directives', () => {
                 end: 24,
                 range: [22, 24],
                 type: 'Literal',
-                value: 42
+                value: 42,
               },
               start: 16,
               end: 24,
               range: [16, 24],
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
             start: 16,
             end: 25,
             range: [16, 25],
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'module',
         start: 0,
         end: 25,
         range: [0, 25],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       String.raw`"use strict", "Hello\312World"`,
@@ -313,7 +313,7 @@ describe('Miscellaneous - Directives', () => {
                   range: [0, 12],
                   type: 'Literal',
                   value: 'use strict',
-                  raw: '"use strict"'
+                  raw: '"use strict"',
                 },
                 {
                   start: 14,
@@ -321,26 +321,26 @@ describe('Miscellaneous - Directives', () => {
                   range: [14, 30],
                   type: 'Literal',
                   value: 'HelloÊWorld',
-                  raw: String.raw`"Hello\312World"`
-                }
+                  raw: String.raw`"Hello\312World"`,
+                },
               ],
               start: 0,
               end: 30,
               range: [0, 30],
-              type: 'SequenceExpression'
+              type: 'SequenceExpression',
             },
             start: 0,
             end: 30,
             range: [0, 30],
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
         start: 0,
         end: 30,
         range: [0, 30],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '"use asm" \n "use strict"',
@@ -354,13 +354,13 @@ describe('Miscellaneous - Directives', () => {
               range: [0, 9],
               type: 'Literal',
               value: 'use asm',
-              raw: '"use asm"'
+              raw: '"use asm"',
             },
             directive: 'use asm',
             start: 0,
             end: 9,
             range: [0, 9],
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
@@ -369,21 +369,21 @@ describe('Miscellaneous - Directives', () => {
               range: [12, 24],
               type: 'Literal',
               value: 'use strict',
-              raw: '"use strict"'
+              raw: '"use strict"',
             },
             directive: 'use strict',
             start: 12,
             end: 24,
             range: [12, 24],
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
         start: 0,
         end: 24,
         range: [0, 24],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '"use strict"; + 1',
@@ -399,12 +399,12 @@ describe('Miscellaneous - Directives', () => {
               value: 'use strict',
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             directive: 'use strict',
             start: 0,
             end: 13,
-            range: [0, 13]
+            range: [0, 13],
           },
           {
             type: 'ExpressionStatement',
@@ -416,22 +416,22 @@ describe('Miscellaneous - Directives', () => {
                 value: 1,
                 start: 16,
                 end: 17,
-                range: [16, 17]
+                range: [16, 17],
               },
               prefix: true,
               start: 14,
               end: 17,
-              range: [14, 17]
+              range: [14, 17],
             },
             start: 14,
             end: 17,
-            range: [14, 17]
-          }
+            range: [14, 17],
+          },
         ],
         start: 0,
         end: 17,
-        range: [0, 17]
-      }
+        range: [0, 17],
+      },
     ],
     [
       '("use strict"); foo = 42;',
@@ -447,11 +447,11 @@ describe('Miscellaneous - Directives', () => {
               value: 'use strict',
               start: 1,
               end: 13,
-              range: [1, 13]
+              range: [1, 13],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
+            range: [0, 15],
           },
           {
             type: 'ExpressionStatement',
@@ -462,7 +462,7 @@ describe('Miscellaneous - Directives', () => {
                 name: 'foo',
                 start: 16,
                 end: 19,
-                range: [16, 19]
+                range: [16, 19],
               },
               operator: '=',
               right: {
@@ -470,21 +470,21 @@ describe('Miscellaneous - Directives', () => {
                 value: 42,
                 start: 22,
                 end: 24,
-                range: [22, 24]
+                range: [22, 24],
               },
               start: 16,
               end: 24,
-              range: [16, 24]
+              range: [16, 24],
             },
             start: 16,
             end: 25,
-            range: [16, 25]
-          }
+            range: [16, 25],
+          },
         ],
         start: 0,
         end: 25,
-        range: [0, 25]
-      }
+        range: [0, 25],
+      },
     ],
     [
       '"\\u0061b"\n"c\\u0064"',
@@ -497,20 +497,20 @@ describe('Miscellaneous - Directives', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'ab'
+              value: 'ab',
             },
-            directive: String.raw`\u0061b`
+            directive: String.raw`\u0061b`,
           },
           {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'cd'
+              value: 'cd',
             },
-            directive: String.raw`c\u0064`
-          }
-        ]
-      }
+            directive: String.raw`c\u0064`,
+          },
+        ],
+      },
     ],
     [
       '"\\u0061b"\n"c\\u0064"',
@@ -523,20 +523,20 @@ describe('Miscellaneous - Directives', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'ab'
+              value: 'ab',
             },
-            directive: String.raw`\u0061b`
+            directive: String.raw`\u0061b`,
           },
           {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'cd'
+              value: 'cd',
             },
-            directive: String.raw`c\u0064`
-          }
-        ]
-      }
-    ]
+            directive: String.raw`c\u0064`,
+          },
+        ],
+      },
+    ],
   ]);
 });

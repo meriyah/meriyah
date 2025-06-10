@@ -4,7 +4,7 @@ export {
   skipSingleLineComment,
   skipHashBang,
   skipSingleHTMLComment,
-  CommentType
+  CommentType,
 } from './comments';
 export {
   advanceChar,
@@ -15,7 +15,7 @@ export {
   scanNewLine,
   LexerState,
   NumberKind,
-  convertTokenType
+  convertTokenType,
 } from './common';
 export { CharTypes, CharFlags, isIdentifierStart, isIdentifierPart } from './charClassifier';
 export {
@@ -23,7 +23,7 @@ export {
   scanIdentifierSlowCase,
   scanUnicodeIdentifier,
   scanPrivateIdentifier,
-  scanUnicodeEscape
+  scanUnicodeEscape,
 } from './identifier';
 export { scanString } from './string';
 export { scanNumber } from './numeric';

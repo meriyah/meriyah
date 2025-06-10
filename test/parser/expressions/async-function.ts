@@ -60,7 +60,7 @@ describe('Expressions - Async function', () => {
     'async(...a,) => b',
     'async(...a, b) => b',
     `(async
-                function f() {})`
+                function f() {})`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -149,7 +149,7 @@ describe('Expressions - Async function', () => {
     String.raw`a = async p\u0061ckage => { }`,
     'a = (async package => 1)',
     'a = (async package => { })',
-    String.raw`a = (async p\u0061ckage => { })`
+    String.raw`a = (async p\u0061ckage => { })`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -239,7 +239,7 @@ describe('Expressions - Async function', () => {
     ['a = async (package) => { "use strict" }', Context.None],
     [String.raw`a = async (p\u0061ckage) => { "use strict" }`, Context.None],
     ['a = (async (package) => { "use strict" })', Context.None],
-    [String.raw`a = (async (p\u0061ckage) => { "use strict" })`, Context.None]
+    [String.raw`a = (async (p\u0061ckage) => { "use strict" })`, Context.None],
   ]);
   pass('Expressions - Async function (pass)', [
     [
@@ -256,35 +256,35 @@ describe('Expressions - Async function', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
-                    value: 39
-                  }
-                }
+                    value: 39,
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f() { let y = await x * x }',
@@ -311,34 +311,34 @@ describe('Expressions - Async function', () => {
                           type: 'AwaitExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'x'
-                          }
+                            name: 'x',
+                          },
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
-                        operator: '*'
+                        operator: '*',
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'y',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f() {} var f;',
@@ -352,15 +352,15 @@ describe('Expressions - Async function', () => {
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
+              name: 'f',
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -371,13 +371,13 @@ describe('Expressions - Async function', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'function g() {   async function f() {} var f;   }',
@@ -398,7 +398,7 @@ describe('Expressions - Async function', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'g'
+              name: 'g',
             },
             generator: false,
             async: false,
@@ -419,7 +419,7 @@ describe('Expressions - Async function', () => {
                     start: 32,
                     end: 33,
                     range: [32, 33],
-                    name: 'f'
+                    name: 'f',
                   },
                   generator: false,
                   async: true,
@@ -429,8 +429,8 @@ describe('Expressions - Async function', () => {
                     start: 36,
                     end: 38,
                     range: [36, 38],
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 {
                   type: 'VariableDeclaration',
@@ -448,19 +448,19 @@ describe('Expressions - Async function', () => {
                         start: 43,
                         end: 44,
                         range: [43, 44],
-                        name: 'f'
+                        name: 'f',
                       },
-                      init: null
-                    }
+                      init: null,
+                    },
                   ],
-                  kind: 'var'
-                }
-              ]
-            }
-          }
+                  kind: 'var',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async function(){})',
@@ -476,16 +476,16 @@ describe('Expressions - Async function', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function foo() { }.prototype)',
@@ -516,7 +516,7 @@ describe('Expressions - Async function', () => {
                   start: 16,
                   end: 19,
                   range: [16, 19],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 generator: false,
                 async: true,
@@ -526,22 +526,22 @@ describe('Expressions - Async function', () => {
                   start: 22,
                   end: 25,
                   range: [22, 25],
-                  body: []
-                }
+                  body: [],
+                },
               },
               property: {
                 type: 'Identifier',
                 start: 26,
                 end: 35,
                 range: [26, 35],
-                name: 'prototype'
+                name: 'prototype',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function foo(a = class {async bar() { await b }}) {}',
@@ -562,7 +562,7 @@ describe('Expressions - Async function', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -577,7 +577,7 @@ describe('Expressions - Async function', () => {
                   start: 19,
                   end: 20,
                   range: [19, 20],
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'ClassExpression',
@@ -605,7 +605,7 @@ describe('Expressions - Async function', () => {
                           start: 36,
                           end: 39,
                           range: [36, 39],
-                          name: 'bar'
+                          name: 'bar',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -637,30 +637,30 @@ describe('Expressions - Async function', () => {
                                     start: 50,
                                     end: 51,
                                     range: [50, 51],
-                                    name: 'b'
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                                    name: 'b',
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 56,
               end: 58,
               range: [56, 58],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(function f() { async function yield() {} })',
@@ -682,29 +682,29 @@ describe('Expressions - Async function', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
 
                     id: {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
-                  }
-                ]
+                      name: 'yield',
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ async [yield]() {} });',
@@ -722,29 +722,29 @@ describe('Expressions - Async function', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: true,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'f(async function(x) { await x })',
@@ -770,7 +770,7 @@ describe('Expressions - Async function', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
@@ -787,8 +787,8 @@ describe('Expressions - Async function', () => {
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -811,19 +811,19 @@ describe('Expressions - Async function', () => {
                             start: 28,
                             end: 29,
                             range: [28, 29],
-                            name: 'x'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            name: 'x',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(function* g() { (async function yield() {}); })',
@@ -849,7 +849,7 @@ describe('Expressions - Async function', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'g'
+                name: 'g',
               },
               generator: true,
               async: false,
@@ -875,7 +875,7 @@ describe('Expressions - Async function', () => {
                         start: 33,
                         end: 38,
                         range: [33, 38],
-                        name: 'yield'
+                        name: 'yield',
                       },
                       generator: false,
                       async: true,
@@ -885,17 +885,17 @@ describe('Expressions - Async function', () => {
                         start: 41,
                         end: 43,
                         range: [41, 43],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"use strict"; ({ async yield() {} });',
@@ -908,9 +908,9 @@ describe('Expressions - Async function', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -921,29 +921,29 @@ describe('Expressions - Async function', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f() { ({ async [yield]() {} }); })',
@@ -969,41 +969,41 @@ describe('Expressions - Async function', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'yield'
+                            name: 'yield',
                           },
                           value: {
                             type: 'FunctionExpression',
                             params: [],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: true,
                             generator: false,
 
-                            id: null
+                            id: null,
                           },
                           kind: 'init',
                           computed: true,
                           method: true,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = async function(a) { await a }',
@@ -1018,7 +1018,7 @@ describe('Expressions - Async function', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1026,8 +1026,8 @@ describe('Expressions - Async function', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
@@ -1038,21 +1038,21 @@ describe('Expressions - Async function', () => {
                         type: 'AwaitExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
-                    }
-                  ]
+                          name: 'a',
+                        },
+                      },
+                    },
+                  ],
                 },
                 async: true,
                 generator: false,
 
-                id: null
-              }
-            }
-          }
-        ]
-      }
+                id: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'class X { static async await(){} }',
@@ -1073,7 +1073,7 @@ describe('Expressions - Async function', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'X'
+              name: 'X',
             },
             superClass: null,
             body: {
@@ -1095,7 +1095,7 @@ describe('Expressions - Async function', () => {
                     start: 23,
                     end: 28,
                     range: [23, 28],
-                    name: 'await'
+                    name: 'await',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1111,16 +1111,16 @@ describe('Expressions - Async function', () => {
                       start: 30,
                       end: 32,
                       range: [30, 32],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var O = { async 0(eval) {} }',
@@ -1142,40 +1142,40 @@ describe('Expressions - Async function', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'eval'
-                          }
+                            name: 'eval',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'O'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'O',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '(async function foo(a, b = 39,) { })',
@@ -1201,7 +1201,7 @@ describe('Expressions - Async function', () => {
                 start: 16,
                 end: 19,
                 range: [16, 19],
-                name: 'foo'
+                name: 'foo',
               },
               generator: false,
               async: true,
@@ -1211,7 +1211,7 @@ describe('Expressions - Async function', () => {
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1223,29 +1223,29 @@ describe('Expressions - Async function', () => {
                     start: 23,
                     end: 24,
                     range: [23, 24],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
                     start: 27,
                     end: 29,
                     range: [27, 29],
-                    value: 39
-                  }
-                }
+                    value: 39,
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 32,
                 end: 35,
                 range: [32, 35],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async function*(a = b +=1, c = d += 1, e = f += 1, g = h += 1, i = j += 1, k = l +=1) {})',
@@ -1280,7 +1280,7 @@ describe('Expressions - Async function', () => {
                     start: 17,
                     end: 18,
                     range: [17, 18],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1293,16 +1293,16 @@ describe('Expressions - Async function', () => {
                       start: 21,
                       end: 22,
                       range: [21, 22],
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Literal',
                       start: 25,
                       end: 26,
                       range: [25, 26],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1314,7 +1314,7 @@ describe('Expressions - Async function', () => {
                     start: 28,
                     end: 29,
                     range: [28, 29],
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1327,16 +1327,16 @@ describe('Expressions - Async function', () => {
                       start: 32,
                       end: 33,
                       range: [32, 33],
-                      name: 'd'
+                      name: 'd',
                     },
                     right: {
                       type: 'Literal',
                       start: 37,
                       end: 38,
                       range: [37, 38],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1348,7 +1348,7 @@ describe('Expressions - Async function', () => {
                     start: 40,
                     end: 41,
                     range: [40, 41],
-                    name: 'e'
+                    name: 'e',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1361,16 +1361,16 @@ describe('Expressions - Async function', () => {
                       start: 44,
                       end: 45,
                       range: [44, 45],
-                      name: 'f'
+                      name: 'f',
                     },
                     right: {
                       type: 'Literal',
                       start: 49,
                       end: 50,
                       range: [49, 50],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1382,7 +1382,7 @@ describe('Expressions - Async function', () => {
                     start: 52,
                     end: 53,
                     range: [52, 53],
-                    name: 'g'
+                    name: 'g',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1395,16 +1395,16 @@ describe('Expressions - Async function', () => {
                       start: 56,
                       end: 57,
                       range: [56, 57],
-                      name: 'h'
+                      name: 'h',
                     },
                     right: {
                       type: 'Literal',
                       start: 61,
                       end: 62,
                       range: [61, 62],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1416,7 +1416,7 @@ describe('Expressions - Async function', () => {
                     start: 64,
                     end: 65,
                     range: [64, 65],
-                    name: 'i'
+                    name: 'i',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1429,16 +1429,16 @@ describe('Expressions - Async function', () => {
                       start: 68,
                       end: 69,
                       range: [68, 69],
-                      name: 'j'
+                      name: 'j',
                     },
                     right: {
                       type: 'Literal',
                       start: 73,
                       end: 74,
                       range: [73, 74],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1450,7 +1450,7 @@ describe('Expressions - Async function', () => {
                     start: 76,
                     end: 77,
                     range: [76, 77],
-                    name: 'k'
+                    name: 'k',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -1463,30 +1463,30 @@ describe('Expressions - Async function', () => {
                       start: 80,
                       end: 81,
                       range: [80, 81],
-                      name: 'l'
+                      name: 'l',
                     },
                     right: {
                       type: 'Literal',
                       start: 84,
                       end: 85,
                       range: [84, 85],
-                      value: 1
-                    }
-                  }
-                }
+                      value: 1,
+                    },
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 87,
                 end: 89,
                 range: [87, 89],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async function foo(a,) {})',
@@ -1502,24 +1502,24 @@ describe('Expressions - Async function', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1538,7 +1538,7 @@ describe('Expressions - Async function', () => {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: '_'
+                    name: '_',
                   },
                   right: {
                     type: 'CallExpression',
@@ -1547,32 +1547,32 @@ describe('Expressions - Async function', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
-                    arguments: []
-                  }
-                }
+                    arguments: [],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
-    ]
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

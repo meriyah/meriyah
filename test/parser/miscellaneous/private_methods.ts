@@ -67,7 +67,7 @@ describe('Next - Private methods', () => {
     ['class A { static set #x(v) {} static set #x(v) {} }', Context.OptionsLexical],
     ['class A { #x; fn() { return this.#y } }', Context.OptionsLexical],
     ['class A { #x } function fn() { return this.#y }', Context.OptionsLexical],
-    ['class A extends B { #x() {} method() { super.#x() }  }', Context.OptionsLexical]
+    ['class A extends B { #x() {} method() { super.#x() }  }', Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -116,7 +116,7 @@ describe('Next - Private methods', () => {
     'static #x = /*{ initializer }*/;',
     '#x = () => super();',
     '#x = super();',
-    String.raw`#\u0000;`
+    String.raw`#\u0000;`,
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
@@ -213,7 +213,7 @@ describe('Next - Private methods', () => {
     'static #\\u{61}\n',
     String.raw`static #\u{61};`,
     String.raw`static #\u{61}bc=2`,
-    'static #\\u{61} = 2;\n'
+    'static #\\u{61} = 2;\n',
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -275,7 +275,7 @@ describe('Next - Private methods', () => {
       \n
         new D;\n
         new E;\n
-      }\n}`
+      }\n}`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -297,27 +297,27 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'key',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static async #_(value) { return await value;} }`,
@@ -331,7 +331,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: '_',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
 
                   kind: 'method',
@@ -345,41 +345,41 @@ describe('Next - Private methods', () => {
                           argument: {
                             argument: {
                               name: 'value',
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
-                            type: 'AwaitExpression'
+                            type: 'AwaitExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'value',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { #a; #b; }`,
@@ -396,7 +396,7 @@ describe('Next - Private methods', () => {
               name: 'A',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -410,14 +410,14 @@ describe('Next - Private methods', () => {
                     name: 'a',
                     start: 10,
                     end: 12,
-                    range: [10, 12]
+                    range: [10, 12],
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
                   end: 13,
-                  range: [10, 13]
+                  range: [10, 13],
                 },
                 {
                   type: 'PropertyDefinition',
@@ -427,29 +427,29 @@ describe('Next - Private methods', () => {
                     name: 'b',
                     start: 14,
                     end: 16,
-                    range: [14, 16]
+                    range: [14, 16],
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 14,
                   end: 17,
-                  range: [14, 17]
-                }
+                  range: [14, 17],
+                },
               ],
               start: 8,
               end: 19,
-              range: [8, 19]
+              range: [8, 19],
             },
             start: 0,
             end: 19,
-            range: [0, 19]
-          }
+            range: [0, 19],
+          },
         ],
         start: 0,
         end: 19,
-        range: [0, 19]
-      }
+        range: [0, 19],
+      },
     ],
     [
       `class A { #yield = b[c]; }`,
@@ -466,7 +466,7 @@ describe('Next - Private methods', () => {
               name: 'A',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -480,7 +480,7 @@ describe('Next - Private methods', () => {
                     name: 'yield',
                     start: 10,
                     end: 16,
-                    range: [10, 16]
+                    range: [10, 16],
                   },
                   value: {
                     type: 'MemberExpression',
@@ -489,7 +489,7 @@ describe('Next - Private methods', () => {
                       name: 'b',
                       start: 19,
                       end: 20,
-                      range: [19, 20]
+                      range: [19, 20],
                     },
                     computed: true,
                     property: {
@@ -497,32 +497,32 @@ describe('Next - Private methods', () => {
                       name: 'c',
                       start: 21,
                       end: 22,
-                      range: [21, 22]
+                      range: [21, 22],
                     },
                     start: 19,
                     end: 23,
-                    range: [19, 23]
+                    range: [19, 23],
                   },
                   computed: false,
                   static: false,
                   start: 10,
                   end: 24,
-                  range: [10, 24]
-                }
+                  range: [10, 24],
+                },
               ],
               start: 8,
               end: 26,
-              range: [8, 26]
+              range: [8, 26],
             },
             start: 0,
             end: 26,
-            range: [0, 26]
-          }
+            range: [0, 26],
+          },
         ],
         start: 0,
         end: 26,
-        range: [0, 26]
-      }
+        range: [0, 26],
+      },
     ],
     [
       `class A { #yield = foo + bar; }`,
@@ -539,7 +539,7 @@ describe('Next - Private methods', () => {
               name: 'A',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -553,7 +553,7 @@ describe('Next - Private methods', () => {
                     name: 'yield',
                     start: 10,
                     end: 16,
-                    range: [10, 16]
+                    range: [10, 16],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -562,40 +562,40 @@ describe('Next - Private methods', () => {
                       name: 'foo',
                       start: 19,
                       end: 22,
-                      range: [19, 22]
+                      range: [19, 22],
                     },
                     right: {
                       type: 'Identifier',
                       name: 'bar',
                       start: 25,
                       end: 28,
-                      range: [25, 28]
+                      range: [25, 28],
                     },
                     operator: '+',
                     start: 19,
                     end: 28,
-                    range: [19, 28]
+                    range: [19, 28],
                   },
                   computed: false,
                   static: false,
                   start: 10,
                   end: 29,
-                  range: [10, 29]
-                }
+                  range: [10, 29],
+                },
               ],
               start: 8,
               end: 31,
-              range: [8, 31]
+              range: [8, 31],
             },
             start: 0,
             end: 31,
-            range: [0, 31]
-          }
+            range: [0, 31],
+          },
         ],
         start: 0,
         end: 31,
-        range: [0, 31]
-      }
+        range: [0, 31],
+      },
     ],
     [
       `class A { #yield; }`,
@@ -612,7 +612,7 @@ describe('Next - Private methods', () => {
               name: 'A',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -626,29 +626,29 @@ describe('Next - Private methods', () => {
                     name: 'yield',
                     start: 10,
                     end: 16,
-                    range: [10, 16]
+                    range: [10, 16],
                   },
                   value: null,
                   computed: false,
                   static: false,
                   start: 10,
                   end: 17,
-                  range: [10, 17]
-                }
+                  range: [10, 17],
+                },
               ],
               start: 8,
               end: 19,
-              range: [8, 19]
+              range: [8, 19],
             },
             start: 0,
             end: 19,
-            range: [0, 19]
-          }
+            range: [0, 19],
+          },
         ],
         start: 0,
         end: 19,
-        range: [0, 19]
-      }
+        range: [0, 19],
+      },
     ],
     [
       `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
@@ -662,7 +662,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: 'gen',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'method',
                   static: true,
@@ -680,15 +680,15 @@ describe('Next - Private methods', () => {
                                   argument: {
                                     argument: null,
                                     delegate: false,
-                                    type: 'YieldExpression'
+                                    type: 'YieldExpression',
                                   },
-                                  type: 'SpreadElement'
+                                  type: 'SpreadElement',
                                 },
                                 {
                                   computed: false,
                                   key: {
                                     name: 'y',
-                                    type: 'Identifier'
+                                    type: 'Identifier',
                                   },
                                   kind: 'init',
                                   method: false,
@@ -696,44 +696,44 @@ describe('Next - Private methods', () => {
                                   type: 'Property',
                                   value: {
                                     type: 'Literal',
-                                    value: 1
-                                  }
+                                    value: 1,
+                                  },
                                 },
                                 {
                                   argument: {
                                     argument: {
                                       argument: null,
                                       delegate: false,
-                                      type: 'YieldExpression'
+                                      type: 'YieldExpression',
                                     },
                                     delegate: false,
-                                    type: 'YieldExpression'
+                                    type: 'YieldExpression',
                                   },
-                                  type: 'SpreadElement'
-                                }
+                                  type: 'SpreadElement',
+                                },
                               ],
-                              type: 'ObjectExpression'
+                              type: 'ObjectExpression',
                             },
                             delegate: false,
-                            type: 'YieldExpression'
+                            type: 'YieldExpression',
                           },
-                          type: 'ExpressionStatement'
-                        }
+                          type: 'ExpressionStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'gen',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'get',
                   static: true,
@@ -746,40 +746,40 @@ describe('Next - Private methods', () => {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: 'gen',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'C',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
@@ -793,7 +793,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: 'gen',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'method',
                   static: true,
@@ -812,36 +812,36 @@ describe('Next - Private methods', () => {
                                     argument: {
                                       argument: null,
                                       delegate: false,
-                                      type: 'YieldExpression'
+                                      type: 'YieldExpression',
                                     },
                                     delegate: false,
-                                    type: 'YieldExpression'
+                                    type: 'YieldExpression',
                                   },
-                                  type: 'SpreadElement'
-                                }
+                                  type: 'SpreadElement',
+                                },
                               ],
-                              type: 'ArrayExpression'
+                              type: 'ArrayExpression',
                             },
                             delegate: false,
-                            type: 'YieldExpression'
+                            type: 'YieldExpression',
                           },
-                          type: 'ExpressionStatement'
-                        }
+                          type: 'ExpressionStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'gen',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'get',
                   static: true,
@@ -854,40 +854,40 @@ describe('Next - Private methods', () => {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: 'gen',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'C',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
@@ -901,7 +901,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: '℘',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'get',
                   static: false,
@@ -911,19 +911,19 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
                   key: {
                     name: '℘',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'set',
                   static: false,
@@ -933,25 +933,25 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'x',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'a',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -964,31 +964,31 @@ describe('Next - Private methods', () => {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: '℘',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'b',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -1002,55 +1002,55 @@ describe('Next - Private methods', () => {
                             left: {
                               computed: false,
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               property: {
                                 name: '℘',
-                                type: 'PrivateIdentifier'
+                                type: 'PrivateIdentifier',
                               },
-                              type: 'MemberExpression'
+                              type: 'MemberExpression',
                             },
                             operator: '=',
                             right: {
                               name: 'x',
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
-                            type: 'AssignmentExpression'
+                            type: 'AssignmentExpression',
                           },
-                          type: 'ExpressionStatement'
-                        }
+                          type: 'ExpressionStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'value',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'C',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            type: 'ClassDeclaration',
           },
           {
-            type: 'EmptyStatement'
-          }
+            type: 'EmptyStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class C { #m() { return 42; } get ref() { return this.#m; } }`,
@@ -1064,7 +1064,7 @@ describe('Next - Private methods', () => {
 
             id: {
               type: 'Identifier',
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -1078,7 +1078,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'm'
+                    name: 'm',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1090,15 +1090,15 @@ describe('Next - Private methods', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 42
-                          }
-                        }
-                      ]
+                            value: 42,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1108,7 +1108,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'Identifier',
-                    name: 'ref'
+                    name: 'ref',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1121,27 +1121,27 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'm'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'm',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A { #foo = bar; }`,
@@ -1156,30 +1156,30 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'foo',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
                   value: {
                     name: 'bar',
-                    type: 'Identifier'
-                  }
-                }
+                    type: 'Identifier',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class Cl {
@@ -1238,7 +1238,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Cl'
+              name: 'Cl',
             },
             superClass: null,
 
@@ -1249,14 +1249,14 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateField'
+                    name: 'privateField',
                   },
                   value: {
                     type: 'Literal',
-                    value: 'top secret string'
+                    value: 'top secret string',
                   },
                   static: false,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'MethodDefinition',
@@ -1265,7 +1265,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
 
                   value: {
@@ -1281,27 +1281,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicField'
-                              }
+                                name: 'publicField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 'not secret string'
-                            }
-                          }
-                        }
-                      ]
+                              value: 'not secret string',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1311,7 +1311,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateFieldValue'
+                    name: 'privateFieldValue',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1324,21 +1324,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'privateField'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'privateField',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1348,15 +1348,15 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateFieldValue'
+                    name: 'privateFieldValue',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'newValue'
-                      }
+                        name: 'newValue',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1368,27 +1368,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateField'
-                              }
+                                name: 'privateField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'newValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'newValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1397,7 +1397,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicGetPrivateField'
+                    name: 'publicGetPrivateField',
                   },
 
                   value: {
@@ -1411,21 +1411,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'privateFieldValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'privateFieldValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1434,7 +1434,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicSetPrivateField'
+                    name: 'publicSetPrivateField',
                   },
 
                   value: {
@@ -1442,8 +1442,8 @@ describe('Next - Private methods', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'newValue'
-                      }
+                        name: 'newValue',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1455,27 +1455,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'newValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'newValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1484,7 +1484,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicFieldValue'
+                    name: 'publicFieldValue',
                   },
 
                   value: {
@@ -1498,21 +1498,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'publicField'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'publicField',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1521,7 +1521,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicFieldValue'
+                    name: 'publicFieldValue',
                   },
 
                   value: {
@@ -1529,8 +1529,8 @@ describe('Next - Private methods', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'newValue'
-                      }
+                        name: 'newValue',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1542,27 +1542,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicField'
-                              }
+                                name: 'publicField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'newValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'newValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1571,7 +1571,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'testUpdates'
+                    name: 'testUpdates',
                   },
 
                   value: {
@@ -1587,20 +1587,20 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateField'
-                              }
+                                name: 'privateField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 0
-                            }
-                          }
+                              value: 0,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1609,20 +1609,20 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicField'
-                              }
+                                name: 'publicField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 0
-                            }
-                          }
+                              value: 0,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1631,13 +1631,13 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -1645,18 +1645,18 @@ describe('Next - Private methods', () => {
                               argument: {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'ThisExpression'
+                                  type: 'ThisExpression',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'PrivateIdentifier',
-                                  name: 'privateFieldValue'
-                                }
+                                  name: 'privateFieldValue',
+                                },
                               },
                               operator: '++',
-                              prefix: false
-                            }
-                          }
+                              prefix: false,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1665,13 +1665,13 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicFieldValue'
-                              }
+                                name: 'publicFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -1679,18 +1679,18 @@ describe('Next - Private methods', () => {
                               argument: {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'ThisExpression'
+                                  type: 'ThisExpression',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'publicFieldValue'
-                                }
+                                  name: 'publicFieldValue',
+                                },
                               },
                               operator: '++',
-                              prefix: false
-                            }
-                          }
+                              prefix: false,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1699,17 +1699,17 @@ describe('Next - Private methods', () => {
                             argument: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '++',
-                            prefix: true
-                          }
+                            prefix: true,
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1718,17 +1718,17 @@ describe('Next - Private methods', () => {
                             argument: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicFieldValue'
-                              }
+                                name: 'publicFieldValue',
+                              },
                             },
                             operator: '++',
-                            prefix: true
-                          }
+                            prefix: true,
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1737,20 +1737,20 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '+=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
+                              value: 1,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1759,20 +1759,20 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicFieldValue'
-                              }
+                                name: 'publicFieldValue',
+                              },
                             },
                             operator: '+=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
+                              value: 1,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1781,13 +1781,13 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -1798,30 +1798,30 @@ describe('Next - Private methods', () => {
                                 left: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'PrivateIdentifier',
-                                    name: 'privateFieldValue'
-                                  }
+                                    name: 'privateFieldValue',
+                                  },
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'PrivateIdentifier',
-                                    name: 'privateFieldValue'
-                                  }
+                                    name: 'privateFieldValue',
+                                  },
                                 },
-                                operator: '**'
+                                operator: '**',
                               },
-                              prefix: true
-                            }
-                          }
+                              prefix: true,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1830,13 +1830,13 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicFieldValue'
-                              }
+                                name: 'publicFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -1847,43 +1847,43 @@ describe('Next - Private methods', () => {
                                 left: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'publicFieldValue'
-                                  }
+                                    name: 'publicFieldValue',
+                                  },
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'publicFieldValue'
-                                  }
+                                    name: 'publicFieldValue',
+                                  },
                                 },
-                                operator: '**'
+                                operator: '**',
                               },
-                              prefix: true
-                            }
-                          }
-                        }
-                      ]
+                              prefix: true,
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class Cl {
@@ -1906,7 +1906,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Cl'
+              name: 'Cl',
             },
             superClass: null,
 
@@ -1917,14 +1917,14 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateField'
+                    name: 'privateField',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   static: false,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'MethodDefinition',
@@ -1934,7 +1934,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateFieldValue'
+                    name: 'privateFieldValue',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1947,21 +1947,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'privateField'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'privateField',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1970,7 +1970,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
 
                   value: {
@@ -1986,33 +1986,33 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        }
-                      ]
+                              value: 1,
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class Cl {
@@ -2047,7 +2047,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Cl'
+              name: 'Cl',
             },
             superClass: null,
 
@@ -2058,14 +2058,14 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateField'
+                    name: 'privateField',
                   },
                   value: {
                     type: 'Literal',
-                    value: 'top secret string'
+                    value: 'top secret string',
                   },
                   static: false,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'MethodDefinition',
@@ -2074,7 +2074,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
 
                   value: {
@@ -2090,27 +2090,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'publicField'
-                              }
+                                name: 'publicField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 'not secret string'
-                            }
-                          }
-                        }
-                      ]
+                              value: 'not secret string',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -2120,7 +2120,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateFieldValue'
+                    name: 'privateFieldValue',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2133,21 +2133,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'privateField'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'privateField',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -2157,15 +2157,15 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'privateFieldValue'
+                    name: 'privateFieldValue',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'newValue'
-                      }
+                        name: 'newValue',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -2177,27 +2177,27 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateField'
-                              }
+                                name: 'privateField',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'newValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'newValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -2206,7 +2206,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicGetPrivateField'
+                    name: 'publicGetPrivateField',
                   },
 
                   value: {
@@ -2220,21 +2220,21 @@ describe('Next - Private methods', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'privateFieldValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'privateFieldValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -2243,7 +2243,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'publicSetPrivateField'
+                    name: 'publicSetPrivateField',
                   },
 
                   value: {
@@ -2251,8 +2251,8 @@ describe('Next - Private methods', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'newValue'
-                      }
+                        name: 'newValue',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -2264,33 +2264,33 @@ describe('Next - Private methods', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'privateFieldValue'
-                              }
+                                name: 'privateFieldValue',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'newValue'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'newValue',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A { #key() {} }`,
@@ -2304,7 +2304,7 @@ describe('Next - Private methods', () => {
 
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2318,25 +2318,25 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'key'
+                    name: 'key',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A { #yield\n = 0; }`,
@@ -2351,30 +2351,30 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'yield',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
                   value: {
                     type: 'Literal',
-                    value: 0
-                  }
-                }
+                    value: 0,
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { #foo() { #bar } }`,
@@ -2388,7 +2388,7 @@ describe('Next - Private methods', () => {
 
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2402,7 +2402,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2414,21 +2414,21 @@ describe('Next - Private methods', () => {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'PrivateIdentifier',
-                            name: 'bar'
-                          }
-                        }
-                      ]
+                            name: 'bar',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A { static #key; }`,
@@ -2443,27 +2443,27 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'key',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: true,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static #foo(bar) {} }`,
@@ -2478,7 +2478,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'foo',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'method',
                   static: true,
@@ -2487,34 +2487,34 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'bar',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { m() {} #a; }`,
@@ -2529,7 +2529,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'm',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -2538,40 +2538,40 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'a',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A {  #a; m() {} }`,
@@ -2586,18 +2586,18 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'a',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'm',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -2606,29 +2606,29 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A {  #a; m() {} #b; }`,
@@ -2643,18 +2643,18 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'a',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'm',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -2663,40 +2663,40 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'b',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`,
@@ -2711,7 +2711,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'm',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -2723,78 +2723,78 @@ describe('Next - Private methods', () => {
                         {
                           argument: {
                             type: 'Literal',
-                            value: 42
+                            value: 42,
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'a',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: '__',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'NJ_',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: '℘_',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { #foo = () => 'bar';  method() {
@@ -2810,7 +2810,7 @@ describe('Next - Private methods', () => {
 
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2821,21 +2821,21 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
                     generator: false,
                     body: {
                       type: 'Literal',
-                      value: 'bar'
+                      value: 'bar',
                     },
                     params: [],
                     async: false,
-                    expression: true
+                    expression: true,
                   },
                   computed: false,
-                  static: false
+                  static: false,
                 },
                 {
                   type: 'MethodDefinition',
@@ -2845,7 +2845,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'Identifier',
-                    name: 'method'
+                    name: 'method',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2860,29 +2860,29 @@ describe('Next - Private methods', () => {
                             callee: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class B { #x = 0; #y = 1; }`,
@@ -2895,7 +2895,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'B'
+              name: 'B',
             },
             superClass: null,
 
@@ -2906,33 +2906,33 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   static: false,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   static: false,
-                  computed: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  computed: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -2948,7 +2948,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
 
@@ -2959,30 +2959,30 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: null,
                   static: true,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   static: true,
-                  computed: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  computed: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`,
@@ -2997,7 +2997,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'm',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
@@ -3008,26 +3008,26 @@ describe('Next - Private methods', () => {
                         {
                           argument: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
 
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'method',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -3042,42 +3042,42 @@ describe('Next - Private methods', () => {
                             callee: {
                               computed: false,
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               property: {
                                 name: 'm',
-                                type: 'PrivateIdentifier'
+                                type: 'PrivateIdentifier',
                               },
-                              type: 'MemberExpression'
+                              type: 'MemberExpression',
                             },
-                            type: 'CallExpression'
+                            type: 'CallExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`,
@@ -3092,7 +3092,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'method',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -3107,33 +3107,33 @@ describe('Next - Private methods', () => {
                             callee: {
                               computed: false,
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               property: {
                                 name: 'm',
-                                type: 'PrivateIdentifier'
+                                type: 'PrivateIdentifier',
                               },
-                              type: 'MemberExpression'
+                              type: 'MemberExpression',
                             },
-                            type: 'CallExpression'
+                            type: 'CallExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'm',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
@@ -3144,35 +3144,35 @@ describe('Next - Private methods', () => {
                         {
                           argument: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
 
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }`,
@@ -3187,7 +3187,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'm',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'method',
                   static: false,
@@ -3199,25 +3199,25 @@ describe('Next - Private methods', () => {
                         {
                           argument: {
                             type: 'Literal',
-                            value: 42
+                            value: 42,
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'bGetter',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'get',
                   static: false,
@@ -3230,31 +3230,31 @@ describe('Next - Private methods', () => {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: 'b',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'b',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
@@ -3263,23 +3263,23 @@ describe('Next - Private methods', () => {
                     callee: {
                       computed: false,
                       object: {
-                        type: 'ThisExpression'
+                        type: 'ThisExpression',
                       },
                       property: {
                         name: 'm',
-                        type: 'PrivateIdentifier'
+                        type: 'PrivateIdentifier',
                       },
-                      type: 'MemberExpression'
+                      type: 'MemberExpression',
                     },
-                    type: 'CallExpression'
-                  }
+                    type: 'CallExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'ref',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'get',
                   static: false,
@@ -3292,31 +3292,31 @@ describe('Next - Private methods', () => {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: 'm',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
 
                   key: {
                     name: 'constructor',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'constructor',
                   static: false,
@@ -3325,29 +3325,29 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { #$_; #℘_; }`,
@@ -3362,38 +3362,38 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: '$_',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
+                  value: null,
                 },
                 {
                   computed: false,
 
                   key: {
                     name: '℘_',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { $(value) { this.#$_ = value; return this.#$; } }`,
@@ -3408,7 +3408,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: '$',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -3422,66 +3422,66 @@ describe('Next - Private methods', () => {
                             left: {
                               computed: false,
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               property: {
                                 name: '$_',
-                                type: 'PrivateIdentifier'
+                                type: 'PrivateIdentifier',
                               },
-                              type: 'MemberExpression'
+                              type: 'MemberExpression',
                             },
                             operator: '=',
                             right: {
                               name: 'value',
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
-                            type: 'AssignmentExpression'
+                            type: 'AssignmentExpression',
                           },
-                          type: 'ExpressionStatement'
+                          type: 'ExpressionStatement',
                         },
                         {
                           argument: {
                             computed: false,
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             property: {
                               name: '$',
-                              type: 'PrivateIdentifier'
+                              type: 'PrivateIdentifier',
                             },
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
-                          type: 'ReturnStatement'
-                        }
+                          type: 'ReturnStatement',
+                        },
                       ],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'value',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `var C = class {
@@ -3517,7 +3517,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'm'
+                          name: 'm',
                         },
 
                         value: {
@@ -3530,45 +3530,45 @@ describe('Next - Private methods', () => {
                                 type: 'ReturnStatement',
                                 argument: {
                                   type: 'Literal',
-                                  value: 42
-                                }
-                              }
-                            ]
+                                  value: 42,
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: true,
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'PropertyDefinition',
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '$_'
+                          name: '$_',
                         },
                         value: null,
                         static: false,
-                        computed: false
+                        computed: false,
                       },
                       {
                         type: 'PropertyDefinition',
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '__'
+                          name: '__',
                         },
                         value: null,
                         static: false,
-                        computed: false
+                        computed: false,
                       },
                       {
                         type: 'PropertyDefinition',
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '℘_'
+                          name: '℘_',
                         },
                         value: null,
                         static: false,
-                        computed: false
+                        computed: false,
                       },
                       {
                         type: 'MethodDefinition',
@@ -3578,15 +3578,15 @@ describe('Next - Private methods', () => {
 
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '$'
+                          name: '$',
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [
                             {
                               type: 'Identifier',
-                              name: 'value'
-                            }
+                              name: 'value',
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
@@ -3598,27 +3598,27 @@ describe('Next - Private methods', () => {
                                   left: {
                                     type: 'MemberExpression',
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'PrivateIdentifier',
-                                      name: '$_'
-                                    }
+                                      name: '$_',
+                                    },
                                   },
                                   operator: '=',
                                   right: {
                                     type: 'Identifier',
-                                    name: 'value'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: 'value',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'MethodDefinition',
@@ -3628,15 +3628,15 @@ describe('Next - Private methods', () => {
 
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '_'
+                          name: '_',
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [
                             {
                               type: 'Identifier',
-                              name: 'value'
-                            }
+                              name: 'value',
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
@@ -3648,40 +3648,40 @@ describe('Next - Private methods', () => {
                                   left: {
                                     type: 'MemberExpression',
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'PrivateIdentifier',
-                                      name: '__'
-                                    }
+                                      name: '__',
+                                    },
                                   },
                                   operator: '=',
                                   right: {
                                     type: 'Identifier',
-                                    name: 'value'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: 'value',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'C'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'C',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class A { get #foo/*{ declareWith }*/() {} }`,
@@ -3696,7 +3696,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     name: 'foo',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'get',
                   static: false,
@@ -3705,29 +3705,29 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `var C = class {
@@ -3772,7 +3772,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'm'
+                          name: 'm',
                         },
 
                         value: {
@@ -3785,35 +3785,35 @@ describe('Next - Private methods', () => {
                                 type: 'ReturnStatement',
                                 argument: {
                                   type: 'Literal',
-                                  value: 42
-                                }
-                              }
-                            ]
+                                  value: 42,
+                                },
+                              },
+                            ],
                           },
                           async: true,
                           generator: true,
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'PropertyDefinition',
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '$_'
+                          name: '$_',
                         },
                         value: null,
                         static: false,
-                        computed: false
+                        computed: false,
                       },
                       {
                         type: 'PropertyDefinition',
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '__'
+                          name: '__',
                         },
                         value: null,
                         static: false,
-                        computed: false
+                        computed: false,
                       },
                       {
                         type: 'MethodDefinition',
@@ -3823,7 +3823,7 @@ describe('Next - Private methods', () => {
 
                         key: {
                           type: 'PrivateIdentifier',
-                          name: '_'
+                          name: '_',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -3836,21 +3836,21 @@ describe('Next - Private methods', () => {
                                 argument: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'PrivateIdentifier',
-                                    name: '__'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: '__',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'MethodDefinition',
@@ -3859,7 +3859,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: '$'
+                          name: '$',
                         },
 
                         value: {
@@ -3867,8 +3867,8 @@ describe('Next - Private methods', () => {
                           params: [
                             {
                               type: 'Identifier',
-                              name: 'value'
-                            }
+                              name: 'value',
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
@@ -3880,41 +3880,41 @@ describe('Next - Private methods', () => {
                                   left: {
                                     type: 'MemberExpression',
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'PrivateIdentifier',
-                                      name: '$_'
-                                    }
+                                      name: '$_',
+                                    },
                                   },
                                   operator: '=',
                                   right: {
                                     type: 'Identifier',
-                                    name: 'value'
-                                  }
-                                }
+                                    name: 'value',
+                                  },
+                                },
                               },
                               {
                                 type: 'ReturnStatement',
                                 argument: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'PrivateIdentifier',
-                                    name: '$'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: '$',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'MethodDefinition',
@@ -3923,7 +3923,7 @@ describe('Next - Private methods', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: '_'
+                          name: '_',
                         },
 
                         value: {
@@ -3931,8 +3931,8 @@ describe('Next - Private methods', () => {
                           params: [
                             {
                               type: 'Identifier',
-                              name: 'value'
-                            }
+                              name: 'value',
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
@@ -3944,54 +3944,54 @@ describe('Next - Private methods', () => {
                                   left: {
                                     type: 'MemberExpression',
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'PrivateIdentifier',
-                                      name: '__'
-                                    }
+                                      name: '__',
+                                    },
                                   },
                                   operator: '=',
                                   right: {
                                     type: 'Identifier',
-                                    name: 'value'
-                                  }
-                                }
+                                    name: 'value',
+                                  },
+                                },
                               },
                               {
                                 type: 'ReturnStatement',
                                 argument: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'PrivateIdentifier',
-                                    name: '_'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: '_',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'C'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'C',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class Hotel {
@@ -4011,7 +4011,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Hotel'
+              name: 'Hotel',
             },
             superClass: null,
 
@@ -4026,7 +4026,7 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'evil'
+                    name: 'evil',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4040,17 +4040,17 @@ describe('Next - Private methods', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'ohNo'
+                              name: 'ohNo',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -4060,15 +4060,15 @@ describe('Next - Private methods', () => {
 
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'evil'
+                    name: 'evil',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -4079,28 +4079,28 @@ describe('Next - Private methods', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'makeEvil'
+                              name: 'makeEvil',
                             },
                             arguments: [
                               {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                name: 'x',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `var C = class {
@@ -4128,7 +4128,7 @@ describe('Next - Private methods', () => {
               {
                 id: {
                   name: 'C',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   body: {
@@ -4138,7 +4138,7 @@ describe('Next - Private methods', () => {
 
                         key: {
                           name: 'x',
-                          type: 'PrivateIdentifier'
+                          type: 'PrivateIdentifier',
                         },
                         kind: 'method',
                         static: true,
@@ -4151,37 +4151,37 @@ describe('Next - Private methods', () => {
                                 argument: {
                                   left: {
                                     name: 'value',
-                                    type: 'Identifier'
+                                    type: 'Identifier',
                                   },
                                   operator: '/',
                                   right: {
                                     type: 'Literal',
-                                    value: 2
+                                    value: 2,
                                   },
-                                  type: 'BinaryExpression'
+                                  type: 'BinaryExpression',
                                 },
-                                type: 'ReturnStatement'
-                              }
+                                type: 'ReturnStatement',
+                              },
                             ],
-                            type: 'BlockStatement'
+                            type: 'BlockStatement',
                           },
                           generator: false,
                           id: null,
                           params: [
                             {
                               name: 'value',
-                              type: 'Identifier'
-                            }
+                              type: 'Identifier',
+                            },
                           ],
-                          type: 'FunctionExpression'
-                        }
+                          type: 'FunctionExpression',
+                        },
                       },
                       {
                         computed: false,
 
                         key: {
                           name: 'y',
-                          type: 'PrivateIdentifier'
+                          type: 'PrivateIdentifier',
                         },
                         kind: 'method',
                         static: true,
@@ -4194,37 +4194,37 @@ describe('Next - Private methods', () => {
                                 argument: {
                                   left: {
                                     name: 'value',
-                                    type: 'Identifier'
+                                    type: 'Identifier',
                                   },
                                   operator: '*',
                                   right: {
                                     type: 'Literal',
-                                    value: 2
+                                    value: 2,
                                   },
-                                  type: 'BinaryExpression'
+                                  type: 'BinaryExpression',
                                 },
-                                type: 'ReturnStatement'
-                              }
+                                type: 'ReturnStatement',
+                              },
                             ],
-                            type: 'BlockStatement'
+                            type: 'BlockStatement',
                           },
                           generator: false,
                           id: null,
                           params: [
                             {
                               name: 'value',
-                              type: 'Identifier'
-                            }
+                              type: 'Identifier',
+                            },
                           ],
-                          type: 'FunctionExpression'
-                        }
+                          type: 'FunctionExpression',
+                        },
                       },
                       {
                         computed: false,
 
                         key: {
                           name: 'x',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         kind: 'method',
                         static: true,
@@ -4238,39 +4238,39 @@ describe('Next - Private methods', () => {
                                   arguments: [
                                     {
                                       type: 'Literal',
-                                      value: 84
-                                    }
+                                      value: 84,
+                                    },
                                   ],
                                   callee: {
                                     computed: false,
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     property: {
                                       name: 'x',
-                                      type: 'PrivateIdentifier'
+                                      type: 'PrivateIdentifier',
                                     },
-                                    type: 'MemberExpression'
+                                    type: 'MemberExpression',
                                   },
-                                  type: 'CallExpression'
+                                  type: 'CallExpression',
                                 },
-                                type: 'ReturnStatement'
-                              }
+                                type: 'ReturnStatement',
+                              },
                             ],
-                            type: 'BlockStatement'
+                            type: 'BlockStatement',
                           },
                           generator: false,
                           id: null,
                           params: [],
-                          type: 'FunctionExpression'
-                        }
+                          type: 'FunctionExpression',
+                        },
                       },
                       {
                         computed: false,
 
                         key: {
                           name: 'y',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         kind: 'method',
                         static: true,
@@ -4284,51 +4284,51 @@ describe('Next - Private methods', () => {
                                   arguments: [
                                     {
                                       type: 'Literal',
-                                      value: 43
-                                    }
+                                      value: 43,
+                                    },
                                   ],
                                   callee: {
                                     computed: false,
                                     object: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
                                     property: {
                                       name: 'y',
-                                      type: 'PrivateIdentifier'
+                                      type: 'PrivateIdentifier',
                                     },
-                                    type: 'MemberExpression'
+                                    type: 'MemberExpression',
                                   },
-                                  type: 'CallExpression'
+                                  type: 'CallExpression',
                                 },
-                                type: 'ReturnStatement'
-                              }
+                                type: 'ReturnStatement',
+                              },
                             ],
-                            type: 'BlockStatement'
+                            type: 'BlockStatement',
                           },
                           generator: false,
                           id: null,
                           params: [],
-                          type: 'FunctionExpression'
-                        }
-                      }
+                          type: 'FunctionExpression',
+                        },
+                      },
                     ],
-                    type: 'ClassBody'
+                    type: 'ClassBody',
                   },
 
                   id: null,
                   superClass: null,
-                  type: 'ClassExpression'
+                  type: 'ClassExpression',
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static set #foo/*{ declareWith }*/(param) {} }`,
@@ -4342,7 +4342,7 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     name: 'foo',
-                    type: 'PrivateIdentifier'
+                    type: 'PrivateIdentifier',
                   },
                   kind: 'set',
                   static: true,
@@ -4351,34 +4351,34 @@ describe('Next - Private methods', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [
                       {
                         name: 'param',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     ],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
 
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { #\\u{61}\nstatic #\\u0062() {} }`,
@@ -4391,7 +4391,7 @@ describe('Next - Private methods', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -4401,11 +4401,11 @@ describe('Next - Private methods', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: null,
                   static: false,
-                  computed: false
+                  computed: false,
                 },
                 {
                   type: 'MethodDefinition',
@@ -4414,25 +4414,25 @@ describe('Next - Private methods', () => {
                   computed: false,
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class a {#𐌭人}',
@@ -4448,7 +4448,7 @@ describe('Next - Private methods', () => {
               name: 'a',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -4461,29 +4461,29 @@ describe('Next - Private methods', () => {
                     name: '𐌭人',
                     start: 9,
                     end: 13,
-                    range: [9, 13]
+                    range: [9, 13],
                   },
                   value: null,
                   static: false,
                   computed: false,
                   start: 9,
                   end: 13,
-                  range: [9, 13]
-                }
+                  range: [9, 13],
+                },
               ],
               start: 8,
               end: 14,
-              range: [8, 14]
+              range: [8, 14],
             },
             start: 0,
             end: 14,
-            range: [0, 14]
-          }
+            range: [0, 14],
+          },
         ],
         start: 0,
         end: 14,
-        range: [0, 14]
-      }
+        range: [0, 14],
+      },
     ],
     [
       'class a {#人}',
@@ -4499,7 +4499,7 @@ describe('Next - Private methods', () => {
               name: 'a',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -4512,29 +4512,29 @@ describe('Next - Private methods', () => {
                     name: '人',
                     start: 9,
                     end: 11,
-                    range: [9, 11]
+                    range: [9, 11],
                   },
                   value: null,
                   static: false,
                   computed: false,
                   start: 9,
                   end: 11,
-                  range: [9, 11]
-                }
+                  range: [9, 11],
+                },
               ],
               start: 8,
               end: 12,
-              range: [8, 12]
+              range: [8, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       'class a {#𐌭}',
@@ -4550,7 +4550,7 @@ describe('Next - Private methods', () => {
               name: 'a',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -4563,29 +4563,29 @@ describe('Next - Private methods', () => {
                     name: '𐌭',
                     start: 9,
                     end: 12,
-                    range: [9, 12]
+                    range: [9, 12],
                   },
                   value: null,
                   static: false,
                   computed: false,
                   start: 9,
                   end: 12,
-                  range: [9, 12]
-                }
+                  range: [9, 12],
+                },
               ],
               start: 8,
               end: 13,
-              range: [8, 13]
+              range: [8, 13],
             },
             start: 0,
             end: 13,
-            range: [0, 13]
-          }
+            range: [0, 13],
+          },
         ],
         start: 0,
         end: 13,
-        range: [0, 13]
-      }
-    ]
+        range: [0, 13],
+      },
+    ],
   ]);
 });

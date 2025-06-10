@@ -26,7 +26,7 @@ describe('Statements - Try', () => {
     ['try {} catch [] {}', Context.None],
     ['try {} catch foo {}', Context.None],
     ['try {} catch({e},){}', Context.None],
-    ['try {} catch(){}', Context.None]
+    ['try {} catch(){}', Context.None],
   ]);
 
   for (const binding of ['var e', 'var {e}', 'var {f, e}', 'var [e]', 'var {f:e}', 'var [[[], e]]']) {
@@ -41,7 +41,7 @@ describe('Statements - Try', () => {
         }
       `,
           undefined,
-          Context.Strict
+          Context.Strict,
         );
       });
     });
@@ -56,7 +56,7 @@ describe('Statements - Try', () => {
           }
         `,
           undefined,
-          Context.OptionsWebCompat
+          Context.OptionsWebCompat,
         );
       });
     });
@@ -83,7 +83,7 @@ describe('Statements - Try', () => {
       }
     `,
           undefined,
-          Context.OptionsWebCompat
+          Context.OptionsWebCompat,
         );
       });
     });
@@ -103,7 +103,7 @@ describe('Statements - Try', () => {
       }
     `,
           undefined,
-          Context.OptionsWebCompat
+          Context.OptionsWebCompat,
         );
       });
     });
@@ -121,7 +121,7 @@ describe('Statements - Try', () => {
     }
   `,
           undefined,
-          Context.OptionsWebCompat
+          Context.OptionsWebCompat,
         );
       });
     });
@@ -141,7 +141,7 @@ describe('Statements - Try', () => {
     'let [x]',
     'const [x]',
     'let {x:y}',
-    'const {x:y}'
+    'const {x:y}',
   ]) {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
@@ -154,7 +154,7 @@ describe('Statements - Try', () => {
       }
     `,
           undefined,
-          Context.OptionsWebCompat
+          Context.OptionsWebCompat,
         );
       });
     });
@@ -169,26 +169,26 @@ describe('Statements - Try', () => {
           {
             block: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             finalizer: null,
             handler: {
               body: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               param: {
                 name: 'e',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'CatchClause'
+              type: 'CatchClause',
             },
-            type: 'TryStatement'
-          }
+            type: 'TryStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'try { } catch (e) { foo: bar: third: function f(){} }',
@@ -201,13 +201,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -216,44 +216,44 @@ describe('Statements - Try', () => {
                     type: 'LabeledStatement',
                     label: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     body: {
                       type: 'LabeledStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       body: {
                         type: 'LabeledStatement',
                         label: {
                           type: 'Identifier',
-                          name: 'third'
+                          name: 'third',
                         },
                         body: {
                           type: 'FunctionDeclaration',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
                           id: {
                             type: 'Identifier',
-                            name: 'f'
-                          }
-                        }
-                      }
-                    }
-                  }
-                ]
-              }
+                            name: 'f',
+                          },
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch({e}){}',
@@ -266,7 +266,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -278,27 +278,27 @@ describe('Statements - Try', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch([e]){}',
@@ -311,7 +311,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -320,19 +320,19 @@ describe('Statements - Try', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'e'
-                  }
-                ]
+                    name: 'e',
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch({e=x}){}',
@@ -345,7 +345,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -357,34 +357,34 @@ describe('Statements - Try', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     computed: false,
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'e'
+                        name: 'e',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch([e=x]){}',
@@ -397,7 +397,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -408,24 +408,24 @@ describe('Statements - Try', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch {}',
@@ -438,20 +438,20 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: null,
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch {} finally {}',
@@ -464,23 +464,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: null,
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
             finalizer: {
               type: 'BlockStatement',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'try {} catch \n {}',
@@ -490,23 +490,23 @@ describe('Statements - Try', () => {
           {
             block: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             finalizer: null,
             handler: {
               body: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               param: null,
-              type: 'CatchClause'
+              type: 'CatchClause',
             },
-            type: 'TryStatement'
-          }
+            type: 'TryStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'try { } catch (e) { var x; for (var y of []) {} }',
@@ -519,13 +519,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -539,16 +539,16 @@ describe('Statements - Try', () => {
                         init: null,
                         id: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ForOfStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -559,24 +559,24 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        }
-                      ]
+                            name: 'y',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ArrayExpression',
-                      elements: []
+                      elements: [],
                     },
-                    await: false
-                  }
-                ]
-              }
+                    await: false,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'function __f_3() { try { __f_3(); } catch(e) { eval("let fun = ({a} = {a: 30}) => {"); } }',
@@ -602,18 +602,18 @@ describe('Statements - Try', () => {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: '__f_3'
+                            name: '__f_3',
                           },
-                          arguments: []
-                        }
-                      }
-                    ]
+                          arguments: [],
+                        },
+                      },
+                    ],
                   },
                   handler: {
                     type: 'CatchClause',
                     param: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     body: {
                       type: 'BlockStatement',
@@ -624,32 +624,32 @@ describe('Statements - Try', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'eval'
+                              name: 'eval',
                             },
                             arguments: [
                               {
                                 type: 'Literal',
-                                value: 'let fun = ({a} = {a: 30}) => {'
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
+                                value: 'let fun = ({a} = {a: 30}) => {',
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
                   },
-                  finalizer: null
-                }
-              ]
+                  finalizer: null,
+                },
+              ],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: '__f_3'
-            }
-          }
-        ]
-      }
+              name: '__f_3',
+            },
+          },
+        ],
+      },
     ],
     [
       'try { throw null; } catch (f) {if (false) ; else function f() { return 123; }}',
@@ -667,16 +667,16 @@ describe('Statements - Try', () => {
                   type: 'ThrowStatement',
                   argument: {
                     type: 'Literal',
-                    value: null
-                  }
-                }
-              ]
+                    value: null,
+                  },
+                },
+              ],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               body: {
                 type: 'BlockStatement',
@@ -685,10 +685,10 @@ describe('Statements - Try', () => {
                     type: 'IfStatement',
                     test: {
                       type: 'Literal',
-                      value: false
+                      value: false,
                     },
                     consequent: {
-                      type: 'EmptyStatement'
+                      type: 'EmptyStatement',
                     },
                     alternate: {
                       type: 'FunctionDeclaration',
@@ -700,27 +700,27 @@ describe('Statements - Try', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'Literal',
-                              value: 123
-                            }
-                          }
-                        ]
+                              value: 123,
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
                       id: {
                         type: 'Identifier',
-                        name: 'f'
-                      }
-                    }
-                  }
-                ]
-              }
+                        name: 'f',
+                      },
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try{}catch(a){}',
@@ -733,23 +733,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { } catch (eval) { }',
@@ -762,23 +762,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'eval'
+                name: 'eval',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { } catch (e) { say(e) }',
@@ -791,13 +791,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -808,23 +808,23 @@ describe('Statements - Try', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'say'
+                        name: 'say',
                       },
                       arguments: [
                         {
                           type: 'Identifier',
-                          name: 'e'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+                          name: 'e',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { } catch ([a = 0]) { }',
@@ -837,7 +837,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -848,24 +848,24 @@ describe('Statements - Try', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
-                      value: 0
-                    }
-                  }
-                ]
+                      value: 0,
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { } catch (e) { let a; }',
@@ -878,13 +878,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -898,18 +898,18 @@ describe('Statements - Try', () => {
                         init: null,
                         id: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'a',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { } catch ([]) {}',
@@ -922,23 +922,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'ArrayPattern',
-                elements: []
+                elements: [],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try { throw [1, 2, 3]; } catch ([...x]) {}',
@@ -959,20 +959,20 @@ describe('Statements - Try', () => {
                     elements: [
                       {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       {
                         type: 'Literal',
-                        value: 3
-                      }
-                    ]
-                  }
-                }
-              ]
+                        value: 3,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             handler: {
               type: 'CatchClause',
@@ -983,20 +983,20 @@ describe('Statements - Try', () => {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch([e=x]){}',
@@ -1009,7 +1009,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -1020,24 +1020,24 @@ describe('Statements - Try', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch({e=x}){}',
@@ -1050,7 +1050,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -1062,34 +1062,34 @@ describe('Statements - Try', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'e'
+                      name: 'e',
                     },
                     computed: false,
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'e'
+                        name: 'e',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch([e]){}',
@@ -1102,7 +1102,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -1111,19 +1111,19 @@ describe('Statements - Try', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'e'
-                  }
-                ]
+                    name: 'e',
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} finally {}',
@@ -1136,16 +1136,16 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: null,
             finalizer: {
               type: 'BlockStatement',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'try {} finally {}\n/foo/g',
@@ -1155,30 +1155,30 @@ describe('Statements - Try', () => {
           {
             block: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             finalizer: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             handler: null,
-            type: 'TryStatement'
+            type: 'TryStatement',
           },
           {
             expression: {
               regex: {
                 flags: 'g',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/g
+              value: /foo/g,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
@@ -1206,12 +1206,12 @@ describe('Statements - Try', () => {
                             init: null,
                             id: {
                               type: 'Identifier',
-                              name: 'e'
-                            }
-                          }
-                        ]
-                      }
-                    ]
+                              name: 'e',
+                            },
+                          },
+                        ],
+                      },
+                    ],
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1228,13 +1228,13 @@ describe('Statements - Try', () => {
                               init: null,
                               id: {
                                 type: 'Identifier',
-                                name: 'e'
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
+                                name: 'e',
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   finalizer: {
                     type: 'BlockStatement',
@@ -1248,31 +1248,31 @@ describe('Statements - Try', () => {
                             init: null,
                             id: {
                               type: 'Identifier',
-                              name: 'e'
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ]
+                              name: 'e',
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {try { } catch { } finally { }} catch ({e}) { }',
@@ -1297,13 +1297,13 @@ describe('Statements - Try', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 9
+                        column: 9,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
-                    }
+                        column: 12,
+                      },
+                    },
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1317,13 +1317,13 @@ describe('Statements - Try', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 19
+                          column: 19,
                         },
                         end: {
                           line: 1,
-                          column: 22
-                        }
-                      }
+                          column: 22,
+                        },
+                      },
                     },
                     start: 13,
                     end: 22,
@@ -1331,13 +1331,13 @@ describe('Statements - Try', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 13
+                        column: 13,
                       },
                       end: {
                         line: 1,
-                        column: 22
-                      }
-                    }
+                        column: 22,
+                      },
+                    },
                   },
                   finalizer: {
                     type: 'BlockStatement',
@@ -1348,13 +1348,13 @@ describe('Statements - Try', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 31
+                        column: 31,
                       },
                       end: {
                         line: 1,
-                        column: 34
-                      }
-                    }
+                        column: 34,
+                      },
+                    },
                   },
                   start: 5,
                   end: 34,
@@ -1362,14 +1362,14 @@ describe('Statements - Try', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 34
-                    }
-                  }
-                }
+                      column: 34,
+                    },
+                  },
+                },
               ],
               start: 4,
               end: 35,
@@ -1377,13 +1377,13 @@ describe('Statements - Try', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 4
+                  column: 4,
                 },
                 end: {
                   line: 1,
-                  column: 35
-                }
-              }
+                  column: 35,
+                },
+              },
             },
             handler: {
               type: 'CatchClause',
@@ -1401,13 +1401,13 @@ describe('Statements - Try', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 44
+                          column: 44,
                         },
                         end: {
                           line: 1,
-                          column: 45
-                        }
-                      }
+                          column: 45,
+                        },
+                      },
                     },
                     value: {
                       type: 'Identifier',
@@ -1418,13 +1418,13 @@ describe('Statements - Try', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 44
+                          column: 44,
                         },
                         end: {
                           line: 1,
-                          column: 45
-                        }
-                      }
+                          column: 45,
+                        },
+                      },
                     },
                     kind: 'init',
                     computed: false,
@@ -1436,14 +1436,14 @@ describe('Statements - Try', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 44
+                        column: 44,
                       },
                       end: {
                         line: 1,
-                        column: 45
-                      }
-                    }
-                  }
+                        column: 45,
+                      },
+                    },
+                  },
                 ],
                 start: 43,
                 end: 46,
@@ -1451,13 +1451,13 @@ describe('Statements - Try', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 43
+                    column: 43,
                   },
                   end: {
                     line: 1,
-                    column: 46
-                  }
-                }
+                    column: 46,
+                  },
+                },
               },
               body: {
                 type: 'BlockStatement',
@@ -1468,13 +1468,13 @@ describe('Statements - Try', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 48
+                    column: 48,
                   },
                   end: {
                     line: 1,
-                    column: 51
-                  }
-                }
+                    column: 51,
+                  },
+                },
               },
               start: 36,
               end: 51,
@@ -1482,13 +1482,13 @@ describe('Statements - Try', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 36
+                  column: 36,
                 },
                 end: {
                   line: 1,
-                  column: 51
-                }
-              }
+                  column: 51,
+                },
+              },
             },
             finalizer: null,
             start: 0,
@@ -1497,14 +1497,14 @@ describe('Statements - Try', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 51
-              }
-            }
-          }
+                column: 51,
+              },
+            },
+          },
         ],
         start: 0,
         end: 51,
@@ -1512,14 +1512,14 @@ describe('Statements - Try', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 51
-          }
-        }
-      }
+            column: 51,
+          },
+        },
+      },
     ],
     [
       'try {} catch(x) { x = 0; }',
@@ -1532,13 +1532,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               body: {
                 type: 'BlockStatement',
@@ -1549,22 +1549,22 @@ describe('Statements - Try', () => {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '=',
                       right: {
                         type: 'Literal',
-                        value: 0
-                      }
-                    }
-                  }
-                ]
-              }
+                        value: 0,
+                      },
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch(x) { with ({}) { x = 1; } }',
@@ -1577,13 +1577,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               body: {
                 type: 'BlockStatement',
@@ -1592,7 +1592,7 @@ describe('Statements - Try', () => {
                     type: 'WithStatement',
                     object: {
                       type: 'ObjectExpression',
-                      properties: []
+                      properties: [],
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1603,25 +1603,25 @@ describe('Statements - Try', () => {
                             type: 'AssignmentExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+                              value: 1,
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch ([a,b,c]) { }',
@@ -1634,7 +1634,7 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -1643,27 +1643,27 @@ describe('Statements - Try', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'Identifier',
-                    name: 'c'
-                  }
-                ]
+                    name: 'c',
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (foo) {} var foo;',
@@ -1675,20 +1675,20 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
+            finalizer: null,
           },
           {
             type: 'VariableDeclaration',
@@ -1697,16 +1697,16 @@ describe('Statements - Try', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try { throw null; } catch ({}) {}',
@@ -1723,27 +1723,27 @@ describe('Statements - Try', () => {
                   type: 'ThrowStatement',
                   argument: {
                     type: 'Literal',
-                    value: null
-                  }
-                }
-              ]
+                    value: null,
+                  },
+                },
+              ],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'ObjectPattern',
-                properties: []
+                properties: [],
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try { } catch (a) { { const a = b; } }',
@@ -1755,13 +1755,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               body: {
                 type: 'BlockStatement',
@@ -1776,26 +1776,26 @@ describe('Statements - Try', () => {
                             type: 'VariableDeclarator',
                             id: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             init: {
                               type: 'Identifier',
-                              name: 'b'
-                            }
-                          }
+                              name: 'b',
+                            },
+                          },
                         ],
-                        kind: 'const'
-                      }
-                    ]
-                  }
-                ]
-              }
+                        kind: 'const',
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch(e) { try {} catch (e) {} }',
@@ -1807,13 +1807,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -1822,29 +1822,29 @@ describe('Statements - Try', () => {
                     type: 'TryStatement',
                     block: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     handler: {
                       type: 'CatchClause',
                       param: {
                         type: 'Identifier',
-                        name: 'e'
+                        name: 'e',
                       },
                       body: {
                         type: 'BlockStatement',
-                        body: []
-                      }
+                        body: [],
+                      },
                     },
-                    finalizer: null
-                  }
-                ]
-              }
+                    finalizer: null,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch (foo) { { let foo; } }',
@@ -1856,13 +1856,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               body: {
                 type: 'BlockStatement',
@@ -1877,23 +1877,23 @@ describe('Statements - Try', () => {
                             type: 'VariableDeclarator',
                             id: {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
-                            init: null
-                          }
+                            init: null,
+                          },
                         ],
-                        kind: 'let'
-                      }
-                    ]
-                  }
-                ]
-              }
+                        kind: 'let',
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var foo; try {} catch (_) { let foo; }',
@@ -1908,24 +1908,24 @@ describe('Statements - Try', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: '_'
+                name: '_',
               },
               body: {
                 type: 'BlockStatement',
@@ -1937,21 +1937,21 @@ describe('Statements - Try', () => {
                         type: 'VariableDeclarator',
                         id: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        init: null
-                      }
+                        init: null,
+                      },
                     ],
-                    kind: 'let'
-                  }
-                ]
-              }
+                    kind: 'let',
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch (e) { { let e = x; } }',
@@ -1963,13 +1963,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -1984,26 +1984,26 @@ describe('Statements - Try', () => {
                             type: 'VariableDeclarator',
                             id: {
                               type: 'Identifier',
-                              name: 'e'
+                              name: 'e',
                             },
                             init: {
                               type: 'Identifier',
-                              name: 'x'
-                            }
-                          }
+                              name: 'x',
+                            },
+                          },
                         ],
-                        kind: 'let'
-                      }
-                    ]
-                  }
-                ]
-              }
+                        kind: 'let',
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch (foo) {} let foo;',
@@ -2015,20 +2015,20 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
+            finalizer: null,
           },
           {
             type: 'VariableDeclaration',
@@ -2037,16 +2037,16 @@ describe('Statements - Try', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch (e) { let b = x; }',
@@ -2059,13 +2059,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2078,22 +2078,22 @@ describe('Statements - Try', () => {
                         type: 'VariableDeclarator',
                         init: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         id: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { var e = x; }',
@@ -2106,13 +2106,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2125,22 +2125,22 @@ describe('Statements - Try', () => {
                         type: 'VariableDeclarator',
                         init: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         id: {
                           type: 'Identifier',
-                          name: 'e'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'e',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (a) { }',
@@ -2153,23 +2153,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (const e in y) {} }',
@@ -2182,13 +2182,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2197,7 +2197,7 @@ describe('Statements - Try', () => {
                     type: 'ForInStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2208,23 +2208,23 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (let e of y) {} }',
@@ -2237,13 +2237,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2252,7 +2252,7 @@ describe('Statements - Try', () => {
                     type: 'ForOfStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2263,24 +2263,24 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    await: false
-                  }
-                ]
-              }
+                    await: false,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (const e of y) {} }',
@@ -2293,13 +2293,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2308,7 +2308,7 @@ describe('Statements - Try', () => {
                     type: 'ForOfStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2319,24 +2319,24 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    await: false
-                  }
-                ]
-              }
+                    await: false,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (var e in y) {} }',
@@ -2349,13 +2349,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2364,7 +2364,7 @@ describe('Statements - Try', () => {
                     type: 'ForInStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2375,23 +2375,23 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (let e of y) {} }',
@@ -2404,13 +2404,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2419,7 +2419,7 @@ describe('Statements - Try', () => {
                     type: 'ForOfStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2430,24 +2430,24 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    await: false
-                  }
-                ]
-              }
+                    await: false,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch (e) { for (const e of y) {} }',
@@ -2460,13 +2460,13 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -2475,7 +2475,7 @@ describe('Statements - Try', () => {
                     type: 'ForOfStatement',
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2486,24 +2486,24 @@ describe('Statements - Try', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    await: false
-                  }
-                ]
-              }
+                    await: false,
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'var foo; try {} catch (_) { const foo = 1; }',
@@ -2521,22 +2521,22 @@ describe('Statements - Try', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: '_'
+                name: '_',
               },
               body: {
                 type: 'BlockStatement',
@@ -2549,22 +2549,22 @@ describe('Statements - Try', () => {
                         type: 'VariableDeclarator',
                         init: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
                         id: {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'foo',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       `try {
@@ -2593,14 +2593,14 @@ describe('Statements - Try', () => {
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -2608,7 +2608,7 @@ describe('Statements - Try', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'probeTry'
+                      name: 'probeTry',
                     },
                     operator: '=',
                     right: {
@@ -2621,26 +2621,26 @@ describe('Statements - Try', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'Identifier',
-                              name: 'x'
-                            }
-                          }
-                        ]
+                              name: 'x',
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
-                    }
-                  }
+                      id: null,
+                    },
+                  },
                 },
                 {
                   type: 'ThrowStatement',
                   argument: {
                     type: 'ArrayExpression',
-                    elements: []
-                  }
-                }
-              ]
+                    elements: [],
+                  },
+                },
+              ],
             },
             handler: {
               type: 'CatchClause',
@@ -2651,7 +2651,7 @@ describe('Statements - Try', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: '_'
+                      name: '_',
                     },
                     right: {
                       type: 'SequenceExpression',
@@ -2660,20 +2660,20 @@ describe('Statements - Try', () => {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'eval'
+                            name: 'eval',
                           },
                           arguments: [
                             {
                               type: 'Literal',
-                              value: 'var x = 3;'
-                            }
-                          ]
+                              value: 'var x = 3;',
+                            },
+                          ],
                         },
                         {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'probeParam'
+                            name: 'probeParam',
                           },
                           operator: '=',
                           right: {
@@ -2686,21 +2686,21 @@ describe('Statements - Try', () => {
                                   type: 'ReturnStatement',
                                   argument: {
                                     type: 'Identifier',
-                                    name: 'x'
-                                  }
-                                }
-                              ]
+                                    name: 'x',
+                                  },
+                                },
+                              ],
                             },
                             async: false,
 
                             generator: false,
-                            id: null
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                            id: null,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
@@ -2713,14 +2713,14 @@ describe('Statements - Try', () => {
                         type: 'VariableDeclarator',
                         init: {
                           type: 'Literal',
-                          value: 4
+                          value: 4,
                         },
                         id: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ExpressionStatement',
@@ -2728,7 +2728,7 @@ describe('Statements - Try', () => {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'probeBlock'
+                        name: 'probeBlock',
                       },
                       operator: '=',
                       right: {
@@ -2741,25 +2741,25 @@ describe('Statements - Try', () => {
                               type: 'ReturnStatement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
-                            }
-                          ]
+                                name: 'x',
+                              },
+                            },
+                          ],
                         },
                         async: false,
 
                         generator: false,
-                        id: null
-                      }
-                    }
-                  }
-                ]
-              }
+                        id: null,
+                      },
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'try {} catch(e) {}',
@@ -2772,23 +2772,23 @@ describe('Statements - Try', () => {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
-    ]
+            finalizer: null,
+          },
+        ],
+      },
+    ],
   ]);
 });

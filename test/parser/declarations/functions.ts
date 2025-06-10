@@ -81,7 +81,7 @@ describe('Declarations - Function', () => {
     'if (true) function* f() { }',
     'label: function* f() { }',
     'label: async function f() { }',
-    'label: async function* f() { }'
+    'label: async function* f() { }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -115,7 +115,7 @@ describe('Declarations - Function', () => {
     'label: function f() { }',
     'label: if (true) function f() { }',
     'label: if (true) {} else function f() { }',
-    'label: label2: function f() { }'
+    'label: label2: function f() { }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -205,7 +205,7 @@ describe('Declarations - Function', () => {
     ['function f(){ class x { foo(x=new (yield)()){} }  }', Context.None],
     ['function f(){ class x { [yield](){} }  }', Context.None],
     ['function f(){ class x { [yield y](){} }  }', Context.None],
-    [String.raw`function foo(p\u0061ckage) { "use strict"; }`, Context.None]
+    [String.raw`function foo(p\u0061ckage) { "use strict"; }`, Context.None],
   ]);
 
   for (const arg of [
@@ -563,7 +563,7 @@ describe('Declarations - Function', () => {
     'function *f(){ class x { yield(){} }  }',
     'function f() { throw `${delete(y)}`; }',
     'async function* a() { for (let m in ((yield))) x;  (r = a) => {} }',
-    String.raw`function foo(p\u0061ckage) { }`
+    String.raw`function foo(p\u0061ckage) { }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -594,8 +594,8 @@ describe('Declarations - Function', () => {
                 name: 'casecase',
                 start: 11,
                 end: 19,
-                range: [11, 19]
-              }
+                range: [11, 19],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -607,7 +607,7 @@ describe('Declarations - Function', () => {
                     name: 'y',
                     start: 21,
                     end: 22,
-                    range: [21, 22]
+                    range: [21, 22],
                   },
                   body: {
                     type: 'LabeledStatement',
@@ -616,7 +616,7 @@ describe('Declarations - Function', () => {
                       name: 'j',
                       start: 23,
                       end: 24,
-                      range: [23, 24]
+                      range: [23, 24],
                     },
                     body: {
                       type: 'FunctionDeclaration',
@@ -626,7 +626,7 @@ describe('Declarations - Function', () => {
                         body: [],
                         start: 44,
                         end: 46,
-                        range: [44, 46]
+                        range: [44, 46],
                       },
                       async: false,
                       generator: false,
@@ -635,24 +635,24 @@ describe('Declarations - Function', () => {
                         name: 'casecase',
                         start: 34,
                         end: 42,
-                        range: [34, 42]
+                        range: [34, 42],
                       },
                       start: 25,
                       end: 46,
-                      range: [25, 46]
+                      range: [25, 46],
                     },
                     start: 23,
                     end: 46,
-                    range: [23, 46]
+                    range: [23, 46],
                   },
                   start: 21,
                   end: 46,
-                  range: [21, 46]
-                }
+                  range: [21, 46],
+                },
               ],
               start: 20,
               end: 47,
-              range: [20, 47]
+              range: [20, 47],
             },
             async: false,
             generator: false,
@@ -661,17 +661,17 @@ describe('Declarations - Function', () => {
               name: 'w',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 47,
-            range: [0, 47]
-          }
+            range: [0, 47],
+          },
         ],
         start: 0,
         end: 47,
-        range: [0, 47]
-      }
+        range: [0, 47],
+      },
     ],
     [
       'function* x() { for (const [j = yield] in (x) => {}) {} }',
@@ -690,7 +690,7 @@ describe('Declarations - Function', () => {
                   type: 'ForInStatement',
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   left: {
                     type: 'VariableDeclaration',
@@ -706,49 +706,49 @@ describe('Declarations - Function', () => {
                               type: 'AssignmentPattern',
                               left: {
                                 type: 'Identifier',
-                                name: 'j'
+                                name: 'j',
                               },
                               right: {
                                 type: 'YieldExpression',
                                 argument: null,
-                                delegate: false
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                                delegate: false,
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrowFunctionExpression',
                     generator: false,
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
 
                     async: false,
-                    expression: false
-                  }
-                }
-              ]
+                    expression: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
@@ -761,9 +761,9 @@ describe('Declarations - Function', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'FunctionDeclaration',
@@ -776,21 +776,21 @@ describe('Declarations - Function', () => {
                   expression: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
+              name: 'g',
+            },
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             type: 'ExpressionStatement',
@@ -798,7 +798,7 @@ describe('Declarations - Function', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -806,7 +806,7 @@ describe('Declarations - Function', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -818,29 +818,29 @@ describe('Declarations - Function', () => {
                           type: 'RestElement',
                           argument: {
                             type: 'ArrayPattern',
-                            elements: [null]
-                          }
-                        }
-                      ]
+                            elements: [null],
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'g'
+                        name: 'g',
                       },
-                      arguments: []
-                    }
-                  }
+                      arguments: [],
+                    },
+                  },
                 ],
 
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `function foo(package) {}`,
@@ -851,26 +851,26 @@ describe('Declarations - Function', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [
               {
                 name: 'package',
-                type: 'Identifier'
-              }
+                type: 'Identifier',
+              },
             ],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `function compareArray(a, b) {
@@ -898,7 +898,7 @@ describe('Declarations - Function', () => {
               start: 9,
               end: 21,
               range: [9, 21],
-              name: 'compareArray'
+              name: 'compareArray',
             },
             generator: false,
             async: false,
@@ -908,15 +908,15 @@ describe('Declarations - Function', () => {
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
                 start: 25,
                 end: 26,
                 range: [25, 26],
-                name: 'b'
-              }
+                name: 'b',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -944,16 +944,16 @@ describe('Declarations - Function', () => {
                         start: 42,
                         end: 43,
                         range: [42, 43],
-                        name: 'b'
+                        name: 'b',
                       },
                       property: {
                         type: 'Identifier',
                         start: 44,
                         end: 50,
                         range: [44, 50],
-                        name: 'length'
+                        name: 'length',
                       },
-                      computed: false
+                      computed: false,
                     },
                     operator: '!==',
                     right: {
@@ -966,17 +966,17 @@ describe('Declarations - Function', () => {
                         start: 55,
                         end: 56,
                         range: [55, 56],
-                        name: 'a'
+                        name: 'a',
                       },
                       property: {
                         type: 'Identifier',
                         start: 57,
                         end: 63,
                         range: [57, 63],
-                        name: 'length'
+                        name: 'length',
                       },
-                      computed: false
-                    }
+                      computed: false,
+                    },
                   },
                   consequent: {
                     type: 'BlockStatement',
@@ -989,11 +989,11 @@ describe('Declarations - Function', () => {
                         start: 79,
                         end: 86,
                         range: [79, 86],
-                        argument: null
-                      }
-                    ]
+                        argument: null,
+                      },
+                    ],
                   },
-                  alternate: null
+                  alternate: null,
                 },
                 {
                   type: 'ForStatement',
@@ -1016,7 +1016,7 @@ describe('Declarations - Function', () => {
                           start: 114,
                           end: 115,
                           range: [114, 115],
-                          name: 'i'
+                          name: 'i',
                         },
                         init: {
                           type: 'Literal',
@@ -1024,11 +1024,11 @@ describe('Declarations - Function', () => {
                           end: 119,
                           range: [118, 119],
                           value: 0,
-                          raw: '0'
-                        }
-                      }
+                          raw: '0',
+                        },
+                      },
                     ],
-                    kind: 'var'
+                    kind: 'var',
                   },
                   test: {
                     type: 'BinaryExpression',
@@ -1040,7 +1040,7 @@ describe('Declarations - Function', () => {
                       start: 121,
                       end: 122,
                       range: [121, 122],
-                      name: 'i'
+                      name: 'i',
                     },
                     operator: '<',
                     right: {
@@ -1053,17 +1053,17 @@ describe('Declarations - Function', () => {
                         start: 125,
                         end: 126,
                         range: [125, 126],
-                        name: 'a'
+                        name: 'a',
                       },
                       property: {
                         type: 'Identifier',
                         start: 127,
                         end: 133,
                         range: [127, 133],
-                        name: 'length'
+                        name: 'length',
                       },
-                      computed: false
-                    }
+                      computed: false,
+                    },
                   },
                   update: {
                     type: 'UpdateExpression',
@@ -1077,8 +1077,8 @@ describe('Declarations - Function', () => {
                       start: 135,
                       end: 136,
                       range: [135, 136],
-                      name: 'i'
-                    }
+                      name: 'i',
+                    },
                   },
                   body: {
                     type: 'BlockStatement',
@@ -1101,7 +1101,7 @@ describe('Declarations - Function', () => {
                             start: 154,
                             end: 155,
                             range: [154, 155],
-                            name: 'b'
+                            name: 'b',
                           },
                           property: {
                             type: 'Literal',
@@ -1109,20 +1109,20 @@ describe('Declarations - Function', () => {
                             end: 157,
                             range: [156, 157],
                             value: 0,
-                            raw: '0'
+                            raw: '0',
                           },
-                          computed: true
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                          computed: true,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `function shouldThrow(func, errorMessage) {
@@ -1152,7 +1152,7 @@ describe('Declarations - Function', () => {
               start: 9,
               end: 20,
               range: [9, 20],
-              name: 'shouldThrow'
+              name: 'shouldThrow',
             },
             generator: false,
             async: false,
@@ -1162,15 +1162,15 @@ describe('Declarations - Function', () => {
                 start: 21,
                 end: 25,
                 range: [21, 25],
-                name: 'func'
+                name: 'func',
               },
               {
                 type: 'Identifier',
                 start: 27,
                 end: 39,
                 range: [27, 39],
-                name: 'errorMessage'
-              }
+                name: 'errorMessage',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1194,7 +1194,7 @@ describe('Declarations - Function', () => {
                         start: 57,
                         end: 68,
                         range: [57, 68],
-                        name: 'errorThrown'
+                        name: 'errorThrown',
                       },
                       init: {
                         type: 'Literal',
@@ -1202,11 +1202,11 @@ describe('Declarations - Function', () => {
                         end: 76,
                         range: [71, 76],
                         value: false,
-                        raw: 'false'
-                      }
-                    }
+                        raw: 'false',
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'VariableDeclaration',
@@ -1224,7 +1224,7 @@ describe('Declarations - Function', () => {
                         start: 92,
                         end: 97,
                         range: [92, 97],
-                        name: 'error'
+                        name: 'error',
                       },
                       init: {
                         type: 'Literal',
@@ -1232,11 +1232,11 @@ describe('Declarations - Function', () => {
                         end: 104,
                         range: [100, 104],
                         value: null,
-                        raw: 'null'
-                      }
-                    }
+                        raw: 'null',
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'TryStatement',
@@ -1264,12 +1264,12 @@ describe('Declarations - Function', () => {
                             start: 136,
                             end: 140,
                             range: [136, 140],
-                            name: 'func'
+                            name: 'func',
                           },
-                          arguments: []
-                        }
-                      }
-                    ]
+                          arguments: [],
+                        },
+                      },
+                    ],
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1281,7 +1281,7 @@ describe('Declarations - Function', () => {
                       start: 163,
                       end: 164,
                       range: [163, 164],
-                      name: 'e'
+                      name: 'e',
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1305,7 +1305,7 @@ describe('Declarations - Function', () => {
                               start: 182,
                               end: 193,
                               range: [182, 193],
-                              name: 'errorThrown'
+                              name: 'errorThrown',
                             },
                             right: {
                               type: 'Literal',
@@ -1313,9 +1313,9 @@ describe('Declarations - Function', () => {
                               end: 200,
                               range: [196, 200],
                               value: true,
-                              raw: 'true'
-                            }
-                          }
+                              raw: 'true',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1333,28 +1333,28 @@ describe('Declarations - Function', () => {
                               start: 216,
                               end: 221,
                               range: [216, 221],
-                              name: 'error'
+                              name: 'error',
                             },
                             right: {
                               type: 'Identifier',
                               start: 224,
                               end: 225,
                               range: [224, 225],
-                              name: 'e'
-                            }
-                          }
-                        }
-                      ]
-                    }
+                              name: 'e',
+                            },
+                          },
+                        },
+                      ],
+                    },
                   },
-                  finalizer: null
-                }
-              ]
-            }
-          }
+                  finalizer: null,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f([foo,,bar] = x){}',
@@ -1377,13 +1377,13 @@ describe('Declarations - Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 12
+                          column: 12,
                         },
                         end: {
                           line: 1,
-                          column: 15
-                        }
-                      }
+                          column: 15,
+                        },
+                      },
                     },
                     null,
                     {
@@ -1392,25 +1392,25 @@ describe('Declarations - Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 17
+                          column: 17,
                         },
                         end: {
                           line: 1,
-                          column: 20
-                        }
-                      }
-                    }
+                          column: 20,
+                        },
+                      },
+                    },
                   ],
                   loc: {
                     start: {
                       line: 1,
-                      column: 11
+                      column: 11,
                     },
                     end: {
                       line: 1,
-                      column: 21
-                    }
-                  }
+                      column: 21,
+                    },
+                  },
                 },
                 right: {
                   type: 'Identifier',
@@ -1418,25 +1418,25 @@ describe('Declarations - Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 24
+                      column: 24,
                     },
                     end: {
                       line: 1,
-                      column: 25
-                    }
-                  }
+                      column: 25,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 25
-                  }
-                }
-              }
+                    column: 25,
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1444,13 +1444,13 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 26
+                  column: 26,
                 },
                 end: {
                   line: 1,
-                  column: 28
-                }
-              }
+                  column: 28,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -1460,37 +1460,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 28
-              }
-            }
-          }
+                column: 28,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 28
-          }
-        }
-      }
+            column: 28,
+          },
+        },
+      },
     ],
     [
       'function f(){ foo: bar: function f(){} }',
@@ -1509,41 +1509,41 @@ describe('Declarations - Function', () => {
                   type: 'LabeledStatement',
                   label: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   body: {
                     type: 'LabeledStatement',
                     label: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     body: {
                       type: 'FunctionDeclaration',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
                       id: {
                         type: 'Identifier',
-                        name: 'f'
-                      }
-                    }
-                  }
-                }
-              ]
+                        name: 'f',
+                      },
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ let f; }',
@@ -1571,48 +1571,48 @@ describe('Declarations - Function', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 18
+                            column: 18,
                           },
                           end: {
                             line: 1,
-                            column: 19
-                          }
-                        }
+                            column: 19,
+                          },
+                        },
                       },
                       loc: {
                         start: {
                           line: 1,
-                          column: 18
+                          column: 18,
                         },
                         end: {
                           line: 1,
-                          column: 19
-                        }
-                      }
-                    }
+                          column: 19,
+                        },
+                      },
+                    },
                   ],
                   loc: {
                     start: {
                       line: 1,
-                      column: 14
+                      column: 14,
                     },
                     end: {
                       line: 1,
-                      column: 20
-                    }
-                  }
-                }
+                      column: 20,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 12
+                  column: 12,
                 },
                 end: {
                   line: 1,
-                  column: 22
-                }
-              }
+                  column: 22,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -1622,37 +1622,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 22
-              }
-            }
-          }
+                column: 22,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 22
-          }
-        }
-      }
+            column: 22,
+          },
+        },
+      },
     ],
     [
       'function f() {let f}',
@@ -1664,7 +1664,7 @@ describe('Declarations - Function', () => {
             type: 'FunctionDeclaration',
             id: {
               type: 'Identifier',
-              name: 'f'
+              name: 'f',
             },
             params: [],
             body: {
@@ -1677,22 +1677,22 @@ describe('Declarations - Function', () => {
                       type: 'VariableDeclarator',
                       id: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
-                      init: null
-                    }
+                      init: null,
+                    },
                   ],
-                  kind: 'let'
-                }
-              ]
+                  kind: 'let',
+                },
+              ],
             },
             generator: false,
 
-            async: false
-          }
+            async: false,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function* a( [ {  x  =  y  }  =  a ] )  { }',
@@ -1721,13 +1721,13 @@ describe('Declarations - Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 18
+                                column: 18,
                               },
                               end: {
                                 line: 1,
-                                column: 19
-                              }
-                            }
+                                column: 19,
+                              },
+                            },
                           },
                           computed: false,
                           value: {
@@ -1738,13 +1738,13 @@ describe('Declarations - Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 18
+                                  column: 18,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 19
-                                }
-                              }
+                                  column: 19,
+                                },
+                              },
                             },
                             right: {
                               type: 'Identifier',
@@ -1752,49 +1752,49 @@ describe('Declarations - Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 24
+                                  column: 24,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 25
-                                }
-                              }
+                                  column: 25,
+                                },
+                              },
                             },
                             loc: {
                               start: {
                                 line: 1,
-                                column: 18
+                                column: 18,
                               },
                               end: {
                                 line: 1,
-                                column: 25
-                              }
-                            }
+                                column: 25,
+                              },
+                            },
                           },
                           method: false,
                           shorthand: true,
                           loc: {
                             start: {
                               line: 1,
-                              column: 18
+                              column: 18,
                             },
                             end: {
                               line: 1,
-                              column: 25
-                            }
-                          }
-                        }
+                              column: 25,
+                            },
+                          },
+                        },
                       ],
                       loc: {
                         start: {
                           line: 1,
-                          column: 15
+                          column: 15,
                         },
                         end: {
                           line: 1,
-                          column: 28
-                        }
-                      }
+                          column: 28,
+                        },
+                      },
                     },
                     right: {
                       type: 'Identifier',
@@ -1802,37 +1802,37 @@ describe('Declarations - Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 33
+                          column: 33,
                         },
                         end: {
                           line: 1,
-                          column: 34
-                        }
-                      }
+                          column: 34,
+                        },
+                      },
                     },
                     loc: {
                       start: {
                         line: 1,
-                        column: 15
+                        column: 15,
                       },
                       end: {
                         line: 1,
-                        column: 34
-                      }
-                    }
-                  }
+                        column: 34,
+                      },
+                    },
+                  },
                 ],
                 loc: {
                   start: {
                     line: 1,
-                    column: 13
+                    column: 13,
                   },
                   end: {
                     line: 1,
-                    column: 36
-                  }
-                }
-              }
+                    column: 36,
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1840,13 +1840,13 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 40
+                  column: 40,
                 },
                 end: {
                   line: 1,
-                  column: 43
-                }
-              }
+                  column: 43,
+                },
+              },
             },
             async: false,
             generator: true,
@@ -1856,37 +1856,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 10
+                  column: 10,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
-              }
+                  column: 11,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 43
-              }
-            }
-          }
+                column: 43,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 43
-          }
-        }
-      }
+            column: 43,
+          },
+        },
+      },
     ],
     [
       'function a( a = b  ) {} n => {  "use strict"; }',
@@ -1897,27 +1897,27 @@ describe('Declarations - Function', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             generator: false,
             id: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [
               {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'AssignmentPattern'
-              }
+                type: 'AssignmentPattern',
+              },
             ],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
             expression: {
@@ -1927,30 +1927,30 @@ describe('Declarations - Function', () => {
                   {
                     expression: {
                       type: 'Literal',
-                      value: 'use strict'
+                      value: 'use strict',
                     },
                     directive: 'use strict',
-                    type: 'ExpressionStatement'
-                  }
+                    type: 'ExpressionStatement',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               expression: false,
               params: [
                 {
                   name: 'n',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
               type: 'ArrowFunctionExpression',
-              generator: false
+              generator: false,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'function f() {var f}',
@@ -1962,7 +1962,7 @@ describe('Declarations - Function', () => {
             type: 'FunctionDeclaration',
             id: {
               type: 'Identifier',
-              name: 'f'
+              name: 'f',
             },
             params: [],
             body: {
@@ -1975,22 +1975,22 @@ describe('Declarations - Function', () => {
                       type: 'VariableDeclarator',
                       id: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
-                      init: null
-                    }
+                      init: null,
+                    },
                   ],
-                  kind: 'var'
-                }
-              ]
+                  kind: 'var',
+                },
+              ],
             },
             generator: false,
 
-            async: false
-          }
+            async: false,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function a([ { a = x }, {} = b]) {}',
@@ -2017,13 +2017,13 @@ describe('Declarations - Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 15
+                              column: 15,
                             },
                             end: {
                               line: 1,
-                              column: 16
-                            }
-                          }
+                              column: 16,
+                            },
+                          },
                         },
                         computed: false,
                         value: {
@@ -2034,13 +2034,13 @@ describe('Declarations - Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 15
+                                column: 15,
                               },
                               end: {
                                 line: 1,
-                                column: 16
-                              }
-                            }
+                                column: 16,
+                              },
+                            },
                           },
                           right: {
                             type: 'Identifier',
@@ -2048,49 +2048,49 @@ describe('Declarations - Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 19
+                                column: 19,
                               },
                               end: {
                                 line: 1,
-                                column: 20
-                              }
-                            }
+                                column: 20,
+                              },
+                            },
                           },
                           loc: {
                             start: {
                               line: 1,
-                              column: 15
+                              column: 15,
                             },
                             end: {
                               line: 1,
-                              column: 20
-                            }
-                          }
+                              column: 20,
+                            },
+                          },
                         },
                         method: false,
                         shorthand: true,
                         loc: {
                           start: {
                             line: 1,
-                            column: 15
+                            column: 15,
                           },
                           end: {
                             line: 1,
-                            column: 20
-                          }
-                        }
-                      }
+                            column: 20,
+                          },
+                        },
+                      },
                     ],
                     loc: {
                       start: {
                         line: 1,
-                        column: 13
+                        column: 13,
                       },
                       end: {
                         line: 1,
-                        column: 22
-                      }
-                    }
+                        column: 22,
+                      },
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
@@ -2100,13 +2100,13 @@ describe('Declarations - Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 24
+                          column: 24,
                         },
                         end: {
                           line: 1,
-                          column: 26
-                        }
-                      }
+                          column: 26,
+                        },
+                      },
                     },
                     right: {
                       type: 'Identifier',
@@ -2114,37 +2114,37 @@ describe('Declarations - Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 29
+                          column: 29,
                         },
                         end: {
                           line: 1,
-                          column: 30
-                        }
-                      }
+                          column: 30,
+                        },
+                      },
                     },
                     loc: {
                       start: {
                         line: 1,
-                        column: 24
+                        column: 24,
                       },
                       end: {
                         line: 1,
-                        column: 30
-                      }
-                    }
-                  }
+                        column: 30,
+                      },
+                    },
+                  },
                 ],
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 31
-                  }
-                }
-              }
+                    column: 31,
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2152,13 +2152,13 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 33
+                  column: 33,
                 },
                 end: {
                   line: 1,
-                  column: 35
-                }
-              }
+                  column: 35,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -2168,37 +2168,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 35
-              }
-            }
-          }
+                column: 35,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 35
-          }
-        }
-      }
+            column: 35,
+          },
+        },
+      },
     ],
     [
       'function f(){} function f(){}',
@@ -2216,13 +2216,13 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 12
+                  column: 12,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
-              }
+                  column: 14,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -2232,24 +2232,24 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 14
-              }
-            }
+                column: 14,
+              },
+            },
           },
           {
             type: 'FunctionDeclaration',
@@ -2260,13 +2260,13 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 27
+                  column: 27,
                 },
                 end: {
                   line: 1,
-                  column: 29
-                }
-              }
+                  column: 29,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -2276,37 +2276,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 24
+                  column: 24,
                 },
                 end: {
                   line: 1,
-                  column: 25
-                }
-              }
+                  column: 25,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 15
+                column: 15,
               },
               end: {
                 line: 1,
-                column: 29
-              }
-            }
-          }
+                column: 29,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 29
-          }
-        }
-      }
+            column: 29,
+          },
+        },
+      },
     ],
     [
       'function g() {  function f(){} function f(){} }',
@@ -2330,13 +2330,13 @@ describe('Declarations - Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 28
+                        column: 28,
                       },
                       end: {
                         line: 1,
-                        column: 30
-                      }
-                    }
+                        column: 30,
+                      },
+                    },
                   },
                   async: false,
                   generator: false,
@@ -2346,24 +2346,24 @@ describe('Declarations - Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 25
+                        column: 25,
                       },
                       end: {
                         line: 1,
-                        column: 26
-                      }
-                    }
+                        column: 26,
+                      },
+                    },
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 16
+                      column: 16,
                     },
                     end: {
                       line: 1,
-                      column: 30
-                    }
-                  }
+                      column: 30,
+                    },
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
@@ -2374,13 +2374,13 @@ describe('Declarations - Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 43
+                        column: 43,
                       },
                       end: {
                         line: 1,
-                        column: 45
-                      }
-                    }
+                        column: 45,
+                      },
+                    },
                   },
                   async: false,
                   generator: false,
@@ -2390,36 +2390,36 @@ describe('Declarations - Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 40
+                        column: 40,
                       },
                       end: {
                         line: 1,
-                        column: 41
-                      }
-                    }
+                        column: 41,
+                      },
+                    },
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 31
+                      column: 31,
                     },
                     end: {
                       line: 1,
-                      column: 45
-                    }
-                  }
-                }
+                      column: 45,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 13
+                  column: 13,
                 },
                 end: {
                   line: 1,
-                  column: 47
-                }
-              }
+                  column: 47,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -2429,37 +2429,37 @@ describe('Declarations - Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 47
-              }
-            }
-          }
+                column: 47,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 47
-          }
-        }
-      }
+            column: 47,
+          },
+        },
+      },
     ],
     [
       'function f(x) { { const x = y } }',
@@ -2480,7 +2480,7 @@ describe('Declarations - Function', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -2490,8 +2490,8 @@ describe('Declarations - Function', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'x'
-              }
+                name: 'x',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2521,27 +2521,27 @@ describe('Declarations - Function', () => {
                             start: 24,
                             end: 25,
                             range: [24, 25],
-                            name: 'x'
+                            name: 'x',
                           },
                           init: {
                             type: 'Identifier',
                             start: 28,
                             end: 29,
                             range: [28, 29],
-                            name: 'y'
-                          }
-                        }
+                            name: 'y',
+                          },
+                        },
                       ],
-                      kind: 'const'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      kind: 'const',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ foo = new.target }',
@@ -2562,7 +2562,7 @@ describe('Declarations - Function', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -2589,7 +2589,7 @@ describe('Declarations - Function', () => {
                       start: 14,
                       end: 17,
                       range: [14, 17],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     right: {
                       type: 'MetaProperty',
@@ -2601,24 +2601,24 @@ describe('Declarations - Function', () => {
                         start: 20,
                         end: 23,
                         range: [20, 23],
-                        name: 'new'
+                        name: 'new',
                       },
                       property: {
                         type: 'Identifier',
                         start: 24,
                         end: 30,
                         range: [24, 30],
-                        name: 'target'
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        name: 'target',
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(x) {var x}',
@@ -2639,7 +2639,7 @@ describe('Declarations - Function', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -2649,8 +2649,8 @@ describe('Declarations - Function', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'x'
-              }
+                name: 'x',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2674,19 +2674,19 @@ describe('Declarations - Function', () => {
                         start: 19,
                         end: 20,
                         range: [19, 20],
-                        name: 'x'
+                        name: 'x',
                       },
-                      init: null
-                    }
+                      init: null,
+                    },
                   ],
-                  kind: 'var'
-                }
-              ]
-            }
-          }
+                  kind: 'var',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(x) {{var x}}',
@@ -2698,13 +2698,13 @@ describe('Declarations - Function', () => {
             type: 'FunctionDeclaration',
             id: {
               type: 'Identifier',
-              name: 'f'
+              name: 'f',
             },
             params: [
               {
                 type: 'Identifier',
-                name: 'x'
-              }
+                name: 'x',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2719,24 +2719,24 @@ describe('Declarations - Function', () => {
                           type: 'VariableDeclarator',
                           id: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          init: null
-                        }
+                          init: null,
+                        },
                       ],
-                      kind: 'var'
-                    }
-                  ]
-                }
-              ]
+                      kind: 'var',
+                    },
+                  ],
+                },
+              ],
             },
             generator: false,
 
-            async: false
-          }
+            async: false,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function foo() {}',
@@ -2750,18 +2750,18 @@ describe('Declarations - Function', () => {
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){}\n/foo/',
@@ -2772,32 +2772,32 @@ describe('Declarations - Function', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
             expression: {
               regex: {
                 flags: '',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/
+              value: /foo/,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     [
@@ -2809,32 +2809,32 @@ describe('Declarations - Function', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             generator: false,
 
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
             expression: {
               regex: {
                 flags: '',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/
+              value: /foo/,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'function f(){}\n/foo/g',
@@ -2845,32 +2845,32 @@ describe('Declarations - Function', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             generator: false,
 
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
             expression: {
               regex: {
                 flags: 'g',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/g
+              value: /foo/g,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     [
@@ -2886,41 +2886,41 @@ describe('Declarations - Function', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
 
                     id: {
                       name: 'f',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     params: [],
-                    type: 'FunctionExpression'
+                    type: 'FunctionExpression',
                   },
                   operator: 'typeof',
                   prefix: true,
-                  type: 'UnaryExpression'
+                  type: 'UnaryExpression',
                 },
                 operator: '/',
                 right: {
                   name: 'foo',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               operator: '/',
               right: {
                 name: 'g',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

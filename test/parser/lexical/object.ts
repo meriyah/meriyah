@@ -79,14 +79,14 @@ describe('Lexical - Object', () => {
     ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
     ['!{f({[x]: b}, b = ((b) => {}) ) {}}', Context.OptionsLexical],
     ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
-    ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical]
+    ['!{f({[a]: b}, ...b) {}}', Context.OptionsLexical],
   ]);
 
   for (const arg of [
     '!{f(f) { }}',
     '!{f(x) { function x() {} }}',
     '!{f(){ function x(){} var x = y; }}',
-    '!{f(x) { var x; }}'
+    '!{f(x) { var x; }}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -112,7 +112,7 @@ describe('Lexical - Object', () => {
     '!{f(x) { function x() {} }}',
     '!{f(x) { var x; }}',
     '!{f(){ function x(){} var x = y; }}',
-    '!{f({[a]: b}, x = ((b) => {}) ) {}}'
+    '!{f({[a]: b}, x = ((b) => {}) ) {}}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

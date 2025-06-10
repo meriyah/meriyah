@@ -19,7 +19,7 @@ describe('Expressions - Class', () => {
     'static async get x(){}',
     'static async set x(y){}',
     'static async x : 0',
-    'static async : 0'
+    'static async : 0',
   ]) {
     it(`(class {${arg}})`, () => {
       t.throws(() => {
@@ -64,7 +64,7 @@ describe('Expressions - Class', () => {
     'public',
     'static',
     'var',
-    'yield'
+    'yield',
   ]) {
     it(`class C { get name(${arg}) {} }`, () => {
       t.throws(() => {
@@ -102,7 +102,7 @@ describe('Expressions - Class', () => {
     String.raw`static 'prot\u006ftype'() {}`,
     String.raw`static get 'prot\u006ftype'() {}`,
     String.raw`static set 'prot\u006ftype'(_) {}`,
-    String.raw`static *'prot\u006ftype'() {}`
+    String.raw`static *'prot\u006ftype'() {}`,
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
@@ -133,7 +133,7 @@ describe('Expressions - Class', () => {
     String.raw`*c\u006fnstructor() {}`,
     String.raw`get 'c\u006fnstructor'() {}`,
     String.raw`get 'c\u006fnstructor'(_) {}`,
-    String.raw`*'c\u006fnstructor'() {}`
+    String.raw`*'c\u006fnstructor'() {}`,
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
@@ -172,7 +172,7 @@ describe('Expressions - Class', () => {
     'class name { *; }',
     'class name { *get x() {} }',
     'class name { *set x(_) {} }',
-    'class name { *static m() {} }'
+    'class name { *static m() {} }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -204,7 +204,7 @@ describe('Expressions - Class', () => {
     'class { get m() }',
     'class { get m() { }',
     'class { set m() {} }', // Missing required parameter.
-    'class { m() {}, n() {} }' // No commas allowed.
+    'class { m() {}, n() {} }', // No commas allowed.
   ]) {
     it(`bar, ${arg};`, () => {
       t.throws(() => {
@@ -234,7 +234,7 @@ describe('Expressions - Class', () => {
   for (const arg of [
     'class C { method() { with ({}) {} } }',
     'class C extends function() { with ({}) {} } {}',
-    'class C { *method() { with ({}) {} } }'
+    'class C { *method() { with ({}) {} } }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -280,7 +280,7 @@ describe('Expressions - Class', () => {
     'm() {}; static m() {}',
     'm() {}; m() {}',
     'static m() {}; static m() {}',
-    'get m() {}; set m(_) {}; get m() {}; set m(_) {};'
+    'get m() {}; set m(_) {}; get m() {}; set m(_) {};',
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -319,7 +319,7 @@ describe('Expressions - Class', () => {
          constructor() {}
        }
      }
-     constructor() {}`
+     constructor() {}`,
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -388,7 +388,7 @@ describe('Expressions - Class', () => {
     '*method([...x, y] = [1, 2, 3]) {}',
     'static async method(...x = []) {}',
     'constructor() { class B extends super() {} }',
-    'constructor() { super(); }'
+    'constructor() { super(); }',
   ]) {
     it(`(class {${arg}})`, () => {
       t.throws(() => {
@@ -436,7 +436,7 @@ describe('Expressions - Class', () => {
     'class x { get prototype(){} }',
     '(class x { async prototype(){} })',
     '(class A {async prototype(){}})',
-    '(class A {async *prototype(){}})'
+    '(class A {async *prototype(){}})',
   ]) {
     it(`(${arg})`, () => {
       t.doesNotThrow(() => {
@@ -479,7 +479,7 @@ describe('Expressions - Class', () => {
     'do',
     'try',
     'catch',
-    'finally'
+    'finally',
   ]) {
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
@@ -531,7 +531,7 @@ describe('Expressions - Class', () => {
     ['function foo() { (class { get [yield]() { return get yield"; }}) }', Context.None],
     [
       '(class { set [yield](param) { yieldSet = param; }}) (class { set [yield](param) { yieldSet = param; }})',
-      Context.None
+      Context.None,
     ],
     ['function foo() { (class { set [yield](param) { yieldSet = param; }}', Context.None],
     ['class foo { *async x(){} }', Context.None],
@@ -735,7 +735,7 @@ describe('Expressions - Class', () => {
      with ({});
      return B;
    }()) {}`,
-      Context.None
+      Context.None,
     ],
     ['async function f(){   (fail = class extends (await x) {}) => {}   }', Context.None],
     ['C = class let {};', Context.None],
@@ -804,7 +804,7 @@ describe('Expressions - Class', () => {
     ['(class A { static *set [x](y){}})', Context.None],
     ['async function f(foo = class y extends (await f) {}){}', Context.None],
     ['new class { constructor() {} start() { new class { constructor() {}}} constructor() {}}', Context.None],
-    ['new class { constructor() {} start() { new class { } } constructor() {}}', Context.None]
+    ['new class { constructor() {} start() { new class { } } constructor() {}}', Context.None],
   ]);
 
   for (const arg of [
@@ -1014,7 +1014,7 @@ describe('Expressions - Class', () => {
     '*"str"(){}',
     '*15(){}',
     '*[expr](){}',
-    'static(){}'
+    'static(){}',
   ]) {
     it(`(class { ${arg}})`, () => {
       t.doesNotThrow(() => {
@@ -1164,7 +1164,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -1177,7 +1177,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1191,18 +1191,18 @@ describe('Expressions - Class', () => {
                             type: 'UpdateExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'count'
+                              name: 'count',
                             },
                             operator: '++',
-                            prefix: false
-                          }
-                        }
-                      ]
+                            prefix: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1211,7 +1211,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'increment'
+                    name: 'increment',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1225,18 +1225,18 @@ describe('Expressions - Class', () => {
                             type: 'UpdateExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'count'
+                              name: 'count',
                             },
                             operator: '++',
-                            prefix: false
-                          }
-                        }
-                      ]
+                            prefix: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1245,7 +1245,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'decrement'
+                    name: 'decrement',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1259,18 +1259,18 @@ describe('Expressions - Class', () => {
                             type: 'UpdateExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'count'
+                              name: 'count',
                             },
                             operator: '--',
-                            prefix: false
-                          }
-                        }
-                      ]
+                            prefix: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1279,7 +1279,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'getCount'
+                    name: 'getCount',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1291,15 +1291,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Identifier',
-                            name: 'count'
-                          }
-                        }
-                      ]
+                            name: 'count',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1308,7 +1308,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1320,15 +1320,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 1
-                          }
-                        }
-                      ]
+                            value: 1,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1337,7 +1337,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1349,15 +1349,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 2
-                          }
-                        }
-                      ]
+                            value: 2,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1366,7 +1366,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Literal',
-                    value: 1.1
+                    value: 1.1,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1378,15 +1378,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 1.1
-                          }
-                        }
-                      ]
+                            value: 1.1,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1395,7 +1395,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Literal',
-                    value: 2.2
+                    value: 2.2,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1407,15 +1407,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 2.2
-                          }
-                        }
-                      ]
+                            value: 2.2,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1426,13 +1426,13 @@ describe('Expressions - Class', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     right: {
                       type: 'Literal',
-                      value: 3
+                      value: 3,
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1444,15 +1444,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 4
-                          }
-                        }
-                      ]
+                            value: 4,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1463,13 +1463,13 @@ describe('Expressions - Class', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: 1.1
+                      value: 1.1,
                     },
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1481,15 +1481,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 2.1
-                          }
-                        }
-                      ]
+                            value: 2.1,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1500,13 +1500,13 @@ describe('Expressions - Class', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1518,15 +1518,15 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 'foo1'
-                          }
-                        }
-                      ]
+                            value: 'foo1',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1535,7 +1535,7 @@ describe('Expressions - Class', () => {
                   computed: true,
                   key: {
                     type: 'Identifier',
-                    name: 'sym1'
+                    name: 'sym1',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1547,21 +1547,21 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Literal',
-                            value: 'bart'
-                          }
-                        }
-                      ]
+                            value: 'bart',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class SimpleParent {
@@ -1598,7 +1598,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'SimpleParent'
+              name: 'SimpleParent',
             },
             superClass: null,
             body: {
@@ -1611,7 +1611,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1626,30 +1626,30 @@ describe('Expressions - Class', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 'SimpleParent'
-                            }
-                          }
-                        }
-                      ]
+                              value: 'SimpleParent',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
+                    id: null,
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -1659,20 +1659,20 @@ describe('Expressions - Class', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'calls_to_ConstructorCountingParent'
-                }
-              }
-            ]
+                  name: 'calls_to_ConstructorCountingParent',
+                },
+              },
+            ],
           },
           {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'ConstructorCountingParent'
+              name: 'ConstructorCountingParent',
             },
             superClass: null,
             body: {
@@ -1685,7 +1685,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1699,31 +1699,31 @@ describe('Expressions - Class', () => {
                             type: 'UpdateExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'calls_to_ConstructorCountingParent'
+                              name: 'calls_to_ConstructorCountingParent',
                             },
                             operator: '++',
-                            prefix: false
-                          }
-                        }
-                      ]
+                            prefix: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
+                    id: null,
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'UninitializedThisReturningArgumentConstructor'
+              name: 'UninitializedThisReturningArgumentConstructor',
             },
             superClass: {
               type: 'Identifier',
-              name: 'SimpleParent'
+              name: 'SimpleParent',
             },
             body: {
               type: 'ClassBody',
@@ -1735,15 +1735,15 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'arg'
-                      }
+                        name: 'arg',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1752,31 +1752,31 @@ describe('Expressions - Class', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Identifier',
-                            name: 'arg'
-                          }
-                        }
-                      ]
+                            name: 'arg',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
+                    id: null,
+                  },
+                },
+              ],
+            },
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'InitializedThisReturningArgumentConstructor'
+              name: 'InitializedThisReturningArgumentConstructor',
             },
             superClass: {
               type: 'Identifier',
-              name: 'SimpleParent'
+              name: 'SimpleParent',
             },
             body: {
               type: 'ClassBody',
@@ -1788,15 +1788,15 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'arg'
-                      }
+                        name: 'arg',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1806,33 +1806,33 @@ describe('Expressions - Class', () => {
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
+                            arguments: [],
+                          },
                         },
                         {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'Identifier',
-                            name: 'arg'
-                          }
-                        }
-                      ]
+                            name: 'arg',
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
+                    id: null,
+                  },
+                },
+              ],
+            },
           },
           {
-            type: 'EmptyStatement'
-          }
-        ]
-      }
+            type: 'EmptyStatement',
+          },
+        ],
+      },
     ],
     [
       'class await { }',
@@ -1848,7 +1848,7 @@ describe('Expressions - Class', () => {
               name: 'await',
               start: 6,
               end: 11,
-              range: [6, 11]
+              range: [6, 11],
             },
             superClass: null,
             body: {
@@ -1856,17 +1856,17 @@ describe('Expressions - Class', () => {
               body: [],
               start: 12,
               end: 15,
-              range: [12, 15]
+              range: [12, 15],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       'class x extends await { }',
@@ -1882,31 +1882,31 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: {
               type: 'Identifier',
               name: 'await',
               start: 16,
               end: 21,
-              range: [16, 21]
+              range: [16, 21],
             },
             body: {
               type: 'ClassBody',
               body: [],
               start: 22,
               end: 25,
-              range: [22, 25]
+              range: [22, 25],
             },
             start: 0,
             end: 25,
-            range: [0, 25]
-          }
+            range: [0, 25],
+          },
         ],
         start: 0,
         end: 25,
-        range: [0, 25]
-      }
+        range: [0, 25],
+      },
     ],
     [
       'class a extends [] { static set [a] ({w=a}) { for (;;) a } }',
@@ -1919,11 +1919,11 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             superClass: {
               type: 'ArrayExpression',
-              elements: []
+              elements: [],
             },
             body: {
               type: 'ClassBody',
@@ -1935,7 +1935,7 @@ describe('Expressions - Class', () => {
                   computed: true,
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1948,25 +1948,25 @@ describe('Expressions - Class', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'w'
+                              name: 'w',
                             },
                             computed: false,
                             value: {
                               type: 'AssignmentPattern',
                               left: {
                                 type: 'Identifier',
-                                name: 'w'
+                                name: 'w',
                               },
                               right: {
                                 type: 'Identifier',
-                                name: 'a'
-                              }
+                                name: 'a',
+                              },
                             },
                             method: false,
-                            shorthand: true
-                          }
-                        ]
-                      }
+                            shorthand: true,
+                          },
+                        ],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1977,25 +1977,25 @@ describe('Expressions - Class', () => {
                             type: 'ExpressionStatement',
                             expression: {
                               type: 'Identifier',
-                              name: 'a'
-                            }
+                              name: 'a',
+                            },
                           },
                           init: null,
                           test: null,
-                          update: null
-                        }
-                      ]
+                          update: null,
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends {} {}',
@@ -2008,19 +2008,19 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'ObjectExpression',
-              properties: []
+              properties: [],
             },
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -2034,7 +2034,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2047,7 +2047,7 @@ describe('Expressions - Class', () => {
                   computed: true,
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2056,28 +2056,28 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'await'
-                        }
-                      }
+                          name: 'await',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x{[x](a=await){}}',
@@ -2090,7 +2090,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2103,7 +2103,7 @@ describe('Expressions - Class', () => {
                   computed: true,
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2112,28 +2112,28 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'await'
-                        }
-                      }
+                          name: 'await',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x{[x](await){}}',
@@ -2146,7 +2146,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2159,30 +2159,30 @@ describe('Expressions - Class', () => {
                   computed: true,
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'await'
-                      }
+                        name: 'await',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x {}.foo)',
@@ -2199,23 +2199,23 @@ describe('Expressions - Class', () => {
                 type: 'ClassExpression',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 superClass: null,
                 body: {
                   type: 'ClassBody',
-                  body: []
-                }
+                  body: [],
+                },
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var C = class { static async *gen() {
@@ -2247,7 +2247,7 @@ describe('Expressions - Class', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'gen'
+                          name: 'gen',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -2261,14 +2261,14 @@ describe('Expressions - Class', () => {
                                   type: 'AssignmentExpression',
                                   left: {
                                     type: 'Identifier',
-                                    name: 'callCount'
+                                    name: 'callCount',
                                   },
                                   operator: '+=',
                                   right: {
                                     type: 'Literal',
-                                    value: 1
-                                  }
-                                }
+                                    value: 1,
+                                  },
+                                },
                               },
                               {
                                 type: 'ExpressionStatement',
@@ -2282,33 +2282,33 @@ describe('Expressions - Class', () => {
                                         argument: {
                                           type: 'YieldExpression',
                                           argument: null,
-                                          delegate: false
-                                        }
-                                      }
-                                    ]
+                                          delegate: false,
+                                        },
+                                      },
+                                    ],
                                   },
-                                  delegate: false
-                                }
-                              }
-                            ]
+                                  delegate: false,
+                                },
+                              },
+                            ],
                           },
                           async: true,
                           generator: true,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'C'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'C',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `var gen = {
@@ -2337,7 +2337,7 @@ describe('Expressions - Class', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'method'
+                          name: 'method',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -2351,14 +2351,14 @@ describe('Expressions - Class', () => {
                                   type: 'AssignmentExpression',
                                   left: {
                                     type: 'Identifier',
-                                    name: 'callCount'
+                                    name: 'callCount',
                                   },
                                   operator: '+=',
                                   right: {
                                     type: 'Literal',
-                                    value: 1
-                                  }
-                                }
+                                    value: 1,
+                                  },
+                                },
                               },
                               {
                                 type: 'ExpressionStatement',
@@ -2372,42 +2372,42 @@ describe('Expressions - Class', () => {
                                         argument: {
                                           type: 'YieldExpression',
                                           argument: null,
-                                          delegate: false
-                                        }
-                                      }
-                                    ]
+                                          delegate: false,
+                                        },
+                                      },
+                                    ],
                                   },
-                                  delegate: false
-                                }
-                              }
-                            ]
+                                  delegate: false,
+                                },
+                              },
+                            ],
                           },
                           async: true,
                           generator: true,
-                          id: null
+                          id: null,
                         },
                         kind: 'init',
                         computed: false,
                         method: true,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'method'
-                  }
+                    name: 'method',
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'gen'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'gen',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class C { async *gen() {
@@ -2426,7 +2426,7 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -2439,7 +2439,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'gen'
+                    name: 'gen',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2459,23 +2459,23 @@ describe('Expressions - Class', () => {
                                   argument: {
                                     type: 'YieldExpression',
                                     argument: null,
-                                    delegate: false
-                                  }
+                                    delegate: false,
+                                  },
                                 },
                                 {
                                   type: 'Property',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'Literal',
-                                    value: 1
+                                    value: 1,
                                   },
                                   kind: 'init',
                                   computed: false,
                                   method: false,
-                                  shorthand: false
+                                  shorthand: false,
                                 },
                                 {
                                   type: 'SpreadElement',
@@ -2484,28 +2484,28 @@ describe('Expressions - Class', () => {
                                     argument: {
                                       type: 'YieldExpression',
                                       argument: null,
-                                      delegate: false
+                                      delegate: false,
                                     },
-                                    delegate: false
-                                  }
-                                }
-                              ]
+                                    delegate: false,
+                                  },
+                                },
+                              ],
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
+                            delegate: false,
+                          },
+                        },
+                      ],
                     },
                     async: true,
                     generator: true,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x {}.foo())',
@@ -2524,25 +2524,25 @@ describe('Expressions - Class', () => {
                   type: 'ClassExpression',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   superClass: null,
                   body: {
                     type: 'ClassBody',
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x {}())',
@@ -2559,19 +2559,19 @@ describe('Expressions - Class', () => {
                 type: 'ClassExpression',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 superClass: null,
                 body: {
                   type: 'ClassBody',
-                  body: []
-                }
+                  body: [],
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'f = ([xCls = class X {}]) => {}',
@@ -2586,7 +2586,7 @@ describe('Expressions - Class', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -2594,7 +2594,7 @@ describe('Expressions - Class', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -2604,31 +2604,31 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xCls'
+                          name: 'xCls',
                         },
                         right: {
                           type: 'ClassExpression',
                           id: {
                             type: 'Identifier',
-                            name: 'X'
+                            name: 'X',
                           },
                           superClass: null,
                           body: {
                             type: 'ClassBody',
-                            body: []
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            body: [],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A extends B { constructor() { super() } })',
@@ -2643,11 +2643,11 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: {
                 type: 'Identifier',
-                name: 'B'
+                name: 'B',
               },
               body: {
                 type: 'ClassBody',
@@ -2659,7 +2659,7 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -2672,24 +2672,24 @@ describe('Expressions - Class', () => {
                             expression: {
                               type: 'CallExpression',
                               callee: {
-                                type: 'Super'
+                                type: 'Super',
                               },
-                              arguments: []
-                            }
-                          }
-                        ]
+                              arguments: [],
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -2706,7 +2706,7 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -2722,7 +2722,7 @@ describe('Expressions - Class', () => {
                     name: 'foo',
                     start: 10,
                     end: 13,
-                    range: [10, 13]
+                    range: [10, 13],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2734,7 +2734,7 @@ describe('Expressions - Class', () => {
                           name: 'x',
                           start: 14,
                           end: 15,
-                          range: [14, 15]
+                          range: [14, 15],
                         },
                         right: {
                           type: 'NewExpression',
@@ -2743,50 +2743,50 @@ describe('Expressions - Class', () => {
                             name: 'await',
                             start: 21,
                             end: 26,
-                            range: [21, 26]
+                            range: [21, 26],
                           },
                           arguments: [],
                           start: 16,
                           end: 29,
-                          range: [16, 29]
+                          range: [16, 29],
                         },
                         start: 14,
                         end: 29,
-                        range: [14, 29]
-                      }
+                        range: [14, 29],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       body: [],
                       start: 30,
                       end: 32,
-                      range: [30, 32]
+                      range: [30, 32],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 13,
                     end: 32,
-                    range: [13, 32]
+                    range: [13, 32],
                   },
                   start: 10,
                   end: 32,
-                  range: [10, 32]
-                }
+                  range: [10, 32],
+                },
               ],
               start: 8,
               end: 34,
-              range: [8, 34]
+              range: [8, 34],
             },
             start: 0,
             end: 34,
-            range: [0, 34]
-          }
+            range: [0, 34],
+          },
         ],
         start: 0,
         end: 34,
-        range: [0, 34]
-      }
+        range: [0, 34],
+      },
     ],
     [
       'class x { foo(x=await){} }',
@@ -2802,7 +2802,7 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -2818,7 +2818,7 @@ describe('Expressions - Class', () => {
                     name: 'foo',
                     start: 10,
                     end: 13,
-                    range: [10, 13]
+                    range: [10, 13],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2830,52 +2830,52 @@ describe('Expressions - Class', () => {
                           name: 'x',
                           start: 14,
                           end: 15,
-                          range: [14, 15]
+                          range: [14, 15],
                         },
                         right: {
                           type: 'Identifier',
                           name: 'await',
                           start: 16,
                           end: 21,
-                          range: [16, 21]
+                          range: [16, 21],
                         },
                         start: 14,
                         end: 21,
-                        range: [14, 21]
-                      }
+                        range: [14, 21],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       body: [],
                       start: 22,
                       end: 24,
-                      range: [22, 24]
+                      range: [22, 24],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 13,
                     end: 24,
-                    range: [13, 24]
+                    range: [13, 24],
                   },
                   start: 10,
                   end: 24,
-                  range: [10, 24]
-                }
+                  range: [10, 24],
+                },
               ],
               start: 8,
               end: 26,
-              range: [8, 26]
+              range: [8, 26],
             },
             start: 0,
             end: 26,
-            range: [0, 26]
-          }
+            range: [0, 26],
+          },
         ],
         start: 0,
         end: 26,
-        range: [0, 26]
-      }
+        range: [0, 26],
+      },
     ],
     [
       'class x extends feh(await) { }',
@@ -2891,7 +2891,7 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: {
               type: 'CallExpression',
@@ -2900,7 +2900,7 @@ describe('Expressions - Class', () => {
                 name: 'feh',
                 start: 16,
                 end: 19,
-                range: [16, 19]
+                range: [16, 19],
               },
               arguments: [
                 {
@@ -2908,29 +2908,29 @@ describe('Expressions - Class', () => {
                   name: 'await',
                   start: 20,
                   end: 25,
-                  range: [20, 25]
-                }
+                  range: [20, 25],
+                },
               ],
               start: 16,
               end: 26,
-              range: [16, 26]
+              range: [16, 26],
             },
             body: {
               type: 'ClassBody',
               body: [],
               start: 27,
               end: 30,
-              range: [27, 30]
+              range: [27, 30],
             },
             start: 0,
             end: 30,
-            range: [0, 30]
-          }
+            range: [0, 30],
+          },
         ],
         start: 0,
         end: 30,
-        range: [0, 30]
-      }
+        range: [0, 30],
+      },
     ],
     [
       'class x { foo(await){} }',
@@ -2946,7 +2946,7 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -2962,7 +2962,7 @@ describe('Expressions - Class', () => {
                     name: 'foo',
                     start: 10,
                     end: 13,
-                    range: [10, 13]
+                    range: [10, 13],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2972,41 +2972,41 @@ describe('Expressions - Class', () => {
                         name: 'await',
                         start: 14,
                         end: 19,
-                        range: [14, 19]
-                      }
+                        range: [14, 19],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       body: [],
                       start: 20,
                       end: 22,
-                      range: [20, 22]
+                      range: [20, 22],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 13,
                     end: 22,
-                    range: [13, 22]
+                    range: [13, 22],
                   },
                   start: 10,
                   end: 22,
-                  range: [10, 22]
-                }
+                  range: [10, 22],
+                },
               ],
               start: 8,
               end: 24,
-              range: [8, 24]
+              range: [8, 24],
             },
             start: 0,
             end: 24,
-            range: [0, 24]
-          }
+            range: [0, 24],
+          },
         ],
         start: 0,
         end: 24,
-        range: [0, 24]
-      }
+        range: [0, 24],
+      },
     ],
     [
       'class v extends[x] {}',
@@ -3019,24 +3019,24 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'v'
+              name: 'v',
             },
             superClass: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              ]
+                  name: 'x',
+                },
+              ],
             },
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'class v extends.9 {}',
@@ -3049,19 +3049,19 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'v'
+              name: 'v',
             },
             superClass: {
               type: 'Literal',
-              value: 0.9
+              value: 0.9,
             },
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A extends B { constructor() { super() } })',
@@ -3087,14 +3087,14 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'B'
+                name: 'B',
               },
               body: {
                 type: 'ClassBody',
@@ -3115,7 +3115,7 @@ describe('Expressions - Class', () => {
                       start: 21,
                       end: 32,
                       range: [21, 32],
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -3146,22 +3146,22 @@ describe('Expressions - Class', () => {
                                 type: 'Super',
                                 start: 37,
                                 end: 42,
-                                range: [37, 42]
+                                range: [37, 42],
                               },
-                              arguments: []
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                              arguments: [],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = ([cls = class {}]) => {}',
@@ -3176,7 +3176,7 @@ describe('Expressions - Class', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -3184,7 +3184,7 @@ describe('Expressions - Class', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -3194,7 +3194,7 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'cls'
+                          name: 'cls',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -3202,20 +3202,20 @@ describe('Expressions - Class', () => {
                           superClass: null,
                           body: {
                             type: 'ClassBody',
-                            body: []
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            body: [],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'f = ([xCls2 = class { name() {} }]) => {}',
@@ -3230,7 +3230,7 @@ describe('Expressions - Class', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -3238,7 +3238,7 @@ describe('Expressions - Class', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -3248,7 +3248,7 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xCls2'
+                          name: 'xCls2',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -3264,34 +3264,34 @@ describe('Expressions - Class', () => {
                                 computed: false,
                                 key: {
                                   type: 'Identifier',
-                                  name: 'name'
+                                  name: 'name',
                                 },
                                 value: {
                                   type: 'FunctionExpression',
                                   params: [],
                                   body: {
                                     type: 'BlockStatement',
-                                    body: []
+                                    body: [],
                                   },
                                   async: false,
                                   generator: false,
-                                  id: null
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
+                                  id: null,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{}())',
@@ -3322,7 +3322,7 @@ describe('Expressions - Class', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'x'
+                  name: 'x',
                 },
                 superClass: null,
                 body: {
@@ -3330,15 +3330,15 @@ describe('Expressions - Class', () => {
                   start: 8,
                   end: 10,
                   range: [8, 10],
-                  body: []
-                }
+                  body: [],
+                },
               },
-              arguments: []
-            }
-          }
+              arguments: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{}.foo)',
@@ -3369,7 +3369,7 @@ describe('Expressions - Class', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'x'
+                  name: 'x',
                 },
                 superClass: null,
                 body: {
@@ -3377,22 +3377,22 @@ describe('Expressions - Class', () => {
                   start: 8,
                   end: 10,
                   range: [8, 10],
-                  body: []
-                }
+                  body: [],
+                },
               },
               property: {
                 type: 'Identifier',
                 start: 11,
                 end: 14,
                 range: [11, 14],
-                name: 'foo'
+                name: 'foo',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{}.foo())',
@@ -3428,7 +3428,7 @@ describe('Expressions - Class', () => {
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'x'
+                    name: 'x',
                   },
                   superClass: null,
                   body: {
@@ -3436,24 +3436,24 @@ describe('Expressions - Class', () => {
                     start: 8,
                     end: 10,
                     range: [8, 10],
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 14,
                   range: [11, 14],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                computed: false
+                computed: false,
               },
-              arguments: []
-            }
-          }
+              arguments: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     /*[
       'class a\\u{77}ait {}',
@@ -3478,7 +3478,7 @@ describe('Expressions - Class', () => {
               start: 6,
               end: 11,
               range: [6, 11],
-              name: 'await'
+              name: 'await',
             },
             superClass: null,
             body: {
@@ -3486,12 +3486,12 @@ describe('Expressions - Class', () => {
               start: 12,
               end: 14,
               range: [12, 14],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x { [await](){} }',
@@ -3507,7 +3507,7 @@ describe('Expressions - Class', () => {
               name: 'x',
               start: 6,
               end: 7,
-              range: [6, 7]
+              range: [6, 7],
             },
             superClass: null,
             body: {
@@ -3523,7 +3523,7 @@ describe('Expressions - Class', () => {
                     name: 'await',
                     start: 11,
                     end: 16,
-                    range: [11, 16]
+                    range: [11, 16],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3533,33 +3533,33 @@ describe('Expressions - Class', () => {
                       body: [],
                       start: 19,
                       end: 21,
-                      range: [19, 21]
+                      range: [19, 21],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 17,
                     end: 21,
-                    range: [17, 21]
+                    range: [17, 21],
                   },
                   start: 10,
                   end: 21,
-                  range: [10, 21]
-                }
+                  range: [10, 21],
+                },
               ],
               start: 8,
               end: 23,
-              range: [8, 23]
+              range: [8, 23],
             },
             start: 0,
             end: 23,
-            range: [0, 23]
-          }
+            range: [0, 23],
+          },
         ],
         start: 0,
         end: 23,
-        range: [0, 23]
-      }
+        range: [0, 23],
+      },
     ],
     [
       'class async {}',
@@ -3580,7 +3580,7 @@ describe('Expressions - Class', () => {
               start: 6,
               end: 11,
               range: [6, 11],
-              name: 'async'
+              name: 'async',
             },
             superClass: null,
             body: {
@@ -3588,12 +3588,12 @@ describe('Expressions - Class', () => {
               start: 12,
               end: 14,
               range: [12, 14],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = class{} / x',
@@ -3620,7 +3620,7 @@ describe('Expressions - Class', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'BinaryExpression',
@@ -3639,8 +3639,8 @@ describe('Expressions - Class', () => {
                     start: 9,
                     end: 11,
                     range: [9, 11],
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 operator: '/',
                 right: {
@@ -3648,14 +3648,14 @@ describe('Expressions - Class', () => {
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class{} \n / foo / g)',
@@ -3668,32 +3668,32 @@ describe('Expressions - Class', () => {
                 left: {
                   body: {
                     body: [],
-                    type: 'ClassBody'
+                    type: 'ClassBody',
                   },
                   id: null,
                   superClass: null,
-                  type: 'ClassExpression'
+                  type: 'ClassExpression',
                 },
                 operator: '/',
                 right: {
                   name: 'foo',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               operator: '/',
               right: {
                 name: 'g',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'f = ([xCls2 = class { static name() {} }]) => {}',
@@ -3708,7 +3708,7 @@ describe('Expressions - Class', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -3716,7 +3716,7 @@ describe('Expressions - Class', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -3726,7 +3726,7 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xCls2'
+                          name: 'xCls2',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -3742,34 +3742,34 @@ describe('Expressions - Class', () => {
                                 computed: false,
                                 key: {
                                   type: 'Identifier',
-                                  name: 'name'
+                                  name: 'name',
                                 },
                                 value: {
                                   type: 'FunctionExpression',
                                   params: [],
                                   body: {
                                     type: 'BlockStatement',
-                                    body: []
+                                    body: [],
                                   },
                                   async: false,
                                   generator: false,
-                                  id: null
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
+                                  id: null,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'f = ([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) => {}',
@@ -3784,7 +3784,7 @@ describe('Expressions - Class', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -3792,7 +3792,7 @@ describe('Expressions - Class', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -3802,7 +3802,7 @@ describe('Expressions - Class', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'cls'
+                          name: 'cls',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -3810,34 +3810,34 @@ describe('Expressions - Class', () => {
                           superClass: null,
                           body: {
                             type: 'ClassBody',
-                            body: []
-                          }
-                        }
+                            body: [],
+                          },
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xCls'
+                          name: 'xCls',
                         },
                         right: {
                           type: 'ClassExpression',
                           id: {
                             type: 'Identifier',
-                            name: 'X'
+                            name: 'X',
                           },
                           superClass: null,
                           body: {
                             type: 'ClassBody',
-                            body: []
-                          }
-                        }
+                            body: [],
+                          },
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xCls2'
+                          name: 'xCls2',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -3853,34 +3853,34 @@ describe('Expressions - Class', () => {
                                 computed: false,
                                 key: {
                                   type: 'Identifier',
-                                  name: 'name'
+                                  name: 'name',
                                 },
                                 value: {
                                   type: 'FunctionExpression',
                                   params: [],
                                   body: {
                                     type: 'BlockStatement',
-                                    body: []
+                                    body: [],
                                   },
                                   async: false,
                                   generator: false,
-                                  id: null
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
+                                  id: null,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {})',
@@ -3895,17 +3895,17 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
                 type: 'ClassBody',
-                body: []
-              }
-            }
-          }
-        ]
-      }
+                body: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {; ;; ;})',
@@ -3931,7 +3931,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -3939,13 +3939,13 @@ describe('Expressions - Class', () => {
                 start: 9,
                 end: 17,
                 range: [9, 17],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A extends B {})',
@@ -3971,27 +3971,27 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'B'
+                name: 'B',
               },
               body: {
                 type: 'ClassBody',
                 start: 19,
                 end: 21,
                 range: [19, 21],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A extends foo() {})',
@@ -4017,7 +4017,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: {
                 type: 'CallExpression',
@@ -4029,22 +4029,22 @@ describe('Expressions - Class', () => {
                   start: 17,
                   end: 20,
                   range: [17, 20],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                arguments: []
+                arguments: [],
               },
               body: {
                 type: 'ClassBody',
                 start: 23,
                 end: 25,
                 range: [23, 25],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A extends {} {})',
@@ -4059,20 +4059,20 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: {
                 type: 'ObjectExpression',
-                properties: []
+                properties: [],
               },
               body: {
                 type: 'ClassBody',
-                body: []
-              }
-            }
-          }
-        ]
-      }
+                body: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {a(){}})',
@@ -4098,7 +4098,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4120,7 +4120,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 11,
                       range: [10, 11],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4136,17 +4136,17 @@ describe('Expressions - Class', () => {
                         start: 13,
                         end: 15,
                         range: [13, 15],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {constructor(){}})',
@@ -4172,7 +4172,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4194,7 +4194,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 21,
                       range: [10, 21],
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4210,17 +4210,17 @@ describe('Expressions - Class', () => {
                         start: 23,
                         end: 25,
                         range: [23, 25],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static constructor(){}})',
@@ -4246,7 +4246,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4268,7 +4268,7 @@ describe('Expressions - Class', () => {
                       start: 17,
                       end: 28,
                       range: [17, 28],
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4284,17 +4284,17 @@ describe('Expressions - Class', () => {
                         start: 30,
                         end: 32,
                         range: [30, 32],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async foo(){}})',
@@ -4320,7 +4320,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4342,7 +4342,7 @@ describe('Expressions - Class', () => {
                       start: 16,
                       end: 19,
                       range: [16, 19],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4358,17 +4358,17 @@ describe('Expressions - Class', () => {
                         start: 21,
                         end: 23,
                         range: [21, 23],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*foo(){}})',
@@ -4394,7 +4394,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4416,7 +4416,7 @@ describe('Expressions - Class', () => {
                       start: 11,
                       end: 14,
                       range: [11, 14],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4432,17 +4432,17 @@ describe('Expressions - Class', () => {
                         start: 16,
                         end: 18,
                         range: [16, 18],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -4469,7 +4469,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4491,7 +4491,7 @@ describe('Expressions - Class', () => {
                       start: 14,
                       end: 17,
                       range: [14, 17],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4507,17 +4507,17 @@ describe('Expressions - Class', () => {
                         start: 19,
                         end: 21,
                         range: [19, 21],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class o {f(){ function x(){}}})',
@@ -4543,7 +4543,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'o'
+                name: 'o',
               },
               superClass: null,
               body: {
@@ -4565,7 +4565,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 11,
                       range: [10, 11],
-                      name: 'f'
+                      name: 'f',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4592,7 +4592,7 @@ describe('Expressions - Class', () => {
                               start: 24,
                               end: 25,
                               range: [24, 25],
-                              name: 'x'
+                              name: 'x',
                             },
                             generator: false,
                             async: false,
@@ -4602,20 +4602,20 @@ describe('Expressions - Class', () => {
                               start: 27,
                               end: 29,
                               range: [27, 29],
-                              body: []
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                              body: [],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class o {f(f) { }})',
@@ -4630,7 +4630,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               superClass: null,
               body: {
@@ -4643,31 +4643,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'f'
+                      name: 'f',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'f'
-                        }
+                          name: 'f',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class M { static foo() {} get foo() {} set foo(x) {}})',
@@ -4693,7 +4693,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'M'
+                name: 'M',
               },
               superClass: null,
               body: {
@@ -4715,7 +4715,7 @@ describe('Expressions - Class', () => {
                       start: 18,
                       end: 21,
                       range: [18, 21],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4731,9 +4731,9 @@ describe('Expressions - Class', () => {
                         start: 24,
                         end: 26,
                         range: [24, 26],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -4748,7 +4748,7 @@ describe('Expressions - Class', () => {
                       start: 31,
                       end: 34,
                       range: [31, 34],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4764,9 +4764,9 @@ describe('Expressions - Class', () => {
                         start: 37,
                         end: 39,
                         range: [37, 39],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -4781,7 +4781,7 @@ describe('Expressions - Class', () => {
                       start: 44,
                       end: 47,
                       range: [44, 47],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4797,25 +4797,25 @@ describe('Expressions - Class', () => {
                           start: 48,
                           end: 49,
                           range: [48, 49],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
                         start: 51,
                         end: 53,
                         range: [51, 53],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class OnlyStaticSetter { static set setter(x) { p("ssetter " + x) } })',
@@ -4841,7 +4841,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 23,
                 range: [7, 23],
-                name: 'OnlyStaticSetter'
+                name: 'OnlyStaticSetter',
               },
               superClass: null,
               body: {
@@ -4863,7 +4863,7 @@ describe('Expressions - Class', () => {
                       start: 37,
                       end: 43,
                       range: [37, 43],
-                      name: 'setter'
+                      name: 'setter',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -4879,8 +4879,8 @@ describe('Expressions - Class', () => {
                           start: 44,
                           end: 45,
                           range: [44, 45],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
@@ -4903,7 +4903,7 @@ describe('Expressions - Class', () => {
                                 start: 49,
                                 end: 50,
                                 range: [49, 50],
-                                name: 'p'
+                                name: 'p',
                               },
                               arguments: [
                                 {
@@ -4916,7 +4916,7 @@ describe('Expressions - Class', () => {
                                     start: 51,
                                     end: 61,
                                     range: [51, 61],
-                                    value: 'ssetter '
+                                    value: 'ssetter ',
                                   },
                                   operator: '+',
                                   right: {
@@ -4924,23 +4924,23 @@ describe('Expressions - Class', () => {
                                     start: 64,
                                     end: 65,
                                     range: [64, 65],
-                                    name: 'x'
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                                    name: 'x',
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set foo(x){}})',
@@ -4954,7 +4954,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -4964,7 +4964,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -4973,26 +4973,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set get(x){}})',
@@ -5006,7 +5006,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5016,7 +5016,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -5025,26 +5025,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set(){} get(){} async(){}})',
@@ -5070,7 +5070,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5092,7 +5092,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 13,
                       range: [10, 13],
-                      name: 'set'
+                      name: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5108,9 +5108,9 @@ describe('Expressions - Class', () => {
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -5125,7 +5125,7 @@ describe('Expressions - Class', () => {
                       start: 18,
                       end: 21,
                       range: [18, 21],
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5141,9 +5141,9 @@ describe('Expressions - Class', () => {
                         start: 23,
                         end: 25,
                         range: [23, 25],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -5158,7 +5158,7 @@ describe('Expressions - Class', () => {
                       start: 26,
                       end: 31,
                       range: [26, 31],
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5174,17 +5174,17 @@ describe('Expressions - Class', () => {
                         start: 33,
                         end: 35,
                         range: [33, 35],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"x"(){}})',
@@ -5210,7 +5210,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5232,7 +5232,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 13,
                       range: [10, 13],
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5248,17 +5248,17 @@ describe('Expressions - Class', () => {
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"constructor"(){}})',
@@ -5272,7 +5272,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5282,7 +5282,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -5291,21 +5291,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'constructor',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async "foo"(){}})',
@@ -5331,7 +5331,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5353,7 +5353,7 @@ describe('Expressions - Class', () => {
                       start: 16,
                       end: 21,
                       range: [16, 21],
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5369,17 +5369,17 @@ describe('Expressions - Class', () => {
                         start: 23,
                         end: 25,
                         range: [23, 25],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*"foo"(){}})',
@@ -5405,7 +5405,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5427,7 +5427,7 @@ describe('Expressions - Class', () => {
                       start: 11,
                       end: 16,
                       range: [11, 16],
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5443,17 +5443,17 @@ describe('Expressions - Class', () => {
                         start: 18,
                         end: 20,
                         range: [18, 20],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "foo"(){}})',
@@ -5467,7 +5467,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5477,7 +5477,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -5486,21 +5486,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "set"(){}})',
@@ -5515,7 +5515,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5528,26 +5528,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {set "foo"(x){}})',
@@ -5561,7 +5561,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5571,7 +5571,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -5580,26 +5580,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set "get"(x){}})',
@@ -5625,7 +5625,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5647,7 +5647,7 @@ describe('Expressions - Class', () => {
                       start: 14,
                       end: 19,
                       range: [14, 19],
-                      value: 'get'
+                      value: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5663,25 +5663,25 @@ describe('Expressions - Class', () => {
                           start: 20,
                           end: 21,
                           range: [20, 21],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
                         start: 22,
                         end: 24,
                         range: [22, 24],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"set"(){} "get"(){} "async"(){}})',
@@ -5707,7 +5707,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5729,7 +5729,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 15,
                       range: [10, 15],
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5745,9 +5745,9 @@ describe('Expressions - Class', () => {
                         start: 17,
                         end: 19,
                         range: [17, 19],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -5762,7 +5762,7 @@ describe('Expressions - Class', () => {
                       start: 20,
                       end: 25,
                       range: [20, 25],
-                      value: 'get'
+                      value: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5778,9 +5778,9 @@ describe('Expressions - Class', () => {
                         start: 27,
                         end: 29,
                         range: [27, 29],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -5795,7 +5795,7 @@ describe('Expressions - Class', () => {
                       start: 30,
                       end: 37,
                       range: [30, 37],
-                      value: 'async'
+                      value: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5811,17 +5811,17 @@ describe('Expressions - Class', () => {
                         start: 39,
                         end: 41,
                         range: [39, 41],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {1(){}})',
@@ -5847,7 +5847,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5869,7 +5869,7 @@ describe('Expressions - Class', () => {
                       start: 10,
                       end: 11,
                       range: [10, 11],
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5885,17 +5885,17 @@ describe('Expressions - Class', () => {
                         start: 13,
                         end: 15,
                         range: [13, 15],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async 3(){}})',
@@ -5921,7 +5921,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -5943,7 +5943,7 @@ describe('Expressions - Class', () => {
                       start: 16,
                       end: 17,
                       range: [16, 17],
-                      value: 3
+                      value: 3,
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -5959,17 +5959,17 @@ describe('Expressions - Class', () => {
                         start: 19,
                         end: 21,
                         range: [19, 21],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*4(){}})',
@@ -5995,7 +5995,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6017,7 +6017,7 @@ describe('Expressions - Class', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      value: 4
+                      value: 4,
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -6033,17 +6033,17 @@ describe('Expressions - Class', () => {
                         start: 14,
                         end: 16,
                         range: [14, 16],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async * 34(){}})',
@@ -6058,7 +6058,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6071,26 +6071,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 34
+                      value: 34,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {get 5(){}})',
@@ -6104,7 +6104,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6114,7 +6114,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 5
+                      value: 5,
                     },
                     computed: false,
                     value: {
@@ -6123,21 +6123,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set 9(x){}})',
@@ -6151,7 +6151,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6161,7 +6161,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 9
+                      value: 9,
                     },
                     computed: false,
                     value: {
@@ -6170,26 +6170,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {[a](){}})',
@@ -6215,7 +6215,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6237,7 +6237,7 @@ describe('Expressions - Class', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -6253,17 +6253,17 @@ describe('Expressions - Class', () => {
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*[foo](){}})',
@@ -6289,7 +6289,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6311,7 +6311,7 @@ describe('Expressions - Class', () => {
                       start: 12,
                       end: 15,
                       range: [12, 15],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -6327,17 +6327,17 @@ describe('Expressions - Class', () => {
                         start: 18,
                         end: 20,
                         range: [18, 20],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get [foo](){}})',
@@ -6351,7 +6351,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6361,7 +6361,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -6370,21 +6370,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set [foo](x){}})',
@@ -6410,7 +6410,7 @@ describe('Expressions - Class', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -6432,7 +6432,7 @@ describe('Expressions - Class', () => {
                       start: 15,
                       end: 18,
                       range: [15, 18],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -6448,25 +6448,25 @@ describe('Expressions - Class', () => {
                           start: 20,
                           end: 21,
                           range: [20, 21],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
                         start: 22,
                         end: 24,
                         range: [22, 24],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { *[y](){}})',
@@ -6480,7 +6480,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6490,7 +6490,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -6499,21 +6499,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { get [y](){}})',
@@ -6527,7 +6527,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6537,7 +6537,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -6546,21 +6546,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { set [y](z){}})',
@@ -6574,7 +6574,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6584,7 +6584,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -6593,26 +6593,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { async *[y](){}})',
@@ -6627,7 +6627,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6640,26 +6640,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{*foo(){}})',
@@ -6673,7 +6673,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6683,7 +6683,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -6692,21 +6692,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*[x](){}})',
@@ -6720,7 +6720,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6730,7 +6730,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: true,
                     value: {
@@ -6739,21 +6739,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*"foo"(){}})',
@@ -6767,7 +6767,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6777,7 +6777,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -6786,21 +6786,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*555(){}})',
@@ -6814,7 +6814,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6824,7 +6824,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 555
+                      value: 555,
                     },
                     computed: false,
                     value: {
@@ -6833,21 +6833,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{async *foo(a){}})',
@@ -6862,7 +6862,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6875,31 +6875,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *[x](a){}})',
@@ -6914,7 +6914,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6927,31 +6927,31 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *"foo"(a){}})',
@@ -6966,7 +6966,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -6979,31 +6979,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *555(a){}})',
@@ -7018,7 +7018,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -7031,31 +7031,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 555
+                      value: 555,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -7071,7 +7071,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7084,26 +7084,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {static constructor(){}})',
@@ -7117,7 +7117,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7127,7 +7127,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -7136,21 +7136,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static get foo(){}})',
@@ -7164,7 +7164,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7174,7 +7174,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7183,21 +7183,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static set foo(x){}})',
@@ -7211,7 +7211,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7221,7 +7221,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7230,26 +7230,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static "x"(){}})',
@@ -7263,7 +7263,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7273,7 +7273,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     computed: false,
                     value: {
@@ -7282,21 +7282,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static "constructor"(){}})',
@@ -7311,7 +7311,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7324,26 +7324,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {static get "foo"(){}})',
@@ -7357,7 +7357,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7367,7 +7367,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7376,21 +7376,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static set "foo"(x){}})',
@@ -7404,7 +7404,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7414,7 +7414,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7423,26 +7423,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static 2(){}})',
@@ -7456,7 +7456,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7466,7 +7466,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     computed: false,
                     value: {
@@ -7475,21 +7475,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async foo(){}})',
@@ -7503,7 +7503,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7513,7 +7513,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7522,21 +7522,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*foo(){}})',
@@ -7550,7 +7550,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7560,7 +7560,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7569,21 +7569,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get foo(){}})',
@@ -7597,7 +7597,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7607,7 +7607,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7616,21 +7616,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get set(){}})',
@@ -7644,7 +7644,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7654,7 +7654,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     computed: false,
                     value: {
@@ -7663,21 +7663,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set foo(x){}})',
@@ -7691,7 +7691,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7701,7 +7701,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7710,26 +7710,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set get(x){}})',
@@ -7743,7 +7743,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7753,7 +7753,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -7762,26 +7762,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set(){} get(){} async(){}})',
@@ -7795,7 +7795,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7805,7 +7805,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     computed: false,
                     value: {
@@ -7814,19 +7814,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -7835,19 +7835,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     computed: false,
                     value: {
@@ -7856,21 +7856,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"x"(){}})',
@@ -7884,7 +7884,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7894,7 +7894,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     computed: false,
                     value: {
@@ -7903,21 +7903,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"constructor"(){}})',
@@ -7931,7 +7931,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7941,7 +7941,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -7950,21 +7950,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'constructor',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async "foo"(){}})',
@@ -7978,7 +7978,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -7988,7 +7988,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -7997,21 +7997,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*"foo"(){}})',
@@ -8025,7 +8025,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8035,7 +8035,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8044,21 +8044,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "foo"(){}})',
@@ -8072,7 +8072,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8082,7 +8082,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8091,21 +8091,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "set"(){}})',
@@ -8120,7 +8120,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8133,26 +8133,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {set "foo"(x){}})',
@@ -8166,7 +8166,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8176,7 +8176,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8185,26 +8185,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set "get"(x){}})',
@@ -8218,7 +8218,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8228,7 +8228,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     computed: false,
                     value: {
@@ -8237,26 +8237,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"set"(){} "get"(){} "async"(){}})',
@@ -8271,7 +8271,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8284,19 +8284,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -8305,19 +8305,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -8326,26 +8326,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'async'
+                      value: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {static "constructor"(){}})',
@@ -8360,7 +8360,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8373,26 +8373,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {static get "foo"(){}})',
@@ -8406,7 +8406,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8416,7 +8416,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8425,21 +8425,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static set "foo"(x){}})',
@@ -8453,7 +8453,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8463,7 +8463,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8472,26 +8472,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static 2(){}})',
@@ -8505,7 +8505,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8515,7 +8515,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     computed: false,
                     value: {
@@ -8524,21 +8524,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async foo(){}})',
@@ -8552,7 +8552,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8562,7 +8562,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8571,21 +8571,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*foo(){}})',
@@ -8599,7 +8599,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8609,7 +8609,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8618,21 +8618,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get foo(){}})',
@@ -8646,7 +8646,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8656,7 +8656,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8665,21 +8665,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get set(){}})',
@@ -8693,7 +8693,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8703,7 +8703,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     computed: false,
                     value: {
@@ -8712,21 +8712,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set foo(x){}})',
@@ -8740,7 +8740,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8750,7 +8750,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -8759,26 +8759,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set get(x){}})',
@@ -8792,7 +8792,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8802,7 +8802,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -8811,26 +8811,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set(){} get(){} async(){}})',
@@ -8844,7 +8844,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8854,7 +8854,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     computed: false,
                     value: {
@@ -8863,19 +8863,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -8884,19 +8884,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     computed: false,
                     value: {
@@ -8905,21 +8905,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"x"(){}})',
@@ -8933,7 +8933,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8943,7 +8943,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     computed: false,
                     value: {
@@ -8952,21 +8952,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"constructor"(){}})',
@@ -8980,7 +8980,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -8990,7 +8990,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -8999,21 +8999,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'constructor',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async "foo"(){}})',
@@ -9027,7 +9027,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9037,7 +9037,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -9046,21 +9046,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var C = class { static async *gen() { yield { ...yield, y: 1, ...yield yield, };}}',
@@ -9089,7 +9089,7 @@ describe('Expressions - Class', () => {
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'gen'
+                          name: 'gen',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -9109,23 +9109,23 @@ describe('Expressions - Class', () => {
                                         argument: {
                                           type: 'YieldExpression',
                                           argument: null,
-                                          delegate: false
-                                        }
+                                          delegate: false,
+                                        },
                                       },
                                       {
                                         type: 'Property',
                                         key: {
                                           type: 'Identifier',
-                                          name: 'y'
+                                          name: 'y',
                                         },
                                         value: {
                                           type: 'Literal',
-                                          value: 1
+                                          value: 1,
                                         },
                                         kind: 'init',
                                         computed: false,
                                         method: false,
-                                        shorthand: false
+                                        shorthand: false,
                                       },
                                       {
                                         type: 'SpreadElement',
@@ -9134,35 +9134,35 @@ describe('Expressions - Class', () => {
                                           argument: {
                                             type: 'YieldExpression',
                                             argument: null,
-                                            delegate: false
+                                            delegate: false,
                                           },
-                                          delegate: false
-                                        }
-                                      }
-                                    ]
+                                          delegate: false,
+                                        },
+                                      },
+                                    ],
                                   },
-                                  delegate: false
-                                }
-                              }
-                            ]
+                                  delegate: false,
+                                },
+                              },
+                            ],
                           },
                           async: true,
                           generator: true,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'C'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'C',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'class c { static *[false]() { "use strict"; } set [this] (q) { "use strict"; } set [true] (u) { "use strict"; } }',
@@ -9183,7 +9183,7 @@ describe('Expressions - Class', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'c'
+              name: 'c',
             },
             superClass: null,
             body: {
@@ -9205,7 +9205,7 @@ describe('Expressions - Class', () => {
                     start: 19,
                     end: 24,
                     range: [19, 24],
-                    value: false
+                    value: false,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -9232,13 +9232,13 @@ describe('Expressions - Class', () => {
                             start: 30,
                             end: 42,
                             range: [30, 42],
-                            value: 'use strict'
+                            value: 'use strict',
                           },
-                          directive: 'use strict'
-                        }
-                      ]
-                    }
-                  }
+                          directive: 'use strict',
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -9252,7 +9252,7 @@ describe('Expressions - Class', () => {
                     type: 'ThisExpression',
                     start: 51,
                     end: 55,
-                    range: [51, 55]
+                    range: [51, 55],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -9268,8 +9268,8 @@ describe('Expressions - Class', () => {
                         start: 58,
                         end: 59,
                         range: [58, 59],
-                        name: 'q'
-                      }
+                        name: 'q',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -9287,13 +9287,13 @@ describe('Expressions - Class', () => {
                             start: 63,
                             end: 75,
                             range: [63, 75],
-                            value: 'use strict'
+                            value: 'use strict',
                           },
-                          directive: 'use strict'
-                        }
-                      ]
-                    }
-                  }
+                          directive: 'use strict',
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -9308,7 +9308,7 @@ describe('Expressions - Class', () => {
                     start: 84,
                     end: 88,
                     range: [84, 88],
-                    value: true
+                    value: true,
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -9324,8 +9324,8 @@ describe('Expressions - Class', () => {
                         start: 91,
                         end: 92,
                         range: [91, 92],
-                        name: 'u'
-                      }
+                        name: 'u',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -9343,20 +9343,20 @@ describe('Expressions - Class', () => {
                             start: 96,
                             end: 108,
                             range: [96, 108],
-                            value: 'use strict'
+                            value: 'use strict',
                           },
-                          directive: 'use strict'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                          directive: 'use strict',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var C = class { static async *gen() { yield [...yield yield]; }}',
@@ -9383,7 +9383,7 @@ describe('Expressions - Class', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'C'
+                  name: 'C',
                 },
                 init: {
                   type: 'ClassExpression',
@@ -9411,7 +9411,7 @@ describe('Expressions - Class', () => {
                           start: 30,
                           end: 33,
                           range: [30, 33],
-                          name: 'gen'
+                          name: 'gen',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -9462,28 +9462,28 @@ describe('Expressions - Class', () => {
                                             end: 59,
                                             range: [54, 59],
                                             delegate: false,
-                                            argument: null
-                                          }
-                                        }
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                                            argument: null,
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*"foo"(){}})',
@@ -9497,7 +9497,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9507,7 +9507,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -9516,21 +9516,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "foo"(){}})',
@@ -9544,7 +9544,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9554,7 +9554,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -9563,21 +9563,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "set"(){}})',
@@ -9592,7 +9592,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9605,26 +9605,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {set "foo"(x){}})',
@@ -9638,7 +9638,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9648,7 +9648,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -9657,26 +9657,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set "get"(x){}})',
@@ -9690,7 +9690,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9700,7 +9700,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     computed: false,
                     value: {
@@ -9709,26 +9709,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"set"(){} "get"(){} "async"(){}})',
@@ -9743,7 +9743,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9756,19 +9756,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -9777,19 +9777,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -9798,26 +9798,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'async'
+                      value: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {async * 34(){}})',
@@ -9832,7 +9832,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9845,26 +9845,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 34
+                      value: 34,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {get 5(){}})',
@@ -9878,7 +9878,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9888,7 +9888,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 5
+                      value: 5,
                     },
                     computed: false,
                     value: {
@@ -9897,21 +9897,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set 9(x){}})',
@@ -9925,7 +9925,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9935,7 +9935,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 9
+                      value: 9,
                     },
                     computed: false,
                     value: {
@@ -9944,26 +9944,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {[a](){}})',
@@ -9978,7 +9978,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -9991,26 +9991,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {*[foo](){}})',
@@ -10024,7 +10024,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10034,7 +10034,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10043,21 +10043,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get [foo](){}})',
@@ -10071,7 +10071,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10081,7 +10081,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10090,21 +10090,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set [foo](x){}})',
@@ -10118,7 +10118,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10128,7 +10128,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10137,26 +10137,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { *[y](){}})',
@@ -10170,7 +10170,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10180,7 +10180,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10189,21 +10189,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { get [y](){}})',
@@ -10217,7 +10217,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10227,7 +10227,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10236,21 +10236,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { set [y](z){}})',
@@ -10264,7 +10264,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10274,7 +10274,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10283,26 +10283,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { async *[y](){}})',
@@ -10317,7 +10317,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10330,26 +10330,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{*foo(){}})',
@@ -10363,7 +10363,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10373,7 +10373,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -10382,21 +10382,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*[x](){}})',
@@ -10410,7 +10410,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10420,7 +10420,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: true,
                     value: {
@@ -10429,21 +10429,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*"foo"(){}})',
@@ -10457,7 +10457,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10467,7 +10467,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -10476,21 +10476,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async * 34(){}})',
@@ -10505,7 +10505,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10518,26 +10518,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 34
+                      value: 34,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {get 5(){}})',
@@ -10551,7 +10551,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10561,7 +10561,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 5
+                      value: 5,
                     },
                     computed: false,
                     value: {
@@ -10570,21 +10570,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set 9(x){}})',
@@ -10598,7 +10598,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10608,7 +10608,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 9
+                      value: 9,
                     },
                     computed: false,
                     value: {
@@ -10617,26 +10617,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {[a](){}})',
@@ -10651,7 +10651,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10664,26 +10664,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {*[foo](){}})',
@@ -10697,7 +10697,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10707,7 +10707,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10716,21 +10716,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get [foo](){}})',
@@ -10744,7 +10744,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10754,7 +10754,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10763,21 +10763,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set [foo](x){}})',
@@ -10791,7 +10791,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -10801,7 +10801,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -10810,26 +10810,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { *[y](){}})',
@@ -10843,7 +10843,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10853,7 +10853,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10862,21 +10862,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { get [y](){}})',
@@ -10890,7 +10890,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10900,7 +10900,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10909,21 +10909,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { set [y](z){}})',
@@ -10937,7 +10937,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -10947,7 +10947,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -10956,26 +10956,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { async *[y](){}})',
@@ -10990,7 +10990,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11003,26 +11003,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{*foo(){}})',
@@ -11036,7 +11036,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11046,7 +11046,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11055,21 +11055,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*[x](){}})',
@@ -11083,7 +11083,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11093,7 +11093,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: true,
                     value: {
@@ -11102,21 +11102,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*"foo"(){}})',
@@ -11130,7 +11130,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11140,7 +11140,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11149,21 +11149,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set(){} get(){} async(){}})',
@@ -11177,7 +11177,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11187,7 +11187,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     computed: false,
                     value: {
@@ -11196,19 +11196,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     computed: false,
                     value: {
@@ -11217,19 +11217,19 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
+                    static: false,
                   },
                   {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     computed: false,
                     value: {
@@ -11238,21 +11238,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"x"(){}})',
@@ -11266,7 +11266,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11276,7 +11276,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     computed: false,
                     value: {
@@ -11285,21 +11285,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"constructor"(){}})',
@@ -11313,7 +11313,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11323,7 +11323,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'constructor'
+                      value: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -11332,21 +11332,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'constructor',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {async "foo"(){}})',
@@ -11360,7 +11360,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11370,7 +11370,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11379,21 +11379,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {*"foo"(){}})',
@@ -11407,7 +11407,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11417,7 +11417,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11426,21 +11426,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "foo"(){}})',
@@ -11454,7 +11454,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11464,7 +11464,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11473,21 +11473,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {get "set"(){}})',
@@ -11502,7 +11502,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11515,26 +11515,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {set "foo"(x){}})',
@@ -11548,7 +11548,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11558,7 +11558,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11567,26 +11567,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {set "get"(x){}})',
@@ -11600,7 +11600,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11610,7 +11610,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     computed: false,
                     value: {
@@ -11619,26 +11619,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {"set"(){} "get"(){} "async"(){}})',
@@ -11653,7 +11653,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11666,19 +11666,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'set'
+                      value: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -11687,19 +11687,19 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'get'
+                      value: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
+                      id: null,
+                    },
                   },
                   {
                     type: 'MethodDefinition',
@@ -11708,26 +11708,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'async'
+                      value: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {1(){}})',
@@ -11742,7 +11742,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -11755,26 +11755,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x { get [y](){}})',
@@ -11788,7 +11788,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11798,7 +11798,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -11807,21 +11807,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { set [y](z){}})',
@@ -11835,7 +11835,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11845,7 +11845,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: true,
                     value: {
@@ -11854,26 +11854,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x { async *[y](){}})',
@@ -11888,7 +11888,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11901,26 +11901,26 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{*foo(){}})',
@@ -11934,7 +11934,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11944,7 +11944,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -11953,21 +11953,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*[x](){}})',
@@ -11981,7 +11981,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -11991,7 +11991,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: true,
                     value: {
@@ -12000,21 +12000,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*"foo"(){}})',
@@ -12028,7 +12028,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12038,7 +12038,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -12047,21 +12047,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{*555(){}})',
@@ -12075,7 +12075,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12085,7 +12085,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 555
+                      value: 555,
                     },
                     computed: false,
                     value: {
@@ -12094,21 +12094,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: false
-                  }
-                ]
-              }
-            }
-          }
+                    static: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class x{async *foo(a){}})',
@@ -12123,7 +12123,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12136,31 +12136,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *[x](a){}})',
@@ -12175,7 +12175,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12188,31 +12188,31 @@ describe('Expressions - Class', () => {
                     computed: true,
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *"foo"(a){}})',
@@ -12227,7 +12227,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12240,31 +12240,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class x{async *555(a){}})',
@@ -12279,7 +12279,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -12292,31 +12292,31 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Literal',
-                      value: 555
+                      value: 555,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -12332,7 +12332,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -12345,26 +12345,26 @@ describe('Expressions - Class', () => {
                     computed: false,
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      id: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(class A {static constructor(){}})',
@@ -12378,7 +12378,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -12388,7 +12388,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Identifier',
-                      name: 'constructor'
+                      name: 'constructor',
                     },
                     computed: false,
                     value: {
@@ -12397,21 +12397,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static get "foo"(){}})',
@@ -12425,7 +12425,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -12435,7 +12435,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -12444,21 +12444,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static set "foo"(x){}})',
@@ -12472,7 +12472,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -12482,7 +12482,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -12491,26 +12491,26 @@ describe('Expressions - Class', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'set',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(class A {static 2(){}})',
@@ -12524,7 +12524,7 @@ describe('Expressions - Class', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
               superClass: null,
               body: {
@@ -12534,7 +12534,7 @@ describe('Expressions - Class', () => {
                     type: 'MethodDefinition',
                     key: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     computed: false,
                     value: {
@@ -12543,21 +12543,21 @@ describe('Expressions - Class', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'method',
-                    static: true
-                  }
-                ]
-              }
-            }
-          }
+                    static: true,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class A extends B { *get() {} }',
@@ -12570,11 +12570,11 @@ describe('Expressions - Class', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: {
               type: 'Identifier',
-              name: 'B'
+              name: 'B',
             },
             body: {
               type: 'ClassBody',
@@ -12586,25 +12586,25 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'get'
+                    name: 'get',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class a { async *get(){} }',
@@ -12618,7 +12618,7 @@ describe('Expressions - Class', () => {
                   computed: false,
                   key: {
                     name: 'get',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -12627,28 +12627,28 @@ describe('Expressions - Class', () => {
                     async: true,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { [1n](){} }`,
@@ -12663,7 +12663,7 @@ describe('Expressions - Class', () => {
                   key: {
                     bigint: '1',
                     type: 'Literal',
-                    value: 1n
+                    value: 1n,
                   },
                   kind: 'method',
                   static: false,
@@ -12672,28 +12672,28 @@ describe('Expressions - Class', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static }`,
@@ -12708,27 +12708,27 @@ describe('Expressions - Class', () => {
                   decorators: [],
                   key: {
                     name: 'static',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static; }`,
@@ -12743,27 +12743,27 @@ describe('Expressions - Class', () => {
                   decorators: [],
                   key: {
                     name: 'static',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
-                  value: null
-                }
+                  value: null,
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static = 1 }`,
@@ -12778,30 +12778,30 @@ describe('Expressions - Class', () => {
                   decorators: [],
                   key: {
                     name: 'static',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   static: false,
                   type: 'PropertyDefinition',
                   value: {
                     type: 'Literal',
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `new class {
@@ -12833,7 +12833,7 @@ describe('Expressions - Class', () => {
                       computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'start'
+                        name: 'start',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -12859,32 +12859,32 @@ describe('Expressions - Class', () => {
                                         computed: false,
                                         key: {
                                           type: 'Identifier',
-                                          name: 'constructor'
+                                          name: 'constructor',
                                         },
                                         value: {
                                           type: 'FunctionExpression',
                                           params: [],
                                           body: {
                                             type: 'BlockStatement',
-                                            body: []
+                                            body: [],
                                           },
                                           async: false,
                                           generator: false,
-                                          id: null
-                                        }
-                                      }
-                                    ]
-                                  }
+                                          id: null,
+                                        },
+                                      },
+                                    ],
+                                  },
                                 },
-                                arguments: []
-                              }
-                            }
-                          ]
+                                arguments: [],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
-                        id: null
-                      }
+                        id: null,
+                      },
                     },
                     {
                       type: 'MethodDefinition',
@@ -12893,30 +12893,30 @@ describe('Expressions - Class', () => {
                       computed: false,
                       key: {
                         type: 'Identifier',
-                        name: 'constructor'
+                        name: 'constructor',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
-                      }
-                    }
-                  ]
-                }
+                        id: null,
+                      },
+                    },
+                  ],
+                },
               },
-              arguments: []
-            }
-          }
+              arguments: [],
+            },
+          },
         ],
         type: 'Program',
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

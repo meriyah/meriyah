@@ -14,7 +14,7 @@ describe('Miscellaneous - Literal', () => {
     "('\u202a')",
     "('\\\u2028')",
     "('\\\n')",
-    String.raw`("\\\"")`
+    String.raw`("\\\"")`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -42,7 +42,7 @@ describe('Miscellaneous - Literal', () => {
     String.raw`("\u{FFFFFFF}")`,
     "'",
     "(')",
-    "('\n')"
+    "('\n')",
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -66,14 +66,14 @@ describe('Miscellaneous - Literal', () => {
           {
             expression: {
               type: 'Literal',
-              value: String.raw`\'`
+              value: String.raw`\'`,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '("x")',
@@ -83,14 +83,14 @@ describe('Miscellaneous - Literal', () => {
           {
             expression: {
               type: 'Literal',
-              value: 'x'
+              value: 'x',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       String.raw`('\0')`,
@@ -100,14 +100,14 @@ describe('Miscellaneous - Literal', () => {
           {
             expression: {
               type: 'Literal',
-              value: '\u0000'
+              value: '\u0000',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       String.raw`('\7a')`,
@@ -117,14 +117,14 @@ describe('Miscellaneous - Literal', () => {
           {
             expression: {
               type: 'Literal',
-              value: '\u0007a'
+              value: '\u0007a',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

@@ -10,7 +10,7 @@ describe('Miscellaneous - Comments', () => {
     [
       `// var /*
     x*/`,
-      Context.None
+      Context.None,
     ],
     [`<!-`, Context.None],
     [`</`, Context.None],
@@ -28,19 +28,19 @@ describe('Miscellaneous - Comments', () => {
       `/* x */
     = 1;
     */`,
-      Context.None
+      Context.None,
     ],
     [
       `/*
     */ the comment should not include these characters, regardless of AnnexB extensions -->`,
-      Context.None
+      Context.None,
     ],
     [`/*FOO/`, Context.None],
     [`<!-- HTML comment`, Context.Strict | Context.Module],
     ['x/* precomment */ --> is eol-comment\nvar y = 37;\n', Context.None],
     ['var x = a; --> is eol-comment\nvar y = b;\n', Context.None],
     [`</`, Context.None],
-    [`</`, Context.None]
+    [`</`, Context.None],
   ]);
 
   for (const arg of [
@@ -65,7 +65,7 @@ describe('Miscellaneous - Comments', () => {
             = 1;
             */`,
     `// var /*
-            x*/`
+            x*/`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -206,7 +206,7 @@ describe('Miscellaneous - Comments', () => {
     */-->`,
     `0/*
     */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
-    '<!-- -->'
+    '<!-- -->',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -235,16 +235,16 @@ describe('Miscellaneous - Comments', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 12,
-            column: 8
-          }
+            column: 8,
+          },
         },
         body: [],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '/**/ --> comment',
@@ -255,8 +255,8 @@ describe('Miscellaneous - Comments', () => {
         start: 0,
         end: 16,
         range: [0, 16],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
@@ -271,26 +271,26 @@ describe('Miscellaneous - Comments', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   start: 8,
                   end: 10,
                   range: [8, 10],
                   type: 'Literal',
-                  value: 42
+                  value: 42,
                 },
                 start: 4,
                 end: 10,
                 range: [4, 10],
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
             start: 0,
             end: 11,
             range: [0, 11],
-            type: 'VariableDeclaration'
+            type: 'VariableDeclaration',
           },
           {
             declarations: [
@@ -300,34 +300,34 @@ describe('Miscellaneous - Comments', () => {
                   start: 38,
                   end: 39,
                   range: [38, 39],
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   start: 42,
                   end: 44,
                   range: [42, 44],
                   type: 'Literal',
-                  value: 37
+                  value: 37,
                 },
                 start: 38,
                 end: 44,
                 range: [38, 44],
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
             start: 34,
             end: 45,
             range: [34, 45],
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
         start: 0,
         end: 46,
         range: [0, 46],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
@@ -338,8 +338,8 @@ describe('Miscellaneous - Comments', () => {
         start: 0,
         end: 69,
         range: [0, 69],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
@@ -360,7 +360,7 @@ describe('Miscellaneous - Comments', () => {
               start: 35,
               end: 36,
               range: [35, 36],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: true,
@@ -370,15 +370,15 @@ describe('Miscellaneous - Comments', () => {
                 start: 55,
                 end: 56,
                 range: [55, 56],
-                name: 'x'
+                name: 'x',
               },
               {
                 type: 'Identifier',
                 start: 75,
                 end: 76,
                 range: [75, 76],
-                name: 'y'
-              }
+                name: 'y',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -390,20 +390,20 @@ describe('Miscellaneous - Comments', () => {
                   type: 'EmptyStatement',
                   start: 105,
                   end: 106,
-                  range: [105, 106]
+                  range: [105, 106],
                 },
                 {
                   type: 'EmptyStatement',
                   start: 115,
                   end: 116,
-                  range: [115, 116]
-                }
-              ]
-            }
-          }
+                  range: [115, 116],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
@@ -415,39 +415,39 @@ describe('Miscellaneous - Comments', () => {
               {
                 id: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   type: 'Literal',
-                  value: 42
+                  value: 42,
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
+            type: 'VariableDeclaration',
           },
           {
             declarations: [
               {
                 id: {
                   name: 'y',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   type: 'Literal',
-                  value: 37
+                  value: 37,
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '\n/*precomment*/-->eol-comment\nvar y = 37;\n',
@@ -459,22 +459,22 @@ describe('Miscellaneous - Comments', () => {
               {
                 id: {
                   name: 'y',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   type: 'Literal',
-                  value: 37
+                  value: 37,
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '\n-->is eol-comment\nvar y = 37;\n',
@@ -486,22 +486,22 @@ describe('Miscellaneous - Comments', () => {
               {
                 id: {
                   name: 'y',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   type: 'Literal',
-                  value: 37
+                  value: 37,
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '-->',
@@ -512,8 +512,8 @@ describe('Miscellaneous - Comments', () => {
         body: [],
         start: 0,
         end: 3,
-        range: [0, 3]
-      }
+        range: [0, 3],
+      },
     ],
     [
       '42 /* block comment 1 */ /* block comment 2 */',
@@ -529,17 +529,17 @@ describe('Miscellaneous - Comments', () => {
               value: 42,
               start: 0,
               end: 2,
-              range: [0, 2]
+              range: [0, 2],
             },
             start: 0,
             end: 2,
-            range: [0, 2]
-          }
+            range: [0, 2],
+          },
         ],
         start: 0,
         end: 46,
-        range: [0, 46]
-      }
+        range: [0, 46],
+      },
     ],
     [
       `/* multiline
@@ -556,11 +556,11 @@ describe('Miscellaneous - Comments', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 42
-            }
-          }
-        ]
-      }
+              value: 42,
+            },
+          },
+        ],
+      },
     ],
     [
       `// line comment
@@ -574,11 +574,11 @@ describe('Miscellaneous - Comments', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 42
-            }
-          }
-        ]
-      }
+              value: 42,
+            },
+          },
+        ],
+      },
     ],
     [
       '//',
@@ -586,8 +586,8 @@ describe('Miscellaneous - Comments', () => {
       {
         body: [],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'if (x) { /* Some comment */ doThat() }',
@@ -603,7 +603,7 @@ describe('Miscellaneous - Comments', () => {
               name: 'x',
               start: 4,
               end: 5,
-              range: [4, 5]
+              range: [4, 5],
             },
             consequent: {
               type: 'BlockStatement',
@@ -617,32 +617,32 @@ describe('Miscellaneous - Comments', () => {
                       name: 'doThat',
                       start: 28,
                       end: 34,
-                      range: [28, 34]
+                      range: [28, 34],
                     },
                     arguments: [],
                     start: 28,
                     end: 36,
-                    range: [28, 36]
+                    range: [28, 36],
                   },
                   start: 28,
                   end: 36,
-                  range: [28, 36]
-                }
+                  range: [28, 36],
+                },
               ],
               start: 7,
               end: 38,
-              range: [7, 38]
+              range: [7, 38],
             },
             alternate: null,
             start: 0,
             end: 38,
-            range: [0, 38]
-          }
+            range: [0, 38],
+          },
         ],
         start: 0,
         end: 38,
-        range: [0, 38]
-      }
+        range: [0, 38],
+      },
     ],
     [
       'function f() { /* infinite */ while (true) { } /* bar */ var each; }',
@@ -664,18 +664,18 @@ describe('Miscellaneous - Comments', () => {
                     value: true,
                     start: 37,
                     end: 41,
-                    range: [37, 41]
+                    range: [37, 41],
                   },
                   body: {
                     type: 'BlockStatement',
                     body: [],
                     start: 43,
                     end: 46,
-                    range: [43, 46]
+                    range: [43, 46],
                   },
                   start: 30,
                   end: 46,
-                  range: [30, 46]
+                  range: [30, 46],
                 },
                 {
                   type: 'VariableDeclaration',
@@ -689,21 +689,21 @@ describe('Miscellaneous - Comments', () => {
                         name: 'each',
                         start: 61,
                         end: 65,
-                        range: [61, 65]
+                        range: [61, 65],
                       },
                       start: 61,
                       end: 65,
-                      range: [61, 65]
-                    }
+                      range: [61, 65],
+                    },
                   ],
                   start: 57,
                   end: 66,
-                  range: [57, 66]
-                }
+                  range: [57, 66],
+                },
               ],
               start: 13,
               end: 68,
-              range: [13, 68]
+              range: [13, 68],
             },
             async: false,
             generator: false,
@@ -712,17 +712,17 @@ describe('Miscellaneous - Comments', () => {
               name: 'f',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 68,
-            range: [0, 68]
-          }
+            range: [0, 68],
+          },
         ],
         start: 0,
         end: 68,
-        range: [0, 68]
-      }
+        range: [0, 68],
+      },
     ],
     [
       'while (i-->0) {}',
@@ -742,42 +742,42 @@ describe('Miscellaneous - Comments', () => {
                   name: 'i',
                   start: 7,
                   end: 8,
-                  range: [7, 8]
+                  range: [7, 8],
                 },
                 operator: '--',
                 prefix: false,
                 start: 7,
                 end: 10,
-                range: [7, 10]
+                range: [7, 10],
               },
               right: {
                 type: 'Literal',
                 value: 0,
                 start: 11,
                 end: 12,
-                range: [11, 12]
+                range: [11, 12],
               },
               operator: '>',
               start: 7,
               end: 12,
-              range: [7, 12]
+              range: [7, 12],
             },
             body: {
               type: 'BlockStatement',
               body: [],
               start: 14,
               end: 16,
-              range: [14, 16]
+              range: [14, 16],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       'function x(){ /*Jupiter*/ return; /*Saturn*/}',
@@ -797,12 +797,12 @@ describe('Miscellaneous - Comments', () => {
                   argument: null,
                   start: 26,
                   end: 33,
-                  range: [26, 33]
-                }
+                  range: [26, 33],
+                },
               ],
               start: 12,
               end: 45,
-              range: [12, 45]
+              range: [12, 45],
             },
             async: false,
             generator: false,
@@ -811,17 +811,17 @@ describe('Miscellaneous - Comments', () => {
               name: 'x',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 45,
-            range: [0, 45]
-          }
+            range: [0, 45],
+          },
         ],
         start: 0,
         end: 45,
-        range: [0, 45]
-      }
+        range: [0, 45],
+      },
     ],
     [
       'function a() {}',
@@ -838,7 +838,7 @@ describe('Miscellaneous - Comments', () => {
               body: [],
               start: 13,
               end: 15,
-              range: [13, 15]
+              range: [13, 15],
             },
             async: false,
             generator: false,
@@ -847,17 +847,17 @@ describe('Miscellaneous - Comments', () => {
               name: 'a',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '/**/ function a() {}',
@@ -874,7 +874,7 @@ describe('Miscellaneous - Comments', () => {
               body: [],
               start: 18,
               end: 20,
-              range: [18, 20]
+              range: [18, 20],
             },
             async: false,
             generator: false,
@@ -883,17 +883,17 @@ describe('Miscellaneous - Comments', () => {
               name: 'a',
               start: 14,
               end: 15,
-              range: [14, 15]
+              range: [14, 15],
             },
             start: 5,
             end: 20,
-            range: [5, 20]
-          }
+            range: [5, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       `while (true) {
@@ -913,24 +913,24 @@ describe('Miscellaneous - Comments', () => {
               value: true,
               start: 7,
               end: 11,
-              range: [7, 11]
+              range: [7, 11],
             },
             body: {
               type: 'BlockStatement',
               body: [],
               start: 13,
               end: 81,
-              range: [13, 81]
+              range: [13, 81],
             },
             start: 0,
             end: 81,
-            range: [0, 81]
-          }
+            range: [0, 81],
+          },
         ],
         start: 0,
         end: 81,
-        range: [0, 81]
-      }
-    ]
+        range: [0, 81],
+      },
+    ],
   ]);
 });

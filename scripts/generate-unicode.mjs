@@ -11,7 +11,7 @@ const FILE = new URL('../src/unicode.ts', import.meta.url);
 
 const UNICODE_PACKAGE_PREFIX = '@unicode/unicode-';
 const unicodePackageName = Object.keys(packageJson.devDependencies).find((name) =>
-  name.startsWith(UNICODE_PACKAGE_PREFIX)
+  name.startsWith(UNICODE_PACKAGE_PREFIX),
 );
 
 const UNICODE_VERSION = unicodePackageName.slice(UNICODE_PACKAGE_PREFIX.length);
@@ -24,7 +24,7 @@ const loadUnicodeCodePoints = async (name) => {
 const DataInst = {
   Empty: 0x0,
   Many: 0x1,
-  Link: 0x2
+  Link: 0x2,
 };
 
 function compressorCreate() {
@@ -36,7 +36,7 @@ function compressorCreate() {
     count: 0,
     prev: 0,
     mask: DataInst.Empty,
-    size: 0
+    size: 0,
   };
 }
 
@@ -157,15 +157,15 @@ const unicodeLookup = ${makeDecompress(compress)};
 ${specifiers
   .map(
     ([specifier], index) =>
-      `export const ${specifier} = (code: number) => (unicodeLookup[(code >>> ${VectorBitCount}) + ${index * VectorByteSize}] >>> code & ${VectorMask} & 1) !== 0;`
+      `export const ${specifier} = (code: number) => (unicodeLookup[(code >>> ${VectorBitCount}) + ${index * VectorByteSize}] >>> code & ${VectorMask} & 1) !== 0;`,
   )
   .join('\n')}
-`.trimStart()
+`.trimStart(),
   );
 }
 
 await generate({
   isIDContinue: ['Binary_Property/ID_Continue'],
   isIDStart: ['Binary_Property/ID_Start'],
-  mustEscape: ['General_Category/Other', 'General_Category/Separator']
+  mustEscape: ['General_Category/Other', 'General_Category/Separator'],
 });

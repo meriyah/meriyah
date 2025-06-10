@@ -16,11 +16,11 @@ describe('Statements - For await of', () => {
     { start: 'var a1 = async () => { if (true) ', finish: ' }' },
     {
       start: 'var a1 = async () => { if (true) foo(); else { ',
-      finish: ' } }'
+      finish: ' } }',
     },
     { start: 'var a1 = async () => { while (true) { ', finish: ' } }' },
     { start: 'var a1 = async () => { for(;;) { ', finish: ' } }' },
-    { start: "var a1 = async () => { switch(e) { case '1' :  ", finish: ' } }' }
+    { start: "var a1 = async () => { switch(e) { case '1' :  ", finish: ' } }' },
   ];
 
   const expressions = [
@@ -40,7 +40,7 @@ describe('Statements - For await of', () => {
     'for await(value of [1,2,3]) {}',
     'for await(value of x + x) {}',
     'for await(value of f()) {}',
-    'for await(value of (x + x)) {}'
+    'for await(value of (x + x)) {}',
   ];
 
   wrappers.forEach((wrapper) => {
@@ -64,7 +64,7 @@ describe('Statements - For await of', () => {
     'for await (x of []) function* g() {};',
     'for await (x of []) function* g() {}; return g;',
     'for await (x of []) async function a() {};',
-    'for await (x of []) async function a() {}; return a;'
+    'for await (x of []) async function a() {}; return a;',
   ]) {
     it(`async function f() {${arg} }`, () => {
       t.throws(() => {
@@ -216,7 +216,7 @@ describe('Statements - For await of', () => {
     '({x} in y)',
     '("foo".x in y)',
     'for await (a in b) {}',
-    'for await (;;) {}'
+    'for await (;;) {}',
   ]) {
     it(`async function f() { for await ${arg}; }`, () => {
       t.throws(() => {
@@ -233,7 +233,7 @@ describe('Statements - For await of', () => {
         parseSource(
           `async function f() { for await ${arg}; }`,
           undefined,
-          Context.OptionsLexical | Context.OptionsWebCompat
+          Context.OptionsLexical | Context.OptionsWebCompat,
         );
       });
     });
@@ -329,7 +329,7 @@ describe('Statements - For await of', () => {
     "(const {'a': a = 1} of [])",
     '(const {"a": a = 1} of [])',
     '(const {[Symbol.iterator]: a = 1} of [])',
-    '(const {0: a = 1} of [])'
+    '(const {0: a = 1} of [])',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -419,8 +419,8 @@ describe('Statements - For await of', () => {
   fail('Statements - For await of (fail)', [
     [
       'async function fn() { for await (var [...[ x ] = []] of (async function*() { yield* [[]]; })()) {}}',
-      Context.Strict
-    ]
+      Context.Strict,
+    ],
   ]);
 
   for (const arg of [
@@ -510,7 +510,7 @@ describe('Statements - For await of', () => {
     'for (var { w: [x, y, z] = [4, 5, 6] } of [{ w: null }]) {}',
     'for await (const { x, } of [{ x: 23 }]) {}',
     'for await (const { w: { x, y, z } = { x: 4, y: 5, z: 6 } } of [{ w: { x: undefined, z: 7 } }]) {}',
-    'for await (let [{ x, y, z } = { x: 44, y: 55, z: 66 }] of (async function*() { yield* [[{ x: 11, y: 22, z: 33 }]]; })()) {}'
+    'for await (let [{ x, y, z } = { x: 44, y: 55, z: 66 }] of (async function*() { yield* [[{ x: 11, y: 22, z: 33 }]]; })()) {}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

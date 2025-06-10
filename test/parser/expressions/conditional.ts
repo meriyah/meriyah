@@ -5,7 +5,7 @@ describe('Expressions - Conditional', () => {
   fail('Expressions - Conditional (fail)', [
     ['a ? await x : c', Context.None],
     ['a ? b : await c', Context.None],
-    ['a ? b : yield c', Context.None]
+    ['a ? b : yield c', Context.None],
   ]);
 
   pass('Expressions - Conditional (pass)', [
@@ -22,20 +22,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               consequent: {
                 type: 'Literal',
-                value: 0.3
+                value: 0.3,
               },
               alternate: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo?.3:0',
@@ -50,20 +50,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               consequent: {
                 type: 'Literal',
-                value: 0.3
+                value: 0.3,
               },
               alternate: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo ? .3 : 0',
@@ -78,20 +78,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               consequent: {
                 type: 'Literal',
-                value: 0.3
+                value: 0.3,
               },
               alternate: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ? b : c = d',
@@ -106,28 +106,28 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               alternate: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'd'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'd',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ? b = d : c',
@@ -153,7 +153,7 @@ describe('Expressions - Conditional', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'AssignmentExpression',
@@ -166,28 +166,28 @@ describe('Expressions - Conditional', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
               alternate: {
                 type: 'Identifier',
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                name: 'c'
-              }
-            }
-          }
+                name: 'c',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = (0) ? 1 : 2',
@@ -214,7 +214,7 @@ describe('Expressions - Conditional', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ConditionalExpression',
@@ -226,28 +226,28 @@ describe('Expressions - Conditional', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  value: 0
+                  value: 0,
                 },
                 consequent: {
                   type: 'Literal',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  value: 1
+                  value: 1,
                 },
                 alternate: {
                   type: 'Literal',
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  value: 2
-                }
-              }
-            }
-          }
+                  value: 2,
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(y ? y : true)',
@@ -273,27 +273,27 @@ describe('Expressions - Conditional', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                name: 'y'
+                name: 'y',
               },
               consequent: {
                 type: 'Identifier',
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'y'
+                name: 'y',
               },
               alternate: {
                 type: 'Literal',
                 start: 9,
                 end: 13,
                 range: [9, 13],
-                value: true
-              }
-            }
-          }
+                value: true,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"1" ? y : ""',
@@ -308,20 +308,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: '1'
+                value: '1',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               alternate: {
                 type: 'Literal',
-                value: ''
-              }
-            }
-          }
-        ]
-      }
+                value: '',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '("1" ? "" : "1")',
@@ -336,20 +336,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: '1'
+                value: '1',
               },
               consequent: {
                 type: 'Literal',
-                value: ''
+                value: '',
               },
               alternate: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'Symbol() ? 1 : 2, 1',
@@ -386,38 +386,38 @@ describe('Expressions - Conditional', () => {
                       start: 0,
                       end: 6,
                       range: [0, 6],
-                      name: 'Symbol'
+                      name: 'Symbol',
                     },
-                    arguments: []
+                    arguments: [],
                   },
                   consequent: {
                     type: 'Literal',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    value: 1
+                    value: 1,
                   },
                   alternate: {
                     type: 'Literal',
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    value: 2
-                  }
+                    value: 2,
+                  },
                 },
                 {
                   type: 'Literal',
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  value: 1
-                }
-              ]
-            }
-          }
+                  value: 1,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(false ? false : true)',
@@ -432,20 +432,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: false
+                value: false,
               },
               consequent: {
                 type: 'Literal',
-                value: false
+                value: false,
               },
               alternate: {
                 type: 'Literal',
-                value: true
-              }
-            }
-          }
-        ]
-      }
+                value: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo => bar ? zoo : doo',
@@ -463,29 +463,29 @@ describe('Expressions - Conditional', () => {
                 type: 'ConditionalExpression',
                 test: {
                   type: 'Identifier',
-                  name: 'bar'
+                  name: 'bar',
                 },
                 consequent: {
                   type: 'Identifier',
-                  name: 'zoo'
+                  name: 'zoo',
                 },
                 alternate: {
                   type: 'Identifier',
-                  name: 'doo'
-                }
+                  name: 'doo',
+                },
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -501,20 +501,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               consequent: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'bar'
-              }
-            }
-          }
-        ]
-      }
+                name: 'bar',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a?b:c',
@@ -529,20 +529,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a === b ? c : d % e',
@@ -573,7 +573,7 @@ describe('Expressions - Conditional', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '===',
                 right: {
@@ -581,15 +581,15 @@ describe('Expressions - Conditional', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               consequent: {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'c'
+                name: 'c',
               },
               alternate: {
                 type: 'BinaryExpression',
@@ -601,7 +601,7 @@ describe('Expressions - Conditional', () => {
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  name: 'd'
+                  name: 'd',
                 },
                 operator: '%',
                 right: {
@@ -609,14 +609,14 @@ describe('Expressions - Conditional', () => {
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'e'
-                }
-              }
-            }
-          }
+                  name: 'e',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a=b?c:d',
@@ -631,28 +631,28 @@ describe('Expressions - Conditional', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'ConditionalExpression',
                 test: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 consequent: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 alternate: {
                   type: 'Identifier',
-                  name: 'd'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'd',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a?b:c=d',
@@ -667,28 +667,28 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               alternate: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'd'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'd',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x && y ? a : b',
@@ -705,26 +705,26 @@ describe('Expressions - Conditional', () => {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '&&'
+                operator: '&&',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a === b ? c : d % e',
@@ -755,7 +755,7 @@ describe('Expressions - Conditional', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '===',
                 right: {
@@ -763,15 +763,15 @@ describe('Expressions - Conditional', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               consequent: {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'c'
+                name: 'c',
               },
               alternate: {
                 type: 'BinaryExpression',
@@ -783,7 +783,7 @@ describe('Expressions - Conditional', () => {
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  name: 'd'
+                  name: 'd',
                 },
                 operator: '%',
                 right: {
@@ -791,14 +791,14 @@ describe('Expressions - Conditional', () => {
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'e'
-                }
-              }
-            }
-          }
+                  name: 'e',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'true ? y : false',
@@ -813,20 +813,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               consequent: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               alternate: {
                 type: 'Literal',
-                value: false
-              }
-            }
-          }
-        ]
-      }
+                value: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '"1" ? "" : "1"',
@@ -841,20 +841,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: '1'
+                value: '1',
               },
               consequent: {
                 type: 'Literal',
-                value: ''
+                value: '',
               },
               alternate: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'true ? y : z',
@@ -869,20 +869,20 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               consequent: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'Symbol() ? 1 : 2, 1',
@@ -902,28 +902,28 @@ describe('Expressions - Conditional', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'Symbol'
+                      name: 'Symbol',
                     },
-                    arguments: []
+                    arguments: [],
                   },
                   consequent: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   alternate: {
                     type: 'Literal',
-                    value: 2
-                  }
+                    value: 2,
+                  },
                 },
                 {
                   type: 'Literal',
-                  value: 1
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 1,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x && y ? 1 : 2',
@@ -940,26 +940,26 @@ describe('Expressions - Conditional', () => {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '&&'
+                operator: '&&',
               },
               consequent: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
               alternate: {
                 type: 'Literal',
-                value: 2
-              }
-            }
-          }
-        ]
-      }
+                value: 2,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ? !b : !c',
@@ -974,30 +974,30 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'UnaryExpression',
                 operator: '!',
                 argument: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                prefix: true
+                prefix: true,
               },
               alternate: {
                 type: 'UnaryExpression',
                 operator: '!',
                 argument: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1013,28 +1013,28 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
               alternate: {
                 type: 'Identifier',
-                name: 'd'
-              }
-            }
-          }
-        ]
-      }
+                name: 'd',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a === b ? c : d % e;',
@@ -1051,34 +1051,34 @@ describe('Expressions - Conditional', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '==='
+                operator: '===',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               alternate: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'e'
+                  name: 'e',
                 },
-                operator: '%'
-              }
-            }
-          }
-        ]
-      }
+                operator: '%',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a=b?c:d',
@@ -1093,28 +1093,28 @@ describe('Expressions - Conditional', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'ConditionalExpression',
                 test: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 consequent: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 alternate: {
                   type: 'Identifier',
-                  name: 'd'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'd',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a?b=c:d',
@@ -1129,28 +1129,28 @@ describe('Expressions - Conditional', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
               alternate: {
                 type: 'Identifier',
-                name: 'd'
-              }
-            }
-          }
-        ]
-      }
+                name: 'd',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ? !b : !c;',
@@ -1176,7 +1176,7 @@ describe('Expressions - Conditional', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'UnaryExpression',
@@ -1190,8 +1190,8 @@ describe('Expressions - Conditional', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               alternate: {
                 type: 'UnaryExpression',
@@ -1205,14 +1205,14 @@ describe('Expressions - Conditional', () => {
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'c'
-                }
-              }
-            }
-          }
+                  name: 'c',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

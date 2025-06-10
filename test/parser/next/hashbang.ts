@@ -24,7 +24,7 @@ describe('Next - Hashbang grammar', () => {
     ['{ #! }', Context.None],
     ['#\n/*\n\n*/', Context.None],
     ['function fn(a = #\\u0021\n) {}', Context.None],
-    ['() => #\n/*\n\n*/', Context.None]
+    ['() => #\n/*\n\n*/', Context.None],
   ]);
 
   for (const arg of [
@@ -41,7 +41,7 @@ describe('Next - Hashbang grammar', () => {
     String.raw`#!---IGNORED---\xE2\x80\xA8`,
     String.raw`#!---IGNORED---\xE2\x80\xA9`,
     // Hashbang comments should not be interpreted and should not generate DirectivePrologues
-    '#!"use strict" with ({}) {}'
+    '#!"use strict" with ({}) {}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

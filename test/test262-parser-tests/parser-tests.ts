@@ -9,6 +9,6 @@ describe('Test262', function () {
       const exitCode = await runTest(meriyah);
       t.equal(exitCode, 0);
     },
-    Infinity
+    Infinity,
   );
 });

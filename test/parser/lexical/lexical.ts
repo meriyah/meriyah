@@ -16,7 +16,7 @@ describe('Lexical - Lexical', () => {
     'const x = function() {};',
     'const x = 2, y = 3;',
 
-    'const y = 4, x = 5;'
+    'const y = 4, x = 5;',
   ];
   const varbinds = ['var x;', 'var x = 0;', 'var x = undefined;', 'var x = function() {};', 'var x, y;', 'var y, x;'];
 
@@ -45,7 +45,7 @@ describe('Lexical - Lexical', () => {
           parseSource(
             letbinds[l] + '{' + varbinds[v] + '}',
             undefined,
-            Context.OptionsWebCompat | Context.OptionsLexical
+            Context.OptionsWebCompat | Context.OptionsLexical,
           );
         });
       });
@@ -98,12 +98,12 @@ describe('Lexical - Lexical', () => {
     [
       `var x; let x;
     var x; let x;`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     [
       `let x; { var x }
     let x; { var x }`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     ['var x; let x;', Context.OptionsLexical],
     ['let x; { var x }', Context.OptionsLexical | Context.Module | Context.Strict],
@@ -119,7 +119,7 @@ describe('Lexical - Lexical', () => {
     [
       `let a; let a;
     let a; let a;`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     ['const a = 1, a = 2', Context.OptionsLexical],
     ['const a = 1; const a = 2', Context.OptionsLexical],
@@ -234,7 +234,7 @@ describe('Lexical - Lexical', () => {
     ['const x = a; const x = b;', Context.OptionsLexical],
     ['const x = a; function x(){};', Context.OptionsLexical],
     ['let x; { var x }', Context.OptionsLexical],
-    ['{ var x; } let x', Context.OptionsLexical]
+    ['{ var x; } let x', Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -269,7 +269,7 @@ describe('Lexical - Lexical', () => {
       }
   };`,
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
-    'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;'
+    'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -315,7 +315,7 @@ describe('Lexical - Lexical', () => {
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
     'var x; { let x }',
-    '{ let x } var x;'
+    '{ let x } var x;',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

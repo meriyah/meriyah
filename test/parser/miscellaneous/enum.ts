@@ -47,7 +47,7 @@ describe('Miscellaneous - Enum', () => {
     '({ *m(enum) {} });',
     '({ set p(enum) {} });',
     'try {} catch (enum) {}',
-    'try {} catch (enum) {} finally {}'
+    'try {} catch (enum) {} finally {}',
   ]) {
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {

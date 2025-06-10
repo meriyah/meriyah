@@ -29,7 +29,7 @@ describe('Miscellaneous - Computed property names', () => {
       '({set c(x) {}})',
       '({get b() {}})',
       '({2e308:0})',
-      '({0x0:0})'
+      '({0x0:0})',
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {

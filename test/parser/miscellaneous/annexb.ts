@@ -26,7 +26,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
       '/* MLC \n */ /* SLDC */ --> is eol-comment\nvar y = 37;\n',
       '/* MLC \n */ /* SLDC1 */ /* SLDC2 */ --> is eol-comment\nvar y = 37;\n',
       '/* MLC1 \n */ /* MLC2 \n */ --> is eol-comment\nvar y = 37;\n',
-      '/* SLDC */ /* MLC \n */ --> is eol-comment\nvar y = 37;\n'
+      '/* SLDC */ /* MLC \n */ --> is eol-comment\nvar y = 37;\n',
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {
@@ -45,7 +45,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
       'x --> is eol-comment\nvar y = 37;\n',
       '"\\n" --> is eol-comment\nvar y = 37;\n',
       'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
-      'var x = 42; --> is eol-comment\nvar y = 37;\n'
+      'var x = 42; --> is eol-comment\nvar y = 37;\n',
     ]) {
       it(`${arg}`, () => {
         t.throws(() => {
@@ -79,7 +79,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     'for (const a = 0 in {});',
     // "'use strict'; { function f() {} function f() {} }",
     // Esprima issue:  https://github.com/jquery/esprima/issues/1719
-    `if (false) L: async function l() {}`
+    `if (false) L: async function l() {}`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -323,7 +323,7 @@ case 1:
     `0/*
   */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
     `0/*
-  */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`
+  */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

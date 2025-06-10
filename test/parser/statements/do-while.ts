@@ -16,7 +16,7 @@ describe('Statements - Do while', () => {
     a
     b
   while(c);`,
-      Context.None
+      Context.None,
     ],
     ['do let {} = y', Context.None],
     ['do debugger while(x) x', Context.None],
@@ -25,8 +25,8 @@ describe('Statements - Do while', () => {
       `do throw function (v, h) {
       "use strict"
     } while ((""))`,
-      Context.None
-    ]
+      Context.None,
+    ],
   ]);
 
   pass('Statements - Do while (pass)', [
@@ -37,25 +37,25 @@ describe('Statements - Do while', () => {
         body: [
           {
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             test: {
               type: 'Literal',
-              value: 0
+              value: 0,
             },
-            type: 'DoWhileStatement'
+            type: 'DoWhileStatement',
           },
           {
             expression: {
               type: 'Literal',
-              value: 0
+              value: 0,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `do x
@@ -82,8 +82,8 @@ describe('Statements - Do while', () => {
                 start: 3,
                 end: 4,
                 range: [3, 4],
-                name: 'x'
-              }
+                name: 'x',
+              },
             },
             test: {
               type: 'ObjectExpression',
@@ -104,7 +104,7 @@ describe('Statements - Do while', () => {
                     start: 19,
                     end: 20,
                     range: [19, 20],
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'ConditionalExpression',
@@ -116,31 +116,31 @@ describe('Statements - Do while', () => {
                       start: 23,
                       end: 25,
                       range: [23, 25],
-                      properties: []
+                      properties: [],
                     },
                     consequent: {
                       type: 'Literal',
                       start: 28,
                       end: 32,
                       range: [28, 32],
-                      value: null
+                      value: null,
                     },
                     alternate: {
                       type: 'Literal',
                       start: 35,
                       end: 40,
                       range: [35, 40],
-                      value: false
-                    }
+                      value: false,
+                    },
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'do async \n while (y)',
@@ -151,20 +151,20 @@ describe('Statements - Do while', () => {
             body: {
               expression: {
                 name: 'async',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               name: 'y',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'DoWhileStatement'
-          }
+            type: 'DoWhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'do async \n () \n while (y)',
@@ -177,22 +177,22 @@ describe('Statements - Do while', () => {
                 arguments: [],
                 callee: {
                   name: 'async',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               name: 'y',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'DoWhileStatement'
-          }
+            type: 'DoWhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'do while (x) continue \n while (x);',
@@ -203,24 +203,24 @@ describe('Statements - Do while', () => {
             body: {
               body: {
                 label: null,
-                type: 'ContinueStatement'
+                type: 'ContinueStatement',
               },
               test: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'WhileStatement'
+              type: 'WhileStatement',
             },
             test: {
               name: 'x',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'DoWhileStatement'
-          }
+            type: 'DoWhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `do if(x=>{});else n
@@ -242,7 +242,7 @@ describe('Statements - Do while', () => {
                   body: [],
                   start: 9,
                   end: 11,
-                  range: [9, 11]
+                  range: [9, 11],
                 },
                 params: [
                   {
@@ -250,20 +250,20 @@ describe('Statements - Do while', () => {
                     name: 'x',
                     start: 6,
                     end: 7,
-                    range: [6, 7]
-                  }
+                    range: [6, 7],
+                  },
                 ],
                 async: false,
                 expression: false,
                 start: 6,
                 end: 11,
-                range: [6, 11]
+                range: [6, 11],
               },
               consequent: {
                 type: 'EmptyStatement',
                 start: 12,
                 end: 13,
-                range: [12, 13]
+                range: [12, 13],
               },
               alternate: {
                 type: 'ExpressionStatement',
@@ -272,32 +272,32 @@ describe('Statements - Do while', () => {
                   name: 'n',
                   start: 18,
                   end: 19,
-                  range: [18, 19]
+                  range: [18, 19],
                 },
                 start: 18,
                 end: 19,
-                range: [18, 19]
+                range: [18, 19],
               },
               start: 3,
               end: 19,
-              range: [3, 19]
+              range: [3, 19],
             },
             test: {
               type: 'Identifier',
               name: 'y',
               start: 32,
               end: 33,
-              range: [32, 33]
+              range: [32, 33],
             },
             start: 0,
             end: 34,
-            range: [0, 34]
-          }
+            range: [0, 34],
+          },
         ],
         start: 0,
         end: 34,
-        range: [0, 34]
-      }
+        range: [0, 34],
+      },
     ],
     [
       `do
@@ -320,7 +320,7 @@ describe('Statements - Do while', () => {
                   body: [],
                   start: 15,
                   end: 17,
-                  range: [15, 17]
+                  range: [15, 17],
                 },
                 params: [
                   {
@@ -328,42 +328,42 @@ describe('Statements - Do while', () => {
                     name: 'x',
                     start: 12,
                     end: 13,
-                    range: [12, 13]
-                  }
+                    range: [12, 13],
+                  },
                 ],
                 async: false,
                 expression: false,
                 start: 12,
                 end: 17,
-                range: [12, 17]
+                range: [12, 17],
               },
               consequent: {
                 type: 'EmptyStatement',
                 start: 18,
                 end: 19,
-                range: [18, 19]
+                range: [18, 19],
               },
               alternate: null,
               start: 9,
               end: 19,
-              range: [9, 19]
+              range: [9, 19],
             },
             test: {
               type: 'Identifier',
               name: 'y',
               start: 30,
               end: 31,
-              range: [30, 31]
+              range: [30, 31],
             },
             start: 0,
             end: 32,
-            range: [0, 32]
-          }
+            range: [0, 32],
+          },
         ],
         start: 0,
         end: 32,
-        range: [0, 32]
-      }
+        range: [0, 32],
+      },
     ],
     [
       `do
@@ -385,11 +385,11 @@ describe('Statements - Do while', () => {
                   name: 'x',
                   start: 30,
                   end: 31,
-                  range: [30, 31]
+                  range: [30, 31],
                 },
                 start: 30,
                 end: 31,
-                range: [30, 31]
+                range: [30, 31],
               },
               init: {
                 type: 'FunctionExpression',
@@ -399,37 +399,37 @@ describe('Statements - Do while', () => {
                   body: [],
                   start: 24,
                   end: 26,
-                  range: [24, 26]
+                  range: [24, 26],
                 },
                 async: false,
                 generator: false,
                 id: null,
                 start: 14,
                 end: 26,
-                range: [14, 26]
+                range: [14, 26],
               },
               test: null,
               update: null,
               start: 9,
               end: 31,
-              range: [9, 31]
+              range: [9, 31],
             },
             test: {
               type: 'Identifier',
               name: 'x',
               start: 42,
               end: 43,
-              range: [42, 43]
+              range: [42, 43],
             },
             start: 0,
             end: 45,
-            range: [0, 45]
-          }
+            range: [0, 45],
+          },
         ],
         start: 0,
         end: 45,
-        range: [0, 45]
-      }
+        range: [0, 45],
+      },
     ],
     [
       `do
@@ -452,35 +452,35 @@ describe('Statements - Do while', () => {
                   body: [],
                   start: 22,
                   end: 24,
-                  range: [22, 24]
+                  range: [22, 24],
                 },
                 async: false,
                 generator: false,
                 id: null,
                 start: 12,
                 end: 24,
-                range: [12, 24]
+                range: [12, 24],
               },
               start: 11,
               end: 25,
-              range: [11, 25]
+              range: [11, 25],
             },
             test: {
               type: 'Identifier',
               name: 'y',
               start: 38,
               end: 39,
-              range: [38, 39]
+              range: [38, 39],
             },
             start: 0,
             end: 40,
-            range: [0, 40]
-          }
+            range: [0, 40],
+          },
         ],
         start: 0,
         end: 40,
-        range: [0, 40]
-      }
+        range: [0, 40],
+      },
     ],
     [
       'do h(function(){});while(x)',
@@ -497,7 +497,7 @@ describe('Statements - Do while', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'h'
+                  name: 'h',
                 },
                 arguments: [
                   {
@@ -505,22 +505,22 @@ describe('Statements - Do while', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                ]
-              }
+                    id: null,
+                  },
+                ],
+              },
             },
             test: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'do if(8)function s(){}while(y)',
@@ -534,32 +534,32 @@ describe('Statements - Do while', () => {
                 async: false,
                 body: {
                   body: [],
-                  type: 'BlockStatement'
+                  type: 'BlockStatement',
                 },
                 generator: false,
                 id: {
                   name: 's',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 params: [],
-                type: 'FunctionDeclaration'
+                type: 'FunctionDeclaration',
               },
               test: {
                 type: 'Literal',
-                value: 8
+                value: 8,
               },
-              type: 'IfStatement'
+              type: 'IfStatement',
             },
             test: {
               name: 'y',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'DoWhileStatement'
-          }
+            type: 'DoWhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `
@@ -576,32 +576,32 @@ while(y)
                 async: false,
                 body: {
                   body: [],
-                  type: 'BlockStatement'
+                  type: 'BlockStatement',
                 },
                 generator: false,
                 id: {
                   name: 's',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 params: [],
-                type: 'FunctionDeclaration'
+                type: 'FunctionDeclaration',
               },
               test: {
                 type: 'Literal',
-                value: 8
+                value: 8,
               },
-              type: 'IfStatement'
+              type: 'IfStatement',
             },
             test: {
               name: 'y',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'DoWhileStatement'
-          }
+            type: 'DoWhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     [
@@ -625,35 +625,35 @@ while(y)
                   name: 'x',
                   start: 13,
                   end: 14,
-                  range: [13, 14]
+                  range: [13, 14],
                 },
                 params: [],
                 async: false,
                 expression: true,
                 start: 9,
                 end: 14,
-                range: [9, 14]
+                range: [9, 14],
               },
               start: 9,
               end: 14,
-              range: [9, 14]
+              range: [9, 14],
             },
             test: {
               type: 'Identifier',
               name: 'c',
               start: 25,
               end: 26,
-              range: [25, 26]
+              range: [25, 26],
             },
             start: 0,
             end: 27,
-            range: [0, 27]
-          }
+            range: [0, 27],
+          },
         ],
         start: 0,
         end: 27,
-        range: [0, 27]
-      }
+        range: [0, 27],
+      },
     ],
     [
       'do foo; while (bar);',
@@ -679,20 +679,20 @@ while(y)
                 start: 3,
                 end: 6,
                 range: [3, 6],
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             test: {
               type: 'Identifier',
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'bar'
-            }
-          }
+              name: 'bar',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'do {} while (false) false',
@@ -705,22 +705,22 @@ while(y)
             type: 'DoWhileStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             test: {
               type: 'Literal',
-              value: false
-            }
+              value: false,
+            },
           },
           {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: false
-            }
-          }
-        ]
-      }
+              value: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'do { } while (a); /^.*$/.test(b)',
@@ -733,12 +733,12 @@ while(y)
             type: 'DoWhileStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             test: {
               type: 'Identifier',
-              name: 'a'
-            }
+              name: 'a',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -751,25 +751,25 @@ while(y)
                   value: /^.*$/,
                   regex: {
                     pattern: '^.*$',
-                    flags: ''
-                  }
+                    flags: '',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'test'
-                }
+                  name: 'test',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

@@ -44,7 +44,7 @@ describe('Expressions - Await', () => {
     'async function a() { await set }',
     'async function a() { await of }',
     'async function a() { await target }',
-    'async function a() { await meta }'
+    'async function a() { await meta }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -117,7 +117,7 @@ describe('Expressions - Await', () => {
     'var { [f]: ...await f } = {};',
     'let { [f]: ...await f } = {};',
     'const { [f]: ...await f } = {};',
-    `x = await`
+    `x = await`,
   ]) {
     it(`async function f( ${arg}) {}`, () => {
       t.throws(() => {
@@ -219,7 +219,7 @@ describe('Expressions - Await', () => {
     `(class { static async method([await = 1]) {} })`,
     `(class { static async method({ await }) {} })`,
     `(class { static async method({ await = 1 }) {} })`,
-    `(class { static async method({ } = await) {} })`
+    `(class { static async method({ } = await) {} })`,
   ]) {
     it(`async function f() { ${arg} }`, () => {
       t.throws(() => {
@@ -265,7 +265,7 @@ describe('Expressions - Await', () => {
     'var e = (await = 42)',
     '(await 1) = 1',
     'var e = [await];',
-    'var e = {await};'
+    'var e = {await};',
   ]) {
     it(`async function f() { ${arg} }`, () => {
       t.throws(() => {
@@ -328,7 +328,7 @@ describe('Expressions - Await', () => {
     'const { f: ...await f } = {};',
     'var { [f]: ...await f } = {};',
     'let { [f]: ...await f } = {};',
-    'const { [f]: ...await f } = {};'
+    'const { [f]: ...await f } = {};',
   ]) {
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
@@ -386,14 +386,14 @@ describe('Expressions - Await', () => {
       let [await b] = [];
       return b;
     }`,
-      Context.None
+      Context.None,
     ],
     [
       `async function f() {
       let { a: await b } = { a: 1 };
       return b;
     }`,
-      Context.None
+      Context.None,
     ],
     ['var await = 5;', Context.Module | Context.Strict],
     ['await;', Context.Module | Context.Strict],
@@ -606,7 +606,7 @@ describe('Expressions - Await', () => {
     ['async () => { await => { }; }', Context.None],
     ['async () => { (a, await) => { }; }', Context.None],
     ['async () => { (x, y, z = await 0) => { }; }', Context.None],
-    ['async function af() { (b = (c = await => {}) => {}) => {}; }', Context.None]
+    ['async function af() { (b = (c = await => {}) => {}) => {}; }', Context.None],
   ]);
 
   for (const arg of [
@@ -633,7 +633,7 @@ describe('Expressions - Await', () => {
     'const { f: ...await f } = {};',
     'var { [f]: ...await f } = {};',
     'let { [f]: ...await f } = {};',
-    'const { [f]: ...await f } = {};'
+    'const { [f]: ...await f } = {};',
   ]) {
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
@@ -741,7 +741,7 @@ describe('Expressions - Await', () => {
     `async function f() {
         let { [await "a"]: a } = { a: 1 };
         return a;
-      }`
+      }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -790,14 +790,14 @@ describe('Expressions - Await', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'f'
+                  name: 'f',
                 },
-                arguments: []
-              }
-            }
-          }
-        ]
-      }
+                arguments: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'await 5;',
@@ -812,12 +812,12 @@ describe('Expressions - Await', () => {
               type: 'AwaitExpression',
               argument: {
                 type: 'Literal',
-                value: 5
-              }
-            }
-          }
-        ]
-      }
+                value: 5,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'const foo = (await bar)',
@@ -834,20 +834,20 @@ describe('Expressions - Await', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 init: {
                   type: 'AwaitExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                    name: 'bar',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'async function f(){ if (await \n x) {} }',
@@ -862,33 +862,33 @@ describe('Expressions - Await', () => {
                   alternate: null,
                   consequent: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   test: {
                     argument: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'AwaitExpression'
+                    type: 'AwaitExpression',
                   },
-                  type: 'IfStatement'
-                }
+                  type: 'IfStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async function a(){     async ([y] = [{m: 5 + t(await bar)}]);     }',
@@ -909,7 +909,7 @@ describe('Expressions - Await', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
@@ -919,9 +919,9 @@ describe('Expressions - Await', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'y'
-                            }
-                          ]
+                              name: 'y',
+                            },
+                          ],
                         },
                         operator: '=',
                         right: {
@@ -934,57 +934,57 @@ describe('Expressions - Await', () => {
                                   type: 'Property',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'm'
+                                    name: 'm',
                                   },
                                   value: {
                                     type: 'BinaryExpression',
                                     left: {
                                       type: 'Literal',
-                                      value: 5
+                                      value: 5,
                                     },
                                     right: {
                                       type: 'CallExpression',
                                       callee: {
                                         type: 'Identifier',
-                                        name: 't'
+                                        name: 't',
                                       },
                                       arguments: [
                                         {
                                           type: 'AwaitExpression',
                                           argument: {
                                             type: 'Identifier',
-                                            name: 'bar'
-                                          }
-                                        }
-                                      ]
+                                            name: 'bar',
+                                          },
+                                        },
+                                      ],
                                     },
-                                    operator: '+'
+                                    operator: '+',
                                   },
                                   kind: 'init',
                                   computed: false,
                                   method: false,
-                                  shorthand: false
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                                  shorthand: false,
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f(){ await \n x; }',
@@ -999,28 +999,28 @@ describe('Expressions - Await', () => {
                   expression: {
                     argument: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'AwaitExpression'
+                    type: 'AwaitExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async function f(){ if (await \n x) {} }',
@@ -1035,33 +1035,33 @@ describe('Expressions - Await', () => {
                   alternate: null,
                   consequent: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   test: {
                     argument: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'AwaitExpression'
+                    type: 'AwaitExpression',
                   },
-                  type: 'IfStatement'
-                }
+                  type: 'IfStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let o = {await(){}}',
@@ -1088,7 +1088,7 @@ describe('Expressions - Await', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'o'
+                  name: 'o',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -1109,7 +1109,7 @@ describe('Expressions - Await', () => {
                         start: 9,
                         end: 14,
                         range: [9, 14],
-                        name: 'await'
+                        name: 'await',
                       },
                       kind: 'init',
                       value: {
@@ -1126,19 +1126,19 @@ describe('Expressions - Await', () => {
                           start: 16,
                           end: 18,
                           range: [16, 18],
-                          body: []
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+                          body: [],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x {await(){}}',
@@ -1159,7 +1159,7 @@ describe('Expressions - Await', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1181,7 +1181,7 @@ describe('Expressions - Await', () => {
                     start: 9,
                     end: 14,
                     range: [9, 14],
-                    name: 'await'
+                    name: 'await',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1197,16 +1197,16 @@ describe('Expressions - Await', () => {
                       start: 16,
                       end: 18,
                       range: [16, 18],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x {async *await(){}}',
@@ -1227,7 +1227,7 @@ describe('Expressions - Await', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1249,7 +1249,7 @@ describe('Expressions - Await', () => {
                     start: 16,
                     end: 21,
                     range: [16, 21],
-                    name: 'await'
+                    name: 'await',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1265,16 +1265,16 @@ describe('Expressions - Await', () => {
                       start: 23,
                       end: 25,
                       range: [23, 25],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function f() { await 3; }',
@@ -1295,22 +1295,22 @@ describe('Expressions - Await', () => {
                     type: 'AwaitExpression',
                     argument: {
                       type: 'Literal',
-                      value: 3
-                    }
-                  }
-                }
-              ]
+                      value: 3,
+                    },
+                  },
+                },
+              ],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(x = await){}',
@@ -1326,28 +1326,28 @@ describe('Expressions - Await', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
+                  name: 'await',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
 
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function a(){     async ({r} = await bar);     }',
@@ -1368,7 +1368,7 @@ describe('Expressions - Await', () => {
               start: 15,
               end: 16,
               range: [15, 16],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: true,
@@ -1394,7 +1394,7 @@ describe('Expressions - Await', () => {
                       start: 24,
                       end: 29,
                       range: [24, 29],
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
@@ -1422,7 +1422,7 @@ describe('Expressions - Await', () => {
                                 start: 32,
                                 end: 33,
                                 range: [32, 33],
-                                name: 'r'
+                                name: 'r',
                               },
                               kind: 'init',
                               value: {
@@ -1430,10 +1430,10 @@ describe('Expressions - Await', () => {
                                 start: 32,
                                 end: 33,
                                 range: [32, 33],
-                                name: 'r'
-                              }
-                            }
-                          ]
+                                name: 'r',
+                              },
+                            },
+                          ],
                         },
                         right: {
                           type: 'AwaitExpression',
@@ -1445,19 +1445,19 @@ describe('Expressions - Await', () => {
                             start: 43,
                             end: 46,
                             range: [43, 46],
-                            name: 'bar'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            name: 'bar',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'await()',
@@ -1472,13 +1472,13 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1494,17 +1494,17 @@ describe('Expressions - Await', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               computed: true,
               property: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'await = 1',
@@ -1519,17 +1519,17 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'await - 25',
@@ -1544,17 +1544,17 @@ describe('Expressions - Await', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               right: {
                 type: 'Literal',
-                value: 25
+                value: 25,
               },
-              operator: '-'
-            }
-          }
-        ]
-      }
+              operator: '-',
+            },
+          },
+        ],
+      },
     ],
     [
       'call(await)',
@@ -1567,12 +1567,12 @@ describe('Expressions - Await', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 11
-          }
+            column: 11,
+          },
         },
         body: [
           {
@@ -1583,12 +1583,12 @@ describe('Expressions - Await', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 11
-              }
+                column: 11,
+              },
             },
             expression: {
               type: 'CallExpression',
@@ -1598,12 +1598,12 @@ describe('Expressions - Await', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
+                  column: 11,
+                },
               },
               callee: {
                 type: 'Identifier',
@@ -1613,14 +1613,14 @@ describe('Expressions - Await', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 4
-                  }
+                    column: 4,
+                  },
                 },
-                name: 'call'
+                name: 'call',
               },
               arguments: [
                 {
@@ -1631,21 +1631,21 @@ describe('Expressions - Await', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 10
-                    }
+                      column: 10,
+                    },
                   },
-                  name: 'await'
-                }
-              ]
-            }
-          }
+                  name: 'await',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'call(await[1])',
@@ -1658,12 +1658,12 @@ describe('Expressions - Await', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 14
-          }
+            column: 14,
+          },
         },
         body: [
           {
@@ -1674,12 +1674,12 @@ describe('Expressions - Await', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 14
-              }
+                column: 14,
+              },
             },
             expression: {
               type: 'CallExpression',
@@ -1689,12 +1689,12 @@ describe('Expressions - Await', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
+                  column: 14,
+                },
               },
               callee: {
                 type: 'Identifier',
@@ -1704,14 +1704,14 @@ describe('Expressions - Await', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 4
-                  }
+                    column: 4,
+                  },
                 },
-                name: 'call'
+                name: 'call',
               },
               arguments: [
                 {
@@ -1722,12 +1722,12 @@ describe('Expressions - Await', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 13
-                    }
+                      column: 13,
+                    },
                   },
                   object: {
                     type: 'Identifier',
@@ -1737,14 +1737,14 @@ describe('Expressions - Await', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 10
-                      }
+                        column: 10,
+                      },
                     },
-                    name: 'await'
+                    name: 'await',
                   },
                   property: {
                     type: 'Literal',
@@ -1754,23 +1754,23 @@ describe('Expressions - Await', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 11
+                        column: 11,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
+                        column: 12,
+                      },
                     },
-                    value: 1
+                    value: 1,
                   },
-                  computed: true
-                }
-              ]
-            }
-          }
+                  computed: true,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'call(await.foo)',
@@ -1785,26 +1785,26 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'call'
+                name: 'call',
               },
               arguments: [
                 {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'await'
+                    name: 'await',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'foo',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(function call(await){})',
@@ -1820,24 +1820,24 @@ describe('Expressions - Await', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
+                  name: 'await',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'call'
-              }
-            }
-          }
-        ]
-      }
+                name: 'call',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function call(foo=await){})',
@@ -1850,12 +1850,12 @@ describe('Expressions - Await', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 28
-          }
+            column: 28,
+          },
         },
         body: [
           {
@@ -1866,12 +1866,12 @@ describe('Expressions - Await', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 28
-              }
+                column: 28,
+              },
             },
             expression: {
               type: 'FunctionExpression',
@@ -1881,12 +1881,12 @@ describe('Expressions - Await', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 27
-                }
+                  column: 27,
+                },
               },
               id: {
                 type: 'Identifier',
@@ -1896,14 +1896,14 @@ describe('Expressions - Await', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 10
+                    column: 10,
                   },
                   end: {
                     line: 1,
-                    column: 14
-                  }
+                    column: 14,
+                  },
                 },
-                name: 'call'
+                name: 'call',
               },
               generator: false,
               async: false,
@@ -1916,12 +1916,12 @@ describe('Expressions - Await', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 15
+                      column: 15,
                     },
                     end: {
                       line: 1,
-                      column: 24
-                    }
+                      column: 24,
+                    },
                   },
                   left: {
                     type: 'Identifier',
@@ -1931,14 +1931,14 @@ describe('Expressions - Await', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 15
+                        column: 15,
                       },
                       end: {
                         line: 1,
-                        column: 18
-                      }
+                        column: 18,
+                      },
                     },
-                    name: 'foo'
+                    name: 'foo',
                   },
                   right: {
                     type: 'Identifier',
@@ -1948,16 +1948,16 @@ describe('Expressions - Await', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 19
+                        column: 19,
                       },
                       end: {
                         line: 1,
-                        column: 24
-                      }
+                        column: 24,
+                      },
                     },
-                    name: 'await'
-                  }
-                }
+                    name: 'await',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -1967,20 +1967,20 @@ describe('Expressions - Await', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 25
+                    column: 25,
                   },
                   end: {
                     line: 1,
-                    column: 27
-                  }
+                    column: 27,
+                  },
                 },
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'y = async x => await x',
@@ -1995,7 +1995,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               operator: '=',
               right: {
@@ -2005,23 +2005,23 @@ describe('Expressions - Await', () => {
                   type: 'AwaitExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 ],
 
                 async: true,
-                expression: true
-              }
-            }
-          }
-        ]
-      }
+                expression: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function f(){ await \n x; })',
@@ -2037,30 +2037,30 @@ describe('Expressions - Await', () => {
                     expression: {
                       argument: {
                         name: 'x',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
-                      type: 'AwaitExpression'
+                      type: 'AwaitExpression',
                     },
-                    type: 'ExpressionStatement'
-                  }
+                    type: 'ExpressionStatement',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
 
               generator: false,
               id: {
                 name: 'f',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               params: [],
-              type: 'FunctionExpression'
+              type: 'FunctionExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '(function *await(){})',
@@ -2076,19 +2076,19 @@ describe('Expressions - Await', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'await'
-              }
-            }
-          }
-        ]
-      }
+                name: 'await',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {await(){}}',
@@ -2103,7 +2103,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2113,30 +2113,30 @@ describe('Expressions - Await', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'await'
+                      name: 'await',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {async await(){}}',
@@ -2151,7 +2151,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2161,30 +2161,30 @@ describe('Expressions - Await', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'await'
+                      name: 'await',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async function foo(){}',
@@ -2198,18 +2198,18 @@ describe('Expressions - Await', () => {
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {*await(){}}',
@@ -2224,7 +2224,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2234,30 +2234,30 @@ describe('Expressions - Await', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'await'
+                      name: 'await',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {async *await(){}}',
@@ -2272,7 +2272,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2282,30 +2282,30 @@ describe('Expressions - Await', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'await'
+                      name: 'await',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {f(await){}}',
@@ -2320,7 +2320,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2330,35 +2330,35 @@ describe('Expressions - Await', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'f'
+                      name: 'f',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'await'
-                        }
+                          name: 'await',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {*f(await){}}',
@@ -2369,7 +2369,7 @@ describe('Expressions - Await', () => {
             expression: {
               left: {
                 name: 'o',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
@@ -2378,7 +2378,7 @@ describe('Expressions - Await', () => {
                     computed: false,
                     key: {
                       name: 'f',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     kind: 'init',
                     method: true,
@@ -2388,30 +2388,30 @@ describe('Expressions - Await', () => {
                       async: false,
                       body: {
                         body: [],
-                        type: 'BlockStatement'
+                        type: 'BlockStatement',
                       },
                       generator: true,
                       id: null,
                       params: [
                         {
                           name: 'await',
-                          type: 'Identifier'
-                        }
+                          type: 'Identifier',
+                        },
                       ],
-                      type: 'FunctionExpression'
-                    }
-                  }
+                      type: 'FunctionExpression',
+                    },
+                  },
                 ],
-                type: 'ObjectExpression'
+                type: 'ObjectExpression',
               },
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'o = (await) => x',
@@ -2426,7 +2426,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               operator: '=',
               right: {
@@ -2434,22 +2434,22 @@ describe('Expressions - Await', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'await'
-                  }
+                    name: 'await',
+                  },
                 ],
 
                 async: false,
-                expression: true
-              }
-            }
-          }
-        ]
-      }
+                expression: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(foo = await){}',
@@ -2464,7 +2464,7 @@ describe('Expressions - Await', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2474,30 +2474,30 @@ describe('Expressions - Await', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'await'
-                    }
-                  }
+                      name: 'await',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f(){ await await foo; }',
@@ -2520,12 +2520,12 @@ describe('Expressions - Await', () => {
                       type: 'AwaitExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
-                  }
-                }
-              ]
+                        name: 'foo',
+                      },
+                    },
+                  },
+                },
+              ],
             },
             async: true,
 
@@ -2533,11 +2533,11 @@ describe('Expressions - Await', () => {
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(await){}',
@@ -2551,12 +2551,12 @@ describe('Expressions - Await', () => {
             params: [
               {
                 type: 'Identifier',
-                name: 'await'
-              }
+                name: 'await',
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
 
@@ -2564,11 +2564,11 @@ describe('Expressions - Await', () => {
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '(await) => x',
@@ -2584,21 +2584,21 @@ describe('Expressions - Await', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
+                  name: 'await',
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'let x = function *f(foo = await){}',
@@ -2610,45 +2610,45 @@ describe('Expressions - Await', () => {
               {
                 id: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   async: false,
 
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   generator: true,
                   id: {
                     name: 'f',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   params: [
                     {
                       left: {
                         name: 'foo',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
                       right: {
                         name: 'await',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
-                      type: 'AssignmentPattern'
-                    }
+                      type: 'AssignmentPattern',
+                    },
                   ],
-                  type: 'FunctionExpression'
+                  type: 'FunctionExpression',
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'let',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let o = {f(foo = await){}}',
@@ -2670,7 +2670,7 @@ describe('Expressions - Await', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -2679,38 +2679,38 @@ describe('Expressions - Await', () => {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             right: {
                               type: 'Identifier',
-                              name: 'await'
-                            }
-                          }
+                              name: 'await',
+                            },
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'o',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'function *f(){  (await) => x  }',
@@ -2732,31 +2732,31 @@ describe('Expressions - Await', () => {
                     generator: false,
                     body: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'await'
-                      }
+                        name: 'await',
+                      },
                     ],
 
                     async: false,
-                    expression: true
-                  }
-                }
-              ]
+                    expression: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){  foo(await)  }',
@@ -2777,28 +2777,28 @@ describe('Expressions - Await', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     arguments: [
                       {
                         type: 'Identifier',
-                        name: 'await'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'await',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function a(){     async ([v] = await bar);     }',
@@ -2819,7 +2819,7 @@ describe('Expressions - Await', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
@@ -2829,34 +2829,34 @@ describe('Expressions - Await', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'v'
-                            }
-                          ]
+                              name: 'v',
+                            },
+                          ],
                         },
                         operator: '=',
                         right: {
                           type: 'AwaitExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'bar'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                            name: 'bar',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function a(){     async (foo = [{m: 5 + t(await bar)}]);     }',
@@ -2877,14 +2877,14 @@ describe('Expressions - Await', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         operator: '=',
                         right: {
@@ -2897,56 +2897,56 @@ describe('Expressions - Await', () => {
                                   type: 'Property',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'm'
+                                    name: 'm',
                                   },
                                   value: {
                                     type: 'BinaryExpression',
                                     left: {
                                       type: 'Literal',
-                                      value: 5
+                                      value: 5,
                                     },
                                     right: {
                                       type: 'CallExpression',
                                       callee: {
                                         type: 'Identifier',
-                                        name: 't'
+                                        name: 't',
                                       },
                                       arguments: [
                                         {
                                           type: 'AwaitExpression',
                                           argument: {
                                             type: 'Identifier',
-                                            name: 'bar'
-                                          }
-                                        }
-                                      ]
+                                            name: 'bar',
+                                          },
+                                        },
+                                      ],
                                     },
-                                    operator: '+'
+                                    operator: '+',
                                   },
                                   kind: 'init',
                                   computed: false,
                                   method: false,
-                                  shorthand: false
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                                  shorthand: false,
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: true,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       '(await) => x',
@@ -2962,21 +2962,21 @@ describe('Expressions - Await', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
+                  name: 'await',
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){  foo(await)  }',
@@ -2997,28 +2997,28 @@ describe('Expressions - Await', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     arguments: [
                       {
                         type: 'Identifier',
-                        name: 'await'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'await',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(foo = await){}',
@@ -3034,28 +3034,28 @@ describe('Expressions - Await', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
+                  name: 'await',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'let o = {*f(await){}}',
@@ -3077,41 +3077,41 @@ describe('Expressions - Await', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'await'
-                          }
+                            name: 'await',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
 
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'o',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'foo[await 1]',
@@ -3126,20 +3126,20 @@ describe('Expressions - Await', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: true,
               property: {
                 type: 'AwaitExpression',
                 argument: {
                   type: 'Literal',
-                  value: 1
-                }
-              }
-            }
-          }
-        ]
-      }
+                  value: 1,
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(await bar)',
@@ -3154,21 +3154,21 @@ describe('Expressions - Await', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'AwaitExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                    name: 'bar',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

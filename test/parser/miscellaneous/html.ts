@@ -7,7 +7,7 @@ describe('Miscellaneous - HTML Comments', () => {
     `<!-- test --->`,
     `;-->`,
     `---*/
--->`
+-->`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -19,7 +19,7 @@ describe('Miscellaneous - HTML Comments', () => {
   for (const arg of [
     `/*
     */ the comment should not include these characters, regardless of AnnexB extensions -->`,
-    ';-->'
+    ';-->',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -47,7 +47,7 @@ describe('Miscellaneous - HTML Comments', () => {
     //'/* block comment */--> comment',
     //' \t /* block comment */  --> comment',
     //' \t --> comment',
-    '<!-- foo'
+    '<!-- foo',
     //'--> comment'
   ]) {
     it(`${arg}`, () => {

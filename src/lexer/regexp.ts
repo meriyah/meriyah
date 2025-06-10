@@ -8,7 +8,7 @@ import { report, Errors } from '../errors';
 enum RegexState {
   Empty = 0,
   Escape = 0x1,
-  Class = 0x2
+  Class = 0x2,
 }
 
 enum RegexFlags {
@@ -20,7 +20,7 @@ enum RegexFlags {
   Sticky = 0b0000_1000,
   DotAll = 0b0010_0000,
   Indices = 0b0100_0000,
-  UnicodeSets = 0b1000_0000
+  UnicodeSets = 0b1000_0000,
 }
 
 /**

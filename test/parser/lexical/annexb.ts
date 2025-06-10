@@ -13,7 +13,7 @@ describe('Lexical - AnnexB', () => {
     ['let x; var x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical],
     ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext]
+    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
   ]);
 
   for (const arg of [
@@ -112,7 +112,7 @@ describe('Lexical - AnnexB', () => {
   `,
     ` for (let f of [0]) {
       if (true) function f() {  } else ;
-      }`
+      }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -10,7 +10,7 @@ describe('Lexical - Try', () => {
         parseSource(
           `try { throw 0; } catch(e) { ${declaration} }`,
           undefined,
-          Context.OptionsLexical | Context.OptionsWebCompat
+          Context.OptionsLexical | Context.OptionsWebCompat,
         );
       });
     });
@@ -35,7 +35,7 @@ describe('Lexical - Try', () => {
     'const {f:e} = 0',
     'const [[[], e]] = 0',
     'function e(){}',
-    'function* e(){}'
+    'function* e(){}',
   ]) {
     it(`try { throw 0; } catch(e) { ${declaration} } `, () => {
       t.throws(() => {
@@ -157,8 +157,8 @@ describe('Lexical - Try', () => {
     [
       `try {} catch (foo) {}  let foo;
     try {} catch (foo) {}  let foo;`,
-      Context.OptionsLexical
-    ]
+      Context.OptionsLexical,
+    ],
   ]);
 
   for (const arg of [
@@ -187,7 +187,7 @@ describe('Lexical - Try', () => {
     'try {} catch (foo) {} let foo;',
     'try {} catch (e) { let b = x; }',
     'try {} catch (e) { for (const e in y) {} }',
-    'try {} catch (e) { for (let e of y) {} }'
+    'try {} catch (e) { for (let e of y) {} }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -255,7 +255,7 @@ describe('Lexical - Try', () => {
     'try { } catch (e) { function f(){} function f(){} }',
     'try {} catch (foo) { var foo; }',
     'try {} catch (e) { for (var e of y) {} }',
-    'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}'
+    'try { throw "try"; } catch (x) { for (var x = y; x !== y; x++) {}}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

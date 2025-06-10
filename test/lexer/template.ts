@@ -28,7 +28,7 @@ describe('Lexer - Template', () => {
       [Context.None, Token.TemplateSpan, '`$$$a}`', '$$$a}'],
 
       // Russian letters
-      [Context.None, Token.TemplateSpan, '`\\б`', 'б']
+      [Context.None, Token.TemplateSpan, '`\\б`', 'б'],
 
       // Unicode escape sequence - classic
 
@@ -46,14 +46,14 @@ describe('Lexer - Template', () => {
             token: found,
             hasNext: state.index < state.source.length,
             value: state.tokenValue,
-            index: state.index
+            index: state.index,
           },
           {
             token: token,
             hasNext: false,
             value,
-            index: op.length
-          }
+            index: op.length,
+          },
         );
       });
 
@@ -66,14 +66,14 @@ describe('Lexer - Template', () => {
             token: found,
             hasNext: state.index < state.source.length,
             value: state.tokenValue,
-            index: state.index
+            index: state.index,
           },
           {
             token: token,
             hasNext: true,
             value,
-            index: op.length
-          }
+            index: op.length,
+          },
         );
       });
     }
@@ -83,7 +83,7 @@ describe('Lexer - Template', () => {
     const tokens: [Context, Token, string, string][] = [
       [Context.None, Token.TemplateContinuation, '`${`', ''],
       [Context.None, Token.TemplateContinuation, '`$$${`', '$$'],
-      [Context.None, Token.TemplateContinuation, '`$$${a}`', '$$']
+      [Context.None, Token.TemplateContinuation, '`$$${a}`', '$$'],
     ];
 
     for (const [ctx, token, op, value] of tokens) {
@@ -94,12 +94,12 @@ describe('Lexer - Template', () => {
         t.deepEqual(
           {
             token: found,
-            value: state.tokenValue
+            value: state.tokenValue,
           },
           {
             token: token,
-            value
-          }
+            value,
+          },
         );
       });
     }
@@ -135,7 +135,7 @@ describe('Lexer - Template', () => {
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\x0g`', null],
       [Context.TaggedTemplate, Token.TemplateContinuation, '`\\x0g${', null],
       [Context.TaggedTemplate, Token.TemplateSpan, '`\\xg0`', null],
-      [Context.TaggedTemplate, Token.TemplateSpan, '`\\0`', '\u0000']
+      [Context.TaggedTemplate, Token.TemplateSpan, '`\\0`', '\u0000'],
     ];
 
     for (const [ctx, token, op, value] of tokens) {
@@ -146,12 +146,12 @@ describe('Lexer - Template', () => {
         t.deepEqual(
           {
             token: found,
-            value: state.tokenValue
+            value: state.tokenValue,
           },
           {
             token: token,
-            value
-          }
+            value,
+          },
         );
       });
     }
@@ -196,7 +196,7 @@ describe('Lexer - Template', () => {
   fail(
     String.raw`fails on "\u{00000000000000000000110000}"`,
     String.raw`"\u{00000000000000000000110000}"`,
-    Context.None
+    Context.None,
   );
   fail(String.raw`fails on "\7"`, String.raw`"\7"`, Context.Strict);
   fail('fails on "\\7\\\n"', '"\\7\\\n"', Context.Strict);

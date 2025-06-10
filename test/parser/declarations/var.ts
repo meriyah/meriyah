@@ -132,7 +132,7 @@ describe('Declarations - Var', () => {
     '[ (y) ]',
     '[ (foo.bar) ]',
     '(foo["bar"])',
-    '[(foo["bar"])]'
+    '[(foo["bar"])]',
   ]) {
     it(`let x, y, z; (${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
@@ -199,7 +199,7 @@ describe('Declarations - Var', () => {
         parseSource(
           `'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`,
           undefined,
-          Context.Strict | Context.Module
+          Context.Strict | Context.Module,
         );
       });
     });
@@ -209,7 +209,7 @@ describe('Declarations - Var', () => {
         parseSource(
           `'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`,
           undefined,
-          Context.Strict | Context.Module
+          Context.Strict | Context.Module,
         );
       });
     });
@@ -276,7 +276,7 @@ describe('Declarations - Var', () => {
     'var\u2029x\u2029=\u20291\u2029;',
     '({ __proto__: x, __proto__: y } = {})',
     'var { x = 10 } = (o = { x = 20 } = {});',
-    'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})'
+    'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -358,7 +358,7 @@ describe('Declarations - Var', () => {
     'var a = {}; [a["x"]] = [];',
     'function foo() { return {}; }; [foo().x] = [];',
     'function foo() { return {}; }; [foo()["x"]] = [];',
-    'class foo { method() { [super.x] = []; } }'
+    'class foo { method() { [super.x] = []; } }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -411,7 +411,7 @@ describe('Declarations - Var', () => {
     'true',
     'false',
     // future reserved keyword,
-    'enum'
+    'enum',
   ]) {
     it(`for (var ${arg} = x;;);`, () => {
       t.throws(() => {
@@ -627,7 +627,7 @@ describe('Declarations - Var', () => {
           var incatch__incatch__var;
       }
   };`,
-    'var {a: [b]} = c'
+    'var {a: [b]} = c',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -800,7 +800,7 @@ describe('Declarations - Var', () => {
     ['var {x,, y} = obj;', Context.None],
     ['var {x,, y} = obj;', Context.None],
     ['var {x};', Context.None],
-    ['var {x}, {y} = z;', Context.None]
+    ['var {x}, {y} = z;', Context.None],
   ]);
 
   pass('Declarations - Var (pass)', [
@@ -814,47 +814,47 @@ describe('Declarations - Var', () => {
               {
                 id: {
                   name: 'ancestors',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   elements: [
                     {
                       regex: {
                         flags: '',
-                        pattern: '^VarDef$'
+                        pattern: '^VarDef$',
                       },
                       type: 'Literal',
-                      value: /^VarDef$/
+                      value: /^VarDef$/,
                     },
                     {
                       regex: {
                         flags: '',
-                        pattern: '^(Const|Let|Var)$'
+                        pattern: '^(Const|Let|Var)$',
                       },
                       type: 'Literal',
-                      value: /^(Const|Let|Var)$/
+                      value: /^(Const|Let|Var)$/,
                     },
                     {
                       regex: {
                         flags: '',
-                        pattern: '^Export$'
+                        pattern: '^Export$',
                       },
                       type: 'Literal',
-                      value: /^Export$/
-                    }
+                      value: /^Export$/,
+                    },
                   ],
-                  type: 'ArrayExpression'
+                  type: 'ArrayExpression',
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'var idx = reverse ? --to : from++;',
@@ -866,43 +866,43 @@ describe('Declarations - Var', () => {
               {
                 id: {
                   name: 'idx',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   alternate: {
                     argument: {
                       name: 'from',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '++',
                     prefix: false,
-                    type: 'UpdateExpression'
+                    type: 'UpdateExpression',
                   },
                   consequent: {
                     argument: {
                       name: 'to',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '--',
                     prefix: true,
-                    type: 'UpdateExpression'
+                    type: 'UpdateExpression',
                   },
                   test: {
                     name: 'reverse',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'ConditionalExpression'
+                  type: 'ConditionalExpression',
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'for (var [x, ...[foo, bar]] = obj;;);',
@@ -914,7 +914,7 @@ describe('Declarations - Var', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'VariableDeclaration',
@@ -924,14 +924,14 @@ describe('Declarations - Var', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'obj'
+                    name: 'obj',
                   },
                   id: {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'RestElement',
@@ -940,25 +940,25 @@ describe('Declarations - Var', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             {
                               type: 'Identifier',
-                              name: 'bar'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              name: 'bar',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
 
     [
@@ -981,28 +981,28 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'await'
+                        name: 'await',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'await'
+                        name: 'await',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'for (var [a=[...b], ...c] = obj;;);',
@@ -1014,7 +1014,7 @@ describe('Declarations - Var', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'VariableDeclaration',
@@ -1024,7 +1024,7 @@ describe('Declarations - Var', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'obj'
+                    name: 'obj',
                   },
                   id: {
                     type: 'ArrayPattern',
@@ -1033,7 +1033,7 @@ describe('Declarations - Var', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'ArrayExpression',
@@ -1042,29 +1042,29 @@ describe('Declarations - Var', () => {
                               type: 'SpreadElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            }
-                          ]
-                        }
+                                name: 'b',
+                              },
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'c',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for (var x = a, {y} = obj;;);',
@@ -1076,7 +1076,7 @@ describe('Declarations - Var', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'VariableDeclaration',
@@ -1086,18 +1086,18 @@ describe('Declarations - Var', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'obj'
+                    name: 'obj',
                   },
                   id: {
                     type: 'ObjectPattern',
@@ -1107,26 +1107,26 @@ describe('Declarations - Var', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for (var x, {y} = obj;;);',
@@ -1158,9 +1158,9 @@ describe('Declarations - Var', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
+                  init: null,
                 },
                 {
                   type: 'VariableDeclarator',
@@ -1186,7 +1186,7 @@ describe('Declarations - Var', () => {
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'y'
+                          name: 'y',
                         },
                         kind: 'init',
                         value: {
@@ -1194,21 +1194,21 @@ describe('Declarations - Var', () => {
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'y'
-                        }
-                      }
-                    ]
+                          name: 'y',
+                        },
+                      },
+                    ],
                   },
                   init: {
                     type: 'Identifier',
                     start: 18,
                     end: 21,
                     range: [18, 21],
-                    name: 'obj'
-                  }
-                }
+                    name: 'obj',
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             test: null,
             update: null,
@@ -1216,12 +1216,12 @@ describe('Declarations - Var', () => {
               type: 'EmptyStatement',
               start: 24,
               end: 25,
-              range: [24, 25]
-            }
-          }
+              range: [24, 25],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [] in x);',
@@ -1253,30 +1253,30 @@ describe('Declarations - Var', () => {
                     start: 9,
                     end: 11,
                     range: [9, 11],
-                    elements: []
+                    elements: [],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 15,
               end: 16,
               range: [15, 16],
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'EmptyStatement',
               start: 17,
               end: 18,
-              range: [17, 18]
-            }
-          }
+              range: [17, 18],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [,,] in x);',
@@ -1288,7 +1288,7 @@ describe('Declarations - Var', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1299,18 +1299,18 @@ describe('Declarations - Var', () => {
                   init: null,
                   id: {
                     type: 'ArrayPattern',
-                    elements: [null, null]
-                  }
-                }
-              ]
+                    elements: [null, null],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'var x; var x = 5;',
@@ -1328,10 +1328,10 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'VariableDeclaration',
@@ -1341,17 +1341,17 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 5
+                  value: 5,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ var x; }; x = 0;',
@@ -1372,15 +1372,15 @@ describe('Declarations - Var', () => {
                     init: null,
                     id: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
-              }
-            ]
+                      name: 'x',
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             type: 'ExpressionStatement',
@@ -1388,17 +1388,17 @@ describe('Declarations - Var', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var x = 8;',
@@ -1415,17 +1415,17 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 8
+                  value: 8,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x; { var x = 5; }',
@@ -1443,10 +1443,10 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'BlockStatement',
@@ -1459,19 +1459,19 @@ describe('Declarations - Var', () => {
                     type: 'VariableDeclarator',
                     init: {
                       type: 'Literal',
-                      value: 5
+                      value: 5,
                     },
                     id: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'x',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var {x=1} = {a: 4, b: (x = 5)};',
@@ -1493,41 +1493,41 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
-                        value: 4
+                        value: 4,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'Literal',
-                          value: 5
-                        }
+                          value: 5,
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -1537,30 +1537,30 @@ describe('Declarations - Var', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
-                          value: 1
-                        }
+                          value: 1,
+                        },
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x = {a: 4, b: (x = 5)};',
@@ -1582,51 +1582,51 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
-                        value: 4
+                        value: 4,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'Literal',
-                          value: 5
-                        }
+                          value: 5,
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x; try {} catch (x) { x = 5; }',
@@ -1644,22 +1644,22 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               body: {
                 type: 'BlockStatement',
@@ -1670,22 +1670,22 @@ describe('Declarations - Var', () => {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '=',
                       right: {
                         type: 'Literal',
-                        value: 5
-                      }
-                    }
-                  }
-                ]
-              }
+                        value: 5,
+                      },
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'var x; eval("");',
@@ -1703,10 +1703,10 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -1714,18 +1714,18 @@ describe('Declarations - Var', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'eval'
+                name: 'eval',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: ''
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: '',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'eval(""); var x;',
@@ -1740,15 +1740,15 @@ describe('Declarations - Var', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'eval'
+                name: 'eval',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: ''
-                }
-              ]
-            }
+                  value: '',
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -1759,13 +1759,13 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x; var x;',
@@ -1792,12 +1792,12 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1815,16 +1815,16 @@ describe('Declarations - Var', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function x() {}; var x;',
@@ -1845,7 +1845,7 @@ describe('Declarations - Var', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'x'
+              name: 'x',
             },
             generator: false,
             async: false,
@@ -1855,14 +1855,14 @@ describe('Declarations - Var', () => {
               start: 13,
               end: 15,
               range: [13, 15],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'EmptyStatement',
             start: 15,
             end: 16,
-            range: [15, 16]
+            range: [15, 16],
           },
           {
             type: 'VariableDeclaration',
@@ -1880,16 +1880,16 @@ describe('Declarations - Var', () => {
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x; try {} catch (x) { var x = 5; }',
@@ -1907,22 +1907,22 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               body: {
                 type: 'BlockStatement',
@@ -1935,22 +1935,22 @@ describe('Declarations - Var', () => {
                         type: 'VariableDeclarator',
                         init: {
                           type: 'Literal',
-                          value: 5
+                          value: 5,
                         },
                         id: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'x',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       '"use strict"; var x = 0; { let x; x = 6; }',
@@ -1967,25 +1967,25 @@ describe('Declarations - Var', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 12
-                }
-              }
+                  column: 12,
+                },
+              },
             },
             directive: 'use strict',
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 13
-              }
-            }
+                column: 13,
+              },
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -1999,13 +1999,13 @@ describe('Declarations - Var', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 22
+                      column: 22,
                     },
                     end: {
                       line: 1,
-                      column: 23
-                    }
-                  }
+                      column: 23,
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
@@ -2013,36 +2013,36 @@ describe('Declarations - Var', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 18
+                      column: 18,
                     },
                     end: {
                       line: 1,
-                      column: 19
-                    }
-                  }
+                      column: 19,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 18
+                    column: 18,
                   },
                   end: {
                     line: 1,
-                    column: 23
-                  }
-                }
-              }
+                    column: 23,
+                  },
+                },
+              },
             ],
             loc: {
               start: {
                 line: 1,
-                column: 14
+                column: 14,
               },
               end: {
                 line: 1,
-                column: 24
-              }
-            }
+                column: 24,
+              },
+            },
           },
           {
             type: 'BlockStatement',
@@ -2060,36 +2060,36 @@ describe('Declarations - Var', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 31
+                          column: 31,
                         },
                         end: {
                           line: 1,
-                          column: 32
-                        }
-                      }
+                          column: 32,
+                        },
+                      },
                     },
                     loc: {
                       start: {
                         line: 1,
-                        column: 31
+                        column: 31,
                       },
                       end: {
                         line: 1,
-                        column: 32
-                      }
-                    }
-                  }
+                        column: 32,
+                      },
+                    },
+                  },
                 ],
                 loc: {
                   start: {
                     line: 1,
-                    column: 27
+                    column: 27,
                   },
                   end: {
                     line: 1,
-                    column: 33
-                  }
-                }
+                    column: 33,
+                  },
+                },
               },
               {
                 type: 'ExpressionStatement',
@@ -2101,13 +2101,13 @@ describe('Declarations - Var', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 34
+                        column: 34,
                       },
                       end: {
                         line: 1,
-                        column: 35
-                      }
-                    }
+                        column: 35,
+                      },
+                    },
                   },
                   operator: '=',
                   right: {
@@ -2116,60 +2116,60 @@ describe('Declarations - Var', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 38
+                        column: 38,
                       },
                       end: {
                         line: 1,
-                        column: 39
-                      }
-                    }
+                        column: 39,
+                      },
+                    },
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 34
+                      column: 34,
                     },
                     end: {
                       line: 1,
-                      column: 39
-                    }
-                  }
+                      column: 39,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 34
+                    column: 34,
                   },
                   end: {
                     line: 1,
-                    column: 40
-                  }
-                }
-              }
+                    column: 40,
+                  },
+                },
+              },
             ],
             loc: {
               start: {
                 line: 1,
-                column: 25
+                column: 25,
               },
               end: {
                 line: 1,
-                column: 42
-              }
-            }
-          }
+                column: 42,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 42
-          }
-        }
-      }
+            column: 42,
+          },
+        },
+      },
     ],
     [
       '"use strict"; let x = 0; { let x = 6; }',
@@ -2182,9 +2182,9 @@ describe('Declarations - Var', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'VariableDeclaration',
@@ -2194,14 +2194,14 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'BlockStatement',
@@ -2214,19 +2214,19 @@ describe('Declarations - Var', () => {
                     type: 'VariableDeclarator',
                     init: {
                       type: 'Literal',
-                      value: 6
+                      value: 6,
                     },
                     id: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'x',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var [x, x] = [4, 5];',
@@ -2259,16 +2259,16 @@ describe('Declarations - Var', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'Identifier',
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'x'
-                    }
-                  ]
+                      name: 'x',
+                    },
+                  ],
                 },
                 init: {
                   type: 'ArrayExpression',
@@ -2281,24 +2281,24 @@ describe('Declarations - Var', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      value: 4
+                      value: 4,
                     },
                     {
                       type: 'Literal',
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      value: 5
-                    }
-                  ]
-                }
-              }
+                      value: 5,
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x; [x, x] = [4, 5];',
@@ -2325,12 +2325,12 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExpressionStatement',
@@ -2354,16 +2354,16 @@ describe('Declarations - Var', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -2376,22 +2376,22 @@ describe('Declarations - Var', () => {
                     start: 17,
                     end: 18,
                     range: [17, 18],
-                    value: 4
+                    value: 4,
                   },
                   {
                     type: 'Literal',
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    value: 5
-                  }
-                ]
-              }
-            }
-          }
+                    value: 5,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {a: x, b: x} = {a: 4, b: 5};',
@@ -2432,16 +2432,16 @@ describe('Declarations - Var', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'x'
+                        name: 'x',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -2456,18 +2456,18 @@ describe('Declarations - Var', () => {
                         start: 11,
                         end: 12,
                         range: [11, 12],
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'x'
+                        name: 'x',
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -2488,16 +2488,16 @@ describe('Declarations - Var', () => {
                         start: 20,
                         end: 21,
                         range: [20, 21],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 23,
                         end: 24,
                         range: [23, 24],
-                        value: 4
+                        value: 4,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -2512,26 +2512,26 @@ describe('Declarations - Var', () => {
                         start: 26,
                         end: 27,
                         range: [26, 27],
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Literal',
                         start: 29,
                         end: 30,
                         range: [29, 30],
-                        value: 5
+                        value: 5,
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x = {a: 4, b: (x = 5)};',
@@ -2553,51 +2553,51 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
-                        value: 4
+                        value: 4,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'Literal',
-                          value: 5
-                        }
+                          value: 5,
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var foo = {}; foo.if;',
@@ -2614,14 +2614,14 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -2629,17 +2629,17 @@ describe('Declarations - Var', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'if'
-              }
-            }
-          }
-        ]
-      }
+                name: 'if',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var f0 = function (a, b = a, c = b) {
@@ -2673,30 +2673,30 @@ describe('Declarations - Var', () => {
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
+                        name: 'b',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -2708,32 +2708,32 @@ describe('Declarations - Var', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             {
                               type: 'Identifier',
-                              name: 'c'
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                              name: 'c',
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'f0'
-                }
-              }
-            ]
+                  name: 'f0',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -2745,29 +2745,29 @@ describe('Declarations - Var', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'expect'
+                    name: 'expect',
                   },
                   arguments: [
                     {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'f0'
+                        name: 'f0',
                       },
                       arguments: [
                         {
                           type: 'Literal',
-                          value: 1
-                        }
-                      ]
-                    }
-                  ]
+                          value: 1,
+                        },
+                      ],
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'toEqual'
-                }
+                  name: 'toEqual',
+                },
               },
               arguments: [
                 {
@@ -2775,20 +2775,20 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 1
-                    }
-                  ]
-                }
-              ]
-            }
+                      value: 1,
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -2807,40 +2807,40 @@ describe('Declarations - Var', () => {
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
+                        name: 'b',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -2852,32 +2852,32 @@ describe('Declarations - Var', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             {
                               type: 'Identifier',
-                              name: 'c'
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                              name: 'c',
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'f1'
-                }
-              }
-            ]
+                  name: 'f1',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -2889,14 +2889,14 @@ describe('Declarations - Var', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'expect'
+                    name: 'expect',
                   },
                   arguments: [
                     {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'f1'
+                        name: 'f1',
                       },
                       arguments: [
                         {
@@ -2906,28 +2906,28 @@ describe('Declarations - Var', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 1
+                                value: 1,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'toEqual'
-                }
+                  name: 'toEqual',
+                },
               },
               arguments: [
                 {
@@ -2935,20 +2935,20 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     {
                       type: 'Literal',
-                      value: 1
-                    }
-                  ]
-                }
-              ]
-            }
+                      value: 1,
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -2967,40 +2967,40 @@ describe('Declarations - Var', () => {
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
+                        name: 'a',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -3012,35 +3012,35 @@ describe('Declarations - Var', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             {
                               type: 'Identifier',
-                              name: 'c'
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                              name: 'c',
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'f2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'f2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var foo = {}; foo.super;',
@@ -3067,18 +3067,18 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 7,
                   range: [4, 7],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 init: {
                   type: 'ObjectExpression',
                   start: 10,
                   end: 12,
                   range: [10, 12],
-                  properties: []
-                }
-              }
+                  properties: [],
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExpressionStatement',
@@ -3095,21 +3095,21 @@ describe('Declarations - Var', () => {
                 start: 14,
                 end: 17,
                 range: [14, 17],
-                name: 'foo'
+                name: 'foo',
               },
               property: {
                 type: 'Identifier',
                 start: 18,
                 end: 23,
                 range: [18, 23],
-                name: 'super'
+                name: 'super',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var foo = {}; foo.interface;',
@@ -3126,14 +3126,14 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -3141,17 +3141,17 @@ describe('Declarations - Var', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'interface'
-              }
-            }
-          }
-        ]
-      }
+                name: 'interface',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var foo = {}; foo.arguments;',
@@ -3168,14 +3168,14 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -3183,17 +3183,17 @@ describe('Declarations - Var', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'arguments'
-              }
-            }
-          }
-        ]
-      }
+                name: 'arguments',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var [,] = x;',
@@ -3220,22 +3220,22 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 7,
                   range: [4, 7],
-                  elements: [null]
+                  elements: [null],
                 },
                 init: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [,,] = x;',
@@ -3250,19 +3250,19 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'ArrayPattern',
-                  elements: [null, null]
+                  elements: [null, null],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var\nfoo',
@@ -3274,19 +3274,19 @@ describe('Declarations - Var', () => {
               {
                 id: {
                   name: 'foo',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: null,
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'var',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'var [foo,,] = x;',
@@ -3304,22 +3304,22 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
-                    null
-                  ]
+                    null,
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [,foo] = x;',
@@ -3338,21 +3338,21 @@ describe('Declarations - Var', () => {
                     null,
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [,,foo] = x;',
@@ -3372,21 +3372,21 @@ describe('Declarations - Var', () => {
                     null,
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo,bar] = x;',
@@ -3404,25 +3404,25 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
-                  ]
+                      name: 'bar',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo] = x, [foo] = y;',
@@ -3440,14 +3440,14 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'VariableDeclarator',
@@ -3456,21 +3456,21 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo] = x, b;',
@@ -3488,29 +3488,29 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo] = x, b = y;',
@@ -3528,32 +3528,32 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x, [foo] = y;',
@@ -3568,9 +3568,9 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
@@ -3579,21 +3579,21 @@ describe('Declarations - Var', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo=a] = c;',
@@ -3631,32 +3631,32 @@ describe('Declarations - Var', () => {
                         start: 5,
                         end: 8,
                         range: [5, 8],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 'a'
-                      }
-                    }
-                  ]
+                        name: 'a',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  name: 'c'
-                }
-              }
+                  name: 'c',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [foo=a,bar=b] = x;',
@@ -3694,15 +3694,15 @@ describe('Declarations - Var', () => {
                         start: 5,
                         end: 8,
                         range: [5, 8],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
@@ -3714,32 +3714,32 @@ describe('Declarations - Var', () => {
                         start: 11,
                         end: 14,
                         range: [11, 14],
-                        name: 'bar'
+                        name: 'bar',
                       },
                       right: {
                         type: 'Identifier',
                         start: 15,
                         end: 16,
                         range: [15, 16],
-                        name: 'b'
-                      }
-                    }
-                  ]
+                        name: 'b',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {} = x;',
@@ -3754,19 +3754,19 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'ObjectPattern',
-                  properties: []
+                  properties: [],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {foo} = x;',
@@ -3786,30 +3786,30 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {foo,} = x;',
@@ -3829,30 +3829,30 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var x = 5; function x() {}',
@@ -3869,31 +3869,31 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 5
+                  value: 5,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'FunctionDeclaration',
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'var x; x = 8;',
@@ -3911,10 +3911,10 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -3922,17 +3922,17 @@ describe('Declarations - Var', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 8
-              }
-            }
-          }
-        ]
-      }
+                value: 8,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var O = { async method() { await 1; } }',
@@ -3954,7 +3954,7 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'method'
+                        name: 'method',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -3968,32 +3968,32 @@ describe('Declarations - Var', () => {
                                 type: 'AwaitExpression',
                                 argument: {
                                   type: 'Literal',
-                                  value: 1
-                                }
-                              }
-                            }
-                          ]
+                                  value: 1,
+                                },
+                              },
+                            },
+                          ],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'O'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'O',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var O = { async ["meth" + "od"]() { await 1; } }',
@@ -4020,7 +4020,7 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'O'
+                  name: 'O',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -4047,7 +4047,7 @@ describe('Declarations - Var', () => {
                           end: 23,
                           range: [17, 23],
                           value: 'meth',
-                          raw: '"meth"'
+                          raw: '"meth"',
                         },
                         operator: '+',
                         right: {
@@ -4056,8 +4056,8 @@ describe('Declarations - Var', () => {
                           end: 30,
                           range: [26, 30],
                           value: 'od',
-                          raw: '"od"'
-                        }
+                          raw: '"od"',
+                        },
                       },
                       kind: 'init',
                       value: {
@@ -4091,23 +4091,23 @@ describe('Declarations - Var', () => {
                                   end: 43,
                                   range: [42, 43],
                                   value: 1,
-                                  raw: '1'
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+                                  raw: '1',
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var [ a, , b ] = list',
@@ -4140,7 +4140,7 @@ describe('Declarations - Var', () => {
                       start: 6,
                       end: 7,
                       range: [6, 7],
-                      name: 'a'
+                      name: 'a',
                     },
                     null,
                     {
@@ -4148,24 +4148,24 @@ describe('Declarations - Var', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'b'
-                    }
-                  ]
+                      name: 'b',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 17,
                   end: 21,
                   range: [17, 21],
-                  name: 'list'
-                }
-              }
+                  name: 'list',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var O = { async "method"() { await 1; } }',
@@ -4187,7 +4187,7 @@ describe('Declarations - Var', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'method'
+                        value: 'method',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -4201,32 +4201,32 @@ describe('Declarations - Var', () => {
                                 type: 'AwaitExpression',
                                 argument: {
                                   type: 'Literal',
-                                  value: 1
-                                }
-                              }
-                            }
-                          ]
+                                  value: 1,
+                                },
+                              },
+                            },
+                          ],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'O'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'O',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var O = { async 0() { await 1; } }',
@@ -4253,7 +4253,7 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'O'
+                  name: 'O',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -4274,7 +4274,7 @@ describe('Declarations - Var', () => {
                         start: 16,
                         end: 17,
                         range: [16, 17],
-                        value: 0
+                        value: 0,
                       },
                       kind: 'init',
                       value: {
@@ -4307,23 +4307,23 @@ describe('Declarations - Var', () => {
                                   start: 28,
                                   end: 29,
                                   range: [28, 29],
-                                  value: 1
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+                                  value: 1,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var let',
@@ -4341,13 +4341,13 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'let'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'let',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var [let] = []',
@@ -4364,22 +4364,22 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrayExpression',
-                  elements: []
+                  elements: [],
                 },
                 id: {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'let'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'let',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x; { with ({}) { x = 1; } }',
@@ -4406,12 +4406,12 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'BlockStatement',
@@ -4429,7 +4429,7 @@ describe('Declarations - Var', () => {
                   start: 15,
                   end: 17,
                   range: [15, 17],
-                  properties: []
+                  properties: [],
                 },
                 body: {
                   type: 'BlockStatement',
@@ -4453,25 +4453,25 @@ describe('Declarations - Var', () => {
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
                           start: 25,
                           end: 26,
                           range: [25, 26],
-                          value: 1
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
+                          value: 1,
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var {x : y} of obj);',
@@ -4483,7 +4483,7 @@ describe('Declarations - Var', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4500,29 +4500,29 @@ describe('Declarations - Var', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       "var o = { get [/./.exec('')](){} }",
@@ -4549,7 +4549,7 @@ describe('Declarations - Var', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'o'
+                  name: 'o',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -4584,17 +4584,17 @@ describe('Declarations - Var', () => {
                             raw: '/./',
                             regex: {
                               pattern: '.',
-                              flags: ''
-                            }
+                              flags: '',
+                            },
                           },
                           property: {
                             type: 'Identifier',
                             start: 19,
                             end: 23,
                             range: [19, 23],
-                            name: 'exec'
+                            name: 'exec',
                           },
-                          computed: false
+                          computed: false,
                         },
                         arguments: [
                           {
@@ -4603,9 +4603,9 @@ describe('Declarations - Var', () => {
                             end: 26,
                             range: [24, 26],
                             value: '',
-                            raw: "''"
-                          }
-                        ]
+                            raw: "''",
+                          },
+                        ],
                       },
                       kind: 'get',
                       value: {
@@ -4622,19 +4622,19 @@ describe('Declarations - Var', () => {
                           start: 30,
                           end: 32,
                           range: [30, 32],
-                          body: []
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+                          body: [],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `var [ a, , b ] = list;
@@ -4668,7 +4668,7 @@ describe('Declarations - Var', () => {
                       start: 6,
                       end: 7,
                       range: [6, 7],
-                      name: 'a'
+                      name: 'a',
                     },
                     null,
                     {
@@ -4676,20 +4676,20 @@ describe('Declarations - Var', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'b'
-                    }
-                  ]
+                      name: 'b',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 17,
                   end: 21,
                   range: [17, 21],
-                  name: 'list'
-                }
-              }
+                  name: 'list',
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExpressionStatement',
@@ -4713,16 +4713,16 @@ describe('Declarations - Var', () => {
                     start: 31,
                     end: 32,
                     range: [31, 32],
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'Identifier',
                     start: 34,
                     end: 35,
                     range: [34, 35],
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -4735,22 +4735,22 @@ describe('Declarations - Var', () => {
                     start: 42,
                     end: 43,
                     range: [42, 43],
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
                     start: 45,
                     end: 46,
                     range: [45, 46],
-                    name: 'b'
-                  }
-                ]
-              }
-            }
-          }
+                    name: 'b',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `var [ a, , b ] = list
@@ -4772,7 +4772,7 @@ describe('Declarations - Var', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'list'
+                      name: 'list',
                     },
                     computed: true,
                     property: {
@@ -4780,14 +4780,14 @@ describe('Declarations - Var', () => {
                       expressions: [
                         {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      ]
-                    }
+                          name: 'a',
+                        },
+                      ],
+                    },
                   },
                   operator: '=',
                   right: {
@@ -4795,34 +4795,34 @@ describe('Declarations - Var', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    ]
-                  }
+                        name: 'b',
+                      },
+                    ],
+                  },
                 },
                 id: {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     null,
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'b',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x, {y} = obj;',
@@ -4840,14 +4840,14 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
+                  name: 'obj',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -4857,23 +4857,23 @@ describe('Declarations - Var', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var {x = y} = obj;',
@@ -4890,7 +4890,7 @@ describe('Declarations - Var', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
+                  name: 'obj',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -4900,30 +4900,30 @@ describe('Declarations - Var', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'y'
-                        }
+                          name: 'y',
+                        },
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var {x = y, z} = obj;',
@@ -4964,7 +4964,7 @@ describe('Declarations - Var', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -4977,16 +4977,16 @@ describe('Declarations - Var', () => {
                           start: 5,
                           end: 6,
                           range: [5, 6],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
                           start: 9,
                           end: 10,
                           range: [9, 10],
-                          name: 'y'
-                        }
-                      }
+                          name: 'y',
+                        },
+                      },
                     },
                     {
                       type: 'Property',
@@ -5001,7 +5001,7 @@ describe('Declarations - Var', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'z'
+                        name: 'z',
                       },
                       kind: 'init',
                       value: {
@@ -5009,25 +5009,25 @@ describe('Declarations - Var', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'z'
-                      }
-                    }
-                  ]
+                        name: 'z',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 17,
                   end: 20,
                   range: [17, 20],
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var foo, bar;',
@@ -5045,21 +5045,21 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'bar',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var foo, bar',
@@ -5077,21 +5077,21 @@ describe('Declarations - Var', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                  name: 'bar',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   ]);
 });

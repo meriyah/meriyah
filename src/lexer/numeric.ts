@@ -129,7 +129,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
                 parser.index + 1,
                 parser.line,
                 parser.column,
-                Errors.ContinuousNumericSeparator
+                Errors.ContinuousNumericSeparator,
               );
             }
             allowSeparator = 1;
@@ -149,7 +149,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
             parser.index + 1,
             parser.line,
             parser.column,
-            Errors.TrailingNumericSeparator
+            Errors.TrailingNumericSeparator,
           );
         }
 
@@ -248,7 +248,7 @@ export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number):
           parser.index + 1,
           parser.line,
           parser.column,
-          Errors.ContinuousNumericSeparator
+          Errors.ContinuousNumericSeparator,
         );
       }
       allowSeparator = 1;
@@ -268,7 +268,7 @@ export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number):
       parser.index + 1,
       parser.line,
       parser.column,
-      Errors.TrailingNumericSeparator
+      Errors.TrailingNumericSeparator,
     );
   }
 

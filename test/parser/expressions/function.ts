@@ -18,7 +18,7 @@ describe('Expressions - Functions', () => {
     '[...[x], y] = [1, 2, 3]',
     '[...x, y] = [1, 2, 3]',
     '[...{ x }, y] = [1, 2, 3]',
-    '...a,'
+    '...a,',
   ]) {
     it(`(function (${arg}) {})`, () => {
       t.throws(() => {
@@ -42,7 +42,7 @@ describe('Expressions - Functions', () => {
     '(function([...[x], y]) {})',
     '(function([...[ x ] = []]) {})',
     '0, function(...x = []) {}',
-    '0, function(...x = []) {};'
+    '0, function(...x = []) {};',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -98,7 +98,7 @@ describe('Expressions - Functions', () => {
     '[ a = b ]',
     '[x = 23]',
     '[[] = function() { a += 1; }()]',
-    'x = args = arguments'
+    'x = args = arguments',
   ]) {
     it(`(function(${arg}) {})`, () => {
       t.doesNotThrow(() => {
@@ -242,7 +242,7 @@ describe('Expressions - Functions', () => {
     '(function foo(x) { {  function x() {} } })(1);',
     '(function foo([[x]]) { { function x() {}}})([[1]]);',
     // rest parameter shouldn't be shadowed
-    '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);'
+    '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
   ];
 
   for (const arg of validSyntax) {
@@ -261,7 +261,7 @@ describe('Expressions - Functions', () => {
 
   for (const arg of [
     `(function package() { (function gave_away_the_package() { "use strict"; }) })`,
-    `(function (eval) { (function () { "use strict"; })})`
+    `(function (eval) { (function () { "use strict"; })})`,
   ]) {
     it(arg, () => {
       t.doesNotThrow(() => {
@@ -302,7 +302,7 @@ describe('Expressions - Functions', () => {
     ['function f({...{a: b}}){}', Context.None],
     ['function f({...a.b}){}', Context.None],
     [String.raw`function p\u0061ckage() { "use strict"; }`, Context.None],
-    ['function package() { "use strict"; }', Context.None]
+    ['function package() { "use strict"; }', Context.None],
   ]);
 
   pass('Expressions - Functions (pass)', [
@@ -320,27 +320,27 @@ describe('Expressions - Functions', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
+                  name: 'await',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       `function f([async = await]){}`,
@@ -359,29 +359,29 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'await'
-                    }
-                  }
-                ]
-              }
+                      name: 'await',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       `(function () {
@@ -414,10 +414,10 @@ describe('Expressions - Functions', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'q'
-                          }
-                        }
-                      ]
+                            name: 'q',
+                          },
+                        },
+                      ],
                     },
                     {
                       type: 'VariableDeclaration',
@@ -428,10 +428,10 @@ describe('Expressions - Functions', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'w'
-                          }
-                        }
-                      ]
+                            name: 'w',
+                          },
+                        },
+                      ],
                     },
                     {
                       type: 'VariableDeclaration',
@@ -442,16 +442,16 @@ describe('Expressions - Functions', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'e'
-                          }
-                        }
-                      ]
+                            name: 'e',
+                          },
+                        },
+                      ],
                     },
                     {
                       type: 'IfStatement',
                       test: {
                         type: 'Literal',
-                        value: true
+                        value: true,
                       },
                       consequent: {
                         type: 'ExpressionStatement',
@@ -462,17 +462,17 @@ describe('Expressions - Functions', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'q'
+                                name: 'q',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'w'
+                                name: 'w',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'e'
-                              }
-                            ]
+                                name: 'e',
+                              },
+                            ],
                           },
                           operator: '=',
                           right: {
@@ -484,23 +484,23 @@ describe('Expressions - Functions', () => {
                                 elements: [
                                   {
                                     type: 'Literal',
-                                    value: 1
+                                    value: 1,
                                   },
                                   {
                                     type: 'Literal',
-                                    value: 2
+                                    value: 2,
                                   },
                                   {
                                     type: 'Literal',
-                                    value: 3
-                                  }
-                                ]
+                                    value: 3,
+                                  },
+                                ],
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'map'
-                              }
+                                name: 'map',
+                              },
                             },
                             arguments: [
                               {
@@ -508,31 +508,31 @@ describe('Expressions - Functions', () => {
                                 generator: false,
                                 body: {
                                   type: 'Literal',
-                                  value: 123
+                                  value: 123,
                                 },
                                 params: [],
 
                                 async: false,
-                                expression: true
-                              }
-                            ]
-                          }
-                        }
+                                expression: true,
+                              },
+                            ],
+                          },
+                        },
                       },
-                      alternate: null
-                    }
-                  ]
+                      alternate: null,
+                    },
+                  ],
                 },
                 async: false,
                 generator: false,
 
-                id: null
+                id: null,
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       `function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
@@ -566,7 +566,7 @@ describe('Expressions - Functions', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'topLeft'
+                      name: 'topLeft',
                     },
                     computed: false,
                     value: {
@@ -579,47 +579,47 @@ describe('Expressions - Functions', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'x1'
+                              name: 'x1',
                             },
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'y1'
+                              name: 'y1',
                             },
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       right: {
                         type: 'ObjectExpression',
-                        properties: []
-                      }
+                        properties: [],
+                      },
                     },
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'bottomRight'
+                      name: 'bottomRight',
                     },
                     computed: false,
                     value: {
@@ -632,63 +632,63 @@ describe('Expressions - Functions', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'x2'
+                              name: 'x2',
                             },
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'y2'
+                              name: 'y2',
                             },
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       right: {
                         type: 'ObjectExpression',
-                        properties: []
-                      }
+                        properties: [],
+                      },
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               {
                 type: 'Identifier',
-                name: 'p2'
+                name: 'p2',
               },
               {
                 type: 'Identifier',
-                name: 'p3'
-              }
+                name: 'p3',
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'somethingAdvanced'
-            }
+              name: 'somethingAdvanced',
+            },
           },
           {
             type: 'FunctionDeclaration',
@@ -701,33 +701,33 @@ describe('Expressions - Functions', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'title'
+                      name: 'title',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'title'
+                      name: 'title',
                     },
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'author'
+                      name: 'author',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'author'
+                      name: 'author',
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
+                    shorthand: false,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -740,30 +740,30 @@ describe('Expressions - Functions', () => {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'title'
+                        name: 'title',
                       },
                       right: {
                         type: 'Literal',
-                        value: ' '
+                        value: ' ',
                       },
-                      operator: '+'
+                      operator: '+',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'author'
+                      name: 'author',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'unpackObject'
-            }
+              name: 'unpackObject',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -773,20 +773,20 @@ describe('Expressions - Functions', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'console'
+                  name: 'console',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'log'
-                }
+                  name: 'log',
+                },
               },
               arguments: [
                 {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'unpackObject'
+                    name: 'unpackObject',
                   },
                   arguments: [
                     {
@@ -796,38 +796,38 @@ describe('Expressions - Functions', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'title'
+                            name: 'title',
                           },
                           value: {
                             type: 'Literal',
-                            value: 'title'
+                            value: 'title',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
+                          shorthand: false,
                         },
                         {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'author'
+                            name: 'author',
                           },
                           value: {
                             type: 'Literal',
-                            value: 'author'
+                            value: 'author',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -843,35 +843,35 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      ]
+                          name: 'c',
+                        },
+                      ],
                     },
                     {
                       type: 'ArrayPattern',
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         {
                           type: 'Identifier',
-                          name: 'z'
-                        }
-                      ]
-                    }
+                          name: 'z',
+                        },
+                      ],
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -884,34 +884,34 @@ describe('Expressions - Functions', () => {
                             type: 'BinaryExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             right: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
-                            operator: '+'
+                            operator: '+',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'c'
+                            name: 'c',
                           },
-                          operator: '+'
-                        }
-                      }
-                    ]
+                          operator: '+',
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'unpackArray'
-                }
-              }
-            ]
+                  name: 'unpackArray',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -921,20 +921,20 @@ describe('Expressions - Functions', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'console'
+                  name: 'console',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'log'
-                }
+                  name: 'log',
+                },
               },
               arguments: [
                 {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'unpackArray'
+                    name: 'unpackArray',
                   },
                   arguments: [
                     {
@@ -942,42 +942,42 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         {
                           type: 'Literal',
-                          value: ', '
+                          value: ', ',
                         },
                         {
                           type: 'Literal',
-                          value: 'world'
-                        }
-                      ]
+                          value: 'world',
+                        },
+                      ],
                     },
                     {
                       type: 'ArrayExpression',
                       elements: [
                         {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
                         {
                           type: 'Literal',
-                          value: 2
+                          value: 2,
                         },
                         {
                           type: 'Literal',
-                          value: 3
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                          value: 3,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(function(){})',
@@ -992,7 +992,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1000,18 +1000,18 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  id: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(function f(){})',
@@ -1026,7 +1026,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1034,21 +1034,21 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'f',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(function*(){})',
@@ -1063,7 +1063,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1071,18 +1071,18 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: true,
 
-                  id: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  id: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(function* f(){})',
@@ -1097,7 +1097,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1105,21 +1105,21 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'f',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async function(){})',
@@ -1134,7 +1134,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1142,18 +1142,18 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: true,
                   generator: false,
 
-                  id: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  id: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(function (x = yield) {})',
@@ -1171,26 +1171,26 @@ describe('Expressions - Functions', () => {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async function f(){})',
@@ -1205,7 +1205,7 @@ describe('Expressions - Functions', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1213,21 +1213,21 @@ describe('Expressions - Functions', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: true,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'f',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f(...rest){})',
@@ -1245,25 +1245,25 @@ describe('Expressions - Functions', () => {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'rest'
-                  }
-                }
+                    name: 'rest',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f(a, b, ...rest){})',
@@ -1279,35 +1279,35 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'rest'
-                  }
-                }
+                    name: 'rest',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async function f(){}',
@@ -1326,21 +1326,21 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: true,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
+                  name: 'f',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(a = b,){}',
@@ -1355,7 +1355,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1365,30 +1365,30 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([x],){}',
@@ -1403,7 +1403,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1414,27 +1414,27 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
-                  }
+                        name: 'x',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f({a},){}',
@@ -1449,7 +1449,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1463,35 +1463,35 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
+                        shorthand: true,
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([x] = y,){}',
@@ -1506,7 +1506,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1519,32 +1519,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      ]
+                          name: 'x',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f({a} = b,){}',
@@ -1559,7 +1559,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1575,40 +1575,40 @@ describe('Expressions - Functions', () => {
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(a=b){}',
@@ -1623,7 +1623,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1633,30 +1633,30 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(a=b=c){}',
@@ -1671,7 +1671,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1681,38 +1681,38 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       operator: '=',
                       right: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    }
-                  }
+                        name: 'c',
+                      },
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([]){}',
@@ -1727,7 +1727,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1735,25 +1735,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'ArrayPattern',
-                    elements: []
-                  }
+                    elements: [],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([] = x){}',
@@ -1768,7 +1768,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1778,30 +1778,30 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'ArrayPattern',
-                      elements: []
+                      elements: [],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,]){}',
@@ -1816,7 +1816,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1824,25 +1824,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'ArrayPattern',
-                    elements: [null]
-                  }
+                    elements: [null],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,] = x){}',
@@ -1857,7 +1857,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1867,30 +1867,30 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'ArrayPattern',
-                      elements: [null]
+                      elements: [null],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,,]){}',
@@ -1905,7 +1905,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1913,25 +1913,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'ArrayPattern',
-                    elements: [null, null]
-                  }
+                    elements: [null, null],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,,] = x){}',
@@ -1946,7 +1946,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1956,30 +1956,30 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'ArrayPattern',
-                      elements: [null, null]
+                      elements: [null, null],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo]){}',
@@ -1994,7 +1994,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2005,27 +2005,27 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo] = x){}',
@@ -2040,7 +2040,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2053,32 +2053,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,]){}',
@@ -2093,7 +2093,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2104,27 +2104,27 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,] = x){}',
@@ -2139,7 +2139,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2152,32 +2152,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,,]){}',
@@ -2192,7 +2192,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2203,28 +2203,28 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      null
-                    ]
-                  }
+                      null,
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,,] = x){}',
@@ -2239,7 +2239,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2252,33 +2252,33 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        null
-                      ]
+                        null,
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,foo]){}',
@@ -2293,7 +2293,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2305,27 +2305,27 @@ describe('Expressions - Functions', () => {
                       null,
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,foo] = x){}',
@@ -2340,7 +2340,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2354,32 +2354,32 @@ describe('Expressions - Functions', () => {
                         null,
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,,foo]){}',
@@ -2394,7 +2394,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2407,27 +2407,27 @@ describe('Expressions - Functions', () => {
                       null,
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([,,foo] = x){}',
@@ -2442,7 +2442,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2457,32 +2457,32 @@ describe('Expressions - Functions', () => {
                         null,
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,bar]){}',
@@ -2497,7 +2497,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2508,31 +2508,31 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    ]
-                  }
+                        name: 'bar',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,bar] = x){}',
@@ -2547,7 +2547,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2560,36 +2560,36 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      ]
+                          name: 'bar',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,,bar]){}',
@@ -2604,7 +2604,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2615,32 +2615,32 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       null,
                       {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    ]
-                  }
+                        name: 'bar',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,,bar] = x){}',
@@ -2655,7 +2655,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2668,37 +2668,37 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         null,
                         {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      ]
+                          name: 'bar',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo], [bar]){}',
@@ -2713,7 +2713,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2724,36 +2724,36 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
+                        name: 'foo',
+                      },
+                    ],
                   },
                   {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    ]
-                  }
+                        name: 'bar',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo] = x, [bar] = y){}',
@@ -2768,7 +2768,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2781,14 +2781,14 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
@@ -2797,32 +2797,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      ]
+                          name: 'bar',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo], b){}',
@@ -2837,7 +2837,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2848,31 +2848,31 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
+                        name: 'foo',
+                      },
+                    ],
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo] = x, b){}',
@@ -2887,7 +2887,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2900,36 +2900,36 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo], b = y){}',
@@ -2944,7 +2944,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2955,38 +2955,38 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
+                        name: 'foo',
+                      },
+                    ],
                   },
                   {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo] = x, b = y){}',
@@ -3001,7 +3001,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3014,43 +3014,43 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(x, [foo]){}',
@@ -3065,7 +3065,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3073,34 +3073,34 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(x, [foo] = y){}',
@@ -3115,7 +3115,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3123,7 +3123,7 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'AssignmentPattern',
@@ -3132,32 +3132,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(x = y, [foo] = z){}',
@@ -3172,7 +3172,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3182,12 +3182,12 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
@@ -3196,32 +3196,32 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      ]
+                          name: 'foo',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  }
+                      name: 'z',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(x = y, [foo]){}',
@@ -3236,7 +3236,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3246,39 +3246,39 @@ describe('Expressions - Functions', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
+                        name: 'foo',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a]){}',
@@ -3293,7 +3293,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3306,32 +3306,32 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'a',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a] = c){}',
@@ -3346,7 +3346,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3361,37 +3361,37 @@ describe('Expressions - Functions', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'a'
-                          }
-                        }
-                      ]
+                            name: 'a',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
-                  }
+                      name: 'c',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a,bar]){}',
@@ -3406,7 +3406,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3419,36 +3419,36 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    ]
-                  }
+                        name: 'bar',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a,bar] = x){}',
@@ -3463,7 +3463,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3478,41 +3478,41 @@ describe('Expressions - Functions', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         },
                         {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      ]
+                          name: 'bar',
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,bar=b]){}',
@@ -3527,7 +3527,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3538,38 +3538,38 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo,bar=b] = x){}',
@@ -3584,7 +3584,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3597,43 +3597,43 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'bar'
+                            name: 'bar',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
-                        }
-                      ]
+                            name: 'b',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a,bar=b]){}',
@@ -3648,7 +3648,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3661,43 +3661,43 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo=a,bar=b] = x){}',
@@ -3712,7 +3712,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3727,48 +3727,48 @@ describe('Expressions - Functions', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         },
                         {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'bar'
+                            name: 'bar',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
-                        }
-                      ]
+                            name: 'b',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([a=b=c]){}',
@@ -3783,7 +3783,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3796,40 +3796,40 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           operator: '=',
                           right: {
                             type: 'Identifier',
-                            name: 'c'
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            name: 'c',
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([a=b+=c]){}',
@@ -3844,7 +3844,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3857,40 +3857,40 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           operator: '+=',
                           right: {
                             type: 'Identifier',
-                            name: 'c'
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            name: 'c',
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([a = b = c] = arr){}',
@@ -3905,7 +3905,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3920,45 +3920,45 @@ describe('Expressions - Functions', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'AssignmentExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'c'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'c',
+                            },
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'arr'
-                    }
-                  }
+                      name: 'arr',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f({b: []}) {}',
@@ -3973,7 +3973,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3987,35 +3987,35 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         computed: false,
                         value: {
                           type: 'ArrayPattern',
-                          elements: []
+                          elements: [],
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
+                        shorthand: false,
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([{b}]) {}',
@@ -4030,7 +4030,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4047,37 +4047,37 @@ describe('Expressions - Functions', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             method: false,
-                            shorthand: true
-                          }
-                        ]
-                      }
-                    ]
-                  }
+                            shorthand: true,
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([a, {b: []}]) {}',
@@ -4092,7 +4092,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4103,7 +4103,7 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'ObjectPattern',
@@ -4113,37 +4113,37 @@ describe('Expressions - Functions', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             computed: false,
                             value: {
                               type: 'ArrayPattern',
-                              elements: []
+                              elements: [],
                             },
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
-                    ]
-                  }
+                            shorthand: false,
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function fk({x: [a, {b: []}]}) {}',
@@ -4158,7 +4158,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4172,7 +4172,7 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
@@ -4180,7 +4180,7 @@ describe('Expressions - Functions', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'ObjectPattern',
@@ -4190,42 +4190,42 @@ describe('Expressions - Functions', () => {
                                   kind: 'init',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'b'
+                                    name: 'b',
                                   },
                                   computed: false,
                                   value: {
                                     type: 'ArrayPattern',
-                                    elements: []
+                                    elements: [],
                                   },
                                   method: false,
-                                  shorthand: false
-                                }
-                              ]
-                            }
-                          ]
+                                  shorthand: false,
+                                },
+                              ],
+                            },
+                          ],
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
+                        shorthand: false,
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'fk'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'fk',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([a, [b], c]) {}',
@@ -4240,7 +4240,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4251,40 +4251,40 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'b'
-                          }
-                        ]
+                            name: 'b',
+                          },
+                        ],
                       },
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    ]
-                  }
+                        name: 'c',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([...bar]){}',
@@ -4299,7 +4299,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4312,28 +4312,28 @@ describe('Expressions - Functions', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'bar',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([...bar] = obj){}',
@@ -4348,7 +4348,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4363,33 +4363,33 @@ describe('Expressions - Functions', () => {
                           type: 'RestElement',
                           argument: {
                             type: 'Identifier',
-                            name: 'bar'
-                          }
-                        }
-                      ]
+                            name: 'bar',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
+                      name: 'obj',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo, ...bar]){}',
@@ -4404,7 +4404,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4415,34 +4415,34 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'bar',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([foo, ...bar] = obj){}',
@@ -4457,7 +4457,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4470,39 +4470,39 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         {
                           type: 'RestElement',
                           argument: {
                             type: 'Identifier',
-                            name: 'bar'
-                          }
-                        }
-                      ]
+                            name: 'bar',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
+                      name: 'obj',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([...[a, b]]){}',
@@ -4517,7 +4517,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4533,34 +4533,34 @@ describe('Expressions - Functions', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'Identifier',
-                              name: 'b'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
+                              name: 'b',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([...[a, b]] = obj){}',
@@ -4575,7 +4575,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4593,39 +4593,39 @@ describe('Expressions - Functions', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                name: 'b',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
+                      name: 'obj',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([x, ...[a, b]]){}',
@@ -4640,7 +4640,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4651,7 +4651,7 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'RestElement',
@@ -4660,34 +4660,34 @@ describe('Expressions - Functions', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             {
                               type: 'Identifier',
-                              name: 'b'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
+                              name: 'b',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f([x, ...[a, b]] = obj){}',
@@ -4702,7 +4702,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4715,7 +4715,7 @@ describe('Expressions - Functions', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         {
                           type: 'RestElement',
@@ -4724,39 +4724,39 @@ describe('Expressions - Functions', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                name: 'b',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
+                      name: 'obj',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f( [a=[...b], ...c]){}',
@@ -4771,7 +4771,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4784,7 +4784,7 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'ArrayExpression',
@@ -4793,38 +4793,38 @@ describe('Expressions - Functions', () => {
                               type: 'SpreadElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            }
-                          ]
-                        }
+                                name: 'b',
+                              },
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'c',
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f( [a=[...b], ...c] = obj){}',
@@ -4839,7 +4839,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4854,7 +4854,7 @@ describe('Expressions - Functions', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'ArrayExpression',
@@ -4863,43 +4863,43 @@ describe('Expressions - Functions', () => {
                                 type: 'SpreadElement',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'b'
-                                }
-                              }
-                            ]
-                          }
+                                  name: 'b',
+                                },
+                              },
+                            ],
+                          },
                         },
                         {
                           type: 'RestElement',
                           argument: {
                             type: 'Identifier',
-                            name: 'c'
-                          }
-                        }
-                      ]
+                            name: 'c',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
+                      name: 'obj',
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'f = ([[,] = g()]) => {};',
@@ -4914,7 +4914,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -4922,7 +4922,7 @@ describe('Expressions - Functions', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -4932,27 +4932,27 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'ArrayPattern',
-                          elements: [null]
+                          elements: [null],
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'g'
+                            name: 'g',
                           },
-                          arguments: []
-                        }
-                      }
-                    ]
-                  }
+                          arguments: [],
+                        },
+                      },
+                    ],
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function *await() {}',
@@ -4967,7 +4967,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -4975,20 +4975,20 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: true,
 
                 id: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       ' f = function yield() {}',
@@ -5003,7 +5003,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -5011,20 +5011,20 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'yield'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'yield',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'f = function await() {}',
@@ -5039,7 +5039,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -5047,20 +5047,20 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'f = function *await() {}',
@@ -5075,7 +5075,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -5083,20 +5083,20 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: true,
 
                 id: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(yield) {}',
@@ -5111,7 +5111,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -5119,25 +5119,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
+                    name: 'yield',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = async function f(yield) {}',
@@ -5152,7 +5152,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -5160,25 +5160,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
+                    name: 'yield',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: true,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function f(await) {}',
@@ -5193,7 +5193,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -5201,25 +5201,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'await'
-                  }
+                    name: 'await',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function *f(await) {}',
@@ -5234,7 +5234,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -5242,25 +5242,25 @@ describe('Expressions - Functions', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'await'
-                  }
+                    name: 'await',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: true,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5283,41 +5283,41 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
-                          value: 10
-                        }
+                          value: 10,
+                        },
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x1 = 1], [y1 = 2]) {})',
@@ -5338,14 +5338,14 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       right: {
                         type: 'Literal',
-                        value: 1
-                      }
-                    }
-                  ]
+                        value: 1,
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
@@ -5354,31 +5354,31 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       right: {
                         type: 'Literal',
-                        value: 2
-                      }
-                    }
-                  ]
-                }
+                        value: 2,
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x1:x1 = 1, x2:x2 = 2, x3:x3 = 3}) {})',
@@ -5400,85 +5400,85 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x1'
+                          name: 'x1',
                         },
                         right: {
                           type: 'Literal',
-                          value: 1
-                        }
+                          value: 1,
+                        },
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x2'
+                          name: 'x2',
                         },
                         right: {
                           type: 'Literal',
-                          value: 2
-                        }
+                          value: 2,
+                        },
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x3'
+                          name: 'x3',
                         },
                         right: {
                           type: 'Literal',
-                          value: 3
-                        }
+                          value: 3,
+                        },
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x1 = 1, x2 = 2, x3 = 3]) {})',
@@ -5499,53 +5499,53 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       right: {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       right: {
                         type: 'Literal',
-                        value: 2
-                      }
+                        value: 2,
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       right: {
                         type: 'Literal',
-                        value: 3
-                      }
-                    }
-                  ]
-                }
+                        value: 3,
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x1:x1 = 1}, [y1 = 2]) {})',
@@ -5567,24 +5567,24 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x1'
+                          name: 'x1',
                         },
                         right: {
                           type: 'Literal',
-                          value: 1
-                        }
+                          value: 1,
+                        },
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
@@ -5593,31 +5593,31 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       right: {
                         type: 'Literal',
-                        value: 2
-                      }
-                    }
-                  ]
-                }
+                        value: 2,
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x1 = 1], {y1:y1 = 2}) {})',
@@ -5638,14 +5638,14 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       right: {
                         type: 'Literal',
-                        value: 1
-                      }
-                    }
-                  ]
+                        value: 1,
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'ObjectPattern',
@@ -5655,41 +5655,41 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'y1'
+                          name: 'y1',
                         },
                         right: {
                           type: 'Literal',
-                          value: 2
-                        }
+                          value: 2,
+                        },
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x:x} = {x:1}) {})',
@@ -5713,17 +5713,17 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
@@ -5732,36 +5732,36 @@ describe('Expressions - Functions', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `function test() {
@@ -5787,14 +5787,14 @@ describe('Expressions - Functions', () => {
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: '1|123456'
+                        value: '1|123456',
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'ID'
-                      }
-                    }
-                  ]
+                        name: 'ID',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'ReturnStatement',
@@ -5812,7 +5812,7 @@ describe('Expressions - Functions', () => {
                               type: 'AssignmentExpression',
                               left: {
                                 type: 'Identifier',
-                                name: 'id'
+                                name: 'id',
                               },
                               operator: '=',
                               right: {
@@ -5823,27 +5823,27 @@ describe('Expressions - Functions', () => {
                                     type: 'MemberExpression',
                                     object: {
                                       type: 'Identifier',
-                                      name: 'id'
+                                      name: 'id',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'Identifier',
-                                      name: 'split'
-                                    }
+                                      name: 'split',
+                                    },
                                   },
                                   arguments: [
                                     {
                                       type: 'Literal',
-                                      value: '|'
-                                    }
-                                  ]
+                                      value: '|',
+                                    },
+                                  ],
                                 },
                                 computed: true,
                                 property: {
                                   type: 'Literal',
-                                  value: 1
-                                }
-                              }
+                                  value: 1,
+                                },
+                              },
                             },
                             value: {
                               type: 'ObjectExpression',
@@ -5852,25 +5852,25 @@ describe('Expressions - Functions', () => {
                                   type: 'Property',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'id'
+                                    name: 'id',
                                   },
                                   value: {
                                     type: 'Identifier',
-                                    name: 'id'
+                                    name: 'id',
                                   },
                                   kind: 'init',
                                   computed: false,
                                   method: false,
-                                  shorthand: false
-                                }
-                              ]
+                                  shorthand: false,
+                                },
+                              ],
                             },
                             kind: 'init',
                             computed: true,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       params: [
                         {
@@ -5878,18 +5878,18 @@ describe('Expressions - Functions', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'id'
+                              name: 'id',
                             },
                             {
                               type: 'Identifier',
-                              name: 'obj'
-                            }
-                          ]
-                        }
+                              name: 'obj',
+                            },
+                          ],
+                        },
                       ],
 
                       async: false,
-                      expression: true
+                      expression: true,
                     },
                     arguments: [
                       {
@@ -5897,29 +5897,29 @@ describe('Expressions - Functions', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'ID'
+                            name: 'ID',
                           },
                           {
                             type: 'ObjectExpression',
-                            properties: []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ]
+                            properties: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'test'
-            }
-          }
-        ]
-      }
+              name: 'test',
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x] = [1]) {})',
@@ -5940,36 +5940,36 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
                     elements: [
                       {
                         type: 'Literal',
-                        value: 1
-                      }
-                    ]
-                  }
-                }
+                        value: 1,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x:x = 1} = {x:2}) {})',
@@ -5993,24 +5993,24 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Literal',
-                            value: 1
-                          }
+                            value: 1,
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
@@ -6019,36 +6019,36 @@ describe('Expressions - Functions', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Literal',
-                          value: 2
+                          value: 2,
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x = 1] = [2]) {})',
@@ -6071,41 +6071,41 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
-                          value: 1
-                        }
-                      }
-                    ]
+                          value: 1,
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
                     elements: [
                       {
                         type: 'Literal',
-                        value: 2
-                      }
-                    ]
-                  }
-                }
+                        value: 2,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x1:[y1 = 1]}) {})',
@@ -6127,7 +6127,7 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       computed: false,
                       value: {
@@ -6137,36 +6137,36 @@ describe('Expressions - Functions', () => {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'y1'
+                              name: 'y1',
                             },
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        ]
+                              value: 1,
+                            },
+                          },
+                        ],
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([x1, {y1:y1 = 1}]) {})',
@@ -6185,7 +6185,7 @@ describe('Expressions - Functions', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x1'
+                      name: 'x1',
                     },
                     {
                       type: 'ObjectPattern',
@@ -6195,43 +6195,43 @@ describe('Expressions - Functions', () => {
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'y1'
+                            name: 'y1',
                           },
                           computed: false,
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'y1'
+                              name: 'y1',
                             },
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
+                              value: 1,
+                            },
                           },
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  ]
-                }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo({x1:[y1 = 1] = [2]} = {x1:[3]}) {})',
@@ -6255,7 +6255,7 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x1'
+                          name: 'x1',
                         },
                         computed: false,
                         value: {
@@ -6267,29 +6267,29 @@ describe('Expressions - Functions', () => {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'y1'
+                                  name: 'y1',
                                 },
                                 right: {
                                   type: 'Literal',
-                                  value: 1
-                                }
-                              }
-                            ]
+                                  value: 1,
+                                },
+                              },
+                            ],
                           },
                           right: {
                             type: 'ArrayExpression',
                             elements: [
                               {
                                 type: 'Literal',
-                                value: 2
-                              }
-                            ]
-                          }
+                                value: 2,
+                              },
+                            ],
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
@@ -6298,41 +6298,41 @@ describe('Expressions - Functions', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x1'
+                          name: 'x1',
                         },
                         value: {
                           type: 'ArrayExpression',
                           elements: [
                             {
                               type: 'Literal',
-                              value: 3
-                            }
-                          ]
+                              value: 3,
+                            },
+                          ],
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {})',
@@ -6361,24 +6361,24 @@ describe('Expressions - Functions', () => {
                               kind: 'init',
                               key: {
                                 type: 'Identifier',
-                                name: 'y1'
+                                name: 'y1',
                               },
                               computed: false,
                               value: {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'y1'
+                                  name: 'y1',
                                 },
                                 right: {
                                   type: 'Literal',
-                                  value: 1
-                                }
+                                  value: 1,
+                                },
                               },
                               method: false,
-                              shorthand: false
-                            }
-                          ]
+                              shorthand: false,
+                            },
+                          ],
                         },
                         right: {
                           type: 'ObjectExpression',
@@ -6387,21 +6387,21 @@ describe('Expressions - Functions', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'y1'
+                                name: 'y1',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 2
+                                value: 2,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
@@ -6413,38 +6413,38 @@ describe('Expressions - Functions', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y1'
+                              name: 'y1',
                             },
                             value: {
                               type: 'Literal',
-                              value: 3
+                              value: 3,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
+                            shorthand: false,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *fn( x1, {x2, x3}, [x4, x5], x6  ) {})',
@@ -6460,7 +6460,7 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x1'
+                  name: 'x1',
                 },
                 {
                   type: 'ObjectPattern',
@@ -6470,66 +6470,66 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x4'
+                      name: 'x4',
                     },
                     {
                       type: 'Identifier',
-                      name: 'x5'
-                    }
-                  ]
+                      name: 'x5',
+                    },
+                  ],
                 },
                 {
                   type: 'Identifier',
-                  name: 'x6'
-                }
+                  name: 'x6',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'fn'
-              }
-            }
-          }
-        ]
-      }
+                name: 'fn',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *fn(  {x1:x1, x2:x2, x3:x3}, {y1:y1, y1:y2} ) {})',
@@ -6551,47 +6551,47 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x2'
+                        name: 'x2',
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x3'
+                        name: 'x3',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'ObjectPattern',
@@ -6601,49 +6601,49 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'y1'
+                        name: 'y1',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'y2'
+                        name: 'y2',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'fn'
-              }
-            }
-          }
-        ]
-      }
+                name: 'fn',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *fn({x:x}, y  ) {})',
@@ -6665,38 +6665,38 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'fn'
-              }
-            }
-          }
-        ]
-      }
+                name: 'fn',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *fn( {x1:x1}, [y1]  ) {})',
@@ -6718,43 +6718,43 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'y1'
-                    }
-                  ]
-                }
+                      name: 'y1',
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'fn'
-              }
-            }
-          }
-        ]
-      }
+                name: 'fn',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function([,]) {})',
@@ -6770,21 +6770,21 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'ArrayPattern',
-                  elements: [null]
-                }
+                  elements: [null],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function({x:x}) {})',
@@ -6806,31 +6806,31 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function(y, {x:x}) {})',
@@ -6846,7 +6846,7 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 {
                   type: 'ObjectPattern',
@@ -6856,31 +6856,31 @@ describe('Expressions - Functions', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '( [x], [y], [z]) => x;',
@@ -6896,7 +6896,7 @@ describe('Expressions - Functions', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -6904,36 +6904,36 @@ describe('Expressions - Functions', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  ]
+                      name: 'x',
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  ]
+                      name: 'y',
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  ]
-                }
+                      name: 'z',
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '( {x1:x1}, [y1]) => x;',
@@ -6949,7 +6949,7 @@ describe('Expressions - Functions', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -6959,36 +6959,36 @@ describe('Expressions - Functions', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'x1'
+                        name: 'x1',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'y1'
-                    }
-                  ]
-                }
+                      name: 'y1',
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '( {x}) => x;',
@@ -7004,7 +7004,7 @@ describe('Expressions - Functions', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -7014,27 +7014,27 @@ describe('Expressions - Functions', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -7054,13 +7054,13 @@ describe('Expressions - Functions', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '&&'
+              operator: '&&',
             },
             consequent: {
               type: 'BlockStatement',
@@ -7073,25 +7073,25 @@ describe('Expressions - Functions', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     },
                     arguments: [
                       {
                         type: 'MemberExpression',
                         object: {
-                          type: 'ThisExpression'
+                          type: 'ThisExpression',
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'e'
-                        }
+                          name: 'e',
+                        },
                       },
                       {
                         type: 'ArrowFunctionExpression',
@@ -7102,35 +7102,35 @@ describe('Expressions - Functions', () => {
                             type: 'MemberExpression',
                             object: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'b'
-                            }
+                              name: 'b',
+                            },
                           },
                           arguments: [
                             {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             {
                               type: 'UnaryExpression',
                               operator: 'void',
                               argument: {
                                 type: 'Literal',
-                                value: 0
+                                value: 0,
                               },
-                              prefix: true
+                              prefix: true,
                             },
                             {
                               type: 'UnaryExpression',
                               operator: 'void',
                               argument: {
                                 type: 'Literal',
-                                value: 0
+                                value: 0,
                               },
-                              prefix: true
+                              prefix: true,
                             },
                             {
                               type: 'FunctionExpression',
@@ -7142,37 +7142,37 @@ describe('Expressions - Functions', () => {
                                     type: 'ReturnStatement',
                                     argument: {
                                       type: 'Identifier',
-                                      name: 'a'
-                                    }
-                                  }
-                                ]
+                                      name: 'a',
+                                    },
+                                  },
+                                ],
                               },
                               async: false,
                               generator: true,
 
-                              id: null
-                            }
-                          ]
+                              id: null,
+                            },
+                          ],
                         },
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'ctx'
-                          }
+                            name: 'ctx',
+                          },
                         ],
 
                         async: false,
-                        expression: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        expression: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       '(function (eval) { function foo() { "use strict"; }})',
@@ -7188,8 +7188,8 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'eval'
-                }
+                  name: 'eval',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -7204,30 +7204,30 @@ describe('Expressions - Functions', () => {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'Literal',
-                            value: 'use strict'
+                            value: 'use strict',
                           },
-                          directive: 'use strict'
-                        }
-                      ]
+                          directive: 'use strict',
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
                     id: {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  }
-                ]
+                      name: 'foo',
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function (eval) { (function () { "use strict"; })})',
@@ -7243,8 +7243,8 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'eval'
-                }
+                  name: 'eval',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -7261,28 +7261,28 @@ describe('Expressions - Functions', () => {
                             type: 'ExpressionStatement',
                             expression: {
                               type: 'Literal',
-                              value: 'use strict'
+                              value: 'use strict',
                             },
-                            directive: 'use strict'
-                          }
-                        ]
+                            directive: 'use strict',
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
-                    }
-                  }
-                ]
+                      id: null,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function package() { (function gave_away_the_package() { "use strict"; }) })',
@@ -7311,34 +7311,34 @@ describe('Expressions - Functions', () => {
                             type: 'ExpressionStatement',
                             expression: {
                               type: 'Literal',
-                              value: 'use strict'
+                              value: 'use strict',
                             },
-                            directive: 'use strict'
-                          }
-                        ]
+                            directive: 'use strict',
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
                       id: {
                         type: 'Identifier',
-                        name: 'gave_away_the_package'
-                      }
-                    }
-                  }
-                ]
+                        name: 'gave_away_the_package',
+                      },
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'package'
-              }
-            }
-          }
-        ]
-      }
+                name: 'package',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function([cover = (function () {}), xCover = (0, function() {})]) {})',
@@ -7359,64 +7359,64 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'cover'
+                        name: 'cover',
                       },
                       right: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
-                      }
+                        id: null,
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'xCover'
+                        name: 'xCover',
                       },
                       right: {
                         type: 'SequenceExpression',
                         expressions: [
                           {
                             type: 'Literal',
-                            value: 0
+                            value: 0,
                           },
                           {
                             type: 'FunctionExpression',
                             params: [],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
 
-                            id: null
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
+                            id: null,
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '{{{ function g() {} }}}',
@@ -7439,24 +7439,24 @@ describe('Expressions - Functions', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
 
                         id: {
                           type: 'Identifier',
-                          name: 'g'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                          name: 'g',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '(function f({foo=a,bar} = x){})',
@@ -7480,61 +7480,61 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f({foo:a=b, bar:c=d} = x){})',
@@ -7558,68 +7558,68 @@ describe('Expressions - Functions', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
+                            name: 'b',
+                          },
                         },
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'c'
+                            name: 'c',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'd'
-                          }
+                            name: 'd',
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function f({foo:a=b}){}',
@@ -7639,40 +7639,40 @@ describe('Expressions - Functions', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
+                    shorthand: false,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f({} = x){})',
@@ -7690,29 +7690,29 @@ describe('Expressions - Functions', () => {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'ObjectPattern',
-                    properties: []
+                    properties: [],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([...bar] = obj){})',
@@ -7735,32 +7735,32 @@ describe('Expressions - Functions', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'bar'
-                        }
-                      }
-                    ]
+                          name: 'bar',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
+                    name: 'obj',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([foo=a]){})',
@@ -7781,31 +7781,31 @@ describe('Expressions - Functions', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
-                  ]
-                }
+                        name: 'a',
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([foo], b = y){})',
@@ -7824,37 +7824,37 @@ describe('Expressions - Functions', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
+                    name: 'y',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([foo,,]){})',
@@ -7873,27 +7873,27 @@ describe('Expressions - Functions', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
-                    null
-                  ]
-                }
+                    null,
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -7912,38 +7912,38 @@ describe('Expressions - Functions', () => {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
+                    name: 'y',
+                  },
                 },
                 {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
-                  ]
-                }
+                      name: 'foo',
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([foo=a,bar=b] = x){})',
@@ -7966,47 +7966,47 @@ describe('Expressions - Functions', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
+                          name: 'b',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f([foo] = x, b = y){})',
@@ -8027,42 +8027,42 @@ describe('Expressions - Functions', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
+                        name: 'foo',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
+                    name: 'y',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function() {})',
@@ -8078,16 +8078,16 @@ describe('Expressions - Functions', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function() {}',
@@ -8102,7 +8102,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8110,17 +8110,17 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
-                id: null
-              }
-            }
-          }
-        ]
-      }
+                id: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = function donna() {}',
@@ -8135,7 +8135,7 @@ describe('Expressions - Functions', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8143,20 +8143,20 @@ describe('Expressions - Functions', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'donna'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'donna',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function () {})',
@@ -8172,16 +8172,16 @@ describe('Expressions - Functions', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function (a,b) {})',
@@ -8197,25 +8197,25 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function (a = b) {})',
@@ -8233,26 +8233,26 @@ describe('Expressions - Functions', () => {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function (love, you, donna) {})',
@@ -8268,29 +8268,29 @@ describe('Expressions - Functions', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'love'
+                  name: 'love',
                 },
                 {
                   type: 'Identifier',
-                  name: 'you'
+                  name: 'you',
                 },
                 {
                   type: 'Identifier',
-                  name: 'donna'
-                }
+                  name: 'donna',
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
-    ]
+              id: null,
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

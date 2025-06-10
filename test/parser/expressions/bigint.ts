@@ -120,7 +120,7 @@ describe('Expressions - BigInt', () => {
     }, {
       a: 0x67b768ce0c415127a77402861d1901dd7f60a8624ebea6ecafe03adc3cen,
       r: 0x67b768ce0c415127a77402861d1901dd7f60a8624ebea6ecafe03adc3cdn
-    }];`
+    }];`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -157,17 +157,17 @@ describe('Expressions - BigInt', () => {
               bigint: '1',
               start: 0,
               end: 2,
-              range: [0, 2]
+              range: [0, 2],
             },
             start: 0,
             end: 2,
-            range: [0, 2]
-          }
+            range: [0, 2],
+          },
         ],
         start: 0,
         end: 2,
-        range: [0, 2]
-      }
+        range: [0, 2],
+      },
     ],
     [
       '1n + 2333333n',
@@ -186,7 +186,7 @@ describe('Expressions - BigInt', () => {
                 bigint: '1',
                 start: 0,
                 end: 2,
-                range: [0, 2]
+                range: [0, 2],
               },
               right: {
                 type: 'Literal',
@@ -194,22 +194,22 @@ describe('Expressions - BigInt', () => {
                 bigint: '2333333',
                 start: 5,
                 end: 13,
-                range: [5, 13]
+                range: [5, 13],
               },
               operator: '+',
               start: 0,
               end: 13,
-              range: [0, 13]
+              range: [0, 13],
             },
             start: 0,
             end: 13,
-            range: [0, 13]
-          }
+            range: [0, 13],
+          },
         ],
         start: 0,
         end: 13,
-        range: [0, 13]
-      }
+        range: [0, 13],
+      },
     ],
     [
       '0xdead_BEEFn',
@@ -225,19 +225,19 @@ describe('Expressions - BigInt', () => {
               raw: '0xdead_BEEFn',
               start: 0,
               type: 'Literal',
-              value: 3735928559n
+              value: 3735928559n,
             },
             range: [0, 12],
             start: 0,
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         end: 12,
         range: [0, 12],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

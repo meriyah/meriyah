@@ -22,7 +22,7 @@ describe('Expressions - New target', () => {
     'function f(){ new.target-- }',
     '(f=new.target) => {}',
     `new await foo;`,
-    `() => new.target`
+    `() => new.target`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -44,7 +44,7 @@ describe('Expressions - New target', () => {
     'function a(){try { throw Error;} catch(e){new.target;}}',
     'function a(){var a = b = c = 1; try {} catch([a,b,c]) { new.target;}}',
     'function a(){var x = function() {new.target;}; x();}',
-    'function a(){var o = { "foo" : function () { new.target}}; o.foo();}'
+    'function a(){var o = { "foo" : function () { new.target}}; o.foo();}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -78,7 +78,7 @@ describe('Expressions - New target', () => {
     '(function a(b = new.target){})',
     'function f() { let x = new.target; }',
     'function f() { new new.target()(); }',
-    'function f() { new.target(); }'
+    'function f() { new.target(); }',
   ]) {
     it(`function f() {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -153,7 +153,7 @@ describe('Expressions - New target', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -166,15 +166,15 @@ describe('Expressions - New target', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: '_'
-                      }
+                        name: '_',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -189,34 +189,34 @@ describe('Expressions - New target', () => {
                                 expression: {
                                   meta: {
                                     type: 'Identifier',
-                                    name: 'new'
+                                    name: 'new',
                                   },
                                   type: 'MetaProperty',
                                   property: {
                                     type: 'Identifier',
-                                    name: 'target'
-                                  }
-                                }
-                              }
-                            ]
+                                    name: 'target',
+                                  },
+                                },
+                              },
+                            ],
                           },
                           test: {
                             type: 'Literal',
-                            value: 0
-                          }
-                        }
-                      ]
+                            value: 0,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ new new .target; }',
@@ -238,29 +238,29 @@ describe('Expressions - New target', () => {
                     callee: {
                       meta: {
                         type: 'Identifier',
-                        name: 'new'
+                        name: 'new',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'target'
-                      }
+                        name: 'target',
+                      },
                     },
-                    arguments: []
-                  }
-                }
-              ]
+                    arguments: [],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ new.target }',
@@ -280,27 +280,27 @@ describe('Expressions - New target', () => {
                   expression: {
                     meta: {
                       type: 'Identifier',
-                      name: 'new'
+                      name: 'new',
                     },
                     type: 'MetaProperty',
                     property: {
                       type: 'Identifier',
-                      name: 'target'
-                    }
-                  }
-                }
-              ]
+                      name: 'target',
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ new . target }',
@@ -321,7 +321,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -347,23 +347,23 @@ describe('Expressions - New target', () => {
                       start: 14,
                       end: 17,
                       range: [14, 17],
-                      name: 'new'
+                      name: 'new',
                     },
                     property: {
                       type: 'Identifier',
                       start: 20,
                       end: 26,
                       range: [20, 26],
-                      name: 'target'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      name: 'target',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ return _ => new.target }',
@@ -384,7 +384,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -414,8 +414,8 @@ describe('Expressions - New target', () => {
                         start: 21,
                         end: 22,
                         range: [21, 22],
-                        name: '_'
-                      }
+                        name: '_',
+                      },
                     ],
                     body: {
                       type: 'MetaProperty',
@@ -427,24 +427,24 @@ describe('Expressions - New target', () => {
                         start: 26,
                         end: 29,
                         range: [26, 29],
-                        name: 'new'
+                        name: 'new',
                       },
                       property: {
                         type: 'Identifier',
                         start: 30,
                         end: 36,
                         range: [30, 36],
-                        name: 'target'
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        name: 'target',
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ _ => _ => new.target }',
@@ -465,7 +465,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -495,8 +495,8 @@ describe('Expressions - New target', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: '_'
-                      }
+                        name: '_',
+                      },
                     ],
                     body: {
                       type: 'ArrowFunctionExpression',
@@ -512,8 +512,8 @@ describe('Expressions - New target', () => {
                           start: 19,
                           end: 20,
                           range: [19, 20],
-                          name: '_'
-                        }
+                          name: '_',
+                        },
                       ],
                       body: {
                         type: 'MetaProperty',
@@ -525,25 +525,25 @@ describe('Expressions - New target', () => {
                           start: 24,
                           end: 27,
                           range: [24, 27],
-                          name: 'new'
+                          name: 'new',
                         },
                         property: {
                           type: 'Identifier',
                           start: 28,
                           end: 34,
                           range: [28, 34],
-                          name: 'target'
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                          name: 'target',
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '_ => function(){ new.target }',
@@ -568,33 +568,33 @@ describe('Expressions - New target', () => {
                       expression: {
                         meta: {
                           type: 'Identifier',
-                          name: 'new'
+                          name: 'new',
                         },
                         type: 'MetaProperty',
                         property: {
                           type: 'Identifier',
-                          name: 'target'
-                        }
-                      }
-                    }
-                  ]
+                          name: 'target',
+                        },
+                      },
+                    },
+                  ],
                 },
                 async: false,
                 generator: false,
-                id: null
+                id: null,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: '_'
-                }
+                  name: '_',
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ new.target + foo }',
@@ -616,33 +616,33 @@ describe('Expressions - New target', () => {
                     left: {
                       meta: {
                         type: 'Identifier',
-                        name: 'new'
+                        name: 'new',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'target'
-                      }
+                        name: 'target',
+                      },
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ foo + new.target }',
@@ -663,34 +663,34 @@ describe('Expressions - New target', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     right: {
                       meta: {
                         type: 'Identifier',
-                        name: 'new'
+                        name: 'new',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'target'
-                      }
+                        name: 'target',
+                      },
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ foo = new.target }',
@@ -711,34 +711,34 @@ describe('Expressions - New target', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     operator: '=',
                     right: {
                       meta: {
                         type: 'Identifier',
-                        name: 'new'
+                        name: 'new',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'target'
-                      }
-                    }
-                  }
-                }
-              ]
+                        name: 'target',
+                      },
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'foo({bar(){ new.target }})',
@@ -753,7 +753,7 @@ describe('Expressions - New target', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -763,7 +763,7 @@ describe('Expressions - New target', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -776,33 +776,33 @@ describe('Expressions - New target', () => {
                               expression: {
                                 meta: {
                                   type: 'Identifier',
-                                  name: 'new'
+                                  name: 'new',
                                 },
                                 type: 'MetaProperty',
                                 property: {
                                   type: 'Identifier',
-                                  name: 'target'
-                                }
-                              }
-                            }
-                          ]
+                                  name: 'target',
+                                },
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class X { constructor() { new.target }}',
@@ -823,7 +823,7 @@ describe('Expressions - New target', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'X'
+              name: 'X',
             },
             superClass: null,
             body: {
@@ -845,7 +845,7 @@ describe('Expressions - New target', () => {
                     start: 10,
                     end: 21,
                     range: [10, 21],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -877,27 +877,27 @@ describe('Expressions - New target', () => {
                               start: 26,
                               end: 29,
                               range: [26, 29],
-                              name: 'new'
+                              name: 'new',
                             },
                             property: {
                               type: 'Identifier',
                               start: 30,
                               end: 36,
                               range: [30, 36],
-                              name: 'target'
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                              name: 'target',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class X { foo() { new.target }}',
@@ -910,7 +910,7 @@ describe('Expressions - New target', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'X'
+              name: 'X',
             },
             superClass: null,
             body: {
@@ -923,7 +923,7 @@ describe('Expressions - New target', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -936,27 +936,27 @@ describe('Expressions - New target', () => {
                           expression: {
                             meta: {
                               type: 'Identifier',
-                              name: 'new'
+                              name: 'new',
                             },
                             type: 'MetaProperty',
                             property: {
                               type: 'Identifier',
-                              name: 'target'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'target',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class X { static foo() { new.target }}',
@@ -969,7 +969,7 @@ describe('Expressions - New target', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'X'
+              name: 'X',
             },
             superClass: null,
             body: {
@@ -982,7 +982,7 @@ describe('Expressions - New target', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -995,27 +995,27 @@ describe('Expressions - New target', () => {
                           expression: {
                             meta: {
                               type: 'Identifier',
-                              name: 'new'
+                              name: 'new',
                             },
                             type: 'MetaProperty',
                             property: {
                               type: 'Identifier',
-                              name: 'target'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'target',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(f=new.target){}',
@@ -1031,35 +1031,35 @@ describe('Expressions - New target', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'f'
+                  name: 'f',
                 },
                 right: {
                   meta: {
                     type: 'Identifier',
-                    name: 'new'
+                    name: 'new',
                   },
                   type: 'MetaProperty',
                   property: {
                     type: 'Identifier',
-                    name: 'target'
-                  }
-                }
-              }
+                    name: 'target',
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(function f(f=new.target){})',
@@ -1074,7 +1074,7 @@ describe('Expressions - New target', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1084,38 +1084,38 @@ describe('Expressions - New target', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
                       right: {
                         meta: {
                           type: 'Identifier',
-                          name: 'new'
+                          name: 'new',
                         },
                         type: 'MetaProperty',
                         property: {
                           type: 'Identifier',
-                          name: 'target'
-                        }
-                      }
-                    }
+                          name: 'target',
+                        },
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'f',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo(x=new.target){}})',
@@ -1133,7 +1133,7 @@ describe('Expressions - New target', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1142,39 +1142,39 @@ describe('Expressions - New target', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           meta: {
                             type: 'Identifier',
-                            name: 'new'
+                            name: 'new',
                           },
                           type: 'MetaProperty',
                           property: {
                             type: 'Identifier',
-                            name: 'target'
-                          }
-                        }
-                      }
+                            name: 'target',
+                          },
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class A {constructor(x=new.target){}}',
@@ -1187,7 +1187,7 @@ describe('Expressions - New target', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -1200,7 +1200,7 @@ describe('Expressions - New target', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1209,35 +1209,35 @@ describe('Expressions - New target', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           meta: {
                             type: 'Identifier',
-                            name: 'new'
+                            name: 'new',
                           },
                           type: 'MetaProperty',
                           property: {
                             type: 'Identifier',
-                            name: 'target'
-                          }
-                        }
-                      }
+                            name: 'target',
+                          },
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class A {a(x=new.target){}}',
@@ -1258,7 +1258,7 @@ describe('Expressions - New target', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -1280,7 +1280,7 @@ describe('Expressions - New target', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1301,7 +1301,7 @@ describe('Expressions - New target', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'MetaProperty',
@@ -1313,33 +1313,33 @@ describe('Expressions - New target', () => {
                             start: 13,
                             end: 16,
                             range: [13, 16],
-                            name: 'new'
+                            name: 'new',
                           },
                           property: {
                             type: 'Identifier',
                             start: 17,
                             end: 23,
                             range: [17, 23],
-                            name: 'target'
-                          }
-                        }
-                      }
+                            name: 'target',
+                          },
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       start: 24,
                       end: 26,
                       range: [24, 26],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ [...new.target] }',
@@ -1360,7 +1360,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -1397,26 +1397,26 @@ describe('Expressions - New target', () => {
                             start: 18,
                             end: 21,
                             range: [18, 21],
-                            name: 'new'
+                            name: 'new',
                           },
                           property: {
                             type: 'Identifier',
                             start: 22,
                             end: 28,
                             range: [22, 28],
-                            name: 'target'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            name: 'target',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ class x extends new.target {} }',
@@ -1437,7 +1437,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -1458,7 +1458,7 @@ describe('Expressions - New target', () => {
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    name: 'x'
+                    name: 'x',
                   },
                   superClass: {
                     type: 'MetaProperty',
@@ -1470,30 +1470,30 @@ describe('Expressions - New target', () => {
                       start: 30,
                       end: 33,
                       range: [30, 33],
-                      name: 'new'
+                      name: 'new',
                     },
                     property: {
                       type: 'Identifier',
                       start: 34,
                       end: 40,
                       range: [34, 40],
-                      name: 'target'
-                    }
+                      name: 'target',
+                    },
                   },
                   body: {
                     type: 'ClassBody',
                     start: 41,
                     end: 43,
                     range: [41, 43],
-                    body: []
-                  }
-                }
-              ]
-            }
-          }
+                    body: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f(){ x({[new.target]:y}) }',
@@ -1514,7 +1514,7 @@ describe('Expressions - New target', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -1540,7 +1540,7 @@ describe('Expressions - New target', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'x'
+                      name: 'x',
                     },
                     arguments: [
                       {
@@ -1567,36 +1567,36 @@ describe('Expressions - New target', () => {
                                 start: 18,
                                 end: 21,
                                 range: [18, 21],
-                                name: 'new'
+                                name: 'new',
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 22,
                                 end: 28,
                                 range: [22, 28],
-                                name: 'target'
-                              }
+                                name: 'target',
+                              },
                             },
                             value: {
                               type: 'Identifier',
                               start: 30,
                               end: 31,
                               range: [30, 31],
-                              name: 'y'
+                              name: 'y',
                             },
-                            kind: 'init'
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            kind: 'init',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function a(b = new.target){}',
@@ -1612,35 +1612,35 @@ describe('Expressions - New target', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   meta: {
                     type: 'Identifier',
-                    name: 'new'
+                    name: 'new',
                   },
                   type: 'MetaProperty',
                   property: {
                     type: 'Identifier',
-                    name: 'target'
-                  }
-                }
-              }
+                    name: 'target',
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
-    ]
+              name: 'a',
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

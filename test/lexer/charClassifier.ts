@@ -18,7 +18,7 @@ describe('Lexer - charClassifier', () => {
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 77],
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 78],
     [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 103],
-    [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 122]
+    [CharFlags.IdentifierStart | CharFlags.IdentifierPart, 122],
   ];
 
   for (const [ctx, cp] of tokens) {
@@ -26,11 +26,11 @@ describe('Lexer - charClassifier', () => {
       const found = CharTypes[cp];
       t.deepEqual(
         {
-          char: true
+          char: true,
         },
         {
-          char: (found & ctx) === ctx
-        }
+          char: (found & ctx) === ctx,
+        },
       );
     });
   }

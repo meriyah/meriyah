@@ -42,13 +42,13 @@ async function runTest(meriyah) {
       (sourceType === 'module' ? meriyah.parseModule : meriyah.parseScript)(content, {
         webcompat: true,
         lexical: true,
-        next: true
+        next: true,
       }),
     {
       testsDirectory: path.dirname(require.resolve('test262/package.json')),
       skip: shouldSkip,
-      whitelist: path.sep === '/' ? whitelist : whitelist.map((file) => file.replaceAll('/', path.sep))
-    }
+      whitelist: path.sep === '/' ? whitelist : whitelist.map((file) => file.replaceAll('/', path.sep)),
+    },
   );
 
   const { exitCode } = process;

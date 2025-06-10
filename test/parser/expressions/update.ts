@@ -4,7 +4,7 @@ import { pass, fail } from '../../test-utils';
 describe('Expressions - Update', () => {
   fail('Expressions - Update (fail)', [
     ['foo\n++', Context.None],
-    ['if (foo\n++);', Context.None]
+    ['if (foo\n++);', Context.None],
     /*['++[]', Context.None],
     ['++([])', Context.None],
     ['(++[])', Context.None],
@@ -21,26 +21,26 @@ describe('Expressions - Update', () => {
           {
             expression: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'bar',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '++\nfoo;',
@@ -51,18 +51,18 @@ describe('Expressions - Update', () => {
             expression: {
               argument: {
                 name: 'foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'foo\n++bar',
@@ -72,26 +72,26 @@ describe('Expressions - Update', () => {
           {
             expression: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'bar',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '++\nfoo;',
@@ -102,18 +102,18 @@ describe('Expressions - Update', () => {
             expression: {
               argument: {
                 name: 'foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '"foo"\n++bar',
@@ -123,27 +123,27 @@ describe('Expressions - Update', () => {
           {
             expression: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
             directive: 'foo',
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'bar',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '+a++ / 1',
@@ -163,22 +163,22 @@ describe('Expressions - Update', () => {
                   type: 'UpdateExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '++',
-                  prefix: false
+                  prefix: false,
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
-              operator: '/'
-            }
-          }
-        ]
-      }
+              operator: '/',
+            },
+          },
+        ],
+      },
     ],
     [
       'a=b\n++c',
@@ -189,33 +189,33 @@ describe('Expressions - Update', () => {
             expression: {
               left: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
                 name: 'b',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a,b\n++c',
@@ -227,33 +227,33 @@ describe('Expressions - Update', () => {
               expressions: [
                 {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 {
                   name: 'b',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
-              type: 'SequenceExpression'
+              type: 'SequenceExpression',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a++\nb',
@@ -264,25 +264,25 @@ describe('Expressions - Update', () => {
             expression: {
               argument: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: false,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               name: 'b',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a\n++\nb',
@@ -292,26 +292,26 @@ describe('Expressions - Update', () => {
           {
             expression: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'b',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a.a--',
@@ -328,20 +328,20 @@ describe('Expressions - Update', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               operator: '--',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '++a.a',
@@ -358,20 +358,20 @@ describe('Expressions - Update', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo\n++bar',
@@ -381,26 +381,26 @@ describe('Expressions - Update', () => {
           {
             expression: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'bar',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '--a.a',
@@ -417,20 +417,20 @@ describe('Expressions - Update', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               operator: '--',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '++foo',
@@ -445,14 +445,14 @@ describe('Expressions - Update', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'bar++',
@@ -467,14 +467,14 @@ describe('Expressions - Update', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'bar'
+                name: 'bar',
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
-    ]
+              prefix: false,
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

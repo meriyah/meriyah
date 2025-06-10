@@ -9,7 +9,7 @@ describe('Expressions - Call', () => {
     '(a)(( async () => {}) => {})',
     'async(async() () => {})(async() () => {})(y)(n)(c)', // crazy #1
     'async(async() () => {})(async() () => {})(y)(n)(c)', // crazy #2
-    'async(async() () => {})(async() () => {})(async() () => {})(async() () => {})(async() () => {})' // crazy #3
+    'async(async() () => {})(async() () => {})(async() () => {})(async() () => {})(async() () => {})', // crazy #3
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -47,7 +47,7 @@ describe('Expressions - Call', () => {
     "0, 1, ...[2, 3, 4], 5, 6, 7, ...'89'",
     "0, 1, ...[2, 3, 4], 5, 6, 7, ...'89', 10",
     "...[0, 1, 2], 3, 4, 5, 6, ...'7', 8, 9",
-    "...[0, 1, 2], 3, 4, 5, 6, ...'7', 8, 9, ...[10]"
+    "...[0, 1, 2], 3, 4, 5, 6, ...'7', 8, 9, ...[10]",
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
@@ -207,7 +207,7 @@ describe('Expressions - Call', () => {
      foo("foo");
      foo("foo", "bar");
      foo(bar());
-     foo(bar("test"));`
+     foo(bar("test"));`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -254,7 +254,7 @@ describe('Expressions - Call', () => {
     ['foo().bar.', Context.None],
     ['foo()`bar', Context.None],
     ['foo(', Context.None],
-    ['foo(...)', Context.None]
+    ['foo(...)', Context.None],
   ]);
 
   pass('Expressions - Call (pass)', [
@@ -333,74 +333,74 @@ describe('Expressions - Call', () => {
                                   start: 1,
                                   end: 4,
                                   range: [1, 4],
-                                  name: 'obj'
+                                  name: 'obj',
                                 },
                                 property: {
                                   type: 'Identifier',
                                   start: 32,
                                   end: 35,
                                   range: [32, 35],
-                                  name: 'foo'
+                                  name: 'foo',
                                 },
-                                computed: false
+                                computed: false,
                               },
                               property: {
                                 type: 'Literal',
                                 start: 67,
                                 end: 72,
                                 range: [67, 72],
-                                value: 'bar'
+                                value: 'bar',
                               },
-                              computed: true
+                              computed: true,
                             },
                             property: {
                               type: 'Identifier',
                               start: 109,
                               end: 112,
                               range: [109, 112],
-                              name: 'baz'
+                              name: 'baz',
                             },
-                            computed: false
+                            computed: false,
                           },
-                          arguments: []
+                          arguments: [],
                         },
                         property: {
                           type: 'Identifier',
                           start: 154,
                           end: 157,
                           range: [154, 157],
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        computed: false
+                        computed: false,
                       },
                       property: {
                         type: 'Literal',
                         start: 201,
                         end: 206,
                         range: [201, 206],
-                        value: 'bar'
+                        value: 'bar',
                       },
-                      computed: true
+                      computed: true,
                     },
-                    arguments: []
+                    arguments: [],
                   },
                   property: {
                     type: 'Identifier',
                     start: 257,
                     end: 260,
                     range: [257, 260],
-                    name: 'baz'
+                    name: 'baz',
                   },
-                  computed: false
+                  computed: false,
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
+              arguments: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async(x,) => x',
@@ -412,24 +412,24 @@ describe('Expressions - Call', () => {
               async: true,
               body: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               expression: true,
               params: [
                 {
                   name: 'x',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
               type: 'ArrowFunctionExpression',
-              generator: false
+              generator: false,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async(x,)',
@@ -441,21 +441,21 @@ describe('Expressions - Call', () => {
               arguments: [
                 {
                   name: 'x',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
               callee: {
                 name: 'async',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'CallExpression'
+              type: 'CallExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'foo({c=3} = {})',
@@ -481,7 +481,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -509,7 +509,7 @@ describe('Expressions - Call', () => {
                           start: 5,
                           end: 6,
                           range: [5, 6],
-                          name: 'c'
+                          name: 'c',
                         },
                         kind: 'init',
                         value: {
@@ -522,33 +522,33 @@ describe('Expressions - Call', () => {
                             start: 5,
                             end: 6,
                             range: [5, 6],
-                            name: 'c'
+                            name: 'c',
                           },
                           right: {
                             type: 'Literal',
                             start: 7,
                             end: 8,
                             range: [7, 8],
-                            value: 3
-                          }
-                        }
-                      }
-                    ]
+                            value: 3,
+                          },
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
                     start: 12,
                     end: 14,
                     range: [12, 14],
-                    properties: []
-                  }
-                }
-              ]
-            }
-          }
+                    properties: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async({c=3} = {})',
@@ -574,7 +574,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 5,
                 range: [0, 5],
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -602,7 +602,7 @@ describe('Expressions - Call', () => {
                           start: 7,
                           end: 8,
                           range: [7, 8],
-                          name: 'c'
+                          name: 'c',
                         },
                         kind: 'init',
                         value: {
@@ -615,33 +615,33 @@ describe('Expressions - Call', () => {
                             start: 7,
                             end: 8,
                             range: [7, 8],
-                            name: 'c'
+                            name: 'c',
                           },
                           right: {
                             type: 'Literal',
                             start: 9,
                             end: 10,
                             range: [9, 10],
-                            value: 3
-                          }
-                        }
-                      }
-                    ]
+                            value: 3,
+                          },
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
                     start: 14,
                     end: 16,
                     range: [14, 16],
-                    properties: []
-                  }
-                }
-              ]
-            }
-          }
+                    properties: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"foo", async',
@@ -657,17 +657,17 @@ describe('Expressions - Call', () => {
               expressions: [
                 {
                   type: 'Literal',
-                  value: 'foo'
+                  value: 'foo',
                 },
                 {
                   type: 'Identifier',
-                  name: 'async'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'async',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async,)',
@@ -682,18 +682,18 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'async'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'async',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo("abc", async)',
@@ -708,22 +708,22 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 'abc'
+                  value: 'abc',
                 },
                 {
                   type: 'Identifier',
-                  name: 'async'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'async',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(1, async,)',
@@ -738,22 +738,22 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Identifier',
-                  name: 'async'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'async',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async,await,)',
@@ -768,22 +768,22 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async.await[foo])',
@@ -798,7 +798,7 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -807,25 +807,25 @@ describe('Expressions - Call', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'await'
-                    }
+                      name: 'await',
+                    },
                   },
                   computed: true,
                   property: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'foo',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(async.abc = await)',
@@ -840,7 +840,7 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -849,25 +849,25 @@ describe('Expressions - Call', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'abc'
-                    }
+                      name: 'abc',
+                    },
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'await'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'await',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(123, async,await,)',
@@ -882,26 +882,26 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 123
+                  value: 123,
                 },
                 {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo("string", async / 1 -2, await,)',
@@ -916,12 +916,12 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 'string'
+                  value: 'string',
                 },
                 {
                   type: 'BinaryExpression',
@@ -929,29 +929,29 @@ describe('Expressions - Call', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    operator: '/'
+                    operator: '/',
                   },
                   right: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
-                  operator: '-'
+                  operator: '-',
                 },
                 {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async({a})',
@@ -977,7 +977,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 5,
                 range: [0, 5],
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -999,7 +999,7 @@ describe('Expressions - Call', () => {
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       value: {
@@ -1007,17 +1007,17 @@ describe('Expressions - Call', () => {
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'a'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                        name: 'a',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(x=1,y=x,x+y)',
@@ -1043,7 +1043,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1057,15 +1057,15 @@ describe('Expressions - Call', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
                 {
                   type: 'AssignmentExpression',
@@ -1078,15 +1078,15 @@ describe('Expressions - Call', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Identifier',
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'BinaryExpression',
@@ -1098,7 +1098,7 @@ describe('Expressions - Call', () => {
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '+',
                   right: {
@@ -1106,15 +1106,15 @@ describe('Expressions - Call', () => {
                     start: 14,
                     end: 15,
                     range: [14, 15],
-                    name: 'y'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'y',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(x,x=1);',
@@ -1140,7 +1140,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1148,7 +1148,7 @@ describe('Expressions - Call', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -1161,22 +1161,22 @@ describe('Expressions - Call', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    value: 1
-                  }
-                }
-              ]
-            }
-          }
+                    value: 1,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo()(1, 2, 3, ...{})',
@@ -1207,9 +1207,9 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 3,
                   range: [0, 3],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                arguments: []
+                arguments: [],
               },
               arguments: [
                 {
@@ -1217,21 +1217,21 @@ describe('Expressions - Call', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
                   start: 12,
                   end: 13,
                   range: [12, 13],
-                  value: 3
+                  value: 3,
                 },
                 {
                   type: 'SpreadElement',
@@ -1243,15 +1243,15 @@ describe('Expressions - Call', () => {
                     start: 18,
                     end: 20,
                     range: [18, 20],
-                    properties: []
-                  }
-                }
-              ]
-            }
-          }
+                    properties: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(function(obj) {}({a: 1, b: 2, ...{c: 3, d: 4}}));',
@@ -1286,16 +1286,16 @@ describe('Expressions - Call', () => {
                     start: 10,
                     end: 13,
                     range: [10, 13],
-                    name: 'obj'
-                  }
+                    name: 'obj',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 15,
                   end: 17,
                   range: [15, 17],
-                  body: []
-                }
+                  body: [],
+                },
               },
               arguments: [
                 {
@@ -1317,16 +1317,16 @@ describe('Expressions - Call', () => {
                         start: 19,
                         end: 20,
                         range: [19, 20],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 22,
                         end: 23,
                         range: [22, 23],
-                        value: 1
+                        value: 1,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -1341,16 +1341,16 @@ describe('Expressions - Call', () => {
                         start: 25,
                         end: 26,
                         range: [25, 26],
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Literal',
                         start: 28,
                         end: 29,
                         range: [28, 29],
-                        value: 2
+                        value: 2,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'SpreadElement',
@@ -1376,16 +1376,16 @@ describe('Expressions - Call', () => {
                               start: 35,
                               end: 36,
                               range: [35, 36],
-                              name: 'c'
+                              name: 'c',
                             },
                             value: {
                               type: 'Literal',
                               start: 38,
                               end: 39,
                               range: [38, 39],
-                              value: 3
+                              value: 3,
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -1400,28 +1400,28 @@ describe('Expressions - Call', () => {
                               start: 41,
                               end: 42,
                               range: [41, 42],
-                              name: 'd'
+                              name: 'd',
                             },
                             value: {
                               type: 'Literal',
                               start: 44,
                               end: 45,
                               range: [44, 45],
-                              value: 4
+                              value: 4,
                             },
-                            kind: 'init'
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                            kind: 'init',
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( c() ).d.e;',
@@ -1462,16 +1462,16 @@ describe('Expressions - Call', () => {
                       start: 0,
                       end: 1,
                       range: [0, 1],
-                      name: 'a'
+                      name: 'a',
                     },
                     property: {
                       type: 'Identifier',
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'b'
+                      name: 'b',
                     },
-                    computed: false
+                    computed: false,
                   },
                   arguments: [
                     {
@@ -1484,34 +1484,34 @@ describe('Expressions - Call', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'c'
+                        name: 'c',
                       },
-                      arguments: []
-                    }
-                  ]
+                      arguments: [],
+                    },
+                  ],
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'd'
+                  name: 'd',
                 },
-                computed: false
+                computed: false,
               },
               property: {
                 type: 'Identifier',
                 start: 13,
                 end: 14,
                 range: [13, 14],
-                name: 'e'
+                name: 'e',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'i(a, b, ...c);',
@@ -1537,7 +1537,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'i'
+                name: 'i',
               },
               arguments: [
                 {
@@ -1545,14 +1545,14 @@ describe('Expressions - Call', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'SpreadElement',
@@ -1564,15 +1564,15 @@ describe('Expressions - Call', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'c'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'c',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(function(obj) {}({a: 1, b: 2, ...null}));',
@@ -1607,16 +1607,16 @@ describe('Expressions - Call', () => {
                     start: 10,
                     end: 13,
                     range: [10, 13],
-                    name: 'obj'
-                  }
+                    name: 'obj',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 15,
                   end: 17,
                   range: [15, 17],
-                  body: []
-                }
+                  body: [],
+                },
               },
               arguments: [
                 {
@@ -1638,16 +1638,16 @@ describe('Expressions - Call', () => {
                         start: 19,
                         end: 20,
                         range: [19, 20],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 22,
                         end: 23,
                         range: [22, 23],
-                        value: 1
+                        value: 1,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -1662,16 +1662,16 @@ describe('Expressions - Call', () => {
                         start: 25,
                         end: 26,
                         range: [25, 26],
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Literal',
                         start: 28,
                         end: 29,
                         range: [28, 29],
-                        value: 2
+                        value: 2,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'SpreadElement',
@@ -1683,17 +1683,17 @@ describe('Expressions - Call', () => {
                         start: 34,
                         end: 38,
                         range: [34, 38],
-                        value: null
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                        value: null,
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.replace(/ /g, "")',
@@ -1724,16 +1724,16 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 2,
                   end: 9,
                   range: [2, 9],
-                  name: 'replace'
+                  name: 'replace',
                 },
-                computed: false
+                computed: false,
               },
               arguments: [
                 {
@@ -1744,22 +1744,22 @@ describe('Expressions - Call', () => {
                   value: / /g,
                   regex: {
                     pattern: ' ',
-                    flags: 'g'
-                  }
+                    flags: 'g',
+                  },
                 },
                 {
                   type: 'Literal',
                   start: 16,
                   end: 18,
                   range: [16, 18],
-                  value: ''
-                }
-              ]
-            }
-          }
+                  value: '',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async(a)=> {}',
@@ -1775,20 +1775,20 @@ describe('Expressions - Call', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'call(await[1])',
@@ -1814,7 +1814,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                name: 'call'
+                name: 'call',
               },
               arguments: [
                 {
@@ -1827,23 +1827,23 @@ describe('Expressions - Call', () => {
                     start: 5,
                     end: 10,
                     range: [5, 10],
-                    name: 'await'
+                    name: 'await',
                   },
                   property: {
                     type: 'Literal',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    value: 1
+                    value: 1,
                   },
-                  computed: true
-                }
-              ]
-            }
-          }
+                  computed: true,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(a)',
@@ -1869,7 +1869,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1877,14 +1877,14 @@ describe('Expressions - Call', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
-                }
-              ]
-            }
-          }
+                  name: 'a',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(a)(b)',
@@ -1915,7 +1915,7 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 3,
                   range: [0, 3],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 arguments: [
                   {
@@ -1923,9 +1923,9 @@ describe('Expressions - Call', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               arguments: [
                 {
@@ -1933,14 +1933,14 @@ describe('Expressions - Call', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'b'
-                }
-              ]
-            }
-          }
+                  name: 'b',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(a, b, c)',
@@ -1966,7 +1966,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -1974,28 +1974,28 @@ describe('Expressions - Call', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'c'
-                }
-              ]
-            }
-          }
+                  name: 'c',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(a)(b)',
@@ -2012,25 +2012,25 @@ describe('Expressions - Call', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async(a)(b)',
@@ -2047,25 +2047,25 @@ describe('Expressions - Call', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async(a)(s)(y)(n)(c)',
@@ -2111,7 +2111,7 @@ describe('Expressions - Call', () => {
                         start: 0,
                         end: 5,
                         range: [0, 5],
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
@@ -2119,9 +2119,9 @@ describe('Expressions - Call', () => {
                           start: 6,
                           end: 7,
                           range: [6, 7],
-                          name: 'a'
-                        }
-                      ]
+                          name: 'a',
+                        },
+                      ],
                     },
                     arguments: [
                       {
@@ -2129,9 +2129,9 @@ describe('Expressions - Call', () => {
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 's'
-                      }
-                    ]
+                        name: 's',
+                      },
+                    ],
                   },
                   arguments: [
                     {
@@ -2139,9 +2139,9 @@ describe('Expressions - Call', () => {
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      name: 'y'
-                    }
-                  ]
+                      name: 'y',
+                    },
+                  ],
                 },
                 arguments: [
                   {
@@ -2149,9 +2149,9 @@ describe('Expressions - Call', () => {
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    name: 'n'
-                  }
-                ]
+                    name: 'n',
+                  },
+                ],
               },
               arguments: [
                 {
@@ -2159,14 +2159,14 @@ describe('Expressions - Call', () => {
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'c'
-                }
-              ]
-            }
-          }
+                  name: 'c',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async().a',
@@ -2182,20 +2182,20 @@ describe('Expressions - Call', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
-                arguments: []
+                arguments: [],
               },
               property: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async()()',
@@ -2212,15 +2212,15 @@ describe('Expressions - Call', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'async(async(async(async(async(async())))))',
@@ -2246,7 +2246,7 @@ describe('Expressions - Call', () => {
                 start: 0,
                 end: 5,
                 range: [0, 5],
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -2259,7 +2259,7 @@ describe('Expressions - Call', () => {
                     start: 6,
                     end: 11,
                     range: [6, 11],
-                    name: 'async'
+                    name: 'async',
                   },
                   arguments: [
                     {
@@ -2272,7 +2272,7 @@ describe('Expressions - Call', () => {
                         start: 12,
                         end: 17,
                         range: [12, 17],
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
@@ -2285,7 +2285,7 @@ describe('Expressions - Call', () => {
                             start: 18,
                             end: 23,
                             range: [18, 23],
-                            name: 'async'
+                            name: 'async',
                           },
                           arguments: [
                             {
@@ -2298,7 +2298,7 @@ describe('Expressions - Call', () => {
                                 start: 24,
                                 end: 29,
                                 range: [24, 29],
-                                name: 'async'
+                                name: 'async',
                               },
                               arguments: [
                                 {
@@ -2311,24 +2311,24 @@ describe('Expressions - Call', () => {
                                     start: 30,
                                     end: 35,
                                     range: [30, 35],
-                                    name: 'async'
+                                    name: 'async',
                                   },
-                                  arguments: []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                                  arguments: [],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( o.bar )',
@@ -2359,16 +2359,16 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: false
+                computed: false,
               },
               arguments: [
                 {
@@ -2381,23 +2381,23 @@ describe('Expressions - Call', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'o'
+                    name: 'o',
                   },
                   property: {
                     type: 'Identifier',
                     start: 7,
                     end: 10,
                     range: [7, 10],
-                    name: 'bar'
+                    name: 'bar',
                   },
-                  computed: false
-                }
-              ]
-            }
-          }
+                  computed: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( o["bar"] )',
@@ -2428,16 +2428,16 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: false
+                computed: false,
               },
               arguments: [
                 {
@@ -2450,23 +2450,23 @@ describe('Expressions - Call', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'o'
+                    name: 'o',
                   },
                   property: {
                     type: 'Literal',
                     start: 7,
                     end: 12,
                     range: [7, 12],
-                    value: 'bar'
+                    value: 'bar',
                   },
-                  computed: true
-                }
-              ]
-            }
-          }
+                  computed: true,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( foo() )',
@@ -2497,16 +2497,16 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: false
+                computed: false,
               },
               arguments: [
                 {
@@ -2519,16 +2519,16 @@ describe('Expressions - Call', () => {
                     start: 5,
                     end: 8,
                     range: [5, 8],
-                    name: 'foo'
+                    name: 'foo',
                   },
-                  arguments: []
-                }
-              ]
-            }
-          }
+                  arguments: [],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( c() ).d',
@@ -2564,16 +2564,16 @@ describe('Expressions - Call', () => {
                     start: 0,
                     end: 1,
                     range: [0, 1],
-                    name: 'a'
+                    name: 'a',
                   },
                   property: {
                     type: 'Identifier',
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'b'
+                    name: 'b',
                   },
-                  computed: false
+                  computed: false,
                 },
                 arguments: [
                   {
@@ -2586,25 +2586,25 @@ describe('Expressions - Call', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'c'
+                      name: 'c',
                     },
-                    arguments: []
-                  }
-                ]
+                    arguments: [],
+                  },
+                ],
               },
               property: {
                 type: 'Identifier',
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'd'
+                name: 'd',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b( c() ).d.e',
@@ -2625,40 +2625,40 @@ describe('Expressions - Call', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   arguments: [
                     {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
-                      arguments: []
-                    }
-                  ]
+                      arguments: [],
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'e'
-              }
-            }
-          }
-        ]
-      }
+                name: 'e',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo()(1, 2, 3)',
@@ -2689,9 +2689,9 @@ describe('Expressions - Call', () => {
                   start: 0,
                   end: 3,
                   range: [0, 3],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                arguments: []
+                arguments: [],
               },
               arguments: [
                 {
@@ -2699,28 +2699,28 @@ describe('Expressions - Call', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
                   start: 12,
                   end: 13,
                   range: [12, 13],
-                  value: 3
-                }
-              ]
-            }
-          }
+                  value: 3,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo(x,y,)',
@@ -2735,22 +2735,22 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(200)',
@@ -2765,18 +2765,18 @@ describe('Expressions - Call', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 200
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 200,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(a)(b)',
@@ -2793,25 +2793,25 @@ describe('Expressions - Call', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(a)(b)(c)(d)(e)',
@@ -2834,46 +2834,46 @@ describe('Expressions - Call', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       arguments: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      ]
+                          name: 'a',
+                        },
+                      ],
                     },
                     arguments: [
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    ]
+                        name: 'b',
+                      },
+                    ],
                   },
                   arguments: [
                     {
                       type: 'Identifier',
-                      name: 'c'
-                    }
-                  ]
+                      name: 'c',
+                    },
+                  ],
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'd'
-                  }
-                ]
+                    name: 'd',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'e'
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                  name: 'e',
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

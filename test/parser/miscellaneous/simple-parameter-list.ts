@@ -88,7 +88,7 @@ describe('Miscellaneous - Simple parameter list', () => {
     'a, b, ...rest',
     '[a, b, ...rest]',
     '{ a = {} }',
-    '{ a } = { b: true }'
+    '{ a } = { b: true }',
   ]) {
     it(`function f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {

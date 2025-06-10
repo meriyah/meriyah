@@ -83,7 +83,7 @@ describe('Declarations - Async Generator', () => {
     'for await (x of xs);',
     'for await (let x of xs);',
     'await a; yield b;',
-    'class A { async f() { for await (x of xs); } }'
+    'class A { async f() { for await (x of xs); } }',
   ]) {
     it(`async function * gen() { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -201,7 +201,7 @@ describe('Declarations - Async Generator', () => {
     "for (yield 'x' in {} of {});",
     "for (await 'x' in {} of {});",
     'class C extends yield { }',
-    'class C extends await { }'
+    'class C extends await { }',
   ]) {
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
@@ -258,7 +258,7 @@ describe('Declarations - Async Generator', () => {
     ['async function* f([...x, y]) {}', Context.None],
     ['async function* f([...{ x }, y]) {}', Context.None],
     ['async function* f([...[x], y]) {}', Context.None],
-    ['f = async function*() { () => await a; }', Context.None]
+    ['f = async function*() { () => await a; }', Context.None],
   ]);
 
   pass('Declarations - const (pass)', [
@@ -279,7 +279,7 @@ describe('Declarations - Async Generator', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'ArrayPattern',
-                      elements: []
+                      elements: [],
                     },
                     right: {
                       type: 'CallExpression',
@@ -288,33 +288,33 @@ describe('Declarations - Async Generator', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
 
-                        id: null
+                        id: null,
                       },
-                      arguments: []
-                    }
-                  }
-                ]
-              }
+                      arguments: [],
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function* f([[x]]) {  }',
@@ -334,27 +334,27 @@ describe('Declarations - Async Generator', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
-                  }
-                ]
-              }
+                        name: 'x',
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'var gen = async function *() { yield { ...yield, y: 1, ...yield yield, }; };',
@@ -381,7 +381,7 @@ describe('Declarations - Async Generator', () => {
                   start: 4,
                   end: 7,
                   range: [4, 7],
-                  name: 'gen'
+                  name: 'gen',
                 },
                 init: {
                   type: 'FunctionExpression',
@@ -426,8 +426,8 @@ describe('Declarations - Async Generator', () => {
                                   end: 47,
                                   range: [42, 47],
                                   delegate: false,
-                                  argument: null
-                                }
+                                  argument: null,
+                                },
                               },
                               {
                                 type: 'Property',
@@ -442,16 +442,16 @@ describe('Declarations - Async Generator', () => {
                                   start: 49,
                                   end: 50,
                                   range: [49, 50],
-                                  name: 'y'
+                                  name: 'y',
                                 },
                                 value: {
                                   type: 'Literal',
                                   start: 52,
                                   end: 53,
                                   range: [52, 53],
-                                  value: 1
+                                  value: 1,
                                 },
-                                kind: 'init'
+                                kind: 'init',
                               },
                               {
                                 type: 'SpreadElement',
@@ -470,24 +470,24 @@ describe('Declarations - Async Generator', () => {
                                     end: 69,
                                     range: [64, 69],
                                     delegate: false,
-                                    argument: null
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                                    argument: null,
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([arrow = () => {}]) {  }',
@@ -506,37 +506,37 @@ describe('Declarations - Async Generator', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'arrow'
+                      name: 'arrow',
                     },
                     right: {
                       type: 'ArrowFunctionExpression',
                       generator: false,
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       params: [],
                       async: false,
-                      expression: false
-                    }
-                  }
-                ]
-              }
+                      expression: false,
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function* f([fn = function () {}, xFn = function x() {}]) {  }',
@@ -557,7 +557,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -578,7 +578,7 @@ describe('Declarations - Async Generator', () => {
                       start: 19,
                       end: 21,
                       range: [19, 21],
-                      name: 'fn'
+                      name: 'fn',
                     },
                     right: {
                       type: 'FunctionExpression',
@@ -594,9 +594,9 @@ describe('Declarations - Async Generator', () => {
                         start: 36,
                         end: 38,
                         range: [36, 38],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
@@ -608,7 +608,7 @@ describe('Declarations - Async Generator', () => {
                       start: 40,
                       end: 43,
                       range: [40, 43],
-                      name: 'xFn'
+                      name: 'xFn',
                     },
                     right: {
                       type: 'FunctionExpression',
@@ -620,7 +620,7 @@ describe('Declarations - Async Generator', () => {
                         start: 55,
                         end: 56,
                         range: [55, 56],
-                        name: 'x'
+                        name: 'x',
                       },
                       generator: false,
                       async: false,
@@ -630,24 +630,24 @@ describe('Declarations - Async Generator', () => {
                         start: 59,
                         end: 61,
                         range: [59, 61],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 64,
               end: 68,
               range: [64, 68],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }]) {  }',
@@ -668,7 +668,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -703,7 +703,7 @@ describe('Declarations - Async Generator', () => {
                             start: 21,
                             end: 22,
                             range: [21, 22],
-                            name: 'x'
+                            name: 'x',
                           },
                           kind: 'init',
                           value: {
@@ -711,8 +711,8 @@ describe('Declarations - Async Generator', () => {
                             start: 21,
                             end: 22,
                             range: [21, 22],
-                            name: 'x'
-                          }
+                            name: 'x',
+                          },
                         },
                         {
                           type: 'Property',
@@ -727,7 +727,7 @@ describe('Declarations - Async Generator', () => {
                             start: 24,
                             end: 25,
                             range: [24, 25],
-                            name: 'y'
+                            name: 'y',
                           },
                           kind: 'init',
                           value: {
@@ -735,8 +735,8 @@ describe('Declarations - Async Generator', () => {
                             start: 24,
                             end: 25,
                             range: [24, 25],
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         {
                           type: 'Property',
@@ -751,7 +751,7 @@ describe('Declarations - Async Generator', () => {
                             start: 27,
                             end: 28,
                             range: [27, 28],
-                            name: 'z'
+                            name: 'z',
                           },
                           kind: 'init',
                           value: {
@@ -759,10 +759,10 @@ describe('Declarations - Async Generator', () => {
                             start: 27,
                             end: 28,
                             range: [27, 28],
-                            name: 'z'
-                          }
-                        }
-                      ]
+                            name: 'z',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
@@ -783,16 +783,16 @@ describe('Declarations - Async Generator', () => {
                             start: 35,
                             end: 36,
                             range: [35, 36],
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'Literal',
                             start: 38,
                             end: 40,
                             range: [38, 40],
-                            value: 44
+                            value: 44,
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -807,16 +807,16 @@ describe('Declarations - Async Generator', () => {
                             start: 42,
                             end: 43,
                             range: [42, 43],
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Literal',
                             start: 45,
                             end: 47,
                             range: [45, 47],
-                            value: 55
+                            value: 55,
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -831,34 +831,34 @@ describe('Declarations - Async Generator', () => {
                             start: 49,
                             end: 50,
                             range: [49, 50],
-                            name: 'z'
+                            name: 'z',
                           },
                           value: {
                             type: 'Literal',
                             start: 52,
                             end: 54,
                             range: [52, 54],
-                            value: 66
+                            value: 66,
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 59,
               end: 63,
               range: [59, 63],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([{ x }]) {  }',
@@ -879,7 +879,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -909,7 +909,7 @@ describe('Declarations - Async Generator', () => {
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         value: {
@@ -917,25 +917,25 @@ describe('Declarations - Async Generator', () => {
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'x'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'x',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 27,
               end: 31,
               range: [27, 31],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([ , , ...x]) {  }',
@@ -956,7 +956,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -979,23 +979,23 @@ describe('Declarations - Async Generator', () => {
                       start: 27,
                       end: 28,
                       range: [27, 28],
-                      name: 'x'
-                    }
-                  }
-                ]
-              }
+                      name: 'x',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 31,
               end: 35,
               range: [31, 35],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([arrow = () => {}] = []) {}',
@@ -1016,43 +1016,43 @@ describe('Declarations - Async Generator', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'arrow'
+                        name: 'arrow',
                       },
                       right: {
                         type: 'ArrowFunctionExpression',
                         generator: false,
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         params: [],
 
                         async: false,
-                        expression: false
-                      }
-                    }
-                  ]
+                        expression: false,
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ArrayExpression',
-                  elements: []
-                }
-              }
+                  elements: [],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function* f([[x]] = [null]) {}',
@@ -1073,7 +1073,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -1100,11 +1100,11 @@ describe('Declarations - Async Generator', () => {
                           start: 20,
                           end: 21,
                           range: [20, 21],
-                          name: 'x'
-                        }
-                      ]
-                    }
-                  ]
+                          name: 'x',
+                        },
+                      ],
+                    },
+                  ],
                 },
                 right: {
                   type: 'ArrayExpression',
@@ -1117,23 +1117,23 @@ describe('Declarations - Async Generator', () => {
                       start: 27,
                       end: 31,
                       range: [27, 31],
-                      value: null
-                    }
-                  ]
-                }
-              }
+                      value: null,
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 34,
               end: 36,
               range: [34, 36],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {}',
@@ -1154,7 +1154,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -1194,7 +1194,7 @@ describe('Declarations - Async Generator', () => {
                               start: 21,
                               end: 22,
                               range: [21, 22],
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             value: {
@@ -1202,8 +1202,8 @@ describe('Declarations - Async Generator', () => {
                               start: 21,
                               end: 22,
                               range: [21, 22],
-                              name: 'x'
-                            }
+                              name: 'x',
+                            },
                           },
                           {
                             type: 'Property',
@@ -1218,7 +1218,7 @@ describe('Declarations - Async Generator', () => {
                               start: 24,
                               end: 25,
                               range: [24, 25],
-                              name: 'y'
+                              name: 'y',
                             },
                             kind: 'init',
                             value: {
@@ -1226,8 +1226,8 @@ describe('Declarations - Async Generator', () => {
                               start: 24,
                               end: 25,
                               range: [24, 25],
-                              name: 'y'
-                            }
+                              name: 'y',
+                            },
                           },
                           {
                             type: 'Property',
@@ -1242,7 +1242,7 @@ describe('Declarations - Async Generator', () => {
                               start: 27,
                               end: 28,
                               range: [27, 28],
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             value: {
@@ -1250,10 +1250,10 @@ describe('Declarations - Async Generator', () => {
                               start: 27,
                               end: 28,
                               range: [27, 28],
-                              name: 'z'
-                            }
-                          }
-                        ]
+                              name: 'z',
+                            },
+                          },
+                        ],
                       },
                       right: {
                         type: 'ObjectExpression',
@@ -1274,7 +1274,7 @@ describe('Declarations - Async Generator', () => {
                               start: 35,
                               end: 36,
                               range: [35, 36],
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Literal',
@@ -1282,9 +1282,9 @@ describe('Declarations - Async Generator', () => {
                               end: 40,
                               range: [38, 40],
                               value: 44,
-                              raw: '44'
+                              raw: '44',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -1299,7 +1299,7 @@ describe('Declarations - Async Generator', () => {
                               start: 42,
                               end: 43,
                               range: [42, 43],
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Literal',
@@ -1307,9 +1307,9 @@ describe('Declarations - Async Generator', () => {
                               end: 47,
                               range: [45, 47],
                               value: 55,
-                              raw: '55'
+                              raw: '55',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -1324,7 +1324,7 @@ describe('Declarations - Async Generator', () => {
                               start: 49,
                               end: 50,
                               range: [49, 50],
-                              name: 'z'
+                              name: 'z',
                             },
                             value: {
                               type: 'Literal',
@@ -1332,14 +1332,14 @@ describe('Declarations - Async Generator', () => {
                               end: 54,
                               range: [52, 54],
                               value: 66,
-                              raw: '66'
+                              raw: '66',
                             },
-                            kind: 'init'
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            kind: 'init',
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ArrayExpression',
@@ -1366,7 +1366,7 @@ describe('Declarations - Async Generator', () => {
                             start: 63,
                             end: 64,
                             range: [63, 64],
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'Literal',
@@ -1374,9 +1374,9 @@ describe('Declarations - Async Generator', () => {
                             end: 68,
                             range: [66, 68],
                             value: 11,
-                            raw: '11'
+                            raw: '11',
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -1391,7 +1391,7 @@ describe('Declarations - Async Generator', () => {
                             start: 70,
                             end: 71,
                             range: [70, 71],
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Literal',
@@ -1399,9 +1399,9 @@ describe('Declarations - Async Generator', () => {
                             end: 75,
                             range: [73, 75],
                             value: 22,
-                            raw: '22'
+                            raw: '22',
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -1416,7 +1416,7 @@ describe('Declarations - Async Generator', () => {
                             start: 77,
                             end: 78,
                             range: [77, 78],
-                            name: 'z'
+                            name: 'z',
                           },
                           value: {
                             type: 'Literal',
@@ -1424,27 +1424,27 @@ describe('Declarations - Async Generator', () => {
                             end: 82,
                             range: [80, 82],
                             value: 33,
-                            raw: '33'
+                            raw: '33',
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 87,
               end: 89,
               range: [87, 89],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f({ fn = function () {}, xFn = function x() {} } = {}) {}',
@@ -1465,7 +1465,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -1494,7 +1494,7 @@ describe('Declarations - Async Generator', () => {
                         start: 20,
                         end: 22,
                         range: [20, 22],
-                        name: 'fn'
+                        name: 'fn',
                       },
                       kind: 'init',
                       value: {
@@ -1507,7 +1507,7 @@ describe('Declarations - Async Generator', () => {
                           start: 20,
                           end: 22,
                           range: [20, 22],
-                          name: 'fn'
+                          name: 'fn',
                         },
                         right: {
                           type: 'FunctionExpression',
@@ -1523,10 +1523,10 @@ describe('Declarations - Async Generator', () => {
                             start: 37,
                             end: 39,
                             range: [37, 39],
-                            body: []
-                          }
-                        }
-                      }
+                            body: [],
+                          },
+                        },
+                      },
                     },
                     {
                       type: 'Property',
@@ -1541,7 +1541,7 @@ describe('Declarations - Async Generator', () => {
                         start: 41,
                         end: 44,
                         range: [41, 44],
-                        name: 'xFn'
+                        name: 'xFn',
                       },
                       kind: 'init',
                       value: {
@@ -1554,7 +1554,7 @@ describe('Declarations - Async Generator', () => {
                           start: 41,
                           end: 44,
                           range: [41, 44],
-                          name: 'xFn'
+                          name: 'xFn',
                         },
                         right: {
                           type: 'FunctionExpression',
@@ -1566,7 +1566,7 @@ describe('Declarations - Async Generator', () => {
                             start: 56,
                             end: 57,
                             range: [56, 57],
-                            name: 'x'
+                            name: 'x',
                           },
                           generator: false,
                           async: false,
@@ -1576,33 +1576,33 @@ describe('Declarations - Async Generator', () => {
                             start: 60,
                             end: 62,
                             range: [60, 62],
-                            body: []
-                          }
-                        }
-                      }
-                    }
-                  ]
+                            body: [],
+                          },
+                        },
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 67,
                   end: 69,
                   range: [67, 69],
-                  properties: []
-                }
-              }
+                  properties: [],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 71,
               end: 73,
               range: [71, 73],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f({ x: y = 33 } = { }) {}',
@@ -1623,7 +1623,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -1652,7 +1652,7 @@ describe('Declarations - Async Generator', () => {
                         start: 20,
                         end: 21,
                         range: [20, 21],
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'AssignmentPattern',
@@ -1664,40 +1664,40 @@ describe('Declarations - Async Generator', () => {
                           start: 23,
                           end: 24,
                           range: [23, 24],
-                          name: 'y'
+                          name: 'y',
                         },
                         right: {
                           type: 'Literal',
                           start: 27,
                           end: 29,
                           range: [27, 29],
-                          value: 33
-                        }
+                          value: 33,
+                        },
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 34,
                   end: 37,
                   range: [34, 37],
-                  properties: []
-                }
-              }
+                  properties: [],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 39,
               end: 41,
               range: [39, 41],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f({ x: y }) {}',
@@ -1717,33 +1717,33 @@ describe('Declarations - Async Generator', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
+                    shorthand: false,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function* f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}',
@@ -1764,7 +1764,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -1788,7 +1788,7 @@ describe('Declarations - Async Generator', () => {
                       start: 20,
                       end: 21,
                       range: [20, 21],
-                      name: 'w'
+                      name: 'w',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -1814,7 +1814,7 @@ describe('Declarations - Async Generator', () => {
                               start: 25,
                               end: 26,
                               range: [25, 26],
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             value: {
@@ -1822,8 +1822,8 @@ describe('Declarations - Async Generator', () => {
                               start: 25,
                               end: 26,
                               range: [25, 26],
-                              name: 'x'
-                            }
+                              name: 'x',
+                            },
                           },
                           {
                             type: 'Property',
@@ -1838,7 +1838,7 @@ describe('Declarations - Async Generator', () => {
                               start: 28,
                               end: 29,
                               range: [28, 29],
-                              name: 'y'
+                              name: 'y',
                             },
                             kind: 'init',
                             value: {
@@ -1846,8 +1846,8 @@ describe('Declarations - Async Generator', () => {
                               start: 28,
                               end: 29,
                               range: [28, 29],
-                              name: 'y'
-                            }
+                              name: 'y',
+                            },
                           },
                           {
                             type: 'Property',
@@ -1862,7 +1862,7 @@ describe('Declarations - Async Generator', () => {
                               start: 31,
                               end: 32,
                               range: [31, 32],
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             value: {
@@ -1870,10 +1870,10 @@ describe('Declarations - Async Generator', () => {
                               start: 31,
                               end: 32,
                               range: [31, 32],
-                              name: 'z'
-                            }
-                          }
-                        ]
+                              name: 'z',
+                            },
+                          },
+                        ],
                       },
                       right: {
                         type: 'ObjectExpression',
@@ -1894,7 +1894,7 @@ describe('Declarations - Async Generator', () => {
                               start: 39,
                               end: 40,
                               range: [39, 40],
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Literal',
@@ -1902,9 +1902,9 @@ describe('Declarations - Async Generator', () => {
                               end: 43,
                               range: [42, 43],
                               value: 4,
-                              raw: '4'
+                              raw: '4',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -1919,7 +1919,7 @@ describe('Declarations - Async Generator', () => {
                               start: 45,
                               end: 46,
                               range: [45, 46],
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Literal',
@@ -1927,9 +1927,9 @@ describe('Declarations - Async Generator', () => {
                               end: 49,
                               range: [48, 49],
                               value: 5,
-                              raw: '5'
+                              raw: '5',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -1944,7 +1944,7 @@ describe('Declarations - Async Generator', () => {
                               start: 51,
                               end: 52,
                               range: [51, 52],
-                              name: 'z'
+                              name: 'z',
                             },
                             value: {
                               type: 'Literal',
@@ -1952,29 +1952,29 @@ describe('Declarations - Async Generator', () => {
                               end: 55,
                               range: [54, 55],
                               value: 6,
-                              raw: '6'
+                              raw: '6',
                             },
-                            kind: 'init'
-                          }
-                        ]
-                      }
+                            kind: 'init',
+                          },
+                        ],
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
+                    kind: 'init',
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 61,
               end: 63,
               range: [61, 63],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f({...x}) {}',
@@ -1995,7 +1995,7 @@ describe('Declarations - Async Generator', () => {
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: true,
@@ -2016,23 +2016,23 @@ describe('Declarations - Async Generator', () => {
                       start: 22,
                       end: 23,
                       range: [22, 23],
-                      name: 'x'
-                    }
-                  }
-                ]
-              }
+                      name: 'x',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 26,
               end: 28,
               range: [26, 28],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* f({a, b, ...rest}) {}',
@@ -2052,55 +2052,55 @@ describe('Declarations - Async Generator', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'rest'
-                    }
-                  }
-                ]
-              }
+                      name: 'rest',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function* f() { await a; yield b; }',
@@ -2121,9 +2121,9 @@ describe('Declarations - Async Generator', () => {
                     type: 'AwaitExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  }
+                      name: 'a',
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -2131,23 +2131,23 @@ describe('Declarations - Async Generator', () => {
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'f = async function*() { await a; yield b; }',
@@ -2162,7 +2162,7 @@ describe('Declarations - Async Generator', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -2177,9 +2177,9 @@ describe('Declarations - Async Generator', () => {
                         type: 'AwaitExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
+                          name: 'a',
+                        },
+                      },
                     },
                     {
                       type: 'ExpressionStatement',
@@ -2187,22 +2187,22 @@ describe('Declarations - Async Generator', () => {
                         type: 'YieldExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
-                        delegate: false
-                      }
-                    }
-                  ]
+                        delegate: false,
+                      },
+                    },
+                  ],
                 },
                 async: true,
                 generator: true,
 
-                id: null
-              }
-            }
-          }
-        ]
-      }
+                id: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'obj = { async* f() { await a; yield b; } }',
@@ -2229,7 +2229,7 @@ describe('Declarations - Async Generator', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'obj'
+                name: 'obj',
               },
               right: {
                 type: 'ObjectExpression',
@@ -2250,7 +2250,7 @@ describe('Declarations - Async Generator', () => {
                       start: 15,
                       end: 16,
                       range: [15, 16],
-                      name: 'f'
+                      name: 'f',
                     },
                     kind: 'init',
                     value: {
@@ -2283,9 +2283,9 @@ describe('Declarations - Async Generator', () => {
                                 start: 27,
                                 end: 28,
                                 range: [27, 28],
-                                name: 'a'
-                              }
-                            }
+                                name: 'a',
+                              },
+                            },
                           },
                           {
                             type: 'ExpressionStatement',
@@ -2303,21 +2303,21 @@ describe('Declarations - Async Generator', () => {
                                 start: 36,
                                 end: 37,
                                 range: [36, 37],
-                                name: 'b'
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                                name: 'b',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class A { async* f() { await a; yield b; } }',
@@ -2338,7 +2338,7 @@ describe('Declarations - Async Generator', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2360,7 +2360,7 @@ describe('Declarations - Async Generator', () => {
                     start: 17,
                     end: 18,
                     range: [17, 18],
-                    name: 'f'
+                    name: 'f',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2392,9 +2392,9 @@ describe('Declarations - Async Generator', () => {
                               start: 29,
                               end: 30,
                               range: [29, 30],
-                              name: 'a'
-                            }
-                          }
+                              name: 'a',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -2412,20 +2412,20 @@ describe('Declarations - Async Generator', () => {
                               start: 38,
                               end: 39,
                               range: [38, 39],
-                              name: 'b'
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                              name: 'b',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class A { static async* f() { await a; yield b; } }',
@@ -2446,7 +2446,7 @@ describe('Declarations - Async Generator', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2468,7 +2468,7 @@ describe('Declarations - Async Generator', () => {
                     start: 24,
                     end: 25,
                     range: [24, 25],
-                    name: 'f'
+                    name: 'f',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2500,9 +2500,9 @@ describe('Declarations - Async Generator', () => {
                               start: 36,
                               end: 37,
                               range: [36, 37],
-                              name: 'a'
-                            }
-                          }
+                              name: 'a',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -2520,20 +2520,20 @@ describe('Declarations - Async Generator', () => {
                               start: 45,
                               end: 46,
                               range: [45, 46],
-                              name: 'b'
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                              name: 'b',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function* x() {}',
@@ -2547,18 +2547,18 @@ describe('Declarations - Async Generator', () => {
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function*() {})',
@@ -2574,16 +2574,16 @@ describe('Declarations - Async Generator', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'var gen = { async *method() {} }',
@@ -2605,35 +2605,35 @@ describe('Declarations - Async Generator', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'method'
+                        name: 'method',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'gen'
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                  name: 'gen',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   ]);
 });

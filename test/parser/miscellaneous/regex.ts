@@ -7,7 +7,7 @@ describe('Miscellaneous - Regular expressions', () => {
   for (const arg of [
     //    '/(?<abc𝟐def>foo\\k<abc𝟐def>)/',
     //    '/(?<輸xyz>foo)met\\k<輸xyz>/',
-    String.raw`x = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;`
+    String.raw`x = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -37,15 +37,15 @@ describe('Miscellaneous - Regular expressions', () => {
     [
       `function* f(){ yield
       /foo }`,
-      Context.OptionsNext | Context.Module | Context.Strict
+      Context.OptionsNext | Context.Module | Context.Strict,
     ],
     ['function l(){((/)/))(/]/)};', Context.OptionsNext | Context.Module | Context.Strict],
     ['0 ?? 1 && 2', Context.OptionsNext | Context.Module | Context.Strict],
     [
       '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-      Context.OptionsNext
+      Context.OptionsNext,
     ],
     ['e ?? f ?? g || h;', Context.OptionsNext | Context.Module | Context.Strict],
-    ['c && d ?? e', Context.OptionsNext | Context.Module | Context.Strict]
+    ['c && d ?? e', Context.OptionsNext | Context.Module | Context.Strict],
   ]);
 });

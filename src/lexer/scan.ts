@@ -10,7 +10,7 @@ import {
   NumberKind,
   consumeLineFeed,
   scanNewLine,
-  consumePossibleSurrogatePair
+  consumePossibleSurrogatePair,
 } from './common';
 import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
 import { scanRegularExpression } from './regexp';
@@ -161,7 +161,7 @@ export const TokenLookup = [
   /* 124 - |                   */ Token.BitwiseOr,
   /* 125 - }                   */ Token.RightBrace,
   /* 126 - ~                   */ Token.Complement,
-  /* 127 - Delete              */ Token.Illegal
+  /* 127 - Delete              */ Token.Illegal,
 ];
 
 /**
@@ -288,7 +288,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                   CommentType.HTMLOpen,
                   parser.tokenIndex,
                   parser.tokenLine,
-                  parser.tokenColumn
+                  parser.tokenColumn,
                 );
                 startIndex = parser.tokenIndex;
                 startLine = parser.tokenLine;
@@ -405,7 +405,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 CommentType.HTMLClose,
                 startIndex,
                 startLine,
-                startColumn
+                startColumn,
               );
               startIndex = parser.tokenIndex;
               startLine = parser.tokenLine;
@@ -438,7 +438,7 @@ export function scanSingleToken(parser: ParserState, context: Context, state: Le
                 CommentType.Single,
                 parser.tokenIndex,
                 parser.tokenLine,
-                parser.tokenColumn
+                parser.tokenColumn,
               );
               startIndex = parser.tokenIndex;
               startLine = parser.tokenLine;

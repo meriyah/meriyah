@@ -36,7 +36,7 @@ describe('Expressions - Compound assignment', () => {
     'x	*=	-1',
     '({a: a *= -1})',
     '([a *= -1])',
-    '([(a *= -1)])'
+    '([(a *= -1)])',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -71,7 +71,7 @@ describe('Expressions - Compound assignment', () => {
     '1 -= 1;',
     '1 &= 1;',
     '1 |= 1;',
-    '1 = 1;'
+    '1 = 1;',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -121,7 +121,7 @@ describe('Expressions - Compound assignment', () => {
                   start: 0,
                   end: 4,
                   range: [0, 4],
-                  name: 'base'
+                  name: 'base',
                 },
                 property: {
                   type: 'CallExpression',
@@ -133,11 +133,11 @@ describe('Expressions - Compound assignment', () => {
                     start: 5,
                     end: 9,
                     range: [5, 9],
-                    name: 'prop'
+                    name: 'prop',
                   },
-                  arguments: []
+                  arguments: [],
                 },
-                computed: true
+                computed: true,
               },
               right: {
                 type: 'CallExpression',
@@ -149,15 +149,15 @@ describe('Expressions - Compound assignment', () => {
                   start: 16,
                   end: 20,
                   range: [16, 20],
-                  name: 'expr'
+                  name: 'expr',
                 },
-                arguments: []
-              }
-            }
-          }
+                arguments: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'null && (x += null)',
@@ -183,7 +183,7 @@ describe('Expressions - Compound assignment', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                value: null
+                value: null,
               },
               operator: '&&',
               right: {
@@ -197,21 +197,21 @@ describe('Expressions - Compound assignment', () => {
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Literal',
                   start: 14,
                   end: 18,
                   range: [14, 18],
-                  value: null
-                }
-              }
-            }
-          }
+                  value: null,
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'y1 = (y %= 2);',
@@ -238,7 +238,7 @@ describe('Expressions - Compound assignment', () => {
                 start: 0,
                 end: 2,
                 range: [0, 2],
-                name: 'y1'
+                name: 'y1',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -251,21 +251,21 @@ describe('Expressions - Compound assignment', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'y'
+                  name: 'y',
                 },
                 right: {
                   type: 'Literal',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  value: 2
-                }
-              }
-            }
-          }
+                  value: 2,
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'y1 = (y <<= 1);',
@@ -280,25 +280,25 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'y1'
+                name: 'y1',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 operator: '<<=',
                 right: {
                   type: 'Literal',
-                  value: 1
-                }
-              }
-            }
-          }
-        ]
-      }
+                  value: 1,
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x ^= new String("1");',
@@ -325,7 +325,7 @@ describe('Expressions - Compound assignment', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'NewExpression',
@@ -337,7 +337,7 @@ describe('Expressions - Compound assignment', () => {
                   start: 9,
                   end: 15,
                   range: [9, 15],
-                  name: 'String'
+                  name: 'String',
                 },
                 arguments: [
                   {
@@ -345,15 +345,15 @@ describe('Expressions - Compound assignment', () => {
                     start: 16,
                     end: 19,
                     range: [16, 19],
-                    value: '1'
-                  }
-                ]
-              }
-            }
-          }
+                    value: '1',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x *= "1";',
@@ -368,17 +368,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '*=',
               right: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'obj.prop >>= 20;',
@@ -410,29 +410,29 @@ describe('Expressions - Compound assignment', () => {
                   start: 0,
                   end: 3,
                   range: [0, 3],
-                  name: 'obj'
+                  name: 'obj',
                 },
                 property: {
                   type: 'Identifier',
                   start: 4,
                   end: 8,
                   range: [4, 8],
-                  name: 'prop'
+                  name: 'prop',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 13,
                 end: 15,
                 range: [13, 15],
-                value: 20
-              }
-            }
-          }
+                value: 20,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'arguments &= 20;',
@@ -447,17 +447,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'arguments'
+                name: 'arguments',
               },
               operator: '&=',
               right: {
                 type: 'Literal',
-                value: 20
-              }
-            }
-          }
-        ]
-      }
+                value: 20,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var z = (x *= -1);',
@@ -484,7 +484,7 @@ describe('Expressions - Compound assignment', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'z'
+                  name: 'z',
                 },
                 init: {
                   type: 'AssignmentExpression',
@@ -497,7 +497,7 @@ describe('Expressions - Compound assignment', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'UnaryExpression',
@@ -511,17 +511,17 @@ describe('Expressions - Compound assignment', () => {
                       start: 15,
                       end: 16,
                       range: [15, 16],
-                      value: 1
-                    }
-                  }
-                }
-              }
+                      value: 1,
+                    },
+                  },
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var z = (x %= y);',
@@ -540,23 +540,23 @@ describe('Expressions - Compound assignment', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '%=',
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
+                    name: 'y',
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'z',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'x *= undefined;',
@@ -571,17 +571,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '*=',
               right: {
                 type: 'Identifier',
-                name: 'undefined'
-              }
-            }
-          }
-        ]
-      }
+                name: 'undefined',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x -= 1;',
@@ -596,17 +596,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '-=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(new foo).bar()',
@@ -642,25 +642,25 @@ describe('Expressions - Compound assignment', () => {
                     start: 5,
                     end: 8,
                     range: [5, 8],
-                    name: 'foo'
+                    name: 'foo',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 property: {
                   type: 'Identifier',
                   start: 10,
                   end: 13,
                   range: [10, 13],
-                  name: 'bar'
+                  name: 'bar',
                 },
-                computed: false
+                computed: false,
               },
-              arguments: []
-            }
-          }
+              arguments: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a.b.c(2020)',
@@ -696,25 +696,25 @@ describe('Expressions - Compound assignment', () => {
                     start: 0,
                     end: 1,
                     range: [0, 1],
-                    name: 'a'
+                    name: 'a',
                   },
                   property: {
                     type: 'Identifier',
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'b'
+                    name: 'b',
                   },
-                  computed: false
+                  computed: false,
                 },
                 property: {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'c'
+                  name: 'c',
                 },
-                computed: false
+                computed: false,
               },
               arguments: [
                 {
@@ -722,14 +722,14 @@ describe('Expressions - Compound assignment', () => {
                   start: 6,
                   end: 10,
                   range: [6, 10],
-                  value: 2020
-                }
-              ]
-            }
-          }
+                  value: 2020,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a(0).b(14, 3, 77).c',
@@ -770,7 +770,7 @@ describe('Expressions - Compound assignment', () => {
                       start: 0,
                       end: 1,
                       range: [0, 1],
-                      name: 'a'
+                      name: 'a',
                     },
                     arguments: [
                       {
@@ -778,18 +778,18 @@ describe('Expressions - Compound assignment', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        value: 0
-                      }
-                    ]
+                        value: 0,
+                      },
+                    ],
                   },
                   property: {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'b'
+                    name: 'b',
                   },
-                  computed: false
+                  computed: false,
                 },
                 arguments: [
                   {
@@ -797,37 +797,37 @@ describe('Expressions - Compound assignment', () => {
                     start: 7,
                     end: 9,
                     range: [7, 9],
-                    value: 14
+                    value: 14,
                   },
                   {
                     type: 'Literal',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    value: 3
+                    value: 3,
                   },
                   {
                     type: 'Literal',
                     start: 14,
                     end: 16,
                     range: [14, 16],
-                    value: 77
-                  }
-                ]
+                    value: 77,
+                  },
+                ],
               },
               property: {
                 type: 'Identifier',
                 start: 18,
                 end: 19,
                 range: [18, 19],
-                name: 'c'
+                name: 'c',
               },
-              computed: false
-            }
-          }
+              computed: false,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x >>= 1;',
@@ -845,7 +845,7 @@ describe('Expressions - Compound assignment', () => {
                 name: 'x',
                 start: 0,
                 end: 1,
-                range: [0, 1]
+                range: [0, 1],
               },
               operator: '>>=',
               right: {
@@ -853,21 +853,21 @@ describe('Expressions - Compound assignment', () => {
                 value: 1,
                 start: 6,
                 end: 7,
-                range: [6, 7]
+                range: [6, 7],
               },
               start: 0,
               end: 7,
-              range: [0, 7]
+              range: [0, 7],
             },
             start: 0,
             end: 8,
-            range: [0, 8]
-          }
+            range: [0, 8],
+          },
         ],
         start: 0,
         end: 8,
-        range: [0, 8]
-      }
+        range: [0, 8],
+      },
     ],
     [
       'var x1 = (x <<= 1);',
@@ -886,23 +886,23 @@ describe('Expressions - Compound assignment', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '<<=',
                   right: {
                     type: 'Literal',
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'x |= 1;',
@@ -917,17 +917,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '|=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x /= true;',
@@ -942,17 +942,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '/=',
               right: {
                 type: 'Literal',
-                value: true
-              }
-            }
-          }
-        ]
-      }
+                value: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'obj.len &= 10;',
@@ -969,23 +969,23 @@ describe('Expressions - Compound assignment', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'obj'
+                  name: 'obj',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'len'
-                }
+                  name: 'len',
+                },
               },
               operator: '&=',
               right: {
                 type: 'Literal',
-                value: 10
-              }
-            }
-          }
-        ]
-      }
+                value: 10,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var x = 4;',
@@ -1002,17 +1002,17 @@ describe('Expressions - Compound assignment', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 4
+                  value: 4,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '(x + y) >= z',
@@ -1029,23 +1029,23 @@ describe('Expressions - Compound assignment', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '>='
-            }
-          }
-        ]
-      }
+              operator: '>=',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) <= z',
@@ -1062,23 +1062,23 @@ describe('Expressions - Compound assignment', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '<='
-            }
-          }
-        ]
-      }
+              operator: '<=',
+            },
+          },
+        ],
+      },
     ],
     [
       'x *= undefined;',
@@ -1093,17 +1093,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '*=',
               right: {
                 type: 'Identifier',
-                name: 'undefined'
-              }
-            }
-          }
-        ]
-      }
+                name: 'undefined',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x *= null;',
@@ -1118,17 +1118,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '*=',
               right: {
                 type: 'Literal',
-                value: null
-              }
-            }
-          }
-        ]
-      }
+                value: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x |= "1";',
@@ -1143,17 +1143,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '|=',
               right: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'z = (x %= y);',
@@ -1168,25 +1168,25 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '%=',
                 right: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x += "1";',
@@ -1201,17 +1201,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x >>= true;',
@@ -1226,17 +1226,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '>>=',
               right: {
                 type: 'Literal',
-                value: true
-              }
-            }
-          }
-        ]
-      }
+                value: true,
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1252,17 +1252,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '|=',
               right: {
                 type: 'Literal',
-                value: true
-              }
-            }
-          }
-        ]
-      }
+                value: true,
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1278,17 +1278,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '|=',
               right: {
                 type: 'Literal',
-                value: '1'
-              }
-            }
-          }
-        ]
-      }
+                value: '1',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x |= 1',
@@ -1303,17 +1303,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '|=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x += true',
@@ -1328,17 +1328,17 @@ describe('Expressions - Compound assignment', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: true
-              }
-            }
-          }
-        ]
-      }
-    ]
+                value: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

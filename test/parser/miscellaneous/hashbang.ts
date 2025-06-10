@@ -21,7 +21,7 @@ describe('Miscellaneous - Hashbang', () => {
     '\\043!\n',
     '\\u0023\\u0021\n',
     '\n#!---IGNORED---\n',
-    ' #!---IGNORED---\n'
+    ' #!---IGNORED---\n',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -45,7 +45,7 @@ describe('Miscellaneous - Hashbang', () => {
     '#!---IGNORED---\n',
     '#!---IGNORED---\r',
     '#!---IGNORED---\xE2\x80\xA8',
-    '#!---IGNORED---\xE2\x80\xA9'
+    '#!---IGNORED---\xE2\x80\xA9',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

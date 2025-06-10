@@ -71,7 +71,7 @@ describe('Expressions - Object', () => {
     '({a b})',
     '({a b() {}})',
     '{get async(v) {}}',
-    '{get let(v) {}}'
+    '{get let(v) {}}',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -185,7 +185,7 @@ describe('Expressions - Object', () => {
     '{set async(v) {}}',
     '{get async() {}}',
     '{get let() {}}',
-    'async ({__proto__: a, __proto__: b}) => 1'
+    'async ({__proto__: a, __proto__: b}) => 1',
   ]) {
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
@@ -223,7 +223,7 @@ describe('Expressions - Object', () => {
     'x = {\'__proto__\': 1, "__proto__": 2}',
     "x = {'__proto__': 1, __proto__: 2}",
     'x = {__proto__: 1, "__proto__": 2}',
-    'async ({__proto__: a, __proto__: b});'
+    'async ({__proto__: a, __proto__: b});',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -243,7 +243,7 @@ describe('Expressions - Object', () => {
     '__proto__: {}, __proto__() {}',
     '__proto__: {}, get __proto__() {}',
     '__proto__: {}, set __proto__(v) {}',
-    '__proto__: {}, __proto__'
+    '__proto__: {}, __proto__',
   ]) {
     it(`({${arg}})`, () => {
       t.doesNotThrow(() => {
@@ -286,7 +286,7 @@ describe('Expressions - Object', () => {
     '[].length',
     '[x].length',
     '{}.length',
-    '{x: y}.length'
+    '{x: y}.length',
   ]) {
     it(`({${arg}} = x);`, () => {
       t.throws(() => {
@@ -342,7 +342,7 @@ describe('Expressions - Object', () => {
     '*x() {}, y() {}, *x() {}',
     '*x() {}, *"x"() {}',
     "*x() {}, *'x'() {}",
-    '*1.0() {}, 1: 1'
+    '*1.0() {}, 1: 1',
   ]) {
     it(`"use strict"; ({ ${arg} })`, () => {
       t.doesNotThrow(() => {
@@ -397,7 +397,7 @@ describe('Expressions - Object', () => {
     '*x() {}, y() {}, *x() {}',
     '*x() {}, *"x"() {}',
     "*x() {}, *'x'() {}",
-    '*1.0() {}, 1: 1'
+    '*1.0() {}, 1: 1',
   ]) {
     it(`"use strict"; ({ ${arg} })`, () => {
       t.doesNotThrow(() => {
@@ -453,7 +453,7 @@ describe('Expressions - Object', () => {
     'with',
     'null',
     'true',
-    'false' // 'enum',
+    'false', // 'enum',
   ]) {
     it(`({foo: ${arg}}) => null`, () => {
       t.throws(() => {
@@ -530,7 +530,7 @@ describe('Expressions - Object', () => {
     'void',
     'while',
     'with',
-    'yield'
+    'yield',
   ]) {
     it(`({ ${arg}(x, y) {}});`, () => {
       t.doesNotThrow(() => {
@@ -618,7 +618,7 @@ describe('Expressions - Object', () => {
     '{ w, x, y }',
     '{ w, x = b, y }',
     '{ w, x, y = c }',
-    '{ w, x, y = a ? x : b }'
+    '{ w, x, y = a ? x : b }',
   ]) {
     it(`a = ${arg} = b`, () => {
       t.doesNotThrow(() => {
@@ -943,7 +943,7 @@ describe('Expressions - Object', () => {
     'x, y = 1, z = 2} = {',
     'a: [b = 1, c = 2][1]} = {a:[]',
     'a: [b = 1, c = 2].b} = {a:[]',
-    'async'
+    'async',
   ]) {
     it(`({ ${arg} })`, () => {
       t.doesNotThrow(() => {
@@ -1080,7 +1080,7 @@ describe('Expressions - Object', () => {
       async
       foo() {}
   })`,
-      Context.None
+      Context.None,
     ],
     ['({...{a,b}} = foo)', Context.None],
     ['({...[a,b]} = foo)', Context.None],
@@ -1420,7 +1420,7 @@ describe('Expressions - Object', () => {
     ["x = {'__proto__': 1, __proto__: 2}", Context.None],
     [String.raw`({g\u0065t m() {} });`, Context.None],
     ['([{web: false, __proto__: a, __proto__: b}]);', Context.None],
-    ['({web: false, __proto__: a, __proto__: b});', Context.None]
+    ['({web: false, __proto__: a, __proto__: b});', Context.None],
   ]);
 
   pass('Expressions - Object (pass)', [
@@ -1440,7 +1440,7 @@ describe('Expressions - Object', () => {
                 name: 'x',
                 start: 0,
                 end: 1,
-                range: [0, 1]
+                range: [0, 1],
               },
               operator: '=',
               right: {
@@ -1453,7 +1453,7 @@ describe('Expressions - Object', () => {
                       name: 'prototype',
                       start: 5,
                       end: 14,
-                      range: [5, 14]
+                      range: [5, 14],
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -1463,14 +1463,14 @@ describe('Expressions - Object', () => {
                         body: [],
                         start: 16,
                         end: 18,
-                        range: [16, 18]
+                        range: [16, 18],
                       },
                       async: false,
                       generator: false,
                       id: null,
                       start: 14,
                       end: 18,
-                      range: [14, 18]
+                      range: [14, 18],
                     },
                     kind: 'init',
                     computed: false,
@@ -1478,26 +1478,26 @@ describe('Expressions - Object', () => {
                     shorthand: false,
                     start: 5,
                     end: 18,
-                    range: [5, 18]
-                  }
+                    range: [5, 18],
+                  },
                 ],
                 start: 3,
                 end: 20,
-                range: [3, 20]
+                range: [3, 20],
               },
               start: 0,
               end: 20,
-              range: [0, 20]
+              range: [0, 20],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       '({a: b = c} = [2])',
@@ -1538,7 +1538,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -1550,19 +1550,19 @@ describe('Expressions - Object', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -1575,15 +1575,15 @@ describe('Expressions - Object', () => {
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    value: 2
-                  }
-                ]
-              }
-            }
-          }
+                    value: 2,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a: (b) = c} = [2])',
@@ -1624,7 +1624,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -1636,19 +1636,19 @@ describe('Expressions - Object', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
                         start: 11,
                         end: 12,
                         range: [11, 12],
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -1661,15 +1661,15 @@ describe('Expressions - Object', () => {
                     start: 17,
                     end: 18,
                     range: [17, 18],
-                    value: 2
-                  }
-                ]
-              }
-            }
-          }
+                    value: 2,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a: (b).c} = [2])',
@@ -1710,7 +1710,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -1722,20 +1722,20 @@ describe('Expressions - Object', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'b'
+                        name: 'b',
                       },
                       property: {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 'c'
+                        name: 'c',
                       },
-                      computed: false
+                      computed: false,
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -1748,15 +1748,15 @@ describe('Expressions - Object', () => {
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    value: 2
-                  }
-                ]
-              }
-            }
-          }
+                    value: 2,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a: (b).c = d} = [2])',
@@ -1797,7 +1797,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -1814,28 +1814,28 @@ describe('Expressions - Object', () => {
                           start: 6,
                           end: 7,
                           range: [6, 7],
-                          name: 'b'
+                          name: 'b',
                         },
                         property: {
                           type: 'Identifier',
                           start: 9,
                           end: 10,
                           range: [9, 10],
-                          name: 'c'
+                          name: 'c',
                         },
-                        computed: false
+                        computed: false,
                       },
                       right: {
                         type: 'Identifier',
                         start: 13,
                         end: 14,
                         range: [13, 14],
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -1848,15 +1848,15 @@ describe('Expressions - Object', () => {
                     start: 19,
                     end: 20,
                     range: [19, 20],
-                    value: 2
-                  }
-                ]
-              }
-            }
-          }
+                    value: 2,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var a = { __proto__: { abc: 123 } };',
@@ -1883,7 +1883,7 @@ describe('Expressions - Object', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -1904,7 +1904,7 @@ describe('Expressions - Object', () => {
                         start: 10,
                         end: 19,
                         range: [10, 19],
-                        name: '__proto__'
+                        name: '__proto__',
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -1925,30 +1925,30 @@ describe('Expressions - Object', () => {
                               start: 23,
                               end: 26,
                               range: [23, 26],
-                              name: 'abc'
+                              name: 'abc',
                             },
                             value: {
                               type: 'Literal',
                               start: 28,
                               end: 31,
                               range: [28, 31],
-                              value: 123
+                              value: 123,
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var b = { ["__proto__"]: { abc: 123 }};',
@@ -1975,7 +1975,7 @@ describe('Expressions - Object', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
+                  name: 'b',
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -1996,7 +1996,7 @@ describe('Expressions - Object', () => {
                         start: 11,
                         end: 22,
                         range: [11, 22],
-                        value: '__proto__'
+                        value: '__proto__',
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -2017,30 +2017,30 @@ describe('Expressions - Object', () => {
                               start: 27,
                               end: 30,
                               range: [27, 30],
-                              name: 'abc'
+                              name: 'abc',
                             },
                             value: {
                               type: 'Literal',
                               start: 32,
                               end: 35,
                               range: [32, 35],
-                              value: 123
+                              value: 123,
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...x = y, y})',
@@ -2078,16 +2078,16 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
                       start: 9,
                       end: 10,
                       range: [9, 10],
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 },
                 {
                   type: 'Property',
@@ -2102,7 +2102,7 @@ describe('Expressions - Object', () => {
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   value: {
@@ -2110,15 +2110,15 @@ describe('Expressions - Object', () => {
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'y'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'y',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...a,});',
@@ -2150,15 +2150,15 @@ describe('Expressions - Object', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'a'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'a',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[...a] = []',
@@ -2196,23 +2196,23 @@ describe('Expressions - Object', () => {
                       start: 4,
                       end: 5,
                       range: [4, 5],
-                      name: 'a'
-                    }
-                  }
-                ]
+                      name: 'a',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
                 start: 9,
                 end: 11,
                 range: [9, 11],
-                elements: []
-              }
-            }
-          }
+                elements: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({[sourceKey()]: target()[targetKey()]} = source());',
@@ -2258,9 +2258,9 @@ describe('Expressions - Object', () => {
                         start: 3,
                         end: 12,
                         range: [3, 12],
-                        name: 'sourceKey'
+                        name: 'sourceKey',
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     value: {
                       type: 'MemberExpression',
@@ -2277,9 +2277,9 @@ describe('Expressions - Object', () => {
                           start: 17,
                           end: 23,
                           range: [17, 23],
-                          name: 'target'
+                          name: 'target',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       property: {
                         type: 'CallExpression',
@@ -2291,15 +2291,15 @@ describe('Expressions - Object', () => {
                           start: 26,
                           end: 35,
                           range: [26, 35],
-                          name: 'targetKey'
+                          name: 'targetKey',
                         },
-                        arguments: []
+                        arguments: [],
                       },
-                      computed: true
+                      computed: true,
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'CallExpression',
@@ -2311,15 +2311,15 @@ describe('Expressions - Object', () => {
                   start: 42,
                   end: 48,
                   range: [42, 48],
-                  name: 'source'
+                  name: 'source',
                 },
-                arguments: []
-              }
-            }
-          }
+                arguments: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f(a, ...1 + 1, b)',
@@ -2345,7 +2345,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
@@ -2353,7 +2353,7 @@ describe('Expressions - Object', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'SpreadElement',
@@ -2370,7 +2370,7 @@ describe('Expressions - Object', () => {
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      value: 1
+                      value: 1,
                     },
                     operator: '+',
                     right: {
@@ -2378,23 +2378,23 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      value: 1
-                    }
-                  }
+                      value: 1,
+                    },
+                  },
                 },
                 {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'b'
-                }
-              ]
-            }
-          }
+                  name: 'b',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){   s = {"foo": yield}   }',
@@ -2415,7 +2415,7 @@ describe('Expressions - Object', () => {
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -2442,7 +2442,7 @@ describe('Expressions - Object', () => {
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 's'
+                      name: 's',
                     },
                     right: {
                       type: 'ObjectExpression',
@@ -2463,7 +2463,7 @@ describe('Expressions - Object', () => {
                             start: 22,
                             end: 27,
                             range: [22, 27],
-                            value: 'foo'
+                            value: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
@@ -2471,20 +2471,20 @@ describe('Expressions - Object', () => {
                             end: 34,
                             range: [29, 34],
                             delegate: false,
-                            argument: null
+                            argument: null,
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){   s = {"foo": yield /x/}   }',
@@ -2505,7 +2505,7 @@ describe('Expressions - Object', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     operator: '=',
                     right: {
@@ -2515,7 +2515,7 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
@@ -2524,32 +2524,32 @@ describe('Expressions - Object', () => {
                               value: /x/,
                               regex: {
                                 pattern: 'x',
-                                flags: ''
-                              }
+                                flags: '',
+                              },
                             },
-                            delegate: false
+                            delegate: false,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '[{x : [{y:{z = 1}}] }] = [{x:[{y:{}}]}];',
@@ -2596,7 +2596,7 @@ describe('Expressions - Object', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayPattern',
@@ -2623,7 +2623,7 @@ describe('Expressions - Object', () => {
                                     start: 8,
                                     end: 9,
                                     range: [8, 9],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectPattern',
@@ -2644,7 +2644,7 @@ describe('Expressions - Object', () => {
                                           start: 11,
                                           end: 12,
                                           range: [11, 12],
-                                          name: 'z'
+                                          name: 'z',
                                         },
                                         kind: 'init',
                                         value: {
@@ -2657,30 +2657,30 @@ describe('Expressions - Object', () => {
                                             start: 11,
                                             end: 12,
                                             range: [11, 12],
-                                            name: 'z'
+                                            name: 'z',
                                           },
                                           right: {
                                             type: 'Literal',
                                             start: 15,
                                             end: 16,
                                             range: [15, 16],
-                                            value: 1
-                                          }
-                                        }
-                                      }
-                                    ]
+                                            value: 1,
+                                          },
+                                        },
+                                      },
+                                    ],
                                   },
-                                  kind: 'init'
-                                }
-                              ]
-                            }
-                          ]
+                                  kind: 'init',
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -2707,7 +2707,7 @@ describe('Expressions - Object', () => {
                           start: 27,
                           end: 28,
                           range: [27, 28],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayExpression',
@@ -2734,32 +2734,32 @@ describe('Expressions - Object', () => {
                                     start: 31,
                                     end: 32,
                                     range: [31, 32],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectExpression',
                                     start: 33,
                                     end: 35,
                                     range: [33, 35],
-                                    properties: []
+                                    properties: [],
                                   },
-                                  kind: 'init'
-                                }
-                              ]
-                            }
-                          ]
+                                  kind: 'init',
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){   s = {foo: yield /x/}   }',
@@ -2780,7 +2780,7 @@ describe('Expressions - Object', () => {
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -2807,7 +2807,7 @@ describe('Expressions - Object', () => {
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 's'
+                      name: 's',
                     },
                     right: {
                       type: 'ObjectExpression',
@@ -2828,7 +2828,7 @@ describe('Expressions - Object', () => {
                             start: 22,
                             end: 25,
                             range: [22, 25],
-                            name: 'foo'
+                            name: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
@@ -2844,22 +2844,22 @@ describe('Expressions - Object', () => {
                               value: /x/,
                               regex: {
                                 pattern: 'x',
-                                flags: ''
-                              }
-                            }
+                                flags: '',
+                              },
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       's = {"foo": await = x} = x',
@@ -2886,7 +2886,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 's'
+                name: 's',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -2913,7 +2913,7 @@ describe('Expressions - Object', () => {
                         start: 5,
                         end: 10,
                         range: [5, 10],
-                        value: 'foo'
+                        value: 'foo',
                       },
                       value: {
                         type: 'AssignmentPattern',
@@ -2925,33 +2925,33 @@ describe('Expressions - Object', () => {
                           start: 12,
                           end: 17,
                           range: [12, 17],
-                          name: 'await'
+                          name: 'await',
                         },
                         right: {
                           type: 'Identifier',
                           start: 20,
                           end: 21,
                           range: [20, 21],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 right: {
                   type: 'Identifier',
                   start: 25,
                   end: 26,
                   range: [25, 26],
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f([...[a, b]]){}',
@@ -2972,7 +2972,7 @@ describe('Expressions - Object', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -2999,32 +2999,32 @@ describe('Expressions - Object', () => {
                           start: 16,
                           end: 17,
                           range: [16, 17],
-                          name: 'a'
+                          name: 'a',
                         },
                         {
                           type: 'Identifier',
                           start: 19,
                           end: 20,
                           range: [19, 20],
-                          name: 'b'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+                          name: 'b',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 23,
               end: 25,
               range: [23, 25],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f({...a}){}',
@@ -3037,12 +3037,12 @@ describe('Expressions - Object', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 20
-          }
+            column: 20,
+          },
         },
         body: [
           {
@@ -3053,12 +3053,12 @@ describe('Expressions - Object', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 20
-              }
+                column: 20,
+              },
             },
             id: {
               type: 'Identifier',
@@ -3068,14 +3068,14 @@ describe('Expressions - Object', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
+                  column: 10,
+                },
               },
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -3088,12 +3088,12 @@ describe('Expressions - Object', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 17
-                  }
+                    column: 17,
+                  },
                 },
                 properties: [
                   {
@@ -3104,12 +3104,12 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 12
+                        column: 12,
                       },
                       end: {
                         line: 1,
-                        column: 16
-                      }
+                        column: 16,
+                      },
                     },
                     argument: {
                       type: 'Identifier',
@@ -3119,18 +3119,18 @@ describe('Expressions - Object', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 15
+                          column: 15,
                         },
                         end: {
                           line: 1,
-                          column: 16
-                        }
+                          column: 16,
+                        },
                       },
-                      name: 'a'
-                    }
-                  }
-                ]
-              }
+                      name: 'a',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -3140,19 +3140,19 @@ describe('Expressions - Object', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 18
+                  column: 18,
                 },
                 end: {
                   line: 1,
-                  column: 20
-                }
+                  column: 20,
+                },
               },
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(z = {...x.y} = z) => z',
@@ -3168,14 +3168,14 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -3188,32 +3188,32 @@ describe('Expressions - Object', () => {
                             type: 'MemberExpression',
                             object: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'y'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'y',
+                            },
+                          },
+                        },
+                      ],
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  }
-                }
+                      name: 'z',
+                    },
+                  },
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo: typeof /x/});',
@@ -3248,7 +3248,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 5,
                     range: [2, 5],
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'UnaryExpression',
@@ -3265,18 +3265,18 @@ describe('Expressions - Object', () => {
                       value: /x/,
                       regex: {
                         pattern: 'x',
-                        flags: ''
-                      }
-                    }
+                        flags: '',
+                      },
+                    },
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){   s = {foo: yield /x/g}   }',
@@ -3289,12 +3289,12 @@ describe('Expressions - Object', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 42
-          }
+            column: 42,
+          },
         },
         body: [
           {
@@ -3305,12 +3305,12 @@ describe('Expressions - Object', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 42
-              }
+                column: 42,
+              },
             },
             id: {
               type: 'Identifier',
@@ -3320,14 +3320,14 @@ describe('Expressions - Object', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 10
+                  column: 10,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
+                  column: 11,
+                },
               },
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -3340,12 +3340,12 @@ describe('Expressions - Object', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 13
+                  column: 13,
                 },
                 end: {
                   line: 1,
-                  column: 42
-                }
+                  column: 42,
+                },
               },
               body: [
                 {
@@ -3356,12 +3356,12 @@ describe('Expressions - Object', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 17
+                      column: 17,
                     },
                     end: {
                       line: 1,
-                      column: 38
-                    }
+                      column: 38,
+                    },
                   },
                   expression: {
                     type: 'AssignmentExpression',
@@ -3371,12 +3371,12 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 17
+                        column: 17,
                       },
                       end: {
                         line: 1,
-                        column: 38
-                      }
+                        column: 38,
+                      },
                     },
                     operator: '=',
                     left: {
@@ -3387,14 +3387,14 @@ describe('Expressions - Object', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 17
+                          column: 17,
                         },
                         end: {
                           line: 1,
-                          column: 18
-                        }
+                          column: 18,
+                        },
                       },
-                      name: 's'
+                      name: 's',
                     },
                     right: {
                       type: 'ObjectExpression',
@@ -3404,12 +3404,12 @@ describe('Expressions - Object', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 21
+                          column: 21,
                         },
                         end: {
                           line: 1,
-                          column: 38
-                        }
+                          column: 38,
+                        },
                       },
                       properties: [
                         {
@@ -3420,12 +3420,12 @@ describe('Expressions - Object', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 22
+                              column: 22,
                             },
                             end: {
                               line: 1,
-                              column: 37
-                            }
+                              column: 37,
+                            },
                           },
                           method: false,
                           shorthand: false,
@@ -3438,14 +3438,14 @@ describe('Expressions - Object', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 22
+                                column: 22,
                               },
                               end: {
                                 line: 1,
-                                column: 25
-                              }
+                                column: 25,
+                              },
                             },
-                            name: 'foo'
+                            name: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
@@ -3455,12 +3455,12 @@ describe('Expressions - Object', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 27
+                                column: 27,
                               },
                               end: {
                                 line: 1,
-                                column: 37
-                              }
+                                column: 37,
+                              },
                             },
                             delegate: false,
                             argument: {
@@ -3471,32 +3471,32 @@ describe('Expressions - Object', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 33
+                                  column: 33,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 37
-                                }
+                                  column: 37,
+                                },
                               },
                               value: /x/g,
                               regex: {
                                 pattern: 'x',
-                                flags: 'g'
-                              }
-                            }
+                                flags: 'g',
+                              },
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...obj}) => {}',
@@ -3512,7 +3512,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -3522,19 +3522,19 @@ describe('Expressions - Object', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'obj'
-                      }
-                    }
-                  ]
-                }
+                        name: 'obj',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   s = {"foo": yield /x/g}   }',
@@ -3555,7 +3555,7 @@ describe('Expressions - Object', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     operator: '=',
                     right: {
@@ -3565,7 +3565,7 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
@@ -3574,32 +3574,32 @@ describe('Expressions - Object', () => {
                               value: /x/g,
                               regex: {
                                 pattern: 'x',
-                                flags: 'g'
-                              }
+                                flags: 'g',
+                              },
                             },
-                            delegate: false
+                            delegate: false,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       `var callCount = 0;
@@ -3635,18 +3635,18 @@ describe('Expressions - Object', () => {
                   start: 4,
                   end: 13,
                   range: [4, 13],
-                  name: 'callCount'
+                  name: 'callCount',
                 },
                 init: {
                   type: 'Literal',
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  value: 0
-                }
-              }
+                  value: 0,
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -3664,7 +3664,7 @@ describe('Expressions - Object', () => {
                   start: 26,
                   end: 27,
                   range: [26, 27],
-                  name: 'C'
+                  name: 'C',
                 },
                 init: {
                   type: 'ClassExpression',
@@ -3692,7 +3692,7 @@ describe('Expressions - Object', () => {
                           start: 52,
                           end: 55,
                           range: [52, 55],
-                          name: 'gen'
+                          name: 'gen',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -3725,16 +3725,16 @@ describe('Expressions - Object', () => {
                                     start: 66,
                                     end: 75,
                                     range: [66, 75],
-                                    name: 'callCount'
+                                    name: 'callCount',
                                   },
                                   right: {
                                     type: 'Literal',
                                     start: 79,
                                     end: 80,
                                     range: [79, 80],
-                                    value: 1
-                                  }
-                                }
+                                    value: 1,
+                                  },
+                                },
                               },
                               {
                                 type: 'ExpressionStatement',
@@ -3764,8 +3764,8 @@ describe('Expressions - Object', () => {
                                           end: 114,
                                           range: [109, 114],
                                           delegate: false,
-                                          argument: null
-                                        }
+                                          argument: null,
+                                        },
                                       },
                                       {
                                         type: 'Property',
@@ -3780,16 +3780,16 @@ describe('Expressions - Object', () => {
                                           start: 126,
                                           end: 127,
                                           range: [126, 127],
-                                          name: 'y'
+                                          name: 'y',
                                         },
                                         value: {
                                           type: 'Literal',
                                           start: 129,
                                           end: 130,
                                           range: [129, 130],
-                                          value: 1
+                                          value: 1,
                                         },
-                                        kind: 'init'
+                                        kind: 'init',
                                       },
                                       {
                                         type: 'SpreadElement',
@@ -3808,28 +3808,28 @@ describe('Expressions - Object', () => {
                                             end: 156,
                                             range: [151, 156],
                                             delegate: false,
-                                            argument: null
-                                          }
-                                        }
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                                            argument: null,
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -3857,7 +3857,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 's'
+                name: 's',
               },
               right: {
                 type: 'ObjectExpression',
@@ -3878,24 +3878,24 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 8,
                       range: [5, 8],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'Identifier',
                       start: 10,
                       end: 15,
                       range: [10, 15],
-                      name: 'yield'
+                      name: 'yield',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       's = {foo: yield / x}',
@@ -3910,7 +3910,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -3920,31 +3920,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'yield'
+                        name: 'yield',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
-                      operator: '/'
+                      operator: '/',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...obj} = foo)',
@@ -3982,23 +3982,23 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 8,
                       range: [5, 8],
-                      name: 'obj'
-                    }
-                  }
-                ]
+                      name: 'obj',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 12,
                 end: 15,
                 range: [12, 15],
-                name: 'foo'
-              }
-            }
-          }
+                name: 'foo',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let { x4: { ...y4 } } = z;',
@@ -4039,7 +4039,7 @@ describe('Expressions - Object', () => {
                         start: 6,
                         end: 8,
                         range: [6, 8],
-                        name: 'x4'
+                        name: 'x4',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -4057,29 +4057,29 @@ describe('Expressions - Object', () => {
                               start: 15,
                               end: 17,
                               range: [15, 17],
-                              name: 'y4'
-                            }
-                          }
-                        ]
+                              name: 'y4',
+                            },
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 24,
                   end: 25,
                   range: [24, 25],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `({
@@ -4119,16 +4119,16 @@ describe('Expressions - Object', () => {
                     start: 11,
                     end: 28,
                     range: [11, 28],
-                    name: '把你想在页面内共享的变量写在这里喔'
+                    name: '把你想在页面内共享的变量写在这里喔',
                   },
                   value: {
                     type: 'Literal',
                     start: 31,
                     end: 32,
                     range: [31, 32],
-                    value: 1
+                    value: 1,
                   },
-                  kind: 'init'
+                  kind: 'init',
                 },
                 {
                   type: 'Property',
@@ -4143,7 +4143,7 @@ describe('Expressions - Object', () => {
                     start: 42,
                     end: 51,
                     range: [42, 51],
-                    name: '这是你刚选择的事件'
+                    name: '这是你刚选择的事件',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4159,25 +4159,25 @@ describe('Expressions - Object', () => {
                         start: 63,
                         end: 64,
                         range: [63, 64],
-                        name: 'e'
-                      }
+                        name: 'e',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       start: 65,
                       end: 99,
                       range: [65, 99],
-                      body: []
-                    }
+                      body: [],
+                    },
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {  a, "b": b1, [`c`]: c1, [d + "e"]: d1, [`${d}e`]: d2, ...e1 } = e;',
@@ -4218,7 +4218,7 @@ describe('Expressions - Object', () => {
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       value: {
@@ -4226,8 +4226,8 @@ describe('Expressions - Object', () => {
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'Property',
@@ -4243,16 +4243,16 @@ describe('Expressions - Object', () => {
                         end: 13,
                         range: [10, 13],
                         value: 'b',
-                        raw: '"b"'
+                        raw: '"b"',
                       },
                       value: {
                         type: 'Identifier',
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        name: 'b1'
+                        name: 'b1',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -4276,20 +4276,20 @@ describe('Expressions - Object', () => {
                             range: [21, 22],
                             value: {
                               raw: 'c',
-                              cooked: 'c'
+                              cooked: 'c',
                             },
-                            tail: true
-                          }
-                        ]
+                            tail: true,
+                          },
+                        ],
                       },
                       value: {
                         type: 'Identifier',
                         start: 26,
                         end: 28,
                         range: [26, 28],
-                        name: 'c1'
+                        name: 'c1',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -4309,7 +4309,7 @@ describe('Expressions - Object', () => {
                           start: 31,
                           end: 32,
                           range: [31, 32],
-                          name: 'd'
+                          name: 'd',
                         },
                         operator: '+',
                         right: {
@@ -4318,17 +4318,17 @@ describe('Expressions - Object', () => {
                           end: 38,
                           range: [35, 38],
                           value: 'e',
-                          raw: '"e"'
-                        }
+                          raw: '"e"',
+                        },
                       },
                       value: {
                         type: 'Identifier',
                         start: 41,
                         end: 43,
                         range: [41, 43],
-                        name: 'd1'
+                        name: 'd1',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -4349,8 +4349,8 @@ describe('Expressions - Object', () => {
                             start: 49,
                             end: 50,
                             range: [49, 50],
-                            name: 'd'
-                          }
+                            name: 'd',
+                          },
                         ],
                         quasis: [
                           {
@@ -4360,9 +4360,9 @@ describe('Expressions - Object', () => {
                             range: [47, 47],
                             value: {
                               raw: '',
-                              cooked: ''
+                              cooked: '',
                             },
-                            tail: false
+                            tail: false,
                           },
                           {
                             type: 'TemplateElement',
@@ -4371,20 +4371,20 @@ describe('Expressions - Object', () => {
                             range: [51, 52],
                             value: {
                               raw: 'e',
-                              cooked: 'e'
+                              cooked: 'e',
                             },
-                            tail: true
-                          }
-                        ]
+                            tail: true,
+                          },
+                        ],
                       },
                       value: {
                         type: 'Identifier',
                         start: 56,
                         end: 58,
                         range: [56, 58],
-                        name: 'd2'
+                        name: 'd2',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'RestElement',
@@ -4396,25 +4396,25 @@ describe('Expressions - Object', () => {
                         start: 63,
                         end: 65,
                         range: [63, 65],
-                        name: 'e1'
-                      }
-                    }
-                  ]
+                        name: 'e1',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 70,
                   end: 71,
                   range: [70, 71],
-                  name: 'e'
-                }
-              }
+                  name: 'e',
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       's = {foo: yield /x/g}',
@@ -4429,7 +4429,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -4439,7 +4439,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'BinaryExpression',
@@ -4447,31 +4447,31 @@ describe('Expressions - Object', () => {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
-                        operator: '/'
+                        operator: '/',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'g'
+                        name: 'g',
                       },
-                      operator: '/'
+                      operator: '/',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       's = {"foo": yield /x/g}',
@@ -4486,7 +4486,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -4496,7 +4496,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'BinaryExpression',
@@ -4504,31 +4504,31 @@ describe('Expressions - Object', () => {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
-                        operator: '/'
+                        operator: '/',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'g'
+                        name: 'g',
                       },
-                      operator: '/'
+                      operator: '/',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({async *5(){}})',
@@ -4563,7 +4563,7 @@ describe('Expressions - Object', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    value: 5
+                    value: 5,
                   },
                   kind: 'init',
                   value: {
@@ -4580,16 +4580,16 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 14,
                       range: [12, 14],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async 8(){}})',
@@ -4624,7 +4624,7 @@ describe('Expressions - Object', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    value: 8
+                    value: 8,
                   },
                   kind: 'init',
                   value: {
@@ -4641,16 +4641,16 @@ describe('Expressions - Object', () => {
                       start: 11,
                       end: 13,
                       range: [11, 13],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({5(){}})',
@@ -4685,7 +4685,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    value: 5
+                    value: 5,
                   },
                   kind: 'init',
                   value: {
@@ -4702,16 +4702,16 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 7,
                       range: [5, 7],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"foo"(){}})',
@@ -4746,7 +4746,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 7,
                     range: [2, 7],
-                    value: 'foo'
+                    value: 'foo',
                   },
                   kind: 'init',
                   value: {
@@ -4763,16 +4763,16 @@ describe('Expressions - Object', () => {
                       start: 9,
                       end: 11,
                       range: [9, 11],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async "a b c"(){}});',
@@ -4790,29 +4790,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async 15(){}});',
@@ -4834,13 +4834,13 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 8
+                        column: 8,
                       },
                       end: {
                         line: 1,
-                        column: 10
-                      }
-                    }
+                        column: 10,
+                      },
+                    },
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4851,13 +4851,13 @@ describe('Expressions - Object', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 12
+                          column: 12,
                         },
                         end: {
                           line: 1,
-                          column: 14
-                        }
-                      }
+                          column: 14,
+                        },
+                      },
                     },
                     async: true,
                     generator: false,
@@ -4865,13 +4865,13 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 10
+                        column: 10,
                       },
                       end: {
                         line: 1,
-                        column: 14
-                      }
-                    }
+                        column: 14,
+                      },
+                    },
                   },
                   kind: 'init',
                   computed: false,
@@ -4880,49 +4880,49 @@ describe('Expressions - Object', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 2
+                      column: 2,
                     },
                     end: {
                       line: 1,
-                      column: 14
-                    }
-                  }
-                }
+                      column: 14,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 15
-                }
-              }
+                  column: 15,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 17
-              }
-            }
-          }
+                column: 17,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 17
-          }
-        }
-      }
+            column: 17,
+          },
+        },
+      },
     ],
     [
       '({get "a b c"(){}});',
@@ -4944,13 +4944,13 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 6
+                        column: 6,
                       },
                       end: {
                         line: 1,
-                        column: 13
-                      }
-                    }
+                        column: 13,
+                      },
+                    },
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4961,13 +4961,13 @@ describe('Expressions - Object', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 15
+                          column: 15,
                         },
                         end: {
                           line: 1,
-                          column: 17
-                        }
-                      }
+                          column: 17,
+                        },
+                      },
                     },
                     async: false,
                     generator: false,
@@ -4975,13 +4975,13 @@ describe('Expressions - Object', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 13
+                        column: 13,
                       },
                       end: {
                         line: 1,
-                        column: 17
-                      }
-                    }
+                        column: 17,
+                      },
+                    },
                   },
                   kind: 'get',
                   computed: false,
@@ -4990,49 +4990,49 @@ describe('Expressions - Object', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 2
+                      column: 2,
                     },
                     end: {
                       line: 1,
-                      column: 17
-                    }
-                  }
-                }
+                      column: 17,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 18
-                }
-              }
+                  column: 18,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 20
-              }
-            }
-          }
+                column: 20,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 20
-          }
-        }
-      }
+            column: 20,
+          },
+        },
+      },
     ],
     [
       '({set 15(x){}});',
@@ -5050,34 +5050,34 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async *[x](){}})',
@@ -5095,29 +5095,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: true,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b,...obj} = foo)',
@@ -5137,35 +5137,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
-                ]
+                      name: 'obj',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5184,29 +5184,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set ident(ident){}})',
@@ -5224,34 +5224,34 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'ident'
-                      }
+                        name: 'ident',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get ident(){}})',
@@ -5269,29 +5269,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async ident(){}})',
@@ -5309,29 +5309,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {}.length} = x)',
@@ -5351,36 +5351,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'ObjectExpression',
-                        properties: []
+                        properties: [],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'length'
-                      }
+                        name: 'length',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {}.length = x} = x)',
@@ -5400,7 +5400,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -5408,35 +5408,35 @@ describe('Expressions - Object', () => {
                         type: 'MemberExpression',
                         object: {
                           type: 'ObjectExpression',
-                          properties: []
+                          properties: [],
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'length'
-                        }
+                          name: 'length',
+                        },
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: [foo].length} = x)',
@@ -5456,7 +5456,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -5465,32 +5465,32 @@ describe('Expressions - Object', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        ]
+                            name: 'foo',
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'length'
-                      }
+                        name: 'length',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: [foo].length = x} = x)',
@@ -5510,7 +5510,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -5521,37 +5521,37 @@ describe('Expressions - Object', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          ]
+                              name: 'foo',
+                            },
+                          ],
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'length'
-                        }
+                          name: 'length',
+                        },
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {}.length} = x)',
@@ -5571,36 +5571,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'ObjectExpression',
-                        properties: []
+                        properties: [],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'length'
-                      }
+                        name: 'length',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {}.length = x} = x)',
@@ -5620,7 +5620,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'ident'
+                      name: 'ident',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -5628,35 +5628,35 @@ describe('Expressions - Object', () => {
                         type: 'MemberExpression',
                         object: {
                           type: 'ObjectExpression',
-                          properties: []
+                          properties: [],
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'length'
-                        }
+                          name: 'length',
+                        },
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...obj} = {}) => {}',
@@ -5672,7 +5672,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5684,24 +5684,24 @@ describe('Expressions - Object', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'obj'
-                        }
-                      }
-                    ]
+                          name: 'obj',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5724,26 +5724,26 @@ describe('Expressions - Object', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 0
-                      }
-                    }
-                  }
-                ]
+                        value: 0,
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({eval});',
@@ -5761,22 +5761,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'eval'
+                    name: 'eval',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'eval'
+                    name: 'eval',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({eval} = x);',
@@ -5796,28 +5796,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'eval'
+                      name: 'eval',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'eval'
+                      name: 'eval',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x[0] }= {});',
@@ -5839,26 +5839,26 @@ describe('Expressions - Object', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 0
-                      }
-                    }
-                  }
-                ]
+                        value: 0,
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...rest})',
@@ -5876,14 +5876,14 @@ describe('Expressions - Object', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'rest'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'rest',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, b, ...{c, e}})',
@@ -5901,31 +5901,31 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
@@ -5936,40 +5936,40 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'e'
+                          name: 'e',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'e'
+                          name: 'e',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x, ...{y , z} })',
@@ -5987,16 +5987,16 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
@@ -6007,40 +6007,40 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b,...obj}) => {}',
@@ -6056,7 +6056,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -6066,34 +6066,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'obj'
-                      }
-                    }
-                  ]
-                }
+                        name: 'obj',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a,...obj}) => {}',
@@ -6109,7 +6109,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -6119,34 +6119,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'obj'
-                      }
-                    }
-                  ]
-                }
+                        name: 'obj',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function f({ x, y, ...z }) {}',
@@ -6166,55 +6166,55 @@ describe('Expressions - Object', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  }
-                ]
-              }
+                      name: 'z',
+                    },
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '({x, ...y} = {x, ...y})',
@@ -6234,25 +6234,25 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
+                      name: 'y',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
@@ -6262,30 +6262,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '[(function() {})]',
@@ -6304,18 +6304,18 @@ describe('Expressions - Object', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  id: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([[ x ]] = [undefined]= {});',
@@ -6336,11 +6336,11 @@ describe('Expressions - Object', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
-                  }
-                ]
+                        name: 'x',
+                      },
+                    ],
+                  },
+                ],
               },
               operator: '=',
               right: {
@@ -6350,20 +6350,20 @@ describe('Expressions - Object', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'undefined'
-                    }
-                  ]
+                      name: 'undefined',
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }',
@@ -6378,7 +6378,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'someObject'
+                name: 'someObject',
               },
               operator: '=',
               right: {
@@ -6388,7 +6388,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'someKey'
+                      name: 'someKey',
                     },
                     value: {
                       type: 'ObjectExpression',
@@ -6399,7 +6399,7 @@ describe('Expressions - Object', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'mapGetters'
+                              name: 'mapGetters',
                             },
                             arguments: [
                               {
@@ -6407,30 +6407,30 @@ describe('Expressions - Object', () => {
                                 elements: [
                                   {
                                     type: 'Literal',
-                                    value: 'some_val_1'
+                                    value: 'some_val_1',
                                   },
                                   {
                                     type: 'Literal',
-                                    value: 'some_val_2'
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                    value: 'some_val_2',
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function({x, ...y}) {})',
@@ -6452,38 +6452,38 @@ describe('Expressions - Object', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  ]
-                }
+                        name: 'y',
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'fn = ({text = "default", ...props}) => text + props.children',
@@ -6498,7 +6498,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'fn'
+                name: 'fn',
               },
               operator: '=',
               right: {
@@ -6508,21 +6508,21 @@ describe('Expressions - Object', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'text'
+                    name: 'text',
                   },
                   right: {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'props'
+                      name: 'props',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'children'
-                    }
+                      name: 'children',
+                    },
                   },
-                  operator: '+'
+                  operator: '+',
                 },
                 params: [
                   {
@@ -6532,42 +6532,42 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'text'
+                          name: 'text',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'text'
+                            name: 'text',
                           },
                           right: {
                             type: 'Literal',
-                            value: 'default'
-                          }
+                            value: 'default',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'props'
-                        }
-                      }
-                    ]
-                  }
+                          name: 'props',
+                        },
+                      },
+                    ],
+                  },
                 ],
 
                 async: false,
-                expression: true
-              }
-            }
-          }
-        ]
-      }
+                expression: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x, ...y, a, ...b, c})',
@@ -6585,66 +6585,66 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
+                    name: 'y',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'assignmentResult = { x: x = yield } = value',
@@ -6659,7 +6659,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'assignmentResult'
+                name: 'assignmentResult',
               },
               operator: '=',
               right: {
@@ -6671,36 +6671,36 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
+                          name: 'yield',
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'value'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'value',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({l: 50..foo} = x)',
@@ -6720,36 +6720,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'l'
+                      name: 'l',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 50
+                        value: 50,
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({s: "foo".foo} = x)',
@@ -6769,36 +6769,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({"foo": [x].foo}=y)',
@@ -6818,7 +6818,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -6827,32 +6827,32 @@ describe('Expressions - Object', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'x'
-                          }
-                        ]
+                            name: 'x',
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({"foo": {x}.foo}=y)',
@@ -6872,7 +6872,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -6883,41 +6883,41 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({"foo": 15..foo}=y)',
@@ -6937,36 +6937,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 15
+                        value: 15,
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: x = true} = y)',
@@ -6986,35 +6986,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: true
-                      }
+                        value: true,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: {x} = true} = y)',
@@ -7034,7 +7034,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -7045,40 +7045,40 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       right: {
                         type: 'Literal',
-                        value: true
-                      }
+                        value: true,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: {x = true} = true} = y)',
@@ -7098,7 +7098,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -7109,47 +7109,47 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'AssignmentPattern',
                               left: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               right: {
                                 type: 'Literal',
-                                value: true
-                              }
+                                value: true,
+                              },
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       right: {
                         type: 'Literal',
-                        value: true
-                      }
+                        value: true,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": 600..xyz} = x)',
@@ -7169,36 +7169,36 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 600
+                        value: 600,
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'xyz'
-                      }
+                        name: 'xyz',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x.y} = z)',
@@ -7220,26 +7220,26 @@ describe('Expressions - Object', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  }
-                ]
+                        name: 'y',
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x});',
@@ -7257,14 +7257,14 @@ describe('Expressions - Object', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'x',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({a:b, c:d});',
@@ -7279,7 +7279,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -7288,39 +7288,39 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({a, c:d});',
@@ -7335,7 +7335,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -7344,39 +7344,39 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({a:b, c});',
@@ -7391,7 +7391,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7401,38 +7401,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({a, c:d} = x);',
@@ -7447,7 +7447,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -7459,44 +7459,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'd'
+                        name: 'd',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({1:b, 2:d});',
@@ -7511,7 +7511,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -7521,39 +7521,39 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'd'
+                        name: 'd',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({"a":b});',
@@ -7568,7 +7568,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7578,23 +7578,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({"a":b, "c":d});',
@@ -7609,7 +7609,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7619,38 +7619,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'c'
+                      value: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({"a":b, "c":d});',
@@ -7665,7 +7665,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7675,38 +7675,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'c'
+                      value: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({[a]:b});',
@@ -7721,7 +7721,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7731,23 +7731,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({[a]:b, [15]:d});',
@@ -7762,7 +7762,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7772,38 +7772,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 15
+                      value: 15,
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({foo(){}});',
@@ -7818,7 +7818,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7828,31 +7828,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({typeof: x});',
@@ -7870,22 +7870,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({typeof: x} = y);',
@@ -7905,28 +7905,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'typeof'
+                      name: 'typeof',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({typeof: x}) => x;',
@@ -7942,7 +7942,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -7952,27 +7952,27 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'typeof'
+                        name: 'typeof',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({get typeof(){}});',
@@ -7990,30 +7990,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async typeof(){}});',
@@ -8031,30 +8031,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async * typeof(){}});',
@@ -8072,30 +8072,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: true,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = { async *[y](){} }',
@@ -8110,7 +8110,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8120,31 +8120,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: true,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({async "a b c"(){}});',
@@ -8162,30 +8162,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async 15(){}});',
@@ -8203,30 +8203,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get 15(){}});',
@@ -8244,30 +8244,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set "a b c"(x){}});',
@@ -8285,35 +8285,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set 15(x){}});',
@@ -8331,35 +8331,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({async(){}});',
@@ -8374,7 +8374,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8384,31 +8384,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({foo(){}, bar(){}});',
@@ -8423,7 +8423,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8433,54 +8433,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({foo(a,b,c){}});',
@@ -8495,7 +8495,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8505,44 +8505,44 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         {
                           type: 'Identifier',
-                          name: 'c'
-                        }
+                          name: 'c',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({1(){}});',
@@ -8557,7 +8557,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8567,31 +8567,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({"foo"(){}});',
@@ -8606,7 +8606,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8616,31 +8616,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({async foo(){}});',
@@ -8667,7 +8667,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -8688,7 +8688,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 15,
                       range: [12, 15],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -8705,17 +8705,17 @@ describe('Expressions - Object', () => {
                         start: 17,
                         end: 19,
                         range: [17, 19],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({async async(){}});',
@@ -8742,7 +8742,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -8763,7 +8763,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 17,
                       range: [12, 17],
-                      name: 'async'
+                      name: 'async',
                     },
                     kind: 'init',
                     value: {
@@ -8780,17 +8780,17 @@ describe('Expressions - Object', () => {
                         start: 19,
                         end: 21,
                         range: [19, 21],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({async "foo"(){}});',
@@ -8817,7 +8817,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -8838,7 +8838,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 17,
                       range: [12, 17],
-                      value: 'foo'
+                      value: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -8855,17 +8855,17 @@ describe('Expressions - Object', () => {
                         start: 19,
                         end: 21,
                         range: [19, 21],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({async 100(){}});',
@@ -8880,7 +8880,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -8890,31 +8890,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 100
+                      value: 100,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({async [foo](){}});',
@@ -8940,7 +8940,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -8962,7 +8962,7 @@ describe('Expressions - Object', () => {
                         start: 13,
                         end: 16,
                         range: [13, 16],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       kind: 'init',
                       value: {
@@ -8979,18 +8979,18 @@ describe('Expressions - Object', () => {
                           start: 19,
                           end: 21,
                           range: [19, 21],
-                          body: []
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                          body: [],
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({async foo(){}, async bar(){}});',
@@ -9017,7 +9017,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -9038,7 +9038,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 15,
                       range: [12, 15],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -9055,9 +9055,9 @@ describe('Expressions - Object', () => {
                         start: 17,
                         end: 19,
                         range: [17, 19],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'Property',
@@ -9072,7 +9072,7 @@ describe('Expressions - Object', () => {
                       start: 27,
                       end: 30,
                       range: [27, 30],
-                      name: 'bar'
+                      name: 'bar',
                     },
                     kind: 'init',
                     value: {
@@ -9089,17 +9089,17 @@ describe('Expressions - Object', () => {
                         start: 32,
                         end: 34,
                         range: [32, 34],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x: y, z})',
@@ -9134,16 +9134,16 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'y'
+                    name: 'y',
                   },
-                  kind: 'init'
+                  kind: 'init',
                 },
                 {
                   type: 'Property',
@@ -9158,7 +9158,7 @@ describe('Expressions - Object', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'z'
+                    name: 'z',
                   },
                   kind: 'init',
                   value: {
@@ -9166,15 +9166,15 @@ describe('Expressions - Object', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'z'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'z',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({async foo(){}, bar(){}});',
@@ -9201,7 +9201,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -9222,7 +9222,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 15,
                       range: [12, 15],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -9239,9 +9239,9 @@ describe('Expressions - Object', () => {
                         start: 17,
                         end: 19,
                         range: [17, 19],
-                        body: []
-                      }
-                    }
+                        body: [],
+                      },
+                    },
                   },
                   {
                     type: 'Property',
@@ -9256,7 +9256,7 @@ describe('Expressions - Object', () => {
                       start: 21,
                       end: 24,
                       range: [21, 24],
-                      name: 'bar'
+                      name: 'bar',
                     },
                     kind: 'init',
                     value: {
@@ -9273,17 +9273,17 @@ describe('Expressions - Object', () => {
                         start: 26,
                         end: 28,
                         range: [26, 28],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({foo(){}, async bar(){}});',
@@ -9298,7 +9298,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9308,54 +9308,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({*foo(){}});',
@@ -9382,7 +9382,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -9403,7 +9403,7 @@ describe('Expressions - Object', () => {
                       start: 7,
                       end: 10,
                       range: [7, 10],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -9420,17 +9420,17 @@ describe('Expressions - Object', () => {
                         start: 12,
                         end: 14,
                         range: [12, 14],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({*get(){}});',
@@ -9457,7 +9457,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -9478,7 +9478,7 @@ describe('Expressions - Object', () => {
                       start: 7,
                       end: 10,
                       range: [7, 10],
-                      name: 'get'
+                      name: 'get',
                     },
                     kind: 'init',
                     value: {
@@ -9495,17 +9495,17 @@ describe('Expressions - Object', () => {
                         start: 12,
                         end: 14,
                         range: [12, 14],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = ({*async(){}});',
@@ -9520,7 +9520,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9530,31 +9530,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({*"foo"(){}});',
@@ -9569,7 +9569,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9579,31 +9579,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({*[foo](){}});',
@@ -9618,7 +9618,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9628,31 +9628,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: true,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({* foo(){},*bar(){}});',
@@ -9667,7 +9667,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9677,54 +9677,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({* foo(){}, bar(){}});',
@@ -9739,7 +9739,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -9749,54 +9749,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({get foo(){}});',
@@ -9814,30 +9814,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get get(){}});',
@@ -9855,30 +9855,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'get'
+                    name: 'get',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get foo(){}, get bar(){}});',
@@ -9896,52 +9896,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get foo(){}, bar(){}});',
@@ -9959,52 +9959,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo(){}, get bar(){}});',
@@ -10022,52 +10022,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get [foo](){}});',
@@ -10084,7 +10084,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10093,22 +10093,22 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'get',
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({get [foo](){}, [bar](){}});',
@@ -10125,7 +10125,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10134,20 +10134,20 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
-                    async: false
+                    async: false,
                   },
                   kind: 'get',
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   computed: true,
                   value: {
@@ -10156,21 +10156,21 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
-                    async: false
+                    async: false,
                   },
                   kind: 'init',
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({[foo](){}, get [bar](){}});',
@@ -10187,7 +10187,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10196,20 +10196,20 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
-                    async: false
+                    async: false,
                   },
                   kind: 'init',
                   method: true,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   computed: true,
                   value: {
@@ -10218,22 +10218,22 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'get',
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({get "foo"(){}});',
@@ -10251,30 +10251,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x, y})',
@@ -10292,29 +10292,29 @@ describe('Expressions - Object', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get "foo"(){}});',
@@ -10332,30 +10332,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({get 123(){}});',
@@ -10373,30 +10373,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 123
+                    value: 123,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set foo(a){}});',
@@ -10414,35 +10414,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set get(a){}});',
@@ -10460,35 +10460,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'get'
+                    name: 'get',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set foo(b){}, set bar(d){}});',
@@ -10506,63 +10506,63 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set foo(c){}, bar(){}});',
@@ -10580,57 +10580,57 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set [foo](a){}});',
@@ -10647,7 +10647,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10656,27 +10656,27 @@ describe('Expressions - Object', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'set',
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({set [foo](b){}, set [bar](d){}});',
@@ -10693,7 +10693,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10702,26 +10702,26 @@ describe('Expressions - Object', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'set',
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   computed: true,
                   value: {
@@ -10730,27 +10730,27 @@ describe('Expressions - Object', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'set',
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({set [foo](c){}, [bar](){}});',
@@ -10767,7 +10767,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10776,26 +10776,26 @@ describe('Expressions - Object', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'set',
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   computed: true,
                   value: {
@@ -10804,22 +10804,22 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'init',
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({[foo](){}, set [bar](e){}});',
@@ -10836,7 +10836,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   computed: true,
                   value: {
@@ -10845,21 +10845,21 @@ describe('Expressions - Object', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
 
-                    async: false
+                    async: false,
                   },
                   kind: 'init',
                   method: true,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   computed: true,
                   value: {
@@ -10868,26 +10868,26 @@ describe('Expressions - Object', () => {
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'e'
-                      }
+                        name: 'e',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     generator: false,
-                    async: false
+                    async: false,
                   },
                   kind: 'set',
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({set "foo"(a){}});',
@@ -10905,35 +10905,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set 123(a){}});',
@@ -10951,35 +10951,35 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 123
+                    value: 123,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo: typeof x});',
@@ -10997,27 +10997,27 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'UnaryExpression',
                     operator: 'typeof',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
-                    prefix: true
+                    prefix: true,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({}=obj);',
@@ -11032,17 +11032,17 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'ObjectPattern',
-                properties: []
+                properties: [],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a}=obj);',
@@ -11062,28 +11062,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b}=obj);',
@@ -11103,28 +11103,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, b}=obj);',
@@ -11144,43 +11144,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b, c:d}=obj);',
@@ -11200,43 +11200,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, c:d}=obj);',
@@ -11256,43 +11256,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b, c}=obj);',
@@ -11312,43 +11312,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({}=x);',
@@ -11363,17 +11363,17 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'ObjectPattern',
-                properties: []
+                properties: [],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a=b}=c);',
@@ -11393,35 +11393,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:v=b}=c);',
@@ -11441,35 +11441,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'v'
+                        name: 'v',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo(){}, set bar(e){}});',
@@ -11487,58 +11487,58 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'e'
-                      }
+                        name: 'e',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({foo(){}, *bar(){}});',
@@ -11553,7 +11553,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -11563,54 +11563,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({*123(){}});',
@@ -11625,7 +11625,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -11635,31 +11635,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 123
+                      value: 123,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({async get(){}});',
@@ -11674,7 +11674,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -11684,31 +11684,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({get "a b c"(){}});',
@@ -11726,30 +11726,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'get',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*typeof(){}});',
@@ -11767,30 +11767,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({typeof(){}});',
@@ -11808,30 +11808,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'typeof'
+                    name: 'typeof',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({"a":b});',
@@ -11846,7 +11846,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -11856,23 +11856,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = ({a:b, c} = x);',
@@ -11887,7 +11887,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -11899,44 +11899,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({[foo]: x} = y)',
@@ -11956,28 +11956,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a = {} = b',
@@ -11992,25 +11992,25 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'ObjectPattern',
-                  properties: []
+                  properties: [],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = {"a": b} = b',
@@ -12025,7 +12025,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -12037,29 +12037,29 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'a'
+                        value: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x})',
@@ -12077,22 +12077,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({x} = foo )',
@@ -12112,28 +12112,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = {}',
@@ -12148,17 +12148,17 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = {"a": b}',
@@ -12173,7 +12173,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -12183,23 +12183,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get}',
@@ -12214,7 +12214,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12224,23 +12224,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async}',
@@ -12255,7 +12255,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12265,23 +12265,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get} = x',
@@ -12296,7 +12296,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12308,29 +12308,29 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'get'
+                        name: 'get',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'get'
+                        name: 'get',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async} = x',
@@ -12345,7 +12345,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12357,29 +12357,29 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a:b}',
@@ -12394,7 +12394,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12404,23 +12404,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get:b}',
@@ -12435,7 +12435,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12445,23 +12445,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async:b}',
@@ -12476,7 +12476,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12486,23 +12486,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, b}',
@@ -12517,7 +12517,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12527,38 +12527,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, b} = x',
@@ -12573,7 +12573,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12585,44 +12585,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a:b, c:d}',
@@ -12637,7 +12637,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12647,38 +12647,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, c:d}',
@@ -12693,7 +12693,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12703,38 +12703,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, c:d} = x',
@@ -12749,7 +12749,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12761,44 +12761,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'd'
+                        name: 'd',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a:b, c} = x',
@@ -12813,7 +12813,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -12825,44 +12825,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ [a]: {} [a] })',
@@ -12897,7 +12897,7 @@ describe('Expressions - Object', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'MemberExpression',
@@ -12909,25 +12909,25 @@ describe('Expressions - Object', () => {
                       start: 8,
                       end: 10,
                       range: [8, 10],
-                      properties: []
+                      properties: [],
                     },
                     property: {
                       type: 'Identifier',
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      name: 'a'
+                      name: 'a',
                     },
-                    computed: true
+                    computed: true,
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {15:b}',
@@ -12954,7 +12954,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -12975,24 +12975,24 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 7,
                       range: [5, 7],
-                      value: 15
+                      value: 15,
                     },
                     value: {
                       type: 'Identifier',
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'b'
+                      name: 'b',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {.9:a, 0x84:b, 0b1:c, 0o27:d, 1e234:e}',
@@ -13019,7 +13019,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -13040,16 +13040,16 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 7,
                       range: [5, 7],
-                      value: 0.9
+                      value: 0.9,
                     },
                     value: {
                       type: 'Identifier',
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'a'
+                      name: 'a',
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -13064,16 +13064,16 @@ describe('Expressions - Object', () => {
                       start: 11,
                       end: 15,
                       range: [11, 15],
-                      value: 132
+                      value: 132,
                     },
                     value: {
                       type: 'Identifier',
                       start: 16,
                       end: 17,
                       range: [16, 17],
-                      name: 'b'
+                      name: 'b',
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -13088,16 +13088,16 @@ describe('Expressions - Object', () => {
                       start: 19,
                       end: 22,
                       range: [19, 22],
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'Identifier',
                       start: 23,
                       end: 24,
                       range: [23, 24],
-                      name: 'c'
+                      name: 'c',
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -13112,16 +13112,16 @@ describe('Expressions - Object', () => {
                       start: 26,
                       end: 30,
                       range: [26, 30],
-                      value: 23
+                      value: 23,
                     },
                     value: {
                       type: 'Identifier',
                       start: 31,
                       end: 32,
                       range: [31, 32],
-                      name: 'd'
+                      name: 'd',
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -13136,24 +13136,24 @@ describe('Expressions - Object', () => {
                       start: 34,
                       end: 39,
                       range: [34, 39],
-                      value: 1e234
+                      value: 1e234,
                     },
                     value: {
                       type: 'Identifier',
                       start: 40,
                       end: 41,
                       range: [40, 41],
-                      name: 'e'
+                      name: 'e',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {1:b, 0:d}',
@@ -13180,7 +13180,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -13201,16 +13201,16 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      name: 'b'
+                      name: 'b',
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -13225,24 +13225,24 @@ describe('Expressions - Object', () => {
                       start: 10,
                       end: 11,
                       range: [10, 11],
-                      value: 0
+                      value: 0,
                     },
                     value: {
                       type: 'Identifier',
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      name: 'd'
+                      name: 'd',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {"a":b}',
@@ -13269,7 +13269,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -13290,24 +13290,24 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 8,
                       range: [5, 8],
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
                       start: 9,
                       end: 10,
                       range: [9, 10],
-                      name: 'b'
+                      name: 'b',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {"a":b, "c":d}',
@@ -13322,7 +13322,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13332,38 +13332,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'c'
+                      value: 'c',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {[a]:b}',
@@ -13378,7 +13378,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13388,23 +13388,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {[a]:b, [15]:d}',
@@ -13419,7 +13419,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13429,38 +13429,38 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 15
+                      value: 15,
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = { *a() {} }',
@@ -13475,7 +13475,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13485,30 +13485,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {0(){}}',
@@ -13523,7 +13523,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13533,30 +13533,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 0
+                      value: 0,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {.9(){}, 0x84(){}, 0b1(){}, 0o27(){}, 1e234(){}}',
@@ -13571,7 +13571,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13581,118 +13581,118 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 0.9
+                      value: 0.9,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 132
+                      value: 132,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 23
+                      value: 23,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 1e234
+                      value: 1e234,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"foo"(){}}',
@@ -13707,7 +13707,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13717,30 +13717,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async foo(){}}',
@@ -13755,7 +13755,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13765,30 +13765,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async async(){}}',
@@ -13803,7 +13803,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13813,30 +13813,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async "foo"(){}}',
@@ -13851,7 +13851,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13861,30 +13861,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async 100(){}}',
@@ -13899,7 +13899,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -13909,30 +13909,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 100
+                      value: 100,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async [foo](){}}',
@@ -13947,7 +13947,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -13956,7 +13956,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -13965,22 +13965,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {async foo(){}, async bar(){}}',
@@ -13995,7 +13995,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -14004,7 +14004,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -14013,20 +14013,20 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     computed: false,
                     value: {
@@ -14035,22 +14035,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {async foo(){}, bar(){}}',
@@ -14065,7 +14065,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -14074,7 +14074,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     value: {
@@ -14083,20 +14083,20 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: true
+                      async: true,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     computed: false,
                     value: {
@@ -14105,22 +14105,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {foo(){}, async bar(){}}',
@@ -14135,7 +14135,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14145,52 +14145,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*foo(){}}',
@@ -14205,7 +14205,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14215,30 +14215,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*get(){}}',
@@ -14253,7 +14253,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14263,30 +14263,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*set(){}}',
@@ -14301,7 +14301,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14311,30 +14311,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'set'
+                      name: 'set',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*async(){}}',
@@ -14349,7 +14349,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14359,30 +14359,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*"foo"(){}}',
@@ -14397,7 +14397,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -14406,7 +14406,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     computed: false,
                     value: {
@@ -14415,22 +14415,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {*123(){}}',
@@ -14445,7 +14445,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14455,30 +14455,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 123
+                      value: 123,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {*[foo](){}}',
@@ -14493,7 +14493,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -14502,7 +14502,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -14511,22 +14511,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: true,
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {* foo(){},*bar(){}}',
@@ -14541,7 +14541,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14551,52 +14551,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {* foo(){}, bar(){}}',
@@ -14611,7 +14611,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14621,52 +14621,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {foo(){}, *bar(){}}',
@@ -14681,7 +14681,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14691,52 +14691,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get foo(){}}',
@@ -14751,7 +14751,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14761,30 +14761,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get get(){}}',
@@ -14799,7 +14799,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14809,30 +14809,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'get'
+                      name: 'get',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get foo(){}, get bar(){}}',
@@ -14847,7 +14847,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14857,52 +14857,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get foo(){}, bar(){}}',
@@ -14917,7 +14917,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14927,52 +14927,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {foo(){}, get bar(){}}',
@@ -14987,7 +14987,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -14997,52 +14997,52 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get [foo](){}}',
@@ -15057,7 +15057,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15066,7 +15066,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -15075,22 +15075,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -15106,7 +15106,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15115,7 +15115,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -15124,20 +15124,20 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     computed: true,
                     value: {
@@ -15146,22 +15146,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {get [foo](){}, [bar](){}}',
@@ -15176,7 +15176,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15185,7 +15185,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -15194,20 +15194,20 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     computed: true,
                     value: {
@@ -15216,22 +15216,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {[foo](){}, get [bar](){}}',
@@ -15246,7 +15246,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15255,7 +15255,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     value: {
@@ -15264,20 +15264,20 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     computed: true,
                     value: {
@@ -15286,22 +15286,22 @@ describe('Expressions - Object', () => {
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
-                      async: false
+                      async: false,
                     },
                     kind: 'get',
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {get "foo"(){}}',
@@ -15316,7 +15316,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15326,30 +15326,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {get 123(){}}',
@@ -15364,7 +15364,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15374,30 +15374,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 123
+                      value: 123,
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'get',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {set foo(a){}}',
@@ -15412,7 +15412,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15422,35 +15422,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'set',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {set get(a){}}',
@@ -15477,7 +15477,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15498,7 +15498,7 @@ describe('Expressions - Object', () => {
                       start: 9,
                       end: 12,
                       range: [9, 12],
-                      name: 'get'
+                      name: 'get',
                     },
                     kind: 'set',
                     value: {
@@ -15515,25 +15515,25 @@ describe('Expressions - Object', () => {
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        body: []
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        body: [],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {foo: typeof x}',
@@ -15560,7 +15560,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -15581,7 +15581,7 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 8,
                       range: [5, 8],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'UnaryExpression',
@@ -15595,18 +15595,18 @@ describe('Expressions - Object', () => {
                         start: 17,
                         end: 18,
                         range: [17, 18],
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {foo: true / false}',
@@ -15621,7 +15621,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15631,31 +15631,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Literal',
-                        value: true
+                        value: true,
                       },
                       right: {
                         type: 'Literal',
-                        value: false
+                        value: false,
                       },
-                      operator: '/'
+                      operator: '/',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {await}  = x',
@@ -15670,7 +15670,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15682,29 +15682,29 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'await'
+                        name: 'await',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'await'
+                        name: 'await',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {arguments}',
@@ -15719,7 +15719,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15729,23 +15729,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'arguments'
+                      name: 'arguments',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'arguments'
+                      name: 'arguments',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {eval}',
@@ -15760,7 +15760,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15770,23 +15770,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'eval'
+                      name: 'eval',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'eval'
+                      name: 'eval',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": y+z}',
@@ -15801,7 +15801,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15811,31 +15811,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'z'
+                        name: 'z',
                       },
-                      operator: '+'
+                      operator: '+',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": [y]}',
@@ -15850,7 +15850,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15860,28 +15860,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ArrayExpression',
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'y'
-                        }
-                      ]
+                          name: 'y',
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": [y]} = x',
@@ -15896,7 +15896,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15908,34 +15908,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       value: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        ]
+                            name: 'y',
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": [y + x]}',
@@ -15950,7 +15950,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -15960,7 +15960,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ArrayExpression',
@@ -15969,27 +15969,27 @@ describe('Expressions - Object', () => {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          operator: '+'
-                        }
-                      ]
+                          operator: '+',
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": [y].slice(0)}',
@@ -16004,7 +16004,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16014,7 +16014,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'CallExpression',
@@ -16025,34 +16025,34 @@ describe('Expressions - Object', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'y'
-                            }
-                          ]
+                              name: 'y',
+                            },
+                          ],
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'slice'
-                        }
+                          name: 'slice',
+                        },
                       },
                       arguments: [
                         {
                           type: 'Literal',
-                          value: 0
-                        }
-                      ]
+                          value: 0,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": {y: z}}',
@@ -16067,7 +16067,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16077,7 +16077,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ObjectExpression',
@@ -16086,30 +16086,30 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Identifier',
-                            name: 'z'
+                            name: 'z',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
+                          shorthand: false,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": {y: z}} = x',
@@ -16124,7 +16124,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16136,7 +16136,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -16145,36 +16145,36 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": {a: y + x}}',
@@ -16189,7 +16189,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16199,7 +16199,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ObjectExpression',
@@ -16208,38 +16208,38 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'BinaryExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             right: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
-                            operator: '+'
+                            operator: '+',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
+                          shorthand: false,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": {a: y + x}.slice(0)}',
@@ -16254,7 +16254,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16264,7 +16264,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'CallExpression',
@@ -16277,51 +16277,51 @@ describe('Expressions - Object', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               value: {
                                 type: 'BinaryExpression',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
                                 right: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
-                                operator: '+'
+                                operator: '+',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
+                              shorthand: false,
+                            },
+                          ],
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'slice'
-                        }
+                          name: 'slice',
+                        },
                       },
                       arguments: [
                         {
                           type: 'Literal',
-                          value: 0
-                        }
-                      ]
+                          value: 0,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": 600}',
@@ -16336,7 +16336,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16346,23 +16346,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'Literal',
-                      value: 600
+                      value: 600,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {"x": 600..xyz}',
@@ -16377,7 +16377,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16387,31 +16387,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 600
+                        value: 600,
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'xyz'
-                      }
+                        name: 'xyz',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...y}',
@@ -16426,7 +16426,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16436,15 +16436,15 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {x, ...y}',
@@ -16459,7 +16459,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16469,30 +16469,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, ...y, b}',
@@ -16507,7 +16507,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16517,45 +16517,45 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...y, b}',
@@ -16570,7 +16570,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16580,30 +16580,30 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...a,}',
@@ -16618,7 +16618,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16628,15 +16628,15 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'a',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...a=b}',
@@ -16663,7 +16663,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -16687,24 +16687,24 @@ describe('Expressions - Object', () => {
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'Identifier',
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        name: 'b'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        name: 'b',
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {...a + b}',
@@ -16719,7 +16719,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -16731,21 +16731,21 @@ describe('Expressions - Object', () => {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
-                      operator: '+'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      operator: '+',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...[a, b]}',
@@ -16772,7 +16772,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -16796,25 +16796,25 @@ describe('Expressions - Object', () => {
                           start: 9,
                           end: 10,
                           range: [9, 10],
-                          name: 'a'
+                          name: 'a',
                         },
                         {
                           type: 'Identifier',
                           start: 12,
                           end: 13,
                           range: [12, 13],
-                          name: 'b'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                          name: 'b',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {...{a, b}}',
@@ -16841,7 +16841,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -16873,7 +16873,7 @@ describe('Expressions - Object', () => {
                             start: 9,
                             end: 10,
                             range: [9, 10],
-                            name: 'a'
+                            name: 'a',
                           },
                           kind: 'init',
                           value: {
@@ -16881,8 +16881,8 @@ describe('Expressions - Object', () => {
                             start: 9,
                             end: 10,
                             range: [9, 10],
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         },
                         {
                           type: 'Property',
@@ -16897,7 +16897,7 @@ describe('Expressions - Object', () => {
                             start: 12,
                             end: 13,
                             range: [12, 13],
-                            name: 'b'
+                            name: 'b',
                           },
                           kind: 'init',
                           value: {
@@ -16905,19 +16905,19 @@ describe('Expressions - Object', () => {
                             start: 12,
                             end: 13,
                             range: [12, 13],
-                            name: 'b'
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                            name: 'b',
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...a})',
@@ -16949,15 +16949,15 @@ describe('Expressions - Object', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'a'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'a',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...a=b})',
@@ -16995,23 +16995,23 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      name: 'b'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      name: 'b',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...a+b})',
@@ -17031,20 +17031,20 @@ describe('Expressions - Object', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    operator: '+',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...[a, b]})',
@@ -17065,20 +17065,20 @@ describe('Expressions - Object', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        name: 'b',
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...{a, b}})',
@@ -17101,40 +17101,40 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...a, ...b}',
@@ -17149,7 +17149,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -17159,22 +17159,22 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'b',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '[{x:x = 1, y:y = 2}, [a = 3, b = 4, c = 5]] = {};',
@@ -17221,7 +17221,7 @@ describe('Expressions - Object', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -17233,7 +17233,7 @@ describe('Expressions - Object', () => {
                             start: 4,
                             end: 5,
                             range: [4, 5],
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Literal',
@@ -17241,10 +17241,10 @@ describe('Expressions - Object', () => {
                             end: 9,
                             range: [8, 9],
                             value: 1,
-                            raw: '1'
-                          }
+                            raw: '1',
+                          },
                         },
-                        kind: 'init'
+                        kind: 'init',
                       },
                       {
                         type: 'Property',
@@ -17259,7 +17259,7 @@ describe('Expressions - Object', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -17271,7 +17271,7 @@ describe('Expressions - Object', () => {
                             start: 13,
                             end: 14,
                             range: [13, 14],
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Literal',
@@ -17279,12 +17279,12 @@ describe('Expressions - Object', () => {
                             end: 18,
                             range: [17, 18],
                             value: 2,
-                            raw: '2'
-                          }
+                            raw: '2',
+                          },
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ArrayPattern',
@@ -17302,7 +17302,7 @@ describe('Expressions - Object', () => {
                           start: 22,
                           end: 23,
                           range: [22, 23],
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Literal',
@@ -17310,8 +17310,8 @@ describe('Expressions - Object', () => {
                           end: 27,
                           range: [26, 27],
                           value: 3,
-                          raw: '3'
-                        }
+                          raw: '3',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -17323,7 +17323,7 @@ describe('Expressions - Object', () => {
                           start: 29,
                           end: 30,
                           range: [29, 30],
-                          name: 'b'
+                          name: 'b',
                         },
                         right: {
                           type: 'Literal',
@@ -17331,8 +17331,8 @@ describe('Expressions - Object', () => {
                           end: 34,
                           range: [33, 34],
                           value: 4,
-                          raw: '4'
-                        }
+                          raw: '4',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -17344,7 +17344,7 @@ describe('Expressions - Object', () => {
                           start: 36,
                           end: 37,
                           range: [36, 37],
-                          name: 'c'
+                          name: 'c',
                         },
                         right: {
                           type: 'Literal',
@@ -17352,25 +17352,25 @@ describe('Expressions - Object', () => {
                           end: 41,
                           range: [40, 41],
                           value: 5,
-                          raw: '5'
-                        }
-                      }
-                    ]
-                  }
-                ]
+                          raw: '5',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 46,
                 end: 48,
                 range: [46, 48],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -17417,20 +17417,20 @@ describe('Expressions - Object', () => {
                         start: 3,
                         end: 6,
                         range: [3, 6],
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     value: {
                       type: 'Identifier',
                       start: 13,
                       end: 14,
                       range: [13, 14],
-                      name: 'z'
+                      name: 'z',
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'AssignmentExpression',
@@ -17443,21 +17443,21 @@ describe('Expressions - Object', () => {
                   start: 19,
                   end: 20,
                   range: [19, 20],
-                  name: 'z'
+                  name: 'z',
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 23,
                   end: 25,
                   range: [23, 25],
-                  properties: []
-                }
-              }
-            }
-          }
+                  properties: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -17476,37 +17476,37 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: 1, b: 3, a: 2})',
@@ -17524,52 +17524,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'Literal',
-                    value: 3
+                    value: 3,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({b: x, a: 1, a: 2})',
@@ -17587,52 +17587,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: 1, a: 2, b: 3})',
@@ -17650,52 +17650,52 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'Literal',
-                    value: 3
+                    value: 3,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, a})',
@@ -17713,37 +17713,37 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, a: 1})',
@@ -17761,37 +17761,37 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: 1, a})',
@@ -17809,37 +17809,37 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
+                  shorthand: false,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({async "foo"(){}});',
@@ -17854,7 +17854,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -17864,31 +17864,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({async 100(){}});',
@@ -17903,7 +17903,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -17913,31 +17913,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 100
+                        value: 100,
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({foo(){}, async bar(){}});',
@@ -17952,7 +17952,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -17962,53 +17962,53 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*foo(){}});',
@@ -18023,7 +18023,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18033,31 +18033,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*get(){}});',
@@ -18072,7 +18072,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18082,31 +18082,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'get'
+                        name: 'get',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*set(){}});',
@@ -18121,7 +18121,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18131,31 +18131,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'set'
+                        name: 'set',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*async(){}});',
@@ -18170,7 +18170,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18180,31 +18180,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*"foo"(){}});',
@@ -18219,7 +18219,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18229,31 +18229,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*123(){}});',
@@ -18268,7 +18268,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18278,31 +18278,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 123
+                        value: 123,
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({*[foo](){}});',
@@ -18317,7 +18317,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18327,31 +18327,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: true,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({* foo(){},*bar(){}});',
@@ -18365,7 +18365,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18375,7 +18375,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
@@ -18384,20 +18384,20 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: true,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: false,
                       value: {
@@ -18406,23 +18406,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: true,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({get foo(){}});',
@@ -18436,7 +18436,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18446,7 +18446,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
@@ -18455,23 +18455,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(({a = 0}) => a)',
@@ -18487,7 +18487,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               params: [
                 {
@@ -18497,34 +18497,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Literal',
-                          value: 0
-                        }
+                          value: 0,
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(({a = 0} = {}) => a)({})',
@@ -18542,7 +18542,7 @@ describe('Expressions - Object', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 params: [
                   {
@@ -18554,46 +18554,46 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             right: {
                               type: 'Literal',
-                              value: 0
-                            }
+                              value: 0,
+                            },
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
-                      properties: []
-                    }
-                  }
+                      properties: [],
+                    },
+                  },
                 ],
 
                 async: false,
-                expression: true
+                expression: true,
               },
               arguments: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({x=1} = {});',
@@ -18613,35 +18613,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(({a = 0} = {}) => a)({a: 1})',
@@ -18659,7 +18659,7 @@ describe('Expressions - Object', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 params: [
                   {
@@ -18671,35 +18671,35 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             right: {
                               type: 'Literal',
-                              value: 0
-                            }
+                              value: 0,
+                            },
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
-                      properties: []
-                    }
-                  }
+                      properties: [],
+                    },
+                  },
                 ],
 
                 async: false,
-                expression: true
+                expression: true,
               },
               arguments: [
                 {
@@ -18709,24 +18709,24 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({get get(){}});',
@@ -18740,7 +18740,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18750,7 +18750,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'get'
+                        name: 'get',
                       },
                       computed: false,
                       value: {
@@ -18759,23 +18759,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({get foo(){}, get bar(){}});',
@@ -18789,7 +18789,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18799,7 +18799,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
@@ -18808,20 +18808,20 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: false,
                       value: {
@@ -18830,23 +18830,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({get foo(){}, bar(){}});',
@@ -18861,7 +18861,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18871,53 +18871,53 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'get',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({foo(){}, get bar(){}});',
@@ -18932,7 +18932,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -18942,53 +18942,53 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'get',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({get [foo](){}});',
@@ -19003,7 +19003,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19013,31 +19013,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'get',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({get [foo](){}, get [bar](){}});',
@@ -19051,7 +19051,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19061,7 +19061,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: true,
                       value: {
@@ -19070,20 +19070,20 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: true,
                       value: {
@@ -19092,23 +19092,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({get [foo](){}, [bar](){}});',
@@ -19122,7 +19122,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19132,7 +19132,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: true,
                       value: {
@@ -19141,20 +19141,20 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: true,
                       value: {
@@ -19163,23 +19163,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({[foo](){}, get [bar](){}});',
@@ -19193,7 +19193,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19203,7 +19203,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: true,
                       value: {
@@ -19212,20 +19212,20 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: true,
                       value: {
@@ -19234,23 +19234,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'get',
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({get "foo"(){}});',
@@ -19265,7 +19265,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19275,31 +19275,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'get',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({get 123(){}});',
@@ -19314,7 +19314,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19324,31 +19324,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 123
+                        value: 123,
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'get',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set get(a){}});',
@@ -19363,7 +19363,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19373,36 +19373,36 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'get'
+                        name: 'get',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set foo(b){}, set bar(d){}});',
@@ -19417,7 +19417,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19427,63 +19427,63 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'b'
-                          }
+                            name: 'b',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'd'
-                          }
+                            name: 'd',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set foo(c){}, bar(){}});',
@@ -19497,7 +19497,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19507,7 +19507,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: false,
                       value: {
@@ -19516,25 +19516,25 @@ describe('Expressions - Object', () => {
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'c'
-                          }
+                            name: 'c',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'set',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: false,
                       value: {
@@ -19543,23 +19543,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({set [foo](a){}});',
@@ -19574,7 +19574,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19584,36 +19584,36 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set [foo](b){}, set [bar](d){}});',
@@ -19628,7 +19628,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19638,63 +19638,63 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'b'
-                          }
+                            name: 'b',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: true,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'd'
-                          }
+                            name: 'd',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set [foo](c){}, [bar](){}});',
@@ -19708,7 +19708,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19718,7 +19718,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       computed: true,
                       value: {
@@ -19727,25 +19727,25 @@ describe('Expressions - Object', () => {
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'c'
-                          }
+                            name: 'c',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'set',
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       computed: true,
                       value: {
@@ -19754,23 +19754,23 @@ describe('Expressions - Object', () => {
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         generator: false,
-                        async: false
+                        async: false,
                       },
                       kind: 'init',
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function x([a, b]){}',
@@ -19787,29 +19787,29 @@ describe('Expressions - Object', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                ]
-              }
+                    name: 'b',
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set [foo]([a, b]){}});',
@@ -19824,7 +19824,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19834,7 +19834,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -19844,35 +19844,35 @@ describe('Expressions - Object', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            ]
-                          }
+                                name: 'b',
+                              },
+                            ],
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set "foo"(a){}});',
@@ -19887,7 +19887,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19897,36 +19897,36 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({set 123(a){}});',
@@ -19941,7 +19941,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -19951,36 +19951,36 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 123
+                        value: 123,
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'set',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo: typeof x});',
@@ -19998,27 +19998,27 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'UnaryExpression',
                     operator: 'typeof',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
-                    prefix: true
+                    prefix: true,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo: true / false});',
@@ -20036,30 +20036,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: true
+                      value: true,
                     },
                     right: {
                       type: 'Literal',
-                      value: false
+                      value: false,
                     },
-                    operator: '/'
+                    operator: '/',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({}=obj);',
@@ -20074,26 +20074,26 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'ObjectPattern',
-                    properties: []
+                    properties: [],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a}=obj);',
@@ -20108,7 +20108,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20120,30 +20120,30 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a:b}=obj);',
@@ -20158,7 +20158,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20170,30 +20170,30 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a, b}=obj);',
@@ -20208,7 +20208,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20220,45 +20220,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a:b, c:d}=obj);',
@@ -20273,7 +20273,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20285,45 +20285,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a, c:d}=obj);',
@@ -20338,7 +20338,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20350,45 +20350,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a:b, c}=obj);',
@@ -20403,7 +20403,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20415,45 +20415,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -20470,7 +20470,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: null
+                value: null,
               },
               params: [
                 {
@@ -20480,27 +20480,27 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'let'
+                        name: 'let',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({}=x);',
@@ -20515,26 +20515,26 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'ObjectPattern',
-                    properties: []
+                    properties: [],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'x',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a=b}=c);',
@@ -20549,7 +20549,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20561,37 +20561,37 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
+                            name: 'b',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'c',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a:v=b}=c);',
@@ -20606,7 +20606,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20618,37 +20618,37 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'v'
+                            name: 'v',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
+                            name: 'b',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'c',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({x:let} = null)',
@@ -20668,28 +20668,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'let'
+                      name: 'let',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: null
-              }
-            }
-          }
-        ]
-      }
+                value: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x:let})',
@@ -20707,22 +20707,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'let'
+                    name: 'let',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({a:b=x}=y);',
@@ -20737,7 +20737,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20749,37 +20749,37 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'x'
-                          }
+                            name: 'x',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'y',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({"a":b}=obj);',
@@ -20794,7 +20794,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20806,30 +20806,30 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Literal',
-                          value: 'a'
+                          value: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'wrap({"a":b, "c":d}=obj);',
@@ -20844,7 +20844,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -20856,45 +20856,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Literal',
-                          value: 'a'
+                          value: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
+                        shorthand: false,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Literal',
-                          value: 'c'
+                          value: 'c',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": y+z})',
@@ -20912,30 +20912,30 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": [y]})',
@@ -20953,27 +20953,27 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'ArrayExpression',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    ]
+                        name: 'y',
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": [y]} = x)',
@@ -21014,7 +21014,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 5,
                       range: [2, 5],
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ArrayPattern',
@@ -21027,26 +21027,26 @@ describe('Expressions - Object', () => {
                           start: 8,
                           end: 9,
                           range: [8, 9],
-                          name: 'y'
-                        }
-                      ]
+                          name: 'y',
+                        },
+                      ],
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 14,
                 end: 15,
                 range: [14, 15],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"x": [y]}) => x',
@@ -21062,7 +21062,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -21072,32 +21072,32 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       value: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        ]
+                            name: 'y',
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": [y + x]})',
@@ -21132,7 +21132,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 5,
                     range: [2, 5],
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'ArrayExpression',
@@ -21150,7 +21150,7 @@ describe('Expressions - Object', () => {
                           start: 8,
                           end: 9,
                           range: [8, 9],
-                          name: 'y'
+                          name: 'y',
                         },
                         operator: '+',
                         right: {
@@ -21158,19 +21158,19 @@ describe('Expressions - Object', () => {
                           start: 12,
                           end: 13,
                           range: [12, 13],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"x": [y].slice(0)})',
@@ -21188,7 +21188,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'CallExpression',
@@ -21199,33 +21199,33 @@ describe('Expressions - Object', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        ]
+                            name: 'y',
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'slice'
-                      }
+                        name: 'slice',
+                      },
                     },
                     arguments: [
                       {
                         type: 'Literal',
-                        value: 0
-                      }
-                    ]
+                        value: 0,
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": {y: z}})',
@@ -21243,7 +21243,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'ObjectExpression',
@@ -21252,29 +21252,29 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": {y: z}} = x)',
@@ -21315,7 +21315,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 5,
                       range: [2, 5],
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ObjectPattern',
@@ -21336,35 +21336,35 @@ describe('Expressions - Object', () => {
                             start: 8,
                             end: 9,
                             range: [8, 9],
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Identifier',
                             start: 11,
                             end: 12,
                             range: [11, 12],
-                            name: 'z'
+                            name: 'z',
                           },
-                          kind: 'init'
-                        }
-                      ]
+                          kind: 'init',
+                        },
+                      ],
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"x": {a: y + x}})',
@@ -21382,7 +21382,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'ObjectExpression',
@@ -21391,37 +21391,37 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          operator: '+'
+                          operator: '+',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": {a: y + x}.slice(0)})',
@@ -21456,7 +21456,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 5,
                     range: [2, 5],
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'CallExpression',
@@ -21487,7 +21487,7 @@ describe('Expressions - Object', () => {
                               start: 8,
                               end: 9,
                               range: [8, 9],
-                              name: 'a'
+                              name: 'a',
                             },
                             value: {
                               type: 'BinaryExpression',
@@ -21499,7 +21499,7 @@ describe('Expressions - Object', () => {
                                 start: 11,
                                 end: 12,
                                 range: [11, 12],
-                                name: 'y'
+                                name: 'y',
                               },
                               operator: '+',
                               right: {
@@ -21507,21 +21507,21 @@ describe('Expressions - Object', () => {
                                 start: 15,
                                 end: 16,
                                 range: [15, 16],
-                                name: 'x'
-                              }
+                                name: 'x',
+                              },
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
                       property: {
                         type: 'Identifier',
                         start: 18,
                         end: 23,
                         range: [18, 23],
-                        name: 'slice'
+                        name: 'slice',
                       },
-                      computed: false
+                      computed: false,
                     },
                     arguments: [
                       {
@@ -21529,18 +21529,18 @@ describe('Expressions - Object', () => {
                         start: 24,
                         end: 25,
                         range: [24, 25],
-                        value: 0
-                      }
-                    ]
+                        value: 0,
+                      },
+                    ],
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"x": 600})',
@@ -21558,22 +21558,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'Literal',
-                    value: 600
+                    value: 600,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": 600..xyz})',
@@ -21608,7 +21608,7 @@ describe('Expressions - Object', () => {
                     start: 2,
                     end: 5,
                     range: [2, 5],
-                    value: 'x'
+                    value: 'x',
                   },
                   value: {
                     type: 'MemberExpression',
@@ -21620,25 +21620,25 @@ describe('Expressions - Object', () => {
                       start: 7,
                       end: 11,
                       range: [7, 11],
-                      value: 600
+                      value: 600,
                     },
                     property: {
                       type: 'Identifier',
                       start: 12,
                       end: 15,
                       range: [12, 15],
-                      name: 'xyz'
+                      name: 'xyz',
                     },
-                    computed: false
+                    computed: false,
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({[a]:b}=obj);',
@@ -21664,7 +21664,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -21692,33 +21692,33 @@ describe('Expressions - Object', () => {
                           start: 7,
                           end: 8,
                           range: [7, 8],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'b'
+                          name: 'b',
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
                     start: 13,
                     end: 16,
                     range: [13, 16],
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'wrap({[a]:b, [15]:d}=obj);',
@@ -21744,7 +21744,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                name: 'wrap'
+                name: 'wrap',
               },
               arguments: [
                 {
@@ -21772,16 +21772,16 @@ describe('Expressions - Object', () => {
                           start: 7,
                           end: 8,
                           range: [7, 8],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'b'
+                          name: 'b',
                         },
-                        kind: 'init'
+                        kind: 'init',
                       },
                       {
                         type: 'Property',
@@ -21796,33 +21796,33 @@ describe('Expressions - Object', () => {
                           start: 14,
                           end: 16,
                           range: [14, 16],
-                          value: 15
+                          value: 15,
                         },
                         value: {
                           type: 'Identifier',
                           start: 18,
                           end: 19,
                           range: [18, 19],
-                          name: 'd'
+                          name: 'd',
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
                     start: 21,
                     end: 24,
                     range: [21, 24],
-                    name: 'obj'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'obj',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x, {foo, bar} = doo',
@@ -21838,7 +21838,7 @@ describe('Expressions - Object', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -21849,45 +21849,45 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'doo'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'doo',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x, {foo = y, bar} = doo',
@@ -21903,7 +21903,7 @@ describe('Expressions - Object', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -21914,52 +21914,52 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'doo'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'doo',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {a, b} = y',
@@ -21974,7 +21974,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -21986,44 +21986,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a, b} = c = d)',
@@ -22043,51 +22043,51 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'd'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'd',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'result = [x[yield]] = vals;',
@@ -22102,7 +22102,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'result'
+                name: 'result',
               },
               operator: '=',
               right: {
@@ -22114,26 +22114,26 @@ describe('Expressions - Object', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'vals'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'vals',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x: x[Y] } = x);',
@@ -22174,7 +22174,7 @@ describe('Expressions - Object', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -22186,33 +22186,33 @@ describe('Expressions - Object', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'x'
+                        name: 'x',
                       },
                       property: {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'Y'
+                        name: 'Y',
                       },
-                      computed: true
+                      computed: true,
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 15,
                 end: 16,
                 range: [15, 16],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a={"b":c=d}',
@@ -22227,7 +22227,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -22237,31 +22237,31 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'b'
+                      value: 'b',
                     },
                     value: {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       operator: '=',
                       right: {
                         type: 'Identifier',
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       's = {s: true}',
@@ -22276,7 +22276,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -22286,23 +22286,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     value: {
                       type: 'Literal',
-                      value: true
+                      value: true,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       's = {s: this}',
@@ -22317,7 +22317,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -22327,22 +22327,22 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     value: {
-                      type: 'ThisExpression'
+                      type: 'ThisExpression',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       's = {"foo": this}',
@@ -22357,7 +22357,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 's'
+                name: 's',
               },
               operator: '=',
               right: {
@@ -22367,22 +22367,22 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
                     value: {
-                      type: 'ThisExpression'
+                      type: 'ThisExpression',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x={...true}',
@@ -22397,7 +22397,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -22407,15 +22407,15 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Literal',
-                      value: true
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      value: true,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x = 1} = {});',
@@ -22456,7 +22456,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     value: {
@@ -22469,31 +22469,31 @@ describe('Expressions - Object', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        value: 1
-                      }
-                    }
-                  }
-                ]
+                        value: 1,
+                      },
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 11,
                 end: 13,
                 range: [11, 13],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x, y = 1, z = 2} = {});',
@@ -22534,7 +22534,7 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     value: {
@@ -22542,8 +22542,8 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
                   {
                     type: 'Property',
@@ -22558,7 +22558,7 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     value: {
@@ -22571,16 +22571,16 @@ describe('Expressions - Object', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'y'
+                        name: 'y',
                       },
                       right: {
                         type: 'Literal',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        value: 1
-                      }
-                    }
+                        value: 1,
+                      },
+                    },
                   },
                   {
                     type: 'Property',
@@ -22595,7 +22595,7 @@ describe('Expressions - Object', () => {
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      name: 'z'
+                      name: 'z',
                     },
                     kind: 'init',
                     value: {
@@ -22608,31 +22608,31 @@ describe('Expressions - Object', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'z'
+                        name: 'z',
                       },
                       right: {
                         type: 'Literal',
                         start: 16,
                         end: 17,
                         range: [16, 17],
-                        value: 2
-                      }
-                    }
-                  }
-                ]
+                        value: 2,
+                      },
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 21,
                 end: 23,
                 range: [21, 23],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
@@ -22679,7 +22679,7 @@ describe('Expressions - Object', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayPattern',
@@ -22706,7 +22706,7 @@ describe('Expressions - Object', () => {
                                     start: 8,
                                     end: 9,
                                     range: [8, 9],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectPattern',
@@ -22727,7 +22727,7 @@ describe('Expressions - Object', () => {
                                           start: 11,
                                           end: 12,
                                           range: [11, 12],
-                                          name: 'z'
+                                          name: 'z',
                                         },
                                         kind: 'init',
                                         value: {
@@ -22740,7 +22740,7 @@ describe('Expressions - Object', () => {
                                             start: 11,
                                             end: 12,
                                             range: [11, 12],
-                                            name: 'z'
+                                            name: 'z',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -22748,13 +22748,13 @@ describe('Expressions - Object', () => {
                                             end: 16,
                                             range: [15, 16],
                                             value: 1,
-                                            raw: '1'
-                                          }
-                                        }
-                                      }
-                                    ]
+                                            raw: '1',
+                                          },
+                                        },
+                                      },
+                                    ],
                                   },
-                                  kind: 'init'
+                                  kind: 'init',
                                 },
                                 {
                                   type: 'Property',
@@ -22769,7 +22769,7 @@ describe('Expressions - Object', () => {
                                     start: 19,
                                     end: 21,
                                     range: [19, 21],
-                                    name: 'z1'
+                                    name: 'z1',
                                   },
                                   kind: 'init',
                                   value: {
@@ -22782,7 +22782,7 @@ describe('Expressions - Object', () => {
                                       start: 19,
                                       end: 21,
                                       range: [19, 21],
-                                      name: 'z1'
+                                      name: 'z1',
                                     },
                                     right: {
                                       type: 'Literal',
@@ -22790,17 +22790,17 @@ describe('Expressions - Object', () => {
                                       end: 25,
                                       range: [24, 25],
                                       value: 2,
-                                      raw: '2'
-                                    }
-                                  }
-                                }
-                              ]
-                            }
-                          ]
+                                      raw: '2',
+                                    },
+                                  },
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -22821,7 +22821,7 @@ describe('Expressions - Object', () => {
                           start: 32,
                           end: 34,
                           range: [32, 34],
-                          name: 'x2'
+                          name: 'x2',
                         },
                         kind: 'init',
                         value: {
@@ -22834,7 +22834,7 @@ describe('Expressions - Object', () => {
                             start: 32,
                             end: 34,
                             range: [32, 34],
-                            name: 'x2'
+                            name: 'x2',
                           },
                           right: {
                             type: 'Literal',
@@ -22842,11 +22842,11 @@ describe('Expressions - Object', () => {
                             end: 38,
                             range: [37, 38],
                             value: 3,
-                            raw: '3'
-                          }
-                        }
-                      }
-                    ]
+                            raw: '3',
+                          },
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -22867,7 +22867,7 @@ describe('Expressions - Object', () => {
                           start: 42,
                           end: 44,
                           range: [42, 44],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectPattern',
@@ -22888,7 +22888,7 @@ describe('Expressions - Object', () => {
                                 start: 48,
                                 end: 50,
                                 range: [48, 50],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayPattern',
@@ -22915,7 +22915,7 @@ describe('Expressions - Object', () => {
                                           start: 53,
                                           end: 55,
                                           range: [53, 55],
-                                          name: 'z3'
+                                          name: 'z3',
                                         },
                                         kind: 'init',
                                         value: {
@@ -22928,7 +22928,7 @@ describe('Expressions - Object', () => {
                                             start: 53,
                                             end: 55,
                                             range: [53, 55],
-                                            name: 'z3'
+                                            name: 'z3',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -22936,23 +22936,23 @@ describe('Expressions - Object', () => {
                                             end: 59,
                                             range: [58, 59],
                                             value: 4,
-                                            raw: '4'
-                                          }
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
+                                            raw: '4',
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -22979,7 +22979,7 @@ describe('Expressions - Object', () => {
                           start: 70,
                           end: 71,
                           range: [70, 71],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayExpression',
@@ -23006,31 +23006,31 @@ describe('Expressions - Object', () => {
                                     start: 74,
                                     end: 75,
                                     range: [74, 75],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectExpression',
                                     start: 76,
                                     end: 78,
                                     range: [76, 78],
-                                    properties: []
+                                    properties: [],
                                   },
-                                  kind: 'init'
-                                }
-                              ]
-                            }
-                          ]
+                                  kind: 'init',
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectExpression',
                     start: 83,
                     end: 85,
                     range: [83, 85],
-                    properties: []
+                    properties: [],
                   },
                   {
                     type: 'ObjectExpression',
@@ -23051,7 +23051,7 @@ describe('Expressions - Object', () => {
                           start: 88,
                           end: 90,
                           range: [88, 90],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectExpression',
@@ -23072,7 +23072,7 @@ describe('Expressions - Object', () => {
                                 start: 92,
                                 end: 94,
                                 range: [92, 94],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayExpression',
@@ -23085,25 +23085,25 @@ describe('Expressions - Object', () => {
                                     start: 96,
                                     end: 98,
                                     range: [96, 98],
-                                    properties: []
-                                  }
-                                ]
+                                    properties: [],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
@@ -23150,7 +23150,7 @@ describe('Expressions - Object', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayPattern',
@@ -23177,7 +23177,7 @@ describe('Expressions - Object', () => {
                                     start: 8,
                                     end: 9,
                                     range: [8, 9],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectPattern',
@@ -23198,7 +23198,7 @@ describe('Expressions - Object', () => {
                                           start: 11,
                                           end: 12,
                                           range: [11, 12],
-                                          name: 'z'
+                                          name: 'z',
                                         },
                                         kind: 'init',
                                         value: {
@@ -23211,7 +23211,7 @@ describe('Expressions - Object', () => {
                                             start: 11,
                                             end: 12,
                                             range: [11, 12],
-                                            name: 'z'
+                                            name: 'z',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -23219,13 +23219,13 @@ describe('Expressions - Object', () => {
                                             end: 16,
                                             range: [15, 16],
                                             value: 1,
-                                            raw: '1'
-                                          }
-                                        }
-                                      }
-                                    ]
+                                            raw: '1',
+                                          },
+                                        },
+                                      },
+                                    ],
                                   },
-                                  kind: 'init'
+                                  kind: 'init',
                                 },
                                 {
                                   type: 'Property',
@@ -23240,7 +23240,7 @@ describe('Expressions - Object', () => {
                                     start: 19,
                                     end: 21,
                                     range: [19, 21],
-                                    name: 'z1'
+                                    name: 'z1',
                                   },
                                   kind: 'init',
                                   value: {
@@ -23253,7 +23253,7 @@ describe('Expressions - Object', () => {
                                       start: 19,
                                       end: 21,
                                       range: [19, 21],
-                                      name: 'z1'
+                                      name: 'z1',
                                     },
                                     right: {
                                       type: 'Literal',
@@ -23261,17 +23261,17 @@ describe('Expressions - Object', () => {
                                       end: 25,
                                       range: [24, 25],
                                       value: 2,
-                                      raw: '2'
-                                    }
-                                  }
-                                }
-                              ]
-                            }
-                          ]
+                                      raw: '2',
+                                    },
+                                  },
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -23292,7 +23292,7 @@ describe('Expressions - Object', () => {
                           start: 32,
                           end: 34,
                           range: [32, 34],
-                          name: 'x2'
+                          name: 'x2',
                         },
                         kind: 'init',
                         value: {
@@ -23305,7 +23305,7 @@ describe('Expressions - Object', () => {
                             start: 32,
                             end: 34,
                             range: [32, 34],
-                            name: 'x2'
+                            name: 'x2',
                           },
                           right: {
                             type: 'Literal',
@@ -23313,11 +23313,11 @@ describe('Expressions - Object', () => {
                             end: 38,
                             range: [37, 38],
                             value: 3,
-                            raw: '3'
-                          }
-                        }
-                      }
-                    ]
+                            raw: '3',
+                          },
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -23338,7 +23338,7 @@ describe('Expressions - Object', () => {
                           start: 42,
                           end: 44,
                           range: [42, 44],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectPattern',
@@ -23359,7 +23359,7 @@ describe('Expressions - Object', () => {
                                 start: 48,
                                 end: 50,
                                 range: [48, 50],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayPattern',
@@ -23386,7 +23386,7 @@ describe('Expressions - Object', () => {
                                           start: 53,
                                           end: 55,
                                           range: [53, 55],
-                                          name: 'z3'
+                                          name: 'z3',
                                         },
                                         kind: 'init',
                                         value: {
@@ -23399,7 +23399,7 @@ describe('Expressions - Object', () => {
                                             start: 53,
                                             end: 55,
                                             range: [53, 55],
-                                            name: 'z3'
+                                            name: 'z3',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -23407,23 +23407,23 @@ describe('Expressions - Object', () => {
                                             end: 59,
                                             range: [58, 59],
                                             value: 4,
-                                            raw: '4'
-                                          }
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
+                                            raw: '4',
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -23450,7 +23450,7 @@ describe('Expressions - Object', () => {
                           start: 70,
                           end: 71,
                           range: [70, 71],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayExpression',
@@ -23477,31 +23477,31 @@ describe('Expressions - Object', () => {
                                     start: 74,
                                     end: 75,
                                     range: [74, 75],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectExpression',
                                     start: 76,
                                     end: 78,
                                     range: [76, 78],
-                                    properties: []
+                                    properties: [],
                                   },
-                                  kind: 'init'
-                                }
-                              ]
-                            }
-                          ]
+                                  kind: 'init',
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectExpression',
                     start: 83,
                     end: 85,
                     range: [83, 85],
-                    properties: []
+                    properties: [],
                   },
                   {
                     type: 'ObjectExpression',
@@ -23522,7 +23522,7 @@ describe('Expressions - Object', () => {
                           start: 88,
                           end: 90,
                           range: [88, 90],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectExpression',
@@ -23543,7 +23543,7 @@ describe('Expressions - Object', () => {
                                 start: 92,
                                 end: 94,
                                 range: [92, 94],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayExpression',
@@ -23556,25 +23556,25 @@ describe('Expressions - Object', () => {
                                     start: 96,
                                     end: 98,
                                     range: [96, 98],
-                                    properties: []
-                                  }
-                                ]
+                                    properties: [],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({*ident(){}})',
@@ -23592,29 +23592,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*get(){}})',
@@ -23632,29 +23632,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'get'
+                    name: 'get',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*set(){}})',
@@ -23672,29 +23672,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'set'
+                    name: 'set',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*async(){}})',
@@ -23712,29 +23712,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'async'
+                    name: 'async',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({653: [x].foo})',
@@ -23752,7 +23752,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 653
+                    value: 653,
                   },
                   value: {
                     type: 'MemberExpression',
@@ -23761,26 +23761,26 @@ describe('Expressions - Object', () => {
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      ]
+                          name: 'x',
+                        },
+                      ],
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
+                      name: 'foo',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": {y: z}}) => x',
@@ -23796,7 +23796,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -23806,7 +23806,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -23815,34 +23815,34 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({"a":b}=obj);',
@@ -23862,28 +23862,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'obj'
-              }
-            }
-          }
-        ]
-      }
+                name: 'obj',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({"x": [y]} = x)',
@@ -23903,33 +23903,33 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 'x'
+                      value: 'x',
                     },
                     value: {
                       type: 'ArrayPattern',
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'y'
-                        }
-                      ]
+                          name: 'y',
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'o = {f(f) { }}',
@@ -23944,7 +23944,7 @@ describe('Expressions - Object', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               right: {
                 type: 'ObjectExpression',
@@ -23953,7 +23953,7 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'f'
+                      name: 'f',
                     },
                     computed: false,
                     value: {
@@ -23962,28 +23962,28 @@ describe('Expressions - Object', () => {
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'f'
-                        }
+                          name: 'f',
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       generator: false,
 
-                      async: false
+                      async: false,
                     },
                     kind: 'init',
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){   s = {"foo": yield}   }',
@@ -24004,7 +24004,7 @@ describe('Expressions - Object', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     operator: '=',
                     right: {
@@ -24014,34 +24014,34 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
 
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   s = {foo: yield}   }',
@@ -24062,7 +24062,7 @@ describe('Expressions - Object', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 's'
+                      name: 's',
                     },
                     operator: '=',
                     right: {
@@ -24072,34 +24072,34 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           value: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
 
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo]: x} = x) => y',
@@ -24115,7 +24115,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               params: [
                 {
@@ -24127,32 +24127,32 @@ describe('Expressions - Object', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         computed: true,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'var someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }',
@@ -24174,7 +24174,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'someKey'
+                        name: 'someKey',
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -24185,7 +24185,7 @@ describe('Expressions - Object', () => {
                               type: 'CallExpression',
                               callee: {
                                 type: 'Identifier',
-                                name: 'mapGetters'
+                                name: 'mapGetters',
                               },
                               arguments: [
                                 {
@@ -24193,35 +24193,35 @@ describe('Expressions - Object', () => {
                                   elements: [
                                     {
                                       type: 'Literal',
-                                      value: 'some_val_1'
+                                      value: 'some_val_1',
                                     },
                                     {
                                       type: 'Literal',
-                                      value: 'some_val_2'
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        ]
+                                      value: 'some_val_2',
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'someObject'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'someObject',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '({x, ...y, a, ...b, c})',
@@ -24239,66 +24239,66 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
+                    name: 'y',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'z = {x, ...y}',
@@ -24313,7 +24313,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               operator: '=',
               right: {
@@ -24323,30 +24323,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'let z = {...x}',
@@ -24368,20 +24368,20 @@ describe('Expressions - Object', () => {
                       type: 'SpreadElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'z',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '({a:b,...obj}) => {}',
@@ -24397,7 +24397,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -24407,34 +24407,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'obj'
-                      }
-                    }
-                  ]
-                }
+                        name: 'obj',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a,...obj}) => {}',
@@ -24450,7 +24450,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -24460,34 +24460,34 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'obj'
-                      }
-                    }
-                  ]
-                }
+                        name: 'obj',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({...obj} = {}) => {}',
@@ -24503,7 +24503,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -24515,24 +24515,24 @@ describe('Expressions - Object', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'obj'
-                        }
-                      }
-                    ]
+                          name: 'obj',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:b,...obj} = foo)',
@@ -24552,35 +24552,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
-                ]
+                      name: 'obj',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a,...obj} = foo)',
@@ -24600,35 +24600,35 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
-                ]
+                      name: 'obj',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({...(a,b),c})',
@@ -24666,17 +24666,17 @@ describe('Expressions - Object', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'b'
-                      }
-                    ]
-                  }
+                        name: 'b',
+                      },
+                    ],
+                  },
                 },
                 {
                   type: 'Property',
@@ -24691,7 +24691,7 @@ describe('Expressions - Object', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'c'
+                    name: 'c',
                   },
                   kind: 'init',
                   value: {
@@ -24699,15 +24699,15 @@ describe('Expressions - Object', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'c'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'c',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({...a,b,c})',
@@ -24739,8 +24739,8 @@ describe('Expressions - Object', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'Property',
@@ -24755,7 +24755,7 @@ describe('Expressions - Object', () => {
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'b'
+                    name: 'b',
                   },
                   kind: 'init',
                   value: {
@@ -24763,8 +24763,8 @@ describe('Expressions - Object', () => {
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'Property',
@@ -24779,7 +24779,7 @@ describe('Expressions - Object', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'c'
+                    name: 'c',
                   },
                   kind: 'init',
                   value: {
@@ -24787,15 +24787,15 @@ describe('Expressions - Object', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'c'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'c',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -24811,7 +24811,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -24823,44 +24823,44 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: '__proto__'
+                        name: '__proto__',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: '__proto__'
+                        name: '__proto__',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({__proto__: a, __proto__: b} = x)',
@@ -24880,43 +24880,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x:a["x"]} = {x:20});',
@@ -24936,26 +24936,26 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 'x'
-                      }
+                        value: 'x',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
@@ -24965,23 +24965,23 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Literal',
-                      value: 20
+                      value: 20,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async function wrap() { ({a = await b} = obj) }',
@@ -25007,48 +25007,48 @@ describe('Expressions - Object', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             right: {
                               type: 'AwaitExpression',
                               argument: {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            }
+                                name: 'b',
+                              },
+                            },
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'obj'
-                    }
-                  }
-                }
-              ]
+                      name: 'obj',
+                    },
+                  },
+                },
+              ],
             },
             async: true,
 
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'wrap'
-            }
-          }
-        ]
-      }
+              name: 'wrap',
+            },
+          },
+        ],
+      },
     ],
     [
       '({x:y} = {});',
@@ -25068,28 +25068,28 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({y:y2} = {y:y2-2})',
@@ -25130,18 +25130,18 @@ describe('Expressions - Object', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'Identifier',
                       start: 4,
                       end: 6,
                       range: [4, 6],
-                      name: 'y2'
+                      name: 'y2',
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
@@ -25162,7 +25162,7 @@ describe('Expressions - Object', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'BinaryExpression',
@@ -25174,7 +25174,7 @@ describe('Expressions - Object', () => {
                         start: 13,
                         end: 15,
                         range: [13, 15],
-                        name: 'y2'
+                        name: 'y2',
                       },
                       operator: '-',
                       right: {
@@ -25183,18 +25183,18 @@ describe('Expressions - Object', () => {
                         end: 17,
                         range: [16, 17],
                         value: 2,
-                        raw: '2'
-                      }
+                        raw: '2',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async foo(a) { await a }});',
@@ -25212,15 +25212,15 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -25231,26 +25231,26 @@ describe('Expressions - Object', () => {
                             type: 'AwaitExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'a'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'a',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({async, foo})',
@@ -25268,37 +25268,37 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'async'
+                    name: 'async',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'async'
+                    name: 'async',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'o({async await() { }})',
@@ -25313,7 +25313,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'o'
+                name: 'o',
               },
               arguments: [
                 {
@@ -25323,31 +25323,31 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'await'
+                        name: 'await',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: true,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async ({a: b = c})',
@@ -25362,7 +25362,7 @@ describe('Expressions - Object', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -25372,32 +25372,32 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         operator: '=',
                         right: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
+                          name: 'c',
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ async *foo() {} })',
@@ -25415,29 +25415,29 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: true,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({x, y} = o)',
@@ -25457,43 +25457,43 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'o'
-              }
-            }
-          }
-        ]
-      }
+                name: 'o',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ enum: 0 })',
@@ -25511,22 +25511,22 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'enum'
+                    name: 'enum',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a(b,c){}})',
@@ -25544,38 +25544,38 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({set a(eval){}})',
@@ -25593,34 +25593,34 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'eval'
-                      }
+                        name: 'eval',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ set a([{b = 0}]){}, })',
@@ -25638,7 +25638,7 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -25654,46 +25654,46 @@ describe('Expressions - Object', () => {
                                 kind: 'init',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'b'
+                                  name: 'b',
                                 },
                                 computed: false,
                                 value: {
                                   type: 'AssignmentPattern',
                                   left: {
                                     type: 'Identifier',
-                                    name: 'b'
+                                    name: 'b',
                                   },
                                   right: {
                                     type: 'Literal',
-                                    value: 0
-                                  }
+                                    value: 0,
+                                  },
                                 },
                                 method: false,
-                                shorthand: true
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                                shorthand: true,
+                              },
+                            ],
+                          },
+                        ],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'set',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a(b,...c){}})',
@@ -25711,41 +25711,41 @@ describe('Expressions - Object', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      }
+                          name: 'c',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, {b}) => {}',
@@ -25761,12 +25761,12 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ObjectPattern',
@@ -25775,27 +25775,27 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {__proto__(){}, __proto__: 2}',
@@ -25810,7 +25810,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -25820,46 +25820,46 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {__proto__(){}, __proto__(){}}',
@@ -25874,7 +25874,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -25884,54 +25884,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {async __proto__(){}, *__proto__(){}}',
@@ -25946,7 +25946,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -25956,54 +25956,54 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: true,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: '__proto__'
+                      name: '__proto__',
                     },
                     value: {
                       type: 'FunctionExpression',
                       params: [],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: true,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...y}',
@@ -26018,7 +26018,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -26028,15 +26028,15 @@ describe('Expressions - Object', () => {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {x, ...y}',
@@ -26051,7 +26051,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -26061,30 +26061,30 @@ describe('Expressions - Object', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'SpreadElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = {...a=b}',
@@ -26099,7 +26099,7 @@ describe('Expressions - Object', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -26111,21 +26111,21 @@ describe('Expressions - Object', () => {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       operator: '=',
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                        name: 'b',
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -26164,23 +26164,23 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {...a + b}',
@@ -26207,7 +26207,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -26230,7 +26230,7 @@ describe('Expressions - Object', () => {
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'a'
+                        name: 'a',
                       },
                       operator: '+',
                       right: {
@@ -26238,17 +26238,17 @@ describe('Expressions - Object', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'b'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        name: 'b',
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x = {a, ...y, b}',
@@ -26275,7 +26275,7 @@ describe('Expressions - Object', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -26296,7 +26296,7 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     value: {
@@ -26304,8 +26304,8 @@ describe('Expressions - Object', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   },
                   {
                     type: 'SpreadElement',
@@ -26317,8 +26317,8 @@ describe('Expressions - Object', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'Property',
@@ -26333,7 +26333,7 @@ describe('Expressions - Object', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     value: {
@@ -26341,16 +26341,16 @@ describe('Expressions - Object', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'b'
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                      name: 'b',
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({"x": {y: z}}) => x',
@@ -26366,7 +26366,7 @@ describe('Expressions - Object', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -26376,7 +26376,7 @@ describe('Expressions - Object', () => {
                       type: 'Property',
                       key: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -26385,34 +26385,34 @@ describe('Expressions - Object', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({1n:1})',
@@ -26436,7 +26436,7 @@ describe('Expressions - Object', () => {
                     range: [2, 4],
                     start: 2,
                     type: 'Literal',
-                    value: 1n
+                    value: 1n,
                   },
                   kind: 'init',
                   method: false,
@@ -26449,22 +26449,22 @@ describe('Expressions - Object', () => {
                     range: [5, 6],
                     start: 5,
                     type: 'Literal',
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
               range: [1, 7],
               start: 1,
-              type: 'ObjectExpression'
+              type: 'ObjectExpression',
             },
             range: [0, 8],
             start: 0,
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         end: 8,
-        range: [0, 8]
-      }
-    ]
+        range: [0, 8],
+      },
+    ],
   ]);
 });

@@ -11,7 +11,7 @@ describe('Module - Export', () => {
     'export async function await() {}',
     'export async function() {}',
     'export async',
-    'export async\nfunction async() { await 1; }'
+    'export async\nfunction async() { await 1; }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -30,7 +30,7 @@ describe('Module - Export', () => {
   for (const arg of [
     'export default async function() { await 1; }',
     'export default async function async() { await 1; }',
-    'export async function async() { await 1; }'
+    'export async function async() { await 1; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -43,7 +43,7 @@ describe('Module - Export', () => {
         parseSource(
           `${arg}`,
           undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat | Context.OptionsLexical
+          Context.Strict | Context.Module | Context.OptionsWebCompat | Context.OptionsLexical,
         );
       });
     });
@@ -136,7 +136,7 @@ describe('Module - Export', () => {
     'for(var i=0; i<1; i++) export default null;',
     'while(false) export default null;',
     `do export default null
-                                while (false);`
+                                while (false);`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -190,7 +190,7 @@ describe('Module - Export', () => {
     ['export * as;', Context.Strict | Context.Module],
     [
       'var x; export { x as z }; export * as z from "string";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export {', Context.Strict | Context.Module],
     ['export *;', Context.Strict | Context.Module],
@@ -289,36 +289,36 @@ describe('Module - Export', () => {
     ['export class f{}; async function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'export foo; export bar; class f{}; async function foo(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export async function f(){}; function f(){};', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'export default function(){}; export default function(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'export default class x{}; export default async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'export default class x{}; export async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'export class x{}; export default async function x(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export class x{}; export async function x(){};', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'export default class x{}; export default function(){};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export default class x{}; export default class x{};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export default class x{}; export default () => {};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export default async x => { let x; };', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'export default function() {} export default function() {}',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export function a() {} export default function a() {}', Context.Strict | Context.Module | Context.OptionsLexical],
     ['export function f(){}; export {f};', Context.Strict | Context.Module | Context.OptionsLexical],
@@ -384,36 +384,36 @@ describe('Module - Export', () => {
     [
       `export function f() {}
     export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       `export class f() {}
     export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       `export function f() {}
     export class f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       `export async function *f() {}
     export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       `export default async function *f() {}
     export function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       `export async function *f() {}
     export default function *f() {}`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'var canBeUndeclared; export {mustExist as canBeUndeclared};',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['export {mustExist as canBeUndeclared};', Context.Strict | Context.Module | Context.OptionsLexical],
     ['var x, y; export default x; export {y as default};', Context.Strict | Context.Module | Context.OptionsLexical],
@@ -436,24 +436,24 @@ describe('Module - Export', () => {
     ['export * as foo from "./f"; export { foo };', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'export * as foo from "./f"; export { "foo" } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'export * as foo from "./f"; export { "a" as "foo" } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       String.raw`export { a }; export { "\u0061" } from "./m";`,
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'export async function a() {}\nexport async function a() {}',
-      Context.OptionsLexical | Context.Strict | Context.Module
+      Context.OptionsLexical | Context.Strict | Context.Module,
     ],
     ['export function a() {}\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['export async function a() {}\nexport function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
     ['export async function a() {}\nexport const a = 1;', Context.OptionsLexical | Context.Strict | Context.Module],
-    ['export let a = 1;\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module]
+    ['export let a = 1;\nexport async function a() {}', Context.OptionsLexical | Context.Strict | Context.Module],
   ]);
 
   for (const arg of [
@@ -724,7 +724,7 @@ describe('Module - Export', () => {
     'export { a as "b" } from "./foo";',
     'let a = 1; export { a as "b" };',
     'export { "a" as b } from "./foo";',
-    String.raw`export { "\uD83C\uDF19" as b } from "./foo";`
+    String.raw`export { "\uD83C\uDF19" as b } from "./foo";`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -743,7 +743,7 @@ describe('Module - Export', () => {
         parseSource(
           `${arg}`,
           undefined,
-          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat
+          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat,
         );
       });
     });
@@ -766,14 +766,14 @@ describe('Module - Export', () => {
     'export function *foo () {}',
     "export {thing}; import thing from 'a.js';",
     "export {thing}; import {thing} from 'a.js';",
-    "export {thing}; import * as thing from 'a.js';"
+    "export {thing}; import * as thing from 'a.js';",
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `${arg}`,
           undefined,
-          Context.Strict | Context.Module | Context.OptionsLexical | Context.OptionsNext
+          Context.Strict | Context.Module | Context.OptionsLexical | Context.OptionsNext,
         );
       });
     });
@@ -799,12 +799,12 @@ describe('Module - Export', () => {
               start: 15,
               end: 20,
               range: [15, 20],
-              name: 'async'
-            }
-          }
+              name: 'async',
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default class f{}; export {f};',
@@ -815,20 +815,20 @@ describe('Module - Export', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [],
               id: {
                 name: 'f',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
+            type: 'ExportDefaultDeclaration',
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             declaration: null,
@@ -837,22 +837,22 @@ describe('Module - Export', () => {
               {
                 exported: {
                   name: 'f',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 local: {
                   name: 'f',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'ExportSpecifier'
-              }
+                type: 'ExportSpecifier',
+              },
             ],
             type: 'ExportNamedDeclaration',
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export default function f(){}; export {f};',
@@ -864,20 +864,20 @@ describe('Module - Export', () => {
               async: false,
               body: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               generator: false,
               id: {
                 name: 'f',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               params: [],
-              type: 'FunctionDeclaration'
+              type: 'FunctionDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
+            type: 'ExportDefaultDeclaration',
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             declaration: null,
@@ -886,22 +886,22 @@ describe('Module - Export', () => {
               {
                 exported: {
                   name: 'f',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 local: {
                   name: 'f',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'ExportSpecifier'
-              }
+                type: 'ExportSpecifier',
+              },
             ],
             type: 'ExportNamedDeclaration',
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export default async \nfunction f(){}',
@@ -914,26 +914,26 @@ describe('Module - Export', () => {
             type: 'ExportDefaultDeclaration',
             declaration: {
               type: 'Identifier',
-              name: 'async'
-            }
+              name: 'async',
+            },
           },
           {
             type: 'FunctionDeclaration',
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       "export * as class from 'source';",
@@ -943,19 +943,19 @@ describe('Module - Export', () => {
           {
             source: {
               type: 'Literal',
-              value: 'source'
+              value: 'source',
             },
             attributes: [],
             exported: {
               name: 'class',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExportAllDeclaration'
-          }
+            type: 'ExportAllDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export * as ns from "source";',
@@ -965,19 +965,19 @@ describe('Module - Export', () => {
           {
             source: {
               type: 'Literal',
-              value: 'source'
+              value: 'source',
             },
             attributes: [],
             exported: {
               name: 'ns',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExportAllDeclaration'
-          }
+            type: 'ExportAllDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export * from "a"',
@@ -990,22 +990,22 @@ describe('Module - Export', () => {
               end: 17,
               range: [14, 17],
               type: 'Literal',
-              value: 'a'
+              value: 'a',
             },
             attributes: [],
             exported: null,
             start: 0,
             end: 17,
             range: [0, 17],
-            type: 'ExportAllDeclaration'
-          }
+            type: 'ExportAllDeclaration',
+          },
         ],
         sourceType: 'module',
         start: 0,
         end: 17,
         range: [0, 17],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export * as foo from "./foo";',
@@ -1015,19 +1015,19 @@ describe('Module - Export', () => {
           {
             source: {
               type: 'Literal',
-              value: './foo'
+              value: './foo',
             },
             attributes: [],
             exported: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExportAllDeclaration'
-          }
+            type: 'ExportAllDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export {}',
@@ -1046,11 +1046,11 @@ describe('Module - Export', () => {
             declaration: null,
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x}; var x;',
@@ -1078,19 +1078,19 @@ describe('Module - Export', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'VariableDeclaration',
@@ -1108,16 +1108,16 @@ describe('Module - Export', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x; export {x as a}',
@@ -1144,12 +1144,12 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -1168,23 +1168,23 @@ describe('Module - Export', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x; export {x,}',
@@ -1211,12 +1211,12 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -1235,23 +1235,23 @@ describe('Module - Export', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x} from "foo"',
@@ -1279,29 +1279,29 @@ describe('Module - Export', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 16,
               end: 21,
               range: [16, 21],
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x as a} from "foo"',
@@ -1329,29 +1329,29 @@ describe('Module - Export', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 21,
               end: 26,
               range: [21, 26],
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x,} from "foo"',
@@ -1364,26 +1364,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'var x; export {x as a,}',
@@ -1410,12 +1410,12 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -1434,23 +1434,23 @@ describe('Module - Export', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x,y; export {x as a, y as b}',
@@ -1477,9 +1477,9 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
@@ -1491,12 +1491,12 @@ describe('Module - Export', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'y'
+                  name: 'y',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -1515,15 +1515,15 @@ describe('Module - Export', () => {
                   start: 17,
                   end: 18,
                   range: [17, 18],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
                   range: [22, 23],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'ExportSpecifier',
@@ -1535,23 +1535,23 @@ describe('Module - Export', () => {
                   start: 25,
                   end: 26,
                   range: [25, 26],
-                  name: 'y'
+                  name: 'y',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 30,
                   end: 31,
                   range: [30, 31],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export var x = 10, y = 20',
@@ -1583,15 +1583,15 @@ describe('Module - Export', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'x'
+                    name: 'x',
                   },
                   init: {
                     type: 'Literal',
                     start: 15,
                     end: 17,
                     range: [15, 17],
-                    value: 10
-                  }
+                    value: 10,
+                  },
                 },
                 {
                   type: 'VariableDeclarator',
@@ -1603,26 +1603,26 @@ describe('Module - Export', () => {
                     start: 19,
                     end: 20,
                     range: [19, 20],
-                    name: 'y'
+                    name: 'y',
                   },
                   init: {
                     type: 'Literal',
                     start: 23,
                     end: 25,
                     range: [23, 25],
-                    value: 20
-                  }
-                }
+                    value: 20,
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let x',
@@ -1654,20 +1654,20 @@ describe('Module - Export', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let x, y',
@@ -1699,9 +1699,9 @@ describe('Module - Export', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
+                  init: null,
                 },
                 {
                   type: 'VariableDeclarator',
@@ -1713,20 +1713,20 @@ describe('Module - Export', () => {
                     start: 14,
                     end: 15,
                     range: [14, 15],
-                    name: 'y'
+                    name: 'y',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export const x = 10, y = 20',
@@ -1758,15 +1758,15 @@ describe('Module - Export', () => {
                     start: 13,
                     end: 14,
                     range: [13, 14],
-                    name: 'x'
+                    name: 'x',
                   },
                   init: {
                     type: 'Literal',
                     start: 17,
                     end: 19,
                     range: [17, 19],
-                    value: 10
-                  }
+                    value: 10,
+                  },
                 },
                 {
                   type: 'VariableDeclarator',
@@ -1778,26 +1778,26 @@ describe('Module - Export', () => {
                     start: 21,
                     end: 22,
                     range: [21, 22],
-                    name: 'y'
+                    name: 'y',
                   },
                   init: {
                     type: 'Literal',
                     start: 25,
                     end: 27,
                     range: [25, 27],
-                    value: 20
-                  }
-                }
+                    value: 20,
+                  },
+                },
               ],
-              kind: 'const'
+              kind: 'const',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export function f(){}',
@@ -1823,7 +1823,7 @@ describe('Module - Export', () => {
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                name: 'f'
+                name: 'f',
               },
               generator: false,
               async: false,
@@ -1833,16 +1833,16 @@ describe('Module - Export', () => {
                 start: 19,
                 end: 21,
                 range: [19, 21],
-                body: []
-              }
+                body: [],
+              },
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export async function f(){}',
@@ -1868,7 +1868,7 @@ describe('Module - Export', () => {
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'f'
+                name: 'f',
               },
               generator: false,
               async: true,
@@ -1878,16 +1878,16 @@ describe('Module - Export', () => {
                 start: 25,
                 end: 27,
                 range: [25, 27],
-                body: []
-              }
+                body: [],
+              },
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export function* f(){}',
@@ -1905,20 +1905,20 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
+                name: 'f',
+              },
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export default function f(){}',
@@ -1934,19 +1934,19 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'export default async function f(){}',
@@ -1972,7 +1972,7 @@ describe('Module - Export', () => {
                 start: 30,
                 end: 31,
                 range: [30, 31],
-                name: 'f'
+                name: 'f',
               },
               generator: false,
               async: true,
@@ -1982,13 +1982,13 @@ describe('Module - Export', () => {
                 start: 33,
                 end: 35,
                 range: [33, 35],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
 
     [
@@ -2015,7 +2015,7 @@ describe('Module - Export', () => {
                 start: 25,
                 end: 26,
                 range: [25, 26],
-                name: 'f'
+                name: 'f',
               },
               generator: true,
               async: false,
@@ -2025,13 +2025,13 @@ describe('Module - Export', () => {
                 start: 28,
                 end: 30,
                 range: [28, 30],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export class x {}',
@@ -2057,7 +2057,7 @@ describe('Module - Export', () => {
                 start: 13,
                 end: 14,
                 range: [13, 14],
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -2065,16 +2065,16 @@ describe('Module - Export', () => {
                 start: 15,
                 end: 17,
                 range: [15, 17],
-                body: []
-              }
+                body: [],
+              },
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
 
     [
@@ -2101,7 +2101,7 @@ describe('Module - Export', () => {
                 start: 21,
                 end: 22,
                 range: [21, 22],
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -2109,13 +2109,13 @@ describe('Module - Export', () => {
                 start: 23,
                 end: 25,
                 range: [23, 25],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let [...x] = y',
@@ -2158,29 +2158,29 @@ describe('Module - Export', () => {
                           start: 15,
                           end: 16,
                           range: [15, 16],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   init: {
                     type: 'Identifier',
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    name: 'y'
-                  }
-                }
+                    name: 'y',
+                  },
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let {...x} = y',
@@ -2201,7 +2201,7 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   id: {
                     type: 'ObjectPattern',
@@ -2210,18 +2210,18 @@ describe('Module - Export', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'x',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export default [x] = y',
@@ -2239,19 +2239,19 @@ describe('Module - Export', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var a,b; export {a}; export {b};',
@@ -2278,9 +2278,9 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
@@ -2292,12 +2292,12 @@ describe('Module - Export', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'b'
+                  name: 'b',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -2316,19 +2316,19 @@ describe('Module - Export', () => {
                   start: 17,
                   end: 18,
                   range: [17, 18],
-                  name: 'a'
+                  name: 'a',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 17,
                   end: 18,
                   range: [17, 18],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'ExportNamedDeclaration',
@@ -2347,23 +2347,23 @@ describe('Module - Export', () => {
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'b'
+                  name: 'b',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default async () => y',
@@ -2393,13 +2393,13 @@ describe('Module - Export', () => {
                 start: 27,
                 end: 28,
                 range: [27, 28],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default async (x) => y',
@@ -2429,21 +2429,21 @@ describe('Module - Export', () => {
                   start: 22,
                   end: 23,
                   range: [22, 23],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 28,
                 end: 29,
                 range: [28, 29],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default async function(){}',
@@ -2473,13 +2473,13 @@ describe('Module - Export', () => {
                 start: 31,
                 end: 33,
                 range: [31, 33],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default function* (){}',
@@ -2495,16 +2495,16 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'export default class x{}',
@@ -2531,7 +2531,7 @@ describe('Module - Export', () => {
                 start: 21,
                 end: 22,
                 range: [21, 22],
-                name: 'x'
+                name: 'x',
               },
               superClass: null,
               body: {
@@ -2539,13 +2539,13 @@ describe('Module - Export', () => {
                 start: 22,
                 end: 24,
                 range: [22, 24],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {} from "x"',
@@ -2569,12 +2569,12 @@ describe('Module - Export', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              value: 'x'
-            }
-          }
+              value: 'x',
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default async x => y',
@@ -2604,21 +2604,21 @@ describe('Module - Export', () => {
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 26,
                 end: 27,
                 range: [26, 27],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default (a,b) => {}',
@@ -2648,28 +2648,28 @@ describe('Module - Export', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 24,
                 end: 26,
                 range: [24, 26],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default () => {}',
@@ -2685,15 +2685,15 @@ describe('Module - Export', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'export {};',
@@ -2707,10 +2707,10 @@ describe('Module - Export', () => {
             source: null,
             specifiers: [],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export var foo = 1;',
@@ -2727,23 +2727,23 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   init: {
                     type: 'Literal',
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export function foo () {}',
@@ -2761,20 +2761,20 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       String.raw`export function \u{5A}() {}`,
@@ -2786,26 +2786,26 @@ describe('Module - Export', () => {
               async: false,
               body: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               generator: false,
 
               id: {
                 name: 'Z',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               params: [],
-              type: 'FunctionDeclaration'
+              type: 'FunctionDeclaration',
             },
             source: null,
             specifiers: [],
             type: 'ExportNamedDeclaration',
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     [
@@ -2819,26 +2819,26 @@ describe('Module - Export', () => {
             type: 'ExportNamedDeclaration',
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
             specifiers: [
               {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
+                  name: 'foo',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export default function () {}',
@@ -2854,16 +2854,16 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'export default (1 + 2);',
@@ -2889,7 +2889,7 @@ describe('Module - Export', () => {
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                value: 1
+                value: 1,
               },
               operator: '+',
               right: {
@@ -2897,13 +2897,13 @@ describe('Module - Export', () => {
                 start: 20,
                 end: 21,
                 range: [20, 21],
-                value: 2
-              }
-            }
-          }
+                value: 2,
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
 
     [
@@ -2915,24 +2915,24 @@ describe('Module - Export', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               id: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
             source: null,
             specifiers: [],
             type: 'ExportNamedDeclaration',
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export default class A {}',
@@ -2943,21 +2943,21 @@ describe('Module - Export', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               id: {
                 name: 'A',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export default [];',
@@ -2978,12 +2978,12 @@ describe('Module - Export', () => {
               start: 15,
               end: 17,
               range: [15, 17],
-              elements: []
-            }
-          }
+              elements: [],
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
 
     [
@@ -3000,19 +3000,19 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'export default function *foo() {}',
@@ -3028,19 +3028,19 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var foo; export {foo as new}',
@@ -3067,12 +3067,12 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 7,
                   range: [4, 7],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3091,23 +3091,23 @@ describe('Module - Export', () => {
                   start: 17,
                   end: 20,
                   range: [17, 20],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 24,
                   end: 27,
                   range: [24, 27],
-                  name: 'new'
-                }
-              }
+                  name: 'new',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {a as b}; var a;',
@@ -3135,19 +3135,19 @@ describe('Module - Export', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'a'
+                  name: 'a',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'VariableDeclaration',
@@ -3165,16 +3165,16 @@ describe('Module - Export', () => {
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'a'
+                  name: 'a',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var a; export {a as b};',
@@ -3192,10 +3192,10 @@ describe('Module - Export', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
-            ]
+                  name: 'a',
+                },
+              },
+            ],
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3205,19 +3205,19 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       `[function* (...{}) {  switch (yield) {}  }]
@@ -3259,9 +3259,9 @@ describe('Module - Export', () => {
                         start: 15,
                         end: 17,
                         range: [15, 17],
-                        properties: []
-                      }
-                    }
+                        properties: [],
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -3280,15 +3280,15 @@ describe('Module - Export', () => {
                           end: 35,
                           range: [30, 35],
                           delegate: false,
-                          argument: null
+                          argument: null,
                         },
-                        cases: []
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
+                        cases: [],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -3306,7 +3306,7 @@ describe('Module - Export', () => {
                 start: 52,
                 end: 53,
                 range: [52, 53],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'ArrowFunctionExpression',
@@ -3322,22 +3322,22 @@ describe('Module - Export', () => {
                     start: 57,
                     end: 58,
                     range: [57, 58],
-                    name: 'u'
-                  }
+                    name: 'u',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 63,
                   end: 65,
                   range: [63, 65],
-                  body: []
-                }
-              }
-            }
-          }
+                  body: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {foo}; function foo() {};',
@@ -3354,37 +3354,37 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
+                  name: 'foo',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'FunctionDeclaration',
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
+              name: 'foo',
+            },
           },
           {
-            type: 'EmptyStatement'
-          }
-        ]
-      }
+            type: 'EmptyStatement',
+          },
+        ],
+      },
     ],
     [
       'export var x = 1;',
@@ -3397,27 +3397,27 @@ describe('Module - Export', () => {
                 {
                   id: {
                     name: 'x',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   init: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
-                  type: 'VariableDeclarator'
-                }
+                  type: 'VariableDeclarator',
+                },
               ],
               kind: 'var',
-              type: 'VariableDeclaration'
+              type: 'VariableDeclaration',
             },
             source: null,
             specifiers: [],
             type: 'ExportNamedDeclaration',
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'export default 3;',
@@ -3427,14 +3427,14 @@ describe('Module - Export', () => {
           {
             declaration: {
               type: 'Literal',
-              value: 3
+              value: 3,
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'var x; export { x as a }; export { x as b };',
@@ -3461,12 +3461,12 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3485,19 +3485,19 @@ describe('Module - Export', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3516,23 +3516,23 @@ describe('Module - Export', () => {
                   start: 35,
                   end: 36,
                   range: [35, 36],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 40,
                   end: 41,
                   range: [40, 41],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default [x] = y',
@@ -3565,22 +3565,22 @@ describe('Module - Export', () => {
                     start: 16,
                     end: 17,
                     range: [16, 17],
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 21,
                 end: 22,
                 range: [21, 22],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'let foo, bar; export {foo, bar}',
@@ -3595,20 +3595,20 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'bar'
+                  name: 'bar',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'let'
+            kind: 'let',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3618,31 +3618,31 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'bar'
+                  name: 'bar',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
-              }
+                  name: 'bar',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export default function *f(){} foo',
@@ -3658,26 +3658,26 @@ describe('Module - Export', () => {
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
+                name: 'f',
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
             expression: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'export {}',
@@ -3691,10 +3691,10 @@ describe('Module - Export', () => {
             source: null,
             specifiers: [],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export {x}; var x;',
@@ -3711,16 +3711,16 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
+            attributes: [],
           },
           {
             type: 'VariableDeclaration',
@@ -3731,13 +3731,13 @@ describe('Module - Export', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x; export {x as a}',
@@ -3752,12 +3752,12 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3767,20 +3767,20 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x; export {x,}',
@@ -3795,12 +3795,12 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3810,20 +3810,20 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x} from "foo"',
@@ -3839,23 +3839,23 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x as a} from "foo"',
@@ -3871,23 +3871,23 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export {x,} from "foo"',
@@ -3903,23 +3903,23 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x; export {x as a,}',
@@ -3937,10 +3937,10 @@ describe('Module - Export', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
+                  name: 'x',
+                },
+              },
+            ],
           },
           {
             type: 'ExportNamedDeclaration',
@@ -3950,19 +3950,19 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             declaration: null,
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'var x,y; export {x, y}',
@@ -3977,20 +3977,20 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -4000,31 +4000,31 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x,y; export {x as a, y as b}',
@@ -4051,9 +4051,9 @@ describe('Module - Export', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
@@ -4065,12 +4065,12 @@ describe('Module - Export', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'y'
+                  name: 'y',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -4089,15 +4089,15 @@ describe('Module - Export', () => {
                   start: 17,
                   end: 18,
                   range: [17, 18],
-                  name: 'x'
+                  name: 'x',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
                   range: [22, 23],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'ExportSpecifier',
@@ -4109,23 +4109,23 @@ describe('Module - Export', () => {
                   start: 25,
                   end: 26,
                   range: [25, 26],
-                  name: 'y'
+                  name: 'y',
                 },
                 exported: {
                   type: 'Identifier',
                   start: 30,
                   end: 31,
                   range: [30, 31],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x,y; export {x, y,}',
@@ -4140,20 +4140,20 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -4163,31 +4163,31 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'var x,y; export {x as a, y as b,}',
@@ -4202,20 +4202,20 @@ describe('Module - Export', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                init: null
+                init: null,
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExportNamedDeclaration',
@@ -4225,31 +4225,31 @@ describe('Module - Export', () => {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ExportSpecifier',
                 exported: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 local: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
+                  name: 'y',
+                },
+              },
             ],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export var x',
@@ -4266,20 +4266,20 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export var x, y',
@@ -4296,28 +4296,28 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
+                  init: null,
                 },
                 {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export var x = 10, y = 20',
@@ -4334,34 +4334,34 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   init: {
                     type: 'Literal',
-                    value: 10
-                  }
+                    value: 10,
+                  },
                 },
                 {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   init: {
                     type: 'Literal',
-                    value: 20
-                  }
-                }
+                    value: 20,
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let x',
@@ -4378,20 +4378,20 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let x, y',
@@ -4408,28 +4408,28 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  init: null
+                  init: null,
                 },
                 {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             specifiers: [],
             source: null,
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'export let a = 1;',
@@ -4450,19 +4450,19 @@ describe('Module - Export', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'export * as "foo" from "./foo";',
@@ -4475,16 +4475,16 @@ describe('Module - Export', () => {
             type: 'ExportAllDeclaration',
             source: {
               type: 'Literal',
-              value: './foo'
+              value: './foo',
             },
             exported: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       String.raw`export { "\uD83C\uDF19" as "a"} from "./foo";`,
@@ -4505,13 +4505,13 @@ describe('Module - Export', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 9
+                      column: 9,
                     },
                     end: {
                       line: 1,
-                      column: 23
-                    }
-                  }
+                      column: 23,
+                    },
+                  },
                 },
                 exported: {
                   type: 'Literal',
@@ -4519,25 +4519,25 @@ describe('Module - Export', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 27
+                      column: 27,
                     },
                     end: {
                       line: 1,
-                      column: 30
-                    }
-                  }
+                      column: 30,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 9
+                    column: 9,
                   },
                   end: {
                     line: 1,
-                    column: 30
-                  }
-                }
-              }
+                    column: 30,
+                  },
+                },
+              },
             ],
             source: {
               type: 'Literal',
@@ -4545,38 +4545,38 @@ describe('Module - Export', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 37
+                  column: 37,
                 },
                 end: {
                   line: 1,
-                  column: 44
-                }
-              }
+                  column: 44,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 45
-              }
+                column: 45,
+              },
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 45
-          }
-        }
-      }
-    ]
+            column: 45,
+          },
+        },
+      },
+    ],
   ]);
 });

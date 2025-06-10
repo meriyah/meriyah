@@ -319,7 +319,7 @@ describe('Miscellaneous - Early errors', () => {
     '"use strict"; var yield;',
     'function* a(){ (b = yield c) => 1; }',
     'a: while (true) { (function () { break; }); }',
-    'for(const a;;);'
+    'for(const a;;);',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {

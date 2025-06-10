@@ -29,7 +29,7 @@ describe('Expressions - Async Generator', () => {
     '(async function *foo([...{ x }, y] = [1, 2, 3])',
     '(async function *foo([...{ x }, y])',
     '(async function *foo([...{ x } = []] = [])',
-    '(async function *foo([...{ x } = []])'
+    '(async function *foo([...{ x } = []])',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -120,7 +120,7 @@ describe('Expressions - Async Generator', () => {
           return yield;
         }(yield))
     };
-    `
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -164,7 +164,7 @@ describe('Expressions - Async Generator', () => {
          }()),
       }
   };`,
-      Context.None
+      Context.None,
     ],
     ['(async function* g() { var yield; });', Context.None],
     ['(async function*(a = super()) { });', Context.None],
@@ -196,7 +196,7 @@ describe('Expressions - Async Generator', () => {
     ['(async function *foo([...{ x } = []])', Context.None],
     ['(async function *foo([...{ x } = []])', Context.None],
     ['(async function *foo([...{ x } = []])', Context.None],
-    ['(async function *foo([...{ x } = []])', Context.None]
+    ['(async function *foo([...{ x } = []])', Context.None],
   ]);
 
   pass('Expressions - Async Generator (pass)', [
@@ -219,7 +219,7 @@ describe('Expressions - Async Generator', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'cls'
+                        name: 'cls',
                       },
                       right: {
                         type: 'ClassExpression',
@@ -227,34 +227,34 @@ describe('Expressions - Async Generator', () => {
                         superClass: null,
                         body: {
                           type: 'ClassBody',
-                          body: []
-                        }
-                      }
+                          body: [],
+                        },
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'xCls'
+                        name: 'xCls',
                       },
                       right: {
                         type: 'ClassExpression',
                         id: {
                           type: 'Identifier',
-                          name: 'X'
+                          name: 'X',
                         },
                         superClass: null,
                         body: {
                           type: 'ClassBody',
-                          body: []
-                        }
-                      }
+                          body: [],
+                        },
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'xCls2'
+                        name: 'xCls2',
                       },
                       right: {
                         type: 'ClassExpression',
@@ -270,42 +270,42 @@ describe('Expressions - Async Generator', () => {
                               computed: false,
                               key: {
                                 type: 'Identifier',
-                                name: 'name'
+                                name: 'name',
                               },
                               value: {
                                 type: 'FunctionExpression',
                                 params: [],
                                 body: {
                                   type: 'BlockStatement',
-                                  body: []
+                                  body: [],
                                 },
                                 async: false,
                                 generator: false,
-                                id: null
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                }
+                                id: null,
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'h'
-              }
-            }
-          }
-        ]
-      }
+                name: 'h',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function* h([fn = function () {}, xFn = function x() {}] = []) { })',
@@ -328,66 +328,66 @@ describe('Expressions - Async Generator', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'fn'
+                          name: 'fn',
                         },
                         right: {
                           type: 'FunctionExpression',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
 
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'xFn'
+                          name: 'xFn',
                         },
                         right: {
                           type: 'FunctionExpression',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
 
                           id: {
                             type: 'Identifier',
-                            name: 'x'
-                          }
-                        }
-                      }
-                    ]
+                            name: 'x',
+                          },
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
-                    elements: []
-                  }
-                }
+                    elements: [],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'h'
-              }
-            }
-          }
-        ]
-      }
+                name: 'h',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function* h([{ x, y, z } = { x: 44, y: 55, z: 66 }]) { })',
@@ -414,47 +414,47 @@ describe('Expressions - Async Generator', () => {
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             method: false,
-                            shorthand: true
+                            shorthand: true,
                           },
                           {
                             type: 'Property',
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             method: false,
-                            shorthand: true
+                            shorthand: true,
                           },
                           {
                             type: 'Property',
                             kind: 'init',
                             key: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             computed: false,
                             value: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       right: {
                         type: 'ObjectExpression',
@@ -463,68 +463,68 @@ describe('Expressions - Async Generator', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Literal',
-                              value: 44
+                              value: 44,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Literal',
-                              value: 55
+                              value: 55,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'z'
+                              name: 'z',
                             },
                             value: {
                               type: 'Literal',
-                              value: 66
+                              value: 66,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
+                            shorthand: false,
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'h'
-              }
-            }
-          }
-        ]
-      }
+                name: 'h',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function *([{ x }]) { })',
@@ -549,33 +549,33 @@ describe('Expressions - Async Generator', () => {
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           method: false,
-                          shorthand: true
-                        }
-                      ]
-                    }
-                  ]
-                }
+                          shorthand: true,
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function*({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }) { })',
@@ -599,7 +599,7 @@ describe('Expressions - Async Generator', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'w'
+                          name: 'w',
                         },
                         computed: false,
                         value: {
@@ -612,47 +612,47 @@ describe('Expressions - Async Generator', () => {
                                 kind: 'init',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 computed: false,
                                 value: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 method: false,
-                                shorthand: true
+                                shorthand: true,
                               },
                               {
                                 type: 'Property',
                                 kind: 'init',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
                                 computed: false,
                                 value: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
                                 method: false,
-                                shorthand: true
+                                shorthand: true,
                               },
                               {
                                 type: 'Property',
                                 kind: 'init',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'z'
+                                  name: 'z',
                                 },
                                 computed: false,
                                 value: {
                                   type: 'Identifier',
-                                  name: 'z'
+                                  name: 'z',
                                 },
                                 method: false,
-                                shorthand: true
-                              }
-                            ]
+                                shorthand: true,
+                              },
+                            ],
                           },
                           right: {
                             type: 'ObjectExpression',
@@ -661,54 +661,54 @@ describe('Expressions - Async Generator', () => {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 4
+                                  value: 4,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
+                                shorthand: false,
                               },
                               {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 5
+                                  value: 5,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
+                                shorthand: false,
                               },
                               {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'z'
+                                  name: 'z',
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 6
+                                  value: 6,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
+                                shorthand: false,
+                              },
+                            ],
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
@@ -717,33 +717,33 @@ describe('Expressions - Async Generator', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'w'
+                          name: 'w',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'undefined'
+                          name: 'undefined',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function *foo() { }.prototype)',
@@ -761,25 +761,25 @@ describe('Expressions - Async Generator', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: true,
                 generator: true,
 
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'prototype'
-              }
-            }
-          }
-        ]
-      }
+                name: 'prototype',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function *foo([...x] = 123) { })',
@@ -802,32 +802,32 @@ describe('Expressions - Async Generator', () => {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'Literal',
-                    value: 123
-                  }
-                }
+                    value: 123,
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async function *foo(x, y = x, z = y) { })',
@@ -843,46 +843,46 @@ describe('Expressions - Async Generator', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
+                    name: 'y',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -899,24 +899,24 @@ describe('Expressions - Async Generator', () => {
               params: [
                 {
                   type: 'ArrayPattern',
-                  elements: []
-                }
+                  elements: [],
+                },
               ],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: true,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'h'
-              }
-            }
-          }
-        ]
-      }
-    ]
+                name: 'h',
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

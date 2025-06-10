@@ -6,8 +6,8 @@ describe('Statements - Throw', () => {
     [
       `throw
     x;`,
-      Context.None
-    ]
+      Context.None,
+    ],
   ];
 
   fail('Statements - Throw', inValids);
@@ -28,35 +28,35 @@ describe('Statements - Throw', () => {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
                 operator: '=',
                 right: {
                   type: 'Literal',
-                  value: null
-                }
+                  value: null,
+                },
               },
               consequent: {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'r'
+                  name: 'r',
                 },
                 operator: '--',
-                prefix: true
+                prefix: true,
               },
               alternate: {
                 type: 'Literal',
                 value: /|[--]*||[^⭺+-?]+|(?!)/giy,
                 regex: {
                   pattern: '|[--]*||[^⭺+-?]+|(?!)',
-                  flags: 'giy'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  flags: 'giy',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'throw /(?=[^\x4f-\xF5(-)])/imy',
@@ -67,17 +67,17 @@ describe('Statements - Throw', () => {
             argument: {
               regex: {
                 flags: 'imy',
-                pattern: '(?=[^O-õ(-)])'
+                pattern: '(?=[^O-õ(-)])',
               },
               type: 'Literal',
-              value: /(?=[^O-õ(-)])/imy
+              value: /(?=[^O-õ(-)])/imy,
             },
-            type: 'ThrowStatement'
-          }
+            type: 'ThrowStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'throw foo;',
@@ -98,12 +98,12 @@ describe('Statements - Throw', () => {
               start: 6,
               end: 9,
               range: [6, 9],
-              name: 'foo'
-            }
-          }
+              name: 'foo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw foo',
@@ -115,12 +115,12 @@ describe('Statements - Throw', () => {
             type: 'ThrowStatement',
             argument: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
+              name: 'foo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw 12',
@@ -132,12 +132,12 @@ describe('Statements - Throw', () => {
             type: 'ThrowStatement',
             argument: {
               type: 'Literal',
-              value: 12
-            }
-          }
+              value: 12,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw x * y',
@@ -152,17 +152,17 @@ describe('Statements - Throw', () => {
               operator: '*',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw foo;',
@@ -175,11 +175,11 @@ describe('Statements - Throw', () => {
             type: 'ThrowStatement',
             argument: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
-    ]
+              name: 'foo',
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

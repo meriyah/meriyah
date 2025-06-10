@@ -363,7 +363,7 @@ describe('Expressions - Template', () => {
     'x`\\6`',
     'x`\\7`',
     'x`\\8`',
-    'x`\\9`'
+    'x`\\9`',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -455,7 +455,7 @@ describe('Expressions - Template', () => {
     ['`\\6`', Context.None],
     ['`\\7`', Context.None],
     ['`\\8`', Context.None],
-    ['`\\9`', Context.None]
+    ['`\\9`', Context.None],
   ]);
   pass('Expressions - Template (pass)', [
     [
@@ -479,21 +479,21 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'simple template',
-                        raw: 'simple template'
+                        raw: 'simple template',
                       },
-                      tail: true
-                    }
-                  ]
+                      tail: true,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'await'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'await',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`${y, x`)`}`',
@@ -512,13 +512,13 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     {
                       type: 'TaggedTemplateExpression',
                       tag: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       quasi: {
                         type: 'TemplateLiteral',
@@ -528,38 +528,38 @@ describe('Expressions - Template', () => {
                             type: 'TemplateElement',
                             value: {
                               cooked: ')',
-                              raw: ')'
+                              raw: ')',
                             },
-                            tail: true
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
+                            tail: true,
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${x`)`, y}`',
@@ -580,7 +580,7 @@ describe('Expressions - Template', () => {
                       type: 'TaggedTemplateExpression',
                       tag: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       quasi: {
                         type: 'TemplateLiteral',
@@ -590,42 +590,42 @@ describe('Expressions - Template', () => {
                             type: 'TemplateElement',
                             value: {
                               cooked: ')',
-                              raw: ')'
+                              raw: ')',
                             },
-                            tail: true
-                          }
-                        ]
-                      }
+                            tail: true,
+                          },
+                        ],
+                      },
                     },
                     {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  ]
-                }
+                      name: 'y',
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`a${b=c}d`',
@@ -643,37 +643,37 @@ describe('Expressions - Template', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
-                }
+                    name: 'c',
+                  },
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'a',
-                    raw: 'a'
+                    raw: 'a',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'd',
-                    raw: 'd'
+                    raw: 'd',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'f`x${/foo/}y`',
@@ -688,7 +688,7 @@ describe('Expressions - Template', () => {
               type: 'TaggedTemplateExpression',
               tag: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -698,33 +698,33 @@ describe('Expressions - Template', () => {
                     value: /foo/,
                     regex: {
                       pattern: 'foo',
-                      flags: ''
-                    }
-                  }
+                      flags: '',
+                    },
+                  },
                 ],
                 quasis: [
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'x',
-                      raw: 'x'
+                      raw: 'x',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'y',
-                      raw: 'y'
+                      raw: 'y',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo ${a} and ${b} and ${c} baz`',
@@ -740,55 +740,55 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo ',
-                    raw: 'foo '
+                    raw: 'foo ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' and ',
-                    raw: ' and '
+                    raw: ' and ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' and ',
-                    raw: ' and '
+                    raw: ' and ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' baz',
-                    raw: ' baz'
+                    raw: ' baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '{`foo baz`}',
@@ -810,17 +810,17 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo baz',
-                        raw: 'foo baz'
+                        raw: 'foo baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{`foo ${a} baz`}',
@@ -840,32 +840,32 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         raw: 'foo ',
-                        cooked: 'foo '
+                        cooked: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         raw: ' baz',
-                        cooked: ' baz'
+                        cooked: ' baz',
                       },
-                      tail: true
-                    }
+                      tail: true,
+                    },
                   ],
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
+                      name: 'a',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{`foo ${a} and ${b} and ${c} baz`}',
@@ -884,57 +884,57 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'Identifier',
-                      name: 'c'
-                    }
+                      name: 'c',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo ',
-                        raw: 'foo '
+                        raw: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' baz',
-                        raw: ' baz'
+                        raw: ' baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`foo${{}}baz`',
@@ -950,31 +950,31 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
+                  properties: [],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${{a,b}}baz`',
@@ -995,57 +995,57 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${`foo`}baz`',
@@ -1067,35 +1067,35 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo',
-                        raw: 'foo'
+                        raw: 'foo',
                       },
-                      tail: true
-                    }
-                  ]
-                }
+                      tail: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${`foo${bar}baz`}baz`',
@@ -1114,51 +1114,51 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
+                      name: 'bar',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo',
-                        raw: 'foo'
+                        raw: 'foo',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'baz',
-                        raw: 'baz'
+                        raw: 'baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
+                      tail: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}',
@@ -1177,104 +1177,104 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'TemplateLiteral',
                       expressions: [
                         {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         {
                           type: 'Identifier',
-                          name: 'e'
+                          name: 'e',
                         },
                         {
                           type: 'Identifier',
-                          name: 'f'
-                        }
+                          name: 'f',
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: 'w ',
-                            raw: 'w '
+                            raw: 'w ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' x ',
-                            raw: ' x '
+                            raw: ' x ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' y ',
-                            raw: ' y '
+                            raw: ' y ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' z',
-                            raw: ' z'
+                            raw: ' z',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
+                          tail: true,
+                        },
+                      ],
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo ',
-                        raw: 'foo '
+                        raw: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' baz',
-                        raw: ' baz'
+                        raw: ' baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`a ${function(){}} b`',
@@ -1293,36 +1293,36 @@ describe('Expressions - Template', () => {
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
-                }
+                  id: null,
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'a ',
-                    raw: 'a '
+                    raw: 'a ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' b',
-                    raw: ' b'
+                    raw: ' b',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1344,7 +1344,7 @@ describe('Expressions - Template', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -1353,42 +1353,42 @@ describe('Expressions - Template', () => {
                         {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
+                          delegate: false,
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: '1 ',
-                            raw: '1 '
+                            raw: '1 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 2',
-                            raw: ' 2'
+                            raw: ' 2',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          tail: true,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1405,31 +1405,31 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${{a,b} = x}baz`',
@@ -1452,63 +1452,63 @@ describe('Expressions - Template', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${ {function: 1} }`',
@@ -1529,42 +1529,42 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'function'
+                        name: 'function',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${ {class: 1} }`',
@@ -1585,42 +1585,42 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'class'
+                        name: 'class',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${ foo({class: 1}) }`',
@@ -1638,7 +1638,7 @@ describe('Expressions - Template', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   arguments: [
                     {
@@ -1648,44 +1648,44 @@ describe('Expressions - Template', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'class'
+                            name: 'class',
                           },
                           value: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  ]
-                }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'var y = `{${x}}`;',
@@ -1705,37 +1705,37 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: '{',
-                        raw: '{'
+                        raw: '{',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: '}',
-                        raw: '}'
+                        raw: '}',
                       },
-                      tail: true
-                    }
-                  ]
+                      tail: true,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`${x} + ${y} = ${x + y}` === "5 + 10 = 15"',
@@ -1753,69 +1753,69 @@ describe('Expressions - Template', () => {
                 expressions: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
-                  }
+                    operator: '+',
+                  },
                 ],
                 quasis: [
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: '',
-                      raw: ''
+                      raw: '',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: ' + ',
-                      raw: ' + '
+                      raw: ' + ',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: ' = ',
-                      raw: ' = '
+                      raw: ' = ',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: '',
-                      raw: ''
+                      raw: '',
                     },
-                    tail: true
-                  }
-                ]
+                    tail: true,
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
-                value: '5 + 10 = 15'
+                value: '5 + 10 = 15',
               },
-              operator: '==='
-            }
-          }
-        ]
-      }
+              operator: '===',
+            },
+          },
+        ],
+      },
     ],
     [
       '`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`;',
@@ -1836,7 +1836,7 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -1845,25 +1845,25 @@ describe('Expressions - Template', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'Literal',
-                              value: 10
+                              value: 10,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 {
                   type: 'TemplateLiteral',
@@ -1878,67 +1878,67 @@ describe('Expressions - Template', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        ]
+                              value: 1,
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
-                    }
+                      id: null,
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'nested',
-                        raw: 'nested'
+                        raw: 'nested',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'endnest',
-                        raw: 'endnest'
+                        raw: 'endnest',
                       },
-                      tail: true
-                    }
-                  ]
-                }
+                      tail: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'outer',
-                    raw: 'outer'
+                    raw: 'outer',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'bar',
-                    raw: 'bar'
+                    raw: 'bar',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'end',
-                    raw: 'end'
+                    raw: 'end',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'var y = `{ ${x} }`;',
@@ -1958,37 +1958,37 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: '{ ',
-                        raw: '{ '
+                        raw: '{ ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' }',
-                        raw: ' }'
+                        raw: ' }',
                       },
-                      tail: true
-                    }
-                  ]
+                      tail: true,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`${/\\d/.exec("1")[0]}`',
@@ -2013,51 +2013,51 @@ describe('Expressions - Template', () => {
                         value: /\d/,
                         regex: {
                           pattern: String.raw`\d`,
-                          flags: ''
-                        }
+                          flags: '',
+                        },
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'exec'
-                      }
+                        name: 'exec',
+                      },
                     },
                     arguments: [
                       {
                         type: 'Literal',
-                        value: '1'
-                      }
-                    ]
+                        value: '1',
+                      },
+                    ],
                   },
                   computed: true,
                   property: {
                     type: 'Literal',
-                    value: 0
-                  }
-                }
+                    value: 0,
+                  },
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${ {delete: 1} }`',
@@ -2078,42 +2078,42 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'delete'
+                        name: 'delete',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`${ {enum: 1} }`',
@@ -2134,42 +2134,42 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'enum'
+                        name: 'enum',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo`x${a}y${b}z`',
@@ -2184,51 +2184,51 @@ describe('Expressions - Template', () => {
               type: 'TaggedTemplateExpression',
               tag: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               quasi: {
                 type: 'TemplateLiteral',
                 expressions: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
                 quasis: [
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'x',
-                      raw: 'x'
+                      raw: 'x',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'y',
-                      raw: 'y'
+                      raw: 'y',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'z',
-                      raw: 'z'
+                      raw: 'z',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a.foo`bar`',
@@ -2245,13 +2245,13 @@ describe('Expressions - Template', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -2261,16 +2261,16 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'bar',
-                      raw: 'bar'
+                      raw: 'bar',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'abc`bar`',
@@ -2285,7 +2285,7 @@ describe('Expressions - Template', () => {
               type: 'TaggedTemplateExpression',
               tag: {
                 type: 'Identifier',
-                name: 'abc'
+                name: 'abc',
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -2295,16 +2295,16 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'bar',
-                      raw: 'bar'
+                      raw: 'bar',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '`bar`',
@@ -2323,15 +2323,15 @@ describe('Expressions - Template', () => {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'bar',
-                    raw: 'bar'
+                    raw: 'bar',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo ${a} and ${b} and ${c} baz`',
@@ -2347,55 +2347,55 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo ',
-                    raw: 'foo '
+                    raw: 'foo ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' and ',
-                    raw: ' and '
+                    raw: ' and ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' and ',
-                    raw: ' and '
+                    raw: ' and ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' baz',
-                    raw: ' baz'
+                    raw: ' baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '{`foo baz`}',
@@ -2417,17 +2417,17 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo baz',
-                        raw: 'foo baz'
+                        raw: 'foo baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{`foo ${a} baz`}',
@@ -2446,33 +2446,33 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo ',
-                        raw: 'foo '
+                        raw: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' baz',
-                        raw: ' baz'
+                        raw: ' baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{`foo ${a} and ${b} and ${c} baz`}',
@@ -2491,57 +2491,57 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'Identifier',
-                      name: 'c'
-                    }
+                      name: 'c',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo ',
-                        raw: 'foo '
+                        raw: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' baz',
-                        raw: ' baz'
+                        raw: ' baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`foo${{}}baz`',
@@ -2557,31 +2557,31 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
+                  properties: [],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${{a,b}}baz`',
@@ -2602,57 +2602,57 @@ describe('Expressions - Template', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${{a,b} = x}baz`',
@@ -2675,63 +2675,63 @@ describe('Expressions - Template', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${`foo`}baz`',
@@ -2753,35 +2753,35 @@ describe('Expressions - Template', () => {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo',
-                        raw: 'foo'
+                        raw: 'foo',
                       },
-                      tail: true
-                    }
-                  ]
-                }
+                      tail: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${`foo${bar}baz`}baz`',
@@ -2800,51 +2800,51 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
+                      name: 'bar',
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo',
-                        raw: 'foo'
+                        raw: 'foo',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'baz',
-                        raw: 'baz'
+                        raw: 'baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
+                      tail: true,
+                    },
+                  ],
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}',
@@ -2863,104 +2863,104 @@ describe('Expressions - Template', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'TemplateLiteral',
                       expressions: [
                         {
                           type: 'Identifier',
-                          name: 'd'
+                          name: 'd',
                         },
                         {
                           type: 'Identifier',
-                          name: 'e'
+                          name: 'e',
                         },
                         {
                           type: 'Identifier',
-                          name: 'f'
-                        }
+                          name: 'f',
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: 'w ',
-                            raw: 'w '
+                            raw: 'w ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' x ',
-                            raw: ' x '
+                            raw: ' x ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' y ',
-                            raw: ' y '
+                            raw: ' y ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' z',
-                            raw: ' z'
+                            raw: ' z',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
+                          tail: true,
+                        },
+                      ],
+                    },
                   ],
                   quasis: [
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: 'foo ',
-                        raw: 'foo '
+                        raw: 'foo ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' and ',
-                        raw: ' and '
+                        raw: ' and ',
                       },
-                      tail: false
+                      tail: false,
                     },
                     {
                       type: 'TemplateElement',
                       value: {
                         cooked: ' baz',
-                        raw: ' baz'
+                        raw: ' baz',
                       },
-                      tail: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      tail: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '`a ${()=>{}} b`',
@@ -2979,35 +2979,35 @@ describe('Expressions - Template', () => {
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [],
                   async: false,
-                  expression: false
-                }
+                  expression: false,
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'a ',
-                    raw: 'a '
+                    raw: 'a ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' b',
-                    raw: ' b'
+                    raw: ' b',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -3032,44 +3032,44 @@ describe('Expressions - Template', () => {
                         type: 'ExpressionStatement',
                         expression: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'k'
-                    }
+                      name: 'k',
+                    },
                   ],
 
                   async: false,
-                  expression: false
-                }
+                  expression: false,
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'a ',
-                    raw: 'a '
+                    raw: 'a ',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: ' b',
-                    raw: ' b'
+                    raw: ' b',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x = `1 ${ yield } 2`',
@@ -3084,7 +3084,7 @@ describe('Expressions - Template', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3092,32 +3092,32 @@ describe('Expressions - Template', () => {
                 expressions: [
                   {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
+                    name: 'yield',
+                  },
                 ],
                 quasis: [
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: '1 ',
-                      raw: '1 '
+                      raw: '1 ',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: ' 2',
-                      raw: ' 2'
+                      raw: ' 2',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x = `1 ${ yield } 2 ${ 3 } 4`',
@@ -3132,7 +3132,7 @@ describe('Expressions - Template', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -3140,44 +3140,44 @@ describe('Expressions - Template', () => {
                 expressions: [
                   {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   {
                     type: 'Literal',
-                    value: 3
-                  }
+                    value: 3,
+                  },
                 ],
                 quasis: [
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: '1 ',
-                      raw: '1 '
+                      raw: '1 ',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: ' 2 ',
-                      raw: ' 2 '
+                      raw: ' 2 ',
                     },
-                    tail: false
+                    tail: false,
                   },
                   {
                     type: 'TemplateElement',
                     value: {
                       cooked: ' 4',
-                      raw: ' 4'
+                      raw: ' 4',
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   x = `1 ${ yield } 2`   }',
@@ -3198,7 +3198,7 @@ describe('Expressions - Template', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -3207,42 +3207,42 @@ describe('Expressions - Template', () => {
                         {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
+                          delegate: false,
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: '1 ',
-                            raw: '1 '
+                            raw: '1 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 2',
-                            raw: ' 2'
+                            raw: ' 2',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          tail: true,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   x = `1 ${ yield } 2 ${ 3 } 4`   }',
@@ -3263,7 +3263,7 @@ describe('Expressions - Template', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -3272,54 +3272,54 @@ describe('Expressions - Template', () => {
                         {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
+                          delegate: false,
                         },
                         {
                           type: 'Literal',
-                          value: 3
-                        }
+                          value: 3,
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: '1 ',
-                            raw: '1 '
+                            raw: '1 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 2 ',
-                            raw: ' 2 '
+                            raw: ' 2 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 4',
-                            raw: ' 4'
+                            raw: ' 4',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          tail: true,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   x = `1 ${ yield x } 2`   }',
@@ -3340,7 +3340,7 @@ describe('Expressions - Template', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -3350,44 +3350,44 @@ describe('Expressions - Template', () => {
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          delegate: false
-                        }
+                          delegate: false,
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: '1 ',
-                            raw: '1 '
+                            raw: '1 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 2',
-                            raw: ' 2'
+                            raw: ' 2',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          tail: true,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){   x = `1 ${ yield x } 2 ${ 3 } 4`   }',
@@ -3408,7 +3408,7 @@ describe('Expressions - Template', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -3418,56 +3418,56 @@ describe('Expressions - Template', () => {
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          delegate: false
+                          delegate: false,
                         },
                         {
                           type: 'Literal',
-                          value: 3
-                        }
+                          value: 3,
+                        },
                       ],
                       quasis: [
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: '1 ',
-                            raw: '1 '
+                            raw: '1 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 2 ',
-                            raw: ' 2 '
+                            raw: ' 2 ',
                           },
-                          tail: false
+                          tail: false,
                         },
                         {
                           type: 'TemplateElement',
                           value: {
                             cooked: ' 4',
-                            raw: ' 4'
+                            raw: ' 4',
                           },
-                          tail: true
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          tail: true,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '`foo${bar}baz`',
@@ -3483,31 +3483,31 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'foo',
-                    raw: 'foo'
+                    raw: 'foo',
                   },
-                  tail: false
+                  tail: false,
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: 'baz',
-                    raw: 'baz'
+                    raw: 'baz',
                   },
-                  tail: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  tail: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'tagA`a`\ntagB`b`',
@@ -3529,13 +3529,13 @@ describe('Expressions - Template', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 4
-                  }
-                }
+                    column: 4,
+                  },
+                },
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -3545,7 +3545,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'a',
-                      raw: 'a'
+                      raw: 'a',
                     },
                     tail: true,
                     start: 5,
@@ -3554,14 +3554,14 @@ describe('Expressions - Template', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 6
-                      }
-                    }
-                  }
+                        column: 6,
+                      },
+                    },
+                  },
                 ],
                 start: 4,
                 end: 7,
@@ -3569,13 +3569,13 @@ describe('Expressions - Template', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 7
-                  }
-                }
+                    column: 7,
+                  },
+                },
               },
               start: 0,
               end: 7,
@@ -3583,13 +3583,13 @@ describe('Expressions - Template', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 7
-                }
-              }
+                  column: 7,
+                },
+              },
             },
             start: 0,
             end: 7,
@@ -3597,13 +3597,13 @@ describe('Expressions - Template', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 7
-              }
-            }
+                column: 7,
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -3618,13 +3618,13 @@ describe('Expressions - Template', () => {
                 loc: {
                   start: {
                     line: 2,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 2,
-                    column: 4
-                  }
-                }
+                    column: 4,
+                  },
+                },
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -3634,7 +3634,7 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: 'b',
-                      raw: 'b'
+                      raw: 'b',
                     },
                     tail: true,
                     start: 13,
@@ -3643,14 +3643,14 @@ describe('Expressions - Template', () => {
                     loc: {
                       start: {
                         line: 2,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 2,
-                        column: 6
-                      }
-                    }
-                  }
+                        column: 6,
+                      },
+                    },
+                  },
                 ],
                 start: 12,
                 end: 15,
@@ -3658,13 +3658,13 @@ describe('Expressions - Template', () => {
                 loc: {
                   start: {
                     line: 2,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 2,
-                    column: 7
-                  }
-                }
+                    column: 7,
+                  },
+                },
               },
               start: 8,
               end: 15,
@@ -3672,13 +3672,13 @@ describe('Expressions - Template', () => {
               loc: {
                 start: {
                   line: 2,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 2,
-                  column: 7
-                }
-              }
+                  column: 7,
+                },
+              },
             },
             start: 8,
             end: 15,
@@ -3686,14 +3686,14 @@ describe('Expressions - Template', () => {
             loc: {
               start: {
                 line: 2,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 2,
-                column: 7
-              }
-            }
-          }
+                column: 7,
+              },
+            },
+          },
         ],
         start: 0,
         end: 15,
@@ -3701,14 +3701,14 @@ describe('Expressions - Template', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 2,
-            column: 7
-          }
-        }
-      }
+            column: 7,
+          },
+        },
+      },
     ],
     [
       '`${b()}${c()}`',
@@ -3733,13 +3733,13 @@ describe('Expressions - Template', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 3
+                        column: 3,
                       },
                       end: {
                         line: 1,
-                        column: 4
-                      }
-                    }
+                        column: 4,
+                      },
+                    },
                   },
                   arguments: [],
                   start: 3,
@@ -3748,13 +3748,13 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 3
+                      column: 3,
                     },
                     end: {
                       line: 1,
-                      column: 6
-                    }
-                  }
+                      column: 6,
+                    },
+                  },
                 },
                 {
                   type: 'CallExpression',
@@ -3767,13 +3767,13 @@ describe('Expressions - Template', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 9
+                        column: 9,
                       },
                       end: {
                         line: 1,
-                        column: 10
-                      }
-                    }
+                        column: 10,
+                      },
+                    },
                   },
                   arguments: [],
                   start: 9,
@@ -3782,21 +3782,21 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 9
+                      column: 9,
                     },
                     end: {
                       line: 1,
-                      column: 12
-                    }
-                  }
-                }
+                      column: 12,
+                    },
+                  },
+                },
               ],
               quasis: [
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
                   tail: false,
                   start: 1,
@@ -3805,19 +3805,19 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 1
+                      column: 1,
                     },
                     end: {
                       line: 1,
-                      column: 1
-                    }
-                  }
+                      column: 1,
+                    },
+                  },
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
                   tail: false,
                   start: 7,
@@ -3826,19 +3826,19 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 7
+                      column: 7,
                     },
                     end: {
                       line: 1,
-                      column: 7
-                    }
-                  }
+                      column: 7,
+                    },
+                  },
                 },
                 {
                   type: 'TemplateElement',
                   value: {
                     cooked: '',
-                    raw: ''
+                    raw: '',
                   },
                   tail: true,
                   start: 13,
@@ -3847,14 +3847,14 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 13
+                      column: 13,
                     },
                     end: {
                       line: 1,
-                      column: 13
-                    }
-                  }
-                }
+                      column: 13,
+                    },
+                  },
+                },
               ],
               start: 0,
               end: 14,
@@ -3862,13 +3862,13 @@ describe('Expressions - Template', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
-              }
+                  column: 14,
+                },
+              },
             },
             start: 0,
             end: 14,
@@ -3876,14 +3876,14 @@ describe('Expressions - Template', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 14
-              }
-            }
-          }
+                column: 14,
+              },
+            },
+          },
         ],
         start: 0,
         end: 14,
@@ -3891,14 +3891,14 @@ describe('Expressions - Template', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 14
-          }
-        }
-      }
+            column: 14,
+          },
+        },
+      },
     ],
     [
       'function a() {\nreturn `1234${b}`;\n}\n',
@@ -3918,13 +3918,13 @@ describe('Expressions - Template', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             params: [],
             body: {
@@ -3944,21 +3944,21 @@ describe('Expressions - Template', () => {
                         loc: {
                           start: {
                             line: 2,
-                            column: 14
+                            column: 14,
                           },
                           end: {
                             line: 2,
-                            column: 15
-                          }
-                        }
-                      }
+                            column: 15,
+                          },
+                        },
+                      },
                     ],
                     quasis: [
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '1234',
-                          raw: '1234'
+                          raw: '1234',
                         },
                         tail: false,
                         start: 23,
@@ -3967,19 +3967,19 @@ describe('Expressions - Template', () => {
                         loc: {
                           start: {
                             line: 2,
-                            column: 8
+                            column: 8,
                           },
                           end: {
                             line: 2,
-                            column: 12
-                          }
-                        }
+                            column: 12,
+                          },
+                        },
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '',
-                          raw: ''
+                          raw: '',
                         },
                         tail: true,
                         start: 31,
@@ -3988,14 +3988,14 @@ describe('Expressions - Template', () => {
                         loc: {
                           start: {
                             line: 2,
-                            column: 16
+                            column: 16,
                           },
                           end: {
                             line: 2,
-                            column: 16
-                          }
-                        }
-                      }
+                            column: 16,
+                          },
+                        },
+                      },
                     ],
                     start: 22,
                     end: 32,
@@ -4003,13 +4003,13 @@ describe('Expressions - Template', () => {
                     loc: {
                       start: {
                         line: 2,
-                        column: 7
+                        column: 7,
                       },
                       end: {
                         line: 2,
-                        column: 17
-                      }
-                    }
+                        column: 17,
+                      },
+                    },
                   },
                   start: 15,
                   end: 33,
@@ -4017,14 +4017,14 @@ describe('Expressions - Template', () => {
                   loc: {
                     start: {
                       line: 2,
-                      column: 0
+                      column: 0,
                     },
                     end: {
                       line: 2,
-                      column: 18
-                    }
-                  }
-                }
+                      column: 18,
+                    },
+                  },
+                },
               ],
               start: 13,
               end: 35,
@@ -4032,13 +4032,13 @@ describe('Expressions - Template', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 13
+                  column: 13,
                 },
                 end: {
                   line: 3,
-                  column: 1
-                }
-              }
+                  column: 1,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -4048,14 +4048,14 @@ describe('Expressions - Template', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 3,
-                column: 1
-              }
-            }
-          }
+                column: 1,
+              },
+            },
+          },
         ],
         start: 0,
         end: 36,
@@ -4063,14 +4063,14 @@ describe('Expressions - Template', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 4,
-            column: 0
-          }
-        }
-      }
+            column: 0,
+          },
+        },
+      },
     ],
     [
       "tag()`'\\00a0'`;",
@@ -4087,28 +4087,28 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 arguments: [],
                 callee: {
                   name: 'tag',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       "tag('a')`'\\00a0'`;",
@@ -4125,33 +4125,33 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 arguments: [
                   {
                     type: 'Literal',
-                    value: 'a'
-                  }
+                    value: 'a',
+                  },
                 ],
                 callee: {
                   name: 'tag',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       "tag('a')('b')`'\\00a0'`;",
@@ -4168,42 +4168,42 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 arguments: [
                   {
                     type: 'Literal',
-                    value: 'b'
-                  }
+                    value: 'b',
+                  },
                 ],
                 callee: {
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 'a'
-                    }
+                      value: 'a',
+                    },
                   ],
                   callee: {
                     name: 'tag',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       "tag()(...a)`'\\00a0'`;",
@@ -4220,40 +4220,40 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 arguments: [
                   {
                     argument: {
                       name: 'a',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'SpreadElement'
-                  }
+                    type: 'SpreadElement',
+                  },
                 ],
                 callee: {
                   arguments: [],
                   callee: {
                     name: 'tag',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       "tag('a')(b)(c, ...d)`'\\00a0'`;",
@@ -4270,58 +4270,58 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 arguments: [
                   {
                     name: 'c',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   {
                     argument: {
                       name: 'd',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'SpreadElement'
-                  }
+                    type: 'SpreadElement',
+                  },
                 ],
                 callee: {
                   arguments: [
                     {
                       name: 'b',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   callee: {
                     arguments: [
                       {
                         type: 'Literal',
-                        value: 'a'
-                      }
+                        value: 'a',
+                      },
                     ],
                     callee: {
                       name: 'tag',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'CallExpression'
+                    type: 'CallExpression',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'CallExpression'
+                type: 'CallExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       "(tag = () => {})`'\\00a0'`",
@@ -4338,39 +4338,39 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: String.raw`'\00a0'`
-                    }
-                  }
+                      raw: String.raw`'\00a0'`,
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 left: {
                   name: 'tag',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '=',
                 right: {
                   async: false,
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   expression: false,
                   params: [],
                   type: 'ArrowFunctionExpression',
-                  generator: false
+                  generator: false,
                 },
-                type: 'AssignmentExpression'
+                type: 'AssignmentExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
@@ -4387,32 +4387,32 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       cooked: null,
-                      raw: '{\rtf1adeflang1025ansiansicpg1252\\uc1'
-                    }
-                  }
+                      raw: '{\rtf1adeflang1025ansiansicpg1252\\uc1',
+                    },
+                  },
                 ],
-                type: 'TemplateLiteral'
+                type: 'TemplateLiteral',
               },
               tag: {
                 computed: false,
                 object: {
                   name: 'String',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 property: {
                   name: 'raw',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'MemberExpression'
+                type: 'MemberExpression',
               },
-              type: 'TaggedTemplateExpression'
+              type: 'TaggedTemplateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'test`\\u{0`',
@@ -4427,7 +4427,7 @@ describe('Expressions - Template', () => {
               type: 'TaggedTemplateExpression',
               tag: {
                 type: 'Identifier',
-                name: 'test'
+                name: 'test',
               },
               quasi: {
                 type: 'TemplateLiteral',
@@ -4437,16 +4437,16 @@ describe('Expressions - Template', () => {
                     type: 'TemplateElement',
                     value: {
                       raw: String.raw`\u{0`,
-                      cooked: null
+                      cooked: null,
                     },
-                    tail: true
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
-    ]
+                    tail: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

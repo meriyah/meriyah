@@ -9,7 +9,7 @@ export const enum CommentType {
   Multi,
   HTMLOpen,
   HTMLClose,
-  HashBang
+  HashBang,
 }
 
 export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
@@ -33,7 +33,7 @@ export function skipHashBang(parser: ParserState): void {
       CommentType.HashBang,
       parser.tokenIndex,
       parser.tokenLine,
-      parser.tokenColumn
+      parser.tokenColumn,
     );
   }
 }
@@ -46,7 +46,7 @@ export function skipSingleHTMLComment(
   type: CommentType,
   start: number,
   line: number,
-  column: number
+  column: number,
 ): LexerState {
   if (context & Context.Module) report(parser, Errors.Unexpected);
   return skipSingleLineComment(parser, source, state, type, start, line, column);
@@ -65,7 +65,7 @@ export function skipSingleLineComment(
   type: CommentType,
   start: number,
   line: number,
-  column: number
+  column: number,
 ): LexerState {
   const { index } = parser;
   parser.tokenIndex = parser.index;
@@ -91,12 +91,12 @@ export function skipSingleLineComment(
     const loc = {
       start: {
         line,
-        column
+        column,
       },
       end: {
         line: parser.tokenLine,
-        column: parser.tokenColumn
-      }
+        column: parser.tokenColumn,
+      },
     };
     // For Single, start before "//",
     // For HTMLOpen, start before "<!--",
@@ -128,19 +128,19 @@ export function skipMultiLineComment(parser: ParserState, source: string, state:
             const loc = {
               start: {
                 line: parser.tokenLine,
-                column: parser.tokenColumn
+                column: parser.tokenColumn,
               },
               end: {
                 line: parser.line,
-                column: parser.column
-              }
+                column: parser.column,
+              },
             };
             parser.onComment(
               CommentTypes[CommentType.Multi & 0xff],
               source.slice(index, parser.index - 2),
               index - 2, // start before '/*'
               parser.index, // end after '*/'
-              loc
+              loc,
             );
           }
           parser.tokenIndex = parser.index;

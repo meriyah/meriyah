@@ -13,13 +13,13 @@ describe('lexer - privatename', () => {
         {
           token,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: opts.token,
           value: opts.value,
-          index: opts.index
-        }
+          index: opts.index,
+        },
       );
     });
   }
@@ -30,7 +30,7 @@ describe('lexer - privatename', () => {
     token: Token.PrivateField,
     value: '',
     newline: false,
-    index: 1
+    index: 1,
   });
 
   function fail(name: string, source: string, context: Context) {

@@ -20,7 +20,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
   parser.setToken(
     CharTypes[parser.currentChar] & CharFlags.StringLiteral
       ? scanJSXString(parser, context)
-      : scanSingleToken(parser, context, LexerState.None)
+      : scanSingleToken(parser, context, LexerState.None),
   );
   return parser.getToken();
 }

@@ -16,7 +16,7 @@ describe('Miscellaneous - Unicode', () => {
     String.raw`var foob\v1234r = 0;`,
     String.raw`var foob\U1234r = 0;`,
     String.raw`var foob\v{1234}r = 0;`,
-    String.raw`var foob\U{1234}r = 0;`
+    String.raw`var foob\U{1234}r = 0;`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -32,7 +32,7 @@ describe('Miscellaneous - Unicode', () => {
     String.raw`var \u{52}oo = 0;`,
     String.raw`var foob\uc481r = 0;`,
     String.raw`var foob\u{c481}r = 0;`,
-    String.raw`foob\uc481r`
+    String.raw`foob\uc481r`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

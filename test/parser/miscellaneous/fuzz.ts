@@ -276,7 +276,7 @@ describe('Miscellaneous - Fuzz', () => {
     `a`,
     `a`,
     `a`,
-    `a`
+    `a`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

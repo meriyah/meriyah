@@ -5,7 +5,7 @@ describe('Statements - Return', () => {
   fail('Statements - Return (fail)', [
     ['return', Context.None],
     ['() => return', Context.None],
-    ['*() => {return}', Context.None]
+    ['*() => {return}', Context.None],
   ]);
 
   pass('Statements - Return (pass)', [
@@ -28,7 +28,7 @@ describe('Statements - Return', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: false,
@@ -55,31 +55,31 @@ describe('Statements - Return', () => {
                         start: 22,
                         end: 23,
                         range: [22, 23],
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
                         start: 25,
                         end: 26,
                         range: [25, 26],
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
                         start: 28,
                         end: 29,
                         range: [28, 29],
-                        name: 'c'
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                        name: 'c',
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x => {return}',
@@ -98,23 +98,23 @@ describe('Statements - Return', () => {
                 body: [
                   {
                     type: 'ReturnStatement',
-                    argument: null
-                  }
-                ]
+                    argument: null,
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, b) => {return}',
@@ -133,27 +133,27 @@ describe('Statements - Return', () => {
                 body: [
                   {
                     type: 'ReturnStatement',
-                    argument: null
-                  }
-                ]
+                    argument: null,
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               ],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { return }',
@@ -170,20 +170,20 @@ describe('Statements - Return', () => {
               body: [
                 {
                   type: 'ReturnStatement',
-                  argument: null
-                }
-              ]
+                  argument: null,
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '{return}',
@@ -194,15 +194,15 @@ describe('Statements - Return', () => {
             body: [
               {
                 argument: null,
-                type: 'ReturnStatement'
-              }
+                type: 'ReturnStatement',
+              },
             ],
-            type: 'BlockStatement'
-          }
+            type: 'BlockStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'function f(){   {return}    }',
@@ -222,22 +222,22 @@ describe('Statements - Return', () => {
                   body: [
                     {
                       type: 'ReturnStatement',
-                      argument: null
-                    }
-                  ]
-                }
-              ]
+                      argument: null,
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){   return 15;    }',
@@ -256,21 +256,21 @@ describe('Statements - Return', () => {
                   type: 'ReturnStatement',
                   argument: {
                     type: 'Literal',
-                    value: 15
-                  }
-                }
-              ]
+                    value: 15,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { return }',
@@ -287,20 +287,20 @@ describe('Statements - Return', () => {
               body: [
                 {
                   type: 'ReturnStatement',
-                  argument: null
-                }
-              ]
+                  argument: null,
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f(){ return; }',
@@ -317,20 +317,20 @@ describe('Statements - Return', () => {
               body: [
                 {
                   type: 'ReturnStatement',
-                  argument: null
-                }
-              ]
+                  argument: null,
+                },
+              ],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { constructor(){ return }}',
@@ -343,7 +343,7 @@ describe('Statements - Return', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -356,7 +356,7 @@ describe('Statements - Return', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -366,20 +366,20 @@ describe('Statements - Return', () => {
                       body: [
                         {
                           type: 'ReturnStatement',
-                          argument: null
-                        }
-                      ]
+                          argument: null,
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x {foo(){ return }}',
@@ -392,7 +392,7 @@ describe('Statements - Return', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -405,7 +405,7 @@ describe('Statements - Return', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -415,20 +415,20 @@ describe('Statements - Return', () => {
                       body: [
                         {
                           type: 'ReturnStatement',
-                          argument: null
-                        }
-                      ]
+                          argument: null,
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '() => {return}',
@@ -447,18 +447,18 @@ describe('Statements - Return', () => {
                 body: [
                   {
                     type: 'ReturnStatement',
-                    argument: null
-                  }
-                ]
+                    argument: null,
+                  },
+                ],
               },
               params: [],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){   return;return    };',
@@ -475,27 +475,27 @@ describe('Statements - Return', () => {
               body: [
                 {
                   type: 'ReturnStatement',
-                  argument: null
+                  argument: null,
                 },
                 {
                   type: 'ReturnStatement',
-                  argument: null
-                }
-              ]
+                  argument: null,
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
+              name: 'f',
+            },
           },
           {
-            type: 'EmptyStatement'
-          }
-        ]
-      }
+            type: 'EmptyStatement',
+          },
+        ],
+      },
     ],
     [
       'function f(){   return\nreturn   }',
@@ -508,28 +508,28 @@ describe('Statements - Return', () => {
               body: [
                 {
                   argument: null,
-                  type: 'ReturnStatement'
+                  type: 'ReturnStatement',
                 },
                 {
                   argument: null,
-                  type: 'ReturnStatement'
-                }
+                  type: 'ReturnStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'f',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `//
@@ -545,27 +545,27 @@ describe('Statements - Return', () => {
               body: [
                 {
                   argument: null,
-                  type: 'ReturnStatement'
-                }
+                  type: 'ReturnStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
-            type: 'EmptyStatement'
-          }
+            type: 'EmptyStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'function a(x) { return x+y; }',
@@ -585,13 +585,13 @@ describe('Statements - Return', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 10
-                }
-              }
+                  column: 10,
+                },
+              },
             },
             params: [
               {
@@ -603,14 +603,14 @@ describe('Statements - Return', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 12
-                  }
-                }
-              }
+                    column: 12,
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -628,13 +628,13 @@ describe('Statements - Return', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 23
+                          column: 23,
                         },
                         end: {
                           line: 1,
-                          column: 24
-                        }
-                      }
+                          column: 24,
+                        },
+                      },
                     },
                     right: {
                       type: 'Identifier',
@@ -645,13 +645,13 @@ describe('Statements - Return', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 25
+                          column: 25,
                         },
                         end: {
                           line: 1,
-                          column: 26
-                        }
-                      }
+                          column: 26,
+                        },
+                      },
                     },
                     operator: '+',
                     start: 23,
@@ -660,13 +660,13 @@ describe('Statements - Return', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 23
+                        column: 23,
                       },
                       end: {
                         line: 1,
-                        column: 26
-                      }
-                    }
+                        column: 26,
+                      },
+                    },
                   },
                   start: 16,
                   end: 27,
@@ -674,14 +674,14 @@ describe('Statements - Return', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 16
+                      column: 16,
                     },
                     end: {
                       line: 1,
-                      column: 27
-                    }
-                  }
-                }
+                      column: 27,
+                    },
+                  },
+                },
               ],
               start: 14,
               end: 29,
@@ -689,13 +689,13 @@ describe('Statements - Return', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 14
+                  column: 14,
                 },
                 end: {
                   line: 1,
-                  column: 29
-                }
-              }
+                  column: 29,
+                },
+              },
             },
             async: false,
             generator: false,
@@ -705,14 +705,14 @@ describe('Statements - Return', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 29
-              }
-            }
-          }
+                column: 29,
+              },
+            },
+          },
         ],
         start: 0,
         end: 29,
@@ -720,14 +720,14 @@ describe('Statements - Return', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 29
-          }
-        }
-      }
-    ]
+            column: 29,
+          },
+        },
+      },
+    ],
   ]);
 });

@@ -58,7 +58,7 @@ describe('Next - Decorators', () => {
     `class A { @dec accessor x = 1}`,
     `(class { @a.b accessor = 1})`,
     `(class { @dec accessor x})`,
-    `(class { @dec accessor x = 1})`
+    `(class { @dec accessor x = 1})`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -102,7 +102,7 @@ describe('Next - Decorators', () => {
     ['(@bar const foo = 1);', Context.OptionsNext],
     ['(@bar function foo() {})', Context.OptionsNext],
     ['@bar;', Context.OptionsNext],
-    ['@bar();', Context.OptionsNext]
+    ['@bar();', Context.OptionsNext],
   ]);
 
   pass('Next - Decorators (pass)', [
@@ -121,7 +121,7 @@ describe('Next - Decorators', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 7 } }
+              loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 7 } },
             },
             superClass: null,
             decorators: [],
@@ -136,7 +136,7 @@ describe('Next - Decorators', () => {
                     start: 15,
                     end: 19,
                     range: [15, 19],
-                    loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 19 } }
+                    loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 19 } },
                   },
                   value: {
                     type: 'Literal',
@@ -144,7 +144,7 @@ describe('Next - Decorators', () => {
                     start: 22,
                     end: 23,
                     range: [22, 23],
-                    loc: { start: { line: 1, column: 22 }, end: { line: 1, column: 23 } }
+                    loc: { start: { line: 1, column: 22 }, end: { line: 1, column: 23 } },
                   },
                   static: false,
                   computed: false,
@@ -157,36 +157,36 @@ describe('Next - Decorators', () => {
                         start: 11,
                         end: 14,
                         range: [11, 14],
-                        loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 14 } }
+                        loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 14 } },
                       },
                       start: 10,
                       end: 14,
                       range: [10, 14],
-                      loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 14 } }
-                    }
+                      loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 14 } },
+                    },
                   ],
                   start: 15,
                   end: 24,
                   range: [15, 24],
-                  loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 24 } }
-                }
+                  loc: { start: { line: 1, column: 15 }, end: { line: 1, column: 24 } },
+                },
               ],
               start: 8,
               end: 26,
               range: [8, 26],
-              loc: { start: { line: 1, column: 8 }, end: { line: 1, column: 26 } }
+              loc: { start: { line: 1, column: 8 }, end: { line: 1, column: 26 } },
             },
             start: 0,
             end: 26,
             range: [0, 26],
-            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } },
+          },
         ],
         start: 0,
         end: 26,
         range: [0, 26],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 26 } },
+      },
     ],
     [
       `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`,
@@ -199,7 +199,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -209,7 +209,7 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'prop'
+                    name: 'prop',
                   },
                   value: null,
                   computed: false,
@@ -219,24 +219,24 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'deco'
-                      }
-                    }
-                  ]
+                        name: 'deco',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   computed: false,
                   static: false,
-                  decorators: []
+                  decorators: [],
                 },
                 {
                   type: 'MethodDefinition',
@@ -245,7 +245,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'test'
+                    name: 'test',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -258,29 +258,29 @@ describe('Next - Decorators', () => {
                           expression: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'foo'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'foo',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
-                  decorators: []
-                }
-              ]
+                  decorators: [],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
+            decorators: [],
+          },
+        ],
+      },
     ],
     [
       `(class A { @foo get getter(){} })`,
@@ -297,14 +297,14 @@ describe('Next - Decorators', () => {
                       {
                         expression: {
                           name: 'foo',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
-                        type: 'Decorator'
-                      }
+                        type: 'Decorator',
+                      },
                     ],
                     key: {
                       name: 'getter',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     kind: 'get',
                     static: false,
@@ -313,31 +313,31 @@ describe('Next - Decorators', () => {
                       async: false,
                       body: {
                         body: [],
-                        type: 'BlockStatement'
+                        type: 'BlockStatement',
                       },
                       generator: false,
                       id: null,
                       params: [],
-                      type: 'FunctionExpression'
-                    }
-                  }
+                      type: 'FunctionExpression',
+                    },
+                  },
                 ],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [],
               id: {
                 name: 'A',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassExpression'
+              type: 'ClassExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `export default @id class Sample {
@@ -357,7 +357,7 @@ describe('Next - Decorators', () => {
                     decorators: [],
                     key: {
                       name: 'method',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     kind: 'method',
                     static: false,
@@ -369,50 +369,50 @@ describe('Next - Decorators', () => {
                           {
                             body: {
                               body: [],
-                              type: 'ClassBody'
+                              type: 'ClassBody',
                             },
                             decorators: [],
                             id: {
                               name: 'Child',
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
                             superClass: null,
-                            type: 'ClassDeclaration'
-                          }
+                            type: 'ClassDeclaration',
+                          },
                         ],
-                        type: 'BlockStatement'
+                        type: 'BlockStatement',
                       },
                       generator: false,
                       id: null,
                       params: [],
-                      type: 'FunctionExpression'
-                    }
-                  }
+                      type: 'FunctionExpression',
+                    },
+                  },
                 ],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [
                 {
                   expression: {
                     name: 'id',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'Decorator'
-                }
+                  type: 'Decorator',
+                },
               ],
               id: {
                 name: 'Sample',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@bar export default
@@ -432,7 +432,7 @@ describe('Next - Decorators', () => {
                 start: 36,
                 end: 39,
                 range: [36, 39],
-                loc: { start: { line: 2, column: 16 }, end: { line: 2, column: 19 } }
+                loc: { start: { line: 2, column: 16 }, end: { line: 2, column: 19 } },
               },
               superClass: null,
               decorators: [
@@ -444,13 +444,13 @@ describe('Next - Decorators', () => {
                     start: 1,
                     end: 4,
                     range: [1, 4],
-                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 4 } }
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 4 } },
                   },
                   start: 0,
                   end: 4,
                   range: [0, 4],
-                  loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 4 } }
-                }
+                  loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 4 } },
+                },
               ],
               body: {
                 type: 'ClassBody',
@@ -458,24 +458,24 @@ describe('Next - Decorators', () => {
                 start: 40,
                 end: 43,
                 range: [40, 43],
-                loc: { start: { line: 2, column: 20 }, end: { line: 2, column: 23 } }
+                loc: { start: { line: 2, column: 20 }, end: { line: 2, column: 23 } },
               },
               start: 30,
               end: 43,
               range: [30, 43],
-              loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 23 } }
+              loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 23 } },
             },
             start: 5,
             end: 43,
             range: [5, 43],
-            loc: { start: { line: 1, column: 5 }, end: { line: 2, column: 23 } }
-          }
+            loc: { start: { line: 1, column: 5 }, end: { line: 2, column: 23 } },
+          },
         ],
         start: 0,
         end: 43,
         range: [0, 43],
-        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 23 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 23 } },
+      },
     ],
     [
       `export default
@@ -495,7 +495,7 @@ describe('Next - Decorators', () => {
                 start: 36,
                 end: 39,
                 range: [36, 39],
-                loc: { start: { line: 2, column: 21 }, end: { line: 2, column: 24 } }
+                loc: { start: { line: 2, column: 21 }, end: { line: 2, column: 24 } },
               },
               superClass: null,
               decorators: [
@@ -507,13 +507,13 @@ describe('Next - Decorators', () => {
                     start: 26,
                     end: 29,
                     range: [26, 29],
-                    loc: { start: { line: 2, column: 11 }, end: { line: 2, column: 14 } }
+                    loc: { start: { line: 2, column: 11 }, end: { line: 2, column: 14 } },
                   },
                   start: 25,
                   end: 29,
                   range: [25, 29],
-                  loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 14 } }
-                }
+                  loc: { start: { line: 2, column: 10 }, end: { line: 2, column: 14 } },
+                },
               ],
               body: {
                 type: 'ClassBody',
@@ -521,24 +521,24 @@ describe('Next - Decorators', () => {
                 start: 40,
                 end: 43,
                 range: [40, 43],
-                loc: { start: { line: 2, column: 25 }, end: { line: 2, column: 28 } }
+                loc: { start: { line: 2, column: 25 }, end: { line: 2, column: 28 } },
               },
               start: 30,
               end: 43,
               range: [30, 43],
-              loc: { start: { line: 2, column: 15 }, end: { line: 2, column: 28 } }
+              loc: { start: { line: 2, column: 15 }, end: { line: 2, column: 28 } },
             },
             start: 0,
             end: 43,
             range: [0, 43],
-            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } },
+          },
         ],
         start: 0,
         end: 43,
         range: [0, 43],
-        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 28 } },
+      },
     ],
     [
       `export default @bar
@@ -550,30 +550,30 @@ describe('Next - Decorators', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [
                 {
                   expression: {
                     name: 'bar',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'Decorator'
-                }
+                  type: 'Decorator',
+                },
               ],
               id: {
                 name: 'Foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@lo export default @bar
@@ -585,37 +585,37 @@ describe('Next - Decorators', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [
                 {
                   expression: {
                     name: 'lo',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'Decorator'
+                  type: 'Decorator',
                 },
                 {
                   expression: {
                     name: 'bar',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'Decorator'
-                }
+                  type: 'Decorator',
+                },
               ],
               id: {
                 name: 'Foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassDeclaration'
+              type: 'ClassDeclaration',
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@pushElement({
@@ -633,7 +633,7 @@ describe('Next - Decorators', () => {
           {
             body: {
               body: [],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [
               {
@@ -645,7 +645,7 @@ describe('Next - Decorators', () => {
                           computed: false,
                           key: {
                             name: 'kind',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           kind: 'init',
                           method: false,
@@ -653,14 +653,14 @@ describe('Next - Decorators', () => {
                           type: 'Property',
                           value: {
                             type: 'Literal',
-                            value: 'initializer'
-                          }
+                            value: 'initializer',
+                          },
                         },
                         {
                           computed: false,
                           key: {
                             name: 'placement',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           kind: 'init',
                           method: false,
@@ -668,14 +668,14 @@ describe('Next - Decorators', () => {
                           type: 'Property',
                           value: {
                             type: 'Literal',
-                            value: 'own'
-                          }
+                            value: 'own',
+                          },
                         },
                         {
                           computed: false,
                           key: {
                             name: 'initializer',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           kind: 'init',
                           method: true,
@@ -689,60 +689,60 @@ describe('Next - Decorators', () => {
                                   expression: {
                                     left: {
                                       name: 'self',
-                                      type: 'Identifier'
+                                      type: 'Identifier',
                                     },
                                     operator: '=',
                                     right: {
-                                      type: 'ThisExpression'
+                                      type: 'ThisExpression',
                                     },
-                                    type: 'AssignmentExpression'
+                                    type: 'AssignmentExpression',
                                   },
-                                  type: 'ExpressionStatement'
-                                }
+                                  type: 'ExpressionStatement',
+                                },
                               ],
-                              type: 'BlockStatement'
+                              type: 'BlockStatement',
                             },
                             generator: false,
                             id: null,
                             params: [],
-                            type: 'FunctionExpression'
-                          }
-                        }
+                            type: 'FunctionExpression',
+                          },
+                        },
                       ],
-                      type: 'ObjectExpression'
-                    }
+                      type: 'ObjectExpression',
+                    },
                   ],
                   callee: {
                     name: 'pushElement',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'Decorator'
-              }
+                type: 'Decorator',
+              },
             ],
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            type: 'ClassDeclaration',
           },
           {
             expression: {
               arguments: [],
               callee: {
                 name: 'A',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'NewExpression'
+              type: 'NewExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@decorator
@@ -762,7 +762,7 @@ describe('Next - Decorators', () => {
                   decorators: [],
                   key: {
                     name: 'f1',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -771,20 +771,20 @@ describe('Next - Decorators', () => {
                     async: true,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: false,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
                   decorators: [],
                   key: {
                     name: 'f2',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -793,20 +793,20 @@ describe('Next - Decorators', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
+                    type: 'FunctionExpression',
+                  },
                 },
                 {
                   computed: false,
                   decorators: [],
                   key: {
                     name: 'f3',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -815,37 +815,37 @@ describe('Next - Decorators', () => {
                     async: true,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [
               {
                 expression: {
                   name: 'decorator',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'Decorator'
-              }
+                type: 'Decorator',
+              },
             ],
             id: {
               name: 'Foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `export default (@decorator class Foo {})`,
@@ -856,30 +856,30 @@ describe('Next - Decorators', () => {
             declaration: {
               body: {
                 body: [],
-                type: 'ClassBody'
+                type: 'ClassBody',
               },
               decorators: [
                 {
                   expression: {
                     name: 'decorator',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'Decorator'
-                }
+                  type: 'Decorator',
+                },
               ],
               id: {
                 name: 'Foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               superClass: null,
-              type: 'ClassExpression'
+              type: 'ClassExpression',
             },
-            type: 'ExportDefaultDeclaration'
-          }
+            type: 'ExportDefaultDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class Foo {
@@ -897,14 +897,14 @@ describe('Next - Decorators', () => {
                     {
                       expression: {
                         name: 'A',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
-                      type: 'Decorator'
-                    }
+                      type: 'Decorator',
+                    },
                   ],
                   key: {
                     name: 'b',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -913,29 +913,29 @@ describe('Next - Decorators', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             id: {
               name: 'Foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `function deco() {}
@@ -951,16 +951,16 @@ describe('Next - Decorators', () => {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'deco',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
+            type: 'FunctionDeclaration',
           },
           {
             body: {
@@ -971,14 +971,14 @@ describe('Next - Decorators', () => {
                     {
                       expression: {
                         name: 'deco',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
-                      type: 'Decorator'
-                    }
+                      type: 'Decorator',
+                    },
                   ],
                   key: {
                     name: 'generatorMethod',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   kind: 'method',
                   static: false,
@@ -987,29 +987,29 @@ describe('Next - Decorators', () => {
                     async: false,
                     body: {
                       body: [],
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     generator: true,
                     id: null,
                     params: [],
-                    type: 'FunctionExpression'
-                  }
-                }
+                    type: 'FunctionExpression',
+                  },
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             id: {
               name: 'Foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`,
@@ -1019,46 +1019,46 @@ describe('Next - Decorators', () => {
           {
             body: {
               body: [],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [
               {
                 expression: {
                   name: 'deco1',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'Decorator'
+                type: 'Decorator',
               },
               {
                 expression: {
                   arguments: [],
                   callee: {
                     name: 'deco2',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'Decorator'
+                type: 'Decorator',
               },
               {
                 expression: {
                   arguments: [
                     {
                       name: 'foo',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     {
                       name: 'bar',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   callee: {
                     name: 'deco3',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'Decorator'
+                type: 'Decorator',
               },
               {
                 expression: {
@@ -1069,7 +1069,7 @@ describe('Next - Decorators', () => {
                           computed: false,
                           key: {
                             name: 'foo',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           kind: 'init',
                           method: false,
@@ -1077,14 +1077,14 @@ describe('Next - Decorators', () => {
                           type: 'Property',
                           value: {
                             name: 'foo',
-                            type: 'Identifier'
-                          }
+                            type: 'Identifier',
+                          },
                         },
                         {
                           computed: false,
                           key: {
                             name: 'bar',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           kind: 'init',
                           method: false,
@@ -1092,33 +1092,33 @@ describe('Next - Decorators', () => {
                           type: 'Property',
                           value: {
                             name: 'bar',
-                            type: 'Identifier'
-                          }
-                        }
+                            type: 'Identifier',
+                          },
+                        },
                       ],
-                      type: 'ObjectExpression'
-                    }
+                      type: 'ObjectExpression',
+                    },
                   ],
                   callee: {
                     name: 'deco4',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'Decorator'
-              }
+                type: 'Decorator',
+              },
             ],
             id: {
               name: 'Foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `@foo('bar')
@@ -1132,12 +1132,12 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             body: {
               type: 'ClassBody',
-              body: []
+              body: [],
             },
             decorators: [
               {
@@ -1146,20 +1146,20 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 'bar'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      value: 'bar',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `@foo('bar')
@@ -1173,12 +1173,12 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             body: {
               type: 'ClassBody',
-              body: []
+              body: [],
             },
             decorators: [
               {
@@ -1187,20 +1187,20 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 'bar'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      value: 'bar',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `(@foo('bar')
@@ -1220,7 +1220,7 @@ describe('Next - Decorators', () => {
                 start: 21,
                 end: 24,
                 range: [21, 24],
-                loc: { start: { line: 2, column: 8 }, end: { line: 2, column: 11 } }
+                loc: { start: { line: 2, column: 8 }, end: { line: 2, column: 11 } },
               },
               superClass: null,
               decorators: [
@@ -1234,7 +1234,7 @@ describe('Next - Decorators', () => {
                       start: 2,
                       end: 5,
                       range: [2, 5],
-                      loc: { start: { line: 1, column: 2 }, end: { line: 1, column: 5 } }
+                      loc: { start: { line: 1, column: 2 }, end: { line: 1, column: 5 } },
                     },
                     arguments: [
                       {
@@ -1243,19 +1243,19 @@ describe('Next - Decorators', () => {
                         start: 6,
                         end: 11,
                         range: [6, 11],
-                        loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 11 } }
-                      }
+                        loc: { start: { line: 1, column: 6 }, end: { line: 1, column: 11 } },
+                      },
                     ],
                     start: 1,
                     end: 12,
                     range: [1, 12],
-                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } }
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } },
                   },
                   start: 1,
                   end: 12,
                   range: [1, 12],
-                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } }
-                }
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 12 } },
+                },
               ],
               body: {
                 type: 'ClassBody',
@@ -1263,24 +1263,24 @@ describe('Next - Decorators', () => {
                 start: 25,
                 end: 27,
                 range: [25, 27],
-                loc: { start: { line: 2, column: 12 }, end: { line: 2, column: 14 } }
+                loc: { start: { line: 2, column: 12 }, end: { line: 2, column: 14 } },
               },
               start: 15,
               end: 27,
               range: [15, 27],
-              loc: { start: { line: 2, column: 2 }, end: { line: 2, column: 14 } }
+              loc: { start: { line: 2, column: 2 }, end: { line: 2, column: 14 } },
             },
             start: 0,
             end: 28,
             range: [0, 28],
-            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } },
+          },
         ],
         start: 0,
         end: 28,
         range: [0, 28],
-        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 15 } },
+      },
     ],
     [
       `(@foo('bar')
@@ -1296,7 +1296,7 @@ describe('Next - Decorators', () => {
               type: 'ClassExpression',
               id: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
               superClass: null,
               decorators: [
@@ -1306,25 +1306,25 @@ describe('Next - Decorators', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     arguments: [
                       {
                         type: 'Literal',
-                        value: 'bar'
-                      }
-                    ]
-                  }
-                }
+                        value: 'bar',
+                      },
+                    ],
+                  },
+                },
               ],
               body: {
                 type: 'ClassBody',
-                body: []
-              }
-            }
-          }
-        ]
-      }
+                body: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `class Foo {
@@ -1340,7 +1340,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             body: {
@@ -1353,35 +1353,35 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   decorators: [
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'dec'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'dec',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
+            decorators: [],
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -1401,7 +1401,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -1411,11 +1411,11 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   computed: false,
                   static: false,
@@ -1434,16 +1434,16 @@ describe('Next - Decorators', () => {
                                 type: 'AssignmentExpression',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'pn'
+                                  name: 'pn',
                                 },
                                 operator: '=',
                                 right: {
                                   type: 'Identifier',
-                                  name: 'key'
-                                }
-                              }
-                            }
-                          ]
+                                  name: 'key',
+                                },
+                              },
+                            },
+                          ],
                         },
                         params: [
                           {
@@ -1453,25 +1453,25 @@ describe('Next - Decorators', () => {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'key'
+                                  name: 'key',
                                 },
                                 value: {
                                   type: 'Identifier',
-                                  name: 'key'
+                                  name: 'key',
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: true
-                              }
-                            ]
-                          }
+                                shorthand: true,
+                              },
+                            ],
+                          },
                         ],
                         async: false,
-                        expression: false
-                      }
-                    }
-                  ]
+                        expression: false,
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'MethodDefinition',
@@ -1480,7 +1480,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'getX'
+                    name: 'getX',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1493,29 +1493,29 @@ describe('Next - Decorators', () => {
                           argument: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'x'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'x',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
-                  decorators: []
-                }
-              ]
+                  decorators: [],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
+            decorators: [],
+          },
+        ],
+      },
     ],
     [
       `@deco
@@ -1543,7 +1543,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [
@@ -1551,9 +1551,9 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'Identifier',
-                  name: 'deco'
-                }
-              }
+                  name: 'deco',
+                },
+              },
             ],
             body: {
               type: 'ClassBody',
@@ -1566,19 +1566,19 @@ describe('Next - Decorators', () => {
                   decorators: [],
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'get'
+                    name: 'get',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1588,24 +1588,24 @@ describe('Next - Decorators', () => {
                   decorators: [],
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'set'
+                    name: 'set',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: '_'
-                      }
+                        name: '_',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1615,19 +1615,19 @@ describe('Next - Decorators', () => {
                   decorators: [],
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'getset'
+                    name: 'getset',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1637,24 +1637,24 @@ describe('Next - Decorators', () => {
                   decorators: [],
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'getset'
+                    name: 'getset',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: '_'
-                      }
+                        name: '_',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1663,7 +1663,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'test'
+                    name: 'test',
                   },
                   decorators: [],
                   value: {
@@ -1677,14 +1677,14 @@ describe('Next - Decorators', () => {
                           expression: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'get'
-                            }
-                          }
+                              name: 'get',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1693,34 +1693,34 @@ describe('Next - Decorators', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'set'
-                              }
+                                name: 'set',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 2
-                            }
-                          }
+                              value: 2,
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'ThisExpression'
+                              type: 'ThisExpression',
                             },
                             computed: false,
                             property: {
                               type: 'PrivateIdentifier',
-                              name: 'getset'
-                            }
-                          }
+                              name: 'getset',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -1729,33 +1729,33 @@ describe('Next - Decorators', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'getset'
-                              }
+                                name: 'getset',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 2
-                            }
-                          }
-                        }
-                      ]
+                              value: 2,
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `@deco
@@ -1775,7 +1775,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [
@@ -1783,9 +1783,9 @@ describe('Next - Decorators', () => {
                 type: 'Decorator',
                 expression: {
                   type: 'Identifier',
-                  name: 'deco'
-                }
-              }
+                  name: 'deco',
+                },
+              },
             ],
             body: {
               type: 'ClassBody',
@@ -1798,19 +1798,19 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -1819,7 +1819,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'test'
+                    name: 'test',
                   },
                   decorators: [],
                   value: {
@@ -1836,29 +1836,29 @@ describe('Next - Decorators', () => {
                               type: 'MemberExpression',
                               object: {
                                 type: 'Identifier',
-                                name: 'A'
+                                name: 'A',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -1874,7 +1874,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [],
@@ -1885,7 +1885,7 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: null,
                   static: false,
@@ -1905,16 +1905,16 @@ describe('Next - Decorators', () => {
                                 type: 'AssignmentExpression',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'pn'
+                                  name: 'pn',
                                 },
                                 operator: '=',
                                 right: {
                                   type: 'Identifier',
-                                  name: 'key'
-                                }
-                              }
-                            }
-                          ]
+                                  name: 'key',
+                                },
+                              },
+                            },
+                          ],
                         },
                         params: [
                           {
@@ -1924,31 +1924,31 @@ describe('Next - Decorators', () => {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'key'
+                                  name: 'key',
                                 },
                                 value: {
                                   type: 'Identifier',
-                                  name: 'key'
+                                  name: 'key',
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: true
-                              }
-                            ]
-                          }
+                                shorthand: true,
+                              },
+                            ],
+                          },
                         ],
                         async: false,
-                        expression: false
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        expression: false,
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `function writable(w) {
@@ -1983,8 +1983,8 @@ describe('Next - Decorators', () => {
             params: [
               {
                 type: 'Identifier',
-                name: 'w'
-              }
+                name: 'w',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2007,54 +2007,54 @@ describe('Next - Decorators', () => {
                                 type: 'MemberExpression',
                                 object: {
                                   type: 'Identifier',
-                                  name: 'desc'
+                                  name: 'desc',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'descriptor'
-                                }
+                                  name: 'descriptor',
+                                },
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'writable'
-                              }
+                                name: 'writable',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Identifier',
-                              name: 'w'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'w',
+                            },
+                          },
+                        },
+                      ],
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'desc'
-                      }
+                        name: 'desc',
+                      },
                     ],
                     async: false,
-                    expression: false
-                  }
-                }
-              ]
+                    expression: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'writable'
-            }
+              name: 'writable',
+            },
           },
           {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2064,11 +2064,11 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   computed: false,
                   static: false,
@@ -2079,27 +2079,27 @@ describe('Next - Decorators', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'writable'
+                          name: 'writable',
                         },
                         arguments: [
                           {
                             type: 'Literal',
-                            value: false
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            value: false,
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   computed: false,
                   static: false,
@@ -2110,15 +2110,15 @@ describe('Next - Decorators', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'writable'
+                          name: 'writable',
                         },
                         arguments: [
                           {
                             type: 'Literal',
-                            value: true
-                          }
-                        ]
-                      }
+                            value: true,
+                          },
+                        ],
+                      },
                     },
                     {
                       type: 'Decorator',
@@ -2126,17 +2126,17 @@ describe('Next - Decorators', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'writable'
+                          name: 'writable',
                         },
                         arguments: [
                           {
                             type: 'Literal',
-                            value: false
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            value: false,
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'MethodDefinition',
@@ -2145,7 +2145,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'testX'
+                    name: 'testX',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2160,28 +2160,28 @@ describe('Next - Decorators', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'x'
-                              }
+                                name: 'x',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        }
-                      ]
+                              value: 1,
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
-                  decorators: []
+                  decorators: [],
                 },
                 {
                   type: 'MethodDefinition',
@@ -2190,7 +2190,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'testY'
+                    name: 'testY',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2205,35 +2205,35 @@ describe('Next - Decorators', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'PrivateIdentifier',
-                                name: 'y'
-                              }
+                                name: 'y',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'Literal',
-                              value: 1
-                            }
-                          }
-                        }
-                      ]
+                              value: 1,
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
-                  decorators: []
-                }
-              ]
+                  decorators: [],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
+            decorators: [],
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -2249,7 +2249,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [],
@@ -2263,7 +2263,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   decorators: [
                     {
@@ -2275,42 +2275,42 @@ describe('Next - Decorators', () => {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'el'
+                            name: 'el',
                           },
                           operator: '=',
                           right: {
                             type: 'Identifier',
-                            name: '_'
-                          }
+                            name: '_',
+                          },
                         },
                         params: [
                           {
                             type: 'Identifier',
-                            name: '_'
-                          }
+                            name: '_',
+                          },
                         ],
                         async: false,
-                        expression: true
-                      }
-                    }
+                        expression: true,
+                      },
+                    },
                   ],
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `@foo(class Bar{})
@@ -2321,7 +2321,7 @@ describe('Next - Decorators', () => {
           {
             body: {
               body: [],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [
               {
@@ -2330,37 +2330,37 @@ describe('Next - Decorators', () => {
                     {
                       body: {
                         body: [],
-                        type: 'ClassBody'
+                        type: 'ClassBody',
                       },
                       decorators: [],
                       id: {
                         name: 'Bar',
-                        type: 'Identifier'
+                        type: 'Identifier',
                       },
                       superClass: null,
-                      type: 'ClassExpression'
-                    }
+                      type: 'ClassExpression',
+                    },
                   ],
                   callee: {
                     name: 'foo',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'CallExpression'
+                  type: 'CallExpression',
                 },
-                type: 'Decorator'
-              }
+                type: 'Decorator',
+              },
             ],
             id: {
               name: 'Foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A {
@@ -2375,7 +2375,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -2388,35 +2388,35 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'getter'
+                    name: 'getter',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   decorators: [
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'foo',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
+            decorators: [],
+          },
+        ],
+      },
     ],
     [
       `@outer({
@@ -2434,12 +2434,12 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Bar'
+              name: 'Bar',
             },
             superClass: null,
             body: {
               type: 'ClassBody',
-              body: []
+              body: [],
             },
             decorators: [
               {
@@ -2448,7 +2448,7 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'outer'
+                    name: 'outer',
                   },
                   arguments: [
                     {
@@ -2458,43 +2458,43 @@ describe('Next - Decorators', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'store'
+                            name: 'store',
                           },
                           value: {
                             type: 'ClassExpression',
                             id: {
                               type: 'Identifier',
-                              name: 'Foo'
+                              name: 'Foo',
                             },
                             superClass: null,
                             body: {
                               type: 'ClassBody',
-                              body: []
+                              body: [],
                             },
                             decorators: [
                               {
                                 type: 'Decorator',
                                 expression: {
                                   type: 'Identifier',
-                                  name: 'inner'
-                                }
-                              }
-                            ]
+                                  name: 'inner',
+                                },
+                              },
+                            ],
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class Bar{
@@ -2515,7 +2515,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Bar'
+              name: 'Bar',
             },
             superClass: null,
             decorators: [],
@@ -2529,7 +2529,7 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'outerMethod'
+                    name: 'outerMethod',
                   },
                   decorators: [
                     {
@@ -2538,7 +2538,7 @@ describe('Next - Decorators', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'outer'
+                          name: 'outer',
                         },
                         arguments: [
                           {
@@ -2550,9 +2550,9 @@ describe('Next - Decorators', () => {
                                 type: 'Decorator',
                                 expression: {
                                   type: 'Identifier',
-                                  name: 'classDec'
-                                }
-                              }
+                                  name: 'classDec',
+                                },
+                              },
                             ],
                             body: {
                               type: 'ClassBody',
@@ -2564,53 +2564,53 @@ describe('Next - Decorators', () => {
                                   computed: false,
                                   key: {
                                     type: 'Identifier',
-                                    name: 'innerMethod'
+                                    name: 'innerMethod',
                                   },
                                   decorators: [
                                     {
                                       type: 'Decorator',
                                       expression: {
                                         type: 'Identifier',
-                                        name: 'inner'
-                                      }
-                                    }
+                                        name: 'inner',
+                                      },
+                                    },
                                   ],
                                   value: {
                                     type: 'FunctionExpression',
                                     params: [],
                                     body: {
                                       type: 'BlockStatement',
-                                      body: []
+                                      body: [],
                                     },
                                     async: false,
                                     generator: false,
-                                    id: null
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      }
-                    }
+                                    id: null,
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
                   ],
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `@({
@@ -2628,7 +2628,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Bar'
+              name: 'Bar',
             },
             superClass: null,
             decorators: [
@@ -2641,13 +2641,13 @@ describe('Next - Decorators', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'store'
+                        name: 'store',
                       },
                       value: {
                         type: 'ClassExpression',
                         id: {
                           type: 'Identifier',
-                          name: 'Foo'
+                          name: 'Foo',
                         },
                         superClass: null,
                         decorators: [
@@ -2655,31 +2655,31 @@ describe('Next - Decorators', () => {
                             type: 'Decorator',
                             expression: {
                               type: 'Identifier',
-                              name: 'inner'
-                            }
-                          }
+                              name: 'inner',
+                            },
+                          },
                         ],
                         body: {
                           type: 'ClassBody',
-                          body: []
-                        }
+                          body: [],
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -2694,7 +2694,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [],
@@ -2705,11 +2705,11 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'name'
+                    name: 'name',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   static: false,
                   computed: false,
@@ -2718,16 +2718,16 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'dec'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        name: 'dec',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class Foo {
@@ -2743,7 +2743,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             decorators: [],
@@ -2757,34 +2757,34 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   decorators: [
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'dec'
-                      }
-                    }
+                        name: 'dec',
+                      },
+                    },
                   ],
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class A {
@@ -2799,7 +2799,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             decorators: [],
@@ -2810,11 +2810,11 @@ describe('Next - Decorators', () => {
                   type: 'PropertyDefinition',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'name'
+                    name: 'name',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   static: true,
                   computed: false,
@@ -2823,16 +2823,16 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'dec'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        name: 'dec',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `class Foo { @foo @bar bar() {} }`,
@@ -2845,7 +2845,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             decorators: [],
@@ -2859,41 +2859,41 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   decorators: [
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    }
+                        name: 'bar',
+                      },
+                    },
                   ],
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `var Foo = @foo class Foo {}`,
@@ -2912,7 +2912,7 @@ describe('Next - Decorators', () => {
                   type: 'ClassExpression',
                   id: {
                     type: 'Identifier',
-                    name: 'Foo'
+                    name: 'Foo',
                   },
                   superClass: null,
                   decorators: [
@@ -2920,24 +2920,24 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
+                        name: 'foo',
+                      },
+                    },
                   ],
                   body: {
                     type: 'ClassBody',
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'Foo'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'Foo',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class Foo { @foo set bar(f) {} }`,
@@ -2950,7 +2950,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'Foo'
+              name: 'Foo',
             },
             superClass: null,
             decorators: [],
@@ -2964,39 +2964,39 @@ describe('Next - Decorators', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   decorators: [
                     {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
+                        name: 'foo',
+                      },
+                    },
                   ],
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'f'
-                      }
+                        name: 'f',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '@a(@b class C {}) @d(@e() class F {}) class G {}',
@@ -3009,7 +3009,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'G'
+              name: 'G',
             },
             superClass: null,
             decorators: [
@@ -3019,14 +3019,14 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   arguments: [
                     {
                       type: 'ClassExpression',
                       id: {
                         type: 'Identifier',
-                        name: 'C'
+                        name: 'C',
                       },
                       superClass: null,
                       decorators: [
@@ -3034,17 +3034,17 @@ describe('Next - Decorators', () => {
                           type: 'Decorator',
                           expression: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
-                        }
+                            name: 'b',
+                          },
+                        },
                       ],
                       body: {
                         type: 'ClassBody',
-                        body: []
-                      }
-                    }
-                  ]
-                }
+                        body: [],
+                      },
+                    },
+                  ],
+                },
               },
               {
                 type: 'Decorator',
@@ -3052,14 +3052,14 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'd'
+                    name: 'd',
                   },
                   arguments: [
                     {
                       type: 'ClassExpression',
                       id: {
                         type: 'Identifier',
-                        name: 'F'
+                        name: 'F',
                       },
                       superClass: null,
                       decorators: [
@@ -3069,28 +3069,28 @@ describe('Next - Decorators', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'e'
+                              name: 'e',
                             },
-                            arguments: []
-                          }
-                        }
+                            arguments: [],
+                          },
+                        },
                       ],
                       body: {
                         type: 'ClassBody',
-                        body: []
-                      }
-                    }
-                  ]
-                }
-              }
+                        body: [],
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '@a(@b class C {}) @d(@e() class F {}) class G {}',
@@ -3103,7 +3103,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'G'
+              name: 'G',
             },
             superClass: null,
             decorators: [
@@ -3113,14 +3113,14 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   arguments: [
                     {
                       type: 'ClassExpression',
                       id: {
                         type: 'Identifier',
-                        name: 'C'
+                        name: 'C',
                       },
                       superClass: null,
                       decorators: [
@@ -3128,17 +3128,17 @@ describe('Next - Decorators', () => {
                           type: 'Decorator',
                           expression: {
                             type: 'Identifier',
-                            name: 'b'
-                          }
-                        }
+                            name: 'b',
+                          },
+                        },
                       ],
                       body: {
                         type: 'ClassBody',
-                        body: []
-                      }
-                    }
-                  ]
-                }
+                        body: [],
+                      },
+                    },
+                  ],
+                },
               },
               {
                 type: 'Decorator',
@@ -3146,14 +3146,14 @@ describe('Next - Decorators', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'd'
+                    name: 'd',
                   },
                   arguments: [
                     {
                       type: 'ClassExpression',
                       id: {
                         type: 'Identifier',
-                        name: 'F'
+                        name: 'F',
                       },
                       superClass: null,
                       decorators: [
@@ -3163,28 +3163,28 @@ describe('Next - Decorators', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'e'
+                              name: 'e',
                             },
-                            arguments: []
-                          }
-                        }
+                            arguments: [],
+                          },
+                        },
                       ],
                       body: {
                         type: 'ClassBody',
-                        body: []
-                      }
-                    }
-                  ]
-                }
-              }
+                        body: [],
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '@a class G {}',
@@ -3201,7 +3201,7 @@ describe('Next - Decorators', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              loc: { start: { line: 1, column: 9 }, end: { line: 1, column: 10 } }
+              loc: { start: { line: 1, column: 9 }, end: { line: 1, column: 10 } },
             },
             superClass: null,
             decorators: [
@@ -3213,13 +3213,13 @@ describe('Next - Decorators', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
                 },
                 start: 0,
                 end: 2,
                 range: [0, 2],
-                loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 2 } }
-              }
+                loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 2 } },
+              },
             ],
             body: {
               type: 'ClassBody',
@@ -3227,19 +3227,19 @@ describe('Next - Decorators', () => {
               start: 11,
               end: 13,
               range: [11, 13],
-              loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 13 } }
+              loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 13 } },
             },
             start: 3,
             end: 13,
             range: [3, 13],
-            loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 13 } }
-          }
+            loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 13 } },
+          },
         ],
         start: 0,
         end: 13,
         range: [0, 13],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 13 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 13 } },
+      },
     ],
     [
       'class A { @dec accessor a }',
@@ -3256,13 +3256,13 @@ describe('Next - Decorators', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 6
+                  column: 6,
                 },
                 end: {
                   line: 1,
-                  column: 7
-                }
-              }
+                  column: 7,
+                },
+              },
             },
             superClass: null,
             body: {
@@ -3276,13 +3276,13 @@ describe('Next - Decorators', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 24
+                        column: 24,
                       },
                       end: {
                         line: 1,
-                        column: 25
-                      }
-                    }
+                        column: 25,
+                      },
+                    },
                   },
                   value: null,
                   static: false,
@@ -3296,73 +3296,73 @@ describe('Next - Decorators', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 11
+                            column: 11,
                           },
                           end: {
                             line: 1,
-                            column: 14
-                          }
-                        }
+                            column: 14,
+                          },
+                        },
                       },
                       loc: {
                         start: {
                           line: 1,
-                          column: 10
+                          column: 10,
                         },
                         end: {
                           line: 1,
-                          column: 14
-                        }
-                      }
-                    }
+                          column: 14,
+                        },
+                      },
+                    },
                   ],
                   loc: {
                     start: {
                       line: 1,
-                      column: 15
+                      column: 15,
                     },
                     end: {
                       line: 1,
-                      column: 25
-                    }
-                  }
-                }
+                      column: 25,
+                    },
+                  },
+                },
               ],
               loc: {
                 start: {
                   line: 1,
-                  column: 8
+                  column: 8,
                 },
                 end: {
                   line: 1,
-                  column: 27
-                }
-              }
+                  column: 27,
+                },
+              },
             },
             decorators: [],
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 27
-              }
-            }
-          }
+                column: 27,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 27
-          }
-        }
-      }
+            column: 27,
+          },
+        },
+      },
     ],
     [
       'class A { @dec accessor #a }',
@@ -3375,7 +3375,7 @@ describe('Next - Decorators', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             superClass: null,
             body: {
@@ -3385,7 +3385,7 @@ describe('Next - Decorators', () => {
                   type: 'AccessorProperty',
                   key: {
                     type: 'PrivateIdentifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: null,
                   static: false,
@@ -3395,17 +3395,17 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'Identifier',
-                        name: 'dec'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'dec',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
-            decorators: []
-          }
-        ]
-      }
-    ]
+            decorators: [],
+          },
+        ],
+      },
+    ],
   ]);
 });

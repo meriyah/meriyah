@@ -34,7 +34,7 @@ describe('Miscellaneous - Eval and arguments', () => {
     '[ ...(eval = 0) ]',
     '[ ...(arguments = 0) ]',
     '[ ...(eval) = 0 ]',
-    '[ ...(arguments) = 0 ]'
+    '[ ...(arguments) = 0 ]',
   ]) {
     it(`'use strict'; (${arg} = {})`, () => {
       t.throws(() => {
@@ -134,7 +134,7 @@ describe('Miscellaneous - Eval and arguments', () => {
     "'use strict'; function f(argument1, { a : arguments }) {}",
     "'use strict'; function f(argument1, { x : private }) {}",
     "'use strict'; function f(argument1, { arguments = false }) {}",
-    'arguments[0],'
+    'arguments[0],',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -158,7 +158,7 @@ describe('Miscellaneous - Eval and arguments', () => {
     'var foo = { arguments: 1 };',
     'var foo = { }; foo.eval = {};',
     'var foo = { }; foo.arguments = {};',
-    '(0,eval)(true)'
+    '(0,eval)(true)',
   ]) {
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
@@ -270,7 +270,7 @@ describe('Miscellaneous - Eval and arguments', () => {
     ' ++arguments.a;',
     'eval[0] = 1;',
     'arguments.a = 1;',
-    '++arguments[0];'
+    '++arguments[0];',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
