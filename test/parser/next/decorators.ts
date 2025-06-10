@@ -1424,6 +1424,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: [
@@ -1894,6 +1895,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: [
@@ -1991,6 +1993,7 @@ describe('Next - Decorators', () => {
                   type: 'ReturnStatement',
                   argument: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: [
@@ -2267,6 +2270,7 @@ describe('Next - Decorators', () => {
                       type: 'Decorator',
                       expression: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'AssignmentExpression',
                           left: {

@@ -1267,6 +1267,7 @@ describe('Declarations - Async Function', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'AwaitExpression',
                 argument: {
@@ -1810,6 +1811,7 @@ describe('Declarations - Async Function', () => {
                 },
                 right: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'AwaitExpression',
                     argument: {
@@ -2139,6 +2141,7 @@ describe('Declarations - Async Function', () => {
               },
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 4,
                 end: 111,
                 range: [4, 111],

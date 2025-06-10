@@ -458,6 +458,7 @@ describe('Expressions - Conditional', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ConditionalExpression',
                 test: {

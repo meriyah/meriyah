@@ -1667,6 +1667,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'CallExpression',
                               callee: {
@@ -1733,6 +1734,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Identifier',
                               name: 'a'
@@ -1811,8 +1813,10 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'CallExpression',
                                 callee: {
@@ -1882,6 +1886,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'MemberExpression',
                               object: {
@@ -1951,6 +1956,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'MemberExpression',
                               object: {
@@ -2018,6 +2024,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'MemberExpression',
                               object: {
@@ -2087,6 +2094,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Identifier',
                               name: 'a'
@@ -2199,6 +2207,7 @@ describe('Expressions - Super', () => {
                           range: [35, 61],
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             start: 42,
                             end: 60,
                             range: [42, 60],
@@ -2330,6 +2339,7 @@ describe('Expressions - Super', () => {
                           range: [35, 64],
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             start: 42,
                             end: 63,
                             range: [42, 63],
@@ -2338,6 +2348,7 @@ describe('Expressions - Super', () => {
                             params: [],
                             body: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               start: 48,
                               end: 63,
                               range: [48, 63],
@@ -2414,8 +2425,10 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'MemberExpression',
                                 object: {
@@ -2486,6 +2499,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'MemberExpression',
                               object: {
@@ -2555,6 +2569,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Identifier',
                               name: 'a'
@@ -2632,6 +2647,7 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Identifier',
                               name: 'a'
@@ -2712,8 +2728,10 @@ describe('Expressions - Super', () => {
                           type: 'ReturnStatement',
                           argument: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'MemberExpression',
                                 object: {
@@ -2783,6 +2801,7 @@ describe('Expressions - Super', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'MemberExpression',
                                 object: {
@@ -2853,6 +2872,7 @@ describe('Expressions - Super', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'Identifier',
                                 name: 'a'
@@ -2934,8 +2954,10 @@ describe('Expressions - Super', () => {
                             type: 'ReturnStatement',
                             argument: {
                               type: 'ArrowFunctionExpression',
+                              generator: false,
                               body: {
                                 type: 'ArrowFunctionExpression',
+                                generator: false,
                                 body: {
                                   type: 'MemberExpression',
                                   object: {
@@ -3815,7 +3837,8 @@ describe('Expressions - Super', () => {
                     params: [],
                     range: [24, 39],
                     start: 24,
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   }
                 }
               ],
@@ -3923,7 +3946,8 @@ describe('Expressions - Super', () => {
                     params: [],
                     range: [24, 44],
                     start: 24,
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   }
                 }
               ],
@@ -4023,7 +4047,8 @@ describe('Expressions - Super', () => {
                     params: [],
                     range: [24, 51],
                     start: 24,
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   }
                 }
               ],
@@ -4137,7 +4162,8 @@ describe('Expressions - Super', () => {
                     params: [],
                     range: [24, 56],
                     start: 24,
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   }
                 }
               ],

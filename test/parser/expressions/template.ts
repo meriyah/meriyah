@@ -2976,6 +2976,7 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -3023,6 +3024,7 @@ describe('Expressions - Template', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: [
@@ -4356,7 +4358,8 @@ describe('Expressions - Template', () => {
                   },
                   expression: false,
                   params: [],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 },
                 type: 'AssignmentExpression'
               },

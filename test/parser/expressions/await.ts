@@ -2000,6 +2000,7 @@ describe('Expressions - Await', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'AwaitExpression',
                   argument: {
@@ -2430,6 +2431,7 @@ describe('Expressions - Await', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'x'
@@ -2579,6 +2581,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -2726,6 +2729,7 @@ describe('Expressions - Await', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'x'
@@ -2955,6 +2959,7 @@ describe('Expressions - Await', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'

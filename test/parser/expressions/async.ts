@@ -356,6 +356,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'AssignmentExpression',
                 left: {
@@ -441,6 +442,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'AssignmentExpression',
                 left: {
@@ -556,7 +558,8 @@ describe('Expressions - Async', () => {
                         },
                         expression: false,
                         params: [],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     },
                     {
@@ -582,7 +585,8 @@ describe('Expressions - Async', () => {
                             type: 'Identifier'
                           }
                         ],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     },
                     {
@@ -608,7 +612,8 @@ describe('Expressions - Async', () => {
                             type: 'Identifier'
                           }
                         ],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     }
                   ],
@@ -647,7 +652,8 @@ describe('Expressions - Async', () => {
                         },
                         expression: false,
                         params: [],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     },
                     {
@@ -673,7 +679,8 @@ describe('Expressions - Async', () => {
                             type: 'Identifier'
                           }
                         ],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     }
                   ],
@@ -727,7 +734,8 @@ describe('Expressions - Async', () => {
                         },
                         expression: false,
                         params: [],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     },
                     {
@@ -753,7 +761,8 @@ describe('Expressions - Async', () => {
                             type: 'Identifier'
                           }
                         ],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       }
                     }
                   ],
@@ -920,8 +929,7 @@ describe('Expressions - Async', () => {
                   type: 'Identifier'
                 }
               ],
-              type: 'ArrowFunctionExpression'
-            },
+              type: 'ArrowFunctionExpression',generator: false,            },
             type: 'ExpressionStatement'
           }
         ],
@@ -1156,7 +1164,8 @@ describe('Expressions - Async', () => {
                         type: 'Identifier'
                       }
                     ],
-                    type: 'ArrowFunctionExpression'
+                    type: 'ArrowFunctionExpression',
+                    generator: false
                   },
                   type: 'ExpressionStatement'
                 }
@@ -1219,7 +1228,8 @@ describe('Expressions - Async', () => {
                       type: 'Identifier'
                     }
                   ],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 },
                 type: 'VariableDeclarator'
               }
@@ -1273,6 +1283,7 @@ describe('Expressions - Async', () => {
                       type: 'VariableDeclarator',
                       init: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: []
@@ -1668,6 +1679,7 @@ describe('Expressions - Async', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'c'
@@ -1701,6 +1713,7 @@ describe('Expressions - Async', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'c'
@@ -1828,6 +1841,7 @@ describe('Expressions - Async', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'x'
@@ -1990,6 +2004,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'bar'
@@ -2593,6 +2608,7 @@ describe('Expressions - Async', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
 
                   params: [],
                   body: {
@@ -2620,6 +2636,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'a'
@@ -2802,6 +2819,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -2826,6 +2844,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -3034,6 +3053,7 @@ describe('Expressions - Async', () => {
                   operator: '=',
                   right: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'x'
@@ -3105,6 +3125,7 @@ describe('Expressions - Async', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []

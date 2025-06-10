@@ -739,7 +739,8 @@ describe('Expressions - Array', () => {
                           type: 'Identifier'
                         }
                       ],
-                      type: 'ArrowFunctionExpression'
+                      type: 'ArrowFunctionExpression',
+                      generator: false
                     },
                     type: 'AssignmentExpression'
                   },
@@ -4885,6 +4886,7 @@ describe('Expressions - Array', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -5108,6 +5110,7 @@ describe('Expressions - Array', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -7718,6 +7721,7 @@ describe('Expressions - Array', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'Identifier',
                         name: 'z'
@@ -7772,6 +7776,7 @@ describe('Expressions - Array', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'Identifier',
                         name: 'z'
@@ -8889,6 +8894,7 @@ describe('Expressions - Array', () => {
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -8918,6 +8924,7 @@ describe('Expressions - Array', () => {
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []

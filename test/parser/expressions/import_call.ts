@@ -282,7 +282,8 @@ describe('Next - ImportCall', () => {
                             },
                             expression: false,
                             params: [],
-                            type: 'ArrowFunctionExpression'
+                            type: 'ArrowFunctionExpression',
+                            generator: false
                           }
                         ],
                         callee: {

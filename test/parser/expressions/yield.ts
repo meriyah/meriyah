@@ -2554,6 +2554,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -4192,6 +4193,7 @@ yield d;
                   type: 'ReturnStatement',
                   argument: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'x'
@@ -4495,6 +4497,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -4538,6 +4541,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -4633,6 +4637,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -5132,6 +5137,7 @@ yield d;
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'z'
@@ -5212,6 +5218,7 @@ yield d;
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'z'
@@ -5314,6 +5321,7 @@ yield d;
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'x'
@@ -5430,6 +5438,7 @@ yield d;
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -5470,6 +5479,7 @@ yield d;
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: []
@@ -5915,6 +5925,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'x'
@@ -6338,6 +6349,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BinaryExpression',
                       left: {
@@ -7748,6 +7760,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -8037,6 +8050,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -8132,6 +8146,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -8167,6 +8182,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -8360,6 +8376,7 @@ yield d;
               type: 'ExpressionStatement',
               expression: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -8389,6 +8406,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: []
@@ -8418,6 +8436,7 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ConditionalExpression',
                 test: {
@@ -8487,6 +8506,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: []
@@ -10087,6 +10107,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'yield'
@@ -10100,6 +10121,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: [
@@ -10147,6 +10169,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'yield'
@@ -10762,6 +10785,7 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: []

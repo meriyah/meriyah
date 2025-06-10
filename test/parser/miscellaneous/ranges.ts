@@ -23,6 +23,7 @@ describe('Miscellaneous - ranges', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'BlockStatement',
                     body: [
@@ -1083,6 +1084,7 @@ describe('Miscellaneous - ranges', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 0,
@@ -1371,6 +1373,7 @@ describe('Miscellaneous - ranges', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ArrayExpression',
                 elements: [
@@ -1529,6 +1532,7 @@ describe('Miscellaneous - ranges', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [],
@@ -1605,6 +1609,7 @@ describe('Miscellaneous - ranges', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [],
@@ -1638,6 +1643,7 @@ describe('Miscellaneous - ranges', () => {
                           },
                           right: {
                             type: 'ArrowFunctionExpression',
+                            generator: false,
                             body: {
                               type: 'Identifier',
                               name: 'a',
@@ -1963,6 +1969,7 @@ describe('Miscellaneous - ranges', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: [
@@ -2167,6 +2174,7 @@ describe('Miscellaneous - ranges', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [
@@ -4843,6 +4851,7 @@ describe('Miscellaneous - ranges', () => {
                     operator: '=',
                     right: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'CallExpression',
                         callee: {
@@ -4954,6 +4963,7 @@ describe('Miscellaneous - ranges', () => {
                     operator: '=',
                     right: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'CallExpression',
                         callee: {
@@ -5031,6 +5041,7 @@ describe('Miscellaneous - ranges', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: [
@@ -6955,6 +6966,7 @@ describe('Miscellaneous - ranges', () => {
             },
             init: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [],
@@ -7158,6 +7170,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'MemberExpression',
               object: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: [],
@@ -11121,6 +11134,7 @@ describe('Miscellaneous - ranges', () => {
             range: [0, 25],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 24,
               range: [0, 24],
@@ -11283,6 +11297,7 @@ describe('Miscellaneous - ranges', () => {
             range: [0, 34],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 34,
               range: [0, 34],
@@ -11527,6 +11542,7 @@ describe('Miscellaneous - ranges', () => {
               },
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 4,
                 end: 28,
                 range: [4, 28],
@@ -11613,6 +11629,7 @@ describe('Miscellaneous - ranges', () => {
               },
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 4,
                 end: 83,
                 range: [4, 83],

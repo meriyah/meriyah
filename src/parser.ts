@@ -8902,7 +8902,8 @@ export function parseArrowFunctionExpression(
     params,
     body,
     async: isAsync === 1,
-    expression
+    expression,
+    generator: false
   });
 }
 

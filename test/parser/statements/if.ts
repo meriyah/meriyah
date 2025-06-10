@@ -276,6 +276,7 @@ describe('Statements - None', () => {
                         type: 'ReturnStatement',
                         argument: {
                           type: 'ArrowFunctionExpression',
+                          generator: false,
                           body: {
                             type: 'BlockStatement',
                             body: [

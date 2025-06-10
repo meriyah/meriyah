@@ -882,6 +882,7 @@ describe('Expressions - Async arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'BlockStatement',
                 body: [],
@@ -901,6 +902,7 @@ describe('Expressions - Async arrow', () => {
                   },
                   right: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: [
@@ -996,6 +998,7 @@ describe('Expressions - Async arrow', () => {
                     arguments: [
                       {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         start: 7,
                         end: 14,
                         range: [7, 14],
@@ -1064,6 +1067,7 @@ describe('Expressions - Async arrow', () => {
             },
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 34,
               range: [0, 34],
@@ -1229,6 +1233,7 @@ describe('Expressions - Async arrow', () => {
                     range: [0, 39],
                     callee: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       start: 1,
                       end: 15,
                       range: [1, 15],
@@ -1246,6 +1251,7 @@ describe('Expressions - Async arrow', () => {
                     arguments: [
                       {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         start: 24,
                         end: 38,
                         range: [24, 38],
@@ -1265,6 +1271,7 @@ describe('Expressions - Async arrow', () => {
                   arguments: [
                     {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       start: 47,
                       end: 61,
                       range: [47, 61],
@@ -1284,6 +1291,7 @@ describe('Expressions - Async arrow', () => {
                 arguments: [
                   {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 70,
                     end: 84,
                     range: [70, 84],
@@ -1303,6 +1311,7 @@ describe('Expressions - Async arrow', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 93,
                   end: 107,
                   range: [93, 107],
@@ -1335,6 +1344,7 @@ describe('Expressions - Async arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Identifier',
                 name: 'x'
@@ -1383,6 +1393,7 @@ describe('Expressions - Async arrow', () => {
               operator: '+',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 5,
                 end: 17,
                 range: [5, 17],
@@ -1452,6 +1463,7 @@ describe('Expressions - Async arrow', () => {
                   },
                   consequent: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 15,
                     end: 26,
                     range: [15, 26],
@@ -1504,6 +1516,7 @@ describe('Expressions - Async arrow', () => {
                   },
                   alternate: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 29,
                     end: 69,
                     range: [29, 69],
@@ -1603,6 +1616,7 @@ describe('Expressions - Async arrow', () => {
                       operator: '+',
                       right: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         start: 57,
                         end: 68,
                         range: [57, 68],
@@ -1658,6 +1672,7 @@ describe('Expressions - Async arrow', () => {
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 1,
                   end: 16,
                   range: [1, 16],
@@ -1716,6 +1731,7 @@ describe('Expressions - Async arrow', () => {
               elements: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 1,
                   end: 13,
                   range: [1, 13],
@@ -1781,6 +1797,7 @@ describe('Expressions - Async arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 5,
                   end: 23,
                   range: [5, 23],
@@ -1853,6 +1870,7 @@ describe('Expressions - Async arrow', () => {
                   },
                   value: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 5,
                     end: 21,
                     range: [5, 21],
@@ -1913,6 +1931,7 @@ describe('Expressions - Async arrow', () => {
               expressions: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 0,
                   end: 17,
                   range: [0, 17],
@@ -1944,6 +1963,7 @@ describe('Expressions - Async arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 19,
                   end: 30,
                   range: [19, 30],
@@ -1996,6 +2016,7 @@ describe('Expressions - Async arrow', () => {
             range: [0, 26],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 1,
               end: 24,
               range: [1, 24],
@@ -2077,6 +2098,7 @@ describe('Expressions - Async arrow', () => {
             range: [0, 27],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 27,
               range: [0, 27],
@@ -2198,6 +2220,7 @@ describe('Expressions - Async arrow', () => {
             range: [0, 23],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 1,
               end: 22,
               range: [1, 22],
@@ -2329,6 +2352,7 @@ describe('Expressions - Async arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'Literal',
                 value: 1
@@ -2385,6 +2409,7 @@ describe('Expressions - Async arrow', () => {
                   operator: '=',
                   right: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'Identifier',
                       name: 'x'
@@ -2410,6 +2435,7 @@ describe('Expressions - Async arrow', () => {
                   operator: '=',
                   right: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: []
@@ -2445,6 +2471,7 @@ describe('Expressions - Async arrow', () => {
               type: 'CallExpression',
               callee: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -2587,8 +2614,10 @@ describe('Expressions - Async arrow', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'c'
@@ -2648,6 +2677,7 @@ describe('Expressions - Async arrow', () => {
               arguments: [
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 2,
                   end: 13,
                   range: [2, 13],
@@ -2685,6 +2715,7 @@ describe('Expressions - Async arrow', () => {
             range: [0, 27],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 27,
               range: [0, 27],
@@ -2701,6 +2732,7 @@ describe('Expressions - Async arrow', () => {
               ],
               body: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 5,
                 end: 27,
                 range: [5, 27],
@@ -2717,6 +2749,7 @@ describe('Expressions - Async arrow', () => {
                 ],
                 body: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 10,
                   end: 27,
                   range: [10, 27],
@@ -2733,6 +2766,7 @@ describe('Expressions - Async arrow', () => {
                   ],
                   body: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     start: 15,
                     end: 27,
                     range: [15, 27],
@@ -2799,6 +2833,7 @@ describe('Expressions - Async arrow', () => {
                 },
                 {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   start: 5,
                   end: 33,
                   range: [5, 33],

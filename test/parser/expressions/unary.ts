@@ -652,6 +652,7 @@ describe('Expressions - Unary', () => {
               prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 8,
                 end: 14,
                 range: [8, 14],
@@ -703,6 +704,7 @@ describe('Expressions - Unary', () => {
               prefix: true,
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 start: 8,
                 end: 22,
                 range: [8, 22],
@@ -769,6 +771,7 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'Identifier',
                     name: 'b'
@@ -809,6 +812,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -937,6 +941,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -972,6 +977,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -1020,6 +1026,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -1374,7 +1381,8 @@ describe('Expressions - Unary', () => {
                 expression: true,
 
                 params: [],
-                type: 'ArrowFunctionExpression'
+                type: 'ArrowFunctionExpression',
+                generator: false
               },
               operator: 'delete',
               prefix: true,
@@ -1500,6 +1508,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -1535,6 +1544,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -1583,6 +1593,7 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'Identifier',
                   name: 'b'
@@ -1937,7 +1948,8 @@ describe('Expressions - Unary', () => {
                 expression: true,
 
                 params: [],
-                type: 'ArrowFunctionExpression'
+                type: 'ArrowFunctionExpression',
+                generator: false
               },
               operator: 'delete',
               prefix: true,
@@ -2350,6 +2362,7 @@ describe('Expressions - Unary', () => {
             range: [0, 44],
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               start: 0,
               end: 44,
               range: [0, 44],
@@ -2578,6 +2591,7 @@ describe('Expressions - Unary', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ArrowFunctionExpression',
+              generator: false,
               body: {
                 type: 'UnaryExpression',
                 operator: 'delete',
@@ -2858,6 +2872,7 @@ describe('Expressions - Unary', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ArrowFunctionExpression',
+                  generator: false,
                   body: {
                     type: 'UpdateExpression',
                     argument: {
@@ -3059,7 +3074,8 @@ describe('Expressions - Unary', () => {
                   expression: true,
 
                   params: [],
-                  type: 'ArrowFunctionExpression'
+                  type: 'ArrowFunctionExpression',
+                  generator: false
                 },
                 type: 'VariableDeclarator'
               }

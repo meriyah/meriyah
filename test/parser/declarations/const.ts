@@ -1331,7 +1331,8 @@ describe('Declarations - const', () => {
                             type: 'ObjectPattern'
                           }
                         ],
-                        type: 'ArrowFunctionExpression'
+                        type: 'ArrowFunctionExpression',
+                        generator: false
                       },
                       kind: 'init',
                       method: false,
@@ -1432,6 +1433,7 @@ describe('Declarations - const', () => {
                         },
                         right: {
                           type: 'ArrowFunctionExpression',
+                          generator: false,
                           body: {
                             type: 'BlockStatement',
                             body: [

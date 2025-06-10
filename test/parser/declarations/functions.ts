@@ -721,6 +721,7 @@ describe('Declarations - Function', () => {
                   },
                   right: {
                     type: 'ArrowFunctionExpression',
+                    generator: false,
                     body: {
                       type: 'BlockStatement',
                       body: []
@@ -802,6 +803,7 @@ describe('Declarations - Function', () => {
               operator: '=',
               right: {
                 type: 'ArrowFunctionExpression',
+                generator: false,
                 body: {
                   type: 'BlockStatement',
                   body: []
@@ -1940,7 +1942,8 @@ describe('Declarations - Function', () => {
                   type: 'Identifier'
                 }
               ],
-              type: 'ArrowFunctionExpression'
+              type: 'ArrowFunctionExpression',
+              generator: false
             },
             type: 'ExpressionStatement'
           }

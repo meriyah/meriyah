@@ -510,6 +510,7 @@ describe('Declarations - Async Generator', () => {
                     },
                     right: {
                       type: 'ArrowFunctionExpression',
+                      generator: false,
                       body: {
                         type: 'BlockStatement',
                         body: []
@@ -1019,6 +1020,7 @@ describe('Declarations - Async Generator', () => {
                       },
                       right: {
                         type: 'ArrowFunctionExpression',
+                        generator: false,
                         body: {
                           type: 'BlockStatement',
                           body: []
