@@ -128,7 +128,7 @@ describe('Next - Import Attributes', () => {
     [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.OptionsNext | Context.Module],
   ]);
 
-  pass('Next - Import Attributes (pass)', [
+  pass('Import Attributes (pass)', [
     [
       `import('module', { type: 'json' });`,
       Context.Module | Context.Strict | Context.OptionsNext,

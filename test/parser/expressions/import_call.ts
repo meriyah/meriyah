@@ -159,7 +159,7 @@ describe('Next - ImportCall', () => {
     });
   }
 
-  pass('Next - ImportCall (pass)', [
+  pass('ImportCall (pass)', [
     [
       `import("lib.js").then(doThis);`,
       Context.Strict | Context.Module | Context.OptionsRanges,
@@ -262,7 +262,7 @@ describe('Next - ImportCall', () => {
     ],
     [
       'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {
