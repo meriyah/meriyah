@@ -483,7 +483,8 @@ describe('Module - Import', () => {
               end: 18,
               range: [15, 18],
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -584,7 +585,8 @@ describe('Module - Import', () => {
               end: 43,
               range: [35, 43],
               value: 'module'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -652,7 +654,8 @@ describe('Module - Import', () => {
               end: 32,
               range: [24, 32],
               value: 'module'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -760,7 +763,8 @@ describe('Module - Import', () => {
               end: 40,
               range: [35, 40],
               value: 'baz'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -814,7 +818,8 @@ describe('Module - Import', () => {
               end: 28,
               range: [23, 28],
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -841,7 +846,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -867,7 +873,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'foo'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -907,7 +914,8 @@ describe('Module - Import', () => {
               end: 27,
               range: [19, 27],
               value: 'module'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -949,7 +957,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'module'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -975,7 +984,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'await'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -1001,7 +1011,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -1068,7 +1079,8 @@ describe('Module - Import', () => {
               end: 22,
               range: [19, 22],
               value: 'c'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1094,7 +1106,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1148,7 +1161,8 @@ describe('Module - Import', () => {
               end: 25,
               range: [22, 25],
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1166,7 +1180,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1193,7 +1208,8 @@ describe('Module - Import', () => {
               end: 10,
               range: [7, 10],
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1224,7 +1240,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -1254,7 +1271,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -1283,7 +1301,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1331,7 +1350,8 @@ describe('Module - Import', () => {
               end: 25,
               range: [22, 25],
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1372,7 +1392,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1413,7 +1434,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1455,7 +1477,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ]
       }
@@ -1495,7 +1518,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1563,7 +1587,8 @@ describe('Module - Import', () => {
               end: 32,
               range: [29, 32],
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1604,7 +1629,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: 'y'
-            }
+            },
+            attributes: []
           }
         ],
         sourceType: 'module'
@@ -1646,7 +1672,8 @@ describe('Module - Import', () => {
             source: {
               type: 'Literal',
               value: './foo'
-            }
+            },
+            attributes: []
           }
         ]
       }

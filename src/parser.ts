@@ -2916,15 +2916,17 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
+  let attributes: ESTree.ImportAttribute[] = [];
+  if (context & Context.OptionsNext) {
+    attributes = parseImportAttributes(parser, context, specifiers);
+  }
+
   const node: ESTree.ImportDeclaration = {
     type: 'ImportDeclaration',
     specifiers,
-    source
+    source,
+    attributes
   };
-
-  if (context & Context.OptionsNext) {
-    node.attributes = parseImportAttributes(parser, context, specifiers);
-  }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
@@ -3218,7 +3220,7 @@ function parseExportDeclaration(
 
   let declaration: ESTree.ExportDeclaration | ESTree.Expression | null = null;
   let source: ESTree.Literal | null = null;
-  let attributes: ESTree.ImportAttribute[] | null = null;
+  let attributes: ESTree.ImportAttribute[] = [];
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.DefaultKeyword)) {
     // export default HoistableDeclaration[Default]
@@ -3386,15 +3388,18 @@ function parseExportDeclaration(
 
       source = parseLiteral(parser, context);
 
+      let attributes: ESTree.ImportAttribute[] = [];
+
+      if (context & Context.OptionsNext) {
+        attributes = parseImportAttributes(parser, context);
+      }
+
       const node: ESTree.ExportAllDeclaration = {
         type: 'ExportAllDeclaration',
         source,
-        exported
+        exported,
+        attributes
       };
-
-      if (context & Context.OptionsNext) {
-        node.attributes = parseImportAttributes(parser, context);
-      }
 
       matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
@@ -3587,16 +3592,13 @@ function parseExportDeclaration(
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 
-  const node: ESTree.Node = {
+  const node: ESTree.ExportNamedDeclaration = {
     type: 'ExportNamedDeclaration',
     declaration,
     specifiers,
-    source
+    source,
+    attributes: attributes
   };
-
-  if (attributes) {
-    node.attributes = attributes;
-  }
 
   return finishNode(parser, context, start, line, column, node);
 }

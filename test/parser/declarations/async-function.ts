@@ -772,6 +772,7 @@ describe('Declarations - Async Function', () => {
       {
         body: [
           {
+            attributes: [],
             declaration: {
               async: true,
               body: {
