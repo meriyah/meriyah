@@ -4,10 +4,12 @@ import tseslint from 'typescript-eslint';
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
+import eslintPluginMeriyanInternal from './scripts/eslint-rules/index.mjs';
 
 export default [
   eslintJs.configs.recommended,
   ...tseslint.configs.recommended,
+  eslintPluginMeriyanInternal,
   {
     languageOptions: { globals: { ...globals.builtin } },
     plugins: { 'import-x': eslintPluginImportX, unicorn: eslintPluginUnicorn },
