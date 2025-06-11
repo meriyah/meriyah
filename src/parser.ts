@@ -2916,10 +2916,7 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
-  let attributes: ESTree.ImportAttribute[] = [];
-  if (context & Context.OptionsNext) {
-    attributes = parseImportAttributes(parser, context, specifiers);
-  }
+  const attributes = parseImportAttributes(parser, context, specifiers);
 
   const node: ESTree.ImportDeclaration = {
     type: 'ImportDeclaration',
@@ -3388,11 +3385,7 @@ function parseExportDeclaration(
 
       source = parseLiteral(parser, context);
 
-      let attributes: ESTree.ImportAttribute[] = [];
-
-      if (context & Context.OptionsNext) {
-        attributes = parseImportAttributes(parser, context);
-      }
+      const attributes = parseImportAttributes(parser, context);
 
       const node: ESTree.ExportAllDeclaration = {
         type: 'ExportAllDeclaration',
@@ -3476,9 +3469,7 @@ function parseExportDeclaration(
 
         source = parseLiteral(parser, context);
 
-        if (context & Context.OptionsNext) {
-          attributes = parseImportAttributes(parser, context, specifiers);
-        }
+        attributes = parseImportAttributes(parser, context, specifiers);
 
         if (scope) {
           tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
