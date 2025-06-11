@@ -108,45 +108,6 @@ exports[`Statements - Continue > Statements - Continue > a: do continue a; while
 }
 `;
 
-exports[`Statements - Continue > Statements - Continue > a: while (0) { continue  b; } 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": {
-          "body": [
-            {
-              "label": null,
-              "type": "ContinueStatement",
-            },
-            {
-              "expression": {
-                "name": "b",
-                "type": "Identifier",
-              },
-              "type": "ExpressionStatement",
-            },
-          ],
-          "type": "BlockStatement",
-        },
-        "test": {
-          "type": "Literal",
-          "value": 0,
-        },
-        "type": "WhileStatement",
-      },
-      "label": {
-        "name": "a",
-        "type": "Identifier",
-      },
-      "type": "LabeledStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
 exports[`Statements - Continue > Statements - Continue > a: while (0) { continue /*
 */ b; } 1`] = `
 {
@@ -188,6 +149,45 @@ exports[`Statements - Continue > Statements - Continue > a: while (0) { continue
 `;
 
 exports[`Statements - Continue > Statements - Continue > a: while (0) { continue /* */ b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "label": null,
+              "type": "ContinueStatement",
+            },
+            {
+              "expression": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: while (0) { continue ␍␊ b; } 1`] = `
 {
   "body": [
     {

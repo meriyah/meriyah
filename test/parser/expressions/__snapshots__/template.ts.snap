@@ -2489,7 +2489,7 @@ exports[`Expressions - Template > Expressions - Template (pass) > {\`foo baz\`} 
 }
 `;
 
-exports[`Expressions - Template > Expressions - Template (pass) > String.raw\`{tf1adeflang1025ansiansicpg1252\\uc1\`; 1`] = `
+exports[`Expressions - Template > Expressions - Template (pass) > String.raw\`{␍␊tf1adeflang1025ansiansicpg1252\\uc1\`; 1`] = `
 {
   "body": [
     {
